@@ -1,0 +1,3 @@
+interface:
+  display_name: "QP Setup"
+  short_description: "Configure a coding-agent baseline with clear instructions and companion tools"

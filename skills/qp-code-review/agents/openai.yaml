@@ -1,0 +1,3 @@
+interface:
+  display_name: "QP Code Review"
+  short_description: "Judge one candidate through maintainability and defect review"
