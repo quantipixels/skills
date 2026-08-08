@@ -40,6 +40,8 @@ Read the repository instructions and relevant domain, architecture, and decision
 
 Identify the required behavior, a stable behavior-bearing seam, independent expected values, and applicable success, negative, boundary, recovery, and interaction cases.
 
+Classify the documentation impact for the completed candidate, not for every small slice. A documentation destination is required when the candidate changes a public contract, domain policy, operational or configuration procedure, or a non-obvious rationale, invariant, ordering rule, ownership rule, compatibility constraint, or security constraint. Report each required destination to the owning delivery workflow. When no destination is required, report `not applicable` and the evidence: clear names, types, structure, current tests, and unchanged relevant repository documentation.
+
 When a supplied test strategy controls material implementation, verify that it covers the required behavior, suitable seams, expected values, and material failure paths.
 
 When a user decision blocks a slice, `arojinle` owns the interview. Give it the blocked decision, current slice, credible seams, candidate identity, settled facts, assumptions, gaps, and required decision result as starting context. Re-evaluate the seam and red test against the confirmed decision and its affected behavior and proof.
@@ -68,7 +70,7 @@ Run the focused test set and relevant affected proof.
 
 ## 4. Refactor and finish
 
-Improve names, structure, duplication, and implementation depth while preserving behavior. Add rationale or API documentation only when the code cannot express important intent.
+Improve names, structure, duplication, and implementation depth while preserving behavior. Update each required documentation destination in the same candidate as the behavior change. Put durable, non-obvious rationale, policy, or invariant at its narrowest owning component. Do not document every declaration when names, types, structure, and current tests make the behavior clear. Tests prove behavior; they do not replace required API, domain, operational, or configuration documentation.
 
 Preserve unrelated behavior. Keep focused proof current. Run broader proof at a required gate or after the candidate is stable, and rerun proof invalidated by later changes. Report each applicable format, lint, build, integration, or broader test check that did not run or pass and its exact limitation.
 

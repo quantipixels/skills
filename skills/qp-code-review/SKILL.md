@@ -84,7 +84,7 @@ For a broad review, use the current `simplify` result as the maintainability evi
 
 Send each material `Needs qp-code-review` concern from `simplify` into the applicable defect-discovery branch as a hypothesis. Do not treat the concern as a confirmed defect or a maintainability finding.
 
-For the Bug hunt, inspect malformed inputs, negative paths, transactions, retries, concurrency, duplicates, stale state, restart, rollback, version skew, degraded dependencies, resource bounds, and partial completion when applicable. Retain only hypotheses with a credible candidate-caused or candidate-dependent failure mechanism.
+For the Bug hunt, inspect malformed inputs, negative paths, transactions, retries, concurrency, duplicates, stale state, restart, rollback, version skew, degraded dependencies, resource bounds, and partial completion when applicable. When the candidate reuses state, determine whether its consistency, authorization, freshness, locking, ownership, and transaction-isolation boundary permit reuse. Retain only hypotheses with a credible candidate-caused or candidate-dependent failure mechanism.
 
 Each branch must produce findings, an evidence-backed clean claim, or a named evidence gap. Report a pre-existing defect only when the candidate depends on it, worsens it, or makes a claim that it invalidates.
 

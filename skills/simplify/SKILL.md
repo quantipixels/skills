@@ -55,7 +55,7 @@ Flag a compatibility path for an unshipped signature, data shape, or behavior on
 
 ### Efficiency
 
-Flag material wasted work the candidate adds, including redundant computation or I/O, proven-independent operations that run sequentially, blocking work on startup or hot paths, and objects that retain substantially more state than they need. Name the cheaper alternative and the evidence that the cost matters.
+Flag material wasted work the candidate adds, including redundant computation or I/O, proven-independent operations that run sequentially, blocking work on startup or hot paths, and objects that retain substantially more state than they need. Name the cheaper alternative and the evidence that the cost matters. Do not claim a measured performance or cost improvement without a benchmark or production metric.
 
 ### Implementation depth
 
@@ -71,9 +71,11 @@ Review production and test code as maintainable code. Flag hidden dependencies, 
 
 Apply repository documentation rules. Do not require documentation for every declaration.
 
-Report important knowledge that names, types, interfaces, and structure cannot express clearly. Check rationale, invariants, preconditions, side effects, ordering, concurrency, ownership, lifecycle, compatibility, failures, exceptions, and security constraints.
+Require a documentation destination when the candidate changes a public contract, domain policy, operational or configuration procedure, or a non-obvious rationale, invariant, ordering rule, ownership rule, compatibility constraint, or security constraint. A destination can be a local code comment, API documentation, domain documentation, operational documentation, configuration reference, or example. Do not infer a destination from a changed declaration alone.
 
-Verify relevant comments and API documentation against the current implementation, callers, tests, links, symbol references, and examples. Report missing important knowledge, inadequate detail, stale or false claims, and harmful redundant comments.
+Report important knowledge that names, types, interfaces, and structure cannot express clearly. Check rationale, invariants, preconditions, side effects, ordering, concurrency, ownership, lifecycle, compatibility, failures, exceptions, and security constraints. Check a supplied documentation-destination record when one exists. When the record says `not applicable`, verify that the cited behavior and relevant repository documentation support that result.
+
+Verify relevant comments, API documentation, domain and operational documentation, configuration references, and examples against the current implementation, callers, tests, links, symbol references, and examples. Report missing important knowledge, inadequate detail, stale or false claims, and harmful redundant comments. Treat tests as behavior proof, not as a substitute for required documentation.
 
 List a material behavior, contract, security, or proof concern under `Needs qp-code-review` with its location, bounded scope, reason, evidence, and possible consequence. Treat it as a reference-only, out-of-scope hypothesis, not a maintainability finding or Code Review verdict.
 
