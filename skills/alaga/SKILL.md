@@ -35,6 +35,7 @@ The workflow describes one feature-delivery sequence. It does not create a host 
 Establish:
 
 - the feature boundary, acceptance behavior, exclusions, and proof expectations;
+- the documentation impact and each required destination, or `not applicable` with evidence;
 - whether a dedicated worktree or branch is needed;
 - whether local commits are authorized.
 
@@ -53,6 +54,8 @@ Prepare the selected workspace and branch without disturbing unrelated changes.
 Run `tdd` through coherent green behavior slices. Commit a slice only when local commits are authorized. Otherwise, preserve the verified changes without committing them.
 
 Use focused and affected proof for each slice. Treat a local commit as a meaningful green history, bisect, or rollback point, not as a trigger for broad review.
+
+Before the candidate becomes stable for review, reconcile each required documentation destination in the same candidate as its implementation change. Record the destination and one status: `updated now`, `already correct` with evidence, or `not applicable` with evidence. Keep the record compact. Do not defer required documentation as untracked follow-up work.
 
 ## 3. Review and converge
 
@@ -76,4 +79,4 @@ Do not complete delivery while a confirmed blocking finding or evidence gap rema
 
 Confirm that the selected workspace contains the reviewed candidate and that no intended change remains outside the authorized Git state.
 
-Report the feature boundary, decisions, implementation, proof, review results, commit state, exact final candidate, and residual limitations.
+Report the feature boundary, decisions, implementation, documentation-destination record, proof, review results, commit state, exact final candidate, and residual limitations.
