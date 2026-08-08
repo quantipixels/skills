@@ -2,13 +2,25 @@
 
 QP Agent Skills is a portable collection of focused skills for established codebases. It helps you make decisions, plan work, implement changes, review code, and craft checked HTML artifacts from durable records to interactive prototypes.
 
+Read the public documentation at [quantipixels.com/skills](https://quantipixels.com/skills).
+
 ## Install
 
 ```bash
-npx skills add quantipixels/skills
+npx skills add quantipixels/skills --global
 ```
 
 Install one or more named skills with `--skill <name>`.
+
+## Uninstall
+
+Remove an installed skill by name:
+
+```bash
+npx skills remove <skill-name>
+```
+
+Add `--global` when you installed the skill globally.
 
 ## Releases
 
