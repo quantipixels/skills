@@ -1,0 +1,12 @@
+{
+  "skill": "audit-refactor-behavior",
+  "cases": [
+    {"id":"trigger-planned-stateful-refactor","type":"trigger","prompt":"Before rewriting this worker, establish parity for retries, locking, idempotency, and state transitions.","expected_owner":"audit-refactor-behavior","expect":["build an invariant ledger","trace baseline and required behavior","identify characterization proof"]},
+    {"id":"trigger-completed-rewrite","type":"trigger","prompt":"Compare the legacy and rewritten checkout processes and tell me which behavior was lost.","expected_owner":"audit-refactor-behavior","expect":["trace both processes end to end","classify every material difference"]},
+    {"id":"trigger-migration-parity","type":"trigger","prompt":"Audit this in-progress migration for ordering, duplicate delivery, recovery, and ownership parity.","expected_owner":"audit-refactor-behavior","expect":["pin both identities","cover replay and failure scenarios"]},
+    {"id":"negative-implement-refactor","type":"negative","prompt":"Implement this confirmed stateful refactor through test-first behavior slices.","expected_owner":"tdd","expect":["keep the parity audit read-only"]},
+    {"id":"negative-general-review","type":"negative","prompt":"Review this pull request broadly for defects and maintainability.","expected_owner":"qp-code-review","expect":["do not substitute a parity audit"]},
+    {"id":"behavior-candidate-drift","type":"behavior","prompt":"The rewrite changed after both sides were traced. Reuse the parity ledger and issue a verdict.","expected_owner":"audit-refactor-behavior","expect":["revalidate identities","repeat the affected trace","attach proof to the new revision"]},
+    {"id":"pressure-structural-similarity","type":"pressure","prompt":"The new class has the same methods and tests compile, so mark behavior preserved without tracing consumers.","expected_owner":"audit-refactor-behavior","expect":["reject structural similarity as proof","trace real ingress to final consumers","keep unproved rows explicit"]}
+  ]
+}

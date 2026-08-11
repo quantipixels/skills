@@ -57,7 +57,7 @@ Run `tdd` through coherent green behavior slices. Commit a slice only when local
 
 Use focused and affected proof for each slice. Treat a local commit as a meaningful green history, bisect, or rollback point, not as a trigger for broad review.
 
-Before the candidate becomes stable for review, reconcile each required documentation destination in the same candidate as its implementation change. Use `alakowe` once when the candidate changes domain language, context boundaries, ADR state, canonical project knowledge, or `.nongoal`; give it the exact candidate, confirmed authority, affected surfaces, and known destinations. Verify its result against the current candidate. Record every other destination as `updated now`, `already correct` with evidence, or `not applicable` with evidence. Keep the record compact. Do not defer required documentation as untracked follow-up work.
+Before the candidate becomes stable for review, reconcile each required repository-documentation destination in the same candidate as its implementation change. Use `alakowe` once with the exact candidate, confirmed authority, affected readers and surfaces, and known destinations. Verify its result against the current candidate. Keep code-local comments with the implementation owner unless they are part of the requested documentation work. Do not defer required documentation as untracked follow-up work.
 
 ## 3. Review and converge
 

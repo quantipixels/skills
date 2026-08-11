@@ -49,7 +49,9 @@ Reuse a confirmed Arojinle result only while its identity remains current: plan 
 
 Compare architecture-significant terms across user statements, repository documents, and code. When a project-specific term, relationship, or rule is ambiguous and can change scope, ownership, state, or behavior, record the competing meanings and one concrete scenario that distinguishes them. Treat code as evidence of current behavior, not automatic domain authority. Use `arojinle` for a material decision.
 
-Classify each durable conclusion as domain or context language, repository architecture, an architecture decision, a local convention, or plan-only information. For confirmed domain language, context boundaries, ADR state, or project exclusions, record the required `alakowe` handoff with the live-plan identity, confirmed authority, competing meanings and scenario, affected surfaces, and nearest known destination. Request its result when durable reconciliation is authorized and required for readiness or closure. Alakowe owns canonical destination discovery and reconciliation; Atona retains plan evidence, readiness, and closure.
+Classify each durable conclusion as repository architecture, an architecture decision, project documentation, a local convention, or plan-only information. For confirmed conclusions that require documentation or project-boundary changes, record the required `alakowe` handoff with the live-plan identity, confirmed authority, affected readers and surfaces, and nearest known destination.
+
+Retain every exact-current Arojinle handoff packet associated with the current plan and collect all of them into one Alakowe reconciliation without pre-qualifying or excluding them. Add a batch envelope containing the live-plan path and revision, ordered member identifiers and packet revisions, current confirmation state, and exact evidence and implementation candidate identities. Any change to a packet, member set or order, plan path or revision, confirmation, evidence, or implementation identity makes the prior Alakowe result stale. Require Alakowe to echo the envelope unchanged. Alakowe owns ADR qualification, creation, and lifecycle reconciliation. Atona retains the batch, plan evidence, readiness, and closure, and verifies one exact-current result rather than invoking Alakowe per decision.
 
 Keep the plan in `Draft` while a material project-language conflict is unresolved or an Alakowe result required for current readiness is missing, blocked, or stale.
 
@@ -57,7 +59,7 @@ Record evidence or a gap for every decision-shaping claim. Confirm or defer ever
 
 ## 2. Decide the architecture and verify readiness
 
-Provide a compact decision packet with the problem, constraints, evidence, options, trade-offs, recommendation, phases, and proof plan.
+Provide a compact architecture recommendation with the problem, constraints, evidence, options, trade-offs, recommendation, phases, and proof plan.
 
 Use these safeguards:
 
@@ -69,8 +71,6 @@ Use these safeguards:
 - Cover each material state, ownership, lifecycle, and boundary decision with normal behavior proof and one relevant edge or failure scenario.
 
 For each proposed module or seam, name its callers, required caller knowledge, hidden complexity or policy, and behavior proof. Reject it when deletion exposes only pass-through calls without exposing complexity. Keep a shallow seam only for a proven integration, ownership, lifecycle, policy, or testing need.
-
-Propose an ADR only for a real trade-off that is costly to reverse and surprising without its reason. Require approval before creation.
 
 Before setting the plan to `Planned`, and after final Arojinle confirmation, run one readiness gate:
 
@@ -99,7 +99,7 @@ Verify each specialist result against the current plan identity and candidate be
 
 Before `Closed`, verify no blocking decision remains; delivery and review match the candidate; validation and proof gaps are recorded; deferrals have an owner or trigger; follow-ups are classified as blocking or non-blocking; freezes and `leave unchanged` decisions hold; and no unresolved item, stale name, replaced or deprecated primitive, outdated guidance, or test without replacement remains.
 
-For each documentation destination, record `updated now`, `already reconciled` with evidence, or `not applicable`. When domain language, context boundaries, ADR state, canonical project knowledge, or `.nongoal` is affected, verify one exact-current Alakowe result rather than repeating its discovery. Do not leave obsolete guidance current.
+For each repository-documentation, ADR, or `.nongoal` destination, verify one exact-current Alakowe result rather than repeating its discovery. Record `updated now`, `already reconciled` with evidence, or `not applicable`. Do not leave obsolete guidance current.
 
 Align plan and implementation states with remaining work. End each user-visible handoff with **What next**: recommendation, first step, owner or skill, and required authority.
 

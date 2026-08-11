@@ -17,6 +17,8 @@ Before implementation, a stateful refactor requires an `audit-refactor-behavior`
 
 When `atona` finds a new or reopened material architecture decision, `arojinle` owns the interview. Atona supplies the live plan and decision evidence as starting context. Reuse an earlier clarification only when its coverage, scope, decision tree, closure proof, evidence, and unresolved branches remain current. Atona remains the primary owner and verifies the confirmed Arojinle closure proof against the exact plan before readiness.
 
+After confirmation, Arojinle owns complete per-decision packets without judging ADR qualification. Atona retains those packets and adds one exact-current batch envelope for Alakowe reconciliation. Alakowe alone applies the ADR threshold and owns record creation and lifecycle changes.
+
 Keep runtime-behavior work separate from repository review policy, agent skills, external review automation, credential discovery, and secret-file conventions unless the request explicitly includes those surfaces. Use separate routes or candidates when it does not.
 
 Treat an unqualified request to review code as broad. Select `qp-code-review` as the primary owner and `simplify` as its supporting maintainability specialist. Select `qp-code-review` alone only when the user explicitly limits the review to defects and excludes maintainability.
@@ -24,11 +26,11 @@ Treat an unqualified request to review code as broad. Select `qp-code-review` as
 | Starting situation | Primary route |
 | --- | --- |
 | The user needs help selecting the shortest useful QP route | `alarina` |
-| Domain language, canonical project knowledge, an ADR lifecycle action, or root `.nongoal` needs reconciliation | `alakowe` |
+| Repository documentation, an ADR lifecycle action, or root `.nongoal` needs reconciliation | `alakowe` |
 | An idea, plan, or decision needs complete frontier rounds and a durable record | `arojinle` |
 | Production behavior must change under test-first proof | `tdd` |
 | One feature needs clarification, test-backed implementation, and broad review | `alaga` |
-| Changed code needs a read-only maintainability or documentation review | `simplify` |
+| Changed code or code-local comments need a read-only maintainability review | `simplify` |
 | Bounded code or an active PR or MR needs broad or defect-only review | `qp-code-review`, with `simplify` for broad review |
 | A planned or completed refactor needs a parity ledger, or a stateful refactor requires a pre-implementation behavior gate | `audit-refactor-behavior` |
 | One standalone HTML artifact, such as a report, visualization, prototype, demo, or bounded interactive tool, is the requested result | `html-artifact` |
@@ -39,7 +41,7 @@ Treat an unqualified request to review code as broad. Select `qp-code-review` as
 | One portable agent skill needs creation or revision | `ko-skill` |
 | Coding-agent communication instructions plus companion tools or supported integrations need a baseline setup | `qp-setup` |
 
-Keep an unresolved material product or architecture decision with `arojinle` or `atona`; use `alakowe` only after authority is confirmed or when it must surface the knowledge conflict. Keep read-only maintainability and documentation review with `simplify`.
+Keep an unresolved material product or architecture decision with `arojinle` or `atona`; use `alakowe` only after the content is confirmed or when documentation conflicts with current authority. Keep read-only maintainability review with `simplify`.
 
 Check the active skill inventory before returning the route. When the correct owner is unavailable, name it as unavailable and do not substitute another skill.
 

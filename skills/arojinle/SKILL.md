@@ -25,4 +25,16 @@ Finding facts is your job, never the user's. When a frontier question needs a fa
 
 The session is done when the frontier is empty: every branch of the design tree visited, nothing left silently assumed. Do not act on it until the user confirms you have reached a shared understanding.
 
-When confirmed decisions change domain language, context boundaries, ADR state, canonical project knowledge, or `.nongoal`, identify those implications in the result for `alakowe`. Do not mutate their repository destinations as part of the decision interview.
+For each confirmed material decision, include an `alakowe` handoff packet with:
+
+- the decision identifier, packet revision, and exact confirmed decision;
+- its context and constraints;
+- credible alternatives and the real trade-off, or an explicit `none` when the confirmed constraints leave no credible alternative;
+- known consequences;
+- confirmation and decision authority;
+- the exact plan, candidate, or evidence identity; and
+- affected readers, surfaces, and nearest known destination.
+
+Do not invent an alternative, pre-filter the packet, apply the ADR qualification threshold, or mutate repository destinations during the interview. Alakowe owns qualification, documentation discovery, creation, and lifecycle reconciliation after confirmation.
+
+Increment the packet revision whenever its identifier, decision, context, alternatives, trade-off, consequences, confirmation, authority, identity, readers, surfaces, or destination changes.

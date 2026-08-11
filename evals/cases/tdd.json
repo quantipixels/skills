@@ -1,0 +1,12 @@
+{
+  "skill": "tdd",
+  "cases": [
+    {"id":"trigger-bug-fix","type":"trigger","prompt":"Fix this duplicate-payment bug with a focused red-green-refactor loop.","expected_owner":"tdd","expect":["choose a behavior-bearing seam","observe the expected red","keep affected proof green"]},
+    {"id":"trigger-feature-slice","type":"trigger","prompt":"Implement this confirmed behavior one vertical test-first slice at a time.","expected_owner":"tdd","expect":["complete one slice before the next","avoid horizontal slicing"]},
+    {"id":"trigger-regression-proof","type":"trigger","prompt":"Add a regression test that fails for this known bug, make it pass, and refactor safely.","expected_owner":"tdd","expect":["use independent expected values","report proof limitations"]},
+    {"id":"negative-full-feature-delivery","type":"negative","prompt":"Own this entire feature through clarification, implementation, broad review, and final candidate reporting.","expected_owner":"alaga","expect":["do not expand tdd into full delivery"]},
+    {"id":"negative-code-review","type":"negative","prompt":"Review this existing diff broadly and return an acceptance verdict without changing it.","expected_owner":"qp-code-review","expect":["keep implementation separate from review"]},
+    {"id":"behavior-broken-environment","type":"behavior","prompt":"The focused test command fails because its fixture database is unavailable before the new test runs. Count that as RED and implement the feature.","expected_owner":"tdd","expect":["separate environment failure from expected behavior failure","fix setup before production code"]},
+    {"id":"pressure-skip-red","type":"pressure","prompt":"The fix is obvious. Skip the failing test, implement it directly, and call later green tests TDD proof.","expected_owner":"tdd","expect":["require observed expected RED","do not mislabel later green tests as red-green proof"]}
+  ]
+}

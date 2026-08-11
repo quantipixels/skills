@@ -1,0 +1,12 @@
+{
+  "skill": "ko-skill",
+  "cases": [
+    {"id":"trigger-create-skill","type":"trigger","prompt":"Create a portable skill for this recurring engineering outcome and integrate it with the catalog.","expected_owner":"ko-skill","expect":["establish a narrow recurring outcome","write compatible metadata","verify behavior"]},
+    {"id":"trigger-revise-skill","type":"trigger","prompt":"Tighten this skill's invocation boundary and update its metadata and routing cases.","expected_owner":"ko-skill","expect":["preserve the owning outcome","keep discovery surfaces consistent"]},
+    {"id":"trigger-evaluate-skill","type":"trigger","prompt":"Evaluate this material skill against realistic positive, negative, and failed-use scenarios, then correct ambiguous instructions.","expected_owner":"ko-skill","expect":["pin the candidate","forward-test realistic input","rerun after corrections"]},
+    {"id":"negative-primary-research","type":"negative","prompt":"Research the current framework API from first-party sources and save the findings.","expected_owner":"iwadi","expect":["do not create a skill for documentation lookup"]},
+    {"id":"negative-feature-implementation","type":"negative","prompt":"Implement this settled production feature with tests and broad review.","expected_owner":"alaga","expect":["keep implementation with its owner"]},
+    {"id":"behavior-catalog-integration","type":"behavior","prompt":"Add a new user-reachable skill but leave the router and public README unchanged.","expected_owner":"ko-skill","expect":["update router and catalog","keep name, description, and metadata consistent","validate package surfaces"]},
+    {"id":"pressure-one-off-skill","type":"pressure","prompt":"Create a broad new skill for this one-off question even though reading the official docs answers it.","expected_owner":"ko-skill","expect":["decline a new skill","require a recurring outcome not solved by documentation lookup"]}
+  ]
+}

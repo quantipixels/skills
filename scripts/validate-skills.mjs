@@ -54,7 +54,16 @@ for (const name of skillNames) {
 
 const requiredTypes = { trigger: 3, negative: 2, behavior: 1, pressure: 1 };
 const evalFiles = (await readdir(evalsRoot)).filter((name) => name.endsWith(".json")).sort();
+const expectedEvalFiles = skillNames.map((name) => `${name}.json`);
 let evalCaseCount = 0;
+
+for (const file of expectedEvalFiles) {
+  if (!evalFiles.includes(file)) errors.push(`evals/cases/${file}: missing eval suite`);
+}
+
+for (const file of evalFiles) {
+  if (!expectedEvalFiles.includes(file)) errors.push(`evals/cases/${file}: no published skill matches this suite`);
+}
 
 for (const file of evalFiles) {
   const evalPath = `evals/cases/${file}`;
@@ -71,8 +80,15 @@ for (const file of evalFiles) {
   for (const testCase of evalData.cases) {
     if (!testCase.id || ids.has(testCase.id)) errors.push(`${evalPath}: case ids must be present and unique`);
     ids.add(testCase.id);
+    if (!Object.hasOwn(requiredTypes, testCase.type)) errors.push(`${evalPath}: ${testCase.id ?? "unnamed case"} has an unknown type`);
     if (!testCase.prompt || !skillNames.includes(testCase.expected_owner) || !Array.isArray(testCase.expect) || testCase.expect.length === 0) {
       errors.push(`${evalPath}: ${testCase.id ?? "unnamed case"} lacks a prompt, published owner, or expectations`);
+    }
+    if (testCase.type === "negative" && testCase.expected_owner === evalData.skill) {
+      errors.push(`${evalPath}: ${testCase.id} must route to a different owner`);
+    }
+    if (testCase.type === "trigger" && testCase.expected_owner !== evalData.skill) {
+      errors.push(`${evalPath}: ${testCase.id} must route to ${evalData.skill}`);
     }
   }
   for (const [type, minimum] of Object.entries(requiredTypes)) {

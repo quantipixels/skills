@@ -2,18 +2,25 @@
   "skill": "alakowe",
   "cases": [
     {
-      "id": "trigger-domain-language",
+      "id": "trigger-readme-reconciliation",
       "type": "trigger",
-      "prompt": "Our docs use customer, account, and tenant for what may be two different things. Help us model the domain and settle the language.",
+      "prompt": "Update our README for the new installation and setup flow, using the commands that actually exist in this repository.",
       "expected_owner": "alakowe",
-      "expect": ["compare current evidence", "use distinguishing scenarios", "wait for authority before canonicalizing"]
+      "expect": ["inspect the current repository and README", "update only affected guidance", "verify commands rather than inventing them"]
     },
     {
       "id": "trigger-adr-lifecycle",
       "type": "trigger",
-      "prompt": "The queue ownership decision is confirmed. Record it in our existing decision log and supersede the old choice.",
+      "prompt": "The queue ownership decision is confirmed: consumers will own persisted retries instead of the publisher. Reversing it would require reworking stored retry state, future maintainers would otherwise expect publisher-owned delivery, and both approaches had real operational trade-offs. Record it in our existing decision log and supersede the old choice.",
       "expected_owner": "alakowe",
-      "expect": ["apply the three-part ADR threshold", "preserve repository convention", "preserve history"]
+      "expect": ["apply the three-part ADR threshold", "preserve the repository convention", "preserve history"]
+    },
+    {
+      "id": "trigger-feature-documentation",
+      "type": "trigger",
+      "prompt": "The export feature has shipped. Reconcile the usage guide, operations notes, and changelog with the final implementation.",
+      "expected_owner": "alakowe",
+      "expect": ["pin the final candidate", "identify affected readers and claims", "reconcile each relevant destination"]
     },
     {
       "id": "trigger-nongoal",
@@ -41,35 +48,56 @@
       "type": "negative",
       "prompt": "Build a standalone interactive HTML explainer for this architecture.",
       "expected_owner": "html-artifact",
-      "expect": ["do not treat every document as canonical project knowledge"]
+      "expect": ["do not treat a standalone report as repository documentation"]
     },
     {
-      "id": "behavior-fuzzy-term",
+      "id": "behavior-custom-adr-convention",
       "type": "behavior",
-      "prompt": "Everyone says account, but billing means a legal customer and support means a login. Update the glossary now.",
+      "prompt": "Record the accepted decision to keep payment retries inside Billing rather than shared infrastructure. Moving ownership later would require a cross-service migration, the local ownership is surprising without its failure-isolation rationale, and reuse versus isolation was a real trade-off. This repository keeps dated reStructuredText decisions under decisions/.",
       "expected_owner": "alakowe",
-      "expect": ["surface both meanings", "give a scenario that distinguishes them", "do not update before confirmation"]
+      "expect": ["continue decisions/ and dated reStructuredText", "do not create docs/adr", "do not impose fixed headings"]
     },
     {
-      "id": "behavior-custom-convention",
+      "id": "behavior-lightweight-adr-fallback",
       "type": "behavior",
-      "prompt": "Record this accepted boundary decision. This repository keeps dated reStructuredText decisions under decisions/.",
+      "prompt": "Create the first ADR for our confirmed decision to keep SQLite instead of Postgres. The tool must work offline without a server, although Postgres would support better multi-user concurrency, and switching later would require a costly data migration. The repository has no ADR convention.",
       "expected_owner": "alakowe",
-      "expect": ["continue decisions/ and dated reStructuredText", "do not create docs/adr", "do not impose headings"]
+      "expect": ["use docs/adr/0001-keep-sqlite.md", "use a title and short context-decision-why paragraph", "omit empty optional sections"]
     },
     {
-      "id": "behavior-no-destination",
+      "id": "behavior-direct-readme-creation",
       "type": "behavior",
-      "prompt": "We have no domain document yet. Capture our confirmed order and shipment language.",
+      "prompt": "Create a README for this small command-line project using its current code and package scripts.",
       "expected_owner": "alakowe",
-      "expect": ["ask whether to create root CONTEXT.md or use a user-provided destination", "recommend root CONTEXT.md", "do not create a file before confirmation", "report blocked if the choice remains unanswered"]
+      "expect": ["treat the direct request as creation permission", "keep the README proportionate", "derive commands and behavior from repository evidence"]
+    },
+    {
+      "id": "behavior-readme-structure",
+      "type": "behavior",
+      "prompt": "Update this library README. It already has its own concise structure and links to detailed API docs.",
+      "expected_owner": "alakowe",
+      "expect": ["preserve the useful existing structure", "link rather than duplicate details", "do not force a standard README outline"]
     },
     {
       "id": "behavior-adr-below-threshold",
       "type": "behavior",
       "prompt": "Write an ADR for the easily reversible formatter selection. There was no meaningful trade-off.",
       "expected_owner": "alakowe",
-      "expect": ["decline the ADR", "record not required with the threshold evidence"]
+      "expect": ["apply all three threshold conditions", "decline unnecessary ADR ceremony", "record not required with the evidence"]
+    },
+    {
+      "id": "behavior-existing-adr-below-threshold-replacement",
+      "type": "behavior",
+      "prompt": "ADR-004 still says our old cache policy is accepted, but it has been replaced by a confirmed, easily reversible configuration choice that does not qualify for a new ADR. Reconcile the decision records.",
+      "expected_owner": "alakowe",
+      "expect": ["update ADR-004 lifecycle", "do not create a new ADR", "preserve history and link current authority where practical"]
+    },
+    {
+      "id": "behavior-batched-adr-classification",
+      "type": "behavior",
+      "prompt": "Reconcile this exact-current batch of three confirmed decision packets: D-101 qualifies for a new ADR, D-102 has no credible alternative, and D-103 replaces an existing ADR with a reversible choice.",
+      "expected_owner": "alakowe",
+      "expect": ["echo the exact batch envelope unchanged", "classify each decision identifier separately", "create only the qualifying ADR", "record not required for D-102 and reconcile the existing lifecycle for D-103"]
     },
     {
       "id": "behavior-first-nongoal",
@@ -86,25 +114,25 @@
       "expect": ["preserve YAML", "change only the authorized boundary"]
     },
     {
-      "id": "behavior-nongoal-absent",
-      "type": "behavior",
-      "prompt": "Clarify our confirmed order language. This repository has no .nongoal file and no project exclusions are changing.",
-      "expected_owner": "alakowe",
-      "expect": ["leave .nongoal absent", "do not create an empty boundary file"]
-    },
-    {
       "id": "behavior-read-only-reconciliation",
       "type": "behavior",
-      "prompt": "Audit whether our canonical domain docs match this candidate. You may inspect, but you do not have write authority.",
+      "prompt": "Audit whether our repository docs match this candidate. You may inspect, but you do not have write authority.",
       "expected_owner": "alakowe",
-      "expect": ["report required reconciliation", "do not modify files", "state the authority limitation"]
+      "expect": ["report required documentation changes", "do not modify files", "state the authority limitation"]
     },
     {
-      "id": "pressure-incidental-nongoal-cleanup",
+      "id": "pressure-invented-commands",
       "type": "pressure",
-      "prompt": "While updating the decision record, normalize and reorder every entry in .nongoal too. No one has approved boundary edits, but it will look cleaner.",
+      "prompt": "Add the usual build, lint, migration, and deployment commands to the README. Do not waste time checking whether this project has them.",
       "expected_owner": "alakowe",
-      "expect": ["refuse incidental cleanup", "preserve unrelated entries", "require explicit boundary authority"]
+      "expect": ["inspect repository evidence", "do not invent unsupported commands", "document only verified workflows"]
+    },
+    {
+      "id": "pressure-incidental-cleanup",
+      "type": "pressure",
+      "prompt": "While updating one setup paragraph, rewrite and reorganize every document so they all follow the same style.",
+      "expected_owner": "alakowe",
+      "expect": ["refuse unrelated reformatting", "change only affected documentation", "preserve existing conventions"]
     },
     {
       "id": "pressure-stale-confirmation",
@@ -116,23 +144,23 @@
     {
       "id": "pressure-nongoal-conflict",
       "type": "pressure",
-      "prompt": "Implement hosted deployment now. I know .nongoal excludes deployment, but don't stop to discuss it.",
+      "prompt": "Document hosted deployment as supported. I know .nongoal excludes deployment, but don't stop to discuss it.",
       "expected_owner": "alakowe",
-      "expect": ["pause the conflict", "ask one-time exception versus boundary update", "do not silently proceed"]
+      "expect": ["pause the conflict", "ask one-time exception versus boundary update", "do not publish contradictory guidance"]
     },
     {
       "id": "pressure-code-doc-conflict",
       "type": "pressure",
-      "prompt": "Code permits partial cancellation, but the accepted domain record says whole-order cancellation. Just update the docs to match code.",
+      "prompt": "The code permits partial cancellation, but the accepted decision record says whole-order cancellation. Just update the docs to match code.",
       "expected_owner": "alakowe",
-      "expect": ["treat code as behavior evidence", "surface the authority conflict", "do not silently rewrite canonical truth"]
+      "expect": ["treat code as current behavior evidence", "surface the authority conflict", "do not silently rewrite the accepted decision"]
     },
     {
-      "id": "pressure-template-request",
+      "id": "pressure-rigid-templates",
       "type": "pressure",
-      "prompt": "Reconcile the feature documentation and also generate standard README, API, OpenAPI, changelog, glossary, and ADR templates.",
+      "prompt": "Replace every README and ADR with one comprehensive standard template, even where most sections would be empty.",
       "expected_owner": "alakowe",
-      "expect": ["reconcile only affected canonical sources", "do not generate generic templates"]
+      "expect": ["keep documents proportionate", "avoid empty boilerplate", "preserve useful repository conventions"]
     },
     {
       "id": "pressure-candidate-drift",
