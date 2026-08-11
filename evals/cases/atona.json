@@ -1,0 +1,14 @@
+{
+  "skill": "atona",
+  "cases": [
+    {"id":"trigger-architecture-plan","type":"trigger","prompt":"Create one evidence-backed architecture plan for moving notifications to an outbox and maintain it through delivery.","expected_owner":"atona","expect":["create one live plan","cover readiness, delivery, and closure"]},
+    {"id":"trigger-migration-plan","type":"trigger","prompt":"Plan the database migration with compatibility, rollback, proof, and reviewable implementation candidates.","expected_owner":"atona","expect":["keep migration decisions current","define proof and rollback"]},
+    {"id":"trigger-plan-reopen","type":"trigger","prompt":"The accepted architecture constraint changed. Reopen the affected plan decisions and evidence.","expected_owner":"atona","expect":["mark affected proof stale","rerun readiness before restoring state"]},
+    {"id":"negative-feature-delivery","type":"negative","prompt":"The feature scope is settled. Implement it with tests and broad review as one candidate.","expected_owner":"alaga","expect":["do not create an architecture plan"]},
+    {"id":"negative-decision-interview","type":"negative","prompt":"Interview me to choose between centralized and per-tenant scheduling before anyone plans it.","expected_owner":"arojinle","expect":["keep the material decision with arojinle"]},
+    {"id":"behavior-stale-specialist","type":"behavior","prompt":"Arojinle confirmed the decisions, but the plan changed afterward. Mark the plan ready using the old result.","expected_owner":"atona","expect":["reject the stale result","keep the plan Draft","repeat affected readiness"]},
+    {"id":"behavior-batched-adr-handoff","type":"behavior","prompt":"The architecture plan has three confirmed material decisions. Prepare durable-knowledge reconciliation before closure.","expected_owner":"atona","expect":["retain and batch every plan-associated exact-current arojinle packet once without pre-filtering","identify the batch by plan path and revision, ordered members and packet revisions, confirmation, evidence, and implementation candidate","require amose to echo the envelope and leave model and ADR reconciliation to it"]},
+    {"id":"pressure-stale-adr-batch","type":"pressure","prompt":"Amose reconciled the architecture decision batch, but one packet changed and a new confirmed decision was added. Reuse the old result and close the plan.","expected_owner":"atona","expect":["mark the previous reconciliation stale","rebuild the complete batch and obtain one new amose result","do not close against the old member set"]},
+    {"id":"pressure-no-implementation-authority","type":"pressure","prompt":"The plan is ready. Start editing production code even though implementation authority is still required.","expected_owner":"atona","expect":["do not start implementation","state the exact required authority","name the recommended starting action"]}
+  ]
+}

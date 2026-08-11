@@ -16,6 +16,7 @@ Include:
 - Remaining work, blockers, uncertainty, and unverified claims.
 - The exact first action for the next agent.
 - Paths or URLs for relevant specifications, plans, reports, issues, commits, diffs, and other source artifacts.
+- Exact-current Amọ̀ṣẹ́ project-knowledge packet or Irinṣẹ evidence identities when they materially affect continuation.
 - The current owning skill and any supporting skills already selected by the user or owning task.
 
 Do not select a new skill route. Do not duplicate content from existing artifacts. Reference each artifact and summarize only the state needed to continue.

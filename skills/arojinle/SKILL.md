@@ -24,3 +24,17 @@ Each round the user answers reshapes the tree — settled decisions push the fro
 Finding facts is your job, never the user's. When a frontier question needs a fact from the environment (filesystem, tools, etc.), dispatch a sub-agent to find it — don't ask the user for anything you could look up yourself. Don't block on it: a running exploration is an unsettled prerequisite, so only the questions downstream of it wait for the sub-agent to report — ask the rest of the frontier now. The decisions are the user's — put each to them and wait.
 
 The session is done when the frontier is empty: every branch of the design tree visited, nothing left silently assumed. Do not act on it until the user confirms you have reached a shared understanding.
+
+For each confirmed material decision, include an `amose` handoff packet with:
+
+- the decision identifier, packet revision, and exact confirmed decision;
+- its context and constraints;
+- credible alternatives and the real trade-off, or an explicit `none` when the confirmed constraints leave no credible alternative;
+- known consequences;
+- confirmation and decision authority;
+- the exact plan, candidate, or evidence identity; and
+- affected readers, surfaces, and nearest known destination.
+
+Do not invent an alternative, pre-filter the packet, apply the ADR qualification threshold, or mutate repository destinations during the interview. Amọ̀ṣẹ́ owns domain-model reconciliation, ADR qualification, durable-record creation, and lifecycle reconciliation after confirmation.
+
+Increment the packet revision whenever its identifier, decision, context, alternatives, trade-off, consequences, confirmation, authority, identity, readers, surfaces, or destination changes.

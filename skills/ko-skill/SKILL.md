@@ -9,13 +9,15 @@ Author or revise one portable skill whose process is predictable across runs. Le
 
 ## 1. Set the boundary
 
-Read repository instructions, host guidance, the target skill and resources, and relevant inventory and metadata. Establish the path, mutation authority, recurring outcome, triggers, exclusions, and invocation policy. Revise the existing outcome owner. Create a skill only for a recurring decision, failure mode, or engineering outcome that documentation lookup does not solve.
+Read repository instructions, host guidance, the target skill and resources, and relevant inventory and metadata. Establish the path, mutation authority, recurring outcome, triggers, exclusions, and invocation policy. Keep skill authoring or revision with `ko-skill` even when the target skill owns the runtime outcome. Revise that existing outcome owner instead of creating a competing skill. Create a skill only for a recurring decision, failure mode, or engineering outcome that documentation lookup does not solve.
 
 Use the requested path. Ask one location question only when context does not identify it; use the host's personal skills directory when the user gives no preference. Choose implicit invocation only when an agent or skill must find the skill without an explicit request. Give each behavior branch one trigger.
 
+For a skill behavior correction, first define a realistic raw evaluation that distinguishes the target contract from current behavior. Pin and exercise the pre-fix candidate before proposing or making the fix. Record the observed failure or evidence gap. When current behavior passes, do not change it only to restate the contract; identify missing proof or another justified change. When no suitable runner is available, add the evaluation and report that execution gap before proposing a fix.
+
 ## 2. Write the skill
 
-Give the skill one narrow outcome and state the adjacent behavior it excludes. When the user supplies replacement wording, treat it as the target contract. Preserve its structure and vocabulary unless a host or repository requirement conflicts. Add only required compatibility or integration text, and identify each addition. Apply the remaining authoring rules only to author-owned text and required additions.
+Give the skill one narrow outcome and state the adjacent behavior it excludes. When the user supplies replacement wording or a corrected constraint, treat it as the target contract. Preserve supplied structure and vocabulary unless a host or repository requirement conflicts. Locate and reconcile every conflicting owning rule and required integration surface. Do not preserve or introduce a policy that the user explicitly leaves outside the skill. Add only required compatibility or integration text, and identify each addition. Apply the remaining authoring rules only to author-owned text and required additions.
 
 Follow the host's current schemas. Put discovery controls in the surfaces the host uses. Describe the skill, outcome, and focus, not its stages. Keep instructions required by every branch in `SKILL.md`; move substantial facts or branch guidance behind a direct pointer. Use ordered steps only when sequence matters and a compact directed acyclic graph only when dependencies remain unclear. Let the host own execution.
 

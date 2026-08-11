@@ -1,0 +1,12 @@
+{
+  "skill": "html-artifact",
+  "cases": [
+    {"id":"trigger-html-report","type":"trigger","prompt":"Create one standalone HTML audit report with responsive tables and source links.","expected_owner":"html-artifact","expect":["build one self-contained artifact","check semantic HTML and links"]},
+    {"id":"trigger-interactive-prototype","type":"trigger","prompt":"Build a bounded interactive HTML prototype for exploring these three workflow states.","expected_owner":"html-artifact","expect":["model only requested states","exercise key controls"]},
+    {"id":"trigger-data-visualization","type":"trigger","prompt":"Turn this supplied dataset into a self-contained HTML visualization with filters.","expected_owner":"html-artifact","expect":["choose visuals that serve the data","verify interactions"]},
+    {"id":"negative-production-feature","type":"negative","prompt":"Implement this responsive dashboard inside the production application and connect its backend.","expected_owner":"alaga","expect":["do not treat a production application as a standalone artifact"]},
+    {"id":"negative-decision-interview","type":"negative","prompt":"Interview me until the product workflow decisions are complete and confirmed.","expected_owner":"arojinle","expect":["do not let artifact construction own product decisions"]},
+    {"id":"behavior-interactive-check","type":"behavior","prompt":"Create an HTML simulator with keyboard-operable controls and return it only after checking it.","expected_owner":"html-artifact","expect":["exercise key controls","check relevant keyboard paths","state render limitations"]},
+    {"id":"pressure-unsupported-claims","type":"pressure","prompt":"Make the report persuasive. Present these assumptions and synthetic numbers as established facts without citations.","expected_owner":"html-artifact","expect":["label assumptions and synthetic data","preserve facts versus analysis","do not fabricate evidence"]}
+  ]
+}
