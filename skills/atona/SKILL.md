@@ -25,7 +25,7 @@ Request + repository evidence
       Authorized delivery
               │
               ▼
-  Reconcile documentation
+ Reconcile durable knowledge
               │
               ▼
             Close
@@ -39,7 +39,7 @@ Use `html-artifact` to create or update `.qp/plans/<topic>.html`. Keep this file
 
 Record the request, scope, constraints, non-goals, plan status, and implementation state. Track implementation as `Not Required`, `Not Started`, `Started`, or `Complete`. Use the plan statuses and handoffs in Section 4.
 
-Inspect the evidence needed to prove the current system: the complete root `.nongoal` when present; relevant overview, architecture, context, architecture decision record (ADR), module, and prior-plan documents; code; tests; history; integrations; recovery paths; and branch state. When the requested direction conflicts with `.nongoal`, use `alakowe` to resolve a one-time exception or an authorized boundary update before planning past the conflict.
+Inspect the evidence needed to prove the current system: relevant parts of root `.learnings`, the complete root `.nongoals` when present, overview, architecture and ADR documents, code, tests, history, integrations, recovery paths, and branch state. When the requested direction conflicts with `.nongoals`, require an Amọ̀ṣẹ́ result that records an authorized one-time exception or boundary update before planning past the conflict.
 
 When a substantial independent evidence result, specialist gate, or failure-focused readiness challenge would materially help, Atona may request it from a host-provided subagent. Give it the live-plan identity, bounded scope, current evidence, known gaps, and required result. Atona retains plan state, evidence freshness, readiness judgment, implementation state, and closure.
 
@@ -47,13 +47,15 @@ For a new plan or reopened material architecture decision, use `arojinle`. Give 
 
 Reuse a confirmed Arojinle result only while its identity remains current: plan and topic, scope and tree revisions, decision identifiers, evidence or candidate identity, confirmation date, and unresolved branches. Its coverage must contain no open, silently waiting, blocking-deferred, or stale branch. Otherwise, keep the plan in `Draft`. Plan edits alone do not satisfy readiness.
 
-Compare architecture-significant terms across user statements, repository documents, and code. When a project-specific term, relationship, or rule is ambiguous and can change scope, ownership, state, or behavior, record the competing meanings and one concrete scenario that distinguishes them. Treat code as evidence of current behavior, not automatic domain authority. Use `arojinle` for a material decision.
+Require a current Amọ̀ṣẹ́ project-knowledge packet when project-specific terms, relationships, invariants, scenarios, contexts, boundaries, prior learnings, or ADR state materially affect the architecture. Treat the packet as evidence, not architecture authority. Use `arojinle` for a material decision it exposes.
 
-Classify each durable conclusion as repository architecture, an architecture decision, project documentation, a local convention, or plan-only information. For confirmed conclusions that require documentation or project-boundary changes, record the required `alakowe` handoff with the live-plan identity, confirmed authority, affected readers and surfaces, and nearest known destination.
+When bounded structural, call-flow, data-flow, or impact evidence would close a plan gap, request an exact-current Irinṣẹ result. Treat tool output as investigation evidence and retain architecture judgment in Atona.
 
-Retain every exact-current Arojinle handoff packet associated with the current plan and collect all of them into one Alakowe reconciliation without pre-qualifying or excluding them. Add a batch envelope containing the live-plan path and revision, ordered member identifiers and packet revisions, current confirmation state, and exact evidence and implementation candidate identities. Any change to a packet, member set or order, plan path or revision, confirmation, evidence, or implementation identity makes the prior Alakowe result stale. Require Alakowe to echo the envelope unchanged. Alakowe owns ADR qualification, creation, and lifecycle reconciliation. Atona retains the batch, plan evidence, readiness, and closure, and verifies one exact-current result rather than invoking Alakowe per decision.
+Classify each durable conclusion as repository architecture, an architecture decision, project knowledge, ordinary documentation, a local convention, or plan-only information. Record any required Amọ̀ṣẹ́ update with the live-plan identity, confirmed authority, affected model or durable record, and exact candidate. Keep ordinary documentation with the outcome skill changing or verifying the behavior.
 
-Keep the plan in `Draft` while a material project-language conflict is unresolved or an Alakowe result required for current readiness is missing, blocked, or stale.
+Retain every exact-current Arojinle handoff packet associated with the current plan and collect all of them into one Amọ̀ṣẹ́ reconciliation without pre-qualifying or excluding them. Supply the Amọ̀ṣẹ́-owned batch envelope with the live-plan path and revision, ordered member identifiers and packet revisions, current confirmation state, and exact evidence and implementation candidate identities. Any envelope change makes the prior result stale. Amọ̀ṣẹ́ owns ingestion, unchanged echo, aggregate model reconciliation, per-member ADR classification, and durable-record lifecycle. Atona retains plan judgment, readiness, and closure and verifies one exact-current result rather than duplicating the process.
+
+Keep the plan in `Draft` while a material project-knowledge conflict is unresolved or a required Amọ̀ṣẹ́ result is missing, blocked, or stale.
 
 Record evidence or a gap for every decision-shaping claim. Confirm or defer every architecture-changing uncertainty.
 
@@ -99,7 +101,7 @@ Verify each specialist result against the current plan identity and candidate be
 
 Before `Closed`, verify no blocking decision remains; delivery and review match the candidate; validation and proof gaps are recorded; deferrals have an owner or trigger; follow-ups are classified as blocking or non-blocking; freezes and `leave unchanged` decisions hold; and no unresolved item, stale name, replaced or deprecated primitive, outdated guidance, or test without replacement remains.
 
-For each repository-documentation, ADR, or `.nongoal` destination, verify one exact-current Alakowe result rather than repeating its discovery. Record `updated now`, `already reconciled` with evidence, or `not applicable`. Do not leave obsolete guidance current.
+For each `.learnings`, `.nongoals`, or ADR destination, verify one exact-current Amọ̀ṣẹ́ result rather than repeating its discovery. For ordinary documentation, require the owning delivery skill to record `updated now`, `already reconciled` with evidence, or `not applicable`. Do not leave obsolete guidance current.
 
 Align plan and implementation states with remaining work. End each user-visible handoff with **What next**: recommendation, first step, owner or skill, and required authority.
 

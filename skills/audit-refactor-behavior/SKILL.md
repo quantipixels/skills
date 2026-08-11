@@ -9,6 +9,10 @@ Treat a refactor as a behavioral parity exercise unless an authority explicitly 
 
 Keep this audit read-only. Implementation and test changes belong to `tdd`, `alaga`, or the current implementation owner.
 
+Read relevant confirmed `.learnings` and Amọ̀ṣẹ́ scenarios when domain rules affect parity. Treat them as evidence and verify them against baseline behavior. Report model conflicts to Amọ̀ṣẹ́; do not redefine canonical terms or rules inside the parity ledger.
+
+Use an exact-current Irinṣẹ result when bounded call, impact, or data-flow signals can widen the trace surface. Revalidate every consequential path against source and observable behavior.
+
 ## Functional workflow
 
 ```text

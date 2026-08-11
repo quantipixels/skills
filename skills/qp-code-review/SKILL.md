@@ -63,11 +63,13 @@ Do not infer a provider target from local state. Report the exact gap and safe a
 
 For a broad review, require a current `simplify` result for the exact candidate. Give `simplify` the pinned candidate identity, review boundary, repository rules, relevant context, assumptions, and known gaps as input, not proof. Accept a supplied result only when it identifies the same candidate and reports its maintainability findings or clean claim and limitations. Reuse a matching result from an owning workflow such as `alaga`; do not repeat the review. Obtain a new result when it is missing or stale. If that result remains unavailable, record a maintainability evidence gap and return `INSUFFICIENT_EVIDENCE` for the broad review.
 
-When the candidate requires repository documentation, ADR, or `.nongoal` changes, require the owning workflow's exact-current `alakowe` result. Verify its candidate identity, authority, destinations, and verdict without repeating documentation discovery. Treat a missing, blocked, contradictory, or stale result as an evidence gap.
+Read relevant confirmed project knowledge when it affects the contract. When the candidate requires `.learnings`, ADR, or `.nongoals` changes, require the owning workflow's exact-current Amọ̀ṣẹ́ result. Verify its input and final candidate identities, authority, destinations, and verdict without repeating model discovery. Treat a missing, blocked, contradictory, or stale result as an evidence gap. Verify required ordinary documentation directly as part of the candidate contract.
 
 ## 2. Collect evidence and discover defects
 
 Inspect the complete candidate and relevant callers, tests, schemas, migrations, configuration, specifications, architecture, requirements, and history. Separate candidate changes from accepted baseline code.
+
+Use exact-current Irinṣẹ impact, hotspot, quality, or security evidence only to direct inspection. Treat every signal as a hypothesis and corroborate it through the applicable discovery branch before it can affect the verdict.
 
 For a changed shared contract, treat unproved affected consumers or material states as proof gaps unless a current test or invariant covers them.
 

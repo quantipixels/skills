@@ -25,7 +25,7 @@ Finding facts is your job, never the user's. When a frontier question needs a fa
 
 The session is done when the frontier is empty: every branch of the design tree visited, nothing left silently assumed. Do not act on it until the user confirms you have reached a shared understanding.
 
-For each confirmed material decision, include an `alakowe` handoff packet with:
+For each confirmed material decision, include an `amose` handoff packet with:
 
 - the decision identifier, packet revision, and exact confirmed decision;
 - its context and constraints;
@@ -35,6 +35,6 @@ For each confirmed material decision, include an `alakowe` handoff packet with:
 - the exact plan, candidate, or evidence identity; and
 - affected readers, surfaces, and nearest known destination.
 
-Do not invent an alternative, pre-filter the packet, apply the ADR qualification threshold, or mutate repository destinations during the interview. Alakowe owns qualification, documentation discovery, creation, and lifecycle reconciliation after confirmation.
+Do not invent an alternative, pre-filter the packet, apply the ADR qualification threshold, or mutate repository destinations during the interview. Amọ̀ṣẹ́ owns domain-model reconciliation, ADR qualification, durable-record creation, and lifecycle reconciliation after confirmation.
 
 Increment the packet revision whenever its identifier, decision, context, alternatives, trade-off, consequences, confirmation, authority, identity, readers, surfaces, or destination changes.

@@ -17,6 +17,8 @@ Review the fixed candidate and the minimum surrounding context needed to verify 
 
 Apply repository instructions and adopted language, framework, architecture, and style standards before general engineering principles. Treat external quality models, design principles, metrics, and thresholds as review heuristics unless the repository adopts them as requirements.
 
+Use an exact-current Irinṣẹ result only to prioritize bounded inspection. Treat metrics and static-analysis output as leads, not maintainability findings, and verify each reported maintenance cost in the candidate.
+
 ## 2. Review the candidate
 
 Report only actionable maintainability findings. For each finding, give the file, line, summary, applicable repository rule or engineering principle, evidence, concrete maintenance cost, and smallest credible correction direction. A principle name or code smell is not evidence. Do not report style preferences.
@@ -49,7 +51,7 @@ A stable current specification, architecture decision record, or issue can suppo
 
 Prefer one repository term for each concept and one meaning for each term. Flag divergence only when it causes ambiguity or translation cost across the changed code and its consumers. Treat a long compound name as a review clue, not a finding by itself. Recommend a shorter name only when repository context preserves its precise meaning.
 
-When repository sources conflict or no term is adopted, report the ambiguity and translation cost without choosing a canonical term. State the owning decision needed.
+When repository sources conflict or no term is adopted, report the ambiguity and translation cost without choosing a canonical term. Name Amọ̀ṣẹ́ as the model owner and state any material decision authority still needed.
 
 Flag a compatibility path for an unshipped signature, data shape, or behavior only when repository history and release evidence prove that it was never released, and a complete search within the stated consumer scope finds no current dependency. State the consumer scope and any external-consumer limitation. Do not infer unshipped status from review discussion or development history alone.
 
@@ -77,7 +79,7 @@ Report important knowledge that names, types, interfaces, and structure cannot e
 
 Verify relevant comments, API documentation, domain and operational documentation, configuration references, and examples against the current implementation, callers, tests, links, symbol references, and examples. Report missing important knowledge, inadequate detail, stale or false claims, and harmful redundant comments. Treat tests as behavior proof, not as a substitute for required documentation.
 
-When repository documentation, ADR state, or `.nongoal` is inconsistent with the current candidate or confirmed authority, report the drift and its maintenance cost without editing the destination. Name `alakowe` as the correction owner after the underlying content is confirmed.
+When `.learnings`, ADR state, or `.nongoals` is inconsistent with the current candidate or confirmed authority, report the drift and its maintenance cost without editing it. Name Amọ̀ṣẹ́ as the correction owner. Keep ordinary documentation corrections with the outcome owner that changed or verifies the behavior.
 
 List a material behavior, contract, security, or proof concern under `Needs qp-code-review` with its location, bounded scope, reason, evidence, and possible consequence. Treat it as a reference-only, out-of-scope hypothesis, not a maintainability finding or Code Review verdict.
 

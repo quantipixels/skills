@@ -2,4 +2,4 @@
 "qp-skills": minor
 ---
 
-Add Alakowe for repository documentation, README maintenance, lightweight decision-record lifecycle, and project-level `.nongoal` boundaries. Wire confirmed Arojinle decision packets and batched Atona ADR candidates into Alakowe-owned qualification and reconciliation. Add persistent trigger, negative-routing, behavioral, and pressure evals for every published skill with complete catalog validation.
+Add Amọ̀ṣẹ́ as the shared owner for domain-model clarification, evidence-backed `.learnings`, authorized `.nongoals`, and lightweight ADR lifecycle. Add Irinṣẹ as the shared owner for companion-tool selection, setup, safe bounded use, verification, and removal, with progressive references for tldr-code, ast-grep, Semgrep, and IntelliJ MCP. Replace the superseded Alakowe and QP Setup routes, keep ordinary documentation with its outcome owner, and extend persistent trigger, negative-routing, behavioral, and pressure eval coverage.

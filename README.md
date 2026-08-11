@@ -53,10 +53,18 @@ Use alarina to choose the right QP skill for this request:
 | Skill | Use when |
 | --- | --- |
 | `alarina` | You need to choose the shortest QP route for a request |
-| `alakowe` | Repository documentation, lightweight ADRs, or `.nongoal` need reconciliation |
+| `amose` | Project terms, domain rules, `.learnings`, `.nongoals`, or ADRs need clarification or reconciliation |
 | `simplify` | Changed code or code-local comments need a read-only maintainability review |
 | `handoff` | A conversation needs a compact handoff for another agent or session |
 | `ayewo-igba-ise` | A coding-agent session needs an evidence-backed friction analysis |
 | `iwadi` | A question needs high-trust research from primary sources, captured in a Markdown file |
 | `ko-skill` | A portable agent skill needs creation or revision |
-| `qp-setup` | A coding-agent baseline needs communication instructions and companion-tool choices |
+| `irinse` | A companion engineering tool needs selection, setup, safe use, or removal |
+
+## Optional agent instruction
+
+Add this to your agent instructions when you want QP's companion-tool routing available by default:
+
+```text
+Use Irinṣẹ when a companion tool could materially improve the result. If the required tool is unavailable, explain its benefit and ask before installing or configuring it.
+```

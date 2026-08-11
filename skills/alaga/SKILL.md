@@ -41,7 +41,7 @@ Establish:
 
 Ask only when the request and current repository state do not settle a material choice.
 
-Read the complete root `.nongoal` when present. If the feature conflicts with it, use `alakowe` to obtain an explicit one-time exception or an authorized boundary update before implementation.
+Read relevant parts of root `.learnings` and the complete root `.nongoals` when present. Preserve confirmed project knowledge. If the feature conflicts with `.nongoals`, require Amọ̀ṣẹ́ to record an explicit one-time exception or authorized boundary update before implementation.
 
 When a feature contains a substantial independently verifiable task, Alaga may request its bounded result through host-provided subagent work. Give the request the current candidate identity, task scope and exclusions, relevant confirmed decisions and evidence, required result or proof, and acceptance criteria as starting context, not proof. Apply an owning specialist's rules when the task requires that specialist outcome. Accept the task result only when its identity and evidence satisfy the current stage gate. Alaga retains candidate integration, stage-gate verification, and correction convergence.
 
@@ -53,11 +53,13 @@ When a standalone feature specification or plan controls material implementation
 
 Prepare the selected workspace and branch without disturbing unrelated changes.
 
+Use an Irinṣẹ result when bounded companion-tool evidence materially improves impact orientation or directs source reading. Keep candidate integration, implementation, and proof in Alaga; do not treat the tool result as acceptance evidence by itself.
+
 Run `tdd` through coherent green behavior slices. Commit a slice only when local commits are authorized. Otherwise, preserve the verified changes without committing them.
 
 Use focused and affected proof for each slice. Treat a local commit as a meaningful green history, bisect, or rollback point, not as a trigger for broad review.
 
-Before the candidate becomes stable for review, reconcile each required repository-documentation destination in the same candidate as its implementation change. Use `alakowe` once with the exact candidate, confirmed authority, affected readers and surfaces, and known destinations. Verify its result against the current candidate. Keep code-local comments with the implementation owner unless they are part of the requested documentation work. Do not defer required documentation as untracked follow-up work.
+Before the candidate becomes stable for review, update each required ordinary-documentation destination in the same candidate as its implementation change. Keep code-local comments with the implementation owner. When verified implementation exposes a durable non-obvious rule, pattern, constraint, term, or conflict, propose it to Amọ̀ṣẹ́ with the exact candidate and evidence; do not redefine the model locally. Reconcile any required `.learnings`, `.nongoals`, or ADR result before review. Do not defer required documentation as untracked follow-up work.
 
 ## 3. Review and converge
 
