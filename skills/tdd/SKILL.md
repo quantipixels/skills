@@ -74,6 +74,8 @@ Run the focused test set and relevant affected proof.
 
 Improve names, structure, duplication, and implementation depth while preserving behavior. Update each required documentation destination in the same candidate as the behavior change. Put durable, non-obvious rationale, policy, or invariant at its narrowest owning component. Do not document every declaration when names, types, structure, and current tests make the behavior clear. Tests prove behavior; they do not replace required API, domain, operational, or configuration documentation.
 
+Treat temporary smoke tests, probes, and one-off harnesses as development evidence. After green, retain one only when it gives distinct, durable regression coverage at a stable seam and meets repository test standards. Remove it when stable tests already cover the behavior or its setup is useful only during implementation. Do not turn every development check into permanent test-suite maintenance.
+
 Preserve unrelated behavior. Keep focused proof current. Run broader proof at a required gate or after the candidate is stable, and rerun proof invalidated by later changes. Report each applicable format, lint, build, integration, or broader test check that did not run or pass and its exact limitation.
 
 Do not treat green TDD proof as evidence of review, publication, or other delivery work that did not occur.
