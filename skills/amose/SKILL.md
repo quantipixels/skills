@@ -58,7 +58,7 @@ Any relevant candidate, evidence, term, relationship, invariant, scenario, bound
 
 ## 3. Maintain `.learnings`
 
-Use one optional, Git-tracked root `.learnings` file for durable, non-obvious knowledge that can change future implementation, review, debugging, operation, or design work. It may contain canonical terms, rules, patterns, conventions, constraints, architectural nuances, operational knowledge, and gotchas.
+Use one optional root `.learnings` file for durable, non-obvious knowledge that can change future implementation, review, debugging, operation, or design work. It may contain canonical terms, rules, patterns, conventions, constraints, architectural nuances, operational knowledge, and gotchas.
 
 Preserve an existing human-readable format. Create the file lazily only when useful knowledge exists and creation is authorized. With no existing format, use lightweight Markdown and include only sections with content.
 
@@ -66,15 +66,15 @@ Require evidence from a confirmed decision, current code, test, configuration, r
 
 Keep hypotheses, temporary task state, session history, speculative preferences, obvious code facts, secrets, credentials, and personal data out. Require user or confirmed-decision authority before promoting observed behavior into a business rule, project boundary, or architecture decision.
 
-Keep the file current rather than append-only. Re-read it immediately before writing, make the smallest semantic edit, merge duplicates, replace stale entries, and retain a short supersession or `avoid` note only when it prevents likely recurrence. Use Git history for obsolete detail and ADRs for consequential rationale. On concurrent or conflicting edits, stop for semantic reconciliation; never overwrite or blindly append.
+Keep the file current rather than append-only. Re-read it immediately before writing, make the smallest semantic edit, merge duplicates, replace stale entries, and retain a short supersession or `avoid` note only when it prevents likely recurrence. Remove obsolete detail and use ADRs for consequential rationale. On concurrent or conflicting edits, stop for semantic reconciliation; never overwrite or blindly append.
 
 Compact relevant sections when repetition or stale material impairs use. Do not impose an arbitrary size limit. Consumers may read only relevant sections; passive reading does not require invoking Amọ̀ṣẹ́.
 
 ## 4. Maintain `.nongoals`
 
-Use only the optional, Git-tracked root `.nongoals` file for directions, features, responsibilities, ideas, or concerns the project explicitly excludes. It is not a backlog. Ignore similarly named files unless the user explicitly supplies one as input.
+Reserve the optional root `.nongoals` file for durable project-level exclusions: directions, features, responsibilities, ideas, or concerns that the project excludes from all current and future work. Do not store session-, conversation-, task-, plan-, feature-, phase-, or iteration-local non-goals there; keep them with their owning artifact. It is not a backlog. Leave storage and version-control policy to the project. Ignore similarly named files unless the user explicitly supplies one as input.
 
-Preserve any existing readable format. Create no empty file. When creation is authorized and no format exists, use a bare list with no heading or schema. Add, remove, or reinterpret an entry only with explicit project-boundary authority. Absence from `.nongoals` does not prove a direction is in scope.
+Preserve any existing readable format. Create no empty file. When creation is authorized and no format exists, use a bare list with no heading or schema. Add, remove, or reinterpret an entry only with explicit project-boundary authority. Treat each entry as out of scope for future work until that authority removes or changes it. Absence from `.nongoals` does not prove a direction is in scope.
 
 When requested work conflicts with `.nongoals`, pause that work and ask whether the user authorizes a one-time exception or a boundary change.
 

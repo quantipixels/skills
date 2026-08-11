@@ -5,9 +5,21 @@ const skillsRoot = new URL("../skills/", import.meta.url);
 const evalsRoot = new URL("../evals/cases/", import.meta.url);
 const read = (path) => readFile(new URL(path, root), "utf8");
 
-const skillNames = (await readdir(skillsRoot, { withFileTypes: true }))
-  .filter((entry) => entry.isDirectory())
-  .map((entry) => entry.name)
+const skillDirectories = (await readdir(skillsRoot, { withFileTypes: true })).filter((entry) => entry.isDirectory());
+const skillNames = (
+  await Promise.all(
+    skillDirectories.map(async (entry) => {
+      try {
+        await readFile(new URL(`${entry.name}/SKILL.md`, skillsRoot), "utf8");
+        return entry.name;
+      } catch (error) {
+        if (error.code === "ENOENT") return null;
+        throw error;
+      }
+    }),
+  )
+)
+  .filter(Boolean)
   .sort();
 
 const readme = await read("README.md");
