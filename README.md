@@ -53,6 +53,7 @@ Use alarina to choose the right QP skill for this request:
 | Skill | Use when |
 | --- | --- |
 | `alarina` | You need to choose the shortest QP route for a request |
+| `alakowe` | Domain language, canonical project knowledge, ADRs, or `.nongoal` need reconciliation |
 | `simplify` | Changed code needs a maintainability and documentation review |
 | `handoff` | A conversation needs a compact handoff for another agent or session |
 | `ayewo-igba-ise` | A coding-agent session needs an evidence-backed friction analysis |

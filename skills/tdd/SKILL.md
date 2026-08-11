@@ -36,11 +36,11 @@ Complete one slice before starting the next.
 
 ## 1. Set the behavior and seam
 
-Read the repository instructions and relevant domain, architecture, and decision documents.
+Read the repository instructions, the complete root `.nongoal` when present, and relevant domain, architecture, and decision documents. Report a conflict between the requested behavior and `.nongoal` to the owning delivery workflow for `alakowe` resolution before implementation.
 
 Identify the required behavior, a stable behavior-bearing seam, independent expected values, and applicable success, negative, boundary, recovery, and interaction cases.
 
-Classify the documentation impact for the completed candidate, not for every small slice. A documentation destination is required when the candidate changes a public contract, domain policy, operational or configuration procedure, or a non-obvious rationale, invariant, ordering rule, ownership rule, compatibility constraint, or security constraint. Report each required destination to the owning delivery workflow. When no destination is required, report `not applicable` and the evidence: clear names, types, structure, current tests, and unchanged relevant repository documentation.
+Classify the documentation impact for the completed candidate, not for every small slice. A documentation destination is required when the candidate changes a public contract, domain policy, operational or configuration procedure, or a non-obvious rationale, invariant, ordering rule, ownership rule, compatibility constraint, or security constraint. Report each required destination to the owning delivery workflow. Identify domain language, context boundaries, ADR state, canonical project knowledge, or `.nongoal` as requiring an `alakowe` result; do not invoke it per slice. When no destination is required, report `not applicable` and the evidence: clear names, types, structure, current tests, and unchanged relevant repository documentation.
 
 When a supplied test strategy controls material implementation, verify that it covers the required behavior, suitable seams, expected values, and material failure paths.
 

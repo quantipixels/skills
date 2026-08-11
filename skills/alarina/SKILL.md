@@ -23,6 +23,8 @@ Treat an unqualified request to review code as broad. Select `qp-code-review` as
 
 | Starting situation | Primary route |
 | --- | --- |
+| The user needs help selecting the shortest useful QP route | `alarina` |
+| Domain language, canonical project knowledge, an ADR lifecycle action, or root `.nongoal` needs reconciliation | `alakowe` |
 | An idea, plan, or decision needs complete frontier rounds and a durable record | `arojinle` |
 | Production behavior must change under test-first proof | `tdd` |
 | One feature needs clarification, test-backed implementation, and broad review | `alaga` |
@@ -36,6 +38,8 @@ Treat an unqualified request to review code as broad. Select `qp-code-review` as
 | A question needs high-trust research from primary sources, captured in a Markdown file | `iwadi` |
 | One portable agent skill needs creation or revision | `ko-skill` |
 | Coding-agent communication instructions plus companion tools or supported integrations need a baseline setup | `qp-setup` |
+
+Keep an unresolved material product or architecture decision with `arojinle` or `atona`; use `alakowe` only after authority is confirmed or when it must surface the knowledge conflict. Keep read-only maintainability and documentation review with `simplify`.
 
 Check the active skill inventory before returning the route. When the correct owner is unavailable, name it as unavailable and do not substitute another skill.
 

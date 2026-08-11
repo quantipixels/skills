@@ -24,3 +24,5 @@ Each round the user answers reshapes the tree — settled decisions push the fro
 Finding facts is your job, never the user's. When a frontier question needs a fact from the environment (filesystem, tools, etc.), dispatch a sub-agent to find it — don't ask the user for anything you could look up yourself. Don't block on it: a running exploration is an unsettled prerequisite, so only the questions downstream of it wait for the sub-agent to report — ask the rest of the frontier now. The decisions are the user's — put each to them and wait.
 
 The session is done when the frontier is empty: every branch of the design tree visited, nothing left silently assumed. Do not act on it until the user confirms you have reached a shared understanding.
+
+When confirmed decisions change domain language, context boundaries, ADR state, canonical project knowledge, or `.nongoal`, identify those implications in the result for `alakowe`. Do not mutate their repository destinations as part of the decision interview.

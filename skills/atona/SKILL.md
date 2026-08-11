@@ -39,7 +39,7 @@ Use `html-artifact` to create or update `.qp/plans/<topic>.html`. Keep this file
 
 Record the request, scope, constraints, non-goals, plan status, and implementation state. Track implementation as `Not Required`, `Not Started`, `Started`, or `Complete`. Use the plan statuses and handoffs in Section 4.
 
-Inspect the evidence needed to prove the current system: relevant overview, architecture, context, architecture decision record (ADR), module, and prior-plan documents; code; tests; history; integrations; recovery paths; and branch state.
+Inspect the evidence needed to prove the current system: the complete root `.nongoal` when present; relevant overview, architecture, context, architecture decision record (ADR), module, and prior-plan documents; code; tests; history; integrations; recovery paths; and branch state. When the requested direction conflicts with `.nongoal`, use `alakowe` to resolve a one-time exception or an authorized boundary update before planning past the conflict.
 
 When a substantial independent evidence result, specialist gate, or failure-focused readiness challenge would materially help, Atona may request it from a host-provided subagent. Give it the live-plan identity, bounded scope, current evidence, known gaps, and required result. Atona retains plan state, evidence freshness, readiness judgment, implementation state, and closure.
 
@@ -49,9 +49,9 @@ Reuse a confirmed Arojinle result only while its identity remains current: plan 
 
 Compare architecture-significant terms across user statements, repository documents, and code. When a project-specific term, relationship, or rule is ambiguous and can change scope, ownership, state, or behavior, record the competing meanings and one concrete scenario that distinguishes them. Treat code as evidence of current behavior, not automatic domain authority. Use `arojinle` for a material decision.
 
-Classify each durable conclusion as domain or context language, repository architecture, an architecture decision, a local convention, or plan-only information. For confirmed language, record one canonical term, useful alternatives to avoid, and affected code, tests, and documentation. Record the nearest documentation destination. Modify repository documentation only with explicit authority. Create a document only with user agreement.
+Classify each durable conclusion as domain or context language, repository architecture, an architecture decision, a local convention, or plan-only information. For confirmed domain language, context boundaries, ADR state, or project exclusions, record the required `alakowe` handoff with the live-plan identity, confirmed authority, competing meanings and scenario, affected surfaces, and nearest known destination. Request its result when durable reconciliation is authorized and required for readiness or closure. Alakowe owns canonical destination discovery and reconciliation; Atona retains plan evidence, readiness, and closure.
 
-Keep the plan in `Draft` while a material project-language conflict is unresolved or confirmed wording lacks a documentation destination.
+Keep the plan in `Draft` while a material project-language conflict is unresolved or an Alakowe result required for current readiness is missing, blocked, or stale.
 
 Record evidence or a gap for every decision-shaping claim. Confirm or defer every architecture-changing uncertainty.
 
@@ -99,7 +99,7 @@ Verify each specialist result against the current plan identity and candidate be
 
 Before `Closed`, verify no blocking decision remains; delivery and review match the candidate; validation and proof gaps are recorded; deferrals have an owner or trigger; follow-ups are classified as blocking or non-blocking; freezes and `leave unchanged` decisions hold; and no unresolved item, stale name, replaced or deprecated primitive, outdated guidance, or test without replacement remains.
 
-For each documentation destination, record `updated now`, `already reconciled` with evidence, or `not applicable`. Do not leave obsolete guidance current.
+For each documentation destination, record `updated now`, `already reconciled` with evidence, or `not applicable`. When domain language, context boundaries, ADR state, canonical project knowledge, or `.nongoal` is affected, verify one exact-current Alakowe result rather than repeating its discovery. Do not leave obsolete guidance current.
 
 Align plan and implementation states with remaining work. End each user-visible handoff with **What next**: recommendation, first step, owner or skill, and required authority.
 

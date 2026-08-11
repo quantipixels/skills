@@ -1,0 +1,5 @@
+- Building a complete engineering-lifecycle framework.
+- Creating a separate Alakowe repository before it has multiple independent skills or its own tooling and release lifecycle.
+- Providing generic README, API, OpenAPI, changelog, glossary, or ADR templates.
+- Requiring fixed domain-document filenames, ADR paths, headings, or project-knowledge schemas.
+- Adding a new public skill when an existing owner can express the recurring outcome cleanly.

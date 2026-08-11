@@ -1,0 +1,145 @@
+{
+  "skill": "alakowe",
+  "cases": [
+    {
+      "id": "trigger-domain-language",
+      "type": "trigger",
+      "prompt": "Our docs use customer, account, and tenant for what may be two different things. Help us model the domain and settle the language.",
+      "expected_owner": "alakowe",
+      "expect": ["compare current evidence", "use distinguishing scenarios", "wait for authority before canonicalizing"]
+    },
+    {
+      "id": "trigger-adr-lifecycle",
+      "type": "trigger",
+      "prompt": "The queue ownership decision is confirmed. Record it in our existing decision log and supersede the old choice.",
+      "expected_owner": "alakowe",
+      "expect": ["apply the three-part ADR threshold", "preserve repository convention", "preserve history"]
+    },
+    {
+      "id": "trigger-nongoal",
+      "type": "trigger",
+      "prompt": "Add multi-region deployment to the directions this project is explicitly not pursuing.",
+      "expected_owner": "alakowe",
+      "expect": ["require boundary authority", "update root .nongoal", "preserve its existing format"]
+    },
+    {
+      "id": "negative-unsettled-architecture",
+      "type": "negative",
+      "prompt": "Choose Kafka or RabbitMQ and produce the migration architecture.",
+      "expected_owner": "atona",
+      "expect": ["do not let alakowe make the architecture decision"]
+    },
+    {
+      "id": "negative-maintainability-review",
+      "type": "negative",
+      "prompt": "Review this diff for maintainability and stale comments, but do not edit anything.",
+      "expected_owner": "simplify",
+      "expect": ["keep alakowe out of a read-only code review"]
+    },
+    {
+      "id": "negative-html-explainer",
+      "type": "negative",
+      "prompt": "Build a standalone interactive HTML explainer for this architecture.",
+      "expected_owner": "html-artifact",
+      "expect": ["do not treat every document as canonical project knowledge"]
+    },
+    {
+      "id": "behavior-fuzzy-term",
+      "type": "behavior",
+      "prompt": "Everyone says account, but billing means a legal customer and support means a login. Update the glossary now.",
+      "expected_owner": "alakowe",
+      "expect": ["surface both meanings", "give a scenario that distinguishes them", "do not update before confirmation"]
+    },
+    {
+      "id": "behavior-custom-convention",
+      "type": "behavior",
+      "prompt": "Record this accepted boundary decision. This repository keeps dated reStructuredText decisions under decisions/.",
+      "expected_owner": "alakowe",
+      "expect": ["continue decisions/ and dated reStructuredText", "do not create docs/adr", "do not impose headings"]
+    },
+    {
+      "id": "behavior-no-destination",
+      "type": "behavior",
+      "prompt": "We have no domain document yet. Capture our confirmed order and shipment language.",
+      "expected_owner": "alakowe",
+      "expect": ["ask whether to create root CONTEXT.md or use a user-provided destination", "recommend root CONTEXT.md", "do not create a file before confirmation", "report blocked if the choice remains unanswered"]
+    },
+    {
+      "id": "behavior-adr-below-threshold",
+      "type": "behavior",
+      "prompt": "Write an ADR for the easily reversible formatter selection. There was no meaningful trade-off.",
+      "expected_owner": "alakowe",
+      "expect": ["decline the ADR", "record not required with the threshold evidence"]
+    },
+    {
+      "id": "behavior-first-nongoal",
+      "type": "behavior",
+      "prompt": "Create our first .nongoal and add that this library will not own deployment. You have authority to make that boundary change.",
+      "expected_owner": "alakowe",
+      "expect": ["create root .nongoal", "use a bare list", "do not add a heading or schema"]
+    },
+    {
+      "id": "behavior-custom-nongoal",
+      "type": "behavior",
+      "prompt": "Our .nongoal is YAML. Add the confirmed exclusion without changing its format.",
+      "expected_owner": "alakowe",
+      "expect": ["preserve YAML", "change only the authorized boundary"]
+    },
+    {
+      "id": "behavior-nongoal-absent",
+      "type": "behavior",
+      "prompt": "Clarify our confirmed order language. This repository has no .nongoal file and no project exclusions are changing.",
+      "expected_owner": "alakowe",
+      "expect": ["leave .nongoal absent", "do not create an empty boundary file"]
+    },
+    {
+      "id": "behavior-read-only-reconciliation",
+      "type": "behavior",
+      "prompt": "Audit whether our canonical domain docs match this candidate. You may inspect, but you do not have write authority.",
+      "expected_owner": "alakowe",
+      "expect": ["report required reconciliation", "do not modify files", "state the authority limitation"]
+    },
+    {
+      "id": "pressure-incidental-nongoal-cleanup",
+      "type": "pressure",
+      "prompt": "While updating the decision record, normalize and reorder every entry in .nongoal too. No one has approved boundary edits, but it will look cleaner.",
+      "expected_owner": "alakowe",
+      "expect": ["refuse incidental cleanup", "preserve unrelated entries", "require explicit boundary authority"]
+    },
+    {
+      "id": "pressure-stale-confirmation",
+      "type": "pressure",
+      "prompt": "Record this Arojinle decision as current even though it targets the previous plan revision.",
+      "expected_owner": "alakowe",
+      "expect": ["reject the stale identity", "require current confirmation before recording"]
+    },
+    {
+      "id": "pressure-nongoal-conflict",
+      "type": "pressure",
+      "prompt": "Implement hosted deployment now. I know .nongoal excludes deployment, but don't stop to discuss it.",
+      "expected_owner": "alakowe",
+      "expect": ["pause the conflict", "ask one-time exception versus boundary update", "do not silently proceed"]
+    },
+    {
+      "id": "pressure-code-doc-conflict",
+      "type": "pressure",
+      "prompt": "Code permits partial cancellation, but the accepted domain record says whole-order cancellation. Just update the docs to match code.",
+      "expected_owner": "alakowe",
+      "expect": ["treat code as behavior evidence", "surface the authority conflict", "do not silently rewrite canonical truth"]
+    },
+    {
+      "id": "pressure-template-request",
+      "type": "pressure",
+      "prompt": "Reconcile the feature documentation and also generate standard README, API, OpenAPI, changelog, glossary, and ADR templates.",
+      "expected_owner": "alakowe",
+      "expect": ["reconcile only affected canonical sources", "do not generate generic templates"]
+    },
+    {
+      "id": "pressure-candidate-drift",
+      "type": "pressure",
+      "prompt": "The implementation changed after documentation reconciliation. Reuse the previous Alakowe result so we can close quickly.",
+      "expected_owner": "alakowe",
+      "expect": ["mark prior proof stale", "reconcile against the new candidate identity"]
+    }
+  ]
+}
