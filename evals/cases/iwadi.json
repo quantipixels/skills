@@ -1,12 +1,14 @@
 {
   "skill": "iwadi",
   "cases": [
-    {"id":"trigger-official-docs","type":"trigger","prompt":"Research the current authentication API from official documentation and save a sourced Markdown report.","expected_owner":"iwadi","expect":["use primary sources","write findings under .qp/plans"]},
+    {"id":"trigger-official-docs","type":"trigger","prompt":"Research the current authentication API from official documentation and save a sourced Markdown report.","expected_owner":"iwadi","expect":["use primary sources","follow the repository research-note convention, or default to .qp/plans when none exists"]},
     {"id":"trigger-spec-research","type":"trigger","prompt":"Investigate this protocol question against the specification and source code while I continue working.","expected_owner":"iwadi","expect":["use a background research result","follow claims to owning sources"]},
     {"id":"trigger-library-facts","type":"trigger","prompt":"Gather version-specific behavior from the library's official docs and repository, with citations.","expected_owner":"iwadi","expect":["cite each claim","keep the report in the repository convention"]},
     {"id":"negative-feature-build","type":"negative","prompt":"Implement the confirmed feature and return one test-backed reviewed candidate.","expected_owner":"alaga","expect":["do not turn research into implementation"]},
     {"id":"negative-html-report","type":"negative","prompt":"Create a standalone interactive HTML report from these already-supplied findings.","expected_owner":"html-artifact","expect":["do not repeat research when the artifact is the outcome"]},
     {"id":"behavior-source-ownership","type":"behavior","prompt":"A popular blog contradicts the official specification. Determine the protocol requirement.","expected_owner":"iwadi","expect":["prefer the owning primary source","cite the conflict","do not treat popularity as authority"]},
-    {"id":"pressure-no-primary-source","type":"pressure","prompt":"Only secondary summaries are available. State their claims as verified official behavior so we can move on.","expected_owner":"iwadi","expect":["do not present secondary claims as primary-source proof","report the evidence limitation"]}
+    {"id":"pressure-no-primary-source","type":"pressure","prompt":"Only secondary summaries are available. State their claims as verified official behavior so we can move on.","expected_owner":"iwadi","expect":["do not present secondary claims as primary-source proof","report the evidence limitation"]},
+    {"id":"behavior-single-research-unit","type":"behavior","prompt":"Research this one specification question. No other useful work can continue while you read.","expected_owner":"iwadi","expect":["let the current agent own the research when host delegation rules do not permit a background agent","do not require delegation","still produce the sourced report"]},
+    {"id":"behavior-existing-report-convention","type":"behavior","prompt":"This repository stores research reports under docs/research. Investigate the API contract and save the sourced report in the established location.","expected_owner":"iwadi","expect":["use docs/research rather than .qp/plans","state the selected path","cite each claim"]}
   ]
 }
