@@ -11,8 +11,14 @@ import os
 import socket
 import tempfile
 import time
+from contextlib import contextmanager
 from pathlib import Path
 from typing import Any, Callable, Iterable
+
+try:
+    import fcntl
+except ImportError:  # pragma: no cover - exercised on Windows only
+    fcntl = None
 
 
 SCHEMA_VERSION = 1
@@ -74,6 +80,22 @@ def save_state_atomic(path: str | Path, state: dict[str, Any]) -> None:
             os.unlink(temporary)
         except FileNotFoundError:
             pass
+
+
+@contextmanager
+def state_file_lock(path: str | Path):
+    """Serialize state reads and writes without claiming the watcher lease."""
+    state_path = Path(path)
+    lock_path = state_path.with_name(f".{state_path.name}.lock")
+    lock_path.parent.mkdir(parents=True, exist_ok=True)
+    with lock_path.open("a+", encoding="utf-8") as handle:
+        if fcntl is None:  # pragma: no cover - supported watcher hosts are POSIX
+            raise OSError("state update locking is unavailable on this platform")
+        fcntl.flock(handle.fileno(), fcntl.LOCK_EX)
+        try:
+            yield
+        finally:
+            fcntl.flock(handle.fileno(), fcntl.LOCK_UN)
 
 
 def pipeline_summary(
@@ -139,6 +161,7 @@ def _pipeline_fingerprint(snapshot: dict[str, Any]) -> str:
     for job in snapshot.get("pipeline", {}).get("jobs", []):
         jobs.append(
             {
+                "id": job.get("id"),
                 "name": job.get("name"),
                 "status": job.get("status"),
                 "required": job.get("required"),
@@ -148,7 +171,7 @@ def _pipeline_fingerprint(snapshot: dict[str, Any]) -> str:
     payload = {
         "head": snapshot.get("head", {}).get("sha"),
         "complete": bool(snapshot.get("pipeline", {}).get("evidence_complete")),
-        "jobs": sorted(jobs, key=lambda row: (str(row["name"]), str(row["status"]))),
+        "jobs": sorted(jobs, key=lambda row: (str(row["name"]), str(row["id"]), str(row["status"]))),
     }
     return hashlib.sha256(json.dumps(payload, sort_keys=True).encode("utf-8")).hexdigest()
 

@@ -46,7 +46,7 @@ Use alarina to choose the right QP skill for this request:
 | `tdd` | A feature or bug fix needs a test-first implementation loop |
 | `qp-code-review` | Bounded code or a PR/MR needs broad or defect-only review |
 | `seda-pr` | A GitHub PR or GitLab MR needs a clear zero-context title, narrative, and bounded metadata |
-| `wo-pr` | An open PR or MR needs persistent pipeline and review-feedback monitoring |
+| `wo-pr` | An open PR or MR needs active CI and feedback stewardship until it is ready for a human merge decision |
 | `tunmo-pr` | A PR or MR needs a read-only explanation for a first-time reviewer |
 | `audit-refactor-behavior` | A refactor or rewrite needs a behavior-parity ledger |
 | `html-artifact` | A report, visualization, prototype, demo, or bounded interactive tool needs one checked HTML artifact |

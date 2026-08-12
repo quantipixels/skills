@@ -23,7 +23,7 @@ Keep runtime-behavior work separate from repository review policy, agent skills,
 
 Treat an unqualified request to review code as broad. Select `qp-code-review` as the primary owner and `simplify` as its supporting maintainability specialist. Select `qp-code-review` alone only when the user explicitly limits the review to defects and excludes maintainability.
 
-Keep PR or MR publication, monitoring, explanation, and review as separate outcomes. Use `seda-pr` to create or reconcile the public narrative and bounded metadata. Use `wo-pr` to persistently watch pipeline, review feedback, and provider state under an explicit objective and authority profile. Use `tunmo-pr` to explain the exact current diff without mutation. Use `qp-code-review` only when a review verdict is requested or required by policy.
+Keep PR or MR publication, monitoring, explanation, and review as separate outcomes. Use `seda-pr` to create or reconcile the public narrative and bounded metadata. Use `wo-pr` alone for a bare watch, monitor, babysit, or keep-an-eye-on request; it owns bounded CI and actionable-feedback stewardship until the item is ready for the user's merge decision. Do not add explanation or review as setup. Use `tunmo-pr` to explain the exact current diff without mutation. Add `qp-code-review` to monitoring only when the user explicitly requests a review verdict or current repository policy requires one.
 
 | Starting situation | Primary route |
 | --- | --- |

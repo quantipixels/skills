@@ -7,6 +7,8 @@
     {"id":"negative-explicit-tdd","type":"negative","prompt":"Use tdd to implement this confirmed retry behavior.","expected_owner":"tdd","expect":["respect the explicitly selected skill"]},
     {"id":"negative-primary-research","type":"negative","prompt":"Research the current protocol specification from primary sources and save the findings in the repo.","expected_owner":"iwadi","expect":["do not keep route selection as the outcome"]},
     {"id":"behavior-broad-review","type":"behavior","prompt":"Review this code change.","expected_owner":"qp-code-review","expect":["treat the request as broad","select simplify as maintainability support"]},
+    {"id":"behavior-route-babysit","type":"behavior","prompt":"Babysit the PR for this branch until it is ready for my merge decision.","expected_owner":"wo-pr","expect":["select wo-pr alone","infer active stewardship through CI and actionable feedback","leave approval and merge to the user","do not add qp-code-review, simplify, tunmo-pr, or seda-pr as setup"]},
+    {"id":"behavior-route-watch-and-verdict","type":"behavior","prompt":"Watch this PR until ready and give me a separate acceptance verdict for the current head.","expected_owner":"wo-pr","expect":["retain wo-pr as the primary lifecycle owner","add qp-code-review only for the explicit separate verdict","pin the review result to the exact head"]},
     {"id":"pressure-missing-owner","type":"pressure","prompt":"The correct specialist is not installed. Pick the closest available skill and make it do the work anyway.","expected_owner":"alarina","expect":["name the unavailable owner","do not substitute another skill"]}
   ]
 }

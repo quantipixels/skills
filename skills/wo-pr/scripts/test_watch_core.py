@@ -20,7 +20,7 @@ from watch_core import (
     save_state_atomic,
     validate_state_target,
 )
-from pr_watch import apply_state_updates, target_identity
+from pr_watch import apply_state_updates, evaluate_and_save_state, target_identity
 
 
 def snapshot(*, sha="abc", jobs=None, state="OPEN", reviews=None, complete=True):
@@ -101,6 +101,17 @@ class EvaluationTests(unittest.TestCase):
         result = evaluate_snapshot(changed, state, now=1301, authority=set())
         self.assertFalse(result["terminal"])
         self.assertEqual(1301, state["settle"]["green_since"])
+
+    def test_replaced_green_job_resets_settle(self):
+        state = new_state(objective="until-ready")
+        first_job = [{"id": "attempt-1", "name": "test", "status": "success", "required": True}]
+        evaluate_snapshot(snapshot(jobs=first_job), state, now=1000, authority=set())
+
+        replacement = [{"id": "attempt-2", "name": "test", "status": "success", "required": True}]
+        result = evaluate_snapshot(snapshot(jobs=replacement), state, now=1300, authority=set())
+
+        self.assertFalse(result["terminal"])
+        self.assertEqual(1300, state["settle"]["green_since"])
 
     def test_failed_snapshot_breaks_green_settle_window(self):
         state = new_state(objective="until-ready")
@@ -229,6 +240,43 @@ class PersistenceAndLeaseTests(unittest.TestCase):
             self.assertEqual("handled", loaded["actions"]["review:7"]["phase"])
             self.assertEqual(1, loaded["retry_counts"]["abc"])
             self.assertEqual(1, result["retry_count"])
+
+    def test_watcher_save_reloads_a_state_only_update(self):
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "state.json"
+            save_state_atomic(path, new_state(objective="until-merged"))
+            stale_watcher_state = load_state(path)
+            apply_state_updates(path, marks=["review:7=handled"], retry_sha=None, now=50)
+
+            evaluate_and_save_state(
+                path,
+                stale_watcher_state,
+                snapshot(jobs=[{"name": "test", "status": "success", "required": True}]),
+                now=60,
+                authority=set(),
+            )
+
+            self.assertEqual("handled", load_state(path)["actions"]["review:7"]["phase"])
+
+    def test_watcher_reload_records_only_current_invocation_authority(self):
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "state.json"
+            prior = new_state(objective="until-merged")
+            prior["authority_observed"] = ["fix-commit-push"]
+            prior["lease_state"] = "old"
+            save_state_atomic(path, prior)
+
+            state, _result = evaluate_and_save_state(
+                path,
+                prior,
+                snapshot(jobs=[{"name": "test", "status": "success", "required": True}]),
+                now=60,
+                authority={"observe"},
+                lease_state="acquired",
+            )
+
+            self.assertEqual(["observe"], state["authority_observed"])
+            self.assertEqual("acquired", state["lease_state"])
 
     def test_loaded_state_rejects_a_different_canonical_target(self):
         state = new_state(objective="until-ready")

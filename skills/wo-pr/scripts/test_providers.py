@@ -1,10 +1,35 @@
+import json
+import os
+import subprocess
 import unittest
+from unittest.mock import patch
 
 from github_provider import GitHubProvider, normalize_checks, normalize_pr, normalize_review_items
 from gitlab_provider import GitLabProvider, normalize_discussions, normalize_jobs, normalize_mr
 
 
 class GitHubNormalizationTests(unittest.TestCase):
+    def test_fetch_accepts_valid_check_json_when_gh_returns_one(self):
+        """`gh pr checks` uses exit 1 to report non-success check buckets."""
+        checks = [{"name": "test", "state": "SUCCESS", "bucket": "pass", "workflow": "CI"}]
+
+        def run(command, **_kwargs):
+            if command[:3] == ["gh", "pr", "view"]:
+                payload = {"number": 42, "url": "https://github.com/acme/widgets/pull/42", "state": "OPEN"}
+            elif command[:3] == ["gh", "pr", "checks"]:
+                payload = checks
+            elif "graphql" in command:
+                payload = {"data": {"repository": {"pullRequest": {"reviewThreads": {"nodes": [], "pageInfo": {}}}}}}
+            else:
+                payload = []
+            return subprocess.CompletedProcess(command, 1 if command[:3] == ["gh", "pr", "checks"] else 0, json.dumps(payload), "")
+
+        with patch("github_provider.subprocess.run", side_effect=run):
+            result = GitHubProvider(repository="acme/widgets").fetch("42")
+
+        self.assertTrue(result["pipeline"]["evidence_complete"])
+        self.assertTrue(result["pipeline"]["jobs"][0]["required"])
+
     def test_pr_identity_is_lossless(self):
         raw = {
             "number": 42,
@@ -33,6 +58,13 @@ class GitHubNormalizationTests(unittest.TestCase):
         self.assertTrue(jobs[0]["required"])
         self.assertFalse(jobs[1]["required"])
         self.assertEqual("unknown", jobs[2]["status"])
+
+    def test_checks_use_job_link_as_identity_when_no_provider_id_exists(self):
+        jobs = normalize_checks(
+            [{"name": "test", "state": "SUCCESS", "link": "https://github.com/acme/widgets/runs/123"}],
+            required_names={"test"},
+        )
+        self.assertEqual("https://github.com/acme/widgets/runs/123", jobs[0]["id"])
 
     def test_pending_reviews_are_not_published_items(self):
         reviews = [
@@ -70,6 +102,54 @@ class GitHubNormalizationTests(unittest.TestCase):
         self.assertTrue(pr_commands)
         for command in pr_commands:
             self.assertEqual("github.acme.test/acme/widgets", command[command.index("--repo") + 1])
+
+    def test_untrusted_github_host_does_not_receive_generic_tokens(self):
+        environments = []
+
+        def run(command, **kwargs):
+            environments.append(kwargs["env"])
+            if command[:3] == ["gh", "pr", "view"]:
+                payload = {"number": 42, "url": "https://untrusted.test/acme/widgets/pull/42", "state": "OPEN"}
+            elif "graphql" in command:
+                payload = {"data": {"repository": {"pullRequest": {"reviewThreads": {"nodes": [], "pageInfo": {}}}}}}
+            else:
+                payload = []
+            return subprocess.CompletedProcess(command, 0, json.dumps(payload), "")
+
+        tokens = {
+            "GH_TOKEN": "github-token",
+            "GITHUB_TOKEN": "github-token-alias",
+            "GH_ENTERPRISE_TOKEN": "enterprise-token",
+            "GITHUB_ENTERPRISE_TOKEN": "enterprise-token-alias",
+        }
+        with patch.dict(os.environ, tokens, clear=True), patch("github_provider.subprocess.run", side_effect=run):
+            GitHubProvider(host="untrusted.test", repository="acme/widgets", trusted_hosts=set()).fetch("42")
+
+        for environment in environments:
+            for name in tokens:
+                self.assertNotIn(name, environment)
+
+    def test_explicitly_trusted_github_host_keeps_enterprise_token(self):
+        environments = []
+
+        def run(command, **kwargs):
+            environments.append(kwargs["env"])
+            if command[:3] == ["gh", "pr", "view"]:
+                payload = {"number": 42, "url": "https://github.acme.test/acme/widgets/pull/42", "state": "OPEN"}
+            elif "graphql" in command:
+                payload = {"data": {"repository": {"pullRequest": {"reviewThreads": {"nodes": [], "pageInfo": {}}}}}}
+            else:
+                payload = []
+            return subprocess.CompletedProcess(command, 0, json.dumps(payload), "")
+
+        with patch.dict(os.environ, {"GH_ENTERPRISE_TOKEN": "enterprise-token"}, clear=True), patch(
+            "github_provider.subprocess.run", side_effect=run
+        ):
+            GitHubProvider(
+                host="github.acme.test", repository="acme/widgets", trusted_hosts={"github.acme.test"}
+            ).fetch("42")
+
+        self.assertTrue(all(environment["GH_ENTERPRISE_TOKEN"] == "enterprise-token" for environment in environments))
 
 
 class GitLabNormalizationTests(unittest.TestCase):

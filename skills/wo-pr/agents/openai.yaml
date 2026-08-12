@@ -1,3 +1,3 @@
 interface:
   display_name: "Wo PR"
-  short_description: "Watch PR and MR pipelines and feedback"
+  short_description: "Keep PRs and MRs ready through CI and feedback"

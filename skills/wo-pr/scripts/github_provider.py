@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import os
 import subprocess
 from typing import Any, Callable
 
@@ -11,8 +12,10 @@ class CommandError(RuntimeError):
     pass
 
 
-def _run_json(command: list[str], *, allowed_codes: set[int] | None = None) -> Any:
-    result = subprocess.run(command, check=False, capture_output=True, text=True)
+def _run_json(
+    command: list[str], *, allowed_codes: set[int] | None = None, env: dict[str, str] | None = None
+) -> Any:
+    result = subprocess.run(command, check=False, capture_output=True, text=True, env=env)
     allowed = allowed_codes or {0}
     if result.returncode not in allowed:
         raise CommandError(f"command failed ({result.returncode}): {result.stderr.strip()}")
@@ -62,7 +65,7 @@ def normalize_checks(checks: list[dict[str, Any]], *, required_names: set[str] |
         raw_state = str(check.get("state") or "").upper()
         jobs.append(
             {
-                "id": check.get("id") or check.get("name"),
+                "id": check.get("id") or check.get("link") or check.get("detailsUrl") or check.get("name"),
                 "name": check.get("name"),
                 "status": mapping.get(raw_state, "unknown"),
                 "required": None if required_names is None else check.get("name") in required_names,
@@ -127,15 +130,26 @@ class GitHubProvider:
         host: str = "github.com",
         repository: str | None = None,
         runner: Callable[[list[str]], Any] | None = None,
+        trusted_hosts: set[str] | None = None,
     ) -> None:
         self.host = host
         self.repository = repository
         self.runner = runner
+        self.trusted_hosts = {"github.com", *(trusted_hosts or set())}
 
     def _call(self, command: list[str], *, allowed_codes: set[int] | None = None) -> Any:
         if self.runner:
             return self.runner(command)
-        return _run_json(command, allowed_codes=allowed_codes)
+        return _run_json(command, allowed_codes=allowed_codes, env=self._command_environment())
+
+    def _command_environment(self) -> dict[str, str]:
+        environment = os.environ.copy()
+        host = self.host.lower().rstrip(".")
+        trusted_hosts = {value.lower().rstrip(".") for value in self.trusted_hosts}
+        if host not in trusted_hosts:
+            for name in ("GH_TOKEN", "GITHUB_TOKEN", "GH_ENTERPRISE_TOKEN", "GITHUB_ENTERPRISE_TOKEN"):
+                environment.pop(name, None)
+        return environment
 
     def _repo(self) -> str:
         if self.repository:
@@ -192,13 +206,13 @@ class GitHubProvider:
         number = snapshot["number"]
         checks = self._call(
             ["gh", "pr", "checks", str(number), "--repo", repo_spec, "--json", "name,state,bucket,link,workflow"],
-            allowed_codes={0, 8},
+            allowed_codes={0, 1, 8},
         )
         required_names: set[str] | None
         try:
             required = self._call(
                 ["gh", "pr", "checks", str(number), "--repo", repo_spec, "--required", "--json", "name,state,bucket,link,workflow"],
-                allowed_codes={0, 8},
+                allowed_codes={0, 1, 8},
             )
             required_names = {row.get("name") for row in required}
         except CommandError:

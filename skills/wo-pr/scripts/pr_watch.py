@@ -33,6 +33,7 @@ from watch_core import (
     release_file_lease,
     release_lease,
     save_state_atomic,
+    state_file_lock,
     validate_state_target,
 )
 
@@ -43,6 +44,12 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser.add_argument("--pr", default="auto", help="PR/MR number, URL, or auto")
     parser.add_argument("--repo", help="owner/repository or group/project")
     parser.add_argument("--host", help="provider host")
+    parser.add_argument(
+        "--trusted-github-host",
+        action="append",
+        default=[],
+        help="GitHub host explicitly trusted to receive configured GitHub credentials; repeat as needed",
+    )
     parser.add_argument("--objective", choices=("until-ready", "until-merged", "until-stopped"), default="until-ready")
     parser.add_argument("--authority", action="append", default=[], help="Granted action capability; repeat as needed")
     parser.add_argument("--state-file", type=Path)
@@ -103,7 +110,11 @@ def make_provider(args: argparse.Namespace):
     host = args.host or identity["host"]
     repository = args.repo or identity["repository"]
     if provider == "github":
-        return GitHubProvider(host=host or "github.com", repository=repository)
+        return GitHubProvider(
+            host=host or "github.com",
+            repository=repository,
+            trusted_hosts=set(args.trusted_github_host),
+        )
     return GitLabProvider(host=host or "gitlab.com", repository=repository)
 
 
@@ -115,22 +126,23 @@ def apply_state_updates(
     now: float | None = None,
 ) -> dict[str, Any]:
     state_path = Path(path)
-    state = load_state(state_path)
-    if state is None:
-        raise ValueError(f"state file does not exist: {state_path}")
-    timestamp = now if now is not None else time.time()
-    applied = []
-    for value in marks:
-        try:
-            action_id, phase = value.rsplit("=", 1)
-        except ValueError as error:
-            raise ValueError(f"invalid --mark-action {value!r}; expected ID=PHASE") from error
-        if not action_id:
-            raise ValueError("action ID cannot be empty")
-        mark_action(state, action_id, phase, now=timestamp)
-        applied.append({"id": action_id, "phase": phase})
-    retry_count = record_retry(state, retry_sha) if retry_sha else None
-    save_state_atomic(state_path, state)
+    with state_file_lock(state_path):
+        state = load_state(state_path)
+        if state is None:
+            raise ValueError(f"state file does not exist: {state_path}")
+        timestamp = now if now is not None else time.time()
+        applied = []
+        for value in marks:
+            try:
+                action_id, phase = value.rsplit("=", 1)
+            except ValueError as error:
+                raise ValueError(f"invalid --mark-action {value!r}; expected ID=PHASE") from error
+            if not action_id:
+                raise ValueError("action ID cannot be empty")
+            mark_action(state, action_id, phase, now=timestamp)
+            applied.append({"id": action_id, "phase": phase})
+        retry_count = record_retry(state, retry_sha) if retry_sha else None
+        save_state_atomic(state_path, state)
     return {
         "schema_version": state["schema_version"],
         "state_file": str(state_path.resolve()),
@@ -138,6 +150,38 @@ def apply_state_updates(
         "retry_sha": retry_sha,
         "retry_count": retry_count,
     }
+
+
+def evaluate_and_save_state(
+    path: str | Path,
+    state: dict[str, Any],
+    snapshot: dict[str, Any],
+    *,
+    now: float,
+    authority: set[str],
+    no_pipeline_expected: bool = False,
+    owner: str | None = None,
+    takeover: bool = False,
+    lease_state: str | None = None,
+) -> tuple[dict[str, Any], dict[str, Any]]:
+    """Reload state under the update lock before evaluating and saving it."""
+    state_path = Path(path)
+    with state_file_lock(state_path):
+        state = load_state(state_path) or state
+        state["authority_observed"] = sorted(authority)
+        if lease_state is not None:
+            state["lease_state"] = lease_state
+        if owner is not None:
+            acquire_lease(state, owner=owner, now=now, takeover=takeover)
+        result = evaluate_snapshot(
+            snapshot,
+            state,
+            now=now,
+            authority=authority,
+            no_pipeline_expected=no_pipeline_expected,
+        )
+        save_state_atomic(state_path, state)
+    return state, result
 
 
 def _project_state_directory(cwd: Path) -> Path | None:
@@ -201,8 +245,10 @@ def main(argv: list[str] | None = None) -> int:
                 if state is None:
                     emit({"terminal": True, "reason": "initial_provider_read_failed", "error": str(error)})
                     return 2
-                read_result = record_read_error(state, str(error), now=now)
-                save_state_atomic(state_path, state)
+                with state_file_lock(state_path):
+                    state = load_state(state_path) or state
+                    read_result = record_read_error(state, str(error), now=now)
+                    save_state_atomic(state_path, state)
                 emit({"schema_version": state["schema_version"], "actions": ["provider_read_failed"], **read_result})
                 if args.once or read_result["terminal"]:
                     return 2 if read_result["terminal"] else 0
@@ -221,22 +267,19 @@ def main(argv: list[str] | None = None) -> int:
                     raise ValueError(
                         f"state objective is {state['objective']!r}; use a new state file or the same objective"
                     )
-                lease_state = acquire_lease(state, owner=owner, now=now, takeover=args.takeover)
-                state["authority_observed"] = sorted(set(args.authority))
-                state["lease_state"] = file_lease_state
-            else:
-                acquire_lease(state, owner=owner, now=now)
-
-            result = evaluate_snapshot(
-                snapshot,
+            state, result = evaluate_and_save_state(
+                state_path,
                 state,
+                snapshot,
                 now=now,
                 authority=set(args.authority),
                 no_pipeline_expected=args.no_pipeline_expected,
+                owner=owner,
+                takeover=args.takeover,
+                lease_state=file_lease_state if snapshots == 0 else None,
             )
             result["state_file"] = str(state_path)
             result["lease_state"] = state.get("lease_state")
-            save_state_atomic(state_path, state)
             emit(result)
             snapshots += 1
             if args.once or result["terminal"]:
@@ -255,9 +298,11 @@ def main(argv: list[str] | None = None) -> int:
         return 130
     finally:
         if state is not None and state_path is not None:
-            release_lease(state, owner=owner)
             try:
-                save_state_atomic(state_path, state)
+                with state_file_lock(state_path):
+                    state = load_state(state_path) or state
+                    release_lease(state, owner=owner)
+                    save_state_atomic(state_path, state)
             except OSError:
                 pass
         if lease_path is not None:

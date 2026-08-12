@@ -13,7 +13,7 @@ The bundled watcher performs reads only. Use these operations after the skill se
 
 ## GitHub
 
-Use `gh auth status --hostname <host>`. Prefer `gh pr view`, `gh pr checks`, `gh run view`, and paginated `gh api` reads. Read failed workflow jobs and fetch direct job logs when available; `gh run view --log-failed` may wait for the full run.
+Use `gh auth status --hostname <host>`. Prefer `gh pr view`, `gh pr checks`, `gh run view`, and paginated `gh api` reads. Read failed workflow jobs and fetch direct job logs when available; `gh run view --log-failed` may wait for the full run. A target URL does not establish host trust. For a GitHub Enterprise host that depends on generic token environment variables, pass its administrator-confirmed hostname with `--trusted-github-host`; otherwise the watcher removes generic GitHub tokens before it invokes `gh` for that host.
 
 Rerun only the failed workflow or jobs associated with the refreshed SHA and only with `retry-ci` authority. Use a body file for top-level comments. Read unresolved review threads through GraphQL before reply or resolution. Human-authored replies and thread mutations require the exact skill authority and participant boundary.
 
