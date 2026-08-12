@@ -13,7 +13,11 @@ class CommandError(RuntimeError):
 
 
 def _run_json(
-    command: list[str], *, allowed_codes: set[int] | None = None, env: dict[str, str] | None = None
+    command: list[str],
+    *,
+    allowed_codes: set[int] | None = None,
+    allowed_empty_messages: tuple[str, ...] = (),
+    env: dict[str, str] | None = None,
 ) -> Any:
     result = subprocess.run(command, check=False, capture_output=True, text=True, env=env)
     allowed = allowed_codes or {0}
@@ -21,6 +25,8 @@ def _run_json(
         raise CommandError(f"command failed ({result.returncode}): {result.stderr.strip()}")
     text = result.stdout.strip()
     if result.returncode != 0 and not text:
+        if any(message in result.stderr for message in allowed_empty_messages):
+            return []
         raise CommandError(
             f"command failed ({result.returncode}) without JSON evidence: {result.stderr.strip()}"
         )
@@ -170,10 +176,21 @@ class GitHubProvider:
         self.runner = runner
         self.trusted_hosts = {"github.com", *(trusted_hosts or set())}
 
-    def _call(self, command: list[str], *, allowed_codes: set[int] | None = None) -> Any:
+    def _call(
+        self,
+        command: list[str],
+        *,
+        allowed_codes: set[int] | None = None,
+        allowed_empty_messages: tuple[str, ...] = (),
+    ) -> Any:
         if self.runner:
             return self.runner(command)
-        return _run_json(command, allowed_codes=allowed_codes, env=self._command_environment())
+        return _run_json(
+            command,
+            allowed_codes=allowed_codes,
+            allowed_empty_messages=allowed_empty_messages,
+            env=self._command_environment(),
+        )
 
     def _command_environment(self) -> dict[str, str]:
         environment = os.environ.copy()
@@ -255,6 +272,7 @@ class GitHubProvider:
         required = self._call(
             ["gh", "--repo", repo_spec, "pr", "checks", str(number), "--required", "--json", "name,state,bucket,link,workflow"],
             allowed_codes={0, 1, 8},
+            allowed_empty_messages=("no required checks reported",),
         )
         identities = [_check_identity(row) for row in required]
         required_identities: set[tuple[str, ...]] | None = (
