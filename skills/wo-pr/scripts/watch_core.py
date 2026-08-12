@@ -361,8 +361,10 @@ def _review_action(
         if phase == "handled" and not action.get("feedback_disposition"):
             phase = None
         disposition = action.get("feedback_disposition") or {}
-        if disposition and str(disposition.get("head_sha") or "") != str(
-            state.get("current_head") or ""
+        if (
+            disposition
+            and disposition.get("validity") != "obsolete-or-duplicate"
+            and str(disposition.get("head_sha") or "") != str(state.get("current_head") or "")
         ):
             phase = None
             action.pop("feedback_disposition", None)

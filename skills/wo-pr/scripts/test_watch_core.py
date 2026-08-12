@@ -416,6 +416,24 @@ class EvaluationTests(unittest.TestCase):
         self.assertIn("process_review_comment", result["actions"])
         self.assertNotIn("feedback_disposition", state["actions"]["review:7"])
 
+    def test_obsolete_feedback_stays_handled_when_head_changes(self):
+        state = new_state(objective="until-ready")
+        item = {"id": "review:7", "body": "Review wrapper", "updated_at": "10:00"}
+        evaluate_snapshot(snapshot(sha="abc", reviews=[item]), state, now=10, authority=set())
+        record_feedback_disposition(
+            state, "abc", "review:7", "obsolete-or-duplicate", "no-code-change", now=15
+        )
+        mark_action(state, "review:7", "handled", now=20)
+
+        result = evaluate_snapshot(
+            snapshot(sha="def", jobs=self.green_jobs, reviews=[item]),
+            state,
+            now=30,
+            authority=set(),
+        )
+
+        self.assertNotIn("process_review_comment", result["actions"])
+
     def test_draft_preflight_outranks_review_processing(self):
         state = new_state(objective="until-ready")
         current = snapshot(reviews=[{"id": "review:7", "body": "Please fix"}])
