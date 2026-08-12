@@ -361,6 +361,12 @@ def _review_action(
         if phase == "handled" and not action.get("feedback_disposition"):
             phase = None
         disposition = action.get("feedback_disposition") or {}
+        if disposition and str(disposition.get("head_sha") or "") != str(
+            state.get("current_head") or ""
+        ):
+            phase = None
+            action.pop("feedback_disposition", None)
+            disposition = {}
         needs_user = disposition.get("disposition") == "user-decision"
         if needs_user:
             phase = None
@@ -445,39 +451,6 @@ def evaluate_snapshot(
     if readiness_blocker is None or readiness_blocker[0] != "provider_evidence_incomplete":
         state.setdefault("provider_gaps", {})["consecutive"] = 0
 
-    if user_decision_ids:
-        _reset_settle(state)
-        result = _result(
-            state,
-            snapshot,
-            now,
-            review_actions + ["user_help_required"],
-            terminal=True,
-            reason="feedback_user_decision_required",
-            next_poll=0,
-        )
-        result["review_item_ids"] = review_ids
-        result["feedback_user_decision_ids"] = user_decision_ids
-        return result
-
-    if review_actions:
-        _reset_settle(state)
-        persistent_gap = summary["state"] == "incomplete" and gaps["consecutive"] >= 3
-        actions = review_actions + (["user_help_required"] if persistent_gap else [])
-        result = _result(
-            state,
-            snapshot,
-            now,
-            actions,
-            terminal=persistent_gap,
-            reason=(
-                "persistent_incomplete_pipeline_evidence" if persistent_gap else "review_activity"
-            ),
-            next_poll=0 if persistent_gap else 30,
-        )
-        result["review_item_ids"] = review_ids
-        return result
-
     capabilities = snapshot.get("capabilities") or {}
     if capabilities.get("review_thread_resolution") is False:
         _reset_settle(state)
@@ -513,6 +486,47 @@ def evaluate_snapshot(
             reason="mergeability_blocker",
             next_poll=0,
         )
+
+    if readiness_blocker is not None and (
+        readiness_blocker[1] == "draft_item"
+        or readiness_blocker[0] == "provider_evidence_incomplete"
+    ):
+        return _readiness_blocker_result(
+            state, snapshot, now, readiness_blocker
+        )
+
+    if user_decision_ids:
+        _reset_settle(state)
+        result = _result(
+            state,
+            snapshot,
+            now,
+            review_actions + ["user_help_required"],
+            terminal=True,
+            reason="feedback_user_decision_required",
+            next_poll=0,
+        )
+        result["review_item_ids"] = review_ids
+        result["feedback_user_decision_ids"] = user_decision_ids
+        return result
+
+    if review_actions:
+        _reset_settle(state)
+        persistent_gap = summary["state"] == "incomplete" and gaps["consecutive"] >= 3
+        actions = review_actions + (["user_help_required"] if persistent_gap else [])
+        result = _result(
+            state,
+            snapshot,
+            now,
+            actions,
+            terminal=persistent_gap,
+            reason=(
+                "persistent_incomplete_pipeline_evidence" if persistent_gap else "review_activity"
+            ),
+            next_poll=0 if persistent_gap else 30,
+        )
+        result["review_item_ids"] = review_ids
+        return result
 
     pipeline_state = summary["state"]
     if pipeline_state == "failed":
@@ -585,39 +599,7 @@ def evaluate_snapshot(
         return _result(state, snapshot, now, ["idle"], terminal=False, reason="pipeline_pending", next_poll=30)
 
     if readiness_blocker is not None:
-        _reset_settle(state)
-        action, reason = readiness_blocker
-        if action == "provider_evidence_incomplete":
-            gaps = state.setdefault("provider_gaps", {"consecutive": 0})
-            gaps["consecutive"] = int(gaps.get("consecutive", 0)) + 1
-            if gaps["consecutive"] < 3:
-                return _result(
-                    state,
-                    snapshot,
-                    now,
-                    [action],
-                    terminal=False,
-                    reason=reason,
-                    next_poll=30,
-                )
-            return _result(
-                state,
-                snapshot,
-                now,
-                ["user_help_required"],
-                terminal=True,
-                reason="persistent_incomplete_provider_evidence",
-                next_poll=0,
-            )
-        return _result(
-            state,
-            snapshot,
-            now,
-            [action],
-            terminal=True,
-            reason=reason,
-            next_poll=0,
-        )
+        return _readiness_blocker_result(state, snapshot, now, readiness_blocker)
 
     fingerprint = _readiness_fingerprint(snapshot)
     settle = state.setdefault("settle", {})
@@ -664,6 +646,47 @@ def _readiness_blocker(snapshot: dict[str, Any]) -> tuple[str, str] | None:
     if snapshot.get("errors"):
         return "provider_evidence_incomplete", "incomplete_provider_evidence"
     return None
+
+
+def _readiness_blocker_result(
+    state: dict[str, Any],
+    snapshot: dict[str, Any],
+    now: float,
+    blocker: tuple[str, str],
+) -> dict[str, Any]:
+    _reset_settle(state)
+    action, reason = blocker
+    if action == "provider_evidence_incomplete":
+        gaps = state.setdefault("provider_gaps", {"consecutive": 0})
+        gaps["consecutive"] = int(gaps.get("consecutive", 0)) + 1
+        if gaps["consecutive"] < 3:
+            return _result(
+                state,
+                snapshot,
+                now,
+                [action],
+                terminal=False,
+                reason=reason,
+                next_poll=30,
+            )
+        return _result(
+            state,
+            snapshot,
+            now,
+            ["user_help_required"],
+            terminal=True,
+            reason="persistent_incomplete_provider_evidence",
+            next_poll=0,
+        )
+    return _result(
+        state,
+        snapshot,
+        now,
+        [action],
+        terminal=True,
+        reason=reason,
+        next_poll=0,
+    )
 
 
 def _reset_settle(state: dict[str, Any]) -> None:

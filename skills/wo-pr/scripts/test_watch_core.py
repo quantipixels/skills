@@ -400,6 +400,54 @@ class EvaluationTests(unittest.TestCase):
 
         self.assertNotIn("process_review_comment", result["actions"])
 
+    def test_handled_feedback_is_reopened_when_head_changes(self):
+        state = new_state(objective="until-ready")
+        item = {"id": "review:7", "body": "Fix the boundary", "updated_at": "10:00"}
+        evaluate_snapshot(snapshot(sha="abc", reviews=[item]), state, now=10, authority=set())
+        record_feedback_disposition(
+            state, "abc", "review:7", "confirmed", "address-now", now=15
+        )
+        mark_action(state, "review:7", "handled", now=20)
+
+        result = evaluate_snapshot(
+            snapshot(sha="def", reviews=[item]), state, now=30, authority=set()
+        )
+
+        self.assertIn("process_review_comment", result["actions"])
+        self.assertNotIn("feedback_disposition", state["actions"]["review:7"])
+
+    def test_draft_preflight_outranks_review_processing(self):
+        state = new_state(objective="until-ready")
+        current = snapshot(reviews=[{"id": "review:7", "body": "Please fix"}])
+        current["draft"] = True
+
+        result = evaluate_snapshot(current, state, now=10, authority=set())
+
+        self.assertEqual(["user_help_required"], result["actions"])
+        self.assertEqual("draft_item", result["reason"])
+
+    def test_branch_conflict_preflight_outranks_review_processing(self):
+        state = new_state(objective="until-ready")
+        current = snapshot(reviews=[{"id": "review:7", "body": "Please fix"}])
+        current["mergeability"] = "CONFLICTING"
+
+        result = evaluate_snapshot(
+            current, state, now=10, authority={"fix-commit-push"}
+        )
+
+        self.assertEqual(["fix_branch_conflict"], result["actions"])
+        self.assertEqual("branch_conflict", result["reason"])
+
+    def test_review_evidence_preflight_outranks_review_processing(self):
+        state = new_state(objective="until-ready")
+        current = snapshot(reviews=[{"id": "review:7", "body": "Please fix"}])
+        current["capabilities"]["review_thread_resolution"] = False
+
+        result = evaluate_snapshot(current, state, now=10, authority=set())
+
+        self.assertEqual(["user_help_required"], result["actions"])
+        self.assertEqual("incomplete_review_evidence", result["reason"])
+
     def test_edited_pending_feedback_refreshes_its_stored_fingerprint(self):
         state = new_state(objective="until-merged")
         first = {"id": "review:7", "body": "First request", "updated_at": "10:00"}
