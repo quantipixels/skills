@@ -175,6 +175,13 @@ class ProviderCliTests(unittest.TestCase):
             (
                 "github",
                 [
+                    "gh", "--repo", "owner/repo", "api",
+                    "repos/owner/repo/pulls", "--input", "payload.json",
+                ],
+            ),
+            (
+                "github",
+                [
                     "gh", "--repo", "owner/repo", "api", "--method", "POST",
                     "repos/owner/repo/pulls", "--input", "payload.json",
                 ],

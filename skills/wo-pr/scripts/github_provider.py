@@ -20,7 +20,21 @@ def _run_json(
     if result.returncode not in allowed:
         raise CommandError(f"command failed ({result.returncode}): {result.stderr.strip()}")
     text = result.stdout.strip()
-    return json.loads(text) if text else []
+    if result.returncode != 0 and not text:
+        raise CommandError(
+            f"command failed ({result.returncode}) without JSON evidence: {result.stderr.strip()}"
+        )
+    try:
+        payload = json.loads(text) if text else []
+    except json.JSONDecodeError as error:
+        raise CommandError(
+            f"command returned invalid JSON ({result.returncode}): {result.stderr.strip()}"
+        ) from error
+    if result.returncode != 0 and payload == []:
+        raise CommandError(
+            f"command failed ({result.returncode}) without check rows: {result.stderr.strip()}"
+        )
+    return payload
 
 
 def normalize_pr(raw: dict[str, Any], *, host: str, repository: str) -> dict[str, Any]:
@@ -44,7 +58,20 @@ def normalize_pr(raw: dict[str, Any], *, host: str, repository: str) -> dict[str
     }
 
 
-def normalize_checks(checks: list[dict[str, Any]], *, required_names: set[str] | None) -> list[dict[str, Any]]:
+def _check_identity(check: dict[str, Any]) -> tuple[str, ...] | None:
+    link = check.get("link") or check.get("detailsUrl")
+    if link:
+        return ("link", str(link))
+    name = check.get("name")
+    workflow = check.get("workflow")
+    if name and workflow:
+        return ("name-workflow", str(name), str(workflow))
+    return None
+
+
+def normalize_checks(
+    checks: list[dict[str, Any]], *, required_identities: set[tuple[str, ...]] | None
+) -> list[dict[str, Any]]:
     mapping = {
         "SUCCESS": "success",
         "NEUTRAL": "neutral",
@@ -68,7 +95,11 @@ def normalize_checks(checks: list[dict[str, Any]], *, required_names: set[str] |
                 "id": check.get("id") or check.get("link") or check.get("detailsUrl") or check.get("name"),
                 "name": check.get("name"),
                 "status": mapping.get(raw_state, "unknown"),
-                "required": None if required_names is None else check.get("name") in required_names,
+                "required": (
+                    None
+                    if required_identities is None
+                    else _check_identity(check) in required_identities
+                ),
                 "allow_failure": False,
                 "workflow": check.get("workflow"),
                 "url": check.get("link") or check.get("detailsUrl"),
@@ -221,15 +252,14 @@ class GitHubProvider:
             ["gh", "--repo", repo_spec, "pr", "checks", str(number), "--json", "name,state,bucket,link,workflow"],
             allowed_codes={0, 1, 8},
         )
-        required_names: set[str] | None
-        try:
-            required = self._call(
-                ["gh", "--repo", repo_spec, "pr", "checks", str(number), "--required", "--json", "name,state,bucket,link,workflow"],
-                allowed_codes={0, 1, 8},
-            )
-            required_names = {row.get("name") for row in required}
-        except CommandError:
-            required_names = None
+        required = self._call(
+            ["gh", "--repo", repo_spec, "pr", "checks", str(number), "--required", "--json", "name,state,bucket,link,workflow"],
+            allowed_codes={0, 1, 8},
+        )
+        identities = [_check_identity(row) for row in required]
+        required_identities: set[tuple[str, ...]] | None = (
+            None if any(identity is None for identity in identities) else set(identities)
+        )
         issue_comments = self._paginate(f"repos/{repository}/issues/{number}/comments?per_page=100")
         inline_comments = self._paginate(f"repos/{repository}/pulls/{number}/comments?per_page=100")
         reviews = self._paginate(f"repos/{repository}/pulls/{number}/reviews?per_page=100")
@@ -239,18 +269,18 @@ class GitHubProvider:
         snapshot.update(
             {
                 "pipeline": {
-                    "evidence_complete": required_names is not None,
-                    "jobs": normalize_checks(checks, required_names=required_names),
+                    "evidence_complete": required_identities is not None,
+                    "jobs": normalize_checks(checks, required_identities=required_identities),
                 },
                 "review_items": normalize_review_items(
                     issue_comments, inline_comments, reviews, resolution_by_comment=resolutions
                 ),
                 "capabilities": {
-                    "required_check_identity": required_names is not None,
+                    "required_check_identity": required_identities is not None,
                     "review_thread_resolution": resolution_complete,
                 },
                 "errors": (
-                    ([] if required_names is not None else ["required check identity unavailable"])
+                    ([] if required_identities is not None else ["required check identity unavailable"])
                     + ([] if resolution_complete else ["review thread resolution unavailable or incomplete"])
                 ),
             }

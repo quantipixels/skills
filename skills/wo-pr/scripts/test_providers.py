@@ -94,6 +94,22 @@ class GitHubNormalizationTests(unittest.TestCase):
         self.assertTrue(result["pipeline"]["evidence_complete"])
         self.assertTrue(result["pipeline"]["jobs"][0]["required"])
 
+    def test_empty_exit_one_required_check_read_is_not_accepted(self):
+        def run(command, **_kwargs):
+            if is_github_pr_command(command, "view"):
+                payload = {"number": 42, "url": "https://github.com/acme/widgets/pull/42", "state": "OPEN"}
+                return subprocess.CompletedProcess(command, 0, json.dumps(payload), "")
+            if is_github_pr_command(command, "checks") and "--required" in command:
+                return subprocess.CompletedProcess(command, 1, "", "API failure")
+            if is_github_pr_command(command, "checks"):
+                payload = [{"name": "test", "state": "FAILURE", "link": "https://example.test/check/1"}]
+                return subprocess.CompletedProcess(command, 0, json.dumps(payload), "")
+            return subprocess.CompletedProcess(command, 0, "[]", "")
+
+        with patch("github_provider.subprocess.run", side_effect=run):
+            with self.assertRaises(GitHubCommandError):
+                GitHubProvider(repository="acme/widgets").fetch("42")
+
     def test_pr_identity_is_lossless(self):
         raw = {
             "number": 42,
@@ -118,7 +134,7 @@ class GitHubNormalizationTests(unittest.TestCase):
             {"name": "optional", "state": "NEUTRAL", "bucket": "pass", "workflow": "CI"},
             {"name": "new", "state": "MYSTERY", "bucket": "pending", "workflow": "CI"},
         ]
-        jobs = normalize_checks(checks, required_names={"test"})
+        jobs = normalize_checks(checks, required_identities={("name-workflow", "test", "CI")})
         self.assertTrue(jobs[0]["required"])
         self.assertFalse(jobs[1]["required"])
         self.assertEqual("unknown", jobs[2]["status"])
@@ -126,9 +142,21 @@ class GitHubNormalizationTests(unittest.TestCase):
     def test_checks_use_job_link_as_identity_when_no_provider_id_exists(self):
         jobs = normalize_checks(
             [{"name": "test", "state": "SUCCESS", "link": "https://github.com/acme/widgets/runs/123"}],
-            required_names={"test"},
+            required_identities={("link", "https://github.com/acme/widgets/runs/123")},
         )
         self.assertEqual("https://github.com/acme/widgets/runs/123", jobs[0]["id"])
+
+    def test_same_named_checks_match_requiredness_by_row_identity(self):
+        checks = [
+            {"name": "test", "state": "SUCCESS", "link": "https://example.test/check/required"},
+            {"name": "test", "state": "FAILURE", "link": "https://example.test/check/optional"},
+        ]
+        jobs = normalize_checks(
+            checks,
+            required_identities={("link", "https://example.test/check/required")},
+        )
+        self.assertTrue(jobs[0]["required"])
+        self.assertFalse(jobs[1]["required"])
 
     def test_pending_reviews_are_not_published_items(self):
         reviews = [

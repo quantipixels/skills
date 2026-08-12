@@ -159,6 +159,8 @@ def _has_api_fields(command: list[str]) -> bool:
     field_flags = {"-f", "-F", "--field", "--raw-field", "--form"}
     return any(
         value in field_flags
+        or value == "--input"
+        or value.startswith("--input=")
         or value.startswith(("--field=", "--raw-field=", "--form="))
         or (value.startswith(("-f", "-F")) and len(value) > 2)
         for value in command
