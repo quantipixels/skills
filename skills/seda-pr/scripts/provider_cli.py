@@ -126,7 +126,9 @@ def validate_ready_for_review_creation(provider: str, command: list[str]) -> Non
 
 
 def _is_item_creation(provider: str, command: list[str]) -> bool:
-    if provider == "github" and _contains_subcommand(command, "pr", "create"):
+    if provider == "github" and any(
+        _contains_subcommand(command, "pr", action) for action in ("create", "new")
+    ):
         return True
     if provider == "gitlab" and _contains_subcommand(command, "mr", "create"):
         return True

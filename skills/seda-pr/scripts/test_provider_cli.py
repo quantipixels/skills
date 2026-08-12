@@ -133,6 +133,7 @@ class ProviderCliTests(unittest.TestCase):
         commands = [
             ["gh", "pr", "create", "--repo", "owner/repo", "--draft"],
             ["gh", "--repo", "owner/repo", "pr", "create", "--draft"],
+            ["gh", "--repo", "owner/repo", "pr", "new", "--draft"],
             ["gh", "--repo", "owner/repo", "pr", "create", "-d"],
         ]
         for command in commands:
