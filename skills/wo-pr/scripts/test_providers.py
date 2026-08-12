@@ -198,6 +198,39 @@ class GitHubNormalizationTests(unittest.TestCase):
 
         self.assertTrue(all(environment["GH_ENTERPRISE_TOKEN"] == "enterprise-token" for environment in environments))
 
+    def test_github_commands_pin_declared_host_and_remove_ambient_repo(self):
+        environments = []
+
+        def run(command, **kwargs):
+            environments.append(kwargs["env"])
+            if command[:3] == ["gh", "pr", "view"]:
+                payload = {
+                    "number": 42,
+                    "url": "https://github.com/acme/widgets/pull/42",
+                    "state": "OPEN",
+                }
+            elif "graphql" in command:
+                payload = {
+                    "data": {"repository": {"pullRequest": {"reviewThreads": {
+                        "nodes": [], "pageInfo": {"hasNextPage": False}
+                    }}}}
+                }
+            else:
+                payload = []
+            return subprocess.CompletedProcess(command, 0, json.dumps(payload), "")
+
+        with patch.dict(
+            os.environ,
+            {"GH_HOST": "attacker.test", "GH_REPO": "attacker.test/acme/api", "GH_TOKEN": "token"},
+            clear=True,
+        ), patch("github_provider.subprocess.run", side_effect=run):
+            GitHubProvider(repository="acme/widgets").fetch("42")
+
+        self.assertTrue(environments)
+        for environment in environments:
+            self.assertEqual("github.com", environment["GH_HOST"])
+            self.assertNotIn("GH_REPO", environment)
+
 
 class GitLabNormalizationTests(unittest.TestCase):
     def test_mr_identity_preserves_diff_refs(self):

@@ -267,7 +267,11 @@ def main(argv: list[str] | None = None) -> int:
         except (ValueError, OSError) as error:
             emit({"terminal": True, "reason": "state_update_failed", "error": str(error)})
             return 2
-    provider = make_provider(args)
+    try:
+        provider = make_provider(args)
+    except (ValueError, OSError) as error:
+        emit({"terminal": True, "reason": "configuration_error", "error": str(error), "state_file": None})
+        return 2
     owner = f"{socket.gethostname()}:{os.getpid()}:{uuid.uuid4().hex[:8]}"
     state_path: Path | None = None
     state: dict[str, Any] | None = None

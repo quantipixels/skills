@@ -410,6 +410,16 @@ def evaluate_snapshot(
                 return _result(state, snapshot, now, ["user_help_required"], terminal=True, reason="retry_authority_required", next_poll=0)
             return _result(state, snapshot, now, ["retry_failed_checks"], terminal=False, reason="flaky_failure", next_poll=30)
         if "branch" in failure_kinds:
+            if "fix-commit-push" not in authority:
+                return _result(
+                    state,
+                    snapshot,
+                    now,
+                    ["user_help_required"],
+                    terminal=True,
+                    reason="fix_authority_required",
+                    next_poll=0,
+                )
             return _result(state, snapshot, now, ["fix_branch_failure"], terminal=False, reason="branch_failure", next_poll=30)
         return _result(state, snapshot, now, ["diagnose_ci_failure"], terminal=False, reason="pipeline_failed", next_poll=30)
 

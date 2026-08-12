@@ -577,12 +577,28 @@ class PersistenceAndLeaseTests(unittest.TestCase):
                         {"id": "job-1", "name": "test", "status": "failure", "required": True}
                     ]),
                     now=60,
-                    authority={"retry-ci"},
+                    authority={"retry-ci", "fix-commit-push"} if kind == "branch" else {"retry-ci"},
                 )
 
                 self.assertEqual(actions, result["actions"])
                 self.assertEqual(reason, result["reason"])
                 self.assertEqual(terminal, result["terminal"])
+
+    def test_branch_failure_requires_current_fix_authority(self):
+        state = new_state(objective="until-merged")
+        failed = [{
+            "id": "job-1",
+            "name": "test",
+            "status": "failure",
+            "required": True,
+            "failure_kind": "branch",
+        }]
+
+        result = evaluate_snapshot(snapshot(jobs=failed), state, now=60, authority={"observe"})
+
+        self.assertEqual(["user_help_required"], result["actions"])
+        self.assertEqual("fix_authority_required", result["reason"])
+        self.assertTrue(result["terminal"])
 
     def test_mixed_branch_and_flaky_classifications_select_the_branch_fix_first(self):
         with tempfile.TemporaryDirectory() as directory:
@@ -770,6 +786,20 @@ class TargetIdentityTests(unittest.TestCase):
 
 
 class WatchLoopLeaseTests(unittest.TestCase):
+    def test_target_resolution_failure_is_structured_configuration_error(self):
+        emissions = []
+        result = None
+        with patch("pr_watch.emit", side_effect=emissions.append):
+            result = main([
+                "--provider", "github",
+                "--pr", "https://gitlab.com/acme/api/-/merge_requests/7",
+                "--once",
+            ])
+
+        self.assertEqual(2, result)
+        self.assertEqual("configuration_error", emissions[0]["reason"])
+        self.assertTrue(emissions[0]["terminal"])
+
     def test_watch_retries_two_initial_provider_read_failures(self):
         current = snapshot(jobs=[{"name": "test", "status": "pending", "required": True}])
 

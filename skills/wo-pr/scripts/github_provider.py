@@ -147,6 +147,8 @@ class GitHubProvider:
     def _command_environment(self) -> dict[str, str]:
         environment = os.environ.copy()
         host = self.host.lower().rstrip(".")
+        environment["GH_HOST"] = host
+        environment.pop("GH_REPO", None)
         trusted_hosts = {value.lower().rstrip(".") for value in self.trusted_hosts}
         if host not in trusted_hosts:
             for name in ("GH_TOKEN", "GITHUB_TOKEN", "GH_ENTERPRISE_TOKEN", "GITHUB_ENTERPRISE_TOKEN"):
