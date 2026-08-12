@@ -78,6 +78,10 @@ def validate_command_host(provider: str, host: str, command: list[str]) -> None:
 
 def validate_ready_for_review_creation(provider: str, command: list[str]) -> None:
     """Reject a PR or MR creation command that can create a draft item."""
+    if provider == "github" and _has_opaque_graphql_payload(command):
+        raise ValueError(
+            "seda-pr rejects opaque GraphQL payloads because PR creation draft state cannot be verified"
+        )
     if not _is_item_creation(provider, command):
         return
 
@@ -165,6 +169,23 @@ def _has_api_fields(command: list[str]) -> bool:
         or (value.startswith(("-f", "-F")) and len(value) > 2)
         for value in command
     )
+
+
+def _has_opaque_graphql_payload(command: list[str]) -> bool:
+    if "api" not in command[1:] or "graphql" not in command[1:]:
+        return False
+    if any(value == "--input" or value.startswith("--input=") for value in command):
+        return True
+    field_flags = {"-f", "-F", "--field", "--raw-field", "--form"}
+    fields: list[str] = []
+    for index, value in enumerate(command):
+        if value in field_flags and index + 1 < len(command):
+            fields.append(command[index + 1])
+        elif value.startswith(("--field=", "--raw-field=", "--form=")):
+            fields.append(value.split("=", 1)[1])
+        elif value.startswith(("-f", "-F")) and len(value) > 2:
+            fields.append(value[2:].removeprefix("="))
+    return any(field.lower().startswith("query=@") for field in fields)
 
 
 def _truthy(value: str) -> bool:

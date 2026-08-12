@@ -174,6 +174,14 @@ class ProviderCliTests(unittest.TestCase):
         commands = [
             (
                 "github",
+                ["gh", "api", "graphql", "--hostname", "github.com", "--input", "payload.json"],
+            ),
+            (
+                "github",
+                ["gh", "api", "graphql", "--hostname", "github.com", "-F", "query=@mutation.graphql"],
+            ),
+            (
+                "github",
                 [
                     "gh", "--repo", "owner/repo", "api",
                     "repos/owner/repo/pulls", "--input", "payload.json",
