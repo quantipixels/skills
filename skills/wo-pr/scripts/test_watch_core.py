@@ -326,6 +326,69 @@ class EvaluationTests(unittest.TestCase):
         changed = evaluate_snapshot(snapshot(reviews=[edited]), state, now=40, authority=set())
         self.assertIn("process_review_comment", changed["actions"])
 
+    def test_edited_pending_feedback_refreshes_its_stored_fingerprint(self):
+        state = new_state(objective="until-merged")
+        first = {"id": "review:7", "body": "First request", "updated_at": "10:00"}
+        evaluate_snapshot(snapshot(reviews=[first]), state, now=10, authority=set())
+        mark_action(state, "review:7", "claimed", now=20)
+
+        edited = {"id": "review:7", "body": "Updated request", "updated_at": "10:05"}
+        evaluate_snapshot(snapshot(reviews=[edited]), state, now=30, authority=set())
+        mark_action(state, "review:7", "handled", now=40)
+        result = evaluate_snapshot(snapshot(reviews=[edited]), state, now=50, authority=set())
+
+        self.assertNotIn("process_review_comment", result["actions"])
+
+    def test_persistent_incomplete_pipeline_evidence_escalates_after_three_snapshots(self):
+        state = new_state(objective="until-ready")
+        incomplete = snapshot(
+            jobs=[{"name": "test", "status": "success", "required": None}], complete=False
+        )
+
+        first = evaluate_snapshot(incomplete, state, now=10, authority=set())
+        second = evaluate_snapshot(incomplete, state, now=40, authority=set())
+        third = evaluate_snapshot(incomplete, state, now=70, authority=set())
+
+        self.assertFalse(first["terminal"])
+        self.assertFalse(second["terminal"])
+        self.assertEqual(["user_help_required"], third["actions"])
+        self.assertTrue(third["terminal"])
+        self.assertEqual("persistent_incomplete_pipeline_evidence", third["reason"])
+
+    def test_complete_pipeline_resets_incomplete_evidence_counter(self):
+        state = new_state(objective="until-ready")
+        incomplete = snapshot(
+            jobs=[{"name": "test", "status": "success", "required": None}], complete=False
+        )
+        evaluate_snapshot(incomplete, state, now=10, authority=set())
+        evaluate_snapshot(incomplete, state, now=40, authority=set())
+
+        complete = snapshot(jobs=[{"name": "test", "status": "pending", "required": True}])
+        evaluate_snapshot(complete, state, now=70, authority=set())
+        restarted = evaluate_snapshot(incomplete, state, now=100, authority=set())
+
+        self.assertFalse(restarted["terminal"])
+        self.assertEqual(1, state["evidence_gaps"]["consecutive"])
+
+    def test_pending_feedback_does_not_hide_persistent_incomplete_evidence(self):
+        state = new_state(objective="until-ready")
+        incomplete = snapshot(
+            jobs=[{"name": "test", "status": "success", "required": None}],
+            complete=False,
+            reviews=[{"id": "review:7", "body": "Please fix"}],
+        )
+
+        evaluate_snapshot(incomplete, state, now=10, authority=set())
+        evaluate_snapshot(incomplete, state, now=40, authority=set())
+        third = evaluate_snapshot(incomplete, state, now=70, authority=set())
+
+        self.assertEqual(
+            ["process_review_comment", "user_help_required"], third["actions"]
+        )
+        self.assertEqual(["review:7"], third["review_item_ids"])
+        self.assertTrue(third["terminal"])
+        self.assertEqual("persistent_incomplete_pipeline_evidence", third["reason"])
+
 
 class PersistenceAndLeaseTests(unittest.TestCase):
     def test_atomic_round_trip_and_schema_validation(self):

@@ -53,6 +53,7 @@ def new_state(*, objective: str) -> dict[str, Any]:
         "actions": {},
         "lease": None,
         "read_errors": {"consecutive": 0, "last": None},
+        "evidence_gaps": {"consecutive": 0},
         "last_change_key": None,
         "last_heartbeat": None,
     }
@@ -278,6 +279,9 @@ def _review_action(snapshot: dict[str, Any], state: dict[str, Any], *, now: floa
                 }
             elif action.get("fingerprint") is None:
                 action["fingerprint"] = fingerprint
+            elif action.get("fingerprint") != fingerprint:
+                action["fingerprint"] = fingerprint
+                action["updated_at"] = now
     return (["process_review_comment"] if pending_ids else []), pending_ids
 
 
@@ -320,10 +324,27 @@ def evaluate_snapshot(
         no_pipeline_expected=no_pipeline_expected,
     )
     snapshot["pipeline_summary"] = summary
+    gaps = state.setdefault("evidence_gaps", {"consecutive": 0})
+    if summary["state"] == "incomplete":
+        gaps["consecutive"] = int(gaps.get("consecutive", 0)) + 1
+    else:
+        gaps["consecutive"] = 0
 
     if review_actions:
         _reset_settle(state)
-        result = _result(state, snapshot, now, review_actions, terminal=False, reason="review_activity", next_poll=30)
+        persistent_gap = summary["state"] == "incomplete" and gaps["consecutive"] >= 3
+        actions = review_actions + (["user_help_required"] if persistent_gap else [])
+        result = _result(
+            state,
+            snapshot,
+            now,
+            actions,
+            terminal=persistent_gap,
+            reason=(
+                "persistent_incomplete_pipeline_evidence" if persistent_gap else "review_activity"
+            ),
+            next_poll=0 if persistent_gap else 30,
+        )
         result["review_item_ids"] = review_ids
         return result
 
@@ -407,6 +428,16 @@ def evaluate_snapshot(
 
     if pipeline_state == "incomplete":
         _reset_settle(state)
+        if gaps["consecutive"] >= 3:
+            return _result(
+                state,
+                snapshot,
+                now,
+                ["user_help_required"],
+                terminal=True,
+                reason="persistent_incomplete_pipeline_evidence",
+                next_poll=0,
+            )
         return _result(state, snapshot, now, ["provider_evidence_incomplete"], terminal=False, reason="incomplete_pipeline_evidence", next_poll=30)
 
     if pipeline_state == "pending":

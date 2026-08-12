@@ -216,11 +216,18 @@ class GitLabProvider:
         errors: list[str] = []
         head_pipeline = raw.get("head_pipeline") or {}
         pipeline_id = head_pipeline.get("id")
+        selected_pipeline = head_pipeline
         if pipeline_id is None:
             head_sha = snapshot.get("head", {}).get("sha")
             current = [pipeline for pipeline in pipelines if pipeline.get("sha") == head_sha]
             if current:
-                pipeline_id = max(current, key=lambda row: int(row.get("id") or 0)).get("id")
+                selected_pipeline = max(current, key=lambda row: int(row.get("id") or 0))
+                pipeline_id = selected_pipeline.get("id")
+        elif not selected_pipeline.get("status"):
+            selected_pipeline = next(
+                (pipeline for pipeline in pipelines if pipeline.get("id") == pipeline_id),
+                selected_pipeline,
+            )
         if pipeline_id is not None:
             raw_jobs = self._paginate(f"projects/{encoded}/pipelines/{pipeline_id}/jobs?include_retried=true")
             jobs = normalize_jobs(current_job_attempts(raw_jobs))
@@ -239,14 +246,20 @@ class GitLabProvider:
                     trigger_evidence_complete = False
                     errors.append("trigger job evidence unavailable")
             jobs.extend(normalize_trigger_jobs(current_job_attempts(raw_trigger_jobs)))
+            if not jobs and selected_pipeline.get("status"):
+                pipeline_job = dict(selected_pipeline)
+                pipeline_job.update({
+                    "id": f"pipeline:{pipeline_id}",
+                    "name": "pipeline",
+                    "allow_failure": False,
+                    "web_url": selected_pipeline.get("web_url"),
+                })
+                jobs = normalize_jobs([pipeline_job])
         else:
             trigger_evidence_complete = True
         discussions = self._paginate(f"projects/{encoded}/merge_requests/{iid}/discussions")
-        try:
-            approvals = self._api(f"projects/{encoded}/merge_requests/{iid}/approvals")
-            snapshot["review_decision"] = "APPROVED" if approvals.get("approved") else "REVIEW_REQUIRED"
-        except CommandError:
-            errors.append("approval state unavailable")
+        approvals = self._api(f"projects/{encoded}/merge_requests/{iid}/approvals")
+        snapshot["review_decision"] = "APPROVED" if approvals.get("approved") else "REVIEW_REQUIRED"
         snapshot.update(
             {
                 "pipeline": {
@@ -258,7 +271,7 @@ class GitLabProvider:
                 "capabilities": {
                     "required_check_identity": True,
                     "discussion_resolution": True,
-                    "approval_state": not errors,
+                    "approval_state": True,
                 },
                 "errors": errors,
             }

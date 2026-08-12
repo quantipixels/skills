@@ -341,6 +341,32 @@ class GitLabNormalizationTests(unittest.TestCase):
         self.assertEqual("failure", snapshot["pipeline"]["jobs"][1]["status"])
         self.assertTrue(snapshot["pipeline"]["evidence_complete"])
 
+    def test_empty_running_head_pipeline_is_reported_as_pending_work(self):
+        responses = self._fetch_responses()
+        responses["projects/acme%2Fwidgets/merge_requests/9"]["head_pipeline"]["status"] = "running"
+        responses[
+            "projects/acme%2Fwidgets/pipelines/10/jobs?include_retried=true&per_page=100&page=1"
+        ] = []
+
+        snapshot = GitLabProvider(
+            repository="acme/widgets", runner=lambda command: responses[command[-1]]
+        ).fetch("9")
+
+        self.assertEqual("running", snapshot["pipeline"]["jobs"][0]["status"])
+        self.assertEqual("pipeline:10", snapshot["pipeline"]["jobs"][0]["id"])
+        self.assertTrue(snapshot["pipeline"]["evidence_complete"])
+
+    def test_transient_approval_read_failure_propagates_to_watch_backoff(self):
+        responses = self._fetch_responses()
+
+        def runner(command):
+            if command[-1].endswith("/approvals"):
+                raise CommandError("temporary approval read failure")
+            return responses[command[-1]]
+
+        with self.assertRaisesRegex(CommandError, "temporary approval read failure"):
+            GitLabProvider(repository="acme/widgets", runner=runner).fetch("9")
+
     def test_fetch_marks_pipeline_incomplete_when_trigger_evidence_is_unavailable(self):
         responses = self._fetch_responses()
 
@@ -353,18 +379,6 @@ class GitLabNormalizationTests(unittest.TestCase):
 
         self.assertFalse(snapshot["pipeline"]["evidence_complete"])
         self.assertIn("trigger job evidence unavailable", snapshot["errors"])
-
-    def test_approval_read_failure_does_not_corrupt_pipeline_evidence(self):
-        responses = self._fetch_responses()
-
-        def runner(command):
-            if command[-1].endswith("/approvals"):
-                raise CommandError("approval endpoint unavailable")
-            return responses[command[-1]]
-
-        snapshot = GitLabProvider(repository="acme/widgets", runner=runner).fetch("9")
-        self.assertTrue(snapshot["pipeline"]["evidence_complete"])
-        self.assertFalse(snapshot["capabilities"]["approval_state"])
 
     def test_untrusted_gitlab_host_does_not_receive_generic_tokens(self):
         environments = []
