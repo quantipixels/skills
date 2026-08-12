@@ -101,6 +101,8 @@ def normalize_review_items(
     for review in reviews:
         if str(review.get("state", "")).upper() == "PENDING":
             continue
+        if not str(review.get("body") or "").strip():
+            continue
         items.append(_review_item("review", review))
     return sorted(items, key=lambda item: (str(item.get("created_at") or ""), item["id"]))
 

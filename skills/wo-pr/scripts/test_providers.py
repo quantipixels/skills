@@ -81,6 +81,24 @@ class GitHubNormalizationTests(unittest.TestCase):
         items = normalize_review_items([], [], reviews)
         self.assertEqual(["review:2"], [item["id"] for item in items])
 
+    def test_empty_review_summaries_are_not_actionable_items(self):
+        inline_comments = [{
+            "id": 8,
+            "body": "Please fix the boundary",
+            "user": {"login": "reviewer"},
+        }]
+        reviews = [
+            {"id": 1, "state": "COMMENTED", "body": "", "user": {"login": "a"}},
+            {"id": 2, "state": "APPROVED", "body": "   ", "user": {"login": "b"}},
+            {"id": 3, "state": "COMMENTED", "body": "Please fix this", "user": {"login": "c"}},
+        ]
+
+        items = normalize_review_items(
+            [], inline_comments, reviews, resolution_by_comment={8: False}
+        )
+
+        self.assertEqual(["comment:8", "review:3"], [item["id"] for item in items])
+
     def test_resolved_inline_comments_are_not_actionable(self):
         comments = [{"id": 8, "body": "done", "user": {"login": "a"}}]
         items = normalize_review_items([], comments, [], resolution_by_comment={8: True})

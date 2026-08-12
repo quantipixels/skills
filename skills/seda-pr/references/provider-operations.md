@@ -12,7 +12,7 @@ Read this reference only after `SKILL.md` selects an identified GitHub PR or Git
 
 Never create a duplicate, force-push, infer a write target from ambiguous remotes, or use an older generated body after the head changes.
 
-A target URL does not establish host trust. Run every `gh` or `glab` command in this reference through `python3 scripts/provider_cli.py --provider <github|gitlab> --host <host> -- <command>`. The helper removes generic provider tokens before it contacts a host other than `github.com` or `gitlab.com`. For an administrator-confirmed enterprise or self-managed host that depends on generic token environment variables, add `--trusted-host <host>` before `--`. Do not bypass the helper for authentication checks, reads, writes, pagination, REST, or GraphQL.
+A target URL does not establish host trust. Resolve the absolute path to `scripts/provider_cli.py` from the installed `seda-pr` skill directory that owns this reference. Never resolve the helper from the current working directory, `PATH`, or the target checkout. Run every `gh` or `glab` command in this reference through `python3 <absolute-helper-path> --provider <github|gitlab> --host <host> -- <command>`. The helper removes generic provider tokens before it contacts a host other than `github.com` or `gitlab.com`. For an administrator-confirmed enterprise or self-managed host that depends on generic token environment variables, add `--trusted-host <host>` before `--`. Do not bypass the helper for authentication checks, reads, writes, pagination, REST, or GraphQL.
 
 ## GitHub
 
