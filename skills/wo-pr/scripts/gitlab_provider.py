@@ -73,7 +73,7 @@ def normalize_jobs(raw_jobs: list[dict[str, Any]]) -> list[dict[str, Any]]:
                 "id": job.get("id"),
                 "name": job.get("name"),
                 "status": mapping.get(raw_status, "unknown"),
-                "required": not allow_failure,
+                "required": not allow_failure and raw_status != "skipped",
                 "allow_failure": allow_failure,
                 "stage": job.get("stage"),
                 "url": job.get("web_url"),

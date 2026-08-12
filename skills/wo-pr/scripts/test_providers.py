@@ -384,6 +384,14 @@ class GitLabNormalizationTests(unittest.TestCase):
         self.assertTrue(jobs[1]["allow_failure"])
         self.assertEqual("manual", jobs[2]["status"])
 
+    def test_skipped_gitlab_job_is_non_blocking(self):
+        jobs = normalize_jobs([
+            {"id": 1, "name": "failure-report", "status": "skipped", "allow_failure": False},
+        ])
+
+        self.assertFalse(jobs[0]["required"])
+        self.assertEqual("skipped", jobs[0]["status"])
+
     def test_trigger_job_tracks_the_downstream_pipeline_status(self):
         jobs = normalize_trigger_jobs([{
             "id": 7,

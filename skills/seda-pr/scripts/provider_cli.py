@@ -119,6 +119,8 @@ def validate_ready_for_review_creation(provider: str, command: list[str]) -> Non
             continue
         if name.lower() == "draft" and _truthy(raw_value):
             raise ValueError("seda-pr never creates a draft PR or MR")
+        if name.lower() == "draft" and raw_value.startswith("@"):
+            raise ValueError("seda-pr rejects file-backed draft state")
         if name.lower() == "title":
             titles.append(raw_value)
     if any(re.match(r"^\s*(?:draft|wip)\s*:", title, re.IGNORECASE) for title in titles):

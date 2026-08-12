@@ -123,13 +123,18 @@ def target_identity(target: str, *, provider: str) -> dict[str, str | None]:
     identity: dict[str, str | None] = {"provider": None, "host": None, "repository": None}
     parsed = urlparse(target)
     if parsed.scheme in {"http", "https"} and parsed.netloc:
+        host = parsed.hostname
+        if host and ":" in host and not host.startswith("["):
+            host = f"[{host}]"
+        if host and parsed.port is not None:
+            host = f"{host}:{parsed.port}"
         path = parsed.path.strip("/")
         if "/pull/" in f"/{path}/":
             repository = path.split("/pull/", 1)[0]
-            identity.update({"provider": "github", "host": parsed.hostname, "repository": repository})
+            identity.update({"provider": "github", "host": host, "repository": repository})
         elif "/-/merge_requests/" in f"/{path}/":
             repository = path.split("/-/merge_requests/", 1)[0]
-            identity.update({"provider": "gitlab", "host": parsed.hostname, "repository": repository})
+            identity.update({"provider": "gitlab", "host": host, "repository": repository})
     if provider != "auto":
         if identity["provider"] and identity["provider"] != provider:
             raise ValueError(f"target URL is for {identity['provider']}, not {provider}")

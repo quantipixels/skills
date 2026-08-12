@@ -224,6 +224,15 @@ class ProviderCliTests(unittest.TestCase):
             with self.subTest(command=command), self.assertRaisesRegex(ValueError, "draft"):
                 validate_ready_for_review_creation(provider, command)
 
+    def test_file_backed_draft_value_is_rejected(self):
+        commands = [
+            ["gh", "api", "repos/owner/repo/pulls", "-F", "draft=@draft.txt"],
+            ["gh", "api", "repos/owner/repo/pulls", "--field=draft=@-"],
+        ]
+        for command in commands:
+            with self.subTest(command=command), self.assertRaisesRegex(ValueError, "draft"):
+                validate_ready_for_review_creation("github", command)
+
     def test_main_rejects_draft_before_provider_contact(self):
         with patch("provider_cli.subprocess.run") as run:
             with self.assertRaisesRegex(ValueError, "draft"):

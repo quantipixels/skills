@@ -982,6 +982,14 @@ class TargetIdentityTests(unittest.TestCase):
         self.assertEqual("gitlab.acme.test", identity["host"])
         self.assertEqual("group/subgroup/api", identity["repository"])
 
+    def test_provider_url_preserves_explicit_port(self):
+        identity = target_identity(
+            "https://gitlab.acme.test:8443/group/api/-/merge_requests/9",
+            provider="auto",
+        )
+
+        self.assertEqual("gitlab.acme.test:8443", identity["host"])
+
     def test_gitlab_trusted_host_flag_reaches_the_provider(self):
         args = parse_args([
             "--provider", "gitlab",
