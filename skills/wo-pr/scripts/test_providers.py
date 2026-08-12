@@ -251,11 +251,61 @@ class GitLabNormalizationTests(unittest.TestCase):
         self.assertTrue(snapshot["pipeline"]["evidence_complete"])
         self.assertFalse(snapshot["capabilities"]["approval_state"])
 
+    def test_untrusted_gitlab_host_does_not_receive_generic_tokens(self):
+        environments = []
+        responses = self._fetch_responses(host="untrusted.test")
+
+        def run(command, **kwargs):
+            environments.append(kwargs["env"])
+            payload = responses[command[-1]]
+            return subprocess.CompletedProcess(command, 0, json.dumps(payload), "")
+
+        tokens = {
+            "GITLAB_TOKEN": "gitlab-token",
+            "GITLAB_ACCESS_TOKEN": "access-token",
+            "OAUTH_TOKEN": "oauth-token",
+            "CI_JOB_TOKEN": "job-token",
+            "GLAB_ENABLE_CI_AUTOLOGIN": "true",
+        }
+        with patch.dict(os.environ, tokens, clear=True), patch(
+            "gitlab_provider.subprocess.run", side_effect=run
+        ):
+            GitLabProvider(
+                host="untrusted.test", repository="acme/widgets", trusted_hosts=set()
+            ).fetch("9")
+
+        for environment in environments:
+            for name in ("GITLAB_TOKEN", "GITLAB_ACCESS_TOKEN", "OAUTH_TOKEN", "CI_JOB_TOKEN"):
+                self.assertNotIn(name, environment)
+            self.assertEqual("false", environment["GLAB_ENABLE_CI_AUTOLOGIN"])
+
+    def test_explicitly_trusted_gitlab_host_keeps_access_token(self):
+        environments = []
+        responses = self._fetch_responses(host="gitlab.acme.test")
+
+        def run(command, **kwargs):
+            environments.append(kwargs["env"])
+            payload = responses[command[-1]]
+            return subprocess.CompletedProcess(command, 0, json.dumps(payload), "")
+
+        with patch.dict(os.environ, {"GITLAB_ACCESS_TOKEN": "access-token"}, clear=True), patch(
+            "gitlab_provider.subprocess.run", side_effect=run
+        ):
+            GitLabProvider(
+                host="gitlab.acme.test",
+                repository="acme/widgets",
+                trusted_hosts={"gitlab.acme.test"},
+            ).fetch("9")
+
+        self.assertTrue(
+            all(environment["GITLAB_ACCESS_TOKEN"] == "access-token" for environment in environments)
+        )
+
     @staticmethod
-    def _fetch_responses():
+    def _fetch_responses(host="gitlab.com"):
         return {
             "projects/acme%2Fwidgets/merge_requests/9": {
-                "iid": 9, "web_url": "https://gitlab.com/acme/widgets/-/merge_requests/9",
+                "iid": 9, "web_url": f"https://{host}/acme/widgets/-/merge_requests/9",
                 "state": "opened", "source_branch": "feature", "target_branch": "main",
                 "sha": "head", "diff_refs": {"base_sha": "base", "head_sha": "head"},
                 "head_pipeline": {"id": 10, "sha": "head"},

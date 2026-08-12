@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import os
 import re
 import subprocess
 from typing import Any, Callable
@@ -13,8 +14,8 @@ class CommandError(RuntimeError):
     pass
 
 
-def _run_json(command: list[str]) -> Any:
-    result = subprocess.run(command, check=False, capture_output=True, text=True)
+def _run_json(command: list[str], *, env: dict[str, str] | None = None) -> Any:
+    result = subprocess.run(command, check=False, capture_output=True, text=True, env=env)
     if result.returncode != 0:
         raise CommandError(f"command failed ({result.returncode}): {result.stderr.strip()}")
     text = result.stdout.strip()
@@ -124,13 +125,25 @@ class GitLabProvider:
         host: str = "gitlab.com",
         repository: str | None = None,
         runner: Callable[[list[str]], Any] | None = None,
+        trusted_hosts: set[str] | None = None,
     ) -> None:
         self.host = host
         self.repository = repository
         self.runner = runner
+        self.trusted_hosts = {"gitlab.com", *(trusted_hosts or set())}
 
     def _call(self, command: list[str]) -> Any:
-        return self.runner(command) if self.runner else _run_json(command)
+        return self.runner(command) if self.runner else _run_json(command, env=self._command_environment())
+
+    def _command_environment(self) -> dict[str, str]:
+        environment = os.environ.copy()
+        host = self.host.lower().rstrip(".")
+        trusted_hosts = {value.lower().rstrip(".") for value in self.trusted_hosts}
+        if host not in trusted_hosts:
+            for name in ("GITLAB_TOKEN", "GITLAB_ACCESS_TOKEN", "OAUTH_TOKEN", "CI_JOB_TOKEN"):
+                environment.pop(name, None)
+            environment["GLAB_ENABLE_CI_AUTOLOGIN"] = "false"
+        return environment
 
     def _repo(self) -> str:
         if self.repository:

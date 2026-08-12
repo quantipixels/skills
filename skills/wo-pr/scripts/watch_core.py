@@ -156,7 +156,7 @@ def pipeline_summary(
     return {"state": state, "counts": counts, "total": len(rows)}
 
 
-def _pipeline_fingerprint(snapshot: dict[str, Any]) -> str:
+def _readiness_fingerprint(snapshot: dict[str, Any]) -> str:
     jobs = []
     for job in snapshot.get("pipeline", {}).get("jobs", []):
         jobs.append(
@@ -172,6 +172,11 @@ def _pipeline_fingerprint(snapshot: dict[str, Any]) -> str:
         "head": snapshot.get("head", {}).get("sha"),
         "complete": bool(snapshot.get("pipeline", {}).get("evidence_complete")),
         "jobs": sorted(jobs, key=lambda row: (str(row["name"]), str(row["id"]), str(row["status"]))),
+        "draft": bool(snapshot.get("draft")),
+        "mergeability": snapshot.get("mergeability"),
+        "review_decision": snapshot.get("review_decision"),
+        "capabilities": snapshot.get("capabilities") or {},
+        "errors": snapshot.get("errors") or [],
     }
     return hashlib.sha256(json.dumps(payload, sort_keys=True).encode("utf-8")).hexdigest()
 
@@ -261,12 +266,14 @@ def evaluate_snapshot(
     snapshot["pipeline_summary"] = summary
 
     if review_actions:
+        _reset_settle(state)
         result = _result(state, snapshot, now, review_actions, terminal=False, reason="review_activity", next_poll=30)
         result["review_item_ids"] = review_ids
         return result
 
     capabilities = snapshot.get("capabilities") or {}
     if capabilities.get("review_thread_resolution") is False:
+        _reset_settle(state)
         return _result(
             state,
             snapshot,
@@ -318,7 +325,21 @@ def evaluate_snapshot(
         _reset_settle(state)
         return _result(state, snapshot, now, ["idle"], terminal=False, reason="pipeline_pending", next_poll=30)
 
-    fingerprint = _pipeline_fingerprint(snapshot)
+    readiness_blocker = _readiness_blocker(snapshot)
+    if readiness_blocker is not None:
+        _reset_settle(state)
+        action, reason = readiness_blocker
+        return _result(
+            state,
+            snapshot,
+            now,
+            [action],
+            terminal=True,
+            reason=reason,
+            next_poll=0,
+        )
+
+    fingerprint = _readiness_fingerprint(snapshot)
     settle = state.setdefault("settle", {})
     if settle.get("fingerprint") != fingerprint:
         settle.update({"fingerprint": fingerprint, "green_since": now, "snapshots": 1})
@@ -332,6 +353,28 @@ def evaluate_snapshot(
         return _result(state, snapshot, now, ["ready_settling"], terminal=False, reason="pipeline_green_settling", next_poll=60)
 
     return _result(state, snapshot, now, ["ready_to_merge"], terminal=False, reason="pipeline_green", next_poll=120)
+
+
+def _readiness_blocker(snapshot: dict[str, Any]) -> tuple[str, str] | None:
+    if snapshot.get("draft"):
+        return "user_help_required", "draft_item"
+
+    mergeability = str(snapshot.get("mergeability") or "").lower()
+    if mergeability not in {"mergeable"}:
+        if mergeability in {"", "unknown", "checking", "unchecked", "preparing"}:
+            return "provider_evidence_incomplete", "incomplete_provider_evidence"
+        return "user_help_required", "mergeability_blocker"
+
+    review_decision = str(snapshot.get("review_decision") or "").upper()
+    if review_decision in {"REVIEW_REQUIRED", "CHANGES_REQUESTED"}:
+        return "user_help_required", "review_requirement_blocker"
+
+    capabilities = snapshot.get("capabilities") or {}
+    if any(value is False for value in capabilities.values()):
+        return "provider_evidence_incomplete", "incomplete_provider_evidence"
+    if snapshot.get("errors"):
+        return "provider_evidence_incomplete", "incomplete_provider_evidence"
+    return None
 
 
 def _reset_settle(state: dict[str, Any]) -> None:

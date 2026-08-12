@@ -50,6 +50,12 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
         default=[],
         help="GitHub host explicitly trusted to receive configured GitHub credentials; repeat as needed",
     )
+    parser.add_argument(
+        "--trusted-gitlab-host",
+        action="append",
+        default=[],
+        help="GitLab host explicitly trusted to receive configured GitLab credentials; repeat as needed",
+    )
     parser.add_argument("--objective", choices=("until-ready", "until-merged", "until-stopped"), default="until-ready")
     parser.add_argument("--authority", action="append", default=[], help="Granted action capability; repeat as needed")
     parser.add_argument("--state-file", type=Path)
@@ -115,7 +121,11 @@ def make_provider(args: argparse.Namespace):
             repository=repository,
             trusted_hosts=set(args.trusted_github_host),
         )
-    return GitLabProvider(host=host or "gitlab.com", repository=repository)
+    return GitLabProvider(
+        host=host or "gitlab.com",
+        repository=repository,
+        trusted_hosts=set(args.trusted_gitlab_host),
+    )
 
 
 def apply_state_updates(
@@ -168,6 +178,7 @@ def evaluate_and_save_state(
     state_path = Path(path)
     with state_file_lock(state_path):
         state = load_state(state_path) or state
+        clear_read_errors(state)
         state["authority_observed"] = sorted(authority)
         if lease_state is not None:
             state["lease_state"] = lease_state
@@ -240,7 +251,6 @@ def main(argv: list[str] | None = None) -> int:
             now = time.time()
             try:
                 snapshot = provider.fetch(args.pr)
-                clear_read_errors(state) if state else None
             except Exception as error:  # provider errors are emitted as state, not pipeline truth
                 if state is None:
                     emit({"terminal": True, "reason": "initial_provider_read_failed", "error": str(error)})

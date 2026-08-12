@@ -15,12 +15,13 @@ from watch_core import (
     mark_action,
     new_state,
     pipeline_summary,
+    record_read_error,
     record_retry,
     release_file_lease,
     save_state_atomic,
     validate_state_target,
 )
-from pr_watch import apply_state_updates, evaluate_and_save_state, target_identity
+from pr_watch import apply_state_updates, evaluate_and_save_state, make_provider, parse_args, target_identity
 
 
 def snapshot(*, sha="abc", jobs=None, state="OPEN", reviews=None, complete=True):
@@ -93,6 +94,63 @@ class EvaluationTests(unittest.TestCase):
         settled = evaluate_snapshot(snapshot(jobs=self.green_jobs), state, now=1300, authority=set())
         self.assertTrue(settled["terminal"])
         self.assertEqual("pipeline_ready", settled["reason"])
+
+    def test_green_pipeline_does_not_settle_while_provider_readiness_is_blocked(self):
+        cases = [
+            ("draft", {"draft": True}, "draft_item"),
+            ("conflict", {"mergeability": "CONFLICTING"}, "mergeability_blocker"),
+            ("unknown mergeability", {"mergeability": "UNKNOWN"}, "incomplete_provider_evidence"),
+            ("GitLab mergeability pending", {"mergeability": "checking"}, "incomplete_provider_evidence"),
+            ("required review", {"review_decision": "REVIEW_REQUIRED"}, "review_requirement_blocker"),
+            ("changes requested", {"review_decision": "CHANGES_REQUESTED"}, "review_requirement_blocker"),
+            (
+                "capability gap",
+                {"capabilities": {"approval_state": False}},
+                "incomplete_provider_evidence",
+            ),
+            ("provider error", {"errors": ["approval state unavailable"]}, "incomplete_provider_evidence"),
+        ]
+
+        for label, changes, reason in cases:
+            with self.subTest(label=label):
+                state = new_state(objective="until-ready")
+                current = snapshot(jobs=self.green_jobs)
+                current.update(changes)
+
+                first = evaluate_snapshot(current, state, now=1000, authority=set())
+                settled = evaluate_snapshot(current, state, now=1300, authority=set())
+
+                self.assertNotIn("stop_ready", first["actions"])
+                self.assertNotIn("stop_ready", settled["actions"])
+                self.assertEqual(reason, settled["reason"])
+                self.assertIsNone(state["settle"]["green_since"])
+
+    def test_cleared_provider_blocker_starts_a_new_settle_window(self):
+        state = new_state(objective="until-ready")
+        evaluate_snapshot(snapshot(jobs=self.green_jobs), state, now=1000, authority=set())
+        blocked = snapshot(jobs=self.green_jobs)
+        blocked["draft"] = True
+        evaluate_snapshot(blocked, state, now=1299, authority=set())
+
+        result = evaluate_snapshot(snapshot(jobs=self.green_jobs), state, now=1300, authority=set())
+
+        self.assertFalse(result["terminal"])
+        self.assertEqual(["ready_settling"], result["actions"])
+        self.assertEqual(1300, state["settle"]["green_since"])
+
+    def test_review_activity_resets_the_settle_window(self):
+        state = new_state(objective="until-ready")
+        evaluate_snapshot(snapshot(jobs=self.green_jobs), state, now=1000, authority=set())
+
+        result = evaluate_snapshot(
+            snapshot(jobs=self.green_jobs, reviews=[{"id": "review:7", "body": "Please fix"}]),
+            state,
+            now=1299,
+            authority=set(),
+        )
+
+        self.assertEqual(["process_review_comment"], result["actions"])
+        self.assertIsNone(state["settle"]["green_since"])
 
     def test_new_sha_or_job_resets_settle(self):
         state = new_state(objective="until-ready")
@@ -278,6 +336,29 @@ class PersistenceAndLeaseTests(unittest.TestCase):
             self.assertEqual(["observe"], state["authority_observed"])
             self.assertEqual("acquired", state["lease_state"])
 
+    def test_successful_fetch_clears_persisted_read_errors_under_the_update_lock(self):
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "state.json"
+            persisted = new_state(objective="until-merged")
+            record_read_error(persisted, "first", now=10)
+            record_read_error(persisted, "second", now=20)
+            save_state_atomic(path, persisted)
+            stale_watcher_state = load_state(path)
+            stale_watcher_state["read_errors"] = {"consecutive": 0, "last": None}
+
+            evaluate_and_save_state(
+                path,
+                stale_watcher_state,
+                snapshot(jobs=[{"name": "test", "status": "success", "required": True}]),
+                now=30,
+                authority=set(),
+            )
+
+            self.assertEqual(
+                {"consecutive": 0, "last": None},
+                load_state(path)["read_errors"],
+            )
+
     def test_loaded_state_rejects_a_different_canonical_target(self):
         state = new_state(objective="until-ready")
         state["target"] = {
@@ -300,6 +381,18 @@ class TargetIdentityTests(unittest.TestCase):
         self.assertEqual("gitlab", identity["provider"])
         self.assertEqual("gitlab.acme.test", identity["host"])
         self.assertEqual("group/subgroup/api", identity["repository"])
+
+    def test_gitlab_trusted_host_flag_reaches_the_provider(self):
+        args = parse_args([
+            "--provider", "gitlab",
+            "--pr", "https://gitlab.acme.test/group/api/-/merge_requests/9",
+            "--trusted-gitlab-host", "gitlab.acme.test",
+            "--once",
+        ])
+
+        provider = make_provider(args)
+
+        self.assertEqual({"gitlab.com", "gitlab.acme.test"}, provider.trusted_hosts)
 
 
 if __name__ == "__main__":
