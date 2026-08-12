@@ -512,6 +512,49 @@ class PersistenceAndLeaseTests(unittest.TestCase):
 
             self.assertEqual(["fix_branch_failure"], result["actions"])
 
+    def test_optional_failed_job_does_not_require_failure_classification(self):
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "state.json"
+            state = new_state(objective="until-merged")
+            state["current_head"] = "abc"
+            save_state_atomic(path, state)
+            apply_state_updates(
+                path,
+                marks=[],
+                retry_sha=None,
+                failure_classifications=[["abc", "required-job", "flaky"]],
+                now=50,
+            )
+
+            _state, result = evaluate_and_save_state(
+                path,
+                state,
+                snapshot(jobs=[
+                    {
+                        "id": "required-job", "name": "test", "status": "failure",
+                        "required": True, "allow_failure": False,
+                    },
+                    {
+                        "id": "optional-job", "name": "preview", "status": "failure",
+                        "required": False, "allow_failure": False,
+                    },
+                ]),
+                now=60,
+                authority={"retry-ci"},
+            )
+
+            self.assertEqual(["retry_failed_checks"], result["actions"])
+
+    def test_gitlab_can_be_merged_fallback_allows_settlement(self):
+        state = new_state(objective="until-ready")
+        current = snapshot(jobs=[{"name": "test", "status": "success", "required": True}])
+        current["provider"] = "gitlab"
+        current["mergeability"] = "can_be_merged"
+
+        result = evaluate_snapshot(current, state, now=1000, authority=set())
+
+        self.assertEqual(["ready_settling"], result["actions"])
+
     def test_failure_classification_rejects_a_stale_head(self):
         with tempfile.TemporaryDirectory() as directory:
             path = Path(directory) / "state.json"

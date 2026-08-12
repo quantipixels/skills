@@ -347,6 +347,7 @@ def evaluate_snapshot(
             job for job in pipeline.get("jobs", [])
             if str(job.get("status", "")).lower() in {"failure", "failed", "cancelled", "canceled", "timed_out", "action_required"}
             and not job.get("allow_failure")
+            and job.get("required") is not False
         ]
         failure_kinds = [job.get("failure_kind") for job in failed_jobs]
         if not failed_jobs:
@@ -433,7 +434,7 @@ def _readiness_blocker(snapshot: dict[str, Any]) -> tuple[str, str] | None:
         return "user_help_required", "draft_item"
 
     mergeability = str(snapshot.get("mergeability") or "").lower()
-    if mergeability not in {"mergeable"}:
+    if mergeability not in {"mergeable", "can_be_merged"}:
         if mergeability in {"", "unknown", "checking", "unchecked", "preparing"}:
             return "provider_evidence_incomplete", "incomplete_provider_evidence"
         return "user_help_required", "mergeability_blocker"

@@ -21,7 +21,7 @@ After a write, verify current head SHA, comment or thread ID and URL, intended t
 
 ## GitLab
 
-Use `glab auth status --hostname <host>` and paginated `glab api`. Read MR pipelines, pipeline jobs, job traces, approvals, and discussions. Preserve allowed-failure and manual job semantics. A target URL does not establish host trust. For a self-managed or dedicated GitLab host that depends on generic token environment variables or CI auto-login, pass its administrator-confirmed hostname with `--trusted-gitlab-host`; otherwise the watcher removes inherited GitLab tokens and disables CI auto-login before it invokes `glab` for that host.
+Use `glab auth status --hostname <host>` and paginated `glab api`. Read MR pipelines, pipeline jobs, trigger jobs, job traces, approvals, and discussions. Use the legacy bridges endpoint when the trigger-jobs endpoint is unavailable, and use downstream-pipeline status as part of required pipeline evidence. Preserve allowed-failure and manual job semantics. A target URL does not establish host trust. For a self-managed or dedicated GitLab host that depends on generic token environment variables or CI auto-login, pass its administrator-confirmed hostname with `--trusted-gitlab-host`; otherwise the watcher removes inherited GitLab tokens and disables CI auto-login before it invokes `glab` for that host.
 
 Retry a pipeline or job only when the GitLab endpoint supports the exact intended scope and the refreshed MR head SHA still matches. Post progress through the MR notes endpoint. Reply or resolve through the identified discussion endpoint only with authority. A GitLab approval is a separate prohibited capability unless the user authorizes another owning workflow.
 

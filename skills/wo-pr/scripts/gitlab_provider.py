@@ -83,6 +83,26 @@ def normalize_jobs(raw_jobs: list[dict[str, Any]]) -> list[dict[str, Any]]:
     return jobs
 
 
+def normalize_trigger_jobs(raw_jobs: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    jobs = []
+    for raw_job in raw_jobs:
+        downstream = raw_job.get("downstream_pipeline") or {}
+        trigger_status = str(raw_job.get("status") or "").lower()
+        downstream_status = str(downstream.get("status") or "").lower()
+        effective = dict(raw_job)
+        if downstream_status and trigger_status in {
+            "created", "waiting_for_resource", "preparing", "pending", "running", "success"
+        }:
+            effective["status"] = downstream_status
+        if downstream.get("web_url"):
+            effective["web_url"] = downstream["web_url"]
+        job = normalize_jobs([effective])[0]
+        job["id"] = f"trigger:{raw_job.get('id')}"
+        job["downstream_pipeline_id"] = downstream.get("id")
+        jobs.append(job)
+    return jobs
+
+
 def current_job_attempts(raw_jobs: list[dict[str, Any]]) -> list[dict[str, Any]]:
     latest: dict[tuple[str, str], dict[str, Any]] = {}
     for job in raw_jobs:
@@ -204,6 +224,23 @@ class GitLabProvider:
         if pipeline_id is not None:
             raw_jobs = self._paginate(f"projects/{encoded}/pipelines/{pipeline_id}/jobs?include_retried=true")
             jobs = normalize_jobs(current_job_attempts(raw_jobs))
+            trigger_evidence_complete = True
+            try:
+                raw_trigger_jobs = self._paginate(
+                    f"projects/{encoded}/pipelines/{pipeline_id}/trigger_jobs"
+                )
+            except CommandError:
+                try:
+                    raw_trigger_jobs = self._paginate(
+                        f"projects/{encoded}/pipelines/{pipeline_id}/bridges"
+                    )
+                except CommandError:
+                    raw_trigger_jobs = []
+                    trigger_evidence_complete = False
+                    errors.append("trigger job evidence unavailable")
+            jobs.extend(normalize_trigger_jobs(current_job_attempts(raw_trigger_jobs)))
+        else:
+            trigger_evidence_complete = True
         discussions = self._paginate(f"projects/{encoded}/merge_requests/{iid}/discussions")
         try:
             approvals = self._api(f"projects/{encoded}/merge_requests/{iid}/approvals")
@@ -212,7 +249,11 @@ class GitLabProvider:
             errors.append("approval state unavailable")
         snapshot.update(
             {
-                "pipeline": {"evidence_complete": True, "pipeline_id": pipeline_id, "jobs": jobs},
+                "pipeline": {
+                    "evidence_complete": trigger_evidence_complete,
+                    "pipeline_id": pipeline_id,
+                    "jobs": jobs,
+                },
                 "review_items": normalize_discussions(discussions),
                 "capabilities": {
                     "required_check_identity": True,

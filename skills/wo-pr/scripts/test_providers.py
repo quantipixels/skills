@@ -5,7 +5,14 @@ import unittest
 from unittest.mock import patch
 
 from github_provider import GitHubProvider, normalize_checks, normalize_pr, normalize_review_items
-from gitlab_provider import GitLabProvider, normalize_discussions, normalize_jobs, normalize_mr
+from gitlab_provider import (
+    CommandError,
+    GitLabProvider,
+    normalize_discussions,
+    normalize_jobs,
+    normalize_mr,
+    normalize_trigger_jobs,
+)
 
 
 class GitHubNormalizationTests(unittest.TestCase):
@@ -181,6 +188,35 @@ class GitLabNormalizationTests(unittest.TestCase):
         self.assertTrue(jobs[1]["allow_failure"])
         self.assertEqual("manual", jobs[2]["status"])
 
+    def test_trigger_job_tracks_the_downstream_pipeline_status(self):
+        jobs = normalize_trigger_jobs([{
+            "id": 7,
+            "name": "downstream",
+            "stage": "deploy",
+            "status": "success",
+            "allow_failure": False,
+            "downstream_pipeline": {
+                "id": 70,
+                "status": "running",
+                "web_url": "https://gitlab.com/acme/downstream/-/pipelines/70",
+            },
+        }])
+
+        self.assertEqual("running", jobs[0]["status"])
+        self.assertTrue(jobs[0]["required"])
+        self.assertEqual("trigger:7", jobs[0]["id"])
+
+    def test_failed_trigger_job_is_not_masked_by_a_downstream_pipeline(self):
+        jobs = normalize_trigger_jobs([{
+            "id": 8,
+            "name": "downstream",
+            "status": "failed",
+            "allow_failure": False,
+            "downstream_pipeline": {"id": 80, "status": "success"},
+        }])
+
+        self.assertEqual("failure", jobs[0]["status"])
+
     def test_discussions_keep_resolution_and_note_identity(self):
         discussions = [{
             "id": "d1",
@@ -217,6 +253,13 @@ class GitLabNormalizationTests(unittest.TestCase):
             "projects/acme%2Fwidgets/pipelines/10/jobs?include_retried=true&per_page=100&page=1": [
                 {"id": 1, "name": "test", "status": "success", "allow_failure": False}
             ],
+            "projects/acme%2Fwidgets/pipelines/10/trigger_jobs?per_page=100&page=1": [{
+                "id": 7,
+                "name": "downstream",
+                "status": "success",
+                "allow_failure": False,
+                "downstream_pipeline": {"id": 70, "status": "running"},
+            }],
             "projects/acme%2Fwidgets/merge_requests/9/discussions?per_page=100&page=1": [],
             "projects/acme%2Fwidgets/merge_requests/9/approvals": {"approved": False},
         }
@@ -227,6 +270,7 @@ class GitLabNormalizationTests(unittest.TestCase):
         snapshot = GitLabProvider(repository="acme/widgets", runner=runner).fetch("9")
         self.assertEqual(10, snapshot["pipeline"]["pipeline_id"])
         self.assertEqual("test", snapshot["pipeline"]["jobs"][0]["name"])
+        self.assertEqual("running", snapshot["pipeline"]["jobs"][1]["status"])
 
     def test_fetch_keeps_latest_retried_job_attempt(self):
         responses = self._fetch_responses()
@@ -237,9 +281,40 @@ class GitLabNormalizationTests(unittest.TestCase):
         snapshot = GitLabProvider(repository="acme/widgets", runner=lambda command: responses[command[-1]]).fetch("9")
         self.assertEqual([2], [job["id"] for job in snapshot["pipeline"]["jobs"]])
 
-    def test_approval_read_failure_does_not_corrupt_pipeline_evidence(self):
-        from gitlab_provider import CommandError
+    def test_fetch_falls_back_to_legacy_bridge_endpoint(self):
+        responses = self._fetch_responses()
+        responses["projects/acme%2Fwidgets/pipelines/10/bridges?per_page=100&page=1"] = [{
+            "id": 7,
+            "name": "downstream",
+            "status": "success",
+            "allow_failure": False,
+            "downstream_pipeline": {"id": 70, "status": "failed"},
+        }]
 
+        def runner(command):
+            if "/trigger_jobs?" in command[-1]:
+                raise CommandError("endpoint unavailable")
+            return responses[command[-1]]
+
+        snapshot = GitLabProvider(repository="acme/widgets", runner=runner).fetch("9")
+
+        self.assertEqual("failure", snapshot["pipeline"]["jobs"][1]["status"])
+        self.assertTrue(snapshot["pipeline"]["evidence_complete"])
+
+    def test_fetch_marks_pipeline_incomplete_when_trigger_evidence_is_unavailable(self):
+        responses = self._fetch_responses()
+
+        def runner(command):
+            if "/trigger_jobs?" in command[-1] or "/bridges?" in command[-1]:
+                raise CommandError("endpoint unavailable")
+            return responses[command[-1]]
+
+        snapshot = GitLabProvider(repository="acme/widgets", runner=runner).fetch("9")
+
+        self.assertFalse(snapshot["pipeline"]["evidence_complete"])
+        self.assertIn("trigger job evidence unavailable", snapshot["errors"])
+
+    def test_approval_read_failure_does_not_corrupt_pipeline_evidence(self):
         responses = self._fetch_responses()
 
         def runner(command):
@@ -314,6 +389,7 @@ class GitLabNormalizationTests(unittest.TestCase):
             "projects/acme%2Fwidgets/pipelines/10/jobs?include_retried=true&per_page=100&page=1": [
                 {"id": 1, "name": "test", "stage": "verify", "status": "success", "allow_failure": False}
             ],
+            "projects/acme%2Fwidgets/pipelines/10/trigger_jobs?per_page=100&page=1": [],
             "projects/acme%2Fwidgets/merge_requests/9/discussions?per_page=100&page=1": [],
             "projects/acme%2Fwidgets/merge_requests/9/approvals": {"approved": False},
         }
