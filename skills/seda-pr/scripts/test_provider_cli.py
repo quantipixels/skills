@@ -133,6 +133,7 @@ class ProviderCliTests(unittest.TestCase):
         commands = [
             ["gh", "pr", "create", "--repo", "owner/repo", "--draft"],
             ["gh", "--repo", "owner/repo", "pr", "create", "--draft"],
+            ["gh", "--repo", "owner/repo", "pr", "create", "-d"],
         ]
         for command in commands:
             with self.subTest(command=command), self.assertRaisesRegex(ValueError, "draft"):
@@ -190,6 +191,21 @@ class ProviderCliTests(unittest.TestCase):
             with self.subTest(command=command), self.assertRaisesRegex(
                 ValueError, "payload|GraphQL"
             ):
+                validate_ready_for_review_creation(provider, command)
+
+    def test_field_arguments_make_creation_api_post_implicit(self):
+        commands = [
+            [
+                "gh", "api", "--hostname", "github.com", "repos/owner/repo/pulls",
+                "-f", "title=Change", "-F", "draft=true",
+            ],
+            [
+                "glab", "api", "--hostname", "gitlab.com",
+                "/projects/acme%2Fapi/merge_requests", "--form", "draft=true",
+            ],
+        ]
+        for provider, command in zip(("github", "gitlab"), commands):
+            with self.subTest(command=command), self.assertRaisesRegex(ValueError, "draft"):
                 validate_ready_for_review_creation(provider, command)
 
     def test_main_rejects_draft_before_provider_contact(self):

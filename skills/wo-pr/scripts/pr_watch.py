@@ -32,6 +32,7 @@ from watch_core import (
     record_read_error,
     record_failure_classification,
     record_feedback_disposition,
+    record_progress_comment,
     record_retry,
     release_file_lease,
     release_lease,
@@ -91,10 +92,18 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
         metavar=("HEAD_SHA", "ITEM_ID", "VALIDITY", "DISPOSITION"),
         help="Persist one exact-head feedback validity and disposition",
     )
+    parser.add_argument(
+        "--record-progress-comment",
+        action="append",
+        nargs=2,
+        default=[],
+        metavar=("HEAD_SHA", "COMMENT_ID"),
+        help="Exclude one successful progress-comment write from review feedback",
+    )
     args = parser.parse_args(argv)
     state_only = bool(
         args.mark_action or args.record_retry or args.record_failure_kind
-        or args.record_feedback_disposition
+        or args.record_feedback_disposition or args.record_progress_comment
     )
     if state_only:
         if args.once or args.watch:
@@ -165,6 +174,7 @@ def apply_state_updates(
     retry_sha: str | None,
     failure_classifications: list[list[str]] | None = None,
     feedback_dispositions: list[list[str]] | None = None,
+    progress_comments: list[list[str]] | None = None,
     now: float | None = None,
 ) -> dict[str, Any]:
     state_path = Path(path)
@@ -188,6 +198,13 @@ def apply_state_updates(
                 "item_id": item_id,
                 "validity": validity,
                 "disposition": disposition,
+            })
+        recorded_progress_comments = []
+        for head_sha, comment_id in progress_comments or []:
+            record_progress_comment(state, head_sha, comment_id, now=timestamp)
+            recorded_progress_comments.append({
+                "head_sha": head_sha,
+                "comment_id": comment_id,
             })
         applied = []
         for value in marks:
@@ -221,6 +238,7 @@ def apply_state_updates(
         "retry_count": retry_count,
         "recorded_failure_classifications": recorded_failures,
         "recorded_feedback_dispositions": recorded_feedback,
+        "recorded_progress_comments": recorded_progress_comments,
     }
 
 
@@ -295,7 +313,7 @@ def main(argv: list[str] | None = None) -> int:
     args = parse_args(argv)
     if (
         args.mark_action or args.record_retry or args.record_failure_kind
-        or args.record_feedback_disposition
+        or args.record_feedback_disposition or args.record_progress_comment
     ):
         try:
             emit(
@@ -305,6 +323,7 @@ def main(argv: list[str] | None = None) -> int:
                     retry_sha=args.record_retry,
                     failure_classifications=args.record_failure_kind,
                     feedback_dispositions=args.record_feedback_disposition,
+                    progress_comments=args.record_progress_comment,
                 )
             )
             return 0

@@ -17,6 +17,7 @@ from watch_core import (
     pipeline_summary,
     record_read_error,
     record_feedback_disposition,
+    record_progress_comment,
     record_retry,
     release_file_lease,
     save_state_atomic,
@@ -414,6 +415,38 @@ class EvaluationTests(unittest.TestCase):
         self.assertEqual(
             "disproved", state["actions"]["review:7"]["feedback_disposition"]["validity"]
         )
+
+    def test_user_decision_feedback_stops_and_cannot_be_handled(self):
+        state = new_state(objective="until-ready")
+        current = snapshot(
+            jobs=self.green_jobs,
+            reviews=[{"id": "review:7", "body": "Choose the public behavior"}],
+        )
+        evaluate_snapshot(current, state, now=10, authority=set())
+        record_feedback_disposition(
+            state, "abc", "review:7", "uncertain", "user-decision", now=20
+        )
+
+        with self.assertRaisesRegex(ValueError, "user decision"):
+            mark_action(state, "review:7", "handled", now=30)
+        result = evaluate_snapshot(current, state, now=40, authority=set())
+
+        self.assertTrue(result["terminal"])
+        self.assertEqual(["user_help_required"], result["actions"])
+        self.assertEqual("feedback_user_decision_required", result["reason"])
+        self.assertEqual(["review:7"], result["feedback_user_decision_ids"])
+
+    def test_recorded_progress_comment_is_not_review_feedback(self):
+        state = new_state(objective="until-merged")
+        current = snapshot(reviews=[{"id": "issue:123", "body": "Progress update"}])
+        first = evaluate_snapshot(current, state, now=10, authority=set())
+        self.assertIn("process_review_comment", first["actions"])
+
+        record_progress_comment(state, "abc", "123", now=20)
+        second = evaluate_snapshot(current, state, now=30, authority=set())
+
+        self.assertNotIn("process_review_comment", second["actions"])
+        self.assertNotIn("issue:123", state["actions"])
 
     def test_persistent_incomplete_pipeline_evidence_escalates_after_three_snapshots(self):
         state = new_state(objective="until-ready")

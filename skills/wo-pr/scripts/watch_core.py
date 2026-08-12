@@ -60,6 +60,7 @@ def new_state(*, objective: str) -> dict[str, Any]:
         "retry_counts": {},
         "failure_classifications": {},
         "actions": {},
+        "progress_comment_ids": {},
         "lease": None,
         "read_errors": {"consecutive": 0, "last": None},
         "evidence_gaps": {"consecutive": 0},
@@ -217,6 +218,8 @@ def mark_action(state: dict[str, Any], action_id: str, phase: str, *, now: float
             raise ValueError(
                 f"cannot handle feedback {action_id!r} before recording its validity and disposition"
             )
+        if previous_action["feedback_disposition"].get("disposition") == "user-decision":
+            raise ValueError(f"cannot handle feedback {action_id!r} while it needs a user decision")
     state["actions"][action_id] = {
         **previous_action,
         "phase": phase,
@@ -253,6 +256,31 @@ def record_feedback_disposition(
         "disposition": disposition,
         "recorded_at": now if now is not None else time.time(),
     }
+
+
+def record_progress_comment(
+    state: dict[str, Any],
+    head_sha: str,
+    comment_id: str,
+    *,
+    now: float | None = None,
+) -> None:
+    current_head = str(state.get("current_head") or "")
+    if not current_head or current_head != head_sha:
+        raise ValueError(
+            f"progress comment head {head_sha!r} does not match current head {current_head!r}"
+        )
+    normalized_id = str(comment_id).strip()
+    if not normalized_id:
+        raise ValueError("progress comment ID cannot be empty")
+    state.setdefault("progress_comment_ids", {})[normalized_id] = {
+        "head_sha": head_sha,
+        "recorded_at": now if now is not None else time.time(),
+    }
+    actions = state.setdefault("actions", {})
+    for item_id in list(actions):
+        if _matches_progress_comment_id(item_id, normalized_id):
+            actions.pop(item_id, None)
 
 
 def record_retry(state: dict[str, Any], head_sha: str) -> int:
@@ -306,24 +334,45 @@ def apply_failure_classifications(
     return applied
 
 
-def _review_action(snapshot: dict[str, Any], state: dict[str, Any], *, now: float) -> tuple[list[str], list[str]]:
+def _review_action(
+    snapshot: dict[str, Any], state: dict[str, Any], *, now: float
+) -> tuple[list[str], list[str], list[str]]:
     pending_ids = []
+    process_ids = []
+    user_decision_ids = []
     for item in snapshot.get("review_items", []):
         item_id = str(item.get("id") or "")
         if not item_id:
+            continue
+        if any(
+            _matches_progress_comment_id(item_id, comment_id)
+            for comment_id in state.setdefault("progress_comment_ids", {})
+        ):
+            state.setdefault("actions", {}).pop(item_id, None)
             continue
         fingerprint = _review_fingerprint(item)
         action = state.setdefault("actions", {}).get(item_id, {})
         phase = action.get("phase")
         if phase == "handled" and action.get("fingerprint") is None:
             action["fingerprint"] = fingerprint
-        elif phase == "handled" and action.get("fingerprint") != fingerprint:
+        if action.get("fingerprint") not in {None, fingerprint}:
             phase = None
             action.pop("feedback_disposition", None)
+        if phase == "handled" and not action.get("feedback_disposition"):
+            phase = None
+        disposition = action.get("feedback_disposition") or {}
+        needs_user = disposition.get("disposition") == "user-decision"
+        if needs_user:
+            phase = None
         if phase != "handled":
             pending_ids.append(item_id)
+            if needs_user:
+                user_decision_ids.append(item_id)
+            else:
+                process_ids.append(item_id)
             if phase is None:
                 state["actions"][item_id] = {
+                    **action,
                     "phase": "surfaced", "updated_at": now, "fingerprint": fingerprint
                 }
             elif action.get("fingerprint") is None:
@@ -332,7 +381,15 @@ def _review_action(snapshot: dict[str, Any], state: dict[str, Any], *, now: floa
                 action["fingerprint"] = fingerprint
                 action["updated_at"] = now
                 action.pop("feedback_disposition", None)
-    return (["process_review_comment"] if pending_ids else []), pending_ids
+    return (["process_review_comment"] if process_ids else []), pending_ids, user_decision_ids
+
+
+def _matches_progress_comment_id(item_id: str, comment_id: str) -> bool:
+    return (
+        item_id == comment_id
+        or item_id == f"issue:{comment_id}"
+        or item_id.endswith(f":note:{comment_id}")
+    )
 
 
 def _review_fingerprint(item: dict[str, Any]) -> str:
@@ -373,7 +430,7 @@ def evaluate_snapshot(
     if snapshot.get("merged") or snapshot.get("closed") or str(snapshot.get("state", "")).upper() in {"MERGED", "CLOSED"}:
         return _result(state, snapshot, now, ["stop_pr_closed"], terminal=True, reason="provider_closed", next_poll=0)
 
-    review_actions, review_ids = _review_action(snapshot, state, now=now)
+    review_actions, review_ids, user_decision_ids = _review_action(snapshot, state, now=now)
     pipeline = snapshot.get("pipeline", {})
     summary = pipeline_summary(
         pipeline.get("jobs", []),
@@ -389,6 +446,21 @@ def evaluate_snapshot(
     readiness_blocker = _readiness_blocker(snapshot)
     if readiness_blocker is None or readiness_blocker[0] != "provider_evidence_incomplete":
         state.setdefault("provider_gaps", {})["consecutive"] = 0
+
+    if user_decision_ids:
+        _reset_settle(state)
+        result = _result(
+            state,
+            snapshot,
+            now,
+            review_actions + ["user_help_required"],
+            terminal=True,
+            reason="feedback_user_decision_required",
+            next_poll=0,
+        )
+        result["review_item_ids"] = review_ids
+        result["feedback_user_decision_ids"] = user_decision_ids
+        return result
 
     if review_actions:
         _reset_settle(state)

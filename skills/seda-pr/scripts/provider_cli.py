@@ -94,13 +94,13 @@ def validate_ready_for_review_creation(provider: str, command: list[str]) -> Non
     titles: list[str] = []
     for index, value in enumerate(command):
         lowered = value.lower()
-        if lowered == "--draft":
+        if lowered in {"--draft", "-d"}:
             raise ValueError("seda-pr never creates a draft PR or MR")
         if lowered.startswith("--draft=") and _truthy(value.split("=", 1)[1]):
             raise ValueError("seda-pr never creates a draft PR or MR")
-        if value in {"-f", "-F", "--field", "--raw-field"} and index + 1 < len(command):
+        if value in {"-f", "-F", "--field", "--raw-field", "--form"} and index + 1 < len(command):
             fields.append(command[index + 1])
-        elif value.startswith(("--field=", "--raw-field=")):
+        elif value.startswith(("--field=", "--raw-field=", "--form=")):
             fields.append(value.split("=", 1)[1])
         elif value.startswith(("-f", "-F")) and len(value) > 2:
             fields.append(value[2:].removeprefix("="))
@@ -130,7 +130,7 @@ def _is_item_creation(provider: str, command: list[str]) -> bool:
         return False
     if provider == "github" and any("createPullRequest" in value for value in command):
         return True
-    method = "GET"
+    method: str | None = None
     for index, value in enumerate(command):
         if value in {"--method", "-X"} and index + 1 < len(command):
             method = command[index + 1].upper()
@@ -138,6 +138,8 @@ def _is_item_creation(provider: str, command: list[str]) -> bool:
             method = value.split("=", 1)[1].upper()
         elif value.startswith("-X") and len(value) > 2:
             method = value[2:].removeprefix("=").upper()
+    if method is None:
+        method = "POST" if _has_api_fields(command) else "GET"
     if method != "POST":
         return False
     return any(
@@ -150,6 +152,16 @@ def _contains_subcommand(command: list[str], group: str, action: str) -> bool:
     return any(
         command[index:index + 2] == [group, action]
         for index in range(1, len(command) - 1)
+    )
+
+
+def _has_api_fields(command: list[str]) -> bool:
+    field_flags = {"-f", "-F", "--field", "--raw-field", "--form"}
+    return any(
+        value in field_flags
+        or value.startswith(("--field=", "--raw-field=", "--form="))
+        or (value.startswith(("-f", "-F")) and len(value) > 2)
+        for value in command
     )
 
 
