@@ -170,14 +170,11 @@ class GitHubProvider:
         if len(parts) != 2:
             return {}, False
         query = """query($owner:String!,$name:String!,$number:Int!,$endCursor:String){repository(owner:$owner,name:$name){pullRequest(number:$number){reviewThreads(first:100,after:$endCursor){nodes{isResolved comments(first:100){nodes{databaseId}}}pageInfo{hasNextPage endCursor}}}}}"""
-        try:
-            raw = self._call([
-                "gh", "api", "graphql", "--hostname", self.host, "--paginate", "--slurp",
-                "-F", f"owner={parts[0]}", "-F", f"name={parts[1]}", "-F", f"number={number}",
-                "-f", f"query={query}",
-            ])
-        except CommandError:
-            return {}, False
+        raw = self._call([
+            "gh", "api", "graphql", "--hostname", self.host, "--paginate", "--slurp",
+            "-F", f"owner={parts[0]}", "-F", f"name={parts[1]}", "-F", f"number={number}",
+            "-f", f"query={query}",
+        ])
         pages = raw if isinstance(raw, list) else [raw]
         resolutions: dict[int, bool] = {}
         for page in pages:

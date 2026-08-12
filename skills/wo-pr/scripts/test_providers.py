@@ -4,7 +4,13 @@ import subprocess
 import unittest
 from unittest.mock import patch
 
-from github_provider import GitHubProvider, normalize_checks, normalize_pr, normalize_review_items
+from github_provider import (
+    CommandError as GitHubCommandError,
+    GitHubProvider,
+    normalize_checks,
+    normalize_pr,
+    normalize_review_items,
+)
 from gitlab_provider import (
     CommandError,
     GitLabProvider,
@@ -16,6 +22,22 @@ from gitlab_provider import (
 
 
 class GitHubNormalizationTests(unittest.TestCase):
+    def test_transient_thread_read_failure_propagates_to_watch_backoff(self):
+        def runner(command):
+            if command[:3] == ["gh", "pr", "view"]:
+                return {
+                    "number": 42,
+                    "url": "https://github.com/acme/widgets/pull/42",
+                    "state": "OPEN",
+                    "headRefOid": "head",
+                }
+            if "graphql" in command:
+                raise GitHubCommandError("temporary GraphQL failure")
+            return []
+
+        with self.assertRaisesRegex(GitHubCommandError, "temporary GraphQL failure"):
+            GitHubProvider(repository="acme/widgets", runner=runner).fetch("42")
+
     def test_fetch_accepts_valid_check_json_when_gh_returns_one(self):
         """`gh pr checks` uses exit 1 to report non-success check buckets."""
         checks = [{"name": "test", "state": "SUCCESS", "bucket": "pass", "workflow": "CI"}]

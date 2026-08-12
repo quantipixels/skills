@@ -21,7 +21,7 @@ class ProviderCliTests(unittest.TestCase):
             },
         )
 
-        self.assertEqual({"PATH": "/bin"}, environment)
+        self.assertEqual({"PATH": "/bin", "GH_HOST": "attacker.test"}, environment)
 
     def test_untrusted_gitlab_host_loses_generic_and_ci_tokens(self):
         environment = command_environment(
@@ -49,6 +49,57 @@ class ProviderCliTests(unittest.TestCase):
 
         self.assertEqual("token", environment["GH_ENTERPRISE_TOKEN"])
 
+    def test_github_environment_pins_declared_host_and_removes_repo_override(self):
+        environment = command_environment(
+            "github",
+            "github.com",
+            trusted_hosts=set(),
+            environment={
+                "GH_HOST": "attacker.test",
+                "GH_REPO": "attacker.test/acme/api",
+                "GH_ENTERPRISE_TOKEN": "token",
+            },
+        )
+
+        self.assertEqual("github.com", environment["GH_HOST"])
+        self.assertNotIn("GH_REPO", environment)
+
+    def test_github_command_must_select_a_repository_or_hostname(self):
+        with self.assertRaisesRegex(ValueError, "must select the declared host"):
+            validate_command_host("github", "github.com", ["gh", "pr", "view", "7"])
+
+        validate_command_host(
+            "github", "github.com", ["gh", "pr", "view", "7", "-R", "owner/repo"]
+        )
+
+    def test_gitlab_command_requires_an_explicit_host_selector(self):
+        with self.assertRaisesRegex(ValueError, "must select the declared host"):
+            validate_command_host(
+                "gitlab", "gitlab.com", ["glab", "mr", "view", "7", "-R", "group/repo"]
+            )
+
+    def test_content_url_cannot_supply_host_evidence(self):
+        commands = [
+            ("github", "github.com", ["gh", "pr", "edit", "7", "--body", "https://github.com"]),
+            (
+                "gitlab", "gitlab.com",
+                ["glab", "mr", "update", "7", "--description", "https://gitlab.com"],
+            ),
+        ]
+        for provider, host, command in commands:
+            with self.subTest(command=command), self.assertRaisesRegex(
+                ValueError, "must select the declared host"
+            ):
+                validate_command_host(provider, host, command)
+
+    def test_attached_repo_selector_cannot_hide_a_host_mismatch(self):
+        with self.assertRaisesRegex(ValueError, "does not match"):
+            validate_command_host(
+                "github",
+                "github.com",
+                ["gh", "pr", "edit", "7", "-Rattacker.test/acme/api", "--body", "text"],
+            )
+
     def test_main_passes_sanitized_environment_to_the_provider_cli(self):
         completed = subprocess.CompletedProcess(["gh"], 0)
         with patch.dict(os.environ, {"GH_ENTERPRISE_TOKEN": "token"}, clear=True), patch(
@@ -70,8 +121,8 @@ class ProviderCliTests(unittest.TestCase):
             ["gh", "api", "https://attacker.test/api/v3/user"],
         ]
         for command in commands:
-            with self.subTest(command=command), self.assertRaisesRegex(ValueError, "does not match"):
-                validate_command_host("github.com", command)
+            with self.subTest(command=command), self.assertRaises(ValueError):
+                validate_command_host("github", "github.com", command)
 
 
 if __name__ == "__main__":

@@ -30,6 +30,11 @@ def command_environment(
         DEFAULT_TRUSTED_HOST[provider],
         *(value.lower().rstrip(".") for value in trusted_hosts),
     }
+    if provider == "github":
+        result["GH_HOST"] = normalized_host
+        result.pop("GH_REPO", None)
+    else:
+        result.pop("GITLAB_HOST", None)
     if normalized_host not in allowed:
         for name in TOKEN_VARIABLES[provider]:
             result.pop(name, None)
@@ -38,28 +43,35 @@ def command_environment(
     return result
 
 
-def validate_command_host(host: str, command: list[str]) -> None:
+def validate_command_host(provider: str, host: str, command: list[str]) -> None:
     declared = host.lower().rstrip(".")
     selected_hosts = set()
+    repository_selected = False
     for index, value in enumerate(command):
         if value == "--hostname" and index + 1 < len(command):
             selected_hosts.add(command[index + 1])
         elif value.startswith("--hostname="):
             selected_hosts.add(value.split("=", 1)[1])
         elif value in {"--repo", "-R"} and index + 1 < len(command):
+            repository_selected = True
             _add_repository_host(selected_hosts, command[index + 1])
         elif value.startswith("--repo="):
+            repository_selected = True
             _add_repository_host(selected_hosts, value.split("=", 1)[1])
-        elif value.startswith(("http://", "https://")):
-            parsed = urlparse(value)
-            if parsed.hostname:
-                selected_hosts.add(parsed.hostname)
+        elif value.startswith("-R") and len(value) > 2:
+            repository_selected = True
+            _add_repository_host(selected_hosts, value[2:].removeprefix("="))
     mismatches = sorted(
         value for value in selected_hosts if value.lower().rstrip(".") != declared
     )
     if mismatches:
         raise ValueError(
             f"declared provider host {host!r} does not match command host(s): {', '.join(mismatches)}"
+        )
+    if not selected_hosts and not (provider == "github" and repository_selected):
+        raise ValueError(
+            f"provider command must select the declared host {host!r} through --hostname "
+            "or an explicit repository selector"
         )
 
 
@@ -92,7 +104,7 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
 
 def main(argv: list[str] | None = None) -> int:
     args = parse_args(argv)
-    validate_command_host(args.host, args.command)
+    validate_command_host(args.provider, args.host, args.command)
     environment = command_environment(
         args.provider,
         args.host,
