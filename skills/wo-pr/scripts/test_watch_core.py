@@ -380,6 +380,26 @@ class EvaluationTests(unittest.TestCase):
         changed = evaluate_snapshot(snapshot(reviews=[edited]), state, now=40, authority=set())
         self.assertIn("process_review_comment", changed["actions"])
 
+    def test_rebased_line_position_does_not_reopen_unchanged_feedback(self):
+        state = new_state(objective="until-merged")
+        original = {
+            "id": "review:7",
+            "body": "Fix the boundary",
+            "path": "module.py",
+            "line": 10,
+            "updated_at": "2026-08-12T10:00:00Z",
+        }
+        evaluate_snapshot(snapshot(reviews=[original]), state, now=10, authority=set())
+        record_feedback_disposition(
+            state, "abc", "review:7", "confirmed", "address-now", now=15
+        )
+        mark_action(state, "review:7", "handled", now=20)
+
+        rebased = {**original, "line": 14}
+        result = evaluate_snapshot(snapshot(reviews=[rebased]), state, now=30, authority=set())
+
+        self.assertNotIn("process_review_comment", result["actions"])
+
     def test_edited_pending_feedback_refreshes_its_stored_fingerprint(self):
         state = new_state(objective="until-merged")
         first = {"id": "review:7", "body": "First request", "updated_at": "10:00"}

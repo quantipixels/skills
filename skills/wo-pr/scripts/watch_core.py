@@ -396,8 +396,6 @@ def _review_fingerprint(item: dict[str, Any]) -> str:
     payload = {
         "body": item.get("body"),
         "state": item.get("state"),
-        "path": item.get("path"),
-        "line": item.get("line"),
         "resolved": item.get("resolved"),
         "updated_at": item.get("updated_at"),
     }
