@@ -31,6 +31,7 @@ from watch_core import (
     new_state,
     record_read_error,
     record_failure_classification,
+    record_feedback_disposition,
     record_retry,
     release_file_lease,
     release_lease,
@@ -65,6 +66,12 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser.add_argument("--watch", action="store_true", help="Emit JSONL until a terminal state")
     parser.add_argument("--takeover", action="store_true", help="Explicitly take over an existing watcher lease")
     parser.add_argument("--no-pipeline-expected", action="store_true")
+    parser.add_argument(
+        "--settle-seconds",
+        type=int,
+        default=300,
+        help="Quiet time required before the later ready confirmation snapshot",
+    )
     parser.add_argument("--max-snapshots", type=int, help="Bound a watch for diagnostics or host limits")
     parser.add_argument("--mark-action", action="append", default=[], metavar="ID=PHASE")
     parser.add_argument("--record-retry", metavar="HEAD_SHA")
@@ -76,8 +83,19 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
         metavar=("HEAD_SHA", "JOB_ID", "KIND"),
         help="Persist one exact-head job diagnosis: branch, flaky, infrastructure, or ambiguous",
     )
+    parser.add_argument(
+        "--record-feedback-disposition",
+        action="append",
+        nargs=4,
+        default=[],
+        metavar=("HEAD_SHA", "ITEM_ID", "VALIDITY", "DISPOSITION"),
+        help="Persist one exact-head feedback validity and disposition",
+    )
     args = parser.parse_args(argv)
-    state_only = bool(args.mark_action or args.record_retry or args.record_failure_kind)
+    state_only = bool(
+        args.mark_action or args.record_retry or args.record_failure_kind
+        or args.record_feedback_disposition
+    )
     if state_only:
         if args.once or args.watch:
             parser.error("state updates cannot be combined with --once or --watch")
@@ -87,6 +105,8 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
         parser.error("choose exactly one of --once or --watch")
     if args.max_snapshots is not None and args.max_snapshots <= 0:
         parser.error("--max-snapshots must be positive")
+    if args.settle_seconds <= 0:
+        parser.error("--settle-seconds must be positive")
     return args
 
 
@@ -144,6 +164,7 @@ def apply_state_updates(
     marks: list[str],
     retry_sha: str | None,
     failure_classifications: list[list[str]] | None = None,
+    feedback_dispositions: list[list[str]] | None = None,
     now: float | None = None,
 ) -> dict[str, Any]:
     state_path = Path(path)
@@ -152,6 +173,22 @@ def apply_state_updates(
         if state is None:
             raise ValueError(f"state file does not exist: {state_path}")
         timestamp = now if now is not None else time.time()
+        recorded_feedback = []
+        for head_sha, item_id, validity, disposition in feedback_dispositions or []:
+            record_feedback_disposition(
+                state,
+                head_sha,
+                item_id,
+                validity,
+                disposition,
+                now=timestamp,
+            )
+            recorded_feedback.append({
+                "head_sha": head_sha,
+                "item_id": item_id,
+                "validity": validity,
+                "disposition": disposition,
+            })
         applied = []
         for value in marks:
             try:
@@ -183,6 +220,7 @@ def apply_state_updates(
         "retry_sha": retry_sha,
         "retry_count": retry_count,
         "recorded_failure_classifications": recorded_failures,
+        "recorded_feedback_dispositions": recorded_feedback,
     }
 
 
@@ -194,6 +232,7 @@ def evaluate_and_save_state(
     now: float,
     authority: set[str],
     no_pipeline_expected: bool = False,
+    settle_seconds: int = 300,
     owner: str | None = None,
     takeover: bool = False,
     lease_state: str | None = None,
@@ -215,6 +254,7 @@ def evaluate_and_save_state(
             now=now,
             authority=authority,
             no_pipeline_expected=no_pipeline_expected,
+            settle_seconds=settle_seconds,
         )
         save_state_atomic(state_path, state)
         result["applied_failure_classifications"] = applied_failure_classifications
@@ -253,7 +293,10 @@ def emit(payload: dict[str, Any]) -> None:
 
 def main(argv: list[str] | None = None) -> int:
     args = parse_args(argv)
-    if args.mark_action or args.record_retry or args.record_failure_kind:
+    if (
+        args.mark_action or args.record_retry or args.record_failure_kind
+        or args.record_feedback_disposition
+    ):
         try:
             emit(
                 apply_state_updates(
@@ -261,6 +304,7 @@ def main(argv: list[str] | None = None) -> int:
                     marks=args.mark_action,
                     retry_sha=args.record_retry,
                     failure_classifications=args.record_failure_kind,
+                    feedback_dispositions=args.record_feedback_disposition,
                 )
             )
             return 0
@@ -283,6 +327,14 @@ def main(argv: list[str] | None = None) -> int:
             now = time.time()
             try:
                 snapshot = provider.fetch(args.pr)
+            except ValueError as error:
+                emit({
+                    "terminal": True,
+                    "reason": "configuration_error",
+                    "error": str(error),
+                    "state_file": str(state_path) if state_path else None,
+                })
+                return 2
             except Exception as error:  # provider errors are emitted as state, not pipeline truth
                 if state is None:
                     read_result = record_read_error(initial_read_state, str(error), now=now)
@@ -329,6 +381,7 @@ def main(argv: list[str] | None = None) -> int:
                 now=now,
                 authority=set(args.authority),
                 no_pipeline_expected=args.no_pipeline_expected,
+                settle_seconds=args.settle_seconds,
                 owner=owner,
                 takeover=args.takeover and snapshots == 0,
                 lease_state=file_lease_state,

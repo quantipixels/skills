@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import argparse
 import os
+import re
 import subprocess
 from urllib.parse import urlparse
 
@@ -75,6 +76,87 @@ def validate_command_host(provider: str, host: str, command: list[str]) -> None:
         )
 
 
+def validate_ready_for_review_creation(provider: str, command: list[str]) -> None:
+    """Reject a PR or MR creation command that can create a draft item."""
+    if not _is_item_creation(provider, command):
+        return
+
+    if any(value == "--input" or value.startswith("--input=") for value in command):
+        raise ValueError(
+            "seda-pr rejects unverified creation payload files; use explicit ready-for-review fields"
+        )
+    if provider == "github" and any("createPullRequest" in value for value in command):
+        raise ValueError(
+            "seda-pr rejects GraphQL PR creation because draft state is not safely verified"
+        )
+
+    fields: list[str] = []
+    titles: list[str] = []
+    for index, value in enumerate(command):
+        lowered = value.lower()
+        if lowered == "--draft":
+            raise ValueError("seda-pr never creates a draft PR or MR")
+        if lowered.startswith("--draft=") and _truthy(value.split("=", 1)[1]):
+            raise ValueError("seda-pr never creates a draft PR or MR")
+        if value in {"-f", "-F", "--field", "--raw-field"} and index + 1 < len(command):
+            fields.append(command[index + 1])
+        elif value.startswith(("--field=", "--raw-field=")):
+            fields.append(value.split("=", 1)[1])
+        elif value.startswith(("-f", "-F")) and len(value) > 2:
+            fields.append(value[2:].removeprefix("="))
+        if value == "--title" and index + 1 < len(command):
+            titles.append(command[index + 1])
+        elif value.startswith("--title="):
+            titles.append(value.split("=", 1)[1])
+
+    for field in fields:
+        name, separator, raw_value = field.partition("=")
+        if not separator:
+            continue
+        if name.lower() == "draft" and _truthy(raw_value):
+            raise ValueError("seda-pr never creates a draft PR or MR")
+        if name.lower() == "title":
+            titles.append(raw_value)
+    if any(re.match(r"^\s*(?:draft|wip)\s*:", title, re.IGNORECASE) for title in titles):
+        raise ValueError("seda-pr never creates a draft PR or MR by title convention")
+
+
+def _is_item_creation(provider: str, command: list[str]) -> bool:
+    if provider == "github" and _contains_subcommand(command, "pr", "create"):
+        return True
+    if provider == "gitlab" and _contains_subcommand(command, "mr", "create"):
+        return True
+    if not command or command[0] != EXECUTABLE[provider] or "api" not in command[1:]:
+        return False
+    if provider == "github" and any("createPullRequest" in value for value in command):
+        return True
+    method = "GET"
+    for index, value in enumerate(command):
+        if value in {"--method", "-X"} and index + 1 < len(command):
+            method = command[index + 1].upper()
+        elif value.startswith("--method="):
+            method = value.split("=", 1)[1].upper()
+        elif value.startswith("-X") and len(value) > 2:
+            method = value[2:].removeprefix("=").upper()
+    if method != "POST":
+        return False
+    return any(
+        re.search(r"/(?:pulls|merge_requests)/?$", value.split("?", 1)[0])
+        for value in command
+    )
+
+
+def _contains_subcommand(command: list[str], group: str, action: str) -> bool:
+    return any(
+        command[index:index + 2] == [group, action]
+        for index in range(1, len(command) - 1)
+    )
+
+
+def _truthy(value: str) -> bool:
+    return value.strip().lower() in {"1", "true", "yes", "on"}
+
+
 def _add_repository_host(selected_hosts: set[str], repository: str) -> None:
     if repository.startswith(("http://", "https://")):
         parsed = urlparse(repository)
@@ -105,6 +187,7 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
 def main(argv: list[str] | None = None) -> int:
     args = parse_args(argv)
     validate_command_host(args.provider, args.host, args.command)
+    validate_ready_for_review_creation(args.provider, args.command)
     environment = command_environment(
         args.provider,
         args.host,

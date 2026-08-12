@@ -7,7 +7,7 @@ import os
 import re
 import subprocess
 from typing import Any, Callable
-from urllib.parse import quote
+from urllib.parse import quote, urlparse
 
 
 class CommandError(RuntimeError):
@@ -157,6 +157,7 @@ class GitLabProvider:
 
     def _command_environment(self) -> dict[str, str]:
         environment = os.environ.copy()
+        environment.pop("GITLAB_HOST", None)
         host = self.host.lower().rstrip(".")
         trusted_hosts = {value.lower().rstrip(".") for value in self.trusted_hosts}
         if host not in trusted_hosts:
@@ -168,7 +169,9 @@ class GitLabProvider:
     def _repo(self) -> str:
         if self.repository:
             return self.repository
-        raw = self._call(["glab", "repo", "view", "--output", "json"])
+        raw = self._call([
+            "glab", "api", "--hostname", self.host, "projects/:fullpath"
+        ])
         repository = raw.get("path_with_namespace") or raw.get("fullPath") or raw.get("nameWithNamespace")
         if not repository:
             raise CommandError("cannot resolve GitLab project; pass --repo owner/project")
@@ -190,7 +193,9 @@ class GitLabProvider:
             page += 1
 
     def _iid(self, target: str, project: str) -> int:
-        match = re.search(r"/merge_requests/(\d+)(?:/|$)", target)
+        parsed = urlparse(target)
+        target_path = parsed.path if parsed.scheme and parsed.netloc else target
+        match = re.search(r"/merge_requests/(\d+)(?:/|$)", target_path)
         if match:
             return int(match.group(1))
         if target != "auto":

@@ -28,6 +28,15 @@ MAX_RETRIES_PER_SHA = 3
 LEASE_STALE_SECONDS = 300
 ACTION_PHASES = {"surfaced": 1, "claimed": 2, "handled": 3}
 FAILURE_KINDS = {"branch", "flaky", "infrastructure", "ambiguous"}
+FEEDBACK_VALIDITIES = {"confirmed", "disproved", "obsolete-or-duplicate", "uncertain"}
+FEEDBACK_DISPOSITIONS = {"address-now", "no-code-change", "user-decision"}
+VALID_FEEDBACK_OUTCOMES = {
+    ("confirmed", "address-now"),
+    ("confirmed", "user-decision"),
+    ("disproved", "no-code-change"),
+    ("obsolete-or-duplicate", "no-code-change"),
+    ("uncertain", "user-decision"),
+}
 
 
 class LeaseConflict(RuntimeError):
@@ -54,6 +63,7 @@ def new_state(*, objective: str) -> dict[str, Any]:
         "lease": None,
         "read_errors": {"consecutive": 0, "last": None},
         "evidence_gaps": {"consecutive": 0},
+        "provider_gaps": {"consecutive": 0},
         "last_change_key": None,
         "last_heartbeat": None,
     }
@@ -200,10 +210,48 @@ def mark_action(state: dict[str, Any], action_id: str, phase: str, *, now: float
     if previous and ACTION_PHASES[phase] < ACTION_PHASES[previous]:
         raise ValueError(f"cannot move action {action_id!r} from {previous} to {phase}")
     previous_action = state["actions"].get(action_id, {})
+    if phase == "handled":
+        if not previous_action.get("fingerprint"):
+            raise ValueError(f"cannot handle unsurfaced feedback {action_id!r}")
+        if not previous_action.get("feedback_disposition"):
+            raise ValueError(
+                f"cannot handle feedback {action_id!r} before recording its validity and disposition"
+            )
     state["actions"][action_id] = {
         **previous_action,
         "phase": phase,
         "updated_at": now if now is not None else time.time(),
+    }
+
+
+def record_feedback_disposition(
+    state: dict[str, Any],
+    head_sha: str,
+    item_id: str,
+    validity: str,
+    disposition: str,
+    *,
+    now: float | None = None,
+) -> None:
+    if validity not in FEEDBACK_VALIDITIES:
+        raise ValueError(f"unknown feedback validity: {validity}")
+    if disposition not in FEEDBACK_DISPOSITIONS:
+        raise ValueError(f"unknown feedback disposition: {disposition}")
+    if (validity, disposition) not in VALID_FEEDBACK_OUTCOMES:
+        raise ValueError(f"invalid feedback outcome: {validity}/{disposition}")
+    current_head = str(state.get("current_head") or "")
+    if not current_head or current_head != head_sha:
+        raise ValueError(
+            f"feedback disposition head {head_sha!r} does not match current head {current_head!r}"
+        )
+    action = state.setdefault("actions", {}).get(item_id)
+    if not action or not action.get("fingerprint"):
+        raise ValueError(f"cannot classify unsurfaced feedback {item_id!r}")
+    action["feedback_disposition"] = {
+        "head_sha": head_sha,
+        "validity": validity,
+        "disposition": disposition,
+        "recorded_at": now if now is not None else time.time(),
     }
 
 
@@ -271,6 +319,7 @@ def _review_action(snapshot: dict[str, Any], state: dict[str, Any], *, now: floa
             action["fingerprint"] = fingerprint
         elif phase == "handled" and action.get("fingerprint") != fingerprint:
             phase = None
+            action.pop("feedback_disposition", None)
         if phase != "handled":
             pending_ids.append(item_id)
             if phase is None:
@@ -282,6 +331,7 @@ def _review_action(snapshot: dict[str, Any], state: dict[str, Any], *, now: floa
             elif action.get("fingerprint") != fingerprint:
                 action["fingerprint"] = fingerprint
                 action["updated_at"] = now
+                action.pop("feedback_disposition", None)
     return (["process_review_comment"] if pending_ids else []), pending_ids
 
 
@@ -304,7 +354,10 @@ def evaluate_snapshot(
     now: float,
     authority: set[str],
     no_pipeline_expected: bool = False,
+    settle_seconds: int = SETTLE_SECONDS,
 ) -> dict[str, Any]:
+    if settle_seconds <= 0:
+        raise ValueError("settle_seconds must be positive")
     objective = state["objective"]
     head_sha = snapshot.get("head", {}).get("sha")
     state["target"] = {
@@ -312,6 +365,10 @@ def evaluate_snapshot(
         for key in ("provider", "host", "repository", "number", "url")
     }
     state["current_head"] = head_sha
+    previous_settle_seconds = state.get("settle_seconds")
+    if previous_settle_seconds is not None and previous_settle_seconds != settle_seconds:
+        _reset_settle(state)
+    state["settle_seconds"] = settle_seconds
 
     if snapshot.get("merged") or snapshot.get("closed") or str(snapshot.get("state", "")).upper() in {"MERGED", "CLOSED"}:
         return _result(state, snapshot, now, ["stop_pr_closed"], terminal=True, reason="provider_closed", next_poll=0)
@@ -329,6 +386,9 @@ def evaluate_snapshot(
         gaps["consecutive"] = int(gaps.get("consecutive", 0)) + 1
     else:
         gaps["consecutive"] = 0
+    readiness_blocker = _readiness_blocker(snapshot)
+    if readiness_blocker is None or readiness_blocker[0] != "provider_evidence_incomplete":
+        state.setdefault("provider_gaps", {})["consecutive"] = 0
 
     if review_actions:
         _reset_settle(state)
@@ -454,10 +514,31 @@ def evaluate_snapshot(
         _reset_settle(state)
         return _result(state, snapshot, now, ["idle"], terminal=False, reason="pipeline_pending", next_poll=30)
 
-    readiness_blocker = _readiness_blocker(snapshot)
     if readiness_blocker is not None:
         _reset_settle(state)
         action, reason = readiness_blocker
+        if action == "provider_evidence_incomplete":
+            gaps = state.setdefault("provider_gaps", {"consecutive": 0})
+            gaps["consecutive"] = int(gaps.get("consecutive", 0)) + 1
+            if gaps["consecutive"] < 3:
+                return _result(
+                    state,
+                    snapshot,
+                    now,
+                    [action],
+                    terminal=False,
+                    reason=reason,
+                    next_poll=30,
+                )
+            return _result(
+                state,
+                snapshot,
+                now,
+                ["user_help_required"],
+                terminal=True,
+                reason="persistent_incomplete_provider_evidence",
+                next_poll=0,
+            )
         return _result(
             state,
             snapshot,
@@ -482,7 +563,7 @@ def evaluate_snapshot(
 
     if objective == "until-ready":
         elapsed = now - float(settle["green_since"])
-        if elapsed >= SETTLE_SECONDS and int(settle["snapshots"]) >= 2:
+        if elapsed >= settle_seconds and int(settle["snapshots"]) >= 2:
             confirmation_due_since = settle.get("confirmation_due_since")
             if confirmation_due_since is None:
                 settle["confirmation_due_since"] = now

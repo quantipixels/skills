@@ -21,10 +21,45 @@ from gitlab_provider import (
 )
 
 
+def is_github_pr_command(command, action):
+    return "pr" in command and command[command.index("pr"):command.index("pr") + 2] == [
+        "pr", action,
+    ]
+
+
 class GitHubNormalizationTests(unittest.TestCase):
+    def test_auto_target_resolves_current_branch_before_pinned_repo_read(self):
+        commands = []
+
+        def runner(command):
+            commands.append(command)
+            if is_github_pr_command(command, "view"):
+                return {
+                    "number": 42,
+                    "url": "https://github.com/acme/widgets/pull/42",
+                    "state": "OPEN",
+                    "headRefOid": "head",
+                }
+            if "graphql" in command:
+                return {
+                    "data": {"repository": {"pullRequest": {"reviewThreads": {
+                        "nodes": [], "pageInfo": {"hasNextPage": False},
+                    }}}}
+                }
+            return []
+
+        completed = subprocess.CompletedProcess(
+            ["git", "branch", "--show-current"], 0, "feature/watch\n", ""
+        )
+        with patch("github_provider.subprocess.run", return_value=completed):
+            GitHubProvider(repository="acme/widgets", runner=runner).fetch("auto")
+
+        view = next(command for command in commands if is_github_pr_command(command, "view"))
+        self.assertEqual(["gh", "--repo", "acme/widgets", "pr", "view", "feature/watch"], view[:6])
+
     def test_transient_thread_read_failure_propagates_to_watch_backoff(self):
         def runner(command):
-            if command[:3] == ["gh", "pr", "view"]:
+            if is_github_pr_command(command, "view"):
                 return {
                     "number": 42,
                     "url": "https://github.com/acme/widgets/pull/42",
@@ -43,15 +78,15 @@ class GitHubNormalizationTests(unittest.TestCase):
         checks = [{"name": "test", "state": "SUCCESS", "bucket": "pass", "workflow": "CI"}]
 
         def run(command, **_kwargs):
-            if command[:3] == ["gh", "pr", "view"]:
+            if is_github_pr_command(command, "view"):
                 payload = {"number": 42, "url": "https://github.com/acme/widgets/pull/42", "state": "OPEN"}
-            elif command[:3] == ["gh", "pr", "checks"]:
+            elif is_github_pr_command(command, "checks"):
                 payload = checks
             elif "graphql" in command:
                 payload = {"data": {"repository": {"pullRequest": {"reviewThreads": {"nodes": [], "pageInfo": {}}}}}}
             else:
                 payload = []
-            return subprocess.CompletedProcess(command, 1 if command[:3] == ["gh", "pr", "checks"] else 0, json.dumps(payload), "")
+            return subprocess.CompletedProcess(command, 1 if is_github_pr_command(command, "checks") else 0, json.dumps(payload), "")
 
         with patch("github_provider.subprocess.run", side_effect=run):
             result = GitHubProvider(repository="acme/widgets").fetch("42")
@@ -135,7 +170,7 @@ class GitHubNormalizationTests(unittest.TestCase):
 
         def runner(command):
             commands.append(command)
-            if command[:3] == ["gh", "pr", "view"]:
+            if is_github_pr_command(command, "view"):
                 return {
                     "number": 42, "url": "https://github.acme.test/acme/widgets/pull/42",
                     "state": "OPEN", "headRefOid": "head",
@@ -145,7 +180,10 @@ class GitHubNormalizationTests(unittest.TestCase):
             return []
 
         GitHubProvider(host="github.acme.test", repository="acme/widgets", runner=runner).fetch("42")
-        pr_commands = [command for command in commands if command[:3] in (["gh", "pr", "view"], ["gh", "pr", "checks"])]
+        pr_commands = [
+            command for command in commands
+            if is_github_pr_command(command, "view") or is_github_pr_command(command, "checks")
+        ]
         self.assertTrue(pr_commands)
         for command in pr_commands:
             self.assertEqual("github.acme.test/acme/widgets", command[command.index("--repo") + 1])
@@ -155,7 +193,7 @@ class GitHubNormalizationTests(unittest.TestCase):
 
         def run(command, **kwargs):
             environments.append(kwargs["env"])
-            if command[:3] == ["gh", "pr", "view"]:
+            if is_github_pr_command(command, "view"):
                 payload = {"number": 42, "url": "https://untrusted.test/acme/widgets/pull/42", "state": "OPEN"}
             elif "graphql" in command:
                 payload = {"data": {"repository": {"pullRequest": {"reviewThreads": {"nodes": [], "pageInfo": {}}}}}}
@@ -181,7 +219,7 @@ class GitHubNormalizationTests(unittest.TestCase):
 
         def run(command, **kwargs):
             environments.append(kwargs["env"])
-            if command[:3] == ["gh", "pr", "view"]:
+            if is_github_pr_command(command, "view"):
                 payload = {"number": 42, "url": "https://github.acme.test/acme/widgets/pull/42", "state": "OPEN"}
             elif "graphql" in command:
                 payload = {"data": {"repository": {"pullRequest": {"reviewThreads": {"nodes": [], "pageInfo": {}}}}}}
@@ -203,7 +241,7 @@ class GitHubNormalizationTests(unittest.TestCase):
 
         def run(command, **kwargs):
             environments.append(kwargs["env"])
-            if command[:3] == ["gh", "pr", "view"]:
+            if is_github_pr_command(command, "view"):
                 payload = {
                     "number": 42,
                     "url": "https://github.com/acme/widgets/pull/42",
@@ -233,6 +271,40 @@ class GitHubNormalizationTests(unittest.TestCase):
 
 
 class GitLabNormalizationTests(unittest.TestCase):
+    def test_repository_discovery_pins_gitlab_host_and_removes_ambient_override(self):
+        environments = []
+
+        def run(command, **kwargs):
+            environments.append((command, kwargs["env"]))
+            if command[:2] == ["glab", "api"] and command[-1] == "projects/:fullpath":
+                payload = {"path_with_namespace": "acme/widgets"}
+            else:
+                payload = self._fetch_responses()[command[-1]]
+            return subprocess.CompletedProcess(command, 0, json.dumps(payload), "")
+
+        with patch.dict(
+            os.environ,
+            {"GITLAB_HOST": "attacker.test", "GITLAB_TOKEN": "token"},
+            clear=True,
+        ), patch("gitlab_provider.subprocess.run", side_effect=run):
+            GitLabProvider().fetch("9")
+
+        repo_command, repo_environment = environments[0]
+        self.assertEqual(["glab", "api"], repo_command[:2])
+        self.assertEqual("gitlab.com", repo_command[repo_command.index("--hostname") + 1])
+        self.assertEqual("projects/:fullpath", repo_command[-1])
+        self.assertNotIn("GITLAB_HOST", repo_environment)
+
+    def test_mr_url_with_query_or_fragment_resolves_iid(self):
+        provider = GitLabProvider(repository="acme/widgets", runner=lambda _command: [])
+
+        self.assertEqual(9, provider._iid(
+            "https://gitlab.com/acme/widgets/-/merge_requests/9?diff_id=2", "acme/widgets"
+        ))
+        self.assertEqual(9, provider._iid(
+            "https://gitlab.com/acme/widgets/-/merge_requests/9#note_1", "acme/widgets"
+        ))
+
     def test_mr_identity_preserves_diff_refs(self):
         raw = {
             "iid": 9,

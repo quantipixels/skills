@@ -166,6 +166,18 @@ class GitHubProvider:
         repository = self._repo()
         return repository if self.host == "github.com" else f"{self.host}/{repository}"
 
+    def _current_branch(self) -> str:
+        result = subprocess.run(
+            ["git", "branch", "--show-current"],
+            check=False,
+            capture_output=True,
+            text=True,
+        )
+        branch = result.stdout.strip()
+        if result.returncode != 0 or not branch:
+            raise ValueError("cannot resolve the current branch for --pr auto")
+        return branch
+
     def _thread_resolutions(self, number: int) -> tuple[dict[int, bool], bool]:
         repository = self._repo()
         parts = repository.split("/", 1)
@@ -196,23 +208,23 @@ class GitHubProvider:
     def fetch(self, target: str = "auto") -> dict[str, Any]:
         repository = self._repo()
         repo_spec = self._repo_spec()
-        selector = [] if target == "auto" else [target]
+        selector = [self._current_branch() if target == "auto" else target]
         pr = self._call(
             [
-                "gh", "pr", "view", *selector, "--repo", repo_spec, "--json",
+                "gh", "--repo", repo_spec, "pr", "view", *selector, "--json",
                 "number,url,state,mergedAt,closedAt,baseRefName,baseRefOid,headRefName,headRefOid,mergeable,reviewDecision,isDraft",
             ]
         )
         snapshot = normalize_pr(pr, host=self.host, repository=repository)
         number = snapshot["number"]
         checks = self._call(
-            ["gh", "pr", "checks", str(number), "--repo", repo_spec, "--json", "name,state,bucket,link,workflow"],
+            ["gh", "--repo", repo_spec, "pr", "checks", str(number), "--json", "name,state,bucket,link,workflow"],
             allowed_codes={0, 1, 8},
         )
         required_names: set[str] | None
         try:
             required = self._call(
-                ["gh", "pr", "checks", str(number), "--repo", repo_spec, "--required", "--json", "name,state,bucket,link,workflow"],
+                ["gh", "--repo", repo_spec, "pr", "checks", str(number), "--required", "--json", "name,state,bucket,link,workflow"],
                 allowed_codes={0, 1, 8},
             )
             required_names = {row.get("name") for row in required}

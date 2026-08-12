@@ -16,6 +16,7 @@ from watch_core import (
     new_state,
     pipeline_summary,
     record_read_error,
+    record_feedback_disposition,
     record_retry,
     release_file_lease,
     save_state_atomic,
@@ -126,6 +127,22 @@ class EvaluationTests(unittest.TestCase):
         self.assertTrue(settled["terminal"])
         self.assertEqual("pipeline_ready", settled["reason"])
 
+    def test_configured_quiet_window_delays_confirmation(self):
+        state = new_state(objective="until-ready")
+        current = snapshot(jobs=self.green_jobs)
+
+        evaluate_snapshot(current, state, now=1000, authority=set(), settle_seconds=600)
+        at_default_threshold = evaluate_snapshot(
+            current, state, now=1300, authority=set(), settle_seconds=600
+        )
+        configured_threshold = evaluate_snapshot(
+            current, state, now=1600, authority=set(), settle_seconds=600
+        )
+
+        self.assertEqual(["ready_settling"], at_default_threshold["actions"])
+        self.assertEqual(["ready_settling"], configured_threshold["actions"])
+        self.assertEqual(1600, state["settle"]["confirmation_due_since"])
+
     def test_green_pipeline_does_not_settle_while_provider_readiness_is_blocked(self):
         cases = [
             ("draft", {"draft": True}, "draft_item"),
@@ -155,6 +172,36 @@ class EvaluationTests(unittest.TestCase):
                 self.assertNotIn("stop_ready", settled["actions"])
                 self.assertEqual(reason, settled["reason"])
                 self.assertIsNone(state["settle"]["green_since"])
+
+    def test_transient_mergeability_evidence_polls_then_escalates(self):
+        state = new_state(objective="until-ready")
+        current = snapshot(jobs=self.green_jobs)
+        current["mergeability"] = "UNKNOWN"
+
+        first = evaluate_snapshot(current, state, now=10, authority=set())
+        second = evaluate_snapshot(current, state, now=40, authority=set())
+        third = evaluate_snapshot(current, state, now=70, authority=set())
+
+        self.assertEqual(["provider_evidence_incomplete"], first["actions"])
+        self.assertFalse(first["terminal"])
+        self.assertFalse(second["terminal"])
+        self.assertEqual(["user_help_required"], third["actions"])
+        self.assertTrue(third["terminal"])
+        self.assertEqual("persistent_incomplete_provider_evidence", third["reason"])
+
+    def test_confirmed_mergeability_resets_transient_provider_gap_counter(self):
+        state = new_state(objective="until-ready")
+        unknown = snapshot(jobs=self.green_jobs)
+        unknown["mergeability"] = "UNKNOWN"
+        evaluate_snapshot(unknown, state, now=10, authority=set())
+        evaluate_snapshot(unknown, state, now=40, authority=set())
+
+        confirmed = snapshot(jobs=[{"name": "test", "status": "pending", "required": True}])
+        evaluate_snapshot(confirmed, state, now=70, authority=set())
+        restarted = evaluate_snapshot(unknown, state, now=100, authority=set())
+
+        self.assertFalse(restarted["terminal"])
+        self.assertEqual(1, state["provider_gaps"]["consecutive"])
 
     def test_cleared_provider_blocker_starts_a_new_settle_window(self):
         state = new_state(objective="until-ready")
@@ -311,6 +358,9 @@ class EvaluationTests(unittest.TestCase):
         mark_action(state, "review:7", "claimed")
         second = evaluate_snapshot(snapshot(reviews=[{"id": "review:7"}]), state, now=20, authority=set())
         self.assertIn("process_review_comment", second["actions"])
+        record_feedback_disposition(
+            state, "abc", "review:7", "confirmed", "address-now", now=25
+        )
         mark_action(state, "review:7", "handled")
         third = evaluate_snapshot(snapshot(reviews=[{"id": "review:7"}]), state, now=30, authority=set())
         self.assertNotIn("process_review_comment", third["actions"])
@@ -319,6 +369,9 @@ class EvaluationTests(unittest.TestCase):
         state = new_state(objective="until-merged")
         first_item = {"id": "review:7", "body": "First request", "updated_at": "2026-08-12T10:00:00Z"}
         evaluate_snapshot(snapshot(reviews=[first_item]), state, now=10, authority=set())
+        record_feedback_disposition(
+            state, "abc", "review:7", "disproved", "no-code-change", now=15
+        )
         mark_action(state, "review:7", "handled", now=20)
         unchanged = evaluate_snapshot(snapshot(reviews=[first_item]), state, now=30, authority=set())
         self.assertNotIn("process_review_comment", unchanged["actions"])
@@ -334,10 +387,33 @@ class EvaluationTests(unittest.TestCase):
 
         edited = {"id": "review:7", "body": "Updated request", "updated_at": "10:05"}
         evaluate_snapshot(snapshot(reviews=[edited]), state, now=30, authority=set())
+        record_feedback_disposition(
+            state, "abc", "review:7", "confirmed", "address-now", now=35
+        )
         mark_action(state, "review:7", "handled", now=40)
         result = evaluate_snapshot(snapshot(reviews=[edited]), state, now=50, authority=set())
 
         self.assertNotIn("process_review_comment", result["actions"])
+
+    def test_feedback_must_have_a_valid_disposition_before_it_is_handled(self):
+        state = new_state(objective="until-merged")
+        evaluate_snapshot(snapshot(reviews=[{"id": "review:7"}]), state, now=10, authority=set())
+
+        with self.assertRaisesRegex(ValueError, "validity and disposition"):
+            mark_action(state, "review:7", "handled", now=20)
+        with self.assertRaisesRegex(ValueError, "invalid feedback outcome"):
+            record_feedback_disposition(
+                state, "abc", "review:7", "disproved", "address-now", now=20
+            )
+
+        record_feedback_disposition(
+            state, "abc", "review:7", "disproved", "no-code-change", now=20
+        )
+        mark_action(state, "review:7", "handled", now=30)
+
+        self.assertEqual(
+            "disproved", state["actions"]["review:7"]["feedback_disposition"]["validity"]
+        )
 
     def test_persistent_incomplete_pipeline_evidence_escalates_after_three_snapshots(self):
         state = new_state(objective="until-ready")
@@ -467,10 +543,26 @@ class PersistenceAndLeaseTests(unittest.TestCase):
     def test_state_only_updates_record_action_and_retry(self):
         with tempfile.TemporaryDirectory() as directory:
             path = Path(directory) / "state.json"
-            save_state_atomic(path, new_state(objective="until-merged"))
-            result = apply_state_updates(path, marks=["review:7=handled"], retry_sha="abc", now=50)
+            state = new_state(objective="until-merged")
+            evaluate_snapshot(
+                snapshot(reviews=[{"id": "review:7"}]), state, now=10, authority=set()
+            )
+            save_state_atomic(path, state)
+            result = apply_state_updates(
+                path,
+                marks=["review:7=handled"],
+                retry_sha="abc",
+                feedback_dispositions=[
+                    ["abc", "review:7", "confirmed", "address-now"]
+                ],
+                now=50,
+            )
             loaded = load_state(path)
             self.assertEqual("handled", loaded["actions"]["review:7"]["phase"])
+            self.assertEqual(
+                "confirmed",
+                loaded["actions"]["review:7"]["feedback_disposition"]["validity"],
+            )
             self.assertEqual(1, loaded["retry_counts"]["abc"])
             self.assertEqual(1, result["retry_count"])
 
@@ -692,7 +784,14 @@ class PersistenceAndLeaseTests(unittest.TestCase):
     def test_watcher_save_reloads_a_state_only_update(self):
         with tempfile.TemporaryDirectory() as directory:
             path = Path(directory) / "state.json"
-            save_state_atomic(path, new_state(objective="until-merged"))
+            persisted = new_state(objective="until-merged")
+            evaluate_snapshot(
+                snapshot(reviews=[{"id": "review:7"}]), persisted, now=10, authority=set()
+            )
+            record_feedback_disposition(
+                persisted, "abc", "review:7", "confirmed", "address-now", now=20
+            )
+            save_state_atomic(path, persisted)
             stale_watcher_state = load_state(path)
             apply_state_updates(path, marks=["review:7=handled"], retry_sha=None, now=50)
 
@@ -760,6 +859,16 @@ class PersistenceAndLeaseTests(unittest.TestCase):
 
 
 class TargetIdentityTests(unittest.TestCase):
+    def test_settle_seconds_must_be_positive(self):
+        args = parse_args([
+            "--provider", "github", "--pr", "7", "--once", "--settle-seconds", "900",
+        ])
+        self.assertEqual(900, args.settle_seconds)
+        with self.assertRaises(SystemExit):
+            parse_args([
+                "--provider", "github", "--pr", "7", "--once", "--settle-seconds", "0",
+            ])
+
     def test_github_url_resolves_enterprise_host_and_repository(self):
         identity = target_identity("https://github.acme.test/payments/api/pull/42", provider="auto")
         self.assertEqual("github", identity["provider"])
@@ -829,6 +938,29 @@ class WatchLoopLeaseTests(unittest.TestCase):
         self.assertEqual(0, result)
         self.assertEqual(3, provider.calls)
         self.assertEqual([1, 2], [row["consecutive"] for row in emissions[:2]])
+
+    def test_deterministic_provider_value_error_does_not_retry(self):
+        class Provider:
+            calls = 0
+
+            def fetch(self, _target):
+                self.calls += 1
+                raise ValueError("invalid merge-request target")
+
+        provider = Provider()
+        emissions = []
+        with patch("pr_watch.make_provider", return_value=provider), patch(
+            "pr_watch.time.sleep"
+        ) as sleep, patch("pr_watch.emit", side_effect=emissions.append):
+            result = main([
+                "--provider", "gitlab", "--pr", "not-an-iid", "--repo", "acme/widgets",
+                "--watch",
+            ])
+
+        self.assertEqual(2, result)
+        self.assertEqual(1, provider.calls)
+        self.assertEqual("configuration_error", emissions[-1]["reason"])
+        sleep.assert_not_called()
 
     def test_watch_stops_after_three_initial_provider_read_failures(self):
         class Provider:

@@ -3,7 +3,12 @@ import subprocess
 import unittest
 from unittest.mock import patch
 
-from provider_cli import command_environment, main, validate_command_host
+from provider_cli import (
+    command_environment,
+    main,
+    validate_command_host,
+    validate_ready_for_review_creation,
+)
 
 
 class ProviderCliTests(unittest.TestCase):
@@ -123,6 +128,79 @@ class ProviderCliTests(unittest.TestCase):
         for command in commands:
             with self.subTest(command=command), self.assertRaises(ValueError):
                 validate_command_host("github", "github.com", command)
+
+    def test_github_creation_rejects_draft_flag(self):
+        commands = [
+            ["gh", "pr", "create", "--repo", "owner/repo", "--draft"],
+            ["gh", "--repo", "owner/repo", "pr", "create", "--draft"],
+        ]
+        for command in commands:
+            with self.subTest(command=command), self.assertRaisesRegex(ValueError, "draft"):
+                validate_ready_for_review_creation("github", command)
+
+    def test_gitlab_creation_rejects_draft_field_and_title_prefix(self):
+        commands = [
+            [
+                "glab", "api", "--hostname", "gitlab.com", "--method", "POST",
+                "/projects/acme%2Fapi/merge_requests", "-f", "draft=true",
+            ],
+            [
+                "glab", "mr", "create", "--hostname", "gitlab.com",
+                "--title", "Draft: add lifecycle skills",
+            ],
+        ]
+        for command in commands:
+            with self.subTest(command=command), self.assertRaisesRegex(ValueError, "draft"):
+                validate_ready_for_review_creation("gitlab", command)
+
+    def test_ready_for_review_creation_is_allowed(self):
+        commands = [
+            ("github", ["gh", "pr", "create", "--repo", "owner/repo"]),
+            (
+                "gitlab",
+                [
+                    "glab", "api", "--hostname", "gitlab.com", "--method", "POST",
+                    "/projects/acme%2Fapi/merge_requests", "-f", "draft=false",
+                    "-f", "title=Add lifecycle skills",
+                ],
+            ),
+        ]
+        for provider, command in commands:
+            with self.subTest(command=command):
+                validate_ready_for_review_creation(provider, command)
+
+    def test_unverified_or_graphql_creation_payload_is_rejected(self):
+        commands = [
+            (
+                "github",
+                [
+                    "gh", "--repo", "owner/repo", "api", "--method", "POST",
+                    "repos/owner/repo/pulls", "--input", "payload.json",
+                ],
+            ),
+            (
+                "github",
+                [
+                    "gh", "api", "graphql", "--hostname", "github.com", "-f",
+                    "query=mutation { createPullRequest(input: $input) { pullRequest { id } } }",
+                ],
+            ),
+        ]
+        for provider, command in commands:
+            with self.subTest(command=command), self.assertRaisesRegex(
+                ValueError, "payload|GraphQL"
+            ):
+                validate_ready_for_review_creation(provider, command)
+
+    def test_main_rejects_draft_before_provider_contact(self):
+        with patch("provider_cli.subprocess.run") as run:
+            with self.assertRaisesRegex(ValueError, "draft"):
+                main([
+                    "--provider", "github", "--host", "github.com", "--",
+                    "gh", "pr", "create", "--repo", "owner/repo", "--draft",
+                ])
+
+        run.assert_not_called()
 
 
 if __name__ == "__main__":
