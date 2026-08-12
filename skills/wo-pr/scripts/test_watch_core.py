@@ -1,0 +1,258 @@
+import json
+import os
+import socket
+import tempfile
+import unittest
+from pathlib import Path
+from unittest.mock import patch
+
+from watch_core import (
+    LeaseConflict,
+    acquire_file_lease,
+    acquire_lease,
+    evaluate_snapshot,
+    load_state,
+    mark_action,
+    new_state,
+    pipeline_summary,
+    record_retry,
+    release_file_lease,
+    save_state_atomic,
+    validate_state_target,
+)
+from pr_watch import apply_state_updates, target_identity
+
+
+def snapshot(*, sha="abc", jobs=None, state="OPEN", reviews=None, complete=True):
+    return {
+        "provider": "github",
+        "host": "github.com",
+        "repository": "acme/widgets",
+        "number": 42,
+        "url": "https://github.com/acme/widgets/pull/42",
+        "state": state,
+        "merged": state == "MERGED",
+        "closed": state == "CLOSED",
+        "base": {"branch": "main", "sha": "base"},
+        "head": {"branch": "feature", "sha": sha},
+        "pipeline": {"evidence_complete": complete, "jobs": jobs or []},
+        "review_items": reviews or [],
+        "mergeability": "MERGEABLE",
+        "review_decision": "",
+        "capabilities": {},
+        "errors": [],
+    }
+
+
+class PipelineSummaryTests(unittest.TestCase):
+    def test_no_pipeline_is_not_vacuously_green(self):
+        result = pipeline_summary([], evidence_complete=True)
+        self.assertEqual("no_pipeline_evidence", result["state"])
+
+    def test_explicit_no_pipeline_expectation_is_green(self):
+        result = pipeline_summary([], evidence_complete=True, no_pipeline_expected=True)
+        self.assertEqual("green", result["state"])
+
+    def test_only_optional_neutral_skipped_manual_and_allowed_failure_are_non_errors(self):
+        jobs = [
+            {"name": "required", "status": "success", "required": True},
+            {"name": "neutral", "status": "neutral", "required": False},
+            {"name": "skipped", "status": "skipped", "required": False},
+            {"name": "manual", "status": "manual", "required": False},
+            {"name": "allowed", "status": "failure", "required": False, "allow_failure": True},
+        ]
+        self.assertEqual("green", pipeline_summary(jobs, evidence_complete=True)["state"])
+
+    def test_required_manual_and_unknown_requiredness_block(self):
+        required_manual = [{"name": "deploy", "status": "manual", "required": True}]
+        unknown_requiredness = [{"name": "lint", "status": "neutral", "required": None}]
+        self.assertEqual("pending", pipeline_summary(required_manual, evidence_complete=True)["state"])
+        self.assertEqual("incomplete", pipeline_summary(unknown_requiredness, evidence_complete=True)["state"])
+
+    def test_optional_running_or_failed_checks_do_not_block_required_pipeline(self):
+        jobs = [
+            {"name": "required", "status": "success", "required": True},
+            {"name": "optional-running", "status": "running", "required": False},
+            {"name": "optional-failed", "status": "failure", "required": False},
+        ]
+        self.assertEqual("green", pipeline_summary(jobs, evidence_complete=True)["state"])
+
+
+class EvaluationTests(unittest.TestCase):
+    green_jobs = [{"name": "test", "status": "success", "required": True}]
+
+    def test_until_ready_requires_five_minutes_and_two_snapshots(self):
+        state = new_state(objective="until-ready")
+        first = evaluate_snapshot(snapshot(jobs=self.green_jobs), state, now=1000, authority=set())
+        self.assertFalse(first["terminal"])
+        self.assertEqual(["ready_settling"], first["actions"])
+
+        early = evaluate_snapshot(snapshot(jobs=self.green_jobs), state, now=1299, authority=set())
+        self.assertFalse(early["terminal"])
+
+        settled = evaluate_snapshot(snapshot(jobs=self.green_jobs), state, now=1300, authority=set())
+        self.assertTrue(settled["terminal"])
+        self.assertEqual("pipeline_ready", settled["reason"])
+
+    def test_new_sha_or_job_resets_settle(self):
+        state = new_state(objective="until-ready")
+        evaluate_snapshot(snapshot(jobs=self.green_jobs), state, now=1000, authority=set())
+        changed = snapshot(sha="def", jobs=self.green_jobs + [{"name": "lint", "status": "success", "required": True}])
+        result = evaluate_snapshot(changed, state, now=1301, authority=set())
+        self.assertFalse(result["terminal"])
+        self.assertEqual(1301, state["settle"]["green_since"])
+
+    def test_failed_snapshot_breaks_green_settle_window(self):
+        state = new_state(objective="until-ready")
+        evaluate_snapshot(snapshot(jobs=self.green_jobs), state, now=1000, authority=set())
+        failed = [{"name": "test", "status": "failure", "required": True}]
+        evaluate_snapshot(snapshot(jobs=failed), state, now=1100, authority=set())
+        result = evaluate_snapshot(snapshot(jobs=self.green_jobs), state, now=1300, authority=set())
+        self.assertFalse(result["terminal"])
+        self.assertEqual(1300, state["settle"]["green_since"])
+
+    def test_review_activity_has_priority_over_retry(self):
+        state = new_state(objective="until-merged")
+        failed = [{"name": "test", "status": "failure", "required": True, "failure_kind": "flaky"}]
+        result = evaluate_snapshot(
+            snapshot(jobs=failed, reviews=[{"id": "review:7", "body": "Please fix"}]),
+            state,
+            now=1000,
+            authority={"retry-ci"},
+        )
+        self.assertEqual("process_review_comment", result["actions"][0])
+
+    def test_explicitly_incomplete_review_resolution_is_a_blocker(self):
+        state = new_state(objective="until-ready")
+        current = snapshot(jobs=self.green_jobs)
+        current["capabilities"]["review_thread_resolution"] = False
+        result = evaluate_snapshot(current, state, now=1000, authority=set())
+        self.assertTrue(result["terminal"])
+        self.assertEqual("incomplete_review_evidence", result["reason"])
+
+    def test_terminal_provider_state_outranks_pending_work(self):
+        state = new_state(objective="until-stopped")
+        result = evaluate_snapshot(snapshot(state="MERGED", reviews=[{"id": "x"}]), state, now=10, authority=set())
+        self.assertTrue(result["terminal"])
+        self.assertEqual(["stop_pr_closed"], result["actions"])
+
+    def test_retry_budget_is_per_sha(self):
+        state = new_state(objective="until-merged")
+        for _ in range(3):
+            record_retry(state, "abc")
+        failed = [{"name": "test", "status": "failure", "required": True, "failure_kind": "flaky"}]
+        exhausted = evaluate_snapshot(snapshot(jobs=failed), state, now=10, authority={"retry-ci"})
+        self.assertTrue(exhausted["terminal"])
+        self.assertEqual("retry_budget_exhausted", exhausted["reason"])
+        self.assertEqual(0, state["retry_counts"].get("def", 0))
+
+    def test_surfaced_and_claimed_actions_remain_unhandled_after_restart(self):
+        state = new_state(objective="until-merged")
+        mark_action(state, "review:7", "surfaced")
+        first = evaluate_snapshot(snapshot(reviews=[{"id": "review:7"}]), state, now=10, authority=set())
+        self.assertIn("process_review_comment", first["actions"])
+        mark_action(state, "review:7", "claimed")
+        second = evaluate_snapshot(snapshot(reviews=[{"id": "review:7"}]), state, now=20, authority=set())
+        self.assertIn("process_review_comment", second["actions"])
+        mark_action(state, "review:7", "handled")
+        third = evaluate_snapshot(snapshot(reviews=[{"id": "review:7"}]), state, now=30, authority=set())
+        self.assertNotIn("process_review_comment", third["actions"])
+
+    def test_edited_handled_feedback_is_surfaced_again(self):
+        state = new_state(objective="until-merged")
+        first_item = {"id": "review:7", "body": "First request", "updated_at": "2026-08-12T10:00:00Z"}
+        evaluate_snapshot(snapshot(reviews=[first_item]), state, now=10, authority=set())
+        mark_action(state, "review:7", "handled", now=20)
+        unchanged = evaluate_snapshot(snapshot(reviews=[first_item]), state, now=30, authority=set())
+        self.assertNotIn("process_review_comment", unchanged["actions"])
+        edited = {"id": "review:7", "body": "Different request", "updated_at": "2026-08-12T10:05:00Z"}
+        changed = evaluate_snapshot(snapshot(reviews=[edited]), state, now=40, authority=set())
+        self.assertIn("process_review_comment", changed["actions"])
+
+
+class PersistenceAndLeaseTests(unittest.TestCase):
+    def test_atomic_round_trip_and_schema_validation(self):
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "state.json"
+            state = new_state(objective="until-ready")
+            save_state_atomic(path, state)
+            self.assertEqual(state, load_state(path))
+            path.write_text(json.dumps({"schema_version": 999}), encoding="utf-8")
+            with self.assertRaises(ValueError):
+                load_state(path)
+
+    def test_active_lease_conflicts_and_dead_same_host_recovers(self):
+        state = new_state(objective="until-ready")
+        host = socket.gethostname()
+        acquire_lease(state, owner="one", host=host, pid=os.getpid(), now=10, process_alive=lambda _: True)
+        with self.assertRaises(LeaseConflict):
+            acquire_lease(state, owner="two", host=host, pid=999999, now=11, process_alive=lambda _: True)
+        recovered = acquire_lease(
+            state,
+            owner="two",
+            host=host,
+            pid=os.getpid(),
+            now=20,
+            process_alive=lambda _: False,
+        )
+        self.assertEqual("recovered", recovered)
+
+    def test_cross_host_lease_needs_explicit_takeover(self):
+        state = new_state(objective="until-ready")
+        acquire_lease(state, owner="one", host="other-host", pid=1, now=0)
+        with self.assertRaises(LeaseConflict):
+            acquire_lease(state, owner="two", host="this-host", pid=2, now=600)
+        self.assertEqual("taken_over", acquire_lease(state, owner="two", host="this-host", pid=2, now=600, takeover=True))
+
+    def test_file_lease_is_an_atomic_single_owner_claim(self):
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "target.lease"
+            self.assertEqual("acquired", acquire_file_lease(path, owner="one", pid=os.getpid()))
+            with self.assertRaises(LeaseConflict):
+                acquire_file_lease(path, owner="two", pid=os.getpid())
+            release_file_lease(path, owner="one")
+            self.assertEqual("acquired", acquire_file_lease(path, owner="two", pid=os.getpid()))
+
+    def test_file_lease_recovers_a_dead_same_host_owner(self):
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "target.lease"
+            acquire_file_lease(path, owner="dead", pid=999999, process_alive=lambda _: True)
+            result = acquire_file_lease(path, owner="new", pid=os.getpid(), process_alive=lambda _: False)
+            self.assertEqual("recovered", result)
+
+    def test_state_only_updates_record_action_and_retry(self):
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "state.json"
+            save_state_atomic(path, new_state(objective="until-merged"))
+            result = apply_state_updates(path, marks=["review:7=handled"], retry_sha="abc", now=50)
+            loaded = load_state(path)
+            self.assertEqual("handled", loaded["actions"]["review:7"]["phase"])
+            self.assertEqual(1, loaded["retry_counts"]["abc"])
+            self.assertEqual(1, result["retry_count"])
+
+    def test_loaded_state_rejects_a_different_canonical_target(self):
+        state = new_state(objective="until-ready")
+        state["target"] = {
+            "provider": "github", "host": "github.com", "repository": "acme/other",
+            "number": 7, "url": "https://github.com/acme/other/pull/7",
+        }
+        with self.assertRaises(ValueError):
+            validate_state_target(state, snapshot())
+
+
+class TargetIdentityTests(unittest.TestCase):
+    def test_github_url_resolves_enterprise_host_and_repository(self):
+        identity = target_identity("https://github.acme.test/payments/api/pull/42", provider="auto")
+        self.assertEqual("github", identity["provider"])
+        self.assertEqual("github.acme.test", identity["host"])
+        self.assertEqual("payments/api", identity["repository"])
+
+    def test_gitlab_url_resolves_self_managed_host_and_nested_project(self):
+        identity = target_identity("https://gitlab.acme.test/group/subgroup/api/-/merge_requests/9", provider="auto")
+        self.assertEqual("gitlab", identity["provider"])
+        self.assertEqual("gitlab.acme.test", identity["host"])
+        self.assertEqual("group/subgroup/api", identity["repository"])
+
+
+if __name__ == "__main__":
+    unittest.main()

@@ -23,6 +23,8 @@ Keep runtime-behavior work separate from repository review policy, agent skills,
 
 Treat an unqualified request to review code as broad. Select `qp-code-review` as the primary owner and `simplify` as its supporting maintainability specialist. Select `qp-code-review` alone only when the user explicitly limits the review to defects and excludes maintainability.
 
+Keep PR or MR publication, monitoring, explanation, and review as separate outcomes. Use `seda-pr` to create or reconcile the public narrative and bounded metadata. Use `wo-pr` to persistently watch pipeline, review feedback, and provider state under an explicit objective and authority profile. Use `tunmo-pr` to explain the exact current diff without mutation. Use `qp-code-review` only when a review verdict is requested or required by policy.
+
 | Starting situation | Primary route |
 | --- | --- |
 | The user needs help selecting the shortest useful QP route | `alarina` |
@@ -32,6 +34,9 @@ Treat an unqualified request to review code as broad. Select `qp-code-review` as
 | One feature needs clarification, test-backed implementation, and broad review | `alaga` |
 | Changed code or code-local comments need a read-only maintainability review | `simplify` |
 | Bounded code or an active PR or MR needs broad or defect-only review | `qp-code-review`, with `simplify` for broad review |
+| One GitHub PR or GitLab MR needs creation or reconciliation for a zero-context reader | `seda-pr` |
+| One open GitHub PR or GitLab MR needs persistent pipeline and feedback monitoring | `wo-pr` |
+| One GitHub PR or GitLab MR needs a read-only first-reviewer explanation | `tunmo-pr` |
 | A planned or completed refactor needs a parity ledger, or a stateful refactor requires a pre-implementation behavior gate | `audit-refactor-behavior` |
 | One standalone HTML artifact, such as a report, visualization, prototype, demo, or bounded interactive tool, is the requested result | `html-artifact` |
 | Architecture or migration work needs one live plan from decisions through delivery, with a clear next action | `atona` |

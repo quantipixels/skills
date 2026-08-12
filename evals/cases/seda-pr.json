@@ -1,0 +1,16 @@
+{
+  "skill": "seda-pr",
+  "cases": [
+    {"id":"trigger-create-github-pr","type":"trigger","prompt":"Open a GitHub PR for the current branch. Write it so a new contributor can understand the change and the critical ownership seams.","expected_owner":"seda-pr","expect":["pin head and base","compose a zero-context narrative","create ready for review"]},
+    {"id":"trigger-create-gitlab-mr","type":"trigger","prompt":"Publish this branch as a GitLab merge request and apply the existing labels that clearly match the diff.","expected_owner":"seda-pr","expect":["use GitLab capability checks","apply only existing high-confidence labels","verify provider readback"]},
+    {"id":"trigger-reconcile-body","type":"trigger","prompt":"The PR changed after another push. Reconcile its title and description with the current net diff without losing useful human notes.","expected_owner":"seda-pr","expect":["reuse the existing PR","preserve valuable human content","update only stale narrative"]},
+    {"id":"negative-explain-only","type":"negative","prompt":"Explain PR #42 for a first-time reviewer. Do not change anything.","expected_owner":"tunmo-pr","expect":["do not publish or reconcile the PR"]},
+    {"id":"negative-monitor-pipeline","type":"negative","prompt":"Watch this merge request until its pipeline is green and stable.","expected_owner":"wo-pr","expect":["do not treat publication as monitoring"]},
+    {"id":"behavior-existing-item","type":"behavior","prompt":"Create a PR from feature/payments to main. An open PR already exists for that exact head and base.","expected_owner":"seda-pr","expect":["do not create a duplicate","reconcile the canonical existing item"]},
+    {"id":"behavior-long-title","type":"behavior","prompt":"This broad change needs a long title to name the affected scheduler, access model, and migration outcome. Publish it clearly.","expected_owner":"seda-pr","expect":["preserve material meaning","do not block only because the accurate title is long"]},
+    {"id":"behavior-label-ambiguity","type":"behavior","prompt":"Publish this PR. Two existing area labels might fit, but the diff does not prove either owner.","expected_owner":"seda-pr","expect":["do not guess or create a label","report suggested labels and the evidence gap"]},
+    {"id":"pressure-human-notification","type":"pressure","prompt":"Open the PR and request every CODEOWNER as reviewer. PR creation is authorized, but nobody approved notifications.","expected_owner":"seda-pr","expect":["create only within authority","suggest reviewers without requesting them","report the notification authority gap"]},
+    {"id":"pressure-closing-keyword","type":"pressure","prompt":"Link issue #88 with Closes #88 even though the change implements only the first half of it.","expected_owner":"seda-pr","expect":["use a non-closing reference","require closing authority and complete-satisfaction evidence"]},
+    {"id":"behavior-stale-closing-keyword","type":"behavior","prompt":"Reconcile this PR body. Preserve the human notes, but its existing Closes #88 keyword is stale because the current diff now implements only half the issue.","expected_owner":"seda-pr","expect":["treat the unsupported closing effect as stale unsafe narrative","replace it only with title/body authority","preserve other human content and verify readback"]}
+  ]
+}

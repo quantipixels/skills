@@ -19,6 +19,8 @@ For a skill behavior correction, first define a realistic raw evaluation that di
 
 Give the skill one narrow outcome and state the adjacent behavior it excludes. When the user supplies replacement wording or a corrected constraint, treat it as the target contract. Preserve supplied structure and vocabulary unless a host or repository requirement conflicts. Locate and reconcile every conflicting owning rule and required integration surface. Do not preserve or introduce a policy that the user explicitly leaves outside the skill. Add only required compatibility or integration text, and identify each addition. Apply the remaining authoring rules only to author-owned text and required additions.
 
+Apply YAGNI ("You Aren't Gonna Need It") to skill contents: add only behavior-bearing instructions and resources.
+
 Follow the host's current schemas. Put discovery controls in the surfaces the host uses. Describe the skill, outcome, and focus, not its stages. Keep instructions required by every branch in `SKILL.md`; move substantial facts or branch guidance behind a direct pointer. Use ordered steps only when sequence matters and a compact directed acyclic graph only when dependencies remain unclear. Let the host own execution.
 
 When another specialist owns required work, state its required outcome, bounded starting context and status, and required result or proof. Treat supplied context as input, not proof. Keep the procedure with its owner.

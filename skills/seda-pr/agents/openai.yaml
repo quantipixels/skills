@@ -1,0 +1,3 @@
+interface:
+  display_name: "Seda PR"
+  short_description: "Create clear GitHub PRs and GitLab MRs"

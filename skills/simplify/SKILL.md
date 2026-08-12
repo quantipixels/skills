@@ -39,7 +39,7 @@ Flag new code that re-implements existing knowledge or policy. Search shared or 
 
 ### Simplification
 
-Flag unnecessary complexity the candidate adds, including redundant or derivable state, copy-paste with slight variation, speculative generality, deep nesting, and dead code left behind. Name the simpler form that preserves behavior and the required variation.
+Build for proven need — YAGNI. Flag unnecessary complexity the candidate adds, including redundant or derivable state, copy-paste with slight variation, speculative generality, deep nesting, and dead code left behind. Name the simpler form that preserves behavior and the required variation.
 
 Flag values that the candidate passes, stores, or exposes separately only when the owning source can derive them without material cost and the derived form preserves required timing, consistency, lifecycle, and ownership semantics.
 
