@@ -1008,6 +1008,21 @@ class TargetIdentityTests(unittest.TestCase):
 
         self.assertEqual("gitlab.acme.test:8443", identity["host"])
 
+    def test_explicit_url_rejects_conflicting_host_and_repository_overrides(self):
+        for extra in (
+            ["--host", "other.example"],
+            ["--repo", "other/project"],
+        ):
+            with self.subTest(extra=extra):
+                args = parse_args([
+                    "--provider", "gitlab",
+                    "--pr", "https://gitlab.example/group/project/-/merge_requests/7",
+                    *extra,
+                    "--once",
+                ])
+                with self.assertRaisesRegex(ValueError, "conflicts with target URL"):
+                    make_provider(args)
+
     def test_gitlab_trusted_host_flag_reaches_the_provider(self):
         args = parse_args([
             "--provider", "gitlab",

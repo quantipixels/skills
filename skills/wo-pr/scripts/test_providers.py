@@ -133,6 +133,29 @@ class GitHubNormalizationTests(unittest.TestCase):
         self.assertTrue(result["pipeline"]["evidence_complete"])
         self.assertFalse(result["pipeline"]["jobs"][0]["required"])
 
+    def test_known_no_checks_exit_one_is_valid_empty_evidence(self):
+        def run(command, **_kwargs):
+            if is_github_pr_command(command, "view"):
+                payload = {"number": 42, "url": "https://github.com/acme/widgets/pull/42", "state": "OPEN"}
+                return subprocess.CompletedProcess(command, 0, json.dumps(payload), "")
+            if is_github_pr_command(command, "checks"):
+                message = (
+                    "no required checks reported on the 'feature/watch' branch"
+                    if "--required" in command
+                    else "no checks reported on the 'feature/watch' branch"
+                )
+                return subprocess.CompletedProcess(command, 1, "", message)
+            if "graphql" in command:
+                payload = {"data": {"repository": {"pullRequest": {"reviewThreads": {"nodes": []}}}}}
+                return subprocess.CompletedProcess(command, 0, json.dumps(payload), "")
+            return subprocess.CompletedProcess(command, 0, "[]", "")
+
+        with patch("github_provider.subprocess.run", side_effect=run):
+            result = GitHubProvider(repository="acme/widgets").fetch("42")
+
+        self.assertTrue(result["pipeline"]["evidence_complete"])
+        self.assertEqual([], result["pipeline"]["jobs"])
+
     def test_pr_identity_is_lossless(self):
         raw = {
             "number": 42,

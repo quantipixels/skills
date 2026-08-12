@@ -157,6 +157,14 @@ def target_identity(target: str, *, provider: str) -> dict[str, str | None]:
 def make_provider(args: argparse.Namespace):
     identity = target_identity(args.pr, provider=args.provider)
     provider = identity["provider"]
+    if identity["host"] and args.host and _normalized_host(args.host) != _normalized_host(identity["host"]):
+        raise ValueError(
+            f"--host {args.host!r} conflicts with target URL host {identity['host']!r}"
+        )
+    if identity["repository"] and args.repo and args.repo.strip("/") != identity["repository"].strip("/"):
+        raise ValueError(
+            f"--repo {args.repo!r} conflicts with target URL repository {identity['repository']!r}"
+        )
     host = args.host or identity["host"]
     repository = args.repo or identity["repository"]
     if provider == "github":
@@ -170,6 +178,10 @@ def make_provider(args: argparse.Namespace):
         repository=repository,
         trusted_hosts=set(args.trusted_gitlab_host),
     )
+
+
+def _normalized_host(host: str) -> str:
+    return host.lower().rstrip(".")
 
 
 def apply_state_updates(

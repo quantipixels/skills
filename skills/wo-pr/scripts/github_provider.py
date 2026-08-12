@@ -268,6 +268,7 @@ class GitHubProvider:
         checks = self._call(
             ["gh", "--repo", repo_spec, "pr", "checks", str(number), "--json", "name,state,bucket,link,workflow"],
             allowed_codes={0, 1, 8},
+            allowed_empty_messages=("no checks reported",),
         )
         required = self._call(
             ["gh", "--repo", repo_spec, "pr", "checks", str(number), "--required", "--json", "name,state,bucket,link,workflow"],
