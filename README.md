@@ -14,13 +14,11 @@ Install one or more named skills with `--skill <name>`.
 
 ## Uninstall
 
-Remove an installed skill by name:
+Remove all globally installed QP skills:
 
 ```bash
-npx skills remove <skill-name>
+curl -fsSL https://raw.githubusercontent.com/quantipixels/skills/ori/scripts/uninstall.sh | bash
 ```
-
-Add `--global` when you installed the skill globally.
 
 ## Releases
 

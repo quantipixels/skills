@@ -15,17 +15,27 @@ Use the requested path. Ask one location question only when context does not ide
 
 For a skill behavior correction, first define a realistic raw evaluation that distinguishes the target contract from current behavior. Pin and exercise the pre-fix candidate before proposing or making the fix. Record the observed failure or evidence gap. When current behavior passes, do not change it only to restate the contract; identify missing proof or another justified change. When no suitable runner is available, add the evaluation and report that execution gap before proposing a fix.
 
+Good raw evaluation: `Watch PR #42 until review and CI are complete. Report only a state change or a blocker.` Bad leading evaluation: `Use the PR monitor skill because it must keep watching review and CI until both complete; confirm that behavior.` The good input states the user's need without supplying the owner, intended answer, or rationale.
+
 ## 2. Write the skill
 
 Give the skill one narrow outcome and state the adjacent behavior it excludes. When the user supplies replacement wording or a corrected constraint, treat it as the target contract. Preserve supplied structure and vocabulary unless a host or repository requirement conflicts. Locate and reconcile every conflicting owning rule and required integration surface. Do not preserve or introduce a policy that the user explicitly leaves outside the skill. Add only required compatibility or integration text, and identify each addition. Apply the remaining authoring rules only to author-owned text and required additions.
 
 Apply YAGNI ("You Aren't Gonna Need It") to skill contents: add only behavior-bearing instructions and resources.
 
-Follow the host's current schemas. Put discovery controls in the surfaces the host uses. Describe the skill, outcome, and focus, not its stages. Keep instructions required by every branch in `SKILL.md`; move substantial facts or branch guidance behind a direct pointer. Use ordered steps only when sequence matters and a compact directed acyclic graph only when dependencies remain unclear. Let the host own execution.
+For each author-owned change, identify its behavioral benefit. Retain it only when it improves invocation, agent understanding, decision or action accuracy, safety, verification, or outcome reliability. Apply this gate to instructions, descriptions, metadata, structure, examples, references, resources, and scripts. Do not add or revise content for editorial polish alone. When behaviorally stronger wording is less polished, keep the behaviorally stronger wording unless a host requirement or safety concern requires the change.
+
+Follow the host's current schemas. Put discovery controls in the surfaces the host uses. Write a description for skill selection: front-load when to use the skill, its key use case, and its distinguishing trigger terms; state clear scope and boundaries; and exclude broad terms that do not distinguish it from adjacent skills. Describe the skill, outcome, and focus, not its stages.
+
+Good description: `Monitor a pull request through review and CI. Use when user ask to monitor, watch, or babysit the PR`. Bad description: `Help with pull requests, reviews, CI, GitHub, code, and developer workflows.` The bad description lists broad topics without a selection condition, bounded action, or monitoring outcome.
+
+Use an example only when it passes the behavioral benefit gate. Use a good/bad pair when the contrast defines a boundary or prevents a recurring failure. Use a good-only example when one valid form is useful and invalid forms do not make one stable class. Put the example beside its owning rule, label it, and state the one distinction it demonstrates. Keep the rule authoritative; do not make the example an unannounced template or requirement.
+
+Keep instructions required by every branch in `SKILL.md`; move substantial facts or branch guidance behind a direct pointer. Use ordered steps only when sequence matters and a compact directed acyclic graph only when dependencies remain unclear. Let the host own execution.
 
 When another specialist owns required work, state its required outcome, bounded starting context and status, and required result or proof. Treat supplied context as input, not proof. Keep the procedure with its owner.
 
-Choose the owning tier by branch reach. Give each rule one owning location, keep its definition, rules, and caveats together there, and merge repeats. Keep rationale, history, transcripts, and evidence in an owning report or reference. Run a compression pass: retain only text that changes behavior, supplies required knowledge, or enforces safety. Use a familiar, established leading word only when it removes identifiable repeated explanation without changing user-supplied wording. Use short, direct instructions and established terms. Add only used resources and scripts for repeated deterministic work.
+Choose the owning tier by branch reach. Give each rule one owning location, keep its definition, rules, and caveats together there, and merge repeats. Keep rationale, history, transcripts, and evidence in an owning report or reference. Run a final compression pass under the behavioral benefit gate and remove repetition. Use a familiar, established leading word only when it removes identifiable repeated explanation without changing user-supplied wording. Use short, direct instructions and established terms. Add only used resources and scripts for repeated deterministic work.
 
 ## 3. Integrate it
 
