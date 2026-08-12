@@ -21,7 +21,7 @@ from watch_core import (
     save_state_atomic,
     validate_state_target,
 )
-from pr_watch import apply_state_updates, evaluate_and_save_state, make_provider, parse_args, target_identity
+from pr_watch import apply_state_updates, evaluate_and_save_state, main, make_provider, parse_args, target_identity
 
 
 def snapshot(*, sha="abc", jobs=None, state="OPEN", reviews=None, complete=True):
@@ -78,11 +78,39 @@ class PipelineSummaryTests(unittest.TestCase):
         ]
         self.assertEqual("green", pipeline_summary(jobs, evidence_complete=True)["state"])
 
+    def test_required_neutral_check_is_successful_terminal_work(self):
+        jobs = [{"name": "policy", "status": "neutral", "required": True}]
+
+        self.assertEqual("green", pipeline_summary(jobs, evidence_complete=True)["state"])
+
+    def test_required_skipped_check_requests_diagnosis_instead_of_flaky_retry(self):
+        state = new_state(objective="until-merged")
+        result = evaluate_snapshot(
+            snapshot(jobs=[{"name": "policy", "status": "skipped", "required": True}]),
+            state,
+            now=10,
+            authority={"retry-ci"},
+        )
+
+        self.assertEqual(["diagnose_ci_failure"], result["actions"])
+
+    def test_required_neutral_check_can_complete_the_settle_window(self):
+        state = new_state(objective="until-ready")
+        current = snapshot(jobs=[{"name": "policy", "status": "neutral", "required": True}])
+
+        first = evaluate_snapshot(current, state, now=1000, authority=set())
+        threshold = evaluate_snapshot(current, state, now=1300, authority=set())
+        settled = evaluate_snapshot(current, state, now=1360, authority=set())
+
+        self.assertEqual(["ready_settling"], first["actions"])
+        self.assertEqual(["ready_settling"], threshold["actions"])
+        self.assertEqual(["stop_ready"], settled["actions"])
+
 
 class EvaluationTests(unittest.TestCase):
     green_jobs = [{"name": "test", "status": "success", "required": True}]
 
-    def test_until_ready_requires_five_minutes_and_two_snapshots(self):
+    def test_until_ready_requires_a_confirmation_poll_after_five_quiet_minutes(self):
         state = new_state(objective="until-ready")
         first = evaluate_snapshot(snapshot(jobs=self.green_jobs), state, now=1000, authority=set())
         self.assertFalse(first["terminal"])
@@ -91,7 +119,10 @@ class EvaluationTests(unittest.TestCase):
         early = evaluate_snapshot(snapshot(jobs=self.green_jobs), state, now=1299, authority=set())
         self.assertFalse(early["terminal"])
 
-        settled = evaluate_snapshot(snapshot(jobs=self.green_jobs), state, now=1300, authority=set())
+        threshold = evaluate_snapshot(snapshot(jobs=self.green_jobs), state, now=1300, authority=set())
+        self.assertFalse(threshold["terminal"])
+
+        settled = evaluate_snapshot(snapshot(jobs=self.green_jobs), state, now=1360, authority=set())
         self.assertTrue(settled["terminal"])
         self.assertEqual("pipeline_ready", settled["reason"])
 
@@ -151,6 +182,24 @@ class EvaluationTests(unittest.TestCase):
 
         self.assertEqual(["process_review_comment"], result["actions"])
         self.assertIsNone(state["settle"]["green_since"])
+
+    def test_review_after_the_five_minute_threshold_cancels_confirmation(self):
+        state = new_state(objective="until-ready")
+        evaluate_snapshot(snapshot(jobs=self.green_jobs), state, now=1000, authority=set())
+        threshold = evaluate_snapshot(snapshot(jobs=self.green_jobs), state, now=1300, authority=set())
+        self.assertFalse(threshold["terminal"])
+
+        review = evaluate_snapshot(
+            snapshot(jobs=self.green_jobs, reviews=[{"id": "review:8", "body": "Late feedback"}]),
+            state,
+            now=1313,
+            authority=set(),
+        )
+        restarted = evaluate_snapshot(snapshot(jobs=self.green_jobs), state, now=1360, authority=set())
+
+        self.assertEqual(["process_review_comment"], review["actions"])
+        self.assertFalse(restarted["terminal"])
+        self.assertEqual(1360, state["settle"]["green_since"])
 
     def test_new_sha_or_job_resets_settle(self):
         state = new_state(objective="until-ready")
@@ -289,6 +338,30 @@ class PersistenceAndLeaseTests(unittest.TestCase):
             result = acquire_file_lease(path, owner="new", pid=os.getpid(), process_alive=lambda _: False)
             self.assertEqual("recovered", result)
 
+    def test_file_lease_takeover_has_no_unlink_window(self):
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "target.lease"
+            acquire_file_lease(path, owner="old", pid=os.getpid())
+
+            with patch("watch_core.os.unlink", wraps=os.unlink) as unlink:
+                result = acquire_file_lease(path, owner="new", pid=os.getpid(), takeover=True)
+
+            self.assertEqual("taken_over", result)
+            self.assertFalse(any(Path(args[0]) == path for args, _kwargs in unlink.call_args_list))
+            self.assertEqual("new", json.loads(path.read_text(encoding="utf-8"))["owner"])
+
+    def test_watcher_that_lost_file_lease_cannot_renew(self):
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "target.lease"
+            acquire_file_lease(path, owner="one", host="host-one", pid=1)
+            acquire_file_lease(path, owner="two", host="host-two", pid=2, takeover=True)
+
+            with self.assertRaises(LeaseConflict):
+                acquire_file_lease(path, owner="one", host="host-one", pid=1)
+
+            release_file_lease(path, owner="one")
+            self.assertEqual("two", json.loads(path.read_text(encoding="utf-8"))["owner"])
+
     def test_state_only_updates_record_action_and_retry(self):
         with tempfile.TemporaryDirectory() as directory:
             path = Path(directory) / "state.json"
@@ -298,6 +371,162 @@ class PersistenceAndLeaseTests(unittest.TestCase):
             self.assertEqual("handled", loaded["actions"]["review:7"]["phase"])
             self.assertEqual(1, loaded["retry_counts"]["abc"])
             self.assertEqual(1, result["retry_count"])
+
+    def test_recorded_failure_classification_reaches_runtime_policy(self):
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "state.json"
+            state = new_state(objective="until-merged")
+            state["current_head"] = "abc"
+            save_state_atomic(path, state)
+            apply_state_updates(
+                path,
+                marks=[],
+                retry_sha=None,
+                failure_classifications=[["abc", "job-1", "flaky"]],
+                now=50,
+            )
+
+            _state, result = evaluate_and_save_state(
+                path,
+                state,
+                snapshot(jobs=[{"id": "job-1", "name": "test", "status": "failure", "required": True}]),
+                now=60,
+                authority={"retry-ci"},
+            )
+
+            self.assertEqual(["retry_failed_checks"], result["actions"])
+            self.assertEqual("flaky", result["snapshot"]["pipeline"]["jobs"][0]["failure_kind"])
+
+    def test_recording_a_retry_consumes_failure_classifications_for_that_head(self):
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "state.json"
+            state = new_state(objective="until-merged")
+            state["current_head"] = "abc"
+            save_state_atomic(path, state)
+            apply_state_updates(
+                path,
+                marks=[],
+                retry_sha=None,
+                failure_classifications=[["abc", "job-1", "flaky"]],
+                now=50,
+            )
+
+            apply_state_updates(
+                path,
+                marks=[],
+                retry_sha="abc",
+                failure_classifications=[],
+                now=60,
+            )
+
+            self.assertNotIn("abc", load_state(path)["failure_classifications"])
+
+    def test_partial_failure_classification_still_requests_diagnosis(self):
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "state.json"
+            state = new_state(objective="until-merged")
+            state["current_head"] = "abc"
+            save_state_atomic(path, state)
+            apply_state_updates(
+                path,
+                marks=[],
+                retry_sha=None,
+                failure_classifications=[["abc", "job-1", "flaky"]],
+                now=50,
+            )
+
+            _state, result = evaluate_and_save_state(
+                path,
+                state,
+                snapshot(jobs=[
+                    {"id": "job-1", "name": "test", "status": "failure", "required": True},
+                    {"id": "job-2", "name": "lint", "status": "failure", "required": True},
+                ]),
+                now=60,
+                authority={"retry-ci"},
+            )
+
+            self.assertEqual(["diagnose_ci_failure"], result["actions"])
+
+    def test_recorded_classification_drives_branch_and_blocker_actions(self):
+        cases = [
+            ("branch", ["fix_branch_failure"], "branch_failure", False),
+            ("infrastructure", ["user_help_required"], "infrastructure_failure", True),
+            ("ambiguous", ["user_help_required"], "ambiguous_ci_failure", True),
+        ]
+        for kind, actions, reason, terminal in cases:
+            with self.subTest(kind=kind), tempfile.TemporaryDirectory() as directory:
+                path = Path(directory) / "state.json"
+                state = new_state(objective="until-merged")
+                state["current_head"] = "abc"
+                save_state_atomic(path, state)
+                apply_state_updates(
+                    path,
+                    marks=[],
+                    retry_sha=None,
+                    failure_classifications=[["abc", "job-1", kind]],
+                    now=50,
+                )
+
+                _state, result = evaluate_and_save_state(
+                    path,
+                    state,
+                    snapshot(jobs=[
+                        {"id": "job-1", "name": "test", "status": "failure", "required": True}
+                    ]),
+                    now=60,
+                    authority={"retry-ci"},
+                )
+
+                self.assertEqual(actions, result["actions"])
+                self.assertEqual(reason, result["reason"])
+                self.assertEqual(terminal, result["terminal"])
+
+    def test_mixed_branch_and_flaky_classifications_select_the_branch_fix_first(self):
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "state.json"
+            state = new_state(objective="until-merged")
+            state["current_head"] = "abc"
+            save_state_atomic(path, state)
+            apply_state_updates(
+                path,
+                marks=[],
+                retry_sha=None,
+                failure_classifications=[
+                    ["abc", "job-1", "branch"],
+                    ["abc", "job-2", "flaky"],
+                ],
+                now=50,
+            )
+
+            _state, result = evaluate_and_save_state(
+                path,
+                state,
+                snapshot(jobs=[
+                    {"id": "job-1", "name": "test", "status": "failure", "required": True},
+                    {"id": "job-2", "name": "lint", "status": "failure", "required": True},
+                ]),
+                now=60,
+                authority={"retry-ci", "fix-commit-push"},
+            )
+
+            self.assertEqual(["fix_branch_failure"], result["actions"])
+
+    def test_failure_classification_rejects_a_stale_head(self):
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "state.json"
+            state = new_state(objective="until-merged")
+            state["current_head"] = "new-head"
+            save_state_atomic(path, state)
+
+            with self.assertRaisesRegex(ValueError, "does not match current head"):
+                apply_state_updates(
+                    path,
+                    marks=[],
+                    retry_sha=None,
+                    failure_classifications=[["old-head", "job-1", "flaky"]],
+                    now=50,
+                )
 
     def test_watcher_save_reloads_a_state_only_update(self):
         with tempfile.TemporaryDirectory() as directory:
@@ -393,6 +622,87 @@ class TargetIdentityTests(unittest.TestCase):
         provider = make_provider(args)
 
         self.assertEqual({"gitlab.com", "gitlab.acme.test"}, provider.trusted_hosts)
+
+
+class WatchLoopLeaseTests(unittest.TestCase):
+    def test_takeover_is_used_once_and_file_ownership_is_renewed(self):
+        current = snapshot(jobs=[{"name": "test", "status": "pending", "required": True}])
+
+        class Provider:
+            def fetch(self, _target):
+                return current
+
+        file_takeovers = []
+        embedded_takeovers = []
+
+        def acquire(_path, **kwargs):
+            file_takeovers.append(kwargs["takeover"])
+            return "taken_over" if len(file_takeovers) == 1 else "renewed"
+
+        def evaluate(_path, state, _snapshot, **kwargs):
+            embedded_takeovers.append(kwargs["takeover"])
+            state["lease_state"] = "taken_over"
+            state["lease"] = {"owner": "test-owner"}
+            return state, {"terminal": False, "next_poll_seconds": 0}
+
+        with tempfile.TemporaryDirectory() as directory, patch(
+            "pr_watch.make_provider", return_value=Provider()
+        ), patch("pr_watch.acquire_file_lease", side_effect=acquire), patch(
+            "pr_watch.evaluate_and_save_state", side_effect=evaluate
+        ), patch("pr_watch.release_file_lease"), patch("pr_watch.emit"):
+            result = main([
+                "--provider", "github",
+                "--pr", "42",
+                "--repo", "acme/widgets",
+                "--state-file", str(Path(directory) / "state.json"),
+                "--watch",
+                "--takeover",
+                "--max-snapshots", "2",
+            ])
+
+        self.assertEqual(0, result)
+        self.assertEqual([True, False], file_takeovers)
+        self.assertEqual([True, False], embedded_takeovers)
+
+    def test_watcher_stops_when_it_loses_file_ownership_before_the_second_poll(self):
+        current = snapshot(jobs=[{"name": "test", "status": "pending", "required": True}])
+
+        class Provider:
+            def fetch(self, _target):
+                return current
+
+        file_takeovers = []
+        evaluations = []
+
+        def acquire(_path, **kwargs):
+            file_takeovers.append(kwargs["takeover"])
+            if len(file_takeovers) == 2:
+                raise LeaseConflict("lease replaced by another watcher")
+            return "taken_over"
+
+        def evaluate(_path, state, _snapshot, **kwargs):
+            evaluations.append(kwargs["takeover"])
+            state["lease"] = {"owner": "test-owner"}
+            return state, {"terminal": False, "next_poll_seconds": 0}
+
+        with tempfile.TemporaryDirectory() as directory, patch(
+            "pr_watch.make_provider", return_value=Provider()
+        ), patch("pr_watch.acquire_file_lease", side_effect=acquire), patch(
+            "pr_watch.evaluate_and_save_state", side_effect=evaluate
+        ), patch("pr_watch.release_file_lease"), patch("pr_watch.emit"):
+            result = main([
+                "--provider", "github",
+                "--pr", "42",
+                "--repo", "acme/widgets",
+                "--state-file", str(Path(directory) / "state.json"),
+                "--watch",
+                "--takeover",
+                "--max-snapshots", "2",
+            ])
+
+        self.assertEqual(3, result)
+        self.assertEqual([True, False], file_takeovers)
+        self.assertEqual([True], evaluations)
 
 
 if __name__ == "__main__":

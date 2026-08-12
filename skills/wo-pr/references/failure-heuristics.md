@@ -2,6 +2,8 @@
 
 Use this checklist only after a snapshot identifies failed required work. Read the failed job logs before classifying.
 
+Record the result against the exact watcher state, head SHA, and provider job ID with `--record-failure-kind`. The watcher must not infer flaky or infrastructure status from a terminal provider status alone. It rejects a stale head and leaves any unclassified failed job on the diagnosis path.
+
 ## Branch-related
 
 Prefer branch-related when logs point to changed code or an affected contract: compile, type, lint, static analysis, unit, integration, snapshot, migration, packaging, or compatibility failure in the candidate path. Reproduce or obtain another direct proof when practical. Use the smallest owning implementation workflow and rerun affected proof.

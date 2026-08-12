@@ -23,9 +23,11 @@ except ImportError:  # pragma: no cover - exercised on Windows only
 
 SCHEMA_VERSION = 1
 SETTLE_SECONDS = 300
+SETTLE_CONFIRM_SECONDS = 60
 MAX_RETRIES_PER_SHA = 3
 LEASE_STALE_SECONDS = 300
 ACTION_PHASES = {"surfaced": 1, "claimed": 2, "handled": 3}
+FAILURE_KINDS = {"branch", "flaky", "infrastructure", "ambiguous"}
 
 
 class LeaseConflict(RuntimeError):
@@ -40,8 +42,14 @@ def new_state(*, objective: str) -> dict[str, Any]:
         "objective": objective,
         "target": {},
         "current_head": None,
-        "settle": {"fingerprint": None, "green_since": None, "snapshots": 0},
+        "settle": {
+            "fingerprint": None,
+            "green_since": None,
+            "snapshots": 0,
+            "confirmation_due_since": None,
+        },
         "retry_counts": {},
+        "failure_classifications": {},
         "actions": {},
         "lease": None,
         "read_errors": {"consecutive": 0, "last": None},
@@ -134,7 +142,10 @@ def pipeline_summary(
                 incomplete = True
         elif status == "success":
             continue
-        elif status in {"neutral", "skipped"}:
+        elif status == "neutral":
+            if required is None:
+                incomplete = True
+        elif status == "skipped":
             if required is True:
                 failed = True
             elif required is None:
@@ -199,6 +210,51 @@ def record_retry(state: dict[str, Any], head_sha: str) -> int:
     retries = state.setdefault("retry_counts", {})
     retries[head_sha] = int(retries.get(head_sha, 0)) + 1
     return retries[head_sha]
+
+
+def record_failure_classification(
+    state: dict[str, Any],
+    head_sha: str,
+    job_id: str,
+    kind: str,
+    *,
+    now: float | None = None,
+) -> None:
+    if not head_sha or not job_id:
+        raise ValueError("failure classification requires a head SHA and job ID")
+    if kind not in FAILURE_KINDS:
+        raise ValueError(f"unknown failure kind: {kind}")
+    current_head = state.get("current_head")
+    if not current_head:
+        raise ValueError("state has no current head to classify")
+    if str(current_head) != head_sha:
+        raise ValueError(
+            f"failure classification head {head_sha!r} does not match current head {current_head!r}"
+        )
+    by_head = state.setdefault("failure_classifications", {}).setdefault(head_sha, {})
+    by_head[job_id] = {
+        "kind": kind,
+        "recorded_at": now if now is not None else time.time(),
+    }
+
+
+def apply_failure_classifications(
+    snapshot: dict[str, Any], state: dict[str, Any]
+) -> list[dict[str, str]]:
+    head_sha = str(snapshot.get("head", {}).get("sha") or "")
+    saved = state.setdefault("failure_classifications", {}).get(head_sha, {})
+    applied = []
+    for job in snapshot.get("pipeline", {}).get("jobs", []):
+        job_id = str(job.get("id") or "")
+        classification = saved.get(job_id)
+        if not classification:
+            continue
+        kind = classification.get("kind")
+        if kind not in FAILURE_KINDS:
+            continue
+        job["failure_kind"] = kind
+        applied.append({"head_sha": head_sha, "job_id": job_id, "kind": kind})
+    return applied
 
 
 def _review_action(snapshot: dict[str, Any], state: dict[str, Any], *, now: float) -> tuple[list[str], list[str]]:
@@ -292,16 +348,24 @@ def evaluate_snapshot(
             if str(job.get("status", "")).lower() in {"failure", "failed", "cancelled", "canceled", "timed_out", "action_required"}
             and not job.get("allow_failure")
         ]
-        failure_kinds = {job.get("failure_kind") for job in failed_jobs if job.get("failure_kind")}
+        failure_kinds = [job.get("failure_kind") for job in failed_jobs]
+        if not failed_jobs:
+            return _result(state, snapshot, now, ["diagnose_ci_failure"], terminal=False, reason="pipeline_failed", next_poll=30)
         if "infrastructure" in failure_kinds:
             return _result(state, snapshot, now, ["user_help_required"], terminal=True, reason="infrastructure_failure", next_poll=0)
-        if failure_kinds and failure_kinds <= {"flaky"}:
+        if "ambiguous" in failure_kinds:
+            return _result(state, snapshot, now, ["user_help_required"], terminal=True, reason="ambiguous_ci_failure", next_poll=0)
+        if any(kind is None for kind in failure_kinds):
+            return _result(state, snapshot, now, ["diagnose_ci_failure"], terminal=False, reason="pipeline_failed", next_poll=30)
+        if set(failure_kinds) <= {"flaky"}:
             used = int(state.setdefault("retry_counts", {}).get(head_sha, 0))
             if used >= MAX_RETRIES_PER_SHA:
                 return _result(state, snapshot, now, ["stop_exhausted_retries"], terminal=True, reason="retry_budget_exhausted", next_poll=0)
             if "retry-ci" not in authority:
                 return _result(state, snapshot, now, ["user_help_required"], terminal=True, reason="retry_authority_required", next_poll=0)
             return _result(state, snapshot, now, ["retry_failed_checks"], terminal=False, reason="flaky_failure", next_poll=30)
+        if "branch" in failure_kinds:
+            return _result(state, snapshot, now, ["fix_branch_failure"], terminal=False, reason="branch_failure", next_poll=30)
         return _result(state, snapshot, now, ["diagnose_ci_failure"], terminal=False, reason="pipeline_failed", next_poll=30)
 
     if pipeline_state == "no_pipeline_evidence":
@@ -342,14 +406,23 @@ def evaluate_snapshot(
     fingerprint = _readiness_fingerprint(snapshot)
     settle = state.setdefault("settle", {})
     if settle.get("fingerprint") != fingerprint:
-        settle.update({"fingerprint": fingerprint, "green_since": now, "snapshots": 1})
+        settle.update({
+            "fingerprint": fingerprint,
+            "green_since": now,
+            "snapshots": 1,
+            "confirmation_due_since": None,
+        })
     else:
         settle["snapshots"] = int(settle.get("snapshots", 0)) + 1
 
     if objective == "until-ready":
         elapsed = now - float(settle["green_since"])
         if elapsed >= SETTLE_SECONDS and int(settle["snapshots"]) >= 2:
-            return _result(state, snapshot, now, ["stop_ready"], terminal=True, reason="pipeline_ready", next_poll=0)
+            confirmation_due_since = settle.get("confirmation_due_since")
+            if confirmation_due_since is None:
+                settle["confirmation_due_since"] = now
+            elif now - float(confirmation_due_since) >= SETTLE_CONFIRM_SECONDS:
+                return _result(state, snapshot, now, ["stop_ready"], terminal=True, reason="pipeline_ready", next_poll=0)
         return _result(state, snapshot, now, ["ready_settling"], terminal=False, reason="pipeline_green_settling", next_poll=60)
 
     return _result(state, snapshot, now, ["ready_to_merge"], terminal=False, reason="pipeline_green", next_poll=120)
@@ -378,7 +451,12 @@ def _readiness_blocker(snapshot: dict[str, Any]) -> tuple[str, str] | None:
 
 
 def _reset_settle(state: dict[str, Any]) -> None:
-    state["settle"] = {"fingerprint": None, "green_since": None, "snapshots": 0}
+    state["settle"] = {
+        "fingerprint": None,
+        "green_since": None,
+        "snapshots": 0,
+        "confirmation_due_since": None,
+    }
 
 
 def _result(
@@ -470,65 +548,55 @@ def acquire_file_lease(
     takeover: bool = False,
     process_alive: Callable[[int], bool] | None = None,
 ) -> str:
-    """Claim one watcher with an atomic create-if-absent lease file."""
+    """Claim one watcher while serializing inspection and atomic replacement."""
     lease_path = Path(path)
     lease_path.parent.mkdir(parents=True, exist_ok=True)
     host = host or socket.gethostname()
     pid = pid or os.getpid()
     now = now if now is not None else time.time()
     lease = {"owner": owner, "host": host, "pid": pid, "heartbeat": now}
-    recovered = False
-    while True:
+    with state_file_lock(lease_path):
         try:
-            descriptor = os.open(lease_path, os.O_WRONLY | os.O_CREAT | os.O_EXCL, 0o600)
-        except FileExistsError:
-            try:
-                with lease_path.open("r", encoding="utf-8") as handle:
-                    existing = json.load(handle)
-            except (OSError, ValueError) as error:
-                raise LeaseConflict(f"cannot verify existing lease {lease_path}: {error}") from error
-            if existing.get("owner") == owner:
-                save_state_atomic(lease_path, lease)
-                return "renewed"
-            checker = process_alive or _process_alive
-            dead_same_host = (
-                existing.get("host") == host
-                and not checker(int(existing.get("pid") or 0))
+            with lease_path.open("r", encoding="utf-8") as handle:
+                existing = json.load(handle)
+        except FileNotFoundError:
+            save_state_atomic(lease_path, lease)
+            return "acquired"
+        except (OSError, ValueError) as error:
+            raise LeaseConflict(f"cannot verify existing lease {lease_path}: {error}") from error
+        if existing.get("owner") == owner:
+            save_state_atomic(lease_path, lease)
+            return "renewed"
+        checker = process_alive or _process_alive
+        dead_same_host = (
+            existing.get("host") == host
+            and not checker(int(existing.get("pid") or 0))
+        )
+        if not takeover and not dead_same_host:
+            age = now - float(existing.get("heartbeat") or 0)
+            raise LeaseConflict(
+                f"target lease is owned by {existing.get('owner')} on {existing.get('host')} "
+                f"(pid {existing.get('pid')}, heartbeat age {age:.0f}s); explicit takeover required"
             )
-            if not takeover and not dead_same_host:
-                age = now - float(existing.get("heartbeat") or 0)
-                raise LeaseConflict(
-                    f"target lease is owned by {existing.get('owner')} on {existing.get('host')} "
-                    f"(pid {existing.get('pid')}, heartbeat age {age:.0f}s); explicit takeover required"
-                )
-            try:
-                os.unlink(lease_path)
-            except FileNotFoundError:
-                pass
-            recovered = dead_same_host and not takeover
-            continue
-        with os.fdopen(descriptor, "w", encoding="utf-8") as handle:
-            json.dump(lease, handle, sort_keys=True, separators=(",", ":"))
-            handle.write("\n")
-            handle.flush()
-            os.fsync(handle.fileno())
+        save_state_atomic(lease_path, lease)
         if takeover:
             return "taken_over"
-        return "recovered" if recovered else "acquired"
+        return "recovered"
 
 
 def release_file_lease(path: str | Path, *, owner: str) -> None:
     lease_path = Path(path)
-    try:
-        with lease_path.open("r", encoding="utf-8") as handle:
-            existing = json.load(handle)
-    except FileNotFoundError:
-        return
-    if existing.get("owner") == owner:
+    with state_file_lock(lease_path):
         try:
-            os.unlink(lease_path)
+            with lease_path.open("r", encoding="utf-8") as handle:
+                existing = json.load(handle)
         except FileNotFoundError:
-            pass
+            return
+        if existing.get("owner") == owner:
+            try:
+                os.unlink(lease_path)
+            except FileNotFoundError:
+                pass
 
 
 def _process_alive(pid: int) -> bool:

@@ -21,6 +21,7 @@ from watch_core import (
     LeaseConflict,
     acquire_file_lease,
     acquire_lease,
+    apply_failure_classifications,
     canonical_state_key,
     clear_read_errors,
     default_user_state_directory,
@@ -29,6 +30,7 @@ from watch_core import (
     mark_action,
     new_state,
     record_read_error,
+    record_failure_classification,
     record_retry,
     release_file_lease,
     release_lease,
@@ -66,8 +68,16 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser.add_argument("--max-snapshots", type=int, help="Bound a watch for diagnostics or host limits")
     parser.add_argument("--mark-action", action="append", default=[], metavar="ID=PHASE")
     parser.add_argument("--record-retry", metavar="HEAD_SHA")
+    parser.add_argument(
+        "--record-failure-kind",
+        action="append",
+        nargs=3,
+        default=[],
+        metavar=("HEAD_SHA", "JOB_ID", "KIND"),
+        help="Persist one exact-head job diagnosis: branch, flaky, infrastructure, or ambiguous",
+    )
     args = parser.parse_args(argv)
-    state_only = bool(args.mark_action or args.record_retry)
+    state_only = bool(args.mark_action or args.record_retry or args.record_failure_kind)
     if state_only:
         if args.once or args.watch:
             parser.error("state updates cannot be combined with --once or --watch")
@@ -133,6 +143,7 @@ def apply_state_updates(
     *,
     marks: list[str],
     retry_sha: str | None,
+    failure_classifications: list[list[str]] | None = None,
     now: float | None = None,
 ) -> dict[str, Any]:
     state_path = Path(path)
@@ -152,6 +163,18 @@ def apply_state_updates(
             mark_action(state, action_id, phase, now=timestamp)
             applied.append({"id": action_id, "phase": phase})
         retry_count = record_retry(state, retry_sha) if retry_sha else None
+        if retry_sha:
+            state.setdefault("failure_classifications", {}).pop(retry_sha, None)
+        recorded_failures = []
+        for head_sha, job_id, kind in failure_classifications or []:
+            record_failure_classification(
+                state,
+                head_sha,
+                job_id,
+                kind,
+                now=timestamp,
+            )
+            recorded_failures.append({"head_sha": head_sha, "job_id": job_id, "kind": kind})
         save_state_atomic(state_path, state)
     return {
         "schema_version": state["schema_version"],
@@ -159,6 +182,7 @@ def apply_state_updates(
         "marked_actions": applied,
         "retry_sha": retry_sha,
         "retry_count": retry_count,
+        "recorded_failure_classifications": recorded_failures,
     }
 
 
@@ -179,6 +203,7 @@ def evaluate_and_save_state(
     with state_file_lock(state_path):
         state = load_state(state_path) or state
         clear_read_errors(state)
+        applied_failure_classifications = apply_failure_classifications(snapshot, state)
         state["authority_observed"] = sorted(authority)
         if lease_state is not None:
             state["lease_state"] = lease_state
@@ -192,6 +217,7 @@ def evaluate_and_save_state(
             no_pipeline_expected=no_pipeline_expected,
         )
         save_state_atomic(state_path, state)
+        result["applied_failure_classifications"] = applied_failure_classifications
     return state, result
 
 
@@ -227,13 +253,14 @@ def emit(payload: dict[str, Any]) -> None:
 
 def main(argv: list[str] | None = None) -> int:
     args = parse_args(argv)
-    if args.mark_action or args.record_retry:
+    if args.mark_action or args.record_retry or args.record_failure_kind:
         try:
             emit(
                 apply_state_updates(
                     args.state_file,
                     marks=args.mark_action,
                     retry_sha=args.record_retry,
+                    failure_classifications=args.record_failure_kind,
                 )
             )
             return 0
@@ -277,6 +304,10 @@ def main(argv: list[str] | None = None) -> int:
                     raise ValueError(
                         f"state objective is {state['objective']!r}; use a new state file or the same objective"
                     )
+            else:
+                file_lease_state = acquire_file_lease(
+                    lease_path, owner=owner, now=now, takeover=False
+                )
             state, result = evaluate_and_save_state(
                 state_path,
                 state,
@@ -285,8 +316,8 @@ def main(argv: list[str] | None = None) -> int:
                 authority=set(args.authority),
                 no_pipeline_expected=args.no_pipeline_expected,
                 owner=owner,
-                takeover=args.takeover,
-                lease_state=file_lease_state if snapshots == 0 else None,
+                takeover=args.takeover and snapshots == 0,
+                lease_state=file_lease_state,
             )
             result["state_file"] = str(state_path)
             result["lease_state"] = state.get("lease_state")
