@@ -12,9 +12,11 @@ Read this reference only after `SKILL.md` selects an identified GitHub PR or Git
 
 Never create a duplicate, force-push, infer a write target from ambiguous remotes, or use an older generated body after the head changes.
 
+A target URL does not establish host trust. Run every `gh` or `glab` command in this reference through `python3 scripts/provider_cli.py --provider <github|gitlab> --host <host> -- <command>`. The helper removes generic provider tokens before it contacts a host other than `github.com` or `gitlab.com`. For an administrator-confirmed enterprise or self-managed host that depends on generic token environment variables, add `--trusted-host <host>` before `--`. Do not bypass the helper for authentication checks, reads, writes, pagination, REST, or GraphQL.
+
 ## GitHub
 
-Use `gh auth status --hostname <host>`. Use `gh repo view`, `gh pr list`, `gh pr view`, `gh label list`, and paginated `gh api` reads for identity, default branch, current narrative, files, labels, reviews, and linked issue context.
+Through the host-trust helper, use `gh auth status --hostname <host>`. Use `gh repo view`, `gh pr list`, `gh pr view`, `gh label list`, and paginated `gh api` reads for identity, default branch, current narrative, files, labels, reviews, and linked issue context.
 
 Create a ready PR with `gh pr create` and a body file. Reconcile title/body and existing labels with `gh pr edit`. Use the REST or GraphQL API only when the normal command does not preserve the required semantics. Reviewer requests and assignments are separate notification capabilities. Read review-thread state through GraphQL when resolution identity matters.
 
@@ -22,7 +24,7 @@ After a write, read the PR by canonical number and verify URL, state, base, head
 
 ## GitLab
 
-Use `glab auth status --hostname <host>`. Prefer `glab api` for exact project and MR semantics. URL-encode the project path when addressing `/projects/{project}`. Read the project default branch, merge requests filtered by source and target branch, MR details, changes or diffs, labels, discussions, approvals, and linked issues through paginated endpoints.
+Through the host-trust helper, use `glab auth status --hostname <host>`. Prefer `glab api` for exact project and MR semantics. URL-encode the project path when addressing `/projects/{project}`. Read the project default branch, merge requests filtered by source and target branch, MR details, changes or diffs, labels, discussions, approvals, and linked issues through paginated endpoints.
 
 Create through `POST /projects/{project}/merge_requests` with source branch, target branch, title, description, and `draft=false`. Reconcile through `PUT /projects/{project}/merge_requests/{iid}`. Apply only existing labels. Reviewer and assignee fields notify or attribute people and require their own authority.
 
