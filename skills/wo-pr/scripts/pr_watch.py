@@ -271,6 +271,7 @@ def main(argv: list[str] | None = None) -> int:
     owner = f"{socket.gethostname()}:{os.getpid()}:{uuid.uuid4().hex[:8]}"
     state_path: Path | None = None
     state: dict[str, Any] | None = None
+    initial_read_state = new_state(objective=args.objective)
     lease_path: Path | None = None
     snapshots = 0
     try:
@@ -280,8 +281,17 @@ def main(argv: list[str] | None = None) -> int:
                 snapshot = provider.fetch(args.pr)
             except Exception as error:  # provider errors are emitted as state, not pipeline truth
                 if state is None:
-                    emit({"terminal": True, "reason": "initial_provider_read_failed", "error": str(error)})
-                    return 2
+                    read_result = record_read_error(initial_read_state, str(error), now=now)
+                    emit({
+                        "schema_version": initial_read_state["schema_version"],
+                        "actions": ["provider_read_failed"],
+                        "error": str(error),
+                        **read_result,
+                    })
+                    if args.once or read_result["terminal"]:
+                        return 2
+                    time.sleep(read_result["next_poll_seconds"])
+                    continue
                 with state_file_lock(state_path):
                     state = load_state(state_path) or state
                     read_result = record_read_error(state, str(error), now=now)

@@ -219,6 +219,45 @@ class EvaluationTests(unittest.TestCase):
 
         self.assertFalse(result["terminal"])
         self.assertEqual(1300, state["settle"]["green_since"])
+        self.assertTrue(result["changed"])
+
+    def test_new_feedback_identity_is_a_material_change(self):
+        state = new_state(objective="until-ready")
+        first = {"id": "review:1", "body": "First request"}
+        initial = evaluate_snapshot(snapshot(reviews=[first]), state, now=1000, authority=set())
+        self.assertTrue(initial["changed"])
+
+        second = {"id": "review:2", "body": "Second request"}
+        changed = evaluate_snapshot(
+            snapshot(reviews=[first, second]), state, now=1010, authority=set()
+        )
+
+        self.assertEqual(["process_review_comment"], changed["actions"])
+        self.assertTrue(changed["changed"])
+
+    def test_conflict_requests_bounded_branch_fix_with_default_authority(self):
+        state = new_state(objective="until-ready")
+        current = snapshot(jobs=self.green_jobs)
+        current["mergeability"] = "CONFLICTING"
+
+        result = evaluate_snapshot(
+            current, state, now=1000, authority={"fix-commit-push"}
+        )
+
+        self.assertEqual(["fix_branch_conflict"], result["actions"])
+        self.assertFalse(result["terminal"])
+        self.assertEqual("branch_conflict", result["reason"])
+
+    def test_conflict_requires_user_help_without_branch_fix_authority(self):
+        state = new_state(objective="until-ready")
+        current = snapshot(jobs=self.green_jobs)
+        current["mergeability"] = "CONFLICTING"
+
+        result = evaluate_snapshot(current, state, now=1000, authority={"observe"})
+
+        self.assertEqual(["user_help_required"], result["actions"])
+        self.assertTrue(result["terminal"])
+        self.assertEqual("mergeability_blocker", result["reason"])
 
     def test_failed_snapshot_breaks_green_settle_window(self):
         state = new_state(objective="until-ready")
@@ -668,6 +707,58 @@ class TargetIdentityTests(unittest.TestCase):
 
 
 class WatchLoopLeaseTests(unittest.TestCase):
+    def test_watch_retries_two_initial_provider_read_failures(self):
+        current = snapshot(jobs=[{"name": "test", "status": "pending", "required": True}])
+
+        class Provider:
+            calls = 0
+
+            def fetch(self, _target):
+                self.calls += 1
+                if self.calls < 3:
+                    raise RuntimeError(f"transient-{self.calls}")
+                return current
+
+        provider = Provider()
+        emissions = []
+        with tempfile.TemporaryDirectory() as directory, patch(
+            "pr_watch.make_provider", return_value=provider
+        ), patch("pr_watch.time.sleep"), patch("pr_watch.emit", side_effect=emissions.append):
+            result = main([
+                "--provider", "github",
+                "--pr", "42",
+                "--repo", "acme/widgets",
+                "--state-file", str(Path(directory) / "state.json"),
+                "--watch",
+                "--max-snapshots", "1",
+            ])
+
+        self.assertEqual(0, result)
+        self.assertEqual(3, provider.calls)
+        self.assertEqual([1, 2], [row["consecutive"] for row in emissions[:2]])
+
+    def test_watch_stops_after_three_initial_provider_read_failures(self):
+        class Provider:
+            calls = 0
+
+            def fetch(self, _target):
+                self.calls += 1
+                raise RuntimeError(f"transient-{self.calls}")
+
+        provider = Provider()
+        emissions = []
+        with patch("pr_watch.make_provider", return_value=provider), patch(
+            "pr_watch.time.sleep"
+        ), patch("pr_watch.emit", side_effect=emissions.append):
+            result = main([
+                "--provider", "github", "--pr", "42", "--repo", "acme/widgets", "--watch"
+            ])
+
+        self.assertEqual(2, result)
+        self.assertEqual(3, provider.calls)
+        self.assertTrue(emissions[-1]["terminal"])
+        self.assertEqual("provider_read_blocker", emissions[-1]["reason"])
+
     def test_takeover_is_used_once_and_file_ownership_is_renewed(self):
         current = snapshot(jobs=[{"name": "test", "status": "pending", "required": True}])
 

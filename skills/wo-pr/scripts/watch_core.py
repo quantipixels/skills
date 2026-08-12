@@ -340,6 +340,29 @@ def evaluate_snapshot(
             next_poll=0,
         )
 
+    mergeability = str(snapshot.get("mergeability") or "").lower()
+    if mergeability in {"conflicting", "cannot_be_merged", "conflict", "conflicts"}:
+        _reset_settle(state)
+        if "fix-commit-push" in authority:
+            return _result(
+                state,
+                snapshot,
+                now,
+                ["fix_branch_conflict"],
+                terminal=False,
+                reason="branch_conflict",
+                next_poll=30,
+            )
+        return _result(
+            state,
+            snapshot,
+            now,
+            ["user_help_required"],
+            terminal=True,
+            reason="mergeability_blocker",
+            next_poll=0,
+        )
+
     pipeline_state = summary["state"]
     if pipeline_state == "failed":
         _reset_settle(state)
@@ -478,6 +501,30 @@ def _result(
         "mergeability": snapshot.get("mergeability"),
         "actions": actions,
         "reason": reason,
+        "jobs": sorted(
+            [
+                {
+                    "id": job.get("id"),
+                    "name": job.get("name"),
+                    "status": job.get("status"),
+                    "required": job.get("required"),
+                    "allow_failure": bool(job.get("allow_failure")),
+                }
+                for job in snapshot.get("pipeline", {}).get("jobs", [])
+            ],
+            key=lambda job: (str(job.get("name") or ""), str(job.get("id") or "")),
+        ),
+        "feedback": sorted(
+            [
+                {
+                    "id": str(item.get("id") or ""),
+                    "fingerprint": _review_fingerprint(item),
+                }
+                for item in snapshot.get("review_items", [])
+                if item.get("id")
+            ],
+            key=lambda item: item["id"],
+        ),
     }
     change_key = hashlib.sha256(json.dumps(change_payload, sort_keys=True).encode("utf-8")).hexdigest()
     changed = change_key != state.get("last_change_key")

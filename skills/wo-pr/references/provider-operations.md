@@ -10,6 +10,7 @@ The bundled watcher performs reads only. Use these operations after the skill se
 - Record each successful mutation ID or URL before the next write.
 - Do not retry a partial write unless readback proves the operation is absent or idempotent.
 - Never force-push, approve, merge, close, reopen, notify unrelated humans, or mutate from an ambiguous target.
+- With `fix-commit-push` authority, treat a clear head-versus-base conflict as branch work. Fetch the exact remote refs and use a non-rewriting integration method. Stop when resolution intent is ambiguous or unrelated changes would be required.
 
 ## GitHub
 
