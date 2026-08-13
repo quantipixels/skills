@@ -47,6 +47,7 @@ Use alarina to choose the right QP skill for this request:
 | `wo-pr` | An open PR or MR needs active CI and feedback stewardship through readiness and later changes until explicit stop or closure |
 | `tunmo-pr` | A PR or MR needs a read-only explanation for a first-time reviewer |
 | `triage-issue` | One issue or bug report needs local-first evidence assessment before implementation |
+| `seda-ticket` | Settled plan phases and review candidates need a checked fully local ticket graph |
 | `audit-refactor-behavior` | A refactor or rewrite needs a behavior-parity ledger |
 | `html-artifact` | A report, visualization, prototype, demo, or bounded interactive tool needs one checked HTML artifact |
 

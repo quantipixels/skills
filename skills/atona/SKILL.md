@@ -83,6 +83,8 @@ Before setting the plan to `Planned`, and after final Arojinle confirmation, run
 
 Set the plan to `Planned` only when the recommendation covers all in-scope ownership and behavior and the implementer needs no invented material requirement. Otherwise, keep it in `Draft`. This includes an open, pending, stale, contradictory, or missing gate; a waiting prerequisite; a blocking deferral; missing evidence or decision; or invalid Arojinle identity, coverage, or closure. A non-blocking deferral needs an owner and trigger and must not force material invention. Approval covers only listed decisions.
 
+When the plan has multiple review candidates, candidate dependencies, multiple implementers, or a multi-session handoff, or when the user requests local tickets, use `seda-ticket` before setting the plan to `Planned`. Give it the exact source semantic plan revision; owner-supplied stable phase and candidate keys; canonical local phase and candidate references; and settled phases, candidates, candidate-edge expansion, acceptance, proof, rollback, scope, and owners. Require one current local ticket per review candidate, a phase parent for every multi-candidate phase, explicit candidate dependency direction, and a verified result against the exact plan. Have `html-artifact` apply Seda Ticket's checked ticket-section replacement atomically without advancing the semantic revision for that derived edit, then return the exact artifact and whole-artifact digest to Seda Ticket for verification. Keep the plan in `Draft` when the graph is missing, incomplete, stale, cyclic, or mismatched. Atona retains readiness and plan state; the ticket graph is a derived coordination view.
+
 ## 3. Track authorized delivery
 
 Keep the request, decisions, evidence, risks, phases, candidate, proof gaps, documentation destinations, and lifecycle states current in the plan. Remove stale guidance and redundant snapshots.
@@ -94,6 +96,8 @@ Translate each delivery phase into one or more stable, self-contained review can
 Use `audit-refactor-behavior` before a stateful refactor that can change transitions, ordering, locking, retries, idempotency, ownership, or cross-entry behavior. Use `alaga` for each full feature candidate or `tdd` for bounded test-first implementation.
 
 For work owned by another skill, record its owner, scope, evidence, blocked outcome, and required result. Keep test, review, build, commit, and publication procedures with their owners.
+
+Treat internal Alaga tasks, TDD slices, tests, and commits as delivery detail, not Atona tickets. Record them only when the plan promotes the work to a blocker, handoff boundary, material plan change, or independent review candidate. Accept optional exact-current Git evidence returned by a delivery owner without prescribing or performing Git operations.
 
 Verify each specialist result against the current plan identity and candidate before recording state or evidence. Reject a mismatch as stale and rerun affected readiness or closure checks. Set implementation to `Complete` only after `qp-code-review` returns `RECOMMEND_ACCEPT` for every final in-scope review candidate and phase-level integration proof has no blocking evidence gap. Reuse a verified current result. Skip this gate when implementation is `Not Required`.
 

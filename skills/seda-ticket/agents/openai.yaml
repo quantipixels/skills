@@ -1,0 +1,3 @@
+interface:
+  display_name: "Seda Ticket"
+  short_description: "Build checked local tickets from settled plans"
