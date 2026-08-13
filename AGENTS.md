@@ -6,7 +6,7 @@ Do not add or generate a `default_prompt` field in skill agent metadata.
 
 ## Validate skills on demand
 
-Use `ko-skill` to validate every material skill change in fresh subagent sessions with no inherited conversation context. Do not add prompt eval suites or new behavioral test cases to this repository. Before deleting an old eval, move each unique current expectation into its owning skill and record obsolete or redundant expectations in the delivery record. Keep an existing deterministic test only while its owning source behavior remains.
+Use `ko-skill` for proportionate validation. Define the minimum proof before editing and always check changed structural surfaces directly. Use the smallest useful set of fresh no-context subagent sessions only when material behavioral uncertainty remains. If validation scope grows materially, stop and ask whether to simplify, defer, or continue. Do not add prompt eval suites or new behavioral test cases to this repository. Before deleting an old eval, move each unique current expectation into its owning skill and record obsolete or redundant expectations in the delivery record. Keep an existing deterministic test only while its owning source behavior remains.
 
 ## Keep provider operations local and safe
 

@@ -2,4 +2,4 @@
 "qp-skills": minor
 ---
 
-Use platform-supported fresh subagent sessions for exact-candidate skill validation. Clarify `ko-skill` ownership, remove conflicting `default_prompt` guidance, compress its authoring rules without removing capability, and add focused Good/Bad examples for evaluation independence, change authority, and skill selection.
+Make `ko-skill` validation proportionate: check structural surfaces directly, use the smallest fresh-session proof that resolves material behavioral uncertainty, and stop for direction before validation scope expands materially.
