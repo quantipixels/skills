@@ -48,7 +48,7 @@ Use alarina to choose the right QP skill for this request:
 | `tunmo-pr` | A PR or MR needs a read-only explanation for a first-time reviewer |
 | `triage-issue` | One issue or bug report needs local-first evidence assessment before implementation |
 | `audit-refactor-behavior` | A refactor or rewrite needs a behavior-parity ledger |
-| `html-artifact` | A report, visualization, prototype, demo, or bounded interactive tool needs one checked HTML artifact |
+| `html-artifact` | Supplied content, evidence, decisions, diagrams, or design specifications need translation into a checked, portable, highly visual browser artifact |
 
 ## Specialists and utilities
 
