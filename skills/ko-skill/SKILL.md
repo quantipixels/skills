@@ -13,7 +13,7 @@ Read the repository and host instructions, the target skill and its resources, a
 
 Revise an existing outcome owner instead of creating a competing skill. Create a skill only for a recurring outcome, decision, or failure mode that ordinary documentation does not solve. Use the requested location; ask only when it cannot be inferred.
 
-For a behavior correction, capture the current failure when it can be reproduced safely from available evidence. Do not build an evaluation harness only to justify a wording change.
+For a behavior correction, pin and exercise the pre-fix candidate with realistic raw input when that can be done safely. Capture the observed failure or evidence gap before editing. If current behavior already satisfies the target contract, do not change the skill only to restate that contract; identify another proved behavioral benefit or leave it unchanged. Do not build an evaluation harness only to justify a wording change.
 
 Before editing, define the minimum useful verification: direct structure checks and the smallest forward test, if any, that resolves material behavioral uncertainty. If the required proof grows materially, stop and ask whether to simplify, defer, or continue.
 

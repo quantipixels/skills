@@ -98,7 +98,12 @@ def validate_ready_for_review_creation(provider: str, command: list[str]) -> Non
     titles: list[str] = []
     for index, value in enumerate(command):
         lowered = value.lower()
-        if lowered in {"--draft", "-d"}:
+        draft_flags = {"--draft"}
+        if provider == "github":
+            draft_flags.add("-d")
+        elif provider == "gitlab":
+            draft_flags.add("--wip")
+        if lowered in draft_flags:
             raise ValueError("seda-pr never creates a draft PR or MR")
         if lowered.startswith("--draft=") and _truthy(value.split("=", 1)[1]):
             raise ValueError("seda-pr never creates a draft PR or MR")

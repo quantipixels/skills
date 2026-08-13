@@ -143,6 +143,9 @@ class ProviderCliTests(unittest.TestCase):
     def test_gitlab_creation_rejects_draft_field_and_title_prefix(self):
         commands = [
             [
+                "glab", "mr", "create", "--hostname", "gitlab.com", "--wip",
+            ],
+            [
                 "glab", "api", "--hostname", "gitlab.com", "--method", "POST",
                 "/projects/acme%2Fapi/merge_requests", "-f", "draft=true",
             ],
@@ -158,6 +161,13 @@ class ProviderCliTests(unittest.TestCase):
     def test_ready_for_review_creation_is_allowed(self):
         commands = [
             ("github", ["gh", "pr", "create", "--repo", "owner/repo"]),
+            (
+                "gitlab",
+                [
+                    "glab", "mr", "create", "--hostname", "gitlab.com",
+                    "-d", "Ordinary merge request description",
+                ],
+            ),
             (
                 "gitlab",
                 [
