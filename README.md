@@ -49,7 +49,7 @@ Use alarina to choose the right QP skill for this request:
 | `triage-issue` | One issue or bug report needs local-first evidence assessment before implementation |
 | `seda-ticket` | Settled plan phases and review candidates need a checked fully local ticket graph |
 | `audit-refactor-behavior` | A refactor or rewrite needs a behavior-parity ledger |
-| `html-artifact` | A report, visualization, prototype, demo, or bounded interactive tool needs one checked HTML artifact |
+| `html-artifact` | Supplied content, evidence, decisions, diagrams, or design specifications need translation into a checked, portable, highly visual browser artifact |
 
 ## Specialists and utilities
 

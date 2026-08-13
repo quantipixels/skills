@@ -44,7 +44,7 @@ Use `seda-ticket` for a checked local ticket graph derived from settled plan pha
 | One issue or bug report needs local-first evidence classification and a next action | `triage-issue` |
 | Settled plan phases and review candidates need one checked fully local ticket graph | `seda-ticket` |
 | A planned or completed refactor needs a parity ledger, or a stateful refactor requires a pre-implementation behavior gate | `audit-refactor-behavior` |
-| One standalone HTML artifact, such as a report, visualization, prototype, demo, or bounded interactive tool, is the requested result | `html-artifact` |
+| Supplied content, evidence, decisions, diagrams, or design specifications need translation into one checked, portable HTML artifact or bounded linked variant set | `html-artifact` |
 | Architecture or migration work needs one live plan from decisions through delivery, with a clear next action | `atona` |
 | The current conversation needs a safe handoff for another agent | `handoff` |
 | One coding-agent session needs an evidence-backed friction analysis and durable improvement assessment | `ayewo-igba-ise` |
