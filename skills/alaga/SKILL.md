@@ -55,6 +55,12 @@ When a standalone feature specification or plan controls material implementation
 
 Prepare the selected workspace and branch without disturbing unrelated changes.
 
+When delivery starts from a persisted ticket, pin its identity, current state, dependencies, transition authority, and persistence owner. Start only from `Ready` after every dependency is `Done`. With authority for the exact ticket and transition, move it to `In Progress`; otherwise return the requested transition and evidence without changing ticket state.
+
+During delivery, use the ticket lifecycle supplied by its owner. Move `In Progress → Blocked` with a reason, unblock owner or trigger, and `resume_to: In Progress`; move `In Review → Blocked` with the same fields plus the exact candidate and proof summary and `resume_to: In Review`. Resume only to the recorded state. Move a stable proved candidate `In Progress → In Review` with its exact identity and proof summary. A review correction moves `In Review → In Progress`. Move `In Review → Done` only after its acceptance and proof succeed. Cancellation requires separate explicit authority and a reason. Never reopen `Done` or `Cancelled`. On every transition, replace state evidence with only the fields required by the new state.
+
+Immediately before an authorized ticket write, refresh its identity, current state, dependency states, evidence, and permitted transitions. Reject a stale, replayed, invalid, unauthorized, or terminal transition without mutation. If Alaga does not own persistence, return the requested transition and evidence to its owner. Ticket state does not override plan, phase, implementation, or review state.
+
 Use an Irinṣẹ result when bounded companion-tool evidence materially improves impact orientation or directs source reading. Keep candidate integration, implementation, and proof in Alaga; do not treat the tool result as acceptance evidence by itself.
 
 Run `tdd` through coherent green behavior slices. Commit a slice only when local commits are authorized. Otherwise, preserve the verified changes without committing them.
