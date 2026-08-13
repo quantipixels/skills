@@ -13,44 +13,93 @@ Read repository instructions, host guidance, the target skill and resources, and
 
 Use the requested path. Ask one location question only when context does not identify it; use the host's personal skills directory when the user gives no preference. Choose implicit invocation only when an agent or skill must find the skill without an explicit request. Give each behavior branch one trigger.
 
-For a skill behavior correction, first define a realistic raw scenario that distinguishes the target contract from current behavior. Pin and exercise the pre-fix candidate in a fresh headless session before making the fix. Record the observed failure or evidence gap outside repository source. When current behavior passes, do not change it only to restate the contract; identify missing proof or another justified change. When no suitable runner is available, report that proof gap. Do not add a prompt eval suite or behavioral test to this repository.
+For a behavior correction, define a realistic raw scenario that distinguishes the target contract from current behavior. Before editing, run it against the exact pre-fix candidate with a fresh producer from section 4 and record the failure or proof gap outside repository source. If current behavior passes, do not change it only to restate the contract; identify missing proof or another justified change.
 
-Good raw evaluation: `Watch PR #42 until review and CI are complete. Report only a state change or a blocker.` Bad leading evaluation: `Use the PR monitor skill because it must keep watching review and CI until both complete; confirm that behavior.` The good input states the user's need without supplying the owner, intended answer, or rationale.
+**Good raw goal:**
+
+```text
+// GOOD: Neutral goal with an observable outcome
+Watch PR #42 until review and CI are complete. Report only a state change or blocker.
+```
+
+**Bad raw goal:**
+
+```text
+// BAD: Leading goal that supplies the mechanism and expected behavior
+Use the PR monitor skill because it must keep watching review and CI until both complete; confirm that behavior.
+```
+
+The distinction is evaluation independence: the good goal states what the user needs; the bad goal supplies what the test should discover.
 
 ## 2. Write the skill
 
-Give the skill one narrow outcome and state the adjacent behavior it excludes. When the user supplies replacement wording or a corrected constraint, treat it as the target contract. Preserve supplied structure and vocabulary unless a host or repository requirement conflicts. Locate and reconcile every conflicting owning rule and required integration surface. Do not preserve or introduce a policy that the user explicitly leaves outside the skill. Add only required compatibility or integration text, and identify each addition. Apply the remaining authoring rules only to author-owned text and required additions.
+Give the skill one narrow outcome and state the adjacent behavior it excludes. Treat user-supplied replacement wording or corrected constraints as the target contract. Preserve supplied structure and vocabulary unless host or repository requirements conflict. Reconcile conflicting owning rules and integration surfaces. Do not retain a policy the user leaves outside the skill. Identify required compatibility or integration additions and apply the remaining authoring rules only to author-owned text.
 
-Apply YAGNI ("You Aren't Gonna Need It") to skill contents: add only behavior-bearing instructions and resources.
+**Good contract change:**
+
+```text
+// GOOD: Requested change with its necessary repository guard
+Remove default-prompt metadata and add the repository prohibition that prevents its return.
+```
+
+**Bad contract change:**
+
+```text
+// BAD: Unrequested policy expansion
+Remove default-prompt metadata, then require every skill to include a usage tutorial.
+```
+
+The distinction is authority: the good change implements the request and required integration; the bad change adds unrelated policy.
 
 For each author-owned change, identify its behavioral benefit. Retain it only when it improves invocation, agent understanding, decision or action accuracy, safety, verification, or outcome reliability. Apply this gate to instructions, descriptions, metadata, structure, examples, references, resources, and scripts. Do not add or revise content for editorial polish alone. When behaviorally stronger wording is less polished, keep the behaviorally stronger wording unless a host requirement or safety concern requires the change.
 
 Follow the host's current schemas. Put discovery controls in the surfaces the host uses. Write a description for skill selection: front-load when to use the skill, its key use case, and its distinguishing trigger terms; state clear scope and boundaries; and exclude broad terms that do not distinguish it from adjacent skills. Describe the skill, outcome, and focus, not its stages.
 
-Good description: `Monitor a pull request through review and CI. Use when user ask to monitor, watch, or babysit the PR`. Bad description: `Help with pull requests, reviews, CI, GitHub, code, and developer workflows.` The bad description lists broad topics without a selection condition, bounded action, or monitoring outcome.
+**Good description:**
+
+```text
+// GOOD: Focused trigger and bounded outcome
+Monitor a pull request through review and CI. Use when the user asks to monitor, watch, or babysit a PR.
+```
+
+**Bad description:**
+
+```text
+// BAD: Broad topics without a selection condition or bounded outcome
+Help with pull requests, reviews, CI, GitHub, code, and developer workflows.
+```
+
+The distinction is selection precision: the good description says when to invoke the skill and what it delivers; the bad description only names related topics.
 
 Use an example only when it passes the behavioral benefit gate. Use a good/bad pair when the contrast defines a boundary or prevents a recurring failure. Use a good-only example when one valid form is useful and invalid forms do not make one stable class. Put the example beside its owning rule, label it, and state the one distinction it demonstrates. Keep the rule authoritative; do not make the example an unannounced template or requirement.
 
-Keep instructions required by every branch in `SKILL.md`; move substantial facts or branch guidance behind a direct pointer. Use ordered steps only when sequence matters and a compact directed acyclic graph only when dependencies remain unclear. Let the host own execution.
+Keep instructions required by every branch in `SKILL.md`; move substantial facts or branch guidance behind a direct pointer. Use ordered steps only when sequence matters.
 
 When another specialist owns required work, state its required outcome, bounded starting context and status, and required result or proof. Treat supplied context as input, not proof. Keep the procedure with its owner.
 
-Choose the owning tier by branch reach. Give each rule one owning location, keep its definition, rules, and caveats together there, and merge repeats. Keep rationale, history, transcripts, and evidence in an owning report or reference. Run a final compression pass under the behavioral benefit gate and remove repetition. Use a familiar, established leading word only when it removes identifiable repeated explanation without changing user-supplied wording. Use short, direct instructions and established terms. Add only used resources and scripts for repeated deterministic work.
+Give each rule one owner based on the branches that need it. Keep its definition and caveats together, and merge repeats. Keep rationale, history, transcripts, and evidence in the owning report or reference. Run a final compression pass under the behavioral benefit gate. Use short, established terms. Add resources only when used and scripts only for repeated deterministic work.
 
 ## 3. Integrate it
 
-Keep the name, boundary, triggers, exclusions, default prompt, and invocation policy consistent across required metadata. Use the bare skill name except where an ecosystem requires a prefix. Update packaged release metadata and any registry or catalog whose contract or inventory changes. Verify unchanged required surfaces without no-op edits. Preserve unrelated work.
+Keep the name, boundary, triggers, exclusions, invocation policy, and other host-permitted metadata consistent. Use the bare skill name except where an ecosystem requires a prefix. Update packaged release metadata and any registry or catalog whose contract or inventory changes. Verify unchanged required surfaces without no-op edits. Preserve unrelated work.
 
-For a provider-capable skill, apply the root provider-safety contract to the changed behavior and keep each runtime-critical rule in the independently installed skill. Keep provider execution local. Do not replace local provider semantics with a shared runtime unless an architecture decision explicitly changes the installation contract.
+For a provider-capable skill, propagate every applicable rule from the root provider-safety contract into that skill's runtime instructions. Preserve its local provider semantics unless an architecture decision changes the installation contract.
 
 ## 4. Verify it
 
 Read every changed skill and resource. Check paths, placeholders, discovery controls, metadata, catalog, routing, and package surfaces directly. Run changed-script tests, applicable host or package checks, metadata and version checks, package dry run, and final diff check.
 
-Forward-test a material or complex skill against the exact final source candidate in a fresh headless session. Use realistic raw input that hides the intended owner, answer, and rationale. Run the intended goal plus independent fresh sessions for each applicable adjacent boundary, unsafe use, failure, and changed-state scenario. For stateful behavior, exercise the changed transition and a partial state that must remain open.
+### Validate behavior in fresh sessions
 
-Deny provider writes, inherited credentials, and repository mutation unless a disposable scenario explicitly authorizes that effect. Have a separate independent session judge the results against the current skill contract. Keep full prompts, runner and model versions, session output, sandbox details, and limitations outside repository source. Put only a concise proof summary in the owning plan or delivery report. Affected proof becomes stale after any candidate change.
+Forward-test each material behavior change with the platform's supported subagent mechanism:
 
-Treat unexpected behavior as an ambiguous instruction or setup. Correct the smallest owning rule and rerun with fresh context. Rerun affected proof whenever the candidate changes after a green result.
+1. Pin the exact final candidate and define the intended-goal scenario plus each applicable boundary, unsafe-use, failure, or changed-state scenario. For stateful behavior, include the changed transition and a partial state that must remain open.
+2. Run one producer per scenario in a fresh session with no inherited conversation turns. Load the exact candidate. Give the producer only the raw goal and minimum fixture and authority. Deny provider writes, inherited credentials, and repository mutation unless a disposable scenario authorizes them.
+3. Run a separate reviewer in another fresh session. Give it the exact candidate contract, raw goal, fixture and authority record, and producer result. Withhold the expected answer, rationale, and verdict. Require `pass`, `fail`, or `insufficient evidence`, with candidate identity and supporting evidence.
+4. Keep complete prompts, outputs, platform and model details, sandbox settings, and limitations outside repository source. Record only a concise proof summary in the owning plan or delivery report. Any candidate change invalidates affected proof and requires a rerun.
 
-Existing deterministic script tests can remain while their owning source behavior remains, but do not add cases. Report the skill path, boundary, changed files, exact candidate identity, proof, direct structure and integration checks, and remaining limitations. Distinguish repository source, published, installed, and active states when they can differ. Install or publish externally only when the user requested it.
+When the platform supports context-fork control, use its no-context setting, such as `fork_turns="none"`. Do not substitute a local CLI or isolated home directory for a platform-supported fresh subagent session. If the platform cannot provide one, report the proof gap.
+
+Treat unexpected behavior as an ambiguous instruction or setup. Correct the smallest owning rule and rerun with fresh context.
+
+Report the skill path, boundary, changed files, exact candidate identity, proof, direct structure and integration checks, and remaining limitations. Distinguish repository source, published, installed, and active states when they can differ. Install or publish externally only when the user requested it.
