@@ -83,6 +83,10 @@ Before setting the plan to `Planned`, and after final Arojinle confirmation, run
 
 Set the plan to `Planned` only when the recommendation covers all in-scope ownership and behavior and the implementer needs no invented material requirement. Otherwise, keep it in `Draft`. This includes an open, pending, stale, contradictory, or missing gate; a waiting prerequisite; a blocking deferral; missing evidence or decision; or invalid Arojinle identity, coverage, or closure. A non-blocking deferral needs an owner and trigger and must not force material invention. Approval covers only listed decisions.
 
+When the plan has multiple review candidates, dependencies, implementers, or a multi-session handoff, or when the user requests tickets, use `seda-ticket` before setting the plan to `Planned`. Give it the settled scope, constraints, candidates, dependencies, acceptance, proof, and rollback boundaries. Verify that its confirmed tickets cover the plan, persist them in the live plan, and keep the plan in `Draft` while the breakdown is missing, ambiguous, incomplete, or cyclic. Atona retains plan identity, readiness, grouping, persistence, and state.
+
+Persist each ticket's current lifecycle fields and reconcile valid transition results for plan awareness. Atona may delegate ticket-state updates only for exact tickets and permitted transitions. Cancellation requires separate explicit authority. Without delegated write authority, require the delivery owner to return the requested transition and evidence for Atona to apply. Before persisting a transition, refresh the ticket identity, current state, dependency states, evidence, and authority; reject a stale, replayed, invalid, unauthorized, or terminal transition without changing the record. On success, derive `Allowed next` from the new state and replace state evidence with only its required fields. Ticket state never sets plan or phase state, implementation authority, or implementation completion; Atona's existing readiness, integration, proof, and review gates remain authoritative.
+
 ## 3. Track authorized delivery
 
 Keep the request, decisions, evidence, risks, phases, candidate, proof gaps, documentation destinations, and lifecycle states current in the plan. Remove stale guidance and redundant snapshots.
@@ -94,6 +98,8 @@ Translate each delivery phase into one or more stable, self-contained review can
 Use `audit-refactor-behavior` before a stateful refactor that can change transitions, ordering, locking, retries, idempotency, ownership, or cross-entry behavior. Use `alaga` for each full feature candidate or `tdd` for bounded test-first implementation.
 
 For work owned by another skill, record its owner, scope, evidence, blocked outcome, and required result. Keep test, review, build, commit, and publication procedures with their owners.
+
+Treat internal Alaga tasks, TDD slices, tests, and commits as delivery detail, not Atona tickets. Record them only when the plan promotes the work to a blocker, handoff boundary, material plan change, or independent review candidate. Accept optional exact-current Git evidence returned by a delivery owner without prescribing or performing Git operations.
 
 Verify each specialist result against the current plan identity and candidate before recording state or evidence. Reject a mismatch as stale and rerun affected readiness or closure checks. Set implementation to `Complete` only after `qp-code-review` returns `RECOMMEND_ACCEPT` for every final in-scope review candidate and phase-level integration proof has no blocking evidence gap. Reuse a verified current result. Skip this gate when implementation is `Not Required`.
 

@@ -13,7 +13,8 @@ Include:
 - The current candidate, including the repository or source path, branch or revision when known, and dirty-worktree state.
 - Confirmed decisions, constraints, permissions, and exclusions.
 - Completed work and its proof.
-- Remaining work, blockers, uncertainty, and unverified claims.
+- Established facts and decisions that the next agent must not re-ask or re-investigate without conflicting new evidence.
+- Remaining work, blockers, uncertainty, unverified claims, and only the open questions whose answers can change the next action.
 - The exact first action for the next agent.
 - Paths or URLs for relevant specifications, plans, reports, issues, commits, diffs, and other source artifacts.
 - Exact-current Amọ̀ṣẹ́ project-knowledge packet or Irinṣẹ evidence identities when they materially affect continuation.

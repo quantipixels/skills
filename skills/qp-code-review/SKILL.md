@@ -63,7 +63,7 @@ Do not infer a provider target from local state. Report the exact gap and safe a
 
 For a broad review, require a current `simplify` result for the exact candidate. Give `simplify` the pinned candidate identity, review boundary, repository rules, relevant context, assumptions, and known gaps as input, not proof. Accept a supplied result only when it identifies the same candidate and reports its maintainability findings or clean claim and limitations. Reuse a matching result from an owning workflow such as `alaga`; do not repeat the review. Obtain a new result when it is missing or stale. If that result remains unavailable, record a maintainability evidence gap and return `INSUFFICIENT_EVIDENCE` for the broad review.
 
-Read relevant confirmed project knowledge when it affects the contract. When the candidate requires `.learnings`, ADR, or `.nongoals` changes, require the owning workflow's exact-current Amọ̀ṣẹ́ result. Verify its input and final candidate identities, authority, destinations, and verdict without repeating model discovery. Treat a missing, blocked, contradictory, or stale result as an evidence gap. Verify required ordinary documentation directly as part of the candidate contract.
+Read relevant confirmed project knowledge when it affects the contract. When the candidate changes project knowledge or decision records, require the owning workflow's exact-current reconciliation result. Verify its input and final candidate identities, authority, destinations, and verdict without repeating model discovery. Treat a missing, blocked, contradictory, or stale result as an evidence gap. Verify required ordinary documentation directly as part of the candidate contract.
 
 ## 2. Collect evidence and discover defects
 

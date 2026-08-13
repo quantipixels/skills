@@ -23,6 +23,12 @@ Keep runtime-behavior work separate from repository review policy, agent skills,
 
 Treat an unqualified request to review code as broad. Select `qp-code-review` as the primary owner and `simplify` as its supporting maintainability specialist. Select `qp-code-review` alone only when the user explicitly limits the review to defects and excludes maintainability.
 
+Keep PR or MR publication, monitoring, explanation, and review as separate outcomes. Use `seda-pr` to create a ready-for-review item or reconcile its public narrative and bounded metadata; it never creates drafts. Use `wo-pr` alone for a bare watch, monitor, babysit, or keep-an-eye-on request; it owns bounded CI and evidence-backed feedback stewardship through the readiness milestone and later changes until explicit stop or item closure. Do not add explanation or review as setup. Use `tunmo-pr` to explain the exact current diff without mutation. Add `qp-code-review` to monitoring only when the user explicitly requests a review verdict or current repository policy requires one.
+
+Use `triage-issue` for one issue or bug report that needs evidence classification and a next action before implementation. It uses supplied evidence only by default. Do not substitute `iwadi`, code review, implementation, or provider backlog management. Repository source reads, provider reads, and one provider comment are separate explicit-authority branches.
+
+Use `seda-ticket` to break a supplied plan, specification, issue, conversation, or work description into consumable vertical tickets with explicit blockers, acceptance, and a portable lifecycle. It returns confirmed tickets in `Ready`; callers own grouping, persistence, publication, implementation, review, Git, and provider operations.
+
 | Starting situation | Primary route |
 | --- | --- |
 | The user needs help selecting the shortest useful QP route | `alarina` |
@@ -32,8 +38,13 @@ Treat an unqualified request to review code as broad. Select `qp-code-review` as
 | One feature needs clarification, test-backed implementation, and broad review | `alaga` |
 | Changed code or code-local comments need a read-only maintainability review | `simplify` |
 | Bounded code or an active PR or MR needs broad or defect-only review | `qp-code-review`, with `simplify` for broad review |
+| One ready-for-review GitHub PR or GitLab MR needs creation or reconciliation for a zero-context reader | `seda-pr` |
+| One open GitHub PR or GitLab MR needs persistent pipeline and feedback monitoring | `wo-pr` |
+| One GitHub PR or GitLab MR needs a read-only first-reviewer explanation | `tunmo-pr` |
+| One issue or bug report needs local-first evidence classification and a next action | `triage-issue` |
+| Supplied work needs consumable vertical tickets with blockers, acceptance, and lifecycle state | `seda-ticket` |
 | A planned or completed refactor needs a parity ledger, or a stateful refactor requires a pre-implementation behavior gate | `audit-refactor-behavior` |
-| One standalone HTML artifact, such as a report, visualization, prototype, demo, or bounded interactive tool, is the requested result | `html-artifact` |
+| Supplied content, evidence, decisions, diagrams, or design specifications need translation into one checked, portable HTML artifact or bounded linked variant set | `html-artifact` |
 | Architecture or migration work needs one live plan from decisions through delivery, with a clear next action | `atona` |
 | The current conversation needs a safe handoff for another agent | `handoff` |
 | One coding-agent session needs an evidence-backed friction analysis and durable improvement assessment | `ayewo-igba-ise` |

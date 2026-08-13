@@ -1,0 +1,3 @@
+interface:
+  display_name: "Tunmo PR"
+  short_description: "Explain GitHub PRs and GitLab MRs"

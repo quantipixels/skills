@@ -43,8 +43,13 @@ Use alarina to choose the right QP skill for this request:
 | `alaga` | One feature candidate needs clarification, test-backed implementation, and broad review |
 | `tdd` | A feature or bug fix needs a test-first implementation loop |
 | `qp-code-review` | Bounded code or a PR/MR needs broad or defect-only review |
+| `seda-pr` | A ready-for-review GitHub PR or GitLab MR needs a clear zero-context title, narrative, and bounded metadata |
+| `wo-pr` | An open PR or MR needs active CI and feedback stewardship through readiness and later changes until explicit stop or closure |
+| `tunmo-pr` | A PR or MR needs a read-only explanation for a first-time reviewer |
+| `triage-issue` | One issue or bug report needs local-first evidence assessment before implementation |
+| `seda-ticket` | Supplied work needs consumable vertical tickets with blockers, acceptance, and lifecycle state |
 | `audit-refactor-behavior` | A refactor or rewrite needs a behavior-parity ledger |
-| `html-artifact` | A report, visualization, prototype, demo, or bounded interactive tool needs one checked HTML artifact |
+| `html-artifact` | Supplied content, evidence, decisions, diagrams, or design specifications need translation into a checked, portable, highly visual browser artifact |
 
 ## Specialists and utilities
 
@@ -59,10 +64,18 @@ Use alarina to choose the right QP skill for this request:
 | `ko-skill` | A portable agent skill needs creation or revision |
 | `irinse` | A companion engineering tool needs selection, setup, safe use, or removal |
 
-## Optional agent instruction
+## Optional agent instructions
 
-Add this to your agent instructions when you want QP's companion-tool routing available by default:
+Add any of these snippets to your `AGENTS.md`, `CLAUDE.md`, or equivalent agent-instruction file.
+
+### Companion-tool routing
 
 ```text
 Use Irinṣẹ when a companion tool could materially improve the result. If the required tool is unavailable, explain its benefit and ask before installing or configuring it.
+```
+
+### Critical judgment
+
+```text
+When the user asks for an opinion, test the premise critically and adversarially, state material counterarguments, and recommend from evidence instead of defaulting to agreement.
 ```

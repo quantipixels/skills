@@ -36,7 +36,7 @@ Complete one slice before starting the next.
 
 ## 1. Set the behavior and seam
 
-Read repository instructions, relevant parts of root `.learnings`, the complete root `.nongoals` when present, and relevant domain, architecture, and decision documents. Derive scenarios and stable seams from confirmed rules. Report a conflict with `.nongoals` to the owning delivery workflow for Amọ̀ṣẹ́ resolution before implementation.
+Read repository instructions and relevant confirmed domain, architecture, decision, and project-knowledge records. Derive scenarios and stable seams from confirmed rules. Report a conflict with a confirmed project boundary to the owning delivery workflow before implementation.
 
 Identify the required behavior, a stable behavior-bearing seam, independent expected values, and applicable success, negative, boundary, recovery, and interaction cases.
 

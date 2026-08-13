@@ -74,7 +74,11 @@ Compact relevant sections when repetition or stale material impairs use. Do not 
 
 Reserve the optional root `.nongoals` file for durable project-level exclusions: directions, features, responsibilities, ideas, or concerns that the project excludes from all current and future work. Do not store session-, conversation-, task-, plan-, feature-, phase-, or iteration-local non-goals there; keep them with their owning artifact. It is not a backlog. Leave storage and version-control policy to the project. Ignore similarly named files unless the user explicitly supplies one as input.
 
-Preserve any existing readable format. Create no empty file. When creation is authorized and no format exists, use a bare list with no heading or schema. Add, remove, or reinterpret an entry only with explicit project-boundary authority. Treat each entry as out of scope for future work until that authority removes or changes it. Absence from `.nongoals` does not prove a direction is in scope.
+Before adding an entry, classify the outcome as a durable project rejection, temporary deferral, already-implemented behavior, or task-local exclusion. Only a durable project rejection belongs in `.nongoals`. Keep a deferral with its owning plan and reactivation trigger, point already-implemented requests to current behavior, and keep task-local exclusions with their feature or plan.
+
+Preserve any existing readable format. Create no empty file. When creation is authorized and no format exists, use a bare list with no heading or schema. Phrase each entry by durable domain concept, not by one issue, file, implementation proposal, or current capacity constraint. Include a concise durable reason or ADR link when the exclusion is not self-explanatory. Do not append request or issue history; those records stay with their owning issue, provider, or local artifact.
+
+Add, remove, or reinterpret an entry only with explicit project-boundary authority. Treat each entry as out of scope for future work until that authority removes or changes it. Absence from `.nongoals` does not prove a direction is in scope. When authority reconsiders an entry, record whether it grants one exception or changes the durable project boundary, then reconcile dependent ADRs, plans, and knowledge packets.
 
 When requested work conflicts with `.nongoals`, pause that work and ask whether the user authorizes a one-time exception or a boundary change.
 

@@ -5,7 +5,7 @@ description: Resolve material decisions into one confirmed decision tree and dur
 
 # Arojinle
 
-Interview the user relentlessly until you reach a shared understanding. Map this as a *design tree*: every decision branches into the decisions that hang off it. Keep the tree, facts, answers, and final confirmation in the supplied HTML artifact, or use `html-artifact` to create one.
+Interview the user relentlessly until you reach a shared understanding. Map this as a *design tree*: every decision branches into the decisions that hang off it. Own the decision content, not physical artifact mutation. Use `html-artifact` to create or update the HTML record, then reread and verify the returned artifact before continuing the tree.
 
 Work the tree in *rounds*. The *frontier* is every decision whose prerequisites are already settled — the questions you can ask now without guessing at answers you have not heard yet. Ask the whole frontier in one round: number each question and give your recommended answer. Then wait for the user's answers before the next round.
 

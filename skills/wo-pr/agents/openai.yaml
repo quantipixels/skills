@@ -1,0 +1,3 @@
+interface:
+  display_name: "Wo PR"
+  short_description: "Keep PRs and MRs ready through CI and feedback"
