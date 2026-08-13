@@ -6,6 +6,8 @@ When *creating or updating* a skill, use `ko-skill`.
 
 Do not add prompt eval suites or new behavioral tests to this repository. Before deleting an old eval, move each unique, current behavior expectation into its owning skill instruction. Mark redundant or obsolete expectations in the delivery record.
 
+Define the minimum validation needed before implementation. If the candidate or validation scope grows materially, stop and ask whether to simplify, defer, or continue. Do not expand the work silently.
+
 For every material skill change:
 
 1. Pin the exact source candidate and define a realistic raw goal that does not name the expected owner, answer, or rationale.

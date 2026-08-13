@@ -27,7 +27,7 @@ Keep PR or MR publication, monitoring, explanation, and review as separate outco
 
 Use `triage-issue` for one issue or bug report that needs evidence classification and a next action before implementation. It uses supplied evidence only by default. Do not substitute `iwadi`, code review, implementation, or provider backlog management. Repository source reads, provider reads, and one provider comment are separate explicit-authority branches.
 
-Use `seda-ticket` for a checked local ticket graph derived from settled plan phases and review candidates. It owns stable local IDs, phase parents, candidate children, dependencies, cycle checks, and stale reconciliation inside the supplied local plan. It does not own planning, implementation tasks, Git operations, issue triage, or any provider behavior.
+Use `seda-ticket` for a checked local ticket graph derived from settled phases and review candidates in an Atona-style HTML plan. It owns stable local IDs, phase parents, candidate children, dependencies, cycle checks, stale reconciliation, and the checked replacement payload. Add `html-artifact` only for the physical bounded update and receipt. Seda Ticket does not own non-HTML plans, planning, artifact writing, implementation tasks, Git operations, issue triage, or provider behavior.
 
 | Starting situation | Primary route |
 | --- | --- |
@@ -42,7 +42,7 @@ Use `seda-ticket` for a checked local ticket graph derived from settled plan pha
 | One open GitHub PR or GitLab MR needs persistent pipeline and feedback monitoring | `wo-pr` |
 | One GitHub PR or GitLab MR needs a read-only first-reviewer explanation | `tunmo-pr` |
 | One issue or bug report needs local-first evidence classification and a next action | `triage-issue` |
-| Settled plan phases and review candidates need one checked fully local ticket graph | `seda-ticket` |
+| Settled phases and review candidates in an Atona-style HTML plan need one checked local ticket graph | `seda-ticket` |
 | A planned or completed refactor needs a parity ledger, or a stateful refactor requires a pre-implementation behavior gate | `audit-refactor-behavior` |
 | One standalone HTML artifact, such as a report, visualization, prototype, demo, or bounded interactive tool, is the requested result | `html-artifact` |
 | Architecture or migration work needs one live plan from decisions through delivery, with a clear next action | `atona` |
