@@ -1,0 +1,7 @@
+# Validate agent skills on demand
+
+QP will not keep prompt eval suites or add new behavioral tests to this skills repository. Before eval removal, each unique current expectation moves into its owning skill instruction; redundant or obsolete expectations are named in the delivery record. Material skill behavior is validated against the exact candidate through a fresh headless session for the intended goal and independent sessions for realistic boundary, failure, unsafe-use, and changed-state scenarios. A separate independent session judges the results against the current skill contract without receiving the expected scenario answer. Full prompts, runner and model versions, session output, sandbox details, and limitations remain outside repository source; the live plan or delivery report records only the candidate, scenarios, results, and limitations.
+
+Any candidate change makes affected session proof stale. QP has no repository skill validator. Exact-candidate review checks structural surfaces such as frontmatter, metadata, catalog, and routing directly; these checks do not prove agent behavior. Existing deterministic script tests may remain until their owning behavior or source is removed, but they are not expanded with new cases.
+
+This approach reduces repository weight and evaluates skills in realistic agent contexts. It accepts lower replayability than committed prompt suites, controlled through exact candidate identity, fresh independent sessions, external transcript provenance, and rerunning affected proof after every candidate change.

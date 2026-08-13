@@ -264,7 +264,12 @@ class GitLabProvider:
             trigger_evidence_complete = True
         discussions = self._paginate(f"projects/{encoded}/merge_requests/{iid}/discussions")
         approvals = self._api(f"projects/{encoded}/merge_requests/{iid}/approvals")
-        snapshot["review_decision"] = "APPROVED" if approvals.get("approved") else "REVIEW_REQUIRED"
+        approvals_required = int(approvals.get("approvals_required") or 0)
+        approvals_left = approvals.get("approvals_left")
+        if approvals.get("approved") or approvals_required == 0 or approvals_left == 0:
+            snapshot["review_decision"] = "APPROVED" if approvals_required > 0 else ""
+        else:
+            snapshot["review_decision"] = "REVIEW_REQUIRED"
         snapshot.update(
             {
                 "pipeline": {

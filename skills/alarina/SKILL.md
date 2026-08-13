@@ -23,7 +23,9 @@ Keep runtime-behavior work separate from repository review policy, agent skills,
 
 Treat an unqualified request to review code as broad. Select `qp-code-review` as the primary owner and `simplify` as its supporting maintainability specialist. Select `qp-code-review` alone only when the user explicitly limits the review to defects and excludes maintainability.
 
-Keep PR or MR publication, monitoring, explanation, and review as separate outcomes. Use `seda-pr` to create a ready-for-review item or reconcile its public narrative and bounded metadata; it never creates drafts. Use `wo-pr` alone for a bare watch, monitor, babysit, or keep-an-eye-on request; it owns bounded CI and evidence-backed feedback stewardship until the item is ready for the user's merge decision. Do not add explanation or review as setup. Use `tunmo-pr` to explain the exact current diff without mutation. Add `qp-code-review` to monitoring only when the user explicitly requests a review verdict or current repository policy requires one.
+Keep PR or MR publication, monitoring, explanation, and review as separate outcomes. Use `seda-pr` to create a ready-for-review item or reconcile its public narrative and bounded metadata; it never creates drafts. Use `wo-pr` alone for a bare watch, monitor, babysit, or keep-an-eye-on request; it owns bounded CI and evidence-backed feedback stewardship through the readiness milestone and later changes until explicit stop or item closure. Do not add explanation or review as setup. Use `tunmo-pr` to explain the exact current diff without mutation. Add `qp-code-review` to monitoring only when the user explicitly requests a review verdict or current repository policy requires one.
+
+Use `triage-issue` for one issue or bug report that needs evidence classification and a next action before implementation. It uses supplied evidence only by default. Do not substitute `iwadi`, code review, implementation, or provider backlog management. Repository source reads, provider reads, and one provider comment are separate explicit-authority branches.
 
 | Starting situation | Primary route |
 | --- | --- |
@@ -37,6 +39,7 @@ Keep PR or MR publication, monitoring, explanation, and review as separate outco
 | One ready-for-review GitHub PR or GitLab MR needs creation or reconciliation for a zero-context reader | `seda-pr` |
 | One open GitHub PR or GitLab MR needs persistent pipeline and feedback monitoring | `wo-pr` |
 | One GitHub PR or GitLab MR needs a read-only first-reviewer explanation | `tunmo-pr` |
+| One issue or bug report needs local-first evidence classification and a next action | `triage-issue` |
 | A planned or completed refactor needs a parity ledger, or a stateful refactor requires a pre-implementation behavior gate | `audit-refactor-behavior` |
 | One standalone HTML artifact, such as a report, visualization, prototype, demo, or bounded interactive tool, is the requested result | `html-artifact` |
 | Architecture or migration work needs one live plan from decisions through delivery, with a clear next action | `atona` |

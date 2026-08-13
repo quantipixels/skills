@@ -13,7 +13,7 @@ Read repository instructions, host guidance, the target skill and resources, and
 
 Use the requested path. Ask one location question only when context does not identify it; use the host's personal skills directory when the user gives no preference. Choose implicit invocation only when an agent or skill must find the skill without an explicit request. Give each behavior branch one trigger.
 
-For a skill behavior correction, first define a realistic raw evaluation that distinguishes the target contract from current behavior. Pin and exercise the pre-fix candidate before proposing or making the fix. Record the observed failure or evidence gap. When current behavior passes, do not change it only to restate the contract; identify missing proof or another justified change. When no suitable runner is available, add the evaluation and report that execution gap before proposing a fix.
+For a skill behavior correction, first define a realistic raw scenario that distinguishes the target contract from current behavior. Pin and exercise the pre-fix candidate in a fresh headless session before making the fix. Record the observed failure or evidence gap outside repository source. When current behavior passes, do not change it only to restate the contract; identify missing proof or another justified change. When no suitable runner is available, report that proof gap. Do not add a prompt eval suite or behavioral test to this repository.
 
 Good raw evaluation: `Watch PR #42 until review and CI are complete. Report only a state change or a blocker.` Bad leading evaluation: `Use the PR monitor skill because it must keep watching review and CI until both complete; confirm that behavior.` The good input states the user's need without supplying the owner, intended answer, or rationale.
 
@@ -41,12 +41,16 @@ Choose the owning tier by branch reach. Give each rule one owning location, keep
 
 Keep the name, boundary, triggers, exclusions, default prompt, and invocation policy consistent across required metadata. Use the bare skill name except where an ecosystem requires a prefix. Update packaged release metadata and any registry or catalog whose contract or inventory changes. Verify unchanged required surfaces without no-op edits. Preserve unrelated work.
 
+For a provider-capable skill, apply the root provider-safety contract to the changed behavior and keep each runtime-critical rule in the independently installed skill. Keep provider execution local. Do not replace local provider semantics with a shared runtime unless an architecture decision explicitly changes the installation contract.
+
 ## 4. Verify it
 
-Read every changed skill and resource. Check paths, placeholders, discovery controls, metadata, and package surfaces. Run applicable validators, changed-script tests, metadata and version checks, repository checks, package dry run, and final diff check.
+Read every changed skill and resource. Check paths, placeholders, discovery controls, metadata, catalog, routing, and package surfaces directly. Run changed-script tests, applicable host or package checks, metadata and version checks, package dry run, and final diff check.
 
-Forward-test a material or complex skill against the exact final candidate with fresh context and realistic raw input that hides the intended answer and rationale. Include one credible failed-use scenario. For stateful behavior, exercise the changed transition, including a partial answer when unanswered state must remain open.
+Forward-test a material or complex skill against the exact final source candidate in a fresh headless session. Use realistic raw input that hides the intended owner, answer, and rationale. Run the intended goal plus independent fresh sessions for each applicable adjacent boundary, unsafe use, failure, and changed-state scenario. For stateful behavior, exercise the changed transition and a partial state that must remain open.
+
+Deny provider writes, inherited credentials, and repository mutation unless a disposable scenario explicitly authorizes that effect. Have a separate independent session judge the results against the current skill contract. Keep full prompts, runner and model versions, session output, sandbox details, and limitations outside repository source. Put only a concise proof summary in the owning plan or delivery report. Affected proof becomes stale after any candidate change.
 
 Treat unexpected behavior as an ambiguous instruction or setup. Correct the smallest owning rule and rerun with fresh context. Rerun affected proof whenever the candidate changes after a green result.
 
-Report the skill path, boundary, changed files, exact candidate identity, proof, and remaining limitations. Distinguish repository source, published, installed, and active states when they can differ. Install or publish externally only when the user requested it.
+Existing deterministic script tests can remain while their owning source behavior remains, but do not add cases. Report the skill path, boundary, changed files, exact candidate identity, proof, direct structure and integration checks, and remaining limitations. Distinguish repository source, published, installed, and active states when they can differ. Install or publish externally only when the user requested it.

@@ -10,7 +10,6 @@
   "license": "MIT",
   "scripts": {
     "changeset": "changeset",
-    "validate:skills": "node scripts/validate-skills.mjs",
     "version": "changeset version"
   },
   "devDependencies": {

@@ -79,7 +79,7 @@ Report important knowledge that names, types, interfaces, and structure cannot e
 
 Verify relevant comments, API documentation, domain and operational documentation, configuration references, and examples against the current implementation, callers, tests, links, symbol references, and examples. Report missing important knowledge, inadequate detail, stale or false claims, and harmful redundant comments. Treat tests as behavior proof, not as a substitute for required documentation.
 
-When `.learnings`, ADR state, or `.nongoals` is inconsistent with the current candidate or confirmed authority, report the drift and its maintenance cost without editing it. Name Amọ̀ṣẹ́ as the correction owner. Keep ordinary documentation corrections with the outcome owner that changed or verifies the behavior.
+When confirmed project knowledge or decision records are inconsistent with the current candidate or authority, report the drift and its maintenance cost without editing them. Keep their correction with the owning knowledge workflow and ordinary documentation corrections with the outcome owner that changed or verifies the behavior.
 
 List a material behavior, contract, security, or proof concern under `Needs qp-code-review` with its location, bounded scope, reason, evidence, and possible consequence. Treat it as a reference-only, out-of-scope hypothesis, not a maintainability finding or Code Review verdict.
 

@@ -2,7 +2,7 @@
 
 Use this checklist only after a snapshot identifies failed required work. Read the failed job logs before classifying.
 
-Record the result against the exact watcher state, head SHA, and provider job ID with `--record-failure-kind`. The watcher must not infer flaky or infrastructure status from a terminal provider status alone. It rejects a stale head and leaves any unclassified failed job on the diagnosis path.
+Keep the result with the active task against the exact head SHA and provider job ID. The observer does not infer flaky or infrastructure status from a terminal provider status alone. Record a retry only after the provider accepts it with `--record-retry <head-sha> <job-id>`.
 
 ## Branch-related
 
@@ -10,7 +10,7 @@ Prefer branch-related when logs point to changed code or an affected contract: c
 
 ## Likely flaky
 
-Prefer likely flaky when evidence shows a transient runner, network, registry, service, test timing, or known nondeterministic failure and the candidate does not change the failing mechanism. Retry only when the watcher recommends it and `retry-ci` authority exists. Never modify code to make unrelated flakes disappear.
+Prefer likely flaky when evidence shows a transient runner, network, registry, service, test timing, or known nondeterministic failure and the candidate does not change the failing mechanism. Retry only with current stewardship authority and a remaining head-and-job budget. Never modify code to make unrelated flakes disappear.
 
 ## Infrastructure or provider
 

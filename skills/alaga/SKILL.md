@@ -41,6 +41,8 @@ Establish:
 
 Ask only when the request and current repository state do not settle a material choice.
 
+Keep feature-local exclusions with the candidate and state the current behavior, desired behavior, independently verifiable acceptance criteria, and explicit out-of-scope work.
+
 Read relevant parts of root `.learnings` and the complete root `.nongoals` when present. Preserve confirmed project knowledge. If the feature conflicts with `.nongoals`, require Amọ̀ṣẹ́ to record an explicit one-time exception or authorized boundary update before implementation.
 
 When a feature contains a substantial independently verifiable task, Alaga may request its bounded result through host-provided subagent work. Give the request the current candidate identity, task scope and exclusions, relevant confirmed decisions and evidence, required result or proof, and acceptance criteria as starting context, not proof. Apply an owning specialist's rules when the task requires that specialist outcome. Accept the task result only when its identity and evidence satisfy the current stage gate. Alaga retains candidate integration, stage-gate verification, and correction convergence.
@@ -59,7 +61,7 @@ Run `tdd` through coherent green behavior slices. Commit a slice only when local
 
 Use focused and affected proof for each slice. Treat a local commit as a meaningful green history, bisect, or rollback point, not as a trigger for broad review.
 
-Before the candidate becomes stable for review, update each required ordinary-documentation destination in the same candidate as its implementation change. Keep code-local comments with the implementation owner. When verified implementation exposes a durable non-obvious rule, pattern, constraint, term, or conflict, propose it to Amọ̀ṣẹ́ with the exact candidate and evidence; do not redefine the model locally. Reconcile any required `.learnings`, `.nongoals`, or ADR result before review. Do not defer required documentation as untracked follow-up work.
+Before the candidate becomes stable for review, update each required ordinary-documentation destination in the same candidate as its implementation change. Keep code-local comments with the implementation owner. When verified implementation exposes a durable non-obvious rule, pattern, constraint, term, or conflict, send one exact evidence package for the candidate to Amọ̀ṣẹ́; do not repeat it unless its identity or evidence changes, and do not redefine the model locally. Reconcile any required `.learnings`, `.nongoals`, or ADR result before review. Do not defer required documentation as untracked follow-up work.
 
 ## 3. Review and converge
 

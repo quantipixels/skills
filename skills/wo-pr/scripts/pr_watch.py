@@ -1,459 +1,389 @@
 #!/usr/bin/env python3
-"""Read provider state and emit deterministic wo-pr JSON or JSONL actions."""
+"""Observe one PR or MR and keep a small recoverable checkpoint."""
 
 from __future__ import annotations
 
 import argparse
+import contextlib
+import fcntl
+import hashlib
 import json
 import os
-import socket
 import subprocess
-import sys
+import tempfile
 import time
-import uuid
 from pathlib import Path
-from typing import Any
+from typing import Any, Iterator
 from urllib.parse import urlparse
 
 from github_provider import GitHubProvider
 from gitlab_provider import GitLabProvider
-from watch_core import (
-    LeaseConflict,
-    acquire_file_lease,
-    acquire_lease,
-    apply_failure_classifications,
-    canonical_state_key,
-    clear_read_errors,
-    default_user_state_directory,
-    evaluate_snapshot,
-    load_state,
-    mark_action,
-    new_state,
-    record_read_error,
-    record_failure_classification,
-    record_feedback_disposition,
-    record_progress_comment,
-    record_retry,
-    release_file_lease,
-    release_lease,
-    save_state_atomic,
-    state_file_lock,
-    validate_state_target,
-)
+
+SCHEMA_VERSION = 2
+SUCCESS = {"success", "neutral", "skipped"}
+ACTIVE = {"created", "waiting", "pending", "queued", "running", "scheduled"}
+
+
+class WatchConflict(RuntimeError):
+    pass
 
 
 def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description="Watch one GitHub PR or GitLab MR without provider writes")
+    parser = argparse.ArgumentParser(description="Observe one GitHub PR or GitLab MR without provider writes")
     parser.add_argument("--provider", choices=("auto", "github", "gitlab"), default="auto")
     parser.add_argument("--pr", default="auto", help="PR/MR number, URL, or auto")
     parser.add_argument("--repo", help="owner/repository or group/project")
     parser.add_argument("--host", help="provider host")
-    parser.add_argument(
-        "--trusted-github-host",
-        action="append",
-        default=[],
-        help="GitHub host explicitly trusted to receive configured GitHub credentials; repeat as needed",
-    )
-    parser.add_argument(
-        "--trusted-gitlab-host",
-        action="append",
-        default=[],
-        help="GitLab host explicitly trusted to receive configured GitLab credentials; repeat as needed",
-    )
-    parser.add_argument("--objective", choices=("until-ready", "until-merged", "until-stopped"), default="until-ready")
-    parser.add_argument("--authority", action="append", default=[], help="Granted action capability; repeat as needed")
+    parser.add_argument("--trusted-github-host", action="append", default=[])
+    parser.add_argument("--trusted-gitlab-host", action="append", default=[])
     parser.add_argument("--state-file", type=Path)
-    parser.add_argument("--once", action="store_true", help="Emit one snapshot")
-    parser.add_argument("--watch", action="store_true", help="Emit JSONL until a terminal state")
-    parser.add_argument("--takeover", action="store_true", help="Explicitly take over an existing watcher lease")
+    parser.add_argument("--once", action="store_true", help="Emit one complete snapshot assessment")
+    parser.add_argument("--watch", action="store_true", help="Emit JSONL until closed or interrupted")
+    parser.add_argument("--max-snapshots", type=int)
     parser.add_argument("--no-pipeline-expected", action="store_true")
-    parser.add_argument(
-        "--settle-seconds",
-        type=int,
-        default=300,
-        help="Quiet time required before the later ready confirmation snapshot",
-    )
-    parser.add_argument("--max-snapshots", type=int, help="Bound a watch for diagnostics or host limits")
-    parser.add_argument("--mark-action", action="append", default=[], metavar="ID=PHASE")
-    parser.add_argument("--record-retry", metavar="HEAD_SHA")
-    parser.add_argument(
-        "--record-failure-kind",
-        action="append",
-        nargs=3,
-        default=[],
-        metavar=("HEAD_SHA", "JOB_ID", "KIND"),
-        help="Persist one exact-head job diagnosis: branch, flaky, infrastructure, or ambiguous",
-    )
-    parser.add_argument(
-        "--record-feedback-disposition",
-        action="append",
-        nargs=4,
-        default=[],
-        metavar=("HEAD_SHA", "ITEM_ID", "VALIDITY", "DISPOSITION"),
-        help="Persist one exact-head feedback validity and disposition",
-    )
-    parser.add_argument(
-        "--record-progress-comment",
-        action="append",
-        nargs=2,
-        default=[],
-        metavar=("HEAD_SHA", "COMMENT_ID"),
-        help="Exclude one successful progress-comment write from review feedback",
-    )
+    parser.add_argument("--record-receipt", action="append", nargs=4, default=[], metavar=("HEAD", "EVENT_ID", "FINGERPRINT", "RECEIPT"))
+    parser.add_argument("--record-retry", action="append", nargs=2, default=[], metavar=("HEAD", "JOB_ID"))
     args = parser.parse_args(argv)
-    state_only = bool(
-        args.mark_action or args.record_retry or args.record_failure_kind
-        or args.record_feedback_disposition or args.record_progress_comment
-    )
+    state_only = bool(args.record_receipt or args.record_retry)
     if state_only:
         if args.once or args.watch:
-            parser.error("state updates cannot be combined with --once or --watch")
+            parser.error("checkpoint updates cannot be combined with --once or --watch")
         if not args.state_file:
-            parser.error("state updates require --state-file")
+            parser.error("checkpoint updates require --state-file")
     elif args.once == args.watch:
         parser.error("choose exactly one of --once or --watch")
     if args.max_snapshots is not None and args.max_snapshots <= 0:
         parser.error("--max-snapshots must be positive")
-    if args.settle_seconds <= 0:
-        parser.error("--settle-seconds must be positive")
     return args
-
-
-def target_identity(target: str, *, provider: str) -> dict[str, str | None]:
-    identity: dict[str, str | None] = {"provider": None, "host": None, "repository": None}
-    parsed = urlparse(target)
-    if parsed.scheme in {"http", "https"} and parsed.netloc:
-        host = parsed.hostname
-        if host and ":" in host and not host.startswith("["):
-            host = f"[{host}]"
-        if host and parsed.port is not None:
-            host = f"{host}:{parsed.port}"
-        path = parsed.path.strip("/")
-        if "/pull/" in f"/{path}/":
-            repository = path.split("/pull/", 1)[0]
-            identity.update({"provider": "github", "host": host, "repository": repository})
-        elif "/-/merge_requests/" in f"/{path}/":
-            repository = path.split("/-/merge_requests/", 1)[0]
-            identity.update({"provider": "gitlab", "host": host, "repository": repository})
-    if provider != "auto":
-        if identity["provider"] and identity["provider"] != provider:
-            raise ValueError(f"target URL is for {identity['provider']}, not {provider}")
-        identity["provider"] = provider
-    if identity["provider"]:
-        return identity
-    remote = subprocess.run(
-        ["git", "remote", "get-url", "origin"], check=False, capture_output=True, text=True
-    )
-    url = remote.stdout.lower()
-    if "github" in url:
-        identity["provider"] = "github"
-    elif "gitlab" in url:
-        identity["provider"] = "gitlab"
-    if identity["provider"]:
-        return identity
-    raise ValueError("cannot infer provider; pass --provider github or --provider gitlab")
-
-
-def make_provider(args: argparse.Namespace):
-    identity = target_identity(args.pr, provider=args.provider)
-    provider = identity["provider"]
-    if identity["host"] and args.host and _normalized_host(args.host) != _normalized_host(identity["host"]):
-        raise ValueError(
-            f"--host {args.host!r} conflicts with target URL host {identity['host']!r}"
-        )
-    if identity["repository"] and args.repo and args.repo.strip("/") != identity["repository"].strip("/"):
-        raise ValueError(
-            f"--repo {args.repo!r} conflicts with target URL repository {identity['repository']!r}"
-        )
-    host = args.host or identity["host"]
-    repository = args.repo or identity["repository"]
-    if provider == "github":
-        return GitHubProvider(
-            host=host or "github.com",
-            repository=repository,
-            trusted_hosts=set(args.trusted_github_host),
-        )
-    return GitLabProvider(
-        host=host or "gitlab.com",
-        repository=repository,
-        trusted_hosts=set(args.trusted_gitlab_host),
-    )
 
 
 def _normalized_host(host: str) -> str:
     return host.lower().rstrip(".")
 
 
-def apply_state_updates(
-    path: str | Path,
-    *,
-    marks: list[str],
-    retry_sha: str | None,
-    failure_classifications: list[list[str]] | None = None,
-    feedback_dispositions: list[list[str]] | None = None,
-    progress_comments: list[list[str]] | None = None,
-    now: float | None = None,
-) -> dict[str, Any]:
-    state_path = Path(path)
-    with state_file_lock(state_path):
-        state = load_state(state_path)
-        if state is None:
-            raise ValueError(f"state file does not exist: {state_path}")
-        timestamp = now if now is not None else time.time()
-        recorded_feedback = []
-        for head_sha, item_id, validity, disposition in feedback_dispositions or []:
-            record_feedback_disposition(
-                state,
-                head_sha,
-                item_id,
-                validity,
-                disposition,
-                now=timestamp,
-            )
-            recorded_feedback.append({
-                "head_sha": head_sha,
-                "item_id": item_id,
-                "validity": validity,
-                "disposition": disposition,
-            })
-        recorded_progress_comments = []
-        for head_sha, comment_id in progress_comments or []:
-            record_progress_comment(state, head_sha, comment_id, now=timestamp)
-            recorded_progress_comments.append({
-                "head_sha": head_sha,
-                "comment_id": comment_id,
-            })
-        applied = []
-        for value in marks:
-            try:
-                action_id, phase = value.rsplit("=", 1)
-            except ValueError as error:
-                raise ValueError(f"invalid --mark-action {value!r}; expected ID=PHASE") from error
-            if not action_id:
-                raise ValueError("action ID cannot be empty")
-            mark_action(state, action_id, phase, now=timestamp)
-            applied.append({"id": action_id, "phase": phase})
-        retry_count = record_retry(state, retry_sha) if retry_sha else None
-        if retry_sha:
-            state.setdefault("failure_classifications", {}).pop(retry_sha, None)
-        recorded_failures = []
-        for head_sha, job_id, kind in failure_classifications or []:
-            record_failure_classification(
-                state,
-                head_sha,
-                job_id,
-                kind,
-                now=timestamp,
-            )
-            recorded_failures.append({"head_sha": head_sha, "job_id": job_id, "kind": kind})
-        save_state_atomic(state_path, state)
+def target_identity(target: str, provider: str) -> dict[str, str | None]:
+    identity: dict[str, str | None] = {"provider": None, "host": None, "repository": None}
+    parsed = urlparse(target)
+    if parsed.scheme in {"http", "https"} and parsed.netloc:
+        path = parsed.path.strip("/")
+        host = parsed.hostname
+        if host and ":" in host and not host.startswith("["):
+            host = f"[{host}]"
+        if host and parsed.port is not None:
+            host = f"{host}:{parsed.port}"
+        if "/pull/" in f"/{path}/":
+            identity.update(provider="github", host=host, repository=path.split("/pull/", 1)[0])
+        elif "/-/merge_requests/" in f"/{path}/":
+            identity.update(provider="gitlab", host=host, repository=path.split("/-/merge_requests/", 1)[0])
+    if provider != "auto":
+        if identity["provider"] and identity["provider"] != provider:
+            raise ValueError(f"target URL is for {identity['provider']}, not {provider}")
+        identity["provider"] = provider
+    if identity["provider"]:
+        return identity
+    remote = subprocess.run(["git", "remote", "get-url", "origin"], check=False, capture_output=True, text=True)
+    remote_url = remote.stdout.strip()
+    parsed_remote = urlparse(remote_url if "://" in remote_url else f"ssh://{remote_url.replace(':', '/', 1)}")
+    remote_host = (parsed_remote.hostname or "").lower().rstrip(".")
+    if remote_host == "github.com" or remote_host.startswith("github."):
+        identity["provider"] = "github"
+    elif remote_host == "gitlab.com" or remote_host.startswith("gitlab."):
+        identity["provider"] = "gitlab"
+    if not identity["provider"]:
+        raise ValueError("cannot infer provider; pass --provider github or --provider gitlab")
+    return identity
+
+
+def make_provider(args: argparse.Namespace):
+    identity = target_identity(args.pr, args.provider)
+    if identity["host"] and args.host and _normalized_host(args.host) != _normalized_host(str(identity["host"])):
+        raise ValueError("--host conflicts with target URL host")
+    if identity["repository"] and args.repo and args.repo.strip("/") != str(identity["repository"]).strip("/"):
+        raise ValueError("--repo conflicts with target URL repository")
+    host = args.host or identity["host"]
+    repository = args.repo or identity["repository"]
+    if identity["provider"] == "github":
+        return GitHubProvider(host=host or "github.com", repository=repository, trusted_hosts=set(args.trusted_github_host))
+    return GitLabProvider(host=host or "gitlab.com", repository=repository, trusted_hosts=set(args.trusted_gitlab_host))
+
+
+def _state_directory(cwd: Path) -> Path:
+    top = subprocess.run(["git", "rev-parse", "--show-toplevel"], cwd=cwd, check=False, capture_output=True, text=True)
+    if top.returncode == 0:
+        root = Path(top.stdout.strip())
+        ignored = subprocess.run(["git", "check-ignore", "-q", ".qp"], cwd=root, check=False)
+        if ignored.returncode == 0 and os.access(root, os.W_OK):
+            return root / ".qp" / "state" / "wo-pr"
+    base = Path(os.environ.get("XDG_STATE_HOME", Path.home() / ".local" / "state"))
+    return base / "qp" / "wo-pr"
+
+
+def _state_key(snapshot: dict[str, Any]) -> str:
+    target = snapshot_target(snapshot)
+    raw = "|".join(str(target.get(key) or "") for key in ("provider", "host", "repository", "number"))
+    return hashlib.sha256(raw.encode()).hexdigest()[:20] + ".json"
+
+
+def snapshot_target(snapshot: dict[str, Any]) -> dict[str, Any]:
     return {
-        "schema_version": state["schema_version"],
-        "state_file": str(state_path.resolve()),
-        "marked_actions": applied,
-        "retry_sha": retry_sha,
-        "retry_count": retry_count,
-        "recorded_failure_classifications": recorded_failures,
-        "recorded_feedback_dispositions": recorded_feedback,
-        "recorded_progress_comments": recorded_progress_comments,
+        "provider": snapshot.get("provider"),
+        "host": snapshot.get("host"),
+        "repository": snapshot.get("repository"),
+        "number": snapshot.get("number"),
+        "base_branch": (snapshot.get("base") or {}).get("branch"),
+        "head_branch": (snapshot.get("head") or {}).get("branch"),
     }
 
 
-def evaluate_and_save_state(
-    path: str | Path,
-    state: dict[str, Any],
-    snapshot: dict[str, Any],
-    *,
-    now: float,
-    authority: set[str],
-    no_pipeline_expected: bool = False,
-    settle_seconds: int = 300,
-    owner: str | None = None,
-    takeover: bool = False,
-    lease_state: str | None = None,
-) -> tuple[dict[str, Any], dict[str, Any]]:
-    """Reload state under the update lock before evaluating and saving it."""
-    state_path = Path(path)
-    with state_file_lock(state_path):
-        state = load_state(state_path) or state
-        clear_read_errors(state)
-        applied_failure_classifications = apply_failure_classifications(snapshot, state)
-        state["authority_observed"] = sorted(authority)
-        if lease_state is not None:
-            state["lease_state"] = lease_state
-        if owner is not None:
-            acquire_lease(state, owner=owner, now=now, takeover=takeover)
-        result = evaluate_snapshot(
-            snapshot,
-            state,
-            now=now,
-            authority=authority,
-            no_pipeline_expected=no_pipeline_expected,
-            settle_seconds=settle_seconds,
-        )
-        save_state_atomic(state_path, state)
-        result["applied_failure_classifications"] = applied_failure_classifications
-    return state, result
+@contextlib.contextmanager
+def file_lock(path: Path, *, lifetime: bool = False) -> Iterator[None]:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    handle = path.open("a+")
+    try:
+        flags = fcntl.LOCK_EX | (fcntl.LOCK_NB if lifetime else 0)
+        try:
+            fcntl.flock(handle.fileno(), flags)
+        except BlockingIOError as error:
+            raise WatchConflict(f"another watcher owns {path}") from error
+        yield
+    finally:
+        fcntl.flock(handle.fileno(), fcntl.LOCK_UN)
+        handle.close()
 
 
-def _project_state_directory(cwd: Path) -> Path | None:
-    top = subprocess.run(
-        ["git", "rev-parse", "--show-toplevel"], cwd=cwd, check=False, capture_output=True, text=True
+def load_checkpoint(path: Path) -> dict[str, Any] | None:
+    if not path.exists():
+        return None
+    value = json.loads(path.read_text())
+    if value.get("schema_version") == SCHEMA_VERSION:
+        return value
+    if value.get("schema_version") == 1:
+        archive = path.with_name(f"{path.name}.v1-{int(time.time())}.bak")
+        os.replace(path, archive)
+        return None
+    raise ValueError(f"unsupported checkpoint schema: {value.get('schema_version')!r}")
+
+
+def save_checkpoint(path: Path, value: dict[str, Any]) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    descriptor, temporary = tempfile.mkstemp(prefix=f".{path.name}.", dir=path.parent)
+    try:
+        with os.fdopen(descriptor, "w") as handle:
+            json.dump(value, handle, sort_keys=True, separators=(",", ":"))
+            handle.flush()
+            os.fsync(handle.fileno())
+        os.replace(temporary, path)
+    finally:
+        if os.path.exists(temporary):
+            os.unlink(temporary)
+
+
+def snapshot_fingerprint(snapshot: dict[str, Any]) -> str:
+    material = {
+        "state": snapshot.get("state"),
+        "draft": snapshot.get("draft"),
+        "mergeability": snapshot.get("mergeability"),
+        "head": snapshot.get("head"),
+        "review_decision": snapshot.get("review_decision"),
+        "review_items": snapshot.get("review_items"),
+        "pipeline": snapshot.get("pipeline"),
+        "capabilities": snapshot.get("capabilities"),
+        "errors": snapshot.get("errors"),
+    }
+    return hashlib.sha256(json.dumps(material, sort_keys=True, default=str).encode()).hexdigest()
+
+
+def event_rows(snapshot: dict[str, Any], checkpoint: dict[str, Any]) -> list[dict[str, str]]:
+    head = str((snapshot.get("head") or {}).get("sha") or "")
+    rows = []
+    for item in snapshot.get("review_items") or []:
+        fingerprint = hashlib.sha256(json.dumps(item, sort_keys=True, default=str).encode()).hexdigest()
+        row = {"head_sha": head, "id": str(item.get("id")), "fingerprint": fingerprint, "kind": "feedback"}
+        receipt_key = f"{head}:{row['id']}:{fingerprint}"
+        if receipt_key not in checkpoint.get("handled_events", {}):
+            rows.append(row)
+    return rows
+
+
+def failed_job_ids(snapshot: dict[str, Any]) -> list[str]:
+    return sorted(
+        str(job.get("id"))
+        for job in (snapshot.get("pipeline") or {}).get("jobs") or []
+        if job.get("required", True) and str(job.get("status") or "unknown").lower() not in SUCCESS | ACTIVE
     )
-    if top.returncode != 0:
-        return None
-    root = Path(top.stdout.strip())
-    ignored = subprocess.run(
-        ["git", "check-ignore", "-q", ".qp"], cwd=root, check=False, capture_output=True
-    )
-    if ignored.returncode != 0:
-        return None
-    qp = root / ".qp"
-    probe_parent = qp if qp.exists() else root
-    if not os.access(probe_parent, os.W_OK):
-        return None
-    return qp / "state" / "wo-pr"
 
 
-def resolve_state_path(args: argparse.Namespace, snapshot: dict[str, Any]) -> Path:
-    if args.state_file:
-        return args.state_file.resolve()
-    directory = _project_state_directory(Path.cwd()) or default_user_state_directory()
-    return directory / canonical_state_key(snapshot)
+def assess(snapshot: dict[str, Any], checkpoint: dict[str, Any], no_pipeline_expected: bool) -> dict[str, Any]:
+    state = str(snapshot.get("state") or "").lower()
+    closed = state in {"merged", "closed"} or bool(snapshot.get("merged"))
+    blockers: list[str] = []
+    target = snapshot_target(snapshot)
+    if any(not target.get(key) for key in ("provider", "host", "repository", "number", "base_branch", "head_branch")):
+        blockers.append("incomplete_target_identity")
+    if not (snapshot.get("head") or {}).get("sha"):
+        blockers.append("incomplete_head_identity")
+    if snapshot.get("draft"):
+        blockers.append("draft")
+    if str(snapshot.get("mergeability") or "").lower() not in {"mergeable", "can_be_merged"}:
+        blockers.append("mergeability")
+    capabilities = snapshot.get("capabilities") or {}
+    if not capabilities or any(value is not True for value in capabilities.values()) or snapshot.get("errors"):
+        blockers.append("incomplete_provider_evidence")
+    events = event_rows(snapshot, checkpoint)
+    if events:
+        blockers.append("published_feedback")
+    pipeline = snapshot.get("pipeline") or {}
+    jobs = pipeline.get("jobs") or []
+    if not pipeline.get("evidence_complete", False):
+        blockers.append("incomplete_pipeline_evidence")
+    elif not jobs and not no_pipeline_expected:
+        blockers.append("no_pipeline_evidence")
+    else:
+        for job in jobs:
+            if not job.get("required", True):
+                continue
+            status = str(job.get("status") or "unknown").lower()
+            if status not in SUCCESS:
+                blockers.append("pipeline_active" if status in ACTIVE else "pipeline_failed")
+                break
+    if str(snapshot.get("review_decision") or "").upper() in {"CHANGES_REQUESTED", "REVIEW_REQUIRED"}:
+        blockers.append("review_decision")
+    fingerprint = snapshot_fingerprint(snapshot)
+    ready = not closed and not blockers
+    milestone = ready and checkpoint.get("handoff_ready_fingerprint") != fingerprint
+    return {
+        "terminal": closed,
+        "reason": "item_closed" if closed else ("handoff_ready" if ready else "watching"),
+        "handoff_ready": ready,
+        "new_handoff_milestone": milestone,
+        "blockers": sorted(set(blockers)),
+        "events": events,
+        "snapshot_fingerprint": fingerprint,
+        "next_poll_seconds": 120 if ready else 30,
+    }
 
 
-def emit(payload: dict[str, Any]) -> None:
-    print(json.dumps(payload, sort_keys=True, separators=(",", ":")), flush=True)
+def update_checkpoint(path: Path, receipts: list[list[str]], retries: list[list[str]]) -> dict[str, Any]:
+    with file_lock(path.with_suffix(path.suffix + ".state.lock")):
+        checkpoint = load_checkpoint(path)
+        if checkpoint is None:
+            raise ValueError("checkpoint does not exist; run one complete snapshot first")
+        current_head = str(checkpoint.get("head_sha") or "")
+        last_snapshot = checkpoint.get("last_snapshot") or {}
+        surfaced_events = {
+            (str(event.get("id")), str(event.get("fingerprint")))
+            for event in last_snapshot.get("events") or []
+        }
+        surfaced_failed_jobs = {str(job_id) for job_id in last_snapshot.get("failed_job_ids") or []}
+        for head, event_id, fingerprint, receipt in receipts:
+            if head != current_head:
+                raise ValueError(f"stale receipt head {head!r}; current head is {current_head!r}")
+            if (event_id, fingerprint) not in surfaced_events:
+                raise ValueError(f"event {event_id!r} with this fingerprint was not in the last complete snapshot")
+            key = f"{head}:{event_id}:{fingerprint}"
+            checkpoint.setdefault("handled_events", {})[key] = {"receipt": receipt, "recorded_at": time.time()}
+        for head, job_id in retries:
+            if head != current_head:
+                raise ValueError(f"stale retry head {head!r}; current head is {current_head!r}")
+            if job_id not in surfaced_failed_jobs:
+                raise ValueError(f"failed job {job_id!r} was not in the last complete snapshot")
+            key = f"{head}:{job_id}"
+            count = int(checkpoint.setdefault("retries", {}).get(key, 0))
+            if count >= 3:
+                raise ValueError(f"retry budget exhausted for {job_id!r} on {head!r}")
+            checkpoint["retries"][key] = count + 1
+        save_checkpoint(path, checkpoint)
+        return checkpoint
+
+
+def emit(value: dict[str, Any]) -> None:
+    print(json.dumps(value, sort_keys=True, separators=(",", ":")), flush=True)
 
 
 def main(argv: list[str] | None = None) -> int:
     args = parse_args(argv)
-    if (
-        args.mark_action or args.record_retry or args.record_failure_kind
-        or args.record_feedback_disposition or args.record_progress_comment
-    ):
-        try:
-            emit(
-                apply_state_updates(
-                    args.state_file,
-                    marks=args.mark_action,
-                    retry_sha=args.record_retry,
-                    failure_classifications=args.record_failure_kind,
-                    feedback_dispositions=args.record_feedback_disposition,
-                    progress_comments=args.record_progress_comment,
-                )
-            )
+    try:
+        if args.record_receipt or args.record_retry:
+            checkpoint = update_checkpoint(args.state_file.resolve(), args.record_receipt, args.record_retry)
+            emit({"schema_version": SCHEMA_VERSION, "state_file": str(args.state_file.resolve()), "checkpoint": checkpoint})
             return 0
-        except (ValueError, OSError) as error:
-            emit({"terminal": True, "reason": "state_update_failed", "error": str(error)})
-            return 2
-    try:
         provider = make_provider(args)
-    except (ValueError, OSError) as error:
-        emit({"terminal": True, "reason": "configuration_error", "error": str(error), "state_file": None})
-        return 2
-    owner = f"{socket.gethostname()}:{os.getpid()}:{uuid.uuid4().hex[:8]}"
-    state_path: Path | None = None
-    state: dict[str, Any] | None = None
-    initial_read_state = new_state(objective=args.objective)
-    lease_path: Path | None = None
-    snapshots = 0
-    try:
+        read_failures = 0
         while True:
-            now = time.time()
             try:
-                snapshot = provider.fetch(args.pr)
-            except ValueError as error:
-                emit({
-                    "terminal": True,
-                    "reason": "configuration_error",
-                    "error": str(error),
-                    "state_file": str(state_path) if state_path else None,
-                })
-                return 2
-            except Exception as error:  # provider errors are emitted as state, not pipeline truth
-                if state is None:
-                    read_result = record_read_error(initial_read_state, str(error), now=now)
-                    emit({
-                        "schema_version": initial_read_state["schema_version"],
-                        "actions": ["provider_read_failed"],
-                        "error": str(error),
-                        **read_result,
-                    })
-                    if args.once or read_result["terminal"]:
-                        return 2
-                    time.sleep(read_result["next_poll_seconds"])
+                first = provider.fetch(args.pr)
+                break
+            except Exception as error:
+                read_failures += 1
+                emit({"terminal": False, "reason": "provider_read_failed", "error": str(error), "consecutive_failures": read_failures})
+                if args.once:
+                    return 2
+                time.sleep(30 * (2 ** min(read_failures - 1, 2)))
+        state_path = args.state_file.resolve() if args.state_file else (_state_directory(Path.cwd()) / _state_key(first))
+        with file_lock(state_path.with_suffix(state_path.suffix + ".watch.lock"), lifetime=True):
+            snapshots = 0
+            pending = first
+            while True:
+                try:
+                    snapshot = pending if snapshots == 0 else provider.fetch(args.pr)
+                    read_failures = 0
+                except Exception as error:
+                    read_failures += 1
+                    emit({"terminal": False, "reason": "provider_read_failed", "error": str(error), "consecutive_failures": read_failures, "state_file": str(state_path)})
+                    time.sleep(30 * (2 ** min(read_failures - 1, 2)))
                     continue
-                with state_file_lock(state_path):
-                    state = load_state(state_path) or state
-                    read_result = record_read_error(state, str(error), now=now)
-                    save_state_atomic(state_path, state)
-                emit({"schema_version": state["schema_version"], "actions": ["provider_read_failed"], **read_result})
-                if args.once or read_result["terminal"]:
-                    return 2 if read_result["terminal"] else 0
-                time.sleep(read_result["next_poll_seconds"])
-                continue
-
-            if state is None:
-                state_path = resolve_state_path(args, snapshot)
-                lease_path = state_path.with_name(f"{state_path.name}.lease")
-                file_lease_state = acquire_file_lease(
-                    lease_path, owner=owner, now=now, takeover=args.takeover
-                )
-                state = load_state(state_path) or new_state(objective=args.objective)
-                validate_state_target(state, snapshot)
-                if state["objective"] != args.objective:
-                    raise ValueError(
-                        f"state objective is {state['objective']!r}; use a new state file or the same objective"
-                    )
-            else:
-                file_lease_state = acquire_file_lease(
-                    lease_path, owner=owner, now=now, takeover=False
-                )
-            state, result = evaluate_and_save_state(
-                state_path,
-                state,
-                snapshot,
-                now=now,
-                authority=set(args.authority),
-                no_pipeline_expected=args.no_pipeline_expected,
-                settle_seconds=args.settle_seconds,
-                owner=owner,
-                takeover=args.takeover and snapshots == 0,
-                lease_state=file_lease_state,
-            )
-            result["state_file"] = str(state_path)
-            result["lease_state"] = state.get("lease_state")
-            emit(result)
-            snapshots += 1
-            if args.once or result["terminal"]:
-                return 0
-            if args.max_snapshots is not None and snapshots >= args.max_snapshots:
-                return 0
-            time.sleep(result["next_poll_seconds"])
-    except LeaseConflict as error:
-        emit({"terminal": True, "reason": "lease_conflict", "error": str(error), "state_file": str(state_path) if state_path else None})
+                pending = None
+                with file_lock(state_path.with_suffix(state_path.suffix + ".state.lock")):
+                    checkpoint = load_checkpoint(state_path) or {
+                        "schema_version": SCHEMA_VERSION,
+                        "target": snapshot_target(snapshot),
+                        "head_sha": None,
+                        "handled_events": {},
+                        "retries": {},
+                        "last_snapshot": None,
+                        "handoff_ready_fingerprint": None,
+                    }
+                    if checkpoint["target"] != snapshot_target(snapshot):
+                        raise ValueError("checkpoint target does not match provider target")
+                    head = str((snapshot.get("head") or {}).get("sha") or "")
+                    if checkpoint.get("head_sha") != head:
+                        checkpoint["head_sha"] = head
+                        checkpoint["handled_events"] = {
+                            key: value
+                            for key, value in checkpoint.get("handled_events", {}).items()
+                            if key.startswith(f"{head}:")
+                        }
+                        checkpoint["retries"] = {
+                            key: value
+                            for key, value in checkpoint.get("retries", {}).items()
+                            if key.startswith(f"{head}:")
+                        }
+                        checkpoint["handoff_ready_fingerprint"] = None
+                    result = assess(snapshot, checkpoint, args.no_pipeline_expected)
+                    checkpoint["last_snapshot"] = {
+                        "fingerprint": result["snapshot_fingerprint"],
+                        "observed_at": time.time(),
+                        "events": event_rows(snapshot, {"handled_events": {}}),
+                        "failed_job_ids": failed_job_ids(snapshot),
+                    }
+                    if result["new_handoff_milestone"]:
+                        checkpoint["handoff_ready_fingerprint"] = result["snapshot_fingerprint"]
+                    save_checkpoint(state_path, checkpoint)
+                result.update(schema_version=SCHEMA_VERSION, state_file=str(state_path), target=snapshot_target(snapshot), head_sha=checkpoint["head_sha"])
+                emit(result)
+                snapshots += 1
+                if args.once or result["terminal"] or (args.max_snapshots and snapshots >= args.max_snapshots):
+                    return 0
+                time.sleep(result["next_poll_seconds"])
+    except WatchConflict as error:
+        emit({"terminal": True, "reason": "watch_conflict", "error": str(error)})
         return 3
-    except (ValueError, OSError) as error:
-        emit({"terminal": True, "reason": "configuration_error", "error": str(error), "state_file": str(state_path) if state_path else None})
-        return 2
     except KeyboardInterrupt:
-        emit({"terminal": True, "reason": "user_interrupted", "state_file": str(state_path) if state_path else None})
+        emit({"terminal": True, "reason": "user_interrupted"})
         return 130
-    finally:
-        if state is not None and state_path is not None:
-            try:
-                with state_file_lock(state_path):
-                    state = load_state(state_path) or state
-                    release_lease(state, owner=owner)
-                    save_state_atomic(state_path, state)
-            except OSError:
-                pass
-        if lease_path is not None:
-            try:
-                release_file_lease(lease_path, owner=owner)
-            except (OSError, ValueError):
-                pass
+    except Exception as error:
+        emit({"terminal": False, "reason": "blocked", "error": str(error)})
+        return 2
 
 
 if __name__ == "__main__":
