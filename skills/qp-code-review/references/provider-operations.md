@@ -66,6 +66,18 @@ Primary documentation:
 - <https://docs.gitlab.com/api/notes/>
 - <https://docs.gitlab.com/api/merge_request_approvals/>
 
+## Report or publish
+
+Without write authority, report the reviewed head, verdict, review scope, separate defect and maintainability finding counts, publication state `READ_ONLY`, discussion dispositions, capability gaps, and next action.
+
+For each explicitly authorized write, verify that its capability and authority are current. Prepare the exact head SHA, verdict, summary, inline findings, replies, and discussion changes. Refresh the head before the first write. If it changed, do not publish stale content; return to evidence collection.
+
+Reply to an existing discussion when possible. Use a current changed line for a new inline finding. Replace or reopen a stale discussion only when explicitly authorized. On GitHub, submit the authorized review event, comments, replies, and thread changes. On GitLab, publish discussions, replies, a summary note, and any separately authorized approval.
+
+If an operation fails, stop dependent writes. Record each successful URL and the failed operation. Do not retry a partial mutation without a safe, verified retry path.
+
+Fetch provider state again. Verify the current head, published verdict or approval, URLs, and intended discussion states. Report publication state as `PUBLISHED`, `PARTIAL`, or `FAILED`.
+
 ## Fallback package
 
 When provider mode is selected and the provider or required capability falls outside this mapping, produce a manual package before requesting direction:

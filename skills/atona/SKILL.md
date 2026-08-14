@@ -37,6 +37,8 @@ When an answer, fact, or confirmed decision changes, reopen every affected decis
 
 Use `html-artifact` to create or update `.qp/plans/<topic>.html`. Keep this file as the primary working plan and reuse its path when another skill contributes.
 
+If `html-artifact` is unavailable or the plan cannot be created, updated, reread, or verified safely, keep the plan in `Draft`, report the required-skill or artifact gap, and do not claim `Planned` or `Closed`.
+
 Record the request, scope, constraints, non-goals, plan status, and implementation state. Track implementation as `Not Required`, `Not Started`, `Started`, or `Complete`. Use the plan statuses and handoffs in Section 4.
 
 Inspect the evidence needed to prove the current system: relevant parts of root `.learnings`, the complete root `.nongoals` when present, overview, architecture and ADR documents, code, tests, history, integrations, recovery paths, and branch state. When the requested direction conflicts with `.nongoals`, require an Amọ̀ṣẹ́ result that records an authorized one-time exception or boundary update before planning past the conflict.
@@ -83,25 +85,9 @@ Before setting the plan to `Planned`, and after final Arojinle confirmation, run
 
 Set the plan to `Planned` only when the recommendation covers all in-scope ownership and behavior and the implementer needs no invented material requirement. Otherwise, keep it in `Draft`. This includes an open, pending, stale, contradictory, or missing gate; a waiting prerequisite; a blocking deferral; missing evidence or decision; or invalid Arojinle identity, coverage, or closure. A non-blocking deferral needs an owner and trigger and must not force material invention. Approval covers only listed decisions.
 
-When the plan has multiple review candidates, dependencies, implementers, or a multi-session handoff, or when the user requests tickets, use `seda-ticket` before setting the plan to `Planned`. Give it the settled scope, constraints, candidates, dependencies, acceptance, proof, and rollback boundaries. Verify that its confirmed tickets cover the plan, persist them in the live plan, and keep the plan in `Draft` while the breakdown is missing, ambiguous, incomplete, or cyclic. Atona retains plan identity, readiness, grouping, persistence, and state.
-
-Persist each ticket's current lifecycle fields and reconcile valid transition results for plan awareness. Atona may delegate ticket-state updates only for exact tickets and permitted transitions. Cancellation requires separate explicit authority. Without delegated write authority, require the delivery owner to return the requested transition and evidence for Atona to apply. Before persisting a transition, refresh the ticket identity, current state, dependency states, evidence, and authority; reject a stale, replayed, invalid, unauthorized, or terminal transition without changing the record. On success, derive `Allowed next` from the new state and replace state evidence with only its required fields. Ticket state never sets plan or phase state, implementation authority, or implementation completion; Atona's existing readiness, integration, proof, and review gates remain authoritative.
-
 ## 3. Track authorized delivery
 
-Keep the request, decisions, evidence, risks, phases, candidate, proof gaps, documentation destinations, and lifecycle states current in the plan. Remove stale guidance and redundant snapshots.
-
-Require explicit implementation authority. Immediately before the first edit, set implementation to `Started` and record the date, candidate branch and commit or tree state, phase, and authority. Investigation, clarification, and plan edits do not start implementation.
-
-Translate each delivery phase into one or more stable, self-contained review candidates. Give each candidate its scope, dependencies, acceptance behavior, proof, and rollback boundary. Do not make every TDD slice or local commit an Alaga invocation, and do not force a whole phase into one candidate when it contains independent reviewable changes. Keep phase-level integration and acceptance proof in the plan.
-
-Use `audit-refactor-behavior` before a stateful refactor that can change transitions, ordering, locking, retries, idempotency, ownership, or cross-entry behavior. Use `alaga` for each full feature candidate or `tdd` for bounded test-first implementation.
-
-For work owned by another skill, record its owner, scope, evidence, blocked outcome, and required result. Keep test, review, build, commit, and publication procedures with their owners.
-
-Treat internal Alaga tasks, TDD slices, tests, and commits as delivery detail, not Atona tickets. Record them only when the plan promotes the work to a blocker, handoff boundary, material plan change, or independent review candidate. Accept optional exact-current Git evidence returned by a delivery owner without prescribing or performing Git operations.
-
-Verify each specialist result against the current plan identity and candidate before recording state or evidence. Reject a mismatch as stale and rerun affected readiness or closure checks. Set implementation to `Complete` only after `qp-code-review` returns `RECOMMEND_ACCEPT` for every final in-scope review candidate and phase-level integration proof has no blocking evidence gap. Reuse a verified current result. Skip this gate when implementation is `Not Required`.
+When the user requests tickets, the plan has multiple review candidates, dependencies, implementers, or a multi-session handoff, or implementation authority is granted, read [delivery-tracking.md](references/delivery-tracking.md). It owns ticket reconciliation, implementation start, review-candidate shaping, delivery-owner handoffs, and exact-current completion proof. Atona retains plan identity, readiness, integration, and closure.
 
 ## 4. Reconcile and close
 
@@ -109,40 +95,4 @@ Before `Closed`, verify no blocking decision remains; delivery and review match 
 
 For each `.learnings`, `.nongoals`, or ADR destination, verify one exact-current Amọ̀ṣẹ́ result rather than repeating its discovery. For ordinary documentation, require the owning delivery skill to record `updated now`, `already reconciled` with evidence, or `not applicable`. Do not leave obsolete guidance current.
 
-Align plan and implementation states with remaining work. End each user-visible handoff with **What next**: recommendation, first step, owner or skill, and required authority.
-
-When the plan first becomes `Planned` and implementation is required, state implementation authority as `Confirmed` or `Required`. If authority is required, name the exact authority without starting implementation.
-
-Add or refresh **Suggested direction** when the plan becomes `Planned`, implementation authority changes, the suggested direction changes materially, or the user asks for implementation guidance. On other `Planned` handoffs, state only the current authority and recommended starting point.
-
-Check the active skill inventory. Under **Suggested direction**, list only available skills that fit the current plan. Put them in a useful likely order. For each skill, name the plan-specific outcome or proof it would own and why the plan needs it. Mark an outcome or proof gate as required only when the confirmed plan or owning skill requires it. Treat the list as advice, not implementation authority or a fixed route. Keep models, subagents, tools, phases, and generic actions out of this list; add requested routing separately.
-
-When a required gate's owning skill is unavailable, add `Required skill gap: <skill> — <required outcome or proof>.` outside **Suggested direction**. Recommend making the owner available before implementation. Do not hide the gap, substitute another owner, or recommend starting work past it.
-
-End with the recommended starting skill and its first plan-specific action. If a required owner is unavailable, end with the action needed to resolve that gap. If implementation authority is required, end with that authority action instead.
-
-When giving or refreshing **Suggested direction**, use this compact shape:
-
-Omit the required skill gap line when no required owner is unavailable.
-
-```text
-Implementation authority: Confirmed | Required
-
-Suggested direction
-1. <skill> — <outcome or proof it would own and why this plan needs it>.
-2. <skill> — <outcome or proof it would own and why this plan needs it>.
-
-Required skill gap: <skill> — <required outcome or proof>.
-
-Recommended starting point: <skill and first plan-specific action | prerequisite action>.
-```
-
-| Plan status | Use when | **What next** |
-| --- | --- | --- |
-| `Draft` | A decision, evidence item, or readiness gate is open. | Name the next decision or evidence action. |
-| `Planned` | Planning is complete without material invention. | Say, “Planning is complete. Here is a suggested direction for the build.” Give or refresh the concise direction when its trigger applies. Otherwise state only the current authority and recommended starting point. Add phases or proof gates only when they materially affect the recommendation or starting point. |
-| `In Progress` | Implementation, documentation, or proof is active. | Name the next incomplete phase or gap. |
-| `Closed` | No plan work remains, including a resolved amendment. | Name the next workstream or say that planning is complete. |
-| `Backlog` | The plan is inventory that does not require closure. | Name its owner and reactivation trigger. |
-
-When a material choice remains, give numbered options and mark the recommendation. Do not start the next action without its required authority.
+Align plan and implementation states with remaining work. Before every user-visible handoff, read [suggested-direction.md](references/suggested-direction.md). It owns status-specific **What next**, implementation-authority presentation, required skill gaps, and the conditional **Suggested direction**. Do not start the next action without its required authority.
