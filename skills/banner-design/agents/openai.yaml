@@ -1,0 +1,4 @@
+interface:
+  display_name: "Banner Design"
+  short_description: "Create platform-ready banners and hero assets"
+  default_prompt: "Use $banner-design to design a platform-ready banner for this request."

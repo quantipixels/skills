@@ -2,6 +2,8 @@
 
 QP Agent Skills is a portable collection of focused skills for established codebases. It helps you make decisions, plan work, implement changes, review code, and craft checked HTML artifacts from durable records to interactive prototypes.
 
+The design skills are maintained locally in this repository and run from their bundled guidance and resources.
+
 Read the public documentation at [quantipixels.com/skills](https://quantipixels.com/skills).
 
 ## Install
@@ -62,6 +64,23 @@ Use alarina to choose the right QP skill for this request:
 | `ayewo-igba-ise` | A coding-agent session needs an evidence-backed friction analysis |
 | `iwadi` | A question needs high-trust research from primary sources, captured in a Markdown file |
 | `ko-skill` | A portable agent skill needs creation or revision |
+| `qp-setup` | A coding-agent baseline needs communication instructions and companion-tool choices |
+
+## Design skills
+
+Use `apere` as the end-to-end router, or invoke the narrowest owner directly:
+
+| Skill | Use when |
+| --- | --- |
+| `apere` | A visual request spans brand, UI, graphics, logos, mockups, social assets, or icons |
+| `amoye-ui-ux` | UI/UX recommendations need searchable styles, palettes, typography, accessibility, charts, or stack rules |
+| `brand` | Brand voice, identity, assets, or consistency needs a source of truth |
+| `eto-apere` | Tokens, CSS variables, component specs, or theme architecture need definition |
+| `asa-oju-ibanisoro` | Components and responsive interfaces need accessible Tailwind/shadcn implementation, with an explicit UI-library choice |
+| `banner-design` | Social, ad, web hero, cover, or print banners need exact platform constraints |
+| `slides` | Presentations and pitch decks need narrative, layout, and chart guidance |
+
+For React UI work, `asa-oju-ibanisoro` asks for an explicit component-library decision and keeps the local 14-library inventory in `skills/asa-oju-ibanisoro/references/ui-component-libraries.md`.
 | `irinse` | A companion engineering tool needs selection, setup, safe use, or removal |
 | `olofofo` | A literal agent session needs quiet continuity, proportionate quality nudges, and reusable cross-session wisdom |
 
