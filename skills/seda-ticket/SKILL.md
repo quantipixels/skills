@@ -13,16 +13,16 @@ Use the context already supplied. Read a referenced source in full. Inspect the 
 
 Do not invent a material requirement. Ask for confirmation when decomposition authority is absent or the granularity or dependency structure is ambiguous. A caller can supply an already confirmed breakdown.
 
-## 2. Draft vertical tickets
+## 2. Prefer outcome-complete vertical tickets
 
-Make each ticket one narrow, complete behavior slice that:
+Default each ticket to one narrow, outcome-complete vertical slice that:
 
 - delivers an independently verifiable user, operator, or system outcome;
 - crosses only the layers needed for that outcome;
 - fits one fresh agent context and one coherent reviewable change; and
 - can stay valid without copied parent narrative or guessed implementation detail.
 
-Do not split one behavior into separate schema, API, UI, or test tickets. Use an enabling ticket only when it delivers a verifiable capability or genuinely blocks later work.
+Do not split one behavior into separate schema, API, UI, or test tickets. Use a non-vertical ticket only for an independently verifiable enabling capability that genuinely blocks later work, or when vertical delivery cannot remain green. Record the exception and its green integration boundary in the ticket context.
 
 For a wide mechanical refactor that cannot stay green as vertical slices, use expand–migrate–contract: add a compatible form, migrate bounded groups, then remove the old form after every migration. State where green integration proof applies.
 
@@ -57,7 +57,7 @@ Only `Done` resolves a dependency. Keep a dependant `Ready` until every dependen
 
 ## 3. Confirm and return
 
-Check that every ticket is independently verifiable, blockers are genuine and acyclic, acceptance is observable, and the complete supplied scope is covered without overlap.
+Check that every ticket is independently verifiable, blockers are genuine and acyclic, acceptance is observable, and the complete supplied scope is covered without overlap. For every non-vertical ticket, verify that its exception is necessary, independently testable, and connected to a named green integration boundary.
 
 When confirmation is required, show the draft and ask whether its granularity and blockers are correct. Iterate until confirmed.
 

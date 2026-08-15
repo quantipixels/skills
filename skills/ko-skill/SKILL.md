@@ -1,11 +1,11 @@
 ---
 name: ko-skill
-description: Author or revise one portable agent skill. Focus on a narrow outcome, a clear invocation boundary, concise instructions, integrated metadata, and proportionate verification.
+description: Author, revise, or validate one portable agent skill. Focus on a narrow outcome, a clear invocation boundary, concise instructions, integrated metadata, and proportionate verification.
 ---
 
 # Ko Skill
 
-Author or revise one portable skill. Keep only the guidance an agent needs to produce the outcome reliably.
+Author, revise, or validate one portable skill. Keep only the guidance an agent needs to produce the outcome reliably.
 
 ## 1. Shape the skill
 
@@ -53,3 +53,5 @@ Add an independent reviewer only when the consequence or ambiguity justifies a s
 Do not add prompt eval suites or new behavioral test cases to this repository. Existing deterministic tests can remain while their owning behavior remains.
 
 Report the skill path, boundary, changed files, direct checks, any forward-test evidence, candidate identity, and limitations. Distinguish repository, published, installed, and active states when relevant. Install or publish only when requested.
+
+For a validation-only request, return `VERIFIED` only when every required structural and behavioral check passes against the exact candidate. Return `CHANGES_REQUIRED` for a proved contract or integration defect and `INSUFFICIENT_EVIDENCE` when a material proof gap prevents a responsible result.

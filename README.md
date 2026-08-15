@@ -42,13 +42,13 @@ Use alarina to choose the right QP skill for this request:
 | --- | --- |
 | `arojinle` | A plan or decision needs a complete decision tree and confirmation |
 | `atona` | Architecture or migration work needs one live plan through delivery |
-| `alaga` | One feature candidate needs clarification, test-backed implementation, and broad review |
-| `tdd` | A feature or bug fix needs a test-first implementation loop |
+| `alaga` | One supplied build job needs job-level integration, acceptance, documentation or knowledge reconciliation, or applicable candidate review |
+| `tdd` | One bounded feature or bug fix needs an explicit test-first implementation loop without broader build-job stewardship |
 | `qp-code-review` | Bounded code or a PR/MR needs broad or defect-only review |
 | `seda-pr` | A ready-for-review GitHub PR or GitLab MR needs a clear zero-context title, narrative, and bounded metadata |
 | `wo-pr` | An open PR or MR needs active CI and feedback stewardship through readiness and later changes until explicit stop or closure |
 | `salaye` | An idea, plan, decision, document, or code candidate needs conversational exploration, explanation, investigation, research, analysis, or evaluation |
-| `triage-issue` | One issue or bug report needs local-first evidence assessment before implementation |
+| `triage-issue` | One issue or bug report needs supplied-evidence-first assessment before implementation |
 | `seda-ticket` | Supplied work needs consumable vertical tickets with blockers, acceptance, and lifecycle state |
 | `audit-refactor-behavior` | A refactor or rewrite needs a behavior-parity ledger |
 | `html-artifact` | Supplied content, evidence, decisions, diagrams, or design specifications need translation into a checked, portable, highly visual browser artifact |
@@ -63,8 +63,9 @@ Use alarina to choose the right QP skill for this request:
 | `handoff` | A conversation needs a compact handoff for another agent or session |
 | `ayewo-igba-ise` | A coding-agent session needs an evidence-backed friction analysis |
 | `iwadi` | A question needs high-trust research from primary sources, captured in a Markdown file |
-| `ko-skill` | A portable agent skill needs creation or revision |
-| `qp-setup` | A coding-agent baseline needs communication instructions and companion-tool choices |
+| `ko-skill` | A portable agent skill needs creation, revision, or validation |
+| `irinse` | A companion engineering tool needs selection, setup, safe use, or removal |
+| `olofofo` | A literal agent session needs quiet continuity, proportionate quality nudges, and reusable cross-session wisdom |
 
 ## Design skills
 
@@ -81,8 +82,6 @@ Use `apere` as the end-to-end router, or invoke the narrowest owner directly:
 | `slides` | Presentations and pitch decks need narrative, layout, and chart guidance |
 
 For React UI work, `asa-oju-ibanisoro` asks for an explicit component-library decision and keeps the local 14-library inventory in `skills/asa-oju-ibanisoro/references/ui-component-libraries.md`.
-| `irinse` | A companion engineering tool needs selection, setup, safe use, or removal |
-| `olofofo` | A literal agent session needs quiet continuity, proportionate quality nudges, and reusable cross-session wisdom |
 
 ## Optional agent instructions
 
