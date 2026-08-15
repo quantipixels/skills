@@ -52,7 +52,17 @@ A seam is a stable boundary where a test can observe required behavior without d
 
 Avoid:
 
-- **Implementation coupling** — testing private structure, unstable collaborator calls, or side channels that are not part of the behavior contract.
+- **Implementation coupling** — test required behavior at the selected seam, not private structure, unstable collaborator calls, incidental internal steps, or non-contract side channels.
+
+  ```java
+  // Good: assert the caller-visible result.
+  assertEquals(PAID, checkout.submit(order).status());
+
+  // Bad: assert the current internal step sequence.
+  checkout.submit(order);
+  assertEquals(List.of("validate", "charge"), checkout.internalTrace());
+  ```
+
 - **Tautological expectations** — use a specification, worked example, known literal, or another independent source; never derive the expected value with the production logic.
 
   ```java
@@ -69,7 +79,7 @@ When the slice needs test doubles, read [mocking.md](mocking.md).
 
 ## 2. Prove red
 
-Write the smallest test set that controls the behavior slice. Prefer observable outcomes through the selected seam over internal call assertions.
+Write the smallest test set that controls the behavior slice.
 
 Run the focused test set. Confirm that it fails because the required behavior is missing or incorrect. Fix compilation, fixture, environment, and unrelated failures before changing production code.
 
