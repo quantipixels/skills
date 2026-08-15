@@ -72,9 +72,14 @@ Use these safeguards:
 - Prefer typed state, explicit contracts, and one active owner over parallel flags and implicit coupling.
 - Treat queueing, persistence, priority, global arbitration, and universal registries as separate design decisions.
 - Decide ownership and visibility at the smallest meaningful capability.
+- Prefer deep modules at clean seams: minimize what callers must know while hiding meaningful behavior, policy, or integration complexity. Depth means interface leverage, not implementation size. Treat invariants, ordering, errors, configuration, and performance constraints as part of the interface.
 - Cover each material state, ownership, lifecycle, and boundary decision with normal behavior proof and one relevant edge or failure scenario.
 
-For each proposed module or seam, name its callers, required caller knowledge, hidden complexity or policy, and behavior proof. Reject it when deletion exposes only pass-through calls without exposing complexity. Keep a shallow seam only for a proven integration, ownership, lifecycle, policy, or testing need.
+For each proposed module or seam, name its callers, the complete interface knowledge they require, the complexity or policy hidden inside, and the behavior proof exercised through that interface.
+
+Apply the deletion test: a useful module causes its hidden complexity to reappear across callers when removed. Reject a pass-through module whose deletion removes only forwarding calls. Keep a shallow module only for a proven integration, ownership, lifecycle, policy, or testing reason.
+
+Do not introduce a speculative seam only for possible future variation. One implementation needs an independent ownership, integration, lifecycle, policy, or testing reason; actual variation makes the seam stronger evidence.
 
 Before setting the plan to `Planned`, and after final Arojinle confirmation, run one readiness gate:
 
