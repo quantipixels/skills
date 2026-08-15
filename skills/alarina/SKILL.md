@@ -23,7 +23,13 @@ Keep runtime-behavior work separate from repository review policy, agent skills,
 
 Treat an unqualified request to review code as broad. Select `qp-code-review` as the primary owner and `simplify` as its supporting maintainability specialist. Select `qp-code-review` alone only when the user explicitly limits the review to defects and excludes maintainability.
 
-Keep PR or MR publication, monitoring, explanation, and review as separate outcomes. Use `seda-pr` to create a ready-for-review item or reconcile its public narrative and bounded metadata; it never creates drafts. Use `wo-pr` alone for a bare watch, monitor, babysit, or keep-an-eye-on request; it owns bounded CI and evidence-backed feedback stewardship through the readiness milestone and later changes until explicit stop or item closure. Do not add explanation or review as setup. Use `tunmo-pr` to explain the exact current diff without mutation. Add `qp-code-review` to monitoring only when the user explicitly requests a review verdict or current repository policy requires one.
+Use `olofofo` only when a global baseline activates the default session companion or the user explicitly asks it to track the literal session. Olofofo remains a quiet supporting skill: the active task keeps its primary outcome owner. It maintains one living session artifact, applies optional EMI steering, detects material session-quality gaps, and curates global cross-session wisdom as evidence. It may run bounded read-only local checks and external lookups under normal agent rules or suggest an owner, but it does not route skills or own research records, decisions, plans, implementation, review, Git, provider work, or project knowledge.
+
+Use `salaye` when the user wants an open-ended conversation that explores, explains, investigates, researches, analyses, or evaluates an idea, plan, decision, document, or code candidate. It can ask and wait for the smallest answer needed to correct direction or unblock the next sound action. It uses the active Olofofo artifact when available and obtains an exact-current owning result when the conversation includes a specialist outcome.
+
+Use `arojinle` instead when the requested result is complete material decision closure and final confirmation. Ṣàlàyé can map a relevant exploration tree and frontier, but Arojinle rebuilds and exhausts the complete tree.
+
+Keep PR or MR publication, monitoring, conversational exploration, and bare-verdict review as separate outcomes. Use `seda-pr` to create a ready-for-review item or reconcile its public narrative and bounded metadata; it never creates drafts. Use `wo-pr` alone for a bare watch, monitor, babysit, or keep-an-eye-on request; it owns bounded CI and evidence-backed feedback stewardship through the readiness milestone and later changes until explicit stop or item closure. Do not add explanation or review as setup. A PR or MR is one supported Ṣàlàyé focus, not its scope boundary. Use `qp-code-review` directly for a bare verdict review. Add `qp-code-review` to monitoring only when the user explicitly requests a review verdict or current repository policy requires one.
 
 Use `triage-issue` for one issue or bug report that needs evidence classification and a next action before implementation. It uses supplied evidence only by default. Do not substitute `iwadi`, code review, implementation, or provider backlog management. Repository source reads, provider reads, and one provider comment are separate explicit-authority branches.
 
@@ -40,7 +46,8 @@ Use `seda-ticket` to break a supplied plan, specification, issue, conversation, 
 | Bounded code or an active PR or MR needs broad or defect-only review | `qp-code-review`, with `simplify` for broad review |
 | One ready-for-review GitHub PR or GitLab MR needs creation or reconciliation for a zero-context reader | `seda-pr` |
 | One open GitHub PR or GitLab MR needs persistent pipeline and feedback monitoring | `wo-pr` |
-| One GitHub PR or GitLab MR needs a read-only first-reviewer explanation | `tunmo-pr` |
+| The literal agent session needs quiet continuity, proportionate quality nudges, and reusable cross-session wisdom | `olofofo` as a supporting skill; keep the active task's primary owner |
+| One idea, plan, decision, document, or code candidate needs conversational exploration, explanation, investigation, research, analysis, or evaluation | `salaye` |
 | One issue or bug report needs local-first evidence classification and a next action | `triage-issue` |
 | Supplied work needs consumable vertical tickets with blockers, acceptance, and lifecycle state | `seda-ticket` |
 | A planned or completed refactor needs a parity ledger, or a stateful refactor requires a pre-implementation behavior gate | `audit-refactor-behavior` |

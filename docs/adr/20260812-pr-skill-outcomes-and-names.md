@@ -1,12 +1,14 @@
 # Separate PR publication, watching, and explanation
 
+The explanation and `tunmo-pr` parts of this decision are superseded by [Separate session continuity from conversational exploration](20260814-separate-session-continuity-from-conversational-exploration.md). The `seda-pr`, `wo-pr`, provider-runtime, and provider-safety decisions below remain current.
+
 QP publishes three independently installable skills for GitHub pull requests and GitLab merge requests:
 
 - `seda-pr` creates or reconciles one zero-context public narrative and bounded metadata;
 - `wo-pr` keeps one open item attached through CI, conflicts, and review feedback until a human merge decision;
-- `tunmo-pr` explains one exact current diff without mutation.
+- `tunmo-pr` explained one exact current diff without mutation. This unreleased owner was later replaced by the broader opt-in `salaye` conversational protocol.
 
-Use the ASCII Yorùbá act names `seda`, `wo`, and `tunmo` as the public identifiers. Keep the English actions and GitHub PR/GitLab MR terms in descriptions and metadata so selection does not require Yorùbá knowledge.
+Use the ASCII Yorùbá act names `seda` and `wo` as the public PR and MR lifecycle identifiers. Keep the English actions and GitHub PR/GitLab MR terms in descriptions and metadata so selection does not require Yorùbá knowledge. The superseding decision owns the `salaye` name and its wider subject boundary.
 
 A single PR helper was rejected because publication, monitoring, and explanation have different triggers, mutation authority, state lifecycles, adjacent owners, and completion proof. A GitHub-first release was rejected because the accepted public boundary includes GitLab from launch; provider normalization must preserve explicit capability differences rather than claim parity.
 
