@@ -21,17 +21,18 @@ primitive values → semantic purpose aliases → component properties/states
 6. Generate CSS or framework configuration from JSON rather than hand-copying values. Preserve dark-mode overrides and token references.
 7. Validate the changed project area for hardcoded values, invalid references, contrast, and missing states. Read the relevant component, state, and Tailwind references on demand.
 
-## Deterministic helpers
+## Token helpers
 
 Run from the skill root or substitute its absolute path:
 
 ```bash
 node <skill-root>/scripts/generate-tokens.cjs --config tokens.json --output tokens.css
 node <skill-root>/scripts/validate-tokens.cjs --dir src/
-python <skill-root>/scripts/search-slides.py "investor roadmap"
 ```
 
 The generator accepts JSON token objects and resolves `{path.to.token}` references. Review generated output before committing. Do not replace an existing source-of-truth token file without checking its consumers.
+
+Slide datasets, slide search, slide validation, background fetching, and HTML generation belong to the `slides` skill. Use its local `data/` and `scripts/` resources through the `slides` route. The token contract is the project-level `assets/design-tokens.json` and generated `assets/design-tokens.css` consumed by both skills.
 
 ## Decision rules
 

@@ -125,21 +125,20 @@ function updateDesignTokens(tokens, colors) {
   delete primitiveColors.purple;
   delete primitiveColors.mint;
 
-  // Add new named colors. Skip any role with no base hex rather than crashing
-  // on an unexpected guidelines format.
+  // Required role validation happens before this function is called. Keeping
+  // this update unconditional prevents a partial guidelines document from
+  // leaving semantic references pointed at missing primitive tokens.
   for (const role of ['primary', 'secondary', 'accent']) {
     const c = colors[role];
-    if (!c.base) {
-      console.warn(`⚠️  No base hex found for ${role} color — skipping its token scale.`);
-      continue;
-    }
     primitiveColors[c.name] = generateColorScale(c.base, c.dark, c.light);
   }
 
   tokens.primitive.color = primitiveColors;
 
   // Update ALL semantic color references
-  if (tokens.semantic?.color) {
+  tokens.semantic = tokens.semantic || {};
+  tokens.semantic.color = tokens.semantic.color || {};
+  {
     const sem = tokens.semantic.color;
     const p = colors.primary.name;
     const s = colors.secondary.name;
@@ -185,6 +184,97 @@ function updateDesignTokens(tokens, colors) {
   return tokens;
 }
 
+function validateRequiredColors(colors) {
+  const missing = ['primary', 'secondary', 'accent'].filter(role => !colors[role]?.base);
+  if (missing.length > 0) {
+    throw new Error(
+      `Brand guidelines must define base hex values for: ${missing.join(', ')}. ` +
+      'No token files were changed.'
+    );
+  }
+}
+
+function resolveTokenReference(tokens, reference) {
+  const match = /^\{([^{}]+)\}$/.exec(reference);
+  if (!match) {
+    throw new Error(`Malformed token reference: ${reference}`);
+  }
+
+  let current = tokens;
+  for (const key of match[1].split('.')) {
+    if (!current || typeof current !== 'object' || !Object.prototype.hasOwnProperty.call(current, key)) {
+      throw new Error(`Unresolved token reference: ${reference}`);
+    }
+    current = current[key];
+  }
+
+  if (current && typeof current === 'object' && Object.prototype.hasOwnProperty.call(current, '$value')) {
+    const value = current.$value;
+    if (typeof value === 'string' && value.startsWith('{')) {
+      return resolveTokenReference(tokens, value);
+    }
+    return value;
+  }
+  if (current && typeof current === 'object') {
+    throw new Error(`Token reference does not point to a token value: ${reference}`);
+  }
+  return current;
+}
+
+function validateTokenReferences(tokens) {
+  const visit = value => {
+    if (typeof value === 'string' && value.startsWith('{')) {
+      resolveTokenReference(tokens, value);
+      return;
+    }
+    if (!value || typeof value !== 'object') return;
+    for (const child of Object.values(value)) visit(child);
+  };
+
+  visit(tokens);
+
+  const semantic = tokens.semantic?.color || {};
+  for (const role of ['primary', 'secondary', 'accent', 'success', 'error', 'info']) {
+    if (!semantic[role]?.$value) {
+      throw new Error(`Missing semantic status/color token: semantic.color.${role}`);
+    }
+    resolveTokenReference(tokens, semantic[role].$value);
+  }
+}
+
+function replaceOutputsAtomically(tempJson, tokensPath, tempCss, cssPath) {
+  const backupDir = fs.mkdtempSync(path.join(path.dirname(tokensPath), '.brand-sync-backup-'));
+  const targets = [
+    { target: tokensPath, temp: tempJson, backup: path.join(backupDir, 'design-tokens.json') },
+    { target: cssPath, temp: tempCss, backup: path.join(backupDir, 'design-tokens.css') }
+  ];
+  const backedUp = [];
+  const installed = [];
+
+  try {
+    for (const item of targets) {
+      if (fs.existsSync(item.target)) {
+        fs.renameSync(item.target, item.backup);
+        backedUp.push(item);
+      }
+    }
+    for (const item of targets) {
+      fs.renameSync(item.temp, item.target);
+      installed.push(item);
+    }
+  } catch (error) {
+    for (const item of installed.reverse()) {
+      if (fs.existsSync(item.target)) fs.unlinkSync(item.target);
+    }
+    for (const item of backedUp.reverse()) {
+      if (fs.existsSync(item.backup)) fs.renameSync(item.backup, item.target);
+    }
+    throw error;
+  } finally {
+    fs.rmSync(backupDir, { recursive: true, force: true });
+  }
+}
+
 /**
  * Main
  */
@@ -207,6 +297,7 @@ function main() {
   console.log(`   Primary: ${colors.primary.name} (${colors.primary.base})`);
   console.log(`   Secondary: ${colors.secondary.name} (${colors.secondary.base})`);
   console.log(`   Accent: ${colors.accent.name} (${colors.accent.base})\n`);
+  validateRequiredColors(colors);
 
   // Read existing tokens
   const tokensPath = path.resolve(process.cwd(), DESIGN_TOKENS_JSON);
@@ -225,28 +316,40 @@ function main() {
     return;
   }
 
-  // Write updated tokens
-  fs.writeFileSync(tokensPath, JSON.stringify(tokens, null, 2));
-  console.log(`✅ Updated: ${DESIGN_TOKENS_JSON}`);
+  validateTokenReferences(tokens);
 
-  // Regenerate CSS
+  // Stage both artifacts next to their final paths. The existing outputs are
+  // not touched until JSON and CSS generation have both succeeded.
   const projectGenerateScript = path.resolve(process.cwd(), PROJECT_GENERATE_TOKENS_SCRIPT);
   const generateScript = fs.existsSync(projectGenerateScript)
     ? projectGenerateScript
     : BUNDLED_GENERATE_TOKENS_SCRIPT;
-  if (fs.existsSync(generateScript)) {
-    try {
-      execFileSync('node', [generateScript, '--config', DESIGN_TOKENS_JSON, '-o', DESIGN_TOKENS_CSS], {
-        cwd: process.cwd(),
-        stdio: 'inherit'
-      });
-      console.log(`✅ Regenerated: ${DESIGN_TOKENS_CSS}`);
-    } catch (e) {
-      console.error('⚠️  Failed to regenerate CSS:', e.message);
-    }
+  if (!fs.existsSync(generateScript)) {
+    throw new Error(`Token generator not found: ${generateScript}. No token files were changed.`);
+  }
+
+  const tempDir = fs.mkdtempSync(path.join(path.dirname(tokensPath), '.brand-sync-'));
+  const tempJson = path.join(tempDir, 'design-tokens.json');
+  const tempCss = path.join(tempDir, 'design-tokens.css');
+  try {
+    fs.writeFileSync(tempJson, JSON.stringify(tokens, null, 2));
+    execFileSync('node', [generateScript, '--config', tempJson, '-o', tempCss], {
+      cwd: process.cwd(),
+      stdio: 'inherit'
+    });
+    replaceOutputsAtomically(tempJson, tokensPath, tempCss, path.resolve(process.cwd(), DESIGN_TOKENS_CSS));
+    console.log(`✅ Updated: ${DESIGN_TOKENS_JSON}`);
+    console.log(`✅ Regenerated: ${DESIGN_TOKENS_CSS}`);
+  } finally {
+    fs.rmSync(tempDir, { recursive: true, force: true });
   }
 
   console.log('\n✨ Brand sync complete!');
 }
 
-main();
+try {
+  main();
+} catch (error) {
+  console.error(`❌ Brand sync failed: ${error.message}`);
+  process.exitCode = 1;
+}

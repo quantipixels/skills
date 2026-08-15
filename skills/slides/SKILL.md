@@ -11,9 +11,10 @@ Turn a message into a persuasive, visually coherent presentation. Keep the narra
 
 1. Confirm audience, decision or action, delivery format, slide count, source data, brand, and whether the output is HTML, PPTX, PDF, or another format. For native PowerPoint work, hand off to the host’s presentations capability after the content/design contract is ready.
 2. Read `references/create.md`, then load only the relevant layout, strategy, copywriting, and template references.
-3. Build an outline where each slide has one job, one headline claim, supporting evidence, and a clear transition. Use charts only when they make the relationship easier to understand.
-4. Apply tokens, spacing, typography, and layout patterns consistently. Keep charts labeled, keyboard-accessible where interactive, and understandable without color alone.
-5. Render or preview the deck at the target viewport, check overflow and contrast, and revise before delivery. Include source files and an export when requested.
+3. Search the local slide datasets with `scripts/search-slides.py`; use the results to choose strategy, layout, copy formula, chart, typography, colors, and background direction.
+4. Build an outline where each slide has one job, one headline claim, supporting evidence, and a clear transition. Use charts only when they make the relationship easier to understand.
+5. Apply project tokens from `assets/design-tokens.json` and `assets/design-tokens.css`. The deterministic helpers in this skill own HTML generation, background selection, and token validation.
+6. Render or preview the deck at the target viewport, check overflow and contrast, and revise before delivery. Include source files and an export when requested.
 
 ## Quality rules
 
@@ -30,3 +31,9 @@ Turn a message into a persuasive, visually coherent presentation. Keep the narra
 - `references/copywriting-formulas.md` — headline and narrative formulas.
 - `references/slide-strategies.md` — strategy selection.
 - `references/create.md` — creation entry point.
+- `data/` — slide strategies, layouts, copy, charts, typography, colors, and backgrounds.
+- `scripts/search-slides.py` — local BM25 search across the slide datasets.
+- `scripts/generate-slide.py` — token-linked HTML deck generator; accepts `--project-root` and contained `--output`.
+- `scripts/embed-tokens.cjs` — inline token CSS helper for standalone HTML decks.
+- `scripts/html-token-validator.py` — HTML token compliance validator; accepts `--project-root`.
+- `scripts/fetch-background.py` — background selector and overlay helper; accepts `--project-root`.

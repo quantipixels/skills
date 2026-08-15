@@ -113,10 +113,10 @@
 
 ```bash
 # Find layout for specific use
-python <eto-apere-skill-root>/scripts/search-slides.py "metrics dashboard" -d layout
+python <skill-root>/scripts/search-slides.py "metrics dashboard" -d layout
 
 # Contextual recommendation
-python <eto-apere-skill-root>/scripts/search-slides.py "traction slide" \
+python <skill-root>/scripts/search-slides.py "traction slide" \
   --context --position 4 --total 10
 ```
 

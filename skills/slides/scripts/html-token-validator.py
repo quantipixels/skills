@@ -18,8 +18,8 @@ import sys
 from pathlib import Path
 from typing import Dict, List, Tuple, Optional
 
-# Project root relative to this script
-PROJECT_ROOT = Path(__file__).parent.parent.parent.parent.parent
+# Project root defaults to the caller's project, so this script is standalone.
+PROJECT_ROOT = Path.cwd()
 TOKENS_JSON_PATH = PROJECT_ROOT / 'assets' / 'design-tokens.json'
 TOKENS_CSS_PATH = PROJECT_ROOT / 'assets' / 'design-tokens.css'
 
@@ -31,7 +31,7 @@ ASSET_DIRS = {
 
 # Patterns that indicate hardcoded values (should use tokens)
 FORBIDDEN_PATTERNS = [
-    (r'#[0-9A-Fa-f]{3,8}\b', 'hex color'),
+    (r'(?<!&)#[0-9A-Fa-f]{3,8}\b', 'hex color'),
     (r'rgb\(\s*\d+\s*,\s*\d+\s*,\s*\d+\s*\)', 'rgb color'),
     (r'rgba\(\s*\d+\s*,\s*\d+\s*,\s*\d+\s*,\s*[\d.]+\s*\)', 'rgba color'),
     (r'hsl\([^)]+\)', 'hsl color'),
@@ -94,10 +94,31 @@ def is_inside_block(content: str, match_pos: int, open_tag: str, close_tag: str)
     return tag_open > tag_close
 
 
-def is_allowed_exception(context: str) -> bool:
-    """Check if the hardcoded value is in an allowed exception context."""
-    context_lower = context.lower()
-    return any(exc in context_lower for exc in ALLOWED_EXCEPTIONS)
+def is_allowed_exception(content: str, match_start: int, match_end: int) -> bool:
+    """Allow a value only when the matched text is part of an allowed URL.
+
+    A nearby domain name is not enough: the exact color token must be lexically
+    inside the URL that owns the exception.
+    """
+    url_pattern = re.compile(r"(?:https?:)?//[^\s\"'<>]+", re.IGNORECASE)
+    for url_match in url_pattern.finditer(content):
+        if url_match.start() <= match_start and match_end <= url_match.end():
+            url = url_match.group().lower()
+            if any(exc in url for exc in ALLOWED_EXCEPTIONS):
+                return True
+    return False
+
+
+def configure_project_root(project_root: Path):
+    """Point all validator resources at an explicit project root."""
+    global PROJECT_ROOT, TOKENS_JSON_PATH, TOKENS_CSS_PATH, ASSET_DIRS
+    PROJECT_ROOT = project_root.resolve()
+    TOKENS_JSON_PATH = PROJECT_ROOT / 'assets' / 'design-tokens.json'
+    TOKENS_CSS_PATH = PROJECT_ROOT / 'assets' / 'design-tokens.css'
+    ASSET_DIRS = {
+        'slides': PROJECT_ROOT / 'assets' / 'designs' / 'slides',
+        'infographics': PROJECT_ROOT / 'assets' / 'infographics',
+    }
 
 
 def is_allowed_rgba(match_text: str) -> bool:
@@ -142,7 +163,7 @@ def validate_html(content: str, file_path: Path, verbose: bool = False) -> Valid
                 continue
 
             # Skip if in allowed exception context (external URLs)
-            if is_allowed_exception(context):
+            if is_allowed_exception(content, match.start(), match.end()):
                 if verbose:
                     result.add_warning(f"Allowed external: {match_text}")
                 continue
@@ -279,8 +300,10 @@ Examples:
     parser.add_argument('-v', '--verbose', action='store_true', help='Show warnings')
     parser.add_argument('--colors', action='store_true', help='Print CSS variables from tokens')
     parser.add_argument('--fix', action='store_true', help='Auto-fix issues (experimental)')
+    parser.add_argument('--project-root', type=Path, default=Path.cwd(), help='Project root containing assets/')
 
     args = parser.parse_args()
+    configure_project_root(args.project_root)
 
     # Show colors mode
     if args.colors:

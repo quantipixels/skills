@@ -86,6 +86,27 @@ class TestShadcnInstaller:
 
         assert sorted(installed) == ["button", "card"]
 
+    def test_get_installed_components_supports_jsx_alias(self, tmp_path):
+        """The configured JS mode and components alias determine the scan."""
+        project_root = tmp_path / "project"
+        ui_dir = project_root / "src" / "components" / "ui"
+        ui_dir.mkdir(parents=True)
+        (project_root / "components.json").write_text(
+            json.dumps(
+                {
+                    "tsx": False,
+                    "aliases": {"components": "@/src/components"},
+                }
+            )
+        )
+        (ui_dir / "button.jsx").write_text("export const Button = () => null")
+        (ui_dir / "card.js").write_text("export const Card = () => null")
+        (ui_dir / "ignored.tsx").write_text("export const Ignored = () => null")
+
+        installed = ShadcnInstaller(project_root=project_root).get_installed_components()
+
+        assert installed == ["button", "card"]
+
     def test_get_installed_components_no_config(self, tmp_path):
         """Test getting installed components without config."""
         installer = ShadcnInstaller(project_root=tmp_path)

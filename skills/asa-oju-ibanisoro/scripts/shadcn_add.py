@@ -52,15 +52,23 @@ class ShadcnInstaller:
             with open(self.components_json) as f:
                 config = json.load(f)
 
-            components_dir = self.project_root / config.get("aliases", {}).get(
-                "components", "components"
-            ).replace("@/", "")
+            components_alias = config.get("aliases", {}).get("components", "components")
+            if components_alias.startswith("@/"):
+                components_alias = components_alias[2:]
+            components_dir = Path(components_alias)
+            if not components_dir.is_absolute():
+                components_dir = self.project_root / components_dir
             ui_dir = components_dir / "ui"
 
             if not ui_dir.exists():
                 return []
 
-            return [f.stem for f in ui_dir.glob("*.tsx") if f.is_file()]
+            extensions = (".tsx", ".ts") if config.get("tsx", True) else (".jsx", ".js")
+            return sorted(
+                f.stem
+                for f in ui_dir.iterdir()
+                if f.is_file() and f.suffix in extensions
+            )
         except (json.JSONDecodeError, KeyError, OSError):
             return []
 

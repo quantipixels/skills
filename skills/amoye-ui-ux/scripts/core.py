@@ -13,6 +13,16 @@ from collections import defaultdict
 # ============ CONFIGURATION ============
 DATA_DIR = Path(__file__).parent.parent / "data"
 MAX_RESULTS = 3
+MAX_RESULTS_LIMIT = 50
+
+
+class SearchDataError(Exception):
+    """A structured, user-actionable failure while loading search data."""
+
+    def __init__(self, code: str, message: str):
+        super().__init__(message)
+        self.code = code
+        self.message = message
 
 CSV_CONFIG = {
     "style": {
@@ -234,15 +244,38 @@ _csv_cache = {}   # filepath -> (mtime, rows)
 _bm25_cache = {}  # (filepath, tuple(search_cols)) -> (mtime, BM25 instance)
 
 
-def _load_csv(filepath):
-    """Load CSV and return list of dicts, with mtime-based caching."""
-    mtime = filepath.stat().st_mtime
+def _load_csv(filepath, required_columns=None):
+    """Load a validated CSV and return rows with mtime-based caching."""
+    try:
+        mtime = filepath.stat().st_mtime
+    except OSError as exc:
+        raise SearchDataError("data_unreadable", f"Failed to read {filepath.name}: {exc}") from exc
     cached = _csv_cache.get(filepath)
     if cached and cached[0] == mtime:
         return cached[1]
 
-    with open(filepath, 'r', encoding='utf-8') as f:
-        rows = list(csv.DictReader(f))
+    try:
+        with open(filepath, 'r', encoding='utf-8', newline='') as f:
+            # Some shipped code examples contain unescaped quotes that the
+            # permissive CSV reader can still interpret correctly. Validate
+            # the schema and row shape below instead of rejecting those files.
+            reader = csv.DictReader(f)
+            fieldnames = reader.fieldnames
+            if not fieldnames or any(not name for name in fieldnames):
+                raise SearchDataError("data_malformed", f"Malformed CSV header in {filepath.name}")
+            missing = [column for column in (required_columns or []) if column not in fieldnames]
+            if missing:
+                raise SearchDataError(
+                    "data_malformed",
+                    f"{filepath.name} is missing required columns: {', '.join(missing)}",
+                )
+            rows = list(reader)
+            if any(None in row for row in rows):
+                raise SearchDataError("data_malformed", f"Malformed CSV row in {filepath.name}")
+    except SearchDataError:
+        raise
+    except (csv.Error, OSError, UnicodeDecodeError) as exc:
+        raise SearchDataError("data_unreadable", f"Failed to read {filepath.name}: {exc}") from exc
 
     _csv_cache[filepath] = (mtime, rows)
     return rows
@@ -269,10 +302,7 @@ def _search_csv(filepath, search_cols, output_cols, query, max_results):
     if not filepath.exists():
         return [], None
 
-    try:
-        data = _load_csv(filepath)
-    except (csv.Error, OSError, UnicodeDecodeError) as e:
-        return [{"_error": f"Failed to read {filepath.name}: {e}"}], None
+    data = _load_csv(filepath, required_columns=search_cols)
 
     if not data:
         return [], None
@@ -316,6 +346,26 @@ def _suggest_terms(bm25, query, limit=6):
     return ordered[:limit]
 
 
+def _invalid_max_results(max_results):
+    """Return a structured validation error, or None for a valid limit."""
+    if isinstance(max_results, bool) or not isinstance(max_results, int):
+        return {"code": "invalid_max_results", "message": "max_results must be an integer from 1 to 50"}
+    if not 1 <= max_results <= MAX_RESULTS_LIMIT:
+        return {"code": "invalid_max_results", "message": "max_results must be an integer from 1 to 50"}
+    return None
+
+
+def _error_result(query, domain, filename, error):
+    return {
+        "error": {"code": error.code, "message": error.message},
+        "domain": domain,
+        "query": query,
+        "file": filename,
+        "count": 0,
+        "results": [],
+    }
+
+
 # Load the product-domain keyword list from products.csv at import time so
 # it stays in sync with the data instead of needing manual updates to a
 # hardcoded list. Falls back to a small built-in seed if the file is
@@ -328,7 +378,7 @@ def _load_product_keywords():
         return seed
     try:
         rows = _load_csv(filepath)
-    except (csv.Error, OSError, UnicodeDecodeError):
+    except SearchDataError:
         return seed
 
     keywords = set(seed)
@@ -410,6 +460,16 @@ def detect_domain(query, return_scores=False):
 
 def search(query, domain=None, max_results=MAX_RESULTS):
     """Main search function with auto-domain detection"""
+    invalid_limit = _invalid_max_results(max_results)
+    if invalid_limit:
+        return {
+            "error": invalid_limit,
+            "domain": domain,
+            "query": query,
+            "count": 0,
+            "results": [],
+        }
+
     auto_detected = domain is None
     runner_up = None
     if domain is None:
@@ -419,9 +479,17 @@ def search(query, domain=None, max_results=MAX_RESULTS):
     filepath = DATA_DIR / config["file"]
 
     if not filepath.exists():
-        return {"error": f"File not found: {filepath}", "domain": domain}
+        return _error_result(
+            query,
+            domain,
+            config["file"],
+            SearchDataError("data_missing", f"File not found: {filepath}"),
+        )
 
-    results, bm25 = _search_csv(filepath, config["search_cols"], config["output_cols"], query, max_results)
+    try:
+        results, bm25 = _search_csv(filepath, config["search_cols"], config["output_cols"], query, max_results)
+    except SearchDataError as exc:
+        return _error_result(query, domain, config["file"], exc)
 
     out = {
         "domain": domain,
@@ -441,15 +509,44 @@ def search(query, domain=None, max_results=MAX_RESULTS):
 
 def search_stack(query, stack, max_results=MAX_RESULTS):
     """Search stack-specific guidelines"""
+    invalid_limit = _invalid_max_results(max_results)
+    if invalid_limit:
+        return {
+            "error": invalid_limit,
+            "domain": "stack",
+            "stack": stack,
+            "query": query,
+            "count": 0,
+            "results": [],
+        }
+
     if stack not in STACK_CONFIG:
-        return {"error": f"Unknown stack: {stack}. Available: {', '.join(AVAILABLE_STACKS)}"}
+        return {
+            "error": {
+                "code": "unknown_stack",
+                "message": f"Unknown stack: {stack}. Available: {', '.join(AVAILABLE_STACKS)}",
+            },
+            "domain": "stack",
+            "stack": stack,
+            "query": query,
+            "count": 0,
+            "results": [],
+        }
 
     filepath = DATA_DIR / STACK_CONFIG[stack]["file"]
 
     if not filepath.exists():
-        return {"error": f"Stack file not found: {filepath}", "stack": stack}
+        return _error_result(
+            query,
+            "stack",
+            STACK_CONFIG[stack]["file"],
+            SearchDataError("data_missing", f"Stack file not found: {filepath}"),
+        ) | {"stack": stack}
 
-    results, bm25 = _search_csv(filepath, _STACK_COLS["search_cols"], _STACK_COLS["output_cols"], query, max_results)
+    try:
+        results, bm25 = _search_csv(filepath, _STACK_COLS["search_cols"], _STACK_COLS["output_cols"], query, max_results)
+    except SearchDataError as exc:
+        return _error_result(query, "stack", STACK_CONFIG[stack]["file"], exc) | {"stack": stack}
 
     out = {
         "domain": "stack",

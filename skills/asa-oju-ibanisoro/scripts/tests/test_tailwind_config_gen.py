@@ -49,6 +49,26 @@ class TestTailwindConfigGenerator:
         generator = TailwindConfigGenerator(output_path=custom_path)
         assert generator.output_path == custom_path
 
+    def test_write_config_refuses_existing_file_by_default(self, tmp_path):
+        """Never replace a user's config unless they explicitly opt in."""
+        output_path = tmp_path / "tailwind.config.ts"
+        output_path.write_text("existing config")
+
+        success, message = TailwindConfigGenerator(output_path=output_path).write_config()
+
+        assert success is False
+        assert "--force" in message
+        assert output_path.read_text() == "existing config"
+
+    def test_write_config_force_replaces_existing_file(self, tmp_path):
+        output_path = tmp_path / "tailwind.config.ts"
+        output_path.write_text("existing config")
+
+        success, _ = TailwindConfigGenerator(output_path=output_path, force=True).write_config()
+
+        assert success is True
+        assert "existing config" not in output_path.read_text()
+
     def test_base_config_structure(self):
         """Test base configuration structure."""
         generator = TailwindConfigGenerator()

@@ -12,6 +12,7 @@ import json
 import os
 import sys
 import base64
+from html import escape
 from pathlib import Path
 from datetime import datetime
 
@@ -96,6 +97,16 @@ DELIVERABLE_INFO = {
 }
 
 
+def html_text(value):
+    """Escape a value inserted into an HTML text node."""
+    return escape(str(value), quote=False)
+
+
+def html_attr(value):
+    """Escape a value inserted into a quoted HTML attribute."""
+    return escape(str(value), quote=True)
+
+
 def get_image_base64(image_path):
     """Convert image to base64 for embedding in HTML"""
     try:
@@ -146,7 +157,7 @@ def generate_html(brand_name, industry, images_dir, output_path=None, style=None
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{brand_name} - Corporate Identity Program</title>
+    <title>{html_text(brand_name)} - Corporate Identity Program</title>
     <style>
         * {{
             margin: 0;
@@ -309,20 +320,20 @@ def generate_html(brand_name, industry, images_dir, output_path=None, style=None
 </head>
 <body>
     <section class="hero">
-        <h1>{brand_name}</h1>
+        <h1>{html_text(brand_name)}</h1>
         <p class="subtitle">Corporate Identity Program</p>
         <div class="meta">
             <div class="meta-item">
                 <div class="meta-label">Industry</div>
-                <div class="meta-value">{industry_info.get("Industry", industry.title())}</div>
+                <div class="meta-value">{html_text(industry_info.get("Industry", industry.title()))}</div>
             </div>
             <div class="meta-item">
                 <div class="meta-label">Style</div>
-                <div class="meta-value">{style_info.get("Style Name", "Corporate")}</div>
+                <div class="meta-value">{html_text(style_info.get("Style Name", "Corporate"))}</div>
             </div>
             <div class="meta-item">
                 <div class="meta-label">Mood</div>
-                <div class="meta-value">{style_info.get("Mood", "Professional")}</div>
+                <div class="meta-value">{html_text(style_info.get("Mood", "Professional"))}</div>
             </div>
             <div class="meta-item">
                 <div class="meta-label">Deliverables</div>
@@ -352,13 +363,13 @@ def generate_html(brand_name, industry, images_dir, output_path=None, style=None
         html_parts.append(f'''
         <div class="deliverable">
             <div class="deliverable-image">
-                <img src="{img_src}" alt="{info['title']}" loading="lazy">
+                <img src="{html_attr(img_src)}" alt="{html_attr(info['title'])}" loading="lazy">
             </div>
             <div class="deliverable-content">
-                <h3 class="deliverable-title">{info['title']}</h3>
-                <p class="deliverable-concept">{info['concept']}</p>
-                <p class="deliverable-purpose">{info['purpose']}</p>
-                <span class="deliverable-specs">{info['specs']}</span>
+                <h3 class="deliverable-title">{html_text(info['title'])}</h3>
+                <p class="deliverable-concept">{html_text(info['concept'])}</p>
+                <p class="deliverable-purpose">{html_text(info['purpose'])}</p>
+                <span class="deliverable-specs">{html_text(info['specs'])}</span>
             </div>
         </div>
 ''')
@@ -368,7 +379,7 @@ def generate_html(brand_name, industry, images_dir, output_path=None, style=None
     </section>
 
     <footer class="footer">
-        <p><strong>{brand_name}</strong> Corporate Identity Program</p>
+        <p><strong>{html_text(brand_name)}</strong> Corporate Identity Program</p>
         <p>Generated on {datetime.now().strftime("%B %d, %Y")}</p>
         <p style="margin-top: 1rem; font-size: 0.8rem;">Powered by CIP Design Skill</p>
     </footer>

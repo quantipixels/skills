@@ -33,11 +33,11 @@ Use one primary owner. Add a supporting design skill only when it owns a concret
 
 ### Logo
 
-Read `references/logo-design.md`, `logo-style-guide.md`, and `logo-color-psychology.md` as needed. Search the bundled logo data before choosing a style or industry direction. Generate multiple clearly differentiated concepts, keep prompts free of unapproved claims, and deliver a vector-friendly direction with clear-space and one-color guidance. If a bitmap concept is requested, use image generation and show the result for review.
+Read `references/logo-design.md`, `references/logo-style-guide.md`, and `references/logo-color-psychology.md` as needed. Search the bundled logo data before choosing a style or industry direction. Generate multiple clearly differentiated concepts, keep prompts free of unapproved claims, and deliver a vector-friendly direction with clear-space and one-color guidance. If a bitmap concept is requested, use image generation and show the result for review.
 
 ### Corporate identity program
 
-Read `references/cip-design.md` and `cip-deliverable-guide.md`. Build a brief first, select a bounded deliverable set, and use image generation for mockup scenes only after the brand and logo constraints are known. Record which items are concepts versus approved production assets.
+Read `references/cip-design.md` and `references/cip-deliverable-guide.md`. Build a brief first, select a bounded deliverable set, and use image generation for mockup scenes only after the brand and logo constraints are known. Record which items are concepts versus approved production assets.
 
 ### Icons
 
@@ -50,11 +50,11 @@ Read `references/social-photos-design.md`. Confirm each platform’s ratio and c
 ## References
 
 - `references/design-routing.md` — detailed routing and multi-skill boundaries.
-- `references/banner-sizes-and-styles.md` — banner constraints.
-- `references/logo-design.md`, `logo-style-guide.md`, `logo-color-psychology.md` — logo direction.
-- `references/cip-design.md`, `cip-deliverable-guide.md`, `cip-style-guide.md` — identity programs.
+- `banner-design` — banner constraints and banner-specific generation.
+- `references/logo-design.md`, `references/logo-style-guide.md`, `references/logo-color-psychology.md` — logo direction.
+- `references/cip-design.md`, `references/cip-deliverable-guide.md`, `references/cip-style-guide.md` — identity programs.
 - `references/icon-design.md` — custom icon sets.
-- `references/slides.md` — presentation design.
+- `slides` — presentation design, slide data, search, validation, and generation.
 - `references/social-photos-design.md` — social assets.
 - `asa-oju-ibanisoro` → `references/ui-component-libraries.md` — React component-library decision gate.
 - `data/` and `scripts/` — deterministic searches for logo and CIP decisions.

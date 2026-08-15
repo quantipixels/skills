@@ -27,6 +27,7 @@ class TailwindConfigGenerator:
         typescript: bool = True,
         framework: str = "react",
         output_path: Optional[Path] = None,
+        force: bool = False,
     ):
         """
         Initialize generator.
@@ -35,10 +36,12 @@ class TailwindConfigGenerator:
             typescript: If True, generate .ts config, else .js
             framework: Framework name (react, vue, svelte, nextjs)
             output_path: Output file path (default: auto-detect)
+            force: If True, overwrite an existing output file
         """
         self.typescript = typescript
         self.framework = framework
         self.output_path = output_path or self._default_output_path()
+        self.force = force
         self.config: Dict[str, Any] = self._base_config()
 
     def _default_output_path(self) -> Path:
@@ -274,6 +277,13 @@ module.exports = {{
         try:
             config_content = self.generate_config_string()
 
+            if self.output_path.exists() and not self.force:
+                return (
+                    False,
+                    f"Refusing to overwrite existing config: {self.output_path}. "
+                    "Use --force to replace it.",
+                )
+
             self.output_path.write_text(config_content)
 
             return True, f"Configuration written to {self.output_path}"
@@ -343,6 +353,12 @@ Examples:
     )
 
     parser.add_argument(
+        "--force",
+        action="store_true",
+        help="Overwrite an existing config file",
+    )
+
+    parser.add_argument(
         "--colors",
         nargs="*",
         metavar="NAME:VALUE",
@@ -389,6 +405,7 @@ Examples:
         typescript=not args.js,
         framework=args.framework,
         output_path=args.output,
+        force=args.force,
     )
 
     # Add custom colors

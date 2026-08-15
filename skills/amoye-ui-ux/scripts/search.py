@@ -29,7 +29,15 @@ import argparse
 import json as json_module
 import sys
 import io
-from core import CSV_CONFIG, AVAILABLE_STACKS, MAX_RESULTS, UNTRUNCATED_COLS, search, search_stack
+from core import (
+    CSV_CONFIG,
+    AVAILABLE_STACKS,
+    MAX_RESULTS,
+    MAX_RESULTS_LIMIT,
+    UNTRUNCATED_COLS,
+    search,
+    search_stack,
+)
 from design_system import generate_design_system
 
 # Force UTF-8 for stdout/stderr to handle emojis on Windows (cp1252 default)
@@ -109,6 +117,22 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
 
+    if not 1 <= args.max_results <= MAX_RESULTS_LIMIT:
+        error = {
+            "error": {
+                "code": "invalid_max_results",
+                "message": f"max_results must be an integer from 1 to {MAX_RESULTS_LIMIT}",
+            },
+            "query": args.query,
+            "count": 0,
+            "results": [],
+        }
+        if args.json:
+            print(json_module.dumps(error, indent=2, ensure_ascii=False))
+        else:
+            print(f"Error: {error['error']['message']}", file=sys.stderr)
+        sys.exit(2)
+
     # Design system takes priority
     if args.design_system:
         result = generate_design_system(
@@ -126,7 +150,11 @@ if __name__ == "__main__":
 
         if args.json:
             print(json_module.dumps(
-                {"design_system": result["design_system"], "persistence": result["persistence"]},
+                {
+                    "design_system": result["design_system"],
+                    "search_errors": result.get("search_errors", {}),
+                    "persistence": result["persistence"],
+                },
                 indent=2, ensure_ascii=False,
             ))
         else:

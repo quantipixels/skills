@@ -62,6 +62,28 @@ class TestSearchDomains(unittest.TestCase):
         self.assertIn("suggestions", result)
         self.assertNotIn("error", result)
 
+    def test_invalid_max_results_is_a_structured_empty_result(self):
+        for limit in (0, -1, 51):
+            with self.subTest(limit=limit):
+                result = search("design", domain="ux", max_results=limit)
+                self.assertEqual(result["error"]["code"], "invalid_max_results")
+                self.assertEqual(result["count"], 0)
+                self.assertEqual(result["results"], [])
+
+    def test_unreadable_csv_is_a_structured_empty_result(self):
+        import core
+
+        original_data_dir = core.DATA_DIR
+        try:
+            core.DATA_DIR = Path("/private/path-that-does-not-exist")
+            result = search("design", domain="ux", max_results=1)
+        finally:
+            core.DATA_DIR = original_data_dir
+
+        self.assertEqual(result["count"], 0)
+        self.assertEqual(result["results"], [])
+        self.assertIn(result["error"]["code"], {"data_missing", "data_unreadable"})
+
     def test_every_configured_domain_file_exists_and_is_searchable(self):
         for domain, config in CSV_CONFIG.items():
             with self.subTest(domain=domain):
@@ -109,6 +131,25 @@ class TestPersistence(unittest.TestCase):
             # With force=True it must overwrite.
             result3 = generate_design_system("ecommerce luxury", "Test Project", persist=True, output_dir=tmp, force=True)
             self.assertEqual(result3["persistence"]["status"], "success")
+
+    def test_page_is_created_when_existing_master_is_preserved(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            first = generate_design_system("saas dashboard", "Independent Pages", persist=True, output_dir=tmp)
+            master = Path(first["persistence"]["master_file"])
+            original_content = master.read_text(encoding="utf-8")
+
+            second = generate_design_system(
+                "saas dashboard",
+                "Independent Pages",
+                persist=True,
+                page="dashboard",
+                output_dir=tmp,
+            )
+
+            page = master.parent / "pages" / "dashboard.md"
+            self.assertEqual(second["persistence"]["status"], "success")
+            self.assertTrue(page.exists())
+            self.assertEqual(master.read_text(encoding="utf-8"), original_content)
 
     def test_persist_writes_only_under_output_dir(self):
         with tempfile.TemporaryDirectory() as tmp:

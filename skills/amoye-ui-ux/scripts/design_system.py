@@ -372,6 +372,11 @@ class DesignSystemGenerator:
         style_effects = best_style.get("Effects & Animation", "")
         reasoning_effects = reasoning.get("key_effects", "")
         combined_effects = style_effects if style_effects else reasoning_effects
+        search_errors = {
+            domain: result["error"]
+            for domain, result in search_results.items()
+            if result.get("error")
+        }
 
         return {
             "project_name": project_name or query.upper(),
@@ -434,6 +439,7 @@ class DesignSystemGenerator:
             },
             "motion_snippet": motion_snippet,
             "spacing_scale": density_info["spacing"] if density_info else None,
+            "search_errors": search_errors,
         }
 
 
@@ -795,7 +801,8 @@ def generate_design_system(query: str, project_name: str = None, output_format: 
 
     Returns:
         dict with keys: "text" (formatted design system string), "design_system"
-        (raw dict, useful for --json callers), and "persistence" (result of
+        (raw dict, useful for --json callers), "search_errors" (structured
+        data failures, if any), and "persistence" (result of
         persist_design_system(), or None if persist=False)
     """
     generator = DesignSystemGenerator()
@@ -810,6 +817,7 @@ def generate_design_system(query: str, project_name: str = None, output_format: 
     return {
         "text": text,
         "design_system": design_system,
+        "search_errors": design_system.get("search_errors", {}),
         "persistence": persistence_result,
     }
 
@@ -856,7 +864,30 @@ def persist_design_system(design_system: dict, page: str = None, output_dir: str
 
     master_file = design_system_dir / "MASTER.md"
 
-    if master_file.exists() and not force:
+    created_files = []
+    master_written = not master_file.exists() or force
+    page_written = False
+
+    if master_written:
+        design_system_dir.mkdir(parents=True, exist_ok=True)
+        master_content = format_master_md(design_system)
+        with open(master_file, 'w', encoding='utf-8') as f:
+            f.write(master_content)
+        created_files.append(str(master_file))
+
+    # A master file and a page override have independent overwrite rules. A
+    # new page must still be created when the master is intentionally kept.
+    if page:
+        pages_dir.mkdir(parents=True, exist_ok=True)
+        page_file = pages_dir / f"{safe_slug(page, 'page')}.md"
+        page_written = not page_file.exists() or force
+        if page_written:
+            page_content = format_page_override_md(design_system, page, page_query)
+            with open(page_file, 'w', encoding='utf-8') as f:
+                f.write(page_content)
+            created_files.append(str(page_file))
+
+    if not master_written and not page_written:
         return {
             "status": "skipped_exists",
             "design_system_dir": str(design_system_dir),
@@ -868,26 +899,6 @@ def persist_design_system(design_system: dict, page: str = None, output_dir: str
                 "re-run with force=True / --force to overwrite."
             ),
         }
-
-    created_files = []
-
-    # Create directories
-    design_system_dir.mkdir(parents=True, exist_ok=True)
-    pages_dir.mkdir(parents=True, exist_ok=True)
-
-    # Generate and write MASTER.md
-    master_content = format_master_md(design_system)
-    with open(master_file, 'w', encoding='utf-8') as f:
-        f.write(master_content)
-    created_files.append(str(master_file))
-
-    # If page is specified, create page override file with intelligent content
-    if page:
-        page_file = pages_dir / f"{safe_slug(page, 'page')}.md"
-        page_content = format_page_override_md(design_system, page, page_query)
-        with open(page_file, 'w', encoding='utf-8') as f:
-            f.write(page_content)
-        created_files.append(str(page_file))
 
     return {
         "status": "success",

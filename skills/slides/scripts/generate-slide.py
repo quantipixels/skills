@@ -8,6 +8,7 @@ NO hardcoded colors, fonts, or spacing allowed
 
 import argparse
 import json
+import os
 from html import escape
 from pathlib import Path
 from datetime import datetime
@@ -28,12 +29,22 @@ def _safe_url(url, default='#'):
         return escape(str(url), quote=True)
     return default
 
-# Paths
 SCRIPT_DIR = Path(__file__).parent
 DATA_DIR = SCRIPT_DIR.parent / "data"
-TOKENS_CSS = Path(__file__).resolve().parents[4] / "assets" / "design-tokens.css"
-TOKENS_JSON = Path(__file__).resolve().parents[4] / "assets" / "design-tokens.json"
-OUTPUT_DIR = Path(__file__).resolve().parents[4] / "assets" / "designs" / "slides"
+
+
+def resolve_output_path(project_root, requested, default_relative):
+    """Resolve an output path and keep it within the selected project."""
+    root = Path(project_root).resolve()
+    candidate = Path(requested) if requested else root / default_relative
+    if not candidate.is_absolute():
+        candidate = root / candidate
+    candidate = candidate.resolve()
+    try:
+        candidate.relative_to(root)
+    except ValueError as exc:
+        raise ValueError(f"Output must stay inside project root: {root}") from exc
+    return candidate
 
 # ============ BRAND-COMPLIANT SLIDE TEMPLATE ============
 # ALL values reference CSS variables from design-tokens.css
@@ -634,7 +645,7 @@ SLIDE_GENERATORS = {
 }
 
 
-def generate_deck(slides_data, title="Pitch Deck"):
+def generate_deck(slides_data, title="Pitch Deck", tokens_css_path="../../../assets/design-tokens.css"):
     """Generate complete deck from slide data list"""
     slides_html = ""
     for slide in slides_data:
@@ -645,12 +656,9 @@ def generate_deck(slides_data, title="Pitch Deck"):
         else:
             print(f"Warning: Unknown slide type '{slide_type}'")
 
-    # Calculate relative path to tokens CSS
-    tokens_rel_path = "../../../assets/design-tokens.css"
-
     return SLIDE_TEMPLATE.format(
         title=escape(str(title)),
-        tokens_css_path=tokens_rel_path,
+        tokens_css_path=escape(str(tokens_css_path), quote=True),
         slides_content=slides_html
     )
 
@@ -660,8 +668,27 @@ def main():
     parser.add_argument("--json", "-j", help="JSON file with slide data")
     parser.add_argument("--output", "-o", help="Output HTML file path")
     parser.add_argument("--demo", action="store_true", help="Generate demo deck")
+    parser.add_argument(
+        "--project-root",
+        type=Path,
+        default=Path.cwd(),
+        help="Project root that contains assets/design-tokens.json (default: cwd)",
+    )
 
     args = parser.parse_args()
+    project_root = args.project_root.resolve()
+
+    try:
+        default_relative = "assets/designs/slides/" + (
+            f"demo-pitch-{datetime.now().strftime('%y%m%d')}.html"
+            if args.demo else f"deck-{datetime.now().strftime('%y%m%d-%H%M')}.html"
+        )
+        output_path = resolve_output_path(project_root, args.output, default_relative)
+    except ValueError as exc:
+        parser.error(str(exc))
+
+    tokens_css = project_root / "assets" / "design-tokens.css"
+    tokens_rel_path = os.path.relpath(tokens_css, output_path.parent)
 
     if args.demo:
         # Demo deck showcasing all slide types
@@ -744,10 +771,9 @@ def main():
             }
         ]
 
-        html = generate_deck(demo_slides, "Example Product - Pitch Deck")
+        html = generate_deck(demo_slides, "Example Product - Pitch Deck", tokens_rel_path)
 
-        OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
-        output_path = OUTPUT_DIR / f"demo-pitch-{datetime.now().strftime('%y%m%d')}.html"
+        output_path.parent.mkdir(parents=True, exist_ok=True)
         output_path.write_text(html, encoding='utf-8')
         print(f"Demo deck generated: {output_path}")
 
@@ -755,9 +781,8 @@ def main():
         with open(args.json, 'r') as f:
             data = json.load(f)
 
-        html = generate_deck(data.get('slides', []), data.get('title', 'Presentation'))
+        html = generate_deck(data.get('slides', []), data.get('title', 'Presentation'), tokens_rel_path)
 
-        output_path = Path(args.output) if args.output else OUTPUT_DIR / f"deck-{datetime.now().strftime('%y%m%d-%H%M')}.html"
         output_path.parent.mkdir(parents=True, exist_ok=True)
         output_path.write_text(html, encoding='utf-8')
         print(f"Deck generated: {output_path}")

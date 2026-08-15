@@ -11,10 +11,19 @@ import re
 import sys
 from pathlib import Path
 
-# Project root relative to this script
-PROJECT_ROOT = Path(__file__).parent.parent.parent.parent.parent
+SCRIPT_ROOT = Path(__file__).resolve().parent.parent
+# Project root defaults to the caller's project; this keeps the helper
+# reachable when the standalone `slides` package is copied elsewhere.
+PROJECT_ROOT = Path.cwd()
 TOKENS_PATH = PROJECT_ROOT / 'assets' / 'design-tokens.json'
-BACKGROUNDS_CSV = Path(__file__).parent.parent / 'data' / 'slide-backgrounds.csv'
+BACKGROUNDS_CSV = SCRIPT_ROOT / 'data' / 'slide-backgrounds.csv'
+
+
+def configure_project_root(project_root: Path):
+    """Point token loading at an explicit project root."""
+    global PROJECT_ROOT, TOKENS_PATH
+    PROJECT_ROOT = project_root.resolve()
+    TOKENS_PATH = PROJECT_ROOT / 'assets' / 'design-tokens.json'
 
 
 def resolve_token_reference(ref: str, tokens: dict) -> str:
@@ -277,8 +286,10 @@ def main():
     parser.add_argument('--json', action='store_true', help='Output JSON')
     parser.add_argument('--colors', action='store_true', help='Show brand colors')
     parser.add_argument('--all', action='store_true', help='Show all curated URLs')
+    parser.add_argument('--project-root', type=Path, default=Path.cwd(), help='Project root containing assets/design-tokens.json')
 
     args = parser.parse_args()
+    configure_project_root(args.project_root)
 
     if args.colors:
         colors = load_brand_colors()

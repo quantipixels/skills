@@ -31,7 +31,13 @@ Treat an unqualified request to review code as broad. Select `qp-code-review` as
 | A planned or completed refactor needs a parity ledger, or a stateful refactor requires a pre-implementation behavior gate | `audit-refactor-behavior` |
 | One standalone HTML artifact, such as a report, visualization, prototype, demo, or bounded interactive tool, is the requested result | `html-artifact` |
 | Architecture or migration work needs one live plan from decisions through delivery, with a clear next action | `atona` |
-| A visual design, UI/UX, brand, banner, presentation, or design-system outcome needs one design owner; React implementation must also confirm its UI component library | `apere` |
+| Brand voice, identity, assets, or consistency | `brand` |
+| Design tokens, CSS variables, component specs, or token migration | `eto-apere` |
+| React/web UI, Tailwind, shadcn/ui, responsive behavior, or accessibility implementation | `asa-oju-ibanisoro` |
+| UI/UX direction, style, palette, typography, stack, or interaction guidance | `amoye-ui-ux` |
+| Social, ad, web-hero, cover, or print banner | `banner-design` |
+| HTML presentation, pitch deck, or data-backed slide story | `slides` |
+| A visual design request spans multiple deliverables and needs one design owner | `apere` |
 | The current conversation needs a safe handoff for another agent | `handoff` |
 | One coding-agent session needs an evidence-backed friction analysis and durable improvement assessment | `ayewo-igba-ise` |
 | A question needs high-trust research from primary sources, captured in a Markdown file | `iwadi` |
