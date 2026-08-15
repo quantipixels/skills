@@ -36,11 +36,13 @@ Complete one slice before starting the next.
 
 ## 1. Set the behavior and seam
 
-Read the repository instructions and relevant domain, architecture, and decision documents.
+Read repository instructions and relevant confirmed domain, architecture, decision, and project-knowledge records. Derive scenarios and stable seams from confirmed rules. Report a conflict with a confirmed project boundary to the owning delivery workflow before implementation.
 
 Identify the required behavior, a stable behavior-bearing seam, independent expected values, and applicable success, negative, boundary, recovery, and interaction cases.
 
-Classify the documentation impact for the completed candidate, not for every small slice. A documentation destination is required when the candidate changes a public contract, domain policy, operational or configuration procedure, or a non-obvious rationale, invariant, ordering rule, ownership rule, compatibility constraint, or security constraint. Report each required destination to the owning delivery workflow. When no destination is required, report `not applicable` and the evidence: clear names, types, structure, current tests, and unchanged relevant repository documentation.
+Use Irinṣẹ for bounded structural or impact evidence only when it helps locate the behavior-bearing seam. A tool result does not replace an observed failing test or independent expected value.
+
+Classify the documentation impact for the completed candidate, not every small slice. A destination is required when the candidate changes a public contract, project setup or usage, operational or configuration procedure, or a non-obvious rationale, invariant, ordering rule, ownership rule, compatibility constraint, or security constraint. Update destinations within the owning candidate. When verified work exposes durable project knowledge, report the evidence to the owning workflow for one Amọ̀ṣẹ́ reconciliation; do not invoke it per slice. When no destination is required, report `not applicable` with evidence.
 
 When a supplied test strategy controls material implementation, verify that it covers the required behavior, suitable seams, expected values, and material failure paths.
 
@@ -71,6 +73,8 @@ Run the focused test set and relevant affected proof.
 ## 4. Refactor and finish
 
 Improve names, structure, duplication, and implementation depth while preserving behavior. Update each required documentation destination in the same candidate as the behavior change. Put durable, non-obvious rationale, policy, or invariant at its narrowest owning component. Do not document every declaration when names, types, structure, and current tests make the behavior clear. Tests prove behavior; they do not replace required API, domain, operational, or configuration documentation.
+
+Treat temporary smoke tests, probes, and one-off harnesses as development evidence. After green, retain one only when it gives distinct, durable regression coverage at a stable seam and meets repository test standards. Remove it when stable tests already cover the behavior or its setup is useful only during implementation. Do not turn every development check into permanent test-suite maintenance.
 
 Preserve unrelated behavior. Keep focused proof current. Run broader proof at a required gate or after the candidate is stable, and rerun proof invalidated by later changes. Report each applicable format, lint, build, integration, or broader test check that did not run or pass and its exact limitation.
 

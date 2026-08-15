@@ -41,6 +41,10 @@ Establish:
 
 Ask only when the request and current repository state do not settle a material choice.
 
+Keep feature-local exclusions with the candidate and state the current behavior, desired behavior, independently verifiable acceptance criteria, and explicit out-of-scope work.
+
+Read relevant parts of root `.learnings` and the complete root `.nongoals` when present. Preserve confirmed project knowledge. If the feature conflicts with `.nongoals`, require Amọ̀ṣẹ́ to record an explicit one-time exception or authorized boundary update before implementation.
+
 When a feature contains a substantial independently verifiable task, Alaga may request its bounded result through host-provided subagent work. Give the request the current candidate identity, task scope and exclusions, relevant confirmed decisions and evidence, required result or proof, and acceptance criteria as starting context, not proof. Apply an owning specialist's rules when the task requires that specialist outcome. Accept the task result only when its identity and evidence satisfy the current stage gate. Alaga retains candidate integration, stage-gate verification, and correction convergence.
 
 Reuse a current confirmed clarification when it covers the feature. Use `arojinle` only when material user decisions remain. Use `atona` when architecture decisions must remain active during delivery.
@@ -51,11 +55,19 @@ When a standalone feature specification or plan controls material implementation
 
 Prepare the selected workspace and branch without disturbing unrelated changes.
 
+When delivery starts from a persisted ticket, pin its identity, current state, dependencies, transition authority, and persistence owner. Start only from `Ready` after every dependency is `Done`. With authority for the exact ticket and transition, move it to `In Progress`; otherwise return the requested transition and evidence without changing ticket state.
+
+During delivery, use the ticket lifecycle supplied by its owner. Move `In Progress → Blocked` with a reason, unblock owner or trigger, and `resume_to: In Progress`; move `In Review → Blocked` with the same fields plus the exact candidate and proof summary and `resume_to: In Review`. Resume only to the recorded state. Move a stable proved candidate `In Progress → In Review` with its exact identity and proof summary. A review correction moves `In Review → In Progress`. Move `In Review → Done` only after its acceptance and proof succeed. Cancellation requires separate explicit authority and a reason. Never reopen `Done` or `Cancelled`. On every transition, replace state evidence with only the fields required by the new state.
+
+Immediately before an authorized ticket write, refresh its identity, current state, dependency states, evidence, and permitted transitions. Reject a stale, replayed, invalid, unauthorized, or terminal transition without mutation. If Alaga does not own persistence, return the requested transition and evidence to its owner. Ticket state does not override plan, phase, implementation, or review state.
+
+Use an Irinṣẹ result when bounded companion-tool evidence materially improves impact orientation or directs source reading. Keep candidate integration, implementation, and proof in Alaga; do not treat the tool result as acceptance evidence by itself.
+
 Run `tdd` through coherent green behavior slices. Commit a slice only when local commits are authorized. Otherwise, preserve the verified changes without committing them.
 
 Use focused and affected proof for each slice. Treat a local commit as a meaningful green history, bisect, or rollback point, not as a trigger for broad review.
 
-Before the candidate becomes stable for review, reconcile each required documentation destination in the same candidate as its implementation change. Record the destination and one status: `updated now`, `already correct` with evidence, or `not applicable` with evidence. Keep the record compact. Do not defer required documentation as untracked follow-up work.
+Before the candidate becomes stable for review, update each required ordinary-documentation destination in the same candidate as its implementation change. Keep code-local comments with the implementation owner. When verified implementation exposes a durable non-obvious rule, pattern, constraint, term, or conflict, send one exact evidence package for the candidate to Amọ̀ṣẹ́; do not repeat it unless its identity or evidence changes, and do not redefine the model locally. Reconcile any required `.learnings`, `.nongoals`, or ADR result before review. Do not defer required documentation as untracked follow-up work.
 
 ## 3. Review and converge
 

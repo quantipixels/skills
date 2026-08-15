@@ -1,0 +1,105 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1680" height="945" viewBox="0 0 1680 945" role="img" aria-labelledby="title desc">
+  <title id="title">Recent QP updates</title>
+  <desc id="desc">Four concise updates: PR lifecycle, seda-ticket, triage-issue, and html-artifact.</desc>
+
+  <defs>
+    <symbol id="qp-mark" viewBox="0 0 160 132">
+      <g fill="none" stroke-width="9" stroke-linecap="round" stroke-linejoin="round">
+        <g stroke="#202020">
+          <circle cx="45" cy="42" r="27"/>
+          <circle cx="115" cy="42" r="27"/>
+          <path d="M8 42h10M142 42h10"/>
+          <path d="M72 42v53M88 42v53"/>
+        </g>
+        <circle cx="45" cy="65" r="6.5" fill="#202020" stroke="none"/>
+        <circle cx="115" cy="65" r="6.5" fill="#202020" stroke="none"/>
+        <path stroke="#D52E1E" d="M41 108Q80 134 119 108"/>
+      </g>
+    </symbol>
+
+    <symbol id="qp-full" viewBox="0 0 500 132">
+      <use href="#qp-mark" width="160" height="132"/>
+      <text x="178" y="78" fill="#202020" font-family="Arial, Helvetica, sans-serif" font-size="48" font-weight="700" letter-spacing="-1.5">quanti pixels</text>
+    </symbol>
+
+    <style>
+      .sans { font-family: Inter, "Helvetica Neue", Arial, sans-serif; }
+      .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+      .title { font-size: 104px; font-weight: 900; letter-spacing: -5px; }
+      .tag { font-size: 22px; font-weight: 900; letter-spacing: 1px; }
+      .name { font-size: 42px; font-weight: 750; letter-spacing: 1px; }
+      .action { font-size: 28px; font-weight: 850; letter-spacing: -0.5px; }
+      .outcome { font-size: 29px; font-weight: 900; letter-spacing: -0.5px; }
+      .footer { font-size: 54px; font-weight: 900; letter-spacing: 2px; }
+    </style>
+  </defs>
+
+  <rect width="1680" height="945" fill="#F7F7F7"/>
+
+  <text class="sans title" x="64" y="167" fill="#1E1E1E">RECENT QP UPDATES</text>
+  <use href="#qp-full" x="1265" y="62" width="345" height="91"/>
+
+  <!-- PR lifecycle -->
+  <g transform="translate(64 232)">
+    <rect width="760" height="236" rx="48" fill="#F7F7F7" stroke="#D52E1E" stroke-width="4"/>
+    <path d="M48 0h126l55 55v126l-55 55H48A48 48 0 0 1 0 188V48A48 48 0 0 1 48 0Z" fill="#D52E1E"/>
+    <circle cx="112" cy="118" r="76" fill="#F7F7F7"/>
+    <use href="#qp-mark" x="53" y="68" width="118" height="97"/>
+    <rect x="245" y="24" width="96" height="38" rx="8" fill="#D52E1E"/>
+    <text class="sans tag" x="293" y="50" fill="#FFFFFF" text-anchor="middle">NEW</text>
+    <text class="sans name" x="245" y="103" fill="#1E1E1E">PR LIFECYCLE</text>
+    <rect x="245" y="124" width="66" height="3" fill="#D52E1E"/>
+    <text class="sans action" x="245" y="167" fill="#1E1E1E">PUBLISH <tspan fill="#D52E1E">→</tspan> EXPLAIN <tspan fill="#D52E1E">→</tspan> STEWARD</text>
+    <text class="sans outcome" x="245" y="207" fill="#D52E1E">CLEARER, HEALTHIER PRs</text>
+  </g>
+
+  <!-- seda-ticket -->
+  <g transform="translate(856 232)">
+    <rect width="760" height="236" rx="48" fill="#F7F7F7" stroke="#D52E1E" stroke-width="4"/>
+    <path d="M48 0h126l55 55v126l-55 55H48A48 48 0 0 1 0 188V48A48 48 0 0 1 48 0Z" fill="#D52E1E"/>
+    <circle cx="112" cy="118" r="76" fill="#F7F7F7"/>
+    <use href="#qp-mark" x="53" y="68" width="118" height="97"/>
+    <rect x="245" y="24" width="96" height="38" rx="8" fill="#D52E1E"/>
+    <text class="sans tag" x="293" y="50" fill="#FFFFFF" text-anchor="middle">NEW</text>
+    <text class="mono name" x="245" y="103" fill="#1E1E1E">seda-ticket</text>
+    <rect x="245" y="124" width="66" height="3" fill="#D52E1E"/>
+    <text class="sans action" x="245" y="167" fill="#1E1E1E">DECOMPOSE <tspan fill="#D52E1E">→</tspan> ORDER</text>
+    <text class="sans outcome" x="245" y="207" fill="#D52E1E">STARTABLE DELIVERY</text>
+  </g>
+
+  <!-- triage-issue -->
+  <g transform="translate(64 494)">
+    <rect width="760" height="236" rx="48" fill="#F7F7F7" stroke="#D52E1E" stroke-width="4"/>
+    <path d="M48 0h126l55 55v126l-55 55H48A48 48 0 0 1 0 188V48A48 48 0 0 1 48 0Z" fill="#D52E1E"/>
+    <circle cx="112" cy="118" r="76" fill="#F7F7F7"/>
+    <use href="#qp-mark" x="53" y="68" width="118" height="97"/>
+    <rect x="245" y="24" width="96" height="38" rx="8" fill="#D52E1E"/>
+    <text class="sans tag" x="293" y="50" fill="#FFFFFF" text-anchor="middle">NEW</text>
+    <text class="mono name" x="245" y="103" fill="#1E1E1E">triage-issue</text>
+    <rect x="245" y="124" width="66" height="3" fill="#D52E1E"/>
+    <text class="sans action" x="245" y="167" fill="#1E1E1E">REPRODUCE <tspan fill="#D52E1E">→</tspan> CLASSIFY</text>
+    <text class="sans outcome" x="245" y="207" fill="#D52E1E">EVIDENCE BEFORE CODE</text>
+  </g>
+
+  <!-- html-artifact -->
+  <g transform="translate(856 494)">
+    <rect width="760" height="236" rx="48" fill="#F7F7F7" stroke="#D52E1E" stroke-width="4"/>
+    <path d="M48 0h126l55 55v126l-55 55H48A48 48 0 0 1 0 188V48A48 48 0 0 1 48 0Z" fill="#D52E1E"/>
+    <circle cx="112" cy="118" r="76" fill="#F7F7F7"/>
+    <use href="#qp-mark" x="53" y="68" width="118" height="97"/>
+    <rect x="245" y="24" width="128" height="38" rx="8" fill="#D52E1E"/>
+    <text class="sans tag" x="309" y="50" fill="#FFFFFF" text-anchor="middle">UPDATED</text>
+    <text class="mono name" x="245" y="103" fill="#1E1E1E">html-artifact</text>
+    <rect x="245" y="124" width="66" height="3" fill="#D52E1E"/>
+    <text class="sans action" x="245" y="167" fill="#1E1E1E">TRANSLATE <tspan fill="#D52E1E">→</tspan> CHECK</text>
+    <text class="sans outcome" x="245" y="207" fill="#D52E1E">TRUSTED VISUALS</text>
+  </g>
+
+  <g transform="translate(118 778)">
+    <rect width="1368" height="112" rx="56" fill="#0E0E0E"/>
+    <path d="M1280 0h64a56 56 0 0 1 56 56v0a56 56 0 0 1-56 56h-64l-44-56Z" fill="#D52E1E"/>
+    <text class="sans footer" x="614" y="75" fill="#FFFFFF" text-anchor="middle">PLAN <tspan fill="#D52E1E">→</tspan> SHIP <tspan fill="#D52E1E">→</tspan> VERIFY</text>
+    <circle cx="1338" cy="56" r="43" fill="#F7F7F7"/>
+    <use href="#qp-mark" x="1305" y="29" width="66" height="54"/>
+  </g>
+</svg>

@@ -1,0 +1,3 @@
+interface:
+  display_name: "Triage Issue"
+  short_description: "Assess one issue from supplied evidence"

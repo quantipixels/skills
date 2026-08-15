@@ -3,10 +3,10 @@ name: iwadi
 description: Investigate a question against high-trust primary sources and capture the findings as a Markdown file in the repo. Use when the user wants a topic researched, docs or API facts gathered, or reading legwork delegated to a background agent.
 ---
 
-Spin up a **background agent** to do the research, so you keep working while it reads.
+Investigate one question and capture a sourced Markdown report in the repository. Delegate the research to a background agent only when the active host and repository rules permit it and independent research can run alongside useful work. Otherwise, the current agent owns the research.
 
-Its job:
+The research owner must:
 
 1. Investigate the question against **primary sources** — official docs, source code, specs, first-party APIs — not a secondary write-up of them. Follow every claim back to the source that owns it.
-2. Write the findings to `.qp/plans/<topic>.md`, citing each claim's source. 
-3. Save it where the repo already keeps such notes; match the existing convention, and if there is none, put it somewhere sensible and say where.
+2. Cite each claim's source.
+3. Save the report where the repository already keeps research notes. If no convention exists, use `.qp/research/<topic>.md`. State the selected path.
