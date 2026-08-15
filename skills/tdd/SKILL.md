@@ -53,7 +53,16 @@ A seam is a stable boundary where a test can observe required behavior without d
 Avoid:
 
 - **Implementation coupling** — testing private structure, unstable collaborator calls, or side channels that are not part of the behavior contract.
-- **Tautological expectations** — deriving the expected value with the same logic as the implementation instead of using a specification, worked example, known literal, or another independent source.
+- **Tautological expectations** — use a specification, worked example, known literal, or another independent source; never derive the expected value with the production logic.
+
+  ```java
+  // Good: 107 comes from the worked specification.
+  assertEquals(107, service.calculateTotal(order));
+
+  // Bad: the production calculation supplies its own expected value.
+  assertEquals(service.calculateTotal(order), service.calculateTotal(order));
+  ```
+
 - **Horizontal slicing** — writing every test before any implementation instead of completing one behavior slice at a time.
 
 When the slice needs test doubles, read [mocking.md](mocking.md).

@@ -36,7 +36,10 @@ Choose the visual system by information shape:
 - Use semantic `div` elements and inline SVG for editorial or spatial explanations such as mass diagrams, cross-sections, layered anatomy, physical layout, and collapse animation. Give meaningful SVGs a text alternative and hide decorative SVGs.
 - Combine both when the report needs graph relationships and editorial visuals. Do not force either tool onto the wrong information shape.
 
-When the supplied material gives ordered events but not their relationships, render a neutral timeline or numbered event cards. Do not add arrowheads, participant lifelines, edges, or directional language to make the events graph-shaped.
+Keep ordered events neutral when the supplied evidence defines no relationship.
+
+- **Good:** show `09:00 received` and `09:05 validated` as numbered event cards.
+- **Bad:** add arrows, lifelines, actors, or directional wording that imply an unsupplied link.
 
 Render code, configuration, schema, and structured-text changes with semantic HTML and embedded CSS, not a third-party diff library. Choose split or unified form by reading task. Show `+` and `−` markers, accessible labels, non-color cues, and high-contrast colors. Highlight the smallest useful inline change, handle long lines without page overflow, and retain the source patch or before-and-after text.
 

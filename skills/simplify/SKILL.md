@@ -25,9 +25,12 @@ Report only actionable maintainability findings. For each finding, give the file
 
 ### Responsibility and cohesion
 
-Apply the Single Responsibility Principle to a function, class, module, or package by its change drivers, not its size. Flag code that combines policy for different actors or business concerns when those concerns can change independently. Name the distinct change drivers and the smallest existing or credible seam that can keep each change local. Do not infer a violation from line count, method count, orchestration, or sequential steps alone.
+Judge a function, class, module, or package by independent change drivers, not size.
 
-Keep code that changes for the same reason together. Flag scattered ownership when one policy change requires coordinated edits across unrelated locations, or when a new local special case bypasses the module that owns the policy.
+- **Good:** a long orchestrator owns one workflow.
+- **Bad:** one module owns independently changing billing and support policies, one policy change requires coordinated edits across unrelated locations, or a local special case bypasses its owner.
+
+For a bad case, name the distinct change drivers and the smallest existing or credible seam that keeps each change local. Do not infer a violation from line count, method count, orchestration, or sequential steps alone.
 
 ### Coupling and information hiding
 

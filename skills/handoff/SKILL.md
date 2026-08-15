@@ -7,18 +7,37 @@ description: Create one compact handoff for a fresh agent or session. Focus on t
 
 Write one Markdown handoff file in the operating system's temporary directory, outside the current workspace. Preserve the workspace and do not change source files or existing artifacts.
 
-Include:
+Use this compact form:
 
-- The objective and any user-specified focus for the next session.
-- The current candidate, including the repository or source path, branch or revision when known, and dirty-worktree state.
-- Confirmed decisions, constraints, permissions, and exclusions.
-- Completed work and its proof.
-- Established facts and decisions that the next agent must not re-ask or re-investigate without conflicting new evidence.
-- Remaining work, blockers, uncertainty, unverified claims, and only the open questions whose answers can change the next action.
-- The exact first action for the next agent.
-- Paths or URLs for relevant specifications, plans, reports, issues, commits, diffs, and other source artifacts.
-- Exact-current Amọ̀ṣẹ́ project-knowledge packet or Irinṣẹ evidence identities when they materially affect continuation.
-- The current owning skill and any supporting skills already selected by the user or owning task.
+```markdown
+## Objective
+
+<objective and user focus>
+
+## Candidate
+
+<repository or source, branch or revision, and dirty state>
+
+## Confirmed
+
+<decisions, constraints, permissions, exclusions, and durable facts not to re-investigate without conflicting evidence>
+
+## Done and proof
+
+<completed work and proof>
+
+## Current state
+
+<remaining work, blockers, uncertainty, unverified claims, and only open questions whose answers can change the next action>
+
+## First action
+
+<one exact action>
+
+## Evidence and owners
+
+<artifact paths or URLs, material exact-current Amọ̀ṣẹ́ or Irinṣẹ identities, and selected owning or supporting skills>
+```
 
 Do not select a new skill route. Do not duplicate content from existing artifacts. Reference each artifact and summarize only the state needed to continue.
 
