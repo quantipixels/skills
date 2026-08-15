@@ -71,7 +71,10 @@ Before the candidate becomes stable for review, update each required ordinary-do
 
 ## 3. Review and converge
 
-Run broad review once for each stable, self-contained candidate that can be understood, validated, accepted, and rolled back as one change. A candidate may contain one or more coherent behavior slices and local commits. Do not use every slice, commit, or delivery phase as an automatic broad-review boundary. Split a phase when it contains independent reviewable changes; keep dependent slices together when separation would hide the behavior or leave an unusable intermediate state.
+Run broad review once per stable candidate that is understandable, verifiable, acceptable, and reversible as one change.
+
+- **Good:** keep dependent slices and local commits together when separation would hide behavior or create an unusable intermediate state; split independent reviewable changes.
+- **Bad:** use every slice, commit, or whole delivery phase as an automatic review boundary.
 
 Request an earlier bounded review only when a material design, security, data-integrity, migration, public-contract, or cross-system risk would be costly to correct later. Record its limited question and candidate. It does not replace broad review of the final exact candidate.
 

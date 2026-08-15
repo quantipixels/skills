@@ -117,15 +117,4 @@ Return one verdict:
 
 In general mode, report defect findings first by severity, then maintainability findings by blocking effect and maintenance cost. Then report the verdict, review scope, `simplify` result identity when required, discovery-branch results, proof gaps, residual risk, reviewed boundary, and candidate identity. Do not imply provider or organizational approval.
 
-In provider mode without write authority, report the reviewed head, verdict, review scope, separate defect and maintainability finding counts, publication state `READ_ONLY`, discussion dispositions, capability gaps, and next action.
-
-For each explicitly authorized provider write, verify that its capability and authority are current. Prepare the exact head SHA, verdict, summary, inline findings, replies, and discussion changes. Refresh the head before the first write. If it changed, do not publish stale content; return to Stage 2.
-
-Reply to an existing discussion when possible. Use a current changed line for a new inline finding. Replace or reopen a stale discussion only when explicitly authorized.
-
-- **GitHub:** submit the authorized review event, comments, replies, and thread changes.
-- **GitLab:** publish discussions, replies, a summary note, and any separately authorized approval.
-
-If an operation fails, stop dependent writes. Record each successful URL and the failed operation. Do not retry a partial mutation without a safe, verified retry path.
-
-Fetch provider state again. Verify the current head, published verdict or approval, URLs, and intended discussion states. Report publication state as `PUBLISHED`, `PARTIAL`, or `FAILED`.
+In provider mode, follow the reporting, publication, failure, and readback contract in [`references/provider-operations.md`](references/provider-operations.md). Keep every write separately authorized and exact-head pinned.

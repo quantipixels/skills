@@ -27,7 +27,8 @@ Write for a capable agent:
 - put selection triggers and the bounded outcome in the description;
 - match detail to risk: use flexible guidance for judgment and exact steps or scripts for fragile operations;
 - keep common instructions in `SKILL.md` and move substantial conditional detail to directly linked references;
-- add examples only when they prevent a recurring misinterpretation;
+- give each conditional branch or reference one exact load trigger, and keep its rules, caveats, and failure behavior together;
+- use examples only when they clarify a material boundary, prevent likely misinterpretation, or make the instruction shorter or simpler overall; use a compact Good/Bad pair for a stable contrast and one example for a stable valid form; remove prose the example makes redundant, but never compress away authoritative conditions, safety constraints, or failure behavior;
 - add scripts only for repeated deterministic work and assets only when the output uses them; and
 - keep each rule with one owner; reference another specialist's required result instead of copying its procedure.
 
@@ -43,9 +44,11 @@ For a provider-capable skill, keep provider execution local and include every ap
 
 Always reread changed files and directly check frontmatter, metadata, paths, references, catalog, routing, packaging, changed scripts, and the final diff as applicable.
 
+Treat structural checks as proof only of the named structures, not agent behavior.
+
 Use fresh no-context subagent sessions when a change creates material uncertainty about selection, authority, unsafe effects, state transitions, complex branching, or agent interpretation. Use the smallest set of realistic raw goals that can distinguish success from failure; do not create a session for every theoretical branch. Hide the expected owner, answer, and rationale. Deny provider writes, credentials, and repository mutation unless a disposable scenario explicitly authorizes them.
 
-Add an independent reviewer only when the consequence or ambiguity justifies a second judgment. Give the reviewer the exact candidate and raw evidence, not the intended verdict. A candidate change invalidates only proof affected by that change.
+Add an independent reviewer only when the consequence or ambiguity justifies a second judgment. Give each producer and reviewer the exact final candidate and raw evidence, not the intended verdict. After a correction or candidate change, rerun only the affected proof against the exact final candidate.
 
 Do not add prompt eval suites or new behavioral test cases to this repository. Existing deterministic tests can remain while their owning behavior remains.
 

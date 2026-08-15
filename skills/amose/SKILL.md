@@ -56,47 +56,17 @@ Freshness: CURRENT | PARTIAL | STALE
 
 Any relevant candidate, evidence, term, relationship, invariant, scenario, boundary, conflict, or open-decision change stales the packet. When reconciliation writes change the candidate, revalidate the model and reissue this packet with a new revision pinned to the final candidate; do not leave consumers with the input-candidate packet.
 
-## 3. Maintain `.learnings`
+## 3. Maintain durable destinations
 
-Use one optional root `.learnings` file for durable, non-obvious knowledge that can change future implementation, review, debugging, operation, or design work. It may contain canonical terms, rules, patterns, conventions, constraints, architectural nuances, operational knowledge, and gotchas.
+Load only the destination contracts that apply:
 
-Preserve an existing human-readable format. Create the file lazily only when useful knowledge exists and creation is authorized. With no existing format, use lightweight Markdown and include only sections with content.
+- read [learnings.md](references/learnings.md) to create, update, compact, or remove root `.learnings` knowledge;
+- read [nongoals.md](references/nongoals.md) to reconcile durable project-level exclusions; and
+- read [adrs.md](references/adrs.md) to qualify, create, supersede, or maintain architecture decision records.
 
-Require evidence from a confirmed decision, current code, test, configuration, runtime result, ADR, or established repository practice. `.learnings` cannot serve as its own sole proof. When no independent current evidence supports an entry, mark it unverified or remove it instead of perpetuating it.
+When a change affects more than one destination, apply each owning reference against the same input candidate before final reconciliation. Do not load a destination contract merely because its file exists when no requested or evidenced change affects it.
 
-Keep hypotheses, temporary task state, session history, speculative preferences, obvious code facts, secrets, credentials, and personal data out. Require user or confirmed-decision authority before promoting observed behavior into a business rule, project boundary, or architecture decision.
-
-Keep the file current rather than append-only. Re-read it immediately before writing, make the smallest semantic edit, merge duplicates, replace stale entries, and retain a short supersession or `avoid` note only when it prevents likely recurrence. Remove obsolete detail and use ADRs for consequential rationale. On concurrent or conflicting edits, stop for semantic reconciliation; never overwrite or blindly append.
-
-Compact relevant sections when repetition or stale material impairs use. Do not impose an arbitrary size limit. Consumers may read only relevant sections; passive reading does not require invoking Amọ̀ṣẹ́.
-
-## 4. Maintain `.nongoals`
-
-Reserve the optional root `.nongoals` file for durable project-level exclusions: directions, features, responsibilities, ideas, or concerns that the project excludes from all current and future work. Do not store session-, conversation-, task-, plan-, feature-, phase-, or iteration-local non-goals there; keep them with their owning artifact. It is not a backlog. Leave storage and version-control policy to the project. Ignore similarly named files unless the user explicitly supplies one as input.
-
-Before adding an entry, classify the outcome as a durable project rejection, temporary deferral, already-implemented behavior, or task-local exclusion. Only a durable project rejection belongs in `.nongoals`. Keep a deferral with its owning plan and reactivation trigger, point already-implemented requests to current behavior, and keep task-local exclusions with their feature or plan.
-
-Preserve any existing readable format. Create no empty file. When creation is authorized and no format exists, use a bare list with no heading or schema. Phrase each entry by durable domain concept, not by one issue, file, implementation proposal, or current capacity constraint. Include a concise durable reason or ADR link when the exclusion is not self-explanatory. Do not append request or issue history; those records stay with their owning issue, provider, or local artifact.
-
-Add, remove, or reinterpret an entry only with explicit project-boundary authority. Treat each entry as out of scope for future work until that authority removes or changes it. Absence from `.nongoals` does not prove a direction is in scope. When authority reconsiders an entry, record whether it grants one exception or changes the durable project boundary, then reconcile dependent ADRs, plans, and knowledge packets.
-
-When requested work conflicts with `.nongoals`, pause that work and ask whether the user authorizes a one-time exception or a boundary change.
-
-## 5. Maintain ADRs
-
-For each unrecorded confirmed decision, create or offer an ADR only when it is all three:
-
-- hard to reverse at meaningful cost;
-- surprising without its context; and
-- the result of a genuine trade-off between credible alternatives.
-
-When any condition is missing, do not create a new ADR. This threshold governs new records, not lifecycle maintenance of existing records.
-
-Match the repository's existing location, naming, markup, status, and structure. When none exists, read [ADR-FORMAT.md](ADR-FORMAT.md). Create the destination and record only when a qualifying decision and write authority exist.
-
-Reconcile an existing ADR whenever its decision changes. Preserve it as history. Create a superseding decision ADR only when the replacement independently passes the threshold; otherwise use the repository's permitted lifecycle mechanism to mark the old record deprecated or no longer current and link to the current authority where practical. A lifecycle-only index or status record may satisfy an immutable-record convention without representing the replacement as a qualifying decision ADR. If the repository permits neither changing the old record nor a lifecycle-only record, return `blocked` and obtain authority for a lifecycle convention instead of violating immutability or the threshold.
-
-## 6. Reconcile and verify
+## 4. Reconcile and verify
 
 When one change affects `.learnings`, `.nongoals`, and ADRs, reconcile all affected records against the same input candidate. After writing, re-read the latest files, verify links and lifecycle state, pin the final post-write candidate, and reissue the project-knowledge packet against it. The input candidate explains the evidence used; only the final candidate and reissued packet identify the current result.
 
