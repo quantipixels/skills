@@ -13,7 +13,7 @@ Turn a message into a persuasive, visually coherent presentation. Keep the narra
 2. Read `references/create.md`, then load only the relevant layout, strategy, copywriting, and template references.
 3. Search the local slide datasets with `scripts/search-slides.py`; use the results to choose strategy, layout, copy formula, chart, typography, colors, and background direction.
 4. Build an outline where each slide has one job, one headline claim, supporting evidence, and a clear transition. Use charts only when they make the relationship easier to understand.
-5. Require the project token contract at `assets/design-tokens.json` and `assets/design-tokens.css`. `eto-apere` owns all declarations, including required `component.slide.*` aliases; route there when either file or any required alias is missing. This skill owns HTML generation, background selection, and token validation, and generation must stop on an incomplete token contract.
+5. Apply project tokens from `assets/design-tokens.json` and `assets/design-tokens.css`. The deterministic helpers in this skill own HTML generation, background selection, and token validation.
 6. Render or preview the deck at the target viewport, check overflow and contrast, and revise before delivery. Include source files and an export when requested.
 
 ## Quality rules

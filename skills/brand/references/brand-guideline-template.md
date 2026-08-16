@@ -10,7 +10,6 @@ Use this template to create comprehensive brand guidelines for any project.
 ## Quick Reference
 - **Primary Color:** #XXXXXX
 - **Secondary Color:** #XXXXXX
-- **Accent Color:** #XXXXXX
 - **Primary Font:** {font-family}
 - **Voice:** {3 key traits}
 
@@ -27,11 +26,6 @@ Use this template to create comprehensive brand guidelines for any project.
 |------|-----|-----|-------|
 | {Name} | #{hex} | rgb({r},{g},{b}) | Secondary elements |
 | {Name} | #{hex} | rgb({r},{g},{b}) | Highlights |
-
-### Accent Colors
-| Name | Hex | RGB | Usage |
-|------|-----|-----|-------|
-| {Name} | #{hex} | rgb({r},{g},{b}) | Focus, highlights, and bounded emphasis |
 
 ### Neutral Palette
 | Name | Hex | RGB | Usage |

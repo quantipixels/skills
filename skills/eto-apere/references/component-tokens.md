@@ -9,27 +9,27 @@ Component-specific tokens referencing semantic layer.
   /* Default (Primary) */
   --button-bg: var(--color-primary);
   --button-fg: var(--color-primary-foreground);
-  --button-bg-hover: var(--color-primary-hover);
-  --button-bg-active: var(--color-primary-active);
+  --button-hover-bg: var(--color-primary-hover);
+  --button-active-bg: var(--color-primary-active);
 
   /* Secondary */
   --button-secondary-bg: var(--color-secondary);
   --button-secondary-fg: var(--color-secondary-foreground);
-  --button-secondary-bg-hover: var(--color-secondary-hover);
+  --button-secondary-hover-bg: var(--color-secondary-hover);
 
   /* Outline */
   --button-outline-border: var(--color-border);
   --button-outline-fg: var(--color-foreground);
-  --button-outline-bg-hover: var(--color-accent);
+  --button-outline-hover-bg: var(--color-accent);
 
   /* Ghost */
   --button-ghost-fg: var(--color-foreground);
-  --button-ghost-bg-hover: var(--color-accent);
+  --button-ghost-hover-bg: var(--color-accent);
 
   /* Destructive */
   --button-destructive-bg: var(--color-destructive);
   --button-destructive-fg: var(--color-destructive-foreground);
-  --button-destructive-bg-hover: var(--color-destructive-hover);
+  --button-destructive-hover-bg: var(--color-destructive-hover);
 
   /* Sizing */
   --button-padding-x: var(--space-4);
@@ -59,16 +59,16 @@ Component-specific tokens referencing semantic layer.
   --input-placeholder: var(--color-muted-foreground);
 
   /* Focus */
-  --input-border-focus: var(--color-ring);
-  --input-ring-focus: var(--color-ring);
+  --input-focus-border: var(--color-ring);
+  --input-focus-ring: var(--color-ring);
 
   /* Error */
-  --input-border-error: var(--color-error);
-  --input-fg-error: var(--color-error);
+  --input-error-border: var(--color-error);
+  --input-error-fg: var(--color-error);
 
   /* Disabled */
-  --input-bg-disabled: var(--color-muted);
-  --input-fg-disabled: var(--color-muted-foreground);
+  --input-disabled-bg: var(--color-muted);
+  --input-disabled-fg: var(--color-muted-foreground);
 
   /* Sizing */
   --input-padding-x: var(--space-3);
@@ -178,7 +178,7 @@ Component-specific tokens referencing semantic layer.
 
   /* Body */
   --table-row-bg: var(--color-background);
-  --table-row-bg-hover: var(--color-muted);
+  --table-row-hover-bg: var(--color-muted);
   --table-row-fg: var(--color-foreground);
 
   /* Border */
@@ -204,30 +204,11 @@ Component-specific tokens referencing semantic layer.
 }
 
 .button:hover {
-  background: var(--button-bg-hover);
+  background: var(--button-hover-bg);
 }
 
 .button.secondary {
   background: var(--button-secondary-bg);
   color: var(--button-secondary-fg);
-}
-```
-
-## Slide Tokens
-
-`eto-apere` owns these declarations; `slides` consumes them without inventing fallback values.
-
-```css
-:root {
-  --slide-bg: var(--color-background);
-  --slide-bg-surface: var(--color-surface);
-  --slide-bg-gradient: var(--gradient-primary);
-  --slide-foreground: var(--color-primary-foreground);
-  --slide-foreground-muted: var(--color-gray-200);
-  --slide-border: var(--color-gray-300);
-  --slide-padding: var(--spacing-section);
-  --slide-title-size: var(--font-size-6xl);
-  --slide-heading-size: var(--font-size-4xl);
-  --slide-body-size: var(--font-size-lg);
 }
 ```

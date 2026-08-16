@@ -1,3 +1,4 @@
 interface:
   display_name: "Slides"
   short_description: "Create strategic presentations and pitch decks"
+  default_prompt: "Use $slides to create a strategic, visually coherent presentation for this request."

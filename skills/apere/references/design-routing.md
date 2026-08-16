@@ -8,15 +8,15 @@ This repository exposes seven design skills. Use `apere` as the end-to-end owner
 | Brand voice, identity, assets, and consistency | `brand` |
 | Tokens, variables, component specs, or token migration | `eto-apere` |
 | UI implementation with Tailwind, shadcn/ui, or Radix | `asa-oju-ibanisoro` |
-| Banner, cover, header, web hero, display ad, or print banner | `banner-design` |
+| Social, ad, web hero, cover, or print banner | `banner-design` |
 | HTML presentation or pitch deck | `slides` |
-| Multi-deliverable visual work, logos, custom icons, corporate identity, or non-banner social systems | `apere` |
+| End-to-end visual work, logos, icons, corporate identity, or social graphics | `apere` |
 
 ## Common routes
 
 - New product UI: `amoye-ui-ux` → `eto-apere` → `asa-oju-ibanisoro`.
 - Existing brand to code: `brand` → `eto-apere` → `asa-oju-ibanisoro`.
-- Social presence: use `apere` for feed/carousel/template systems, `banner-design` for cover/header/ad surfaces, and `brand` only when brand rules are missing or changing.
+- Social presence: `brand` + `banner-design`; add `apere` for logo or mockup concepts.
 - Brand identity package: `brand` → `apere` (logo/CIP modes) → `slides` if a presentation is needed.
 - Custom product icon set: `apere` (icon mode) + `eto-apere` when the icons must match product tokens.
 

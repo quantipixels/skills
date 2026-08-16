@@ -11,12 +11,12 @@ Implement the approved visual system in application code. Preserve existing proj
 
 1. Detect the framework, Tailwind version, component registry, token source, and existing layout conventions.
 2. If the project is new or the visual direction is unclear, run `amoye-ui-ux` first and record the chosen system. If tokens are missing, use `eto-apere` to define them before broad implementation.
-3. For React work, read `references/ui-component-libraries.md`. Honor an explicit user choice of an existing library, a named new library, or custom components. Otherwise inspect the project, then ask once whether to reuse the detected library or choose from the listed libraries plus custom components. Never introduce a competing library silently.
-4. Read only the other references needed for the requested surface: component accessibility, theming, responsive behavior, or utilities.
+3. For React work, read `references/ui-component-libraries.md`. Inspect the project for an existing library, then ask the user to confirm reuse or choose a library before creating components. Offer the listed libraries plus a custom-components option; never introduce a competing library silently.
+4. Read only the other references needed for the requested surface: component accessibility, theming, responsive behavior, utilities, or canvas design.
 
 ## UI component library decision
 
-When the user has not already made the choice, ask one concise question before implementation:
+Ask one concise question before implementation:
 
 > I found [existing library / no library]. Which UI component library should I use: reuse [detected library], choose from the project’s library list, or build custom components?
 
@@ -38,11 +38,11 @@ If the user asks for a recommendation, compare the shortlist against the project
 Resolve `<skill-root>` to this skill directory:
 
 ```bash
-python3 <skill-root>/scripts/tailwind_config_gen.py --framework react --colors 'brand:var(--color-primary)' --output tailwind.config.ts
-python3 <skill-root>/scripts/shadcn_add.py button card dialog --dry-run
+python <skill-root>/scripts/tailwind_config_gen.py --framework react --output tailwind.config.ts
+python <skill-root>/scripts/shadcn_add.py button card dialog --dry-run
 ```
 
-Use `tailwind_config_gen.py` only for Tailwind CSS 3 projects that use a configuration file; Tailwind CSS 4 projects should extend tokens through the project's CSS `@theme` contract. Color arguments must reference approved CSS custom properties from `eto-apere`, not raw color values. Use `shadcn_add.py` only after checking the project’s `components.json`; run the CLI with the project’s package manager when the helper cannot determine the right setup. These helpers write into the target project, so confirm the target path before running them.
+Use `shadcn_add.py` only after checking the project’s `components.json`; run the CLI with the project’s package manager when the helper cannot determine the right setup. These helpers write into the target project, so confirm the target path before running them.
 
 ## Verification
 
@@ -57,3 +57,4 @@ Run the project’s lint/typecheck/test commands, then inspect the rendered UI a
 - `references/tailwind-customization.md` — Tailwind extension.
 - `references/tailwind-responsive.md` — responsive rules.
 - `references/tailwind-utilities.md` — utility patterns.
+- `references/canvas-design-system.md` — canvas-first visual composition.

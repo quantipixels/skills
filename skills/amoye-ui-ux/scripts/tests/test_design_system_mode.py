@@ -11,9 +11,9 @@ Stdlib-only (unittest, not pytest) to match test_core.py -- this project ships
 with zero external dependencies.
 
 Run with:
-    python3 -m unittest discover -s scripts/tests -v
+    python -m unittest discover -s scripts/tests -v
 or directly:
-    python3 scripts/tests/test_design_system_mode.py
+    python scripts/tests/test_design_system_mode.py
 """
 
 import sys

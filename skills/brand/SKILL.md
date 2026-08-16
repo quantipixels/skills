@@ -11,7 +11,7 @@ Own the project’s brand source of truth. Keep voice, visual identity, messagin
 
 1. Find existing brand guidance, logo files, token files, and asset manifests. Treat the existing guidance as authoritative unless the user explicitly changes it.
 2. For a new brand, define audience, positioning, voice, personality, color roles, typography, imagery, logo clear space, and prohibited treatments. Use `templates/brand-guidelines-starter.md` as a starting point.
-3. For an update, read `references/update.md`, change the human-readable guidelines first, then synchronize machine-readable tokens and CSS. Preserve unrelated tokens and note breaking changes.
+3. For an update, change the human-readable guidelines first, then synchronize machine-readable tokens and CSS. Preserve unrelated tokens and note breaking changes.
 4. For a review, check voice, color, typography, logo use, asset naming, accessibility, and cross-surface consistency. Report evidence and corrections, not taste alone.
 5. Validate assets and confirm generated context before handing off to `eto-apere`, `asa-oju-ibanisoro`, `banner-design`, or `slides`.
 
@@ -29,11 +29,11 @@ Run helpers with the skill-root path resolved explicitly:
 ```bash
 node <skill-root>/scripts/inject-brand-context.cjs --json docs/brand-guidelines.md
 node <skill-root>/scripts/validate-asset.cjs assets/logo.svg --json
-node <skill-root>/scripts/extract-colors.cjs --palette --brand-file docs/brand-guidelines.md
+node <skill-root>/scripts/extract-colors.cjs --palette docs/brand-guidelines.md
 node <skill-root>/scripts/sync-brand-to-tokens.cjs
 ```
 
-The sync helper writes two generated project files: `assets/design-tokens.json` and `assets/design-tokens.css`. The workflow edits `docs/brand-guidelines.md` separately before sync. Check all three paths and the intended project root first. The helper does not generate image assets.
+The sync helper may write three project files. Check their existence and the intended project root first. It will not generate image assets; use the host’s image-generation capability for bitmap exploration and preserve the chosen brand constraints in prompts.
 
 ## Decision rules
 
@@ -56,4 +56,3 @@ The sync helper writes two generated project files: `assets/design-tokens.json` 
 - `references/typography-specifications.md` — type specs.
 - `references/logo-usage-rules.md` — logo constraints.
 - `references/approval-checklist.md` — approval gate.
-- `references/update.md` — brand color, typography, or visual-direction updates.

@@ -17,19 +17,6 @@ Three-layer token system for scalable, themeable design systems.
 └─────────────────────────────────────────┘
 ```
 
-## Canonical CSS names
-
-Map token source paths without emitting the layer name:
-
-- `primitive.color.blue.600` → `--color-blue-600`
-- `primitive.spacing.4` → `--space-4`
-- `primitive.fontSize.sm` → `--font-size-sm`
-- `semantic.color.primary-hover` → `--color-primary-hover`
-- `component.button.bg-hover` → `--button-bg-hover`
-- `component.slide.padding` → `--slide-padding`
-
-Use kebab case and put component state last. Dark semantic tokens reuse the same names inside `.dark`. Primitive values are raw; semantic and component references remain CSS aliases such as `var(--color-blue-600)`.
-
 ## Why Three Layers?
 
 | Layer | Purpose | When to Change |
@@ -113,7 +100,7 @@ Component-specific tokens referencing semantic layer.
   /* Button */
   --button-bg: var(--color-primary);
   --button-fg: white;
-  --button-bg-hover: var(--color-primary-hover);
+  --button-hover-bg: var(--color-primary-hover);
   --button-padding-x: var(--space-4);
   --button-padding-y: var(--space-2);
   --button-radius: var(--radius-default);
@@ -121,7 +108,7 @@ Component-specific tokens referencing semantic layer.
   /* Input */
   --input-bg: var(--color-background);
   --input-border: var(--color-gray-300);
-  --input-ring-focus: var(--color-primary);
+  --input-focus-ring: var(--color-primary);
   --input-padding: var(--space-2) var(--space-3);
 
   /* Card */

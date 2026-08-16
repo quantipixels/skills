@@ -1,8 +1,6 @@
 # Banner Sizes & Art Direction Styles Reference
 
-## Common Starting Sizes
-
-Platform requirements change. Treat these values as starting defaults, not current production specifications. Before final export, verify the target platform's current requirement and record the authoritative source and check date, or use a user-supplied specification.
+## Complete Banner Sizes
 
 ### Social Media
 | Platform | Type | Size (px) | Aspect Ratio |
@@ -23,11 +21,11 @@ Platform requirements change. Treat these values as starting defaults, not curre
 ### Web / Display Ads (Google Display Network)
 | Name | Size (px) | Notes |
 |------|-----------|-------|
-| Medium Rectangle | 300 × 250 | Common display format |
+| Medium Rectangle | 300 × 250 | Highest CTR |
 | Leaderboard | 728 × 90 | Top of page |
 | Wide Skyscraper | 160 × 600 | Sidebar |
 | Half Page | 300 × 600 | Premium |
-| Large Rectangle | 336 × 280 | Common large display format |
+| Large Rectangle | 336 × 280 | High performer |
 | Mobile Banner | 320 × 50 | Mobile default |
 | Large Mobile | 320 × 100 | Mobile hero |
 | Billboard | 970 × 250 | Desktop hero |
@@ -100,7 +98,7 @@ Platform requirements change. Treat these values as starting defaults, not curre
 - Max 7 words/line, 3 lines for ads
 
 ### Text-to-Image Ratio
-- Ads: keep text concise and verify any current platform-specific text guidance before export
+- Ads: under 20% text (Meta penalizes)
 - Social covers: 60/40 image-to-text
 - Print: 70pt+ headlines for 3-5m viewing distance
 

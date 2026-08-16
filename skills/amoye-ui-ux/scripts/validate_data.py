@@ -4,7 +4,7 @@
 Data integrity guardrail for amoye-ui-ux. Stdlib-only, no pytest dependency,
 so it can run as a standalone pre-publish/CI check:
 
-    python3 validate_data.py
+    python validate_data.py
 
 Checks, per configured domain/stack CSV:
   - file exists

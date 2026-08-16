@@ -45,92 +45,39 @@ Options:
   return options;
 }
 
-const PRIMITIVE_CATEGORY_NAMES = {
-  spacing: 'space',
-  fontSize: 'font-size',
-  fontWeight: 'font-weight',
-  fontFamily: 'font-family',
-  lineHeight: 'line-height',
-};
-
-function toKebab(value) {
-  return String(value)
-    .replace(/([a-z0-9])([A-Z])/g, '$1-$2')
-    .replace(/_/g, '-')
-    .toLowerCase();
-}
-
-/** Convert a source token path to its canonical CSS custom-property name. */
-function toCssVarName(sourcePath) {
-  let parts = [...sourcePath];
-  if (parts[0] === 'dark') parts = parts.slice(1);
-
-  if (parts[0] === 'primitive') {
-    const category = PRIMITIVE_CATEGORY_NAMES[parts[1]] || toKebab(parts[1]);
-    parts = [category, ...parts.slice(2)];
-  } else if (parts[0] === 'semantic' || parts[0] === 'component') {
-    parts = parts.slice(1);
+/**
+ * Resolve token references like {primitive.color.blue.600}
+ */
+function resolveReference(value, tokens) {
+  if (typeof value !== 'string' || !value.startsWith('{')) {
+    return value;
   }
 
-  return '--' + parts.map(toKebab).join('-');
-}
+  const path = value.slice(1, -1).split('.');
+  let result = tokens;
 
-function collectTokenNodes(obj, prefix = [], nodes = new Map()) {
-  for (const [key, value] of Object.entries(obj || {})) {
-    const currentPath = [...prefix, key];
-    if (value && typeof value === 'object' && value.$value !== undefined) {
-      nodes.set(currentPath.join('.'), value);
-    } else if (value && typeof value === 'object') {
-      collectTokenNodes(value, currentPath, nodes);
-    }
-  }
-  return nodes;
-}
-
-function validateTokenGraph(tokens) {
-  const nodes = new Map();
-  collectTokenNodes(tokens.primitive, ['primitive'], nodes);
-  collectTokenNodes(tokens.semantic, ['semantic'], nodes);
-  collectTokenNodes(tokens.component, ['component'], nodes);
-  collectTokenNodes(tokens.dark, ['dark'], nodes);
-
-  const names = new Map();
-  for (const sourcePath of nodes.keys()) {
-    const cssName = toCssVarName(sourcePath.split('.'));
-    const normalizedSource = sourcePath.replace(/^dark\./, '');
-    if (names.has(cssName) && names.get(cssName) !== normalizedSource) {
-      throw new Error(`CSS token name collision: ${sourcePath} and ${names.get(cssName)} -> ${cssName}`);
-    }
-    names.set(cssName, normalizedSource);
+  for (const key of path) {
+    result = result?.[key];
   }
 
-  const visiting = new Set();
-  const visited = new Set();
-  function visit(sourcePath) {
-    if (visited.has(sourcePath)) return;
-    if (visiting.has(sourcePath)) throw new Error(`Circular token reference: ${sourcePath}`);
-    visiting.add(sourcePath);
-    const value = nodes.get(sourcePath)?.$value;
-    const match = typeof value === 'string' ? /^\{([^{}]+)\}$/.exec(value) : null;
-    if (match) {
-      if (!nodes.has(match[1])) throw new Error(`Unresolved token reference: ${value}`);
-      visit(match[1]);
-    }
-    visiting.delete(sourcePath);
-    visited.add(sourcePath);
+  if (result?.$value) {
+    return resolveReference(result.$value, tokens);
   }
-  for (const sourcePath of nodes.keys()) visit(sourcePath);
+
+  return result || value;
 }
 
-function cssValue(value) {
-  const match = typeof value === 'string' ? /^\{([^{}]+)\}$/.exec(value) : null;
-  return match ? `var(${toCssVarName(match[1].split('.'))})` : value;
+/**
+ * Convert token name to CSS variable name
+ */
+function toCssVarName(path) {
+  return '--' + path.join('-').replace(/\./g, '-');
 }
 
 /**
  * Flatten tokens into CSS variables
  */
-function flattenTokens(obj, prefix = [], result = {}) {
+function flattenTokens(obj, tokens, prefix = [], result = {}) {
   for (const [key, value] of Object.entries(obj)) {
     const currentPath = [...prefix, key];
 
@@ -138,10 +85,11 @@ function flattenTokens(obj, prefix = [], result = {}) {
       if (value.$value !== undefined) {
         // This is a token
         const cssVar = toCssVarName(currentPath);
-        result[cssVar] = cssValue(value.$value);
+        const resolvedValue = resolveReference(value.$value, tokens);
+        result[cssVar] = resolvedValue;
       } else {
         // Recurse into nested object
-        flattenTokens(value, currentPath, result);
+        flattenTokens(value, tokens, currentPath, result);
       }
     }
   }
@@ -153,11 +101,10 @@ function flattenTokens(obj, prefix = [], result = {}) {
  * Generate CSS output
  */
 function generateCSS(tokens) {
-  validateTokenGraph(tokens);
-  const primitive = flattenTokens(tokens.primitive || {}, ['primitive']);
-  const semantic = flattenTokens(tokens.semantic || {}, ['semantic']);
-  const component = flattenTokens(tokens.component || {}, ['component']);
-  const darkSemantic = flattenTokens(tokens.dark?.semantic || {}, ['dark', 'semantic']);
+  const primitive = flattenTokens(tokens.primitive || {}, tokens, ['primitive']);
+  const semantic = flattenTokens(tokens.semantic || {}, tokens, []);
+  const component = flattenTokens(tokens.component || {}, tokens, []);
+  const darkSemantic = flattenTokens(tokens.dark?.semantic || {}, tokens, []);
 
   let css = `/* Design Tokens - Auto-generated */
 /* Do not edit directly - modify tokens.json instead */
@@ -194,8 +141,7 @@ ${Object.entries(darkSemantic).map(([k, v]) => `  ${k}: ${v};`).join('\n')}
  * Generate Tailwind config output
  */
 function generateTailwind(tokens) {
-  validateTokenGraph(tokens);
-  const semantic = flattenTokens(tokens.semantic || {}, ['semantic']);
+  const semantic = flattenTokens(tokens.semantic || {}, tokens, []);
 
   // Extract colors for Tailwind
   const colors = {};

@@ -2,8 +2,8 @@
 # -*- coding: utf-8 -*-
 """
 Logo Design Search - CLI for searching logo design guidelines
-Usage: python3 search.py "<query>" [--domain <domain>] [--max-results 3]
-       python3 search.py "<query>" --design-brief [-p "Brand Name"]
+Usage: python search.py "<query>" [--domain <domain>] [--max-results 3]
+       python search.py "<query>" --design-brief [-p "Brand Name"]
 
 Domains: style, color, industry
 """

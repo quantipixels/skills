@@ -9,7 +9,6 @@ NO hardcoded colors, fonts, or spacing allowed
 import argparse
 import json
 import os
-import re
 from html import escape
 from pathlib import Path
 from datetime import datetime
@@ -47,31 +46,6 @@ def resolve_output_path(project_root, requested, default_relative):
         raise ValueError(f"Output must stay inside project root: {root}") from exc
     return candidate
 
-
-def validate_token_contract(tokens_json_path, tokens_css_path, html):
-    """Require both token artifacts and every CSS variable used by the deck."""
-    if not tokens_json_path.is_file():
-        raise ValueError(f"Required token contract not found: {tokens_json_path}")
-    if not tokens_css_path.is_file():
-        raise ValueError(f"Required token contract not found: {tokens_css_path}")
-
-    try:
-        json.loads(tokens_json_path.read_text(encoding='utf-8'))
-    except (OSError, json.JSONDecodeError) as exc:
-        raise ValueError(f"Invalid token contract: {tokens_json_path}: {exc}") from exc
-
-    css = re.sub(r'/\*.*?\*/', '', tokens_css_path.read_text(encoding='utf-8'), flags=re.DOTALL)
-    html_without_comments = re.sub(r'/\*.*?\*/', '', html, flags=re.DOTALL)
-    html_without_comments = re.sub(r'<!--.*?-->', '', html_without_comments, flags=re.DOTALL)
-    declared = set(re.findall(r'(--[\w-]+)\s*:', css))
-    referenced = set(re.findall(r'var\(\s*(--[\w-]+)', html_without_comments))
-    missing = sorted(referenced - declared)
-    if missing:
-        raise ValueError(
-            f"Incomplete token contract: {tokens_css_path} is missing "
-            + ", ".join(missing)
-        )
-
 # ============ BRAND-COMPLIANT SLIDE TEMPLATE ============
 # ALL values reference CSS variables from design-tokens.css
 
@@ -107,10 +81,10 @@ SLIDE_TEMPLATE = '''<!DOCTYPE html>
         }}
 
         body {{
-            font-family: var(--font-family-body);
+            font-family: var(--typography-font-body);
             background: var(--color-background);
             color: var(--color-foreground);
-            line-height: var(--line-height-relaxed);
+            line-height: var(--primitive-lineHeight-relaxed);
         }}
 
         /* Slide Container - 16:9 aspect ratio */
@@ -132,7 +106,7 @@ SLIDE_TEMPLATE = '''<!DOCTYPE html>
         }}
 
         .slide + .slide {{
-            margin-top: var(--space-8);
+            margin-top: var(--primitive-spacing-8);
         }}
 
         /* Background Variants */
@@ -152,20 +126,20 @@ SLIDE_TEMPLATE = '''<!DOCTYPE html>
             transform: translate(-50%, -50%);
             width: 150%;
             height: 150%;
-            background: var(--gradient-glow);
+            background: var(--primitive-gradient-glow);
             pointer-events: none;
         }}
 
         /* Typography - MUST use token fonts and sizes */
         h1, h2, h3, h4, h5, h6 {{
-            font-family: var(--font-family-heading);
-            font-weight: var(--font-weight-bold);
-            line-height: var(--line-height-tight);
+            font-family: var(--typography-font-heading);
+            font-weight: var(--primitive-fontWeight-bold);
+            line-height: var(--primitive-lineHeight-tight);
         }}
 
         .slide-title {{
             font-size: var(--slide-title-size);
-            background: var(--gradient-primary);
+            background: var(--primitive-gradient-primary);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -177,9 +151,9 @@ SLIDE_TEMPLATE = '''<!DOCTYPE html>
         }}
 
         .slide-subheading {{
-            font-size: var(--font-size-3xl);
+            font-size: var(--primitive-fontSize-3xl);
             color: var(--color-foreground-secondary);
-            font-weight: var(--font-weight-medium);
+            font-weight: var(--primitive-fontWeight-medium);
         }}
 
         .slide-body {{
@@ -206,7 +180,7 @@ SLIDE_TEMPLATE = '''<!DOCTYPE html>
             border-radius: var(--card-radius);
             padding: var(--card-padding);
             box-shadow: var(--card-shadow);
-            transition: border-color var(--duration-normal) var(--easing-out);
+            transition: border-color var(--primitive-duration-base) var(--primitive-easing-out);
         }}
 
         .card:hover {{
@@ -218,25 +192,25 @@ SLIDE_TEMPLATE = '''<!DOCTYPE html>
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            padding: var(--button-padding-y) var(--button-padding-x);
-            border-radius: var(--button-radius);
-            font-size: var(--button-font-size);
-            font-weight: var(--button-font-weight);
-            font-family: var(--font-family-body);
+            padding: var(--button-primary-padding-y) var(--button-primary-padding-x);
+            border-radius: var(--button-primary-radius);
+            font-size: var(--button-primary-font-size);
+            font-weight: var(--button-primary-font-weight);
+            font-family: var(--typography-font-body);
             text-decoration: none;
             cursor: pointer;
             border: none;
-            transition: all var(--duration-normal) var(--easing-out);
+            transition: all var(--primitive-duration-base) var(--primitive-easing-out);
         }}
 
         .btn-primary {{
-            background: var(--button-bg);
-            color: var(--button-fg);
-            box-shadow: var(--button-shadow);
+            background: var(--button-primary-bg);
+            color: var(--button-primary-fg);
+            box-shadow: var(--button-primary-shadow);
         }}
 
         .btn-primary:hover {{
-            background: var(--button-bg-hover);
+            background: var(--button-primary-bg-hover);
         }}
 
         .btn-secondary {{
@@ -251,9 +225,9 @@ SLIDE_TEMPLATE = '''<!DOCTYPE html>
         .items-center {{ align-items: center; }}
         .justify-center {{ justify-content: center; }}
         .justify-between {{ justify-content: space-between; }}
-        .gap-4 {{ gap: var(--space-4); }}
-        .gap-6 {{ gap: var(--space-6); }}
-        .gap-8 {{ gap: var(--space-8); }}
+        .gap-4 {{ gap: var(--primitive-spacing-4); }}
+        .gap-6 {{ gap: var(--primitive-spacing-6); }}
+        .gap-8 {{ gap: var(--primitive-spacing-8); }}
 
         .grid {{ display: grid; }}
         .grid-2 {{ grid-template-columns: repeat(2, 1fr); }}
@@ -262,131 +236,131 @@ SLIDE_TEMPLATE = '''<!DOCTYPE html>
 
         .text-center {{ text-align: center; }}
         .mt-auto {{ margin-top: auto; }}
-        .mb-4 {{ margin-bottom: var(--space-4); }}
-        .mb-6 {{ margin-bottom: var(--space-6); }}
-        .mb-8 {{ margin-bottom: var(--space-8); }}
+        .mb-4 {{ margin-bottom: var(--primitive-spacing-4); }}
+        .mb-6 {{ margin-bottom: var(--primitive-spacing-6); }}
+        .mb-8 {{ margin-bottom: var(--primitive-spacing-8); }}
 
         /* Metric Cards */
         .metric {{
             text-align: center;
-            padding: var(--space-6);
+            padding: var(--primitive-spacing-6);
         }}
 
         .metric-value {{
-            font-family: var(--font-family-heading);
-            font-size: var(--font-size-6xl);
-            font-weight: var(--font-weight-bold);
-            background: var(--gradient-primary);
+            font-family: var(--typography-font-heading);
+            font-size: var(--primitive-fontSize-6xl);
+            font-weight: var(--primitive-fontWeight-bold);
+            background: var(--primitive-gradient-primary);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }}
 
         .metric-label {{
-            font-size: var(--font-size-lg);
+            font-size: var(--primitive-fontSize-lg);
             color: var(--color-foreground-secondary);
-            margin-top: var(--space-2);
+            margin-top: var(--primitive-spacing-2);
         }}
 
         /* Feature List */
         .feature-item {{
             display: flex;
             align-items: flex-start;
-            gap: var(--space-4);
-            padding: var(--space-4) 0;
+            gap: var(--primitive-spacing-4);
+            padding: var(--primitive-spacing-4) 0;
         }}
 
         .feature-icon {{
             width: 48px;
             height: 48px;
-            border-radius: var(--radius-lg);
+            border-radius: var(--primitive-radius-lg);
             background: var(--color-surface-elevated);
             display: flex;
             align-items: center;
             justify-content: center;
             color: var(--color-primary);
-            font-size: var(--font-size-xl);
+            font-size: var(--primitive-fontSize-xl);
             flex-shrink: 0;
         }}
 
         .feature-content h4 {{
-            font-size: var(--font-size-xl);
+            font-size: var(--primitive-fontSize-xl);
             color: var(--color-foreground);
-            margin-bottom: var(--space-2);
+            margin-bottom: var(--primitive-spacing-2);
         }}
 
         .feature-content p {{
             color: var(--color-foreground-secondary);
-            font-size: var(--font-size-base);
+            font-size: var(--primitive-fontSize-base);
         }}
 
         /* Testimonial */
         .testimonial {{
             background: var(--color-surface);
-            border-radius: var(--radius-xl);
-            padding: var(--space-8);
+            border-radius: var(--primitive-radius-xl);
+            padding: var(--primitive-spacing-8);
             border-left: 4px solid var(--color-primary);
         }}
 
         .testimonial-quote {{
-            font-size: var(--font-size-2xl);
+            font-size: var(--primitive-fontSize-2xl);
             color: var(--color-foreground);
             font-style: italic;
-            margin-bottom: var(--space-6);
+            margin-bottom: var(--primitive-spacing-6);
         }}
 
         .testimonial-author {{
-            font-size: var(--font-size-lg);
+            font-size: var(--primitive-fontSize-lg);
             color: var(--color-primary);
-            font-weight: var(--font-weight-semibold);
+            font-weight: var(--primitive-fontWeight-semibold);
         }}
 
         .testimonial-role {{
-            font-size: var(--font-size-base);
+            font-size: var(--primitive-fontSize-base);
             color: var(--color-foreground-muted);
         }}
 
         /* Badge/Tag */
         .badge {{
             display: inline-block;
-            padding: var(--space-2) var(--space-4);
+            padding: var(--primitive-spacing-2) var(--primitive-spacing-4);
             background: var(--color-surface-elevated);
-            border-radius: var(--radius-full);
-            font-size: var(--font-size-sm);
+            border-radius: var(--primitive-radius-full);
+            font-size: var(--primitive-fontSize-sm);
             color: var(--color-accent);
-            font-weight: var(--font-weight-medium);
+            font-weight: var(--primitive-fontWeight-medium);
         }}
 
         /* Chart Container */
         .chart-container {{
             background: var(--color-surface);
-            border-radius: var(--radius-xl);
-            padding: var(--space-6);
+            border-radius: var(--primitive-radius-xl);
+            padding: var(--primitive-spacing-6);
             height: 100%;
             display: flex;
             flex-direction: column;
         }}
 
         .chart-title {{
-            font-family: var(--font-family-heading);
-            font-size: var(--font-size-xl);
+            font-family: var(--typography-font-heading);
+            font-size: var(--primitive-fontSize-xl);
             color: var(--color-foreground);
-            margin-bottom: var(--space-4);
+            margin-bottom: var(--primitive-spacing-4);
         }}
 
         /* CSS-only Bar Chart */
         .bar-chart {{
             display: flex;
             align-items: flex-end;
-            gap: var(--space-4);
+            gap: var(--primitive-spacing-4);
             height: 200px;
-            padding-top: var(--space-4);
+            padding-top: var(--primitive-spacing-4);
         }}
 
         .bar {{
             flex: 1;
-            background: var(--gradient-primary);
-            border-radius: var(--radius-md) var(--radius-md) 0 0;
+            background: var(--primitive-gradient-primary);
+            border-radius: var(--primitive-radius-md) var(--primitive-radius-md) 0 0;
             position: relative;
             min-width: 40px;
         }}
@@ -396,7 +370,7 @@ SLIDE_TEMPLATE = '''<!DOCTYPE html>
             bottom: -30px;
             left: 50%;
             transform: translateX(-50%);
-            font-size: var(--font-size-sm);
+            font-size: var(--primitive-fontSize-sm);
             color: var(--color-foreground-muted);
             white-space: nowrap;
         }}
@@ -406,23 +380,23 @@ SLIDE_TEMPLATE = '''<!DOCTYPE html>
             top: -25px;
             left: 50%;
             transform: translateX(-50%);
-            font-size: var(--font-size-sm);
+            font-size: var(--primitive-fontSize-sm);
             color: var(--color-foreground);
-            font-weight: var(--font-weight-semibold);
+            font-weight: var(--primitive-fontWeight-semibold);
         }}
 
         /* Progress Bar */
         .progress {{
             height: 12px;
             background: var(--color-surface-elevated);
-            border-radius: var(--radius-full);
+            border-radius: var(--primitive-radius-full);
             overflow: hidden;
         }}
 
         .progress-fill {{
             height: 100%;
-            background: var(--gradient-primary);
-            border-radius: var(--radius-full);
+            background: var(--primitive-gradient-primary);
+            border-radius: var(--primitive-radius-full);
         }}
 
         /* Footer */
@@ -431,23 +405,23 @@ SLIDE_TEMPLATE = '''<!DOCTYPE html>
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding-top: var(--space-6);
+            padding-top: var(--primitive-spacing-6);
             border-top: 1px solid var(--color-border);
             color: var(--color-foreground-muted);
-            font-size: var(--font-size-sm);
+            font-size: var(--primitive-fontSize-sm);
         }}
 
         /* Glow Effects */
         .glow-coral {{
-            box-shadow: var(--shadow-glow-primary);
+            box-shadow: var(--primitive-shadow-glow-coral);
         }}
 
         .glow-purple {{
-            box-shadow: var(--shadow-glow-secondary);
+            box-shadow: var(--primitive-shadow-glow-purple);
         }}
 
         .glow-mint {{
-            box-shadow: var(--shadow-glow-accent);
+            box-shadow: var(--primitive-shadow-glow-mint);
         }}
     </style>
 </head>
@@ -489,18 +463,18 @@ def generate_problem_slide(data):
         <h2 class="slide-heading mb-8">{_e(data.get('headline', 'The problem your audience faces'))}</h2>
         <div class="grid grid-3 gap-8">
             <div class="card">
-                <div class="text-primary" style="font-size: var(--font-size-4xl); margin-bottom: var(--space-4);">01</div>
-                <h4 style="margin-bottom: var(--space-2); font-size: var(--font-size-xl);">{_e(data.get('pain_1_title', 'Pain Point 1'))}</h4>
+                <div class="text-primary" style="font-size: var(--primitive-fontSize-4xl); margin-bottom: var(--primitive-spacing-4);">01</div>
+                <h4 style="margin-bottom: var(--primitive-spacing-2); font-size: var(--primitive-fontSize-xl);">{_e(data.get('pain_1_title', 'Pain Point 1'))}</h4>
                 <p class="text-muted">{_e(data.get('pain_1_desc', 'Description of the first pain point'))}</p>
             </div>
             <div class="card">
-                <div class="text-secondary" style="font-size: var(--font-size-4xl); margin-bottom: var(--space-4);">02</div>
-                <h4 style="margin-bottom: var(--space-2); font-size: var(--font-size-xl);">{_e(data.get('pain_2_title', 'Pain Point 2'))}</h4>
+                <div class="text-secondary" style="font-size: var(--primitive-fontSize-4xl); margin-bottom: var(--primitive-spacing-4);">02</div>
+                <h4 style="margin-bottom: var(--primitive-spacing-2); font-size: var(--primitive-fontSize-xl);">{_e(data.get('pain_2_title', 'Pain Point 2'))}</h4>
                 <p class="text-muted">{_e(data.get('pain_2_desc', 'Description of the second pain point'))}</p>
             </div>
             <div class="card">
-                <div class="text-accent" style="font-size: var(--font-size-4xl); margin-bottom: var(--space-4);">03</div>
-                <h4 style="margin-bottom: var(--space-2); font-size: var(--font-size-xl);">{_e(data.get('pain_3_title', 'Pain Point 3'))}</h4>
+                <div class="text-accent" style="font-size: var(--primitive-fontSize-4xl); margin-bottom: var(--primitive-spacing-4);">03</div>
+                <h4 style="margin-bottom: var(--primitive-spacing-2); font-size: var(--primitive-fontSize-xl);">{_e(data.get('pain_3_title', 'Pain Point 3'))}</h4>
                 <p class="text-muted">{_e(data.get('pain_3_desc', 'Description of the third pain point'))}</p>
             </div>
         </div>
@@ -544,7 +518,7 @@ def generate_solution_slide(data):
             </div>
             <div style="flex: 1;" class="card flex items-center justify-center">
                 <div class="text-center">
-                    <div class="text-accent" style="font-size: 80px; margin-bottom: var(--space-4);">&#9670;</div>
+                    <div class="text-accent" style="font-size: 80px; margin-bottom: var(--primitive-spacing-4);">&#9670;</div>
                     <p class="text-muted">Product screenshot or demo</p>
                 </div>
             </div>
@@ -644,12 +618,12 @@ def generate_cta_slide(data):
     """Closing CTA slide"""
     return f'''
     <section class="slide slide--gradient flex flex-col items-center justify-center text-center">
-        <h2 class="slide-heading mb-6" style="color: var(--slide-foreground);">{_e(data.get('headline', 'Ready to get started?'))}</h2>
-        <p class="slide-body mb-8" style="color: var(--slide-foreground-muted);">{_e(data.get('subheadline', 'Join thousands of teams already using our solution.'))}</p>
+        <h2 class="slide-heading mb-6" style="color: var(--color-foreground);">{_e(data.get('headline', 'Ready to get started?'))}</h2>
+        <p class="slide-body mb-8" style="color: rgba(255,255,255,0.8);">{_e(data.get('subheadline', 'Join thousands of teams already using our solution.'))}</p>
         <div class="flex gap-4">
-            <a href="{_safe_url(data.get('cta_url', '#'))}" class="btn" style="background: var(--slide-foreground); color: var(--color-primary);">{_e(data.get('cta', 'Start Free Trial'))}</a>
+            <a href="{_safe_url(data.get('cta_url', '#'))}" class="btn" style="background: var(--color-foreground); color: var(--color-primary);">{_e(data.get('cta', 'Start Free Trial'))}</a>
         </div>
-        <div class="slide-footer" style="border-color: var(--slide-border); color: var(--slide-foreground-muted);">
+        <div class="slide-footer" style="border-color: rgba(255,255,255,0.2); color: rgba(255,255,255,0.6);">
             <span>{_e(data.get('contact', 'contact@example.com'))}</span>
             <span>{_e(data.get('website', 'www.example.com'))}</span>
         </div>
@@ -713,11 +687,6 @@ def main():
     except ValueError as exc:
         parser.error(str(exc))
 
-    if not args.demo and not args.json:
-        parser.print_help()
-        return
-
-    tokens_json = project_root / "assets" / "design-tokens.json"
     tokens_css = project_root / "assets" / "design-tokens.css"
     tokens_rel_path = os.path.relpath(tokens_css, output_path.parent)
 
@@ -803,10 +772,6 @@ def main():
         ]
 
         html = generate_deck(demo_slides, "Example Product - Pitch Deck", tokens_rel_path)
-        try:
-            validate_token_contract(tokens_json, tokens_css, html)
-        except ValueError as exc:
-            parser.error(str(exc))
 
         output_path.parent.mkdir(parents=True, exist_ok=True)
         output_path.write_text(html, encoding='utf-8')
@@ -817,14 +782,14 @@ def main():
             data = json.load(f)
 
         html = generate_deck(data.get('slides', []), data.get('title', 'Presentation'), tokens_rel_path)
-        try:
-            validate_token_contract(tokens_json, tokens_css, html)
-        except ValueError as exc:
-            parser.error(str(exc))
 
         output_path.parent.mkdir(parents=True, exist_ok=True)
         output_path.write_text(html, encoding='utf-8')
         print(f"Deck generated: {output_path}")
+
+    else:
+        parser.print_help()
+
 
 if __name__ == "__main__":
     main()

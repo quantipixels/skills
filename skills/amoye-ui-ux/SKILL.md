@@ -1,11 +1,11 @@
 ---
 name: amoye-ui-ux
-description: Recommend or review data-backed UI/UX direction for web and mobile interfaces, including product patterns, visual styles, color palettes, typography, responsive layout, accessibility, animation, charts, and stack-specific guidance. Use for visual or interaction decisions, not UI implementation; skip backend, infrastructure, and non-visual work.
+description: Use data-backed UI/UX design intelligence when designing or reviewing web and mobile interfaces, including product patterns, visual styles, color palettes, typography, responsive layout, accessibility, animation, charts, and stack-specific guidance. Trigger for visual or interaction decisions; skip pure backend, infrastructure, or non-visual work.
 ---
 
 # Amọ̀ye Ojú Ìbánisọ̀rọ̀ àti Ìrírí Olùmúlò
 
-Provide evidence-backed design recommendations from the bundled searchable database. Use the validated local datasets as the inventory source instead of copying row counts into the contract.
+Provide evidence-backed design recommendations from the bundled searchable database. The skill covers 84 styles, 192 color palettes, 74 font pairings, 192 product types, 98 UX guidelines, 104 icon entries, 16 motion presets, 25 chart types, and 22 implementation stacks.
 
 ## Core workflow
 
@@ -14,7 +14,7 @@ Provide evidence-backed design recommendations from the bundled searchable datab
 3. Run focused searches only where needed: `product`, `style`, `color`, `typography`, `google-fonts`, `chart`, `ux`, `landing`, `icons`, `gsap`, `react`, or `web`.
 4. Run the matching stack search after the stack is known.
 5. Synthesize the returned recommendations into tokens, layout rules, interaction behavior, implementation guidance, and a short anti-pattern list. Do not paste raw search output as a design.
-6. Before native/mobile delivery, read `references/pro-rules.md`. Before web/desktop delivery, or when detailed UX rationale is needed, read `references/quick-reference.md`.
+6. Before delivery, read `references/pro-rules.md` for the canonical checklist. For detailed UX rationale, read `references/quick-reference.md` on demand.
 
 When the recommendation will become React UI code, route implementation through `asa-oju-ibanisoro` and do not proceed until its UI component-library choice is confirmed.
 
@@ -23,9 +23,9 @@ When the recommendation will become React UI code, route implementation through 
 Resolve `<skill-root>` to this skill directory and use an absolute path when invoking scripts; never assume the project directory contains them:
 
 ```bash
-python3 <skill-root>/scripts/search.py "saas analytics dashboard accessible" --design-system -p "Ops Console"
-python3 <skill-root>/scripts/search.py "keyboard focus loading" --domain ux
-python3 <skill-root>/scripts/search.py "streaming rerender bundle" --stack nextjs
+python <skill-root>/scripts/search.py "saas analytics dashboard accessible" --design-system -p "Ops Console"
+python <skill-root>/scripts/search.py "keyboard focus loading" --domain ux
+python <skill-root>/scripts/search.py "streaming rerender bundle" --stack nextjs
 ```
 
 The command supports `--design-system`, `--persist`, `--output-dir`, `--page`, `--variance 1-10`, `--motion 1-10`, `--density 1-10`, `--domain`, `--stack`, `-n`, `-f markdown`, and `--json`. Persisted systems belong in the target project under `design-system/<project>/MASTER.md`; page files override the master only for that page. Check existing files before using `--force`.

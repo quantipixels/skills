@@ -223,22 +223,22 @@ def main():
         epilog="""
 Examples:
   # Add single component
-  python3 shadcn_add.py button
+  python shadcn_add.py button
 
   # Add multiple components
-  python3 shadcn_add.py button card dialog
+  python shadcn_add.py button card dialog
 
   # Add all components
-  python3 shadcn_add.py --all
+  python shadcn_add.py --all
 
   # Overwrite existing components
-  python3 shadcn_add.py button --overwrite
+  python shadcn_add.py button --overwrite
 
   # Dry run (show what would be done)
-  python3 shadcn_add.py button card --dry-run
+  python shadcn_add.py button card --dry-run
 
   # List installed components
-  python3 shadcn_add.py --list
+  python shadcn_add.py --list
         """,
     )
 
