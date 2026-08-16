@@ -29,8 +29,6 @@ Use `arojinle` to close a new or reopened material decision. Atona remains prima
 
 Treat an unqualified request to review code as broad. Select `qp-code-review` as the primary owner and `simplify` as its supporting maintainability specialist. Select `qp-code-review` alone only when the user explicitly limits the review to defects and excludes maintainability.
 
-Use `olofofo` only when a global baseline activates it or the user explicitly asks it to track the literal session. It remains supporting-only; the active task keeps its primary owner.
-
 Use `seda-pr` to create or reconcile a ready-for-review PR or MR narrative and bounded metadata. Use `wo-pr` alone for a bare watch, monitor, babysit, or keep-an-eye-on request. Use `qp-code-review` directly for a bare verdict review. Add code review to monitoring only when the user explicitly requests a verdict or current repository policy requires one.
 
 For `triage-issue`, start with supplied evidence. Repository source reads, provider reads, and one provider comment require separate authority.
@@ -46,8 +44,6 @@ For `triage-issue`, start with supplied evidence. Repository source reads, provi
 | Bounded code or an active PR or MR needs broad or defect-only review | `qp-code-review`, with `simplify` for broad review |
 | One ready-for-review GitHub PR or GitLab MR needs creation or reconciliation for a zero-context reader | `seda-pr` |
 | One open GitHub PR or GitLab MR needs persistent pipeline and feedback monitoring | `wo-pr` |
-| The literal agent session needs quiet continuity, proportionate quality nudges, and reusable cross-session wisdom | supporting `olofofo` |
-| One idea, plan, decision, document, or code candidate needs conversational exploration, explanation, investigation, research, analysis, or evaluation | `salaye` |
 | One issue or bug report needs supplied-evidence-first classification and a next action | `triage-issue` |
 | Supplied work needs consumable vertical tickets with blockers, acceptance, and lifecycle state | `seda-ticket` |
 | A planned or completed refactor needs a parity ledger, or a stateful refactor requires a pre-implementation behavior gate | `audit-refactor-behavior` |
@@ -56,10 +52,10 @@ For `triage-issue`, start with supplied evidence. Repository source reads, provi
 | Brand voice, identity, assets, or consistency | `brand` |
 | Design tokens, CSS variables, component specs, or token migration | `eto-apere` |
 | React/web UI, Tailwind, shadcn/ui, responsive behavior, or accessibility implementation | `asa-oju-ibanisoro` |
-| UI/UX direction, style, palette, typography, stack, or interaction guidance | `amoye-ui-ux` |
-| Social, ad, web-hero, cover, or print banner | `banner-design` |
+| UI/UX recommendation or review needs style, palette, typography, stack, or interaction guidance | `amoye-ui-ux` |
+| A cover, header, web hero, display ad, or print banner needs a constrained design surface | `banner-design` |
 | HTML presentation, pitch deck, or data-backed slide story | `slides` |
-| A visual design request spans multiple deliverables and needs one design owner | `apere` |
+| A visual request spans multiple deliverables, or needs logo, corporate-identity, custom-icon, or non-banner social-system work | `apere` |
 | The current conversation needs a safe handoff for another agent | `handoff` |
 | One coding-agent session needs an evidence-backed friction analysis and durable improvement assessment | `ayewo-igba-ise` |
 | A question needs high-trust research from primary sources, captured in a Markdown file | `iwadi` |

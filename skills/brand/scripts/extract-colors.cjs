@@ -2,19 +2,16 @@
 /**
  * extract-colors.cjs
  *
- * Extract dominant colors from an image and compare against brand palette.
- * Uses pure Node.js without external image processing dependencies.
- *
- * For full color extraction from images, use ImageMagick or the host's
- * image-analysis capability.
+ * Parse an approved brand palette and produce an ImageMagick command plus
+ * structured comparison inputs. Image extraction must run separately.
  *
  * Usage:
- *   node extract-colors.cjs <image-path>
+ *   node extract-colors.cjs <image-path>  # Print extraction instructions
  *   node extract-colors.cjs <image-path> --brand-file <path>
  *   node extract-colors.cjs --palette  # Show brand palette from guidelines
  *
  * Integration:
- *   For image color analysis, use: ImageMagick or the host's image-analysis capability
+ *   Run ImageMagick or the host's image-analysis capability separately:
  *   magick <image> -colors 10 -depth 8 -format "%c" histogram:info:
  */
 

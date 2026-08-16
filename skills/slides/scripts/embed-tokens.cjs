@@ -30,11 +30,11 @@ if (!projectRoot) {
 
 const tokensPath = path.join(projectRoot, 'assets', 'design-tokens.css');
 const MINIMAL_TOKENS = [
-  '--primitive-spacing-', '--primitive-fontSize-', '--primitive-fontWeight-',
-  '--primitive-lineHeight-', '--primitive-radius-', '--primitive-shadow-glow-',
-  '--primitive-gradient-', '--primitive-duration-', '--color-primary',
+  '--space-', '--font-size-', '--font-weight-', '--font-family-',
+  '--line-height-', '--radius-', '--shadow-', '--gradient-', '--duration-', '--easing-',
+  '--color-primary',
   '--color-secondary', '--color-accent', '--color-background', '--color-surface',
-  '--color-foreground', '--color-border', '--typography-font-', '--card-',
+  '--color-foreground', '--color-border', '--card-', '--button-', '--slide-',
 ];
 
 function extractTokens(css, minimal = false) {

@@ -2,15 +2,11 @@
 /**
  * validate-asset.cjs
  *
- * Validates marketing assets against brand guidelines.
- * Checks: file naming, dimensions, file size, metadata.
+ * Validates asset naming, supported format, file size, and manifest registration.
  *
  * Usage:
  *   node validate-asset.cjs <asset-path>
  *   node validate-asset.cjs <asset-path> --json
- *   node validate-asset.cjs <asset-path> --fix
- *
- * For color validation of images, use with extract-colors.cjs
  */
 
 const fs = require("fs");
@@ -26,13 +22,6 @@ const RULES = {
       "banner_product-launch_hero-image_20251209.png",
       "logo_brand-refresh_horizontal_20251209_dark.svg",
     ],
-  },
-  dimensions: {
-    banner: { minWidth: 600, minHeight: 300 },
-    logo: { minWidth: 100, minHeight: 100 },
-    design: { minWidth: 800, minHeight: 600 },
-    video: { minWidth: 640, minHeight: 480 },
-    default: { minWidth: 100, minHeight: 100 },
   },
   fileSize: {
     image: { max: 5 * 1024 * 1024, recommended: 1 * 1024 * 1024 },

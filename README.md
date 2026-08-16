@@ -14,6 +14,18 @@ npx skills add quantipixels/skills --global
 
 Install one or more named skills with `--skill <name>`.
 
+### Minimum coding setup
+
+Install the smallest general-purpose coding loop when you do not need the full collection:
+
+```bash
+for skill in alarina alaga tdd qp-code-review simplify; do
+  npx skills add quantipixels/skills --global --skill "$skill"
+done
+```
+
+This setup provides route selection, integrated delivery, test-first implementation, defect review, and maintainability review. Add domain, provider, design, publication, or session skills only when their outcomes are needed.
+
 ## Uninstall
 
 Remove all globally installed QP skills:
@@ -73,12 +85,12 @@ Use `apere` as the end-to-end router, or invoke the narrowest owner directly:
 
 | Skill | Use when |
 | --- | --- |
-| `apere` | A visual request spans brand, UI, graphics, logos, mockups, social assets, or icons |
+| `apere` | A visual request spans multiple deliverables, or needs logo, corporate-identity, custom-icon, or non-banner social-system work |
 | `amoye-ui-ux` | UI/UX recommendations need searchable styles, palettes, typography, accessibility, charts, or stack rules |
 | `brand` | Brand voice, identity, assets, or consistency needs a source of truth |
 | `eto-apere` | Tokens, CSS variables, component specs, or theme architecture need definition |
 | `asa-oju-ibanisoro` | Components and responsive interfaces need accessible Tailwind/shadcn implementation, with an explicit UI-library choice |
-| `banner-design` | Social, ad, web hero, cover, or print banners need exact platform constraints |
+| `banner-design` | A cover, header, hero, display ad, or print banner needs confirmed current platform or custom constraints |
 | `slides` | Presentations and pitch decks need narrative, layout, and chart guidance |
 
 For React UI work, `asa-oju-ibanisoro` asks for an explicit component-library decision and keeps the local 14-library inventory in `skills/asa-oju-ibanisoro/references/ui-component-libraries.md`.

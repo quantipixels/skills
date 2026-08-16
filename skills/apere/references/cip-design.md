@@ -7,10 +7,10 @@ Use this reference for bounded brand collateral and mockup concepts.
 Resolve `<design-skill-root>` to this skill directory:
 
 ```bash
-python <design-skill-root>/scripts/cip/search.py "technology consulting" --cip-brief --brand "BrandName"
-python <design-skill-root>/scripts/cip/search.py "business card letterhead" --domain deliverable
-python <design-skill-root>/scripts/cip/search.py "luxury premium" --domain style
-python <design-skill-root>/scripts/cip/search.py "office reception" --domain mockup
+python3 <design-skill-root>/scripts/cip/search.py "technology consulting" --cip-brief --brand "BrandName"
+python3 <design-skill-root>/scripts/cip/search.py "business card letterhead" --domain deliverable
+python3 <design-skill-root>/scripts/cip/search.py "luxury premium" --domain style
+python3 <design-skill-root>/scripts/cip/search.py "office reception" --domain mockup
 ```
 
 Select a bounded deliverable set, audience, industry, style, materials, logo state, and output format. Read `cip-deliverable-guide.md` and `cip-style-guide.md` for the selected items.
@@ -24,7 +24,7 @@ Select a bounded deliverable set, audience, industry, style, materials, logo sta
 5. If a set of images exists, render an HTML contact sheet with the deterministic renderer:
 
 ```bash
-python <design-skill-root>/scripts/cip/render-html.py --brand "BrandName" --images ./cip-output --output cip-preview.html
+python3 <design-skill-root>/scripts/cip/render-html.py --brand "BrandName" --images ./cip-output --output cip-preview.html
 ```
 
 ## Handoff

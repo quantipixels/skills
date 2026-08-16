@@ -100,10 +100,11 @@ function contrastRatio(l1, l2) {
 
 ### From Images
 Use `extract-colors.cjs` script to:
-1. Load image file
-2. Extract dominant colors using k-means clustering
-3. Map to nearest brand colors
-4. Report compliance percentage
+1. Read the approved brand palette
+2. Produce a structured ImageMagick extraction command
+3. Provide palette and distance-threshold inputs for a separate comparison
+
+Run the generated command or use an image-analysis tool, then calculate compliance from the extracted colors. The helper does not execute image extraction or produce a compliance verdict.
 
 ### From Brand Guidelines
 Parse markdown to extract:
@@ -119,7 +120,9 @@ Parse markdown to extract:
 3. **Accent color ratio**: 5-10% of design
 4. **Off-brand tolerance**: Max 20% non-palette colors
 
-### Validation Output
+### Example Follow-up Output
+
+This is the shape of a separate comparison result, not direct output from `extract-colors.cjs`.
 ```json
 {
   "compliance": 85,

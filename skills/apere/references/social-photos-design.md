@@ -5,7 +5,7 @@ Create platform-specific social imagery from one coherent visual system.
 ## Workflow
 
 1. Confirm platforms, ratios, crop behavior, audience, message, CTA, brand, source images, and export formats.
-2. Use the platform size guidance in `banner-sizes-and-styles.md` and keep critical content inside the safe area.
+2. For non-banner posts, carousels, and templates, confirm the current platform or custom dimensions and record the source or supplied specification. Route covers, headers, heroes, and ads through `banner-design`.
 3. Create a master composition, then adapt it for each platform rather than stretching one canvas. Keep text readable on a phone.
 4. Use image generation for missing visual elements only when the user authorizes generated content; preserve supplied people, products, and logos unless edits are requested.
 5. Export named variants and inspect each at target size. Check contrast, legibility, crop, and brand consistency.

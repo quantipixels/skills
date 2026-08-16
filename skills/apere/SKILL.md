@@ -1,6 +1,6 @@
 ---
 name: apere
-description: Route end-to-end visual design work across brand identity, design systems, UI styling, logos, corporate identity mockups, banners, presentations, social graphics, and icons. Use when the user asks to design or generate a visual deliverable and the correct specialist needs to be selected.
+description: Route visual work that spans multiple deliverables, or directly create logo, corporate-identity, custom-icon, and non-banner social systems. Use when one visual job needs several design owners or one of these built-in modes; use a listed specialist directly for a focused deliverable.
 ---
 
 # Àpẹrẹ
@@ -15,9 +15,10 @@ Own the end-to-end design request and route each deliverable to the narrowest av
 | Tokens, CSS variables, component specs, or design-system migration | `eto-apere` |
 | React/web components, Tailwind, shadcn/ui, responsive UI, or accessibility fixes | `asa-oju-ibanisoro` |
 | UI/UX recommendation, style, palette, typography, or stack guidance | `amoye-ui-ux` |
-| Social, ad, web hero, cover, or print banner | `banner-design` |
+| Banner, cover, header, web hero, display ad, or print banner | `banner-design` |
 | HTML presentation or pitch-deck narrative | `slides` |
-| Logo, corporate identity program, icon, or social graphic | This skill’s built-in design modes and the references below |
+| Logo, corporate identity program, or custom icon set | This skill’s built-in design modes and the references below |
+| Feed post, carousel, story/post set, social template, or multi-format social campaign | This skill’s Social graphics mode |
 
 Use one primary owner. Add a supporting design skill only when it owns a concrete missing input, such as `brand` before `eto-apere` or `eto-apere` before `asa-oju-ibanisoro`. Do not turn a focused request into a full brand program without user authorization.
 
@@ -33,11 +34,11 @@ Use one primary owner. Add a supporting design skill only when it owns a concret
 
 ### Logo
 
-Read `references/logo-design.md`, `references/logo-style-guide.md`, and `references/logo-color-psychology.md` as needed. Search the bundled logo data before choosing a style or industry direction. Generate multiple clearly differentiated concepts, keep prompts free of unapproved claims, and deliver a vector-friendly direction with clear-space and one-color guidance. If a bitmap concept is requested, use image generation and show the result for review.
+Read `references/logo-design.md`, `references/logo-style-guide.md`, and `references/logo-color-psychology.md` as needed. Load `references/logo-prompt-engineering.md` only when an image-generation prompt is required. Search the bundled logo data before choosing a style or industry direction. Generate multiple clearly differentiated concepts, keep prompts free of unapproved claims, and deliver a vector-friendly direction with clear-space and one-color guidance. If a bitmap concept is requested, use image generation and show the result for review.
 
 ### Corporate identity program
 
-Read `references/cip-design.md` and `references/cip-deliverable-guide.md`. Build a brief first, select a bounded deliverable set, and use image generation for mockup scenes only after the brand and logo constraints are known. Record which items are concepts versus approved production assets.
+Read `references/cip-design.md` and `references/cip-deliverable-guide.md`. Load `references/cip-prompt-engineering.md` only when an image-generation prompt is required. Build a brief first, select a bounded deliverable set, and use image generation for mockup scenes only after the brand and logo constraints are known. Record which items are concepts versus approved production assets.
 
 ### Icons
 
@@ -45,7 +46,7 @@ Read `references/icon-design.md`. Prefer an existing icon library for product UI
 
 ### Social graphics
 
-Read `references/social-photos-design.md`. Confirm each platform’s ratio and crop, preserve a consistent visual system, keep text readable on mobile, and export platform-specific variants.
+Read `references/social-photos-design.md` for feed posts, carousels, story/post sets, reusable templates, and multi-format social campaigns. Route covers, headers, heroes, ads, and other banner surfaces to `banner-design`. Confirm each platform’s ratio and crop, preserve a consistent visual system, keep text readable on mobile, and export platform-specific variants.
 
 ## References
 

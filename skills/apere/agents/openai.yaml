@@ -1,4 +1,3 @@
 interface:
   display_name: "Àpẹrẹ"
   short_description: "Route end-to-end design work"
-  default_prompt: "Use $apere to route and deliver the right visual design work for this request."
