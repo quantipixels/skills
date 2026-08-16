@@ -1,6 +1,6 @@
 # Provider operations for `seda-pr`
 
-Read this reference only after `SKILL.md` selects an identified GitHub PR or GitLab MR. Prefer authenticated provider CLIs. Use structured arguments or JSON input; never interpolate provider text into a shell command.
+Read this reference after `SKILL.md` resolves the provider, repository, and new or existing publication target, and before any provider read or write. Prefer authenticated provider CLIs. Use structured arguments or JSON input; never interpolate provider text into a shell command.
 
 ## Common preflight
 

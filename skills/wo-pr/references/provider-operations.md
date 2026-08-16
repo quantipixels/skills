@@ -11,13 +11,13 @@ The bundled watcher performs reads only. Use these operations after the skill se
 - Do not retry a partial write unless readback proves the operation is absent or idempotent.
 - Never force-push, approve, merge, close, reopen, notify unrelated humans, or mutate from an ambiguous target.
 - Add or remove a reviewer only when the user explicitly requests that exact action. Refresh the reviewer list first and verify it after the write.
-- With `fix-commit-push` authority, treat a clear head-versus-base conflict as branch work. Fetch the exact remote refs and use a non-rewriting integration method. Stop when resolution intent is ambiguous or unrelated changes would be required.
+- When current stewardship authority permits conflict repair, commit, and push, treat a clear head-versus-base conflict as branch work. Fetch the exact remote refs and use a non-rewriting integration method. Stop when resolution intent is ambiguous or unrelated changes would be required.
 
 ## GitHub
 
 Use `gh auth status --hostname <host>`. Prefer `gh pr view`, `gh pr checks`, `gh run view`, and paginated `gh api` reads. Read failed workflow jobs and fetch direct job logs when available; `gh run view --log-failed` may wait for the full run. A target URL does not establish host trust. For every direct command, pin `GH_HOST` and remove ambient `GH_REPO`. For a GitHub Enterprise host that is not separately administrator-confirmed, also remove `GH_TOKEN`, `GITHUB_TOKEN`, `GH_ENTERPRISE_TOKEN`, and `GITHUB_ENTERPRISE_TOKEN`; do not pass `--trusted-github-host`. Use that flag only after separate confirmation of the exact normalized host.
 
-Rerun only the failed workflow or jobs associated with the refreshed SHA and only with `retry-ci` authority. Use a body file for top-level comments. Read unresolved review threads through GraphQL before reply or resolution. Human-authored replies and thread mutations require the exact skill authority and participant boundary.
+Rerun only the failed workflow or jobs associated with the refreshed SHA and only when current stewardship authority permits retries. Use a body file for top-level comments. Read unresolved review threads through GraphQL before reply or resolution. Human-authored replies and thread mutations require the exact skill authority and participant boundary.
 
 After a write, verify current head SHA, comment or thread ID and URL, intended thread state, and applicable checks. If a push changes SHA, do not rerun the old SHA and restart the watcher immediately.
 

@@ -45,7 +45,7 @@ Use alarina to choose the right QP skill for this request:
 | `alaga` | One supplied build job needs job-level integration, acceptance, documentation or knowledge reconciliation, or applicable candidate review |
 | `tdd` | One bounded feature or bug fix needs an explicit test-first implementation loop without broader build-job stewardship |
 | `qp-code-review` | Bounded code or a PR/MR needs broad or defect-only review |
-| `seda-pr` | A ready-for-review GitHub PR or GitLab MR needs a clear zero-context title, narrative, and bounded metadata |
+| `seda-pr` | A bounded current-branch change needs commit, push, and a clear ready-for-review GitHub PR or GitLab MR |
 | `wo-pr` | An open PR or MR needs active CI and feedback stewardship through readiness and later changes until explicit stop or closure |
 | `salaye` | An idea, plan, decision, document, or code candidate needs conversational exploration, explanation, investigation, research, analysis, or evaluation |
 | `triage-issue` | One issue or bug report needs supplied-evidence-first assessment before implementation |

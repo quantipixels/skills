@@ -7,7 +7,7 @@ This file records released, user-visible changes to QP Agent Skills. Version `1.
 ### Overview
 
 - Establish QP Agent Skills as a portable collection of focused skills for established codebases.
-- Provide one clean public baseline for decisions, architecture planning, implementation, test-backed delivery, review, checked HTML artifacts, and coding-agent setup.
+- Provide one clean public baseline for decisions, architecture planning, implementation, test-backed delivery, review, and checked HTML artifacts.
 
 ### Decision and planning
 
@@ -16,7 +16,7 @@ This file records released, user-visible changes to QP Agent Skills. Version `1.
 
 ### Delivery and review
 
-- `alaga` for one self-contained feature candidate through clarification, test-backed implementation, and broad review.
+- `alaga` for one supplied build job with one or many delivery units, integrated proof, and the review required by each candidate type.
 - `tdd` for red-green-refactor proof of features and bug fixes.
 - `qp-code-review` for bounded broad or defect-only code review.
 - `simplify` for maintainability and documentation review.
@@ -30,7 +30,7 @@ This file records released, user-visible changes to QP Agent Skills. Version `1.
 ### Toolkit operation
 
 - `alarina` to select the shortest useful QP route.
-- `qp-setup` for coding-agent communication instructions and companion-tool choices.
+- `irinse` for selecting, configuring, and safely using companion engineering tools.
 - `ayewo-igba-ise` for coding-agent session friction analysis.
 - `iwadi` for high-trust research from primary sources, captured in a Markdown file.
-- `ko-skill` for portable skill creation and revision.
+- `ko-skill` for portable skill creation, revision, and exact-candidate validation.

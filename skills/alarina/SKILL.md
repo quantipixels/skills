@@ -31,7 +31,7 @@ Treat an unqualified request to review code as broad. Select `qp-code-review` as
 
 Use `olofofo` only when a global baseline activates it or the user explicitly asks it to track the literal session. It remains supporting-only; the active task keeps its primary owner.
 
-Use `seda-pr` to create or reconcile a ready-for-review PR or MR narrative and bounded metadata. Use `wo-pr` alone for a bare watch, monitor, babysit, or keep-an-eye-on request. Use `qp-code-review` directly for a bare verdict review. Add code review to monitoring only when the user explicitly requests a verdict or current repository policy requires one.
+Use `seda-pr` to commit and push one bounded current-branch change, then create or reconcile its ready-for-review PR or MR narrative and bounded metadata. Use `wo-pr` alone for a bare watch, monitor, babysit, or keep-an-eye-on request. Use `qp-code-review` directly for a bare verdict review. Add code review to monitoring only when the user explicitly requests a verdict or current repository policy requires one.
 
 For `triage-issue`, start with supplied evidence. Repository source reads, provider reads, and one provider comment require separate authority.
 
@@ -44,7 +44,7 @@ For `triage-issue`, start with supplied evidence. Repository source reads, provi
 | One supplied build job needs job-level integration, acceptance, documentation or knowledge reconciliation, or applicable candidate review | `alaga` |
 | Changed code or code-local comments need a read-only maintainability review | `simplify` |
 | Bounded code or an active PR or MR needs broad or defect-only review | `qp-code-review`, with `simplify` for broad review |
-| One ready-for-review GitHub PR or GitLab MR needs creation or reconciliation for a zero-context reader | `seda-pr` |
+| One bounded current-branch change needs commit, push, and ready-for-review GitHub PR or GitLab MR creation or reconciliation | `seda-pr` |
 | One open GitHub PR or GitLab MR needs persistent pipeline and feedback monitoring | `wo-pr` |
 | The literal agent session needs quiet continuity, proportionate quality nudges, and reusable cross-session wisdom | supporting `olofofo` |
 | One idea, plan, decision, document, or code candidate needs conversational exploration, explanation, investigation, research, analysis, or evaluation | `salaye` |
