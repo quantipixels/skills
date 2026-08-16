@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Run one provider CLI command without leaking generic tokens to an untrusted host."""
+"""Run one provider CLI command only after its exact host is trusted."""
 
 from __future__ import annotations
 
@@ -10,10 +10,6 @@ import subprocess
 from urllib.parse import urlparse
 
 
-TOKEN_VARIABLES = {
-    "github": ("GH_TOKEN", "GITHUB_TOKEN", "GH_ENTERPRISE_TOKEN", "GITHUB_ENTERPRISE_TOKEN"),
-    "gitlab": ("GITLAB_TOKEN", "GITLAB_ACCESS_TOKEN", "OAUTH_TOKEN", "CI_JOB_TOKEN"),
-}
 DEFAULT_TRUSTED_HOST = {"github": "github.com", "gitlab": "gitlab.com"}
 EXECUTABLE = {"github": "gh", "gitlab": "glab"}
 
@@ -31,16 +27,15 @@ def command_environment(
         DEFAULT_TRUSTED_HOST[provider],
         *(value.lower().rstrip(".") for value in trusted_hosts),
     }
+    if normalized_host not in allowed:
+        raise ValueError(
+            f"separate trust is required before contacting custom provider host {host!r}"
+        )
     if provider == "github":
         result["GH_HOST"] = normalized_host
         result.pop("GH_REPO", None)
     else:
         result.pop("GITLAB_HOST", None)
-    if normalized_host not in allowed:
-        for name in TOKEN_VARIABLES[provider]:
-            result.pop(name, None)
-        if provider == "gitlab":
-            result["GLAB_ENABLE_CI_AUTOLOGIN"] = "false"
     return result
 
 
