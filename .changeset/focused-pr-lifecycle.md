@@ -2,4 +2,4 @@
 "qp-skills": minor
 ---
 
-Add `seda-pr` and `wo-pr` as focused GitHub PR and GitLab MR skills for ready-for-review zero-context publication and active pipeline and evidence-backed feedback stewardship. Include dual-provider normalization, bounded retries, local authority gates, exact-head feedback classification, and on-demand headless validation. A bare monitoring request gives `wo-pr` bounded authority to validate and fix branch-caused blockers and update the PR while it remains attached through the user's merge decision; approval and merge remain excluded. `seda-pr` never creates a draft item on any provider.
+Add `seda-pr` and `wo-pr` for PR and MR publication and stewardship. `seda-pr` commits scoped work, pushes the current branch without force, and creates or updates a ready item. `wo-pr` monitors an open item and handles bounded branch, CI, and feedback work. Neither skill approves or merges.

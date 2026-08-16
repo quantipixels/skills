@@ -5,34 +5,31 @@ description: Author, revise, or validate one portable agent skill. Focus on a na
 
 # Ko Skill
 
-Author, revise, or validate one portable skill. Keep only the guidance an agent needs to produce the outcome reliably.
-
 ## 1. Shape the skill
 
 Read the repository and host instructions, the target skill and its resources, and the relevant catalog and metadata. Confirm the path, mutation authority, recurring outcome, triggers, exclusions, and adjacent owners.
 
-Revise an existing outcome owner instead of creating a competing skill. Create a skill only for a recurring outcome, decision, or failure mode that ordinary documentation does not solve. Use the requested location; ask only when it cannot be inferred.
+Revise an existing outcome owner instead of creating a competitor. Create a skill only for a recurring outcome, decision, or failure mode that ordinary documentation does not solve. Use the requested location; ask only when it cannot be inferred.
 
-For a behavior correction, pin and exercise the pre-fix candidate with realistic raw input when that can be done safely. Capture the observed failure or evidence gap before editing. If current behavior already satisfies the target contract, do not change the skill only to restate that contract; identify another proved behavioral benefit or leave it unchanged. Do not build an evaluation harness only to justify a wording change.
+For a behavior correction, pin and exercise the pre-fix candidate with realistic raw input when safe; otherwise record the evidence gap. If it already satisfies the target contract, leave it unchanged unless another benefit is proved. Do not build an evaluation harness to justify wording changes.
 
-Before editing, define the minimum useful verification: direct structure checks and the smallest forward test, if any, that resolves material behavioral uncertainty. If the required proof grows materially, stop and ask whether to simplify, defer, or continue.
+Before editing, define the minimum useful structural checks and, only if needed, the smallest forward test. If proof grows materially, stop and ask whether to simplify, defer, or continue.
 
 ## 2. Write the contract
 
-Give the skill one narrow outcome and name the adjacent behavior it excludes. Treat user-supplied constraints as the target contract. Reconcile conflicting owning rules, but do not add policies outside the request or required integration.
+Give the skill one narrow outcome and its adjacent exclusions. Treat user constraints as the target contract. Reconcile owning rules, but do not add policies outside the request or required integration.
 
 Write for a capable agent:
 
 - keep only non-obvious, behavior-bearing instructions;
 - put selection triggers and the bounded outcome in the description;
 - match detail to risk: use flexible guidance for judgment and exact steps or scripts for fragile operations;
-- keep common instructions in `SKILL.md` and move substantial conditional detail to directly linked references;
-- give each conditional branch or reference one exact load trigger, and keep its rules, caveats, and failure behavior together;
-- use examples only when they clarify a material boundary, prevent likely misinterpretation, or make the instruction shorter or simpler overall; use a compact Good/Bad pair for a stable contrast and one example for a stable valid form; remove prose the example makes redundant, but never compress away authoritative conditions, safety constraints, or failure behavior;
+- keep common instructions in `SKILL.md`; give each conditional branch or linked reference one exact load trigger with its caveats and failure behavior;
+- use a compact example only when it shortens the skill or prevents a material misinterpretation; remove prose it makes redundant without removing authority or safety rules;
 - add scripts only for repeated deterministic work and assets only when the output uses them; and
 - keep each rule with one owner; reference another specialist's required result instead of copying its procedure.
 
-Run a compression pass. Remove repeated rules, rationale, history, transcripts, generic advice, and editorial text that does not improve selection, action, safety, or verification.
+Run a final necessity pass. Keep a sentence only if it changes selection, authority, action, safety, verification, or output. Remove rationale, repetition, generic advice, editorial text, and details already owned by a reference. If deleting text neither changes agent behavior nor removes protection against a credible failure, delete it.
 
 ## 3. Integrate it
 
@@ -42,16 +39,16 @@ For a provider-capable skill, keep provider execution local and include every ap
 
 ## 4. Verify proportionately
 
-Always reread changed files and directly check frontmatter, metadata, paths, references, catalog, routing, packaging, changed scripts, and the final diff as applicable.
+Reread changed files and directly check applicable frontmatter, metadata, paths, references, catalog, routing, packaging, scripts, and final diff.
 
 Treat structural checks as proof only of the named structures, not agent behavior.
 
-Use fresh no-context subagent sessions when a change creates material uncertainty about selection, authority, unsafe effects, state transitions, complex branching, or agent interpretation. Use the smallest set of realistic raw goals that can distinguish success from failure; do not create a session for every theoretical branch. Hide the expected owner, answer, and rationale. Deny provider writes, credentials, and repository mutation unless a disposable scenario explicitly authorizes them.
+Use fresh no-context subagent sessions only for material uncertainty about selection, authority, unsafe effects, state transitions, complex branching, or interpretation. Use the smallest realistic raw goals that distinguish success from failure. Hide the expected owner, answer, and rationale. Deny credentials and mutations unless a disposable scenario authorizes them.
 
-Add an independent reviewer only when the consequence or ambiguity justifies a second judgment. Give each producer and reviewer the exact final candidate and raw evidence, not the intended verdict. After a correction or candidate change, rerun only the affected proof against the exact final candidate.
+Add an independent reviewer only when consequence or ambiguity justifies it. Give each producer and reviewer the exact final candidate and raw evidence, not the intended verdict. After any correction or candidate change, rerun the affected proof against the exact final candidate.
 
 Do not add prompt eval suites or new behavioral test cases to this repository. Existing deterministic tests can remain while their owning behavior remains.
 
-Report the skill path, boundary, changed files, direct checks, any forward-test evidence, candidate identity, and limitations. Distinguish repository, published, installed, and active states when relevant. Install or publish only when requested.
+Report the skill path, boundary, changed files, checks, forward-test evidence, candidate identity, and limitations. Distinguish repository, published, installed, and active states when relevant. Install or publish only when requested.
 
 For a validation-only request, return `VERIFIED` only when every required structural and behavioral check passes against the exact candidate. Return `CHANGES_REQUIRED` for a proved contract or integration defect and `INSUFFICIENT_EVIDENCE` when a material proof gap prevents a responsible result.
