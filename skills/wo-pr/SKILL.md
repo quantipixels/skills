@@ -53,6 +53,8 @@ Do not call an undiscovered pipeline green. Missing required-check identity, inc
 
 When one complete refreshed snapshot has no blocker, emit `HANDOFF_READY`. It is a deduplicated milestone, not a terminal state or review verdict. Continue watching. A changed head, job set, review activity, mergeability, draft state, or capability resets readiness.
 
+Do not use a fixed proof window; readiness depends on one complete current snapshot and continues to be watched.
+
 Poll active or blocked items every 30 seconds and stable ready items every two minutes. Use provider backoff for transient read failures without replacing the last known pipeline truth.
 
 ## Report
