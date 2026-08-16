@@ -147,10 +147,19 @@ class GitLabProvider:
         runner: Callable[[list[str]], Any] | None = None,
         trusted_hosts: set[str] | None = None,
     ) -> None:
-        self.host = host
+        normalized_host = host.lower().rstrip(".")
+        normalized_trusted_hosts = {
+            "gitlab.com",
+            *(value.lower().rstrip(".") for value in (trusted_hosts or set())),
+        }
+        if normalized_host not in normalized_trusted_hosts:
+            raise ValueError(
+                f"separate trust is required before contacting custom GitLab host {host!r}"
+            )
+        self.host = normalized_host
         self.repository = repository
         self.runner = runner
-        self.trusted_hosts = {"gitlab.com", *(trusted_hosts or set())}
+        self.trusted_hosts = normalized_trusted_hosts
 
     def _call(self, command: list[str]) -> Any:
         return self.runner(command) if self.runner else _run_json(command, env=self._command_environment())

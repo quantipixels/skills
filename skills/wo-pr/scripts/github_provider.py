@@ -171,10 +171,19 @@ class GitHubProvider:
         runner: Callable[[list[str]], Any] | None = None,
         trusted_hosts: set[str] | None = None,
     ) -> None:
-        self.host = host
+        normalized_host = host.lower().rstrip(".")
+        normalized_trusted_hosts = {
+            "github.com",
+            *(value.lower().rstrip(".") for value in (trusted_hosts or set())),
+        }
+        if normalized_host not in normalized_trusted_hosts:
+            raise ValueError(
+                f"separate trust is required before contacting custom GitHub host {host!r}"
+            )
+        self.host = normalized_host
         self.repository = repository
         self.runner = runner
-        self.trusted_hosts = {"github.com", *(trusted_hosts or set())}
+        self.trusted_hosts = normalized_trusted_hosts
 
     def _call(
         self,

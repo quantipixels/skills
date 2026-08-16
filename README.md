@@ -24,7 +24,7 @@ curl -fsSL https://raw.githubusercontent.com/quantipixels/skills/ori/scripts/uni
 
 ## Releases
 
-Read the detailed [v1 changelog](CHANGELOG.md) for the public baseline, release scope, and future Changesets policy.
+Read the detailed [v1 changelog](CHANGELOG.md) for the public baseline and release scope.
 
 ## Start
 

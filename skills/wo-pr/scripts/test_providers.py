@@ -253,7 +253,12 @@ class GitHubNormalizationTests(unittest.TestCase):
                 return {"data": {"repository": {"pullRequest": {"reviewThreads": {"nodes": [], "pageInfo": {"hasNextPage": False}}}}}}
             return []
 
-        GitHubProvider(host="github.acme.test", repository="acme/widgets", runner=runner).fetch("42")
+        GitHubProvider(
+            host="github.acme.test",
+            repository="acme/widgets",
+            runner=runner,
+            trusted_hosts={"github.acme.test"},
+        ).fetch("42")
         pr_commands = [
             command for command in commands
             if is_github_pr_command(command, "view") or is_github_pr_command(command, "checks")
@@ -262,31 +267,13 @@ class GitHubNormalizationTests(unittest.TestCase):
         for command in pr_commands:
             self.assertEqual("github.acme.test/acme/widgets", command[command.index("--repo") + 1])
 
-    def test_untrusted_github_host_does_not_receive_generic_tokens(self):
-        environments = []
+    def test_untrusted_github_host_is_rejected_before_provider_contact(self):
+        with patch("github_provider.subprocess.run") as run, self.assertRaisesRegex(
+            ValueError, "separate trust is required"
+        ):
+            GitHubProvider(host="untrusted.test", repository="acme/widgets", trusted_hosts=set())
 
-        def run(command, **kwargs):
-            environments.append(kwargs["env"])
-            if is_github_pr_command(command, "view"):
-                payload = {"number": 42, "url": "https://untrusted.test/acme/widgets/pull/42", "state": "OPEN"}
-            elif "graphql" in command:
-                payload = {"data": {"repository": {"pullRequest": {"reviewThreads": {"nodes": [], "pageInfo": {}}}}}}
-            else:
-                payload = []
-            return subprocess.CompletedProcess(command, 0, json.dumps(payload), "")
-
-        tokens = {
-            "GH_TOKEN": "github-token",
-            "GITHUB_TOKEN": "github-token-alias",
-            "GH_ENTERPRISE_TOKEN": "enterprise-token",
-            "GITHUB_ENTERPRISE_TOKEN": "enterprise-token-alias",
-        }
-        with patch.dict(os.environ, tokens, clear=True), patch("github_provider.subprocess.run", side_effect=run):
-            GitHubProvider(host="untrusted.test", repository="acme/widgets", trusted_hosts=set()).fetch("42")
-
-        for environment in environments:
-            for name in tokens:
-                self.assertNotIn(name, environment)
+        run.assert_not_called()
 
     def test_explicitly_trusted_github_host_keeps_enterprise_token(self):
         environments = []
@@ -567,33 +554,15 @@ class GitLabNormalizationTests(unittest.TestCase):
         self.assertFalse(snapshot["pipeline"]["evidence_complete"])
         self.assertIn("trigger job evidence unavailable", snapshot["errors"])
 
-    def test_untrusted_gitlab_host_does_not_receive_generic_tokens(self):
-        environments = []
-        responses = self._fetch_responses(host="untrusted.test")
-
-        def run(command, **kwargs):
-            environments.append(kwargs["env"])
-            payload = responses[command[-1]]
-            return subprocess.CompletedProcess(command, 0, json.dumps(payload), "")
-
-        tokens = {
-            "GITLAB_TOKEN": "gitlab-token",
-            "GITLAB_ACCESS_TOKEN": "access-token",
-            "OAUTH_TOKEN": "oauth-token",
-            "CI_JOB_TOKEN": "job-token",
-            "GLAB_ENABLE_CI_AUTOLOGIN": "true",
-        }
-        with patch.dict(os.environ, tokens, clear=True), patch(
-            "gitlab_provider.subprocess.run", side_effect=run
+    def test_untrusted_gitlab_host_is_rejected_before_provider_contact(self):
+        with patch("gitlab_provider.subprocess.run") as run, self.assertRaisesRegex(
+            ValueError, "separate trust is required"
         ):
             GitLabProvider(
                 host="untrusted.test", repository="acme/widgets", trusted_hosts=set()
-            ).fetch("9")
+            )
 
-        for environment in environments:
-            for name in ("GITLAB_TOKEN", "GITLAB_ACCESS_TOKEN", "OAUTH_TOKEN", "CI_JOB_TOKEN"):
-                self.assertNotIn(name, environment)
-            self.assertEqual("false", environment["GLAB_ENABLE_CI_AUTOLOGIN"])
+        run.assert_not_called()
 
     def test_explicitly_trusted_gitlab_host_keeps_access_token(self):
         environments = []
