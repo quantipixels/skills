@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
+  "name": "qp-skills",
+  "displayName": "quantipixels/skills",
+  "description": "Agent skills for engineering, design, and productivity",
+  "author": {
+    "name": "QP",
+    "url": "https://github.com/quantipixels"
+  },
+  "repository": "https://github.com/quantipixels/skills",
+  "license": "MIT",
+  "keywords": [
+    "design",
+    "engineering",
+    "skills",
+    "productivity"
+  ],
+  "skills": [
+    "./skills/design/amoye-ui-ux",
+    "./skills/design/apere",
+    "./skills/design/asa-oju-ibanisoro",
+    "./skills/design/banner-design",
+    "./skills/design/brand",
+    "./skills/design/eto-apere",
+    "./skills/design/slides",
+    "./skills/engineering/alaga",
+    "./skills/engineering/amose",
+    "./skills/engineering/atona",
+    "./skills/engineering/audit-refactor-behavior",
+    "./skills/engineering/irinse",
+    "./skills/engineering/ko-skill",
+    "./skills/engineering/pare",
+    "./skills/engineering/qp-code-review",
+    "./skills/engineering/seda-pr",
+    "./skills/engineering/seda-ticket",
+    "./skills/engineering/triage-issue",
+    "./skills/engineering/wo-pr",
+    "./skills/experimental/olofofo",
+    "./skills/productivity/alarina",
+    "./skills/productivity/arojinle",
+    "./skills/productivity/ayewo-igba-ise",
+    "./skills/productivity/handoff",
+    "./skills/productivity/html-artifact",
+    "./skills/productivity/iwadi",
+    "./skills/productivity/ro-wo",
+    "./skills/productivity/salaye"
+  ]
+}
