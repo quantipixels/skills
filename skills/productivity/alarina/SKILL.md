@@ -7,6 +7,8 @@ description: Select the shortest useful route through published QP skills. Focus
 
 Select one primary QP skill for the requested outcome. Respect an explicit user selection. Add a supporting skill only when its result is necessary; separate independent outcomes instead of forcing one owner to absorb them. Routing does not grant mutation, provider, credential, publication, or other missing authority.
 
+Engineering, Design, Productivity, and Experimental are install groups, not routing priorities. Olófòófó is experimental and remains opt-in.
+
 ## Route
 
 | Starting outcome | Primary skill | Mode |
@@ -30,7 +32,7 @@ Select one primary QP skill for the requested outcome. Respect an explicit user 
 | Turn supplied work into consumable vertical tickets | `seda-ticket` | — |
 | Commit, push, and create or reconcile a ready PR or MR | `seda-pr` | — |
 | Monitor an open PR or MR through readiness | `wo-pr` | — |
-| Visualize supplied results, reports, analysis, data, decisions, or designs in a portable browser artifact | `html-artifact` | — |
+| Visualize supplied results, purpose-fit reports, analysis, data, decisions, or designs in a portable browser artifact | `html-artifact` | — |
 | Prepare a compact handoff for another agent or session | `handoff` | — |
 | Analyze one coding-agent session or bounded corpus | `ayewo-igba-ise` | — |
 | Research a question from primary sources into Markdown | `iwadi` | — |
@@ -49,6 +51,7 @@ Use `general` QP Code Review mode for supplied or local candidates and `provider
 ## Boundaries
 
 - Keep a directly selected artifact specialist primary when it fully owns the result.
+- Keep portable presentation-style reports with `html-artifact`; route requested slide decks to `slides`.
 - Use Atọ́nà while architecture or migration state remains active, Àròjinlẹ̀ for one new or reopened material decision, and Audit Refactor Behavior before a stateful refactor that can change lifecycle behavior.
 - Keep PR or MR publication with Ṣẹ̀dá PR, monitoring with Wò PR, and review verdicts with QP Code Review.
 - Keep issue triage supplied-evidence-first. Repository reads, provider reads, and provider writes require their own authority.

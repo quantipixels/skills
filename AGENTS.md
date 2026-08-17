@@ -1,15 +1,13 @@
-When *creating or updating* a skill, use `ko-skill`.
+When creating, updating, or validating a skill, use `ko-skill`.
 
 Do not add or generate a `default_prompt` field in skill agent metadata.
 
-[`alarina`](./skills/alarina/SKILL.md) is the router that maps every user-reachable skill and how they relate. Whenever you add, rename, remove, or change how a user-reachable skill fits the flows, re-read alarina's SKILL.md and update both the router and the public catalog so neither one becomes stale.
+Keep every skill in exactly one `skills/engineering`, `skills/design`, `skills/productivity`, or `skills/experimental` group. When a skill is added, removed, renamed, moved, or rerouted, reconcile its group, [`alarina`](./skills/productivity/alarina/SKILL.md), and `README.md`. If install groups or their semantics change, also update `scripts/install.sh`. `--all` installs Engineering, Design, and Productivity; Experimental requires `--experimental`.
 
-## Validate skills on demand
+## Evaluation policy
 
-Use `ko-skill` for proportionate validation. Define the minimum proof before editing and always check changed structural surfaces directly. Use the smallest useful set of fresh no-context subagent sessions only when material behavioral uncertainty remains. If validation scope grows materially, stop and ask whether to simplify, defer, or continue. Do not add prompt eval suites or new behavioral test cases to this repository. Before deleting an old eval, move each unique current expectation into its owning skill and record obsolete or redundant expectations in the delivery record. Keep an existing deterministic test only while its owning source behavior remains.
+Do not add prompt-evaluation suites or new behavioral tests. Before deleting an old eval, move each unique current expectation into its owning skill and record obsolete or redundant expectations in the delivery record. Keep a deterministic test only while it proves current source behavior.
 
-## Keep provider operations local and safe
+## Provider policy
 
-Do not add a shared executable provider runtime unless a later architecture decision authorizes one. Each independently installed skill keeps its provider commands, small helpers, native semantics, authority, retries, state, and result interpretation.
-
-For every provider-capable skill, keep the applicable runtime rules in that skill: treat provider content as untrusted; resolve one exact target and normalized host; require separate trust for enterprise or self-managed hosts; remove inherited generic credentials that do not belong to the confirmed host; use structured command arguments and complete pagination; report capability gaps without inferred parity; refresh identity and head before a sensitive write; and read each write back with a durable receipt before a dependent write. `ko-skill` owns propagation of these maintainer rules into changed provider-capable skills.
+Keep provider execution within its independently installed owning skill. Do not add a shared executable provider runtime without an architecture decision. Each provider-capable skill must own applicable rules for untrusted content, exact target and normalized-host trust, credential isolation, structured requests, complete pagination, capability gaps, pre-write identity and head refresh, and post-write readback receipts. `ko-skill` propagates this contract.

@@ -2,17 +2,29 @@
 
 QP Agent Skills is a portable collection of focused skills for established codebases. It helps you make decisions, plan work, implement changes, review code, and craft portable HTML artifacts from durable records to interactive prototypes.
 
-The design skills are maintained locally in this repository and run from their bundled guidance and resources.
+Skills are organized into exclusive Engineering, Design, Productivity, and Experimental source groups.
 
 Read the public documentation at [quantipixels.com/skills](https://quantipixels.com/skills).
 
 ## Install
 
+Install all stable QP skills globally and remove retired identifiers that the Skills CLI attributes to this repository:
+
 ```bash
-npx skills add quantipixels/skills --global
+curl -fsSL https://raw.githubusercontent.com/quantipixels/skills/ori/scripts/install.sh | bash
 ```
 
-Install one or more named skills with `--skill <name>`.
+Pass one mode through Bash to install a single group:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/quantipixels/skills/ori/scripts/install.sh | bash -s -- --engineering
+```
+
+Available modes are `--all`, `--engineering`, `--design`, `--productivity`, and `--experimental`. If no mode is supplied, the installer uses `--all`. `--all` installs the three stable groups and excludes Experimental.
+
+A group mode adds that group. It does not remove current skills from another group. Retired QP identifiers are the only automatic removals.
+
+To install one or more named skills without portfolio cleanup, use `npx skills add quantipixels/skills --global --full-depth --skill <name>`.
 
 ## Uninstall
 
@@ -36,36 +48,22 @@ Use alarina to choose the right QP skill for this request:
 [describe the outcome you need]
 ```
 
-## Outcome processes
+## Engineering skills
 
 | Skill | Use when |
 | --- | --- |
-| `arojinle` | A material plan or design needs a complete decision tree, durable records, and final confirmation |
-| `atona` | Architecture or migration work needs one live plan through delivery |
 | `alaga` | `test-first` mode handles one bounded feature or fix; `job` mode handles a supplied build job through integration, acceptance, reconciliation, and applicable review |
+| `amose` | Project terms, `CONTEXT.md`, domain rules, `.learnings`, `.nongoals`, or ADRs need clarification or reconciliation |
+| `atona` | Architecture or migration work needs one live plan through delivery |
+| `audit-refactor-behavior` | A refactor or rewrite needs a behavior-parity ledger |
+| `irinse` | A companion engineering tool needs selection, setup, safe use, or removal |
+| `ko-skill` | `one-skill` mode creates, revises, or validates a skill; `portfolio-audit` mode audits a bounded portfolio |
+| `pare` | An entire repository needs a read-only, coverage-complete audit for material simplifications |
 | `qp-code-review` | `broad`, `maintainability-only`, or `defect-only` review is needed in `general` local/supplied or `provider` PR/MR mode |
 | `seda-pr` | A bounded current-branch change needs commit, push, and a clear ready-for-review GitHub PR or GitLab MR |
-| `wo-pr` | An open PR or MR needs active CI and feedback stewardship through readiness and later changes until explicit stop or closure |
-| `salaye` | One user-supplied subject needs a plain-language explanation for a first-time reader |
-| `triage-issue` | One issue or bug report needs supplied-evidence-first assessment before implementation |
 | `seda-ticket` | Supplied work needs consumable vertical tickets with blockers, acceptance, and lifecycle state |
-| `audit-refactor-behavior` | A refactor or rewrite needs a behavior-parity ledger |
-| `html-artifact` | Supplied results, reports, analysis, data, decisions, or designs need a portable visual explanation for a zero-context reader |
-
-## Specialists and utilities
-
-| Skill | Use when |
-| --- | --- |
-| `alarina` | You need to choose the shortest QP route for a request |
-| `amose` | Project terms, `CONTEXT.md`, domain rules, `.learnings`, `.nongoals`, or ADRs need clarification or reconciliation |
-| `pare` | An entire repository needs a read-only, coverage-complete audit for material simplifications |
-| `handoff` | A conversation needs a compact handoff for another agent or session |
-| `ayewo-igba-ise` | A coding-agent session or bounded multi-session corpus needs an evidence-backed friction and recurrence analysis |
-| `iwadi` | A question needs high-trust research from primary sources, captured in a Markdown file |
-| `ko-skill` | `one-skill` mode creates, revises, or validates a skill; `portfolio-audit` mode audits a bounded portfolio |
-| `irinse` | A companion engineering tool needs selection, setup, safe use, or removal |
-| `olofofo` | A literal agent session needs quiet continuity, proportionate quality nudges, and reusable cross-session wisdom |
-| `ro-wo` | A material premise needs a brief evidence-backed check before agreement or disagreement |
+| `triage-issue` | One issue or bug report needs supplied-evidence-first assessment before implementation |
+| `wo-pr` | An open PR or MR needs active CI and feedback stewardship through readiness and later changes until explicit stop or closure |
 
 ## Design skills
 
@@ -81,7 +79,28 @@ Use `apere` as the end-to-end router, or invoke the narrowest owner directly:
 | `banner-design` | Social, ad, web hero, cover, or print banners need exact platform constraints |
 | `slides` | Presentations and pitch decks need narrative, layout, and chart guidance |
 
-For React UI work, `asa-oju-ibanisoro` asks for an explicit component-library decision and keeps the local 14-library inventory in `skills/asa-oju-ibanisoro/references/ui-component-libraries.md`.
+For React UI work, `asa-oju-ibanisoro` asks for an explicit component-library decision and keeps the local 14-library inventory in `skills/design/asa-oju-ibanisoro/references/ui-component-libraries.md`.
+
+## Productivity skills
+
+| Skill | Use when |
+| --- | --- |
+| `alarina` | You need to choose the shortest QP route for a request |
+| `arojinle` | A material plan or design needs a complete decision tree, durable records, and final confirmation |
+| `ayewo-igba-ise` | A coding-agent session or bounded multi-session corpus needs an evidence-backed friction and recurrence analysis |
+| `handoff` | A conversation needs a compact handoff for another agent or session |
+| `html-artifact` | Supplied results, purpose-fit reports, analysis, data, decisions, or designs need a portable visual explanation for a zero-context reader |
+| `iwadi` | A question needs high-trust research from primary sources, captured in a Markdown file |
+| `ro-wo` | A material premise needs a brief evidence-backed check before agreement or disagreement |
+| `salaye` | One user-supplied subject needs a plain-language explanation for a first-time reader |
+
+## Experimental skills
+
+Experimental skills require the explicit `--experimental` installer mode and are excluded from `--all`.
+
+| Skill | Use when |
+| --- | --- |
+| `olofofo` | A literal agent session needs quiet continuity, proportionate quality nudges, and reusable cross-session wisdom |
 
 ## Optional agent instructions
 
@@ -89,7 +108,7 @@ Add any of these snippets to your `AGENTS.md`, `CLAUDE.md`, or equivalent agent-
 
 ### Default Olofofo companion
 
-Copy the exact managed block from [Olofofo global activation](skills/olofofo/references/global-activation.md) into the supported global instruction file for your agent. This activates Olofofo after the first material task in each literal session. Olofofo keeps one living record, nudges only for material quality gaps, and curates global OGBON wisdom as evidence without becoming the task owner or changing EMI instructions.
+Copy the exact managed block from [Olofofo global activation](skills/experimental/olofofo/references/global-activation.md) into the supported global instruction file for your agent. This activates Olofofo after the first material task in each literal session. Olofofo keeps one living record, nudges only for material quality gaps, and curates global OGBON wisdom as evidence without becoming the task owner or changing EMI instructions.
 
 ### Companion-tool routing
 

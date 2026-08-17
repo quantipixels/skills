@@ -15,9 +15,11 @@ Follow the supplied audience; otherwise write for a layperson with no prior cont
 
 Keep facts, analysis, decisions, assumptions, and open questions distinct. Before implementation, check whether the supplied material contains the context, definitions, analysis, evidence, relationships, data, and visual assets needed for a truthful and useful artifact. Request the smallest missing information or analysis from the owning task or user when it can materially improve the result. Continue with a labeled input gap only when the missing item does not undermine the artifact or cannot be obtained. Do not originate missing analysis or invent an actor, owner, direction, causal link, sequence, boundary, candidate, criterion, or recommendation to satisfy a visual form.
 
+For a report, infer one broad industry, one exact format, and one information-density profile from the supplied purpose, audience, and material. Honor an explicit selection. Otherwise, choose the closest minimal pattern in [report patterns](references/report-patterns.md); do not create a hybrid by default. Keep the selected industry, format, density, visual grammar, and reading direction stable through revisions. Change them only when the user fundamentally changes the report's focus or audience, and state the contract transition before recomposing it.
+
 Load branch guidance only when it applies:
 
-- For an evidence report, living report, or candidate comparison, read and follow [report patterns](references/report-patterns.md).
+- For any report, including an evidence report, living report, or candidate comparison, read and follow [report patterns](references/report-patterns.md).
 - For a supplied prototype, demo, interface specimen, or design-variant set, read and follow [prototype patterns](references/prototype-patterns.md).
 
 Do not load either branch for a simple visualization or bounded tool. If required branch guidance cannot be read, report the blocker instead of approximating it.
@@ -26,7 +28,7 @@ Do not load either branch for a simple visualization or bounded tool. If require
 
 Encode the supplied argument instead of decorating it. Lead with supplied conclusions, evidence, status, and risks. A substantial artifact needs a central visual representation that makes its main relationship or result easier to understand than prose alone. If the material cannot support one, request the missing structure or report the visual limitation instead of filling the page with text.
 
-Do not default to paragraphs or tables. Use short prose only to orient or interpret a visual. Use a table only for exact mappings or repeated-field comparison that is materially easier to scan in rows and columns. Choose timelines, state or flow maps, annotated comparisons, spatial diagrams, charts, card systems, carousels, or another fitting composition from the information shape. Give no qualitative judgment false precision without a supplied scale and source. Give every material visual a text summary or accessible data representation that retains chart values and units.
+Do not default to paragraphs or tables. Use short prose only to orient or interpret a visual. Use a table only for exact mappings or repeated-field comparison that is materially easier to scan in rows and columns. Bound its columns, keep cells overflow-safe, and replace a wide low-density table with cards or grouped detail. Choose timelines, state or flow maps, annotated comparisons, spatial diagrams, charts, card systems, carousels, or another fitting conceptual representation from the information shape. Give no qualitative judgment false precision without a supplied scale and source. Give every material visual a text summary or accessible data representation that retains chart values and units.
 
 Choose the visual system by information shape:
 
@@ -40,7 +42,7 @@ Render supplied code, configuration, schema, or text changes with semantic HTML 
 
 Implement supplied interaction, or add only presentation controls needed to navigate or reveal the same material. When multiple supplied designs, prototypes, screens, or visual variants are best inspected one at a time, use the carousel contract in [prototype patterns](references/prototype-patterns.md) and embed the bundled [carousel control](assets/carousel-control.html). Keep a complete reading order without interaction, preserve keyboard operation and visible focus, respect `prefers-reduced-motion`, and do not encode meaning by color alone.
 
-Keep outcomes, decisions, current status, material evidence, risks, and next actions visible. Put logs, provenance, superseded detail, and other secondary information that the audience does not need upfront in collapsed semantic `<details>` accordions with clear `<summary>` labels. Do not collapse a blocker, warning, required action, or the only accessible representation of material content.
+Keep outcomes, decisions, current status, material evidence, risks, and next actions visible and before supporting detail. Give sections enough block spacing to remain distinct at a scan. Put logs, provenance, superseded detail, and other secondary information that the audience does not need upfront in collapsed semantic `<details>` accordions with clear `<summary>` labels. Summarize logs first, then split retained entries into labeled runs by phase, date, source, or severity; do not place the full record in one page-level text block. Render long IDs, hashes, URLs, and similar values as block-level, copyable text that wraps without changing the value. Do not collapse a blocker, warning, required action, or the only accessible representation of material content.
 
 Embed the bundled [visual foundation](assets/visual-foundation.css) and [theme control](assets/theme-control.html) in every artifact. They supply behavior and resilience only; choose the artifact's visual direction from its material.
 
