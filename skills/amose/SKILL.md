@@ -17,6 +17,8 @@ When supplied an Atona decision batch, pin and echo its envelope unchanged: live
 
 Read relevant parts of an existing project knowledge equivalent before proposing `.learnings`. Do not create a competing source of truth without agreement. Without write authority, return the required reconciliation without changing files.
 
+When an owning workflow supplies an accepted decision for durable propagation, pin its decision identity, confirmation evidence, scope, superseded state, affected artifacts, current applicability, authorized destinations, and downstream staleness. Reconcile it at acceptance time when authority exists; do not defer an authorized current decision until a later retrospective. Without authority, return the exact proposed destinations and required write boundary.
+
 ## 2. Clarify the model
 
 Challenge ambiguous, overloaded, synonymous, or conflicting terms when their meaning can change scope, ownership, state, or behavior. Propose one canonical term and identify alternatives to avoid only after evidence or confirmation supports it.

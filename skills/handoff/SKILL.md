@@ -41,6 +41,12 @@ Use this compact form:
 
 Do not select a new skill route. Do not duplicate content from existing artifacts. Reference each artifact and summarize only the state needed to continue.
 
+Treat a change in outcome, primary owner, repository or candidate, mutation authority, product or plan phase, or acceptance boundary as a contract transition. Record the prior contract, changed fields, retained decisions, newly stale evidence, next owner, and stop boundary. Re-baseline the template when the same owner continues; when ownership changes, make the receiving owner's exact first action explicit.
+
+Resolve every source session and artifact before treating it as confirmed. If a required source is unavailable, name the gap, limit `Confirmed` to independently verified facts, and make the first action obtain the smallest recovery bundle: a transcript or prior handoff, candidate identity, completed proof, and the next verifiable action.
+
+When an active Olofofo artifact exists, link it as evidence. This handoff is a point-in-time transfer, not the living session record; do not mutate or stop Olofofo.
+
 Include only verified current state. Mark information that may be stale. Remove credentials and unnecessary sensitive information.
 
 Re-read the handoff after writing. Verify that it is readable, contains no exposed credential, and gives a fresh agent the candidate, current state, remaining work, and exact first action.

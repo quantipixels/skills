@@ -60,12 +60,15 @@ Use alarina to choose the right QP skill for this request:
 | `alarina` | You need to choose the shortest QP route for a request |
 | `amose` | Project terms, domain rules, `.learnings`, `.nongoals`, or ADRs need clarification or reconciliation |
 | `simplify` | Changed code or code-local comments need a read-only maintainability review |
+| `unknot` | An entire repository needs a read-only, coverage-complete audit for material simplifications |
+| `skill-portfolio-audit` | A bounded skill portfolio needs a read-only audit of inventory, health, state drift, routes, or capability gaps |
 | `handoff` | A conversation needs a compact handoff for another agent or session |
-| `ayewo-igba-ise` | A coding-agent session needs an evidence-backed friction analysis |
+| `ayewo-igba-ise` | A coding-agent session or bounded multi-session corpus needs an evidence-backed friction and recurrence analysis |
 | `iwadi` | A question needs high-trust research from primary sources, captured in a Markdown file |
 | `ko-skill` | A portable agent skill needs creation, revision, or validation |
 | `irinse` | A companion engineering tool needs selection, setup, safe use, or removal |
 | `olofofo` | A literal agent session needs quiet continuity, proportionate quality nudges, and reusable cross-session wisdom |
+| `ro-wo` | A material premise needs a brief evidence-backed check before agreement or disagreement |
 
 ## Design skills
 
@@ -97,8 +100,8 @@ Copy the exact managed block from [Olofofo global activation](skills/olofofo/ref
 Use Irinṣẹ when a companion tool could materially improve the result. If the required tool is unavailable, explain its benefit and ask before installing or configuring it.
 ```
 
-### Critical judgment
+### Consider before judgment
 
 ```text
-When the user asks for an opinion, test the premise critically and adversarially, state material counterarguments, and recommend from evidence instead of defaulting to agreement.
+Use ro-wo before agreeing or disagreeing with a material premise. Test the evidence, strongest credible alternative, changed boundaries, and failure paths. Withhold judgment when evidence is insufficient. Do not manufacture objections or reopen settled decisions without new material evidence.
 ```

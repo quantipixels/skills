@@ -73,7 +73,7 @@ Show one status near the title:
 
 ## 4. Verify proportionately
 
-Check structure, required content, links, controls, resources, and fallbacks. Use the lightest method that can disprove the requested behavior. Smoke-test the primary action and one relevant state or failure path. Use full browser/UI verification only for design-focused work, explicit visual-proof requests, or browser-dependent acceptance criteria. Parse Mermaid and inspect its fallback; render it only when layout matters. Inspect representative diff changes and overflow.
+Check structure, required content, links, controls, resources, and fallbacks. For a report, also reconcile the supplied-content coverage ledger and any living-record consistency surfaces required by the report pattern; rendering success does not prove semantic coverage. Use the lightest method that can disprove the requested behavior. Smoke-test the primary action and one relevant state or failure path. Use full browser/UI verification only for design-focused work, explicit visual-proof requests, or browser-dependent acceptance criteria. Parse Mermaid and inspect its fallback; render it only when layout matters. Inspect representative diff changes and overflow.
 
 Report only the independent labels completed:
 
@@ -89,4 +89,4 @@ Return the direct absolute path or host-rendered link; for a bundle, return its 
 
 Add a temporary preview URL only when tested browser behavior requires HTTP, and state that it is transport rather than an artifact dependency. If preview fails, return the durable files, blocker, and completed checks without claiming success.
 
-Return the portability status, verification labels, checks, limitations, network needs, and external-resource disclosure. For a report, also return its lifecycle.
+Return the portability status, verification labels, checks, limitations, network needs, and external-resource disclosure. For a report, also return its lifecycle, supplied-content coverage disposition, and unresolved input gaps.

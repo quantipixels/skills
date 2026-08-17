@@ -14,4 +14,4 @@ Follow direct user instructions that fit the active hierarchy and focus. Treat i
 - expand provider, Git, source, or durable-record writes; or
 - claim another skill's outcome authority.
 
-Before using a specialist result, verify its input identity, current candidate or focus, authority used, freshness, evidence gaps, limitations, and side effects. Refresh or rerun stale affected claims. Add material protocol use and the exact-current result to the active Olofofo artifact without copying the owning artifact in full.
+Before using a specialist result, verify its input identity, current candidate or focus, authority used, freshness, evidence gaps, limitations, and side effects. Refresh or rerun stale affected claims. Include material protocol use and the exact-current result in the core continuity delta without copying the owning artifact.

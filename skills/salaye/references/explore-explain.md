@@ -14,7 +14,7 @@ Map only what helps the current focus:
 
 Drill into one useful part at a time. Name both sides of an important seam and what crosses it. Distinguish behavior, intent, inference, risk, and uncertainty. Connect the seam to callers, proof, operations, or compatibility when relevant.
 
-Follow user questions and steering without losing unvisited high-risk or decision-shaping parts. Use history only when it explains a current constraint, choice, surprising implementation, or unresolved risk. Ask and wait when only the user can resolve a material gap or likely misdirection that controls the next branch.
+Follow user questions and steering without losing unvisited high-risk or decision-shaping parts. Use history only when it explains a current constraint, choice, surprising implementation, or unresolved risk.
 
 ## Explain
 

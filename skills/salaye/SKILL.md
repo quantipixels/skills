@@ -1,6 +1,6 @@
 ---
 name: salaye
-description: Explore, explain, investigate, research, analyse, or evaluate one idea, plan, decision, document, code change, pull request, or merge request in conversation with the user. Use when the user wants to think through a subject, drill into it together, steer the inquiry, ask follow-ups, or add a skill or method; contribute material continuity to the active Olofofo artifact without owning its session lifecycle. Use arojinle for complete decision closure and qp-code-review for a bare review verdict.
+description: Explore, explain, investigate, research, analyse, or evaluate one idea, plan, decision, document, code change, pull request, or merge request in conversation with the user. Use when the user wants to think through a subject, drill into it together, steer the inquiry, ask follow-ups, or add a skill or method; return a material continuity delta to active Olofofo without owning its artifact lifecycle. Use arojinle for complete decision closure and qp-code-review for a bare review verdict.
 ---
 
 # Ṣàlàyé
@@ -10,8 +10,6 @@ Help the user understand and examine one current focus through an explicit conve
 ## 1. Establish the exploration
 
 Identify the current focus, the user's desired outcome, the active lens or question, decisive evidence already available, and the smallest useful exploration order. Use the active Olofofo focus and artifact when available. Do not create another session, subject, revision, heartbeat, or report lifecycle.
-
-Ask one focused question and wait when an ambiguous focus, meaning, constraint, likely misdirection, or authority gap would materially change the next sound action. Explain what the answer will unblock. Do not ask the user for facts that safe local or external investigation can establish.
 
 ## 2. Load only the needed mode
 
@@ -27,9 +25,9 @@ When the user supplies a skill, instruction, checklist, method, lens, or evidenc
 
 Inspect one decisive seam, branch, claim, option, or question at a time. Prefer the highest-risk, most explanatory, or most decision-shaping item unless the user sets another priority. Separate observed facts, stated intent, inference, uncertainty, provisional concern, and an owning specialist's result.
 
-Continue when the next useful action is supported and no user answer is required. Give a concise progress update when a material new fact changes direction, a gap appears, the focus moves to another decisive seam, or long work has no visible result. Include the newest evidence, current uncertainty, and next action; do not require a reply when steering is optional.
+Continue when the next useful action is supported. Give a concise progress update when a material fact changes direction, a gap appears, the focus moves to another decisive seam, or long work has no visible result. Include the newest evidence, current uncertainty, and next action; do not require a reply when steering is optional.
 
-Pause and wait only when the user's answer is necessary to correct direction, resolve material ambiguity, answer a relevant controlling query, choose between materially different outcomes, or authorize a side effect. Resume from the answer without turning every clarification into a complete decision interview.
+Ask one focused question and wait only when the user's answer is necessary to correct direction, resolve material ambiguity or likely misdirection, answer a controlling query, choose between materially different outcomes, or authorize a side effect. Explain what it unblocks. Do not ask for facts that safe local or external investigation can establish. Resume without turning every clarification into a complete decision interview.
 
 ## 4. Use owning specialists without taking over
 
@@ -39,8 +37,6 @@ In particular, `arojinle` owns complete material decision closure, `atona` owns 
 
 ## 5. Contribute to session continuity
 
-After material progress, add the current focus, evidence, user steering, gaps, and next exploration action to the active Olofofo artifact under Olofofo's rules. Link owning artifacts by full absolute path or canonical URL instead of copying them.
+After material progress, return one continuity delta with the current focus, evidence, user steering, gaps, owning results, and next exploration action. When Olofofo is active, supply the delta and full artifact paths or canonical URLs; Olofofo alone updates its living artifact. When it is inactive, include the delta in the conversational result. Do not create a competing session report unless the user explicitly requests a separate deliverable or another owning workflow requires one.
 
-If Olofofo is unavailable or inactive, return the conversational result normally. Do not create a competing session report unless the user explicitly requests a separate deliverable or another owning workflow requires one.
-
-End with the focus explored, material branches visited and unvisited, evidence and limitations, user steering, specialist results, unresolved gaps, and next useful action. Do not claim confirmed decision closure, plan readiness, approval, or a review verdict unless its owning specialist supplied that exact-current result.
+End with the explored and unvisited material branches, evidence and limitations, unresolved gaps, and next useful action. Do not claim confirmed decision closure, plan readiness, approval, or a review verdict unless its owning specialist supplied that exact-current result.

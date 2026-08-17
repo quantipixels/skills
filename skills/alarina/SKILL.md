@@ -27,7 +27,13 @@ Before implementation, a stateful refactor requires an `audit-refactor-behavior`
 
 Use `arojinle` to close a new or reopened material decision. Atona remains primary when that decision belongs to its live architecture or migration plan and consumes the exact-current Arojinle result. After confirmation, use `amose` for project-model, project-knowledge, and ADR reconciliation; it does not choose the decision.
 
+Use `ro-wo` for one brief, bounded premise check before agreeing or disagreeing with a material opinion, proposal, assumption, scenario, recommendation, or decision-shaping hypothetical. Keep open-ended conversational exploration with `salaye`, relentless user-requested stress testing with `grilling`, and complete decision closure with `arojinle`.
+
 Treat an unqualified request to review code as broad. Select `qp-code-review` as the primary owner and `simplify` as its supporting maintainability specialist. Select `qp-code-review` alone only when the user explicitly limits the review to defects and excludes maintainability.
+
+Use `unknot` instead when the requested outcome is a read-only simplification audit of the complete repository with explicit subsystem coverage and prioritized opportunities. Keep `simplify` with one bounded changed-code candidate.
+
+Use `skill-portfolio-audit` when the requested unit is a bounded collection of agent skills and the outcome is portfolio-wide inventory, health, state drift, route overlap, or capability-gap analysis. Keep `ko-skill` with one skill and all authorized skill changes.
 
 Use `olofofo` only when a global baseline activates it or the user explicitly asks it to track the literal session. It remains supporting-only; the active task keeps its primary owner.
 
@@ -43,10 +49,13 @@ For `triage-issue`, start with supplied evidence. Repository source reads, provi
 | One bounded feature or bug fix needs an explicit test-first implementation loop without broader build-job stewardship | `tdd` |
 | One supplied build job needs job-level integration, acceptance, documentation or knowledge reconciliation, or applicable candidate review | `alaga` |
 | Changed code or code-local comments need a read-only maintainability review | `simplify` |
+| An entire repository needs a read-only, coverage-complete audit for material simplifications | `unknot` |
+| A bounded skill portfolio needs a read-only audit of inventory, health, state drift, routes, or capability gaps | `skill-portfolio-audit` |
 | Bounded code or an active PR or MR needs broad or defect-only review | `qp-code-review`, with `simplify` for broad review |
 | One bounded current-branch change needs commit, push, and ready-for-review GitHub PR or GitLab MR creation or reconciliation | `seda-pr` |
 | One open GitHub PR or GitLab MR needs persistent pipeline and feedback monitoring | `wo-pr` |
 | The literal agent session needs quiet continuity, proportionate quality nudges, and reusable cross-session wisdom | supporting `olofofo` |
+| One material premise needs an evidence-backed check before agreement or disagreement | `ro-wo` |
 | One idea, plan, decision, document, or code candidate needs conversational exploration, explanation, investigation, research, analysis, or evaluation | `salaye` |
 | One issue or bug report needs supplied-evidence-first classification and a next action | `triage-issue` |
 | Supplied work needs consumable vertical tickets with blockers, acceptance, and lifecycle state | `seda-ticket` |
@@ -61,7 +70,7 @@ For `triage-issue`, start with supplied evidence. Repository source reads, provi
 | HTML presentation, pitch deck, or data-backed slide story | `slides` |
 | A visual design request spans multiple deliverables and needs one design owner | `apere` |
 | The current conversation needs a safe handoff for another agent | `handoff` |
-| One coding-agent session needs an evidence-backed friction analysis and durable improvement assessment | `ayewo-igba-ise` |
+| One coding-agent session or bounded multi-session corpus needs an evidence-backed friction, recurrence, and durable-improvement assessment | `ayewo-igba-ise` |
 | A question needs high-trust research from primary sources, captured in a Markdown file | `iwadi` |
 | One portable agent skill needs creation, revision, or validation | `ko-skill` |
 | A companion tool needs selection, installation, configuration, integration, bounded use, verification, or removal | `irinse` |

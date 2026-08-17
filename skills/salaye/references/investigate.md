@@ -11,9 +11,9 @@ Use the applicable owner when it materially improves the answer:
 - use direct read-only research for external facts when no durable research artifact is needed;
 - use `iwadi` when the user wants or the active research outcome requires a durable primary-source research record;
 - use `amose` when project terms, invariants, or durable knowledge control the answer;
-- use `codebase-design` as a bounded lens for a module interface or code seam; and
+- use `codebase-design` as an optional bounded lens for a module interface or code seam, and inspect the seam directly when that external skill is unavailable; and
 - use `arojinle` when an idea, plan, or decision needs material choices settled rather than investigated.
 
-Keep every specialist result exact-current and link its artifact from the active Olofofo record. If necessary evidence requires unavailable capability or new side-effect authority, explain the gap, ask the smallest question, and wait. Do the same when evidence shows that the inquiry targets the wrong premise, focus, or interpretation.
+Keep every specialist result exact-current. If necessary evidence requires unavailable capability or new side-effect authority, report the gap. Apply the core pause rule when the gap, wrong premise, focus, or interpretation blocks sound progress.
 
 Return the question, conclusion or current hypothesis state, evidence chain, counterevidence, assumptions, gaps, and next useful investigation. This is not decision closure or a specialist verdict.

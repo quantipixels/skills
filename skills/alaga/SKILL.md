@@ -40,6 +40,8 @@ A **job** is the complete build outcome supplied to Alaga. A **delivery unit** i
 
 Establish the requested outcome, current and desired behavior, scope, exclusions, independently verifiable acceptance, proof expectations, documentation destinations, workspace, and authority. A plan can be the delivered artifact. Pure explanation, bare review, monitoring, PR or MR publication, and provider lifecycle work remain with their direct owners unless they are supporting units in the build.
 
+Name the minimum real user or operational path that must pass for job acceptance. Focused and integration proof can support that path but cannot replace it when they exercise a different boundary.
+
 `alarina` selects the first route for an unqualified prompt. Once `alaga` is explicitly selected or routed, Alaga owns the active build job. Inspect the current capability inventory and select the shortest useful combination of skills, tools, and direct work from job evidence. Examples are not an allowlist. If a required owner is unavailable, name the capability gap and pause only dependent work; do not imitate the missing specialist.
 
 Before delivery starts, establish one session delivery policy from the user request and repository state:
@@ -74,6 +76,8 @@ When host-provided subagent work materially improves delivery, give each bounded
 Identify every review candidate exactly. For an uncommitted candidate, record base `HEAD` and partition the ordered path status into intended candidate paths and ambient unrelated paths. For every path, record applicable index entries, file type and mode, SHA-256 for present content, and explicit deletions. Preserve ambient user changes and stop for ownership clarification when an overlap prevents safe isolation. Do not require a clean index. A commit policy does not authorize amend, squash, rebase, force-push, or another history rewrite.
 
 Before review, update every required ordinary-documentation destination in the same candidate. Send one exact evidence package to Amọ̀ṣẹ́ when verified delivery changes durable project knowledge. Reconcile required `.learnings`, `.nongoals`, or ADR results before review; do not leave required documentation as an untracked follow-up.
+
+When accepted visual references span multiple screens, components, states, or core tokens, maintain a fidelity ledger that maps every accepted surface to its implementation and visual-check state. Record explicit exclusions and unresolved mismatches. Do not require this ledger for a low-visual or single-surface change.
 
 ## 3. Review and converge
 

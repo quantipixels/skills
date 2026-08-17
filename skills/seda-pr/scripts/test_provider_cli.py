@@ -1,4 +1,6 @@
+import subprocess
 import unittest
+from io import StringIO
 from unittest.mock import patch
 
 from provider_cli import (
@@ -228,6 +230,22 @@ class ProviderCliTests(unittest.TestCase):
                 ])
 
         run.assert_not_called()
+
+    def test_main_times_out_provider_command_without_retrying(self):
+        command = ["gh", "pr", "edit", "7", "--repo", "owner/repo"]
+        with patch(
+            "provider_cli.subprocess.run",
+            side_effect=subprocess.TimeoutExpired(command, 120),
+        ) as run, patch("sys.stderr", new_callable=StringIO) as stderr:
+            result = main([
+                "--provider", "github", "--host", "github.com", "--", *command,
+            ])
+
+        self.assertEqual(124, result)
+        self.assertIn("outcome is unknown", stderr.getvalue())
+        self.assertIn("read back the exact target before retry", stderr.getvalue())
+        run.assert_called_once()
+        self.assertEqual(120, run.call_args.kwargs["timeout"])
 
 
 if __name__ == "__main__":

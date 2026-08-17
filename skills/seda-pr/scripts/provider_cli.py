@@ -7,11 +7,13 @@ import argparse
 import os
 import re
 import subprocess
+import sys
 from urllib.parse import urlparse
 
 
 DEFAULT_TRUSTED_HOST = {"github": "github.com", "gitlab": "gitlab.com"}
 EXECUTABLE = {"github": "gh", "gitlab": "glab"}
+PROVIDER_TIMEOUT_SECONDS = 120
 
 
 def command_environment(
@@ -232,7 +234,20 @@ def main(argv: list[str] | None = None) -> int:
         args.host,
         trusted_hosts=set(args.trusted_host),
     )
-    return subprocess.run(args.command, check=False, env=environment).returncode
+    try:
+        return subprocess.run(
+            args.command,
+            check=False,
+            env=environment,
+            timeout=PROVIDER_TIMEOUT_SECONDS,
+        ).returncode
+    except subprocess.TimeoutExpired:
+        print(
+            "provider command timed out; a write outcome is unknown. "
+            "Stop dependent writes and read back the exact target before retry.",
+            file=sys.stderr,
+        )
+        return 124
 
 
 if __name__ == "__main__":
