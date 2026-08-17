@@ -14,15 +14,15 @@ Install all stable QP skills globally and remove retired identifiers that the Sk
 curl -fsSL https://raw.githubusercontent.com/quantipixels/skills/ori/scripts/install.sh | bash
 ```
 
-Pass one mode through Bash to install a single group:
+Pass one or more group flags through Bash to install the selected groups:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/quantipixels/skills/ori/scripts/install.sh | bash -s -- --engineering
+curl -fsSL https://raw.githubusercontent.com/quantipixels/skills/ori/scripts/install.sh | bash -s -- --engineering --productivity
 ```
 
-Available modes are `--all`, `--engineering`, `--design`, `--productivity`, and `--experimental`. If no mode is supplied, the installer uses `--all`. `--all` installs the three stable groups and excludes Experimental.
+Available flags are `--all`, `--engineering`, `--design`, `--productivity`, and `--experimental`. Group flags can be combined, and duplicates are ignored. If no flag is supplied, the installer uses `--all`. `--all` installs the three stable groups, excludes Experimental, and cannot be combined with another flag.
 
-A group mode adds that group. It does not remove current skills from another group. Retired QP identifiers are the only automatic removals.
+A group flag adds that group. It does not remove current skills from another group. Retired QP identifiers are the only automatic removals.
 
 To install one or more named skills without portfolio cleanup, use `npx skills add quantipixels/skills --global --full-depth --skill <name>`.
 

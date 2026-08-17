@@ -17,48 +17,71 @@ RETIRED_SKILLS=(
 
 usage() {
   cat <<'EOF'
-Usage: install.sh [--all|--engineering|--design|--productivity|--experimental]
+Usage: install.sh [--all | GROUP...]
 
   --all           Install all stable skills. This is the default.
   --engineering   Install engineering skills.
   --design        Install design skills.
   --productivity  Install productivity skills.
   --experimental  Install experimental skills.
+
+Group flags can be combined. Duplicate group flags are ignored.
+--all and --help cannot be combined with another flag.
 EOF
 }
 
-if [[ $# -gt 1 ]]; then
-  usage >&2
-  exit 2
-fi
+groups=()
 
-mode=${1:---all}
-case "$mode" in
-  --all)
-    groups=(engineering design productivity)
-    ;;
-  --engineering)
-    groups=(engineering)
-    ;;
-  --design)
-    groups=(design)
-    ;;
-  --productivity)
-    groups=(productivity)
-    ;;
-  --experimental)
-    groups=(experimental)
-    ;;
-  --help|-h)
-    usage
-    exit 0
-    ;;
-  *)
-    echo "Unknown install mode: $mode" >&2
-    usage >&2
-    exit 2
-    ;;
-esac
+add_group() {
+  local candidate=$1
+
+  [[ " ${groups[*]-} " == *" $candidate "* ]] && return
+
+  groups+=("$candidate")
+}
+
+if [[ $# -eq 0 ]]; then
+  groups=(engineering design productivity)
+else
+  for mode in "$@"; do
+    case "$mode" in
+      --all)
+        if [[ $# -ne 1 ]]; then
+          echo "--all cannot be combined with another flag." >&2
+          usage >&2
+          exit 2
+        fi
+        groups=(engineering design productivity)
+        ;;
+      --engineering)
+        add_group engineering
+        ;;
+      --design)
+        add_group design
+        ;;
+      --productivity)
+        add_group productivity
+        ;;
+      --experimental)
+        add_group experimental
+        ;;
+      --help|-h)
+        if [[ $# -ne 1 ]]; then
+          echo "--help cannot be combined with another flag." >&2
+          usage >&2
+          exit 2
+        fi
+        usage
+        exit 0
+        ;;
+      *)
+        echo "Unknown install mode: $mode" >&2
+        usage >&2
+        exit 2
+        ;;
+    esac
+  done
+fi
 
 retired_qp_skills() {
   # JavaScript is intentionally single-quoted.
