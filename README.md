@@ -8,23 +8,35 @@ Read the public documentation at [quantipixels.com/skills](https://quantipixels.
 
 ## Install
 
-Install all stable QP skills globally and remove retired identifiers that the Skills CLI attributes to this repository:
+### Recommended setup
 
-```bash
-curl -fsSL https://raw.githubusercontent.com/quantipixels/skills/ori/scripts/install.sh | bash
-```
-
-Pass one or more group flags through Bash to install the selected groups:
+Install the recommended Engineering and Productivity groups globally:
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/quantipixels/skills/ori/scripts/install.sh | bash -s -- --engineering --productivity
+```
+
+The script also removes retired identifiers that the Skills CLI attributes to this repository. Add Design or Experimental only when you need those skills.
+
+Install all stable groups, including Design:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/quantipixels/skills/ori/scripts/install.sh | bash
 ```
 
 Available flags are `--all`, `--engineering`, `--design`, `--productivity`, and `--experimental`. Group flags can be combined, and duplicates are ignored. If no flag is supplied, the installer uses `--all`. `--all` installs the three stable groups, excludes Experimental, and cannot be combined with another flag.
 
 A group flag adds that group. It does not remove current skills from another group. Retired QP identifiers are the only automatic removals.
 
-To install one or more named skills without portfolio cleanup, use `npx skills add quantipixels/skills --global --full-depth --skill <name>`.
+### Install with the Skills CLI
+
+To choose individual skills interactively, run:
+
+```bash
+npx skills add quantipixels/skills
+```
+
+The Skills CLI discovers the full portfolio and asks which skills to install. This direct path does not remove retired skills.
 
 ## Uninstall
 
