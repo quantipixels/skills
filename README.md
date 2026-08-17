@@ -8,35 +8,13 @@ Read the public documentation at [quantipixels.com/skills](https://quantipixels.
 
 ## Install
 
-### Recommended setup
-
-Install the recommended Engineering and Productivity groups globally:
+Install the QP skill portfolio globally:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/quantipixels/skills/ori/scripts/install.sh | bash -s -- --engineering --productivity
+npx skills add quantipixels/skills --global
 ```
 
-The script also removes retired identifiers that the Skills CLI attributes to this repository. Add Design or Experimental only when you need those skills.
-
-Install all stable groups, including Design:
-
-```bash
-curl -fsSL https://raw.githubusercontent.com/quantipixels/skills/ori/scripts/install.sh | bash
-```
-
-Available flags are `--all`, `--engineering`, `--design`, `--productivity`, and `--experimental`. Group flags can be combined, and duplicates are ignored. If no flag is supplied, the installer uses `--all`. `--all` installs the three stable groups, excludes Experimental, and cannot be combined with another flag.
-
-A group flag adds that group. It does not remove current skills from another group. Retired QP identifiers are the only automatic removals.
-
-### Install with the Skills CLI
-
-To choose individual skills interactively, run:
-
-```bash
-npx skills add quantipixels/skills
-```
-
-The Skills CLI discovers the full portfolio and asks which skills to install. This direct path does not remove retired skills.
+Follow the Skills CLI prompts to choose skills and target agents. The command does not remove retired skills.
 
 ## Uninstall
 
@@ -108,7 +86,7 @@ For React UI work, `asa-oju-ibanisoro` asks for an explicit component-library de
 
 ## Experimental skills
 
-Experimental skills require the explicit `--experimental` installer mode and are excluded from `--all`.
+Experimental skills must be selected explicitly during installation.
 
 | Skill | Use when |
 | --- | --- |
