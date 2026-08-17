@@ -1,9 +1,9 @@
 ---
-name: unknot
+name: pare
 description: Audit an entire codebase for material simplifications in data structures, state, control flow, algorithms, and ownership. Use for a read-only repository-wide review that requires explicit subsystem coverage, independently verified findings, and dependency-aware priorities; exclude bounded change review, defect review, implementation, and architecture planning.
 ---
 
-# Unknot
+# Pare
 
 Complete one read-only simplification audit of the current repository. Do not edit repository files, run tests, implement recommendations, change Git state, or use provider writes. Read-only inspection commands and host-provided read-only subagents are allowed.
 
@@ -84,4 +84,4 @@ Return the canonical audit record with:
 
 Compare the final worktree state with the recorded baseline. Do not claim that the repository remained unchanged when the evidence differs or concurrent changes prevent attribution.
 
-The audit is complete only when every identifiable subsystem has `recommend` or `skip`, no row remains `not reviewed`, every accepted finding has complete evidence, scope, risk, validation, and confidence, weak or duplicate abstractions are removed, priorities and dependencies are consistent, and unchanged-repository evidence is present.
+The audit is complete only when every identifiable subsystem has `recommend` or `skip`, no row remains `not reviewed`, every accepted finding has complete evidence, scope, risk, validation, and confidence, weak or duplicate recommendations are removed from the audit record, priorities and dependencies are consistent, and unchanged-repository evidence is present.

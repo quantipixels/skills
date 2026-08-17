@@ -34,20 +34,20 @@ Creating or revising a skill authorizes behavior-preserving compression througho
 
 For a procedural skill, retain one compact ordered workflow. Defer compression only when current evidence cannot show whether repeated text encodes distinct behavior.
 
-Run a final necessity pass. Remove rationale, generic guidance, and reference-owned detail. Keep text only when deleting it would change agent behavior, weaken clarity, or remove protection against a credible failure.
+Run a final necessity pass. Every instruction or reference must earn its place: keep it only when removing it would alter a required decision, action, interaction, authority, safety, recovery, verification, or owner boundary. Otherwise remove it, merge it, or move it to the skill that owns the behavior.
 
 ## 3. Integrate and verify
 
-Keep the name, description, metadata, invocation policy, and packaged surfaces consistent with the host schema. Update release metadata and any catalog or router whose inventory or flow changed. Verify unchanged surfaces without no-op edits and preserve unrelated work.
+Keep metadata and packaged surfaces valid against the host schema, and keep release metadata plus any affected catalog or router consistent. Preserve unrelated work.
 
-For a provider-capable skill, keep provider execution local and include every applicable repository safety rule in that independently installed skill. Do not replace native provider semantics with a shared runtime unless an architecture decision authorizes it.
+For a provider-capable skill, keep execution and every applicable repository safety rule in that independently installed skill. Do not add a shared runtime without an architecture decision.
 
-Reread changed files and directly check applicable frontmatter, metadata, paths, references, catalog, routing, packaging, scripts, and final diff.
+Reread changed surfaces, direct references, and the final diff. Check applicable structures directly; structural checks prove only the structures checked.
 
-Structural checks prove only the named structures. For material uncertainty about selection, authority, unsafe effects, state transitions, complex branching, or interpretation, use the smallest fresh no-context session with a realistic raw goal. Hide the expected answer and rationale; deny credentials and mutations unless a disposable scenario authorizes them. Add an independent reviewer only when consequence or ambiguity justifies it. Give all agents the exact candidate and raw evidence, and rerun affected proof after each candidate change.
+For material behavioral uncertainty, use the smallest fresh no-context proof with a realistic raw goal. Hide the expected answer, deny mutation and credentials unless the scenario authorizes them, and rerun affected proof after each candidate change. Add independent review only when consequence or ambiguity justifies it.
 
-Do not add prompt eval suites or new behavioral test cases to this repository. Existing deterministic tests can remain while their owning behavior remains.
+Do not add prompt-evaluation suites or new behavioral tests. Keep an existing deterministic test only while its owning behavior remains.
 
-Report the path, boundary, changed files, checks, forward-test evidence, candidate identity, and limitations. For a revision, include before-and-after word counts and rules removed, merged, or moved; counts are evidence, not a target. A no-op must show that no semantic duplicate, repeated representation, generic rationale, or reference-owned detail remains. Distinguish repository, published, installed, and active states when relevant. Install or publish only when requested.
+Report the candidate, boundary, changed files, checks, behavioral evidence or limitation, and—when revised—before-and-after word counts plus rules removed, merged, or moved. Distinguish source, published, installed, and active state when relevant. Install or publish only when requested.
 
-For a validation-only request, return `VERIFIED` only when every required structural and behavioral check passes against the exact candidate. Return `CHANGES_REQUIRED` for a proved contract or integration defect and `INSUFFICIENT_EVIDENCE` when a material proof gap prevents a responsible result.
+For validation only, return `VERIFIED` only when every required structural and behavioral check passes against the exact candidate; otherwise return `CHANGES_REQUIRED` for a proved defect or `INSUFFICIENT_EVIDENCE` for a material proof gap.

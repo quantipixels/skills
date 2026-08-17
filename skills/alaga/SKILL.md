@@ -53,7 +53,7 @@ Before delivery starts, establish one session delivery policy from the user requ
 
 Reuse choices already settled by the request, an exact-current plan or ticket, and repository instructions. Ask one focused question only when a remaining material choice or missing authority changes the safe path. Repository history and Git state do not grant user, commit, history-rewrite, publication, or provider-write authority.
 
-Create one job envelope that maps the job to its delivery units, owners, dependencies, exact-current native state, acceptance, proof, blockers, results, and candidate identities. Each specialist retains its own lifecycle and state. For every specialist request, pin caller, owner, scope, required result, candidate, and the active owner-and-scope ancestry. Each callee extends that ancestry for nested requests. When it needs a result owned by an ancestor for the same or overlapping scope, return that need to the active ancestor instead of invoking it. Return a named cycle gap only when control cannot safely return or the owner scopes conflict.
+Create one job envelope that maps delivery units to owners, dependencies, native state, acceptance, proof, blockers, results, and candidate identities. Pin each specialist request to its caller, scope, required result, candidate, and active owner ancestry. Return overlapping work to its active ancestor; report a cycle gap only when ownership cannot be reconciled.
 
 Read relevant root `.learnings` and the complete root `.nongoals` when present. Preserve confirmed project knowledge. If the job conflicts with `.nongoals`, require Amọ̀ṣẹ́ to record an authorized exception or boundary update before dependent implementation.
 
@@ -65,7 +65,7 @@ Use `arojinle` when a material user decision remains. Use `atona` when architect
 
 Prepare the selected workspace and branch without disturbing unrelated changes. Work through the confirmed horizon without stopping after every unit. Stop only when the policy requires it, a material decision or authority gap appears, or no safe independent work remains.
 
-Start a persisted ticket only when its exact-current state is `Ready` and every dependency is `Done`. Use the lifecycle supplied by its owner. Refresh identity, state, dependencies, evidence, and permitted transition immediately before a write. If Alaga does not own persistence, return the requested transition and evidence to the owner. Ticket state never sets job, plan, phase, implementation, or review state.
+Start a persisted ticket only when its exact-current owner result permits it. Refresh its identity, state, dependencies, evidence, and authority before a write. Ticket state never sets job, plan, phase, implementation, or review state.
 
 Use the proof owner appropriate to each unit. Run `tdd` through coherent green slices when production behavior changes. Use focused and affected proof for every unit, then run job-level integration and acceptance proof. A local commit is an optional green-history, rollback, or review boundary only when explicitly authorized; it is not an automatic unit or review trigger.
 
@@ -73,7 +73,7 @@ When one unit blocks, continue independent in-scope units within the confirmed h
 
 When host-provided subagent work materially improves delivery, give each bounded request the current candidate identity, scope and exclusions, confirmed decisions, required result, and acceptance. Alaga retains integration, stage-gate verification, and correction convergence. Use an exact-current Irinṣẹ result only when bounded companion-tool evidence materially improves impact orientation or source selection; it is not acceptance evidence by itself.
 
-Identify every review candidate exactly. For an uncommitted candidate, record base `HEAD` and partition the ordered path status into intended candidate paths and ambient unrelated paths. For every path, record applicable index entries, file type and mode, SHA-256 for present content, and explicit deletions. Preserve ambient user changes and stop for ownership clarification when an overlap prevents safe isolation. Do not require a clean index. A commit policy does not authorize amend, squash, rebase, force-push, or another history rewrite.
+Identify every review candidate exactly. For an uncommitted candidate, run `python3 <alaga-skill>/scripts/snapshot-candidate.py --repo <workspace> --path <intended-path>` with every intended path, or use `--all-changes` only when the complete worktree is the candidate. Use its selected/ambient partition and digest; stop if the snapshot is incomplete or an overlap prevents safe isolation. Preserve ambient user changes and do not require a clean index. A commit policy does not authorize amend, squash, rebase, force-push, or another history rewrite.
 
 Before review, update every required ordinary-documentation destination in the same candidate. Send one exact evidence package to Amọ̀ṣẹ́ when verified delivery changes durable project knowledge. Reconcile required `.learnings`, `.nongoals`, or ADR results before review; do not leave required documentation as an untracked follow-up.
 
@@ -85,7 +85,7 @@ Review each stable candidate once when it is understandable, verifiable, accepta
 
 Request an early bounded review only for material design, security, data-integrity, migration, public-contract, or cross-system risk that would be costly to correct later. It does not replace the final review required for that candidate type.
 
-Select review owners from the candidate type and job contract. For source code or tests, run `simplify` after implementation proof is green. Pin its exact candidate, findings or clean claim, and limitations. Supply that exact-current result and every material `Needs qp-code-review` concern to broad `qp-code-review`. For an agent-skill candidate, require exact-current `ko-skill` verification and any independent review that its contract selects; do not substitute code review unless its published scope includes the candidate. For a plan, report, research record, ordinary document, provider-owned result, or another non-code artifact, require the owning specialist's verification and every review named by its contract; do not send it to code review only because Alaga owns the job. Treat findings as hypotheses until verified.
+Use the candidate type and job contract to select review owners. After implementation proof is green, source code and tests require exact-current `simplify` evidence followed by broad `qp-code-review`. Other candidates use their owning specialist's verification and any review its contract requires. Do not substitute code review for a non-code candidate. Treat findings as hypotheses until verified.
 
 Apply behavior-changing code corrections through `tdd`. Apply other corrections through their owning proof workflow. After any correction, pin the new candidate and rerun affected proof and each stale review stage. Resolve each confirmed non-blocking maintainability finding when the correction stays in scope and its delivery risk does not exceed the evidenced benefit. Do not complete the job while a blocking finding or evidence gap remains.
 

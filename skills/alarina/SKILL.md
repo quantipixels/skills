@@ -19,44 +19,34 @@ Keep ordinary documentation with the outcome skill that changes or verifies the 
 
 ### Resolve overlaps
 
-Use `alaga` as the first route for an unqualified supplied build job that needs job-level integration, acceptance, required documentation or project-knowledge reconciliation, or applicable candidate review. The job can contain one or many delivery units. When the requested artifact directly selects one published specialist and no broader job stewardship is needed, keep that specialist primary. Use `tdd` directly when the requested outcome is one bounded feature or bug fix under an explicit test-first implementation loop and no broader build-job stewardship is requested. Within an Alaga code build, TDD can own production-behavior proof as a supporting skill. Keep pure explanation, bare review, monitoring, publication, and provider lifecycle work with their direct owners unless their results are necessary to complete the build.
+Use `alaga` for a supplied build job that needs job-level integration, acceptance, knowledge reconciliation, or candidate review. Keep one directly selected specialist primary when it fully owns the artifact. Use `tdd` directly for one bounded test-first feature or fix without broader job stewardship.
 
-Route a settled plan artifact to Alaga only when the material decisions and content are supplied and the requested job is to build that exact artifact. Route architecture or migration work to Atona when its decisions, readiness, integration, delivery state, or closure must remain active in a live plan.
+Use `atona` while architecture or migration decisions, readiness, delivery state, or closure must remain active. Use `arojinle` for one new or reopened material decision. Before implementing a stateful refactor that can change lifecycle behavior, require `audit-refactor-behavior`.
 
-Before implementation, a stateful refactor requires an `audit-refactor-behavior` result when it may change transitions, ordering, locking, retries, idempotency, financial ownership, or behavior across entry points. `tdd` or `alaga` owns later implementation only after the audit establishes the baseline and implementation guardrails.
+For code review, use `qp-code-review` with supporting `simplify` by default; omit `simplify` only for an explicitly defect-only review. Use `simplify` alone for one changed-code candidate, `pare` for a complete-repository simplification audit, and `skill-portfolio-audit` for a bounded skill portfolio. Use `ko-skill` for one skill and its authorized changes.
 
-Use `arojinle` to close a new or reopened material decision. Atona remains primary when that decision belongs to its live architecture or migration plan and consumes the exact-current Arojinle result. After confirmation, use `amose` for project-model, project-knowledge, and ADR reconciliation; it does not choose the decision.
+Keep explanation with `salaye`, premise judgment with `ro-wo`, requested stress testing with `grilling`, and complete decision closure with `arojinle`.
 
-Use `ro-wo` for one brief, bounded premise check before agreeing or disagreeing with a material opinion, proposal, assumption, scenario, recommendation, or decision-shaping hypothetical. Keep open-ended conversational exploration with `salaye`, relentless user-requested stress testing with `grilling`, and complete decision closure with `arojinle`.
+Use `seda-pr` for bounded commit, push, and ready PR or MR reconciliation; `wo-pr` for monitoring; and `qp-code-review` for a verdict. Add a verdict to monitoring only when requested or required by repository policy. `triage-issue` starts from supplied evidence; repository reads, provider reads, and provider comments require separate authority.
 
-Treat an unqualified request to review code as broad. Select `qp-code-review` as the primary owner and `simplify` as its supporting maintainability specialist. Select `qp-code-review` alone only when the user explicitly limits the review to defects and excludes maintainability.
-
-Use `unknot` instead when the requested outcome is a read-only simplification audit of the complete repository with explicit subsystem coverage and prioritized opportunities. Keep `simplify` with one bounded changed-code candidate.
-
-Use `skill-portfolio-audit` when the requested unit is a bounded collection of agent skills and the outcome is portfolio-wide inventory, health, state drift, route overlap, or capability-gap analysis. Keep `ko-skill` with one skill and all authorized skill changes.
-
-Use `olofofo` only when a global baseline activates it or the user explicitly asks it to track the literal session. It remains supporting-only; the active task keeps its primary owner.
-
-Use `seda-pr` to commit and push one bounded current-branch change, then create or reconcile its ready-for-review PR or MR narrative and bounded metadata. Use `wo-pr` alone for a bare watch, monitor, babysit, or keep-an-eye-on request. Use `qp-code-review` directly for a bare verdict review. Add code review to monitoring only when the user explicitly requests a verdict or current repository policy requires one.
-
-For `triage-issue`, start with supplied evidence. Repository source reads, provider reads, and one provider comment require separate authority.
+`olofofo` is supporting-only and runs only when explicitly requested or activated by a global baseline.
 
 | Starting situation | Route |
 | --- | --- |
 | The user needs help selecting the shortest useful QP route | `alarina` |
-| Project terms, relationships, invariants, scenarios, `.learnings`, `.nongoals`, or ADRs need clarification or reconciliation | `amose` |
+| Project terms, `CONTEXT.md`, relationships, invariants, scenarios, `.learnings`, `.nongoals`, or ADRs need clarification or reconciliation | `amose` |
 | An idea, plan, or decision needs complete frontier rounds and a durable record | `arojinle` |
 | One bounded feature or bug fix needs an explicit test-first implementation loop without broader build-job stewardship | `tdd` |
 | One supplied build job needs job-level integration, acceptance, documentation or knowledge reconciliation, or applicable candidate review | `alaga` |
 | Changed code or code-local comments need a read-only maintainability review | `simplify` |
-| An entire repository needs a read-only, coverage-complete audit for material simplifications | `unknot` |
+| An entire repository needs a read-only, coverage-complete audit for material simplifications | `pare` |
 | A bounded skill portfolio needs a read-only audit of inventory, health, state drift, routes, or capability gaps | `skill-portfolio-audit` |
 | Bounded code or an active PR or MR needs broad or defect-only review | `qp-code-review`, with `simplify` for broad review |
 | One bounded current-branch change needs commit, push, and ready-for-review GitHub PR or GitLab MR creation or reconciliation | `seda-pr` |
 | One open GitHub PR or GitLab MR needs persistent pipeline and feedback monitoring | `wo-pr` |
 | The literal agent session needs quiet continuity, proportionate quality nudges, and reusable cross-session wisdom | supporting `olofofo` |
 | One material premise needs an evidence-backed check before agreement or disagreement | `ro-wo` |
-| One idea, plan, decision, document, or code candidate needs conversational exploration, explanation, investigation, research, analysis, or evaluation | `salaye` |
+| One user-supplied subject needs a plain-language explanation for a first-time reader | `salaye` |
 | One issue or bug report needs supplied-evidence-first classification and a next action | `triage-issue` |
 | Supplied work needs consumable vertical tickets with blockers, acceptance, and lifecycle state | `seda-ticket` |
 | A planned or completed refactor needs a parity ledger, or a stateful refactor requires a pre-implementation behavior gate | `audit-refactor-behavior` |

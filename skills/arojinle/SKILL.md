@@ -1,13 +1,13 @@
 ---
 name: arojinle
-description: Resolve material decisions into one confirmed decision tree and durable HTML record. Focus on complete decision frontiers, explicit deferrals, current evidence, and final confirmation.
+description: Resolve a material plan or design through a relentless, complete decision-tree interview, durable domain reconciliation, a visual HTML record, and final user confirmation.
 ---
 
 # Arojinle
 
-Interview the user relentlessly until you reach a shared understanding. Map this as a *design tree*: every decision branches into the decisions that hang off it. Own the decision content, not physical artifact mutation. Use `html-artifact` to create or update the HTML record, then reread and verify the returned artifact before continuing the tree.
+Interview the user relentlessly until you reach a shared understanding. Map this as a design tree: every decision branches into the decisions that hang off it.
 
-Work the tree in *rounds*. The *frontier* is every decision whose prerequisites are already settled — the questions you can ask now without guessing at answers you have not heard yet. Ask the whole frontier in one round: number each question and give your recommended answer. Then wait for the user's answers before the next round.
+Work the tree in rounds. The frontier is every decision whose prerequisites are already settled: the questions you can ask now without guessing at answers you haven't heard yet. Ask the whole frontier in one round: number each question and give your recommended answer. Then wait for the user's answers before the next round.
 
 Each question should be formatted like so:
 
@@ -19,22 +19,10 @@ Each question should be formatted like so:
 ➡️ <your recommended answer>
 ```
 
-Each round the user answers reshapes the tree — settled decisions push the frontier outward and unblock questions that depended on them. Recompute the frontier and ask the next round. A question whose answer depends on another question still open in this round belongs to a later round, not this one.
+Each round the user answers reshapes the tree: settled decisions push the frontier outward and unblock questions that depended on them. Recompute the frontier and ask the next round. A question whose answer depends on another question still open in this round belongs to a later round, not this one.
 
-Finding facts is your job, never the user's. When a frontier question needs a fact from the environment (filesystem, tools, etc.), use a bounded lookup first. Delegate the lookup only when the active host and repository rules permit it and an independent exploration materially helps. Do not ask the user for anything you can look up yourself. Do not block on a running lookup: treat it as an unsettled prerequisite, hold only its downstream questions, and ask the rest of the frontier now. The decisions are the user's — put each to them and wait.
+Finding facts is your job, never the user's. When a frontier question needs a fact from the environment, use a bounded lookup first. Delegate when active rules permit and a fresh independent lookup materially protects the interview context or improves the evidence. Do not ask the user for facts you can find. Do not block on a running lookup: hold only its downstream questions and ask the rest of the frontier. The decisions are the user's: put each to them and wait.
+
+Use with `amose` and `html-artifact`.
 
 The session is done when the frontier is empty: every branch of the design tree visited, nothing left silently assumed. Do not act on it until the user confirms you have reached a shared understanding.
-
-For each confirmed material decision, include an `amose` handoff packet with:
-
-- the decision identifier, packet revision, and exact confirmed decision;
-- its context and constraints;
-- credible alternatives and the real trade-off, or an explicit `none` when the confirmed constraints leave no credible alternative;
-- known consequences;
-- confirmation and decision authority;
-- the exact plan, candidate, or evidence identity; and
-- affected readers, surfaces, and nearest known destination.
-
-Do not invent an alternative, pre-filter the packet, apply the ADR qualification threshold, or mutate repository destinations during the interview. Amọ̀ṣẹ́ owns domain-model reconciliation, ADR qualification, durable-record creation, and lifecycle reconciliation after confirmation.
-
-Increment the packet revision whenever its identifier, decision, context, alternatives, trade-off, consequences, confirmation, authority, identity, readers, surfaces, or destination changes.

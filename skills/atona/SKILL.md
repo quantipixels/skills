@@ -45,17 +45,15 @@ Inspect the evidence needed to prove the current system: relevant parts of root 
 
 When a substantial independent evidence result, specialist gate, or failure-focused readiness challenge would materially help, Atona may request it from a host-provided subagent. Give it the live-plan identity, bounded scope, current evidence, known gaps, and required result. Atona retains plan state, evidence freshness, readiness judgment, implementation state, and closure.
 
-For a new plan or reopened material architecture decision, use `arojinle`. Give it the live plan path, exact decision scope, settled prerequisites, known dependent branches, current evidence, and evidence gaps. Arojinle owns the complete decision frontier and confirmation.
+Use `arojinle` for a new or reopened material architecture decision.
 
 Reuse a confirmed Arojinle result only while its identity remains current: plan and topic, scope and tree revisions, decision identifiers, evidence or candidate identity, confirmation date, and unresolved branches. Its coverage must contain no open, silently waiting, blocking-deferred, or stale branch. Otherwise, keep the plan in `Draft`. Plan edits alone do not satisfy readiness.
 
-Require a current Amọ̀ṣẹ́ project-knowledge packet when project-specific terms, relationships, invariants, scenarios, contexts, boundaries, prior learnings, or ADR state materially affect the architecture. Treat the packet as evidence, not architecture authority. Use `arojinle` for a material decision it exposes.
+Use `amose` when project knowledge materially affects the architecture. Treat its exact-current result as evidence, not architecture authority; use `arojinle` for a material decision it exposes.
 
 When bounded structural, call-flow, data-flow, or impact evidence would close a plan gap, request an exact-current Irinṣẹ result. Treat tool output as investigation evidence and retain architecture judgment in Atona.
 
-Classify each durable conclusion as repository architecture, an architecture decision, project knowledge, ordinary documentation, a local convention, or plan-only information. Record any required Amọ̀ṣẹ́ update with the live-plan identity, confirmed authority, affected model or durable record, and exact candidate. Keep ordinary documentation with the outcome skill changing or verifying the behavior.
-
-Retain every exact-current Arojinle handoff packet associated with the current plan and collect all of them into one Amọ̀ṣẹ́ reconciliation without pre-qualifying or excluding them. Supply the Amọ̀ṣẹ́-owned batch envelope with the live-plan path and revision, ordered member identifiers and packet revisions, current confirmation state, and exact evidence and implementation candidate identities. Any envelope change makes the prior result stale. Amọ̀ṣẹ́ owns ingestion, unchanged echo, aggregate model reconciliation, per-member ADR classification, and durable-record lifecycle. Atona retains plan judgment, readiness, and closure and verifies one exact-current result rather than duplicating the process.
+Classify each durable conclusion as architecture, architecture decision, project knowledge, ordinary documentation, local convention, or plan-only information. Keep ordinary documentation with the outcome owner. Reconcile all exact-current Arojinle results for the plan once through `amose`; any change to the plan, result set, evidence, or implementation candidate makes that reconciliation stale. Atona retains readiness and closure judgment.
 
 Keep the plan in `Draft` while a material project-knowledge conflict is unresolved or a required Amọ̀ṣẹ́ result is missing, blocked, or stale.
 

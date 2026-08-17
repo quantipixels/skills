@@ -62,6 +62,7 @@ Any relevant candidate, evidence, term, relationship, invariant, scenario, bound
 
 Load only the destination contracts that apply:
 
+- read [context.md](references/context.md) to create or reconcile canonical domain language, semantic relationships, or context boundaries;
 - read [learnings.md](references/learnings.md) to create, update, compact, or remove root `.learnings` knowledge;
 - read [nongoals.md](references/nongoals.md) to reconcile durable project-level exclusions; and
 - read [adrs.md](references/adrs.md) to qualify, create, supersede, or maintain architecture decision records.

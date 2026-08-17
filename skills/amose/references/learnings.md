@@ -1,6 +1,6 @@
 # Maintain `.learnings`
 
-Use one optional root `.learnings` file for durable, non-obvious knowledge that can change future implementation, review, debugging, operation, or design work. It may contain canonical terms, rules, patterns, conventions, constraints, architectural nuances, operational knowledge, and gotchas.
+Use one optional root `.learnings` file for durable, non-obvious knowledge that can change future implementation, review, debugging, operation, or design work. It may contain rules, patterns, conventions, constraints, architectural nuances, operational knowledge, and gotchas. Keep canonical domain terms, definitions, semantic relationships, and context boundaries in the project's existing domain-language record or the applicable `CONTEXT.md`; do not duplicate them here.
 
 Preserve an existing human-readable format. Create the file lazily only when useful knowledge exists and creation is authorized. With no existing format, use lightweight Markdown and include only sections with content.
 

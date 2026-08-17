@@ -2,4 +2,4 @@
 "qp-skills": patch
 ---
 
-Clarify and streamline the boundaries among conversational exploration, living session continuity, and point-in-time handoff, including contract transitions and unavailable-source recovery.
+Reduce Ṣàlàyé to plain-language explanation of one user-supplied subject for a first-time reader, and clarify the boundaries between living session continuity and point-in-time handoff, including contract transitions and unavailable-source recovery.

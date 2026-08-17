@@ -5,29 +5,6 @@ description: Think through one material opinion, proposal, assumption, scenario,
 
 # Rò Wò
 
-Assess one material premise before agreeing, disagreeing, or recommending action. Keep the check brief and proportionate.
+Before agreeing, disagreeing, or recommending on one material premise, state the claim and consequence, separate facts, intent, assumptions, and inference, and use the smallest evidence that tests support, counterevidence, controlling assumptions, the strongest credible alternative, missing proof, and any changed actor, channel, dependency, data, authority, or trust boundary through normal, failure, misuse, ownership, recovery, and fallback paths.
 
-## 1. Fix the premise
-
-State the exact claim and the decision or consequence it could change. Separate observed facts, user intent, assumptions, and inference.
-
-Skip a formal challenge for a harmless preference. Do not reopen a settled decision without new material evidence or a changed condition.
-
-## 2. Test it
-
-Use the smallest sufficient evidence to identify:
-
-- evidence for and against the premise;
-- the assumptions that control the result;
-- the strongest credible counterargument or alternative; and
-- missing evidence that could change the judgment.
-
-When the premise introduces or changes an actor, channel, dependency, data flow, authority, or trust boundary, examine the normal path, failure or misuse path, operational owner, recovery, and fallback.
-
-Use `salaye` for open-ended conversational exploration, `iwadi` for a durable primary-source research record, `arojinle` for complete decision closure, and the applicable security owner for deep security analysis. Preserve each owner's exact-current result and do not imitate its workflow.
-
-## 3. Return the judgment
-
-Classify the premise as `SUPPORTED`, `PARTIAL`, `UNSUPPORTED`, or `UNPROVED`. Give the decisive evidence, material counterargument or alternative, affected boundary or failure path when applicable, and an evidence-backed recommendation. If evidence is insufficient, withhold agreement or disagreement and name the smallest useful proof.
-
-Lead with a material disagreement. Do not manufacture objections merely to appear critical.
+Return `SUPPORTED`, `PARTIAL`, `UNSUPPORTED`, or `UNPROVED` with the decisive evidence, material alternative, applicable boundary or failure path, and evidence-backed recommendation; when proof is insufficient, withhold judgment and name the smallest useful proof, do not reopen settled decisions without new evidence, and neither lead with nor invent disagreement unless it materially controls the result.

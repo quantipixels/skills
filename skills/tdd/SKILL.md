@@ -42,11 +42,11 @@ Identify the required behavior, a stable behavior-bearing seam, independent expe
 
 Use Irinṣẹ for bounded structural or impact evidence only when it helps locate the behavior-bearing seam. A tool result does not replace an observed failing test or independent expected value.
 
-Classify the documentation impact for the completed candidate, not every small slice. A destination is required when the candidate changes a public contract, project setup or usage, operational or configuration procedure, or a non-obvious rationale, invariant, ordering rule, ownership rule, compatibility constraint, or security constraint. Update destinations within the owning candidate. When verified work exposes durable project knowledge, report the evidence to the owning workflow for one Amọ̀ṣẹ́ reconciliation; do not invoke it per slice. When no destination is required, report `not applicable` with evidence.
+Classify documentation impact for the completed candidate, not every slice. Update required destinations in the owning candidate. Reconcile newly verified durable project knowledge once through its owner. Otherwise report `not applicable` with evidence.
 
 When a supplied test strategy controls material implementation, verify that it covers the required behavior, suitable seams, expected values, and material failure paths.
 
-When a user decision blocks a slice, `arojinle` owns the interview. Give it the blocked decision, current slice, credible seams, candidate identity, settled facts, assumptions, gaps, and required decision result as starting context. Re-evaluate the seam and red test against the confirmed decision and its affected behavior and proof.
+Use `arojinle` when a material user decision blocks a slice. After confirmation, re-evaluate the seam, red test, and affected proof.
 
 A seam is a stable boundary where a test can observe required behavior without depending on incidental internal structure. Use an agreed seam when one exists. Otherwise, select the nearest behavior-bearing seam. Ask one focused question only when credible seams would produce materially different contracts.
 
