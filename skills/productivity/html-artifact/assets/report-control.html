@@ -1,0 +1,61 @@
+<!--
+Reusable report behavior for HTML Artifact output.
+
+Embed this script in every report after the report content. Give deep-link
+targets stable ids. Add data-print-expand only to details whose contents are
+required in a complete print or PDF. The visual foundation supplies a print
+fallback when JavaScript is unavailable.
+-->
+
+<script>
+  (() => {
+    const openedForPrint = new Set();
+
+    const hashId = () => {
+      try {
+        return decodeURIComponent(window.location.hash.slice(1));
+      } catch {
+        return "";
+      }
+    };
+
+    const revealTarget = () => {
+      const id = hashId();
+      const target = id ? document.getElementById(id) : null;
+      if (!target) return;
+
+      const disclosures = [];
+      let ancestor = target.parentElement;
+      while (ancestor) {
+        if (ancestor.matches("details:not([open])")) disclosures.push(ancestor);
+        ancestor = ancestor.parentElement;
+      }
+      disclosures.reverse().forEach((disclosure) => { disclosure.open = true; });
+      requestAnimationFrame(() => target.scrollIntoView({ block: "start" }));
+    };
+
+    const expandForPrint = () => {
+      document.querySelectorAll("details[data-print-expand]:not([open])").forEach((disclosure) => {
+        openedForPrint.add(disclosure);
+        disclosure.open = true;
+      });
+    };
+
+    const restoreAfterPrint = () => {
+      openedForPrint.forEach((disclosure) => {
+        if (disclosure.isConnected) disclosure.open = false;
+      });
+      openedForPrint.clear();
+    };
+
+    window.addEventListener("hashchange", revealTarget);
+    window.addEventListener("beforeprint", expandForPrint);
+    window.addEventListener("afterprint", restoreAfterPrint);
+
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", revealTarget, { once: true });
+    } else {
+      revealTarget();
+    }
+  })();
+</script>

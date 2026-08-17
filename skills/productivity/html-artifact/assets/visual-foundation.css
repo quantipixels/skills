@@ -1,0 +1,131 @@
+/*
+Behavior-only foundation for HTML Artifact output.
+
+Embed this file in the artifact. It supplies accessibility, resilience, media,
+overflow, reduced-motion, and print plumbing without choosing an aesthetic.
+*/
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+:where(img, picture, svg, video, canvas) {
+  block-size: auto;
+  max-inline-size: 100%;
+}
+
+:where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+  outline: var(--artifact-focus-width, 3px) solid var(--artifact-focus-color, currentColor);
+  outline-offset: var(--artifact-focus-offset, 3px);
+}
+
+.visually-hidden,
+[data-visually-hidden] {
+  block-size: 1px;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  inline-size: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+}
+
+.skip-link {
+  background: Canvas;
+  color: CanvasText;
+  inset-block-start: 0;
+  inset-inline-start: 0;
+  padding: 0.5rem 0.75rem;
+  position: fixed;
+  transform: translateY(-150%);
+  z-index: 10000;
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+.visual-frame,
+[data-overflow-safe] {
+  max-inline-size: 100%;
+  min-inline-size: 0;
+  overflow: auto;
+  overscroll-behavior-inline: contain;
+}
+
+:where([data-report-section], .artifact-section) + :where([data-report-section], .artifact-section) {
+  margin-block-start: var(--artifact-section-gap, clamp(2.5rem, 6vw, 5rem));
+}
+
+:where(.artifact-table-wrap, [data-table-wrap]) {
+  max-inline-size: 100%;
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+}
+
+:where(.artifact-table-wrap, [data-table-wrap]) > table {
+  inline-size: 100%;
+  table-layout: fixed;
+}
+
+:where(.artifact-table-wrap, [data-table-wrap]) :where(th, td) {
+  min-inline-size: 0;
+  overflow-wrap: anywhere;
+  vertical-align: top;
+}
+
+:where(.artifact-long-text, [data-long-text]) {
+  display: block;
+  font-family: ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", monospace;
+  max-inline-size: 100%;
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+:where(.artifact-log, [data-log]) {
+  max-block-size: var(--artifact-log-max-block-size, 32rem);
+  overflow: auto;
+  overscroll-behavior: contain;
+  white-space: pre-wrap;
+}
+
+.print-only {
+  display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@media print {
+  .screen-only,
+  [data-print="hide"] {
+    display: none !important;
+  }
+
+  .print-only {
+    display: revert !important;
+  }
+
+  details[data-print-expand]:not([open]) > :not(summary) {
+    display: block !important;
+  }
+
+  :where(a[href]) {
+    overflow-wrap: anywhere;
+  }
+}

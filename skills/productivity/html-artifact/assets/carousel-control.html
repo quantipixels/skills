@@ -1,0 +1,174 @@
+<!--
+Reusable, style-neutral carousel behavior for HTML Artifact output.
+
+Embed assets/visual-foundation.css first. Replace the comments in the track
+with supplied visual items. Each item needs a stable id, data-carousel-item,
+role="group", aria-roledescription="slide", and a neutral aria-label.
+
+Choose exactly one control composition. The compact composition is active.
+Replace it with one commented alternative when that better fits the artifact.
+Do not keep multiple control sets in the delivered artifact.
+
+Without JavaScript, every item remains visible and the controls remain hidden.
+-->
+
+<style>
+  [data-carousel] { position: relative; }
+  [data-carousel-item][hidden] { display: none !important; }
+
+  [data-carousel-controls] {
+    align-items: center;
+    display: flex;
+    gap: var(--carousel-control-gap, 0.75rem);
+  }
+
+  [data-carousel-position] { font-variant-numeric: tabular-nums; }
+
+  [data-carousel-controls][data-carousel-composition="overlay"] {
+    inset: 0;
+    justify-content: space-between;
+    pointer-events: none;
+    position: absolute;
+  }
+
+  [data-carousel-controls][data-carousel-composition="overlay"] button {
+    pointer-events: auto;
+  }
+
+  [data-carousel-controls][data-carousel-composition="overlay"] [data-carousel-position] {
+    inset-block-end: 0;
+    inset-inline-start: 50%;
+    position: absolute;
+    transform: translateX(-50%);
+  }
+
+  @media print {
+    [data-carousel-controls] { display: none !important; }
+    [data-carousel-item][hidden] { display: block !important; }
+  }
+</style>
+
+<section data-carousel aria-roledescription="carousel" aria-label="[Describe this visual collection]" tabindex="0">
+  <p data-carousel-live data-visually-hidden aria-live="polite" aria-atomic="true"></p>
+
+  <div data-carousel-track>
+    <!--
+    <figure id="variant-a" data-carousel-item role="group" aria-roledescription="slide" aria-label="Variant A">
+      Add one supplied design, prototype, screen, or visual variant here.
+    </figure>
+    -->
+  </div>
+
+  <!-- Compact composition: visible < and > controls with accessible names. -->
+  <div data-carousel-controls data-carousel-composition="compact" data-print="hide" hidden>
+    <button type="button" data-carousel-previous aria-label="Previous item">
+      <span aria-hidden="true">&lt;</span>
+    </button>
+    <output data-carousel-position aria-live="off"></output>
+    <button type="button" data-carousel-next aria-label="Next item">
+      <span aria-hidden="true">&gt;</span>
+    </button>
+  </div>
+
+  <!--
+  Labeled composition: use when visible glyphs and text aid comprehension.
+
+  <div data-carousel-controls data-carousel-composition="labeled" data-print="hide" hidden>
+    <button type="button" data-carousel-previous>
+      <span aria-hidden="true">&lt;</span> Previous
+    </button>
+    <output data-carousel-position aria-live="off"></output>
+    <button type="button" data-carousel-next>
+      Next <span aria-hidden="true">&gt;</span>
+    </button>
+  </div>
+  -->
+
+  <!--
+  Overlay composition: use when controls should sit at the visual edges.
+  The visible glyphs are hidden from assistive technology; aria-label supplies
+  each accessible name. Add artifact-specific contrast and hit-area styles.
+
+  <div data-carousel-controls data-carousel-composition="overlay" data-print="hide" hidden>
+    <button type="button" data-carousel-previous aria-label="Previous item">
+      <span aria-hidden="true">&lt;</span>
+    </button>
+    <output data-carousel-position data-visually-hidden aria-live="off"></output>
+    <button type="button" data-carousel-next aria-label="Next item">
+      <span aria-hidden="true">&gt;</span>
+    </button>
+  </div>
+  -->
+</section>
+
+<script>
+  (() => {
+    const interactiveSelector = "a, button, input, select, textarea, summary, [contenteditable='true']";
+
+    const hashId = () => {
+      try {
+        return decodeURIComponent(window.location.hash.slice(1));
+      } catch {
+        return "";
+      }
+    };
+
+    document.querySelectorAll("[data-carousel]").forEach((carousel) => {
+      const items = Array.from(carousel.querySelectorAll("[data-carousel-item]"));
+      const controls = carousel.querySelector("[data-carousel-controls]");
+      const previous = carousel.querySelector("[data-carousel-previous]");
+      const next = carousel.querySelector("[data-carousel-next]");
+      const position = carousel.querySelector("[data-carousel-position]");
+      const live = carousel.querySelector("[data-carousel-live]");
+      if (!items.length || !controls || !previous || !next || !position || !live) return;
+
+      let current = 0;
+
+      const select = (index, updateHash = false) => {
+        current = Math.max(0, Math.min(index, items.length - 1));
+
+        items.forEach((item, itemIndex) => {
+          item.hidden = itemIndex !== current;
+          item.setAttribute("aria-hidden", itemIndex === current ? "false" : "true");
+        });
+
+        previous.disabled = current === 0;
+        next.disabled = current === items.length - 1;
+        position.textContent = `${current + 1} of ${items.length}`;
+
+        const item = items[current];
+        const label = item.getAttribute("aria-label") || item.id || `Item ${current + 1}`;
+        live.textContent = `${label}. Item ${current + 1} of ${items.length}.`;
+
+        if (updateHash && item.id) {
+          history.replaceState(null, "", `#${encodeURIComponent(item.id)}`);
+        }
+      };
+
+      const selectHash = () => {
+        const id = hashId();
+        const index = items.findIndex((item) => item.id === id);
+        if (index >= 0) select(index);
+      };
+
+      controls.hidden = items.length < 2;
+      previous.addEventListener("click", () => select(current - 1, true));
+      next.addEventListener("click", () => select(current + 1, true));
+
+      carousel.addEventListener("keydown", (event) => {
+        const target = event.target;
+        if (event.defaultPrevented || (target instanceof Element && target.closest(interactiveSelector))) return;
+        if (event.key === "ArrowLeft") select(current - 1, true);
+        else if (event.key === "ArrowRight") select(current + 1, true);
+        else if (event.key === "Home") select(0, true);
+        else if (event.key === "End") select(items.length - 1, true);
+        else return;
+        event.preventDefault();
+      });
+
+      window.addEventListener("hashchange", selectHash);
+      const initial = items.findIndex((item) => item.id === hashId());
+      select(initial >= 0 ? initial : 0);
+    });
+  })();
+</script>

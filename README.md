@@ -1,18 +1,42 @@
 # QP Agent Skills
 
-QP Agent Skills is a portable collection of focused skills for established codebases. It helps you make decisions, plan work, implement changes, review code, and craft checked HTML artifacts from durable records to interactive prototypes.
+QP Agent Skills is a portable collection of focused skills for established codebases. It helps you make decisions, plan work, implement changes, review code, and craft portable HTML artifacts from durable records to interactive prototypes.
 
-The design skills are maintained locally in this repository and run from their bundled guidance and resources.
+Skills are organized into exclusive Engineering, Design, Productivity, and Experimental source groups.
 
 Read the public documentation at [quantipixels.com/skills](https://quantipixels.com/skills).
 
 ## Install
 
+### Recommended setup
+
+Install the recommended Engineering and Productivity groups globally:
+
 ```bash
-npx skills add quantipixels/skills --global
+curl -fsSL https://raw.githubusercontent.com/quantipixels/skills/ori/scripts/install.sh | bash -s -- --engineering --productivity
 ```
 
-Install one or more named skills with `--skill <name>`.
+The script also removes retired identifiers that the Skills CLI attributes to this repository. Add Design or Experimental only when you need those skills.
+
+Install all stable groups, including Design:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/quantipixels/skills/ori/scripts/install.sh | bash
+```
+
+Available flags are `--all`, `--engineering`, `--design`, `--productivity`, and `--experimental`. Group flags can be combined, and duplicates are ignored. If no flag is supplied, the installer uses `--all`. `--all` installs the three stable groups, excludes Experimental, and cannot be combined with another flag.
+
+A group flag adds that group. It does not remove current skills from another group. Retired QP identifiers are the only automatic removals.
+
+### Install with the Skills CLI
+
+To choose individual skills interactively, run:
+
+```bash
+npx skills add quantipixels/skills
+```
+
+The Skills CLI discovers the full portfolio and asks which skills to install. This direct path does not remove retired skills.
 
 ## Uninstall
 
@@ -36,36 +60,22 @@ Use alarina to choose the right QP skill for this request:
 [describe the outcome you need]
 ```
 
-## Outcome processes
+## Engineering skills
 
 | Skill | Use when |
 | --- | --- |
-| `arojinle` | A plan or decision needs a complete decision tree and confirmation |
+| `alaga` | `test-first` mode handles one bounded feature or fix; `job` mode handles a supplied build job through integration, acceptance, reconciliation, and applicable review |
+| `amose` | Project terms, `CONTEXT.md`, domain rules, `.learnings`, `.nongoals`, or ADRs need clarification or reconciliation |
 | `atona` | Architecture or migration work needs one live plan through delivery |
-| `alaga` | One supplied build job needs job-level integration, acceptance, documentation or knowledge reconciliation, or applicable candidate review |
-| `tdd` | One bounded feature or bug fix needs an explicit test-first implementation loop without broader build-job stewardship |
-| `qp-code-review` | Bounded code or a PR/MR needs broad or defect-only review |
-| `seda-pr` | A bounded current-branch change needs commit, push, and a clear ready-for-review GitHub PR or GitLab MR |
-| `wo-pr` | An open PR or MR needs active CI and feedback stewardship through readiness and later changes until explicit stop or closure |
-| `salaye` | An idea, plan, decision, document, or code candidate needs conversational exploration, explanation, investigation, research, analysis, or evaluation |
-| `triage-issue` | One issue or bug report needs supplied-evidence-first assessment before implementation |
-| `seda-ticket` | Supplied work needs consumable vertical tickets with blockers, acceptance, and lifecycle state |
 | `audit-refactor-behavior` | A refactor or rewrite needs a behavior-parity ledger |
-| `html-artifact` | Supplied content, evidence, decisions, diagrams, or design specifications need translation into a checked, portable, highly visual browser artifact |
-
-## Specialists and utilities
-
-| Skill | Use when |
-| --- | --- |
-| `alarina` | You need to choose the shortest QP route for a request |
-| `amose` | Project terms, domain rules, `.learnings`, `.nongoals`, or ADRs need clarification or reconciliation |
-| `simplify` | Changed code or code-local comments need a read-only maintainability review |
-| `handoff` | A conversation needs a compact handoff for another agent or session |
-| `ayewo-igba-ise` | A coding-agent session needs an evidence-backed friction analysis |
-| `iwadi` | A question needs high-trust research from primary sources, captured in a Markdown file |
-| `ko-skill` | A portable agent skill needs creation, revision, or validation |
 | `irinse` | A companion engineering tool needs selection, setup, safe use, or removal |
-| `olofofo` | A literal agent session needs quiet continuity, proportionate quality nudges, and reusable cross-session wisdom |
+| `ko-skill` | `one-skill` mode creates, revises, or validates a skill; `portfolio-audit` mode audits a bounded portfolio |
+| `pare` | An entire repository needs a read-only, coverage-complete audit for material simplifications |
+| `qp-code-review` | `broad`, `maintainability-only`, or `defect-only` review is needed in `general` local/supplied or `provider` PR/MR mode |
+| `seda-pr` | A bounded current-branch change needs commit, push, and a clear ready-for-review GitHub PR or GitLab MR |
+| `seda-ticket` | Supplied work needs consumable vertical tickets with blockers, acceptance, and lifecycle state |
+| `triage-issue` | One issue or bug report needs supplied-evidence-first assessment before implementation |
+| `wo-pr` | An open PR or MR needs active CI and feedback stewardship through readiness and later changes until explicit stop or closure |
 
 ## Design skills
 
@@ -73,7 +83,7 @@ Use `apere` as the end-to-end router, or invoke the narrowest owner directly:
 
 | Skill | Use when |
 | --- | --- |
-| `apere` | A visual request spans brand, UI, graphics, logos, mockups, social assets, or icons |
+| `apere` | A visual request spans specialists or needs its built-in `logo`, `corporate identity program`, `icons`, or `social graphics` mode |
 | `amoye-ui-ux` | UI/UX recommendations need searchable styles, palettes, typography, accessibility, charts, or stack rules |
 | `brand` | Brand voice, identity, assets, or consistency needs a source of truth |
 | `eto-apere` | Tokens, CSS variables, component specs, or theme architecture need definition |
@@ -81,7 +91,28 @@ Use `apere` as the end-to-end router, or invoke the narrowest owner directly:
 | `banner-design` | Social, ad, web hero, cover, or print banners need exact platform constraints |
 | `slides` | Presentations and pitch decks need narrative, layout, and chart guidance |
 
-For React UI work, `asa-oju-ibanisoro` asks for an explicit component-library decision and keeps the local 14-library inventory in `skills/asa-oju-ibanisoro/references/ui-component-libraries.md`.
+For React UI work, `asa-oju-ibanisoro` asks for an explicit component-library decision and keeps the local 14-library inventory in `skills/design/asa-oju-ibanisoro/references/ui-component-libraries.md`.
+
+## Productivity skills
+
+| Skill | Use when |
+| --- | --- |
+| `alarina` | You need to choose the shortest QP route for a request |
+| `arojinle` | A material plan or design needs a complete decision tree, durable records, and final confirmation |
+| `ayewo-igba-ise` | A coding-agent session or bounded multi-session corpus needs an evidence-backed friction and recurrence analysis |
+| `handoff` | A conversation needs a compact handoff for another agent or session |
+| `html-artifact` | Supplied results, purpose-fit reports, analysis, data, decisions, or designs need a portable visual explanation for a zero-context reader |
+| `iwadi` | A question needs high-trust research from primary sources, captured in a Markdown file |
+| `ro-wo` | A material premise needs a brief evidence-backed check before agreement or disagreement |
+| `salaye` | One user-supplied subject needs a plain-language explanation for a first-time reader |
+
+## Experimental skills
+
+Experimental skills require the explicit `--experimental` installer mode and are excluded from `--all`.
+
+| Skill | Use when |
+| --- | --- |
+| `olofofo` | A literal agent session needs quiet continuity, proportionate quality nudges, and reusable cross-session wisdom |
 
 ## Optional agent instructions
 
@@ -89,16 +120,16 @@ Add any of these snippets to your `AGENTS.md`, `CLAUDE.md`, or equivalent agent-
 
 ### Default Olofofo companion
 
-Copy the exact managed block from [Olofofo global activation](skills/olofofo/references/global-activation.md) into the supported global instruction file for your agent. This activates Olofofo after the first material task in each literal session. Olofofo keeps one living record, nudges only for material quality gaps, and curates global OGBON wisdom as evidence without becoming the task owner or changing EMI instructions.
+Copy the exact managed block from [Olofofo global activation](skills/experimental/olofofo/references/global-activation.md) into the supported global instruction file for your agent. This activates Olofofo after the first material task in each literal session. Olofofo keeps one living record, nudges only for material quality gaps, and curates global OGBON wisdom as evidence without becoming the task owner or changing EMI instructions.
 
 ### Companion-tool routing
 
 ```text
-Use Irinṣẹ when a companion tool could materially improve the result. If the required tool is unavailable, explain its benefit and ask before installing or configuring it.
+Use `irinse` when a companion tool could materially improve the result. If the required tool is unavailable, explain its benefit and ask before installing or configuring it.
 ```
 
-### Critical judgment
+### Consider before judgment
 
 ```text
-When the user asks for an opinion, test the premise critically and adversarially, state material counterarguments, and recommend from evidence instead of defaulting to agreement.
+Use `ro-wo` before agreeing or disagreeing with a material premise. Test the evidence, strongest credible alternative, changed boundaries, and failure paths. Withhold judgment when evidence is insufficient. Do not manufacture objections or reopen settled decisions without new material evidence.
 ```
