@@ -3,7 +3,7 @@ name: irinse
 description: Select, install, configure, integrate, use, verify, upgrade, or remove one companion engineering tool. Use when a coding workflow needs bounded evidence from tldr-code, ast-grep, Semgrep, IntelliJ MCP, or another named tool, or when a useful required tool is missing; exclude architecture, implementation, security, maintainability, and review verdicts.
 ---
 
-# Irinṣẹ
+# Irinṣẹ́
 
 Own one companion tool from need through safe readiness and bounded evidence. Let the consuming outcome skill retain its judgment and verdict.
 

@@ -1,0 +1,90 @@
+/*
+Behavior-only foundation for HTML Artifact output.
+
+Embed this file in the artifact. It supplies accessibility, resilience, media,
+overflow, reduced-motion, and print plumbing without choosing an aesthetic.
+*/
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+:where(img, picture, svg, video, canvas) {
+  block-size: auto;
+  max-inline-size: 100%;
+}
+
+:where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+  outline: var(--artifact-focus-width, 3px) solid var(--artifact-focus-color, currentColor);
+  outline-offset: var(--artifact-focus-offset, 3px);
+}
+
+.visually-hidden,
+[data-visually-hidden] {
+  block-size: 1px;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  inline-size: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+}
+
+.skip-link {
+  background: Canvas;
+  color: CanvasText;
+  inset-block-start: 0;
+  inset-inline-start: 0;
+  padding: 0.5rem 0.75rem;
+  position: fixed;
+  transform: translateY(-150%);
+  z-index: 10000;
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+.visual-frame,
+[data-overflow-safe] {
+  max-inline-size: 100%;
+  min-inline-size: 0;
+  overflow: auto;
+  overscroll-behavior-inline: contain;
+}
+
+.print-only {
+  display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@media print {
+  .screen-only,
+  [data-print="hide"] {
+    display: none !important;
+  }
+
+  .print-only {
+    display: revert !important;
+  }
+
+  :where(a[href]) {
+    overflow-wrap: anywhere;
+  }
+}

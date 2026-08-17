@@ -1,11 +1,11 @@
 ---
 name: alaga
-description: Deliver one supplied build job from settled outcome through proved delivery and applicable review. Use when an artifact or working result must be created, changed, assembled, or migrated and an exact reviewed candidate is required; the job can contain one or many delivery units. Exclude pure explanation, bare review, monitoring, publication, and provider lifecycle work unless they support the build.
+description: Deliver one supplied build job from settled outcome through proved delivery and applicable review. Use for one bounded test-first feature or fix, or when an artifact or working result must be created, changed, assembled, or migrated and an exact reviewed candidate is required; the job can contain one or many delivery units. Exclude pure explanation, bare review, monitoring, publication, and provider lifecycle work unless they support the build.
 ---
 
-# Alaga
+# Alága
 
-Deliver one supplied job as a coherent, proved, reviewed result. Own the build job and its integration without taking over the native outcomes or lifecycle of supporting specialists.
+Deliver one supplied job as a coherent, proved, reviewed result. Use `test-first` mode for one bounded feature, fix, or explicit test-first request; otherwise use `job` mode. Both modes use this workflow. Own the build job and its integration without taking over the native outcomes or lifecycle of supporting specialists.
 
 ## Functional workflow
 
@@ -57,7 +57,7 @@ Create one job envelope that maps delivery units to owners, dependencies, native
 
 Read relevant root `.learnings` and the complete root `.nongoals` when present. Preserve confirmed project knowledge. If the job conflicts with `.nongoals`, require Amọ̀ṣẹ́ to record an authorized exception or boundary update before dependent implementation.
 
-Read [living-report.md](references/living-report.md) when evaluating the independent-report threshold at job acceptance. If the job qualifies, use `html-artifact` to create the report. Re-evaluate after decomposition and every material shift; create the report at the first trigger.
+Read [job-report.md](references/job-report.md) when evaluating the independent-report threshold at job acceptance. If the job qualifies, use `html-artifact` to create the report. Re-evaluate after decomposition and every material shift; create the report at the first trigger.
 
 Use `arojinle` when a material user decision remains. Use `atona` when architecture, migration, integration, phase, or recovery decisions must remain active during delivery. Use `seda-ticket` when the supplied work needs consumable vertical tickets. These specialists return exact-current results; Alaga does not copy their procedures or state machines.
 
@@ -67,7 +67,7 @@ Prepare the selected workspace and branch without disturbing unrelated changes. 
 
 Start a persisted ticket only when its exact-current owner result permits it. Refresh its identity, state, dependencies, evidence, and authority before a write. Ticket state never sets job, plan, phase, implementation, or review state.
 
-Use the proof owner appropriate to each unit. Run `tdd` through coherent green slices when production behavior changes. Use focused and affected proof for every unit, then run job-level integration and acceptance proof. A local commit is an optional green-history, rollback, or review boundary only when explicitly authorized; it is not an automatic unit or review trigger.
+Use the proof owner appropriate to each unit. When production behavior changes or the user explicitly requests test-first work, read [`references/tdd.md`](references/tdd.md) and apply it through coherent green slices. Use focused and affected proof for every unit, then run job-level integration and acceptance proof. A local commit is an optional green-history, rollback, or review boundary only when explicitly authorized; it is not an automatic unit or review trigger.
 
 When one unit blocks, continue independent in-scope units within the confirmed horizon. Record the blocker, affected dependencies, completed units, partial proof, and exact resume trigger. Do not continue dependent or unsafe work.
 
@@ -85,14 +85,14 @@ Review each stable candidate once when it is understandable, verifiable, accepta
 
 Request an early bounded review only for material design, security, data-integrity, migration, public-contract, or cross-system risk that would be costly to correct later. It does not replace the final review required for that candidate type.
 
-Use the candidate type and job contract to select review owners. After implementation proof is green, source code and tests require exact-current `simplify` evidence followed by broad `qp-code-review`. Other candidates use their owning specialist's verification and any review its contract requires. Do not substitute code review for a non-code candidate. Treat findings as hypotheses until verified.
+Use the candidate type and job contract to select review owners. After implementation proof is green, source code and tests require broad `qp-code-review`, including its maintainability evidence. Other candidates use their owning specialist's verification and any review its contract requires. Do not substitute code review for a non-code candidate. Treat findings as hypotheses until verified.
 
-Apply behavior-changing code corrections through `tdd`. Apply other corrections through their owning proof workflow. After any correction, pin the new candidate and rerun affected proof and each stale review stage. Resolve each confirmed non-blocking maintainability finding when the correction stays in scope and its delivery risk does not exceed the evidenced benefit. Do not complete the job while a blocking finding or evidence gap remains.
+Apply behavior-changing code corrections through [`references/tdd.md`](references/tdd.md). Apply other corrections through their owning proof workflow. After any correction, pin the new candidate and rerun affected proof and each stale review stage. Resolve each confirmed non-blocking maintainability finding when the correction stays in scope and its delivery risk does not exceed the evidenced benefit. Do not complete the job while a blocking finding or evidence gap remains.
 
 Close a candidate only after its acceptance, proof, documentation, and required review pass. Close the job only after all in-scope units and candidates map to the requested outcome and job-level integration and acceptance proof pass.
 
 ## 4. Report the result
 
-Keep a qualifying living report current under [living-report.md](references/living-report.md). At handoff, confirm that the selected workspace contains the exact reviewed candidate and no intended change remains outside the authorized Git state.
+Keep a qualifying job report current under [job-report.md](references/job-report.md). At handoff, confirm that the selected workspace contains the exact reviewed candidate and no intended change remains outside the authorized Git state.
 
 Report the job boundary, session policy, completed horizon, decisions, delivered units, documentation disposition, proof, review results, ticket transitions, commit state, exact candidate or candidate set, remaining units, blockers, and residual limitations. Return the full absolute path for every plan, report, or other local artifact used with the user.

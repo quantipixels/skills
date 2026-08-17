@@ -2,6 +2,8 @@
 
 Read this file only when supplied material must become an evidence report, living report, or candidate comparison.
 
+Do not use the em dash character (`—`) in visible report copy. Use a colon, comma, parentheses, or a separate sentence instead.
+
 ## Shape the record
 
 Render a **snapshot** by default and show its generation time or evidence cutoff. Render a **living report** only when the owning task says the artifact will receive material updates. Keep stable section, candidate, and evidence anchors; show the last-updated time and evidence cutoff; mark supplied evidence status; and record supplied conclusion or disposition changes in a short revision log. Never replace an earlier conclusion silently.
@@ -14,6 +16,12 @@ Before composing a substantial report, derive one coverage ledger from the suppl
 - **Excluded with reason:** the supplied scope or authority excludes it.
 
 An overview, metric, card, or visual does not replace a required full record. Do not omit an in-scope unit merely because it has no dramatic finding; show its supplied no-finding state or input gap. Before delivery, reconcile the ledger against the final anchors. A structurally valid artifact is incomplete while a material item has no disposition or a claimed deep link has no useful destination.
+
+## Build the visual argument
+
+Select the report's central visual from the highest-priority relationship or result in the coverage ledger. Apply the shared limits on prose and tables.
+
+Treat supplied designs, prototypes, screens, diagrams, and other visual evidence as primary report material. When several are best inspected one at a time, load [prototype patterns](prototype-patterns.md) and use its accessible carousel contract. Do not reduce them to filenames, links, or descriptive prose when they can be shown safely in the artifact.
 
 For a substantial report, translate the supplied structure into this compact reading order when compatible: skip link, title and status, scan summary, local navigation, visual argument, supporting evidence, limitations, resource disclosure, and revision history when applicable. Omit empty sections. Link supplied conclusions and recommendations to their evidence identifiers.
 
@@ -33,4 +41,4 @@ Render one supplied disposition:
 
 Do not assess or fill a missing disposition. Mark it as an input gap. For each supplied disposition, present the supplied reason, dependencies or blockers, re-entry condition, next action, owner, and change evidence when available. Preserve their meaning and surface inconsistencies instead of resolving them.
 
-Verify one before-and-after pair per candidate and its evidence and recommendation links. Return the report lifecycle, coverage-ledger result, unresolved input gaps, and shared delivery fields.
+Return the report lifecycle, coverage-ledger result, unresolved input gaps, and shared delivery fields.

@@ -1,6 +1,6 @@
 ---
 name: qp-code-review
-description: "Judge one bounded code candidate through maintainability and defect review. Focus on exact candidate identity, specialist evidence, credible failure mechanisms, adversarial validation, and an evidence-backed verdict."
+description: "Review one bounded code candidate for maintainability, defects, or both. Focus on exact candidate identity, actionable maintenance cost, credible failure mechanisms, adversarial validation, and an evidence-backed result."
 ---
 
 # Code Review
@@ -22,7 +22,7 @@ Candidate + contract + repository rules
       ▼                      ▼
  Defect-only            Broad review
       │                      │
-      │          Exact-current Simplify result
+      │            Maintainability review
       └───────────┬──────────┘
                   ▼
  Collect changed surface + evidence
@@ -45,13 +45,13 @@ Candidate + contract + repository rules
         └── Yes ──> Refresh head ──> Publish ──> Verify
 ```
 
-Treat an unqualified request for a code review as broad. A broad review uses `simplify` as the maintainability specialist while `qp-code-review` remains the primary outcome owner. Use defect-only scope only when the user explicitly limits the review to defects and excludes maintainability.
+Treat an unqualified request for a code review as broad. Use maintainability-only mode when the user asks only to simplify, improve maintainability, or review code quality without a defect verdict. Use defect-only mode only when the user explicitly excludes maintainability.
 
-For a broad review, require an exact-current `simplify` result that identifies the pinned candidate and gives findings or a clean claim with limitations. Reuse a matching result; if it is missing or stale, obtain a new one. If it remains unavailable, return `INSUFFICIENT_EVIDENCE` with the maintainability gap.
+For maintainability-only and broad review, read [`references/maintainability.md`](references/maintainability.md) and apply it to the pinned candidate. Maintainability-only mode returns that bounded report without running defect discovery or issuing a defect verdict. Broad review requires both maintainability evidence and complete defect discovery before its verdict.
 
-The four defect-discovery branches are logically independent. Every branch and the required broad-review maintainability result must complete or name its evidence gap before adversarial review challenges the findings and clean claims.
+The four defect-discovery branches are logically independent. In broad review, every branch and the maintainability review must complete or name its evidence gap before adversarial review challenges the findings and clean claims.
 
-When it materially improves evidence quality, the primary reviewer may request independent Contract, Standards, Proof, Bug hunt, or `simplify` evidence. Pin every request to the candidate and branch boundary. The primary reviewer retains reconciliation, verdict, and provider writes.
+When it materially improves evidence quality, the primary reviewer may request independent Contract, Standards, Proof, Bug hunt, or maintainability evidence. Pin every request to the candidate and branch boundary. The primary reviewer retains reconciliation, verdict, and provider writes.
 
 Treat proof produced by concurrent commands that share mutable state as contaminated; rerun it in one controlled environment.
 
@@ -84,7 +84,7 @@ Read [`references/finding-contract.md`](references/finding-contract.md). Review 
 - **Proof:** whether tests and other evidence detect incorrect caller-visible behavior.
 - **Bug hunt:** candidate-caused failures in applicable normal, negative, degraded, and hostile conditions.
 
-For a broad review, use `simplify` as the maintainability evidence without repeating its discovery. Send each material `Needs qp-code-review` concern into the applicable defect branch as a hypothesis.
+For a broad review, use the maintainability result without repeating its discovery. Send each material `Needs defect review` concern into the applicable defect branch as a hypothesis.
 
 For the Bug hunt, inspect malformed inputs, negative paths, transactions, retries, concurrency, duplicates, stale state, restart, rollback, version skew, degraded dependencies, resource bounds, and partial completion when applicable. When the candidate reuses state, determine whether its consistency, authorization, freshness, locking, ownership, and transaction-isolation boundary permit reuse. Retain only hypotheses with a credible candidate-caused or candidate-dependent failure mechanism.
 
@@ -94,15 +94,15 @@ Each branch must produce findings, an evidence-backed clean claim, or a named ev
 
 Try to falsify each material defect finding. Restate its failure mechanism and assumptions, search the current candidate for counterevidence and safeguards, trace the path when practical, challenge its scope and consequence, and compare its correction direction with a smaller credible alternative. Classify it as `CONFIRMED`, `NARROWED`, `REJECTED`, `DUPLICATE`, or `UNPROVED`.
 
-For a broad review, verify the `simplify` result against the pinned candidate and blocking criteria without repeating discovery. Challenge a clean claim at the highest-risk changed structure. Classify each confirmed maintainability finding as `BLOCKING` or `NON_BLOCKING` with its maintenance cost; assign defect severity only when the same mechanism is also a defect.
+For a broad review, verify the maintainability result against the pinned candidate and blocking criteria without repeating discovery. Challenge a clean claim at the highest-risk changed structure. Classify each confirmed maintainability finding as `BLOCKING` or `NON_BLOCKING` with its maintenance cost; assign defect severity only when the same mechanism is also a defect.
 
 Challenge each clean claim at the highest-risk changed behaviors. Verify that the discovery branches covered their material failure paths. Record missing proof as an evidence gap. Send a distinct new defect through the same finding validation and classify it as `NEW`. State any material limit on reviewer independence.
 
 Deduplicate findings by failure mechanism and reconcile contradictory claims. In provider mode, classify each prior discussion and new concern as `RESOLVED`, `PARTIAL`, `UNRESOLVED`, `SUPERSEDED`, `OUT_OF_SCOPE`, or `NEW`. A provider-side resolved state does not prove that the issue is fixed.
 
-Verify the candidate identity again. If it changed, discard the verdict, stale line locations, and stale `simplify` result, then rebuild the evidence against the new candidate.
+Verify the candidate identity again. If it changed, discard the result, stale line locations, and stale maintainability evidence, then rebuild the applicable review against the new candidate.
 
-Return one verdict:
+In maintainability-only mode, skip the defect verdict and return the bounded maintainability report from the reference. Otherwise, return one verdict:
 
 - `RECOMMEND_ACCEPT` — no blocking defect or maintainability finding remains and evidence is sufficient.
 - `RECOMMEND_CHANGES` — a confirmed defect or maintainability finding violates the blocking criteria.
@@ -111,6 +111,6 @@ Return one verdict:
 
 ## 4. Report or publish
 
-In general mode, report defect findings first by severity, then maintainability findings by blocking effect and maintenance cost. Then report the verdict, review scope, `simplify` result identity when required, discovery-branch results, proof gaps, residual risk, reviewed boundary, and candidate identity. Do not imply provider or organizational approval.
+In general mode, report defect findings first by severity, then maintainability findings by blocking effect and maintenance cost. Then report the applicable result, review scope, maintainability evidence identity when required, discovery-branch results, proof gaps, residual risk, reviewed boundary, and candidate identity. Do not imply provider or organizational approval.
 
 In provider mode, follow the reporting, publication, failure, and readback contract in [`references/provider-operations.md`](references/provider-operations.md). Keep every write separately authorized and exact-head pinned.

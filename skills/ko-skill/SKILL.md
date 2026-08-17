@@ -1,9 +1,11 @@
 ---
 name: ko-skill
-description: Author, revise, or validate one portable agent skill. Focus on a narrow outcome, a clear invocation boundary, concise instructions, integrated metadata, and proportionate verification.
+description: Author, revise, or validate one portable agent skill, or audit a bounded skill portfolio. Focus on clear ownership, concise instructions, integrated metadata, state consistency, and proportionate verification.
 ---
 
-# Ko Skill
+# Kọ Skill
+
+Use `one-skill` mode and the workflow below for creation, revision, or validation. For `portfolio-audit` mode, read [`references/portfolio-audit.md`](references/portfolio-audit.md), return its read-only audit result, and do not edit, install, remove, enable, publish, or synchronize skills.
 
 ## 1. Define the candidate
 

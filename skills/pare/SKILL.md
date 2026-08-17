@@ -3,7 +3,7 @@ name: pare
 description: Audit an entire codebase for material simplifications in data structures, state, control flow, algorithms, and ownership. Use for a read-only repository-wide review that requires explicit subsystem coverage, independently verified findings, and dependency-aware priorities; exclude bounded change review, defect review, implementation, and architecture planning.
 ---
 
-# Pare
+# Parẹ́
 
 Complete one read-only simplification audit of the current repository. Do not edit repository files, run tests, implement recommendations, change Git state, or use provider writes. Read-only inspection commands and host-provided read-only subagents are allowed.
 

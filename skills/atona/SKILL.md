@@ -3,7 +3,7 @@ name: atona
 description: Maintain one evidence-backed architecture or migration plan across design and delivery. Focus on complete decisions, implementation readiness, clear build handoffs, proof, and documentation consistency.
 ---
 
-# Atona
+# Atọ́nà
 
 Own one live architecture plan from evidence through closure. Keep implementation and review procedures with their owning skills and record their verified results.
 

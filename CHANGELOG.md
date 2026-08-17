@@ -7,7 +7,7 @@ This file records released, user-visible changes to QP Agent Skills. Version `1.
 ### Overview
 
 - Establish QP Agent Skills as a portable collection of focused skills for established codebases.
-- Provide one clean public baseline for decisions, architecture planning, implementation, test-backed delivery, review, and checked HTML artifacts.
+- Provide one clean public baseline for decisions, architecture planning, implementation, test-backed delivery, review, and portable HTML artifacts.
 
 ### Decision and planning
 
@@ -16,15 +16,13 @@ This file records released, user-visible changes to QP Agent Skills. Version `1.
 
 ### Delivery and review
 
-- `alaga` for one supplied build job with one or many delivery units, integrated proof, and the review required by each candidate type.
-- `tdd` for red-green-refactor proof of features and bug fixes.
-- `qp-code-review` for bounded broad or defect-only code review.
-- `simplify` for maintainability and documentation review.
+- `alaga` for bounded test-first changes and supplied build jobs with one or many delivery units, integrated proof, and the review required by each candidate type.
+- `qp-code-review` for bounded maintainability-only, broad, or defect-only code review.
 - `audit-refactor-behavior` for behavior-parity evidence during stateful refactors and rewrites.
 
 ### Artifacts and handoffs
 
-- `html-artifact` for checked, self-contained reports, visualizations, prototypes, demos, and bounded interactive tools, with evidence safeguards for factual records.
+- `html-artifact` for portable visual explanations, reports, prototypes, demos, and bounded interactive tools, with active input-gap requests, zero-context presentation, and evidence safeguards.
 - `handoff` for compact, evidence-backed transfer to another agent or session.
 
 ### Toolkit operation
@@ -33,4 +31,4 @@ This file records released, user-visible changes to QP Agent Skills. Version `1.
 - `irinse` for selecting, configuring, and safely using companion engineering tools.
 - `ayewo-igba-ise` for coding-agent session friction analysis.
 - `iwadi` for high-trust research from primary sources, captured in a Markdown file.
-- `ko-skill` for portable skill creation, revision, and exact-candidate validation.
+- `ko-skill` for portable skill creation, revision, exact-candidate validation, and bounded portfolio audits.

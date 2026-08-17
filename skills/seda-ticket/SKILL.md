@@ -3,7 +3,7 @@ name: seda-ticket
 description: Break a supplied plan, specification, issue, conversation, or work description into consumable delivery tickets. Use when work needs small vertical slices, explicit blockers, acceptance criteria, and a clear startable frontier; exclude persistence, publication, implementation, review, Git, and provider operations.
 ---
 
-# Seda Ticket
+# Ṣẹ̀dá Ticket
 
 Turn supplied work into a confirmed set of tickets that fresh coding agents can implement and verify. Own decomposition and the portable lifecycle semantics only; the caller owns grouping, storage, publication, execution, and lifecycle transitions.
 

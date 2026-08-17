@@ -43,7 +43,7 @@ Assess correctness, decision quality, and efficiency. Report wasted or repeated 
 
 For each warranted recommendation, state its owning surface, the durable fact that makes it applicable beyond the session, the smallest behavioral change, expected benefit, risk, and required proof. Prefer clarifying, merging, moving, or removing instructions over adding another rule. Return no change when no durable structural gap exists.
 
-Use `ko-skill` to assess any recommendation that may create or change a skill and to apply authorized changes. For every authorized correction, use `simplify` to review the exact candidate before finalizing it.
+Use `ko-skill` to assess any recommendation that may create or change a skill and to apply authorized changes. For every authorized correction, use `qp-code-review` in maintainability-only mode on the exact candidate before finalizing it.
 
 For one session, return the executive verdict, evidence boundary, timeline and causal chain, ranked frictions, effective recovery, recommendation assessment, material rejected recommendations, and residual limits.
 

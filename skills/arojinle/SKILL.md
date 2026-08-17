@@ -3,7 +3,7 @@ name: arojinle
 description: Resolve a material plan or design through a relentless, complete decision-tree interview, durable domain reconciliation, a visual HTML record, and final user confirmation.
 ---
 
-# Arojinle
+# Àròjinlẹ̀
 
 Interview the user relentlessly until you reach a shared understanding. Map this as a design tree: every decision branches into the decisions that hang off it.
 

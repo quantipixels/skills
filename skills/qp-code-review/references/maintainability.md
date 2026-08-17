@@ -1,9 +1,4 @@
----
-name: simplify
-description: Review one bounded code change for maintainability. Focus on responsibility, coupling, simplicity, vocabulary, context independence, reuse, efficiency, testability, and useful documentation.
----
-
-# Simplify
+# Maintainability review
 
 Perform one finite, read-only maintainability review. Do not change code, tests, documentation, Git state, provider state, or the review target. Keep functional correctness, security, runtime compatibility, behavioral proof, release readiness, and architecture planning outside this review.
 
@@ -70,7 +65,7 @@ Treat design patterns as tools, not compliance targets. Recommend a named patter
 
 ### Testability and change safety
 
-Review production and test code as maintainable code. Flag hidden dependencies, uncontrolled time or randomness, shared mutable state, oversized fixtures, brittle internal-call assertions, and duplicated test setup only when they make required behavior materially harder to isolate, understand, or verify. Name the observable seam or deterministic input that reduces that cost. Route missing behavioral proof or a correctness concern to `qp-code-review` instead of treating it as a maintainability finding.
+Review production and test code as maintainable code. Flag hidden dependencies, uncontrolled time or randomness, shared mutable state, oversized fixtures, brittle internal-call assertions, and duplicated test setup only when they make required behavior materially harder to isolate, understand, or verify. Name the observable seam or deterministic input that reduces that cost. Record missing behavioral proof or a correctness concern under `Needs defect review` instead of treating it as a maintainability finding.
 
 ### Comments and API documentation
 
@@ -84,7 +79,7 @@ Verify relevant comments, API documentation, domain and operational documentatio
 
 When confirmed project knowledge or decision records are inconsistent with the current candidate or authority, report the drift and its maintenance cost without editing them. Keep their correction with the owning knowledge workflow and ordinary documentation corrections with the outcome owner that changed or verifies the behavior.
 
-List a material behavior, contract, security, or proof concern under `Needs qp-code-review` with its location, bounded scope, reason, evidence, and possible consequence. Treat it as a reference-only, out-of-scope hypothesis, not a maintainability finding or Code Review verdict.
+List a material behavior, contract, security, or proof concern under `Needs defect review` with its location, bounded scope, reason, evidence, and possible consequence. Treat it as a reference-only, out-of-scope hypothesis, not a maintainability finding or Code Review verdict.
 
 ## 3. Reconcile and report
 
@@ -92,4 +87,4 @@ Deduplicate findings and out-of-scope concerns by mechanism. Exclude unsupported
 
 Verify the candidate identity again. Rebuild the review if it changed.
 
-Return maintainability findings first. Then report `Needs qp-code-review` concerns, the reviewed boundary, candidate identity, and residual limitations. Confirm when no focused maintainability finding remains.
+Return maintainability findings first. Then report `Needs defect review` concerns, the reviewed boundary, candidate identity, and residual limitations. Confirm when no focused maintainability finding remains.

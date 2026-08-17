@@ -1,9 +1,4 @@
----
-name: tdd
-description: Implement one feature or bug fix with test-first behavioral proof. Focus on stable seams, regression detection, and verified red-green-refactor results.
----
-
-# Test-Driven Development
+# Test-first implementation
 
 Work in vertical behavior slices. For each slice, write the smallest controlling test set, observe the expected behavior failure, make it pass with the smallest implementation, and then improve the code without changing behavior.
 
@@ -36,7 +31,7 @@ Complete one slice before starting the next.
 
 ## 1. Set the behavior and seam
 
-Read repository instructions and relevant confirmed domain, architecture, decision, and project-knowledge records. Derive scenarios and stable seams from confirmed rules. Report a conflict with a confirmed project boundary to the owning delivery workflow before implementation.
+Read repository instructions and relevant confirmed domain, architecture, decision, and project-knowledge records. Derive scenarios and stable seams from confirmed rules. Report a conflict with a confirmed project boundary to Alaga before implementation.
 
 Identify the required behavior, a stable behavior-bearing seam, independent expected values, and applicable success, negative, boundary, recovery, and interaction cases.
 
@@ -75,7 +70,7 @@ Avoid:
 
 - **Horizontal slicing** — writing every test before any implementation instead of completing one behavior slice at a time.
 
-When the slice needs test doubles, read [mocking.md](mocking.md).
+When the slice needs test doubles, read [tdd-mocking.md](tdd-mocking.md).
 
 ## 2. Prove red
 

@@ -1,11 +1,6 @@
----
-name: skill-portfolio-audit
-description: Audit a bounded agent-skill portfolio across source, installed, active, and published states. Use when the user asks whether all skills are healthy, consistent, reachable, current, or missing a capability.
----
+# Portfolio audit
 
-# Skill Portfolio Audit
-
-Produce one read-only, evidence-backed audit of a declared skill portfolio. Own inventory, cross-skill consistency, state drift, route overlap, missing capability ownership, and portfolio-level recommendations. Keep deep judgment of one skill and all skill changes with `ko-skill`.
+Produce one read-only, evidence-backed audit of a declared skill portfolio. Own inventory, cross-skill consistency, state drift, route overlap, missing capability ownership, and portfolio-level recommendations. Keep deep judgment and changes for one skill with Ko Skill's one-skill workflow.
 
 ## 1. Pin the portfolio
 
@@ -54,7 +49,7 @@ Test the ownership claim against a direct invocation of only the primary skill w
 
 Report a missing capability only when a material recurring outcome has no adequate owner. Require either two independent task records or another durable source that proves recurrence and value. State the records, eligible denominator when known, counterevidence, and why extension of an existing owner is insufficient.
 
-Reject a proposed new skill when the need is one incident, a repository-specific rule, a small check for an existing owner, or an implementation detail. Route an accepted creation or correction to `ko-skill`; this audit does not edit, install, remove, enable, publish, or synchronize skills.
+Reject a proposed new skill when the need is one incident, a repository-specific rule, a small check for an existing owner, or an implementation detail. Return an accepted creation or correction to Ko Skill's one-skill workflow; this audit does not edit, install, remove, enable, publish, or synchronize skills.
 
 For overlaps, preserve distinct owners when their authority, provider, lifecycle, artifact, or completion boundary differs. Recommend the smallest router or description correction that makes selection deterministic. Do not merge workflows only because their verbs are similar.
 

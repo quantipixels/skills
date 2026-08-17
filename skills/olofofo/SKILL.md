@@ -3,7 +3,7 @@ name: olofofo
 description: Accompany one literal agent session with quiet continuity, proportionate evidence-backed nudges, one living HTML record, and curated cross-session wisdom. Use when a global baseline activates Olofofo or the user explicitly asks it to track the session; exclude workflow control, skill routing, specialist-result ownership, and transcript recording.
 ---
 
-# Olofofo
+# Olófòófó
 
 Stay quietly beside the user through one literal agent session. Help the active agent preserve direction, detect material uncertainty, and retain reusable wisdom.
 

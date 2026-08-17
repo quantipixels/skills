@@ -3,76 +3,55 @@ name: alarina
 description: Select the shortest useful route through published QP skills. Focus on one primary outcome owner and only necessary supporting skills.
 ---
 
-# Alarina
+# Alárinà
 
-Map one user prompt to one primary QP skill and any necessary supporting skills. Alarina owns route selection, not the selected specialist workflow.
+Select one primary QP skill for the requested outcome. Respect an explicit user selection. Add a supporting skill only when its result is necessary; separate independent outcomes instead of forcing one owner to absorb them. Routing does not grant mutation, provider, credential, publication, or other missing authority.
 
-## 1. Select the route
+## Route
 
-Use the task's current state and requested outcome. Respect a QP skill that the user explicitly selected. Recommend an additional QP skill only when a clear gap, conflict, or safety condition requires it.
+| Starting outcome | Primary skill | Mode |
+| --- | --- | --- |
+| Select the shortest QP route | `alarina` | — |
+| Clarify or reconcile project terms, rules, knowledge, or decisions | `amose` | — |
+| Resolve or stress-test a material decision with a durable record | `arojinle` | — |
+| Deliver one bounded feature or fix test-first | `alaga` | `test-first` |
+| Deliver a supplied build job through integration and review | `alaga` | `job` |
+| Keep an architecture or migration plan active through delivery | `atona` | — |
+| Audit behavior parity for a stateful refactor or rewrite | `audit-refactor-behavior` | — |
+| Review bounded code for maintainability only | `qp-code-review` | `maintainability-only`; `general` or `provider` target |
+| Review bounded code for defects and maintainability | `qp-code-review` | `broad`; `general` or `provider` target |
+| Review bounded code only for defects | `qp-code-review` | `defect-only`; `general` or `provider` target |
+| Audit an entire repository for simplifications | `pare` | — |
+| Create, revise, or validate one skill | `ko-skill` | `one-skill` |
+| Audit a bounded skill portfolio | `ko-skill` | `portfolio-audit` |
+| Explain a supplied subject to a first-time reader | `salaye` | — |
+| Test one material premise before judgment | `ro-wo` | — |
+| Assess one supplied issue before implementation | `triage-issue` | — |
+| Turn supplied work into consumable vertical tickets | `seda-ticket` | — |
+| Commit, push, and create or reconcile a ready PR or MR | `seda-pr` | — |
+| Monitor an open PR or MR through readiness | `wo-pr` | — |
+| Visualize supplied results, reports, analysis, data, decisions, or designs in a portable browser artifact | `html-artifact` | — |
+| Prepare a compact handoff for another agent or session | `handoff` | — |
+| Analyze one coding-agent session or bounded corpus | `ayewo-igba-ise` | — |
+| Research a question from primary sources into Markdown | `iwadi` | — |
+| Select, configure, use, or remove a companion tool | `irinse` | — |
+| Maintain quiet continuity for the literal agent session | supporting `olofofo` | — |
+| Route an end-to-end visual request | `apere` | specialist route or built-in `logo`, `corporate identity program`, `icons`, `social graphics` |
+| Define or reconcile brand identity | `brand` | — |
+| Define tokens or component specifications | `eto-apere` | — |
+| Implement accessible React/web UI | `asa-oju-ibanisoro` | — |
+| Select evidence-backed UI/UX direction | `amoye-ui-ux` | — |
+| Design a constrained banner, cover, hero, or ad | `banner-design` | — |
+| Create an HTML presentation or pitch deck | `slides` | — |
 
-Choose the shortest route that fully covers the requested outcome. Select one primary skill as the outcome owner. Add supporting skills only when they have a clear role. Do not prescribe a broader process when a direct skill covers the task.
+Use `general` QP Code Review mode for supplied or local candidates and `provider` mode for an active PR or MR. Default an unqualified code review to `broad`. Do not invent a mode that its owner does not define.
 
-When one prompt contains independent outcomes with different owners, return separate routes. Make a skill supporting only when its result is necessary to complete the primary outcome; do not make one skill own unrelated work.
+## Boundaries
 
-Keep ordinary documentation with the outcome skill that changes or verifies the behavior. Routing a skill does not grant source, provider, credential, publication, or mutation authority.
+- Keep a directly selected artifact specialist primary when it fully owns the result.
+- Use Atọ́nà while architecture or migration state remains active, Àròjinlẹ̀ for one new or reopened material decision, and Audit Refactor Behavior before a stateful refactor that can change lifecycle behavior.
+- Keep PR or MR publication with Ṣẹ̀dá PR, monitoring with Wò PR, and review verdicts with QP Code Review.
+- Keep issue triage supplied-evidence-first. Repository reads, provider reads, and provider writes require their own authority.
+- Run Olófòófó only when explicitly requested or activated by a global baseline; it is never the primary owner.
 
-### Resolve overlaps
-
-Use `alaga` for a supplied build job that needs job-level integration, acceptance, knowledge reconciliation, or candidate review. Keep one directly selected specialist primary when it fully owns the artifact. Use `tdd` directly for one bounded test-first feature or fix without broader job stewardship.
-
-Use `atona` while architecture or migration decisions, readiness, delivery state, or closure must remain active. Use `arojinle` for one new or reopened material decision. Before implementing a stateful refactor that can change lifecycle behavior, require `audit-refactor-behavior`.
-
-For code review, use `qp-code-review` with supporting `simplify` by default; omit `simplify` only for an explicitly defect-only review. Use `simplify` alone for one changed-code candidate, `pare` for a complete-repository simplification audit, and `skill-portfolio-audit` for a bounded skill portfolio. Use `ko-skill` for one skill and its authorized changes.
-
-Keep explanation with `salaye`, premise judgment with `ro-wo`, requested stress testing with `grilling`, and complete decision closure with `arojinle`.
-
-Use `seda-pr` for bounded commit, push, and ready PR or MR reconciliation; `wo-pr` for monitoring; and `qp-code-review` for a verdict. Add a verdict to monitoring only when requested or required by repository policy. `triage-issue` starts from supplied evidence; repository reads, provider reads, and provider comments require separate authority.
-
-`olofofo` is supporting-only and runs only when explicitly requested or activated by a global baseline.
-
-| Starting situation | Route |
-| --- | --- |
-| The user needs help selecting the shortest useful QP route | `alarina` |
-| Project terms, `CONTEXT.md`, relationships, invariants, scenarios, `.learnings`, `.nongoals`, or ADRs need clarification or reconciliation | `amose` |
-| An idea, plan, or decision needs complete frontier rounds and a durable record | `arojinle` |
-| One bounded feature or bug fix needs an explicit test-first implementation loop without broader build-job stewardship | `tdd` |
-| One supplied build job needs job-level integration, acceptance, documentation or knowledge reconciliation, or applicable candidate review | `alaga` |
-| Changed code or code-local comments need a read-only maintainability review | `simplify` |
-| An entire repository needs a read-only, coverage-complete audit for material simplifications | `pare` |
-| A bounded skill portfolio needs a read-only audit of inventory, health, state drift, routes, or capability gaps | `skill-portfolio-audit` |
-| Bounded code or an active PR or MR needs broad or defect-only review | `qp-code-review`, with `simplify` for broad review |
-| One bounded current-branch change needs commit, push, and ready-for-review GitHub PR or GitLab MR creation or reconciliation | `seda-pr` |
-| One open GitHub PR or GitLab MR needs persistent pipeline and feedback monitoring | `wo-pr` |
-| The literal agent session needs quiet continuity, proportionate quality nudges, and reusable cross-session wisdom | supporting `olofofo` |
-| One material premise needs an evidence-backed check before agreement or disagreement | `ro-wo` |
-| One user-supplied subject needs a plain-language explanation for a first-time reader | `salaye` |
-| One issue or bug report needs supplied-evidence-first classification and a next action | `triage-issue` |
-| Supplied work needs consumable vertical tickets with blockers, acceptance, and lifecycle state | `seda-ticket` |
-| A planned or completed refactor needs a parity ledger, or a stateful refactor requires a pre-implementation behavior gate | `audit-refactor-behavior` |
-| Supplied content, evidence, decisions, diagrams, or design specifications need translation into one checked, portable HTML artifact or bounded linked variant set | `html-artifact` |
-| Architecture or migration work needs one live plan from decisions through delivery, with a clear next action | `atona` |
-| Brand voice, identity, assets, or consistency | `brand` |
-| Design tokens, CSS variables, component specs, or token migration | `eto-apere` |
-| React/web UI, Tailwind, shadcn/ui, responsive behavior, or accessibility implementation | `asa-oju-ibanisoro` |
-| UI/UX direction, style, palette, typography, stack, or interaction guidance | `amoye-ui-ux` |
-| Social, ad, web-hero, cover, or print banner | `banner-design` |
-| HTML presentation, pitch deck, or data-backed slide story | `slides` |
-| A visual design request spans multiple deliverables and needs one design owner | `apere` |
-| The current conversation needs a safe handoff for another agent | `handoff` |
-| One coding-agent session or bounded multi-session corpus needs an evidence-backed friction, recurrence, and durable-improvement assessment | `ayewo-igba-ise` |
-| A question needs high-trust research from primary sources, captured in a Markdown file | `iwadi` |
-| One portable agent skill needs creation, revision, or validation | `ko-skill` |
-| A companion tool needs selection, installation, configuration, integration, bounded use, verification, or removal | `irinse` |
-
-Check the active skill inventory before returning the route. When the correct owner is unavailable, name it as unavailable and do not substitute another skill.
-
-Ask one focused question only when different answers would select materially different owners. Return no QP route when no published skill fits the requested outcome.
-
-## 2. Report the route
-
-If the user asks only which skill owns the prompt, report the primary skill, one concise reason, and any supporting skills.
-
-If the selected primary skill is unavailable, report the route and missing owner.
-
-State the route only when its choice, trade-off, or unresolved decision affects the user.
+Check the active inventory before returning a route. If the correct owner is unavailable, name it without substituting another skill. Ask one focused question only when the answer selects a materially different owner or mode. Report the primary skill, applicable mode, one concise reason, and necessary supporting skills. Return no QP route when none fits.

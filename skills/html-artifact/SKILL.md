@@ -1,19 +1,19 @@
 ---
 name: html-artifact
-description: Translate supplied material and intended behavior into one checked, accessible, portable visual HTML artifact or bounded linked variant set. Use for reports, visualizations, prototypes, demos, and interactive tools; exclude originating content, design, decisions, or recommendations and building production applications, general sites, backend integrations, deployments, or reusable libraries.
+description: Visualize supplied results, reports, analysis, data, decisions, designs, or behavior as one accessible, portable HTML artifact or bounded linked variant set. Request missing source material when needed for a truthful, useful visual explanation. Exclude originating analysis, design, decisions, or recommendations and building production applications, general sites, backend integrations, deployments, or reusable libraries.
 ---
 
 # HTML Artifact
 
-Translate supplied material into one portable browser artifact or bounded variant set. Own composition, implementation, accessibility, resilience, and checks without changing its meaning or making its decisions.
+Turn supplied material into one portable visual explanation or bounded variant set. Own composition, implementation, accessibility, and resilience without changing its meaning or making its decisions. Do not turn an agent result into a styled dump of paragraphs, tables, or logs.
 
 ## 1. Set the contract
 
 Use the requested or existing path. Otherwise, store a durable record at `.qp/report/<YYYY-MM-DD>-<kind>-<slug>.html`; store another artifact at `.qp/<kind>/<YYYY-MM-DD>-<slug>.html`.
 
-Follow the supplied audience; otherwise write a stand-alone artifact for an unfamiliar third party. State its supplied purpose, scope, and context, explain necessary terms, and keep its content, fallback, styles, and behavior in the HTML.
+Follow the supplied audience; otherwise write for a layperson with no prior context or subject knowledge. Make the artifact stand alone: state what it is about, why it matters, what happened or was learned, and what the reader should notice or do. Explain necessary terms and acronyms at first use. Keep content, fallback, styles, and behavior in the HTML.
 
-Keep facts, analysis, decisions, assumptions, and open questions distinct. Base factual claims on supplied or cited evidence and show missing material, behavior, or authority as an input gap. Do not invent an actor, owner, direction, causal link, sequence, boundary, candidate, criterion, or recommendation to satisfy a visual form; use a neutral annotation when evidence defines no relationship.
+Keep facts, analysis, decisions, assumptions, and open questions distinct. Before implementation, check whether the supplied material contains the context, definitions, analysis, evidence, relationships, data, and visual assets needed for a truthful and useful artifact. Request the smallest missing information or analysis from the owning task or user when it can materially improve the result. Continue with a labeled input gap only when the missing item does not undermine the artifact or cannot be obtained. Do not originate missing analysis or invent an actor, owner, direction, causal link, sequence, boundary, candidate, criterion, or recommendation to satisfy a visual form.
 
 Load branch guidance only when it applies:
 
@@ -24,7 +24,9 @@ Do not load either branch for a simple visualization or bounded tool. If require
 
 ## 2. Render the material visually
 
-Encode the supplied argument instead of decorating it. Lead with supplied conclusions, evidence, status, and risks. Choose the visual form by information shape and reading effort. Give no qualitative judgment false precision without a supplied scale and source. Give every material visual a text summary or accessible data representation that retains chart values and units.
+Encode the supplied argument instead of decorating it. Lead with supplied conclusions, evidence, status, and risks. A substantial artifact needs a central visual representation that makes its main relationship or result easier to understand than prose alone. If the material cannot support one, request the missing structure or report the visual limitation instead of filling the page with text.
+
+Do not default to paragraphs or tables. Use short prose only to orient or interpret a visual. Use a table only for exact mappings or repeated-field comparison that is materially easier to scan in rows and columns. Choose timelines, state or flow maps, annotated comparisons, spatial diagrams, charts, card systems, carousels, or another fitting composition from the information shape. Give no qualitative judgment false precision without a supplied scale and source. Give every material visual a text summary or accessible data representation that retains chart values and units.
 
 Choose the visual system by information shape:
 
@@ -36,11 +38,11 @@ Keep ordered events neutral when evidence defines no relationship: show `09:00 r
 
 Render supplied code, configuration, schema, or text changes with semantic HTML and embedded CSS, not a diff library. Use accessible `+` and `−` labels, non-color cues, high contrast, inline highlights, overflow-safe lines, and source text.
 
-Implement supplied interaction, or add only presentation controls needed to navigate or reveal the same material. Keep a complete reading order without interaction, preserve keyboard operation and visible focus, respect `prefers-reduced-motion`, and do not encode meaning by color alone.
+Implement supplied interaction, or add only presentation controls needed to navigate or reveal the same material. When multiple supplied designs, prototypes, screens, or visual variants are best inspected one at a time, use the carousel contract in [prototype patterns](references/prototype-patterns.md) and embed the bundled [carousel control](assets/carousel-control.html). Keep a complete reading order without interaction, preserve keyboard operation and visible focus, respect `prefers-reduced-motion`, and do not encode meaning by color alone.
 
 Keep outcomes, decisions, current status, material evidence, risks, and next actions visible. Put logs, provenance, superseded detail, and other secondary information that the audience does not need upfront in collapsed semantic `<details>` accordions with clear `<summary>` labels. Do not collapse a blocker, warning, required action, or the only accessible representation of material content.
 
-Embed the bundled [theme control](assets/theme-control.html) in every artifact.
+Embed the bundled [visual foundation](assets/visual-foundation.css) and [theme control](assets/theme-control.html) in every artifact. They supply behavior and resilience only; choose the artifact's visual direction from its material.
 
 ## 3. Apply resource and portability rules
 
@@ -67,18 +69,10 @@ Show one status near the title:
 - **Network-enhanced:** the HTML is complete offline, but a disclosed runtime resource changes presentation or behavior.
 - **Companion bundle:** adjacent approved files are required; list them and do not describe the HTML alone as self-contained.
 
-## 4. Verify and deliver
+## 4. Deliver
 
-Run `python3 scripts/verify-artifact.py <path>` for deterministic structure checks. Treat its result as evidence for **Structure checked** only; correct every error and assess warnings. For reports, also reconcile the coverage ledger and living-record surfaces. Use the lightest additional check that can disprove promised behavior. Smoke-test the primary action and one relevant state or failure path. Use full browser/UI checks only for design work, explicit visual proof, or browser-dependent acceptance. Parse Mermaid and inspect its fallback; render only when layout matters. Inspect representative diffs and overflow.
+Do not verify the artifact unless the user explicitly requests verification. Do not run a browser or UI check as part of this skill.
 
-Report only the independent labels completed:
+Return the direct absolute path or host-rendered link, with a bundle index first. Add no opener script unless requested or repeatedly needed. Use a temporary preview URL only when requested non-UI testing requires HTTP; identify it as transport, not a dependency. If preview fails, return durable files, blocker, and completed requested checks without claiming success.
 
-- **Structure checked:** content, links, policy, and fallbacks were inspected.
-- **Function smoke checked:** primary behavior and one relevant state or failure path were exercised.
-- **UI checked:** relevant browser states and viewports were inspected.
-
-Verification does not prove the artifact's factual claims or product assumptions.
-
-Return the direct absolute path or host-rendered link, with a bundle index first. Add no opener script unless requested or repeatedly needed. Use a temporary preview URL only when testing requires HTTP; identify it as transport, not a dependency. If preview fails, return durable files, blocker, and completed checks without claiming success.
-
-Return portability status, completed verification labels, limitations, network needs, and external-resource disclosure. For a report, also return lifecycle, coverage disposition, and unresolved input gaps.
+Return portability status, limitations, network needs, and external-resource disclosure. For a report, also return lifecycle, coverage disposition, and unresolved input gaps.
