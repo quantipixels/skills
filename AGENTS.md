@@ -2,7 +2,7 @@ When creating, updating, or validating a skill, use `ko-skill`.
 
 Do not add or generate a `default_prompt` field in skill agent metadata.
 
-Keep every skill in exactly one `skills/engineering`, `skills/design`, `skills/productivity`, or `skills/experimental` group. When a skill is added, removed, renamed, moved, or rerouted, reconcile its group, [`alarina`](./skills/productivity/alarina/SKILL.md), and `README.md`.
+Keep every skill in exactly one `skills/engineering`, `skills/design`, `skills/productivity`, or `skills/experimental` group. When a skill is added, removed, renamed, moved, or rerouted, reconcile its group, [`.claude-plugin/plugin.json`](./.claude-plugin/plugin.json), [`alarina`](./skills/productivity/alarina/SKILL.md), and `README.md`.
 
 ## Evaluation policy
 

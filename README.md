@@ -16,6 +16,21 @@ npx skills add quantipixels/skills --global
 
 Follow the Skills CLI prompts to choose skills and target agents. The command does not remove retired skills.
 
+### Install from a local checkout
+
+```bash
+npx skills add .
+```
+
+The local selection groups the portfolio under `Qp Skills` (`qp-skills`). Its Claude display name and repository identity remain `quantipixels/skills`.
+
+### Install in Claude Code
+
+```bash
+claude plugin marketplace add quantipixels/skills
+claude plugin install qp-skills@qp-skills
+```
+
 ## Uninstall
 
 Remove all globally installed QP skills:
