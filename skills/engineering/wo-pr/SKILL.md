@@ -25,7 +25,7 @@ Read [provider-operations.md](references/provider-operations.md) before provider
 
 ## Observe
 
-Do not run explanation or code review as preparation. Use `qp-code-review` only when requested or required by repository policy, and keep its exact-head verdict separate.
+Do not run explanation or code review as preparation. Use `atunwo` only when requested or required by repository policy, and keep its exact-head verdict separate.
 
 Run the bundled read-only observer from this skill directory:
 

@@ -13,7 +13,7 @@ Read repository instructions, relevant code, tests, configuration, history, deci
 
 Pin the input candidate and authority. Separate observed behavior, established practice, confirmed knowledge, proposals, and decisions requiring authority. Code proves current behavior, not automatic domain intent. Report conflicts instead of silently choosing.
 
-When supplied an Atona decision batch, pin and echo its envelope unchanged: live-plan path and revision, ordered member identifiers and packet revisions, confirmation state, evidence identity, and implementation candidate identity. Treat any envelope change as a new candidate. Reconcile every member without pre-filtering and return one ADR classification for each member.
+When supplied an `atona` decision batch, pin and echo its envelope unchanged: live-plan path and revision, ordered member identifiers and packet revisions, confirmation state, evidence identity, and implementation candidate identity. Treat any envelope change as a new candidate. Reconcile every member without pre-filtering and return one ADR classification for each member.
 
 Read relevant parts of an existing project knowledge equivalent before proposing `.learnings`. Do not create a competing source of truth without agreement. Without write authority, return the required reconciliation without changing files.
 
@@ -48,7 +48,7 @@ Conflicts
 - <statement, document, code, or test conflict; or none>
 
 Open decisions
-- <material choice requiring Arojinle; or none>
+- <material choice requiring `arojinle`; or none>
 
 Durable learnings
 - <verified non-obvious knowledge worth preserving>
@@ -78,7 +78,7 @@ If the user corrects a learning, update or supersede it, reconcile dependent rec
 Return:
 
 ```text
-Amose result
+`amose` result
 Input candidate: <identity>
 Final candidate: <post-write identity or unchanged>
 Authority: <confirmed source and scope>

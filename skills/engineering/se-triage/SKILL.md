@@ -1,9 +1,9 @@
 ---
-name: triage-issue
+name: se-triage
 description: Assess one reported issue from supplied evidence before implementation. Use when the user asks to triage, validate, reproduce, classify, or decide the next step for a GitHub issue, GitLab issue, bug report, or incident report; stay local by default and require separate explicit permission for source inspection, provider reads, and one provider comment.
 ---
 
-# Triage Issue
+# Ṣe Triage
 
 Assess one report and select the smallest evidence-backed next action. Do not implement a fix, review a code candidate, manage the issue backlog, or mutate provider state except for one explicitly authorized triage comment.
 

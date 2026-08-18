@@ -11,7 +11,7 @@ Own one companion tool from need through safe readiness and bounded evidence. Le
 
 Identify the question the tool should answer, the candidate identity, required evidence, acceptable fallback, mutation authority, and freshness boundary. Pin a commit or tree when it completely identifies the analyzed state. For staged, unstaged, or supplied changes, add a fixed snapshot or content digest that includes every analyzed uncommitted path; HEAD alone is not that candidate. Prefer direct source reading and existing safe tools when they answer the question proportionately.
 
-Select the smallest useful tool. Do not recommend every missing tool or route ordinary shell search through Irinṣẹ. Load only the selected reference:
+Select the smallest useful tool. Do not recommend every missing tool or route ordinary shell search through `irinse`. Load only the selected reference:
 
 - [tldr-code](references/tldr-code.md) for compact structural, flow, impact, quality, or security leads;
 - [ast-grep](references/ast-grep.md) for syntax-aware search or structural rewriting;
@@ -50,7 +50,7 @@ After setup, upgrade, integration, removal, or rollback, verify the intended sta
 Return:
 
 ```text
-Irinse result
+Irinṣẹ result
 Need: <bounded question>
 Candidate: <exact identity>
 Tool: <name and version>

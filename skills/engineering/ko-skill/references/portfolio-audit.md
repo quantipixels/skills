@@ -1,62 +1,51 @@
 # Portfolio audit
 
-Produce one read-only, evidence-backed audit of a declared skill portfolio. Own inventory, cross-skill consistency, state drift, route overlap, missing capability ownership, and portfolio-level recommendations. Keep deep judgment and changes for one skill with Ko Skill's one-skill workflow.
+Use only for a bounded portfolio audit. Produce one read-only, evidence-backed audit of the declared portfolio. Keep changes and deep single-skill judgment in `ko-skill`'s shared workflow.
 
-## 1. Pin the portfolio
+## Pin the inventory
 
-Record the requested outcome, time boundary, filesystem roots, repositories, package or plugin sources, active catalog, published surfaces, exclusions, and authority. Resolve each supplied path before counting it.
+Record the outcome, observation time, roots, repositories, package sources, active catalog, published surfaces, exclusions, and authority. Resolve supplied paths before counting.
 
-Define these states separately:
+Track each state separately:
 
-- **source**: the maintained skill candidate and its repository integration;
-- **installed**: a physical copy available to an agent runtime;
-- **active**: a skill exposed by the current runtime or enabled package;
-- **published**: a version available from a confirmed distribution surface.
+- `source`: maintained candidate and repository integration;
+- `installed`: physical runtime copy;
+- `active`: skill exposed by the current runtime or enabled package;
+- `published`: version on a confirmed distribution surface.
 
-Do not infer active or published state from a cache, config entry, source checkout, or installed directory alone. When a state cannot be verified, record an evidence gap instead of parity.
+Build one canonical inventory row per distinct skill: name, source/package identity, observed states, observation time, version or digest, and evidence. Deduplicate symlinks, caches, aliases, and identical package versions. State every count's denominator and exclusions. Any source, package, manifest, catalog, installation, activation, or publication change makes dependent parity evidence stale.
 
-Build a canonical inventory. Give every distinct skill one row with its canonical name, source and package identity, observed states, version or digest when available, and evidence location. Deduplicate symlinks, cache copies, aliases, resumed records, and identical package versions. Report the denominator and exclusions used by every portfolio count.
+## Check the portfolio
 
-## 2. Check every inventory row
+Run deterministic structural checks across the declared inventory before semantic review:
 
-Run deterministic structural checks before semantic review. For each applicable skill, verify:
+- frontmatter, metadata, references, scripts, templates, and resources;
+- package, manifest, catalog, router, and canonical-name consistency;
+- exact identity or digest for every claimed state parity;
+- each provider-capable owner's complete applicable repository safety contract; and
+- deterministic ownership or route collisions.
 
-- required `SKILL.md` frontmatter and metadata;
-- referenced files, scripts, templates, and resources resolve inside the skill contract;
-- package, manifest, catalog, and router entries agree with the canonical name and user-reachable purpose;
-- source, installed, active, and published identities or digests agree where parity is claimed;
-- provider-capable skills retain their own authority, host trust, credential, pagination, readback, and untrusted-content rules;
-- no description or route makes two skills primary owners of the same unqualified outcome without an explicit tie-break rule.
+Classify each row as `no finding in declared checks | finding | evidence gap | excluded | not applicable`. Structural success does not prove behavioral quality.
 
-Classify every row as `no finding in declared checks`, `finding`, `evidence gap`, `excluded`, or `not applicable`. A successful parser or link check proves structure only; it does not prove behavioral quality.
+Inspect semantic content by stated risk: collisions, missing owners, stale references, state drift, security-sensitive behavior, and broad or duplicated contracts. For a large portfolio, check all structural surfaces and disclose semantic sampling; never claim unsampled skills are behaviorally sound.
 
-Use risk-weighted semantic inspection for collisions, missing owners, stale references, state drift, security-sensitive behavior, and unusually broad or duplicated contracts. For a large portfolio, inspect all structural surfaces and sample semantic content by stated risk rules. Do not claim that unsampled skills are behaviorally sound.
+For every supporting relationship, compare the caller with the dependency owner. Confirm that the caller supplies inputs and consumes a result instead of repeating the dependency's procedure, resources, checks, statuses, output schema, or lifecycle derivation. Do not flag caller-owned integration, acceptance, freshness, authority, recovery, or stop gates, or an independently required safety contract.
 
-## 3. Reconcile capabilities
+## Map ownership
 
-Create one capability map from user outcomes to primary owners and explicit supporting relationships. Compare it with the active inventory and public catalog.
+Map user outcomes to primary owners and explicit supporting relationships. Classify each relationship:
 
-For each primary QP owner, inspect its declared workflow and sampled real use for complementary responsibilities supplied by another skill. Classify each relationship before recommending a change:
+- `core`: the primary cannot complete its outcome without the behavior;
+- `specialist`: separate authority, artifact, lifecycle, or acceptance boundary;
+- `optional`: useful enrichment with a safe fallback; or
+- `duplicate`: the same unqualified outcome and completion boundary.
 
-- **core requirement**: the primary skill cannot complete its own declared outcome correctly without the other skill's rules or result;
-- **independent specialist**: the supporting result has its own authority, artifact, lifecycle, or acceptance boundary;
-- **optional enrichment**: the supporting result can improve evidence or quality, but its absence does not prevent a correct primary outcome; or
-- **duplicate ownership**: both skills claim the same unqualified outcome and completion boundary.
+Keep vendor-neutral core behavior in the primary owner. Preserve specialists as handoffs and optional work as optional. Consolidate duplicates only when current behavior and caller evidence prove replacement without loss. Use direct invocation of the primary when material uncertainty justifies behavioral proof.
 
-Require a QP-owned primary skill to contain the instructions needed for its core requirements. When an external skill supplies a missing core rule, recommend that the QP owner adopt the necessary vendor-neutral behavior; do not recommend changing, removing, or routing through the external skill. Preserve an independent specialist as an explicit handoff. Keep optional enrichment optional and require a safe fallback when its absence could otherwise block the workflow. Consolidate duplicate QP ownership only after current behavior and caller evidence show that one owner can replace the other without loss.
+Report a missing skill only from durable evidence of a recurring valuable outcome with no adequate owner. Reject one incident, repository policy, a small check, or an implementation detail; prefer extending the existing owner. Preserve overlaps when authority, provider, lifecycle, artifact, or completion differs, and prefer the smallest routing correction.
 
-Test the ownership claim against a direct invocation of only the primary skill when behavioral evidence is justified and available. If the skill cannot complete its declared outcome, report the exact missing responsibility and evidence gap. Do not infer ownership from an installed path, name similarity, or one composed session.
+## Verify and report
 
-Report a missing capability only when a material recurring outcome has no adequate owner. Require either two independent task records or another durable source that proves recurrence and value. State the records, eligible denominator when known, counterevidence, and why extension of an existing owner is insufficient.
+Verify every finding against exact-current files and observed states. Separate defects from optimizations, deduplicate by mechanism, and rank by user impact, recurrence, safety, reachability, and correction cost. Assign an owner and `do now | defer | needs evidence | no action`; preserve accepted deferrals.
 
-Reject a proposed new skill when the need is one incident, a repository-specific rule, a small check for an existing owner, or an implementation detail. Return an accepted creation or correction to Ko Skill's one-skill workflow; this audit does not edit, install, remove, enable, publish, or synchronize skills.
-
-For overlaps, preserve distinct owners when their authority, provider, lifecycle, artifact, or completion boundary differs. Recommend the smallest router or description correction that makes selection deterministic. Do not merge workflows only because their verbs are similar.
-
-## 4. Verify findings and report
-
-Verify every finding against the exact current file, package, catalog, runtime, or distribution state that supports it. Separate confirmed defects from optimization ideas. Deduplicate findings by owning mechanism and identify the smallest correction surface.
-
-Rank recommendations by user impact, recurrence, safety, reachability, and correction cost. Give each one an owner and disposition: `do now`, `defer`, `needs evidence`, or `no action`. Preserve explicit user deferrals.
-
-Return the evidence boundary; normalized inventory and denominators; structural results; source-installed-active-published drift matrix; route and capability map; confirmed findings; evidence gaps; rejected recommendations; prioritized actions; and limitations. State clearly that no finding means “no issue found within the declared checks,” not “all skills are optimal.”
+Return the evidence boundary, normalized inventory and denominators, structural results, state-drift matrix, capability/route map, confirmed findings, evidence gaps, rejected recommendations, prioritized actions, and limitations. “No finding” means no issue found within declared checks, not that every skill is optimal.

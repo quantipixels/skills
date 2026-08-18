@@ -1,0 +1,558 @@
+<!doctype html>
+<html lang="en" data-theme="light" data-theme-source="system">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Agent workflow issue map | 2 to 18 August 2026</title>
+  <meta name="description" content="A visual audit of recurring workflow, reporting, skill, configuration, technical, and project issues found across the reviewed coding-agent sessions.">
+  <script>
+    (() => {
+      const media = window.matchMedia("(prefers-color-scheme: dark)");
+      const root = document.documentElement;
+      root.dataset.theme = media.matches ? "dark" : "light";
+      root.dataset.themeSource = "system";
+    })();
+  </script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    [hidden] { display: none !important; }
+    :where(img, picture, svg, video, canvas) { block-size: auto; max-inline-size: 100%; }
+    :where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+      outline: var(--artifact-focus-width, 3px) solid var(--artifact-focus-color, currentColor);
+      outline-offset: var(--artifact-focus-offset, 3px);
+    }
+    .visually-hidden, [data-visually-hidden] {
+      block-size: 1px; clip: rect(0 0 0 0); clip-path: inset(50%); inline-size: 1px;
+      overflow: hidden; position: absolute; white-space: nowrap;
+    }
+    .skip-link {
+      background: Canvas; color: CanvasText; inset-block-start: 0; inset-inline-start: 0;
+      padding: .5rem .75rem; position: fixed; transform: translateY(-150%); z-index: 10000;
+    }
+    .skip-link:focus { transform: translateY(0); }
+    .visual-frame, [data-overflow-safe] {
+      max-inline-size: 100%; min-inline-size: 0; overflow: auto; overscroll-behavior-inline: contain;
+    }
+    :where([data-report-section], .artifact-section) + :where([data-report-section], .artifact-section) {
+      margin-block-start: var(--artifact-section-gap, clamp(2.5rem, 6vw, 5rem));
+    }
+    :where(.artifact-table-wrap, [data-table-wrap]) {
+      max-inline-size: 100%; overflow-x: auto; overscroll-behavior-inline: contain;
+    }
+    :where(.artifact-table-wrap, [data-table-wrap]) > table { inline-size: 100%; table-layout: fixed; }
+    :where(.artifact-table-wrap, [data-table-wrap]) :where(th, td) {
+      min-inline-size: 0; overflow-wrap: anywhere; vertical-align: top;
+    }
+    :where(.artifact-long-text, [data-long-text]) {
+      display: block; font-family: ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", monospace;
+      max-inline-size: 100%; overflow-wrap: anywhere; white-space: pre-wrap; word-break: break-word;
+    }
+    :where(.artifact-log, [data-log]) {
+      max-block-size: var(--artifact-log-max-block-size, 32rem); overflow: auto;
+      overscroll-behavior: contain; white-space: pre-wrap;
+    }
+    .print-only { display: none; }
+
+    :root {
+      color-scheme: light dark;
+      --ink: #172033;
+      --muted: #5b6475;
+      --paper: #f4f0e8;
+      --surface: #fffdf8;
+      --surface-2: #eae4d8;
+      --line: #d0c6b7;
+      --navy: #172a46;
+      --teal: #067f75;
+      --amber: #b86c10;
+      --coral: #b84539;
+      --violet: #6956a8;
+      --green: #3b7658;
+      --shadow: 0 18px 46px rgb(23 32 51 / .10);
+      --artifact-focus-color: #067f75;
+      --artifact-section-gap: clamp(3rem, 7vw, 6rem);
+    }
+    html[data-theme="dark"] {
+      --ink: #edf1f7;
+      --muted: #b1bac8;
+      --paper: #101722;
+      --surface: #172130;
+      --surface-2: #222f40;
+      --line: #34465c;
+      --navy: #9bbdea;
+      --teal: #55d4c4;
+      --amber: #f1b55e;
+      --coral: #ff8d83;
+      --violet: #c1afff;
+      --green: #87c9a4;
+      --shadow: 0 18px 46px rgb(0 0 0 / .28);
+      --artifact-focus-color: #55d4c4;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0; background:
+        radial-gradient(circle at 10% 0%, color-mix(in srgb, var(--amber) 11%, transparent), transparent 28rem),
+        radial-gradient(circle at 95% 15%, color-mix(in srgb, var(--teal) 10%, transparent), transparent 32rem),
+        var(--paper);
+      color: var(--ink); font: 16px/1.55 Inter, ui-sans-serif, system-ui, sans-serif;
+    }
+    a { color: var(--teal); text-underline-offset: .18em; }
+    h1, h2, h3 { font-family: Georgia, "Times New Roman", serif; line-height: 1.05; margin: 0; }
+    h1 { font-size: clamp(2.8rem, 7vw, 6.8rem); letter-spacing: -.055em; max-inline-size: 13ch; }
+    h2 { font-size: clamp(2rem, 4vw, 3.8rem); letter-spacing: -.035em; }
+    h3 { font-size: 1.35rem; letter-spacing: -.015em; }
+    p { margin: .7rem 0 0; }
+    .wrap { inline-size: min(1180px, calc(100% - 2rem)); margin-inline: auto; }
+    header { padding: clamp(3rem, 8vw, 7rem) 0 2rem; }
+    .eyebrow {
+      color: var(--teal); font-size: .76rem; font-weight: 800; letter-spacing: .13em;
+      margin-block-end: 1rem; text-transform: uppercase;
+    }
+    .lede { color: var(--muted); font-size: clamp(1.05rem, 2vw, 1.35rem); max-inline-size: 70ch; }
+    .status-row { display: flex; flex-wrap: wrap; gap: .65rem; margin-block-start: 1.4rem; }
+    .pill, .state {
+      align-items: center; border: 1px solid var(--line); border-radius: 999px; display: inline-flex;
+      font-size: .76rem; font-weight: 800; gap: .4rem; letter-spacing: .04em; padding: .42rem .7rem;
+      text-transform: uppercase;
+    }
+    .dot { background: var(--teal); border-radius: 50%; block-size: .48rem; inline-size: .48rem; }
+    nav {
+      backdrop-filter: blur(14px); background: color-mix(in srgb, var(--paper) 86%, transparent);
+      border-block: 1px solid var(--line); inset-block-start: 0; position: sticky; z-index: 20;
+    }
+    nav .wrap { display: flex; gap: .35rem; overflow-x: auto; padding-block: .55rem; }
+    nav a { border-radius: .45rem; color: var(--muted); flex: 0 0 auto; font-size: .82rem; padding: .45rem .6rem; text-decoration: none; }
+    nav a:hover { background: var(--surface-2); color: var(--ink); }
+    main { padding-block: 3rem 7rem; }
+    .section-head { align-items: end; display: flex; gap: 2rem; justify-content: space-between; margin-block-end: 1.5rem; }
+    .section-head p { color: var(--muted); max-inline-size: 50ch; }
+    .metrics { display: grid; gap: 1rem; grid-template-columns: repeat(4, 1fr); }
+    .metric, .card, details, .flow-shell {
+      background: color-mix(in srgb, var(--surface) 96%, transparent); border: 1px solid var(--line);
+      border-radius: 1rem; box-shadow: var(--shadow);
+    }
+    .metric { min-block-size: 9rem; padding: 1.25rem; }
+    .metric strong { display: block; font: 700 clamp(2rem, 4vw, 3.4rem)/1 Georgia, serif; }
+    .metric span { color: var(--muted); display: block; margin-block-start: .6rem; }
+    .verdict { border-inline-start: .45rem solid var(--coral); margin-block-start: 1rem; padding: 1.3rem 1.5rem; }
+    .verdict strong { color: var(--coral); }
+    .flow-shell { padding: clamp(1rem, 3vw, 2rem); }
+    .flow-summary { color: var(--muted); margin-block-start: 1rem; }
+    .flow-grid { display: grid; gap: .65rem; grid-template-columns: repeat(5, 1fr); margin-block-start: 1.4rem; }
+    .flow-node { border: 1px solid var(--line); border-radius: .8rem; min-block-size: 9.5rem; padding: 1rem; position: relative; }
+    .flow-node:not(:last-child)::after {
+      color: var(--amber); content: "→"; font-size: 1.4rem; font-weight: 900; inset-inline-end: -.78rem;
+      inset-block-start: 45%; position: absolute; z-index: 2;
+    }
+    .flow-node b { color: var(--teal); display: block; font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; }
+    .flow-node span { display: block; font-weight: 800; margin-block-start: .45rem; }
+    .flow-node p { color: var(--muted); font-size: .86rem; }
+    .filters { display: flex; flex-wrap: wrap; gap: .55rem; margin: 1rem 0 1.3rem; }
+    .filter {
+      background: var(--surface); border: 1px solid var(--line); border-radius: 999px; color: var(--ink);
+      cursor: pointer; font: inherit; font-size: .8rem; font-weight: 800; padding: .5rem .8rem;
+    }
+    .filter[aria-pressed="true"] { background: var(--navy); border-color: var(--navy); color: var(--paper); }
+    .issue-grid { display: grid; gap: 1rem; grid-template-columns: repeat(2, 1fr); }
+    .card { padding: 1.2rem; }
+    .card[hidden] { display: none; }
+    .card-head { align-items: start; display: flex; gap: .75rem; justify-content: space-between; }
+    .state { flex: 0 0 auto; font-size: .66rem; }
+    .state.resolved { color: var(--green); }
+    .state.partial { color: var(--amber); }
+    .state.open { color: var(--coral); }
+    .state.deferred { color: var(--violet); }
+    .state.stale { color: var(--coral); border-style: dashed; }
+    .issue-copy { color: var(--muted); }
+    .desired { border-block-start: 1px solid var(--line); margin-block-start: 1rem; padding-block-start: .85rem; }
+    .desired b { color: var(--teal); font-size: .75rem; letter-spacing: .06em; text-transform: uppercase; }
+    .desired p { color: var(--ink); font-size: .92rem; }
+    .category { color: var(--amber); font-size: .68rem; font-weight: 900; letter-spacing: .1em; text-transform: uppercase; }
+    .callout { background: var(--navy); border-radius: 1rem; color: var(--paper); margin-block-start: 1rem; padding: 1.4rem; }
+    html[data-theme="dark"] .callout { color: #101722; }
+    .callout strong { color: var(--amber); }
+    details { overflow: clip; }
+    details + details { margin-block-start: .75rem; }
+    summary { cursor: pointer; font-weight: 850; padding: 1rem 1.2rem; }
+    details[open] summary { border-block-end: 1px solid var(--line); }
+    .detail-body { padding: 1rem 1.2rem 1.3rem; }
+    .project-grid { display: grid; gap: .8rem; grid-template-columns: repeat(3, 1fr); }
+    .project { background: var(--surface-2); border-radius: .8rem; padding: 1rem; }
+    .project p { color: var(--muted); font-size: .88rem; }
+    .project .desired { border-color: color-mix(in srgb, var(--line) 75%, transparent); }
+    .legend { display: flex; flex-wrap: wrap; gap: .55rem; margin-block-start: 1rem; }
+    .coverage-list { display: grid; gap: 1rem; grid-template-columns: repeat(3, 1fr); }
+    .coverage-list .card { box-shadow: none; }
+    .decision-grid { display: grid; gap: 1rem; grid-template-columns: repeat(4, 1fr); }
+    .decision-card { border-block-start: .35rem solid var(--teal); }
+    .decision-card:nth-child(2) { border-block-start-color: var(--amber); }
+    .decision-card:nth-child(3) { border-block-start-color: var(--violet); }
+    .decision-card:nth-child(4) { border-block-start-color: var(--coral); }
+    .recommendation-table { border-collapse: collapse; min-inline-size: 64rem; }
+    .recommendation-table th { background: var(--navy); color: var(--paper); font-size: .72rem; letter-spacing: .06em; text-align: start; text-transform: uppercase; }
+    html[data-theme="dark"] .recommendation-table th { color: #101722; }
+    .recommendation-table th, .recommendation-table td { border: 1px solid var(--line); padding: .8rem; }
+    .recommendation-table tbody tr:nth-child(even) { background: color-mix(in srgb, var(--surface-2) 58%, transparent); }
+    .recommendation-table code { font-size: .84em; }
+    .wording-grid { display: grid; gap: 1rem; grid-template-columns: repeat(2, 1fr); margin-block-start: 1rem; }
+    .wording-grid .card { box-shadow: none; }
+    footer { border-block-start: 1px solid var(--line); color: var(--muted); padding: 2rem 0 4rem; }
+    .theme-toggle {
+      align-items: center; background: var(--surface); border: 1px solid var(--line); border-radius: 999px;
+      color: inherit; cursor: pointer; display: inline-flex; height: 2.5rem; justify-content: center;
+      position: fixed; inset-inline-end: 1rem; inset-block-end: 1rem; width: 2.5rem; z-index: 30;
+    }
+    .theme-toggle svg { height: 1.25rem; width: 1.25rem; }
+    .theme-toggle[hidden], .theme-toggle [data-theme-icon] { display: none; }
+    html[data-theme="light"] .theme-toggle [data-theme-icon="dark"] { display: block; }
+    html[data-theme="dark"] .theme-toggle [data-theme-icon="light"] { display: block; }
+    @media (max-width: 900px) {
+      .metrics, .project-grid, .decision-grid { grid-template-columns: repeat(2, 1fr); }
+      .flow-grid { grid-template-columns: 1fr; }
+      .flow-node { min-block-size: 0; }
+      .flow-node:not(:last-child)::after { content: "↓"; inset-block-start: auto; inset-block-end: -.9rem; inset-inline-end: 50%; }
+    }
+    @media (max-width: 650px) {
+      .metrics, .issue-grid, .project-grid, .coverage-list, .decision-grid, .wording-grid { grid-template-columns: 1fr; }
+      .section-head { align-items: start; flex-direction: column; gap: .5rem; }
+      .card-head { flex-direction: column; }
+      h1 { font-size: clamp(2.55rem, 14vw, 4.4rem); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition-duration: .01ms !important; }
+    }
+    @media print {
+      .screen-only, [data-print="hide"], nav, .theme-toggle, .filters { display: none !important; }
+      .print-only { display: revert !important; }
+      details[data-print-expand]:not([open]) > :not(summary) { display: block !important; }
+      :where(a[href]) { overflow-wrap: anywhere; }
+      body { background: white; color: black; }
+      .card, .metric, details, .flow-shell { box-shadow: none; break-inside: avoid; }
+      .issue-grid, .project-grid, .decision-grid, .wording-grid { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to report</a>
+  <header>
+    <div class="wrap">
+      <div class="eyebrow">Software engineering operations | Audit report | Working density</div>
+      <h1>Where the agent workflow broke down</h1>
+      <p class="lede">A visual map of the issues found across session analysis, implementation, skill design, configuration, project delivery, and reporting, with a correction map for where each remedy belongs. The central finding is not weak coding intent. It is a control system that often depended on the user to restore scope, evidence, and acceptance.</p>
+      <div class="status-row" aria-label="Report status">
+        <span class="pill"><span class="dot"></span> Snapshot</span>
+        <span class="pill">Offline-ready</span>
+        <span class="pill">Evidence window: 2 to 18 August 2026</span>
+        <span class="pill">Generated: 18 August 2026</span>
+        <span class="pill">Revision 1.2</span>
+      </div>
+    </div>
+  </header>
+
+  <nav aria-label="Report sections">
+    <div class="wrap">
+      <a href="#scan">Scan</a>
+      <a href="#causal-map">Causal map</a>
+      <a href="#system">System</a>
+      <a href="#reporting">Reporting</a>
+      <a href="#skills">Skills</a>
+      <a href="#recommendations">Corrections</a>
+      <a href="#technical">Technical</a>
+      <a href="#projects">Projects</a>
+      <a href="#open">Open items</a>
+      <a href="#coverage">Coverage</a>
+    </div>
+  </nav>
+
+  <main id="main">
+    <section id="scan" class="wrap" data-report-section>
+      <div class="metrics" aria-label="Evidence summary">
+        <article class="metric"><strong>112</strong><span>root sessions in the bounded corpus</span></article>
+        <article class="metric"><strong>2,012</strong><span>canonical user messages</span></article>
+        <article class="metric"><strong>14</strong><span>normalized project groups in the original analysis</span></article>
+        <article class="metric"><strong>13</strong><span>risk-weighted deep reads</span></article>
+      </div>
+      <article class="verdict card">
+        <div class="category">Executive verdict</div>
+        <h2>Correct work became expensive because control arrived late</h2>
+        <p>The recurring mechanisms were mixed contracts, incomplete coverage, phase ambiguity, and completion before the real acceptance boundary. <strong>Proof expansion was usually a downstream recovery cost, not the first failure.</strong></p>
+      </article>
+    </section>
+
+    <section id="causal-map" class="wrap" data-report-section>
+      <div class="section-head">
+        <div><div class="eyebrow">Central visual</div><h2>The dominant failure chain</h2></div>
+        <p>Five stages explain why a reasonable task could turn into a long, difficult session.</p>
+      </div>
+      <div class="flow-shell">
+        <div class="flow-grid" role="img" aria-label="Contract drift led to missing coverage, premature completion, recovery expansion, and stale records">
+          <article class="flow-node"><b>1. First divergence</b><span>Contract drift</span><p>The outcome, owner, repository, phase, or authority changed without a clear reset.</p></article>
+          <article class="flow-node"><b>2. Blind spot</b><span>Coverage gaps</span><p>Projects, decisions, failure paths, or required evidence disappeared from the working view.</p></article>
+          <article class="flow-node"><b>3. False close</b><span>Premature completion</span><p>Implementation or focused tests passed before the real user or operational path passed.</p></article>
+          <article class="flow-node"><b>4. Recovery cost</b><span>Proof expansion</span><p>More agents, repeated reads, new checks, and corrective rounds attempted to recover confidence.</p></article>
+          <article class="flow-node"><b>5. Residual risk</b><span>State drift</span><p>Reports, installed skills, branches, deferrals, and published state no longer described one candidate.</p></article>
+        </div>
+        <p class="flow-summary"><strong>Accessible summary:</strong> material contract changes were the common upstream cause. Missing coverage and weak acceptance gates followed. Recovery then produced more orchestration and left records vulnerable to drift.</p>
+      </div>
+    </section>
+
+    <section id="system" class="wrap issue-section" data-report-section>
+      <div class="section-head">
+        <div><div class="eyebrow">Workflow control</div><h2>System-level issues</h2></div>
+        <p>Use the status controls to focus the same supplied issue set. Filtering changes presentation only.</p>
+      </div>
+      <div class="filters screen-only" role="group" aria-label="Filter system issues by status">
+        <button class="filter" type="button" data-filter="all" aria-pressed="true">All</button>
+        <button class="filter" type="button" data-filter="resolved" aria-pressed="false">Resolved</button>
+        <button class="filter" type="button" data-filter="partial" aria-pressed="false">Partial</button>
+        <button class="filter" type="button" data-filter="open" aria-pressed="false">Open</button>
+        <button class="filter" type="button" data-filter="stale" aria-pressed="false">Stale evidence</button>
+      </div>
+      <div class="issue-grid">
+        <article class="card" data-status="partial"><div class="card-head"><div><div class="category">Coverage</div><h3>User correction became the completion gate</h3></div><span class="state partial">Partial</span></div><p class="issue-copy">Initial answers omitted repeated patterns, project detail, decisions, agents, and capability changes. The user had to request each missing layer.</p><div class="desired"><b>Desired behaviour</b><p>Inventory every request and in-scope unit before analysis. Give each one a full record, explicit gap, deferral, or exclusion.</p></div></article>
+        <article class="card" data-status="resolved"><div class="card-head"><div><div class="category">Contract</div><h3>Material transitions were not re-baselined</h3></div><span class="state resolved">Encoded</span></div><p class="issue-copy">Work moved between analysis, configuration, skill authoring, project creation, cleanup, and reporting without always restating the active owner and stop condition.</p><div class="desired"><b>Desired behaviour</b><p>State changed fields, retained decisions, stale proof, next owner, and stop condition before acting.</p></div></article>
+        <article class="card" data-status="partial"><div class="card-head"><div><div class="category">Acceptance</div><h3>Implementation proof substituted for outcome proof</h3></div><span class="state partial">Partial</span></div><p class="issue-copy">Tests or visual approval sometimes passed while live paths, packaging, integration, or user-visible behaviour remained open.</p><div class="desired"><b>Desired behaviour</b><p>Name the minimum real user or operational path before implementation. Close only when that path passes.</p></div></article>
+        <article class="card" data-status="partial"><div class="card-head"><div><div class="category">Scope</div><h3>Long roots accumulated unrelated contracts</h3></div><span class="state partial">Behaviour-dependent</span></div><p class="issue-copy">PR review, host configuration, skills, product work, and publication could share one root. Evidence became hard to bind to one candidate.</p><div class="desired"><b>Desired behaviour</b><p>Start a new root or create a handoff when the owner, repository, or acceptance model materially changes.</p></div></article>
+        <article class="card" data-status="resolved"><div class="card-head"><div><div class="category">Interaction</div><h3>Short assent could bind to the wrong proposal</h3></div><span class="state resolved">Encoded</span></div><p class="issue-copy">“Bẹ́ẹ̀ ni,” “mo gba,” and “tesiwaju” sometimes appeared while several propositions were live.</p><div class="desired"><b>Desired behaviour</b><p>Bind assent to the last explicit proposition, echo the accepted outcome, and ask only when two propositions still match.</p></div></article>
+        <article class="card" data-status="partial"><div class="card-head"><div><div class="category">Efficiency</div><h3>Proof and delegation exceeded decision value</h3></div><span class="state partial">Reduced</span></div><p class="issue-copy">Some narrow tasks produced many subagents, repeated skill reads, or checks that did not change the decision.</p><div class="desired"><b>Desired behaviour</b><p>Use the smallest proof that can falsify the candidate. Stop when the agreed evidence is sufficient.</p></div></article>
+        <article class="card" data-status="stale"><div class="card-head"><div><div class="category">Deferrals</div><h3>Durable actions lost candidate context</h3></div><span class="state stale">Stale evidence</span></div><p class="issue-copy">The personal catalogue now names old HEAD and uncommitted state while the current branch has moved and is clean.</p><div class="desired"><b>Desired behaviour</b><p>Reconcile every durable action record when candidate identity or disposition changes.</p></div></article>
+        <article class="card" data-status="partial"><div class="card-head"><div><div class="category">Measurement</div><h3>Skill reads were confused with skill use</h3></div><span class="state partial">Model corrected</span></div><p class="issue-copy">Comparison bundles could read one skill many times without selecting it as an owner or producing a result.</p><div class="desired"><b>Desired behaviour</b><p>Track mentioned, read, selected, invoked, changed, installed, active, and handed off as distinct states.</p></div></article>
+      </div>
+    </section>
+
+    <section id="reporting" class="wrap" data-report-section>
+      <div class="section-head"><div><div class="eyebrow">Analysis and continuity</div><h2>Reporting issues</h2></div><p>A polished artifact can be structurally correct and still be analytically incomplete.</p></div>
+      <div class="issue-grid">
+        <article class="card" data-status="resolved"><div class="card-head"><div><div class="category">Semantic coverage</div><h3>Presentation hid missing analysis</h3></div><span class="state resolved">Contract added</span></div><p class="issue-copy">Cards, metrics, and visual polish made thin inputs look complete.</p><div class="desired"><b>Desired behaviour</b><p>The analysis owner supplies a coverage ledger. HTML Artifact refuses completion while a material item has no disposition.</p></div></article>
+        <article class="card" data-status="resolved"><div class="card-head"><div><div class="category">Ownership</div><h3>The renderer was treated as the analyst</h3></div><span class="state resolved">Separated</span></div><p class="issue-copy">HTML Artifact was expected to discover conclusions that its source material did not contain.</p><div class="desired"><b>Desired behaviour</b><p>The subject owner supplies findings. HTML Artifact owns visual structure, accessibility, links, and consistency.</p></div></article>
+        <article class="card" data-status="partial"><div class="card-head"><div><div class="category">Continuity</div><h3>Olofofo was available but not activated</h3></div><span class="state partial">Trigger clarified</span></div><p class="issue-copy">The user requested a living record, but no supporting owner continuously tracked focus shifts, forgotten commitments, and next actions.</p><div class="desired"><b>Desired behaviour</b><p>Use Olofofo for the literal session. Use HTML Artifact only when the record needs visual rendering.</p></div></article>
+        <article class="card" data-status="resolved"><div class="card-head"><div><div class="category">Lifecycle</div><h3>Olofofo and Handoff overlapped</h3></div><span class="state resolved">Separated</span></div><p class="issue-copy">Both referred to focus, evidence, continuity, and next action.</p><div class="desired"><b>Desired behaviour</b><p>Olofofo accompanies the current session. Handoff transfers compact evidence to another session or agent.</p></div></article>
+        <article class="card" data-status="resolved"><div class="card-head"><div><div class="category">Routing</div><h3>Salaye became the broad fallback</h3></div><span class="state resolved">Simplified</span></div><p class="issue-copy">Explanation, investigation, evaluation, premise testing, and continuity accumulated in one conversational skill.</p><div class="desired"><b>Desired behaviour</b><p>Salaye explains. Ro-wo tests premises. Ayewo analyzes sessions. Arojinle closes decisions.</p></div></article>
+        <article class="card" data-status="open"><div class="card-head"><div><div class="category">Durability</div><h3>The living report disappeared</h3></div><span class="state open">Open</span></div><p class="issue-copy">The original report lived in ignored <code>.qp/</code> storage and is no longer present after later cleanup and repository transitions.</p><div class="desired"><b>Desired behaviour</b><p>Use a tracked project destination, durable external store, or explicit retention policy. Label ignored local artifacts as temporary.</p></div></article>
+      </div>
+      <div class="callout"><strong>Current warning:</strong> the report-loss incident proves that semantic completeness is not enough. A record that cannot survive cleanup or checkout is not durable evidence.</div>
+    </section>
+
+    <section id="skills" class="wrap" data-report-section>
+      <div class="section-head"><div><div class="eyebrow">Skills and agents</div><h2>Ownership and capability issues</h2></div><p>The portfolio improved most when duplicate procedures were consolidated into one existing owner.</p></div>
+      <div class="issue-grid">
+        <article class="card" data-status="partial"><div class="card-head"><div><div class="category">State</div><h3>Installed did not mean current or active</h3></div><span class="state partial">Refresh needed</span></div><p class="issue-copy">Source, installed, active, and published copies differed. Presence did not prove reachability or quality.</p><div class="desired"><b>Desired behaviour</b><p>Audit each state separately and refresh the inventory after portfolio reorganization.</p></div></article>
+        <article class="card" data-status="resolved"><div class="card-head"><div><div class="category">Routing</div><h3>Adjacent skills matched the same request</h3></div><span class="state resolved">Mostly reconciled</span></div><p class="issue-copy">Ready PRs, draft publication, planning, delivery, reports, and handoffs had overlapping trigger language.</p><div class="desired"><b>Desired behaviour</b><p>Select one primary owner and only required support. Preserve real lifecycle differences.</p></div></article>
+        <article class="card" data-status="resolved"><div class="card-head"><div><div class="category">Agents</div><h3>Generic personas duplicated dynamic selection</h3></div><span class="state resolved">Cleaned</span></div><p class="issue-copy">Hard-coded coder and analyzer presets added maintenance without a durable domain role.</p><div class="desired"><b>Desired behaviour</b><p>Select model and reasoning by task. Keep permanent agents only for a durable specialist role.</p></div></article>
+        <article class="card" data-status="resolved"><div class="card-head"><div><div class="category">Judgment</div><h3>Material premises could receive automatic agreement</h3></div><span class="state resolved">Ro-wo added</span></div><p class="issue-copy">A general opinion instruction did not consistently force evidence and alternative testing.</p><div class="desired"><b>Desired behaviour</b><p>Test evidence, the strongest alternative, changed boundaries, and failure paths before agreement.</p></div></article>
+        <article class="card" data-status="resolved"><div class="card-head"><div><div class="category">Knowledge</div><h3>Amose lacked a vocabulary destination</h3></div><span class="state resolved">Context contract added</span></div><p class="issue-copy"><code>.learnings</code> could contain canonical terms, but no independent visible domain-language contract existed.</p><div class="desired"><b>Desired behaviour</b><p><code>CONTEXT.md</code> owns canonical language. <code>.learnings</code> owns evidence-backed operational knowledge.</p></div></article>
+        <article class="card" data-status="resolved"><div class="card-head"><div><div class="category">Consolidation</div><h3>Portfolio growth created duplicate owners</h3></div><span class="state resolved">Consolidated</span></div><p class="issue-copy">Several new skills represented support modes or parts of existing delivery and review workflows.</p><div class="desired"><b>Desired behaviour</b><p>Create a public skill only for an independent recurring outcome. Otherwise improve or consolidate the current owner.</p></div></article>
+      </div>
+    </section>
+
+    <section id="recommendations" class="wrap" data-report-section>
+      <div class="section-head">
+        <div><div class="eyebrow">Correction architecture</div><h2>Put each remedy at the narrowest effective layer</h2></div>
+        <p>The premise is only partly accepted. The failures justify stronger recovery gates and several owner-skill fixes. They do not yet justify one broad skill that duplicates routing, delivery, continuity, retrospective analysis, and handoff.</p>
+      </div>
+
+      <div class="decision-grid" aria-label="Four-layer correction decision">
+        <article class="card decision-card"><div class="category">Layer 1</div><h3>Global instruction</h3><p class="issue-copy">Use for an invariant that must hold across tasks, repositories, and skills, such as contract recovery, stale deferrals, or configuration proof.</p></article>
+        <article class="card decision-card"><div class="category">Layer 2</div><h3>Project instruction</h3><p class="issue-copy">Use for a local acceptance path or operating boundary, such as Funpa packaging or EVHACS live API behaviour.</p></article>
+        <article class="card decision-card"><div class="category">Layer 3</div><h3>Existing skill fix</h3><p class="issue-copy">Use when the missing behaviour is already part of a declared owner's outcome. Ayewo, Alaga, Ko Skill, HTML Artifact, and Olofofo remain the relevant owners.</p></article>
+        <article class="card decision-card"><div class="category">Layer 4</div><h3>Conditional new skill</h3><p class="issue-copy">Use only for a recurring independent outcome with no adequate owner. Active course correction is a candidate, not an approved new skill.</p></article>
+      </div>
+
+      <div class="callout"><strong>Decision:</strong> trial one compact global recovery and completion gate in two independent material sessions. Create a new skill only if either session still needs multi-step recovery that cannot fit one transition receipt.</div>
+
+      <div class="section-head" style="margin-top:2.5rem">
+        <div><div class="eyebrow">Individual changes</div><h2>Failure-to-owner matrix</h2></div>
+        <p>Status reflects the exact-current candidate after the authorized correction pass. “Already encoded” means no duplicate wording was added. “No action” means the current owner already has the required boundary.</p>
+      </div>
+      <div data-table-wrap>
+        <table class="recommendation-table">
+          <thead><tr><th scope="col">Failure</th><th scope="col">Correction type</th><th scope="col">Proposed wording or action</th><th scope="col">Proposed location</th></tr></thead>
+          <tbody>
+            <tr><td>Material contract drift</td><td><span class="state resolved">Already encoded</span></td><td>When work diverges from the last confirmed outcome, stop before the next mutation. Reconcile the active outcome, owner, repository and candidate, authority, phase, acceptance path, retained decisions, and stale evidence.</td><td><code>~/.codex/AGENTS.md</code>, current contract-transition paragraph</td></tr>
+            <tr><td>Coverage depended on user correction</td><td><span class="state resolved">Already encoded</span></td><td>Before completion, reconcile every explicit question, deliverable, and in-scope unit as answered, evidence gap, deferred, or excluded with reason. An overview does not replace a required full record.</td><td>Ayewo, evidence-unit and completion sections</td></tr>
+            <tr><td>Completion before real acceptance</td><td><span class="state partial">Mixed</span></td><td>The minimum real path was already encoded in Alaga. Project-specific paths remain recommendation-only under the user's earlier instruction.</td><td>Alaga; affected project <code>AGENTS.md</code> files remain unchanged</td></tr>
+            <tr><td>Long roots mixed contracts</td><td><span class="state resolved">Already encoded</span></td><td>Start a new contract when the repository, primary owner, or acceptance model changes. Use Handoff when another execution context must continue.</td><td><code>~/.codex/AGENTS.md</code>; preserve Handoff ownership</td></tr>
+            <tr><td>Proof and subagents expanded after drift</td><td><span class="state resolved">Applied</span></td><td>Alaga now names the smallest proof that can falsify the highest-risk acceptance claim and stops proof or delegation expansion when it cannot change acceptance or a blocking decision.</td><td>Alaga, <code>Accept and map the job</code></td></tr>
+            <tr><td>Durable deferrals became stale</td><td><span class="state resolved">Applied</span></td><td>A candidate, decision, or state change now triggers immediate reconciliation when it invalidates a durable deferral's basis.</td><td><code>~/.codex/AGENTS.md</code>, current deferral paragraph</td></tr>
+            <tr><td>Parity claims outlived their candidate</td><td><span class="state resolved">Applied</span></td><td>Portfolio inventory now records observation time. A source, package, manifest, or active-inventory change makes dependent parity claims stale.</td><td>Ko Skill, <code>references/portfolio-audit.md</code></td></tr>
+            <tr><td>Skill reads were reported as skill use</td><td><span class="state resolved">Applied</span></td><td>Ayewo now separates mention, read, selection, invocation, result, mutation, installation, activation, and handoff.</td><td>Ayewo, <code>Pin the evidence unit</code></td></tr>
+            <tr><td>HTML reports omitted useful analytical coverage</td><td>No further global rule yet</td><td>Retain the current coverage ledger and test it on another independent analytical report before adding more instruction.</td><td>HTML Artifact report pattern</td></tr>
+            <tr><td>A durable HTML record disappeared</td><td><span class="state resolved">Applied</span></td><td>HTML Artifact now classifies retention before every write, reserves durable project records for authorized tracked locations, and labels its fallback path local-only.</td><td>HTML Artifact, <code>Set the contract</code></td></tr>
+            <tr><td>Living-record retention was unclear</td><td><span class="state resolved">Applied</span></td><td>Olofofo now labels the artifact local-only or durable at creation and reconciles long-term retention before stop or handoff.</td><td>Olofofo, <code>Create the living artifact</code> and <code>Verify and report</code></td></tr>
+            <tr><td>Olofofo was not activated for a long session</td><td><span class="state partial">Decision needed</span></td><td>The narrow long-session trigger conflicts with Olofofo's exact managed activation payload for every literal session. No contradictory global trigger was installed.</td><td>Choose whether to revise Olofofo activation semantics before changing <code>~/.codex/AGENTS.md</code></td></tr>
+            <tr><td>Salaye appeared too broad</td><td>No action</td><td>Keep its current explanation-only contract. It must not own judgment, recovery, or delivery.</td><td>Salaye remains unchanged</td></tr>
+            <tr><td>Automatic agreement</td><td>No action</td><td>Keep the current Ro-wo evidence, alternative, boundary, and failure-path rule.</td><td>Ro-wo remains unchanged</td></tr>
+            <tr><td>Amose context and vocabulary gap</td><td>No action</td><td>Keep <code>CONTEXT.md</code> for canonical language and <code>.learnings</code> for evidence-backed operational knowledge.</td><td>Amose remains unchanged</td></tr>
+            <tr><td>Duplicate public skills</td><td>No action</td><td>Keep the current independent recurring outcome test. Consolidate support modes into the existing owner.</td><td>Ko Skill remains the authoring and consolidation owner</td></tr>
+            <tr><td>Provider timeout, trust, and shell defects</td><td><span class="state resolved">Already implemented</span></td><td>Exact-current provider helpers, contracts, and deterministic tests already contain the timeout unknown-state, host-trust, and credential-isolation corrections. No generic duplicate rule was added.</td><td>Owning provider-capable skills and their tests</td></tr>
+            <tr><td>Configuration trust, proxy, and hook defects</td><td><span class="state resolved">Applied</span></td><td>After a configuration mutation, the global instruction now requires a strict load and one direct behavioral check for each changed enforcement boundary.</td><td><code>~/.codex/AGENTS.md</code>, after contract-transition guidance</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="section-head" style="margin-top:2.5rem">
+        <div><div class="eyebrow">Composite wording</div><h2>Use compact gates instead of scattered reminders</h2></div>
+        <p>These are candidate blocks. They reduce duplication by grouping related checks at the point where they matter.</p>
+      </div>
+      <div class="wording-grid">
+        <article class="card"><div class="category">Global recovery and completion gate</div><h3>For <code>~/.codex/AGENTS.md</code></h3><p class="artifact-long-text">When work materially diverges from the last confirmed outcome, or before claiming completion, reconcile the active outcome, owner, repository and candidate, mutation authority, requested coverage, minimum real acceptance path, retained decisions, durable records, and unresolved evidence gaps. Classify current work and proof as retained, stale, out of scope, or unknown. Continue only from the reconciled state. Use handoff when the owner or execution context changes.</p><div class="desired"><b>Limiter</b><p>For a small bounded task with no material transition, use one sentence of readback rather than a recovery record.</p></div></article>
+        <article class="card"><div class="category">Artifact durability and freshness</div><h3>For HTML Artifact and Olofofo</h3><p class="artifact-long-text">Before creating a report or durable record, classify its lifecycle as snapshot or living and its retention as temporary or durable. Do not describe ignored, untracked, temporary, or local-only storage as durable. When its source candidate changes, mark dependent facts, comparisons, recommendations, and dispositions stale until refreshed or labelled historical.</p><div class="desired"><b>Placement</b><p>Lifecycle and retention in HTML Artifact; candidate freshness in report patterns; archival handoff in Olofofo.</p></div></article>
+        <article class="card"><div class="category">Delivery acceptance</div><h3>For Alaga</h3><p class="artifact-long-text">Before delivery, name the complete job, execution horizon, minimum real acceptance path, and proof that can detect its highest-risk failure. Before closure, confirm that every in-scope unit maps to the current candidate, required documentation is reconciled, blocking findings are closed, and no focused test is being used as a substitute for another boundary.</p><div class="desired"><b>Change style</b><p>Compress existing Alaga rules into this gate. Do not add a second overlapping procedure.</p></div></article>
+        <article class="card"><div class="category">Project-specific acceptance template</div><h3>For project <code>AGENTS.md</code> files</h3><p class="artifact-long-text">For &lt;project outcome&gt;, acceptance requires &lt;real path&gt;. Keep &lt;phase A&gt;, &lt;phase B&gt;, and &lt;phase C&gt; as separate states. A change to &lt;critical boundary&gt; reopens &lt;affected proof&gt;. Do not combine &lt;unrelated workflow&gt; with this delivery contract.</p><div class="desired"><b>Targets</b><p>Funpa: design, product, packaging, and performance. EVHACS backend: shared API, live boundary, CI, and publication. EVHACS prepay: bug slice before architecture. SIGIDI: interaction semantics before implementation. QP Skills: manifests, router, catalog, installed state, and durable reports after structural change.</p></div></article>
+      </div>
+
+      <details data-print-expand open style="margin-top:1rem"><summary>Conditional candidate: <code>course-correction</code></summary><div class="detail-body">
+        <div class="card-head"><div><div class="category">Disposition</div><h3>Needs evidence before creation</h3></div><span class="state partial">NEEDS EVIDENCE</span></div>
+        <p><strong>Proposed outcome:</strong> recover one active agent task after material drift by reconciling the last confirmed contract, current candidate, valid and stale work, ownership, authority, acceptance, and the next safe action.</p>
+        <p><strong>Use only when:</strong> the user asks to reset, re-align, get back on track, or reconcile contradictory active state.</p>
+        <p><strong>Exclude:</strong> post-session retrospectives, implementation, living-record ownership, and transfer to another session. Ayewo, Alaga, Olofofo, and Handoff retain those outcomes.</p>
+        <p><strong>Proposed location:</strong> <code>skills/productivity/course-correction/</code>, with <code>SKILL.md</code> and <code>agents/openai.yaml</code>. If later approved, also reconcile <code>.claude-plugin/plugin.json</code>, Alarina, <code>README.md</code>, and a changeset.</p>
+        <p><strong>Workflow:</strong> pin the last confirmed contract and current candidate; find the first material divergence; classify work as retained, stale, out of scope, or unknown; reconcile owner, authority, acceptance, records, and gaps; return one correction receipt and exact next action; resume the existing owner or use Handoff when the owner or execution context changes.</p>
+        <p class="artifact-long-text"><strong>Output shape</strong>
+Course correction
+Last confirmed contract:
+First divergence:
+Retained:
+Stale:
+Out of scope:
+Unknown:
+Active owner and candidate:
+Authority:
+Acceptance path:
+Required record updates:
+Next action:
+Stop condition:</p>
+        <div class="desired"><b>Creation threshold</b><p>Trial the global recovery gate in two independent material sessions. Create this skill only if one still requires multi-step recovery beyond one compact transition receipt.</p></div>
+      </div></details>
+    </section>
+
+    <section id="technical" class="wrap" data-report-section>
+      <div class="section-head"><div><div class="eyebrow">Implementation and configuration</div><h2>Concrete defects found</h2></div><p>These were bounded defects or incidents. They are not all repeated corpus patterns.</p></div>
+      <details data-print-expand open><summary>Implementation defects and expected behaviour</summary><div class="detail-body"><div class="project-grid">
+        <article class="project"><h3>Brand shell construction</h3><p>A filename was placed into a shell command, creating an injection path.</p><div class="desired"><b>Desired</b><p>Return executable plus argument array. Never rebuild a shell string.</p></div></article>
+        <article class="project"><h3>Standalone slide tokens</h3><p>Project CSS could hide a missing embedded token, and dark-theme overrides were omitted.</p><div class="desired"><b>Desired</b><p>Validate against embedded tokens only and include applicable theme blocks.</p></div></article>
+        <article class="project"><h3>Provider timeout state</h3><p>A timed-out write could have succeeded remotely while appearing failed locally.</p><div class="desired"><b>Desired</b><p>Treat it as unknown state, read the exact target, then decide whether to retry.</p></div></article>
+        <article class="project"><h3>Provider host trust</h3><p>Installed provider code could predate custom-host trust and credential-isolation rules.</p><div class="desired"><b>Desired</b><p>Normalize and trust the host, isolate credentials, refresh identity and head, and read writes back.</p></div></article>
+        <article class="project"><h3>Test module collisions</h3><p>Several Python suites used the generic module name <code>core</code>, so one aggregate process could collide.</p><div class="desired"><b>Desired</b><p>Run isolated suites or use package-qualified module names.</p></div></article>
+        <article class="project"><h3>Generated test caches</h3><p>Ignored <code>__pycache__</code> directories returned after cleanup.</p><div class="desired"><b>Desired</b><p>Remove only generated state with confirmed provenance.</p></div></article>
+      </div></div></details>
+      <details data-print-expand><summary>Configuration weaknesses and expected behaviour</summary><div class="detail-body"><div class="project-grid">
+        <article class="project"><h3>Inactive network enforcement</h3><p>Allowlist configuration existed without the proxy required to enforce it.</p><div class="desired"><b>Desired</b><p>Enable enforcement and prove one allowed and one denied request.</p></div></article>
+        <article class="project"><h3>Broad trust</h3><p>Trust covered large personal and temporary filesystem surfaces.</p><div class="desired"><b>Desired</b><p>Trust exact repositories only.</p></div></article>
+        <article class="project"><h3>Dead or broad hooks</h3><p>Some hook registrations were inert, risky, or wider than their useful outcome.</p><div class="desired"><b>Desired</b><p>Keep only bounded hooks with a current purpose and proven trigger.</p></div></article>
+        <article class="project"><h3>Stale settings</h3><p>Unsupported or obsolete fields remained in configuration.</p><div class="desired"><b>Desired</b><p>Remove stale fields and perform a strict configuration load.</p></div></article>
+        <article class="project"><h3>Concurrency ambiguity</h3><p>The active-thread cap was confused with a cumulative delegation budget.</p><div class="desired"><b>Desired</b><p>Keep active concurrency separate from total delegation and proof spend.</p></div></article>
+      </div></div></details>
+    </section>
+
+    <section id="projects" class="wrap" data-report-section>
+      <div class="section-head"><div><div class="eyebrow">Project manifestations</div><h2>How the same mechanisms appeared locally</h2></div><p>These are the 13 named project manifestations retained in the supplied explanation. The missing original report prevents a reliable label for the fourteenth normalized group.</p></div>
+      <div class="project-grid">
+        <article class="project"><h3>EVHACS backend</h3><p>Large roots mixed email privacy, OCPP, HEMS, migrations, CI, review, and publication. Focused proof did not always cover live endpoints.</p><div class="desired"><b>Desired</b><p>Close one outcome, test its live boundary, and separate architecture, CI, and publication.</p></div></article>
+        <article class="project"><h3>EVHACS frontend</h3><p>A narrow release-rule change succeeded with direct inspection and proportionate proof.</p><div class="desired"><b>Desired</b><p>Preserve this bounded pattern. Do not add ceremony.</p></div></article>
+        <article class="project"><h3>EVHACS prepay</h3><p>A payment bug expanded into ownership and architecture redesign with many agents.</p><div class="desired"><b>Desired</b><p>Close the bug slice first. Re-contract the redesign separately.</p></div></article>
+        <article class="project"><h3>Funpa</h3><p>Strong visual design did not prove screen coverage, packaging, performance, or product acceptance.</p><div class="desired"><b>Desired</b><p>Trace accepted design to every state, package surface, and release gate.</p></div></article>
+        <article class="project"><h3>SIGIDI and Clarify</h3><p>Exploration crossed implementation authority. Interaction work later expanded into release engineering.</p><div class="desired"><b>Desired</b><p>Settle state semantics first. Separate local capability from release work.</p></div></article>
+        <article class="project"><h3>Pepeye</h3><p>Deletion or a parallel layer was considered before proving the existing profile seam insufficient.</p><div class="desired"><b>Desired</b><p>Use established activation policy before replacement or duplication.</p></div></article>
+        <article class="project"><h3>Core infrastructure</h3><p>A settled foundation boundary was later challenged by unrelated platform material.</p><div class="desired"><b>Desired</b><p>Preserve accepted boundaries until new evidence explicitly reopens them.</p></div></article>
+        <article class="project"><h3>QP site</h3><p>Prototype approval did not prove responsive, dark, and branded implementation fidelity.</p><div class="desired"><b>Desired</b><p>Map accepted screens, states, tokens, and viewports to implementation proof.</p></div></article>
+        <article class="project"><h3>QP web</h3><p>OAuth workflow-scope failures were revisited without a compact recovery record.</p><div class="desired"><b>Desired</b><p>Carry exact checks, the auth gap, and the failed operation across retries.</p></div></article>
+        <article class="project"><h3>KILOFE</h3><p>Design decisions survived interruption, but implementation did not complete.</p><div class="desired"><b>Desired</b><p>Resume from the decision artifact and name the next owner.</p></div></article>
+        <article class="project"><h3>Yetunde</h3><p>PR review and unrelated global concurrency configuration shared one root.</p><div class="desired"><b>Desired</b><p>Keep project review and host configuration in separate contracts.</p></div></article>
+        <article class="project"><h3>Ìtumọ̀</h3><p>Language and input-method ideas arrived before architecture, privacy, evaluation, and governance were settled.</p><div class="desired"><b>Desired</b><p>Plan from durable context. Separate raw input, canonical output, personal memory, and shared evidence.</p></div></article>
+        <article class="project"><h3>QP Skills</h3><p>Worktrees, installed drift, routing overlap, validation, and later grouping repeatedly changed candidate identity.</p><div class="desired"><b>Desired</b><p>Pin one candidate and regenerate durable records after every structural transition.</p></div></article>
+      </div>
+    </section>
+
+    <section id="open" class="wrap" data-report-section>
+      <div class="section-head"><div><div class="eyebrow">Current frontier</div><h2>Open defects are not the same as deferrals</h2></div><p>These dispositions come from the supplied explanation. No new decision is made here.</p></div>
+      <div class="issue-grid">
+        <article class="card"><div class="card-head"><h3>Missing HTML evidence report</h3><span class="state open">Open defect</span></div><p class="issue-copy">The ignored local record is gone. Its evidence links and full fourteen-project dossier are no longer available.</p></article>
+        <article class="card"><div class="card-head"><h3>Stale personal-later catalogue</h3><span class="state stale">Stale evidence</span></div><p class="issue-copy">The candidate identity and Git disposition no longer match the current branch.</p></article>
+        <article class="card"><div class="card-head"><h3>Installed and active portfolio state</h3><span class="state open">Needs refresh</span></div><p class="issue-copy">Skill grouping and plugin manifest changes make the earlier installed comparison historical.</p></article>
+        <article class="card"><div class="card-head"><h3>Ìtumọ̀ architecture planning</h3><span class="state deferred">Deferred</span></div><p class="issue-copy">Atona planning remains deliberately deferred until the user re-enters it.</p></article>
+        <article class="card"><div class="card-head"><h3>Backend MR !230</h3><span class="state open">Needs evidence</span></div><p class="issue-copy">The human merge state requires fresh GitLab evidence.</p></article>
+        <article class="card"><div class="card-head"><h3>Yetunde instructions</h3><span class="state deferred">Deferred</span></div><p class="issue-copy">The user explicitly deferred this project-specific recommendation.</p></article>
+      </div>
+    </section>
+
+    <section id="coverage" class="wrap" data-report-section>
+      <div class="section-head"><div><div class="eyebrow">Coverage disposition</div><h2>What this snapshot contains and lacks</h2></div><p>The artifact visualizes supplied conclusions. It does not recreate missing source analysis.</p></div>
+      <div class="coverage-list">
+        <article class="card"><div class="category">Full record</div><h3>Rendered</h3><p>System workflow, analysis and reporting, skills and agents, technical defects, configuration, 13 named project manifestations, current open items, desired behaviour, a failure-to-owner correction matrix, composite wording, and the conditional course-correction candidate.</p></article>
+        <article class="card"><div class="category">Input gaps</div><h3>Unavailable</h3><p>The original HTML report, its direct evidence anchors, and a reliable label for the fourteenth normalized project group.</p></article>
+        <article class="card"><div class="category">Excluded with reason</div><h3>Not copied</h3><p>Raw session logs and full source transcripts. The supplied explanation already provides the bounded findings, and duplicating logs would dominate this report.</p></article>
+      </div>
+      <details data-print-expand style="margin-top:1rem"><summary>Evidence and interpretation limits</summary><div class="detail-body"><ul>
+        <li>Rollout count is not task count, and first-to-last time is not labour time.</li>
+        <li>A repeated pattern requires the same mechanism in independent roots. Several technical defects remain bounded incidents.</li>
+        <li>Current skill files show later corrections. They do not prove the exact versions active in every historical session.</li>
+        <li>Installed, active, and published states need a fresh post-reorganisation audit.</li>
+        <li>This report preserves supplied statuses. It does not approve deferred work or invent missing evidence.</li>
+      </ul></div></details>
+      <details style="margin-top:.75rem"><summary>Revision history</summary><div class="detail-body"><p><strong>1.2, 18 August 2026:</strong> Reconciled the recommendation matrix after the authorized correction pass. Applied retention, proof-budget, parity-freshness, skill-use evidence, durable-deferral, and configuration-proof changes; identified already encoded or implemented items; retained project instructions as recommendation-only; and recorded the Olofofo activation conflict.</p><p><strong>1.1, 18 August 2026:</strong> Added the four-layer correction boundary, 18 individual failure-to-owner recommendations, four composite instruction blocks, project-specific targets, and a conditional active course-correction skill with an evidence gate.</p><p><strong>1.0, 18 August 2026:</strong> First durable snapshot created from the supplied cross-session issue explanation after the earlier ignored living report became unavailable.</p></div></details>
+    </section>
+  </main>
+
+  <footer><div class="wrap">
+    <p><strong>Portability:</strong> offline-ready. All content, styles, controls, and fallbacks are embedded.</p>
+    <p><strong>External resources:</strong> none. No fonts, images, analytics, cookies, authenticated requests, or runtime network resources are used.</p>
+  </div></footer>
+
+  <button class="theme-toggle" type="button" data-theme-toggle aria-label="Change theme" title="Change theme" hidden>
+    <svg data-theme-icon="dark" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><mask id="artifact-theme-moon-cutout"><rect width="24" height="24" fill="white"></rect><circle cx="15" cy="8" r="7" fill="black"></circle></mask><circle cx="10" cy="12" r="8" fill="currentColor" stroke="none" mask="url(#artifact-theme-moon-cutout)"></circle></svg>
+    <svg data-theme-icon="light" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.66 6.34l1.41-1.41"></path></svg>
+  </button>
+
+  <script>
+    (() => {
+      const root = document.documentElement;
+      const control = document.querySelector("[data-theme-toggle]");
+      const media = window.matchMedia("(prefers-color-scheme: dark)");
+      if (!control) return;
+      const apply = (theme, source) => {
+        root.dataset.theme = theme; root.dataset.themeSource = source;
+        const next = theme === "dark" ? "light" : "dark";
+        control.setAttribute("aria-label", `Use ${next} theme`);
+        control.setAttribute("title", `Use ${next} theme`);
+      };
+      apply(media.matches ? "dark" : "light", "system");
+      control.hidden = false;
+      control.addEventListener("click", () => apply(root.dataset.theme === "dark" ? "light" : "dark", "user"));
+      media.addEventListener("change", (event) => {
+        if (root.dataset.themeSource === "system") apply(event.matches ? "dark" : "light", "system");
+      });
+    })();
+
+    (() => {
+      document.querySelectorAll(".issue-section").forEach((section) => {
+        const buttons = Array.from(section.querySelectorAll("[data-filter]"));
+        const cards = Array.from(section.querySelectorAll("[data-status]"));
+        buttons.forEach((button) => button.addEventListener("click", () => {
+          const filter = button.dataset.filter;
+          buttons.forEach((item) => item.setAttribute("aria-pressed", String(item === button)));
+          cards.forEach((card) => { card.hidden = filter !== "all" && card.dataset.status !== filter; });
+        }));
+      });
+    })();
+
+    (() => {
+      const openedForPrint = new Set();
+      const hashId = () => { try { return decodeURIComponent(window.location.hash.slice(1)); } catch { return ""; } };
+      const revealTarget = () => {
+        const target = document.getElementById(hashId());
+        if (!target) return;
+        const disclosures = []; let ancestor = target.parentElement;
+        while (ancestor) { if (ancestor.matches("details:not([open])")) disclosures.push(ancestor); ancestor = ancestor.parentElement; }
+        disclosures.reverse().forEach((disclosure) => { disclosure.open = true; });
+        requestAnimationFrame(() => target.scrollIntoView({ block: "start" }));
+      };
+      const expandForPrint = () => document.querySelectorAll("details[data-print-expand]:not([open])").forEach((disclosure) => { openedForPrint.add(disclosure); disclosure.open = true; });
+      const restoreAfterPrint = () => { openedForPrint.forEach((disclosure) => { if (disclosure.isConnected) disclosure.open = false; }); openedForPrint.clear(); };
+      window.addEventListener("hashchange", revealTarget);
+      window.addEventListener("beforeprint", expandForPrint);
+      window.addEventListener("afterprint", restoreAfterPrint);
+      if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", revealTarget, { once: true }); else revealTarget();
+    })();
+  </script>
+</body>
+</html>

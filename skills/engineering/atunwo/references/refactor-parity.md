@@ -1,17 +1,14 @@
----
-name: audit-refactor-behavior
-description: Audit behavior parity for one stateful refactor or rewrite. Focus on old, current, and required behavior across state, ordering, locking, retries, idempotency, and ownership.
----
+# Refactor parity audit
 
-# Audit Refactor Behavior
+Read this reference only when `atunwo` selects `audit` scope for one planned, in-progress, or completed stateful refactor or rewrite. Use the candidate and authority boundary pinned by `SKILL.md`.
 
 Treat a refactor as a behavioral parity exercise unless an authority explicitly accepts a behavior change. Compare complete processes, not matching names or shapes.
 
-Keep this audit read-only. Implementation and test changes belong to `alaga` or the current implementation owner.
+Keep this audit and provider state read-only. Implementation and test changes belong to `alaga` or the current implementation owner. An audit result does not authorize delivery or replace the final review required for an implemented candidate.
 
-Read relevant confirmed `.learnings` and Amọ̀ṣẹ́ scenarios when domain rules affect parity. Treat them as evidence and verify them against baseline behavior. Report model conflicts to Amọ̀ṣẹ́; do not redefine canonical terms or rules inside the parity ledger.
+Read relevant confirmed `.learnings` and `amose` scenarios when domain rules affect parity. Treat them as evidence and verify them against baseline behavior. Report model conflicts to `amose`; do not redefine canonical terms or rules inside the parity ledger.
 
-Use an exact-current Irinṣẹ result when bounded call, impact, or data-flow signals can widen the trace surface. Revalidate every consequential path against source and observable behavior.
+Use an exact-current `irinse` result when bounded call, impact, or data-flow signals can widen the trace surface. Revalidate every consequential path against source and observable behavior.
 
 ## Functional workflow
 
@@ -83,7 +80,7 @@ Cover each applicable scenario:
 
 For the candidate, confirm the purpose, conditions, lookup chain, mutations, outputs, serialized representation, failures, ordering, and side effects without using structural similarity as evidence. A moved method counts as preserved only when its complete behavior still agrees.
 
-For planned work, name the characterization tests required at the nearest behavior-bearing seam. Record them as bounded Alaga test-first work or implementation-owner work. When another skill owns necessary work, name that owner and one bounded next action.
+For planned work, name the characterization tests required at the nearest behavior-bearing seam. Record them as bounded `alaga` test-first work or implementation-owner work. When another skill owns necessary work, name that owner and one bounded next action.
 
 Record source evidence or an explicit unknown for each material ledger value on both sides. Attach each important behavior or ordering claim to a test seam or named proof gap.
 
@@ -129,4 +126,4 @@ For completed work, the audit result contains a verdict, the old/current/require
 
 When an `atona` plan owns the wider work, its required audit result is the verified ledger, guardrails, and proof gaps. Do not create or update a parallel plan.
 
-Recommend parity only when all core rows are Preserved, Improved, or accepted Intentional changes. Keep the recommendation conditional while material rows remain Ambiguous or Unproved. Recommend changes when required behavior is Lost.
+Recommend parity only when all core rows are Preserved, Improved, or accepted Intentional changes. Keep the recommendation conditional while material rows remain Ambiguous or Unproved. Recommend changes when required behavior is Lost. Map a parity recommendation to `RECOMMEND_ACCEPT`, lost required behavior to `RECOMMEND_CHANGES`, a required material choice to `DECISION_REQUIRED`, and a material Ambiguous or Unproved row to `INSUFFICIENT_EVIDENCE`.

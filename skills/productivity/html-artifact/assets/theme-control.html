@@ -4,6 +4,8 @@ Reusable HTML Artifact theme control.
 Embed the first script early in <head>, merge the style into the artifact CSS,
 and place the button plus final script in <body>. The artifact's color tokens
 must respond to html[data-theme="light"] and html[data-theme="dark"].
+Translate aria-label, data-theme-light-label, and data-theme-dark-label to
+the artifact language before embedding this control.
 -->
 
 <script>
@@ -46,7 +48,15 @@ must respond to html[data-theme="light"] and html[data-theme="dark"].
   @media print { .theme-toggle { display: none; } }
 </style>
 
-<button class="theme-toggle" type="button" data-theme-toggle aria-label="Change theme" title="Change theme" hidden>
+<button
+  class="theme-toggle"
+  type="button"
+  data-theme-toggle
+  data-theme-light-label="Use light theme"
+  data-theme-dark-label="Use dark theme"
+  aria-label="Change theme"
+  hidden
+>
   <svg data-theme-icon="dark" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
     <mask id="artifact-theme-moon-cutout">
       <rect width="24" height="24" fill="white"></rect>
@@ -71,7 +81,9 @@ must respond to html[data-theme="light"] and html[data-theme="dark"].
       root.dataset.theme = theme;
       root.dataset.themeSource = source;
       const next = theme === "dark" ? "light" : "dark";
-      const label = `Use ${next} theme`;
+      const label = next === "dark"
+        ? control.dataset.themeDarkLabel
+        : control.dataset.themeLightLabel;
       control.setAttribute("aria-label", label);
       control.setAttribute("title", label);
     };

@@ -2,4 +2,4 @@
 "qp-skills": minor
 ---
 
-Remove reference-owned workflow detail from Alarina, Atona, Alaga, and QP Code Review. Preserve each owner's route, authority, exact-current integration gates, and verification responsibilities while leaving conditional procedures in their owning references.
+Remove dependency-owned workflow detail from `atona` and `pare` while preserving their plan integration and simplification judgments. Teach `ko-skill` to keep dependency procedures, resources, checks, statuses, output schemas, and lifecycle derivations with their owners while retaining caller-owned inputs, result freshness, integration, acceptance, authority, recovery, and stop gates. Use exact skill identifiers in operational prose and preserve display names for headings. Preserve independently required safety and trust contracts.

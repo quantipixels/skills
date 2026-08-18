@@ -36,7 +36,7 @@ Use this compact form:
 
 ## Evidence and owners
 
-<artifact paths or URLs, material exact-current Amọ̀ṣẹ́ or Irinṣẹ identities, and selected owning or supporting skills>
+<artifact paths or URLs, material exact-current `amose` or `irinse` identities, and selected owning or supporting skills>
 ```
 
 Do not select a new skill route. Do not duplicate content from existing artifacts. Reference each artifact and summarize only the state needed to continue.
@@ -45,7 +45,7 @@ Treat a change in outcome, primary owner, repository or candidate, mutation auth
 
 Resolve every source session and artifact before treating it as confirmed. If a required source is unavailable, name the gap, limit `Confirmed` to independently verified facts, and make the first action obtain the smallest recovery bundle: a transcript or prior handoff, candidate identity, completed proof, and the next verifiable action.
 
-When an active Olofofo artifact exists, link it as evidence. This handoff is a point-in-time transfer, not the living session record; do not mutate or stop Olofofo.
+When an active `olofofo` artifact exists, link it as evidence. This handoff is a point-in-time transfer, not the living session record; do not mutate or stop `olofofo`.
 
 Include only verified current state. Mark information that may be stale. Remove credentials and unnecessary sensitive information.
 

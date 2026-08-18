@@ -1,87 +1,75 @@
 ---
 name: pare
-description: Audit an entire codebase for material simplifications in data structures, state, control flow, algorithms, and ownership. Use for a read-only repository-wide review that requires explicit subsystem coverage, independently verified findings, and dependency-aware priorities; exclude bounded change review, defect review, implementation, and architecture planning.
+description: "Produce a read-only codebase simplification `audit` or bounded candidate `review`. Cover implementation, state, ownership, algorithms, dependencies, support artifacts, and tests; exclude execution, defects, feature delivery, and architecture."
 ---
 
 # Parẹ́
 
-Complete one read-only simplification audit of the current repository. Do not edit repository files, run tests, implement recommendations, change Git state, or use provider writes. Read-only inspection commands and host-provided read-only subagents are allowed.
+Prefer deletion, direct state, local ownership, deep modules, and YAGNI. Reject relocated complexity.
 
-## 1. Establish the coverage contract
+## Modes
 
-Record the repository identity, current revision, worktree baseline, and relevant repository instructions. Inventory the repository from tracked files, entry points, manifests, build configuration, tests, and generated boundaries. Separate every identifiable subsystem that has distinct behavior or ownership; do not use a broad catch-all row as proof of coverage.
+- `audit`: every subsystem; read-only; no test runs.
+- `review`: one fixed candidate; read-only; no provider or verdict.
 
-Include frontend, backend, shared infrastructure, platform bridges, generated-contract ownership, and test or tooling infrastructure when present and material. Exclude vendored or generated implementation only with an explicit owner and reason.
+Never edit files, run tests or builds, change Git state, execute cleanup, or use provider writes. Return recommendations and implementation slices only.
 
-Give each subsystem a stable ID and record:
+`atunwo` owns defects, verdicts, providers, and stateful parity audits; `alaga` implements accepted slices; `atona` owns architecture. A `deep-clean candidate` requires explicit opt-in before `alaga` may abandon non-contract proof.
 
-- descriptive name and exact, non-overlapping ownership boundary;
-- key implementation files;
-- public interfaces, major call sites, and relevant tests;
-- status: `queued`, `in review`, `recommend`, `skip`, or `not reviewed`.
+Use `rg` and `git` directly for proportionate read-only reachability and history checks. When a companion tool could materially improve the evidence, give `irinse` the bounded question and candidate, then consume its exact-current read-only result. `pare` retains simplification judgment and never treats tool output as a verdict.
 
-Use `not reviewed` only when a bounded trial, interruption, or external blocker stops coverage before substantive inspection. State the reason and return the audit as `PARTIAL`. A row marked `not reviewed` cannot satisfy the complete-audit contract.
+## Ladder
 
-Maintain one canonical audit record containing the inventory, accepted opportunities, explicit skips, cross-cutting patterns, duplicates and superseded findings, final priorities and dependencies, and a chronological audit log. Keep any persistent scratch file outside the repository in a host-approved temporary location. Treat the inventory as the coverage contract and add a new row when later evidence reveals an omitted boundary.
+Understand the flow; take the first sound reduction:
 
-## 2. Review every subsystem
+1. Delete: no behavior, contract, consumer, or owner.
+2. Reuse: codebase → stdlib → platform → installed dependency.
+3. Derive: preserve timing, consistency, lifecycle, cost, ownership.
+4. Localize: owned model, state machine, deep module, or policy.
+5. Shrink: minimum direct mechanism; no speculation.
 
-When the host provides subagents, use fresh read-only agents with one distinct subsystem each. Keep concurrency within the number of results that the coordinator can actively reconcile. Use one consolidated wait, let productive reviews finish, and harvest and close completed workers before opening another bounded batch. The coordinator retains inventory ownership, finding acceptance, prioritization, and the final result.
+- Good: remove invalid states.
+- Bad: wrap the same branches.
 
-Give each reviewer the repository identity, exact subsystem boundary, key files, and this brief:
+## Tags and finding format
 
-> Review this subsystem for at most two materially useful simplifications in its data structures, state representation, control flow, algorithms, or ownership. Inspect implementation, public interfaces, major call sites, and tests. Stay inside the assigned boundary; report cross-subsystem evidence without expanding scope. Prefer clear local code and return `skip` when no opportunity meets the threshold.
+- `delete`: dead
+- `native`: stdlib/platform
+- `yagni`: unproved variation
+- `state`: invalid/duplicate
+- `owner`: scattered policy
+- `shrink`: less mechanism
+- `proof`: stronger owner
 
-Look for invalid combinations caused by booleans or nullable fields that need a state machine or discriminated union; repeated object-shape assumptions that need one shared typed model; duplicated branching that a small map, registry, reducer, or command model can remove; unclear behavior ownership; repeated scans or transformations; unsuitable collections or indexes; and lifecycle, concurrency, or async state that permits stale or contradictory values.
+```text
+<tag> <cost>. <smaller form>. [path]
+```
 
-Accept a recommendation only when the evidence shows a concrete reduction in invalid state, duplicated policy, repeated material work, coordinated change cost, or unclear ownership. Reject stylistic consistency, hypothetical extensibility, minor line-count reduction, speculative abstraction, or a change that only moves branching behind a new type.
+Add risk, proof, confidence. Smells are not evidence. For each `Needs defect review` concern, report its location, scope, reason, evidence, and possible consequence.
 
-For each recommendation, require:
+## `audit`
 
-1. verdict: `recommend` or `skip`;
-2. exact file and line evidence;
-3. current complexity or permitted invalid states;
-4. proposed representation and why it is simpler;
-5. smallest credible scope, affected files, and interfaces;
-6. regression risks and migration concerns;
-7. existing proof and additional validation required;
-8. confidence: `high`, `medium`, or `low`.
+Pin repository, baseline, instructions, exclusions. Inventory non-overlapping source, entry-point, build, test, tool, platform, and generated subsystems; record boundary, interfaces, callers, tests, status. Exclusions need owner/reason; `not reviewed` means `PARTIAL`.
 
-A subsystem-level `skip` must state the inspected boundary and why no candidate met the materiality threshold.
+Run separate deletion, representation, ownership, algorithm, and proof passes. Do not let easy dead code replace state-space, lifecycle, cross-language policy, or repeated scan/copy analysis.
 
-## 3. Verify and reconcile
+Classify implementation, dependencies, configuration, and support artifacts as `retain | delete-safe | blocked`. Check interfaces, callers, dynamic/platform/generated reachability, builds, consumers, and owners; search alone does not prove deletion.
 
-Independently inspect every submitted finding against the current repository before accepting it. Confirm its lines, interfaces, callers, tests, semantics, and ownership. Reject, narrow, or demote findings that are vague, duplicate another mechanism, misunderstand intentional behavior, cross their assigned boundary without evidence, or relocate complexity.
+Audit tests with the cleanup taxonomy. Classify each coherent group as `retain | delete-safe | deep-clean candidate | blocked`; report its signal, stronger proof owner, consequence, and required authority. `delete-safe` requires complete stronger static, contract, integration, or acceptance proof. A `deep-clean candidate` may abandon non-contract proof but requires explicit opt-in before execution.
 
-Deduplicate by underlying mechanism. Assign each accepted finding to one authoritative subsystem; record aliases as duplicates or superseded findings. Record a recommendation or explicit skip for every inventory row, then continue bounded review batches until none remain `queued` or `in review`.
+Target existence, typecheck-satisfied, implementation-detail, duplicate, provider-shape, snapshot, layout, render-presence, registration, and shallow UI proof without a selected contract. Retain public, security, integrity, recovery, adapter, runtime, interaction, and accessibility contracts. Handwritten provider fixtures do not prove live compatibility.
 
-## 4. Audit the audit
+Find material reductions per subsystem. Verify semantics, ownership, migration, proof; deduplicate. Independently check coverage, materiality, priorities, dependencies. Complete when all subsystems are `recommend` or `skip`; report inventory, ranking, skips, slices, limits, worktree evidence.
 
-After subsystem review is complete, use fresh independent passes when host subagents are available; otherwise perform distinct coordinator passes. Check:
+## `review`
 
-- repository coverage and missing subsystem boundaries;
-- duplicate findings and ownership overlap;
-- materiality and over-abstraction;
-- completeness of every required inventory and finding field;
-- priority order and dependency consistency.
+Pin the supplied candidate. Otherwise use the upstream merge-base diff plus applicable staged, unstaged, and untracked work; apply repository rules first. Check cohesion, coupling, reuse, YAGNI, vocabulary, waste, depth, testability, documentation, and applicable audit classifications. Send conflicting domain vocabulary to `amose`. Recommend compatibility removal only when proved unreleased with no consumers. Recheck identity; report findings, gaps, boundary, limits.
 
-If the coverage pass finds an omission, add a separate subsystem row and review it. Do not broaden a completed boundary to conceal the gap.
+- Good: `state Stored total can diverge from owned line items. Derive it at the owner. [checkout.ts:42]`
+- Bad: “This class is long; split it.”
 
-Rank accepted recommendations by concrete impact, confidence, implementation effort, blast radius, prerequisites, and enabling value. Identify the smallest high-value first implementation slices without implementing them.
+## Verify recommendations
 
-## 5. Report and close
+Recheck identity, reachability, ownership, proof, migration, risk, and worktree state with read-only evidence. State the future verification commands and authority; do not run them. Stop on ambiguity, drift, missing content, uncertain consumers, or unsupported claims.
 
-Return the canonical audit record with:
-
-1. repository and unchanged-worktree evidence;
-2. the completed subsystem inventory;
-3. accepted recommendations in priority order with every required field;
-4. subsystem skips;
-5. cross-cutting patterns, duplicates, and superseded findings;
-6. dependencies and best first slices;
-7. audit-the-audit results;
-8. audit log and residual limitations.
-
-Compare the final worktree state with the recorded baseline. Do not claim that the repository remained unchanged when the evidence differs or concurrent changes prevent attribution.
-
-The audit is complete only when every identifiable subsystem has `recommend` or `skip`, no row remains `not reviewed`, every accepted finding has complete evidence, scope, risk, validation, and confidence, weak or duplicate recommendations are removed from the audit record, priorities and dependencies are consistent, and unchanged-repository evidence is present.
+Report scope, identities, ranked reductions, retained contracts, proof owners, `deep-clean candidate` consequences, blockers, implementation slices, required execution authority, future verification, and residual risk.

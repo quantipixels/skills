@@ -9,7 +9,7 @@ Turn supplied material into one portable visual explanation or bounded variant s
 
 ## 1. Set the contract
 
-Use the requested or existing path. Otherwise, store a durable record at `.qp/report/<YYYY-MM-DD>-<kind>-<slug>.html`; store another artifact at `.qp/<kind>/<YYYY-MM-DD>-<slug>.html`.
+Use the requested or existing path. When none is supplied, use `.qp/<kind>/<YYYY-MM-DD>-<slug>.html`.
 
 Follow the supplied audience; otherwise write for a layperson with no prior context or subject knowledge. Make the artifact stand alone: state what it is about, why it matters, what happened or was learned, and what the reader should notice or do. Explain necessary terms and acronyms at first use. Keep content, fallback, styles, and behavior in the HTML.
 
@@ -44,7 +44,7 @@ Implement supplied interaction, or add only presentation controls needed to navi
 
 Keep outcomes, decisions, current status, material evidence, risks, and next actions visible and before supporting detail. Give sections enough block spacing to remain distinct at a scan. Put logs, provenance, superseded detail, and other secondary information that the audience does not need upfront in collapsed semantic `<details>` accordions with clear `<summary>` labels. Summarize logs first, then split retained entries into labeled runs by phase, date, source, or severity; do not place the full record in one page-level text block. Render long IDs, hashes, URLs, and similar values as block-level, copyable text that wraps without changing the value. Do not collapse a blocker, warning, required action, or the only accessible representation of material content.
 
-Embed the bundled [visual foundation](assets/visual-foundation.css) and [theme control](assets/theme-control.html) in every artifact. They supply behavior and resilience only; choose the artifact's visual direction from its material.
+Embed the bundled [visual foundation](assets/visual-foundation.css) and [theme control](assets/theme-control.html) in every artifact. They supply behavior and resilience only; choose the artifact's visual direction from its material. Localize every visible and accessible control label to the artifact language before embedding it.
 
 ## 3. Apply resource and portability rules
 
@@ -73,8 +73,8 @@ Show one status near the title:
 
 ## 4. Deliver
 
-Do not verify the artifact unless the user explicitly requests verification. Do not run a browser or UI check as part of this skill.
+Before delivery, reread the generated files and run the smallest non-UI checks that cover referenced files and anchors, script syntax, required fallback content, and resource disclosures. Report the completed checks and do not claim accessibility, portability, or visual correctness beyond their evidence. Run a browser or UI check only when the user explicitly requests verification or another owning workflow requires it.
 
-Return the direct absolute path or host-rendered link, with a bundle index first. Add no opener script unless requested or repeatedly needed. Use a temporary preview URL only when requested non-UI testing requires HTTP; identify it as transport, not a dependency. If preview fails, return durable files, blocker, and completed requested checks without claiming success.
+Return the direct absolute path or host-rendered link, with a bundle index first. Add no opener script unless requested or repeatedly needed. Use a temporary preview URL only when requested non-UI testing requires HTTP; identify it as transport, not a dependency. If preview fails, return the files, blocker, and completed requested checks without claiming success.
 
 Return portability status, limitations, network needs, and external-resource disclosure. For a report, also return lifecycle, coverage disposition, and unresolved input gaps.
