@@ -2,6 +2,11 @@
 
 This file records released, user-visible changes to QP Agent Skills. Version `1.0.0` is the clean public baseline. Earlier internal history is intentionally not included.
 
+## Unreleased
+
+- Expand `pare` into one simplification and cleanup specialist with `audit`, `review`, `clean`, and test-only `deep-clean` modes.
+- Route maintainability-only work to Pare `review`; QP Code Review keeps broad and defect-only verdicts and consumes exact-current Pare evidence for broad review.
+
 ## 1.0.0
 
 ### Overview

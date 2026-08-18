@@ -44,7 +44,7 @@ Name the minimum real user or operational path that must pass for job acceptance
 
 `alarina` selects the first route for an unqualified prompt. Once `alaga` is explicitly selected or routed, Alaga owns the active build job. Inspect the current capability inventory and select the shortest useful combination of skills, tools, and direct work from job evidence. Examples are not an allowlist. If a required owner is unavailable, name the capability gap and pause only dependent work; do not imitate the missing specialist.
 
-Before delivery starts, establish one session delivery policy from the user request and repository state:
+Before delivery starts, establish one session delivery policy from the user request and repository state. Name the smallest proof that can falsify the highest-risk acceptance claim; stop expanding proof or delegation when further evidence cannot change acceptance or a blocking decision.
 
 - execution horizon: one unit, candidate, ticket, phase, all startable work, or the complete job;
 - commit granularity when local commits are authorized;

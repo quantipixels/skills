@@ -1,4 +1,4 @@
-# Maintainability review
+# Candidate review
 
 Perform one finite, read-only maintainability review. Do not change code, tests, documentation, Git state, provider state, or the review target. Keep functional correctness, security, runtime compatibility, behavioral proof, release readiness, and architecture planning outside this review.
 

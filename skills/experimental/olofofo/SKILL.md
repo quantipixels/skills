@@ -32,6 +32,8 @@ Create one collision-safe file at:
 
 Generate a concise, human-readable title from the current context. Keep the host session identity inside the artifact. If the target exists, choose a distinct filename; never overwrite another session artifact.
 
+At creation, classify and label the artifact's retention as `local-only` or `durable`. Default to `local-only`; use `durable` only when an authorized destination is expected to survive relevant cleanup, checkout, and handoff boundaries. This label does not grant authority to copy the artifact elsewhere.
+
 Use `html-artifact` as the one default supporting-skill exception when available. Supply exact-current session material and require a portable, human-readable result. Treat its delivery result as rendering evidence only; do not repeat its metadata in routine updates. If it is unavailable, create valid standalone HTML with the agent's available capabilities. Let the artifact evolve to make the current information clearer.
 
 Link each material local artifact with its full absolute path and each remote artifact with its canonical URL. Do not include credentials, secret-bearing content, unnecessary personal data, or raw logs.
@@ -74,6 +76,6 @@ When the user explicitly stops Olofofo, record the stop in the current artifact,
 
 After creation, rename, or a material update, reread the artifact and verify the current focus, material facts, links, next action, session identity, and offline readability. Correct a failed or partial write before relying on it.
 
-Mention the absolute artifact path when it is created, renamed, requested, or useful for handoff or closure. When a handoff is requested, link this artifact as evidence; `handoff` owns the point-in-time transfer and does not stop Olofofo. Keep routine background updates quiet.
+Mention the absolute artifact path when it is created, renamed, requested, or useful for handoff or closure. Before stop or handoff, preserve a `local-only` artifact in an authorized durable destination when the session requires long-term evidence; otherwise state the destination and write-authority gap. When a handoff is requested, link the retained artifact as evidence; `handoff` owns the point-in-time transfer and does not stop Olofofo. Keep routine background updates quiet.
 
 The portable activation payload is in [global-activation.md](references/global-activation.md). Load it only for installation, maintenance, or verification of default activation.

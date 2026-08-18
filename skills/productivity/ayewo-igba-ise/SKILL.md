@@ -17,7 +17,7 @@ Distinguish a user task, root session, resumed or copied history, rollout file, 
 
 Read the evidence needed to reconstruct the user contract, agent actions, results, and final state. Do not treat hidden reasoning or a later summary as evidence.
 
-Record the instructions and skill versions active during each analyzed session when its record provides them. Treat current copies as comparison context, not proof of what the agent saw. Use pinned durable facts from repository instructions, current skills, diffs, artifacts, or verified external state to assess forward-looking improvements, but do not use later evidence to change a historical verdict. Keep repository and external state read-only unless the user separately authorizes a report artifact or correction.
+Record the instructions and skill versions active during each analyzed session when its record provides them. For reported skill use, distinguish mention, read, selection, invocation, result, mutation, installation, activation, and handoff; do not infer one state from another. Treat current copies as comparison context, not proof of what the agent saw. Use pinned durable facts from repository instructions, current skills, diffs, artifacts, or verified external state to assess forward-looking improvements, but do not use later evidence to change a historical verdict. Keep repository and external state read-only unless the user separately authorizes a report artifact or correction.
 
 A durable fact must have a pinned source, remain applicable to the current owner, and support behavior beyond the incident.
 
@@ -43,7 +43,7 @@ Assess correctness, decision quality, and efficiency. Report wasted or repeated 
 
 For each warranted recommendation, state its owning surface, the durable fact that makes it applicable beyond the session, the smallest behavioral change, expected benefit, risk, and required proof. Prefer clarifying, merging, moving, or removing instructions over adding another rule. Return no change when no durable structural gap exists.
 
-Use `ko-skill` to assess any recommendation that may create or change a skill and to apply authorized changes. For every authorized correction, use `qp-code-review` in maintainability-only mode on the exact candidate before finalizing it.
+Use `ko-skill` to assess any recommendation that may create or change a skill and to apply authorized changes. For every authorized correction, use Pare `review` on the exact candidate before finalizing it. Use broad QP Code Review only when the correction also requires a defect verdict.
 
 For one session, return the executive verdict, evidence boundary, timeline and causal chain, ranked frictions, effective recovery, recommendation assessment, material rejected recommendations, and residual limits.
 

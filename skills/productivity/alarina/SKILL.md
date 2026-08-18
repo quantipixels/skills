@@ -20,10 +20,12 @@ Engineering, Design, Productivity, and Experimental are install groups, not rout
 | Deliver a supplied build job through integration and review | `alaga` | `job` |
 | Keep an architecture or migration plan active through delivery | `atona` | — |
 | Audit behavior parity for a stateful refactor or rewrite | `audit-refactor-behavior` | — |
-| Review bounded code for maintainability only | `qp-code-review` | `maintainability-only`; `general` or `provider` target |
+| Review bounded code for maintainability only | `pare` | `review`; add QP Code Review as provider adapter only for an active PR or MR |
 | Review bounded code for defects and maintainability | `qp-code-review` | `broad`; `general` or `provider` target |
 | Review bounded code only for defects | `qp-code-review` | `defect-only`; `general` or `provider` target |
-| Audit an entire repository for simplifications | `pare` | — |
+| Audit an entire repository for simplifications | `pare` | `audit` |
+| Remove proved unnecessary implementation, dependencies, configuration, support artifacts, or tests | `pare` | `clean` |
+| Aggressively delete non-contract tests after explicit HITL or opt-in authorization | `pare` | `deep-clean` |
 | Create, revise, or validate one skill | `ko-skill` | `one-skill` |
 | Audit a bounded skill portfolio | `ko-skill` | `portfolio-audit` |
 | Explain a supplied subject to a first-time reader | `salaye` | — |
@@ -34,6 +36,7 @@ Engineering, Design, Productivity, and Experimental are install groups, not rout
 | Monitor an open PR or MR through readiness | `wo-pr` | — |
 | Visualize supplied results, purpose-fit reports, analysis, data, decisions, or designs in a portable browser artifact | `html-artifact` | — |
 | Prepare a compact handoff for another agent or session | `handoff` | — |
+| Draft, revise, or review developer documentation or technical communication in any language with applicable Google style | `google-developer-style` | — |
 | Analyze one coding-agent session or bounded corpus | `ayewo-igba-ise` | — |
 | Research a question from primary sources into Markdown | `iwadi` | — |
 | Select, configure, use, or remove a companion tool | `irinse` | — |
@@ -51,6 +54,8 @@ Use `general` QP Code Review mode for supplied or local candidates and `provider
 ## Boundaries
 
 - Keep a directly selected artifact specialist primary when it fully owns the result.
+- Keep Parẹ́ `audit` and `review` read-only. `clean` preserves required behavior and proof. Only explicit HITL or opt-in selects test-only `deep-clean`; it never authorizes aggressive production-code deletion.
+- Keep language-specific and project style, channel conventions, product truth, code conventions, accessibility conformance, localization, brand voice, and publishing with their direct owners; Google Developer Style owns the applicable editorial pass.
 - Keep portable presentation-style reports with `html-artifact`; route requested slide decks to `slides`.
 - Use Atọ́nà while architecture or migration state remains active, Àròjinlẹ̀ for one new or reopened material decision, and Audit Refactor Behavior before a stateful refactor that can change lifecycle behavior.
 - Keep PR or MR publication with Ṣẹ̀dá PR, monitoring with Wò PR, and review verdicts with QP Code Review.

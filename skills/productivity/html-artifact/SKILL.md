@@ -9,7 +9,7 @@ Turn supplied material into one portable visual explanation or bounded variant s
 
 ## 1. Set the contract
 
-Use the requested or existing path. Otherwise, store a durable record at `.qp/report/<YYYY-MM-DD>-<kind>-<slug>.html`; store another artifact at `.qp/<kind>/<YYYY-MM-DD>-<slug>.html`.
+Use the requested or existing path. In all cases, classify retention as temporary or durable before writing. A durable project record must use an authorized tracked location such as `docs/reports/`; do not call an ignored, untracked, temporary, or local-only path durable. When no path is requested and no authorized durable location exists, use `.qp/<kind>/<YYYY-MM-DD>-<slug>.html`.
 
 Follow the supplied audience; otherwise write for a layperson with no prior context or subject knowledge. Make the artifact stand alone: state what it is about, why it matters, what happened or was learned, and what the reader should notice or do. Explain necessary terms and acronyms at first use. Keep content, fallback, styles, and behavior in the HTML.
 

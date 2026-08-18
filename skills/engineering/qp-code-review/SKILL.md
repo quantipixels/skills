@@ -1,6 +1,6 @@
 ---
 name: qp-code-review
-description: "Review one bounded code candidate for maintainability, defects, or both. Focus on exact candidate identity, actionable maintenance cost, credible failure mechanisms, adversarial validation, and an evidence-backed result."
+description: "Judge one bounded code candidate for defects or for defects plus maintainability evidence from Pare. Focus on exact candidate identity, credible failure mechanisms, adversarial validation, and an evidence-backed result; route maintainability-only requests to Pare `review`."
 ---
 
 # Code Review
@@ -22,7 +22,7 @@ Candidate + contract + repository rules
       ▼                      ▼
  Defect-only            Broad review
       │                      │
-      │            Maintainability review
+      │              Pare `review`
       └───────────┬──────────┘
                   ▼
  Collect changed surface + evidence
@@ -45,13 +45,13 @@ Candidate + contract + repository rules
         └── Yes ──> Refresh head ──> Publish ──> Verify
 ```
 
-Treat an unqualified request for a code review as broad. Use maintainability-only mode when the user asks only to simplify, improve maintainability, or review code quality without a defect verdict. Use defect-only mode only when the user explicitly excludes maintainability.
+Treat an unqualified request for a code review as broad. Route a request only to simplify, improve maintainability, or review code quality without a defect verdict to Pare `review`. Use defect-only mode only when the user explicitly excludes maintainability.
 
-For maintainability-only and broad review, read [`references/maintainability.md`](references/maintainability.md) and apply it to the pinned candidate. Maintainability-only mode returns that bounded report without running defect discovery or issuing a defect verdict. Broad review requires both maintainability evidence and complete defect discovery before its verdict.
+Broad review requires an exact-current Pare `review` result and complete defect discovery before its verdict. In general mode, pass the pinned candidate boundary and identity to Pare. In provider mode, QP Code Review remains the provider adapter: fetch and pin complete candidate content, then pass that fixed content to Pare without granting provider access or writes.
 
 The four defect-discovery branches are logically independent. In broad review, every branch and the maintainability review must complete or name its evidence gap before adversarial review challenges the findings and clean claims.
 
-When it materially improves evidence quality, the primary reviewer may request independent Contract, Standards, Proof, Bug hunt, or maintainability evidence. Pin every request to the candidate and branch boundary. The primary reviewer retains reconciliation, verdict, and provider writes.
+When it materially improves evidence quality, the primary reviewer may request independent Contract, Standards, Proof, or Bug hunt evidence. Pin every request to the candidate and branch boundary. Pare owns maintainability discovery. The primary reviewer retains reconciliation, verdict, and provider writes.
 
 Treat proof produced by concurrent commands that share mutable state as contaminated; rerun it in one controlled environment.
 
@@ -102,7 +102,7 @@ Deduplicate findings by failure mechanism and reconcile contradictory claims. In
 
 Verify the candidate identity again. If it changed, discard the result, stale line locations, and stale maintainability evidence, then rebuild the applicable review against the new candidate.
 
-In maintainability-only mode, skip the defect verdict and return the bounded maintainability report from the reference. Otherwise, return one verdict:
+Return one verdict:
 
 - `RECOMMEND_ACCEPT` — no blocking defect or maintainability finding remains and evidence is sufficient.
 - `RECOMMEND_CHANGES` — a confirmed defect or maintainability finding violates the blocking criteria.

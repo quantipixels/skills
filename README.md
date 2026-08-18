@@ -63,8 +63,8 @@ Use alarina to choose the right QP skill for this request:
 | `audit-refactor-behavior` | A refactor or rewrite needs a behavior-parity ledger |
 | `irinse` | A companion engineering tool needs selection, setup, safe use, or removal |
 | `ko-skill` | `one-skill` mode creates, revises, or validates a skill; `portfolio-audit` mode audits a bounded portfolio |
-| `pare` | An entire repository needs a read-only, coverage-complete audit for material simplifications |
-| `qp-code-review` | `broad`, `maintainability-only`, or `defect-only` review is needed in `general` local/supplied or `provider` PR/MR mode |
+| `pare` | `audit` reviews all subsystems read-only; `review` inspects one candidate; `clean` removes proved unnecessary implementation or tests; `deep-clean` performs explicitly authorized aggressive test deletion |
+| `qp-code-review` | `broad` or `defect-only` review is needed in `general` local/supplied or `provider` PR/MR mode; broad review consumes Pare `review` evidence |
 | `seda-pr` | A bounded current-branch change needs commit, push, and a clear ready-for-review GitHub PR or GitLab MR |
 | `seda-ticket` | Supplied work needs consumable vertical tickets with blockers, acceptance, and lifecycle state |
 | `triage-issue` | One issue or bug report needs supplied-evidence-first assessment before implementation |
@@ -93,6 +93,7 @@ For React UI work, `asa-oju-ibanisoro` asks for an explicit component-library de
 | `alarina` | You need to choose the shortest QP route for a request |
 | `arojinle` | A material plan or design needs a complete decision tree, durable records, and final confirmation |
 | `ayewo-igba-ise` | A coding-agent session or bounded multi-session corpus needs an evidence-backed friction and recurrence analysis |
+| `google-developer-style` | Developer documentation or technical communication in any language needs drafting, revision, or review with applicable Google style principles |
 | `handoff` | A conversation needs a compact handoff for another agent or session |
 | `html-artifact` | Supplied results, purpose-fit reports, analysis, data, decisions, or designs need a portable visual explanation for a zero-context reader |
 | `iwadi` | A question needs high-trust research from primary sources, captured in a Markdown file |
@@ -119,6 +120,18 @@ Copy the exact managed block from [Olofofo global activation](skills/experimenta
 
 ```text
 Use `irinse` when a companion tool could materially improve the result. If the required tool is unavailable, explain its benefit and ask before installing or configuring it.
+```
+
+### Google developer style for documentation and communication
+
+```text
+Use `google-developer-style` when drafting, revising, or reviewing developer documentation or technical communication in any language. Apply the language community's conventions, project-specific style, channel conventions, product truth, and code conventions first. Transfer the guide's ideas about clarity, tone, audience, terminology, structure, and accessibility; do not impose English grammar, spelling, capitalization, politeness, or sentence patterns on another language. For communication outside documentation, apply only the principles that fit the channel. Do not generalize language-specific, documentation-only, or product-specific rules.
+```
+
+### Clear mode names
+
+```text
+Name new or changed skill modes with the shortest clear verb or verb phrase. Prefer names such as `audit`, `review`, `clean`, and `deep-clean`. Do not repeat the skill name, target artifact, implementation detail, or other context that the owning skill already supplies. Add a qualifier only when it changes authority, risk, or outcome and the unqualified name would be ambiguous.
 ```
 
 ### Consider before judgment

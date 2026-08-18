@@ -1,11 +1,24 @@
 ---
 name: pare
-description: Audit an entire codebase for material simplifications in data structures, state, control flow, algorithms, and ownership. Use for a read-only repository-wide review that requires explicit subsystem coverage, independently verified findings, and dependency-aware priorities; exclude bounded change review, defect review, implementation, and architecture planning.
+description: Review code for material simplifications or remove proved unnecessary implementation and tests. Use `audit` for a read-only repository-wide audit, `review` for one bounded candidate, `clean` for behavior-preserving cleanup, or `deep-clean` after explicit HITL or opt-in authorization for aggressive contract-focused test deletion; exclude defect verdicts, feature implementation, and architecture planning.
 ---
 
 # Parẹ́
 
-Complete one read-only simplification audit of the current repository. Do not edit repository files, run tests, implement recommendations, change Git state, or use provider writes. Read-only inspection commands and host-provided read-only subagents are allowed.
+Own simplification and cleanup through one selected mode:
+
+- `audit` completes a read-only, repository-wide simplification audit.
+- `review` completes a read-only maintainability and simplification review of one fixed candidate.
+- `clean` removes proved unnecessary implementation, dependencies, configuration, support artifacts, or tests while preserving required behavior and proof.
+- `deep-clean` performs aggressive contract-focused test deletion after one explicit HITL or opt-in authorization for an exact scope.
+
+Treat an unqualified repository simplification audit as `audit`, a bounded maintainability request as `review`, and an unqualified cleanup request as `clean`. Select `deep-clean` only when the user explicitly authorizes deep or aggressive test deletion. HITL and opt-in are the same authorization state. Do not combine modes unless the user requests the combined outcome.
+
+For `review`, read and follow [candidate review](references/candidate-review.md) instead of the audit workflow below. Keep defect discovery, blocking classification, review verdicts, provider access, and provider writes with QP Code Review. QP Code Review may supply one fixed provider candidate and consume the exact-current result.
+
+For `clean`, read [implementation cleanup](references/implementation-cleanup.md). When the selected target includes tests, also read [test cleanup](references/test-cleanup.md). For `deep-clean`, read only [test cleanup](references/test-cleanup.md); this mode does not authorize aggressive production-code deletion. A cleanup request authorizes only scoped files and directly required configuration or dependency edits. It does not authorize commits, publication, unrelated behavior changes, or provider writes.
+
+For `audit`, complete the workflow below. Do not edit repository files, run tests, implement recommendations, change Git state, or use provider writes. Read-only inspection commands and host-provided read-only subagents are allowed.
 
 ## 1. Establish the coverage contract
 
@@ -32,7 +45,7 @@ Give each reviewer the repository identity, exact subsystem boundary, key files,
 
 > Review this subsystem for at most two materially useful simplifications in its data structures, state representation, control flow, algorithms, or ownership. Inspect implementation, public interfaces, major call sites, and tests. Stay inside the assigned boundary; report cross-subsystem evidence without expanding scope. Prefer clear local code and return `skip` when no opportunity meets the threshold.
 
-Look for invalid combinations caused by booleans or nullable fields that need a state machine or discriminated union; repeated object-shape assumptions that need one shared typed model; duplicated branching that a small map, registry, reducer, or command model can remove; unclear behavior ownership; repeated scans or transformations; unsuitable collections or indexes; and lifecycle, concurrency, or async state that permits stale or contradictory values.
+Look for invalid combinations caused by booleans or nullable fields that need a state machine or discriminated union; repeated object-shape assumptions that need one shared typed model; duplicated branching that a small map, registry, reducer, or command model can remove; unclear behavior ownership; repeated scans or transformations; unsuitable collections or indexes; lifecycle, concurrency, or async state that permits stale or contradictory values; dead code; unused dependencies; obsolete configuration; and removable support artifacts.
 
 Accept a recommendation only when the evidence shows a concrete reduction in invalid state, duplicated policy, repeated material work, coordinated change cost, or unclear ownership. Reject stylistic consistency, hypothetical extensibility, minor line-count reduction, speculative abstraction, or a change that only moves branching behind a new type.
 

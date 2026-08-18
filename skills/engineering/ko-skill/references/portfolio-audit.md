@@ -15,7 +15,7 @@ Define these states separately:
 
 Do not infer active or published state from a cache, config entry, source checkout, or installed directory alone. When a state cannot be verified, record an evidence gap instead of parity.
 
-Build a canonical inventory. Give every distinct skill one row with its canonical name, source and package identity, observed states, version or digest when available, and evidence location. Deduplicate symlinks, cache copies, aliases, resumed records, and identical package versions. Report the denominator and exclusions used by every portfolio count.
+Build a canonical inventory. Give every distinct skill one row with its canonical name, source and package identity, observed states, observation time, version or digest when available, and evidence location. Deduplicate symlinks, cache copies, aliases, resumed records, and identical package versions. Report the denominator and exclusions used by every portfolio count. A source, package, manifest, or active-inventory change makes every dependent parity claim stale until it is verified again.
 
 ## 2. Check every inventory row
 
