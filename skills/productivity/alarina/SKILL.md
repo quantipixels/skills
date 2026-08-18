@@ -24,8 +24,8 @@ Engineering, Design, Productivity, and Experimental are install groups, not rout
 | Review bounded code for defects and maintainability | `qp-code-review` | `broad`; `general` or `provider` target |
 | Review bounded code only for defects | `qp-code-review` | `defect-only`; `general` or `provider` target |
 | Audit an entire repository for simplifications | `pare` | `audit` |
-| Remove proved unnecessary implementation, dependencies, configuration, support artifacts, or tests | `pare` | `clean` |
-| Aggressively delete non-contract tests after explicit HITL or opt-in authorization | `pare` | `deep-clean` |
+| Identify unnecessary implementation, dependencies, configuration, support artifacts, or tests | `pare` | `audit` or `review` |
+| Implement an accepted bounded Pare cleanup slice | `alaga` | `job`; deep test deletion also requires explicit opt-in |
 | Create, revise, or validate one skill | `ko-skill` | `one-skill` |
 | Audit a bounded skill portfolio | `ko-skill` | `portfolio-audit` |
 | Explain a supplied subject to a first-time reader | `salaye` | — |
@@ -54,7 +54,7 @@ Use `general` QP Code Review mode for supplied or local candidates and `provider
 ## Boundaries
 
 - Keep a directly selected artifact specialist primary when it fully owns the result.
-- Keep Parẹ́ `audit` and `review` read-only. `clean` preserves required behavior and proof. Only explicit HITL or opt-in selects test-only `deep-clean`; it never authorizes aggressive production-code deletion.
+- Keep Parẹ́ read-only. It may label a `deep-clean candidate`, but only a delivery owner with explicit opt-in may delete that proof.
 - Keep language-specific and project style, channel conventions, product truth, code conventions, accessibility conformance, localization, brand voice, and publishing with their direct owners; Google Developer Style owns the applicable editorial pass.
 - Keep portable presentation-style reports with `html-artifact`; route requested slide decks to `slides`.
 - Use Atọ́nà while architecture or migration state remains active, Àròjinlẹ̀ for one new or reopened material decision, and Audit Refactor Behavior before a stateful refactor that can change lifecycle behavior.
