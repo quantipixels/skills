@@ -19,7 +19,7 @@ Engineering, Design, Productivity, and Experimental are install groups, not rout
 | Deliver one bounded feature or fix test-first | `alaga` | `test-first` |
 | Deliver a supplied build job through integration and review | `alaga` | `job` |
 | Keep an architecture or migration plan active through delivery | `atona` | — |
-| Audit behavior parity for a stateful refactor or rewrite | `audit-refactor-behavior` | — |
+| Audit behavior parity for a stateful refactor or rewrite | `atunwo` | `audit`; `general` or read-only `provider` target |
 | Review bounded code for maintainability only | `pare` | `review`; add `atunwo` as provider adapter only for an active PR or MR |
 | Review bounded code for defects and maintainability | `atunwo` | `broad`; `general` or `provider` target |
 | Review bounded code only for defects | `atunwo` | `defect-only`; `general` or `provider` target |
@@ -48,7 +48,7 @@ Engineering, Design, Productivity, and Experimental are install groups, not rout
 | Design a constrained banner, cover, hero, or ad | `banner-design` | — |
 | Create an HTML presentation or pitch deck | `slides` | — |
 
-Use `general` mode in `atunwo` for supplied or local candidates and `provider` mode for an active PR or MR. Default an unqualified code review to `broad`. Do not invent a mode that its owner does not define.
+Use `general` mode in `atunwo` for supplied or local candidates and `provider` mode for an active PR or MR. Default an unqualified code review to `broad`. Use `audit` only for requested behavior parity across a planned, in-progress, or completed stateful refactor or rewrite. Do not invent a mode that its owner does not define.
 
 ## Boundaries
 
@@ -56,7 +56,7 @@ Use `general` mode in `atunwo` for supplied or local candidates and `provider` m
 - Keep `pare` read-only. It may label a `deep-clean candidate`, but only a delivery owner with explicit opt-in may delete that proof.
 - Keep language-specific and project style, channel conventions, product truth, code conventions, accessibility conformance, localization, brand voice, and publishing with their direct owners; `google-developer-style` owns the applicable editorial pass.
 - Keep portable presentation-style reports with `html-artifact`; route requested slide decks to `slides`.
-- Use `atona` while architecture or migration state remains active, `arojinle` for one new or reopened material decision, and `audit-refactor-behavior` before a stateful refactor that can change lifecycle behavior.
+- Use `atona` while architecture or migration state remains active, `arojinle` for one new or reopened material decision, and `atunwo` in `audit` scope before a stateful refactor that can change lifecycle behavior.
 - Keep PR or MR publication with `seda-pr`, monitoring with `wo-pr`, and review verdicts with `atunwo`.
 - When another skill owns a code-review outcome but lacks provider access, `atunwo` may support only candidate acquisition and a fixed adapter handoff; this grants no defect, verdict, publication, or provider authority to the owner.
 - Keep issue triage supplied-evidence-first. Repository reads, provider reads, and provider writes require their own authority.

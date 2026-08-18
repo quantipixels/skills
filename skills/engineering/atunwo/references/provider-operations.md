@@ -72,6 +72,8 @@ Primary documentation:
 
 ## Report or publish
 
+In `audit` scope, use provider reads only. Report the canonical identity, fixed comparison boundary, parity result, mapped verdict, evidence gaps, and publication state `READ_ONLY`; do not prepare, request, or perform a provider write.
+
 When `atunwo` acts only as a provider adapter, report the canonical host, repository, PR or MR number, base and head identities, fixed candidate content or artifact identity, completeness, evidence gaps, and publication state `READ_ONLY`; then stop without a review scope, finding counts, or verdict. The remaining contract applies only when `atunwo` owns the review outcome.
 
 Without write authority, report the reviewed head, verdict, review scope, separate defect and maintainability finding counts, publication state `READ_ONLY`, discussion dispositions, capability gaps, and next action.

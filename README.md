@@ -60,8 +60,7 @@ Use alarina to choose the right QP skill for this request:
 | `alaga` | `test-first` mode handles one bounded feature or fix; `job` mode handles a supplied build job through integration, acceptance, reconciliation, and applicable review |
 | `amose` | Project terms, `CONTEXT.md`, domain rules, `.learnings`, `.nongoals`, or ADRs need clarification or reconciliation |
 | `atona` | Architecture or migration work needs one live plan through delivery |
-| `atunwo` | `broad` or `defect-only` review is needed in `general` local/supplied or `provider` PR/MR mode; broad review consumes Pare `review` evidence |
-| `audit-refactor-behavior` | A refactor or rewrite needs a behavior-parity ledger |
+| `atunwo` | `broad`, `defect-only`, or read-only refactor-parity `audit` is needed in `general` local/supplied or `provider` PR/MR mode; broad review consumes Pare `review` evidence |
 | `irinse` | A companion engineering tool needs selection, setup, safe use, or removal |
 | `ko-skill` | Creates, revises, or validates one skill through one workflow; bounded portfolio audits remain read-only |
 | `pare` | Read-only `audit` or `review` finds material simplifications and classifies implementation, dependency, support-artifact, and test cleanup candidates |

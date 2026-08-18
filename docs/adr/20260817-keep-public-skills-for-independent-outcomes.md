@@ -9,3 +9,5 @@ This retires `tdd`, `simplify`, and `skill-portfolio-audit` as standalone skills
 Keeping every method independently installable was rejected because it increased routing and release surface while the primary owner already required the method. Copying each method into its owner's main instructions was also rejected because it would increase default context. Conditional references preserve focused context at the cost of broader owner descriptions and removal of three public identifiers.
 
 Ko Skill's later authority modes were superseded by [one shared single-skill workflow](20260818-unify-ko-skill-workflow.md); bounded portfolio audit remains a conditional read-only reference.
+
+The stateful refactor parity audit later moved into [`atunwo`](20260818-move-refactor-parity-audit-into-atunwo.md). It remains a read-only conditional review method; `alaga` owns refactor implementation.

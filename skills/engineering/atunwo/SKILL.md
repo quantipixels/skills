@@ -1,11 +1,11 @@
 ---
 name: atunwo
-description: "Judge one bounded code candidate for defects or for defects plus maintainability evidence from `pare`. Focus on exact candidate identity, credible failure mechanisms, adversarial validation, and an evidence-backed result; route maintainability-only requests to `pare` in `review` mode."
+description: "Judge one bounded code candidate for defects, broad review with `pare` evidence, or read-only behavior parity for one stateful refactor or rewrite. Focus on exact identities, credible failure mechanisms, adversarial validation, and an evidence-backed result; route maintainability-only requests to `pare` in `review` mode."
 ---
 
 # Àtúnwò
 
-Judge one fixed code candidate from evidence. Keep code and Git state read-only. Keep provider state read-only unless the user explicitly authorizes a specific write.
+Judge one fixed code candidate or refactor comparison from evidence. Keep code and Git state read-only. Keep provider state read-only unless the user explicitly authorizes a specific write. `audit` scope is always read-only.
 
 ## Functional workflow
 
@@ -18,19 +18,17 @@ Candidate + contract + repository rules
                   ▼
       Classify review scope
                   │
-      ┌───────────┴──────────┐
-      ▼                      ▼
- Defect-only            Broad review
-      │                      │
-      │              Parẹ (review)
-      └───────────┬──────────┘
-                  ▼
- Collect changed surface + evidence
-                  │
-      ┌───────────┼───────────┬──────────┐
-      ▼           ▼           ▼          ▼
-  Contract    Standards     Proof     Bug hunt
-      └───────────┴───────────┴──────────┘
+      ┌───────────┼───────────┐
+      ▼           ▼           ▼
+ Defect-only  Broad review   Audit
+      │           │           │
+      │      pare (review)  Refactor parity
+      │           │           │
+      ├───────────┤           │
+      ▼           ▼           ▼
+ Contract · standards ·   Ledger · trace ·
+    proof · bug hunt        parity proof
+      └───────────┬───────────┘
                   ▼
       Findings + clean claims + gaps
                   │
@@ -40,12 +38,14 @@ Candidate + contract + repository rules
                   ▼
        Reconcile + decide
                   │
-       Provider write authorized?
+  Scope + authority permit provider write?
         ├── No ──> Read-only report
         └── Yes ──> Refresh head ──> Publish ──> Verify
 ```
 
-Treat an unqualified request for a code review as broad. Route a request only to simplify, improve maintainability, or review code quality without a defect verdict to `pare` in `review` mode. Use defect-only mode only when the user explicitly excludes maintainability.
+Treat an unqualified code review as broad. Use defect-only only when the user explicitly excludes maintainability, and `audit` only for old, current, and required behavior parity across one planned, in-progress, or completed stateful refactor or rewrite. Route maintainability-only work to `pare` in `review` mode.
+
+In `audit` scope, read [`references/refactor-parity.md`](references/refactor-parity.md) and use its ledger, trace, classifications, proof, and result contract instead of the ordinary defect-discovery branches. Do not require `pare`, publish provider state, implement a correction, or infer delivery authority. Return its exact-current result to `alaga` for implementation or to `atona` for plan integration when applicable.
 
 When another skill owns the requested code-review outcome, `atunwo` may act only as its provider adapter. Fetch and pin the complete candidate, then return the canonical provider identity, base and head identities, fixed content or artifact identity, completeness, and evidence gaps. Do not run defect discovery, classify findings, issue a verdict, publish, or transfer provider authority unless separately requested. Example: maintainability-only PR review → `atunwo` provider adapter → `pare` in `review` mode.
 
@@ -59,9 +59,9 @@ Treat proof produced by concurrent commands that share mutable state as contamin
 
 ## 1. Pin the candidate and authority
 
-Use general mode for working-tree changes, staged changes, commits, branches, files, or supplied code. Record the candidate boundary, baseline, contract, non-goals, blocking criteria, standards, and proof sources. Pin a commit or tree when possible. Otherwise, record a fixed snapshot or digest.
+Use general mode for working-tree changes, staged changes, commits, branches, files, supplied code, or a supplied planned-refactor boundary. Record the candidate or comparison boundary, baseline, contract, non-goals, blocking criteria, standards, and proof sources. Pin a commit or tree when possible. Otherwise, record a fixed snapshot or digest.
 
-Use provider mode for an active GitHub PR or GitLab MR. Read [`references/provider-operations.md`](references/provider-operations.md). Record the canonical provider host, repository, PR or MR number, branches, base and head SHAs, contract, blocking criteria, and evidence sources. Track authority separately for posting, approving, replying, resolving, and reopening.
+Use provider mode for an active GitHub PR or GitLab MR. Read [`references/provider-operations.md`](references/provider-operations.md). Record the canonical provider host, repository, PR or MR number, branches, base and head SHAs, contract, blocking criteria, and evidence sources. Outside `audit` scope, track authority separately for posting, approving, replying, resolving, and reopening.
 
 Do not infer a provider target from local state. Report the exact gap and safe alternatives when the target or a required capability is missing. Use `INSUFFICIENT_EVIDENCE` when the gap prevents a responsible verdict. Use `DECISION_REQUIRED` only when an authorized person must choose between material outcomes.
 
@@ -79,7 +79,7 @@ When the contract depends on a referenced issue, resolve it from a supplied cano
 
 In provider mode, fetch the exact target-to-head candidate without changing unrelated local work. Detect an incomplete or limited provider diff. Track each prior actionable discussion with its provider ID, claim, current evidence, and current disposition.
 
-Read [`references/finding-contract.md`](references/finding-contract.md). Review each discovery branch:
+Outside `audit` scope, read [`references/finding-contract.md`](references/finding-contract.md) and review each discovery branch:
 
 - **Contract:** required behavior, actors, permissions, states, failures, recovery, compatibility, migration, security, rollout, and rollback.
 - **Standards:** repository architecture, ownership, naming, errors, observability, dependencies, resources, and secret safety.
@@ -113,6 +113,6 @@ Return one verdict:
 
 ## 4. Report or publish
 
-In general mode, report defect findings first by severity, then maintainability findings by blocking effect and maintenance cost. Then report the applicable result, review scope, maintainability evidence identity when required, discovery-branch results, proof gaps, residual risk, reviewed boundary, and candidate identity. Do not imply provider or organizational approval.
+Outside `audit` scope, report defect findings first by severity, then maintainability findings by blocking effect and maintenance cost. Then report the applicable result, review scope, maintainability evidence identity when required, discovery-branch results, proof gaps, residual risk, reviewed boundary, and candidate identity. In `audit` scope, report the parity result defined by its reference plus the mapped verdict. Do not imply provider or organizational approval.
 
-In provider mode, follow the reporting, publication, failure, and readback contract in [`references/provider-operations.md`](references/provider-operations.md). Keep every write separately authorized and exact-head pinned.
+In provider mode, follow the reporting, publication, failure, and readback contract in [`references/provider-operations.md`](references/provider-operations.md). Keep every write separately authorized and exact-head pinned; its `audit` branch never publishes.
