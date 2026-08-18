@@ -20,6 +20,8 @@ Treat these states independently: `source`, `installed`, `active`, and `publishe
 - Good: `source=verified; installed=unknown; active=unknown; published=unknown`.
 - Bad: “Source is verified, so the active skill is current.”
 
+When a readable installed copy exists, compare its identifier and relevant content before reporting installed state. Report actions performed separately from observed Git, provider, installed, active, or published state.
+
 Revise an existing outcome owner instead of creating a competitor. Create a skill only for a recurring independent outcome, decision, or failure mode that ordinary documentation does not solve. Infer the requested location when safe.
 
 For a behavior correction, exercise the exact pre-change candidate with a realistic raw goal when safe; otherwise record the evidence gap. Preserve behavior that already satisfies the target contract.
