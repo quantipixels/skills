@@ -60,14 +60,14 @@ Use alarina to choose the right QP skill for this request:
 | `alaga` | `test-first` mode handles one bounded feature or fix; `job` mode handles a supplied build job through integration, acceptance, reconciliation, and applicable review |
 | `amose` | Project terms, `CONTEXT.md`, domain rules, `.learnings`, `.nongoals`, or ADRs need clarification or reconciliation |
 | `atona` | Architecture or migration work needs one live plan through delivery |
+| `atunwo` | `broad` or `defect-only` review is needed in `general` local/supplied or `provider` PR/MR mode; broad review consumes Pare `review` evidence |
 | `audit-refactor-behavior` | A refactor or rewrite needs a behavior-parity ledger |
 | `irinse` | A companion engineering tool needs selection, setup, safe use, or removal |
 | `ko-skill` | Creates, revises, or validates one skill through one workflow; bounded portfolio audits remain read-only |
 | `pare` | Read-only `audit` or `review` finds material simplifications and classifies implementation, dependency, support-artifact, and test cleanup candidates |
-| `qp-code-review` | `broad` or `defect-only` review is needed in `general` local/supplied or `provider` PR/MR mode; broad review consumes Pare `review` evidence |
+| `se-triage` | One issue or bug report needs supplied-evidence-first assessment before implementation |
 | `seda-pr` | A bounded current-branch change needs commit, push, and a clear ready-for-review GitHub PR or GitLab MR |
 | `seda-ticket` | Supplied work needs consumable vertical tickets with blockers, acceptance, and lifecycle state |
-| `triage-issue` | One issue or bug report needs supplied-evidence-first assessment before implementation |
 | `wo-pr` | An open PR or MR needs active CI and feedback stewardship through readiness and later changes until explicit stop or closure |
 
 ## Design skills

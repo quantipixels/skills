@@ -87,7 +87,7 @@ Review each stable candidate once when it is understandable, verifiable, accepta
 
 Request an early bounded review only for material design, security, data-integrity, migration, public-contract, or cross-system risk that would be costly to correct later. It does not replace the final review required for that candidate type.
 
-Use the candidate type and job contract to select review owners. After implementation proof is green, source code and tests require broad `qp-code-review`, including its maintainability evidence. Other candidates use their owning specialist's verification and any review its contract requires. Do not substitute code review for a non-code candidate. Treat findings as hypotheses until verified.
+Use the candidate type and job contract to select review owners. After implementation proof is green, source code and tests require broad `atunwo`, including its maintainability evidence. Other candidates use their owning specialist's verification and any review its contract requires. Do not substitute code review for a non-code candidate. Treat findings as hypotheses until verified.
 
 Apply behavior-changing code corrections through [`references/tdd.md`](references/tdd.md). Apply other corrections through their owning proof workflow. After any correction, pin the new candidate and rerun affected proof and each stale review stage. Resolve each confirmed non-blocking maintainability finding when the correction stays in scope and its delivery risk does not exceed the evidenced benefit. Do not complete the job while a blocking finding or evidence gap remains.
 

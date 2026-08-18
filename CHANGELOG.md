@@ -5,8 +5,9 @@ This file records released, user-visible changes to QP Agent Skills. Version `1.
 ## Unreleased
 
 - Expand `pare` into one read-only simplification specialist with repository `audit` and bounded candidate `review` modes.
-- Route maintainability-only work to Pare `review`; QP Code Review keeps broad and defect-only verdicts and consumes exact-current Pare evidence for broad review.
-- Let QP Code Review return a read-only provider candidate handoff when another skill owns the requested code-review outcome.
+- Rename `qp-code-review` to `atunwo` and `triage-issue` to `se-triage`; use Àtúnwò and Ṣe Triage as their display names.
+- Route maintainability-only work to Pare `review`; `atunwo` keeps broad and defect-only verdicts and consumes exact-current Pare evidence for broad review.
+- Let `atunwo` return a read-only provider candidate handoff when another skill owns the requested code-review outcome.
 - Send accepted Pare slices to Alaga with explicit proof and authority boundaries; route Ayewo recommendations to Pare only for evidenced codebase simplification.
 - Require Ko Skill to reduce or relocate existing prose before adding a net-new rule.
 - Replace Ko Skill's authority modes with one shared single-skill workflow, explicit mutation authority, semantic claim tracing, and a conditional read-only portfolio audit.

@@ -43,7 +43,7 @@ Assess correctness, decision quality, and efficiency. Report wasted or repeated 
 
 For each warranted recommendation, state its owning surface, the durable fact that makes it applicable beyond the session, the smallest behavioral change, expected benefit, risk, and required proof. Prefer clarifying, merging, moving, or removing instructions over adding another rule. Return no change when no durable structural gap exists.
 
-Use `ko-skill` to assess any recommendation that may create or change a skill and to apply authorized changes. Route an evidenced codebase-simplification recommendation to `pare` in `audit` or `review` mode. Use `broad` mode in `qp-code-review` when a source-code correction requires a defect verdict.
+Use `ko-skill` to assess any recommendation that may create or change a skill and to apply authorized changes. Route an evidenced codebase-simplification recommendation to `pare` in `audit` or `review` mode. Use `broad` mode in `atunwo` when a source-code correction requires a defect verdict.
 
 For one session, return the executive verdict, evidence boundary, timeline and causal chain, ranked frictions, effective recovery, recommendation assessment, material rejected recommendations, and residual limits.
 

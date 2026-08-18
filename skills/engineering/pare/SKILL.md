@@ -14,7 +14,7 @@ Prefer deletion, direct state, local ownership, deep modules, and YAGNI. Reject 
 
 Never edit files, run tests or builds, change Git state, execute cleanup, or use provider writes. Return recommendations and implementation slices only.
 
-`qp-code-review` owns defects, verdicts, and providers; `alaga` implements accepted slices; `atona` owns architecture; `audit-refactor-behavior` owns stateful parity. A `deep-clean candidate` requires explicit opt-in before `alaga` may abandon non-contract proof.
+`atunwo` owns defects, verdicts, and providers; `alaga` implements accepted slices; `atona` owns architecture; `audit-refactor-behavior` owns stateful parity. A `deep-clean candidate` requires explicit opt-in before `alaga` may abandon non-contract proof.
 
 Use `rg` and `git` directly for proportionate read-only reachability and history checks. When a companion tool could materially improve the evidence, give `irinse` the bounded question and candidate, then consume its exact-current read-only result. `pare` retains simplification judgment and never treats tool output as a verdict.
 

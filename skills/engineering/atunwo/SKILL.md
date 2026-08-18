@@ -1,9 +1,9 @@
 ---
-name: qp-code-review
+name: atunwo
 description: "Judge one bounded code candidate for defects or for defects plus maintainability evidence from `pare`. Focus on exact candidate identity, credible failure mechanisms, adversarial validation, and an evidence-backed result; route maintainability-only requests to `pare` in `review` mode."
 ---
 
-# Code Review
+# Àtúnwò
 
 Judge one fixed code candidate from evidence. Keep code and Git state read-only. Keep provider state read-only unless the user explicitly authorizes a specific write.
 
@@ -47,7 +47,7 @@ Candidate + contract + repository rules
 
 Treat an unqualified request for a code review as broad. Route a request only to simplify, improve maintainability, or review code quality without a defect verdict to `pare` in `review` mode. Use defect-only mode only when the user explicitly excludes maintainability.
 
-When another skill owns the requested code-review outcome, `qp-code-review` may act only as its provider adapter. Fetch and pin the complete candidate, then return the canonical provider identity, base and head identities, fixed content or artifact identity, completeness, and evidence gaps. Do not run defect discovery, classify findings, issue a verdict, publish, or transfer provider authority unless separately requested. Example: maintainability-only PR review → `qp-code-review` provider adapter → `pare` in `review` mode.
+When another skill owns the requested code-review outcome, `atunwo` may act only as its provider adapter. Fetch and pin the complete candidate, then return the canonical provider identity, base and head identities, fixed content or artifact identity, completeness, and evidence gaps. Do not run defect discovery, classify findings, issue a verdict, publish, or transfer provider authority unless separately requested. Example: maintainability-only PR review → `atunwo` provider adapter → `pare` in `review` mode.
 
 Broad review requires an exact-current result from `pare` in `review` mode and complete defect discovery before its verdict. In general mode, pass the pinned candidate boundary and identity to `pare`. In provider mode, use the adapter handoff without granting `pare` provider access or writes.
 

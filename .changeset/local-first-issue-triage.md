@@ -2,7 +2,7 @@
 "qp-skills": minor
 ---
 
-Add `triage-issue` for local-first assessment of one issue or bug report before implementation. Supplied evidence is the default boundary; source inspection, GitHub or GitLab reads, and one evidence-backed provider comment require separate explicit authority. Confirmed handoffs use durable behavioral briefs, matching local artifacts resume established facts without repeated questions, and authorized source reads check existing behavior and prior project decisions by domain concept.
+Add `se-triage` for local-first assessment of one issue or bug report before implementation. Supplied evidence is the default boundary; source inspection, GitHub or GitLab reads, and one evidence-backed provider comment require separate explicit authority. Confirmed handoffs use durable behavioral briefs, matching local artifacts resume established facts without repeated questions, and authorized source reads check existing behavior and prior project decisions by domain concept.
 
 Remove committed prompt eval suites and the repository skill validator. Verify skill metadata, the public catalog, and Alarina routing directly during exact-candidate review. Material behavior now uses exact-candidate headless sessions and independent scenario review outside repository source.
 
