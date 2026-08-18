@@ -1,6 +1,6 @@
 # Portfolio audit
 
-Use only in Ko Skill `audit`. Produce one read-only, evidence-backed audit of a declared portfolio. Keep changes and deep single-skill judgment with `author` or `validate`.
+Use only for a bounded portfolio audit. Produce one read-only, evidence-backed audit of the declared portfolio. Keep changes and deep single-skill judgment in `ko-skill`'s shared workflow.
 
 ## Pin the inventory
 
@@ -28,6 +28,8 @@ Run deterministic structural checks across the declared inventory before semanti
 Classify each row as `no finding in declared checks | finding | evidence gap | excluded | not applicable`. Structural success does not prove behavioral quality.
 
 Inspect semantic content by stated risk: collisions, missing owners, stale references, state drift, security-sensitive behavior, and broad or duplicated contracts. For a large portfolio, check all structural surfaces and disclose semantic sampling; never claim unsampled skills are behaviorally sound.
+
+For every supporting relationship, compare the caller with the dependency owner. Confirm that the caller supplies inputs and consumes a result instead of repeating the dependency's procedure, resources, checks, statuses, output schema, or lifecycle derivation. Do not flag caller-owned integration, acceptance, freshness, authority, recovery, or stop gates, or an independently required safety contract.
 
 ## Map ownership
 

@@ -7,7 +7,7 @@ description: Select the shortest useful route through published QP skills. Focus
 
 Select one primary QP skill for the requested outcome. Respect an explicit user selection. Add a supporting skill only when its result is necessary; separate independent outcomes instead of forcing one owner to absorb them. Routing does not grant mutation, provider, credential, publication, or other missing authority.
 
-Engineering, Design, Productivity, and Experimental are install groups, not routing priorities. Olófòófó is experimental and remains opt-in.
+Engineering, Design, Productivity, and Experimental are install groups, not routing priorities. `olofofo` is experimental and remains opt-in.
 
 ## Route
 
@@ -20,13 +20,13 @@ Engineering, Design, Productivity, and Experimental are install groups, not rout
 | Deliver a supplied build job through integration and review | `alaga` | `job` |
 | Keep an architecture or migration plan active through delivery | `atona` | — |
 | Audit behavior parity for a stateful refactor or rewrite | `audit-refactor-behavior` | — |
-| Review bounded code for maintainability only | `pare` | `review`; add QP Code Review as provider adapter only for an active PR or MR |
+| Review bounded code for maintainability only | `pare` | `review`; add `qp-code-review` as provider adapter only for an active PR or MR |
 | Review bounded code for defects and maintainability | `qp-code-review` | `broad`; `general` or `provider` target |
 | Review bounded code only for defects | `qp-code-review` | `defect-only`; `general` or `provider` target |
 | Audit an entire repository for simplifications | `pare` | `audit` |
 | Identify unnecessary implementation, dependencies, configuration, support artifacts, or tests | `pare` | `audit` or `review` |
-| Implement an accepted bounded Pare cleanup slice | `alaga` | `job`; deep test deletion also requires explicit opt-in |
-| Author or validate one skill, or audit a skill portfolio | `ko-skill` | `author` / `validate` / `audit` |
+| Implement an accepted bounded `pare` cleanup slice | `alaga` | `job`; deep test deletion also requires explicit opt-in |
+| Author or validate one skill, or audit a skill portfolio | `ko-skill` | — |
 | Explain a supplied subject to a first-time reader | `salaye` | — |
 | Test one material premise before judgment | `ro-wo` | — |
 | Assess one supplied issue before implementation | `triage-issue` | — |
@@ -48,18 +48,18 @@ Engineering, Design, Productivity, and Experimental are install groups, not rout
 | Design a constrained banner, cover, hero, or ad | `banner-design` | — |
 | Create an HTML presentation or pitch deck | `slides` | — |
 
-Use `general` QP Code Review mode for supplied or local candidates and `provider` mode for an active PR or MR. Default an unqualified code review to `broad`. Do not invent a mode that its owner does not define.
+Use `general` mode in `qp-code-review` for supplied or local candidates and `provider` mode for an active PR or MR. Default an unqualified code review to `broad`. Do not invent a mode that its owner does not define.
 
 ## Boundaries
 
 - Keep a directly selected artifact specialist primary when it fully owns the result.
-- Keep Parẹ́ read-only. It may label a `deep-clean candidate`, but only a delivery owner with explicit opt-in may delete that proof.
-- Keep language-specific and project style, channel conventions, product truth, code conventions, accessibility conformance, localization, brand voice, and publishing with their direct owners; Google Developer Style owns the applicable editorial pass.
+- Keep `pare` read-only. It may label a `deep-clean candidate`, but only a delivery owner with explicit opt-in may delete that proof.
+- Keep language-specific and project style, channel conventions, product truth, code conventions, accessibility conformance, localization, brand voice, and publishing with their direct owners; `google-developer-style` owns the applicable editorial pass.
 - Keep portable presentation-style reports with `html-artifact`; route requested slide decks to `slides`.
-- Use Atọ́nà while architecture or migration state remains active, Àròjinlẹ̀ for one new or reopened material decision, and Audit Refactor Behavior before a stateful refactor that can change lifecycle behavior.
-- Keep PR or MR publication with Ṣẹ̀dá PR, monitoring with Wò PR, and review verdicts with QP Code Review.
-- When another skill owns a code-review outcome but lacks provider access, QP Code Review may support only candidate acquisition and a fixed adapter handoff; this grants no defect, verdict, publication, or provider authority to the owner.
+- Use `atona` while architecture or migration state remains active, `arojinle` for one new or reopened material decision, and `audit-refactor-behavior` before a stateful refactor that can change lifecycle behavior.
+- Keep PR or MR publication with `seda-pr`, monitoring with `wo-pr`, and review verdicts with `qp-code-review`.
+- When another skill owns a code-review outcome but lacks provider access, `qp-code-review` may support only candidate acquisition and a fixed adapter handoff; this grants no defect, verdict, publication, or provider authority to the owner.
 - Keep issue triage supplied-evidence-first. Repository reads, provider reads, and provider writes require their own authority.
-- Run Olófòófó only when explicitly requested or activated by a global baseline; it is never the primary owner.
+- Run `olofofo` only when explicitly requested or activated by a global baseline; it is never the primary owner.
 
 Check the active inventory before returning a route. If the correct owner is unavailable, name it without substituting another skill. Ask one focused question only when the answer selects a materially different owner or mode. Report the primary skill, applicable mode, one concise reason, and necessary supporting skills. Return no QP route when none fits.

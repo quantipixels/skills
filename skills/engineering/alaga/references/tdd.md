@@ -31,11 +31,11 @@ Complete one slice before starting the next.
 
 ## 1. Set the behavior and seam
 
-Read repository instructions and relevant confirmed domain, architecture, decision, and project-knowledge records. Derive scenarios and stable seams from confirmed rules. Report a conflict with a confirmed project boundary to Alaga before implementation.
+Read repository instructions and relevant confirmed domain, architecture, decision, and project-knowledge records. Derive scenarios and stable seams from confirmed rules. Report a conflict with a confirmed project boundary to `alaga` before implementation.
 
 Identify the required behavior, a stable behavior-bearing seam, independent expected values, and applicable success, negative, boundary, recovery, and interaction cases.
 
-Use Irinṣẹ for bounded structural or impact evidence only when it helps locate the behavior-bearing seam. A tool result does not replace an observed failing test or independent expected value.
+Use `irinse` for bounded structural or impact evidence only when it helps locate the behavior-bearing seam. A tool result does not replace an observed failing test or independent expected value.
 
 Classify documentation impact for the completed candidate, not every slice. Update required destinations in the owning candidate. Reconcile newly verified durable project knowledge once through its owner. Otherwise report `not applicable` with evidence.
 

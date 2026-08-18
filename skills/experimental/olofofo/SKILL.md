@@ -1,6 +1,6 @@
 ---
 name: olofofo
-description: Accompany one literal agent session with quiet continuity, proportionate evidence-backed nudges, one living HTML record, and curated cross-session wisdom. Use when a global baseline activates Olofofo or the user explicitly asks it to track the session; exclude workflow control, skill routing, specialist-result ownership, and transcript recording.
+description: Accompany one literal agent session with quiet continuity, proportionate evidence-backed nudges, one living HTML record, and curated cross-session wisdom. Use when a global baseline activates `olofofo` or the user explicitly asks it to track the session; exclude workflow control, skill routing, specialist-result ownership, and transcript recording.
 ---
 
 # Olófòófó
@@ -44,7 +44,7 @@ Stay quiet while progress is sound. Detect material drift, contradiction, stale 
 
 Use a proportional evidence budget only to verify a possible continuity or quality nudge. Start with the current session and bounded read-only local checks; use a bounded external lookup only when local evidence cannot evaluate the nudge. Do not take over the active task's investigation or create an `iwadi` record unless normal skill selection or direct instruction invokes `iwadi`. Stop when more evidence is unlikely to change the nudge or the owning task has enough proof. Distinguish observation, inference, and unresolved uncertainty.
 
-Suggest an owning specialist when its outcome would close a material gap. The active agent retains normal skill selection; Olofofo does not invoke, route, wrap, strengthen, or manage specialist work by default.
+Suggest an owning specialist when its outcome would close a material gap. The active agent retains normal skill selection; `olofofo` does not invoke, route, wrap, strengthen, or manage specialist work by default.
 
 Nudge when a material risk or useful correction appears. Wait for an answer only when continuing would risk a clear error, material misdirection, or an unauthorized action. A direct user instruction dismisses a non-safety nudge. Record the disposition once and do not repeat it unless evidence or risk changes, or the session approaches a consequential action affected by it. EMI may tune assertiveness or evidence budget, but cannot enlarge authority or weaken higher-priority obligations.
 
@@ -64,18 +64,18 @@ Update the same artifact after a material change. Treat a change in outcome, pri
 
 ## 5. Retain reusable learning
 
-Keep provisional learning and its provenance in the session artifact. Use [cross-session-learning.md](references/cross-session-learning.md) for qualifying global wisdom and Amọ̀ṣẹ́ for durable project knowledge.
+Keep provisional learning and its provenance in the session artifact. Use [cross-session-learning.md](references/cross-session-learning.md) for qualifying global wisdom and `amose` for durable project knowledge.
 
 ## 6. Evolve the title and stop
 
 When a clearer title would materially improve later identification, suggest the exact new filename and continue the work. Rename only after explicit user permission. Preserve the prior filename in the artifact. If the approved target now collides, do not rename or add a silent suffix; propose an exact distinct filename and obtain new permission.
 
-When the user explicitly stops Olofofo, record the stop in the current artifact, verify the write, and disable further Olofofo updates for the session. Do not close and reopen the artifact when work continues.
+When the user explicitly stops `olofofo`, record the stop in the current artifact, verify the write, and disable further `olofofo` updates for the session. Do not close and reopen the artifact when work continues.
 
 ## 7. Verify and report
 
 After creation, rename, or a material update, reread the artifact and verify the current focus, material facts, links, next action, session identity, and offline readability. Correct a failed or partial write before relying on it.
 
-Mention the absolute artifact path when it is created, renamed, requested, or useful for handoff or closure. Before stop or handoff, preserve a `local-only` artifact in an authorized durable destination when the session requires long-term evidence; otherwise state the destination and write-authority gap. When a handoff is requested, link the retained artifact as evidence; `handoff` owns the point-in-time transfer and does not stop Olofofo. Keep routine background updates quiet.
+Mention the absolute artifact path when it is created, renamed, requested, or useful for handoff or closure. Before stop or handoff, preserve a `local-only` artifact in an authorized durable destination when the session requires long-term evidence; otherwise state the destination and write-authority gap. When a handoff is requested, link the retained artifact as evidence; `handoff` owns the point-in-time transfer and does not stop `olofofo`. Keep routine background updates quiet.
 
 The portable activation payload is in [global-activation.md](references/global-activation.md). Load it only for installation, maintenance, or verification of default activation.

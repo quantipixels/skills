@@ -21,4 +21,4 @@ Severity is independent of correction effort:
 - **Medium:** material correctness, delivery, security, compatibility, or operability defect.
 - **Low:** bounded candidate-caused issue worth correcting.
 
-Reject generic style, unrelated debt, deterministic-tool noise, unsupported speculation, and findings without a candidate-caused or candidate-dependent mechanism. Send maintainability-only concerns to Pare `review`.
+Reject generic style, unrelated debt, deterministic-tool noise, unsupported speculation, and findings without a candidate-caused or candidate-dependent mechanism. Send maintainability-only concerns to `pare` in `review` mode.

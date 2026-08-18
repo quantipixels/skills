@@ -9,9 +9,9 @@ Treat a refactor as a behavioral parity exercise unless an authority explicitly 
 
 Keep this audit read-only. Implementation and test changes belong to `alaga` or the current implementation owner.
 
-Read relevant confirmed `.learnings` and Amọ̀ṣẹ́ scenarios when domain rules affect parity. Treat them as evidence and verify them against baseline behavior. Report model conflicts to Amọ̀ṣẹ́; do not redefine canonical terms or rules inside the parity ledger.
+Read relevant confirmed `.learnings` and `amose` scenarios when domain rules affect parity. Treat them as evidence and verify them against baseline behavior. Report model conflicts to `amose`; do not redefine canonical terms or rules inside the parity ledger.
 
-Use an exact-current Irinṣẹ result when bounded call, impact, or data-flow signals can widen the trace surface. Revalidate every consequential path against source and observable behavior.
+Use an exact-current `irinse` result when bounded call, impact, or data-flow signals can widen the trace surface. Revalidate every consequential path against source and observable behavior.
 
 ## Functional workflow
 
@@ -83,7 +83,7 @@ Cover each applicable scenario:
 
 For the candidate, confirm the purpose, conditions, lookup chain, mutations, outputs, serialized representation, failures, ordering, and side effects without using structural similarity as evidence. A moved method counts as preserved only when its complete behavior still agrees.
 
-For planned work, name the characterization tests required at the nearest behavior-bearing seam. Record them as bounded Alaga test-first work or implementation-owner work. When another skill owns necessary work, name that owner and one bounded next action.
+For planned work, name the characterization tests required at the nearest behavior-bearing seam. Record them as bounded `alaga` test-first work or implementation-owner work. When another skill owns necessary work, name that owner and one bounded next action.
 
 Record source evidence or an explicit unknown for each material ledger value on both sides. Attach each important behavior or ordering claim to a test seam or named proof gap.
 

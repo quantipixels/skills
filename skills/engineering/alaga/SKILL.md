@@ -34,7 +34,7 @@ Supplied job + repository state
  Job acceptance + exact handoff
 ```
 
-A **job** is the complete build outcome supplied to Alaga. A **delivery unit** is an existing feature, plan, phase, ticket, task, review candidate, or other bounded result that contributes to the job. One job can contain one or many units and candidates. This workflow is not a complete engineering-lifecycle framework and does not authorize provider publication.
+A **job** is the complete build outcome supplied to `alaga`. A **delivery unit** is an existing feature, plan, phase, ticket, task, review candidate, or other bounded result that contributes to the job. One job can contain one or many units and candidates. This workflow is not a complete engineering-lifecycle framework and does not authorize provider publication.
 
 ## 1. Accept and map the job
 
@@ -42,7 +42,7 @@ Establish the requested outcome, current and desired behavior, scope, exclusions
 
 Name the minimum real user or operational path that must pass for job acceptance. Focused and integration proof can support that path but cannot replace it when they exercise a different boundary.
 
-`alarina` selects the first route for an unqualified prompt. Once `alaga` is explicitly selected or routed, Alaga owns the active build job. Inspect the current capability inventory and select the shortest useful combination of skills, tools, and direct work from job evidence. Examples are not an allowlist. If a required owner is unavailable, name the capability gap and pause only dependent work; do not imitate the missing specialist.
+`alarina` selects the first route for an unqualified prompt. Once `alaga` is explicitly selected or routed, `alaga` owns the active build job. Inspect the current capability inventory and select the shortest useful combination of skills, tools, and direct work from job evidence. Examples are not an allowlist. If a required owner is unavailable, name the capability gap and pause only dependent work; do not imitate the missing specialist.
 
 Before delivery starts, establish one session delivery policy from the user request and repository state. Name the smallest proof that can falsify the highest-risk acceptance claim; stop expanding proof or delegation when further evidence cannot change acceptance or a blocking decision.
 
@@ -53,15 +53,15 @@ Before delivery starts, establish one session delivery policy from the user requ
 
 Reuse choices already settled by the request, an exact-current plan or ticket, and repository instructions. Ask one focused question only when a remaining material choice or missing authority changes the safe path. Repository history and Git state do not grant user, commit, history-rewrite, publication, or provider-write authority.
 
-For an accepted Pare slice, pin the Pare report and candidate identities, selected finding or slice, retained contracts, proof owners, risk, blockers, and future verification. Do not implement a blocked finding or treat the pre-implementation report as final review evidence. A `deep-clean candidate` requires explicit opt-in.
+For an accepted `pare` slice, pin the `pare` report and candidate identities, selected finding or slice, retained contracts, proof owners, risk, blockers, and future verification. Do not implement a blocked finding or treat the pre-implementation report as final review evidence. A `deep-clean candidate` requires explicit opt-in.
 
 Create one job envelope that maps delivery units to owners, dependencies, native state, acceptance, proof, blockers, results, and candidate identities. Pin each specialist request to its caller, scope, required result, candidate, and active owner ancestry. Return overlapping work to its active ancestor; report a cycle gap only when ownership cannot be reconciled.
 
-Read relevant root `.learnings` and the complete root `.nongoals` when present. Preserve confirmed project knowledge. If the job conflicts with `.nongoals`, require Amọ̀ṣẹ́ to record an authorized exception or boundary update before dependent implementation.
+Read relevant root `.learnings` and the complete root `.nongoals` when present. Preserve confirmed project knowledge. If the job conflicts with `.nongoals`, require `amose` to record an authorized exception or boundary update before dependent implementation.
 
 Read [job-report.md](references/job-report.md) when evaluating the independent-report threshold at job acceptance. If the job qualifies, use `html-artifact` to create the report. Re-evaluate after decomposition and every material shift; create the report at the first trigger.
 
-Use `arojinle` when a material user decision remains. Use `atona` when architecture, migration, integration, phase, or recovery decisions must remain active during delivery. Use `seda-ticket` when the supplied work needs consumable vertical tickets. These specialists return exact-current results; Alaga does not copy their procedures or state machines.
+Use `arojinle` when a material user decision remains. Use `atona` when architecture, migration, integration, phase, or recovery decisions must remain active during delivery. Use `seda-ticket` when the supplied work needs consumable vertical tickets. These specialists return exact-current results; `alaga` does not copy their procedures or state machines.
 
 ## 2. Deliver and prove
 
@@ -73,11 +73,11 @@ Use the proof owner appropriate to each unit. When production behavior changes o
 
 When one unit blocks, continue independent in-scope units within the confirmed horizon. Record the blocker, affected dependencies, completed units, partial proof, and exact resume trigger. Do not continue dependent or unsafe work.
 
-When host-provided subagent work materially improves delivery, give each bounded request the current candidate identity, scope and exclusions, confirmed decisions, required result, and acceptance. Alaga retains integration, stage-gate verification, and correction convergence. Use an exact-current Irinṣẹ result only when bounded companion-tool evidence materially improves impact orientation or source selection; it is not acceptance evidence by itself.
+When host-provided subagent work materially improves delivery, give each bounded request the current candidate identity, scope and exclusions, confirmed decisions, required result, and acceptance. `alaga` retains integration, stage-gate verification, and correction convergence. Use an exact-current `irinse` result only when bounded companion-tool evidence materially improves impact orientation or source selection; it is not acceptance evidence by itself.
 
 Identify every review candidate exactly. For an uncommitted candidate, run `python3 <alaga-skill>/scripts/snapshot-candidate.py --repo <workspace> --path <intended-path>` with every intended path, or use `--all-changes` only when the complete worktree is the candidate. Use its selected/ambient partition and digest; stop if the snapshot is incomplete or an overlap prevents safe isolation. Preserve ambient user changes and do not require a clean index. A commit policy does not authorize amend, squash, rebase, force-push, or another history rewrite.
 
-Before review, update every required ordinary-documentation destination in the same candidate. Send one exact evidence package to Amọ̀ṣẹ́ when verified delivery changes durable project knowledge. Reconcile required `.learnings`, `.nongoals`, or ADR results before review; do not leave required documentation as an untracked follow-up.
+Before review, update every required ordinary-documentation destination in the same candidate. Send one exact evidence package to `amose` when verified delivery changes durable project knowledge. Reconcile required `.learnings`, `.nongoals`, or ADR results before review; do not leave required documentation as an untracked follow-up.
 
 When accepted visual references span multiple screens, components, states, or core tokens, maintain a fidelity ledger that maps every accepted surface to its implementation and visual-check state. Record explicit exclusions and unresolved mismatches. Do not require this ledger for a low-visual or single-surface change.
 

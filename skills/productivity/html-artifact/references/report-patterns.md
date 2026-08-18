@@ -23,7 +23,7 @@ Infer and label one broad industry only to choose familiar report structure and 
 
 These are selection cues, not fixed templates or an exhaustive list. Honor another user-named report format and infer its conventional structure from the supplied material. Omit unsupported sections. Use `slides` instead when the requested outcome is a slide deck rather than a portable report.
 
-Select and label one density profile. Default to **Working**. Use **Executive** for a concise decision layer with material exceptions and actions while retaining complete coverage through disclosures or deep links. Use **Working** for the decision layer plus enough context and evidence to act. Use **Archival** for a complete durable record that still starts with the same scan layer. Density changes presentation, not coverage. Keep it stable unless the audience or its decision changes.
+Select and label one density profile. Default to **Working**. Use **Executive** for a concise decision layer with material exceptions and actions while retaining complete coverage through disclosures or deep links. Use **Working** for the decision layer plus enough context and evidence to act. Use **Archival** for a complete record that still starts with the same scan layer. Density changes presentation, not coverage. Keep it stable unless the audience or its decision changes.
 
 Before composing a substantial report, derive one coverage ledger from the supplied material. Inventory every explicit user question and deliverable; supplied conclusion, decision, recommendation, and limitation; and in-scope project, candidate, or other subject unit. Preserve any supplied depth contract for each unit. Mark every ledger item as one of:
 

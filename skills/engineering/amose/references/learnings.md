@@ -10,4 +10,4 @@ Keep hypotheses, temporary task state, session history, speculative preferences,
 
 Keep the file current rather than append-only. Re-read it immediately before writing, make the smallest semantic edit, merge duplicates, replace stale entries, and retain a short supersession or `avoid` note only when it prevents likely recurrence. Remove obsolete detail and use ADRs for consequential rationale. On concurrent or conflicting edits, stop for semantic reconciliation; never overwrite or blindly append.
 
-Compact relevant sections when repetition or stale material impairs use. Do not impose an arbitrary size limit. Consumers may read only relevant sections; passive reading does not require invoking Amọ̀ṣẹ́.
+Compact relevant sections when repetition or stale material impairs use. Do not impose an arbitrary size limit. Consumers may read only relevant sections; passive reading does not require invoking `amose`.

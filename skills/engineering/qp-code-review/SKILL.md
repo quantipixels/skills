@@ -1,6 +1,6 @@
 ---
 name: qp-code-review
-description: "Judge one bounded code candidate for defects or for defects plus maintainability evidence from Pare. Focus on exact candidate identity, credible failure mechanisms, adversarial validation, and an evidence-backed result; route maintainability-only requests to Pare `review`."
+description: "Judge one bounded code candidate for defects or for defects plus maintainability evidence from `pare`. Focus on exact candidate identity, credible failure mechanisms, adversarial validation, and an evidence-backed result; route maintainability-only requests to `pare` in `review` mode."
 ---
 
 # Code Review
@@ -22,7 +22,7 @@ Candidate + contract + repository rules
       ▼                      ▼
  Defect-only            Broad review
       │                      │
-      │              Pare `review`
+      │              Parẹ (review)
       └───────────┬──────────┘
                   ▼
  Collect changed surface + evidence
@@ -45,15 +45,15 @@ Candidate + contract + repository rules
         └── Yes ──> Refresh head ──> Publish ──> Verify
 ```
 
-Treat an unqualified request for a code review as broad. Route a request only to simplify, improve maintainability, or review code quality without a defect verdict to Pare `review`. Use defect-only mode only when the user explicitly excludes maintainability.
+Treat an unqualified request for a code review as broad. Route a request only to simplify, improve maintainability, or review code quality without a defect verdict to `pare` in `review` mode. Use defect-only mode only when the user explicitly excludes maintainability.
 
-When another skill owns the requested code-review outcome, QP Code Review may act only as its provider adapter. Fetch and pin the complete candidate, then return the canonical provider identity, base and head identities, fixed content or artifact identity, completeness, and evidence gaps. Do not run defect discovery, classify findings, issue a verdict, publish, or transfer provider authority unless separately requested. Example: maintainability-only PR review → QP provider adapter → Pare `review`.
+When another skill owns the requested code-review outcome, `qp-code-review` may act only as its provider adapter. Fetch and pin the complete candidate, then return the canonical provider identity, base and head identities, fixed content or artifact identity, completeness, and evidence gaps. Do not run defect discovery, classify findings, issue a verdict, publish, or transfer provider authority unless separately requested. Example: maintainability-only PR review → `qp-code-review` provider adapter → `pare` in `review` mode.
 
-Broad review requires an exact-current Pare `review` result and complete defect discovery before its verdict. In general mode, pass the pinned candidate boundary and identity to Pare. In provider mode, use the adapter handoff without granting Pare provider access or writes.
+Broad review requires an exact-current result from `pare` in `review` mode and complete defect discovery before its verdict. In general mode, pass the pinned candidate boundary and identity to `pare`. In provider mode, use the adapter handoff without granting `pare` provider access or writes.
 
 The four defect-discovery branches are logically independent. In broad review, every branch and the maintainability review must complete or name its evidence gap before adversarial review challenges the findings and clean claims.
 
-When it materially improves evidence quality, the primary reviewer may request independent Contract, Standards, Proof, or Bug hunt evidence. Pin every request to the candidate and branch boundary. Pare owns maintainability discovery. The primary reviewer retains reconciliation, verdict, and provider writes.
+When it materially improves evidence quality, the primary reviewer may request independent Contract, Standards, Proof, or Bug hunt evidence. Pin every request to the candidate and branch boundary. `pare` owns maintainability discovery. The primary reviewer retains reconciliation, verdict, and provider writes.
 
 Treat proof produced by concurrent commands that share mutable state as contaminated; rerun it in one controlled environment.
 
@@ -71,7 +71,7 @@ Read relevant confirmed project knowledge when it affects the contract. When the
 
 Inspect the complete candidate and relevant callers, tests, schemas, migrations, configuration, specifications, architecture, requirements, and history. Separate candidate changes from accepted baseline code.
 
-Use exact-current Irinṣẹ impact, hotspot, quality, or security evidence only to direct inspection. Treat every signal as a hypothesis and corroborate it through the applicable discovery branch before it can affect the verdict.
+Use exact-current `irinse` impact, hotspot, quality, or security evidence only to direct inspection. Treat every signal as a hypothesis and corroborate it through the applicable discovery branch before it can affect the verdict.
 
 For a changed shared contract, treat unproved affected consumers or material states as proof gaps unless a current test or invariant covers them.
 

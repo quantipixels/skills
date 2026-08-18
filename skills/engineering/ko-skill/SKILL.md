@@ -1,23 +1,19 @@
 ---
 name: ko-skill
-description: Author or validate one portable agent skill, or audit a bounded skill portfolio. Use `author` for creation or revision, `validate` for an exact read-only candidate verdict, and `audit` for a read-only portfolio audit; focus on ownership, concise capability-preserving instructions, integration, state, and proportionate proof.
+description: Author, revise, or validate one portable agent skill through one shared workflow, or audit a bounded skill portfolio. Focus on ownership, concise capability-preserving instructions, integration, state, and proportionate proof.
 ---
 
 # Kọ Skill
 
-## Modes
-
-- `author`: create or revise one skill; mutate only the authorized source and required integration surfaces.
-- `validate`: assess one exact skill candidate; read-only.
-- `audit`: read [portfolio audit](references/portfolio-audit.md) and assess the declared portfolio; read-only.
+Create, revise, or validate one exact skill through this workflow. The requested operation and explicit mutation authority determine whether files may change; validation is read-only. For a bounded portfolio audit, read [portfolio audit](references/portfolio-audit.md), return its read-only result, and do not edit, install, activate, synchronize, or publish skills.
 
 Never infer installation, activation, publication, provider, or other external mutation authority.
 
-Kọ Skill owns skill authoring. Other specialists may supply evidence or own adjacent artifacts, but they do not replace Kọ Skill for creating, revising, or validating a skill.
+`ko-skill` owns skill authoring. Other specialists may supply evidence or own adjacent artifacts, but they do not replace `ko-skill` for creating, revising, or validating a skill.
 
 ## Pin the contract
 
-Read host and repository instructions, the candidate and direct resources, and affected metadata, package, catalog, router, and decision records. Pin the exact candidate, mode, mutation authority, desired outcome, triggers, exclusions, adjacent owners, and starting state.
+Read host and repository instructions, the candidate and direct resources, and affected metadata, package, catalog, router, and decision records. Pin the exact candidate, operation, mutation authority, desired outcome, triggers, exclusions, adjacent owners, and starting state.
 
 Treat these states independently: `source`, `installed`, `active`, and `published`. Evidence for one does not prove another.
 
@@ -28,9 +24,9 @@ Revise an existing outcome owner instead of creating a competitor. Create a skil
 
 For a behavior correction, exercise the exact pre-change candidate with a realistic raw goal when safe; otherwise record the evidence gap. Preserve behavior that already satisfies the target contract.
 
-## Preserve capabilities
+## Preserve and validate capabilities
 
-In `author`, treat user constraints as the target contract. Before changing prose, map the complete `SKILL.md` and direct references across these lenses:
+Treat user constraints as the target contract. Before changing or validating the skill, map the complete `SKILL.md` and direct references across these lenses:
 
 ```text
 selection | outcome and modes | representation and control flow
@@ -40,13 +36,19 @@ owners and integration | stop and report contract
 
 Mark each capability `retain | change | move | remove`; give every change an owner and reason. A sentence inventory is not capability proof.
 
+Trace the complete contract through instructions, applicable resources, metadata, routing, and observable output. Treat changed, universal, exclusive, safety, authority, portability, accessibility, and verification claims as proof obligations. Test sibling resources and applicable normal, failure, misuse, locale, state, trust, recovery, and fallback paths. Verify that modes, statuses, and classifications are non-overlapping and sufficient. Structural success cannot accept a semantically unproved candidate.
+
+Before adding a rule, first try to merge, replace, move, or remove existing prose without losing capability. Add net-new instruction only when no current rule owns the required behavior.
+
 Write for a capable agent. Put triggers and bounded outcome in the description. Match precision to risk. Keep common rules in `SKILL.md`; give conditional references exact load triggers and boundaries. Use an example when it replaces prose or prevents material error, a script for repeated deterministic work, and an asset only when output uses it. Preserve one ordered workflow when sequence matters.
 
 Merge rules with the same behavioral effect. Keep a second representation only for a distinct decision, authority, safety, recovery, verification, or owner boundary. Remove rationale, history, generic advice, and reference-owned procedure. Word count measures change, not quality.
 
+Keep a dependency at its boundary and name it by exact identifier: ``Use `seda-ticket` to create tickets; persist its exact-current result.`` The caller may own triggers, inputs, freshness, integration, acceptance, authority, recovery, and stop behavior; it must not copy the dependency's procedure, resources, checks, statuses, schema, or lifecycle. Repeat only independently required safety, trust, provider, or authority rules.
+
 ## Prove the candidate
 
-Define the smallest proof before editing:
+Define the smallest proof before acting:
 
 - `structural`: check applicable schema, metadata, paths, references, packaging, routing, and deterministic invariants;
 - `baseline`: record pre-change behavior for a correction or equivalence claim; it cannot accept the final candidate;
@@ -57,10 +59,10 @@ For behavior-preserving compression, compare old and new with the same raw goal,
 
 Do not create a prompt-evaluation harness to justify wording. Follow the repository policy for persistent evaluations and deterministic tests. If proof grows materially, ask whether to simplify, defer, or continue.
 
-In `validate`, return `VERIFIED` only when every required check passes against the exact candidate. Return `CHANGES_REQUIRED` for a proved defect and `INSUFFICIENT_EVIDENCE` for a material proof gap. Do not fix the candidate.
+For validation, return `VERIFIED` only when every required structural and behavioral check passes against the exact candidate. Return `CHANGES_REQUIRED` for a proved defect and `INSUFFICIENT_EVIDENCE` for a material proof gap. Do not fix the candidate.
 
 ## Integrate and report
 
-In `author`, keep host metadata and affected package, release, catalog, and router surfaces consistent. Preserve unrelated work. For a provider-capable skill, propagate the complete applicable repository safety contract into its independently installed owner; never add a shared provider runtime without an architecture decision. Send accepted durable project decisions to their knowledge owner when the repository authorizes that destination.
+When mutation is authorized, keep host metadata and affected package, release, catalog, and router surfaces consistent. Preserve unrelated work. For a provider-capable skill, propagate the complete applicable repository safety contract into its independently installed owner; never add a shared provider runtime without an architecture decision. Send accepted durable project decisions to their knowledge owner when the repository authorizes that destination.
 
-Report mode, exact candidate, authority, boundary, changed files, capability dispositions, checks, behavioral evidence or gaps, and final `source | installed | active | published` state. For material compression, include before-and-after counts. Install, activate, synchronize, publish, or hand off only with separate authority.
+Report operation, exact candidate, authority, boundary, changed files, capability dispositions, checks, behavioral evidence or gaps, and final `source | installed | active | published` state. For material compression, include before-and-after counts. Install, activate, synchronize, publish, or hand off only with separate authority.

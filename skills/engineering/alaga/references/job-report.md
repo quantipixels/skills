@@ -1,6 +1,6 @@
 # Job report
 
-Load this contract when an Alaga job can require an independent report.
+Load this contract when an `alaga` job can require an independent report.
 
 ## Require the report
 
@@ -8,7 +8,7 @@ Keep one report for the complete supplied job. Require it when any of these cond
 
 - multiple delivery units or review candidates;
 - multiple specialist results need job-level integration;
-- Atona or Seda Ticket coordinates the work;
+- `atona` or `seda-ticket` coordinates the work;
 - a session or owner handoff or partial-blocker continuation is required;
 - an external, destructive, or irreversible write is in scope;
 - data, schema, or state migration is in scope;
@@ -20,7 +20,7 @@ Routine proof and required review of one candidate do not by themselves require 
 
 ## Supply exact job state
 
-Alaga supplies HTML Artifact with the report purpose and audience plus the exact-current:
+`alaga` supplies `html-artifact` with the report purpose and audience plus the exact-current:
 
 - requested outcome, scope, exclusions, authority, and horizon;
 - delivery units, owners, dependencies, acceptance, and proof;
@@ -28,6 +28,6 @@ Alaga supplies HTML Artifact with the report purpose and audience plus the exact
 - specialist result identities and their dependency effects; and
 - material changes, reasons, receipts, handoffs, residual limits, and verified times.
 
-Alaga owns job-state decisions. The report is the durable job envelope when it exists; each specialist retains its native state. For every material scope, decision, dependency, candidate, proof, blocker, authority, context, or next-action change, supply the revised state, affected prior claim, reason, and recomputed blockers or proof gaps to HTML Artifact. HTML Artifact owns input-gap requests, representation, accessibility, revision history, path, file lifecycle, requested non-UI verification, portability, and absolute-path return.
+`alaga` owns job-state decisions. The report is the job envelope when it exists; each specialist retains its native state. For every material scope, decision, dependency, candidate, proof, blocker, authority, context, or next-action change, supply the revised state, affected prior claim, reason, and recomputed blockers or proof gaps to `html-artifact`.
 
-When Atona coordinates the job, its live plan pins the report path, status, content identity or revision, and last verified time. The plan records integration effects without copying report state.
+When `atona` coordinates the job, its live plan pins the report path, status, content identity or revision, and last verified time. The plan records integration effects without copying report state.
