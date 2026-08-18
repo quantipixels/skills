@@ -62,7 +62,7 @@ Use alarina to choose the right QP skill for this request:
 | `atona` | Architecture or migration work needs one live plan through delivery |
 | `audit-refactor-behavior` | A refactor or rewrite needs a behavior-parity ledger |
 | `irinse` | A companion engineering tool needs selection, setup, safe use, or removal |
-| `ko-skill` | `one-skill` mode creates, revises, or validates a skill; `portfolio-audit` mode audits a bounded portfolio |
+| `ko-skill` | `author` creates or revises one skill; `validate` checks one exact candidate read-only; `audit` reviews a bounded portfolio read-only |
 | `pare` | Read-only `audit` or `review` finds material simplifications and classifies implementation, dependency, support-artifact, and test cleanup candidates |
 | `qp-code-review` | `broad` or `defect-only` review is needed in `general` local/supplied or `provider` PR/MR mode; broad review consumes Pare `review` evidence |
 | `seda-pr` | A bounded current-branch change needs commit, push, and a clear ready-for-review GitHub PR or GitLab MR |

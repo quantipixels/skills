@@ -26,8 +26,7 @@ Engineering, Design, Productivity, and Experimental are install groups, not rout
 | Audit an entire repository for simplifications | `pare` | `audit` |
 | Identify unnecessary implementation, dependencies, configuration, support artifacts, or tests | `pare` | `audit` or `review` |
 | Implement an accepted bounded Pare cleanup slice | `alaga` | `job`; deep test deletion also requires explicit opt-in |
-| Create, revise, or validate one skill | `ko-skill` | `one-skill` |
-| Audit a bounded skill portfolio | `ko-skill` | `portfolio-audit` |
+| Author or validate one skill, or audit a skill portfolio | `ko-skill` | `author` / `validate` / `audit` |
 | Explain a supplied subject to a first-time reader | `salaye` | — |
 | Test one material premise before judgment | `ro-wo` | — |
 | Assess one supplied issue before implementation | `triage-issue` | — |

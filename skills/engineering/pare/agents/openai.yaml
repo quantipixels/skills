@@ -1,3 +1,3 @@
 interface:
   display_name: "Pare"
-  short_description: "Audit, review, or clean unnecessary code and tests"
+  short_description: "Audit or review codebase simplifications"
