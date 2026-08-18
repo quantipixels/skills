@@ -47,7 +47,9 @@ Candidate + contract + repository rules
 
 Treat an unqualified request for a code review as broad. Route a request only to simplify, improve maintainability, or review code quality without a defect verdict to Pare `review`. Use defect-only mode only when the user explicitly excludes maintainability.
 
-Broad review requires an exact-current Pare `review` result and complete defect discovery before its verdict. In general mode, pass the pinned candidate boundary and identity to Pare. In provider mode, QP Code Review remains the provider adapter: fetch and pin complete candidate content, then pass that fixed content to Pare without granting provider access or writes.
+When another skill owns the requested code-review outcome, QP Code Review may act only as its provider adapter. Fetch and pin the complete candidate, then return the canonical provider identity, base and head identities, fixed content or artifact identity, completeness, and evidence gaps. Do not run defect discovery, classify findings, issue a verdict, publish, or transfer provider authority unless separately requested. Example: maintainability-only PR review → QP provider adapter → Pare `review`.
+
+Broad review requires an exact-current Pare `review` result and complete defect discovery before its verdict. In general mode, pass the pinned candidate boundary and identity to Pare. In provider mode, use the adapter handoff without granting Pare provider access or writes.
 
 The four defect-discovery branches are logically independent. In broad review, every branch and the maintainability review must complete or name its evidence gap before adversarial review challenges the findings and clean claims.
 

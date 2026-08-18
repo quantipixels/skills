@@ -53,6 +53,8 @@ Before delivery starts, establish one session delivery policy from the user requ
 
 Reuse choices already settled by the request, an exact-current plan or ticket, and repository instructions. Ask one focused question only when a remaining material choice or missing authority changes the safe path. Repository history and Git state do not grant user, commit, history-rewrite, publication, or provider-write authority.
 
+For an accepted Pare slice, pin the Pare report and candidate identities, selected finding or slice, retained contracts, proof owners, risk, blockers, and future verification. Do not implement a blocked finding or treat the pre-implementation report as final review evidence. A `deep-clean candidate` requires explicit opt-in.
+
 Create one job envelope that maps delivery units to owners, dependencies, native state, acceptance, proof, blockers, results, and candidate identities. Pin each specialist request to its caller, scope, required result, candidate, and active owner ancestry. Return overlapping work to its active ancestor; report a cycle gap only when ownership cannot be reconciled.
 
 Read relevant root `.learnings` and the complete root `.nongoals` when present. Preserve confirmed project knowledge. If the job conflicts with `.nongoals`, require Amọ̀ṣẹ́ to record an authorized exception or boundary update before dependent implementation.

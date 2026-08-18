@@ -4,8 +4,10 @@ This file records released, user-visible changes to QP Agent Skills. Version `1.
 
 ## Unreleased
 
-- Expand `pare` into one simplification and cleanup specialist with `audit`, `review`, `clean`, and test-only `deep-clean` modes.
+- Expand `pare` into one read-only simplification specialist with repository `audit` and bounded candidate `review` modes.
 - Route maintainability-only work to Pare `review`; QP Code Review keeps broad and defect-only verdicts and consumes exact-current Pare evidence for broad review.
+- Let QP Code Review return a read-only provider candidate handoff when another skill owns the requested code-review outcome.
+- Send accepted Pare slices to Alaga with explicit proof and authority boundaries; route Ayewo recommendations to Pare only for evidenced codebase simplification.
 
 ## 1.0.0
 

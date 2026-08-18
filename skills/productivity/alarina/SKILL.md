@@ -58,6 +58,7 @@ Use `general` QP Code Review mode for supplied or local candidates and `provider
 - Keep portable presentation-style reports with `html-artifact`; route requested slide decks to `slides`.
 - Use Atọ́nà while architecture or migration state remains active, Àròjinlẹ̀ for one new or reopened material decision, and Audit Refactor Behavior before a stateful refactor that can change lifecycle behavior.
 - Keep PR or MR publication with Ṣẹ̀dá PR, monitoring with Wò PR, and review verdicts with QP Code Review.
+- When another skill owns a code-review outcome but lacks provider access, QP Code Review may support only candidate acquisition and a fixed adapter handoff; this grants no defect, verdict, publication, or provider authority to the owner.
 - Keep issue triage supplied-evidence-first. Repository reads, provider reads, and provider writes require their own authority.
 - Run Olófòófó only when explicitly requested or activated by a global baseline; it is never the primary owner.
 
