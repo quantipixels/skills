@@ -6,6 +6,15 @@ Skills are organized into exclusive Engineering, Design, Productivity, and Exper
 
 Read the public documentation at [quantipixels.com/skills](https://quantipixels.com/skills).
 
+## What's new in 2.0.0
+
+[Version 2.0.0](https://github.com/quantipixels/skills/releases/tag/v2.0.0) reorganizes the portfolio around clearer owners and shorter routes:
+
+- Skills now belong to one Engineering, Design, Productivity, or Experimental source group, with interactive group selection during installation.
+- `qp-code-review` is now `atunwo`, and `triage-issue` is now `se-triage`.
+- Test-first delivery stays with Alaga, maintainability review stays with Pare, skill portfolio auditing stays with Ko Skill, and stateful refactor-parity auditing moves to Àtúnwò.
+- Alaga now handles bounded features and supplied build jobs through integration, proof, documentation, and applicable review.
+
 ## Install
 
 Install the QP skill portfolio globally:
@@ -41,7 +50,7 @@ curl -fsSL https://raw.githubusercontent.com/quantipixels/skills/ori/scripts/uni
 
 ## Releases
 
-Read the detailed [v1 changelog](CHANGELOG.md) for the public baseline and release scope.
+Read the [latest GitHub release](https://github.com/quantipixels/skills/releases/tag/v2.0.0) and the repository [changelog](CHANGELOG.md).
 
 ## Start
 
@@ -125,12 +134,6 @@ Use `irinse` when a companion tool could materially improve the result. If the r
 
 ```text
 Use `google-developer-style` when drafting, revising, or reviewing developer documentation or technical communication in any language. Apply the language community's conventions, project-specific style, channel conventions, product truth, and code conventions first. Transfer the guide's ideas about clarity, tone, audience, terminology, structure, and accessibility; do not impose English grammar, spelling, capitalization, politeness, or sentence patterns on another language. For communication outside documentation, apply only the principles that fit the channel. Do not generalize language-specific, documentation-only, or product-specific rules.
-```
-
-### Clear mode names
-
-```text
-Name new or changed skill modes with the shortest clear verb or verb phrase. Prefer names such as `audit`, `review`, `clean`, and `deep-clean`. Do not repeat the skill name, target artifact, implementation detail, or other context that the owning skill already supplies. Add a qualifier only when it changes authority, risk, or outcome and the unqualified name would be ambiguous.
 ```
 
 ### Consider before judgment

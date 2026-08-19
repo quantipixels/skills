@@ -40,6 +40,8 @@ Mark each capability `retain | change | move | remove`; give every change an own
 
 Trace the complete contract through instructions, applicable resources, metadata, routing, and observable output. Treat changed, universal, exclusive, safety, authority, portability, accessibility, and verification claims as proof obligations. Test sibling resources and applicable normal, failure, misuse, locale, state, trust, recovery, and fallback paths. Verify that modes, statuses, and classifications are non-overlapping and sufficient. Structural success cannot accept a semantically unproved candidate.
 
+Name a new or changed mode with the shortest clear verb or verb phrase. Prefer names such as `audit`, `review`, `clean`, and `deep-clean`. Do not repeat the skill name, target artifact, implementation detail, or context that the owning skill already supplies. Add a qualifier only when it changes authority, risk, or outcome and the unqualified name would be ambiguous.
+
 Before adding a rule, first try to merge, replace, move, or remove existing prose without losing capability. Add net-new instruction only when no current rule owns the required behavior.
 
 Write for a capable agent. Put triggers and bounded outcome in the description. Match precision to risk. Keep common rules in `SKILL.md`; give conditional references exact load triggers and boundaries. Use an example when it replaces prose or prevents material error, a script for repeated deterministic work, and an asset only when output uses it. Preserve one ordered workflow when sequence matters.
