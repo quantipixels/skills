@@ -31,11 +31,12 @@ Engineering, Design, Productivity, and Experimental are install groups, not rout
 | Test one material premise before judgment | `ro-wo` | — |
 | Assess one supplied issue before implementation | `se-triage` | — |
 | Turn supplied work into consumable vertical tickets | `seda-ticket` | — |
-| Commit, push, and create or reconcile a ready PR or MR | `seda-pr` | — |
-| Monitor an open PR or MR through readiness | `wo-pr` | — |
+| Commit, push, and create or reconcile a ready PR or MR | `seda-pr` | explicit invocation required |
+| Monitor an open PR or MR through readiness | `wo-pr` | explicit invocation required |
 | Visualize supplied results, purpose-fit reports, analysis, data, decisions, or designs in a portable browser artifact | `html-artifact` | — |
 | Prepare a compact handoff for another agent or session | `handoff` | — |
-| Draft, revise, or review developer documentation or technical communication in any language with applicable Google style | `google-developer-style` | — |
+| Draft, revise, or review developer documentation, technical communication, or applicable human-facing artifact copy | `technical-writing` | — |
+| Remove AI tells, filler, vague abstraction, or instruction noise from existing prose | `yo-slop` | — |
 | Analyze one coding-agent session or bounded corpus | `ayewo-igba-ise` | — |
 | Research a question from primary sources into Markdown | `iwadi` | — |
 | Select, configure, use, or remove a companion tool | `irinse` | — |
@@ -54,7 +55,8 @@ Use `general` mode in `atunwo` for supplied or local candidates and `provider` m
 
 - Keep a directly selected artifact specialist primary when it fully owns the result.
 - Keep `pare` read-only. It may label a `deep-clean candidate`, but only a delivery owner with explicit opt-in may delete that proof.
-- Keep language-specific and project style, channel conventions, product truth, code conventions, accessibility conformance, localization, brand voice, and publishing with their direct owners; `google-developer-style` owns the applicable editorial pass.
+- Keep project style, channel conventions, product truth, code conventions, accessibility conformance, localization, brand voice, and publishing with their direct owners; `technical-writing` owns the applicable structural and editorial pass.
+- Keep document evidence, technical truth, artifact facts, schema, authority, and acceptance with their direct owners; `yo-slop` follows `technical-writing` as a final prose pass and must preserve their contract.
 - Keep portable presentation-style reports with `html-artifact`; route requested slide decks to `slides`.
 - Use `atona` while architecture or migration state remains active, `arojinle` for one new or reopened material decision, and `atunwo` in `audit` scope before a stateful refactor that can change lifecycle behavior.
 - Keep PR or MR publication with `seda-pr`, monitoring with `wo-pr`, and review verdicts with `atunwo`.
@@ -63,3 +65,5 @@ Use `general` mode in `atunwo` for supplied or local candidates and `provider` m
 - Run `olofofo` only when explicitly requested or activated by a global baseline; it is never the primary owner.
 
 Check the active inventory before returning a route. If the correct owner is unavailable, name it without substituting another skill. Ask one focused question only when the answer selects a materially different owner or mode. Report the primary skill, applicable mode, one concise reason, and necessary supporting skills. Return no QP route when none fits.
+
+When the selected owner disables model invocation, tell the user to invoke it through the host's explicit skill control and stop. Do not reproduce, partially execute, or delegate the hidden workflow.

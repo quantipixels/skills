@@ -4,7 +4,7 @@ QP Agent Skills is a portable collection of focused skills for established codeb
 
 Skills are organized into exclusive Engineering, Design, Productivity, and Experimental source groups.
 
-Read the public documentation at [quantipixels.com/skills](https://quantipixels.com/skills).
+Browse the [QP Agent Skills documentation](https://quantipixels.com/skills).
 
 ## What's new in 2.0.0
 
@@ -74,9 +74,9 @@ Use alarina to choose the right QP skill for this request:
 | `ko-skill` | Creates, revises, or validates one skill through one workflow; bounded portfolio audits remain read-only |
 | `pare` | Read-only `audit` or `review` finds material simplifications and classifies implementation, dependency, support-artifact, and test cleanup candidates |
 | `se-triage` | One issue or bug report needs supplied-evidence-first assessment before implementation |
-| `seda-pr` | A bounded current-branch change needs commit, push, and a clear ready-for-review GitHub PR or GitLab MR |
+| `seda-pr` | A bounded current-branch change needs commit, push, and a clear ready-for-review GitHub PR or GitLab MR; invoke the skill explicitly |
 | `seda-ticket` | Supplied work needs consumable vertical tickets with blockers, acceptance, and lifecycle state |
-| `wo-pr` | An open PR or MR needs active CI and feedback stewardship through readiness and later changes until explicit stop or closure |
+| `wo-pr` | An open PR or MR needs active CI and feedback stewardship through readiness and later changes until explicit stop or closure; invoke the skill explicitly |
 
 ## Design skills
 
@@ -101,12 +101,13 @@ For React UI work, `asa-oju-ibanisoro` asks for an explicit component-library de
 | `alarina` | You need to choose the shortest QP route for a request |
 | `arojinle` | A material plan or design needs a complete decision tree, durable records, and final confirmation |
 | `ayewo-igba-ise` | A coding-agent session or bounded multi-session corpus needs an evidence-backed friction and recurrence analysis |
-| `google-developer-style` | Developer documentation or technical communication in any language needs drafting, revision, or review with applicable Google style principles |
 | `handoff` | A conversation needs a compact handoff for another agent or session |
 | `html-artifact` | Supplied results, purpose-fit reports, analysis, data, decisions, or designs need a portable visual explanation for a zero-context reader |
 | `iwadi` | A question needs high-trust research from primary sources, captured in a Markdown file |
 | `ro-wo` | A material premise needs a brief evidence-backed check before agreement or disagreement |
 | `salaye` | One user-supplied subject needs a plain-language explanation for a first-time reader |
+| `technical-writing` | Developer documentation, technical communication, or applicable human-facing artifact copy needs layered structure and sentence-level clarity |
+| `yo-slop` | Human- or agent-facing prose needs a final pass for AI tells, filler, vague abstraction, or instruction noise without changing meaning |
 
 ## Experimental skills
 
@@ -127,17 +128,17 @@ Copy the exact managed block from [Olofofo global activation](skills/experimenta
 ### Companion-tool routing
 
 ```text
-Use `irinse` when a companion tool could materially improve the result. If the required tool is unavailable, explain its benefit and ask before installing or configuring it.
+Use `irinse` when a companion tool could materially improve the result.
 ```
 
-### Google developer style for documentation and communication
+### Technical writing and prose cleanup
 
 ```text
-Use `google-developer-style` when drafting, revising, or reviewing developer documentation or technical communication in any language. Apply the language community's conventions, project-specific style, channel conventions, product truth, and code conventions first. Transfer the guide's ideas about clarity, tone, audience, terminology, structure, and accessibility; do not impose English grammar, spelling, capitalization, politeness, or sentence patterns on another language. For communication outside documentation, apply only the principles that fit the channel. Do not generalize language-specific, documentation-only, or product-specific rules.
+Use `technical-writing` and `yo-slop` for communication.
 ```
 
 ### Consider before judgment
 
 ```text
-Use `ro-wo` before agreeing or disagreeing with a material premise. Test the evidence, strongest credible alternative, changed boundaries, and failure paths. Withhold judgment when evidence is insufficient. Do not manufacture objections or reopen settled decisions without new material evidence.
+Use `ro-wo` before agreeing or disagreeing with a material premise.
 ```
