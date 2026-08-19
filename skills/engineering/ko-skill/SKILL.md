@@ -20,9 +20,13 @@ Treat these states independently: `source`, `installed`, `active`, and `publishe
 - Good: `source=verified; installed=unknown; active=unknown; published=unknown`.
 - Bad: “Source is verified, so the active skill is current.”
 
+When a readable installed copy exists, compare its identifier and relevant content before reporting installed state. Report actions performed separately from observed Git, provider, installed, active, or published state.
+
 Revise an existing outcome owner instead of creating a competitor. Create a skill only for a recurring independent outcome, decision, or failure mode that ordinary documentation does not solve. Infer the requested location when safe.
 
 For a behavior correction, exercise the exact pre-change candidate with a realistic raw goal when safe; otherwise record the evidence gap. Preserve behavior that already satisfies the target contract.
+
+When session history or prior outputs supply improvement evidence, use an exact-current `ayewo-igba-ise` result for retrospective mining; `ko-skill` consumes that evidence and owns confirmation, authoring, and proof. Pin the authorized evidence roots and time range. Distinguish directly stated preferences from inferred patterns; require user confirmation before making an inferred preference durable. For an update, preserve accepted behavior that new evidence does not contradict and assess only the changed evidence. Do not search unrelated workspaces or private histories.
 
 ## Preserve and validate capabilities
 
@@ -38,13 +42,19 @@ Mark each capability `retain | change | move | remove`; give every change an own
 
 Trace the complete contract through instructions, applicable resources, metadata, routing, and observable output. Treat changed, universal, exclusive, safety, authority, portability, accessibility, and verification claims as proof obligations. Test sibling resources and applicable normal, failure, misuse, locale, state, trust, recovery, and fallback paths. Verify that modes, statuses, and classifications are non-overlapping and sufficient. Structural success cannot accept a semantically unproved candidate.
 
+Name a new or changed mode with the shortest clear verb or verb phrase. Prefer names such as `audit`, `review`, `clean`, and `deep-clean`. Do not repeat the skill name, target artifact, implementation detail, or context that the owning skill already supplies. Add a qualifier only when it changes authority, risk, or outcome and the unqualified name would be ambiguous.
+
 Before adding a rule, first try to merge, replace, move, or remove existing prose without losing capability. Add net-new instruction only when no current rule owns the required behavior.
 
-Write for a capable agent. Put triggers and bounded outcome in the description. Match precision to risk. Keep common rules in `SKILL.md`; give conditional references exact load triggers and boundaries. Use an example when it replaces prose or prevents material error, a script for repeated deterministic work, and an asset only when output uses it. Preserve one ordered workflow when sequence matters.
+Write for a capable agent. Front-load the job, distinct trigger branches, and boundaries in the description so truncation preserves selection. Match freedom and precision to risk: use judgment for variable work, constrained patterns for preferred paths, and deterministic scripts for fragile repeated operations. Keep universally required behavior in `SKILL.md`; put branch-specific material behind a direct reference that names the exact branch that loads it. Give an ordered step a checkable completion criterion when later work could pull the agent forward too early. Use an example when it replaces prose or prevents material error, a script for repeated deterministic work, and an asset only when output uses it. Preserve one ordered workflow when sequence matters.
+
+Treat the environment as a source of truth. Point to discoverable commands, configuration, schemas, paths, and metadata instead of caching them in prose; document only the convention, reason, or failure mode the environment does not encode. Keep rationale only when it changes judgment or makes a non-obvious guardrail generalize.
 
 Merge rules with the same behavioral effect. Keep a second representation only for a distinct decision, authority, safety, recovery, verification, or owner boundary. Remove rationale, history, generic advice, and reference-owned procedure. Word count measures change, not quality.
 
 Keep a dependency at its boundary and name it by exact identifier: ``Use `seda-ticket` to create tickets; persist its exact-current result.`` The caller may own triggers, inputs, freshness, integration, acceptance, authority, recovery, and stop behavior; it must not copy the dependency's procedure, resources, checks, statuses, schema, or lifecycle. Repeat only independently required safety, trust, provider, or authority rules.
+
+Choose invocation policy from the authority and timing contract. Keep implicit invocation when natural-language routing is part of the outcome. Use `disable-model-invocation: true` only when the workflow requires an explicit user selection before material side-effect or continuing-stewardship authority can be established. Invocation policy does not replace the workflow's authority checks. When supported, keep equivalent host metadata, such as OpenAI `policy.allow_implicit_invocation`, consistent with that decision.
 
 ## Prove the candidate
 
@@ -60,6 +70,8 @@ For behavior-preserving compression, compare old and new with the same raw goal,
 Do not create a prompt-evaluation harness to justify wording. Follow the repository policy for persistent evaluations and deterministic tests. If proof grows materially, ask whether to simplify, defer, or continue.
 
 For validation, return `VERIFIED` only when every required structural and behavioral check passes against the exact candidate. Return `CHANGES_REQUIRED` for a proved defect and `INSUFFICIENT_EVIDENCE` for a material proof gap. Do not fix the candidate.
+
+When `yo-slop` is available and the candidate needs a prose pass, use it only after behavior is settled. Preserve exact identifiers, deliberate guardrails, output schemas, and capability boundaries, then reread and revalidate the resulting candidate; prose cleanup is not behavior proof.
 
 ## Integrate and report
 

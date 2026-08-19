@@ -32,7 +32,7 @@ Use this compact form:
 
 ## First action
 
-<one exact action>
+<one exact action and its checkable completion criterion>
 
 ## Evidence and owners
 
