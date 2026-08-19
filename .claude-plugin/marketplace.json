@@ -4,7 +4,7 @@
     "name": "QP",
     "url": "https://github.com/quantipixels"
   },
-  "description": "Agent skills for engineering, design, and productivity",
+  "description": "Agent skills for engineering, design, productivity, and experimental workflows",
   "plugins": [
     {
       "name": "qp-skills",

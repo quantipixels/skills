@@ -2,7 +2,7 @@
   "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
   "name": "qp-skills",
   "displayName": "quantipixels/skills",
-  "description": "Agent skills for engineering, design, and productivity",
+  "description": "Agent skills for engineering, design, productivity, and experimental workflows",
   "author": {
     "name": "QP",
     "url": "https://github.com/quantipixels"
