@@ -1,5 +1,17 @@
 # Changelog
 
+## 2.1.0
+
+### Minor Changes
+
+- [#20](https://github.com/quantipixels/skills/pull/20) [`282459b`](https://github.com/quantipixels/skills/commit/282459bffdeab8e202b24d16612e83230f67a276) Thanks [@mosobande](https://github.com/mosobande)! - Teach `amose` to preserve superseded ADR decisions as history. Require `ko-skill` to verify readable installed copies and distinguish performed actions from observed state.
+
+- [#20](https://github.com/quantipixels/skills/pull/20) [`3c477c8`](https://github.com/quantipixels/skills/commit/3c477c871f3bb887ccc71ef49ef17ee607c08253) Thanks [@mosobande](https://github.com/mosobande)! - Add `yo-slop` as a bounded Productivity skill for human- and agent-facing prose. Replace `google-developer-style` with the layered `technical-writing` skill, and chain both for developer documentation, technical communication, and applicable artifact copy. Strengthen session retrospectives and skill authoring with evidence-backed upstream patterns, and require explicit user selection before PR publication or stewardship workflows can establish their documented mutation authority. Remove the former repository landing page now that public documentation lives at `quantipixels.com/skills`.
+
+### Patch Changes
+
+- [#20](https://github.com/quantipixels/skills/pull/20) [`e969137`](https://github.com/quantipixels/skills/commit/e969137a640d523b944d31139234b61171d60d7d) Thanks [@mosobande](https://github.com/mosobande)! - Complete `arojinle`'s `amose` and `html-artifact` integration contract, mark the retired `salaye` exploration boundary as historical, and reconcile package metadata with the published 2.0.0 portfolio.
+
 ## 2.0.0
 
 ### Major Changes
