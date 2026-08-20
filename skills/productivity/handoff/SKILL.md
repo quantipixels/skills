@@ -45,7 +45,7 @@ Treat a change in outcome, primary owner, repository or candidate, mutation auth
 
 Resolve every source session and artifact before treating it as confirmed. If a required source is unavailable, name the gap, limit `Confirmed` to independently verified facts, and make the first action obtain the smallest recovery bundle: a transcript or prior handoff, candidate identity, completed proof, and the next verifiable action.
 
-When an active `olofofo` artifact exists, link it as evidence. This handoff is a point-in-time transfer, not the living session record; do not mutate or stop `olofofo`.
+When Pepeye mode is active, link the exact lifecycle-ledger record when one is authorized, plus the current leaf-owner receipts needed for transfer. Return a pickup receipt that names the suspended playbook, its task-local declaration or exact pointer, interrupted phase, last completed phase and proof, current gap, retained and missing authority, next phase, first checkable action, and artifacts to refresh. This handoff is a point-in-time transfer: do not mutate the ledger, advance a Pepeye phase, or assign its terminal state.
 
 Include only verified current state. Mark information that may be stale. Remove credentials and unnecessary sensitive information.
 

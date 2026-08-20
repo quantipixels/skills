@@ -7,13 +7,16 @@ description: Select the shortest useful route through published QP skills. Focus
 
 Select one primary QP skill for the requested outcome. Respect an explicit user selection. Add a supporting skill only when its result is necessary; separate independent outcomes instead of forcing one owner to absorb them. Routing does not grant mutation, provider, credential, publication, or other missing authority.
 
-Engineering, Design, Productivity, and Experimental are install groups, not routing priorities. `olofofo` is experimental and remains opt-in.
+When Pepeye mode is active, act as Pepeye's exact-current leaf-owner registry for the current phase. Return the smallest credible owner route, but do not select, replace, or advance Pepeye's playbook. Outside Pepeye mode, retain direct shortest-route ownership.
+
+Engineering, Design, Productivity, and Experimental are install groups, not routing priorities. `pepeye` is experimental and remains opt-in.
 
 ## Route
 
 | Starting outcome | Primary skill | Mode |
 | --- | --- | --- |
 | Select the shortest QP route | `alarina` | — |
+| Drive one task through QP-native playbooks, checkpoints, proof, pause or pickup, and learning | `pepeye` | explicit or authorized-baseline lifecycle mode |
 | Clarify or reconcile project terms, rules, knowledge, or decisions | `amose` | — |
 | Resolve or stress-test a material decision with a durable record | `arojinle` | — |
 | Deliver one bounded feature or fix test-first | `alaga` | `test-first` |
@@ -40,7 +43,7 @@ Engineering, Design, Productivity, and Experimental are install groups, not rout
 | Analyze one coding-agent session or bounded corpus | `ayewo-igba-ise` | — |
 | Research a question from primary sources into Markdown | `iwadi` | — |
 | Select, configure, use, or remove a companion tool | `irinse` | — |
-| Maintain quiet continuity for the literal agent session | supporting `olofofo` | — |
+| Qualify and reconcile reusable learning as the task outcome | `pepeye` | lifecycle mode; use the `learn` phase |
 | Route an end-to-end visual request | `apere` | specialist route or built-in `logo`, `corporate identity program`, `icons`, `social graphics` |
 | Define or reconcile brand identity | `brand` | — |
 | Define tokens or component specifications | `eto-apere` | — |
@@ -62,7 +65,7 @@ Use `general` mode in `atunwo` for supplied or local candidates and `provider` m
 - Keep PR or MR publication with `seda-pr`, monitoring with `wo-pr`, and review verdicts with `atunwo`.
 - When another skill owns a code-review outcome but lacks provider access, `atunwo` may support only candidate acquisition and a fixed adapter handoff; this grants no defect, verdict, publication, or provider authority to the owner.
 - Keep issue triage supplied-evidence-first. Repository reads, provider reads, and provider writes require their own authority.
-- Run `olofofo` only when explicitly requested or activated by a global baseline; it is never the primary owner.
+- Activate `pepeye` through explicit invocation or an authorized project or global baseline. While active, Pepeye owns playbook selection and task-level progression; Alárinà supplies current leaf routes, and every specialist retains its native outcome, procedure, proof, and authority gates.
 
 Check the active inventory before returning a route. If the correct owner is unavailable, name it without substituting another skill. Ask one focused question only when the answer selects a materially different owner or mode. Report the primary skill, applicable mode, one concise reason, and necessary supporting skills. Return no QP route when none fits.
 
