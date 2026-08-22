@@ -29,6 +29,8 @@ Classify each row as `no finding in declared checks | finding | evidence gap | e
 
 Inspect semantic content by stated risk: collisions, missing owners, stale references, state drift, security-sensitive behavior, and broad or duplicated contracts. For a large portfolio, check all structural surfaces and disclose semantic sampling; never claim unsampled skills are behaviorally sound.
 
+Classify each skill's control shape as `lightweight` or `workflow` before judging instruction depth. A lightweight skill can be broadly applicable or consequential while using only a few invariants when those invariants create the intended behavioral delta and its native result closes the outcome. Do not flag missing phases, statuses, recovery machinery, schemas, or detailed failure branches unless the outcome actually needs them for correctness, authority, safety, or completion. A workflow needs deeper control only when ordered stages, durable or external state, multiple actors or candidates, stale or partial results, retries, recovery, or distinct side-effect authorities make that control consequential. Treat unexpected complexity in either direction as a finding only when evidence shows behavioral cost or risk.
+
 For every supporting relationship, compare the caller with the dependency owner. Confirm that the caller supplies inputs and consumes a result instead of repeating the dependency's procedure, resources, checks, statuses, output schema, or lifecycle derivation. Do not flag caller-owned integration, acceptance, freshness, authority, recovery, or stop gates, or an independently required safety contract.
 
 ## Map ownership
@@ -44,8 +46,10 @@ Keep vendor-neutral core behavior in the primary owner. Preserve specialists as 
 
 Report a missing skill only from durable evidence of a recurring valuable outcome with no adequate owner. Reject one incident, repository policy, a small check, or an implementation detail; prefer extending the existing owner. Preserve overlaps when authority, provider, lifecycle, artifact, or completion differs, and prefer the smallest routing correction.
 
+Do not infer that a short skill lacks independent value. For a lightweight route, test whether its few invariants materially change selection, judgment, representation, or the composed result compared with ordinary agent behavior. Treat an unproved behavioral delta as an evidence gap, not a retirement finding. Recommend retirement only when evidence shows that the route adds no independently useful outcome or completion boundary.
+
 ## Verify and report
 
 Verify every finding against exact-current files and observed states. Separate defects from optimizations, deduplicate by mechanism, and rank by user impact, recurrence, safety, reachability, and correction cost. Assign an owner and `do now | defer | needs evidence | no action`; preserve accepted deferrals.
 
-Return the evidence boundary, normalized inventory and denominators, structural results, state-drift matrix, capability/route map, confirmed findings, evidence gaps, rejected recommendations, prioritized actions, and limitations. “No finding” means no issue found within declared checks, not that every skill is optimal.
+Return the evidence boundary, normalized inventory and denominators, control-shape classification, structural results, state-drift matrix, capability/route map, confirmed findings, evidence gaps, rejected recommendations, prioritized actions, and limitations. “No finding” means no issue found within declared checks, not that every skill is optimal.

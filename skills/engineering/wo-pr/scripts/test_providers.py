@@ -275,7 +275,7 @@ class GitHubNormalizationTests(unittest.TestCase):
 
         run.assert_not_called()
 
-    def test_explicitly_trusted_github_host_keeps_enterprise_token(self):
+    def test_trusted_custom_github_host_strips_ambient_tokens(self):
         environments = []
 
         def run(command, **kwargs):
@@ -288,14 +288,29 @@ class GitHubNormalizationTests(unittest.TestCase):
                 payload = []
             return subprocess.CompletedProcess(command, 0, json.dumps(payload), "")
 
-        with patch.dict(os.environ, {"GH_ENTERPRISE_TOKEN": "enterprise-token"}, clear=True), patch(
-            "github_provider.subprocess.run", side_effect=run
-        ):
+        with patch.dict(
+            os.environ,
+            {
+                "GH_TOKEN": "public-token",
+                "GITHUB_TOKEN": "public-token-2",
+                "GH_ENTERPRISE_TOKEN": "enterprise-token",
+                "GITHUB_ENTERPRISE_TOKEN": "enterprise-token-2",
+            },
+            clear=True,
+        ), patch("github_provider.subprocess.run", side_effect=run):
             GitHubProvider(
                 host="github.acme.test", repository="acme/widgets", trusted_hosts={"github.acme.test"}
             ).fetch("42")
 
-        self.assertTrue(all(environment["GH_ENTERPRISE_TOKEN"] == "enterprise-token" for environment in environments))
+        self.assertTrue(environments)
+        for environment in environments:
+            for name in (
+                "GH_TOKEN",
+                "GITHUB_TOKEN",
+                "GH_ENTERPRISE_TOKEN",
+                "GITHUB_ENTERPRISE_TOKEN",
+            ):
+                self.assertNotIn(name, environment)
 
     def test_github_commands_pin_declared_host_and_remove_ambient_repo(self):
         environments = []
@@ -320,7 +335,12 @@ class GitHubNormalizationTests(unittest.TestCase):
 
         with patch.dict(
             os.environ,
-            {"GH_HOST": "attacker.test", "GH_REPO": "attacker.test/acme/api", "GH_TOKEN": "token"},
+            {
+                "GH_HOST": "attacker.test",
+                "GH_REPO": "attacker.test/acme/api",
+                "GH_TOKEN": "token",
+                "GH_ENTERPRISE_TOKEN": "enterprise-token",
+            },
             clear=True,
         ), patch("github_provider.subprocess.run", side_effect=run):
             GitHubProvider(repository="acme/widgets").fetch("42")
@@ -329,6 +349,8 @@ class GitHubNormalizationTests(unittest.TestCase):
         for environment in environments:
             self.assertEqual("github.com", environment["GH_HOST"])
             self.assertNotIn("GH_REPO", environment)
+            self.assertEqual("token", environment["GH_TOKEN"])
+            self.assertNotIn("GH_ENTERPRISE_TOKEN", environment)
 
 
 class GitLabNormalizationTests(unittest.TestCase):
@@ -345,7 +367,12 @@ class GitLabNormalizationTests(unittest.TestCase):
 
         with patch.dict(
             os.environ,
-            {"GITLAB_HOST": "attacker.test", "GITLAB_TOKEN": "token"},
+            {
+                "GITLAB_HOST": "attacker.test",
+                "GITLAB_TOKEN": "token",
+                "CI_JOB_TOKEN": "job-token",
+                "GLAB_ENABLE_CI_AUTOLOGIN": "true",
+            },
             clear=True,
         ), patch("gitlab_provider.subprocess.run", side_effect=run):
             GitLabProvider().fetch("9")
@@ -355,6 +382,9 @@ class GitLabNormalizationTests(unittest.TestCase):
         self.assertEqual("gitlab.com", repo_command[repo_command.index("--hostname") + 1])
         self.assertEqual("projects/:fullpath", repo_command[-1])
         self.assertNotIn("GITLAB_HOST", repo_environment)
+        self.assertEqual("token", repo_environment["GITLAB_TOKEN"])
+        self.assertNotIn("CI_JOB_TOKEN", repo_environment)
+        self.assertEqual("false", repo_environment["GLAB_ENABLE_CI_AUTOLOGIN"])
 
     def test_mr_url_with_query_or_fragment_resolves_iid(self):
         provider = GitLabProvider(repository="acme/widgets", runner=lambda _command: [])
@@ -564,7 +594,7 @@ class GitLabNormalizationTests(unittest.TestCase):
 
         run.assert_not_called()
 
-    def test_explicitly_trusted_gitlab_host_keeps_access_token(self):
+    def test_trusted_custom_gitlab_host_strips_ambient_tokens_and_ci_autologin(self):
         environments = []
         responses = self._fetch_responses(host="gitlab.acme.test")
 
@@ -573,18 +603,28 @@ class GitLabNormalizationTests(unittest.TestCase):
             payload = responses[command[-1]]
             return subprocess.CompletedProcess(command, 0, json.dumps(payload), "")
 
-        with patch.dict(os.environ, {"GITLAB_ACCESS_TOKEN": "access-token"}, clear=True), patch(
-            "gitlab_provider.subprocess.run", side_effect=run
-        ):
+        with patch.dict(
+            os.environ,
+            {
+                "GITLAB_TOKEN": "token",
+                "GITLAB_ACCESS_TOKEN": "access-token",
+                "OAUTH_TOKEN": "oauth-token",
+                "CI_JOB_TOKEN": "job-token",
+                "GLAB_ENABLE_CI_AUTOLOGIN": "true",
+            },
+            clear=True,
+        ), patch("gitlab_provider.subprocess.run", side_effect=run):
             GitLabProvider(
                 host="gitlab.acme.test",
                 repository="acme/widgets",
                 trusted_hosts={"gitlab.acme.test"},
             ).fetch("9")
 
-        self.assertTrue(
-            all(environment["GITLAB_ACCESS_TOKEN"] == "access-token" for environment in environments)
-        )
+        self.assertTrue(environments)
+        for environment in environments:
+            for name in ("GITLAB_TOKEN", "GITLAB_ACCESS_TOKEN", "OAUTH_TOKEN", "CI_JOB_TOKEN"):
+                self.assertNotIn(name, environment)
+            self.assertEqual("false", environment["GLAB_ENABLE_CI_AUTOLOGIN"])
 
     @staticmethod
     def _fetch_responses(host="gitlab.com"):
