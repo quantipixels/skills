@@ -1,6 +1,7 @@
 ---
 name: seda-pr
 description: Commit scoped changes, push the current branch, and create or update its ready GitHub pull request or GitLab merge request for a third-party reader with no project context. Use when the user asks to publish a branch or create, open, update, or rewrite a PR or MR; exclude code implementation, review, monitoring, approval, merge, and close operations.
+compatibility: Requires Python 3, git, network access, and authenticated gh or glab CLI access to the target provider.
 disable-model-invocation: true
 ---
 

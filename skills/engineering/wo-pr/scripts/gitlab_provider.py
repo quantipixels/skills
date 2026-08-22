@@ -14,6 +14,14 @@ class CommandError(RuntimeError):
     pass
 
 
+GITLAB_TOKEN_VARIABLES = (
+    "GITLAB_TOKEN",
+    "GITLAB_ACCESS_TOKEN",
+    "OAUTH_TOKEN",
+    "CI_JOB_TOKEN",
+)
+
+
 def _run_json(command: list[str], *, env: dict[str, str] | None = None) -> Any:
     result = subprocess.run(command, check=False, capture_output=True, text=True, env=env)
     if result.returncode != 0:
@@ -167,12 +175,13 @@ class GitLabProvider:
     def _command_environment(self) -> dict[str, str]:
         environment = os.environ.copy()
         environment.pop("GITLAB_HOST", None)
+        environment["GLAB_ENABLE_CI_AUTOLOGIN"] = "false"
         host = self.host.lower().rstrip(".")
-        trusted_hosts = {value.lower().rstrip(".") for value in self.trusted_hosts}
-        if host not in trusted_hosts:
-            for name in ("GITLAB_TOKEN", "GITLAB_ACCESS_TOKEN", "OAUTH_TOKEN", "CI_JOB_TOKEN"):
+        if host == "gitlab.com":
+            environment.pop("CI_JOB_TOKEN", None)
+        else:
+            for name in GITLAB_TOKEN_VARIABLES:
                 environment.pop(name, None)
-            environment["GLAB_ENABLE_CI_AUTOLOGIN"] = "false"
         return environment
 
     def _repo(self) -> str:

@@ -10,7 +10,7 @@
   "license": "MIT",
   "scripts": {
     "changeset": "changeset",
-    "version": "changeset version"
+    "version": "changeset version && npm install --package-lock-only --ignore-scripts"
   },
   "devDependencies": {
     "@changesets/changelog-github": "^0.7.0",

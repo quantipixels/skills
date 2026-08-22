@@ -19,7 +19,7 @@ Track these authorities separately:
 - `provider-read`: fetch one identified GitHub or GitLab issue and its comments;
 - `provider-comment`: post one evidence-backed triage comment and perform only the narrow pre-write marker check and post-write readback needed to prevent a duplicate and verify that comment.
 
-Do not infer one authority from another. Ask for the missing authority only when it can change the next action materially. Never infer authority to edit, label, assign, close, reopen, transfer, or delete an issue.
+Do not infer one authority from another. Never infer authority to edit, label, assign, close, reopen, transfer, or delete an issue.
 
 When provider access is authorized, resolve one exact provider host, repository, issue number, and current issue state. Treat enterprise or self-managed host trust as separate from a URL. Remove inherited generic credentials that do not belong to the confirmed host, use structured command arguments, fetch every required comments page, and report a capability gap instead of assuming GitHub and GitLab parity.
 
@@ -59,6 +59,8 @@ Choose one next action:
 - `REQUEST_INFORMATION`: ask only for missing facts that can change the classification or next action.
 - `NO_BUG_ON_CURRENT_EVIDENCE`: explain the direct counter-evidence and the condition that would reopen the assessment. This action requires `disproved`; do not use it for missing evidence.
 - `HANDOFF_CONFIRMED`: give a durable behavioral brief with the neutral summary and classification, current observed behavior, desired behavior, affected contracts or interfaces, independently verifiable acceptance criteria, explicit out-of-scope work, remaining unknowns, and evidence provenance. Avoid fragile line references and implementation instructions. Do not implement within this skill.
+
+Complete the current assessment before requesting a missing permission. When the selected next action would mutate an external or provider system—for example by posting or updating a comment, changing issue metadata or state, or updating another network service—ask for explicit permission unless the user already granted that exact action and target. Name the target and intended mutation. Do not perform the write before approval.
 
 ## 4. Persist material triage when useful
 

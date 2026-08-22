@@ -14,6 +14,18 @@ from urllib.parse import urlparse
 DEFAULT_TRUSTED_HOST = {"github": "github.com", "gitlab": "gitlab.com"}
 EXECUTABLE = {"github": "gh", "gitlab": "glab"}
 PROVIDER_TIMEOUT_SECONDS = 120
+GITHUB_TOKEN_VARIABLES = (
+    "GH_TOKEN",
+    "GITHUB_TOKEN",
+    "GH_ENTERPRISE_TOKEN",
+    "GITHUB_ENTERPRISE_TOKEN",
+)
+GITLAB_TOKEN_VARIABLES = (
+    "GITLAB_TOKEN",
+    "GITLAB_ACCESS_TOKEN",
+    "OAUTH_TOKEN",
+    "CI_JOB_TOKEN",
+)
 
 
 def command_environment(
@@ -33,11 +45,24 @@ def command_environment(
         raise ValueError(
             f"separate trust is required before contacting custom provider host {host!r}"
         )
+
     if provider == "github":
         result["GH_HOST"] = normalized_host
         result.pop("GH_REPO", None)
+        if normalized_host == "github.com":
+            result.pop("GH_ENTERPRISE_TOKEN", None)
+            result.pop("GITHUB_ENTERPRISE_TOKEN", None)
+        else:
+            for name in GITHUB_TOKEN_VARIABLES:
+                result.pop(name, None)
     else:
         result.pop("GITLAB_HOST", None)
+        result["GLAB_ENABLE_CI_AUTOLOGIN"] = "false"
+        if normalized_host == "gitlab.com":
+            result.pop("CI_JOB_TOKEN", None)
+        else:
+            for name in GITLAB_TOKEN_VARIABLES:
+                result.pop(name, None)
     return result
 
 

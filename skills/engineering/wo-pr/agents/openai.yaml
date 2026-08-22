@@ -1,5 +1,5 @@
 interface:
-  display_name: "Wo PR"
+  display_name: "Wò PR"
   short_description: "Keep PRs and MRs ready through CI and feedback"
 policy:
   allow_implicit_invocation: false

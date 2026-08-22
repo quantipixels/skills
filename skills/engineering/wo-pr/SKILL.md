@@ -1,6 +1,7 @@
 ---
 name: wo-pr
 description: Keep one GitHub pull request or GitLab merge request healthy through CI, conflicts, and review feedback until a human merge decision. Use when the user asks to monitor, watch, babysit, keep an eye on, or make the item ready; run bounded branch and provider actions by default, and exclude independent review verdicts, approval, merge, close, force-push, and unrelated changes.
+compatibility: Requires Python 3 with fcntl, git, network access, and authenticated gh or glab CLI access to the target provider.
 disable-model-invocation: true
 ---
 

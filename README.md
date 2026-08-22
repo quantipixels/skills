@@ -6,14 +6,11 @@ Skills are organized into exclusive Engineering, Design, Productivity, and Exper
 
 Browse the [QP Agent Skills documentation](https://quantipixels.com/skills).
 
-## What's new in 2.0.0
+## Portfolio shape
 
-[Version 2.0.0](https://github.com/quantipixels/skills/releases/tag/v2.0.0) reorganizes the portfolio around clearer owners and shorter routes:
-
-- Skills now belong to one Engineering, Design, Productivity, or Experimental source group, with interactive group selection during installation.
-- `qp-code-review` is now `atunwo`, and `triage-issue` is now `se-triage`.
-- Test-first delivery stays with Alaga, maintainability review stays with Pare, skill portfolio auditing stays with Ko Skill, and stateful refactor-parity auditing moves to Àtúnwò.
-- Alaga now handles bounded features and supplied build jobs through integration, proof, documentation, and applicable review.
+- Skills belong to one Engineering, Design, Productivity, or Experimental source group, with interactive group selection during installation.
+- Test-first delivery stays with Alaga, maintainability review stays with Pare, skill portfolio auditing stays with Ko Skill, and stateful refactor-parity auditing stays with Àtúnwò.
+- Alaga handles bounded features and supplied build jobs through integration, proof, documentation, and applicable review.
 
 ## Install
 
@@ -50,7 +47,7 @@ curl -fsSL https://raw.githubusercontent.com/quantipixels/skills/ori/scripts/uni
 
 ## Releases
 
-Read the [latest GitHub release](https://github.com/quantipixels/skills/releases/tag/v2.0.0) and the repository [changelog](CHANGELOG.md).
+Read the [latest GitHub release](https://github.com/quantipixels/skills/releases/latest) and the repository [changelog](CHANGELOG.md).
 
 ## Start
 
