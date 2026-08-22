@@ -1,11 +1,16 @@
 ---
 name: seda-sigidi
-description: Give one AI agent a durable soul: identity, values, boundaries, and voice installed into the configuration its host actually loads, grounded in evidence about its human. Use when naming an agent, adding personality to an agent config, or porting and refreshing a soul across hosts such as Codex, Claude Code, opencode, or OpenClaw; exclude configuration edits with no identity decision, generic documentation work, skill authoring, provider operations, and installing, activating, publishing, committing, or pushing anything.
+description: Draft or integrate one AI agent's durable soul—identity, values, boundaries, and voice—grounded in evidence about its human. Use `draft` for naming or authoring without configuration changes, and `integrate` for explicit read/write work in the configuration its host loads; exclude configuration edits with no identity decision, generic documentation work, skill authoring, provider operations, and installing, activating, publishing, committing, or pushing anything.
 ---
 
 # Fẹ̀mí Sínú Sigidi
 
-Give one AI agent a durable soul: identity, values, boundaries, and voice grounded in evidence about its human. Own discovery, authoring, integration, and proof for one loaded configuration; the caller owns tool choice, credentials, installation, activation, publication, and any Git or provider operation.
+Give one AI agent a durable soul: identity, values, boundaries, and voice grounded in evidence about its human. Own discovery, authoring, and proof on both paths. Own configuration mutation only in `integrate`, when the exact loaded target and read/write authority are explicit. The caller owns tool choice, credentials, installation, activation, publication, and any Git or provider operation.
+
+## Choose the path
+
+- `draft` — discover evidence, author the soul, and return the proposed content, open questions, and target shape. Do not edit a host configuration.
+- `integrate` — graft a confirmed soul into one exact configuration target with explicit read/write authority, then read back and prove the result. Integration does not install, activate, publish, commit, or push anything.
 
 ## 1. Pin the host contract
 
@@ -30,15 +35,19 @@ Shape and graft with [soul-template](references/soul-template.md). Expand or ren
 
 ## 4. Integrate with a minimal diff
 
-Apply the template's inventory and zero-loss grafting contract as a minimal diff. Preserve load-bearing rules and unrelated content. Match the target's heading style and language conventions.
+In `draft`, do not apply a diff. Return the proposed soul and intended target shape without reading or changing a configuration unless separate read authority was supplied.
+
+In `integrate`, apply the template's inventory and zero-loss grafting contract as a minimal diff. Preserve load-bearing rules and unrelated content. Match the target's heading style and language conventions.
 
 ## 5. Prove and report
 
-Read back the complete changed file, and check structure, frontmatter, and unchanged neighbors. Report:
+For `draft`, verify the proposed content against the confirmed evidence and template. Report that no host configuration changed.
+
+For `integrate`, read back the complete changed file, and check structure, frontmatter, and unchanged neighbors. Report:
 
 - a moves table from old location to new section;
 - dropped, duplicated, or weakened items, each with its reason;
 - open questions that need the human's decision;
 - final state as `source | installed | active | published`.
 
-Return the report and the changed file path. Do not install, activate, synchronize, publish, commit, or push; those need separate authority.
+Return the proposed soul for `draft`, or the report and changed file path for `integrate`. Do not install, activate, synchronize, publish, commit, or push; those need separate authority.

@@ -1,6 +1,6 @@
 # Soul Template
 
-Fill this template with evidence about one human and the agent that serves him. Every trait needs one source: his words, observed behavior, or his confirmation. Never invent traits to fill gaps.
+Fill this template with evidence about one human and the agent that serves them. Every trait needs one source: their words, observed behavior, or their confirmation. Never invent traits to fill gaps.
 
 Use it in two separate passes:
 
@@ -17,7 +17,7 @@ _Purpose: one line naming the agent and its relationship to the human._
 
 Questions:
 
-- What is the agent's name, spelled exactly as he gave it?
+- What is the agent's name, spelled exactly as they gave it?
 - What is it, in one metaphor a colleague would use at a desk?
 - What is it not?
 
@@ -29,10 +29,10 @@ _Purpose: five to eight bold principles that carry judgment and route its instru
 
 Questions:
 
-- Which corrections has he repeated across sessions? Each repeated correction hides a truth.
-- When did an agent earn his trust? What exactly did it do?
+- Which corrections have they repeated across sessions? Each repeated correction hides a truth.
+- When did an agent earn their trust? What exactly did it do?
 - Which tools or skills must fire before certain judgments — premise testing, research, writing passes? Route each one into the truth whose value motivates it.
-- What does good work mean to him beyond correctness?
+- What does good work mean to them beyond correctness?
 - How should effort scale with the size of the problem?
 
 Rules: state each truth in bold of ten words or fewer, then explain it in one to three short sentences. One idea per truth. Skill names stay in backticks so they remain visible triggers.
@@ -116,5 +116,5 @@ Finish with zero unexplained losses: anything dropped, duplicated, or weakened g
 
 - Questions and shape notes deleted
 - No empty sections; unused optional sections dropped
-- Agent name matches his supplied spelling
+- Agent name matches their supplied spelling
 - Read-back complete; moves table ready

@@ -9,7 +9,7 @@ Control one task from orientation through a proved terminal state. Select the pl
 
 ## 1. Activate sticky mode
 
-Activate on explicit invocation or through an authorized project or global instruction baseline. Once active, remain the task-wide controller until the task is `complete`, the user opts out, or the task reaches a verified `paused` state.
+Activate on explicit invocation or through an authorized project or global instruction baseline. Once active, remain the task-wide controller until the task reaches a terminal state: `complete`, `paused`, `unresolved`, or `stopped`. Record a user opt-out as `stopped`.
 
 Use capabilities exposed by the current host, but require none of them. A host may supply current context, subagents, global instructions, or provider integrations. Never require one provider's transcript path, task API, mode flag, model identifier, subagent type, hook, daemon, adapter, scheduler, or shared runtime.
 

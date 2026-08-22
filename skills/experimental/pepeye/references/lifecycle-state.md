@@ -6,7 +6,7 @@ Use durable state only for multi-step, long, autonomous, paused, transferred, or
 
 State writes require separate authority. Explicit invocation, baseline activation, or task mutation authority does not imply lifecycle-state authority.
 
-Use a user-approved destination. When the user requests the QP default, use `~/.qp/pepeye/tasks/<task-id>.md`, where `<task-id>` is a stable, non-secret task identifier. Create no global index, queue, daemon, or scheduler.
+Use a user-approved destination. When the user requests the QP default, use `~/.qp/tasks/<task-id>.md`, where `<task-id>` is a stable, non-secret slug or UUID that passes validation. Reject absolute paths, path separators, `.` and `..` segments, and any value whose resolved target is outside the tasks directory. Create no global index, queue, daemon, or scheduler.
 
 Before a write, reread the exact target and preserve concurrent or unrelated content. If the available write capability cannot safely reject or rebuild against a changed target, stop and report the conflict. After a write, reread the target and report the absolute path and changed task record.
 
