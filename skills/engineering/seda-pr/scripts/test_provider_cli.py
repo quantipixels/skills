@@ -24,15 +24,44 @@ class ProviderCliTests(unittest.TestCase):
                 "gitlab", "attacker.test", trusted_hosts=set(), environment={"PATH": "/bin"}
             )
 
-    def test_explicitly_trusted_host_keeps_tokens(self):
+    def test_trusted_custom_github_host_strips_ambient_tokens(self):
         environment = command_environment(
             "github",
             "github.acme.test.",
             trusted_hosts={"GITHUB.ACME.TEST"},
-            environment={"GH_ENTERPRISE_TOKEN": "token"},
+            environment={
+                "GH_TOKEN": "public-token",
+                "GITHUB_TOKEN": "public-token-2",
+                "GH_ENTERPRISE_TOKEN": "enterprise-token",
+                "GITHUB_ENTERPRISE_TOKEN": "enterprise-token-2",
+            },
         )
 
-        self.assertEqual("token", environment["GH_ENTERPRISE_TOKEN"])
+        for name in (
+            "GH_TOKEN",
+            "GITHUB_TOKEN",
+            "GH_ENTERPRISE_TOKEN",
+            "GITHUB_ENTERPRISE_TOKEN",
+        ):
+            self.assertNotIn(name, environment)
+
+    def test_trusted_custom_gitlab_host_strips_ambient_tokens_and_ci_autologin(self):
+        environment = command_environment(
+            "gitlab",
+            "gitlab.acme.test",
+            trusted_hosts={"gitlab.acme.test"},
+            environment={
+                "GITLAB_TOKEN": "token",
+                "GITLAB_ACCESS_TOKEN": "access-token",
+                "OAUTH_TOKEN": "oauth-token",
+                "CI_JOB_TOKEN": "job-token",
+                "GLAB_ENABLE_CI_AUTOLOGIN": "true",
+            },
+        )
+
+        for name in ("GITLAB_TOKEN", "GITLAB_ACCESS_TOKEN", "OAUTH_TOKEN", "CI_JOB_TOKEN"):
+            self.assertNotIn(name, environment)
+        self.assertEqual("false", environment["GLAB_ENABLE_CI_AUTOLOGIN"])
 
     def test_github_environment_pins_declared_host_and_removes_repo_override(self):
         environment = command_environment(
@@ -42,12 +71,31 @@ class ProviderCliTests(unittest.TestCase):
             environment={
                 "GH_HOST": "attacker.test",
                 "GH_REPO": "attacker.test/acme/api",
-                "GH_ENTERPRISE_TOKEN": "token",
+                "GH_TOKEN": "token",
+                "GH_ENTERPRISE_TOKEN": "enterprise-token",
             },
         )
 
         self.assertEqual("github.com", environment["GH_HOST"])
         self.assertNotIn("GH_REPO", environment)
+        self.assertEqual("token", environment["GH_TOKEN"])
+        self.assertNotIn("GH_ENTERPRISE_TOKEN", environment)
+
+    def test_gitlab_environment_disables_ci_autologin_and_drops_ci_job_token(self):
+        environment = command_environment(
+            "gitlab",
+            "gitlab.com",
+            trusted_hosts=set(),
+            environment={
+                "GITLAB_TOKEN": "token",
+                "CI_JOB_TOKEN": "job-token",
+                "GLAB_ENABLE_CI_AUTOLOGIN": "true",
+            },
+        )
+
+        self.assertEqual("token", environment["GITLAB_TOKEN"])
+        self.assertNotIn("CI_JOB_TOKEN", environment)
+        self.assertEqual("false", environment["GLAB_ENABLE_CI_AUTOLOGIN"])
 
     def test_github_command_must_select_a_repository_or_hostname(self):
         with self.assertRaisesRegex(ValueError, "must select the declared host"):

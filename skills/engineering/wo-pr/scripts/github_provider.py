@@ -12,6 +12,14 @@ class CommandError(RuntimeError):
     pass
 
 
+GITHUB_TOKEN_VARIABLES = (
+    "GH_TOKEN",
+    "GITHUB_TOKEN",
+    "GH_ENTERPRISE_TOKEN",
+    "GITHUB_ENTERPRISE_TOKEN",
+)
+
+
 def _run_json(
     command: list[str],
     *,
@@ -206,9 +214,11 @@ class GitHubProvider:
         host = self.host.lower().rstrip(".")
         environment["GH_HOST"] = host
         environment.pop("GH_REPO", None)
-        trusted_hosts = {value.lower().rstrip(".") for value in self.trusted_hosts}
-        if host not in trusted_hosts:
-            for name in ("GH_TOKEN", "GITHUB_TOKEN", "GH_ENTERPRISE_TOKEN", "GITHUB_ENTERPRISE_TOKEN"):
+        if host == "github.com":
+            environment.pop("GH_ENTERPRISE_TOKEN", None)
+            environment.pop("GITHUB_ENTERPRISE_TOKEN", None)
+        else:
+            for name in GITHUB_TOKEN_VARIABLES:
                 environment.pop(name, None)
         return environment
 

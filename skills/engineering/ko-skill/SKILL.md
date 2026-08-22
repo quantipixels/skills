@@ -28,6 +28,18 @@ For a behavior correction, exercise the exact pre-change candidate with a realis
 
 When session history or prior outputs supply improvement evidence, use an exact-current `ayewo-igba-ise` result for retrospective mining; `ko-skill` consumes that evidence and owns confirmation, authoring, and proof. Pin the authorized evidence roots and time range. Distinguish directly stated preferences from inferred patterns; require user confirmation before making an inferred preference durable. For an update, preserve accepted behavior that new evidence does not contradict and assess only the changed evidence. Do not search unrelated workspaces or private histories.
 
+## Classify the control shape
+
+Before judging instruction depth, classify the skill as `lightweight` or `workflow` from the control its outcome actually requires. Reach, importance, or the number of situations in which a skill applies do not make it a workflow.
+
+Use `lightweight` when a small set of consequential invariants can reliably change agent behavior and the outcome does not require an internal lifecycle, ordered multi-stage coordination, recovery protocol, or several independently authorized side effects. A lightweight skill may still own a broad judgment rule or one composed artifact as its native result. Prefer the smallest instruction set that creates the required behavioral delta; do not add phases, statuses, schemas, failure taxonomies, or authority ceremony merely to make the skill look complete.
+
+Use `workflow` when correctness depends on ordered stages, durable or externally changing state, multiple candidates or actors, stale-result handling, retries or partial failure, recovery, or distinct side-effect authorities. Give only those boundaries the state, checks, receipts, and stop conditions they need.
+
+Escalate a lightweight skill to a workflow only when observed failures prove that an omitted control boundary matters. Simplify a workflow when its stages or state no longer change safe execution. Treat classification as an authoring judgment, not permanent metadata unless a host or repository has a concrete use for persisting it.
+
+For either shape, require an independently useful outcome and completion boundary. A lightweight completion boundary can be implicit in one exact result, such as a verdict, explanation, handoff, or composed research artifact; it does not need a state machine.
+
 ## Preserve and validate capabilities
 
 Treat user constraints as the target contract. Before changing or validating the skill, map the complete `SKILL.md` and direct references across these lenses:
@@ -38,9 +50,11 @@ authority, safety, and recovery | proof and tests | state and lifecycle
 owners and integration | stop and report contract
 ```
 
+Apply only the lenses material to the classified control shape. For a lightweight skill, absence of workflow machinery is not a defect unless the missing control can change correctness, authority, safety, or completion. For a workflow, verify every stateful or ordered boundary that the outcome depends on.
+
 Mark each capability `retain | change | move | remove`; give every change an owner and reason. A sentence inventory is not capability proof.
 
-Trace the complete contract through instructions, applicable resources, metadata, routing, and observable output. Treat changed, universal, exclusive, safety, authority, portability, accessibility, and verification claims as proof obligations. Test sibling resources and applicable normal, failure, misuse, locale, state, trust, recovery, and fallback paths. Verify that modes, statuses, and classifications are non-overlapping and sufficient. Structural success cannot accept a semantically unproved candidate.
+Trace the complete contract through instructions, applicable resources, metadata, routing, and observable output. Treat changed, universal, exclusive, safety, authority, portability, accessibility, and verification claims as proof obligations. Test applicable normal, failure, misuse, locale, state, trust, recovery, and fallback paths; do not manufacture inapplicable branches for a lightweight skill. Verify that modes, statuses, and classifications that exist are non-overlapping and sufficient. Structural success cannot accept a semantically unproved candidate.
 
 Name a new or changed mode with the shortest clear verb or verb phrase. Prefer names such as `audit`, `review`, `clean`, and `deep-clean`. Do not repeat the skill name, target artifact, implementation detail, or context that the owning skill already supplies. Add a qualifier only when it changes authority, risk, or outcome and the unqualified name would be ambiguous.
 
@@ -65,6 +79,8 @@ Define the smallest proof before acting:
 - `forward`: use the smallest fresh no-context raw goal only for material uncertainty in selection, authority, safety, state, branching, or output;
 - `final`: reread the exact final candidate and rerun only structural or forward proof affected by the change.
 
+Match proof to the control shape. For a lightweight skill, first prove that its few invariants cause the intended behavioral delta and that the native result closes the outcome; do not require workflow-shaped scenarios that the skill intentionally does not own. For a workflow, prove the material transitions, stale or partial states, authority boundaries, and recovery paths that can change the result.
+
 For behavior-preserving compression, compare old and new with the same raw goal, repository candidate, authority, and stop condition. Hide the expected answer. Deny credentials and mutation unless a disposable scenario authorizes them. Add an independent reviewer only when consequence or ambiguity requires it.
 
 Do not create a prompt-evaluation harness to justify wording. Follow the repository policy for persistent evaluations and deterministic tests. If proof grows materially, ask whether to simplify, defer, or continue.
@@ -77,4 +93,4 @@ When `yo-slop` is available and the candidate needs a prose pass, use it only af
 
 When mutation is authorized, keep host metadata and affected package, release, catalog, and router surfaces consistent. Preserve unrelated work. For a provider-capable skill, propagate the complete applicable repository safety contract into its independently installed owner; never add a shared provider runtime without an architecture decision. Send accepted durable project decisions to their knowledge owner when the repository authorizes that destination.
 
-Report operation, exact candidate, authority, boundary, changed files, capability dispositions, checks, behavioral evidence or gaps, and final `source | installed | active | published` state. For material compression, include before-and-after counts. Install, activate, synchronize, publish, or hand off only with separate authority.
+Report operation, exact candidate, control shape, authority, boundary, changed files, capability dispositions, checks, behavioral evidence or gaps, and final `source | installed | active | published` state. For material compression, include before-and-after counts. Install, activate, synchronize, publish, or hand off only with separate authority.
