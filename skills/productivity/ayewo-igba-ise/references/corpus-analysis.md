@@ -10,8 +10,6 @@ Inventory the corpus before sampling. Distinguish a user task, root session, res
 
 For a large corpus, use deterministic extraction for counts and metadata, then read the smallest representative and risk-weighted sample that can answer the question. Record the population, sample, exclusions, and evidence gaps.
 
-Create a coverage ledger for every explicit question and requested deliverable. Map each item to its evidence, intended output section, and current status: `answered`, `evidence gap`, or `deferred`. Reconcile the ledger before completion; an executive summary, project matrix, or repeated-pattern aggregate does not replace an unanswered item.
-
 ## Reconstruct bounded causal records
 
 Reconstruct bounded causal records for the sampled sessions. Do not invent one global timeline or infer the same contract across different tasks. Include contrasting successful or uneventful records when they can disprove a claimed pattern.

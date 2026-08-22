@@ -21,17 +21,11 @@ Pin the requested outcome, scope, candidate or workspace identity, acceptance, a
 
 Respect an explicitly selected owner. Otherwise consult exact-current `alarina` as the route registry and select the smallest credible playbook from [playbooks.md](references/playbooks.md). While Pepeye is active, Pepeye owns playbook selection; `alarina` supplies current owner and mode knowledge without taking over lifecycle control.
 
-When no catalog playbook credibly matches, construct the smallest `bespoke` playbook from the common schema. Verify its shape and authority before execution. Do not add it to the catalog unless repeated evidence justifies a separate `ko-skill` change.
+When no catalog playbook credibly matches, use the `bespoke` fallback in [playbooks.md](references/playbooks.md). Do not add it to the catalog unless repeated evidence justifies a separate `ko-skill` change.
 
 ## 3. Shape the work
 
-Use the universal spine:
-
-`orient → shape → execute → prove → review → learn → finish`
-
-A playbook may insert task-specific phases. Keep every universal phase visible. Record `skip: <reason>` when a phase does not apply.
-
-For multi-step, long, autonomous, or program work, add a throughput checkpoint after `shape`. Confirm that the work is divided into independently verifiable units, the next unit is startable, and incomplete units cannot be mistaken for task completion.
+Instantiate the selected playbook with the common schema, universal spine, skip rules, and throughput checkpoint in [playbooks.md](references/playbooks.md).
 
 Apply [principles.md](references/principles.md) by trigger. Load the referenced leaf only when its trigger fires. Do not preload the full portfolio or copy a leaf's procedure into the playbook.
 
@@ -49,7 +43,7 @@ Proceed with reversible in-scope work under authority already granted for the ta
 
 Delegation is capability-based and optional. Follow applicable project delegation rules when parallel work materially helps. Do not require a fixed model, agent type, or host API. Never use delegation to evade an authority gate or obscure one accountable owner.
 
-At each phase transition, record the owner result, its current proof, and the next phase. If the proof fails, return to the earliest phase that owns the gap instead of layering speculative fixes.
+At each phase transition, record the owner result, current proof, and next phase. Apply the playbook's exit-proof and recovery rules before progressing.
 
 ## 5. Prove and review the task
 
@@ -65,7 +59,7 @@ Use current context and owner artifacts for ordinary tasks. Read [lifecycle-stat
 
 Durable lifecycle state requires separate state-write authority. Activation alone does not grant it. Without that authority, report the current checkpoint and persistence gap in the response or an already-authorized handoff.
 
-Use `handoff` for transfer. Pickup reconstructs from the lifecycle ledger when authorized, owner artifacts, branch or candidate state, and available host context. Revalidate authority and mutable identities before continuing.
+Use `handoff` for transfer. On pickup, apply the lifecycle-state protocol and revalidate authority and mutable identities before continuing.
 
 ## 7. Learn at the safe boundary
 

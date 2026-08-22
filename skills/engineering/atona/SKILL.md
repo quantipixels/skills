@@ -7,30 +7,6 @@ description: Maintain one evidence-backed architecture or migration plan across 
 
 Own one live architecture plan from evidence through closure. Keep implementation and review procedures with their owning skills and record their verified results.
 
-## Functional workflow
-
-```text
-Request + repository evidence
-              │
-              ▼
-      One shared live plan
-              │
-              ▼
-   Evidence + clarification
-              │
-              ▼
-  Architecture + readiness
-              │
-              ▼
-      Authorized delivery
-              │
-              ▼
- Reconcile durable knowledge
-              │
-              ▼
-            Close
-```
-
 When an answer, fact, or confirmed decision changes, reopen every affected decision and phase; mark its proof and candidate evidence stale; and record the affected code, tests, schema, configuration, naming, and documentation. Rerun affected readiness and closure checks before restoring state.
 
 ## 1. Establish the plan and evidence
@@ -110,4 +86,4 @@ Before `Closed`, verify no blocking decision remains; delivery and review match 
 
 For each affected `.learnings`, `.nongoals`, or ADR destination, verify one exact-current `amose` result rather than repeating its discovery. For ordinary documentation, require the owning delivery skill to record `updated now`, `already reconciled` with evidence, or `not applicable`. Do not leave obsolete guidance current.
 
-Align plan and implementation states with remaining work. Before every user-visible handoff, read [suggested-direction.md](references/suggested-direction.md). It owns status-specific **What next**, implementation-authority presentation, required skill gaps, and the conditional **Suggested direction**. Do not start the next action without its required authority.
+Before every user-visible handoff, align plan and implementation states with remaining work, then apply [suggested-direction.md](references/suggested-direction.md). Do not start its next action without the required authority.

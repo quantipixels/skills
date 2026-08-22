@@ -73,6 +73,7 @@ Use alarina to choose the right QP skill for this request:
 | `se-triage` | One issue or bug report needs supplied-evidence-first assessment before implementation |
 | `seda-pr` | A bounded current-branch change needs commit, push, and a clear ready-for-review GitHub PR or GitLab MR; invoke the skill explicitly |
 | `seda-ticket` | Supplied work needs consumable vertical tickets with blockers, acceptance, and lifecycle state |
+| `seda-sigidi` | An AI agent needs a named soul installed into the config its host loads, ported across hosts, or refreshed from evidence |
 | `wo-pr` | An open PR or MR needs active CI and feedback stewardship through readiness and later changes until explicit stop or closure; invoke the skill explicitly |
 
 ## Design skills
