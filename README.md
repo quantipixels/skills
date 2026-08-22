@@ -77,19 +77,20 @@ Use alarina to choose the right QP skill for this request:
 
 ## Design skills
 
-Use `apere` as the end-to-end router, or invoke the narrowest owner directly:
+Use `apere` when a design request is broad, ambiguous, or spans several deliverables; invoke the narrowest owner directly for focused work:
 
 | Skill | Use when |
 | --- | --- |
-| `apere` | A visual request spans specialists or needs its built-in `logo`, `corporate identity program`, `icons`, or `social graphics` mode |
-| `amoye-ui-ux` | UI/UX recommendations need searchable styles, palettes, typography, accessibility, charts, or stack rules |
-| `brand` | Brand voice, identity, assets, or consistency needs a source of truth |
-| `eto-apere` | Tokens, CSS variables, component specs, or theme architecture need definition |
-| `asa-oju-ibanisoro` | Components and responsive interfaces need accessible Tailwind/shadcn implementation, with an explicit UI-library choice |
-| `banner-design` | Social, ad, web hero, cover, or print banners need exact platform constraints |
+| `apere` | Broad or multi-deliverable design work needs owner selection, prerequisites, dependency order, shared constraints, or an approval boundary |
+| `amoye-ui-ux` | UI/UX direction needs searchable styles, palettes, typography, accessibility, charts, stack rules, or a persisted MASTER/page direction |
+| `brand` | Brand voice, identity, logos, corporate identity assets, custom icon language, or consistency needs a durable source of truth |
+| `social-graphics` | Feed posts, carousels, stories, reusable social templates, or multi-format social campaigns need exact platform variants |
+| `eto-apere` | Tokens, CSS variables, component specs, generated configuration, or theme architecture need definition or migration |
+| `asa-oju-ibanisoro` | Components, responsive interfaces, and product icons need accessible Tailwind/component-library implementation |
+| `banner-design` | A cover, header, hero, display ad, or print banner needs confirmed current platform or custom constraints |
 | `slides` | Presentations and pitch decks need narrative, layout, and chart guidance |
 
-For React UI work, `asa-oju-ibanisoro` asks for an explicit component-library decision and keeps the local 14-library inventory in `skills/design/asa-oju-ibanisoro/references/ui-component-libraries.md`.
+For multi-deliverable production, `apere` returns the design route packet and `alaga` owns the integrated build job. For React UI work, `asa-oju-ibanisoro` asks for an explicit component-library decision and keeps the local library inventory in `skills/design/asa-oju-ibanisoro/references/ui-component-libraries.md`.
 
 ## Productivity skills
 
