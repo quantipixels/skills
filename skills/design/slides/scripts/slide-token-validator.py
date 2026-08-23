@@ -4,9 +4,9 @@ Slide Token Validator (Legacy Wrapper)
 Now delegates to html-token-validator.py for unified HTML validation.
 
 For new usage, prefer:
-  python html-token-validator.py --type slides
-  python html-token-validator.py --type infographics
-  python html-token-validator.py                       # All HTML assets
+  python3 html-token-validator.py --type slides
+  python3 html-token-validator.py --type infographics
+  python3 html-token-validator.py                       # All HTML assets
 """
 
 import sys

@@ -1,4 +1,3 @@
 interface:
   display_name: "Ètò Àpẹrẹ"
   short_description: "Create maintainable design tokens and specs"
-  default_prompt: "Use $eto-apere to define a maintainable token and component-specification system."

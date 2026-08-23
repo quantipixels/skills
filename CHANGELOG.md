@@ -1,5 +1,27 @@
 # Changelog
 
+## 3.0.0
+
+### Major Changes
+
+- [#24](https://github.com/quantipixels/skills/pull/24) [`bc1745f`](https://github.com/quantipixels/skills/commit/bc1745fdfdd269fa8f3edf211dcce830b8348f40) Thanks [@mosobande](https://github.com/mosobande)! - Add `pepeye` as an experimental, provider-neutral task lifecycle controller with QP-native playbooks, leaf-owner routing, phase checkpoints, proof convergence, safe pause and pickup, and final learning. Add `seda-sigidi` as an evidence-grounded agent-soul authoring and integration skill with explicit host-loader, confirmation, zero-loss, and readback boundaries. Retire and remove `olofofo` from the published portfolio while preserving existing user-owned evidence during migration.
+
+### Minor Changes
+
+- [#24](https://github.com/quantipixels/skills/pull/24) [`bc1745f`](https://github.com/quantipixels/skills/commit/bc1745fdfdd269fa8f3edf211dcce830b8348f40) Thanks [@mosobande](https://github.com/mosobande)! - Keep skill proof proportional to specific obligations and combined verification cost. Refresh shared branches before PR or MR publication so a non-force push preserves remote work.
+
+- [#22](https://github.com/quantipixels/skills/pull/22) [`688810c`](https://github.com/quantipixels/skills/commit/688810c1dfa8cb40b9af647a493d667edf7e3522) Thanks [@mosobande](https://github.com/mosobande)! - Teach `ko-skill` to classify skills as lightweight or workflow-shaped before judging instruction depth, and apply the same rule during portfolio audits. Keep lightweight skills minimal when a few consequential invariants create the intended behavioral delta. Teach `iwadi` to report material conflicts between primary sources and evidence gaps that limit its research conclusion.
+
+- [#24](https://github.com/quantipixels/skills/pull/24) [`bc1745f`](https://github.com/quantipixels/skills/commit/bc1745fdfdd269fa8f3edf211dcce830b8348f40) Thanks [@mosobande](https://github.com/mosobande)! - Make `ko-skill` validate the complete skill package, invalidate stale proof after contract changes, and finish every applicable proof obligation before reporting a verdict. Make HTML Artifact localize assistive carousel strings and writing direction, separate network and packaging status, disclose verification state, constrain remote executable resources by content trust, keep inferred industry labels internal unless they help the reader, and ignore empty URL fragments during initial carousel selection.
+
+### Patch Changes
+
+- [#24](https://github.com/quantipixels/skills/pull/24) [`056741a`](https://github.com/quantipixels/skills/commit/056741a04d7d1d90a9f191acc4de138840cc27cc) Thanks [@mosobande](https://github.com/mosobande)! - Compress `alaga` and its test-first and job-report references without changing delivery, authority, proof, review, recovery, or handoff behavior.
+
+- [#24](https://github.com/quantipixels/skills/pull/24) [`056741a`](https://github.com/quantipixels/skills/commit/056741a04d7d1d90a9f191acc4de138840cc27cc) Thanks [@mosobande](https://github.com/mosobande)! - Remove duplicate workflow representations and reference-owned procedure from `atona`, `atunwo`, `ayewo-igba-ise`, `pepeye`, and `seda-sigidi` without changing their outcomes, authority, state, proof, or reporting contracts.
+
+- [#22](https://github.com/quantipixels/skills/pull/22) [`688810c`](https://github.com/quantipixels/skills/commit/688810c1dfa8cb40b9af647a493d667edf7e3522) Thanks [@mosobande](https://github.com/mosobande)! - Separate provider host trust from ambient credential authority in `seda-pr` and `wo-pr`, disable GitLab CI auto-login by default, and add exact-host credential-isolation checks. Keep Changesets as the package-version owner and let npm regenerate `package-lock.json` during versioning instead of maintaining custom release or catalog synchronizers; remove the duplicate `VERSION` and hard-coded README release marker. Keep pull-request package-lock and provider unit verification, declare complete provider runtime compatibility, bound `technical-writing` from mutating `yo-slop`, and normalize Yorùbá display names without changing skill identifiers. Make `se-triage` finish its current assessment before asking permission for a relevant external mutation, and move Irinṣẹ operational lifecycle plus Àyẹ̀wò Ìgbà Iṣẹ́ corpus-only mechanics behind conditional references so their common paths stay concise without changing ownership.
+
 ## 2.1.0
 
 ### Minor Changes

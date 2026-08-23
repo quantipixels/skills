@@ -2,19 +2,16 @@
 /**
  * extract-colors.cjs
  *
- * Extract dominant colors from an image and compare against brand palette.
- * Uses pure Node.js without external image processing dependencies.
- *
- * For full color extraction from images, use ImageMagick or the host's
- * image-analysis capability.
+ * Parse an approved brand palette and produce ImageMagick arguments plus
+ * structured comparison inputs. Image extraction must run separately.
  *
  * Usage:
- *   node extract-colors.cjs <image-path>
+ *   node extract-colors.cjs <image-path>  # Print extraction instructions
  *   node extract-colors.cjs <image-path> --brand-file <path>
  *   node extract-colors.cjs --palette  # Show brand palette from guidelines
  *
  * Integration:
- *   For image color analysis, use: ImageMagick or the host's image-analysis capability
+ *   Run ImageMagick or the host's image-analysis capability separately:
  *   magick <image> -colors 10 -depth 8 -format "%c" histogram:info:
  */
 
@@ -162,10 +159,23 @@ function calculateCompliance(extractedColors, brandColors, threshold = 50) {
 }
 
 /**
- * Generate ImageMagick command for color extraction
+ * Generate a structured ImageMagick invocation for color extraction.
+ * Callers must pass executable and args separately without a shell.
  */
-function generateImageMagickCommand(imagePath, numColors = 10) {
-  return `magick "${imagePath}" -colors ${numColors} -depth 8 -format "%c" histogram:info:`;
+function generateImageMagickInvocation(imagePath, numColors = 10) {
+  return {
+    executable: "magick",
+    args: [
+      imagePath,
+      "-colors",
+      String(numColors),
+      "-depth",
+      "8",
+      "-format",
+      "%c",
+      "histogram:info:",
+    ],
+  };
 }
 
 /**
@@ -279,13 +289,15 @@ function main() {
   }
 
   // Generate extraction instructions
+  const extraction = generateImageMagickInvocation(resolvedPath);
   const result = {
     image: resolvedPath,
     brandPalette: brandPalette,
-    extractionCommand: generateImageMagickCommand(resolvedPath),
+    extraction,
     instructions: [
-      "1. Run the ImageMagick command to extract colors:",
-      `   ${generateImageMagickCommand(resolvedPath)}`,
+      "1. Invoke ImageMagick without a shell, using executable and args separately:",
+      `   executable: ${extraction.executable}`,
+      `   args: ${JSON.stringify(extraction.args)}`,
       "",
       "2. Or use the host's image-analysis capability and compare the result against the brand palette.",
       "",
@@ -328,6 +340,7 @@ module.exports = {
   colorDistance,
   findNearestBrandColor,
   calculateCompliance,
+  generateImageMagickInvocation,
   parseImageMagickOutput,
 };
 
