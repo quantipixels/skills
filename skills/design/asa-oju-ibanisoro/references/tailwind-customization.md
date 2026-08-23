@@ -2,6 +2,8 @@
 
 Config file structure, custom utilities, plugins, and theme extensions.
 
+Detect the project’s Tailwind major version before using an example. CSS-first `@theme`, `@utility`, and `@custom-variant` examples target Tailwind CSS v4. Examples that edit `tailwind.config.*` target Tailwind CSS v3 or a v4 project that explicitly retains a legacy `@config` file. Confirm current syntax in the official documentation for the detected version.
+
 ## @theme Directive
 
 Modern approach to customize Tailwind using CSS:

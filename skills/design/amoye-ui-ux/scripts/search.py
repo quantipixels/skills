@@ -4,7 +4,6 @@
 UI/UX Pro Max Search - BM25 search engine for UI/UX style guides
 Usage: python search.py "<query>" [--domain <domain>] [--stack <stack>] [--max-results 3]
        python search.py "<query>" --design-system [-p "Project Name"]
-       python search.py "<query>" --design-system --persist [-p "Project Name"] --output-dir "<project-root>" [--page "dashboard"]
        python search.py "<query>" --design-system --variance 8 --motion 9 --density 7
 
 Domains: style, color, chart, landing, product, ux, typography, google-fonts, icons, gsap, react, web
@@ -16,13 +15,7 @@ Design dials (1-10, only with --design-system):
   --motion     MOTION_INTENSITY: 1=subtle, 10=complex; attaches a GSAP snippet from motion.csv
   --density    VISUAL_DENSITY: 1=spacious, 10=dense/dashboard; overrides the spacing scale
 
-Persistence (Master + Overrides pattern):
-  --persist      Save design system to design-system/<project-slug>/MASTER.md
-  --output-dir   Directory the design-system/ folder is created under (defaults to cwd --
-                 always pass this explicitly, pointed at the project root)
-  --page         Also create a page-specific override file in design-system/<project-slug>/pages/
-  --force        Overwrite an existing MASTER.md (without this, persistence is skipped
-                 if MASTER.md already exists, so prior design decisions aren't lost)
+Design-system text output is Markdown. Use --json for the structured result.
 """
 
 import argparse
@@ -104,12 +97,6 @@ if __name__ == "__main__":
     # Design system generation
     parser.add_argument("--design-system", "-ds", action="store_true", help="Generate complete design system recommendation")
     parser.add_argument("--project-name", "-p", type=str, default=None, help="Project name for design system output")
-    parser.add_argument("--format", "-f", choices=["ascii", "markdown"], default="ascii", help="Output format for design system (ignored if --json)")
-    # Persistence (Master + Overrides pattern)
-    parser.add_argument("--persist", action="store_true", help="Save design system to design-system/<project-slug>/MASTER.md (creates hierarchical structure)")
-    parser.add_argument("--page", type=str, default=None, help="Create page-specific override file in design-system/<project-slug>/pages/")
-    parser.add_argument("--output-dir", "-o", type=str, default=None, help="Output directory for persisted files (default: current directory -- pass this explicitly, pointed at the project root)")
-    parser.add_argument("--force", action="store_true", help="Overwrite an existing MASTER.md when persisting (default: skip if it already exists)")
     # Design dials (1-10), only applied with --design-system
     parser.add_argument("--variance", type=int, choices=range(1, 11), metavar="1-10", help="DESIGN_VARIANCE dial: 1=centered/minimal, 10=bold/asymmetric (only with --design-system)")
     parser.add_argument("--motion", type=int, choices=range(1, 11), metavar="1-10", help="MOTION_INTENSITY dial: 1=subtle, 10=complex; pulls a matching GSAP snippet from motion.csv (only with --design-system)")
@@ -138,14 +125,9 @@ if __name__ == "__main__":
         result = generate_design_system(
             args.query,
             args.project_name,
-            args.format,
-            persist=args.persist,
-            page=args.page,
-            output_dir=args.output_dir,
             variance=args.variance,
             motion=args.motion,
             density=args.density,
-            force=args.force,
         )
 
         if args.json:
@@ -153,27 +135,11 @@ if __name__ == "__main__":
                 {
                     "design_system": result["design_system"],
                     "search_errors": result.get("search_errors", {}),
-                    "persistence": result["persistence"],
                 },
                 indent=2, ensure_ascii=False,
             ))
         else:
             print(result["text"])
-
-            if args.persist:
-                persistence = result["persistence"] or {}
-                print("\n" + "=" * 60)
-                if persistence.get("status") == "skipped_exists":
-                    print(f"⚠️  {persistence.get('message', 'MASTER.md already exists; not overwritten.')}")
-                else:
-                    ds_dir = persistence.get("design_system_dir", "design-system/<project>")
-                    print(f"✅ Design system persisted to {ds_dir}/")
-                    for f in persistence.get("created_files", []):
-                        print(f"   📄 {f}")
-                    print("")
-                    print(f"📖 Usage: When building a page, check {ds_dir}/pages/[page].md first.")
-                    print("   If it exists, its rules override MASTER.md. Otherwise, use MASTER.md.")
-                print("=" * 60)
     # Stack search
     elif args.stack:
         result = search_stack(args.query, args.stack, args.max_results)

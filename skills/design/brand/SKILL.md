@@ -5,13 +5,13 @@ description: Define, update, and review brand voice, messaging, visual identity,
 
 # Brand
 
-Own the project’s brand source of truth. Keep voice, visual identity, messaging, asset rules, and approval criteria together, then synchronize design tokens when the brand changes.
+Own the project’s brand source of truth. Keep voice, visual identity, messaging, asset rules, and approval criteria together. Hand confirmed visual roles to `eto-apere` when implementation tokens must change.
 
 ## Workflow
 
 1. Find existing brand guidance, logo files, token files, and asset manifests. Treat the existing guidance as authoritative unless the user explicitly changes it.
 2. For a new brand, define audience, positioning, voice, personality, color roles, typography, imagery, logo clear space, and prohibited treatments. Use `templates/brand-guidelines-starter.md` as a starting point.
-3. For an update, change the human-readable guidelines first, then synchronize machine-readable tokens and CSS. Preserve unrelated tokens and note breaking changes.
+3. For an update, change the human-readable guidelines first. Return the confirmed color roles, typography, source-guideline path, and intended token targets to `eto-apere`; it owns machine-readable tokens and generated CSS.
 4. For a review, check voice, color, typography, logo use, asset naming, accessibility, and cross-surface consistency. Report evidence and corrections, not taste alone.
 5. Validate assets and confirm generated context before handing off to `eto-apere`, `asa-oju-ibanisoro`, `banner-design`, or `slides`.
 
@@ -20,8 +20,8 @@ Own the project’s brand source of truth. Keep voice, visual identity, messagin
 Unless the project already has different paths, use:
 
 - `docs/brand-guidelines.md` — source of truth.
-- `assets/design-tokens.json` — generated token source.
-- `assets/design-tokens.css` — generated CSS variables.
+- `assets/design-tokens.json` — token source owned by `eto-apere` when present.
+- `assets/design-tokens.css` — generated variables owned by `eto-apere` when present.
 - `.assets/manifest.json` — optional asset registry.
 
 Run helpers with the skill-root path resolved explicitly:
@@ -29,15 +29,14 @@ Run helpers with the skill-root path resolved explicitly:
 ```bash
 node <skill-root>/scripts/inject-brand-context.cjs --json docs/brand-guidelines.md
 node <skill-root>/scripts/validate-asset.cjs assets/logo.svg --json
-node <skill-root>/scripts/extract-colors.cjs --palette docs/brand-guidelines.md
-node <skill-root>/scripts/sync-brand-to-tokens.cjs
 ```
 
-The sync helper may write three project files. Check their existence and the intended project root first. It will not generate image assets; use the host’s image-generation capability for bitmap exploration and preserve the chosen brand constraints in prompts.
+The helpers read brand guidance or one asset; they do not own token files or generate images. Use the host’s image-analysis capability or an installed image tool to inspect bitmap palettes, and compare the result with the structured brand context. Confirm the exact source and target paths before a handoff. Do not claim token synchronization until `eto-apere` returns validated output and readback.
 
 ## Decision rules
 
 - Use semantic color roles, not color names, in UI guidance.
+- Do not hand token work to `eto-apere` until primary, secondary, and accent roles are present; include any confirmed neutral, foreground, background, destructive, and focus roles as available.
 - Define accessible text/background pairs and dark-mode behavior.
 - Limit typefaces and document fallback fonts.
 - Keep logo lockups, clear space, minimum size, and prohibited changes explicit.

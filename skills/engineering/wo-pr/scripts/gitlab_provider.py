@@ -167,7 +167,6 @@ class GitLabProvider:
         self.host = normalized_host
         self.repository = repository
         self.runner = runner
-        self.trusted_hosts = normalized_trusted_hosts
 
     def _call(self, command: list[str]) -> Any:
         return self.runner(command) if self.runner else _run_json(command, env=self._command_environment())

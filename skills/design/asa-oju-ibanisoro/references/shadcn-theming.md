@@ -154,6 +154,8 @@ background: hsl(var(--primary) / 0.5);  /* 50% opacity */
 
 Map CSS variables to Tailwind utilities:
 
+The following JavaScript configuration applies only to a Tailwind CSS v3 project or a v4 project that explicitly retains `@config`. For a CSS-first Tailwind CSS v4 project, preserve the same semantic roles through its existing CSS theme instead.
+
 ```ts
 // tailwind.config.ts
 export default {

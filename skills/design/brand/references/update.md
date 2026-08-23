@@ -4,7 +4,7 @@ Use this reference when a user changes brand colors, typography, or visual direc
 
 ## Contract
 
-Unless the project already uses another structure, update:
+Unless the project already uses another structure, reconcile:
 
 - `docs/brand-guidelines.md`
 - `assets/design-tokens.json`
@@ -16,12 +16,11 @@ Collect the theme name, primary/secondary/accent colors, mood, typography, and a
 
 1. Inspect the current guidelines and token consumers.
 2. Update the quick-reference palette, brand concept, typography, imagery, and prohibited treatments.
-3. Run the sync helper from the `brand` skill with the target project as its working directory.
-4. Re-extract context as JSON and inspect the generated CSS variables.
+3. Extract the confirmed brand context as JSON and hand its color roles, typography, source path, and intended token targets to `eto-apere`.
+4. Let `eto-apere` preserve unrelated tokens, validate references, generate the CSS variables, and read back both token artifacts.
 5. Check contrast pairs and report exactly which files changed.
 
 ```bash
-node <brand-skill-root>/scripts/sync-brand-to-tokens.cjs
 node <brand-skill-root>/scripts/inject-brand-context.cjs --json docs/brand-guidelines.md
 ```
 

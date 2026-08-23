@@ -12,7 +12,6 @@ or directly:
 """
 
 import sys
-import tempfile
 import unittest
 from pathlib import Path
 
@@ -20,7 +19,7 @@ SCRIPTS_DIR = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(SCRIPTS_DIR))
 
 from core import BM25, detect_domain, search, search_stack, CSV_CONFIG, AVAILABLE_STACKS
-from design_system import generate_design_system, persist_design_system, DesignSystemGenerator
+from design_system import DesignSystemGenerator
 
 
 class TestTokenizer(unittest.TestCase):
@@ -112,50 +111,6 @@ class TestDomainDetection(unittest.TestCase):
 
     def test_empty_query_falls_back_to_style(self):
         self.assertEqual(detect_domain("...!!!???"), "style")
-
-
-class TestPersistence(unittest.TestCase):
-    def test_persist_then_skip_then_force(self):
-        with tempfile.TemporaryDirectory() as tmp:
-            result = generate_design_system("saas dashboard", "Test Project", persist=True, output_dir=tmp)
-            self.assertEqual(result["persistence"]["status"], "success")
-            master = Path(result["persistence"]["master_file"])
-            self.assertTrue(master.exists())
-            original_content = master.read_text(encoding="utf-8")
-
-            # Second persist without force must not overwrite.
-            result2 = generate_design_system("saas dashboard", "Test Project", persist=True, output_dir=tmp)
-            self.assertEqual(result2["persistence"]["status"], "skipped_exists")
-            self.assertEqual(master.read_text(encoding="utf-8"), original_content)
-
-            # With force=True it must overwrite.
-            result3 = generate_design_system("ecommerce luxury", "Test Project", persist=True, output_dir=tmp, force=True)
-            self.assertEqual(result3["persistence"]["status"], "success")
-
-    def test_page_is_created_when_existing_master_is_preserved(self):
-        with tempfile.TemporaryDirectory() as tmp:
-            first = generate_design_system("saas dashboard", "Independent Pages", persist=True, output_dir=tmp)
-            master = Path(first["persistence"]["master_file"])
-            original_content = master.read_text(encoding="utf-8")
-
-            second = generate_design_system(
-                "saas dashboard",
-                "Independent Pages",
-                persist=True,
-                page="dashboard",
-                output_dir=tmp,
-            )
-
-            page = master.parent / "pages" / "dashboard.md"
-            self.assertEqual(second["persistence"]["status"], "success")
-            self.assertTrue(page.exists())
-            self.assertEqual(master.read_text(encoding="utf-8"), original_content)
-
-    def test_persist_writes_only_under_output_dir(self):
-        with tempfile.TemporaryDirectory() as tmp:
-            generate_design_system("saas dashboard", "Scoped Project", persist=True, output_dir=tmp)
-            expected = Path(tmp) / "design-system" / "scoped-project" / "MASTER.md"
-            self.assertTrue(expected.exists())
 
 
 class TestReasoningMatch(unittest.TestCase):

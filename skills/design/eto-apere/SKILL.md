@@ -18,8 +18,9 @@ primitive values → semantic purpose aliases → component properties/states
 3. Define primitives for raw colors, spacing, type, radius, shadows, and durations.
 4. Map primitives to semantic roles such as background, foreground, primary, muted, destructive, and focus.
 5. Add component tokens only where a component needs a stable property or state override. Define default, hover, active, focus, disabled, loading, and error behavior when applicable.
-6. Generate CSS or framework configuration from JSON rather than hand-copying values. Preserve dark-mode overrides and token references.
-7. Validate the changed project area for hardcoded values, invalid references, contrast, and missing states. Read the relevant component, state, and Tailwind references on demand.
+6. When `brand` supplies confirmed visual roles, validate that every required role has a value and reconcile them into the existing token hierarchy without discarding unrelated tokens.
+7. Validate all references before replacing token artifacts. Generate JSON and CSS to temporary targets, validate both, then install them as one accepted change. If either output fails, leave the current artifacts unchanged and do not claim partial output as synchronized.
+8. Validate the changed project area for hardcoded values, invalid references, contrast, and missing states. Read the generated artifacts back, then read the relevant component, state, and Tailwind references on demand.
 
 ## Token helpers
 
@@ -30,7 +31,7 @@ node <skill-root>/scripts/generate-tokens.cjs --config tokens.json --output toke
 node <skill-root>/scripts/validate-tokens.cjs --dir src/
 ```
 
-The generator accepts JSON token objects and resolves `{path.to.token}` references. Review generated output before committing. Do not replace an existing source-of-truth token file without checking its consumers.
+The generator accepts JSON token objects and resolves `{path.to.token}` references. Review generated output before committing. Do not replace an existing source-of-truth token file without checking its consumers, preserving unrelated tokens, validating references, and reading back both the JSON source and generated CSS.
 
 Slide datasets, slide search, slide validation, background fetching, and HTML generation belong to the `slides` skill. Use its local `data/` and `scripts/` resources through the `slides` route. The token contract is the project-level `assets/design-tokens.json` and generated `assets/design-tokens.css` consumed by both skills.
 

@@ -288,10 +288,7 @@ def _api_method(command: list[str]) -> str:
 
 
 def _contains_subcommand(command: list[str], group: str, action: str) -> bool:
-    return any(
-        command[index:index + 2] == [group, action]
-        for index in range(1, len(command) - 1)
-    )
+    return _subcommand_index(command, group, action) is not None
 
 
 def _validate_canonical_mutation_target(provider: str, command: list[str]) -> None:
@@ -355,15 +352,7 @@ def _has_opaque_graphql_payload(command: list[str]) -> bool:
         return False
     if any(value == "--input" or value.startswith("--input=") for value in command):
         return True
-    field_flags = {"-f", "-F", "--field", "--raw-field", "--form"}
-    fields: list[str] = []
-    for index, value in enumerate(command):
-        if value in field_flags and index + 1 < len(command):
-            fields.append(command[index + 1])
-        elif value.startswith(("--field=", "--raw-field=", "--form=")):
-            fields.append(value.split("=", 1)[1])
-        elif value.startswith(("-f", "-F")) and len(value) > 2:
-            fields.append(value[2:].removeprefix("="))
+    fields, _ = _fields_and_titles(command)
     return any(field.lower().startswith("query=@") for field in fields)
 
 

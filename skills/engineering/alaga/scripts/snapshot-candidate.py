@@ -172,7 +172,7 @@ def normalize_selection(repo: Path, raw_path: str) -> str:
 def path_matches(path: str | None, selection: str) -> bool:
     if path is None:
         return False
-    return selection == "." or path == selection or path.startswith(selection.rstrip("/") + "/")
+    return path == selection or path.startswith(selection.rstrip("/") + "/")
 
 
 def index_entries(repo: Path, path: str) -> list[dict[str, Any]]:

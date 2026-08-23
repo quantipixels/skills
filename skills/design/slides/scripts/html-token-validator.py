@@ -9,7 +9,6 @@ Usage:
   python html-token-validator.py --type slides      # Validate only slides
   python html-token-validator.py --type infographics # Validate only infographics
   python html-token-validator.py path/to/file.html  # Validate specific file
-  python html-token-validator.py --fix              # Auto-fix issues (WIP)
 """
 
 import re
@@ -299,7 +298,6 @@ Examples:
                         default='all', help='Asset type to validate')
     parser.add_argument('-v', '--verbose', action='store_true', help='Show warnings')
     parser.add_argument('--colors', action='store_true', help='Print CSS variables from tokens')
-    parser.add_argument('--fix', action='store_true', help='Auto-fix issues (experimental)')
     parser.add_argument('--project-root', type=Path, default=Path.cwd(), help='Project root containing assets/')
 
     args = parser.parse_args()

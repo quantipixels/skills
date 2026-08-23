@@ -8,9 +8,6 @@
  * Usage:
  *   node validate-asset.cjs <asset-path>
  *   node validate-asset.cjs <asset-path> --json
- *   node validate-asset.cjs <asset-path> --fix
- *
- * For color validation of images, use with extract-colors.cjs
  */
 
 const fs = require("fs");

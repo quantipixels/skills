@@ -98,12 +98,9 @@ function contrastRatio(l1, l2) {
 
 ## Color Extraction
 
-### From Images
-Use `extract-colors.cjs` script to:
-1. Load image file
-2. Extract dominant colors using k-means clustering
-3. Map to nearest brand colors
-4. Report compliance percentage
+### From images
+
+Use the host’s image-analysis capability or an installed image tool to extract a small dominant-color palette. Compare those values with the confirmed brand roles from `inject-brand-context.cjs --json`. Report the observed colors and material mismatches; do not invent a compliance percentage or approval state.
 
 ### From Brand Guidelines
 Parse markdown to extract:

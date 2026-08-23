@@ -33,16 +33,11 @@ If the user asks for a recommendation, compare the shortlist against the project
 - Use SVG or an established icon library. Never use emoji as UI icons.
 - For charts, include labels, legends/tooltips, accessible colors, and non-color encodings beyond color alone.
 
-## Helpers
+## Platform configuration
 
-Resolve `<skill-root>` to this skill directory:
+Use the active project’s package manager and official component-library or framework tooling. For shadcn/ui, inspect `components.json`, confirm the target workspace, preview the native CLI change when supported, and add components through the current `shadcn` CLI. Do not overwrite existing components unless the user explicitly accepts that replacement.
 
-```bash
-python <skill-root>/scripts/tailwind_config_gen.py --framework react --output tailwind.config.ts
-python <skill-root>/scripts/shadcn_add.py button card dialog --dry-run
-```
-
-Use `shadcn_add.py` only after checking the project’s `components.json`; run the CLI with the project’s package manager when the helper cannot determine the right setup. These helpers write into the target project, so confirm the target path before running them.
+Detect the Tailwind major version before changing configuration. For Tailwind CSS v4, extend the project’s existing CSS-first theme and token imports. For Tailwind CSS v3, update the existing `tailwind.config.*` through the version’s official guidance. Do not create or replace a configuration file merely because a legacy helper expects one. Validate every change through the project’s own build, lint, and type-check commands.
 
 ## Verification
 
