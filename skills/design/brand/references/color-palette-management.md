@@ -102,35 +102,13 @@ function contrastRatio(l1, l2) {
 
 Use the host’s image-analysis capability or an installed image tool to extract a small dominant-color palette. Compare those values with the confirmed brand roles from `inject-brand-context.cjs --json`. Report the observed colors and material mismatches; do not invent a compliance percentage or approval state.
 
-### From Brand Guidelines
-Parse markdown to extract:
+### From brand guidelines
+
+Parse Markdown to extract:
+
 - Hex values from tables
 - CSS variable definitions
 - Color names and usage descriptions
-
-## Brand Compliance Validation
-
-### Rules
-1. **Primary color ratio**: 60-70% of design
-2. **Secondary color ratio**: 20-30% of design
-3. **Accent color ratio**: 5-10% of design
-4. **Off-brand tolerance**: Max 20% non-palette colors
-
-### Validation Output
-```json
-{
-  "compliance": 85,
-  "colors": {
-    "brand": ["#2563EB", "#8B5CF6", "#FFFFFF"],
-    "offBrand": ["#FF5500"],
-    "dominant": "#2563EB"
-  },
-  "issues": [
-    "Off-brand color #FF5500 detected (15% coverage)",
-    "Primary color underused (45% vs 60% target)"
-  ]
-}
-```
 
 ## Color Usage Guidelines
 
