@@ -105,7 +105,7 @@ For React UI work, `asa-oju-ibanisoro` asks for an explicit component-library de
 | `ro-wo` | A material premise needs a brief evidence-backed check before agreement or disagreement |
 | `salaye` | One user-supplied subject needs a plain-language explanation for a first-time reader |
 | `technical-writing` | Developer documentation, technical communication, or applicable human-facing artifact copy needs layered structure and sentence-level clarity |
-| `yo-slop` | Human- or agent-facing prose needs a final pass for AI tells, filler, vague abstraction, or instruction noise without changing meaning |
+| `yo-slop` | Human- or agent-facing prose needs cleanup or explicit verbosity pruning without changing its contract |
 
 ## Experimental skills
 
