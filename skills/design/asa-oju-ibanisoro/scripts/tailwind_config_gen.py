@@ -2,7 +2,7 @@
 """
 Tailwind CSS Configuration Generator
 
-Generate tailwind.config.js/ts with custom theme configuration.
+Generate a Tailwind CSS 3 tailwind.config.js/ts with custom theme configuration.
 Supports colors, fonts, spacing, breakpoints, and plugin recommendations.
 """
 
@@ -17,6 +17,7 @@ from typing import Any, Dict, List, Optional
 # optional subpath. Only allows alphanumeric, hyphens, dots, underscores,
 # and forward slashes — no quotes, parens, or semicolons.
 _VALID_PLUGIN_NAME = re.compile(r'^(@[a-zA-Z0-9_-]+/)?[a-zA-Z0-9_-]+(/[a-zA-Z0-9_.-]+)*$')
+_TOKEN_COLOR_REFERENCE = re.compile(r'^var\(--[a-zA-Z0-9_-]+\)$')
 
 
 class TailwindConfigGenerator:
@@ -317,19 +318,19 @@ def main():
         epilog="""
 Examples:
   # Generate TypeScript config for Next.js
-  python tailwind_config_gen.py --framework nextjs
+  python3 tailwind_config_gen.py --framework nextjs
 
   # Generate JavaScript config with custom colors
-  python tailwind_config_gen.py --js --colors brand:#3b82f6 accent:#8b5cf6
+  python3 tailwind_config_gen.py --js --colors 'brand:var(--color-primary)' 'accent:var(--color-accent)'
 
   # Add custom fonts
-  python tailwind_config_gen.py --fonts display:"Playfair Display,serif"
+  python3 tailwind_config_gen.py --fonts display:"Playfair Display,serif"
 
   # Add custom spacing and breakpoints
-  python tailwind_config_gen.py --spacing navbar:4rem --breakpoints 3xl:1920px
+  python3 tailwind_config_gen.py --spacing navbar:4rem --breakpoints 3xl:1920px
 
   # Add recommended plugins
-  python tailwind_config_gen.py --plugins
+  python3 tailwind_config_gen.py --plugins
         """,
     )
 
@@ -362,7 +363,7 @@ Examples:
         "--colors",
         nargs="*",
         metavar="NAME:VALUE",
-        help="Custom colors (e.g., brand:#3b82f6)",
+        help="Token-backed colors (e.g., brand:var(--color-primary))",
     )
 
     parser.add_argument(
@@ -414,9 +415,14 @@ Examples:
         for color_spec in args.colors:
             try:
                 name, value = color_spec.split(":", 1)
+                if not _TOKEN_COLOR_REFERENCE.fullmatch(value.strip()):
+                    raise ValueError
                 colors[name] = value
             except ValueError:
-                print(f"Invalid color spec: {color_spec}", file=sys.stderr)
+                print(
+                    f"Invalid color spec: {color_spec}. Use NAME:var(--approved-token).",
+                    file=sys.stderr,
+                )
                 sys.exit(1)
         generator.add_colors(colors)
 

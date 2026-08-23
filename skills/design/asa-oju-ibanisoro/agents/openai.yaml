@@ -1,4 +1,3 @@
 interface:
   display_name: "Àṣà Ojú Ìbánisọ̀rọ̀"
   short_description: "Implement UI with an explicit library choice"
-  default_prompt: "Use $asa-oju-ibanisoro to choose or confirm the UI component library, then implement this interface with accessible responsive styling."

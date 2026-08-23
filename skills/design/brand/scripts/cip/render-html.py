@@ -407,10 +407,10 @@ def main():
         epilog="""
 Examples:
   # Generate HTML from CIP images directory
-  python render-html.py --brand "TopGroup" --industry "consulting" --images ./topgroup-cip
+  python3 render-html.py --brand "TopGroup" --industry "consulting" --images ./topgroup-cip
 
   # Specify output path
-  python render-html.py --brand "TopGroup" --industry "consulting" --images ./cip --output presentation.html
+  python3 render-html.py --brand "TopGroup" --industry "consulting" --images ./cip --output presentation.html
         """
     )
 

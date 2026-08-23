@@ -7,25 +7,22 @@ Use this reference when a user changes brand colors, typography, or visual direc
 Unless the project already uses another structure, update:
 
 - `docs/brand-guidelines.md`
-- `assets/design-tokens.json`
-- `assets/design-tokens.css`
 
 Collect the theme name, primary/secondary/accent colors, mood, typography, and any changed usage rules. Preserve existing decisions that were not changed.
 
 ## Procedure
 
-1. Inspect the current guidelines and token consumers.
+1. Inspect the current guidelines and affected brand consumers.
 2. Update the quick-reference palette, brand concept, typography, imagery, and prohibited treatments.
-3. Run the sync helper from the `brand` skill with the target project as its working directory.
-4. Re-extract context as JSON and inspect the generated CSS variables.
-5. Check contrast pairs and report exactly which files changed.
+3. Re-extract the approved brand context and check its contrast pairs.
+4. When tokens must change, give the approved roles, existing token paths and consumers, and compatibility constraints to `eto-apere`. Require its changed artifacts and validation result.
+5. Report the brand file changed and any exact-current specialist result accepted.
 
 ```bash
-node <brand-skill-root>/scripts/sync-brand-to-tokens.cjs
 node <brand-skill-root>/scripts/inject-brand-context.cjs --json docs/brand-guidelines.md
 ```
 
-Do not overwrite a user-edited token file without reviewing it first. Do not mark the update approved unless the user or project approval system says so.
+Do not mark the update approved unless the user or project approval system says so.
 
 ## Example presets
 

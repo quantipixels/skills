@@ -30,23 +30,26 @@ if (!projectRoot) {
 
 const tokensPath = path.join(projectRoot, 'assets', 'design-tokens.css');
 const MINIMAL_TOKENS = [
-  '--primitive-spacing-', '--primitive-fontSize-', '--primitive-fontWeight-',
-  '--primitive-lineHeight-', '--primitive-radius-', '--primitive-shadow-glow-',
-  '--primitive-gradient-', '--primitive-duration-', '--color-primary',
+  '--space-', '--font-size-', '--font-weight-', '--font-family-',
+  '--line-height-', '--radius-', '--shadow-', '--gradient-', '--duration-', '--easing-',
+  '--color-primary',
   '--color-secondary', '--color-accent', '--color-background', '--color-surface',
-  '--color-foreground', '--color-border', '--typography-font-', '--card-',
+  '--color-foreground', '--color-border', '--card-', '--button-', '--slide-',
 ];
 
 function extractTokens(css, minimal = false) {
-  const rootMatches = css.match(/:root\s*\{([^}]+)\}/g);
-  if (!rootMatches) return '';
-  let variables = [];
-  for (const block of rootMatches) {
-    variables = variables.concat(block.match(/--[\w-]+:\s*[^;]+;/g) || []);
+  if (!minimal) return css.trim();
+
+  const tokenBlocks = [];
+  for (const match of css.matchAll(/(^|\n)\s*(:root|\.dark)\s*\{([^}]*)\}/g)) {
+    const selector = match[2];
+    const variables = [...new Set(
+      (match[3].match(/--[\w-]+:\s*[^;]+;/g) || [])
+        .filter(variable => MINIMAL_TOKENS.some(token => variable.includes(token)))
+    )];
+    if (variables.length) tokenBlocks.push(`${selector} {\n  ${variables.join('\n  ')}\n}`);
   }
-  if (minimal) variables = variables.filter(variable => MINIMAL_TOKENS.some(token => variable.includes(token)));
-  variables = [...new Set(variables)];
-  return `:root {\n  ${variables.join('\n  ')}\n}`;
+  return tokenBlocks.join('\n\n');
 }
 
 const args = process.argv.slice(2);

@@ -151,11 +151,12 @@ Before detailed review, verify:
 ## Automation Support
 
 The `validate-asset.cjs` script can auto-check:
-- Color palette compliance
-- Minimum dimensions
-- File format/size
 - Naming convention
-- Basic metadata
+- Supported file format
+- File size
+- Manifest registration
+
+Inspect dimensions, palette compliance, visual content, accessibility metadata, and licensing separately; the helper does not read those properties.
 
 Run: `node <brand-skill-root>/scripts/validate-asset.cjs <asset-path>`
 
