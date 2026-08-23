@@ -2,13 +2,13 @@
 
 Read this file only when supplied material must become a report, including an evidence report, living report, or candidate comparison.
 
-Do not use the em dash character (`—`) in visible report copy. Use a colon, comma, parentheses, or a separate sentence instead.
+Follow the artifact language's punctuation conventions. Do not impose an English punctuation rule on another language.
 
 ## Shape the record
 
 Render a **snapshot** by default and show its generation time or evidence cutoff. Render a **living report** only when the owning task says the artifact will receive material updates. Keep stable section, candidate, and evidence anchors; show the last-updated time and evidence cutoff; mark supplied evidence status; and record supplied conclusion or disposition changes in a short revision log. Never replace an earlier conclusion silently.
 
-Infer and label one broad industry only to choose familiar report structure and vocabulary. Do not infer industry facts. Select one exact format from the closest purpose family below and keep it stable unless the user fundamentally changes the focus. When several formats fit, choose by the decision the primary reader must make. Keep secondary purposes in supporting sections or appendices instead of creating a hybrid format.
+Use one broad industry only as an internal cue for familiar report structure and vocabulary. Show the industry only when the source supplies it or the label materially helps the reader. Do not infer industry facts. Select one exact format from the closest purpose family below and keep it stable unless the user fundamentally changes the focus. When several formats fit, choose by the decision the primary reader must make. Keep secondary purposes in supporting sections or appendices instead of creating a hybrid format.
 
 | Purpose family | Common formats | Built-in emphasis |
 | --- | --- | --- |
@@ -40,7 +40,7 @@ Select the report's central visual from the highest-priority relationship or res
 
 Treat supplied designs, prototypes, screens, diagrams, and other visual evidence as primary report material. When several are best inspected one at a time, load [prototype patterns](prototype-patterns.md) and use its accessible carousel contract. Do not reduce them to filenames, links, or descriptive prose when they can be shown safely in the artifact.
 
-For a substantial report, translate the supplied structure into this compact reading order when compatible: skip link, title and status, selected industry, format, and density, scan summary, local navigation, visual argument, supporting evidence, limitations, resource disclosure, and revision history when applicable. Omit empty sections. Link supplied conclusions and recommendations to their evidence identifiers. Keep the opening scan summary useful without expanding any disclosure.
+For a substantial report, translate the supplied structure into this compact reading order when compatible: skip link, title and status, format and density, reader-relevant industry when applicable, scan summary, local navigation, visual argument, supporting evidence, limitations, resource disclosure, and revision history when applicable. Omit empty sections. Link supplied conclusions and recommendations to their evidence identifiers. Keep the opening scan summary useful without expanding any disclosure.
 
 Summarize a supplied log by outcome, time range, entry count, material warnings, and last known state when those fields exist. Keep critical entries visible beside the result they affect. Put non-critical entries in collapsed `<details>` groups split by a meaningful supplied boundary such as phase, date, source, or severity. Give each `<summary>` its boundary, entry count, warning or error count, and final state when supplied. Preserve exact order, timestamps, and text inside each group. Do not turn the full log or source record into one `<pre>`, one table cell, or one undifferentiated accordion.
 

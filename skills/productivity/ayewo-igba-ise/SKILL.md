@@ -9,9 +9,9 @@ Produce one evidence-backed retrospective of a completed, abandoned, or disputed
 
 ## 1. Pin the evidence unit
 
-Resolve whether the unit is one session or a corpus. For one session, pin its record, repository, candidate revisions, time span, and requested output. For a corpus, read [corpus-analysis.md](references/corpus-analysis.md) and pin its population before drawing conclusions.
+Resolve whether the unit is one session or a corpus. For one session, pin its record, repository, candidate revisions, time span, and requested output. For a corpus, apply [corpus-analysis.md](references/corpus-analysis.md) before drawing conclusions.
 
-Create a coverage ledger for every explicit question and requested deliverable. Map each item to its evidence, intended output section, and current status: `answered`, `evidence gap`, or `deferred`. Reconcile the ledger before completion.
+Create a coverage ledger for every explicit question and requested deliverable. Map each item to its evidence, intended output section, and current status: `answered`, `evidence gap`, or `deferred`. Reconcile the ledger before completion. A summary or aggregate does not replace an unanswered item.
 
 Read the evidence needed to reconstruct the user contract, agent actions, results, and final state. Do not treat hidden reasoning or a later summary as evidence.
 
@@ -23,7 +23,7 @@ A durable fact must have a pinned source, remain applicable to the current owner
 
 ## 2. Reconstruct contracts and causal records
 
-For one session, reconstruct its contract revisions and timeline. For a corpus, use the bounded causal records required by [corpus-analysis.md](references/corpus-analysis.md). Do not use a later requirement to condemn an earlier compliant action.
+For one session, reconstruct its contract revisions and timeline. Do not use a later requirement to condemn an earlier compliant action.
 
 Pin the first material divergence between the then-current user contract and agent conduct. Verify material action and completion claims against the referenced candidate or external state when available.
 
@@ -37,7 +37,7 @@ For each material failure, compare expected and actual conduct, cite the evidenc
 
 Classify each cause as a missing rule, ambiguous rule, violation of a clear rule, tool or environment failure, evidence gap, or reasonable decision that only later became obsolete. Do not propose a new rule for every mistake. When a clear rule already existed, strengthen it only if the session shows that its trigger or gate was too easy to miss.
 
-Assess correctness, decision quality, and efficiency. Report wasted or repeated work only when the evidence proves it, and explain its cause and impact. For a corpus, apply the counting and recurrence rules in [corpus-analysis.md](references/corpus-analysis.md).
+Assess correctness, decision quality, and efficiency. Report wasted or repeated work only when the evidence proves it, and explain its cause and impact.
 
 ## 4. Recommend durable improvements and report
 

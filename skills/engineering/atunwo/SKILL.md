@@ -7,42 +7,6 @@ description: "Judge one bounded code candidate for defects, broad review with `p
 
 Judge one fixed code candidate or refactor comparison from evidence. Keep code and Git state read-only. Keep provider state read-only unless the user explicitly authorizes a specific write. `audit` scope is always read-only.
 
-## Functional workflow
-
-```text
-Candidate + contract + repository rules
-                  │
-                  ▼
-       Pin scope and identity
-                  │
-                  ▼
-      Classify review scope
-                  │
-      ┌───────────┼───────────┐
-      ▼           ▼           ▼
- Defect-only  Broad review   Audit
-      │           │           │
-      │      pare (review)  Refactor parity
-      │           │           │
-      ├───────────┤           │
-      ▼           ▼           ▼
- Contract · standards ·   Ledger · trace ·
-    proof · bug hunt        parity proof
-      └───────────┬───────────┘
-                  ▼
-      Findings + clean claims + gaps
-                  │
-                  ▼
-         Adversarial challenge
-                  │
-                  ▼
-       Reconcile + decide
-                  │
-  Scope + authority permit provider write?
-        ├── No ──> Read-only report
-        └── Yes ──> Refresh head ──> Publish ──> Verify
-```
-
 Treat an unqualified code review as broad. Use defect-only only when the user explicitly excludes maintainability, and `audit` only for old, current, and required behavior parity across one planned, in-progress, or completed stateful refactor or rewrite. Route maintainability-only work to `pare` in `review` mode.
 
 In `audit` scope, read [`references/refactor-parity.md`](references/refactor-parity.md) and use its ledger, trace, classifications, proof, and result contract instead of the ordinary defect-discovery branches. Do not require `pare`, publish provider state, implement a correction, or infer delivery authority. Return its exact-current result to `alaga` for implementation or to `atona` for plan integration when applicable.

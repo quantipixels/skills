@@ -71,9 +71,10 @@ Use alarina to choose the right QP skill for this request:
 | `ko-skill` | Creates, revises, or validates one skill through one workflow; bounded portfolio audits remain read-only |
 | `pare` | Read-only `audit` or `review` finds material simplifications and classifies implementation, dependency, support-artifact, and test cleanup candidates |
 | `se-triage` | One issue or bug report needs supplied-evidence-first assessment before implementation |
-| `seda-pr` | A bounded current-branch change needs commit, push, and a clear ready-for-review GitHub PR or GitLab MR; invoke the skill explicitly |
+| `seda-pr` | A bounded current-branch change needs commit, push, and a clear ready-for-review GitHub PR or GitLab MR |
 | `seda-ticket` | Supplied work needs consumable vertical tickets with blockers, acceptance, and lifecycle state |
-| `wo-pr` | An open PR or MR needs active CI and feedback stewardship through readiness and later changes until explicit stop or closure; invoke the skill explicitly |
+| `seda-sigidi` | An AI agent needs a named soul installed into the config its host loads, ported across hosts, or refreshed from evidence |
+| `wo-pr` | An open PR or MR needs active CI and feedback stewardship through readiness and later changes until explicit stop or closure |
 
 ## Design skills
 
@@ -112,15 +113,17 @@ Experimental skills must be selected explicitly during installation.
 
 | Skill | Use when |
 | --- | --- |
-| `olofofo` | A literal agent session needs quiet continuity, proportionate quality nudges, and reusable cross-session wisdom |
+| `pepeye` | A task needs provider-neutral lifecycle control across QP-native playbooks, leaf owners, proof, pause or pickup, and final learning |
 
 ## Optional agent instructions
 
 Add any of these snippets to your `AGENTS.md`, `CLAUDE.md`, or equivalent agent-instruction file.
 
-### Default Olofofo companion
+### Default Pepeye lifecycle mode
 
-Copy the exact managed block from [Olofofo global activation](skills/experimental/olofofo/references/global-activation.md) into the supported global instruction file for your agent. This activates Olofofo after the first material task in each literal session. Olofofo keeps one living record, nudges only for material quality gaps, and curates global OGBON wisdom as evidence without becoming the task owner or changing EMI instructions.
+Copy the exact managed block from [Pepeye portable activation](skills/experimental/pepeye/references/portable-activation.md) into a supported global instruction file. This activates Pepeye as the task-wide controller when the host can expose the skill and current context. Explicit invocation remains the fallback. Pepeye selects and advances a playbook while leaf skills retain their specialist outcomes, procedures, and authority gates.
+
+`olofofo` is retired and no longer published by this plugin. An installed copy can remain active until its host removes it. Replace an authorized Olofofo activation block through the migration branch in [Pepeye portable activation](skills/experimental/pepeye/references/portable-activation.md); preserve existing reports and OGBON evidence.
 
 ### Companion-tool routing
 

@@ -1,0 +1,5 @@
+interface:
+  display_name: "Pepeye"
+  short_description: "Drive a portable task lifecycle through QP skills"
+policy:
+  allow_implicit_invocation: false

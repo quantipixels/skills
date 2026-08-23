@@ -15,6 +15,8 @@ Never infer installation, activation, publication, provider, or other external m
 
 Read host and repository instructions, the candidate and direct resources, and affected metadata, package, catalog, router, and decision records. Pin the exact candidate, operation, mutation authority, desired outcome, triggers, exclusions, adjacent owners, and starting state.
 
+For validation, the candidate is the complete skill package and its applicable integration surfaces unless the user explicitly limits the review to a diff. Use a diff to identify changed obligations, not to narrow a full-candidate review.
+
 Treat these states independently: `source`, `installed`, `active`, and `published`. Evidence for one does not prove another.
 
 - Good: `source=verified; installed=unknown; active=unknown; published=unknown`.
@@ -24,7 +26,7 @@ When a readable installed copy exists, compare its identifier and relevant conte
 
 Revise an existing outcome owner instead of creating a competitor. Create a skill only for a recurring independent outcome, decision, or failure mode that ordinary documentation does not solve. Infer the requested location when safe.
 
-For a behavior correction, exercise the exact pre-change candidate with a realistic raw goal when safe; otherwise record the evidence gap. Preserve behavior that already satisfies the target contract.
+For a behavior correction, use pinned existing evidence when it establishes the failure. Otherwise, exercise the exact pre-change candidate with a realistic raw goal when safe. When it is not safe, record the evidence gap. Preserve behavior that already satisfies the target contract.
 
 When session history or prior outputs supply improvement evidence, use an exact-current `ayewo-igba-ise` result for retrospective mining; `ko-skill` consumes that evidence and owns confirmation, authoring, and proof. Pin the authorized evidence roots and time range. Distinguish directly stated preferences from inferred patterns; require user confirmation before making an inferred preference durable. For an update, preserve accepted behavior that new evidence does not contradict and assess only the changed evidence. Do not search unrelated workspaces or private histories.
 
@@ -54,7 +56,7 @@ Apply only the lenses material to the classified control shape. For a lightweigh
 
 Mark each capability `retain | change | move | remove`; give every change an owner and reason. A sentence inventory is not capability proof.
 
-Trace the complete contract through instructions, applicable resources, metadata, routing, and observable output. Treat changed, universal, exclusive, safety, authority, portability, accessibility, and verification claims as proof obligations. Test applicable normal, failure, misuse, locale, state, trust, recovery, and fallback paths; do not manufacture inapplicable branches for a lightweight skill. Verify that modes, statuses, and classifications that exist are non-overlapping and sufficient. Structural success cannot accept a semantically unproved candidate.
+Trace the complete contract through instructions, applicable resources, metadata, routing, and observable output. Treat changed, universal, exclusive, safety, authority, portability, accessibility, and verification claims as proof obligations. Select sibling resources and execution paths from specific proof obligations or credible failure mechanisms. Test applicable normal, failure, misuse, locale, state, trust, recovery, and fallback paths; do not manufacture inapplicable branches for a lightweight skill. Verify that modes, statuses, and classifications that exist are non-overlapping and sufficient. Structural success cannot accept a semantically unproved candidate.
 
 Name a new or changed mode with the shortest clear verb or verb phrase. Prefer names such as `audit`, `review`, `clean`, and `deep-clean`. Do not repeat the skill name, target artifact, implementation detail, or context that the owning skill already supplies. Add a qualifier only when it changes authority, risk, or outcome and the unqualified name would be ambiguous.
 
@@ -81,11 +83,13 @@ Define the smallest proof before acting:
 
 Match proof to the control shape. For a lightweight skill, first prove that its few invariants cause the intended behavioral delta and that the native result closes the outcome; do not require workflow-shaped scenarios that the skill intentionally does not own. For a workflow, prove the material transitions, stale or partial states, authority boundaries, and recovery paths that can change the result.
 
+When the candidate, governing instructions, operation, or acceptance criteria change, mark affected evidence stale and rerun the applicable proof.
+
 For behavior-preserving compression, compare old and new with the same raw goal, repository candidate, authority, and stop condition. Hide the expected answer. Deny credentials and mutation unless a disposable scenario authorizes them. Add an independent reviewer only when consequence or ambiguity requires it.
 
-Do not create a prompt-evaluation harness to justify wording. Follow the repository policy for persistent evaluations and deterministic tests. If proof grows materially, ask whether to simplify, defer, or continue.
+Do not create a prompt-evaluation harness to justify wording. Follow the repository policy for persistent evaluations and deterministic tests. Count delegated investigations, fresh sessions, reviewers, retries, and package checks as one proof scope. If that scope grows materially, ask whether to simplify, defer, or continue.
 
-For validation, return `VERIFIED` only when every required structural and behavioral check passes against the exact candidate. Return `CHANGES_REQUIRED` for a proved defect and `INSUFFICIENT_EVIDENCE` for a material proof gap. Do not fix the candidate.
+Before issuing a validation verdict, classify every applicable capability and proof obligation as `proved`, `defect`, `evidence gap`, or `not applicable`. A defect changes the verdict; it does not end validation. Report every material defect and evidence gap. Return `VERIFIED` only when every required structural and behavioral check passes against the exact candidate. Return `CHANGES_REQUIRED` for a proved defect and `INSUFFICIENT_EVIDENCE` for a material proof gap. Do not fix the candidate.
 
 When `yo-slop` is available and the candidate needs a prose pass, use it only after behavior is settled. Preserve exact identifiers, deliberate guardrails, output schemas, and capability boundaries, then reread and revalidate the resulting candidate; prose cleanup is not behavior proof.
 

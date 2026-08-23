@@ -11,11 +11,11 @@ Turn supplied material into one portable visual explanation or bounded variant s
 
 Use the requested or existing path. When none is supplied, use `.qp/<kind>/<YYYY-MM-DD>-<slug>.html`.
 
-Follow the supplied audience; otherwise write for a layperson with no prior context or subject knowledge. Make the artifact stand alone: state what it is about, why it matters, what happened or was learned, and what the reader should notice or do. Explain necessary terms and acronyms at first use. Keep content, fallback, styles, and behavior in the HTML.
+Follow the supplied audience; otherwise write for a layperson with no prior context or subject knowledge. Make the artifact stand alone: state what it is about, why it matters, what happened or was learned, and what the reader should notice or do. Explain necessary terms and acronyms at first use. Set `<html lang>` and the document's base `dir` to match the artifact language and writing direction. Preserve direction on mixed-direction content with semantic markup. Keep content, fallback, styles, and behavior in the HTML.
 
 Keep facts, analysis, decisions, assumptions, and open questions distinct. Before implementation, check whether the supplied material contains the context, definitions, analysis, evidence, relationships, data, and visual assets needed for a truthful and useful artifact. Request the smallest missing information or analysis from the owning task or user when it can materially improve the result. Continue with a labeled input gap only when the missing item does not undermine the artifact or cannot be obtained. Do not originate missing analysis or invent an actor, owner, direction, causal link, sequence, boundary, candidate, criterion, or recommendation to satisfy a visual form.
 
-For a report, infer one broad industry, one exact format, and one information-density profile from the supplied purpose, audience, and material. Honor an explicit selection. Otherwise, choose the closest minimal pattern in [report patterns](references/report-patterns.md); do not create a hybrid by default. Keep the selected industry, format, density, visual grammar, and reading direction stable through revisions. Change them only when the user fundamentally changes the report's focus or audience, and state the contract transition before recomposing it.
+For a report, infer one exact format and one information-density profile from the supplied purpose, audience, and material. Use a broad industry only as an internal selection cue; show it only when supplied or materially useful to the reader. Honor an explicit selection. Otherwise, choose the closest minimal pattern in [report patterns](references/report-patterns.md); do not create a hybrid by default. Keep the selected format, density, visual grammar, and reading direction stable through revisions. Change them only when the user fundamentally changes the report's focus or audience, and state the contract transition before recomposing it.
 
 Load branch guidance only when it applies:
 
@@ -44,7 +44,7 @@ Implement supplied interaction, or add only presentation controls needed to navi
 
 Keep outcomes, decisions, current status, material evidence, risks, and next actions visible and before supporting detail. Give sections enough block spacing to remain distinct at a scan. Put logs, provenance, superseded detail, and other secondary information that the audience does not need upfront in collapsed semantic `<details>` accordions with clear `<summary>` labels. Summarize logs first, then split retained entries into labeled runs by phase, date, source, or severity; do not place the full record in one page-level text block. Render long IDs, hashes, URLs, and similar values as block-level, copyable text that wraps without changing the value. Do not collapse a blocker, warning, required action, or the only accessible representation of material content.
 
-Embed the bundled [visual foundation](assets/visual-foundation.css) and [theme control](assets/theme-control.html) in every artifact. They supply behavior and resilience only; choose the artifact's visual direction from its material. Localize every visible and accessible control label to the artifact language before embedding it.
+Embed the bundled [visual foundation](assets/visual-foundation.css) and [theme control](assets/theme-control.html) in every artifact. They supply behavior and resilience only; choose the artifact's visual direction from its material. Before embedding a control, localize every visible and assistive interface string, including role descriptions, status text, fallback labels, and live announcements. Adapt directional controls to the document's base `dir`.
 
 ## 3. Apply resource and portability rules
 
@@ -56,7 +56,7 @@ Classify each dependency:
 
 Use Tailwind through an exact-version browser CDN for primary styling when permitted, with fallback CSS for readable flow, typography, spacing, tables, code, focus, and print. For confidentiality, offline fidelity, or restrictive content security, vendor or pre-render generated CSS and disclose the exception. Use Mermaid through an exact-version CDN with `securityLevel: 'strict'` only for defined graph shapes.
 
-For each external enhancement, record its name, exact version, URL, purpose, and fallback; prefer an official or reputable distribution; and use published integrity metadata without inventing a digest. Send no repository content, credentials, evidence, or user data. Add no analytics, cookies, authenticated requests, remote HTML, or executable user content. Insert untrusted text, diagrams, patches, and configuration as text, never markup:
+For each external enhancement, record its name, exact version, URL, purpose, and fallback; prefer an official or reputable distribution; and use published integrity metadata without inventing a digest. Treat remote executable resources as able to read the document. Use them only when the supplied material is public or the user approved the exact host for that content; otherwise vendor or pre-render the resource. Send no credentials through the artifact. Add no analytics, cookies, authenticated requests, remote HTML, or executable user content. Insert untrusted text, diagrams, patches, and configuration as text, never markup:
 
 ```js
 element.textContent = untrustedText;
@@ -65,16 +65,15 @@ element.textContent = untrustedText;
 
 When an enhancement fails, retain readable conclusions, evidence, navigation, diff source, and before-and-after meaning. Call the HTML self-contained only when it carries the complete communication and fallback.
 
-Show one status near the title:
+Show two independent statuses near the title:
 
-- **Offline-ready:** the artifact loads no runtime network resource.
-- **Network-enhanced:** the HTML is complete offline, but a disclosed runtime resource changes presentation or behavior.
-- **Companion bundle:** adjacent approved files are required; list them and do not describe the HTML alone as self-contained.
+- **Network:** Use `Offline-ready` when the artifact loads no runtime network resource. Use `Network-enhanced` when the HTML remains complete offline but a disclosed runtime resource changes presentation or behavior.
+- **Packaging:** Use `Single file` when no adjacent file is required. Use `Companion bundle` when approved adjacent files are required. For a companion bundle, list each required file and do not describe the HTML alone as self-contained.
 
 ## 4. Deliver
 
-Before delivery, reread the generated files and run the smallest non-UI checks that cover referenced files and anchors, script syntax, required fallback content, and resource disclosures. Report the completed checks and do not claim accessibility, portability, or visual correctness beyond their evidence. Run a browser or UI check only when the user explicitly requests verification or another owning workflow requires it.
+Before delivery, reread the generated files and run the smallest non-UI checks that cover referenced files and anchors, script syntax, required fallback content, and resource disclosures. Report verification as `run`, `not run`, or `incomplete`, with completed checks and remaining gaps. Do not claim accessibility, portability, interaction, or visual correctness beyond that evidence. Run a browser or UI check only when the user explicitly requests verification or another owning workflow requires it.
 
 Return the direct absolute path or host-rendered link, with a bundle index first. Add no opener script unless requested or repeatedly needed. Use a temporary preview URL only when requested non-UI testing requires HTTP; identify it as transport, not a dependency. If preview fails, return the files, blocker, and completed requested checks without claiming success.
 
-Return portability status, limitations, network needs, and external-resource disclosure. For a report, also return lifecycle, coverage disposition, and unresolved input gaps.
+Return network status, packaging status, verification status, limitations, and external-resource disclosure. For a report, also return lifecycle, coverage disposition, and unresolved input gaps.

@@ -10,29 +10,6 @@ Read relevant confirmed `.learnings` and `amose` scenarios when domain rules aff
 
 Use an exact-current `irinse` result when bounded call, impact, or data-flow signals can widen the trace surface. Revalidate every consequential path against source and observable behavior.
 
-## Functional workflow
-
-```text
-Audit contract + ledger
-          │
-    ┌─────┴─────┐
-    ▼           ▼
- Baseline    Candidate
-    └─────┬─────┘
-          ▼
- Revalidate identities
-   ├── Changed ──> Repeat affected trace
-   └── Stable
-          │
-          ▼
- Reconcile parity
-          │
-          ▼
- Proof + recommendation
-```
-
-The diagram shows an evidence join. It does not require parallel execution.
-
 When independent baseline and candidate traces would materially improve the evidence join, the audit owner may request each bounded trace from a host-provided subagent. Give each trace the exact source identity, boundary, scenarios, and required provenance. The audit owner revalidates both identities, joins the ledger, resolves conflicts, and makes the parity recommendation.
 
 ## 1. Establish the contract and ledger

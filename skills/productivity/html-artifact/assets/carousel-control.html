@@ -3,7 +3,9 @@ Reusable, style-neutral carousel behavior for HTML Artifact output.
 
 Embed assets/visual-foundation.css first. Replace the comments in the track
 with supplied visual items. Each item needs a stable id, data-carousel-item,
-role="group", aria-roledescription="slide", and a neutral aria-label.
+role="group", and a neutral aria-label. Translate every data-carousel-* string
+on the section before embedding it. Keep {current}, {total}, and {label} exact
+inside translated templates.
 
 Choose exactly one control composition. The compact composition is active.
 Replace it with one commented alternative when that better fits the artifact.
@@ -23,6 +25,11 @@ Without JavaScript, every item remains visible and the controls remain hidden.
   }
 
   [data-carousel-position] { font-variant-numeric: tabular-nums; }
+
+  [dir="rtl"] [data-carousel-direction-glyph] {
+    display: inline-block;
+    transform: scaleX(-1);
+  }
 
   [data-carousel-controls][data-carousel-composition="overlay"] {
     inset: 0;
@@ -48,12 +55,23 @@ Without JavaScript, every item remains visible and the controls remain hidden.
   }
 </style>
 
-<section data-carousel aria-roledescription="carousel" aria-label="[Describe this visual collection]" tabindex="0">
+<section
+  data-carousel
+  data-carousel-role-description="carousel"
+  data-carousel-item-role-description="slide"
+  data-carousel-previous-label="Previous item"
+  data-carousel-next-label="Next item"
+  data-carousel-position-template="{current} of {total}"
+  data-carousel-item-label-template="Item {current}"
+  data-carousel-announcement-template="{label}. Item {current} of {total}."
+  aria-label="[Describe this visual collection]"
+  tabindex="0"
+>
   <p data-carousel-live data-visually-hidden aria-live="polite" aria-atomic="true"></p>
 
   <div data-carousel-track>
     <!--
-    <figure id="variant-a" data-carousel-item role="group" aria-roledescription="slide" aria-label="Variant A">
+    <figure id="variant-a" data-carousel-item role="group" aria-label="Variant A">
       Add one supplied design, prototype, screen, or visual variant here.
     </figure>
     -->
@@ -61,12 +79,12 @@ Without JavaScript, every item remains visible and the controls remain hidden.
 
   <!-- Compact composition: visible < and > controls with accessible names. -->
   <div data-carousel-controls data-carousel-composition="compact" data-print="hide" hidden>
-    <button type="button" data-carousel-previous aria-label="Previous item">
-      <span aria-hidden="true">&lt;</span>
+    <button type="button" data-carousel-previous>
+      <span data-carousel-direction-glyph aria-hidden="true">&lt;</span>
     </button>
     <output data-carousel-position aria-live="off"></output>
-    <button type="button" data-carousel-next aria-label="Next item">
-      <span aria-hidden="true">&gt;</span>
+    <button type="button" data-carousel-next>
+      <span data-carousel-direction-glyph aria-hidden="true">&gt;</span>
     </button>
   </div>
 
@@ -75,11 +93,13 @@ Without JavaScript, every item remains visible and the controls remain hidden.
 
   <div data-carousel-controls data-carousel-composition="labeled" data-print="hide" hidden>
     <button type="button" data-carousel-previous>
-      <span aria-hidden="true">&lt;</span> Previous
+      <span data-carousel-direction-glyph aria-hidden="true">&lt;</span>
+      <span data-carousel-previous-text></span>
     </button>
     <output data-carousel-position aria-live="off"></output>
     <button type="button" data-carousel-next>
-      Next <span aria-hidden="true">&gt;</span>
+      <span data-carousel-next-text></span>
+      <span data-carousel-direction-glyph aria-hidden="true">&gt;</span>
     </button>
   </div>
   -->
@@ -90,12 +110,12 @@ Without JavaScript, every item remains visible and the controls remain hidden.
   each accessible name. Add artifact-specific contrast and hit-area styles.
 
   <div data-carousel-controls data-carousel-composition="overlay" data-print="hide" hidden>
-    <button type="button" data-carousel-previous aria-label="Previous item">
-      <span aria-hidden="true">&lt;</span>
+    <button type="button" data-carousel-previous>
+      <span data-carousel-direction-glyph aria-hidden="true">&lt;</span>
     </button>
     <output data-carousel-position data-visually-hidden aria-live="off"></output>
-    <button type="button" data-carousel-next aria-label="Next item">
-      <span aria-hidden="true">&gt;</span>
+    <button type="button" data-carousel-next>
+      <span data-carousel-direction-glyph aria-hidden="true">&gt;</span>
     </button>
   </div>
   -->
@@ -104,6 +124,11 @@ Without JavaScript, every item remains visible and the controls remain hidden.
 <script>
   (() => {
     const interactiveSelector = "a, button, input, select, textarea, summary, [contenteditable='true']";
+
+    const format = (template, values) => Object.entries(values).reduce(
+      (text, [key, value]) => text.replaceAll(`{${key}}`, value),
+      template,
+    );
 
     const hashId = () => {
       try {
@@ -122,6 +147,26 @@ Without JavaScript, every item remains visible and the controls remain hidden.
       const live = carousel.querySelector("[data-carousel-live]");
       if (!items.length || !controls || !previous || !next || !position || !live) return;
 
+      const strings = {
+        role: carousel.dataset.carouselRoleDescription,
+        itemRole: carousel.dataset.carouselItemRoleDescription,
+        previous: carousel.dataset.carouselPreviousLabel,
+        next: carousel.dataset.carouselNextLabel,
+        position: carousel.dataset.carouselPositionTemplate,
+        item: carousel.dataset.carouselItemLabelTemplate,
+        announcement: carousel.dataset.carouselAnnouncementTemplate,
+      };
+      if (Object.values(strings).some((value) => !value)) return;
+
+      carousel.setAttribute("aria-roledescription", strings.role);
+      previous.setAttribute("aria-label", strings.previous);
+      next.setAttribute("aria-label", strings.next);
+      const previousText = previous.querySelector("[data-carousel-previous-text]");
+      const nextText = next.querySelector("[data-carousel-next-text]");
+      if (previousText) previousText.textContent = strings.previous;
+      if (nextText) nextText.textContent = strings.next;
+      items.forEach((item) => item.setAttribute("aria-roledescription", strings.itemRole));
+
       let current = 0;
 
       const select = (index, updateHash = false) => {
@@ -134,11 +179,12 @@ Without JavaScript, every item remains visible and the controls remain hidden.
 
         previous.disabled = current === 0;
         next.disabled = current === items.length - 1;
-        position.textContent = `${current + 1} of ${items.length}`;
+        const values = { current: current + 1, total: items.length };
+        position.textContent = format(strings.position, values);
 
         const item = items[current];
-        const label = item.getAttribute("aria-label") || item.id || `Item ${current + 1}`;
-        live.textContent = `${label}. Item ${current + 1} of ${items.length}.`;
+        const label = item.getAttribute("aria-label") || item.id || format(strings.item, values);
+        live.textContent = format(strings.announcement, { ...values, label });
 
         if (updateHash && item.id) {
           history.replaceState(null, "", `#${encodeURIComponent(item.id)}`);
@@ -147,6 +193,7 @@ Without JavaScript, every item remains visible and the controls remain hidden.
 
       const selectHash = () => {
         const id = hashId();
+        if (!id) return;
         const index = items.findIndex((item) => item.id === id);
         if (index >= 0) select(index);
       };
@@ -158,8 +205,9 @@ Without JavaScript, every item remains visible and the controls remain hidden.
       carousel.addEventListener("keydown", (event) => {
         const target = event.target;
         if (event.defaultPrevented || (target instanceof Element && target.closest(interactiveSelector))) return;
-        if (event.key === "ArrowLeft") select(current - 1, true);
-        else if (event.key === "ArrowRight") select(current + 1, true);
+        const rtl = getComputedStyle(carousel).direction === "rtl";
+        if (event.key === "ArrowLeft") select(current + (rtl ? 1 : -1), true);
+        else if (event.key === "ArrowRight") select(current + (rtl ? -1 : 1), true);
         else if (event.key === "Home") select(0, true);
         else if (event.key === "End") select(items.length - 1, true);
         else return;
@@ -167,7 +215,8 @@ Without JavaScript, every item remains visible and the controls remain hidden.
       });
 
       window.addEventListener("hashchange", selectHash);
-      const initial = items.findIndex((item) => item.id === hashId());
+      const hash = hashId();
+      const initial = hash ? items.findIndex((item) => item.id === hash) : -1;
       select(initial >= 0 ? initial : 0);
     });
   })();
