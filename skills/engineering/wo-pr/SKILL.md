@@ -2,7 +2,6 @@
 name: wo-pr
 description: Keep one GitHub pull request or GitLab merge request healthy through CI, conflicts, and review feedback until a human merge decision. Use when the user asks to monitor, watch, babysit, keep an eye on, or make the item ready; run bounded branch and provider actions by default, and exclude independent review verdicts, approval, merge, close, force-push, and unrelated changes.
 compatibility: Requires Python 3 with fcntl, git, network access, and authenticated gh or glab CLI access to the target provider.
-disable-model-invocation: true
 ---
 
 # Wò PR
@@ -47,7 +46,7 @@ Use `--once` for one diagnostic snapshot. Keep `--watch` attached to the active 
 6. Classify failed required work from its logs with `failure-heuristics.md`. Retry only a proved likely-flaky failure within the remaining budget.
 7. Before every mutation, refresh exact target and head and reject stale evidence. Apply and prove a bounded fix, commit, and push only to the exact published head branch. Restart observation on the new SHA before another provider write.
 8. Read every provider write back and record its receipt as defined by `observer-state.md`. Report `PARTIAL` when readback fails; do not retry without proof that the effect is absent.
-9. Report material title or body drift. When the user asks to reconcile it, tell the user to invoke `seda-pr` through the host's explicit skill control. Do not invoke, delegate, or reproduce that workflow; continue observation unless the user stops the watch.
+9. Report material title or body drift. When the user asks to reconcile it, tell the user to request `seda-pr`. Do not invoke, delegate, or reproduce that workflow; continue observation unless the user stops the watch.
 
 ## Readiness
 

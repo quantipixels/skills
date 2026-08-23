@@ -35,8 +35,8 @@ Engineering, Design, Productivity, and Experimental are install groups, not rout
 | Assess one supplied issue before implementation | `se-triage` | — |
 | Give one AI agent a durable soul or refresh its identity | `seda-sigidi` | — |
 | Turn supplied work into consumable vertical tickets | `seda-ticket` | — |
-| Commit, push, and create or reconcile a ready PR or MR | `seda-pr` | explicit invocation required |
-| Monitor an open PR or MR through readiness | `wo-pr` | explicit invocation required |
+| Commit, push, and create or reconcile a ready PR or MR | `seda-pr` | — |
+| Monitor an open PR or MR through readiness | `wo-pr` | — |
 | Visualize supplied results, purpose-fit reports, analysis, data, decisions, or designs in a portable browser artifact | `html-artifact` | — |
 | Prepare a compact handoff for another agent or session | `handoff` | — |
 | Draft, revise, or review developer documentation, technical communication, or applicable human-facing artifact copy | `technical-writing` | — |
