@@ -2,4 +2,4 @@ interface:
   display_name: "Ṣẹ̀dá PR"
   short_description: "Commit, push, and publish ready PRs or MRs"
 policy:
-  allow_implicit_invocation: false
+  allow_implicit_invocation: true

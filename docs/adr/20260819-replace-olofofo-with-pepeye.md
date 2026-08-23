@@ -1,0 +1,21 @@
+# Replace Olofofo with Pepeye
+
+Status: Current.
+
+QP will publish `pepeye` as an experimental, provider-neutral lifecycle controller and retire `olofofo` from the source portfolio and plugin manifest. Explicit invocation or an authorized project or global baseline activates Pepeye for the task. The mode remains active until the task completes, the user opts out, or Pepeye records a safe pause.
+
+Pepeye selects a QP-native playbook, advances it through `orient → shape → execute → prove → review → learn → finish`, invokes exact-current leaf owners, converges their proof, and records an explicit terminal state. It consults `alarina` as the route registry while active. Outside Pepeye mode, `alarina` remains directly usable. Leaf skills retain their specialist outcomes, procedures, safety rules, and mutation authority.
+
+Every playbook uses one thin controller schema: trigger, match, entry facts and authority, ordered phases, leaf-owner calls, exit proof, skip-with-reason behavior, recovery or pause, and completion or stop. The initial catalog covers investigation, decision and design, bug fix, feature, refactor, architecture and migration, review, publication, stewardship, autonomous task, program orchestration, skill authoring, pause, and pickup. Pause branches from the active playbook and preserves its task-local declaration and interrupted phase; pickup refreshes that declaration and returns to its earliest valid phase. When no catalog entry credibly matches, Pepeye constructs the smallest bespoke playbook from the same schema and does not promote it without repeated evidence and a separate owner-controlled change.
+
+A triggered principle index supplies cross-workflow guidance without copying leaf procedures. Multi-step work adds a throughput checkpoint after shape. Every phase transition records the owner result, proof, and next phase; a skipped universal phase remains visible with its reason. Pepeye may progress reversible in-scope work under existing authority, but native owners retain gates for external writes, provider mutation, destructive or irreversible action, publication, and credentials.
+
+Ordinary tasks use current host context and owner artifacts. With separate state-write authority, long, autonomous, multi-step, or paused work may use one pointer-based lifecycle ledger. Pickup reconstructs from that ledger, owner artifacts, branch state, and available host context. Provider capabilities such as subagents or global instructions are optional. Pepeye requires no provider transcript path, task API, model identifier, hook, daemon, adapter, scheduler, or shared runtime.
+
+Terminal states are layered. `complete` requires acceptance and required proof. `paused` requires a safe checkpoint and pickup receipt. `unresolved` requires an open proof or dependency and an exact retry trigger. `stopped` records user cancellation, a safety boundary, or refused authority. A program completes only after its child receipts and program-level acceptance pass. Pause is not completion.
+
+The final learning phase qualifies reusable lessons from current evidence. Pepeye may close, observe, or route a candidate and reconcile the destination owner's receipt, but it cannot mutate another owner's artifact without that owner's normal workflow and authority. Formal retrospective analysis remains with `ayewo-igba-ise`; skill changes remain with `ko-skill`; project knowledge remains with `amose`.
+
+Olofofo combined session continuity, mandatory HTML reporting, quality nudges, EMI steering, cross-session OGBON state, and global activation. Reworking that contract in place would retain its accumulated standards and competing session lifecycle. QP instead chose a first-principles successor. Existing reports and OGBON evidence remain user-owned migration inputs, not Pepeye state or instructions.
+
+Pepeye starts in `skills/experimental`. Promotion to `skills/productivity` requires a stable contract, proof from real workflows, and validated Olofofo migration. Installed Olofofo copies, activation blocks, reports, and OGBON evidence remain outside source lifecycle control; migration guidance preserves user-owned evidence and requires separate authority for host changes.

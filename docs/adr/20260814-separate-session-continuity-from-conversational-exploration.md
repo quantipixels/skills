@@ -1,6 +1,6 @@
 # Separate session continuity from conversational exploration
 
-Status: Partially superseded by [Ṣàlàyé's exact-current boundary](../../skills/productivity/salaye/SKILL.md). The Olofofo continuity decision remains current. The broader Ṣàlàyé exploration, research, evaluation, decision-frontier, specialist-orchestration, and PR-focus behavior below is historical. Ṣàlàyé now owns only plain-language explanation of one user-supplied subject.
+Status: Superseded. [Pepeye replaces Olofofo with task-wide lifecycle control](20260819-replace-olofofo-with-pepeye.md). [Ṣàlàyé's exact-current boundary](../../skills/productivity/salaye/SKILL.md) separately superseded the broader Ṣàlàyé behavior below.
 
 QP will publish `olofofo` as the quiet default companion for one literal agent session and `salaye` as an explicit conversational exploration protocol. Olofofo is activated through a narrow global agent-instruction payload after the first material task. It maintains one adaptive HTML artifact under `~/.qp/report/`, applies optional global and project EMI steering, and keeps the active task with its owning skill. Ṣàlàyé explores, explains, investigates, researches, analyses, or evaluates an idea, plan, decision, document, or code candidate and contributes material progress to the active Olofofo artifact without owning another session or report lifecycle.
 
