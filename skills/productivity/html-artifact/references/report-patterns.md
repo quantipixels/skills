@@ -4,66 +4,138 @@ Read this file only when supplied material must become a report, including an ev
 
 Follow the artifact language's punctuation conventions. Do not impose an English punctuation rule on another language.
 
+## Select the report contract
+
+Before implementation, derive one internal direction brief in this order:
+
+| Field | Decision rule |
+| --- | --- |
+| Format | Preserve a named form, governed schema, contract deliverable, required template, or explicit selection. Its identity and order override later fields |
+| `Purpose` | Preserve the supplied reader outcome, such as decide, approve, act, correct, monitor, verify, learn, compare, or retain a record. Otherwise, infer one exact outcome |
+| Family | Select the recognized evidence and accountability contract from the claims and proof required, not from the subject area |
+| Primary reader and use | Identify who acts, their authority, and what they do after reading |
+| Unique scenario | Identify what changes emphasis within the family, such as urgency, lifecycle stage, severity, disputed evidence, confidentiality, candidate count, or decision deadline |
+| Entry resource and context | Record source authority, shape, completeness, provenance, confidence, freshness, limits, and gaps |
+| Governing question and relationship | State what the report must answer and the dominant supplied evidence relationship |
+| Information direction | Choose one opening, reading order, central representation, evidence hierarchy, and navigation rule |
+| Density | Choose `Executive`, `Working`, or `Archival` |
+| Rationale | State why the direction fits this report |
+
+The table order sets precedence. Keep secondary readers and purposes in supporting layers. Do not create a hybrid for multiple purposes. Ask only when unresolved ambiguity would change the family or reader outcome. Otherwise, choose the best-supported contract.
+
+Keep the brief internal and render only fields that help the reader. Return one direction, never rejected directions, design options, visual variants, or prototype behavior. Apply decorative treatment after information direction. Palette, typography, illustration, borders, and brand expression cannot determine the argument.
+
+Use industry only as an internal vocabulary cue. Show it only when supplied or useful to the reader. Never infer industry facts. Use `slides` for a requested slide deck.
+
+### Let `Purpose` set the reading order
+
+The following cues are not an enum. Use the supplied reader outcome when it is more specific.
+
+| Reader outcome | Open with | Give visual priority to |
+| --- | --- | --- |
+| Decide or approve | The decision, decision deadline, and material exceptions | Trade-offs, option consequences, confidence, reversibility, and the evidence behind the decision |
+| Act or correct | Current state, required action, blockers, and ownership | Dependencies, sequence, responsibility, risk, and recovery |
+| Monitor | Current trajectory and material change since the last cutoff | Target versus actual, trend, variance, thresholds, and anomalies without reducing judgment to a mechanical score |
+| Verify or assure | Objective or criteria, scope, and conclusion or disposition | Criteria-to-evidence traceability, exceptions, confidence, limitations, and corrective action |
+| Learn or understand | The governing question and the minimum context needed to follow it | Causes, relationships, mechanisms, findings, uncertainty, and implications |
+| Compare or select | The choice, candidates, common criteria, and supplied disposition | Comparable evidence, meaningful differences, trade-offs, risks, and sensitivity to criteria |
+| Retain a record | What occurred or changed, when, and with what current consequence | Sequence, state change, provenance, superseded conclusions, and follow-up |
+
+### Let family set the required content
+
+These are conventional content and evidence contracts, not fixed page templates. Preserve binding local or institutional rules. Omit unsupported optional material and mark unsupported required material as an input gap.
+
+| Family | Required content and evidence | Direction cue |
+| --- | --- | --- |
+| Governed disclosure | Required items in their prescribed identity and order, plus source and assurance records | Mirror the schema. Add navigation and a scan layer without reordering protected obligations |
+| Audit or assurance | Objective or criteria, scope, method, findings, evidence, conclusion, limitations, responsible views, and supported corrective action | Make traceability and exceptions the organizing relationship |
+| Evaluation, research, or experiment | Question, intended use, context, method, scope, findings, confidence, limitations, gaps, conclusion, and supported implications | Organize around questions and findings rather than the chronology of the work |
+| Business case | Case for change, objectives, counterfactual, options, value, feasibility, affordability, risk, delivery, monitoring, and evaluation | Show the case-to-delivery argument and why the preferred course is credible |
+| Incident report or postmortem | Impact, factual sequence, response, recovery, contributing causes, evidence, lessons, and owned corrective actions | Lead with impact and supported state or causal change. Temporal order does not establish cause |
+| Status or delivery report | Evidence cutoff, trajectory, milestones, dependencies, risks, decisions, owners, and next actions | Emphasize exceptions, movement, blockers, and the decisions needed now |
+| Performance or analytical report | Definitions, targets, actuals, trends, variance, drivers, anomalies, uncertainty, and actions | Lead with the supported quantitative relationship and its context, not a grid of headline numbers |
+| Technical or decision assessment | Question or current state, conceptual model, constraints, evidence, alternatives, trade-offs, risks, decision or priorities, and proof | Make the governing technical relationship or before-and-after consequence central |
+| Product or experience definition | User need, context, outcomes, requirements or experience states, non-goals, evidence, risks, and success evidence | Organize by the user journey, state model, or requirements. The subject is not its `Purpose` |
+| Candidate or vendor assessment | Candidate identities, common criteria, normalized evidence, meaningful differences, trade-offs, risks, and supplied disposition | Keep candidates comparable and expose criteria sensitivity without manufacturing a recommendation |
+| Case study or outcome record | Context, challenge, intervention, outcome, evidence, limitations, and lessons | Organize by change and supporting evidence. Sequence alone does not prove cause |
+
+### Let the scenario and entry resource choose the representation
+
+Read the entry resource before selecting a representation:
+
+- A governed schema or template establishes the structure.
+- A time-ordered log supports sequence or state change. Use a causal flow only when the source establishes causality.
+- A dataset or metric series supports its dominant relationship, such as trend, variance, distribution, or correlation.
+- Criteria and evidence support a traceability or exception view.
+- A candidate set supports a matrix, paired views, or another common-scale comparison.
+- A system, lifecycle, journey, or state model supports a structural or transition view.
+- Screenshots, designs, diagrams, and other visual evidence stay primary when safe to embed.
+- Findings, decisions, or narrative evidence support a supplied argument, hierarchy, or before-and-after relationship.
+
+Use the scenario to decide what dominates within that shape. Urgency can move action ahead of background. A disputed cause can make provenance and competing evidence dominate an incident report. An early lifecycle can make uncertainty and prerequisites dominate a status report. Sparse context can require a constrained explanation or an input gap.
+
 ## Shape the record
 
-Render a **snapshot** by default and show its generation time or evidence cutoff. Render a **living report** only when the owning task says the artifact will receive material updates. Keep stable section, candidate, and evidence anchors; show the last-updated time and evidence cutoff; mark supplied evidence status; and record supplied conclusion or disposition changes in a short revision log. Never replace an earlier conclusion silently.
+Render a **snapshot** by default with its generation time or evidence cutoff. Render a **living report** only when the owning task expects material updates. Keep section, candidate, and evidence anchors stable. Show the last-updated time, evidence cutoff, and supplied evidence status. Record conclusion or disposition changes in a revision log. Never replace one silently.
 
-Use one broad industry only as an internal cue for familiar report structure and vocabulary. Show the industry only when the source supplies it or the label materially helps the reader. Do not infer industry facts. Select one exact format from the closest purpose family below and keep it stable unless the user fundamentally changes the focus. When several formats fit, choose by the decision the primary reader must make. Keep secondary purposes in supporting sections or appendices instead of creating a hybrid format.
+Select one density profile and default to **Working**. **Executive** keeps a concise decision layer, material exceptions, and actions while preserving coverage through disclosures or deep links. **Working** adds enough context and evidence to act. **Archival** keeps the complete record behind the same scan layer. Density changes presentation, not coverage. Change it only when the audience or decision changes.
 
-| Purpose family | Common formats | Built-in emphasis |
-| --- | --- | --- |
-| Product and business definition | PRD; business plan; business case | For a PRD: problem, users, outcomes, requirements, non-goals, and success evidence. For a business plan or case: opportunity, customer, model, market evidence, go-to-market, operations, supplied financials, and risks |
-| Design and experience | Product-design report | User need, journey or state model, visual evidence, findings, implications, and next actions |
-| Delivery and operations | Project-management report; incident report or postmortem | Status, milestones, dependencies, risks, owners, and next actions; for an incident, add impact, timeline, response, recovery, and follow-up |
-| Evidence and assurance | Evidence report; research report; audit report; experiment report | Question or criteria, method and scope, evidence, findings, confidence, limitations, gaps, and supplied conclusion or disposition |
-| Decision and technical assessment | Decision brief; technical assessment | Options or current state, conceptual model, evidence, trade-offs, risks, supplied decision or priorities, owner, and next action |
-| Performance and analytics | KPI report; financial report; marketing or sales performance report; operational dashboard | Targets, actuals, trends, variance, drivers, anomalies, and next actions |
-| Comparison and selection | Competitive analysis; options comparison; vendor evaluation; candidate assessment | Common criteria, normalized evidence, comparable scale, trade-offs, risks, and supplied disposition or recommendation |
-| Narrative and outcomes | Presentation-style report; case study | For a briefing: one message per section and a closing action. For a case study: context, challenge, intervention, outcome, evidence, and lessons |
+Before composing a substantial report, create a coverage ledger that includes:
 
-These are selection cues, not fixed templates or an exhaustive list. Honor another user-named report format and infer its conventional structure from the supplied material. Omit unsupported sections. Use `slides` instead when the requested outcome is a slide deck rather than a portable report.
+- each explicit user question and deliverable
+- each supplied conclusion, decision, recommendation, and limitation
+- each in-scope project, candidate, or other subject unit, including its supplied depth contract
 
-Select and label one density profile. Default to **Working**. Use **Executive** for a concise decision layer with material exceptions and actions while retaining complete coverage through disclosures or deep links. Use **Working** for the decision layer plus enough context and evidence to act. Use **Archival** for a complete record that still starts with the same scan layer. Density changes presentation, not coverage. Keep it stable unless the audience or its decision changes.
-
-Before composing a substantial report, derive one coverage ledger from the supplied material. Inventory every explicit user question and deliverable; supplied conclusion, decision, recommendation, and limitation; and in-scope project, candidate, or other subject unit. Preserve any supplied depth contract for each unit. Mark every ledger item as one of:
+Give each item one disposition:
 
 - **Full record:** rendered with its required evidence and explanation.
 - **Summary + deep link:** summarized in an overview and linked to its full stable anchor.
-- **Input gap:** material source content is missing; return it to the owning task instead of inventing it.
+- **Input gap:** material source content is missing. Return it to the owning task instead of inventing it.
 - **Excluded with reason:** the supplied scope or authority excludes it.
 
-An overview, metric, card, or visual does not replace a required full record. Do not omit an in-scope unit merely because it has no dramatic finding; show its supplied no-finding state or input gap. Before delivery, reconcile the ledger against the final anchors. A structurally valid artifact is incomplete while a material item has no disposition or a claimed deep link has no useful destination.
+An overview, metric, card, or visual does not replace a required full record. Show each in-scope unit, including a supplied no-finding state or input gap. Before delivery, reconcile the ledger with the final anchors. The report remains incomplete if a material item lacks a disposition or a deep link lacks a useful destination.
 
 ## Build the visual argument
 
-Select the report's central visual from the highest-priority relationship or result in the coverage ledger. Apply the shared limits on prose and tables.
+Build the opening, hierarchy, and central representation from the direction brief. Choose the central visual from the highest-priority ledger relationship or result. Identify its message and relationship before choosing a chart, timeline, matrix, diagram, card system, or other form. Apply the shared prose and table limits.
 
-Treat supplied designs, prototypes, screens, diagrams, and other visual evidence as primary report material. When several are best inspected one at a time, load [prototype patterns](prototype-patterns.md) and use its accessible carousel contract. Do not reduce them to filenames, links, or descriptive prose when they can be shown safely in the artifact.
+Do not default to a dashboard, hero metrics, or a uniform card grid. Use a dashboard scan layer only when the reader must monitor simultaneous measures and exceptions. Use cards for independently scanned peer units, not generic section containers. Decorative variation is not a report direction.
 
-For a substantial report, translate the supplied structure into this compact reading order when compatible: skip link, title and status, format and density, reader-relevant industry when applicable, scan summary, local navigation, visual argument, supporting evidence, limitations, resource disclosure, and revision history when applicable. Omit empty sections. Link supplied conclusions and recommendations to their evidence identifiers. Keep the opening scan summary useful without expanding any disclosure.
+Keep supplied designs, screens, diagrams, and other visual evidence primary when they can be shown safely. Do not reduce them to filenames, links, or prose. Report composition does not authorize design options or a prototype. Load [prototype patterns](prototype-patterns.md) only for a supplied prototype, demo, interface specimen, or design-variant set.
 
-Summarize a supplied log by outcome, time range, entry count, material warnings, and last known state when those fields exist. Keep critical entries visible beside the result they affect. Put non-critical entries in collapsed `<details>` groups split by a meaningful supplied boundary such as phase, date, source, or severity. Give each `<summary>` its boundary, entry count, warning or error count, and final state when supplied. Preserve exact order, timestamps, and text inside each group. Do not turn the full log or source record into one `<pre>`, one table cell, or one undifferentiated accordion.
+Keep the opening useful without expanding a disclosure. Follow the selected direction, not a universal section order. When compatible, include a skip link, title and status, local navigation, central visual, supporting evidence, limitations, resource disclosure, and revision history. Omit empty sections. Link conclusions and recommendations to their evidence identifiers.
 
-When a full raw log would materially slow or dominate the artifact, use an accepted companion bundle: keep the summary, critical entries, group index, exact format, size, evidence cutoff, and stable relative link in the HTML, and store the exact raw log in an adjacent text or structured-data file. Do not silently omit or rewrite entries. If a bundle is not accepted, keep the log collapsed in the HTML and disclose the size or performance limitation.
+Before delivery, run these direction checks:
 
-Give linked evidence, log groups, and entries stable identifiers. Mark completeness-required disclosures with `data-print-expand` and embed the bundled [report control](../assets/report-control.html). It reveals a fragment target inside nested disclosures, expands marked disclosures for print, and restores their prior screen state after print. Keep critical content visible and do not mark a large raw-log disclosure for print when its indexed companion file is the coverage disposition.
+- **Purpose counterfactual:** Changing `Purpose` would change the opening, order, or action layer.
+- **Family counterfactual:** Changing family would change the evidence obligations and support structure.
+- **Scenario:** The central representation reveals the unique scenario without the title.
+- **Entry resource:** The composition respects the resource's authority, shape, and limits.
+- **Relationship:** Each material visual encodes a supplied claim or relationship.
+- **Interchangeability:** Removing the title and subject nouns would not leave a composition suitable for an unrelated report.
+- **Gap:** Missing required content appears as an input gap, not an invented section.
+- **Decoration:** Removing ornament leaves the information direction intact.
 
-Use the bundled foundation hooks `data-report-section`, `data-table-wrap`, `data-long-text`, and `data-log` for their named layout behavior. Add report-specific styling only when the material needs it.
+When supplied, summarize a log's outcome, time range, entry count, warnings, and last known state. Keep critical entries visible beside the affected result. Group non-critical entries in collapsed `<details>` elements by a supplied boundary such as phase, date, source, or severity. Put the boundary, entry count, warning or error count, and final state in each `<summary>` when available. Preserve exact order, timestamps, and text. Do not use one `<pre>`, table cell, or undifferentiated accordion for the full record.
 
-For every material living-report update, reconcile the title and version, scan summary, navigation, affected detail, recommendations and dispositions, limitations, and revision log. Preserve superseded conclusions through an explicit revision; do not let a new section silently contradict an earlier headline or status.
+If a raw log would slow or dominate the artifact, use an accepted companion bundle. Keep its summary, critical entries, group index, format, size, evidence cutoff, and stable relative link in the HTML. Store the exact log in an adjacent text or structured-data file. Never omit or rewrite entries silently. Without bundle approval, keep the log collapsed in the HTML and disclose the limitation.
+
+Give linked evidence, log groups, and entries stable identifiers. Mark required print disclosures with `data-print-expand` and embed the [report control](../assets/report-control.html). It reveals nested fragment targets and restores disclosure state after print. Keep critical content visible. Do not print-expand a large raw log when its indexed companion file supplies complete coverage.
+
+Use `data-report-section`, `data-table-wrap`, `data-long-text`, and `data-log` for their named foundation behavior. Add report styling only when the material needs it.
+
+After a material living-report update, reconcile the title, version, summary, navigation, affected detail, recommendations, dispositions, limitations, and revision log. Preserve superseded conclusions explicitly. Never let new detail silently contradict an earlier headline or status.
 
 ## Present candidate decisions
 
-Give each supplied candidate an explicit before-and-after visualization at a comparable scale and visual grammar. Label unchanged and changed elements and connect them to supplied evidence, risk, and recommendation. A code diff alone is not the before-and-after visual.
+Give each supplied candidate a before-and-after visual at a comparable scale and visual grammar. Label changed and unchanged elements. Connect them to supplied evidence, risk, and recommendation. A code diff alone is insufficient.
 
 Render one supplied disposition:
 
 - **Build now:** recommend implementation in the current scope.
 - **Later:** accept it after a named prerequisite.
-- **Deferred:** make no current commitment; reconsider after a named trigger.
+- **Deferred:** make no current commitment. Reconsider after a named trigger.
 - **Rejected:** do not pursue it under current premises.
 - **Needs evidence:** withhold the decision until named evidence is available.
 
-Do not assess or fill a missing disposition. Mark it as an input gap. For each supplied disposition, present the supplied reason, dependencies or blockers, re-entry condition, next action, owner, and change evidence when available. Preserve their meaning and surface inconsistencies instead of resolving them.
-
-Return the report lifecycle, coverage-ledger result, unresolved input gaps, and shared delivery fields.
+Do not fill a missing disposition. Mark it as an input gap. For each supplied disposition, present the reason, dependencies or blockers, re-entry condition, next action, owner, and change evidence when available. Preserve its meaning and surface inconsistencies instead of resolving them.

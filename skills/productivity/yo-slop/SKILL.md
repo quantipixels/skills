@@ -1,29 +1,33 @@
 ---
 name: yo-slop
-description: Refine human- or agent-facing prose by removing AI tells, filler, vague abstraction, and instruction noise without changing facts, authority, structure, or intended voice. Use for a final prose pass on technical writing, skills, agent instructions, handoffs, tickets, and reports; exclude content design, factual review, translation, and code style.
+description: Refine human- or agent-facing prose by removing AI tells, filler, vague abstraction, and instruction noise without changing facts, authority, structure, or intended voice. Use for final cleanup or explicitly requested pruning of verbosity, repetition, and instruction load in technical writing, skills, agent instructions, handoffs, tickets, and reports. Exclude content design, factual review, translation, and code style.
 ---
 
 # Yọ Slop
 
 Make supplied prose clearer and less machine-shaped while preserving its contract. Keep exact identifiers, quotations, facts, citations, schemas, required formats, accepted terminology, and the owning artifact's decisions.
 
+## Choose the pass
+
+Use the normal cleanup pass for local clarity and voice problems. When the request explicitly asks to shorten prose, reduce verbosity, remove repetition, or lower instruction load, use `prune` and read [prune prose](references/prune.md). Do not infer `prune` from an ordinary editing or final-pass request.
+
 ## Establish the pass
 
 Identify the reader, artifact owner, purpose, language and locale, intended voice, and text that must remain exact. If these are unclear, fix only unambiguous filler and ask before a change that could alter meaning or tone.
 
-Use the owning skill for content structure, evidence, technical truth, accessibility, localization, or acceptance. `technical-writing` owns human-facing developer documentation, technical communication, and applicable artifact copy. `ko-skill` owns skill behavior and proof. Yọ Slop owns only the final prose cleanup.
+Use the owning skill for content structure, evidence, technical truth, accessibility, localization, or acceptance. `technical-writing` owns human-facing developer documentation, technical communication, and applicable artifact copy. `ko-skill` owns skill behavior and proof. Yọ Slop owns cleanup and explicit pruning of settled prose, not structural or factual changes.
 
 ## Match the reader
 
-For human-facing prose, sound direct and specific. Vary sentence length naturally. Use a point of view only when the artifact permits one; keep reference material neutral. Do not add deliberate mess, personality, or opinion to simulate humanity.
+For human-facing prose, sound direct and specific. Vary sentence length naturally. Use a point of view only when the artifact permits one. Keep reference material neutral. Do not add deliberate mess, personality, or opinion to simulate humanity.
 
 For agent-facing prose, optimize execution rather than personality:
 
-- preserve the existing control flow, triggers, branches, completion criteria, commands, identifiers, statuses, output fields, and authority boundaries;
-- make an existing action, condition, or decision easier to parse only when the wording change is behaviorally equivalent;
-- retain context pointers and the cases they name; flag a weak or missing branch for the artifact owner instead of changing disclosure behavior;
-- flag apparent generic defaults, stale environment caches, or rationale that may not change judgment instead of removing them; and
-- preserve prohibitions and deliberate repetition unless the artifact owner confirms that they are redundant.
+- Preserve the existing control flow, triggers, branches, completion criteria, commands, identifiers, statuses, output fields, and authority boundaries.
+- Make an existing action, condition, or decision easier to parse only when the wording change is behaviorally equivalent.
+- Retain context pointers and the cases they name. Flag a weak or missing branch for the artifact owner instead of changing disclosure behavior.
+- Flag apparent generic defaults, stale environment caches, or rationale that may not change judgment instead of removing them.
+- Preserve prohibitions and deliberate repetition unless the artifact owner confirms that they are redundant.
 
 Report an agent-facing ambiguity when fixing it would add, remove, reorder, or reinterpret behavior. The artifact owner decides the correction.
 
@@ -37,7 +41,7 @@ Do not replace words mechanically. Rewrite only when a pattern causes puffery, a
 - **Formulaic construction:** Remove forced threes, false ranges, “not just X but Y” framing, synonym cycling, and comparisons that do not change the point.
 - **Filler and hedging:** Cut throat-clearing, repeated caveats, stacked modals, and phrases such as “in order to” or “it is important to note.” Keep uncertainty that the evidence requires.
 - **Assistant performance:** Remove chatbot greetings, sycophantic praise, fake excitement, cutoff disclaimers, and closing offers that do not advance the work.
-- **Formatting tells:** Reduce decorative bold, inline-header repetition, title case, decorative emoji, and punctuation used as a substitute for sentence structure. Preserve the language, project, and artifact conventions; punctuation is not an error by itself.
+- **Formatting tells:** Reduce decorative bold, inline-header repetition, title case, decorative emoji, and punctuation used as a substitute for sentence structure. Preserve the language, project, and artifact conventions. Punctuation is not an error by itself.
 - **Ambiguity:** Split sentences that carry multiple instructions or unrelated thoughts. Put conditions before guarded actions, keep modifiers beside what they modify, repeat a noun when a pronoun has multiple possible referents, and name the actor when responsibility matters.
 - **Fancy synonyms:** Prefer the shortest familiar word that preserves precision. Keep established domain terms and exact API, UI, file, flag, command, and code names.
 
