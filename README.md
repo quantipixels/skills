@@ -11,6 +11,8 @@ Browse the [QP Agent Skills documentation](https://quantipixels.com/skills).
 - Skills belong to one Engineering, Design, Productivity, or Experimental source group, with interactive group selection during installation.
 - Test-first delivery stays with Alaga, maintainability review stays with Pare, skill portfolio auditing stays with Ko Skill, and stateful refactor-parity auditing stays with Àtúnwò.
 - Alaga handles bounded features and supplied build jobs through integration, proof, documentation, and applicable review.
+- Solution Architect owns portable technical architecture design and read-only review. Atọ́nà owns the wider initiative plan through delivery and closure.
+- Under an active Atọ́nà plan, specialists return exact-current receipts to one HTML plan instead of creating parallel user-facing reports. Standalone outcomes keep their native records.
 
 ## Install
 
@@ -65,15 +67,16 @@ Use alarina to choose the right QP skill for this request:
 | --- | --- |
 | `alaga` | `test-first` mode handles one bounded feature or fix; `job` mode handles a supplied build job through integration, acceptance, reconciliation, and applicable review |
 | `amose` | Project terms, `CONTEXT.md`, domain rules, `.learnings`, `.nongoals`, or ADRs need clarification or reconciliation |
-| `atona` | Architecture or migration work needs one live plan through delivery |
+| `atona` | Unclear feature, migration, or initiative work needs one exact-current plan through delivery and closure |
 | `atunwo` | `broad`, `defect-only`, or read-only refactor-parity `audit` is needed in `general` local/supplied or `provider` PR/MR mode; broad review consumes Pare `review` evidence |
 | `irinse` | A companion engineering tool needs selection, setup, safe use, or removal |
 | `ko-skill` | Creates, revises, or validates one skill through one workflow; bounded portfolio audits remain read-only |
 | `pare` | Read-only `audit` or `review` finds material simplifications and classifies implementation, dependency, support-artifact, and test cleanup candidates |
 | `se-triage` | One issue or bug report needs supplied-evidence-first assessment before implementation |
-| `seda-pr` | A bounded current-branch change needs commit, push, and a clear ready-for-review GitHub PR or GitLab MR |
+| `seda-pr` | A bounded current-branch change needs commit, push, and a GitHub PR or GitLab MR; new items are ready by default, while draft creation or state transitions require an explicit request |
 | `seda-ticket` | Supplied work needs consumable vertical tickets with blockers, acceptance, and lifecycle state |
 | `seda-sigidi` | An AI agent needs a named soul installed into the config its host loads, ported across hosts, or refreshed from evidence |
+| `solution-architect` | Technical architecture needs a portable implementation design or read-only sufficiency review across the active stack and domain |
 | `wo-pr` | An open PR or MR needs active CI and feedback stewardship through readiness and later changes until explicit stop or closure |
 
 ## Design skills
@@ -97,7 +100,7 @@ For React UI work, `asa-oju-ibanisoro` asks for an explicit component-library de
 | Skill | Use when |
 | --- | --- |
 | `alarina` | You need to choose the shortest QP route for a request |
-| `arojinle` | A material plan or design needs a complete decision tree, durable records, and final confirmation |
+| `arojinle` | One consequential product, plan, or design decision needs a complete interview, durable records, and final confirmation |
 | `ayewo-igba-ise` | A coding-agent session or bounded multi-session corpus needs an evidence-backed friction and recurrence analysis |
 | `handoff` | A conversation needs a compact handoff for another agent or session |
 | `html-artifact` | Supplied results, purpose-fit reports, analysis, data, decisions, or designs need a portable visual explanation for a zero-context reader |

@@ -21,7 +21,8 @@ Engineering, Design, Productivity, and Experimental are install groups, not rout
 | Resolve or stress-test a material decision with a durable record | `arojinle` | — |
 | Deliver one bounded feature or fix test-first | `alaga` | `test-first` |
 | Deliver a supplied build job through integration and review | `alaga` | `job` |
-| Keep an architecture or migration plan active through delivery | `atona` | — |
+| Turn unclear initiative work into one current plan through delivery and closure | `atona` | — |
+| Design or review technical architecture | `solution-architect` | `design` or read-only `review` |
 | Audit behavior parity for a stateful refactor or rewrite | `atunwo` | `audit`; `general` or read-only `provider` target |
 | Review bounded code for maintainability only | `pare` | `review`; add `atunwo` as provider adapter only for an active PR or MR |
 | Review bounded code for defects and maintainability | `atunwo` | `broad`; `general` or `provider` target |
@@ -35,7 +36,7 @@ Engineering, Design, Productivity, and Experimental are install groups, not rout
 | Assess one supplied issue before implementation | `se-triage` | — |
 | Give one AI agent a durable soul or refresh its identity | `seda-sigidi` | — |
 | Turn supplied work into consumable vertical tickets | `seda-ticket` | — |
-| Commit, push, and create or reconcile a ready PR or MR | `seda-pr` | — |
+| Commit, push, and create or reconcile a PR or MR; new items are ready by default, while draft creation or state transitions require an explicit request | `seda-pr` | — |
 | Monitor an open PR or MR through readiness | `wo-pr` | — |
 | Visualize supplied results, purpose-fit reports, analysis, data, decisions, or designs in a portable browser artifact | `html-artifact` | — |
 | Prepare a compact handoff for another agent or session | `handoff` | — |
@@ -62,7 +63,7 @@ Use `general` mode in `atunwo` for supplied or local candidates and `provider` m
 - Keep project style, channel conventions, product truth, code conventions, accessibility conformance, localization, brand voice, and publishing with their direct owners; `technical-writing` owns the applicable structural and editorial pass.
 - Keep document evidence, technical truth, artifact facts, schema, authority, and acceptance with their direct owners; `yo-slop` follows `technical-writing` as a final prose pass and must preserve their contract.
 - Keep portable presentation-style reports with `html-artifact`; route requested slide decks to `slides`.
-- Use `atona` while architecture or migration state remains active, `arojinle` for one new or reopened material decision, and `atunwo` in `audit` scope before a stateful refactor that can change lifecycle behavior.
+- Use `atona` while an initiative plan remains active, `solution-architect` for technical architecture design or review, `arojinle` for one new or reopened material decision, and `atunwo` in `audit` scope before a stateful refactor that can change lifecycle behavior.
 - Keep PR or MR publication with `seda-pr`, monitoring with `wo-pr`, and review verdicts with `atunwo`.
 - When another skill owns a code-review outcome but lacks provider access, `atunwo` may support only candidate acquisition and a fixed adapter handoff; this grants no defect, verdict, publication, or provider authority to the owner.
 - Keep issue triage supplied-evidence-first. Repository reads, provider reads, and provider writes require their own authority.

@@ -1,0 +1,13 @@
+# Separate solution architecture from lifecycle planning
+
+Status: Accepted
+
+QP will publish `solution-architect` as the Engineering owner for portable technical architecture design and read-only architecture review. It will produce one canonical architecture packet in `design` or `review` mode and report `IMPLEMENTATION_READY`, `NOT_READY`, or `UNPROVED`. It will use the active language, framework, tool, library, and domain naturally, and research current primary sources on demand instead of maintaining a platform catalog.
+
+QP will refocus `atona` on the distinct full-lifecycle outcome: turn unclear intent into one startable initiative plan, keep that plan exact-current across design and delivery, and reconcile it at closure. Atọ́nà will own the shared plan identity, scope, decision state, lifecycle-plan readiness, dependencies, risks, durable deferrals, delivery summary, closure state, and next action. Its canonical human-facing record will be one review-first HTML artifact rather than parallel HTML and Markdown plans.
+
+Supporting skills will retain their own judgment, authority gates, and local mechanics. Under an active Atọ́nà plan, they will return candidate-pinned, exact-current receipts for plan integration. Àròjinlẹ̀ will still resolve material decisions, `solution-architect` will still judge technical sufficiency, and Alága will still deliver settled jobs through proof and review. Their standalone behavior remains available, but Àròjinlẹ̀ and Alága will not create parallel user-facing reports for work governed by the active plan. Independently durable records, including ADRs, research reports, tickets, and provider state, remain with their native owners and are linked from the plan instead of copied into it.
+
+Keeping architecture inside `atona` was rejected because technical design and review are independently useful without a lifecycle plan, while the combined owner had become too deep and repeated specialist state. Moving the outcome into `arojinle` was rejected because complete decision closure is not technical sufficiency. Moving it into `alaga` was rejected because architecture design can precede a build job and architecture review must remain read-only. Publishing separate platform or quality-concern skills was rejected because it would fragment one architecture decision and encourage stale catalogs.
+
+This split adds one public route and a receipt contract, but gives each readiness result one meaning: `solution-architect: IMPLEMENTATION_READY` means the technical design is sufficient, while `atona: Planned` means the complete lifecycle plan is startable. Experimental skills remain outside stable ownership and overlap analysis unless explicitly included or directly affected.

@@ -28,9 +28,9 @@ Create one job envelope that maps units to owners, dependencies, native state, a
 
 Read relevant root `.learnings` and the complete root `.nongoals` when present. Preserve confirmed project knowledge. If the job conflicts with `.nongoals`, require `amose` to record an authorized exception or boundary update before dependent implementation.
 
-Read [job-report.md](references/job-report.md) at acceptance and after decomposition or a material shift. At the first qualifying trigger, use `html-artifact` to create and maintain the report.
+Read [job-report.md](references/job-report.md) at acceptance and after decomposition or a material shift. When an active Atọ́nà plan governs the job, return its contribution receipt instead of creating a parallel user-facing report. Otherwise, use `html-artifact` at the first qualifying standalone-report trigger.
 
-Use `arojinle` when a material user decision remains. Use `atona` when architecture, migration, integration, phase, or recovery decisions must remain active during delivery. Use `seda-ticket` when the supplied work needs consumable vertical tickets. These specialists return exact-current results. `alaga` does not copy their procedures or state machines.
+Use `arojinle` when a material user decision remains. Use `solution-architect` when technical architecture needs design or review. Use `atona` when an initiative plan, migration, integration, phase, or recovery decision must remain active during delivery. Use `seda-ticket` when the supplied work needs consumable vertical tickets. These specialists return exact-current results. `alaga` does not copy their procedures or state machines.
 
 For accepted `pare` work, pin the report, candidate, selected finding or slice, retained contracts, proof, risk, blockers, and future verification. Do not implement a blocked finding or use the pre-implementation report as final review. A `deep-clean candidate` requires explicit opt-in.
 
@@ -68,6 +68,6 @@ Close a candidate only after its acceptance, proof, documentation, and required 
 
 ## 4. Report the result
 
-Keep a qualifying [job report](references/job-report.md) current. At handoff, confirm that the workspace contains the exact reviewed candidate and no intended change remains outside authorized Git state.
+Keep the active Atọ́nà contribution receipt or qualifying standalone [job report](references/job-report.md) current. At handoff, confirm that the workspace contains the exact reviewed candidate and no intended change remains outside authorized Git state.
 
 Report the job boundary, session policy, completed horizon, decisions, delivered units, documentation, proof, review, ticket transitions, commit state, exact candidates, remaining units, blockers, and residual limits. Return the absolute path of every local plan, report, or artifact used with the user.

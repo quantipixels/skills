@@ -7,7 +7,7 @@ from provider_cli import (
     command_environment,
     main,
     validate_command_host,
-    validate_ready_for_review_creation,
+    validate_publication_state,
 )
 
 
@@ -155,57 +155,125 @@ class ProviderCliTests(unittest.TestCase):
             with self.subTest(command=command), self.assertRaises(ValueError):
                 validate_command_host("github", "github.com", command)
 
-    def test_github_creation_rejects_draft_flag(self):
+    def test_github_creation_and_transition_require_state_match(self):
         commands = [
-            ["gh", "pr", "create", "--repo", "owner/repo", "--draft"],
-            ["gh", "--repo", "owner/repo", "pr", "create", "--draft"],
-            ["gh", "--repo", "owner/repo", "pr", "new", "--draft"],
-            ["gh", "--repo", "owner/repo", "pr", "create", "-d"],
+            (["gh", "pr", "create", "--repo", "owner/repo", "--draft"], "ready", "draft"),
+            (["gh", "--repo", "owner/repo", "pr", "create"], "draft", "draft"),
+            (["gh", "pr", "ready", "7", "--repo", "owner/repo", "--undo"], "ready", "draft"),
+            (["gh", "pr", "ready", "7", "--repo", "owner/repo"], "draft", "draft"),
+            (["gh", "pr", "ready", "--repo", "owner/repo", "--undo"], "draft", "canonical"),
+            (["gh", "pr", "edit", "7", "--repo", "owner/repo", "--draft"], "draft", "approved"),
         ]
-        for command in commands:
-            with self.subTest(command=command), self.assertRaisesRegex(ValueError, "draft"):
-                validate_ready_for_review_creation("github", command)
+        for command, publication_state, error in commands:
+            with self.subTest(command=command), self.assertRaisesRegex(ValueError, error):
+                validate_publication_state("github", command, publication_state)
 
-    def test_gitlab_creation_rejects_draft_field_and_title_prefix(self):
+    def test_gitlab_creation_and_transition_require_state_match(self):
         commands = [
-            [
-                "glab", "mr", "create", "--hostname", "gitlab.com", "--wip",
-            ],
-            [
+            (["glab", "mr", "create", "--hostname", "gitlab.com", "--wip"], "ready", "draft"),
+            ([
                 "glab", "api", "--hostname", "gitlab.com", "--method", "POST",
                 "/projects/acme%2Fapi/merge_requests", "-f", "draft=true",
-            ],
-            [
-                "glab", "mr", "create", "--hostname", "gitlab.com",
-                "--title", "Draft: add lifecycle skills",
-            ],
-        ]
-        for command in commands:
-            with self.subTest(command=command), self.assertRaisesRegex(ValueError, "draft"):
-                validate_ready_for_review_creation("gitlab", command)
-
-    def test_ready_for_review_creation_is_allowed(self):
-        commands = [
-            ("github", ["gh", "pr", "create", "--repo", "owner/repo"]),
+            ], "ready", "native"),
+            (["glab", "mr", "create", "--hostname", "gitlab.com"], "draft", "draft"),
             (
-                "gitlab",
+                ["glab", "mr", "update", "7", "--hostname", "gitlab.com", "--draft"],
+                "ready", "draft",
+            ),
+            (
+                ["glab", "mr", "update", "7", "--hostname", "gitlab.com", "--ready"],
+                "draft", "draft",
+            ),
+            (["glab", "mr", "update", "--hostname", "gitlab.com", "--draft"], "draft", "canonical"),
+            ([
+                "glab", "api", "--hostname", "gitlab.com", "--method", "PUT",
+                "/projects/acme%2Fapi/merge_requests/7", "-f", "draft=true",
+            ], "draft", "publication-state"),
+            ([
+                "glab", "api", "--hostname", "gitlab.com", "--method", "PUT",
+                "/projects/acme%2Fapi/merge_requests/current", "-f", "title=Change",
+            ], "draft", "canonical"),
+            ([
+                "glab", "mr", "create", "--hostname", "gitlab.com",
+                "-t", "Draft: add lifecycle skills",
+            ], "draft", "draft"),
+            ([
+                "glab", "mr", "create", "--hostname", "gitlab.com",
+                "--title", "[Draft] add lifecycle skills",
+            ], "draft", "draft"),
+            ([
+                "glab", "mr", "create", "--hostname", "gitlab.com",
+                "--title", "[ Draft ] add lifecycle skills",
+            ], "draft", "draft"),
+            ([
+                "glab", "mr", "create", "--hostname", "gitlab.com",
+                "--title", "WIP — add lifecycle skills",
+            ], "draft", "draft"),
+        ]
+        for command, publication_state, error in commands:
+            with self.subTest(command=command), self.assertRaisesRegex(ValueError, error):
+                validate_publication_state("gitlab", command, publication_state)
+
+    def test_requested_creation_and_transition_state_is_allowed(self):
+        commands = [
+            ("github", "ready", ["gh", "pr", "create", "--repo", "owner/repo"]),
+            (
+                "github", "draft",
+                ["gh", "pr", "create", "--repo", "owner/repo", "--draft"],
+            ),
+            ("github", "ready", ["gh", "pr", "ready", "7", "--repo", "owner/repo"]),
+            (
+                "github", "draft",
+                ["gh", "pr", "ready", "7", "--repo", "owner/repo", "--undo"],
+            ),
+            (
+                "github", "draft",
+                ["gh", "pr", "edit", "7", "--repo", "owner/repo", "--body", "Updated"],
+            ),
+            (
+                "gitlab", "ready",
                 [
                     "glab", "mr", "create", "--hostname", "gitlab.com",
                     "-d", "Ordinary merge request description",
                 ],
             ),
             (
-                "gitlab",
+                "gitlab", "draft",
+                ["glab", "mr", "create", "--hostname", "gitlab.com", "--draft"],
+            ),
+            (
+                "github", "ready",
                 [
-                    "glab", "api", "--hostname", "gitlab.com", "--method", "POST",
-                    "/projects/acme%2Fapi/merge_requests", "-f", "draft=false",
-                    "-f", "title=Add lifecycle skills",
+                    "gh", "api", "--hostname", "github.com", "--method", "PATCH",
+                    "repos/owner/repo/pulls/7", "-f", "title=Updated",
+                ],
+            ),
+            (
+                "gitlab", "draft",
+                [
+                    "glab", "api", "--hostname", "gitlab.com", "--method", "PUT",
+                    "/projects/acme%2Fapi/merge_requests/7", "-f", "title=Updated",
+                ],
+            ),
+            (
+                "gitlab", "ready",
+                ["glab", "mr", "update", "7", "--hostname", "gitlab.com", "--ready"],
+            ),
+            (
+                "gitlab", "draft",
+                ["glab", "mr", "update", "7", "--hostname", "gitlab.com", "--draft"],
+            ),
+            (
+                "gitlab", "draft",
+                [
+                    "glab", "mr", "update", "7", "--hostname", "gitlab.com",
+                    "--description", "Updated",
                 ],
             ),
         ]
-        for provider, command in commands:
+        for provider, publication_state, command in commands:
             with self.subTest(command=command):
-                validate_ready_for_review_creation(provider, command)
+                validate_publication_state(provider, command, publication_state)
 
     def test_unverified_or_graphql_creation_payload_is_rejected(self):
         commands = [
@@ -216,6 +284,30 @@ class ProviderCliTests(unittest.TestCase):
             (
                 "github",
                 ["gh", "api", "graphql", "--hostname", "github.com", "-F", "query=@mutation.graphql"],
+            ),
+            (
+                "github",
+                [
+                    "gh", "api", "graphql", "--hostname", "github.com", "-f",
+                    "query=mutation { convertPullRequestToDraft(input: $input) "
+                    "{ clientMutationId } }",
+                ],
+            ),
+            (
+                "github",
+                [
+                    "gh", "api", "--hostname", "github.com",
+                    "https://github.com/graphql", "-f",
+                    "query=mutation { convertPullRequestToDraft(input: $input) "
+                    "{ clientMutationId } }",
+                ],
+            ),
+            (
+                "github",
+                [
+                    "gh", "api", "--hostname", "github.com", "--method", "PATCH",
+                    "repos/owner/repo/pulls/7", "--input", "payload.json",
+                ],
             ),
             (
                 "github",
@@ -241,9 +333,9 @@ class ProviderCliTests(unittest.TestCase):
         ]
         for provider, command in commands:
             with self.subTest(command=command), self.assertRaisesRegex(
-                ValueError, "payload|GraphQL"
+                ValueError, "payload|GraphQL|native"
             ):
-                validate_ready_for_review_creation(provider, command)
+                validate_publication_state(provider, command, "ready")
 
     def test_field_arguments_make_creation_api_post_implicit(self):
         commands = [
@@ -257,19 +349,19 @@ class ProviderCliTests(unittest.TestCase):
             ],
         ]
         for provider, command in zip(("github", "gitlab"), commands):
-            with self.subTest(command=command), self.assertRaisesRegex(ValueError, "draft"):
-                validate_ready_for_review_creation(provider, command)
+            with self.subTest(command=command), self.assertRaisesRegex(ValueError, "native"):
+                validate_publication_state(provider, command, "ready")
 
     def test_file_backed_draft_value_is_rejected(self):
         commands = [
-            ["gh", "api", "repos/owner/repo/pulls", "-F", "draft=@draft.txt"],
-            ["gh", "api", "repos/owner/repo/pulls", "--field=draft=@-"],
+            ["gh", "api", "repos/owner/repo/pulls/7", "-F", "draft=@draft.txt"],
+            ["gh", "api", "repos/owner/repo/pulls/7", "--field=draft=@-"],
         ]
         for command in commands:
             with self.subTest(command=command), self.assertRaisesRegex(ValueError, "draft"):
-                validate_ready_for_review_creation("github", command)
+                validate_publication_state("github", command, "draft")
 
-    def test_main_rejects_draft_before_provider_contact(self):
+    def test_main_requires_explicit_draft_state_before_provider_contact(self):
         with patch("provider_cli.subprocess.run") as run:
             with self.assertRaisesRegex(ValueError, "draft"):
                 main([
@@ -278,6 +370,17 @@ class ProviderCliTests(unittest.TestCase):
                 ])
 
         run.assert_not_called()
+
+        completed = subprocess.CompletedProcess(args=[], returncode=0)
+        with patch("provider_cli.subprocess.run", return_value=completed) as run:
+            result = main([
+                "--provider", "github", "--host", "github.com",
+                "--publication-state", "draft", "--",
+                "gh", "pr", "create", "--repo", "owner/repo", "--draft",
+            ])
+
+        self.assertEqual(0, result)
+        run.assert_called_once()
 
     def test_main_times_out_provider_command_without_retrying(self):
         command = ["gh", "pr", "edit", "7", "--repo", "owner/repo"]

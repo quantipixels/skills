@@ -6,6 +6,12 @@ Do not add or generate a `default_prompt` field in skill agent metadata.
 
 Keep every skill in exactly one `skills/engineering`, `skills/design`, `skills/productivity`, or `skills/experimental` group. When a skill is added, removed, renamed, moved, or rerouted, reconcile its group, [`.claude-plugin/plugin.json`](./.claude-plugin/plugin.json), [`alarina`](./skills/productivity/alarina/SKILL.md), and `README.md`.
 
+## Experimental isolation
+
+Treat `skills/experimental` as an opt-in, isolated portfolio when analyzing or changing skill ownership, routing, overlap, redundancy, lifecycle boundaries, or outcome boundaries. Exclude Experimental skills from comparisons among Engineering, Design, and Productivity skills unless the user explicitly includes an experiment or the change directly affects it. Do not use an Experimental skill to justify removing, narrowing, merging, or rerouting a non-Experimental owner.
+
+When a change directly affects an Experimental skill, reconcile its group, manifest, router, README entry, and explicit stable-skill dependencies without treating the experiment as a baseline owner.
+
 ## Evaluation policy
 
 Do not add prompt-evaluation suites or new behavioral tests. Before deleting an old eval, move each unique current expectation into its owning skill and record obsolete or redundant expectations in the delivery record. Keep a deterministic test only while it proves current source behavior.
