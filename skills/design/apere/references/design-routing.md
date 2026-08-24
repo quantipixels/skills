@@ -4,7 +4,7 @@ Use `apere` only when a visual request is broad, ambiguous, spans multiple deliv
 
 | User outcome | Primary skill |
 | --- | --- |
-| UI/UX direction, patterns, palettes, typography, persisted MASTER direction, or stack rules | `amoye-ui-ux` |
+| UI/UX direction, patterns, palettes, typography, one composable recommendation, or stack rules | `amoye-ui-ux` |
 | Brand voice, identity, logos, corporate identity, custom icon language, assets, and consistency | `brand` |
 | Feed posts, carousels, stories, reusable social templates, or multi-format social campaigns | `social-graphics` |
 | Tokens, variables, component specs, generated configuration, or design-system migration | `eto-apere` |

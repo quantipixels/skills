@@ -1,6 +1,6 @@
 ---
 name: amoye-ui-ux
-description: Recommend, persist, or review data-backed UI/UX direction for web and mobile interfaces, including product patterns, visual styles, color roles, typography, responsive layout, accessibility, animation, charts, and stack-specific guidance. Use for visual or interaction direction, not implementation tokens or UI code.
+description: Recommend or review data-backed UI/UX direction for web and mobile interfaces, including product patterns, visual styles, color roles, typography, responsive layout, accessibility, animation, charts, and stack-specific guidance. Use for visual or interaction direction, not implementation tokens or UI code.
 ---
 
 # Amọ̀ye Ojú Ìbánisọ̀rọ̀ àti Ìrírí Olùmúlò
@@ -28,7 +28,7 @@ python3 <skill-root>/scripts/search.py "keyboard focus loading" --domain ux
 python3 <skill-root>/scripts/search.py "streaming rerender bundle" --stack nextjs
 ```
 
-The command supports `--design-system`, `--persist`, `--output-dir`, `--page`, `--variance 1-10`, `--motion 1-10`, `--density 1-10`, `--domain`, `--stack`, `-n`, `-f markdown`, and `--json`. Persisted systems belong in the target project under `design-system/<project>/MASTER.md`; page files override the master only for that page. These files are the confirmed visual/UX direction, not the canonical design-token or component-specification source. Check existing files before using `--force`.
+The command supports `--design-system`, `--variance 1-10`, `--motion 1-10`, `--density 1-10`, `--domain`, `--stack`, `-n`, and `--json`. Text output uses one Markdown representation; JSON exposes the same structured result for composition. The calling workflow owns any durable plan, report, design-system file, or page override. The result is confirmed visual/UX direction, not the canonical design-token or component-specification source, and this skill does not create a parallel state tree.
 
 If a search returns no results, broaden the query once. If it is still empty, use the priority rules below and clearly say that the recommendation came from defaults, not a database match. Never fabricate a database result.
 
@@ -47,7 +47,7 @@ If a search returns no results, broaden the query once. If it is still empty, us
 
 ## Output contract
 
-For a design recommendation, return the selected product pattern, style, palette or semantic color roles, typography, effects, implementation stack, accessibility constraints, and anti-patterns. When persistence is requested, return the MASTER/page paths and state the evidence/default basis. For a review, cite the violated rule, the affected UI behavior, and the smallest useful correction. Keep the database query, synthesized direction, and downstream implementation contract distinct.
+For a design recommendation, return the selected product pattern, style, palette or semantic color roles, typography, effects, implementation stack, accessibility constraints, and anti-patterns. For a review, cite the violated rule, the affected UI behavior, and the smallest useful correction. Keep the database query, synthesized direction, and downstream implementation contract distinct.
 
 ## Resources
 

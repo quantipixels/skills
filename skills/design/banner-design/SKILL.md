@@ -15,7 +15,7 @@ Create a banner as a constrained communication surface. Confirm purpose, platfor
 4. Create the banner in the target-native format (HTML/CSS, SVG, or a project asset). Use the host’s image-generation capability for background imagery or illustrations when a bitmap asset is required; keep text and CTA editable where possible.
 5. Verify contrast, legibility at actual size, mobile safe zones, export dimensions, and reduced-motion behavior if animated. Deliver the source plus flattened exports when requested.
 
-For feed posts, carousels, reusable social templates, or multi-format social campaigns, use `apere`. This skill owns constrained banner surfaces such as covers, headers, heroes, ads, and print banners.
+For feed posts, carousels, reusable social templates, or multi-format social campaigns, use `social-graphics`. This skill owns constrained banner surfaces such as covers, headers, heroes, ads, and print banners.
 
 ## Guardrails
 

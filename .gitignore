@@ -3,3 +3,4 @@ node_modules
 .qp
 __pycache__
 .pytest_cache/
+/skills-lock.json

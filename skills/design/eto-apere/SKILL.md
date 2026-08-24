@@ -13,13 +13,15 @@ primitive values → semantic purpose aliases → component properties/states
 
 ## Workflow
 
-1. Read `references/token-architecture.md`, then inspect existing tokens, theme files, component conventions, and any confirmed `amoye-ui-ux` MASTER/page direction before adding new values. Treat Amọ̀ye direction and approved `brand` roles as visual inputs, not as a token schema or generated artifact.
+1. Read `references/token-architecture.md`, then inspect existing tokens, theme files, component conventions, and any confirmed `amoye-ui-ux` direction before adding new values. Treat Amọ̀ye direction and approved `brand` roles as visual inputs, not as a token schema or generated artifact.
 2. For React projects, confirm the UI component library with `asa-oju-ibanisoro` before defining component-level tokens. The library choice must be explicit before implementation.
 3. Define primitives for raw colors, spacing, type, radius, shadows, and durations.
 4. Map primitives to semantic roles such as background, foreground, primary, muted, destructive, and focus.
 5. Add component tokens only where a component needs a stable property or state override. Define default, hover, active, focus, disabled, loading, and error behavior when applicable.
-6. Generate CSS or framework configuration from JSON rather than hand-copying values. Resolve each reference target to its canonical CSS name and emit `var(--target)`; do not flatten semantic or component aliases to raw primitive values. Preserve dark-mode overrides.
-7. Validate the changed project area for hardcoded values, invalid references, contrast, and missing states. Read the relevant component, state, and Tailwind references on demand.
+6. When `brand` supplies confirmed visual roles, validate that every required role has a value and reconcile them into the existing token hierarchy without discarding unrelated tokens.
+7. Generate CSS or framework configuration from JSON rather than hand-copying values. Resolve each reference target to its canonical CSS name and emit `var(--target)`; do not flatten semantic or component aliases to raw primitive values. Preserve dark-mode overrides.
+8. Validate all references, cycles, and CSS-name collisions before replacing token artifacts. Generate JSON and CSS to temporary targets, validate both, then install them as one accepted change. If either output fails, leave the current artifacts unchanged and do not claim partial output as synchronized.
+9. Validate the changed project area for hardcoded values, invalid references, contrast, and missing states. Read the generated artifacts back, then read the relevant component, state, and Tailwind references on demand.
 
 ## Token helpers
 
@@ -30,9 +32,9 @@ node <skill-root>/scripts/generate-tokens.cjs --config tokens.json --output toke
 node <skill-root>/scripts/validate-tokens.cjs --dir src/
 ```
 
-The generator accepts JSON token objects and validates `{path.to.token}` references, cycles, and CSS-name collisions. It emits primitive raw values and preserves semantic and component aliases. Review generated output before committing. Do not replace an existing source-of-truth token file without checking its consumers.
+The generator accepts JSON token objects and validates `{path.to.token}` references, cycles, and CSS-name collisions. It emits primitive raw values and preserves semantic and component aliases. Review generated output before committing. Do not replace an existing source-of-truth token file without checking its consumers, preserving unrelated tokens, validating references, and reading back both the JSON source and generated CSS.
 
-This skill owns all declarations in project-level `assets/design-tokens.json` and generated `assets/design-tokens.css`, including `component.slide.*`. The `slides` skill consumes this token contract and returns here when required aliases are missing. `amoye-ui-ux` MASTER/page files remain the visual-direction record and are not duplicated into this contract.
+This skill owns all declarations in project-level `assets/design-tokens.json` and generated `assets/design-tokens.css`, including `component.slide.*`. The `slides` skill consumes this token contract and returns here when required aliases are missing. The `amoye-ui-ux` result remains visual-direction input and is not duplicated into this contract.
 
 ## Decision rules
 

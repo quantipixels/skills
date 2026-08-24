@@ -5,7 +5,6 @@
  *
  * Usage:
  *   node validate-tokens.cjs --dir src/
- *   node validate-tokens.cjs --dir src/ --fix
  */
 
 const fs = require('fs');
@@ -18,15 +17,12 @@ function parseArgs() {
   const args = process.argv.slice(2);
   const options = {
     dir: null,
-    fix: false,
     ignore: ['node_modules', '.git', 'dist', 'build', '.next']
   };
 
   for (let i = 0; i < args.length; i++) {
     if (args[i] === '--dir' || args[i] === '-d') {
       options.dir = args[++i];
-    } else if (args[i] === '--fix') {
-      options.fix = true;
     } else if (args[i] === '--ignore' || args[i] === '-i') {
       options.ignore.push(args[++i]);
     } else if (args[i] === '--help' || args[i] === '-h') {
@@ -35,7 +31,6 @@ Usage: node validate-tokens.cjs [options]
 
 Options:
   -d, --dir <path>      Directory to scan (required)
-  --fix                 Show suggested fixes (no auto-fix)
   -i, --ignore <dir>    Additional directories to ignore
   -h, --help            Show this help
 

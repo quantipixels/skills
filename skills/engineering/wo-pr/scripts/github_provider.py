@@ -191,7 +191,6 @@ class GitHubProvider:
         self.host = normalized_host
         self.repository = repository
         self.runner = runner
-        self.trusted_hosts = normalized_trusted_hosts
 
     def _call(
         self,

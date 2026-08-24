@@ -150,8 +150,8 @@ jq '.assets[] | select(.status == "approved")' .assets/manifest.json
 
 ## Cleanup Workflow
 
-1. Run `extract-colors.cjs` on new assets
-2. Validate against brand guidelines
+1. Inspect new-asset colors with the host’s image-analysis capability or an installed image tool
+2. Compare the result with the structured brand context and validate against the guidelines
 3. Update manifest.json with new entries
 4. Tag appropriately
 5. Remove duplicates/outdated versions

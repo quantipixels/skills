@@ -2,6 +2,8 @@
 
 Use this reference to consume an approved `eto-apere` token result in application-owned Tailwind utilities and variants. Do not define a competing palette, type scale, spacing scale, radius system, or semantic-token map here.
 
+Detect the project’s Tailwind major version before using an example. CSS-first `@theme`, `@utility`, and `@custom-variant` examples target Tailwind CSS v4. Examples that edit `tailwind.config.*` target Tailwind CSS v3 or a v4 project that explicitly retains a legacy `@config` file. Confirm current syntax in the official documentation for the detected version.
+
 ## Consume supplied tokens
 
 For Tailwind CSS 4, expose approved CSS variables through `@theme` aliases only when the project needs utility names that its token output does not already provide:

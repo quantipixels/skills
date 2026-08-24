@@ -4,8 +4,6 @@
 CIP Design Core - BM25 search engine for Corporate Identity Program design guidelines
 """
 
-import csv
-import re
 import sys
 from pathlib import Path
 

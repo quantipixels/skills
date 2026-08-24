@@ -98,73 +98,182 @@ def validate_command_host(provider: str, host: str, command: list[str]) -> None:
         )
 
 
-def validate_ready_for_review_creation(provider: str, command: list[str]) -> None:
-    """Reject a PR or MR creation command that can create a draft item."""
+def validate_publication_state(
+    provider: str,
+    command: list[str],
+    publication_state: str,
+) -> None:
+    """Reject PR or MR commands that conflict with the requested publication state."""
+    if publication_state not in {"ready", "draft"}:
+        raise ValueError(f"unsupported publication state {publication_state!r}")
+    _validate_canonical_mutation_target(provider, command)
     if provider == "github" and _has_opaque_graphql_payload(command):
         raise ValueError(
-            "seda-pr rejects opaque GraphQL payloads because PR creation draft state cannot be verified"
+            "seda-pr rejects opaque GraphQL payloads because publication state cannot be verified"
         )
-    if not _is_item_creation(provider, command):
-        return
-
-    if any(value == "--input" or value.startswith("--input=") for value in command):
+    if provider == "github" and _has_graphql_mutation(command):
         raise ValueError(
-            "seda-pr rejects unverified creation payload files; use explicit ready-for-review fields"
+            "seda-pr rejects GraphQL mutations because publication state cannot be verified"
         )
-    if provider == "github" and any("createPullRequest" in value for value in command):
+
+    is_creation = _is_item_creation(provider, command)
+    is_native_creation = _is_native_item_creation(provider, command)
+    if is_creation and not is_native_creation:
+        raise ValueError(
+            "seda-pr requires the provider's native PR or MR creation command"
+        )
+    _validate_api_mutation_target(provider, command)
+
+    if is_creation and any(
+        value == "--input" or value.startswith("--input=") for value in command
+    ):
+        raise ValueError(
+            "seda-pr rejects unverified creation payload files; "
+            "use explicit publication-state fields"
+        )
+    if is_creation and provider == "github" and any(
+        "createPullRequest" in value for value in command
+    ):
         raise ValueError(
             "seda-pr rejects GraphQL PR creation because draft state is not safely verified"
         )
 
+    fields, titles = _fields_and_titles(command)
+    signalled_states: set[str] = set()
+    for field in fields:
+        name, separator, raw_value = field.partition("=")
+        if not separator:
+            continue
+        if name.lower() == "draft":
+            parsed_state = _parse_boolean_publication_state(raw_value)
+            if "api" in command[1:]:
+                raise ValueError(
+                    "seda-pr rejects publication-state fields in provider API writes"
+                )
+            signalled_states.add(parsed_state)
+        if name.lower() == "title":
+            titles.append(raw_value)
+
+    draft_flags = {"--draft"}
+    if provider == "github" and is_creation:
+        draft_flags.add("-d")
+    if provider == "gitlab":
+        draft_flags.add("--wip")
+    has_draft_flag = any(value.lower() in draft_flags for value in command)
+    has_attached_draft_flag = any(
+        value.lower().startswith(("--draft=", "--wip=")) for value in command
+    )
+    is_github_transition = provider == "github" and _contains_subcommand(
+        command, "pr", "ready"
+    )
+    is_gitlab_transition = provider == "gitlab" and _contains_subcommand(
+        command, "mr", "update"
+    )
+    if (has_draft_flag or has_attached_draft_flag) and not (
+        is_native_creation or is_github_transition or is_gitlab_transition
+    ):
+        raise ValueError(
+            "seda-pr accepts draft flags only on approved creation or state commands"
+        )
+    if has_draft_flag:
+        signalled_states.add("draft")
+    if "--ready" in command and not is_gitlab_transition:
+        raise ValueError(
+            "seda-pr accepts ready flags only on the approved GitLab state command"
+        )
+    if "--undo" in command and not is_github_transition:
+        raise ValueError(
+            "seda-pr accepts --undo only on the approved GitHub state command"
+        )
+    for value in command:
+        lowered = value.lower()
+        if lowered.startswith(("--draft=", "--wip=")):
+            signalled_states.add(
+                _parse_boolean_publication_state(value.split("=", 1)[1])
+            )
+
+    if is_github_transition:
+        signalled_states.add("draft" if "--undo" in command else "ready")
+    if is_gitlab_transition:
+        if "--ready" in command or "-r" in command:
+            signalled_states.add("ready")
+
+    title_state_pattern = re.compile(
+        r"^\s*(?:(?:draft|wip)\s*[:\-–—]|\[\s*(?:draft|wip)\s*\]|\(\s*(?:draft|wip)\s*\))",
+        re.IGNORECASE,
+    )
+    if any(title_state_pattern.match(title) for title in titles):
+        raise ValueError("seda-pr requires native draft state, not a title convention")
+
+    if len(signalled_states) > 1:
+        raise ValueError("provider command contains conflicting ready and draft signals")
+    if not is_creation and not signalled_states:
+        return
+
+    command_state = next(iter(signalled_states), "ready")
+    if command_state != publication_state:
+        raise ValueError(
+            f"provider command requests {command_state!r} publication but "
+            f"seda-pr pinned {publication_state!r}"
+        )
+
+
+def _fields_and_titles(command: list[str]) -> tuple[list[str], list[str]]:
     fields: list[str] = []
     titles: list[str] = []
     for index, value in enumerate(command):
-        lowered = value.lower()
-        draft_flags = {"--draft"}
-        if provider == "github":
-            draft_flags.add("-d")
-        elif provider == "gitlab":
-            draft_flags.add("--wip")
-        if lowered in draft_flags:
-            raise ValueError("seda-pr never creates a draft PR or MR")
-        if lowered.startswith("--draft=") and _truthy(value.split("=", 1)[1]):
-            raise ValueError("seda-pr never creates a draft PR or MR")
         if value in {"-f", "-F", "--field", "--raw-field", "--form"} and index + 1 < len(command):
             fields.append(command[index + 1])
         elif value.startswith(("--field=", "--raw-field=", "--form=")):
             fields.append(value.split("=", 1)[1])
         elif value.startswith(("-f", "-F")) and len(value) > 2:
             fields.append(value[2:].removeprefix("="))
-        if value == "--title" and index + 1 < len(command):
+        if value in {"--title", "-t"} and index + 1 < len(command):
             titles.append(command[index + 1])
         elif value.startswith("--title="):
             titles.append(value.split("=", 1)[1])
+        elif value.startswith("-t") and len(value) > 2:
+            titles.append(value[2:].removeprefix("="))
+    return fields, titles
 
-    for field in fields:
-        name, separator, raw_value = field.partition("=")
-        if not separator:
-            continue
-        if name.lower() == "draft" and _truthy(raw_value):
-            raise ValueError("seda-pr never creates a draft PR or MR")
-        if name.lower() == "draft" and raw_value.startswith("@"):
-            raise ValueError("seda-pr rejects file-backed draft state")
-        if name.lower() == "title":
-            titles.append(raw_value)
-    if any(re.match(r"^\s*(?:draft|wip)\s*:", title, re.IGNORECASE) for title in titles):
-        raise ValueError("seda-pr never creates a draft PR or MR by title convention")
+
+def _parse_boolean_publication_state(value: str) -> str:
+    if value.startswith("@"):
+        raise ValueError("seda-pr rejects file-backed draft state")
+    normalized = value.strip().lower()
+    if normalized in {"1", "true", "yes", "on"}:
+        return "draft"
+    if normalized in {"0", "false", "no", "off"}:
+        return "ready"
+    raise ValueError(f"seda-pr requires an explicit boolean draft field, got {value!r}")
 
 
 def _is_item_creation(provider: str, command: list[str]) -> bool:
+    if _is_native_item_creation(provider, command):
+        return True
+    if not command or command[0] != EXECUTABLE[provider] or "api" not in command[1:]:
+        return False
+    if provider == "github" and any("createPullRequest" in value for value in command):
+        return True
+    if _api_method(command) != "POST":
+        return False
+    return any(
+        re.search(r"/(?:pulls|merge_requests)/?$", value.split("?", 1)[0])
+        for value in command
+    )
+
+
+def _is_native_item_creation(provider: str, command: list[str]) -> bool:
     if provider == "github" and any(
         _contains_subcommand(command, "pr", action) for action in ("create", "new")
     ):
         return True
     if provider == "gitlab" and _contains_subcommand(command, "mr", "create"):
         return True
-    if not command or command[0] != EXECUTABLE[provider] or "api" not in command[1:]:
-        return False
-    if provider == "github" and any("createPullRequest" in value for value in command):
-        return True
+    return False
+
+
+def _api_method(command: list[str]) -> str:
     method: str | None = None
     for index, value in enumerate(command):
         if value in {"--method", "-X"} and index + 1 < len(command):
@@ -175,19 +284,55 @@ def _is_item_creation(provider: str, command: list[str]) -> bool:
             method = value[2:].removeprefix("=").upper()
     if method is None:
         method = "POST" if _has_api_fields(command) else "GET"
-    if method != "POST":
-        return False
-    return any(
-        re.search(r"/(?:pulls|merge_requests)/?$", value.split("?", 1)[0])
-        for value in command
-    )
+    return method
 
 
 def _contains_subcommand(command: list[str], group: str, action: str) -> bool:
-    return any(
-        command[index:index + 2] == [group, action]
-        for index in range(1, len(command) - 1)
-    )
+    return _subcommand_index(command, group, action) is not None
+
+
+def _validate_canonical_mutation_target(provider: str, command: list[str]) -> None:
+    actions = {"github": {("pr", "edit"), ("pr", "ready")}, "gitlab": {("mr", "update")}}
+    for group, action in actions[provider]:
+        index = _subcommand_index(command, group, action)
+        if index is None:
+            continue
+        target_index = index + 2
+        if target_index >= len(command) or not command[target_index].isdigit():
+            item = "PR" if provider == "github" else "MR"
+            raise ValueError(
+                f"existing-item mutation requires the canonical {item} number"
+            )
+
+
+def _validate_api_mutation_target(provider: str, command: list[str]) -> None:
+    if "api" not in command[1:] or _api_method(command) in {"GET", "HEAD"}:
+        return
+    if any(value == "--input" or value.startswith("--input=") for value in command):
+        raise ValueError(
+            "seda-pr rejects opaque input payloads for provider API mutations"
+        )
+    endpoint_pattern = re.compile(r"/(?:pulls|merge_requests)/(\d+)/?$")
+    collection_pattern = re.compile(r"/(?:pulls|merge_requests)/?$")
+    endpoints = [value.split("?", 1)[0] for value in command if "/" in value]
+    if any(collection_pattern.search(value) for value in endpoints):
+        raise ValueError(
+            "seda-pr requires the provider's native PR or MR creation command"
+        )
+    if any("pulls" in value or "merge_requests" in value for value in endpoints) and not any(
+        endpoint_pattern.search(value) for value in endpoints
+    ):
+        item = "PR" if provider == "github" else "MR"
+        raise ValueError(
+            f"provider API mutation requires the canonical {item} number"
+        )
+
+
+def _subcommand_index(command: list[str], group: str, action: str) -> int | None:
+    for index in range(1, len(command) - 1):
+        if command[index:index + 2] == [group, action]:
+            return index
+    return None
 
 
 def _has_api_fields(command: list[str]) -> bool:
@@ -203,24 +348,30 @@ def _has_api_fields(command: list[str]) -> bool:
 
 
 def _has_opaque_graphql_payload(command: list[str]) -> bool:
-    if "api" not in command[1:] or "graphql" not in command[1:]:
+    if not _is_graphql_command(command):
         return False
     if any(value == "--input" or value.startswith("--input=") for value in command):
         return True
-    field_flags = {"-f", "-F", "--field", "--raw-field", "--form"}
-    fields: list[str] = []
-    for index, value in enumerate(command):
-        if value in field_flags and index + 1 < len(command):
-            fields.append(command[index + 1])
-        elif value.startswith(("--field=", "--raw-field=", "--form=")):
-            fields.append(value.split("=", 1)[1])
-        elif value.startswith(("-f", "-F")) and len(value) > 2:
-            fields.append(value[2:].removeprefix("="))
+    fields, _ = _fields_and_titles(command)
     return any(field.lower().startswith("query=@") for field in fields)
 
 
-def _truthy(value: str) -> bool:
-    return value.strip().lower() in {"1", "true", "yes", "on"}
+def _has_graphql_mutation(command: list[str]) -> bool:
+    if not _is_graphql_command(command):
+        return False
+    return any(
+        re.search(r"(?:^|[=\s])mutation(?:[\s({]|$)", value, re.IGNORECASE)
+        for value in command
+    )
+
+
+def _is_graphql_command(command: list[str]) -> bool:
+    if "api" not in command[1:]:
+        return False
+    return any(
+        re.search(r"(?:^|/)graphql(?:\?.*)?$", value, re.IGNORECASE)
+        for value in command
+    )
 
 
 def _add_repository_host(selected_hosts: set[str], repository: str) -> None:
@@ -238,6 +389,11 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser = argparse.ArgumentParser()
     parser.add_argument("--provider", choices=("github", "gitlab"), required=True)
     parser.add_argument("--host", required=True)
+    parser.add_argument(
+        "--publication-state",
+        choices=("ready", "draft"),
+        default="ready",
+    )
     parser.add_argument("--trusted-host", action="append", default=[])
     parser.add_argument("command", nargs=argparse.REMAINDER)
     args = parser.parse_args(argv)
@@ -253,7 +409,7 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
 def main(argv: list[str] | None = None) -> int:
     args = parse_args(argv)
     validate_command_host(args.provider, args.host, args.command)
-    validate_ready_for_review_creation(args.provider, args.command)
+    validate_publication_state(args.provider, args.command, args.publication_state)
     environment = command_environment(
         args.provider,
         args.host,

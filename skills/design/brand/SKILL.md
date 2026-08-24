@@ -11,36 +11,36 @@ Own the project’s human-readable brand source of truth and its identity assets
 
 1. Find existing brand guidance, logo files, identity assets, token files, and asset manifests. Treat existing approved guidance as authoritative unless the user explicitly changes it.
 2. For a new or changed brand, define audience, positioning, voice, personality, color roles, typography, imagery, logo constraints, icon language when custom icons are required, and prohibited treatments. Use `templates/brand-guidelines-starter.md` as a starting point.
-3. For an update, read `references/update.md`, change the human-readable guidance and affected identity assets, and preserve unrelated decisions.
+3. For an update, change the human-readable guidance and affected identity assets, and preserve unrelated decisions. When implementation tokens must change, give `eto-apere` the confirmed color roles, typography, source-guideline path, intended token targets, current consumers, and required compatibility.
 4. For a logo or corporate identity program, load only the applicable logo or CIP references below. Search the bundled identity data before choosing a direction, keep exploratory concepts distinct from approved assets, and use image generation only for approved bitmap exploration or mockups.
 5. For a custom icon language, read `references/icon-design.md` and define the grid, stroke/fill, corners, optical sizing, naming, and export rules. Product UI implementation remains with `asa-oju-ibanisoro`.
 6. For a review, check voice, color, typography, logo use, icon consistency, asset naming, accessibility, and cross-surface consistency. Report evidence and corrections, not taste alone.
-7. Validate assets and confirm generated context. When implementation tokens must change, give `eto-apere` the approved visual roles, current token consumers and paths, and required compatibility; consume its exact-current token and validation result.
+7. Validate assets and confirm generated context before a downstream handoff. When implementation tokens change, consume `eto-apere`’s exact-current token and validation result.
 
 ## Identity helpers
 
-Resolve `<skill-root>` to this skill directory. The moved logo and CIP search helpers retain their relative data layout:
+Resolve `<brand-skill-root>` to this skill directory. The logo and CIP search helpers use the skill-local data layout:
 
 ```bash
-python3 <skill-root>/scripts/logo/search.py "technology geometric minimal"
-python3 <skill-root>/scripts/cip/search.py "professional services premium"
-node <skill-root>/scripts/inject-brand-context.cjs --json docs/brand-guidelines.md
-node <skill-root>/scripts/validate-asset.cjs assets/logo.svg --json
-node <skill-root>/scripts/extract-colors.cjs --palette --brand-file docs/brand-guidelines.md
+python3 <brand-skill-root>/scripts/logo/search.py "technology geometric minimal"
+python3 <brand-skill-root>/scripts/cip/search.py "professional services premium"
+node <brand-skill-root>/scripts/inject-brand-context.cjs --json docs/brand-guidelines.md
+node <brand-skill-root>/scripts/validate-asset.cjs assets/logo.svg --json
 ```
 
-These helpers inspect or generate design direction; they do not own design-token mutation.
+These helpers inspect brand guidance or one asset; they do not own token files or generate images. Use the host’s image-analysis capability or an installed image tool to inspect bitmap palettes, then compare the result with the structured brand context. Confirm exact source and target paths before a handoff. Do not claim token synchronization until `eto-apere` returns validated output and readback.
 
 ## Project conventions
 
 Unless the project already has different paths, use:
 
-- `docs/brand-guidelines.md` — human-readable identity source of truth;
+- `docs/brand-guidelines.md` — human-readable identity source of truth.
 - `.assets/manifest.json` — optional asset registry.
 
 ## Decision rules
 
 - Use semantic color roles, not color names, in UI guidance.
+- Do not hand token work to `eto-apere` until primary, secondary, and accent roles are present. Include any confirmed neutral, foreground, background, destructive, and focus roles.
 - Define accessible text/background pairs and dark-mode behavior.
 - Limit typefaces and document fallback fonts.
 - Keep logo lockups, clear space, minimum size, and prohibited changes explicit.
@@ -62,16 +62,15 @@ Core brand guidance:
 - `references/typography-specifications.md`
 - `references/logo-usage-rules.md`
 - `references/approval-checklist.md`
-- `references/update.md`
 
 Identity production:
 
 - `references/logo-design.md`
 - `references/logo-style-guide.md`
 - `references/logo-color-psychology.md`
-- `references/logo-prompt-engineering.md` — only when an image-generation prompt is required;
+- `references/logo-prompt-engineering.md` — only when an image-generation prompt is required.
 - `references/cip-design.md`
 - `references/cip-deliverable-guide.md`
 - `references/cip-style-guide.md`
-- `references/cip-prompt-engineering.md` — only when an image-generation prompt is required;
-- `references/icon-design.md`.
+- `references/cip-prompt-engineering.md` — only when an image-generation prompt is required.
+- `references/icon-design.md`

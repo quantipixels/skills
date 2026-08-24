@@ -33,16 +33,11 @@ If the user asks for a recommendation, compare the shortlist against the project
 - Use SVG or an established icon library. When `brand` supplies a custom icon language, implement that confirmed grid, stroke/fill, corner, optical-size, and naming contract without redefining it. Never use emoji as UI icons.
 - For charts, include labels, legends/tooltips, accessible colors, and non-color encodings beyond color alone.
 
-## Helpers
+## Platform configuration
 
-Resolve `<skill-root>` to this skill directory:
+Use the active project’s package manager and official component-library or framework tooling. For shadcn/ui, inspect `components.json`, confirm the target workspace, preview the native CLI change when supported, and add components through the current `shadcn` CLI. Do not overwrite existing components unless the user explicitly accepts that replacement.
 
-```bash
-python3 <skill-root>/scripts/tailwind_config_gen.py --framework react --colors 'brand:var(--color-primary)' --output tailwind.config.ts
-python3 <skill-root>/scripts/shadcn_add.py button card dialog --dry-run
-```
-
-Use `tailwind_config_gen.py` only for Tailwind CSS 3 projects that use a configuration file; Tailwind CSS 4 projects should extend tokens through the project's CSS `@theme` contract. Color arguments must reference approved CSS custom properties from `eto-apere`, not raw color values. Use `shadcn_add.py` only after checking the project’s `components.json`; run the CLI with the project’s package manager when the helper cannot determine the right setup. These helpers write into the target project, so confirm the target path before running them.
+Detect the Tailwind major version before changing configuration. For Tailwind CSS v4, extend the project’s existing CSS-first theme and token imports. For Tailwind CSS v3, update the existing `tailwind.config.*` through the version’s official guidance. Do not create or replace a configuration file when the project does not use one. Validate every change through the project’s own build, lint, and type-check commands.
 
 ## Verification
 

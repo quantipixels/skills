@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Shared BM25 and CSV search primitives for Àpẹrẹ specialist adapters."""
+"""Shared BM25 and CSV search primitives for Brand identity searches."""
 
 import csv
 import re
