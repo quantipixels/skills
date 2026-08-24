@@ -41,7 +41,7 @@ Engineering, Design, Productivity, and Experimental are install groups, not rout
 | Visualize supplied results, purpose-fit reports, analysis, data, decisions, or designs in a portable browser artifact | `html-artifact` | — |
 | Prepare a compact handoff for another agent or session | `handoff` | — |
 | Draft, revise, or review developer documentation, technical communication, or applicable human-facing artifact copy | `technical-writing` | — |
-| Remove AI tells, filler, vague abstraction, or instruction noise from existing prose | `yo-slop` | — |
+| Clean prose or explicitly prune verbosity and repetition without changing its contract | `yo-slop` | — |
 | Analyze one coding-agent session or bounded corpus | `ayewo-igba-ise` | — |
 | Research a question from primary sources into Markdown | `iwadi` | — |
 | Select, configure, use, or remove a companion tool | `irinse` | — |
@@ -66,7 +66,7 @@ Use `general` mode in `atunwo` for supplied or local candidates and `provider` m
 - Keep custom icon visual language with `brand` and product UI implementation with `asa-oju-ibanisoro`.
 - Keep `pare` read-only. It may label a `deep-clean candidate`, but only a delivery owner with explicit opt-in may delete that proof.
 - Keep project style, channel conventions, product truth, code conventions, accessibility conformance, localization, brand voice, and publishing with their direct owners; `technical-writing` owns the applicable structural and editorial pass.
-- Keep document evidence, technical truth, artifact facts, schema, authority, and acceptance with their direct owners; `yo-slop` follows `technical-writing` as a final prose pass and must preserve their contract.
+- Keep document evidence, technical truth, artifact facts, schema, authority, and acceptance with their direct owners. `yo-slop` follows the structural owner as a final cleanup or explicit prune pass and must preserve their contract.
 - Keep portable presentation-style reports with `html-artifact`; route requested slide decks to `slides`.
 - Use `atona` while an initiative plan remains active, `solution-architect` for technical architecture design or review, `arojinle` for one new or reopened material decision, and `atunwo` in `audit` scope before a stateful refactor that can change lifecycle behavior.
 - Keep PR or MR publication with `seda-pr`, monitoring with `wo-pr`, and review verdicts with `atunwo`.
