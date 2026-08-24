@@ -1,4 +1,3 @@
 interface:
   display_name: "Amọ̀ye Ojú Ìbánisọ̀rọ̀ àti Ìrírí Olùmúlò"
   short_description: "Search data-backed UI/UX design guidance"
-  default_prompt: "Use $amoye-ui-ux to recommend a data-backed UI/UX direction for this request."

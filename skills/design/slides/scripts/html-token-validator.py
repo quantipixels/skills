@@ -5,21 +5,19 @@ Ensures all HTML assets (slides, infographics, etc.) use design tokens.
 Source of truth: assets/design-tokens.css
 
 Usage:
-  python html-token-validator.py                    # Validate all HTML assets
-  python html-token-validator.py --type slides      # Validate only slides
-  python html-token-validator.py --type infographics # Validate only infographics
-  python html-token-validator.py path/to/file.html  # Validate specific file
+  python3 html-token-validator.py                    # Validate all HTML assets
+  python3 html-token-validator.py --type slides      # Validate only slides
+  python3 html-token-validator.py --type infographics # Validate only infographics
+  python3 html-token-validator.py path/to/file.html  # Validate specific file
 """
 
 import re
-import json
 import sys
 from pathlib import Path
-from typing import Dict, List, Tuple, Optional
+from typing import Dict, List
 
 # Project root defaults to the caller's project, so this script is standalone.
 PROJECT_ROOT = Path.cwd()
-TOKENS_JSON_PATH = PROJECT_ROOT / 'assets' / 'design-tokens.json'
 TOKENS_CSS_PATH = PROJECT_ROOT / 'assets' / 'design-tokens.css'
 
 # Asset directories to validate
@@ -38,24 +36,17 @@ FORBIDDEN_PATTERNS = [
     (r'font-family:\s*"[^v][^a][^r][^"]*",', 'hardcoded font'),
 ]
 
-# Allowed rgba patterns (brand colors with transparency - CSS limitation)
-# These are derived from brand tokens but need rgba for transparency
-ALLOWED_RGBA_PATTERNS = [
-    r'rgba\(\s*59\s*,\s*130\s*,\s*246',    # --color-primary (#3B82F6)
-    r'rgba\(\s*245\s*,\s*158\s*,\s*11',    # --color-secondary (#F59E0B)
-    r'rgba\(\s*16\s*,\s*185\s*,\s*129',    # --color-accent (#10B981)
-    r'rgba\(\s*20\s*,\s*184\s*,\s*166',    # --color-accent alt (#14B8A6)
-    r'rgba\(\s*0\s*,\s*0\s*,\s*0',         # black transparency (common)
-    r'rgba\(\s*255\s*,\s*255\s*,\s*255',   # white transparency (common)
-    r'rgba\(\s*15\s*,\s*23\s*,\s*42',      # --color-surface (#0F172A)
-    r'rgba\(\s*7\s*,\s*11\s*,\s*20',       # --color-background (#070B14)
-]
-
 # Allowed exceptions (external images, etc.)
 ALLOWED_EXCEPTIONS = [
     'pexels.com', 'unsplash.com', 'youtube.com', 'ytimg.com',
     'googlefonts', 'fonts.googleapis.com', 'fonts.gstatic.com',
 ]
+
+EMBEDDED_TOKEN_MARKER = "Design Tokens (embedded for standalone HTML)"
+EMBEDDED_TOKEN_BLOCK = re.compile(
+    r'<style\b[^>]*>\s*/\*\s*Design Tokens \(embedded for standalone HTML\)\s*\*/.*?</style>',
+    re.IGNORECASE | re.DOTALL,
+)
 
 
 class ValidationResult:
@@ -110,9 +101,8 @@ def is_allowed_exception(content: str, match_start: int, match_end: int) -> bool
 
 def configure_project_root(project_root: Path):
     """Point all validator resources at an explicit project root."""
-    global PROJECT_ROOT, TOKENS_JSON_PATH, TOKENS_CSS_PATH, ASSET_DIRS
+    global PROJECT_ROOT, TOKENS_CSS_PATH, ASSET_DIRS
     PROJECT_ROOT = project_root.resolve()
-    TOKENS_JSON_PATH = PROJECT_ROOT / 'assets' / 'design-tokens.json'
     TOKENS_CSS_PATH = PROJECT_ROOT / 'assets' / 'design-tokens.css'
     ASSET_DIRS = {
         'slides': PROJECT_ROOT / 'assets' / 'designs' / 'slides',
@@ -120,16 +110,16 @@ def configure_project_root(project_root: Path):
     }
 
 
-def is_allowed_rgba(match_text: str) -> bool:
-    """Check if rgba pattern uses brand colors (allowed for transparency)."""
-    return any(re.match(pattern, match_text) for pattern in ALLOWED_RGBA_PATTERNS)
-
-
 def get_context(content: str, pos: int, chars: int = 100) -> str:
     """Get surrounding context for a match position."""
     start = max(0, pos - chars)
     end = min(len(content), pos + chars)
     return content[start:end]
+
+
+def remove_embedded_token_blocks(content: str) -> str:
+    """Hide approved embedded token declarations from consumer-style checks."""
+    return EMBEDDED_TOKEN_BLOCK.sub(lambda match: " " * len(match.group()), content)
 
 
 def validate_html(content: str, file_path: Path, verbose: bool = False) -> ValidationResult:
@@ -144,33 +134,34 @@ def validate_html(content: str, file_path: Path, verbose: bool = False) -> Valid
     """
     result = ValidationResult(file_path)
 
-    # 1. Check for design-tokens.css import
-    if 'design-tokens.css' not in content:
-        result.add_error("Missing design-tokens.css import")
+    embedded_token_blocks = EMBEDDED_TOKEN_BLOCK.findall(content)
+    embedded_token_source = any(
+        re.search(r'--[\w-]+\s*:', block) for block in embedded_token_blocks
+    )
+
+    # 1. Require a linked or complete embedded token source.
+    if 'design-tokens.css' not in content and not embedded_token_source:
+        result.add_error("Missing linked or embedded design-token source")
+
+    consumer_content = remove_embedded_token_blocks(content)
 
     # 2. Check for forbidden patterns in CSS
     for pattern, description in FORBIDDEN_PATTERNS:
-        for match in re.finditer(pattern, content):
+        for match in re.finditer(pattern, consumer_content):
             match_text = match.group()
             match_pos = match.start()
-            context = get_context(content, match_pos)
+            context = get_context(consumer_content, match_pos)
 
             # Skip if in <script> block (Chart.js allowed)
-            if is_inside_block(content, match_pos, '<script', '</script>'):
+            if is_inside_block(consumer_content, match_pos, '<script', '</script>'):
                 if verbose:
                     result.add_warning(f"Allowed in <script>: {match_text}")
                 continue
 
             # Skip if in allowed exception context (external URLs)
-            if is_allowed_exception(content, match.start(), match.end()):
+            if is_allowed_exception(consumer_content, match.start(), match.end()):
                 if verbose:
                     result.add_warning(f"Allowed external: {match_text}")
-                continue
-
-            # Skip rgba using brand colors (needed for transparency effects)
-            if description == 'rgba color' and is_allowed_rgba(match_text):
-                if verbose:
-                    result.add_warning(f"Allowed brand rgba: {match_text}")
                 continue
 
             # Skip if part of var() reference (false positive)
@@ -181,7 +172,7 @@ def validate_html(content: str, file_path: Path, verbose: bool = False) -> Valid
                     continue
 
             # Error if in <style> or inline style
-            if is_inside_block(content, match_pos, '<style', '</style>'):
+            if is_inside_block(consumer_content, match_pos, '<style', '</style>'):
                 result.add_error(f"Hardcoded {description} in <style>: {match_text}")
             elif 'style="' in context:
                 result.add_error(f"Hardcoded {description} in inline style: {match_text}")
@@ -189,8 +180,10 @@ def validate_html(content: str, file_path: Path, verbose: bool = False) -> Valid
     # 3. Check for required var() usage indicators
     token_patterns = [
         r'var\(--color-',
-        r'var\(--primitive-',
-        r'var\(--typography-',
+        r'var\(--space-',
+        r'var\(--font-',
+        r'var\(--gradient-',
+        r'var\(--slide-',
         r'var\(--card-',
         r'var\(--button-',
     ]
@@ -198,6 +191,23 @@ def validate_html(content: str, file_path: Path, verbose: bool = False) -> Valid
 
     if token_count < 5:
         result.add_warning(f"Low token usage ({token_count} var() references). Consider using more design tokens.")
+
+    # 4. Every referenced custom property must be declared by the project
+    # token contract or in an embedded declaration in this document.
+    content_without_comments = re.sub(r'/\*.*?\*/', '', content, flags=re.DOTALL)
+    referenced = set(re.findall(r'var\(\s*(--[\w-]+)', content_without_comments))
+    embedded_content = "\n".join(embedded_token_blocks)
+    embedded = {
+        match.group(1)
+        for match in re.finditer(r'(--[\w-]+)\s*:\s*[^;]+;', embedded_content)
+    }
+    linked_token_source = 'design-tokens.css' in content
+    project_variables = set(load_css_variables()) if linked_token_source else set()
+    available_variables = project_variables | embedded
+    if referenced and not available_variables:
+        result.add_error(f"Token source not found or empty: {TOKENS_CSS_PATH}")
+    for variable in sorted(referenced - available_variables):
+        result.add_error(f"Undefined design token: {variable}")
 
     return result
 
@@ -268,13 +278,15 @@ def print_summary(all_results: Dict[str, List[ValidationResult]]):
                 print_result(result)
 
     print("\n" + "-" * 60)
-    if total_errors == 0:
+    if total_files == 0:
+        print("✗ NO FILES VALIDATED: selected paths contained no HTML files")
+    elif total_errors == 0:
         print(f"✓ ALL PASSED: {total_passed}/{total_files} files valid")
     else:
         print(f"✗ FAILED: {total_files - total_passed}/{total_files} files have issues ({total_errors} total errors)")
     print("-" * 60)
 
-    return total_errors == 0
+    return total_files > 0 and total_errors == 0
 
 
 def main():

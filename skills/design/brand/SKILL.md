@@ -1,57 +1,76 @@
 ---
 name: brand
-description: Define, update, and review brand voice, messaging, visual identity, colors, typography, logo usage, asset organization, and consistency. Use when branded UI or creative output needs a durable source of truth or an on-brand review.
+description: Define, update, create, and review brand voice, messaging, visual identity, logos, corporate identity assets, custom icon language, colors, typography, asset organization, and consistency. Use when branded output needs a durable identity source of truth, approved identity assets, or an on-brand review.
 ---
 
 # Brand
 
-Own the project’s brand source of truth. Keep voice, visual identity, messaging, asset rules, and approval criteria together. Hand confirmed visual roles to `eto-apere` when implementation tokens must change.
+Own the project’s human-readable brand source of truth and its identity assets. Keep voice, visual identity, messaging, logo and icon-language rules, asset constraints, and approval criteria together. Keep implementation-token mutation with `eto-apere`.
 
 ## Workflow
 
-1. Find existing brand guidance, logo files, token files, and asset manifests. Treat the existing guidance as authoritative unless the user explicitly changes it.
-2. For a new brand, define audience, positioning, voice, personality, color roles, typography, imagery, logo clear space, and prohibited treatments. Use `templates/brand-guidelines-starter.md` as a starting point.
-3. For an update, change the human-readable guidelines first. Return the confirmed color roles, typography, source-guideline path, and intended token targets to `eto-apere`; it owns machine-readable tokens and generated CSS.
-4. For a review, check voice, color, typography, logo use, asset naming, accessibility, and cross-surface consistency. Report evidence and corrections, not taste alone.
-5. Validate assets and confirm generated context before handing off to `eto-apere`, `asa-oju-ibanisoro`, `banner-design`, or `slides`.
+1. Find existing brand guidance, logo files, identity assets, token files, and asset manifests. Treat existing approved guidance as authoritative unless the user explicitly changes it.
+2. For a new or changed brand, define audience, positioning, voice, personality, color roles, typography, imagery, logo constraints, icon language when custom icons are required, and prohibited treatments. Use `templates/brand-guidelines-starter.md` as a starting point.
+3. For an update, change the human-readable guidance and affected identity assets, and preserve unrelated decisions. When implementation tokens must change, give `eto-apere` the confirmed color roles, typography, source-guideline path, intended token targets, current consumers, and required compatibility.
+4. For a logo or corporate identity program, load only the applicable logo or CIP references below. Search the bundled identity data before choosing a direction, keep exploratory concepts distinct from approved assets, and use image generation only for approved bitmap exploration or mockups.
+5. For a custom icon language, read `references/icon-design.md` and define the grid, stroke/fill, corners, optical sizing, naming, and export rules. Product UI implementation remains with `asa-oju-ibanisoro`.
+6. For a review, check voice, color, typography, logo use, icon consistency, asset naming, accessibility, and cross-surface consistency. Report evidence and corrections, not taste alone.
+7. Validate assets and confirm generated context before a downstream handoff. When implementation tokens change, consume `eto-apere`’s exact-current token and validation result.
+
+## Identity helpers
+
+Resolve `<brand-skill-root>` to this skill directory. The logo and CIP search helpers use the skill-local data layout:
+
+```bash
+python3 <brand-skill-root>/scripts/logo/search.py "technology geometric minimal"
+python3 <brand-skill-root>/scripts/cip/search.py "professional services premium"
+node <brand-skill-root>/scripts/inject-brand-context.cjs --json docs/brand-guidelines.md
+node <brand-skill-root>/scripts/validate-asset.cjs assets/logo.svg --json
+```
+
+These helpers inspect brand guidance or one asset; they do not own token files or generate images. Use the host’s image-analysis capability or an installed image tool to inspect bitmap palettes, then compare the result with the structured brand context. Confirm exact source and target paths before a handoff. Do not claim token synchronization until `eto-apere` returns validated output and readback.
 
 ## Project conventions
 
 Unless the project already has different paths, use:
 
-- `docs/brand-guidelines.md` — source of truth.
-- `assets/design-tokens.json` — token source owned by `eto-apere` when present.
-- `assets/design-tokens.css` — generated variables owned by `eto-apere` when present.
+- `docs/brand-guidelines.md` — human-readable identity source of truth.
 - `.assets/manifest.json` — optional asset registry.
-
-Run helpers with the skill-root path resolved explicitly:
-
-```bash
-node <skill-root>/scripts/inject-brand-context.cjs --json docs/brand-guidelines.md
-node <skill-root>/scripts/validate-asset.cjs assets/logo.svg --json
-```
-
-The helpers read brand guidance or one asset; they do not own token files or generate images. Use the host’s image-analysis capability or an installed image tool to inspect bitmap palettes, and compare the result with the structured brand context. Confirm the exact source and target paths before a handoff. Do not claim token synchronization until `eto-apere` returns validated output and readback.
 
 ## Decision rules
 
 - Use semantic color roles, not color names, in UI guidance.
-- Do not hand token work to `eto-apere` until primary, secondary, and accent roles are present; include any confirmed neutral, foreground, background, destructive, and focus roles as available.
+- Do not hand token work to `eto-apere` until primary, secondary, and accent roles are present. Include any confirmed neutral, foreground, background, destructive, and focus roles.
 - Define accessible text/background pairs and dark-mode behavior.
 - Limit typefaces and document fallback fonts.
 - Keep logo lockups, clear space, minimum size, and prohibited changes explicit.
+- Keep a custom icon language coherent across grid, stroke/fill, corners, optical sizing, naming, and exports.
 - Use consistent filenames and metadata for assets.
 - Do not claim an asset is approved without a recorded approval signal.
 
 ## Resources
 
-- `references/voice-framework.md` — tone and voice.
-- `references/visual-identity.md` — visual language.
-- `references/messaging-framework.md` — message hierarchy.
-- `references/consistency-checklist.md` — consistency review.
-- `references/brand-guideline-template.md` — detailed template.
-- `references/asset-organization.md` — naming and structure.
-- `references/color-palette-management.md` — palette rules.
-- `references/typography-specifications.md` — type specs.
-- `references/logo-usage-rules.md` — logo constraints.
-- `references/approval-checklist.md` — approval gate.
+Core brand guidance:
+
+- `references/voice-framework.md`
+- `references/visual-identity.md`
+- `references/messaging-framework.md`
+- `references/consistency-checklist.md`
+- `references/brand-guideline-template.md`
+- `references/asset-organization.md`
+- `references/color-palette-management.md`
+- `references/typography-specifications.md`
+- `references/logo-usage-rules.md`
+- `references/approval-checklist.md`
+
+Identity production:
+
+- `references/logo-design.md`
+- `references/logo-style-guide.md`
+- `references/logo-color-psychology.md`
+- `references/logo-prompt-engineering.md` — only when an image-generation prompt is required.
+- `references/cip-design.md`
+- `references/cip-deliverable-guide.md`
+- `references/cip-style-guide.md`
+- `references/cip-prompt-engineering.md` — only when an image-generation prompt is required.
+- `references/icon-design.md`

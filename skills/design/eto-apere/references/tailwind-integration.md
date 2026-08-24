@@ -125,52 +125,6 @@ Using HSL without function allows opacity modifiers:
 background-color: hsl(217 91% 60% / 0.5);
 ```
 
-## Component Classes
-
-### Button Example
-
-```css
-@layer components {
-  .btn {
-    @apply inline-flex items-center justify-center
-           rounded-md font-medium
-           transition-colors
-           focus-visible:outline-none focus-visible:ring-2
-           focus-visible:ring-ring focus-visible:ring-offset-2
-           disabled:pointer-events-none disabled:opacity-50;
-  }
-
-  .btn-default {
-    @apply bg-primary text-primary-foreground
-           hover:bg-primary/90;
-  }
-
-  .btn-secondary {
-    @apply bg-secondary text-secondary-foreground
-           hover:bg-secondary/80;
-  }
-
-  .btn-outline {
-    @apply border border-input bg-background
-           hover:bg-accent hover:text-accent-foreground;
-  }
-
-  .btn-ghost {
-    @apply hover:bg-accent hover:text-accent-foreground;
-  }
-
-  .btn-destructive {
-    @apply bg-destructive text-destructive-foreground
-           hover:bg-destructive/90;
-  }
-
-  /* Sizes */
-  .btn-sm { @apply h-8 px-3 text-xs; }
-  .btn-md { @apply h-10 px-4 text-sm; }
-  .btn-lg { @apply h-12 px-6 text-base; }
-}
-```
-
 ## Spacing Integration
 
 ```typescript
@@ -215,37 +169,4 @@ theme: {
 }
 ```
 
-## Dark Mode Toggle
-
-```typescript
-// Toggle dark mode
-function toggleDarkMode() {
-  document.documentElement.classList.toggle('dark')
-}
-
-// System preference
-if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-  document.documentElement.classList.add('dark')
-}
-```
-
-## shadcn/ui Alignment
-
-This configuration aligns with shadcn/ui conventions:
-
-- Same CSS variable naming
-- Same HSL format
-- Same color scale structure
-- Compatible with `npx shadcn@latest add` commands
-
-### Using with shadcn/ui
-
-```bash
-# Initialize (uses same token structure)
-npx shadcn@latest init
-
-# Add components (styled with these tokens)
-npx shadcn@latest add button card input
-```
-
-Components will automatically use your design system tokens.
+Component classes, library installation, and runtime theme switching belong to `asa-oju-ibanisoro`, which consumes this mapping.

@@ -46,19 +46,24 @@ Engineering, Design, Productivity, and Experimental are install groups, not rout
 | Research a question from primary sources into Markdown | `iwadi` | — |
 | Select, configure, use, or remove a companion tool | `irinse` | — |
 | Qualify and reconcile reusable learning as the task outcome | `pepeye` | lifecycle mode; use the `learn` phase |
-| Route an end-to-end visual request | `apere` | specialist route or built-in `logo`, `corporate identity program`, `icons`, `social graphics` |
-| Define or reconcile brand identity | `brand` | — |
+| Route broad, ambiguous, or multi-deliverable design work | `apere` | lightweight route packet |
+| Define brand identity, logos, corporate identity, or custom icon language | `brand` | — |
+| Create feed posts, carousels, stories, social templates, or social campaign variants | `social-graphics` | — |
 | Define tokens or component specifications | `eto-apere` | — |
-| Implement accessible React/web UI | `asa-oju-ibanisoro` | — |
+| Implement accessible React/web UI or product icons | `asa-oju-ibanisoro` | — |
 | Select evidence-backed UI/UX direction | `amoye-ui-ux` | — |
 | Design a constrained banner, cover, hero, or ad | `banner-design` | — |
-| Create an HTML presentation or pitch deck | `slides` | — |
+| Create a presentation or pitch deck | `slides` | — |
 
 Use `general` mode in `atunwo` for supplied or local candidates and `provider` mode for an active PR or MR. Default an unqualified code review to `broad`. Use `audit` only for requested behavior parity across a planned, in-progress, or completed stateful refactor or rewrite. Do not invent a mode that its owner does not define.
 
 ## Boundaries
 
 - Keep a directly selected artifact specialist primary when it fully owns the result.
+- Use `apere` only when the design owner is unclear, several design owners/deliverables are involved, or design-specific prerequisites, dependency order, shared constraints, or approval boundaries must be established. Its result is a route packet, not an artifact.
+- When an `apere` route packet contains several artifacts that must actually be produced and integrated, give that exact packet to `alaga` as the build job; `apere` does not absorb delivery lifecycle.
+- Keep the composable visual/UX direction result with `amoye-ui-ux`; keep canonical tokens, component specifications, generated configuration, and migrations with `eto-apere`. The calling workflow owns durable plan and report state.
+- Keep custom icon visual language with `brand` and product UI implementation with `asa-oju-ibanisoro`.
 - Keep `pare` read-only. It may label a `deep-clean candidate`, but only a delivery owner with explicit opt-in may delete that proof.
 - Keep project style, channel conventions, product truth, code conventions, accessibility conformance, localization, brand voice, and publishing with their direct owners; `technical-writing` owns the applicable structural and editorial pass.
 - Keep document evidence, technical truth, artifact facts, schema, authority, and acceptance with their direct owners; `yo-slop` follows `technical-writing` as a final prose pass and must preserve their contract.

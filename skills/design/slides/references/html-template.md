@@ -13,19 +13,16 @@ Complete HTML structure with navigation, tokens, and Chart.js integration.
     <title>Presentation Title</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
     <style>
-        /* Paste scripts/embed-tokens.cjs output here */
-        :root {
-            --color-primary: #FF6B6B;
-            --color-background: #0D0D0D;
-            /* ... more tokens */
-        }
+        /* Load the eto-apere token contract, or place the complete output from
+           embed-tokens.cjs --style before this block for standalone delivery.
+           The embedded output includes root tokens and theme overrides. */
 
         /* Base slide styles */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             background: var(--color-background);
-            color: #fff;
-            font-family: var(--typography-font-body, 'Inter', sans-serif);
+            color: var(--color-foreground);
+            font-family: var(--font-family-body);
             overflow: hidden;
         }
 
@@ -80,10 +77,10 @@ Complete HTML structure with navigation, tokens, and Chart.js integration.
         }
 
         /* Typography */
-        h1, h2 { font-family: var(--typography-font-heading, 'Space Grotesk', sans-serif); }
+        h1, h2 { font-family: var(--font-family-heading); }
         .slide-title {
             font-size: clamp(32px, 6vw, 80px);
-            background: var(--primitive-gradient-primary, linear-gradient(135deg, #FF6B6B, #FF8E53));
+            background: var(--gradient-primary);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             line-height: 1.1;
@@ -129,16 +126,16 @@ Complete HTML structure with navigation, tokens, and Chart.js integration.
             z-index: 1000;
         }
         .nav-btn {
-            background: rgba(255,255,255,0.1);
+            background: var(--color-surface-elevated);
             border: none;
-            color: #fff;
+            color: var(--color-foreground);
             width: 40px; height: 40px;
             border-radius: 50%;
             cursor: pointer;
             font-size: 18px;
         }
-        .nav-btn:hover { background: rgba(255,255,255,0.2); }
-        .slide-counter { color: rgba(255,255,255,0.6); font-size: 14px; }
+        .nav-btn:hover { background: var(--color-muted); }
+        .slide-counter { color: var(--color-foreground-muted); font-size: var(--font-size-sm); }
     </style>
 </head>
 <body>
@@ -276,7 +273,7 @@ new Chart(document.getElementById('revenueChart'), {
 
 ```html
 <div class="slide slide-with-bg" style="background-image: url('https://images.pexels.com/...')">
-    <div class="overlay" style="background: linear-gradient(135deg, rgba(13,13,13,0.9), rgba(13,13,13,0.7))"></div>
+    <div class="overlay" style="background: var(--gradient-glow)"></div>
     <div class="content" style="position: relative; z-index: 1;">
         <!-- Slide content -->
     </div>
@@ -290,6 +287,6 @@ new Chart(document.getElementById('revenueChart'), {
 | `--color-primary` | Brand primary (CTA, highlights) |
 | `--color-background` | Slide background |
 | `--color-secondary` | Secondary elements |
-| `--primitive-gradient-primary` | Title gradients |
-| `--typography-font-heading` | Headlines |
-| `--typography-font-body` | Body text |
+| `--gradient-primary` | Title gradients |
+| `--font-family-heading` | Headlines |
+| `--font-family-body` | Body text |

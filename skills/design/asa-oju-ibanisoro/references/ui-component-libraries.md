@@ -7,10 +7,11 @@ Use this reference when a React interface needs a component-library decision. Th
 Before creating or adding React components:
 
 1. Inspect `package.json`, lockfiles, `components.json`, imports, theme files, and existing component directories.
-2. If a library is already present, tell the user which one you found and ask whether to reuse it.
-3. If none is present, ask: **“Which UI component library should I use for this project?”**
-4. Offer the choices below plus **None — build custom components**. If the user delegates the choice, recommend one using the project stack, accessibility needs, ownership model, design-system fit, theming, performance, and maintenance horizon.
-5. Record the decision before implementation. Do not silently add a competing library or install packages without authorization.
+2. If the user already selected reuse, a named library, or custom components, record that choice and continue.
+3. Otherwise, if a library is already present, tell the user which one you found and ask whether to reuse it.
+4. If none is present and no choice was supplied, ask: **“Which UI component library should I use for this project?”**
+5. Offer the choices below plus **None — build custom components**. If the user delegates the choice, recommend one using the project stack, accessibility needs, ownership model, design-system fit, theming, performance, and maintenance horizon.
+6. Record the decision before implementation. Do not silently add a competing library or install packages without authorization.
 
 ## Library inventory
 

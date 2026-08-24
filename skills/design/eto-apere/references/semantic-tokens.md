@@ -11,6 +11,10 @@ Purpose-based aliases referencing primitive tokens.
   /* Page background */
   --color-background: var(--color-gray-50);
   --color-foreground: var(--color-gray-900);
+  --color-foreground-secondary: var(--color-gray-600);
+  --color-foreground-muted: var(--color-gray-500);
+  --color-surface: var(--color-white);
+  --color-surface-elevated: var(--color-gray-100);
 
   /* Card/surface background */
   --color-card: white;
@@ -21,6 +25,8 @@ Purpose-based aliases referencing primitive tokens.
   --color-popover-foreground: var(--color-gray-900);
 }
 ```
+
+Use generic semantic gradient and glow roles for consumers such as slide decks. Keep brand hues in primitives and map them through `--gradient-primary`, `--gradient-glow`, and `--shadow-glow-primary|secondary|accent` rather than hue-named component tokens.
 
 ### Primary
 

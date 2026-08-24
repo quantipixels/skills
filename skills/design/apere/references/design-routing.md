@@ -1,23 +1,25 @@
 # Design routing
 
-This repository exposes seven design skills. Use `apere` as the end-to-end owner when the request spans multiple deliverables; otherwise invoke the narrowest owner directly.
+Use `apere` only when a visual request is broad, ambiguous, spans multiple deliverables or owners, or needs design-specific prerequisites, dependency order, shared constraints, or approval boundaries. Otherwise invoke the narrowest owner directly.
 
 | User outcome | Primary skill |
 | --- | --- |
-| UI/UX direction, patterns, palettes, typography, or stack rules | `amoye-ui-ux` |
-| Brand voice, identity, assets, and consistency | `brand` |
-| Tokens, variables, component specs, or token migration | `eto-apere` |
-| UI implementation with Tailwind, shadcn/ui, or Radix | `asa-oju-ibanisoro` |
-| Social, ad, web hero, cover, or print banner | `banner-design` |
-| HTML presentation or pitch deck | `slides` |
-| End-to-end visual work, logos, icons, corporate identity, or social graphics | `apere` |
+| UI/UX direction, patterns, palettes, typography, one composable recommendation, or stack rules | `amoye-ui-ux` |
+| Brand voice, identity, logos, corporate identity, custom icon language, assets, and consistency | `brand` |
+| Feed posts, carousels, stories, reusable social templates, or multi-format social campaigns | `social-graphics` |
+| Tokens, variables, component specs, generated configuration, or design-system migration | `eto-apere` |
+| UI implementation with Tailwind, component primitives, or accessible product icons | `asa-oju-ibanisoro` |
+| Banner, cover, header, web hero, display ad, or print banner | `banner-design` |
+| Presentation or pitch deck | `slides` |
+| Multi-owner or ambiguous visual work needing a route packet | `apere` |
 
 ## Common routes
 
 - New product UI: `amoye-ui-ux` → `eto-apere` → `asa-oju-ibanisoro`.
 - Existing brand to code: `brand` → `eto-apere` → `asa-oju-ibanisoro`.
-- Social presence: `brand` + `banner-design`; add `apere` for logo or mockup concepts.
-- Brand identity package: `brand` → `apere` (logo/CIP modes) → `slides` if a presentation is needed.
-- Custom product icon set: `apere` (icon mode) + `eto-apere` when the icons must match product tokens.
+- Social presence: `social-graphics` for post/carousel/story/template systems, `banner-design` for cover/header/ad surfaces, and `brand` only when identity rules are missing or changing.
+- Brand identity package: `brand` owns logo and corporate identity assets; add `slides` only when a presentation is a separate requested outcome.
+- Custom product icon system: `brand` defines the visual language; `asa-oju-ibanisoro` implements it in product UI; add `eto-apere` only when token contracts are affected.
+- Multi-deliverable campaign or product launch: `apere` returns the owner/dependency route packet, then `alaga` owns actual integrated production when several artifacts must be delivered together.
 
 Keep one primary outcome owner. Add a supporting skill only when it owns a concrete dependency. Do not route pure backend or infrastructure work here.

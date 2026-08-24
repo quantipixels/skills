@@ -1,4 +1,3 @@
 interface:
   display_name: "Brand"
   short_description: "Define consistent brand voice and visual rules"
-  default_prompt: "Use $brand to define or review the brand system for this request."

@@ -69,19 +69,19 @@ def main():
         epilog="""
 Examples:
   # Search deliverables
-  python search.py "business card"
+  python3 search.py "business card"
 
   # Search specific domain
-  python search.py "luxury elegant" --domain style
+  python3 search.py "luxury elegant" --domain style
 
   # Generate CIP brief
-  python search.py "tech startup" --cip-brief -b "TechFlow"
+  python3 search.py "tech startup" --cip-brief -b "TechFlow"
 
   # Search all domains
-  python search.py "corporate professional" --all
+  python3 search.py "corporate professional" --all
 
   # JSON output
-  python search.py "vehicle branding" --json
+  python3 search.py "vehicle branding" --json
         """
     )
 

@@ -4,13 +4,13 @@ Use this reference for logo exploration, not final trademark clearance or produc
 
 ## Search the bundled logo data
 
-Resolve `<design-skill-root>` to this skill directory:
+Resolve `<brand-skill-root>` to this skill directory:
 
 ```bash
-python <design-skill-root>/scripts/logo/search.py "tech startup modern" --design-brief --brand-name "BrandName"
-python <design-skill-root>/scripts/logo/search.py "minimalist clean" --domain style
-python <design-skill-root>/scripts/logo/search.py "healthcare medical" --domain industry
-python <design-skill-root>/scripts/logo/search.py "professional blue" --domain color
+python3 <brand-skill-root>/scripts/logo/search.py "tech startup modern" --design-brief --brand-name "BrandName"
+python3 <brand-skill-root>/scripts/logo/search.py "minimalist clean" --domain style
+python3 <brand-skill-root>/scripts/logo/search.py "healthcare medical" --domain industry
+python3 <brand-skill-root>/scripts/logo/search.py "professional blue" --domain color
 ```
 
 Use the search result to write a brief containing audience, promise, personality, style, color direction, typography, symbol constraints, and prohibited treatments. Generate at least three distinct directions before selecting one.
