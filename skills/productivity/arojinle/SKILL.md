@@ -27,9 +27,17 @@ Before the first round, give `amose` the project identity and relevant terms, ru
 
 After each settled round under an active Atọ́nà plan, return one exact-current receipt to the plan owner with plan/receipt revisions, decision/tree identities, confirmed/deferred answers, open frontier/coverage, evidence identity/freshness, plan effect, blockers, and next action. The plan owner renders the decision view.
 
-Without an active Atọ́nà plan, give `html-artifact` the exact-current tree, confirmed/deferred answers, open frontier, evidence, and intended audience after the first settled round. Creating/updating this task's visual record is the only implied write. It does not authorize source or durable domain writes. Keep one artifact identity through later rounds and do not let representation add or reinterpret a decision.
+Without an active Atọ́nà plan, after the first settled round resolve one owner record through `akosile`:
 
-When the frontier is empty, present the complete decision set, remaining evidence gaps, and current active-plan link or standalone artifact for user confirmation. Do not persist a decision or declare shared understanding before confirmation. After confirmation, use `amose` to reconcile only confirmed domain terms/rules/decisions into authorized destinations and consume its readback. Then return a final receipt with confirmation identity and durable-record links to the active Atọ́nà owner, or give `html-artifact` the confirmed decisions and durable-record identities for the standalone view.
+```text
+owner: arojinle
+record_type: decision
+subject: <stable decision identity>
+```
+
+Keep the exact-current tree, confirmed/deferred answers, open frontier, evidence identity/freshness, next action, and confirmation state in that record. Update the record after each settled round, then give the exact record to `html-artifact` to create or refresh the same bundle's `index.html`. The record is the semantic source; the HTML is its human view and must not add or reinterpret a decision.
+
+When the frontier is empty, present the complete decision set, remaining evidence gaps, and current active-plan link or standalone artifact for user confirmation. Do not persist a decision into durable project knowledge or declare shared understanding before confirmation. After confirmation, use `amose` to reconcile only confirmed domain terms/rules/decisions into authorized destinations and consume its readback. Under an active Atọ́nà plan, return a final receipt with confirmation identity and durable-record links. For a standalone decision, update the decision record first with confirmation identity and durable-record links, then refresh its `index.html` from that exact revision.
 
 If a required specialist is unavailable, preserve the exact-current tree and report the missing result. Continue only branches that do not depend on it.
 

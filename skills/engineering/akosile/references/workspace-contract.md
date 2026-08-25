@@ -20,6 +20,19 @@ If Akọsílẹ̀ cannot be invoked, use these canonical paths directly. Do not 
 
 Global `~/.qp` storage is deferred. Do not add project registries, checkout resolution, global/project settings precedence, or automatic local-to-global migration until observed cross-project discovery or continuity failures justify that architecture.
 
+## Record-bundle slots
+
+Within an owner-record bundle, these relative slots are canonical when needed:
+
+```text
+record.md      semantic owner record
+index.html     optional human HTML projection
+receipts/      optional supporting-owner or checkpoint receipts
+evidence/      optional retained supporting evidence
+```
+
+Semantic skills may refer to `record.md`, `index.html`, `receipts/`, or `evidence/` relative to the resolved owner bundle without repeating `.qp/records/<owner>/<record-id>/`. These names describe bundle roles, not new workspace roots.
+
 ## Identity
 
 - Owner is the canonical ASCII skill `name`.

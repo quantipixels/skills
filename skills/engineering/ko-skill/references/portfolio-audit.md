@@ -33,6 +33,10 @@ Classify each skill's control shape as `lightweight` or `workflow` before judgin
 
 For every supporting relationship, compare the caller with the dependency owner. Confirm that the caller supplies inputs and consumes a result instead of repeating the dependency's procedure, resources, checks, statuses, output schema, or lifecycle derivation. Do not flag caller-owned integration, acceptance, freshness, authority, recovery, or stop gates, or an independently required safety contract.
 
+Check selector-facing descriptions and host metadata separately from body instructions. A selector description should advertise the skill's owned outcome, trigger, and boundaries, not name resolver or supporting skills merely to explain how the outcome is implemented. Supporting skill identifiers belong in the body at the first branch that actually needs their result. Routing skills are the exception when choosing another owner is itself their primary outcome.
+
+For any skill that creates a durable QP record or standalone QP artifact, verify that the body JIT-loads the workspace owner at the persistence boundary rather than making workspace mechanics part of selection metadata. Do not require persistence machinery for ephemeral, provider-native, Git-native, or ordinary user deliverables.
+
 ## Map ownership
 
 Map user outcomes to primary owners and explicit supporting relationships. Classify each relationship:
