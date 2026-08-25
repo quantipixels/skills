@@ -1,0 +1,3 @@
+interface:
+  display_name: "HITL Review"
+  short_description: "Guide one human through a multi-turn code review"

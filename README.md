@@ -69,6 +69,7 @@ Use alarina to choose the right QP skill for this request:
 | `amose` | Project terms, `CONTEXT.md`, domain rules, `.learnings`, `.nongoals`, or ADRs need clarification or reconciliation |
 | `atona` | Unclear feature, migration, or initiative work needs one exact-current plan through delivery and closure |
 | `atunwo` | `broad`, `defect-only`, or read-only refactor-parity `audit` is needed in `general` local/supplied or `provider` PR/MR mode; broad review consumes Pare `review` evidence |
+| `hitl-review` | One human needs a first-reader walkthrough, independent `atunwo` evidence, finding dispositions, and a final decision on one exact code candidate |
 | `irinse` | A companion engineering tool needs selection, setup, safe use, or removal |
 | `ko-skill` | Creates, revises, or validates one skill through one workflow; bounded portfolio audits remain read-only |
 | `pare` | Read-only `audit` or `review` finds material simplifications and classifies implementation, dependency, support-artifact, and test cleanup candidates |

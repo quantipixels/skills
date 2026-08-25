@@ -27,6 +27,7 @@ Engineering, Design, Productivity, and Experimental are install groups, not rout
 | Review bounded code for maintainability only | `pare` | `review`; add `atunwo` as provider adapter only for an active PR or MR |
 | Review bounded code for defects and maintainability | `atunwo` | `broad`; `general` or `provider` target |
 | Review bounded code only for defects | `atunwo` | `defect-only`; `general` or `provider` target |
+| Guide one human through a multi-turn code review and final decision | `hitl-review` | — |
 | Audit an entire repository for simplifications | `pare` | `audit` |
 | Identify unnecessary implementation, dependencies, configuration, support artifacts, or tests | `pare` | `audit` or `review` |
 | Implement an accepted bounded `pare` cleanup slice | `alaga` | `job`; deep test deletion also requires explicit opt-in |
@@ -69,7 +70,7 @@ Use `general` mode in `atunwo` for supplied or local candidates and `provider` m
 - Keep document evidence, technical truth, artifact facts, schema, authority, and acceptance with their direct owners. `yo-slop` follows the structural owner as a final cleanup or explicit prune pass and must preserve their contract.
 - Keep portable presentation-style reports with `html-artifact`; route requested slide decks to `slides`.
 - Use `atona` while an initiative plan remains active, `solution-architect` for technical architecture design or review, `arojinle` for one new or reopened material decision, and `atunwo` in `audit` scope before a stateful refactor that can change lifecycle behavior.
-- Keep PR or MR publication with `seda-pr`, monitoring with `wo-pr`, and review verdicts with `atunwo`.
+- Keep PR or MR publication with `seda-pr`, monitoring with `wo-pr`, independent review verdicts with `atunwo`, and human walkthroughs, dispositions, and review decisions with `hitl-review`.
 - When another skill owns a code-review outcome but lacks provider access, `atunwo` may support only candidate acquisition and a fixed adapter handoff; this grants no defect, verdict, publication, or provider authority to the owner.
 - Keep issue triage supplied-evidence-first. Repository reads, provider reads, and provider writes require their own authority.
 - Activate `pepeye` through explicit invocation or an authorized project or global baseline. While active, Pepeye owns playbook selection and task-level progression; Alárinà supplies current leaf routes, and every specialist retains its native outcome, procedure, proof, and authority gates.
