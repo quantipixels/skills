@@ -1,15 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""
-Stdlib-only regression tests for core.py / design_system.py (unittest, not
-pytest -- this project ships with zero external dependencies and the tests
-shouldn't add one).
-
-Run with:
-    python3 -m unittest discover -s scripts/tests -v
-or directly:
-    python3 scripts/tests/test_core.py
-"""
+"""Stdlib-only regression tests for the Amoye BM25 retrieval engine."""
 
 import sys
 import unittest
@@ -18,8 +9,7 @@ from pathlib import Path
 SCRIPTS_DIR = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(SCRIPTS_DIR))
 
-from core import BM25, detect_domain, search, search_stack, CSV_CONFIG, AVAILABLE_STACKS
-from design_system import DesignSystemGenerator
+from core import AVAILABLE_STACKS, BM25, CSV_CONFIG, detect_domain, search, search_stack
 
 
 class TestTokenizer(unittest.TestCase):
@@ -43,13 +33,9 @@ class TestTokenizer(unittest.TestCase):
 
 
 class TestSearchDomains(unittest.TestCase):
-    """Known query -> expected top-domain sanity checks (not exact-row pinning,
-    since data can grow; these assert the engine still finds *something*
-    relevant for each domain's core vocabulary)."""
-
     def test_ui_is_searchable_in_style_domain(self):
         result = search("ui minimalism", domain="style", max_results=1)
-        self.assertGreater(result["count"], 0, "literal 'ui' token must be searchable, not filtered by tokenizer")
+        self.assertGreater(result["count"], 0)
 
     def test_accessibility_query_hits_ux(self):
         result = search("accessibility contrast wcag keyboard", domain="ux", max_results=3)
@@ -84,7 +70,7 @@ class TestSearchDomains(unittest.TestCase):
         self.assertIn(result["error"]["code"], {"data_missing", "data_unreadable"})
 
     def test_every_configured_domain_file_exists_and_is_searchable(self):
-        for domain, config in CSV_CONFIG.items():
+        for domain in CSV_CONFIG:
             with self.subTest(domain=domain):
                 result = search("design", domain=domain, max_results=1)
                 self.assertNotIn("error", result, f"domain '{domain}' failed: {result.get('error')}")
@@ -104,26 +90,11 @@ class TestDomainDetection(unittest.TestCase):
         self.assertEqual(detect_domain("accessibility contrast wcag"), "ux")
 
     def test_ambiguous_query_returns_runner_up(self):
-        domain, runner_up = detect_domain("font pairing elegant crypto", return_scores=True)
+        domain, _runner_up = detect_domain("font pairing elegant crypto", return_scores=True)
         self.assertIsNotNone(domain)
-        # runner_up may be None if the winning domain has no close second --
-        # this just verifies the call shape works without raising.
 
     def test_empty_query_falls_back_to_style(self):
         self.assertEqual(detect_domain("...!!!???"), "style")
-
-
-class TestReasoningMatch(unittest.TestCase):
-    def test_known_category_matches_exactly(self):
-        gen = DesignSystemGenerator()
-        rule = gen._find_reasoning_rule("SaaS (General)")
-        self.assertTrue(rule, "exact-match category lookup should not fall through to fuzzy matching")
-
-    def test_unknown_category_falls_back_gracefully(self):
-        gen = DesignSystemGenerator()
-        rule = gen._find_reasoning_rule("Totally Unknown Category XYZ")
-        # Should not raise; may return {} which _apply_reasoning handles with defaults.
-        self.assertIsInstance(rule, dict)
 
 
 if __name__ == "__main__":

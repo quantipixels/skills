@@ -49,4 +49,4 @@ Settings may influence display text, aliases, provider mappings, or another expl
 
 A configured provider label affects only a later separately authorized provider write. Changing settings does not retroactively mutate records or external systems.
 
-Before updating settings, preserve the current digest and write only if it is still current. Do not overwrite malformed JSON; report the parse error and let consumers use their defaults where safe.
+Before updating settings, read the exact current file and build the complete candidate separately. Immediately before replacement, reread the file; if it changed, stop and reconcile instead of overwriting it. Do not overwrite malformed JSON; report the parse error and let consumers use their defaults where safe.

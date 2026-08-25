@@ -5,15 +5,15 @@ description: Recommend or review data-backed UI/UX direction for web and mobile 
 
 # Amọ̀ye Ojú Ìbánisọ̀rọ̀ àti Ìrírí Olùmúlò
 
-Provide evidence-backed design direction from the bundled searchable database. Use the validated local datasets as the inventory source instead of copying row counts into the contract.
+Provide evidence-backed design direction from the bundled searchable database. Use the validated local datasets as the inventory source and synthesize the retrieved evidence yourself; do not delegate design judgment to a second coded recommendation layer.
 
 ## Core workflow
 
 1. Inspect the project before recommending a stack. Check `package.json`, `pubspec.yaml`, `Package.swift` or Xcode projects, `composer.json`, and React Native markers. If no stack is detectable, ask or use `html-tailwind` only after stating the assumption.
-2. For a new page or project, run the design-system search first. Combine product type, industry, audience, tone, and density in the query.
+2. For a new page or project, search broadly across the relevant product, style, color, typography, landing, and UX domains, then narrow only where the evidence warrants it.
 3. Run focused searches only where needed: `product`, `style`, `color`, `typography`, `google-fonts`, `chart`, `ux`, `landing`, `icons`, `gsap`, `react`, or `web`.
 4. Run the matching stack search after the stack is known.
-5. Synthesize the returned recommendations into product pattern, visual style, semantic color roles, typography, density, layout rules, interaction behavior, implementation guidance, and a short anti-pattern list. Do not paste raw search output as a design and do not create the canonical token/component contract here.
+5. Reconcile the retrieved evidence into one coherent direction: product pattern, visual style, semantic color roles, typography, density, layout rules, interaction behavior, implementation guidance, and a short anti-pattern list. Resolve conflicts such as dark/light mode, accessibility, density, or motion from the actual request and evidence rather than from hard-coded heuristics. Do not paste raw search output as a design and do not create the canonical token/component contract here.
 6. Before native/mobile delivery, read `references/pro-rules.md`. Before web/desktop delivery, or when detailed UX rationale is needed, read `references/quick-reference.md`.
 
 When the recommendation will become React UI code, route implementation through `asa-oju-ibanisoro`. When the confirmed direction needs canonical tokens, component specifications, generated CSS/configuration, or migration, route that implementation contract through `eto-apere`.
@@ -23,12 +23,12 @@ When the recommendation will become React UI code, route implementation through 
 Resolve `<skill-root>` to this skill directory and use an absolute path when invoking scripts; never assume the project directory contains them:
 
 ```bash
-python3 <skill-root>/scripts/search.py "saas analytics dashboard accessible" --design-system -p "Ops Console"
+python3 <skill-root>/scripts/search.py "saas analytics dashboard accessible" --domain product --json
 python3 <skill-root>/scripts/search.py "keyboard focus loading" --domain ux
 python3 <skill-root>/scripts/search.py "streaming rerender bundle" --stack nextjs
 ```
 
-The command supports `--design-system`, `--variance 1-10`, `--motion 1-10`, `--density 1-10`, `--domain`, `--stack`, `-n`, and `--json`. Text output uses one Markdown representation; JSON exposes the same structured result for composition. The calling workflow owns any durable plan, report, design-system file, or page override. The result is confirmed visual/UX direction, not the canonical design-token or component-specification source, and this skill does not create a parallel state tree.
+The command supports `--domain`, `--stack`, `-n`, `--full`, and `--json`. Search returns evidence only; the calling workflow owns synthesis, durable state, and presentation.
 
 If a search returns no results, broaden the query once. If it is still empty, use the priority rules below and clearly say that the recommendation came from defaults, not a database match. Never fabricate a database result.
 
@@ -47,12 +47,12 @@ If a search returns no results, broaden the query once. If it is still empty, us
 
 ## Output contract
 
-For a design recommendation, return the selected product pattern, style, palette or semantic color roles, typography, effects, implementation stack, accessibility constraints, and anti-patterns. For a review, cite the violated rule, the affected UI behavior, and the smallest useful correction. Keep the database query, synthesized direction, and downstream implementation contract distinct.
+For a design recommendation, return the selected product pattern, style, palette or semantic color roles, typography, effects, implementation stack, accessibility constraints, and anti-patterns. For a review, cite the violated rule, the affected UI behavior, and the smallest useful correction. Keep database evidence, synthesized direction, and downstream implementation contract distinct.
 
 ## Resources
 
 - `references/quick-reference.md` — detailed UX rules and rationale.
 - `references/pro-rules.md` — final UI polish and accessibility checklist.
 - `data/` — searchable CSV knowledge base.
-- `scripts/search.py` — primary search and visual-direction generator.
+- `scripts/search.py` — BM25 domain/stack retrieval.
 - `scripts/validate_data.py` — CSV/schema validation.

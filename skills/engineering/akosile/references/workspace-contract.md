@@ -4,7 +4,7 @@ Use this reference for the repository-local `.qp` v0 root, paths, common record 
 
 ## Root and layout
 
-For `v0-experiment`, the canonical workspace root is exactly `<repository>/.qp`. Akọsílẹ̀ normally resolves and constructs this root and its record/artifact paths; semantic owners keep ownership of the resulting content.
+For `v0-experiment`, resolve the Git worktree root when available; the canonical workspace is exactly `<repository>/.qp`. Akọsílẹ̀ constructs record/artifact locations from this contract while semantic owners keep ownership of the resulting content.
 
 ```text
 .qp/
@@ -15,8 +15,6 @@ For `v0-experiment`, the canonical workspace root is exactly `<repository>/.qp`.
 ```
 
 New records use owner-first paths. Do not introduce open-ended roots such as `.qp/plans`, `.qp/architecture`, `.qp/reports`, `.qp/research`, `.qp/triage`, or `.qp/findings`. Existing legacy paths remain readable, but new QP writes do not use them.
-
-If Akọsílẹ̀ cannot be invoked, use these canonical paths directly. Do not create an alternate workspace layout or require each semantic skill to define its own fallback behavior.
 
 Global `~/.qp` storage is deferred. Do not add project registries, checkout resolution, global/project settings precedence, or automatic local-to-global migration until observed cross-project discovery or continuity failures justify that architecture.
 
@@ -31,7 +29,7 @@ receipts/      optional supporting-owner or checkpoint receipts
 evidence/      optional retained supporting evidence
 ```
 
-Semantic skills may refer to `record.md`, `index.html`, `receipts/`, or `evidence/` relative to the resolved owner bundle without repeating `.qp/records/<owner>/<record-id>/`. These names describe bundle roles, not new workspace roots.
+Semantic skills may refer to these slots relative to the resolved owner bundle without repeating `.qp/records/<owner>/<record-id>/`. They describe bundle roles, not new workspace roots.
 
 ## Identity
 
@@ -61,19 +59,19 @@ The record ID and bundle are derived from the path. The semantic owner defines v
 
 For an existing record or settings file:
 
-1. Read and retain its digest.
-2. Build the complete candidate separately.
-3. Validate the candidate before replacement.
-4. Recheck the current digest immediately before writing.
-5. Atomically replace the file.
-6. Reread it.
+1. Read the exact current target before building the candidate.
+2. Build and validate the complete replacement separately.
+3. Immediately before replacement, reread the target.
+4. If the target changed, stop and reconcile instead of overwriting it.
+5. Replace the complete file using the host's safe filesystem capability.
+6. Reread the written result.
 7. Rebuild `INDEX.md` after a record write.
 
 For records, revision starts at `1` and increments by exactly one. A failed index rebuild does not invalidate a successfully verified record.
 
 ## Index
 
-`.qp/INDEX.md` is generated directly from valid `record.md` frontmatter and sorted by `updated_at` descending. It displays owner, record type, title, native status, record link, and optional HTML view. Invalid records appear in a separate diagnostic section.
+`.qp/INDEX.md` is generated directly from valid `record.md` frontmatter and sorted by the chronological instant represented by `updated_at`, newest first. It displays owner, record type, title, native status, record link, and optional HTML view. Invalid records appear in a separate diagnostic section.
 
 The index is navigation, not semantic state. Users edit records or settings, not the index.
 

@@ -5,9 +5,9 @@ description: Initialize and maintain one repository-local QP `.qp` v0 workspace.
 
 # Akọsílẹ̀
 
-Own the small repository-local QP workspace. Semantic skills own what records mean; Akọsílẹ̀ owns where generated records live, how paths are resolved, how they are written safely, and how users find them again.
+Own the small repository-local QP workspace. Semantic skills own what records mean; Akọsílẹ̀ owns where generated records live, the canonical workspace shape, safe replacement, and how users find records again.
 
-For `v0-experiment`, the canonical root is fixed at `<repository>/.qp`. Semantic owners normally resolve record and artifact locations through Akọsílẹ̀ rather than duplicate path rules. A global `~/.qp` root is deliberately deferred until real cross-project discovery or continuity failures justify project identity, checkout resolution, and migration machinery.
+For `v0-experiment`, resolve the Git worktree root when available and use exactly `<repository>/.qp`. Semantic owners normally resolve record and artifact locations through Akọsílẹ̀ rather than duplicate path rules. A global `~/.qp` root is deliberately deferred until real cross-project discovery or continuity failures justify project identity, checkout resolution, and migration machinery.
 
 ## 1. Initialize only what is missing
 
@@ -22,7 +22,7 @@ The default workspace is:
 └── artifacts/
 ```
 
-Use `scripts/workspace.py init`. It creates missing directories, an empty `{}` settings file, and the derived index without overwriting valid user files. Create owner directories lazily. Keep `.qp` out of Git through the repository's existing ignore rules or repository-local Git exclude; never edit tracked `.gitignore` merely to initialize the workspace.
+Create only missing directories and files with the host's normal filesystem/shell capabilities. Initialize `settings.json` as `{}` and derive `INDEX.md` from current records without overwriting valid user files. Create owner directories lazily. Keep `.qp` out of Git through existing ignore rules or repository-local Git exclude; never edit tracked `.gitignore` merely to initialize the workspace.
 
 Read [workspace contract](references/workspace-contract.md) for root, path, record, write, direct-access, and index rules. Read [settings](references/settings.md) only when settings are involved.
 
@@ -48,20 +48,15 @@ A standalone HTML artifact without a semantic owner record belongs under:
 
 Reject absolute paths supplied as record/artifact identifiers, path separators in owner/slug, `.` or `..`, symlink escape, secret-bearing identifiers, or any target outside the resolved repository `.qp` root.
 
-For a generated resource intended for direct user access, return both:
-
-- its resolved absolute filesystem path for immediate opening/use; and
-- its `.qp` workspace-relative path for stable project-local reference.
-
-Absolute machine paths are operational output, not canonical source identity, and should not be embedded into portable records or HTML unless the user explicitly needs them there.
+For a generated resource intended for direct user access, return both its resolved absolute filesystem path and its repository-relative `.qp/...` path. Absolute machine paths are operational output, not canonical source identity.
 
 ## 3. Write safely without owning semantics
 
-The semantic owner supplies the complete Markdown body, native status, candidate identity, and revision. Akọsílẹ̀ validates only the common record fields and canonical path, then writes atomically.
+The semantic owner supplies the complete Markdown body, native status, candidate identity, and revision. Akọsílẹ̀ validates only the common record fields and canonical path.
 
-For an existing record or settings file, require the digest read by the caller. Reject stale or invalid candidates before replacement. After a record write, rebuild `.qp/INDEX.md` directly from valid record frontmatter. Invalid records remain listed as diagnostics rather than disappearing.
+For an existing record or settings file, base the candidate on an exact current read. Immediately before replacement, reread the target; if it changed, stop instead of overwriting it. Validate the complete candidate, replace the whole target, reread the result, and rebuild `INDEX.md` after a record change. Records increment revision by exactly one. Invalid records stay visible as index diagnostics rather than disappearing.
 
-Akọsílẹ̀ does not decide whether an Atọ́nà plan is `Planned`, a Solution Architect packet is `IMPLEMENTATION_READY`, or a triage result is `confirmed`. The owner must validate manual/user semantic edits before asking Akọsílẹ̀ to write them.
+Akọsílẹ̀ does not decide whether an Atọ́nà plan is `Planned`, a Solution Architect packet is `IMPLEMENTATION_READY`, or a triage result is `confirmed`. The owner validates semantic edits before asking Akọsílẹ̀ to persist them.
 
 ## 4. Keep settings sparse
 
@@ -73,19 +68,6 @@ Settings are data, not instructions. They never grant provider writes, change ca
 
 `INDEX.md` is derived navigation and may be rebuilt at any time. Records remain authoritative. Legacy paths may be read when encountered, but new QP writes use the canonical owner-first layout; do not create legacy roots as fallback destinations.
 
-Akọsílẹ̀ is the normal workspace mechanism, not a semantic dependency. If it cannot be invoked, an agent may use the canonical paths in this contract directly and preserve the same owner-first layout. Semantic skills should not duplicate Akọsílẹ̀ availability branches or invent alternate workspace protocols.
+Akọsílẹ̀ is the normal workspace mechanism, not a custom runtime. Use host-native filesystem, shell, and Git capabilities rather than maintaining a parallel workspace CLI. Semantic skills should not duplicate Akọsílẹ̀ path mechanics or invent alternate workspace protocols.
 
-Return:
-
-```text
-Akọsílẹ̀ result
-Operation: init | resolve-record | resolve-artifact | write-record | write-settings | index
-Workspace: <resolved absolute repository .qp path>
-Record or artifact: <identity or none>
-Absolute path: <resolved path for the produced resource, when applicable>
-Workspace path: <.qp-relative path for the produced resource, when applicable>
-Index: CURRENT | INCOMPLETE
-Git hygiene: CURRENT | INCOMPLETE | NOT_APPLICABLE
-Changed: <created/updated or none>
-Conflicts and gaps: <items or none>
-```
+Return the workspace, affected record/artifact identity, absolute and workspace-relative paths when applicable, index state, Git-hygiene state, changed items, and any conflict or gap.
