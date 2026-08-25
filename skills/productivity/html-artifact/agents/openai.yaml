@@ -1,3 +1,3 @@
 interface:
   display_name: "HTML Artifact"
-  short_description: "Visualize supplied results as portable HTML"
+  short_description: "Project supplied records and results as selective HTML"

@@ -1,101 +1,135 @@
 ---
 name: atona
-description: Maintain one exact-current initiative plan from unclear intent through delivery and closure. Use when a feature, migration, or material workstream needs exploration, shaping, lifecycle-plan readiness, coordinated handoffs, proof, and final reconciliation. Exclude technical architecture design or review, complete decision interviews, implementation, and generic routing.
+description: Maintain one exact-current initiative plan and its continuously available HTML view from early Draft through delivery and closure. Use when a feature, migration, or material workstream needs exploration, shaping, lifecycle-plan readiness, coordinated handoffs, proof, and final reconciliation. Exclude technical architecture design or review, complete decision interviews, implementation, workspace infrastructure, and generic routing.
 ---
 
 # Atọ́nà
 
-Turn unclear intent into one live initiative plan and keep that plan current through delivery and closure. Own lifecycle-plan sufficiency, not every specialist judgment. Keep technical architecture with `solution-architect`, material decision closure with `arojinle`, implementation with delivery owners, and route selection with `alarina`.
+Turn unclear intent into one live initiative plan. Maintain one exact-current Markdown semantic source and one continuously available HTML human view from the first meaningful `Draft` through `Closed`.
 
-When an answer, fact, or confirmed decision changes, reopen every affected decision and phase; mark its proof and candidate evidence stale; and record the affected code, tests, schema, configuration, naming, and documentation. Rerun affected readiness and closure checks before restoring state.
+Own plan meaning and lifecycle sufficiency. Keep technical architecture with `solution-architect`, material decision closure with `arojinle`, implementation with delivery owners, `.qp` root/path mechanics with `akosile`, and route selection with `alarina`.
 
-## 1. Establish the plan and evidence
+When a confirmed decision or material fact changes, reopen affected decisions/phases, mark dependent proof stale, record affected implementation/documentation/projection surfaces, and rerun affected readiness or closure checks.
 
-Use `html-artifact` to create or update `.qp/plans/<topic>.html`. Invoking `atona` authorizes only this task-local HTML plan and, if its owner becomes unavailable, non-user-facing recovery checkpoints under `.qp/plans/.receipts/<plan-stem>/`, unless the user says `propose`, `read-only`, or `do not edit`. Source, ADR, ticket provider, publication, and other durable writes keep their own authority gates.
+## 1. Establish the plan and its human view
 
-Keep the HTML file as the one human-facing plan. Lead with a review sheet, current status, decisions, blockers, and the next action. Keep evidence and detailed contributions behind stable links and progressive disclosure. Do not create a Markdown twin.
+For every material Atọ́nà initiative, maintain one semantic Markdown record. Use [the plan record template](templates/plan-record.md) as a semantic contract, not a rigid outline.
 
-If `html-artifact` is unavailable or the plan cannot be created, updated, reread, or verified safely, keep the plan in `Draft`, report the required-skill or artifact gap, and do not claim `Planned` or `Closed`.
+When `akosile` is available, resolve or create the record with:
 
-Record the request, desired outcome, scope, constraints, non-goals, plan status, decision and receipt ledger, delivery summary, evidence cutoff, and next action.
+```text
+owner: atona
+record_type: initiative-plan
+subject: <stable initiative identity>
+```
 
-Track one plan status:
+Atọ́nà owns the record body, revision, native status, delivery summary, decisions, projection brief, and whether a user edit is semantically valid. Akọsílẹ̀ owns only root/path resolution, safe writes, direct-access paths, and index reconciliation.
+
+After the first record write, immediately ask `html-artifact` to create `index.html` in the same owner-record bundle. Do not wait for `Planned`. The early HTML should make current understanding, unresolved decisions, evidence gaps, and next action readable even while the plan remains incomplete.
+
+Every accepted plan-record revision must represent a material user-facing plan change and must be followed by HTML regeneration from that exact revision. Keep raw receipts or evidence with their native owners when they do not change plan meaning; do not increment the plan record merely to mirror operational noise.
+
+If Akọsílẹ̀ is unavailable, return the semantic plan inline or use an exact caller-supplied path and report workspace integration unavailable. If HTML generation fails, keep the Markdown record current, mark the human view `INCOMPLETE` or `STALE`, and do not claim a current accessible handoff.
+
+## 2. Adapt the projection to lifecycle state
+
+Keep one stable plan identity and `index.html` path, but allow the information direction, tone, density, layout, and governing representation to change when status changes.
+
+| Status | Reader need | HTML direction |
+| --- | --- | --- |
+| `Draft` | Understand the problem, current shape, unknowns, and next decisions | Exploratory and candid. Lead with outcome, current understanding, open decisions, assumptions, gaps, and next question/action. Use a decision tree, gap/readiness map, or evolving scope model when useful. Do not imply delivery progress. |
+| `Planned` | Know exactly what is approved to start and how success will be proved | Decisive and execution-ready. Lead with accepted outcome, scope/non-goals, phase/dependency map, owners, acceptance/proof, risks, migration/rollback, and start condition. Demote resolved exploration history. |
+| `In Progress` | See current delivery state, exceptions, blockers, and next action | Operational and exception-led. Lead with delivery summary, current phase/candidates, completed/active/blocked work, deviations, stale evidence, decisions needed, and next action. Link detailed job mechanics and logs. |
+| `Backlog` | Understand why work is inactive and what would reactivate it | Compact and dormant. Lead with retained outcome/value, reason paused, owner, trigger, review condition, stale assumptions, and source links. |
+| `Closed` | Verify the outcome, proof, residual limits, and retained record | Assurance and outcome-led. Lead with what became true, acceptance/proof, final decisions, residual risks/deferrals, operational/documentation state, and durable source links. |
+
+Preserve stable identity, source revision/status disclosure, and useful anchors across stages. Do not preserve one layout merely for visual continuity when the reader's job has changed. Conversely, do not redesign for decoration: a stage change should alter information direction only where it improves comprehension or action.
+
+Update the record's `HTML projection` brief on each material revision, especially at every lifecycle transition. `html-artifact` renders that supplied direction without changing plan meaning.
+
+## 3. Maintain lifecycle state
+
+Track one status:
 
 | Status | Enter when | Leave when |
 | --- | --- | --- |
-| `Draft` | planning begins, a material decision or readiness gap opens, or a closed plan is amended | all readiness gates pass (`Planned`), or active scope is deferred as inventory (`Backlog`) |
-| `Planned` | the readiness gate passes and delivery has not started | authorized delivery work begins (`In Progress`), a material gap opens (`Draft`), or no delivery is required and closure passes (`Closed`) |
-| `In Progress` | authorized delivery work is active | a material planning gap opens (`Draft`), or delivery and closure pass (`Closed`) |
-| `Backlog` | the plan is retained as inactive inventory with an owner and reactivation trigger | active work resumes (`Draft`) |
-| `Closed` | every in-scope planning, delivery, and reconciliation obligation is complete | a material amendment opens (`Draft`) |
+| `Draft` | planning begins, a material decision/readiness gap opens, or a closed plan is amended | readiness passes (`Planned`) or inactive inventory is retained (`Backlog`) |
+| `Planned` | the complete plan is startable and delivery has not begun | delivery starts (`In Progress`), a material gap opens (`Draft`), or closure passes with no delivery (`Closed`) |
+| `In Progress` | authorized delivery is active | a material planning gap opens (`Draft`) or delivery and closure pass (`Closed`) |
+| `Backlog` | inactive inventory has an owner and reactivation trigger | active planning resumes (`Draft`) |
+| `Closed` | all in-scope planning, delivery, and reconciliation obligations are complete | a material amendment opens (`Draft`) |
 
-The status is `atona`'s judgment. A ticket, job, review, provider, or delivery-summary value does not set it.
+The status is Atọ́nà's judgment. Tickets, jobs, reviews, providers, settings labels, workspace indexes, and HTML cannot set it.
 
 Derive one delivery summary from exact-current owner receipts:
 
-- `Not required` — the accepted plan needs no delivery work.
-- `Not started` — delivery is required, but no authorized owner has started an exact candidate.
-- `Active` — at least one authorized delivery candidate is active and none blocks the complete plan.
-- `Blocked` — a current blocker prevents all safe progress needed for the plan.
-- `Complete` — every in-scope candidate and phase has current accepting proof.
-- `Stale` — changed evidence or identity invalidates a result used by the summary.
+- `Not required` — accepted plan needs no delivery work.
+- `Not started` — delivery is required but no candidate has started.
+- `Active` — authorized candidates are active and none blocks all safe progress.
+- `Blocked` — a current blocker prevents all required safe progress.
+- `Complete` — every in-scope candidate and phase has accepting proof.
+- `Stale` — changed evidence or identity invalidates a used result.
 
-The delivery summary is a plan view, not another state machine. Recompute it from receipts after every relevant candidate, result, blocker, dependency, or evidence change.
+Recompute after every relevant candidate, result, blocker, dependency, or evidence change.
 
-Inspect the evidence needed to prove the current system: relevant parts of root `.learnings`, the complete root `.nongoals` when present, overview, architecture and ADR documents, code, tests, history, integrations, recovery paths, and branch state. When the requested direction conflicts with `.nongoals`, require an `amose` result that records an authorized one-time exception or boundary update before planning past the conflict.
+## 4. Shape and prove readiness
 
-When a substantial independent evidence result, specialist gate, or failure-focused readiness challenge would materially help, `atona` may request it from a host-provided subagent. Give it the live-plan identity, bounded scope, current evidence, known gaps, and required result. `atona` retains plan state, evidence freshness, readiness judgment, delivery-summary derivation, and closure.
+Pin outcome, affected capabilities, scope, constraints, assumptions, non-goals, evidence, risks, and open decisions. Read relevant `.learnings`, complete `.nongoals`, architecture/ADRs, code, tests, history, integrations, and recovery paths. When the direction conflicts with `.nongoals`, require an authorized `amose` exception or boundary update.
 
-Use `arojinle` for a new or reopened material user decision.
+Use `arojinle` for new or reopened material user decisions. Reuse a confirmed result only while its plan/topic, scope/tree revision, evidence/candidate identity, and unresolved branches remain current.
 
-Reuse a confirmed `arojinle` result only while its identity remains current: plan and topic, scope and tree revisions, decision identifiers, evidence or candidate identity, confirmation date, and unresolved branches. Its coverage must contain no open, silently waiting, blocking-deferred, or stale branch. Otherwise, keep the plan in `Draft`. Plan edits alone do not satisfy readiness.
+Use `amose` for material project knowledge, `irinse` for bounded structural/flow evidence, `iwadi` for decision-changing primary-source research, and `solution-architect` when technical design/review is material.
 
-Use `amose` when project knowledge materially affects the initiative. Treat its exact-current result as evidence, not decision authority; use `arojinle` for a material decision it exposes.
+Give Solution Architect the plan record reference/revision, exact candidate, outcomes, constraints, accepted decisions, evidence, required scenarios, and result contract. Record only its record reference/revision, native result, material risks/proof, freshness, and affected phases. Do not copy its packet into the plan.
 
-When bounded structural, call-flow, data-flow, or impact evidence would close a plan gap, request an exact-current `irinse` result. Treat tool output as investigation evidence.
+Supporting skills return compact receipts with:
 
-Classify each durable conclusion as an architecture decision, project knowledge, ordinary documentation, local convention, or plan-only information. Keep ordinary documentation with the outcome owner. Reconcile all exact-current `arojinle` results for the plan once through `amose`; any change to the plan, result set, evidence, or delivery candidate makes that reconciliation stale. `atona` retains readiness and closure judgment.
+- caller record/revision and supporting record/candidate/result;
+- plan effect;
+- evidence identity, gaps, and freshness;
+- affected decisions/phases/proof; and
+- blocker, next owner, required authority, and completion condition.
 
-Keep the plan in `Draft` while a material project-knowledge conflict is unresolved or a required `amose` result is missing, blocked, or stale.
+Keep detailed research, architecture, tickets, reviews, logs, and job mechanics with their native owners. Link them instead of copying them.
 
-Record evidence or a gap for every decision-shaping claim. Confirm or defer every plan-changing uncertainty. Every deferral records an owner and re-entry trigger. A durable deferral also records its reason, next evidence, relative priority, review or close date, and default disposition if that date passes. Reconcile the required record immediately when its basis changes. A blocking deferral keeps the plan in `Draft`; a non-blocking deferral must not force material invention.
+Before `Planned`:
 
-## 2. Explore, shape, and verify readiness
+1. Re-read the exact plan as its implementer.
+2. Verify every required specialist result against the exact plan/candidate. Require current `solution-architect: IMPLEMENTATION_READY` when architecture is material.
+3. Treat coverage as an index, not proof; trace the top credible failure mechanisms and interactions.
+4. Resolve every blocking decision, dependency, recovery, migration, proof, documentation, and operational gap.
+5. Write the `Planned` revision and regenerate the execution-ready HTML view from it.
 
-Pin the desired outcome, affected people and capabilities, scope, constraints, assumptions, non-goals, evidence, risks, and open decisions. Identify which specialist results the plan needs. Do not invoke a specialist when current evidence already closes its boundary.
+Set `Planned` only when implementation needs no invented material requirement. Do not report the transition as an accessible handoff until its HTML is current.
 
-Use `solution-architect` when technical design or architecture review is material. Give it the plan identity, exact candidate, outcomes, constraints, accepted decisions, evidence, required scenarios, and required result. Record its packet identity, result, recommendation, risks, proof, evidence freshness, and affected phases. Do not copy or recreate its design method.
+## 5. Track delivery
 
-Use `iwadi` for decision-changing primary-source research that needs a durable report. Use `amose` for exact-current domain knowledge and durable decision records. Treat each specialist result as evidence within its native authority.
+When tickets, multiple candidates, dependencies, implementers, multi-session handoff, or delivery authority apply, read [delivery tracking](references/delivery-tracking.md). It owns ticket integration, delivery handoffs, receipt reconciliation, and completion proof. Atọ́nà retains plan identity, integration, delivery-summary derivation, and closure.
 
-`atona` alone changes shared plan meaning, status, readiness, staleness, integration, delivery summary, and closure. Supporting skills do not mutate the plan. Each returns one exact-current receipt with:
+After a material receipt changes plan meaning, update the semantic record first and regenerate HTML from the new revision. Keep non-plan-affecting receipt detail outside the plan record.
 
-- the plan identity and revision, owner, receipt identity, and receipt revision;
-- the exact decision, packet, candidate, ticket set, report, or provider target;
-- the owner's native result and the result's effect on the plan;
-- the evidence identity, cutoff, gaps, and `CURRENT` or `STALE` freshness;
-- blockers and affected decisions, phases, proof, or summaries; and
-- the next owner, required authority, and checkable completion condition.
+## 6. Verify the human view proportionately
 
-Keep raw research, ADRs, domain records, ticket-provider state, review evidence, operational checkpoints, and job-local mechanics with their native owners. Link them from the receipt instead of copying them into the plan. A supporting skill may use a non-user-facing recovery checkpoint under `.qp/plans/.receipts/<plan-stem>/` only when the active plan owner is unavailable; validate and reconcile or reject it when ownership resumes. When a receipt becomes stale, reopen only the plan content that depends on it and reject downstream completion claims until refreshed.
+Run structural checks after every HTML refresh.
 
-Before setting the plan to `Planned`, and after final `arojinle` confirmation, run one readiness gate:
+Run full browser proof for:
 
-1. Re-read the plan as its implementer. Check intent and acceptance; scope and non-goals; required specialist results; ownership and precedence; behavior and risk; failure and recovery; compatibility and migration; delivery, proof, rollback, documentation, operations, and final acceptance.
-2. Treat specialist results as inputs, not plan proof. Verify each result against the exact plan and candidate. When technical architecture is material, require an exact-current `solution-architect: IMPLEMENTATION_READY` result. Verify that confirmed decisions are realized or marked not applicable, overlaps have precedence, delivery authorities are ordered, and acceptance detects the top failures.
-3. Treat coverage as an index. Resolve plan-local gaps without repeating the interview. Assume the outcome failed, trace the top mechanisms and interactions, and record each retained mechanism, correction or proof, gap, residual risk, and plan identity.
-4. Apply corrections. `arojinle` owns each new material user decision. Record readiness as `Confirmed` with evidence, `Deferred` with its required record, or `Open` with the required decision or proof.
+- the first meaningful `Draft` render;
+- every lifecycle transition whose direction/layout changes;
+- the `Planned` execution-ready handoff;
+- `Closed`; and
+- any formal publication or review gate requiring current proof.
 
-Set the plan to `Planned` only when the composed plan covers all in-scope ownership and behavior and the implementer needs no invented material requirement. Otherwise, keep it in `Draft`. This includes an open, pending, stale, contradictory, or missing gate; a waiting prerequisite; a blocking deferral; missing evidence or decision; or an invalid required specialist result. Approval covers only listed decisions.
+Within one status, reuse current browser proof for semantic updates when the presentation contract remains unchanged. Run targeted checks when sections, visuals, controls, tables, language/direction, responsive form, dependency delivery, or material wrapping risk changes.
 
-## 3. Track authorized delivery
+The HTML may be temporarily stale without invalidating the semantic record, but every user-visible Atọ́nà handoff must disclose record/projection revisions and presentation state. Return the HTML absolute path and `.qp` workspace path first; return the Markdown record path as the semantic source.
 
-When the user requests tickets, the plan has multiple delivery candidates, dependencies, implementers, or a multi-session handoff, or delivery authority is granted, read [delivery-tracking.md](references/delivery-tracking.md). It owns ticket integration, delivery-owner handoffs, receipt reconciliation, and exact-current completion proof. `atona` retains plan identity, readiness, integration, delivery-summary derivation, and closure.
+## 7. Reconcile and close
 
-## 4. Reconcile and close
+Before `Closed`, verify no blocking decision remains; delivery/review match the candidate; proof gaps and deferrals are explicit; freezes hold; and no material obsolete guidance remains.
 
-Before `Closed`, verify no blocking decision remains; delivery and review match the candidate; validation and proof gaps are recorded; deferrals carry their required records; follow-ups are classified as blocking or non-blocking; freezes and `leave unchanged` decisions hold; and no unresolved item, stale name, replaced or deprecated primitive, outdated guidance, or test without replacement remains.
+For affected `.learnings`, `.nongoals`, or ADRs, require one exact-current `amose` result. For ordinary documentation, require `updated now`, `already reconciled` with evidence, or `not applicable`.
 
-For each affected `.learnings`, `.nongoals`, or ADR destination, verify one exact-current `amose` result rather than repeating its discovery. For ordinary documentation, require the owning delivery skill to record `updated now`, `already reconciled` with evidence, or `not applicable`. Do not leave obsolete guidance current.
+Update the plan record with final receipts and only material semantic history. Generate the `Closed` outcome/assurance view from that exact revision and require applicable current browser proof. If rendering fails, keep semantic plan state current and report the accessible closure view as incomplete.
 
-Before every user-visible handoff, align the plan status and derived delivery summary with remaining work, then apply [suggested-direction.md](references/suggested-direction.md). Do not start its next action without the required authority.
+Before every user-visible handoff, align plan status, delivery summary, record/projection revisions, freshness, remaining work, and next action, then apply [suggested direction](references/suggested-direction.md).
