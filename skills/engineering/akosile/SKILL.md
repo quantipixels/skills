@@ -7,7 +7,7 @@ description: Initialize and maintain one repository-local QP `.qp` v0 workspace.
 
 Own the small repository-local QP workspace. Semantic skills own what records mean; Akọsílẹ̀ owns where generated records live, how paths are resolved, how they are written safely, and how users find them again.
 
-For `v0-experiment`, the canonical root is fixed at `<repository>/.qp`. Semantic owners must request record or artifact locations from Akọsílẹ̀ rather than construct `.qp` paths themselves. A global `~/.qp` root is deliberately deferred until real cross-project discovery or continuity failures justify project identity, checkout resolution, and migration machinery.
+For `v0-experiment`, the canonical root is fixed at `<repository>/.qp`. Semantic owners normally resolve record and artifact locations through Akọsílẹ̀ rather than duplicate path rules. A global `~/.qp` root is deliberately deferred until real cross-project discovery or continuity failures justify project identity, checkout resolution, and migration machinery.
 
 ## 1. Initialize only what is missing
 
@@ -69,11 +69,11 @@ Akọsílẹ̀ does not decide whether an Atọ́nà plan is `Planned`, a Soluti
 
 Settings are data, not instructions. They never grant provider writes, change canonical semantic IDs or transitions, override evidence/safety requirements, replace project knowledge, or change the v0 workspace root.
 
-## 5. Repair and degrade safely
+## 5. Keep one workspace protocol
 
-`INDEX.md` is derived navigation and may be rebuilt at any time. Records remain authoritative. Legacy paths may be discovered by their native owner, but Akọsílẹ̀ does not move or reinterpret them automatically.
+`INDEX.md` is derived navigation and may be rebuilt at any time. Records remain authoritative. Legacy paths may be read when encountered, but new QP writes use the canonical owner-first layout; do not create legacy roots as fallback destinations.
 
-If Akọsílẹ̀ is unavailable, the semantic owner may return its result inline or use an exact caller-supplied path. Report workspace integration as unavailable rather than duplicating this protocol.
+Akọsílẹ̀ is the normal workspace mechanism, not a semantic dependency. If it cannot be invoked, an agent may use the canonical paths in this contract directly and preserve the same owner-first layout. Semantic skills should not duplicate Akọsílẹ̀ availability branches or invent alternate workspace protocols.
 
 Return:
 

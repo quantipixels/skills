@@ -33,6 +33,4 @@ When the frontier is empty, present the complete decision set, remaining evidenc
 
 If a required specialist is unavailable, preserve the exact-current tree and report the missing result. Continue only branches that do not depend on it.
 
-If an active plan owner becomes unavailable, use `akosile` when available to write a non-user-facing receipt under the active plan record bundle's `receipts/` directory. The checkpoint carries the pinned caller envelope, complete tree, freshness, and resume condition and is not an integrated plan result. When the owner returns, give it the checkpoint for plan-revision/candidate validation and let Atọ́nà reconcile or reject it.
-
-If Akọsílẹ̀ is unavailable, the legacy recovery path `.qp/plans/.receipts/<plan-stem>/<receipt-id>.json` remains a compatibility fallback only; report workspace integration as unavailable and stop every branch that requires plan integration. Do not claim durable reconciliation, an integrated plan view, or a complete standalone visual record unless the user explicitly accepts the reduced outcome.
+If work under an active Atọ́nà plan must pause before integration, keep a non-user-facing checkpoint receipt in the active plan bundle's `receipts/` directory with the pinned caller envelope, complete tree, freshness, and resume condition. On resume, Atọ́nà validates the checkpoint against the current plan revision and reconciles or rejects it.

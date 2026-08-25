@@ -15,7 +15,7 @@ When a confirmed decision or material fact changes, reopen affected decisions/ph
 
 For every material Atọ́nà initiative, maintain one semantic Markdown record. Use [the plan record template](templates/plan-record.md) as a semantic contract, not a rigid outline.
 
-When `akosile` is available, resolve or create the record with:
+Resolve or create the record through `akosile`:
 
 ```text
 owner: atona
@@ -23,13 +23,13 @@ record_type: initiative-plan
 subject: <stable initiative identity>
 ```
 
-Atọ́nà owns the record body, revision, native status, delivery summary, decisions, projection brief, and whether a user edit is semantically valid. Akọsílẹ̀ owns only root/path resolution, safe writes, direct-access paths, and index reconciliation.
+Atọ́nà owns the record body, revision, native status, delivery summary, decisions, projection brief, and whether a user edit is semantically valid. Akọsílẹ̀ owns root/path resolution, safe writes, direct-access paths, and index reconciliation.
 
 After the first record write, immediately ask `html-artifact` to create `index.html` in the same owner-record bundle. Do not wait for `Planned`. The early HTML should make current understanding, unresolved decisions, evidence gaps, and next action readable even while the plan remains incomplete.
 
 Every accepted plan-record revision must represent a material user-facing plan change and must be followed by HTML regeneration from that exact revision. Keep raw receipts or evidence with their native owners when they do not change plan meaning; do not increment the plan record merely to mirror operational noise.
 
-If Akọsílẹ̀ is unavailable, return the semantic plan inline or use an exact caller-supplied path and report workspace integration unavailable. If HTML generation fails, keep the Markdown record current, mark the human view `INCOMPLETE` or `STALE`, and do not claim a current accessible handoff.
+If HTML generation fails, keep the Markdown record current, mark the human view `INCOMPLETE` or `STALE`, and do not claim a current accessible handoff.
 
 ## 2. Adapt the projection to lifecycle state
 

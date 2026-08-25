@@ -4,7 +4,7 @@ Use this reference for the repository-local `.qp` v0 root, paths, common record 
 
 ## Root and layout
 
-For `v0-experiment`, the canonical workspace root is exactly `<repository>/.qp`. Akọsílẹ̀ is the only QP owner that resolves or constructs this root and its record/artifact paths. Other skills request a path from Akọsílẹ̀ and keep semantic ownership of the resulting content.
+For `v0-experiment`, the canonical workspace root is exactly `<repository>/.qp`. Akọsílẹ̀ normally resolves and constructs this root and its record/artifact paths; semantic owners keep ownership of the resulting content.
 
 ```text
 .qp/
@@ -14,7 +14,9 @@ For `v0-experiment`, the canonical workspace root is exactly `<repository>/.qp`.
 └── artifacts/<artifact-id>/
 ```
 
-New records use owner-first paths. Do not introduce open-ended roots such as `.qp/plans`, `.qp/architecture`, `.qp/reports`, or `.qp/findings`. Existing legacy paths remain readable until their semantic owner chooses to replace them.
+New records use owner-first paths. Do not introduce open-ended roots such as `.qp/plans`, `.qp/architecture`, `.qp/reports`, `.qp/research`, `.qp/triage`, or `.qp/findings`. Existing legacy paths remain readable, but new QP writes do not use them.
+
+If Akọsílẹ̀ cannot be invoked, use these canonical paths directly. Do not create an alternate workspace layout or require each semantic skill to define its own fallback behavior.
 
 Global `~/.qp` storage is deferred. Do not add project registries, checkout resolution, global/project settings precedence, or automatic local-to-global migration until observed cross-project discovery or continuity failures justify that architecture.
 
@@ -64,7 +66,7 @@ The index is navigation, not semantic state. Users edit records or settings, not
 
 ## Direct user access
 
-When a resource is produced for direct user consumption, Akọsílẹ̀ returns both:
+When a resource is produced for direct user consumption, return both:
 
 ```text
 Absolute path: <resolved absolute filesystem path>

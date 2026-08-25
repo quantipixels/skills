@@ -73,7 +73,7 @@ The five classifications above remain canonical. Use a configured display label 
 
 ## 5. Persist material triage
 
-Persist when analysis is material, needs handoff/recovery, or the user requests it. When `akosile` is available, resolve:
+Persist when analysis is material, needs handoff/recovery, or the user requests it. Resolve through `akosile`:
 
 ```text
 owner: se-triage
@@ -81,9 +81,7 @@ record_type: triage
 subject: <stable provider issue or report identity>
 ```
 
-The record contains target identity, granted authorities, neutral summary, canonical classification/action, established and contrary evidence, open decision-relevant questions, provider receipts, limitations, and reopen condition. Ṣe Triage owns those semantics; Akọsílẹ̀ owns path and safe write mechanics.
-
-When Akọsílẹ̀ is unavailable, existing `.qp/triage/<YYYYMMDD-HHMM>-<topic>.md` behavior remains a compatibility fallback, or return inline. Read a matching current record before continuing and reopen settled points only when new evidence conflicts.
+The record contains target identity, granted authorities, neutral summary, canonical classification/action, established and contrary evidence, open decision-relevant questions, provider receipts, limitations, and reopen condition. Ṣe Triage owns those semantics; Akọsílẹ̀ owns path and safe write mechanics. Read a matching current record before continuing and reopen settled points only when new evidence conflicts.
 
 ## 6. Optionally publish one comment
 

@@ -11,7 +11,7 @@ Do not style-dump the source. Preserve material meaning, exact obligations, evid
 
 ## 1. Establish the projection contract
 
-Use the exact projection path supplied by an owner record. For a standalone artifact, use the requested path or ask `akosile` for a bounded repository-local `.qp/artifacts/` bundle. Do not construct the `.qp` root or artifact path independently. If Akọsílẹ̀ is unavailable, return the artifact inline or use an exact caller-supplied path and report workspace integration unavailable.
+Use the exact projection path supplied by an owner record. For a standalone artifact, use the requested path or resolve a bounded repository-local `.qp/artifacts/` bundle through `akosile`.
 
 When an owner record is supplied, read it first and pin its path, owner, record type, title, revision, status, updated time, candidate when present, `Resume`, linked records/evidence, and projection brief. If record and HTML disagree, the record wins.
 
@@ -81,7 +81,7 @@ For the applicable scope, check wide/narrow views, first-viewport obligations, o
 For every generated artifact intended for direct user access, return first:
 
 ```text
-Absolute path: <Akọsílẹ̀-resolved filesystem path>
+Absolute path: <resolved filesystem path>
 Workspace path: <repository-relative .qp/... path>
 ```
 

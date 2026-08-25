@@ -19,7 +19,7 @@ Derive the few drivers that can change the design. Express each as a concrete no
 
 A material `design` result uses a canonical Markdown record when it feeds an active Atọ́nà plan or implementation, spans sessions/owners, needs handoff/recovery, or becomes an HTML projection. Small standalone consultation may remain inline.
 
-When `akosile` is available, resolve or create:
+Resolve material records through `akosile`:
 
 ```text
 owner: solution-architect
@@ -27,7 +27,7 @@ record_type: architecture
 subject: <stable architecture identity>
 ```
 
-Solution Architect owns the record body, revision, native result, technical validity, and material history. Use Akọsílẹ̀ only for path allocation, stale-write protection, and index reconciliation. In read-only `review`, do not create/update a record unless the user or active caller already authorizes that workspace result.
+Solution Architect owns the record body, revision, native result, technical validity, and material history. Akọsílẹ̀ owns path allocation, stale-write protection, and index reconciliation. In read-only `review`, do not create/update a record unless the user or active caller already authorizes that workspace result.
 
 ## 2. Research only decision-changing unknowns
 
