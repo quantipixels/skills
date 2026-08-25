@@ -107,13 +107,7 @@ def make_provider(args: argparse.Namespace):
     return GitLabProvider(host=host or "gitlab.com", repository=repository, trusted_hosts=set(args.trusted_gitlab_host))
 
 
-def _state_directory(cwd: Path) -> Path:
-    top = subprocess.run(["git", "rev-parse", "--show-toplevel"], cwd=cwd, check=False, capture_output=True, text=True)
-    if top.returncode == 0:
-        root = Path(top.stdout.strip())
-        ignored = subprocess.run(["git", "check-ignore", "-q", ".qp"], cwd=root, check=False)
-        if ignored.returncode == 0 and os.access(root, os.W_OK):
-            return root / ".qp" / "state" / "wo-pr"
+def _state_directory(_cwd: Path) -> Path:
     base = Path(os.environ.get("XDG_STATE_HOME", Path.home() / ".local" / "state"))
     return base / "qp" / "wo-pr"
 

@@ -9,7 +9,7 @@ import os
 import re
 import subprocess
 import tempfile
-from datetime import datetime
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
@@ -23,14 +23,29 @@ def digest(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
+def repository_root(repo: Path) -> Path:
+    """Resolve a path inside a Git repository to its worktree root."""
+    resolved = repo.resolve()
+    try:
+        result = subprocess.run(
+            ["git", "-C", str(resolved), "rev-parse", "--show-toplevel"],
+            check=True,
+            capture_output=True,
+            text=True,
+        )
+    except (OSError, subprocess.CalledProcessError):
+        return resolved
+    return Path(result.stdout.strip()).resolve()
+
+
 def workspace_root(repo: Path) -> Path:
     """Resolve the canonical v0 workspace root. Keep root mechanics here, not in semantic skills."""
-    return repo.resolve() / ".qp"
+    return repository_root(repo) / ".qp"
 
 
 def workspace_path(repo: Path, path: Path) -> str:
     """Return the stable repository-relative path used for user/project references."""
-    return str(path.resolve(strict=False).relative_to(repo.resolve()))
+    return str(path.resolve(strict=False).relative_to(repository_root(repo)))
 
 
 def resource_paths(repo: Path, path: Path) -> dict[str, str]:
@@ -56,6 +71,17 @@ def safe_slug(value: str) -> str:
     if not SLUG_RE.fullmatch(value):
         raise ValueError(f"invalid slug: {value!r}")
     return value
+
+
+def parse_updated_at(value: str) -> datetime:
+    """Parse a record timestamp and normalize it to a comparable UTC instant."""
+    try:
+        parsed = datetime.fromisoformat(value)
+    except ValueError as error:
+        raise ValueError("updated_at must be an offset-aware ISO-8601 timestamp") from error
+    if parsed.tzinfo is None or parsed.utcoffset() is None:
+        raise ValueError("updated_at must be an offset-aware ISO-8601 timestamp")
+    return parsed.astimezone(timezone.utc)
 
 
 def atomic_text(path: Path, content: str) -> None:
@@ -93,6 +119,7 @@ def frontmatter(path: Path) -> dict[str, str]:
 
 
 def ensure_git_exclude(repo: Path) -> str:
+    repo = repository_root(repo)
     try:
         ignored = subprocess.run(
             ["git", "-C", str(repo), "check-ignore", "-q", ".qp"],
@@ -244,6 +271,11 @@ def validate_record_text(repo: Path, logical_path: Path, text: str) -> dict[str,
         expected = workspace_root(repo) / "records" / owner / record_id / "record.md"
         if logical_path.resolve(strict=False) != expected.resolve(strict=False):
             errors.append(f"path must be {expected}")
+    if meta.get("updated_at"):
+        try:
+            parse_updated_at(meta["updated_at"])
+        except ValueError as error:
+            errors.append(str(error))
     try:
         if int(meta.get("revision", "0")) < 1:
             errors.append("revision must be >= 1")
@@ -298,7 +330,7 @@ def render_index(rows: list[dict[str, str | None]], invalid: list[dict[str, Any]
         "| Updated | Owner | Type | Title | Status | Record | View |",
         "|---|---|---|---|---|---|---|",
     ]
-    for row in sorted(rows, key=lambda item: item["updated_at"] or "", reverse=True):
+    for row in sorted(rows, key=lambda item: parse_updated_at(item["updated_at"] or ""), reverse=True):
         view = f"[HTML]({row['view']})" if row["view"] else "—"
         lines.append(
             f"| {cell(row['updated_at'])} | `{cell(row['owner'])}` | {cell(row['record_type'])} | "
@@ -370,6 +402,9 @@ def write_settings(repo: Path, candidate: Path, expected_digest: str | None) -> 
         raise ValueError("expected digest is required for existing settings")
     if expected_digest != current_digest:
         raise ValueError("stale settings digest")
+    prewrite_digest = digest(target) if target.exists() else None
+    if prewrite_digest != current_digest:
+        raise ValueError("settings changed concurrently")
     atomic_text(target, raw if raw.endswith("\n") else raw + "\n")
     return {"settings": str(target), "digest": digest(target), **resource_paths(repo, target)}
 
