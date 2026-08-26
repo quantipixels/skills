@@ -1,0 +1,5 @@
+interface:
+  display_name: "Akọ̀wé Java"
+  short_description: "Expert Java 17–26 language and JDK guidance"
+policy:
+  allow_implicit_invocation: false

@@ -124,6 +124,7 @@ Experimental skills must be selected explicitly. Stable skills may recommend the
 
 | Skill | Use when |
 | --- | --- |
+| `akowe-java` | Java 17–26 implementation, review, or refactoring needs experimental expert language and JDK guidance through 105 progressively disclosed rules |
 | `dogfood` | One branch, PR, or candidate needs real-browser functional and experiential verification of its changed user journeys |
 | `ideate` | A grounded opportunity needs several materially different possibilities generated, challenged, and reduced before selection |
 | `pepeye` | A task needs provider-neutral lifecycle control across playbooks, leaf owners, proof, pause/pickup, and learning |

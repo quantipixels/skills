@@ -58,6 +58,7 @@ Experimental skills are opt-in and cannot silently replace a stable owner. When 
 
 | Explicit experimental outcome | Skill |
 | --- | --- |
+| Apply expert Java/JDK guidance while writing, reviewing, or refactoring Java | `akowe-java` |
 | Drive a task through QP playbooks, proof, pause/pickup, and learning | `pepeye` |
 | Establish why one reproducible or directly observed failure occurs | `root-cause` |
 | Generate and challenge several grounded possibilities before selection | `ideate` |
@@ -67,6 +68,7 @@ Experimental skills are opt-in and cannot silently replace a stable owner. When 
 ## Boundaries
 
 - `akosile` owns repository-local `.qp` paths, safe writes, sparse settings, and index rebuilding. Semantic owners retain record meaning, native state, evidence, and provider authority. Global `~/.qp` lifecycle state remains with its existing owner.
+- `akowe-java` is experimental and explicit-only. It supplies framework-neutral Java language/JDK guidance; stable implementation/review owners remain complete without it, and framework/domain owners may specialize its defaults.
 - Keep a directly selected artifact specialist primary when it fully owns the result. Use `apere` only when owner selection or cross-deliverable coordination is itself needed.
 - `alaga` owns integrated production of several routed deliverables; `apere` does not absorb delivery lifecycle.
 - Keep `pare` read-only. Only a delivery owner with required authority executes accepted cleanup.
