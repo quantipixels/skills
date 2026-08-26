@@ -68,6 +68,8 @@ Match freedom and precision to risk: use judgment for variable work, constrained
 
 Keep universally required behavior in `SKILL.md`; put branch-specific material behind a direct reference that names the exact branch that loads it. Give an ordered step a checkable completion criterion when later work could pull the agent forward too early. Use an example when it replaces prose or prevents material error, a script only for an accepted deterministic seam, and an asset only when output uses it. Preserve one ordered workflow when sequence matters.
 
+When the candidate is a broad researched knowledge catalogue, language/platform guide, or standards corpus, read [researched knowledge catalogues](references/knowledge-catalogues.md) before choosing its representation, evidence boundary, version policy, and proof.
+
 Treat the environment as a source of truth. Point to discoverable commands, configuration, schemas, paths, and metadata instead of caching them in prose; document only the convention, reason, or failure mode the environment does not encode. Keep rationale only when it changes judgment or makes a non-obvious guardrail generalize.
 
 Merge rules with the same behavioral effect. Keep a second representation only for a distinct decision, authority, safety, recovery, verification, or owner boundary. Remove rationale, history, generic advice, and reference-owned procedure. Word count measures change, not quality.
