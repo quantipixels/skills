@@ -43,22 +43,12 @@ jobs:
       - name: Validate skill package
         run: python3 skills/engineering/ko-skill/scripts/validate-package.py --repo .
 
-  seda-pr-tests:
-    name: seda-pr provider tests
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Test seda-pr provider helper
-        run: python3 -m unittest discover -s skills/engineering/seda-pr/scripts -p 'test_*.py'
-
   wo-pr-tests:
-    name: wo-pr provider tests
+    name: wo-pr snapshot tests
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Test wo-pr provider adapters
+      - name: Test wo-pr fact normalization
         run: python3 -m unittest discover -s skills/engineering/wo-pr/scripts -p 'test_*.py'
