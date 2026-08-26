@@ -1,0 +1,5 @@
+interface:
+  display_name: "Eewo Pattern Guards"
+  short_description: "Curate local known-bad patterns and task guard packs"
+policy:
+  allow_implicit_invocation: false

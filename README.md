@@ -8,24 +8,28 @@ Browse the [QP Agent Skills documentation](https://quantipixels.com/skills).
 
 ## Portfolio shape
 
-- Akọsílẹ̀ owns the repository-local `.qp` workspace: root/path resolution, owner-first paths, safe writes, sparse settings, and one generated index. Semantic owners retain record meaning, native states, evidence, and provider authority.
+- Akọsílẹ̀ owns the QP `.qp` workspace protocol: repository-local state by default and explicitly requested personal state when a semantic owner needs cross-project continuity. It owns root/path resolution, owner-first paths, safe writes, sparse settings, and generated indexes; semantic owners retain record meaning, native states, evidence, precedence, and provider authority.
 - Solution Architect owns technical architecture design/read-only review. Atọ́nà owns initiative planning through delivery and closure.
 - Every material Atọ́nà initiative has one continuously maintained HTML human view from early `Draft` through `Closed`; lifecycle transitions may change its focus, tone, density, layout, and governing representation.
 - Supporting skills keep detailed results with their native owners and return compact receipts to an active plan.
 - `html-artifact` derives reader-specific views from owner records and linked evidence instead of copying complete source material.
 - Generated `.qp` records, projections, receipts, and evidence stay outside Git by default.
 
-## Repository-local workspace
+## QP workspaces
+
+Repository-local state uses:
 
 ```text
-.qp/
+<repository>/.qp/
 ├── settings.json
 ├── INDEX.md
 ├── records/<canonical-skill-name>/<record-id>/
 └── artifacts/<artifact-id>/
 ```
 
-`settings.json` contains sparse, skill-documented preferences. `INDEX.md` is rebuilt from record frontmatter; records remain authoritative. For generated resources intended for direct use, Akọsílẹ̀ returns both the resolved absolute path and the repository-relative `.qp/...` path.
+An explicitly requested personal/cross-project workspace uses the same shape at `${QP_HOME:-~/.qp}`. Personal and repository scopes remain independent; no QP workflow automatically copies or publishes one into the other.
+
+`settings.json` contains sparse, skill-documented preferences. `INDEX.md` is rebuilt from record frontmatter; records remain authoritative. For generated resources intended for direct use, Akọsílẹ̀ returns the resolved absolute path, workspace scope, and scope-relative path.
 
 ## Install
 
@@ -70,7 +74,7 @@ Use alarina to choose the right QP skill for this request:
 
 | Skill | Use when |
 | --- | --- |
-| `akosile` | Repository-local `.qp` setup, owner-record/artifact paths, safe writes, settings, index rebuilding, or workspace repair is the task |
+| `akosile` | Repository or explicitly requested personal `.qp` setup, owner-record/artifact paths, safe writes, settings, index rebuilding, or workspace repair is the task |
 | `alaga` | `test-first` handles one bounded feature/fix; `job` handles a supplied build job through integration, proof, and review |
 | `amose` | Project terms, `CONTEXT.md`, `.learnings`, `.nongoals`, or ADRs need clarification/reconciliation |
 | `atona` | Unclear feature, migration, or initiative work needs one exact-current plan and accessible HTML view through delivery/closure |
@@ -124,6 +128,7 @@ Experimental skills must be selected explicitly. Stable skills may recommend the
 | Skill | Use when |
 | --- | --- |
 | `dogfood` | One branch, PR, or candidate needs real-browser functional and experiential verification of its changed user journeys |
+| `eewo` | Known-bad coding patterns should be learned locally, resolved into a small task guard pack, or sanitized for optional contribution without making local learning depend on upstream publication |
 | `ideate` | A grounded opportunity needs several materially different possibilities generated, challenged, and reduced before selection |
 | `pepeye` | A task needs provider-neutral lifecycle control across playbooks, leaf owners, proof, pause/pickup, and learning |
 | `prototype` | One consequential interaction, flow, interface, API, or message needs a disposable artifact to settle how it should work or feel |

@@ -14,7 +14,7 @@ When Pepeye mode is active, supply its exact-current leaf-owner route without se
 | Starting outcome | Primary skill | Mode |
 | --- | --- | --- |
 | Select the shortest QP route | `alarina` | — |
-| Initialize/repair `.qp`, allocate records/artifacts, safely write settings/records, or rebuild its index | `akosile` | — |
+| Initialize/repair a repository or explicit personal `.qp`, allocate records/artifacts, safely write settings/records, or rebuild its index | `akosile` | — |
 | Clarify project terms, rules, knowledge, or decisions | `amose` | — |
 | Resolve one material product/plan/design decision | `arojinle` | — |
 | Deliver one bounded feature/fix test-first | `alaga` | `test-first` |
@@ -62,10 +62,11 @@ Experimental skills are opt-in and cannot silently replace a stable owner. When 
 | Generate and challenge several grounded possibilities before selection | `ideate` |
 | Build a disposable artifact to settle one experiential decision | `prototype` |
 | Exercise changed user journeys in a real browser | `dogfood` |
+| Curate local known-bad coding patterns, resolve a scoped guard pack, or prepare a sanitized rule contribution | `eewo` |
 
 ## Boundaries
 
-- `akosile` owns repository-local `.qp` paths, safe writes, sparse settings, and index rebuilding. Semantic owners retain record meaning, native state, evidence, and provider authority. Global `~/.qp` lifecycle state remains with its existing owner.
+- `akosile` owns repository and explicitly requested personal QP workspace paths, safe writes, sparse settings, and index rebuilding. Semantic owners retain record meaning, native state, evidence, source precedence, and provider authority.
 - Keep a directly selected artifact specialist primary when it fully owns the result. Use `apere` only when owner selection or cross-deliverable coordination is itself needed.
 - `alaga` owns integrated production of several routed deliverables; `apere` does not absorb delivery lifecycle.
 - Keep `pare` read-only. Only a delivery owner with required authority executes accepted cleanup.
@@ -73,6 +74,7 @@ Experimental skills are opt-in and cannot silently replace a stable owner. When 
 - Use `atona` for an active initiative plan, `solution-architect` for technical architecture, `arojinle` for a new or reopened material decision, and `atunwo audit` before a stateful refactor that can change lifecycle behavior.
 - Keep PR/MR publication with `seda-pr`, monitoring with `wo-pr`, and review verdicts with `atunwo`.
 - Keep issue triage supplied-evidence-first. Repository/provider reads and writes need their own authority; settings mappings never authorize provider mutation.
+- `eewo` is experimental: it may supply a pinned guard pack to implementation/review, but it does not implement code, issue a review verdict, change project knowledge, or publish its local records. Stable owners remain complete without it.
 - Do not use an Experimental skill to narrow, remove, or impersonate a stable owner. Experiments may consume stable results and return bounded receipts at their own boundary.
 
 Check the active inventory before returning a route. If the correct owner is unavailable, name it without substituting another skill. Ask one focused question only when the answer selects a materially different owner or mode. Report primary skill, mode, concise reason, necessary support, and whether explicit acceptance is still required.
