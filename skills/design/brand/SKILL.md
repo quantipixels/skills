@@ -22,12 +22,13 @@ Own the project’s human-readable brand source of truth and its identity assets
 Resolve `<brand-skill-root>` to this skill directory. Keep scripts only for deterministic identity-data search and asset-contract validation:
 
 ```bash
-python3 <brand-skill-root>/scripts/logo/search.py "technology geometric minimal"
-python3 <brand-skill-root>/scripts/cip/search.py "professional services premium"
+python3 <brand-skill-root>/scripts/search.py "technology geometric minimal" --kind logo --domain style
+python3 <brand-skill-root>/scripts/search.py "professional services premium" --kind cip --all --json
+python3 <brand-skill-root>/scripts/search.py "rounded optical" --kind icon
 node <brand-skill-root>/scripts/validate-asset.cjs assets/logo.svg --json
 ```
 
-Read the human-readable brand guidelines directly rather than maintaining a second parser-generated prompt/context representation. Use the host’s image-analysis capability or an installed image tool to inspect bitmap palettes, then compare the result with the current guidelines. Confirm exact source and target paths before a handoff. Do not claim token synchronization until `eto-apere` returns validated output and readback.
+The search helper returns ranked source rows only. It does not generate a logo brief, corporate-identity brief, palette, recommendation, or approval result; synthesize those from the current task, guidance, and retrieved evidence. Read the human-readable brand guidelines directly rather than maintaining a second parser-generated context representation. Use the host’s image-analysis capability or an installed image tool to inspect bitmap palettes, then compare the result with the current guidelines. Confirm exact source and target paths before a handoff. Do not claim token synchronization until `eto-apere` returns validated output and readback.
 
 ## Project conventions
 

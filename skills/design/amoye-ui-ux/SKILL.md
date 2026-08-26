@@ -5,7 +5,7 @@ description: Recommend or review data-backed UI/UX direction for web and mobile 
 
 # Amọ̀ye Ojú Ìbánisọ̀rọ̀ àti Ìrírí Olùmúlò
 
-Provide evidence-backed design direction from the bundled searchable database. Use the validated local datasets as the inventory source and synthesize the retrieved evidence yourself; do not delegate design judgment to a second coded recommendation layer.
+Provide evidence-backed design direction from the bundled searchable database. Use the validated local datasets as the inventory source and synthesize the retrieved evidence yourself; do not delegate design judgment to a coded recommendation layer.
 
 ## Core workflow
 
@@ -28,7 +28,7 @@ python3 <skill-root>/scripts/search.py "keyboard focus loading" --domain ux
 python3 <skill-root>/scripts/search.py "streaming rerender bundle" --stack nextjs
 ```
 
-The command supports `--domain`, `--stack`, `-n`, `--full`, and `--json`. Search returns evidence only; the calling workflow owns synthesis, durable state, and presentation.
+The command supports `--domain`, `--stack`, `-n`, `--full`, and `--json`. It uses the standard-library SQLite full-text engine when available and a small deterministic token fallback otherwise. Search returns ranked source rows only; the calling workflow owns synthesis, durable state, and presentation.
 
 If a search returns no results, broaden the query once. If it is still empty, use the priority rules below and clearly say that the recommendation came from defaults, not a database match. Never fabricate a database result.
 
@@ -54,5 +54,5 @@ For a design recommendation, return the selected product pattern, style, palette
 - `references/quick-reference.md` — detailed UX rules and rationale.
 - `references/pro-rules.md` — final UI polish and accessibility checklist.
 - `data/` — searchable CSV knowledge base.
-- `scripts/search.py` — BM25 domain/stack retrieval.
+- `scripts/search.py` — bounded domain/stack retrieval that returns source rows.
 - `scripts/validate_data.py` — CSV/schema validation.

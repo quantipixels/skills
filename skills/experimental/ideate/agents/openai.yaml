@@ -1,0 +1,5 @@
+interface:
+  display_name: "Ideate"
+  short_description: "Generate and challenge grounded possibilities"
+policy:
+  allow_implicit_invocation: false

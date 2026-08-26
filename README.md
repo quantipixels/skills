@@ -119,11 +119,15 @@ For multi-deliverable production, `apere` returns the route packet and `alaga` o
 
 ## Experimental skills
 
-Experimental skills must be selected explicitly.
+Experimental skills must be selected explicitly. Stable skills may recommend them but do not depend on them.
 
 | Skill | Use when |
 | --- | --- |
+| `dogfood` | One branch, PR, or candidate needs real-browser functional and experiential verification of its changed user journeys |
+| `ideate` | A grounded opportunity needs several materially different possibilities generated, challenged, and reduced before selection |
 | `pepeye` | A task needs provider-neutral lifecycle control across playbooks, leaf owners, proof, pause/pickup, and learning |
+| `prototype` | One consequential interaction, flow, interface, API, or message needs a disposable artifact to settle how it should work or feel |
+| `root-cause` | One reproducible or directly observed failure needs a complete causal chain rather than issue triage or implementation |
 
 ## Optional agent instructions
 
