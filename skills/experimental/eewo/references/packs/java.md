@@ -10,7 +10,7 @@ These are high-confidence seeds, not a general Java architecture manual.
 - Do not: use `Optional.get()` as an implicit assertion that a value exists.
 - Failure mechanism: `get()` throws `NoSuchElementException` when empty; the JDK API explicitly prefers `orElseThrow()` when an exception is intended.
 - Safe paths: `map`/`flatMap`, `orElse`/`orElseGet`, explicit `orElseThrow`, or a locally proven presence check where that control flow is clearer.
-- Source: Java SE 25 `Optional` API documentation.
+- Source: Java SE 25 `Optional`: <https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/util/Optional.html>.
 
 ## `java.stream.stateful-side-effects`
 
@@ -20,7 +20,7 @@ These are high-confidence seeds, not a general Java architecture manual.
 - Do not: mutate shared accumulators or encode required behavior in `map`, `filter`, `peek`, or similar side effects.
 - Failure mechanism: the JDK gives limited guarantees for side-effect visibility, thread affinity, invocation, and ordering; parallel execution can make mutable accumulators incorrect.
 - Safe paths: reductions, collectors, `toList`, or an explicit imperative loop when side effects are the real operation.
-- Source: Java SE 25 `java.util.stream` package documentation.
+- Source: Java SE 25 `java.util.stream`: <https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/util/stream/package-summary.html>.
 
 ## `java.thread.stop`
 
@@ -30,8 +30,8 @@ These are high-confidence seeds, not a general Java architecture manual.
 - Do not: use `Thread.stop()` or recreate its asynchronous-kill semantics.
 - Failure mechanism: the JDK documents `Thread.stop()` as inherently unsafe because monitors can be released while protected objects are inconsistent; the method is deprecated for removal.
 - Safe paths: cooperative cancellation with state/interrupts or the structured cancellation mechanism appropriate to the executor/task abstraction.
-- Source: Java SE 25 `Thread` API and thread primitive deprecation documentation.
+- Source: Java SE 25 `Thread`: <https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/lang/Thread.html> and thread primitive deprecation guidance <https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/lang/doc-files/threadPrimitiveDeprecation.html>.
 
 ## Mining note
 
-Use `jvmskills.com` to discover focused JVM failure domains such as Hibernate/JPA, Spring, jOOQ, Gradle, testing, and migration. Validate proposed rules against the owning project/vendor documentation before activation.
+Use <https://jvmskills.com/> to discover focused JVM failure domains such as Hibernate/JPA, Spring, jOOQ, Gradle, testing, and migration. Validate proposed rules against the owning project/vendor documentation before activation.

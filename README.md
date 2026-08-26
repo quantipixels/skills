@@ -27,7 +27,7 @@ Repository-local state uses:
 └── artifacts/<artifact-id>/
 ```
 
-An explicitly requested personal/cross-project workspace uses the same shape at `${QP_HOME:-~/.qp}`. Personal and repository scopes remain independent; no QP workflow automatically copies or publishes one into the other.
+An explicitly requested personal/cross-project workspace uses the same shape at `${QP_HOME:-$HOME/.qp}`. Personal and repository scopes remain independent; no QP workflow automatically copies or publishes one into the other.
 
 `settings.json` contains sparse, skill-documented preferences. `INDEX.md` is rebuilt from record frontmatter; records remain authoritative. For generated resources intended for direct use, Akọsílẹ̀ returns the resolved absolute path, workspace scope, and scope-relative path.
 

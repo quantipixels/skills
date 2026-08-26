@@ -10,9 +10,9 @@ Own the small QP workspace protocol. Semantic skills own what records mean; Ak�
 Pin the workspace scope before a write:
 
 - `repository` — default when a repository-local owner record or artifact is requested; root is exactly `<git-worktree>/.qp`.
-- `personal` — use only when the user or semantic owner explicitly requests personal/cross-project QP state; root is `${QP_HOME:-~/.qp}`.
+- `personal` — use only when the user or semantic owner explicitly requests personal/cross-project QP state; root is `${QP_HOME:-$HOME/.qp}`.
 
-Never infer personal read/write authority from the existence of `~/.qp`, and never copy or migrate records between scopes automatically.
+Never infer personal read/write authority from the existence of `$HOME/.qp`, and never copy or migrate records between scopes automatically.
 
 ## 1. Initialize only what is missing
 

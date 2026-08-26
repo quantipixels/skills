@@ -8,10 +8,10 @@ Use `akosile` for both local scopes:
 
 ```text
 repository: <git-worktree>/.qp/
-personal:   ${QP_HOME:-~/.qp}/
+personal:   ${QP_HOME:-$HOME/.qp}/
 ```
 
-Repository scope is private generated state for one checkout/project. Personal scope is user-owned cross-project state and must be requested explicitly by `eewo` or the user; the mere existence of `~/.qp` does not authorize reading or writing it.
+Repository scope is private generated state for one checkout/project. Personal scope is user-owned cross-project state and must be requested explicitly by `eewo` or the user; the mere existence of `$HOME/.qp` does not authorize reading or writing it.
 
 Never copy records automatically between scopes. A rule can exist independently in both scopes when the user deliberately creates an overlay.
 

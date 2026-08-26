@@ -1,6 +1,6 @@
 # Settings
 
-`.qp/settings.json` is a sparse user-editable JSON object. Akọsílẹ̀ creates and writes it safely; each consuming skill documents and validates its own section.
+Each resolved QP workspace scope has one sparse user-editable `settings.json`. Akọsílẹ̀ creates and writes it safely; each consuming skill documents and validates its own section.
 
 An empty workspace starts with:
 
@@ -31,13 +31,15 @@ Example triage preferences:
 
 The semantic owner keeps canonical IDs and defaults in its own skill. Missing or invalid values fall back to those defaults and should be reported when material. Unknown sections remain untouched.
 
-Precedence:
+Within one resolved scope, precedence is:
 
 ```text
 current explicit user instruction
-→ matching .qp/settings.json value
+→ matching settings.json value
 → owning skill default
 ```
+
+A consuming skill that reads both repository and personal scopes must define its own cross-scope merge/precedence rules. Akọsílẹ̀ does not infer them.
 
 Settings may influence display text, aliases, provider mappings, or another explicitly documented preference. They cannot:
 

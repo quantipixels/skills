@@ -8,7 +8,7 @@ Resolve exactly one scope for each operation:
 
 ```text
 repository -> <git-worktree>/.qp
-personal   -> ${QP_HOME:-~/.qp}
+personal   -> ${QP_HOME:-$HOME/.qp}
 ```
 
 Repository scope is the default for repository-local records/artifacts. Personal scope requires an explicit user request or an explicit semantic-owner request for personal/cross-project state. Existing personal files do not grant authority to read or write them.

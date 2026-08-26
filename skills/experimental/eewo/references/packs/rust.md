@@ -11,7 +11,7 @@ These are high-confidence seeds, not a complete Rust style guide. Load only when
 - Failure mechanism: the lock is not designed for suspension across async scheduling and can block progress or contribute to deadlock.
 - Safe paths: end the guard's lexical scope before `.await`; use an async-aware mutex only when state genuinely must remain locked across suspension.
 - Enforcement: `clippy::await_holding_lock` plus semantic review for equivalent/custom guard types.
-- Source: official Clippy `await_holding_lock` documentation.
+- Source: official Clippy `await_holding_lock`: <https://rust-lang.github.io/rust-clippy/stable/index.html#await_holding_lock>.
 
 ## `rust.async.refcell-borrow-across-await`
 
@@ -22,7 +22,7 @@ These are high-confidence seeds, not a complete Rust style guide. Load only when
 - Failure mechanism: later task progress can encounter the still-active dynamic borrow and panic.
 - Safe paths: constrain the borrow to a lexical block before awaiting; redesign ownership when the value must survive suspension.
 - Enforcement: `clippy::await_holding_refcell_ref` plus semantic review.
-- Source: official Clippy documentation.
+- Source: official Clippy: <https://rust-lang.github.io/rust-clippy/stable/index.html#await_holding_refcell_ref>.
 
 ## `rust.error.unproved-unwrap-on-fallible-data`
 
@@ -34,4 +34,4 @@ These are high-confidence seeds, not a complete Rust style guide. Load only when
 - Safe paths: propagate with `?`, pattern-match/transform the error, or establish a local invariant and document why the panic is unreachable/intentional.
 - Exceptions: tests, compile-time/initialization invariants, or explicitly fail-fast boundaries where panic is part of the contract.
 - Enforcement: selectively enable Clippy `unwrap_used`/`expect_used`; do not blanket-enable every restriction lint.
-- Sources: official Clippy lint/configuration documentation; community candidate inventories such as `actionbook/rust-skills` are supporting evidence only.
+- Sources: official Clippy lint/configuration documentation <https://doc.rust-lang.org/nightly/clippy/lint_configuration.html>; community candidate inventories such as `actionbook/rust-skills` are supporting evidence only.
