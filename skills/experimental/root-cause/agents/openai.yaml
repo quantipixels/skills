@@ -1,0 +1,5 @@
+interface:
+  display_name: "Root Cause"
+  short_description: "Prove the causal chain behind one failure"
+policy:
+  allow_implicit_invocation: false

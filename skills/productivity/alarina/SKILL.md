@@ -14,7 +14,6 @@ When Pepeye mode is active, supply its exact-current leaf-owner route without se
 | Starting outcome | Primary skill | Mode |
 | --- | --- | --- |
 | Select the shortest QP route | `alarina` | — |
-| Drive a task through QP playbooks, proof, pause/pickup, and learning | `pepeye` | explicit or authorized-baseline lifecycle mode |
 | Initialize/repair `.qp`, allocate records/artifacts, safely write settings/records, or rebuild its index | `akosile` | — |
 | Clarify project terms, rules, knowledge, or decisions | `amose` | — |
 | Resolve one material product/plan/design decision | `arojinle` | — |
@@ -52,6 +51,18 @@ When Pepeye mode is active, supply its exact-current leaf-owner route without se
 | Design a constrained banner/cover/hero/ad | `banner-design` | — |
 | Create a presentation or pitch deck | `slides` | — |
 
+## Experimental routes
+
+Experimental skills are opt-in and cannot silently replace a stable owner. When one exact experimental outcome matches, offer it and wait for explicit acceptance before selecting it. A stable skill may recommend an experiment, but it must remain complete without that experiment.
+
+| Explicit experimental outcome | Skill |
+| --- | --- |
+| Drive a task through QP playbooks, proof, pause/pickup, and learning | `pepeye` |
+| Establish why one reproducible or directly observed failure occurs | `root-cause` |
+| Generate and challenge several grounded possibilities before selection | `ideate` |
+| Build a disposable artifact to settle one experiential decision | `prototype` |
+| Exercise changed user journeys in a real browser | `dogfood` |
+
 ## Boundaries
 
 - `akosile` owns repository-local `.qp` paths, safe writes, sparse settings, and index rebuilding. Semantic owners retain record meaning, native state, evidence, and provider authority. Global `~/.qp` lifecycle state remains with its existing owner.
@@ -59,8 +70,9 @@ When Pepeye mode is active, supply its exact-current leaf-owner route without se
 - `alaga` owns integrated production of several routed deliverables; `apere` does not absorb delivery lifecycle.
 - Keep `pare` read-only. Only a delivery owner with required authority executes accepted cleanup.
 - Keep portable HTML views with `html-artifact`; route slide decks to `slides`.
-- Use `atona` for an active initiative plan, `solution-architect` for technical architecture, `arojinle` for a new/reopened material decision, and `atunwo audit` before a stateful refactor that can change lifecycle behavior.
+- Use `atona` for an active initiative plan, `solution-architect` for technical architecture, `arojinle` for a new or reopened material decision, and `atunwo audit` before a stateful refactor that can change lifecycle behavior.
 - Keep PR/MR publication with `seda-pr`, monitoring with `wo-pr`, and review verdicts with `atunwo`.
 - Keep issue triage supplied-evidence-first. Repository/provider reads and writes need their own authority; settings mappings never authorize provider mutation.
+- Do not use an Experimental skill to narrow, remove, or impersonate a stable owner. Experiments may consume stable results and return bounded receipts at their own boundary.
 
-Check the active inventory before returning a route. If the correct owner is unavailable, name it without substituting another skill. Ask one focused question only when the answer selects a materially different owner/mode. Report primary skill, mode, concise reason, and necessary support.
+Check the active inventory before returning a route. If the correct owner is unavailable, name it without substituting another skill. Ask one focused question only when the answer selects a materially different owner or mode. Report primary skill, mode, concise reason, necessary support, and whether explicit acceptance is still required.
