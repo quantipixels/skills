@@ -1,118 +1,83 @@
 ---
 name: eewo
-description: Curate evidence-backed prohibited coding patterns in private local QP records, resolve a small task-scoped guard pack, and prepare sanitized contribution proposals without making local learning depend on upstream publication. Use only when the user explicitly opts into the experimental pattern-guard workflow.
+description: Apply curated known-bad coding patterns to one implementation or code-review candidate in Rust, Java/JVM, Python, or Elixir. Use when the user explicitly requests Èèwọ̀ guards, anti-pattern prevention, or pattern-based review; optionally record a confirmed local rule. Exclude open-ended pattern mining, generic language teaching, architecture selection, implementation ownership, and final review verdicts.
 disable-model-invocation: true
 ---
 
 # Èèwọ̀
 
-Maintain a local-first catalogue of known-bad coding behaviours. Narrow the solution space without prescribing one architecture or pretending that avoiding known failures proves correctness.
+Prevent known failure patterns without prescribing one preferred architecture. This is a guard/reference skill, not a pattern-mining workflow.
 
-`eewo` is experimental and explicit. It owns pattern semantics, lifecycle, scoping, guard-pack composition, and contribution reconciliation. `akosile` owns workspace paths and safe writes. Implementation, code-review verdicts, project knowledge, companion-tool operation, and provider publication remain with their existing owners.
+`eewo` is Experimental and explicit. `alaga` owns implementation, `atunwo` owns code-review verdicts, `irinse` owns deterministic tools, `amose` owns project knowledge, and `ko-skill` owns changes to published skills.
 
-## 1. Pin the pattern boundary
+## Modes
 
-Establish the exact repository or subject, candidate identity when one exists, language/framework/version evidence, lifecycle phase, local-write authority, and whether personal scope, repository scope, or both are allowed.
+- `guard` — before or during implementation, return the smallest applicable set of prohibitions and safe paths.
+- `review` — inspect one exact candidate for applicable pattern violations and return evidence, not a final verdict.
+- `record` — with explicit user authority, add, update, supersede, or retire one repository-local or personal pattern.
 
-Read [source resolution](references/source-resolution.md). Load only published packs relevant to the detected language or framework. Do not load every language pack or every local pattern merely because it exists.
+## 1. Pin the candidate
 
-Treat review comments, incidents, user corrections, community skills, catalog listings, linter output, and model suggestions as evidence, not rules. A local observation may be recorded without becoming active policy.
+Record the exact repository or supplied code, candidate identity, language, framework/runtime, relevant version, changed paths, lifecycle phase, and requested mode. Read repository instructions and accepted project constraints first.
 
-## 2. Curate patterns, not preferences
+A rule match is a hypothesis until the candidate shows the rule's trigger and credible failure mechanism. Do not report style preference, pattern-name matching, or an abstract possibility as a violation.
 
-Read [pattern contract](references/pattern-contract.md) before creating, promoting, superseding, retiring, or contributing a pattern.
+## 2. Load only relevant references
 
-A durable pattern must identify:
+Always read [general guards](references/general.md). Then load only the applicable language references:
 
-- the invariant it protects;
-- the prohibited behaviour, expressed semantically rather than as a token ban when possible;
-- a credible failure mechanism;
-- the smallest applicable scope;
-- at least one safe path;
-- legitimate exceptions and required proof when they exist; and
-- provenance sufficient to revisit the rule later.
+- Rust: [Rust guards](references/rust.md)
+- Java/JVM: [Java guards](references/java.md)
+- Spring, JPA/Hibernate, jOOQ, or Gradle: [Java framework guards](references/java-frameworks.md)
+- Python: [Python guards](references/python.md)
+- Elixir/OTP: [Elixir guards](references/elixir.md)
 
-Prefer primary language/framework documentation and source over community guidance. Use [mining sources](references/mining-sources.md) to discover candidate material. Community skills can reveal useful failure classes, but do not copy their blanket prescriptions into active policy without corroboration and narrowing.
+When local patterns are explicitly in scope, read [local patterns](references/local-patterns.md). Do not inspect personal QP records without explicit user authorization for that scope.
 
-Keep rule lifecycle and contribution lifecycle independent. A locally active rule remains locally active while a proposal is pending, rejected, changed upstream, or never contributed.
+Do not load or repeat a complete reference when only a few patterns match the touched constructs.
 
-Do not activate an inferred preference automatically. A direct user instruction such as “never do this again in my projects” can authorize local activation after the rule is scoped and checked for obvious unsafe overreach. Otherwise activation requires explicit confirmation or independently established project authority.
+## 3. Apply the guards
 
-## 3. Resolve one exact-current guard pack
+Pattern effects are:
 
-For implementation or review, select only `active` patterns applicable to the exact task. Merge constraints from the sources in [source resolution](references/source-resolution.md), reconcile duplicates by failure mechanism, and stop on a material unresolved conflict rather than choosing silently.
+- `BLOCK` — the candidate has a credible correctness, safety, security, resource, or caller-contract failure path. Resolve it or prove the documented exception.
+- `WARN` — the pattern indicates a context-dependent maintenance, performance, or design risk. Confirm material impact before requiring change.
 
-Persist a substantial guard pack through `akosile` in repository scope:
+For `guard` mode, return the applicable IDs, prohibited behavior, failure mechanism, safe paths, and required proof. Preserve design freedom outside those constraints.
 
-```text
-owner: eewo
-record_type: guard-pack
-subject: <exact candidate or task identity>
-```
+For `review` mode:
 
-The guard pack must contain:
+1. Pin the exact candidate.
+2. Trace each suspected match through the real code path.
+3. Check documented exceptions and counterevidence.
+4. Report exact locations and the smallest safe correction direction.
+5. Continue to state that the catalogue is incomplete; absence of a known pattern is not proof of correctness.
 
-```text
-Candidate: <exact identity>
-Phase: implementation | review | other
-Sources: <source scope, pattern id, revision/version>
-Digest: <stable digest when the host can produce one>
+If applicable guards jointly leave no credible safe path, return `CONSTRAINT_CONFLICT` and name the smallest decision required instead of inventing a design.
 
-Applicable invariants
-Applicable prohibitions
-Safe paths and exceptions
-Required deterministic checks
-Known coverage limits
-```
+## 4. Record local knowledge only when asked
 
-Pin the pack for the active candidate. New findings discovered after implementation or review begins may be recorded for the next pack, but must not mutate the pack already governing the current candidate.
+Use `record` mode only when the user explicitly says to remember, add, update, supersede, or retire a pattern. Persist through `akosile` using the schema in [local patterns](references/local-patterns.md).
 
-A guard pack is a closed-world check for known failures. It never replaces acceptance criteria, tests, architecture reasoning, or open-ended defect discovery.
+A review finding, community rule, linter signal, or one-off correction does not automatically become local policy. Preserve the observed failure, scope, safe path, and evidence; avoid broadening the rule beyond what is established.
 
-## 4. Learn from implementation and review
+Local records remain separate from the published skill. To contribute or change a shipped reference, use `ko-skill`; use `seda-pr` only for the separately authorized Git publication step.
 
-During implementation, use the guard pack as constraints and keep design freedom elsewhere. During review, check every applicable rule and continue searching for novel defects outside the pack.
+Maintainers can inspect [pattern provenance](references/provenance.md); ordinary guard and review runs do not load it.
 
-Classify a new observation as one of:
-
-```text
-existing-rule violation
-existing-rule refinement
-novel candidate
-one-off correction
-false positive
-promising non-binding pattern
-material decision required
-```
-
-Record only evidence-backed observations. Send session/corpus recurrence analysis to `ayewo-igba-ise`; send volatile factual validation to `iwadi`; use `ro-wo` when generalisation, alternatives, or exceptions materially control promotion. Use `irinse` when a mature rule should move into Clippy, Error Prone, ArchUnit, Ruff, Semgrep, or another deterministic mechanism.
-
-## 5. Keep local learning independent from contribution
-
-Never stage or publish `.qp` or the personal QP workspace.
-
-When contribution is requested, create an immutable sanitized proposal receipt from one exact local pattern revision. The proposal records source pattern id, source revision, source digest when available, target repository/pack, portable rule content, public evidence, and excluded private evidence. Later local revisions do not alter the proposal.
-
-Do not export raw proprietary code, private paths, internal issue text, credentials, private transcripts, reviewer identity, or local-only metrics. Prefer an allowlist of portable fields over redacting an arbitrary local record.
-
-`eewo` may prepare the exact contribution content and reconciliation result. Use `seda-pr` for commit/push/PR or MR publication when separately authorized.
-
-After upstream acceptance, modification, or rejection, reconcile rather than replace the local rule. Classify accepted content as `equivalent`, `narrower`, `broader`, or `conflicting`; preserve stricter private overlays and evidence unless the user explicitly retires them.
-
-## 6. Report
-
-Return:
+## 5. Return
 
 ```text
 Eewo result
-Subject: <identity>
-Scope: personal | repository | both | published-only
-Operation: observe | curate | activate | resolve | contribute | reconcile
-Pattern records: <ids/revisions changed or none>
-Guard pack: <identity/digest or none>
-Contribution: local_only | draft | submitted | accepted | rejected | diverged | none
-Evidence: <primary and supporting sources>
-Conflicts: <none or exact unresolved conflict>
-Next consumer: <alaga | atunwo | irinse | seda-pr | none>
-Limits: <coverage/freshness/privacy limits>
+Mode: guard | review | record
+Candidate: <exact identity>
+References loaded: <files>
+Local scopes read: repository | personal | none
+Applicable guards: <id, effect, trigger, safe path>
+Violations: <location, failure mechanism, evidence, or none>
+Exceptions/counterevidence: <items or none>
+Constraint conflicts: <items or none>
+Local record changes: <ids/revisions or none>
+Coverage limits: <novel/unreviewed areas>
+Next owner: alaga | atunwo | akosile | ko-skill | none
 ```

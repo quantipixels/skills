@@ -1,5 +1,5 @@
 interface:
-  display_name: "Eewo Pattern Guards"
-  short_description: "Curate local known-bad patterns and task guard packs"
+  display_name: "Èèwọ̀ Code Guards"
+  short_description: "Prevent and review known bad coding patterns"
 policy:
   allow_implicit_invocation: false

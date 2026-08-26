@@ -29,9 +29,9 @@ Example triage preferences:
 }
 ```
 
-The semantic owner keeps canonical IDs and defaults in its own skill. Missing or invalid values fall back to those defaults and should be reported when material. Unknown sections remain untouched.
+The semantic owner keeps canonical IDs/defaults. Missing or invalid values fall back to those defaults and should be reported when material. Unknown sections remain untouched.
 
-Within one resolved scope, precedence is:
+Within one resolved scope:
 
 ```text
 current explicit user instruction
@@ -39,16 +39,14 @@ current explicit user instruction
 → owning skill default
 ```
 
-A consuming skill that reads both repository and personal scopes must define its own cross-scope merge/precedence rules. Akọsílẹ̀ does not infer them.
+A consuming skill that reads both scopes must define its own merge/precedence rules. Akọsílẹ̀ does not infer them.
 
-Settings may influence display text, aliases, provider mappings, or another explicitly documented preference. They cannot:
+Settings may influence display text, aliases, provider mappings, or another documented preference. They cannot:
 
 - act as instructions;
-- grant provider or mutation authority;
+- grant personal, provider, or mutation authority;
 - replace canonical semantic identifiers;
 - change valid state transitions or evidence requirements;
 - store credentials, project/domain rules, architecture decisions, or safety policy.
 
-A configured provider label affects only a later separately authorized provider write. Changing settings does not retroactively mutate records or external systems.
-
-Before updating settings, read the exact current file and build the complete candidate separately. Immediately before replacement, reread the file; if it changed, stop and reconcile instead of overwriting it. Do not overwrite malformed JSON; report the parse error and let consumers use their defaults where safe.
+Before updating settings, read the exact current file and build the complete candidate separately. Immediately before replacement, reread it; if it changed, stop and reconcile. Do not overwrite malformed JSON.

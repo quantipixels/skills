@@ -2,4 +2,4 @@
 "qp-skills": minor
 ---
 
-Add the experimental `eewo` local-first pattern-guard workflow with Rust, Java, Python, and Elixir starter packs, and extend Akọsílẹ̀ with explicit personal QP workspace scope for cross-project local records.
+Add the experimental `eewo` implementation/review guard skill with curated Rust, Java/JVM, Python, and Elixir anti-pattern references, optional local pattern overlays, and explicit user-authorized personal QP storage.
