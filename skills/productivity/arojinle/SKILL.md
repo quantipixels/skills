@@ -7,32 +7,38 @@ description: Resolve one material product, plan, or design decision through a co
 
 Interview the user relentlessly until you reach a shared understanding. Map this as a design tree: every decision branches into the decisions that hang off it.
 
-Work the tree in rounds. The frontier is every decision whose prerequisites are already settled: the questions you can ask now without guessing at answers you haven't heard yet. Ask the whole frontier in one round: number each question and give your recommended answer. Then wait for the user's answers before the next round.
+Work the tree in rounds. The frontier is every decision whose prerequisites are already settled. Ask the whole frontier in one round: number each question and give your recommended answer. Then wait for the user's answers before the next round.
 
-Each question should be formatted like so:
+Format each question as:
 
-```
-❓ **Q1** - **<question title>**: <question and choices, as needed>
-
-💡 <brief context or example, only when it makes the decision clearer>
-
-➡️ <your recommended answer>
+```text
+❓ Q1 — <question title>: <question and choices>
+💡 <brief context only when useful>
+➡️ <recommended answer>
 ```
 
-Each round the user answers reshapes the tree: settled decisions push the frontier outward and unblock questions that depended on them. Recompute the frontier and ask the next round. A question whose answer depends on another question still open in this round belongs to a later round, not this one.
+Each answer reshapes the tree. Recompute the frontier after every round; a question depending on another open question belongs to a later round.
 
-Finding facts is your job, never the user's. When a frontier question needs a fact from the environment, use a bounded lookup first. Delegate when active rules permit and a fresh independent lookup materially protects the interview context or improves the evidence. Do not ask the user for facts you can find. Do not block on a running lookup: hold only its downstream questions and ask the rest of the frontier. The decisions are the user's: put each to them and wait.
+Finding facts is your job, never the user's. Use bounded lookup for environment facts. Delegate only when active rules permit and independent evidence materially helps. Hold only downstream questions while evidence is pending. Decisions remain the user's.
 
-Before the first round, determine whether an active Atọ́nà plan governs the decision. If it does, pin the plan path, revision, topic, scope, evidence identity, and requested plan effect. Treat that identity as the caller envelope. Do not mutate the plan or create another user-facing plan or report.
+Before the first round, determine whether an active Atọ́nà plan governs the decision. If it does, pin the plan record reference/revision, topic, scope, evidence identity, and requested plan effect. Treat that as the caller envelope. Do not mutate the plan or create another user-facing plan/report.
 
-Before the first round, give `amose` the project identity and the relevant terms, rules, knowledge, and decision records. Consume its exact-current domain model and conflicts as interview inputs. `amose` does not answer open questions or make the user's decisions. Keep its work read-only before confirmation. Refresh this evidence when a settled answer changes a domain term, invariant, boundary, or prior decision.
+Before the first round, give `amose` the project identity and relevant terms, rules, knowledge, and decision records. Consume its exact-current domain model/conflicts as interview inputs. `amose` does not answer open questions or make the user's decisions. Refresh this evidence when a settled answer changes a domain term, invariant, boundary, or prior decision.
 
-After each settled round under an active Atọ́nà plan, return one exact-current receipt to the active plan owner. Include the plan and receipt revisions, decision and tree identities, confirmed and deferred answers, open frontier and coverage, evidence identity and freshness, plan effect, blockers, and next action. The active plan owner renders the decision view.
+After each settled round under an active Atọ́nà plan, return one exact-current receipt to the plan owner with plan/receipt revisions, decision/tree identities, confirmed/deferred answers, open frontier/coverage, evidence identity/freshness, plan effect, blockers, and next action. The plan owner renders the decision view.
 
-Without an active Atọ́nà plan, give `html-artifact` the exact-current tree, confirmed and deferred answers, open frontier, evidence, and intended audience after the first settled round. Creating or updating this task's visual record is the only implied write. It does not authorize source or durable domain writes. Keep one artifact identity through later rounds and treat its result as representation evidence only. Refresh it after each material change without letting it add or reinterpret a decision.
+Without an active Atọ́nà plan, after the first settled round resolve one owner record through `akosile`:
 
-When the frontier is empty, present the complete decision set, remaining evidence gaps, and current active-plan link or standalone artifact for user confirmation. Do not persist a decision or declare shared understanding before that confirmation. After confirmation, use `amose` to reconcile only the confirmed domain terms, rules, and decisions into destinations authorized by the user or repository. Consume its readback. Then return a final receipt with the confirmation identity and durable record links to the active Atọ́nà owner, or give `html-artifact` the confirmed decisions and durable record identities for the standalone visual record.
+```text
+owner: arojinle
+record_type: decision
+subject: <stable decision identity>
+```
+
+Keep the exact-current tree, confirmed/deferred answers, open frontier, evidence identity/freshness, next action, and confirmation state in that record. Update the record after each settled round, then give the exact record to `html-artifact` to create or refresh the same bundle's `index.html`. The record is the semantic source; the HTML is its human view and must not add or reinterpret a decision.
+
+When the frontier is empty, present the complete decision set, remaining evidence gaps, and current active-plan link or standalone artifact for user confirmation. Do not persist a decision into durable project knowledge or declare shared understanding before confirmation. After confirmation, use `amose` to reconcile only confirmed domain terms/rules/decisions into authorized destinations and consume its readback. Under an active Atọ́nà plan, return a final receipt with confirmation identity and durable-record links. For a standalone decision, update the decision record first with confirmation identity and durable-record links, then refresh its `index.html` from that exact revision.
 
 If a required specialist is unavailable, preserve the exact-current tree and report the missing result. Continue only branches that do not depend on it.
 
-If an active plan owner becomes unavailable, persist the exact-current receipt as a non-user-facing recovery checkpoint under `.qp/plans/.receipts/<plan-stem>/<receipt-id>.json`, then stop every branch that needs plan integration. The checkpoint must carry the pinned caller envelope, complete tree, freshness, and resume condition; it is not an integrated plan result. When the owner returns, give it the checkpoint for revision and candidate validation, then let it reconcile or reject the receipt. Do not claim durable reconciliation, an integrated plan view, or a complete standalone visual record unless the user explicitly accepts the reduced outcome.
+If work under an active Atọ́nà plan must pause before integration, keep a non-user-facing checkpoint receipt in the active plan bundle's `receipts/` directory with the pinned caller envelope, complete tree, freshness, and resume condition. On resume, Atọ́nà validates the checkpoint against the current plan revision and reconciles or rejects it.

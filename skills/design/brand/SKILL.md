@@ -15,20 +15,19 @@ Own the project’s human-readable brand source of truth and its identity assets
 4. For a logo or corporate identity program, load only the applicable logo or CIP references below. Search the bundled identity data before choosing a direction, keep exploratory concepts distinct from approved assets, and use image generation only for approved bitmap exploration or mockups.
 5. For a custom icon language, read `references/icon-design.md` and define the grid, stroke/fill, corners, optical sizing, naming, and export rules. Product UI implementation remains with `asa-oju-ibanisoro`.
 6. For a review, check voice, color, typography, logo use, icon consistency, asset naming, accessibility, and cross-surface consistency. Report evidence and corrections, not taste alone.
-7. Validate assets and confirm generated context before a downstream handoff. When implementation tokens change, consume `eto-apere`’s exact-current token and validation result.
+7. Validate assets and confirm the exact current brand guidance before a downstream handoff. When implementation tokens change, consume `eto-apere`’s exact-current token and validation result.
 
 ## Identity helpers
 
-Resolve `<brand-skill-root>` to this skill directory. The logo and CIP search helpers use the skill-local data layout:
+Resolve `<brand-skill-root>` to this skill directory. Keep scripts only for deterministic identity-data search and asset-contract validation:
 
 ```bash
 python3 <brand-skill-root>/scripts/logo/search.py "technology geometric minimal"
 python3 <brand-skill-root>/scripts/cip/search.py "professional services premium"
-node <brand-skill-root>/scripts/inject-brand-context.cjs --json docs/brand-guidelines.md
 node <brand-skill-root>/scripts/validate-asset.cjs assets/logo.svg --json
 ```
 
-These helpers inspect brand guidance or one asset; they do not own token files or generate images. Use the host’s image-analysis capability or an installed image tool to inspect bitmap palettes, then compare the result with the structured brand context. Confirm exact source and target paths before a handoff. Do not claim token synchronization until `eto-apere` returns validated output and readback.
+Read the human-readable brand guidelines directly rather than maintaining a second parser-generated prompt/context representation. Use the host’s image-analysis capability or an installed image tool to inspect bitmap palettes, then compare the result with the current guidelines. Confirm exact source and target paths before a handoff. Do not claim token synchronization until `eto-apere` returns validated output and readback.
 
 ## Project conventions
 

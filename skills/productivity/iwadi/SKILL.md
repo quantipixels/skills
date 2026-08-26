@@ -10,4 +10,4 @@ The research owner must:
 1. Investigate the question against **primary sources** — official docs, source code, specs, first-party APIs — not a secondary write-up of them. Follow every claim back to the source that owns it.
 2. Cite each claim's source.
 3. State material conflicts between primary sources and any evidence gap that limits the conclusion.
-4. Save the report where the repository already keeps research notes. If no convention exists, use `.qp/research/<topic>.md`. State the selected path.
+4. Save the report where the repository already keeps research notes. If no convention exists, persist a QP research record through `akosile` with `owner: iwadi`, `record_type: research`, and the stable research topic as subject. State the selected path.

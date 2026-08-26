@@ -1,6 +1,6 @@
 ---
 name: social-graphics
-description: Create feed posts, carousels, stories, reusable social templates, and multi-format social campaign graphics with exact platform ratios, crop behavior, mobile legibility, and editable source. Use for social content systems and post sets; route covers, headers, heroes, display ads, and print banners to banner-design.
+description: Create feed posts, carousels, stories, reusable social templates, and multi-format social campaign graphics with exact platform ratios, crop behavior, mobile legibility, and editable source. Use for social content systems and post sets; exclude covers, headers, heroes, display ads, and print banners.
 ---
 
 # Social Graphics

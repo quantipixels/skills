@@ -1,6 +1,6 @@
 ---
 name: atunwo
-description: "Judge one bounded code candidate for defects, broad review with `pare` evidence, or read-only behavior parity for one stateful refactor or rewrite. Focus on exact identities, credible failure mechanisms, adversarial validation, and an evidence-backed result; route maintainability-only requests to `pare` in `review` mode."
+description: "Judge one bounded code candidate for defects, broad review, or read-only behavior parity for one stateful refactor or rewrite. Focus on exact identities, credible failure mechanisms, adversarial validation, maintainability evidence, and an evidence-backed result."
 ---
 
 # Àtúnwò
