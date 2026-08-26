@@ -75,6 +75,7 @@ Use alarina to choose the right QP skill for this request:
 | `amose` | Project terms, `CONTEXT.md`, `.learnings`, `.nongoals`, or ADRs need clarification/reconciliation |
 | `atona` | Unclear feature, migration, or initiative work needs one exact-current plan and accessible HTML view through delivery/closure |
 | `atunwo` | Defect review or stateful refactor-parity audit is needed for a local/supplied or provider candidate |
+| `hitl-review` | A human wants to review one exact code change interactively and surface matching specialist skills as questions arise |
 | `irinse` | A companion engineering tool needs selection, setup, safe use, upgrade, or removal |
 | `ko-skill` | One skill needs creation, revision, validation, or bounded portfolio audit |
 | `pare` | Read-only audit/review should identify material simplifications and cleanup candidates |

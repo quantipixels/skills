@@ -25,6 +25,7 @@ When Pepeye mode is active, supply its exact-current leaf-owner route without se
 | Review bounded code for defects and maintainability | `atunwo` | `broad` |
 | Review bounded code only for defects | `atunwo` | `defect-only` |
 | Review bounded code only for maintainability | `pare` | `review` |
+| Review one exact code change interactively with a human | `hitl-review` | — |
 | Audit a repository for simplification | `pare` | `audit` |
 | Implement an accepted cleanup slice | `alaga` | `job` |
 | Author, revise, or validate one skill | `ko-skill` | — |
@@ -69,6 +70,7 @@ Experimental skills are opt-in and cannot silently replace a stable owner. When 
 - Keep a directly selected artifact specialist primary when it fully owns the result. Use `apere` only when owner selection or cross-deliverable coordination is itself needed.
 - `alaga` owns integrated production of several routed deliverables; `apere` does not absorb delivery lifecycle.
 - Keep `pare` read-only. Only a delivery owner with required authority executes accepted cleanup.
+- Use `hitl-review` when the human-led walkthrough, specialist discovery, and review decision are the outcome; use the direct review owner for a one-shot verdict.
 - Keep portable HTML views with `html-artifact`; route slide decks to `slides`.
 - Use `atona` for an active initiative plan, `solution-architect` for technical architecture, `arojinle` for a new or reopened material decision, and `atunwo audit` before a stateful refactor that can change lifecycle behavior.
 - Keep PR/MR publication with `seda-pr`, monitoring with `wo-pr`, and review verdicts with `atunwo`.
