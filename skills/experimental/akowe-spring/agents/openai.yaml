@@ -1,0 +1,5 @@
+interface:
+  display_name: "Akọ̀wé Spring"
+  short_description: "Experimental expert Spring Framework and Spring Boot guidance"
+policy:
+  allow_implicit_invocation: false
