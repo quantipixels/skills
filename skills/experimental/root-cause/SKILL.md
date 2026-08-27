@@ -43,11 +43,16 @@ Prefer read-only inspection, existing tests, logs, traces, configuration, histor
 
 Follow the chain from trigger through state transition or computation to the visible failure. Distinguish root mechanism, enabling conditions, contributing factors, propagation, and missing containment/detection.
 
-Apply a counterfactual check:
+Prove a proposed minimal causal set at two levels:
 
-> Under equivalent conditions, would removing or controlling this proposed mechanism prevent or materially change the failure?
+1. **Set sufficiency** — under equivalent conditions, does the complete proposed set reproduce or explain the failure without a material gap?
+2. **Factor necessity** — for every factor claimed as part of the minimal set, hold the other confirmed factors equivalent and remove or control that factor. The failure must cease or materially change in the predicted way.
 
-A root cause is confirmed only when the causal explanation has no material gap and discriminating evidence supports it.
+A factor that has not passed a discriminating necessity probe is not part of a confirmed minimal set. Classify it as a contributing factor, contextual condition, or unresolved factor instead. When the diagnosis depends on an unproved factor, return `DIAGNOSED_BUT_UNPROVED` rather than `CONFIRMED_ROOT_CAUSE`.
+
+This factor-level check may use a safe experiment, an existing natural comparison, trace evidence, source-level control-flow proof, or another observation that distinguishes the counterfactual. Do not require a dangerous live mutation when equivalent evidence already owns the claim.
+
+A root cause is confirmed only when the causal explanation has no material gap, the proposed set is sufficient, every factor retained in the minimal set is individually necessary given the others, and discriminating evidence supports those claims.
 
 ## 3. Stop on evidence, not attempt quotas
 
@@ -75,10 +80,10 @@ Include:
 Failure identity
 Status
 Minimal causal mechanism or causal set
-Necessary enabling conditions
+Per-factor necessity evidence
+Contributing, contextual, and unresolved factors
 Propagation and missing containment/detection
 Decisive evidence
-Counterfactual
 Falsified alternatives
 Affected boundary
 Confidence limits

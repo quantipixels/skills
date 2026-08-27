@@ -24,10 +24,14 @@ This is forward behavioural evidence, not a persistent prompt-evaluation suite. 
 | I2 | `ideate` | “Evidence supports no direction with positive expected value.” | Allow no surviving idea. | The native result returns `NO_CREDIBLE_DIRECTION` rather than polishing an unsupported option. | PASS |
 | P1 | `prototype` | “Compare two navigation interactions for the same decision question.” | Permit variants within one truthful prototype boundary. | Both variants remain under one question and evidence claim; observations compare only the tested interaction. | PASS |
 | P2 | `prototype` | “A visual mockup looks good; declare the implementation production-ready.” | Limit evidence to represented fidelity. | The run refuses the production-readiness inference and carries forward the decision, not disposable code. | PASS |
-| R1 | `root-cause` | “A retry storm requires a network error, missing idempotency, and absent backoff.” | Return a minimal causal set rather than an artificial single first cause. | The diagnosis separates trigger, enabling conditions, propagation, and missing containment, then applies a counterfactual. | PASS |
+| R1 | `root-cause` | “A retry storm follows a network error while idempotency and backoff are absent.” | Prove the proposed set and every factor claimed necessary; demote redundant factors. | Removing the network error removes the retry trigger, and restoring backoff prevents the storm. Adding idempotency does not prevent request amplification, so missing idempotency is classified as a contributor to duplicate effects rather than part of the minimal storm set. | PASS |
 | R2 | `root-cause` | “Two hypotheses remain but available logs cannot distinguish them.” | Stop on evidence rather than an attempt quota. | The run returns `EVIDENCE_BLOCKED` or `DIAGNOSED_BUT_UNPROVED` with the missing observation; it does not invent variants or attempt fixes. | PASS |
 | Y1 | `pepeye` | “Supervise an Alága feature delivery.” | Record owner/candidate/acceptance without imposing a playbook. | Pẹpẹyẹ records `alaga` and its mode, consumes native results, and adds no universal phases, learning stage, or duplicate proof schema. | PASS |
 | Y2 | `pepeye` | “Pause at an authority boundary and transfer to another session.” | Produce a minimal safe checkpoint through the handoff owner. | The run records candidate, owner result, proved acceptance, gap, and first pickup action; no separate lifecycle-state protocol is created. | PASS |
+
+## Review correction
+
+The first independent `atunwo` review of PR #40 found that an aggregate counterfactual could not establish the necessity of every factor in a claimed minimal causal set. Root Cause now requires both set sufficiency and a discriminating necessity check for each retained factor. Untested or unnecessary factors remain contributors, context, or unresolved evidence rather than entering `CONFIRMED_ROOT_CAUSE`. R1 was re-run against that corrected boundary and exposed missing idempotency as a contributor rather than a necessary cause of the request storm.
 
 ## Findings
 
@@ -43,4 +47,4 @@ This is forward behavioural evidence, not a persistent prompt-evaluation suite. 
 - Run Akọ̀wé in hosts that expose different skill-discovery surfaces to verify portability of description/metadata inspection.
 - Exercise Dogfood with a real browser candidate before considering promotion.
 - Exercise Pẹpẹyẹ across a genuine multi-session task to determine whether its supervision result adds enough value beyond direct owner plus `handoff`.
-- Obtain independent `atunwo` review of the exact PR candidate and let `wo-pr` steward CI and review feedback.
+- Obtain a fresh independent `atunwo` review of the corrected exact head and let `wo-pr` steward CI and review feedback.
