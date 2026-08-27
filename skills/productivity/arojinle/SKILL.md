@@ -21,8 +21,8 @@ Each question should be formatted like so:
 
 Each round the user answers reshapes the tree: settled decisions push the frontier outward and unblock questions that depended on them. Recompute the frontier and ask the next round. A question whose answer depends on another question still open in this round belongs to a later round, not this one.
 
-Finding facts is your job, never the user's. When a frontier question needs a fact from the environment, use a bounded lookup first. Delegate when active rules permit and a fresh independent lookup materially protects the interview context or improves the evidence. Do not ask the user for facts you can find. Do not block on a running lookup: hold only its downstream questions and ask the rest of the frontier. The decisions are the user's: put each to them and wait.
+Use `amose` before the first round when existing project knowledge can materially constrain the decision tree. Finding facts is your job, never the user's. When a frontier question needs a fact from the environment, use a bounded lookup first. Delegate when active rules permit and a fresh independent lookup materially protects the interview context or improves the evidence. Do not ask the user for facts you can find. Do not block on a running lookup: hold only its downstream questions and ask the rest of the frontier. The decisions are the user's: put each to them and wait.
 
-Use `html-artifact` to visualise the decision tree, current frontier, and confirmed decisions as the primary human view. Use `amose` when confirmed decisions change durable project knowledge.
+Use `html-artifact` to visualise the decision tree, current frontier, and confirmed decisions as the primary human view. Use `amose` after confirmation when confirmed decisions change durable project knowledge.
 
 The session is done when the frontier is empty: every material branch of the design tree has been visited and nothing consequential is left silently assumed. Do not act on it until the user confirms you have reached a shared understanding.
