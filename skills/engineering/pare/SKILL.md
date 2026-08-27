@@ -1,111 +1,77 @@
 ---
 name: pare
-description: "Produce a read-only codebase simplification `audit` or bounded candidate `review`. Cover implementation, state, ownership, algorithms, dependencies, complexity, support artifacts, and tests; exclude execution, defects, feature delivery, and architecture."
+description: "Produce a read-only codebase simplification `audit` or bounded candidate `review`. Cover implementation, state, ownership, algorithms, dependencies, support artifacts, and tests; exclude execution, defects, feature delivery, and architecture."
 ---
 
 # Parẹ́
 
-Prefer deletion, derivation, direct state, local ownership, deep modules, native platform mechanisms, and YAGNI. Reject relocated complexity.
+Prefer deletion, direct state, local ownership, deep modules, and YAGNI. Reject relocated complexity.
 
 ## Modes
 
-- `audit` — every in-scope subsystem; read-only; no test/build runs.
-- `review` — one fixed candidate; read-only; no provider mutation or final review verdict.
+- `audit`: every subsystem; read-only; no test runs.
+- `review`: one fixed candidate; read-only; no provider or verdict.
 
-Never edit files, run tests/builds, change Git state, execute cleanup, or use provider writes. Return recommendations and bounded implementation slices only.
+Never edit files, run tests or builds, change Git state, execute cleanup, or use provider writes. Return recommendations and implementation slices only.
 
-`atunwo` owns defects/verdicts/providers/stateful parity; `alaga` implements accepted slices and compacts proof; `solution-architect` owns architecture; `atona` owns initiative lifecycle. A `deep-clean candidate` still requires explicit opt-in before a delivery owner may abandon non-contract proof.
+`atunwo` owns defects, verdicts, providers, and stateful parity audits; `alaga` implements accepted slices; `solution-architect` owns technical architecture; `atona` owns initiative lifecycle plans. A `deep-clean candidate` requires explicit opt-in before `alaga` may abandon non-contract proof.
 
-Use direct source/search/history evidence proportionately. When a companion tool materially improves reachability, hotspot, or metric evidence, give `irinse` the bounded question/candidate and consume its exact-current read-only result. Tool output is a hypothesis, never Parẹ́'s verdict.
+Use `rg` and `git` directly for proportionate read-only reachability and history checks. When a companion tool could materially improve the evidence, give `irinse` the bounded question and candidate, then consume its exact-current read-only result. `pare` retains simplification judgment and never treats tool output as a verdict.
 
-## Reduction ladder
+When control-flow, state-space, nesting, fan-out, mutable state, async/process lifecycle, complexity metrics, or test volume is material, read [complexity and proof](references/complexity-and-proof.md). Metrics are investigation signals; never recommend extraction or indirection merely to lower a score.
 
-Understand the behavior/ownership first, then take the first sound reduction:
+## Ladder
 
-```text
-DELETE
-→ DERIVE
-→ INLINE
-→ MERGE
-→ NATIVE
-→ DEEPEN
-→ KEEP
-```
+Understand the flow; take the first sound reduction:
 
-- **DELETE** — no behavior, contract, consumer, or owner.
-- **DERIVE** — remove duplicated state/data when one source of truth can produce it with acceptable cost/timing.
-- **INLINE** — remove a wrapper/helper that hides no meaningful policy/lifecycle/seam.
-- **MERGE** — combine duplicated policy/state/proof owners.
-- **NATIVE** — use stdlib/platform/framework capability instead of custom mechanism.
-- **DEEPEN** — move real complexity behind one smaller stable interface/owner.
-- **KEEP** — retained complexity is essential or its abstraction demonstrably pays for itself.
+1. Delete: no behavior, contract, consumer, or owner.
+2. Reuse: codebase → stdlib → platform → installed dependency.
+3. Derive: preserve timing, consistency, lifecycle, cost, ownership.
+4. Localize: owned model, state machine, deep module, or policy.
+5. Shrink: minimum direct mechanism; no speculation.
 
-For every retained abstraction ask: **What complexity does this hide? Who owns it? What becomes materially worse if it disappears?** A pass-through answer is evidence to simplify, not proof by itself.
+- Good: remove invalid states.
+- Bad: wrap the same branches.
 
-## Finding contract
+## Tags and finding format
 
-Tags:
-
-- `delete` — dead/unneeded
-- `derive` — duplicate/invalid stored state
-- `inline` — wrapper without useful seam
-- `merge` — duplicated mechanism/owner
-- `native` — stdlib/platform/framework replacement
-- `yagni` — unproved variation
-- `state` — invalid/duplicated state space
-- `owner` — scattered policy/lifecycle
-- `complexity` — accidental control/state/cognitive complexity
-- `proof` — duplicate/shallow proof with stronger owner
-- `keep` — complexity is essential and well-localized
+- `delete`: dead
+- `native`: stdlib/platform
+- `yagni`: unproved variation
+- `state`: invalid/duplicate
+- `owner`: scattered policy
+- `shrink`: less mechanism
+- `proof`: stronger owner
 
 ```text
-<tag> <cost/failure mechanism>. <smaller form or keep reason>. [path]
+<tag> <cost>. <smaller form>. [path]
 ```
 
-Add risk, proof, confidence, and any required migration. Smells/metric thresholds are not evidence.
-
-## Semantic complexity pass
-
-For source-code audit/review, read [complexity and proof](references/complexity-and-proof.md) when control flow, state, fan-out, nesting, async/process lifecycle, or test volume is material.
-
-Distinguish:
-
-```text
-essential complexity
-→ real domain/runtime states/transitions; localize it in one deep owner and keep it explicit.
-
-accidental complexity
-→ extra states/branches/indirection/duplication/ownership ambiguity introduced by representation; reduce it.
-```
-
-Do not split a coherent switch/state machine into helper/strategy layers merely to lower cyclomatic/cognitive scores. A valid reduction must reduce meaningful decisions, invalid state, ownership ambiguity, repeated mechanism, or reader simulation—not just move it.
+Add risk, proof, confidence. Smells are not evidence. For each `Needs defect review` concern, report its location, scope, reason, evidence, and possible consequence.
 
 ## `audit`
 
-Pin repository/baseline/instructions/exclusions. Inventory non-overlapping source, entry-point, build, test, tool, platform, generated, and support-artifact subsystems; record boundary/interfaces/callers/tests/status. Exclusions need owner/reason; `not reviewed` means `PARTIAL`.
+Pin repository, baseline, instructions, exclusions. Inventory non-overlapping source, entry-point, build, test, tool, platform, and generated subsystems; record boundary, interfaces, callers, tests, status. Exclusions need owner/reason; `not reviewed` means `PARTIAL`.
 
-Run separate passes for deletion/reachability, state/representation, ownership/depth, algorithms/data structures, dependencies/native replacements, semantic complexity, and proof portfolio. Do not let easy dead code replace state-space/lifecycle/cross-language/repeated scan-copy analysis.
+Run separate deletion, representation, ownership, algorithm, complexity-when-material, and proof passes. Do not let easy dead code replace state-space, lifecycle, cross-language policy, or repeated scan/copy analysis.
 
-Classify implementation/dependencies/config/support artifacts `retain | delete-safe | blocked`. Verify dynamic/platform/generated consumers; text search alone does not prove deletion.
+Classify implementation, dependencies, configuration, and support artifacts as `retain | delete-safe | blocked`. Check interfaces, callers, dynamic/platform/generated reachability, builds, consumers, and owners; search alone does not prove deletion.
 
-Audit tests by invariant and proof owner. Classify coherent groups `retain | delete-safe | deep-clean candidate | blocked`; `delete-safe` requires complete stronger static/contract/integration/acceptance proof. Retain security/integrity/recovery/adapter/runtime/interaction/accessibility contracts unless a stronger complete owner is evidenced.
+Audit tests with the cleanup taxonomy. Classify each coherent group as `retain | delete-safe | deep-clean candidate | blocked`; report its signal, stronger proof owner, consequence, and required authority. `delete-safe` requires complete stronger static, contract, integration, or acceptance proof. A `deep-clean candidate` may abandon non-contract proof but requires explicit opt-in before execution.
 
-Target implementation-detail, duplicate, provider-shape, snapshot/layout/render-presence, shallow registration, and development-scaffolding tests that lack an independent selected contract. Handwritten provider fixtures do not prove live compatibility.
+Target existence, typecheck-satisfied, implementation-detail, duplicate, provider-shape, snapshot, layout, render-presence, registration, and shallow UI proof without a selected contract. Retain public, security, integrity, recovery, adapter, runtime, interaction, and accessibility contracts. Handwritten provider fixtures do not prove live compatibility.
 
-Rank material reductions by maintenance/cognitive/runtime cost, risk, confidence, and dependency. Complete only when every subsystem is `recommend` or `skip`; report inventory, reductions, keeps, slices, limits, and future verification.
+Find material reductions per subsystem. Verify semantics, ownership, migration, proof; deduplicate. Independently check coverage, materiality, priorities, dependencies. Complete when all subsystems are `recommend` or `skip`; report inventory, ranking, skips, slices, limits, worktree evidence.
 
 ## `review`
 
-Pin the supplied candidate; otherwise use the upstream merge-base diff plus applicable staged/unstaged/untracked work. Apply repository rules first.
+Pin the supplied candidate. Otherwise use the upstream merge-base diff plus applicable staged, unstaged, and untracked work; apply repository rules first. Check cohesion, coupling, reuse, YAGNI, vocabulary, waste, depth, testability, documentation, applicable audit classifications, and semantic complexity when its trigger is present. Send conflicting domain vocabulary to `amose`. Recommend compatibility removal only when proved unreleased with no consumers. Recheck identity; report findings, gaps, boundary, limits.
 
-Check cohesion, coupling, state representation, ownership, native reuse, abstraction depth, vocabulary, waste, semantic complexity, test/proof duplication, testability, documentation, and applicable audit classifications. Send conflicting domain vocabulary to `amose`. Recommend compatibility removal only when unreleased/no-consumer status is proved.
-
-For a material high-complexity function/module, report the semantic reason rather than the score. A high score with explicit cohesive state may be `keep`; a low-score abstraction pile may still be a simplification defect.
-
-Send each distinct `Needs defect review` concern to `atunwo` as a hypothesis; do not assign defect severity yourself.
+- Good: `state Stored total can diverge from owned line items. Derive it at the owner. [checkout.ts:42]`
+- Bad: “This class is long; split it.”
 
 ## Verify recommendations
 
-Recheck candidate identity, reachability, ownership, semantic complexity, proof owner, migration, risk, and worktree state with read-only evidence. State future verification commands/authority; do not run them. Stop on drift, missing content, uncertain consumers, or unsupported claims.
+Recheck identity, reachability, ownership, proof, migration, risk, and worktree state with read-only evidence. State the future verification commands and authority; do not run them. Stop on ambiguity, drift, missing content, uncertain consumers, or unsupported claims.
 
-Report scope/identity, ranked reductions and intentional keeps, retained contracts, proof owners, blockers/deep-clean consequences, implementation slices, required execution authority, future verification, and residual risk.
+Report scope, identities, ranked reductions, retained contracts, proof owners, `deep-clean candidate` consequences, blockers, implementation slices, required execution authority, future verification, and residual risk.

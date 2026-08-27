@@ -5,84 +5,69 @@ description: Deliver one supplied build job from settled outcome through impleme
 
 # Alága
 
-Deliver one supplied job as a coherent, proved, reviewed result. Use `test-first` for a bounded feature/fix or explicit test-first request; otherwise use `job`. A job is the complete supplied outcome; a delivery unit is an existing feature/plan/phase/ticket/task/candidate or other bounded result inside it. Own job integration without taking over supporting specialists or provider publication.
+Deliver one supplied job as a coherent, proved, reviewed result. Use `test-first` mode for a bounded feature, fix, or explicit test-first request. Otherwise, use `job` mode. A **job** is the complete supplied outcome. A **delivery unit** is an existing feature, plan, phase, ticket, task, candidate, or other bounded result within it. Own job integration without taking over a supporting specialist's outcome or lifecycle. This workflow does not authorize provider publication.
 
 ## 1. Accept and map the job
 
-Establish requested outcome, current/desired behavior, scope, exclusions, acceptance, documentation destinations, workspace, and authority. Name the minimum real user/operational path that must pass for acceptance.
+Establish the requested outcome, current and desired behavior, scope, exclusions, acceptance, proof, documentation destinations, workspace, and authority. A plan can be the delivered artifact. Keep pure explanation, bare review, monitoring, publication, and provider lifecycle with their direct owners unless they support the build.
 
-`alarina` selects the first route for an unqualified prompt. Once selected, Alága owns the active build job. Choose the shortest useful combination of available specialists/tools/direct work. If a required owner is unavailable, name the gap and pause only dependent work; do not imitate that specialist.
+Name the minimum real user or operational path that must pass for job acceptance. Focused and integration proof can support that path but cannot replace it when they exercise a different boundary.
 
-Before delivery, derive one session policy. Name the **smallest proof that can falsify the highest-risk acceptance claim** and a provisional proof budget: material invariants and their expected primary proof owners. The budget is a planning signal, not a numerical quota. Stop expanding proof/delegation when more evidence cannot change acceptance or a blocking decision.
+`alarina` selects the first route for an unqualified prompt. Once selected, `alaga` owns the active build job. Choose the shortest useful combination of available specialists, tools, and direct work. If a required owner is unavailable, name the gap and pause only dependent work. Do not imitate that specialist.
 
-Pin execution horizon, authorized commit granularity, continuation boundary, and any research/proof requirement beyond owning gates. Reuse settled exact-current plan/ticket/architecture decisions. Ask only when a material choice/authority gap changes the safe path.
+Before delivery, derive one session policy from the request and repository state. Name the smallest proof that can falsify the highest-risk acceptance claim. Stop expanding proof or delegation when more evidence cannot change acceptance or a blocking decision.
 
-Create one job envelope mapping units to owners, dependencies, native state, acceptance, proof, blockers, results, and exact candidate identities. Read applicable `.learnings` and complete `.nongoals`; conflicting direction requires an authorized `amose` reconciliation/exception before dependent implementation.
+- execution horizon: one unit, candidate, ticket, phase, all startable work, or the complete job;
+- commit granularity when local commits are authorized; a commit is not an automatic unit, proof, or review boundary;
+- continuation boundary: continue automatically through the confirmed horizon, or pause after one stated existing unit; and
+- any research or evidence requirement beyond the owning proof gates.
+
+Reuse choices settled by the request, an exact-current plan or ticket, and repository instructions. Ask one focused question only when a material choice or missing authority changes the safe path. Repository or Git state does not grant commit, history-rewrite, publication, provider-write, or other user authority.
+
+Create one job envelope that maps units to owners, dependencies, native state, acceptance, proof, blockers, results, and candidate identities. Pin each specialist request to its caller, scope, candidate, required result, and active owner ancestry. Return overlapping work to its active ancestor. Report a cycle only when ownership cannot be reconciled.
+
+Read relevant root `.learnings` and the complete root `.nongoals` when present. Preserve confirmed project knowledge. If the job conflicts with `.nongoals`, require `amose` to record an authorized exception or boundary update before dependent implementation.
 
 Read [job-report.md](references/job-report.md) at acceptance and after decomposition or a material shift. When an active Atọ́nà plan governs the job, return its contribution receipt instead of creating a parallel user-facing report. A material receipt may cause Atọ́nà to revise its semantic plan and refresh the continuous plan HTML; Alága does not edit that plan record or HTML directly. Otherwise, use `html-artifact` at the first qualifying standalone-report trigger and `akosile` for any repository-local QP-generated destination.
 
-Use `solution-architect` for material architecture, `arojinle` for an open consequential user decision, `atona` for active initiative lifecycle, and `seda-ticket` only when consumable tickets are needed. Consume exact-current results without copying their procedures.
+Use `arojinle` when a material user decision remains. Use `solution-architect` when technical architecture needs design or review. Use `atona` when an initiative plan, migration, integration, phase, or recovery decision must remain active during delivery. Use `seda-ticket` when the supplied work needs consumable vertical tickets. These specialists return exact-current results. `alaga` does not copy their procedures or state machines.
 
-When the user has explicitly selected Experimental `akowe-code` and an exact-current Code Craft Brief is available, consume it as implementation guidance. Stable delivery remains complete without it; the brief cannot grant architecture, mutation, proof, or review authority.
-
-For accepted `pare` work, pin the exact report/candidate/selected slice/retained contracts/proof/risk/blockers/future verification. A `deep-clean candidate` requires explicit opt-in.
+For accepted `pare` work, pin the report, candidate, selected finding or slice, retained contracts, proof, risk, blockers, and future verification. Do not implement a blocked finding or use the pre-implementation report as final review. A `deep-clean candidate` requires explicit opt-in.
 
 ## 2. Deliver and prove
 
-Prepare workspace/branch without disturbing unrelated changes. Continue through the confirmed horizon until policy requires a pause, a material decision/authority gap appears, or no safe independent work remains.
+Prepare the workspace and branch without disturbing unrelated changes. Continue through the confirmed horizon until the policy requires a pause, a material decision or authority gap appears, or no safe independent work remains.
 
 Start a persisted ticket only when its exact-current owner result permits it. Refresh its identity, state, dependencies, evidence, and authority before a write. Ticket state never sets job, plan, phase, implementation, or review state.
 
-When production behavior changes or the user requests test-first work, apply [test-first implementation](references/tdd.md) through coherent green slices. Run focused/affected proof for each unit, then job-level integration/acceptance proof.
+Use the proof owner for each unit. When production behavior changes or the user requests test-first work, apply [`references/tdd.md`](references/tdd.md) through coherent green slices. Run focused and affected proof for every unit, then job-level integration and acceptance proof.
 
-Before a planned stateful refactor/rewrite can change transitions, ordering, locking, retries, idempotency, ownership, or cross-entry behavior, require exact-current `atunwo audit`; use its accepted rows as contract inputs and required characterization proof. Do not reuse the audit as final review.
+Before a planned stateful refactor or rewrite can change transitions, ordering, locking, retries, idempotency, ownership, or cross-entry behavior, require an exact-current `atunwo` `audit`. Pin its candidate, permitted contract, guardrails, and gaps. Correct the proposed contract or boundary until the audit permits a safe start. With mutation authority, use its rows as acceptance inputs and apply required characterization tests through [`references/tdd.md`](references/tdd.md). Do not repeat the audit or use it as final candidate review.
 
-If one unit blocks, continue independent in-scope units and record the blocker/dependencies/completed work/partial proof/resume trigger. Do not continue dependent or unsafe work.
+If one unit blocks, continue independent in-scope units. Record the blocker, affected dependencies, completed units, partial proof, and exact resume trigger. Do not continue dependent or unsafe work.
 
-When subagent work materially improves delivery, give each bounded request the current candidate, scope, exclusions, confirmed decisions, result contract, and acceptance. Alága retains integration, stage gates, and correction convergence. Use `irinse` only for exact-current companion-tool evidence that improves impact or source selection. It is not acceptance evidence.
+When subagent work materially improves delivery, give each bounded request the current candidate, scope, exclusions, confirmed decisions, result contract, and acceptance. `alaga` retains integration, stage gates, and correction convergence. Use `irinse` only for exact-current companion-tool evidence that improves impact or source selection. It is not acceptance evidence.
 
-Identify every review candidate exactly. For uncommitted work, run:
+Identify every review candidate exactly. For uncommitted work, run `python3 <alaga-skill>/scripts/snapshot-candidate.py --repo <workspace> --path <intended-path>` for every intended path. Use `--all-changes` only when the whole worktree is the candidate. Use the snapshot's selected/ambient partition and digest. Stop on an incomplete snapshot or unsafe overlap. Preserve ambient changes and do not require a clean index. Commit authority does not authorize amend, squash, rebase, force-push, or another history rewrite.
 
-```text
-python3 <alaga-skill>/scripts/snapshot-candidate.py --repo <workspace> --path <intended-path>
-```
-
-for every intended path. Use `--all-changes` only when the whole worktree is the candidate. Use the snapshot's selected/ambient partition and digest. Stop on an incomplete snapshot or unsafe overlap. Preserve ambient changes and do not require a clean index. Commit authority does not authorize amend, squash, rebase, force-push, or another history rewrite.
-
-Before review, update required ordinary documentation in the candidate and reconcile durable project knowledge through `amose` when warranted.
+Before review, update required ordinary documentation in the candidate. When verified delivery changes durable project knowledge, send one exact evidence package to `amose` and reconcile required `.learnings`, `.nongoals`, or ADR results.
 
 When accepted visual references span multiple screens, components, states, or core tokens, map each surface to its implementation and visual-check state in a fidelity ledger. Record exclusions and unresolved mismatches. Skip the ledger for low-visual or single-surface work.
 
-## 3. Compact proof before final review
+## 3. Review and converge
 
-When tests/probes/harnesses were added or materially changed, read [proof compaction](references/proof-compaction.md) after the candidate behavior is green and production refactoring is stable.
+Review each stable, understandable, verifiable, acceptable, and reversible candidate once. Keep dependent units together when separation creates a broken intermediate result. Split independent candidates. A task, TDD slice, or commit is not automatically a review boundary.
 
-Classify development proof as:
+Request early bounded review only when material design, security, data-integrity, migration, public-contract, or cross-system risk would be costly to correct later. Early review does not replace final review.
 
-```text
-KEEP | MERGE | DELETE | MOVE_TO_STRONGER_OWNER
-```
+Select review owners from the candidate type and job contract. After implementation proof is green, source code and tests require broad `atunwo`, including maintainability evidence. Other candidates use their owner's verification and required review. Do not substitute code review for a non-code candidate. Treat findings as hypotheses until verified.
 
-Do not equate TDD construction history with the permanent test portfolio. Preserve every material invariant, but prefer one primary proof owner at the cheapest stable seam. Re-run affected proof after compaction.
+Apply behavior-changing code corrections through [`references/tdd.md`](references/tdd.md) and other corrections through their proof owner. After a correction, pin the new candidate and rerun affected proof and stale review. Resolve confirmed non-blocking maintainability findings when they remain in scope and their delivery risk does not exceed the evidenced benefit. Do not finish with a blocking finding or evidence gap.
 
-If no proof artifact changed, record compaction `not applicable` rather than manufacturing cleanup.
+Close a candidate only after its acceptance, proof, documentation, and required review pass. Close the job only when every in-scope unit and candidate maps to the outcome and job-level integration and acceptance proof pass.
 
-After proof compaction, make **one bounded craft pass** over the stable candidate: names, abstraction level, ownership, state representation, duplicated mechanism, and exact-current Code Craft Brief when one was explicitly supplied. Do not enter an iterative beautification loop. Any behavior-changing correction returns through its proof owner.
+## 4. Report the result
 
-## 4. Review and converge
+Keep the active Atọ́nà contribution receipt or qualifying standalone [job report](references/job-report.md) current. At handoff, confirm that the workspace contains the exact reviewed candidate and no intended change remains outside authorized Git state.
 
-Review each stable, understandable, verifiable, acceptable, and reversible candidate once. Keep dependent units together when separation creates a broken intermediate result; split independent candidates. A task, TDD slice, or commit is not automatically a review boundary.
-
-Request early review only for material design/security/data/migration/public-contract/cross-system risk where correction would be expensive later; it does not replace final review.
-
-After implementation and compacted proof are green, source code/tests require broad `atunwo`, which consumes exact-current `pare review` evidence. Other artifacts use their owner-specific verification/review. Findings remain hypotheses until verified.
-
-Apply behavior-changing corrections through TDD/owning proof and other corrections through their proof owner. Pin the new candidate and rerun affected stale proof/review. Do not finish with a blocking finding or material evidence gap.
-
-Close a candidate only after acceptance, compacted proof, documentation, and required review pass. Close the job only when every in-scope unit/candidate maps to the outcome and job-level acceptance proof passes.
-
-## 5. Report the result
-
-Keep any active Atọ́nà contribution receipt or qualifying standalone job report current. At handoff, confirm the workspace contains the exact reviewed candidate and no intended change remains outside authorized Git state.
-
-Report job boundary/session policy, completed horizon, decisions, delivered units, documentation, **proof budget and compaction result**, final proof, review, ticket transitions, commit state, exact candidates, remaining units, blockers, and residual limits. For generated `.qp` resources return absolute and repository-relative paths.
+Report the job boundary, session policy, completed horizon, decisions, delivered units, documentation, proof, review, ticket transitions, commit state, exact candidates, remaining units, blockers, and residual limits. For QP-generated local plans, reports, or artifacts, return both absolute and repository-relative `.qp/...` paths. For other local files, return the absolute path.
