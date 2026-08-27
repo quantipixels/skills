@@ -1,11 +1,11 @@
 ---
 name: atona
-description: Maintain one exact-current initiative plan and its continuously available HTML view from early Draft through delivery and closure. Use when a feature, migration, or material workstream needs exploration, shaping, lifecycle-plan readiness, coordinated handoffs, proof, and final reconciliation. Exclude technical architecture design or review, complete decision interviews, implementation, workspace infrastructure, and generic routing.
+description: Maintain one exact-current initiative plan and its consolidated HTML view from early Draft through delivery and closure. Use when a feature, migration, or material workstream needs exploration, shaping, lifecycle-plan readiness, coordinated handoffs, proof, and final reconciliation. Exclude technical architecture design or review, complete decision interviews, implementation, workspace infrastructure, and generic routing.
 ---
 
 # Atọ́nà
 
-Turn unclear intent into one live initiative plan. Maintain one exact-current Markdown semantic source and one continuously available HTML human view from the first meaningful `Draft` through `Closed`.
+Turn unclear intent into one live initiative plan. Maintain one exact-current Markdown semantic source and one consolidated HTML human view across meaningful decision and lifecycle boundaries from `Draft` through `Closed`.
 
 Own plan meaning, decision coverage, lifecycle sufficiency, delivery integration, and closure. Keep technical architecture with `solution-architect`, consequential user-choice closure with `arojinle`, implementation with delivery owners, `.qp` root/path mechanics with `akosile`, and route selection with `alarina`.
 
@@ -25,7 +25,7 @@ subject: <stable initiative identity>
 
 Atọ́nà owns the record body, revision, native status, decision frontier, delivery summary, decisions, projection brief, and semantic validity. Akọsílẹ̀ owns path allocation, safe writes, direct-access paths, and index reconciliation.
 
-Keep the Markdown record exact-current as material facts and confirmed answers settle. Treat HTML as a batched human projection, not a dependency of the decision loop. After the first meaningful Draft consolidation, ask `html-artifact` to create `index.html` in the same bundle. Refresh it after a material decision is confirmed, after an Àròjinlẹ̀ round completes, and at lifecycle transitions or explicit formal handoffs. When several answers settle in one round, prefer one consolidated refresh at round completion instead of regenerating per answer.
+Keep the Markdown record exact-current as material facts and confirmed answers settle. Treat HTML as a batched human projection, not a dependency of the decision loop. After the first meaningful Draft consolidation, ask `html-artifact` to create `index.html` in the same bundle. Refresh it only after a material decision is confirmed, after an Àròjinlẹ̀ round completes, or when a lifecycle transition requires a newly consolidated view. When several answers settle in one round, prefer one refresh at round completion instead of regenerating per answer.
 
 During an active Àròjinlẹ̀ question round, do not render, inspect, verify, browse, or hand off HTML merely because the semantic record changed. Do not interrupt the user's decision flow with projection work. If rendering fails at a consolidation boundary, keep the Markdown record current, mark the view `INCOMPLETE` or `STALE`, and do not claim a current accessible handoff.
 
@@ -126,9 +126,9 @@ After a material receipt changes plan meaning, update the semantic record first.
 
 ## 7. Verify the human view at lifecycle boundaries
 
-Keep ordinary decision and round refreshes lightweight: require successful projection generation and structural validity, but do not run browser/visual verification merely because HTML was refreshed. Full verification must not interrupt an active Àròjinlẹ̀ round.
+Do not run structural, browser, or visual verification for ordinary material-decision or round-completion HTML refreshes. A successful refresh may update the projection, but separate verification waits for consolidation at a lifecycle transition. Full verification must never interrupt an active Àròjinlẹ̀ round.
 
-Require current full browser proof when presentation is consolidated for a lifecycle transition that changes the reader's job, especially `Planned`, `In Progress`, `Backlog`, and `Closed`, and for applicable formal publication/review gates. Require it for the first meaningful Draft render only when that render is itself a formal user handoff rather than an in-progress decision session. Run targeted checks when a consolidated presentation materially changes without a lifecycle transition.
+At each lifecycle transition that changes the reader's job, including `Planned`, `In Progress`, `Backlog`, and `Closed`, regenerate the HTML from the exact transition revision, run structural checks, and require current full browser proof. Apply the same verification only at an explicit formal publication/review gate when the user or governing workflow requires it. Do not insert an otherwise unnecessary verification checkpoint into a Draft decision session.
 
 Outside an active `OPEN` question round, every artifact-oriented user-visible handoff discloses record/projection revisions and presentation state. Return the HTML absolute and `.qp/...` path first, then the Markdown semantic-source path. While the frontier is `OPEN`, the questions-first rule in section 1 takes precedence.
 
