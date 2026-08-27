@@ -1,26 +1,41 @@
-# Java
+# Java guidance index
 
-Research baseline: Java 17–26 guidance distilled from the former `akowe-java` experiment. Recheck volatile release/support facts after 2026-08-27.
+Research baseline: Java 17–26 guidance preserved from the former `akowe-java` experiment. The public Java skill is retired; this index routes Akọ̀wé Code into the detailed category references without loading the full catalogue.
 
-Use only items relevant to the candidate.
+Establish the repository's Java baseline first: toolchain, compiler `--release`, runtime image, library consumer baseline, preview/incubator flags, and framework constraints. Then open only categories controlling the touched code.
 
-- Detect `--release`, toolchain, runtime image, consumer baseline, preview/incubator flags, and framework constraints before using newer APIs or syntax.
-- Prefer immutable/value-oriented models; use records for true value carriers and sealed hierarchies when they make a closed state space explicit.
-- Keep generics precise: no raw types; isolate unavoidable unchecked casts; use variance from actual producer/consumer contracts rather than wildcard-heavy APIs.
-- Make nullability explicit. Use project nullness annotations/JSpecify when established; use `Optional` primarily at return boundaries, not as a field/parameter fashion.
-- Keep `equals`/`hashCode` stable and consistent; never put mutable equality keys into hashed collections.
-- Prefer specific failure contracts, preserve causes, do not swallow exceptions/cancellation, and do not catch `Error` for ordinary recovery.
-- Use collections/streams when they express intent clearly; avoid side-effectful or automatically parallel streams. Imperative loops are better when ordering/state/failure becomes clearer.
-- Minimize shared mutable state. Make happens-before/atomicity real rather than assuming thread-safe containers make compound actions safe.
-- Virtual threads suit many blocking I/O tasks; do not pool them, do not expect CPU speedups, and still bound scarce downstream resources.
-- Own `ExecutorService`, `HttpClient`, files, streams, and other resources explicitly; use try-with-resources where the API is closeable and configure finite remote timeouts.
-- Use `BigDecimal`/exact arithmetic and `java.time` according to domain precision; inject/control time when behavior depends on the clock.
-- Prefer standard JDK APIs and measure before performance tuning. Avoid JDK internals and unbounded caches/allocation hot paths.
-- Keep security-sensitive parsing/serialization explicit: parameterized SQL, secure randomness, bounded input, hardened XML, no native Java serialization for untrusted data.
-- Let tests prove behavior/contracts at stable seams; deterministic time/randomness and real provider/database integration matter when semantics depend on them.
+Priority meanings:
 
-Primary sources:
+- `CRITICAL` — correctness, compatibility, safety, security, or public-contract guidance; satisfy it or establish a concrete exception.
+- `HIGH` — strong expert default whose deviation needs candidate-specific benefit and proof.
+- `MEDIUM` — contextual guidance; optimize for clarity and repository fit rather than mechanical compliance.
 
-- Java SE docs: <https://docs.oracle.com/en/java/javase/>
-- OpenJDK JEP index: <https://openjdk.org/jeps/0>
-- Dev.java: <https://dev.java/>
+| Candidate mechanism | Priority | Detailed reference |
+| --- | --- | --- |
+| Java/JDK baseline, release flags, preview/incubator, deprecated-for-removal APIs | CRITICAL | [Version and platform baseline](../java/baseline.md) |
+| Naming, visibility, comments, domain language | MEDIUM | [Naming, visibility, and communication](../java/naming.md) |
+| Generics, variance, raw/unchecked types, value types | CRITICAL | [Types and generics](../java/types-generics.md) |
+| Immutability, defensive copies, mutable exposure | CRITICAL | [Value semantics and immutability](../java/values-immutability.md) |
+| Records, sealed types, exhaustive/pattern matching | HIGH | [Modern data modelling](../java/modern-data.md) |
+| Public/internal API contracts, factories, boolean parameters | CRITICAL | [API design](../java/api-design.md) |
+| Nullness annotations, Optional, platform/interoperability absence | CRITICAL | [Nullability and Optional](../java/nullability.md) |
+| Equality, hashing, mutable keys, ordering, arrays | CRITICAL | [Equality, hashing, and ordering](../java/equality-ordering.md) |
+| Exception contracts, causes, swallowing, interruption | CRITICAL | [Exceptions and failure contracts](../java/exceptions.md) |
+| Collection boundaries, copies, enum collections, capacity | HIGH | [Collections](../java/collections.md) |
+| Streams, collectors, ordering, side effects, parallelism | HIGH | [Streams, collectors, and pipelines](../java/streams.md) |
+| Shared state, happens-before, executors, atomic compound actions | CRITICAL | [Concurrency and Java Memory Model](../java/concurrency.md) |
+| Blocking I/O with virtual threads, task ownership, scoped values | HIGH | [Virtual threads and task concurrency](../java/virtual-threads.md) |
+| Files, streams, charsets, HTTP clients, resource lifetime | CRITICAL | [Resources, files, HTTP, and I/O](../java/resources-io.md) |
+| BigDecimal/exact arithmetic, java.time, controlled clocks | CRITICAL | [Numeric and time correctness](../java/numeric-time.md) |
+| Profiling, complexity/data structures, allocation, caches | HIGH | [Performance and allocation](../java/performance.md) |
+| Serialization, SQL, randomness, secrets, XML/input hardening | CRITICAL | [Security-sensitive coding](../java/security.md) |
+| Stable behavioral proof, parameterization, time/randomness, real boundaries | HIGH | [Testing and proof](../java/testing.md) |
+| Logging, metrics, correlation, exception ownership, JFR | MEDIUM | [Logging, metrics, and diagnostics](../java/observability.md) |
+| Modules, dependencies, public/internal packaging, reproducibility | MEDIUM | [Modules, dependencies, and packaging](../java/modules-packaging.md) |
+| Reflection, explicit wire formats, module encapsulation, FFM/JNI | MEDIUM | [Reflection, serialization, and native interop](../java/reflection-interop.md) |
+
+Use rule headings as hypotheses, not a lint set. Apply only a rule whose trigger exists in the exact candidate and trace it to a concrete contract, failure mechanism, idiomatic/craft improvement, or proof seam.
+
+Framework guidance may specialize Java behavior because of proxying, transactions, lifecycle, serialization, scheduling, or runtime ownership. It must not silently weaken Java correctness, cancellation, resource, security, or compatibility contracts.
+
+Primary source families and freshness boundaries are recorded in [the Akọ̀wé Code source map](../source-map.md).
