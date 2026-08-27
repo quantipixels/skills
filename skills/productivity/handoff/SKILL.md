@@ -36,7 +36,7 @@ Use this compact form:
 
 ## Evidence and owners
 
-<artifact paths or URLs, material exact-current `amose` or `irinse` identities, and selected owning or supporting skills>
+<artifact paths or URLs, material exact-current owner results, and selected owning or supporting skills>
 ```
 
 Do not select a new skill route. Do not duplicate content from existing artifacts. Reference each artifact and summarize only the state needed to continue.
@@ -45,7 +45,7 @@ Treat a change in outcome, primary owner, repository or candidate, mutation auth
 
 Resolve every source session and artifact before treating it as confirmed. If a required source is unavailable, name the gap, limit `Confirmed` to independently verified facts, and make the first action obtain the smallest recovery bundle: a transcript or prior handoff, candidate identity, completed proof, and the next verifiable action.
 
-When Pepeye mode is active, link the exact lifecycle-ledger record when one is authorized, plus the current leaf-owner receipts needed for transfer. Return a pickup receipt that names the suspended playbook, its task-local declaration or exact pointer, interrupted phase, last completed phase and proof, current gap, retained and missing authority, next phase, first checkable action, and artifacts to refresh. This handoff is a point-in-time transfer: do not mutate the ledger, advance a Pepeye phase, or assign its terminal state.
+When Pepeye is active, include its exact-current lifecycle checkpoint and required leaf-owner results in the handoff; do not reproduce or advance Pepeye's lifecycle.
 
 Include only verified current state. Mark information that may be stale. Remove credentials and unnecessary sensitive information.
 
