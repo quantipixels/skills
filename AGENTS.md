@@ -2,8 +2,6 @@ When creating, updating, or validating a skill, use `ko-skill`.
 
 For developer documentation and technical communication, use `technical-writing` for structure and clarity, then `yo-slop` for final prose cleanup. Apply the same chain to human-facing artifact copy when it fits, without changing the artifact owner's facts, schema, authority, or acceptance.
 
-Treat supporting skills as deep modules. Tell the owner the outcome or representation needed and consume its result; do not copy its internal procedure, lifecycle, verification, layout, or resource-management instructions into callers. For `html-artifact`, normally state what should be visualised and whether HTML is the primary human view, then let `html-artifact` own the representation.
-
 Do not add or generate a `default_prompt` field in skill agent metadata.
 
 Keep every skill in exactly one `skills/engineering`, `skills/design`, `skills/productivity`, or `skills/experimental` group. When a skill is added, removed, renamed, moved, or rerouted, reconcile its group, [`.claude-plugin/plugin.json`](./.claude-plugin/plugin.json), [`alarina`](./skills/productivity/alarina/SKILL.md), and `README.md`.
