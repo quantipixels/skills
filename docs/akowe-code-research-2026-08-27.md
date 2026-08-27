@@ -4,28 +4,26 @@ Date: 2026-08-27
 
 ## Result
 
-The Java/Spring catalogue experiment is better expressed as one task-scoped coding-companion outcome with deep progressively disclosed internal references plus bounded current primary-source lookup. This preserves useful research depth while avoiding public skill proliferation and large default runtime context.
-
-The consolidation therefore separates two concerns:
+The code-craft catalogue experiment is better expressed as one task-scoped companion outcome with deep progressively disclosed internal references plus bounded current primary-source lookup. This preserves useful research depth while avoiding public skill proliferation and large default runtime context.
 
 ```text
 public ownership
 → one explicit Experimental akowe-code skill
 
 knowledge depth
-→ as much category-level detail as remains useful, loaded only when the exact candidate needs it
+→ mechanism-level categories loaded only when the exact candidate needs them
 ```
 
-The former Java and Spring public runtime skills are retired, but their useful detailed categories are retained under `akowe-code/references/java/` and `akowe-code/references/spring/`. A small ecosystem index routes to those categories. No runtime search/selector engine is required for that progressive disclosure.
+Java/Spring deep categories are preserved from their former public skills. Kotlin, Ktor, Elixir, and Phoenix now also use small ecosystem indexes backed by mechanism-level category trees. No runtime search/selector engine is required for this progressive disclosure.
 
 ## Current first-party baselines at the cutoff
 
 - Java guidance remains baseline-aware across Java 17–26; project `--release`/runtime/consumer constraints are authoritative.
-- Kotlin's current release line is 2.4 and 2.4.10 is the latest bug-fix release: <https://kotlinlang.org/docs/releases.html>.
-- Ktor 3.5.2 is the current documented release: <https://ktor.io/docs/releases.html>.
+- Kotlin 2.4 / 2.4.10: <https://kotlinlang.org/docs/releases.html>.
+- Ktor 3.5.2: <https://ktor.io/docs/releases.html>.
 - Elixir 1.20 requires Erlang/OTP 27+ and is compatible with OTP 29: <https://elixir.hexdocs.pm/changelog.html>.
 - Phoenix 1.8.12 is the current changelog line; Phoenix 1.8.9 added channel-count hardening against per-client process exhaustion: <https://phoenix.hexdocs.pm/changelog.html>.
-- Spring Framework documentation lists stable 7.0.9 and 6.2.19 lines. Spring Framework 7.0 supports Kotlin 2.2+ and documents first-class Kotlin support: <https://docs.spring.io/spring-framework/reference/languages/kotlin.html>.
+- Spring Framework documentation lists stable 7.0.9 and 6.2.19 lines; repository-managed Spring/Boot generations remain authoritative.
 
 ## Durable versus volatile knowledge
 
@@ -35,7 +33,7 @@ Keep durable locally:
 - framework proxy/container/transaction/request/process lifecycle semantics;
 - known-bad patterns with stable failure mechanisms;
 - complexity/proof interpretation principles;
-- detailed category guidance where examples, exceptions, or interaction rules materially improve expert judgment.
+- category-level examples/exceptions/interaction rules that materially improve expert judgment.
 
 Resolve at task time:
 
@@ -52,7 +50,7 @@ Use ordinary progressive disclosure rather than a second retrieval product:
 ```text
 exact candidate
 → establish stack from repository/native-tool evidence
-→ open one ecosystem index/compact reference
+→ open one ecosystem index
 → open only touched mechanism categories
 → use only applicable rule headings
 → bounded primary-source lookup for remaining material gaps
@@ -60,17 +58,21 @@ exact candidate
 
 The model still owns candidate understanding, materiality, exceptions, recommendation, and final Code Craft Brief synthesis. Do not build a custom selector merely to return references the skill can choose directly from explicit candidate mechanisms.
 
+## Current category shape
+
+- Java — 21 retained mechanism categories.
+- Spring — 18 retained mechanism categories.
+- Kotlin — baseline/types; coroutines/lifecycle; Flow/state; JVM interop/ABI; multiplatform/testing.
+- Ktor — server lifecycle/plugins; routing/HTTP/errors; auth/security; client/resilience; streaming/concurrency/testing.
+- Elixir/OTP — language/data/failure; processes/GenServer/state; supervision/Tasks/failure; concurrency/resources; configuration/contracts/testing.
+- Phoenix — routing/controllers/contexts; Ecto/data; security/auth; Channels/PubSub/Presence; LiveView/background work; testing/observability/runtime.
+
+These counts are not quotas. Split/merge only when retrieval cost and mechanism cohesion justify it.
+
 ## Research boundary
 
 One/few task-local facts use bounded owning-source lookup and are cited in the Code Craft Brief. Multi-source/reusable/auditable research uses `iwadi`. Neither path changes published guidance automatically.
 
 ## Source heritage
 
-The retained Java and Spring categories originate from:
-
-- `docs/akowe-java-research-2026-08-26.md`;
-- `docs/akowe-spring-research-2026-08-26.md`;
-- primary Java/OpenJDK/Spring/Hibernate/Jakarta documentation;
-- earlier community-corpus discovery used only for candidate/counterexample generation.
-
-Kotlin/Ktor/Elixir/Phoenix compact references use their owning first-party documentation as controlling evidence. Community conventions do not override repository or owning-project contracts.
+Java/Spring retained categories originate from the prior QP experiments plus primary owning documentation. Kotlin/Ktor/Elixir/Phoenix categories are original synthesis expanded from the initial compact Akọ̀wé Code research and their owning first-party documentation. Community conventions do not override repository or owning-project contracts.
