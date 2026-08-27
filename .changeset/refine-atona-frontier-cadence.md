@@ -2,4 +2,4 @@
 "qp-skills": minor
 ---
 
-Keep Atọ́nà and Àròjinlẹ̀ question rounds ahead of HTML artifact work, batch projection refreshes at decision and round consolidation boundaries, and move full HTML verification to lifecycle transitions and formal handoffs.
+Restore Àròjinlẹ̀'s concise complete-frontier interview, keep Atọ́nà decision rounds ahead of artifact maintenance, and standardize supporting-skill composition so callers state the desired result while `html-artifact` and other owners retain their own representation, lifecycle, and verification procedures.
