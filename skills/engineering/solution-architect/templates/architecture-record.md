@@ -52,11 +52,47 @@ status: IMPLEMENTATION_READY | NOT_READY | UNPROVED
 
 ### <Decision>
 
-<selected design, alternatives, trade-offs, reversibility, and evidence>
+<selected technical design, alternatives, trade-offs, reversibility, and evidence>
+
+## Decision gaps
+
+| Identity | Why material | Prerequisite evidence | Options/trade-off boundary | Architecture/plan effect | Required owner |
+|---|---|---|---|---|---|
+| <decision> | <effect> | <facts or none> | <bounded alternatives> | <blocked/affected design> | `arojinle` |
+
+Use `none` when no material user decision remains.
 
 ## Implementation design
 
 <modules, interfaces, data/state, flows, integration, authentication, deployment, configuration, observability, and operations>
+
+## Architecture Contract
+
+**Critical invariants**
+- <invariant>
+
+**Allowed dependency directions**
+- <allowed direction>
+
+**Forbidden directions/states**
+- <forbidden direction or invalid ownership/state>
+
+**Data/state/identity/authority owners**
+- <owner and contract>
+
+**Lifecycle/failure/recovery obligations**
+- <obligation>
+
+**Resource/capacity/complexity budgets**
+- <budget or explicit none>
+
+**Compatibility/migration constraints**
+- <constraint>
+
+**Primary proof seams / fitness owners**
+- <invariant → proof owner>
+
+**Evidence cutoff/freshness:** <identity and current/stale>
 
 ## Failure, recovery, migration, and deletion
 
@@ -64,7 +100,7 @@ status: IMPLEMENTATION_READY | NOT_READY | UNPROVED
 
 ## Proof
 
-<tests, observability, operational checks, and acceptance for material drivers>
+<tests, static/compiler/schema proof, observability, operational checks, and acceptance for material drivers>
 
 ## Risks and gaps
 
@@ -86,10 +122,10 @@ Keep complete research, code, logs, tests, and provider payloads with their nati
 
 **Central representation:** <context, flow, state, topology, or migration view>
 
-**Foreground:** <selected design, critical flows, material risks, migration, and result>
+**Foreground:** <selected design, Architecture Contract, critical flows, material risks, migration, and result>
 
 **Link-only:** <detailed research, code, logs, and supporting records>
 
 ## Material history
 
-- r1 — <only a status, scope, decision, evidence, recovery/migration, or ownership change worth retaining>
+- r1 — <only a status, scope, decision/decision-gap, contract, evidence, recovery/migration, or ownership change worth retaining>
