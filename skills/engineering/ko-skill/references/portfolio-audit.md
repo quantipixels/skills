@@ -1,61 +1,52 @@
 # Portfolio audit
 
-Use only for a bounded portfolio audit. Produce one read-only, evidence-backed audit of the declared portfolio. Keep changes and deep single-skill judgment in `ko-skill`'s shared workflow.
+Use only for a bounded read-only portfolio audit. Judge inventory, ownership, composition, state drift, and structural health; do not edit, install, activate, synchronize, or publish skills.
 
 ## Pin the inventory
 
-Record the outcome, observation time, roots, repositories, package sources, active catalog, published surfaces, exclusions, and authority. Resolve supplied paths before counting.
+Record the declared roots/repositories, observation time, package/catalog surfaces, exclusions, and authority. Track each skill's `source`, `installed`, `active`, and `published` evidence independently and deduplicate aliases, caches, symlinks, and identical package copies.
 
-Track each state separately:
+Any source, package, manifest, catalog, installation, activation, or publication change makes dependent parity evidence stale.
 
-- `source`: maintained candidate and repository integration;
-- `installed`: physical runtime copy;
-- `active`: skill exposed by the current runtime or enabled package;
-- `published`: version on a confirmed distribution surface.
+## Check structural health
 
-Build one canonical inventory row per distinct skill: name, source/package identity, observed states, observation time, version or digest, and evidence. Deduplicate symlinks, caches, aliases, and identical package versions. State every count's denominator and exclusions. Any source, package, manifest, catalog, installation, activation, or publication change makes dependent parity evidence stale.
-
-## Check the portfolio
-
-Run deterministic structural checks across the declared inventory before semantic review:
+Run applicable deterministic checks across the declared inventory:
 
 - frontmatter, metadata, references, scripts, templates, and resources;
-- package, manifest, catalog, router, and canonical-name consistency;
-- exact identity or digest for every claimed state parity;
-- each provider-capable owner's complete applicable repository safety contract; and
-- deterministic ownership or route collisions.
+- package, manifest, catalog, router, group, and canonical-name consistency;
+- exact identity/digest for claimed state parity;
+- provider-capable owners against the repository provider policy; and
+- deterministic ownership or routing collisions.
 
-Classify each row as `no finding in declared checks | finding | evidence gap | excluded | not applicable`. Structural success does not prove behavioral quality.
+Structural success proves only those structures, not behavioral quality.
 
-Inspect semantic content by stated risk: collisions, missing owners, stale references, state drift, security-sensitive behavior, and broad or duplicated contracts. For a large portfolio, check all structural surfaces and disclose semantic sampling; never claim unsampled skills are behaviorally sound.
+## Audit ownership and composition
 
-Classify each skill's control shape as `lightweight` or `workflow` before judging instruction depth. A lightweight skill can be broadly applicable or consequential while using only a few invariants when those invariants create the intended behavioral delta and its native result closes the outcome. Do not flag missing phases, statuses, recovery machinery, schemas, or detailed failure branches unless the outcome actually needs them for correctness, authority, safety, or completion. A workflow needs deeper control only when ordered stages, durable or external state, multiple actors or candidates, stale or partial results, retries, recovery, or distinct side-effect authorities make that control consequential. Treat unexpected complexity in either direction as a finding only when evidence shows behavioral cost or risk.
+Classify each skill as `lightweight` or `workflow` using the Kọ Skill control-shape rule. Do not treat missing workflow machinery as a defect when a lightweight result is complete without it; do flag workflow machinery that has no consequence for correctness, authority, recovery, or completion.
 
-For every bundled script, read [bundled-script boundary](script-boundary.md) and verify ownership, necessity, mechanical scope, one-sentence contract, state discipline, source-of-truth boundary, structured output, and proportionate proof. Classify it as `KEEP`, `SHRINK`, `REPLACE_WITH_NATIVE`, `REPLACE_WITH_LIBRARY`, `MOVE_TO_OWNER`, `REMOVE`, or `NEEDS_EVIDENCE`. Do not treat existing tests, line count alone, or repeated use as proof that a script is justified.
+Map each public outcome to one primary owner and necessary supporting results. Preserve a separate skill when it owns a distinct outcome, authority, artifact, lifecycle, acceptance boundary, or installation value.
 
-For every supporting relationship, compare the caller with the dependency owner. Confirm that the caller supplies inputs and consumes a result instead of repeating the dependency's procedure, resources, checks, statuses, output schema, or lifecycle derivation. Do not flag caller-owned integration, acceptance, freshness, authority, recovery, or stop gates, or an independently required safety contract.
+For every supporting relationship, inspect both directions:
 
-Check selector-facing descriptions and host metadata separately from body instructions. A selector description should advertise the skill's owned outcome, trigger, and boundaries, not name resolver or supporting skills merely to explain how the outcome is implemented. Supporting skill identifiers belong in the body at the first branch that actually needs their result. Routing skills are the exception when choosing another owner is itself their primary outcome.
+- **caller leakage** — the caller reproduces the callee's procedure, internal stages/statuses, checks, resources, scripts, verification, persistence/artifact mechanics, or native result schema instead of stating the result it needs;
+- **callee leakage** — the callee reproduces a caller-specific plan/job/phase schema, receipt dialect, envelope, or orchestration lifecycle instead of returning one native result.
 
-For any skill that creates a durable QP record or standalone QP artifact, verify that the body JIT-loads the workspace owner at the persistence boundary rather than making workspace mechanics part of selection metadata. Do not require persistence machinery for ephemeral, provider-native, Git-native, or ordinary user deliverables.
+Do not flag caller-owned trigger/input, freshness, acceptance, authority, recovery, or stop conditions, nor independently required safety/trust rules. Routing skills may describe owners because routing is their result.
 
-## Map ownership
+Treat `html-artifact` and `akosile` as deep-module checks: callers should normally supply semantic intent/content while those owners retain representation or workspace mechanics.
 
-Map user outcomes to primary owners and explicit supporting relationships. Classify each relationship:
+Check selector-facing descriptions separately. They should advertise the skill's owned outcome, trigger, and exclusions rather than implementation dependencies, except when choosing another owner is itself the skill's result.
 
-- `core`: the primary cannot complete its outcome without the behavior;
-- `specialist`: separate authority, artifact, lifecycle, or acceptance boundary;
-- `optional`: useful enrichment with a safe fallback; or
-- `duplicate`: the same unqualified outcome and completion boundary.
+## Audit scripts and broad knowledge skills when present
 
-Keep vendor-neutral core behavior in the primary owner. Preserve specialists as handoffs and optional work as optional. Consolidate duplicates only when current behavior and caller evidence prove replacement without loss. Use direct invocation of the primary when material uncertainty justifies behavioral proof.
+For every bundled script, apply [bundled-script boundary](script-boundary.md) and return one disposition: `KEEP`, `SHRINK`, `REPLACE_WITH_NATIVE`, `REPLACE_WITH_LIBRARY`, `MOVE_TO_OWNER`, `REMOVE`, or `NEEDS_EVIDENCE`.
 
-Report a missing skill only from durable evidence of a recurring valuable outcome with no adequate owner. Reject one incident, repository policy, a small check, or an implementation detail; prefer extending the existing owner. Preserve overlaps when authority, provider, lifecycle, artifact, or completion differs, and prefer the smallest routing correction.
+For broad researched catalogues or resolver companions, apply [researched knowledge catalogues](knowledge-catalogues.md). Verify progressive disclosure, evidence/freshness boundaries, bounded native output, and absence of unnecessary custom retrieval machinery.
 
-Do not infer that a short skill lacks independent value. For a lightweight route, test whether its few invariants materially change selection, judgment, representation, or the composed result compared with ordinary agent behavior. Treat an unproved behavioral delta as an evidence gap, not a retirement finding. Recommend retirement only when evidence shows that the route adds no independently useful outcome or completion boundary.
+## Report only evidenced findings
 
-## Verify and report
+Verify every finding against exact-current files and observed states. Separate defects from optimizations and evidence gaps; deduplicate by mechanism and rank by user impact, recurrence, safety, reachability, and correction cost.
 
-Verify every finding against exact-current files and observed states. Separate defects from optimizations, deduplicate by mechanism, and rank by user impact, recurrence, safety, reachability, and correction cost. Assign an owner and `do now | defer | needs evidence | no action`; preserve accepted deferrals.
+Recommend a new skill only from durable evidence of a recurring valuable outcome with no adequate owner. Recommend retirement only when evidence shows the route adds no independently useful outcome or completion boundary.
 
-Return the evidence boundary, normalized inventory and denominators, control-shape classification, structural results, state-drift matrix, capability/route map, script dispositions, confirmed findings, evidence gaps, rejected recommendations, prioritized actions, and limitations. “No finding” means no issue found within declared checks, not that every skill is optimal.
+Return the evidence boundary, inventory/state matrix, control-shape classification, structural results, ownership/route map, dependency-boundary findings, script dispositions, confirmed defects/optimizations, evidence gaps, rejected recommendations, prioritized actions, and limitations. “No finding” means no issue found within the declared checks, not that every skill is optimal.
