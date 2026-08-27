@@ -1,17 +1,17 @@
 ---
 name: atona
-description: Maintain one exact-current initiative plan and its consolidated HTML view from early Draft through delivery and closure. Use when a feature, migration, or material workstream needs exploration, shaping, lifecycle-plan readiness, coordinated handoffs, proof, and final reconciliation. Exclude technical architecture design or review, complete decision interviews, implementation, workspace infrastructure, and generic routing.
+description: Maintain one exact-current initiative plan from early Draft through delivery and closure. Use when a feature, migration, or material workstream needs exploration, shaping, lifecycle-plan readiness, coordinated handoffs, proof, and final reconciliation. Exclude technical architecture design or review, complete decision interviews, implementation, workspace infrastructure, and generic routing.
 ---
 
 # Atọ́nà
 
-Turn unclear intent into one live initiative plan. Maintain one exact-current Markdown semantic source and one consolidated HTML human view across meaningful decision and lifecycle boundaries from `Draft` through `Closed`.
+Turn unclear intent into one live initiative plan. Keep one exact-current semantic record and use `html-artifact` to visualise it as the primary human view.
 
 Own plan meaning, decision coverage, lifecycle sufficiency, delivery integration, and closure. Keep technical architecture with `solution-architect`, consequential user-choice closure with `arojinle`, implementation with delivery owners, `.qp` root/path mechanics with `akosile`, and route selection with `alarina`.
 
-When a confirmed decision or material fact changes, reopen affected decisions/phases, mark dependent proof stale, record affected implementation/documentation/projection surfaces, and rerun affected decision/readiness/closure checks.
+When a confirmed decision or material fact changes, reopen affected decisions/phases, mark dependent proof stale, record affected implementation/documentation surfaces, and rerun affected decision/readiness/closure checks.
 
-## 1. Establish the plan and its human view
+## 1. Establish the plan
 
 For every material initiative, maintain one semantic Markdown record using [the plan record template](templates/plan-record.md) as a semantic contract, not a rigid outline.
 
@@ -23,13 +23,11 @@ record_type: initiative-plan
 subject: <stable initiative identity>
 ```
 
-Atọ́nà owns the record body, revision, native status, decision frontier, delivery summary, decisions, projection brief, and semantic validity. Akọsílẹ̀ owns path allocation, safe writes, direct-access paths, and index reconciliation.
+Atọ́nà owns the record body, revision, native status, decision frontier, delivery summary, decisions, and semantic validity. Akọsílẹ̀ owns path allocation, safe writes, direct-access paths, and index reconciliation.
 
-Keep the Markdown record exact-current as material facts and confirmed answers settle. Treat HTML as a batched human projection, not a dependency of the decision loop. After the first meaningful Draft consolidation, ask `html-artifact` to create `index.html` in the same bundle. Refresh it only after a material decision is confirmed, after an Àròjinlẹ̀ round completes, or when a lifecycle transition requires a newly consolidated view. When several answers settle in one round, prefer one refresh at round completion instead of regenerating per answer.
+Use `html-artifact` to visualise the outcome, status, decision frontier, confirmed decisions, phases, blockers, delivery/proof, and next action. Keep its HTML as the primary human view. Refresh it after settled decision rounds or lifecycle transitions; never interrupt an active Àròjinlẹ̀ round for artifact work.
 
-During an active Àròjinlẹ̀ question round, do not render, inspect, verify, browse, or hand off HTML merely because the semantic record changed. Do not interrupt the user's decision flow with projection work. If rendering fails at a consolidation boundary, keep the Markdown record current, mark the view `INCOMPLETE` or `STALE`, and do not claim a current accessible handoff.
-
-When material questions are open, the user-facing handoff leads with the questions and recommended answers. This questions-first rule overrides artifact/path-first presentation while the frontier is `OPEN`; plan/HTML paths and status follow only after the round is settled or when the user explicitly asks for them. Artifact ceremony must not hide or replace decision closure.
+When material questions are open, the active Àròjinlẹ̀ round is the user-facing handoff: lead with the questions and recommended answers and wait for the user's decisions.
 
 ## 2. Maintain lifecycle state
 
@@ -84,11 +82,11 @@ OPEN    — one or more currently answerable material user decisions remain. OPE
 BLOCKED — unresolved material decisions remain, but none can currently be asked because prerequisite facts or specialist results are missing.
 ```
 
-Do not invoke `arojinle` merely to reopen settled decisions. When the frontier is `OPEN`, give it the whole currently answerable material decision set and caller envelope, then let Àròjinlẹ̀ own the user question round. Wait for the user's answers before consuming the settled-round receipt. When some branches remain blocked, continue independent answerable branches and resolve missing prerequisites without suppressing the current open frontier. When `BLOCKED`, resolve the prerequisite fact/evidence first. When `EMPTY`, record why no interview is required.
+Do not invoke `arojinle` merely to reopen settled decisions. When the frontier is `OPEN`, give it the whole currently answerable material decision set and caller context, then let Àròjinlẹ̀ own the user question round. When some branches remain blocked, continue independent answerable branches and resolve missing prerequisites without suppressing the current open frontier. When `BLOCKED`, resolve the prerequisite fact/evidence first. When `EMPTY`, record why no interview is required.
 
 Use `amose` for project/domain knowledge only when it can materially change the plan/frontier. Use `iwadi` for substantial reusable primary-source research, `irinse` for bounded tool evidence, and `solution-architect` when technical design/review is material.
 
-Supporting skills return compact exact-current receipts with caller identity/revision, native result, evidence/freshness, plan effect, affected decisions/phases/proof, blocker, next owner, required authority, and completion condition. Keep detailed packets with their native owners and link them instead of copying them.
+Supporting skills return compact exact-current results. Keep detailed packets with their native owners and link them instead of copying them.
 
 ## 4. Prove readiness
 
@@ -96,48 +94,26 @@ Before `Planned`:
 
 1. Re-read the exact plan as its implementer.
 2. Recompute the Decision Frontier Gate. Require `EMPTY`; no open, blocked, stale, silently assumed, or blocking-deferred material decision may cross the gate.
-3. If `arojinle` was used for the current decision set, require its exact-current final confirmation receipt/identity. If it was not required, record the current evidence proving why.
+3. If `arojinle` was used for the current decision set, require its exact-current final confirmation. If it was not required, record the current evidence proving why.
 4. Verify every required specialist result against the exact plan/candidate. Require current `solution-architect: IMPLEMENTATION_READY` when architecture is material.
 5. Treat coverage as an index, not proof: trace the top credible normal, failure, misuse, recovery, compatibility, migration, and operational mechanisms.
 6. Resolve every blocking dependency, recovery, migration, proof, documentation, and operational gap.
-7. Write the `Planned` revision, regenerate the execution-ready HTML view from that exact revision, and run the lifecycle-transition verification required below.
+7. Write the `Planned` revision and refresh the primary human view.
 
 Set `Planned` only when implementation needs no invented material requirement. Approval covers only the listed decisions and exact evidence identity.
 
-## 5. Adapt the HTML projection to lifecycle state
-
-Keep one stable plan identity and `index.html` path, but let information direction change with the reader's job:
-
-| Status | HTML direction |
-| --- | --- |
-| `Draft` | Outcome/current understanding, **current decision questions and frontier**, assumptions/evidence gaps, next questions/actions |
-| `Planned` | Accepted outcome/scope, decision closure, phases/dependencies, owners, proof, risks, rollback, start condition |
-| `In Progress` | Delivery state, exact candidates, exceptions/blockers, deviations/stale evidence, decisions needed, next action |
-| `Backlog` | Pause reason, retained value, owner, reactivation trigger, stale assumptions |
-| `Closed` | Achieved outcome, accepted proof, final decisions, residual limits, durable sources |
-
-Preserve stable identity, source revision/status disclosure, and useful anchors. Do not keep one layout merely for continuity when the reader's job changes. An open Draft projection must expose the actual current questions, bounded choices, and recommendations rather than only a state label or decision table.
-
-## 6. Track delivery
+## 5. Track delivery
 
 When tickets, multiple candidates, dependencies, implementers, multi-session handoff, or delivery authority apply, read [delivery tracking](references/delivery-tracking.md). It owns ticket integration, delivery handoffs, receipt reconciliation, and completion proof. Atọ́nà retains plan identity, decision/frontier integration, delivery-summary derivation, and closure.
 
-After a material receipt changes plan meaning, update the semantic record first. Refresh HTML only when the change reaches a projection consolidation boundary defined above. Keep non-plan-affecting operational detail outside the plan record.
+After a material owner result changes plan meaning, update the semantic record first and refresh the primary human view at the next settled boundary. Keep non-plan-affecting operational detail outside the plan record.
 
-## 7. Verify the human view at lifecycle boundaries
-
-Do not run structural, browser, or visual verification for ordinary material-decision or round-completion HTML refreshes. A successful refresh may update the projection, but separate verification waits for consolidation at a lifecycle transition. Full verification must never interrupt an active Àròjinlẹ̀ round.
-
-At each lifecycle transition that changes the reader's job, including `Planned`, `In Progress`, `Backlog`, and `Closed`, regenerate the HTML from the exact transition revision, run structural checks, and require current full browser proof. Apply the same verification only at an explicit formal publication/review gate when the user or governing workflow requires it. Do not insert an otherwise unnecessary verification checkpoint into a Draft decision session.
-
-Outside an active `OPEN` question round, every artifact-oriented user-visible handoff discloses record/projection revisions and presentation state. Return the HTML absolute and `.qp/...` path first, then the Markdown semantic-source path. While the frontier is `OPEN`, the questions-first rule in section 1 takes precedence.
-
-## 8. Reconcile and close
+## 6. Reconcile and close
 
 Before `Closed`, verify the decision frontier remains empty; no blocking decision/gap remains; delivery/review match the exact candidate; proof gaps/deferrals are explicit; freezes hold; and no material obsolete guidance remains.
 
 For affected `.learnings`, `.nongoals`, ADRs, or authorized project-local craft knowledge, require exact-current `amose` reconciliation. For ordinary documentation, require `updated now`, `already reconciled` with evidence, or `not applicable`.
 
-Update the record with final receipts/material semantic history, generate the Closed assurance view, and require applicable current browser proof.
+Update the record with final receipts/material semantic history and refresh the primary human view.
 
-Before every user-visible handoff, align plan status, decision frontier, delivery summary, record/projection revisions, freshness, remaining work, and next action, then apply [suggested direction](references/suggested-direction.md).
+Before every user-visible handoff, align plan status, decision frontier, delivery summary, record freshness, remaining work, and next action, then apply [suggested direction](references/suggested-direction.md).
