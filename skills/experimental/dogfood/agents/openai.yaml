@@ -1,5 +1,5 @@
 interface:
   display_name: "Dogfood"
-  short_description: "Exercise changed user journeys in a real browser"
+  short_description: "Verify changed user journeys in a real browser"
 policy:
   allow_implicit_invocation: false
