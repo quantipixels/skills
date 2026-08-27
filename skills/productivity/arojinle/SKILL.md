@@ -1,94 +1,28 @@
 ---
 name: arojinle
-description: Resolve the current material product, plan, or design decision frontier through a decision-tree interview, current evidence, durable reconciliation when needed, and final user confirmation. Use when the user must choose among consequential alternatives. Exclude technical architecture design or review, initiative lifecycle planning, implementation, and ordinary fact-finding.
+description: Resolve a material product, plan, or design through a relentless, complete decision-tree interview and final user confirmation. Use when consequential choices must be made. Exclude technical architecture design or review, initiative lifecycle planning, implementation, and ordinary fact-finding.
 ---
 
 # Àròjinlẹ̀
 
-Resolve the complete **material** decision tree: every consequential branch that can change accepted outcome, scope, policy, user experience, risk, cost, compatibility, or trade-off. Do not explore every conceivable preference or reopen choices already confirmed by exact-current evidence.
+Interview the user relentlessly until you reach a shared understanding. Map this as a design tree: every decision branches into the decisions that hang off it.
 
-## 1. Pin the decision and caller
+Work the tree in rounds. The frontier is every decision whose prerequisites are already settled: the questions you can ask now without guessing at answers you have not heard yet. Ask the whole frontier in one round: number each question and give your recommended answer. Then wait for the user's answers before the next round.
 
-Determine whether an active Atọ́nà plan governs the decision.
-
-When it does, pin the plan record/revision, decision identity, scope, evidence identity, current frontier, and requested plan effect. Treat this as the caller envelope. Do not mutate the plan or create a second user-facing plan/report.
-
-Without an active plan, pin one standalone decision identity, scope, constraints, known evidence, and confirmation boundary.
-
-Use `amose` before the first round only when existing project terms, invariants, `.nongoals`, ADRs, prior decisions, or durable working knowledge can materially constrain the frontier. Do not invoke project-knowledge machinery for a standalone choice that current evidence already frames completely.
-
-Finding facts is the agent's job; making consequential choices is the user's. Use bounded lookup for discoverable facts, and `iwadi` only when substantial reusable research is the needed result. Do not ask the user for a fact the environment/primary source can establish.
-
-## 2. Work the current material frontier
-
-The frontier is every material decision whose prerequisites are settled now. A question whose answer depends on another open choice or missing fact belongs behind that prerequisite.
-
-Ask the whole current material frontier in one round when it remains cognitively manageable. If it is unusually large, group independent questions clearly in the same handoff rather than silently dropping branches. A typical round should be small enough to answer deliberately; do not enforce a numerical quota over material completeness.
-
-Format each question as:
+Each question should be formatted like so:
 
 ```text
-❓ Q1 — <question title>: <question and bounded choices>
-💡 <brief evidence/trade-off context only when useful>
-➡️ <recommended answer and why>
+❓ **Q1** - **<question title>**: <question and choices, as needed>
+
+💡 <brief context or example, only when it makes the decision clearer>
+
+➡️ <your recommended answer>
 ```
 
-Recommendations are advisory. Wait for the user's answers before settling those branches.
+Each round the user answers reshapes the tree: settled decisions push the frontier outward and unblock questions that depended on them. Recompute the frontier and ask the next round. A question whose answer depends on another question still open in this round belongs to a later round, not this one.
 
-Under an active Atọ́nà plan, keep the user interaction ahead of artifact maintenance. Do not require, trigger, inspect, verify, or wait on plan HTML between presenting a round and receiving its answers. Let Atọ́nà consolidate its projection after the round or another defined consolidation boundary; projection work must not interrupt the decision sequence.
+Finding facts is your job, never the user's. When a frontier question needs a fact from the environment, use a bounded lookup first. Delegate when active rules permit and a fresh independent lookup materially protects the interview context or improves the evidence. Do not ask the user for facts you can find. Do not block on a running lookup: hold only its downstream questions and ask the rest of the frontier. The decisions are the user's: put each to them and wait.
 
-After every round:
+Use `html-artifact` to visualise the decision tree, current frontier, and confirmed decisions as the primary human view. Use `amose` when confirmed decisions change durable project knowledge.
 
-1. record confirmed, deferred, and still-open answers;
-2. recompute which material branches are now unlocked;
-3. mark evidence/candidate-dependent conclusions stale when their prerequisites changed;
-4. do not re-ask a settled decision unless new evidence materially invalidates it.
-
-Completion means **no unresolved material branch remains**, not that every imaginable design preference has been discussed.
-
-## 3. Integrate with Atọ́nà or keep one standalone record
-
-### Under an active Atọ́nà plan
-
-After each settled round, return one exact-current receipt containing:
-
-```text
-Caller plan/revision
-Decision/tree identity and revision
-Confirmed answers
-Deferred answers and re-entry conditions
-Current frontier: EMPTY | OPEN | BLOCKED
-Coverage: <material branches inspected>
-Evidence identity/freshness
-Plan effect and affected phases
-Blockers / prerequisite evidence
-Next action
-```
-
-Return the receipt only after the round's answers are settled; the caller does not consume a settled-round receipt before the user answers. The Atọ́nà plan owner updates plan meaning and renders the user view at its consolidation boundary. Àròjinlẹ̀ does not create another public plan artifact.
-
-If work must pause before integration, keep only a non-user-facing checkpoint receipt in the active plan bundle's `receipts/` slot when authorized. On resume, Atọ́nà validates it against the current plan/candidate before use.
-
-### Standalone decision
-
-After the first settled round, resolve one owner record through `akosile`:
-
-```text
-owner: arojinle
-record_type: decision
-subject: <stable decision identity>
-```
-
-Keep the exact-current material tree, answers, frontier, evidence identity/freshness, next action, and confirmation state in `record.md`; refresh its optional `index.html` after a settled round or material decision consolidation through `html-artifact`, not during an active question round. The record is semantic truth and the HTML must not invent/reinterpret choices.
-
-## 4. Confirm and reconcile
-
-When the material frontier becomes `EMPTY`, present the complete decision set, relevant evidence gaps/deferrals, and current plan/record identity for final user confirmation.
-
-Do not declare shared understanding or persist a consequential decision into durable project knowledge before confirmation.
-
-After confirmation, use `amose` only for destinations actually affected by confirmed terms, invariants, non-goals, ADR-worthy decisions, or authorized project-local craft knowledge. Consume its exact-current readback; do not copy its reconciliation procedure.
-
-Under Atọ́nà, return a final receipt containing the confirmation identity and durable-record links. Standalone, update the decision record first and refresh its HTML from that exact revision.
-
-If required evidence or a required specialist is unavailable, preserve the current tree, classify the frontier `BLOCKED` only when no material branch is currently answerable, and continue independent branches when any remain open. Never guess the user's material decision to make progress.
+The session is done when the frontier is empty: every material branch of the design tree has been visited and nothing consequential is left silently assumed. Do not act on it until the user confirms you have reached a shared understanding.
