@@ -58,7 +58,7 @@ Experimental skills are opt-in and cannot silently replace a stable owner. When 
 
 | Explicit experimental outcome | Skill |
 | --- | --- |
-| Accompany an active code change with adaptive expert implementation counsel | `akowe-code` |
+| Accompany an active code change with adaptive expert implementation counsel | `akowe` |
 | Supervise one task's owner, candidate, authority, proof, blocker, and terminal state | `pepeye` |
 | Establish the minimal causal explanation for one reproducible/directly observed failure | `root-cause` |
 | Generate/challenge a bounded set of grounded possibilities before selection | `ideate` |
@@ -69,7 +69,7 @@ Experimental skills are opt-in and cannot silently replace a stable owner. When 
 
 - `atona` remains primary for an initiative even when it discovers unresolved consequential choices. When its Decision Frontier Gate is `OPEN`, `arojinle` is the required supporting owner for that frontier; when `BLOCKED`, first resolve the prerequisite fact/evidence. Do not reroute the whole initiative to Àròjinlẹ̀ or reopen already confirmed choices.
 - `solution-architect` owns technical/reversible architecture choices. A structured material user decision gap returns to Atọ́nà/Àròjinlẹ̀ instead of being guessed.
-- `akowe-code` is Experimental/explicit-only. It discovers relevant available skills and current primary-source evidence to return exact-candidate Expert Implementation Counsel. It owns no embedded stack catalogue, implementation, architecture, simplification, tool, project-knowledge, or review verdict.
+- `akowe` is Experimental/explicit-only. It discovers relevant available skills and current primary-source evidence to return exact-candidate Expert Implementation Counsel. It owns no embedded stack catalogue, implementation, architecture, simplification, tool, project-knowledge, or review verdict.
 - `pepeye` is Experimental/explicit-only task supervision. It records the current owner, candidate, authority, acceptance, proof, blocker, and terminal state; it does not select playbooks or replace routing, planning, delivery, review, publication, handoff, or retrospective owners.
 - `akosile` owns repository-local `.qp` path/write/index mechanics; semantic owners retain record meaning/status/evidence. Global `~/.qp` remains deferred.
 - Keep a directly selected artifact specialist primary when it fully owns the result. Use `apere` only when owner selection/cross-deliverable coordination is itself needed.

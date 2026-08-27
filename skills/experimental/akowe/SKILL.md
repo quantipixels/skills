@@ -1,5 +1,5 @@
 ---
-name: akowe-code
+name: akowe
 description: Accompany one active code change by discovering the smallest relevant available skills and current primary-source evidence, then maintain exact-candidate expert implementation counsel through handoff. Use when code should be idiomatic, proportionate, version-aware, and defensible to an expert. Exclude implementation ownership, architecture decisions, final review verdicts, and embedded language or framework catalogues.
 license: MIT
 disable-model-invocation: true
@@ -7,11 +7,11 @@ metadata:
   version: "0.2.0"
 ---
 
-# Akọ̀wé Code
+# Akọ̀wé
 
 Attach **Expert Implementation Counsel** to one exact coding task. Help the active delivery owner build the smallest credible solution that satisfies current contracts and can be defended with current evidence.
 
-Akọ̀wé Code is an explicit Experimental companion. It does not implement, choose architecture, issue a review verdict, maintain a private language/framework encyclopaedia, or make stable delivery and review owners depend on it.
+Akọ̀wé is an explicit Experimental companion. It does not implement, choose architecture, issue a review verdict, maintain a private language/framework encyclopaedia, or make stable delivery and review owners depend on it.
 
 ## 1. Establish the implementation boundary
 
