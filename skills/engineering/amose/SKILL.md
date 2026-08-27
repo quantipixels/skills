@@ -13,11 +13,9 @@ Read repository instructions, relevant code, tests, configuration, history, deci
 
 Pin the input candidate and authority. Separate observed behavior, established practice, confirmed knowledge, proposals, and decisions requiring authority. Code proves current behavior, not automatic domain intent. Report conflicts instead of silently choosing.
 
-When supplied an `atona` decision batch, pin and echo its envelope unchanged: live-plan path and revision, ordered member identifiers and packet revisions, confirmation state, evidence identity, and implementation candidate identity. Treat any envelope change as a new candidate. Reconcile every member without pre-filtering and return one ADR classification for each member.
-
 Read relevant parts of an existing project knowledge equivalent before proposing `.learnings` or another durable destination. Do not create a competing source of truth without agreement. Without write authority, return the required reconciliation without changing files.
 
-When an owning workflow supplies an accepted decision for durable propagation, pin its decision identity, confirmation evidence, scope, superseded state, affected artifacts, current applicability, authorized destinations, and downstream staleness. Reconcile it at acceptance time when authority exists; do not defer an authorized current decision until a later retrospective. Without authority, return the exact proposed destinations and required write boundary.
+When an owning workflow supplies confirmed decisions or knowledge for durable propagation, preserve their identity, scope, evidence, current applicability, superseded state, and authorized destinations. Reconcile affected destinations while that evidence is current; do not invent or reinterpret the decision.
 
 ## 2. Clarify the model
 
@@ -86,7 +84,6 @@ Return:
 Input candidate: <identity>
 Final candidate: <post-write identity or unchanged>
 Authority: <confirmed source and scope>
-Batch envelope: <echo unchanged, or none>
 Project-knowledge packet: <final revision and candidate identity>
 
 Model: CURRENT | PARTIAL | BLOCKED — <evidence>

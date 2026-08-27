@@ -114,18 +114,6 @@ Use `none` when no material user decision remains.
 
 Keep complete research, code, logs, tests, and provider payloads with their native owners.
 
-## HTML projection
-
-**Audience and purpose:** <reader and outcome>
-
-**Governing question:** <question>
-
-**Central representation:** <context, flow, state, topology, or migration view>
-
-**Foreground:** <selected design, Architecture Contract, critical flows, material risks, migration, and result>
-
-**Link-only:** <detailed research, code, logs, and supporting records>
-
 ## Material history
 
 - r1 — <only a status, scope, decision/decision-gap, contract, evidence, recovery/migration, or ownership change worth retaining>

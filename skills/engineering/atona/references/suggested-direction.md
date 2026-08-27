@@ -1,8 +1,8 @@
 # Suggested direction and handoff
 
-End each user-visible handoff with **What next**: recommendation, first step, owner/skill, and required authority. Align plan status, Decision Frontier Gate, and delivery summary with remaining work.
+End each settled user-visible handoff with **What next**: recommendation, first step, owner/skill, and required authority. Align plan status, Decision Frontier Gate, and delivery summary with remaining work.
 
-When a material choice remains, the handoff must surface the current frontier questions before artifact/path ceremony. Do not start the next action without its required authority.
+When the frontier is `OPEN`, the active Àròjinlẹ̀ question round is the handoff. Surface the whole currently answerable material question set with recommendations and wait for the user's decisions. Do not start the next action without its required authority.
 
 ## Status-specific handoff
 
@@ -20,7 +20,7 @@ When the plan first becomes `Planned` and delivery is required, state delivery a
 
 Add/refresh **Suggested direction** when the plan becomes Planned, delivery authority changes, direction changes materially, or the user asks for build guidance. On other Planned handoffs, state only current authority and recommended starting point.
 
-Give `alarina` the exact plan identity/revision, settled outcomes, `frontier: EMPTY`, required proof, constraints, and known gaps. Require an exact-current primary skill, applicable mode, necessary supporting skills, and unavailable owner. Present each owner's plan-specific purpose; do not repeat Alárinà's inventory/selection procedure. The route is advice, not delivery authority. Keep models/subagents/tools/generic actions out.
+Give `alarina` the exact plan identity/revision, settled outcomes, `frontier: EMPTY`, required proof, constraints, and known gaps. Present the returned route as advice, not delivery authority.
 
 End with Alárinà's recommended starting owner and first plan-specific action. If delivery authority is required, end with that authority action instead.
 

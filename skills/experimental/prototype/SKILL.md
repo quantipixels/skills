@@ -43,14 +43,6 @@ Return the question, artifact path, fidelity and simulations, observations, deci
 
 ## 4. Retain only decision evidence
 
-Temporary work may be deleted after the result is captured. When the user or caller needs a durable record, resolve one bundle through `akosile`:
+Temporary work may be deleted after the result is captured. Persist through `akosile` only when the user or caller needs a durable decision-prototype result. A durable HTML prototype may itself be the runnable artifact. Use `html-artifact` only when a separate human report about supplied prototype evidence is useful.
 
-```text
-owner: prototype
-record_type: decision-prototype
-subject: <stable decision identity>
-```
-
-Keep the question, fidelity, artifact locator, observations, result, and disposition in `record.md`. A durable HTML prototype may use the bundle's `index.html` as the runnable artifact. Use `html-artifact` only for a separate human report about supplied prototype evidence, not to redefine the prototype's behavior.
-
-Under an active Àròjinlẹ̀ interview or Atọ́nà plan, return a compact receipt with the exact question, artifact, observation, result, and freshness. The caller owns the resulting decision or plan update.
+Under an active `arojinle` interview or `atona` plan, return Prototype's exact-current result; the caller owns the resulting decision or plan update.

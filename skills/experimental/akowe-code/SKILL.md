@@ -82,17 +82,7 @@ Every active item must tie to the candidate through at least one of:
 
 Prefer the smallest native construct that expresses the contract. Do not recommend rewrites solely to demonstrate newer syntax, design patterns, framework features, or personal style.
 
-Return exactly one brief and stop. If invoked again on a later candidate, recompute from that exact identity; do not carry stale rules forward.
-
-When another owner consumes the brief:
-
-- `solution-architect` owns architecture and its Architecture Contract.
-- `alaga` owns implementation, TDD, proof compaction, integration, and handoff.
-- `pare` owns read-only semantic/complexity simplification.
-- `atunwo` owns defects, proof gaps, blocking classification, and review verdict.
-- `irinse` owns companion-tool setup/operation and returns evidence only.
-- `amose` owns durable project knowledge, including any repository-local craft record.
-- `ko-skill` owns changes to this published Experimental skill.
+Return exactly one brief and stop. If invoked again on a later candidate, recompute from that exact identity; do not carry stale rules forward. Return the brief to the caller as Akọ̀wé Code's native result. When a distinct next outcome is requested, use `alarina` to select its owner rather than maintaining a duplicate downstream-owner map here.
 
 ## Maintenance
 

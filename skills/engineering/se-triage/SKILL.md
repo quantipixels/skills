@@ -73,15 +73,7 @@ The five classifications above remain canonical. Use a configured display label 
 
 ## 5. Persist material triage
 
-Persist when analysis is material, needs handoff/recovery, or the user requests it. Resolve through `akosile`:
-
-```text
-owner: se-triage
-record_type: triage
-subject: <stable provider issue or report identity>
-```
-
-The record contains target identity, granted authorities, neutral summary, canonical classification/action, established and contrary evidence, open decision-relevant questions, provider receipts, limitations, and reopen condition. Ṣe Triage owns those semantics; Akọsílẹ̀ owns path and safe write mechanics. Read a matching current record before continuing and reopen settled points only when new evidence conflicts.
+Persist a material assessment through `akosile` as a `triage` record keyed by the stable issue/report identity when handoff, recovery, or an explicit durable record is needed. Store the target, granted authorities, neutral summary, classification/action, decisive and contrary evidence, open decision-relevant questions, provider receipts, limitations, and reopen condition. Reuse a current matching record instead of restarting settled analysis without conflicting evidence.
 
 ## 6. Optionally publish one comment
 
@@ -89,4 +81,4 @@ Post only with explicit `provider-comment` authority and refreshed evidence. Use
 
 ## 7. Report
 
-Return target identity, evidence boundary, authorities used, neutral summary, canonical classification and display label, canonical next action, decisive evidence, unknowns, record reference/path when created, provider-write state (`NOT_REQUESTED`, `PUBLISHED`, `PARTIAL`, or `FAILED`), receipts, and reopen condition.
+Return target identity, evidence boundary, authorities used, neutral summary, canonical classification and display label, canonical next action, decisive evidence, unknowns, durable record when created, provider-write state (`NOT_REQUESTED`, `PUBLISHED`, `PARTIAL`, or `FAILED`), receipts, and reopen condition.

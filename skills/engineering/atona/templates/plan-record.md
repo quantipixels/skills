@@ -30,6 +30,14 @@ status: Draft
 
 **Why this state:** <why no interview is needed, current questions, or missing prerequisites>
 
+### Current questions
+
+Use only while the frontier is `OPEN`; keep the whole currently answerable material round exact-current.
+
+| Q | Decision | Question | Bounded choices | Recommendation | Prerequisites/evidence |
+|---|---|---|---|---|---|
+| Q1 | D1 | <material question> | <A / B / bounded alternatives> | <recommended answer and why> | <settled prerequisite or evidence> |
+
 | ID | Decision | Why material | Prerequisites | State | Owner | Evidence/receipt |
 |---|---|---|---|---|---|---|
 | D1 | <choice> | <effect on outcome/scope/risk/etc.> | <fact/result or none> | confirmed/open/blocked/deferred/not-applicable | <owner> | <identity> |
@@ -91,30 +99,6 @@ status: Draft
 | <owner> | <record-ref, path, provider identity, or revision> | <revision> | current | <effect> |
 
 Do not copy complete specialist packets, logs, tests, or provider payloads into this record.
-
-## HTML projection
-
-**Lifecycle stage and reader job:** <Draft exploration | Planned startable plan | In Progress delivery monitoring | Backlog reactivation | Closed assurance>
-
-**Audience:** <primary reader>
-
-**Purpose and governing question:** <reader outcome and question for this stage>
-
-**Artifact thesis:** <one source-supported sentence>
-
-**Tone and density:** <exploratory/candid | decisive/working | operational/exception-led | compact/dormant | assurance/outcome-led>
-
-**First viewport:** <include status, decision frontier when open, blocker, next action, and stage-specific essentials>
-
-**Governing representation:** <decision tree/readiness map/phase map/delivery flow/outcome-proof map/other supplied relationship>
-
-**Foreground:** <current outcome, decision frontier/closure, status, blockers, next action, proof, or stage-specific priorities>
-
-**Supporting:** <material rationale, risks, constraints, trade-offs, or selected evidence>
-
-**Link-only:** <supporting records, logs, archives, or evidence>
-
-**Stable identity/anchors:** <elements that must remain discoverable across stage changes>
 
 ## Material history
 

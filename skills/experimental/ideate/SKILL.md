@@ -12,7 +12,7 @@ Expand one grounded opportunity into a diverse candidate set, critique every can
 
 Pin the problem or opportunity, intended beneficiaries, current project or product reality, constraints, known non-goals, evidence boundary, time horizon, and what would make an idea useful. Read only the project surfaces needed to avoid detached suggestions.
 
-Use `iwadi` when current external primary-source evidence can materially change the candidate set. Use `irinse` only when a bounded tool-derived view can expose a relevant structure or pattern. Load either dependency at the evidence branch that requires it, not during selection.
+Use `iwadi` when current external primary-source evidence can materially change the candidate set. Use `irinse` only when a bounded tool-derived view can expose a relevant structure or pattern. Load either dependency only when its evidence is needed.
 
 ## 2. Generate before judging
 
@@ -38,16 +38,8 @@ Rank only the survivors. Explain why each survived, the evidence it still needs,
 
 Return the opportunity, evidence boundary, complete candidate inventory, rejected candidates with reasons, ranked survivors, unresolved assumptions, and one next-step menu.
 
-Use `ro-wo` when the user wants one survivor tested as a proposition, `arojinle` when consequential alternatives must be chosen through a complete decision interview, and `atona` when a selected direction must become an initiative plan. Invoke the next owner only after the user selects or explicitly requests that outcome.
+Use `ro-wo` when one survivor needs premise testing, `arojinle` when consequential alternatives must be chosen, and `atona` when a selected direction must become an initiative plan. Invoke the next owner only after the user selects or explicitly requests that outcome.
 
 ## 5. Persist only when candidate identity matters
 
-Return inline by default. When downstream work needs stable candidate IDs or the user requests an archive, resolve one record through `akosile`:
-
-```text
-owner: ideate
-record_type: ideation
-subject: <stable opportunity identity>
-```
-
-Keep the candidate inventory, critique, survivors, evidence, and next step in `record.md`. A substantial comparison may receive an HTML projection, but rejected volume should remain linked or supporting rather than polluting an active plan. Under Atọ́nà, return a compact receipt; the plan decides which selected or decision-relevant content enters its continuous view.
+Return inline by default. Persist through `akosile` when downstream work needs stable candidate identities or the user requests an archive. Use `html-artifact` to visualise a substantial comparison when that materially improves the human view. Under an active `atona` plan, return Ideate's exact-current result rather than defining a plan-specific receipt.
