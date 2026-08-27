@@ -1,6 +1,6 @@
 ---
 name: arojinle
-description: Resolve one material product, plan, or design decision through a decision-tree interview, current evidence, durable reconciliation when needed, and final user confirmation. Use when the user must choose among consequential alternatives. Exclude technical architecture design or review, initiative lifecycle planning, implementation, and ordinary fact-finding.
+description: Resolve the current material product, plan, or design decision frontier through a decision-tree interview, current evidence, durable reconciliation when needed, and final user confirmation. Use when the user must choose among consequential alternatives. Exclude technical architecture design or review, initiative lifecycle planning, implementation, and ordinary fact-finding.
 ---
 
 # Àròjinlẹ̀
@@ -35,6 +35,8 @@ Format each question as:
 
 Recommendations are advisory. Wait for the user's answers before settling those branches.
 
+Under an active Atọ́nà plan, keep the user interaction ahead of artifact maintenance. Do not require, trigger, inspect, verify, or wait on plan HTML between presenting a round and receiving its answers. Let Atọ́nà consolidate its projection after the round or another defined consolidation boundary; projection work must not interrupt the decision sequence.
+
 After every round:
 
 1. record confirmed, deferred, and still-open answers;
@@ -63,7 +65,7 @@ Blockers / prerequisite evidence
 Next action
 ```
 
-The Atọ́nà plan owner updates plan meaning and renders the user view. Àròjinlẹ̀ does not create another public plan artifact.
+Return the receipt only after the round's answers are settled; the caller does not consume a settled-round receipt before the user answers. The Atọ́nà plan owner updates plan meaning and renders the user view at its consolidation boundary. Àròjinlẹ̀ does not create another public plan artifact.
 
 If work must pause before integration, keep only a non-user-facing checkpoint receipt in the active plan bundle's `receipts/` slot when authorized. On resume, Atọ́nà validates it against the current plan/candidate before use.
 
@@ -77,7 +79,7 @@ record_type: decision
 subject: <stable decision identity>
 ```
 
-Keep the exact-current material tree, answers, frontier, evidence identity/freshness, next action, and confirmation state in `record.md`; refresh its optional `index.html` through `html-artifact` after material revisions. The record is semantic truth and the HTML must not invent/reinterpret choices.
+Keep the exact-current material tree, answers, frontier, evidence identity/freshness, next action, and confirmation state in `record.md`; refresh its optional `index.html` after a settled round or material decision consolidation through `html-artifact`, not during an active question round. The record is semantic truth and the HTML must not invent/reinterpret choices.
 
 ## 4. Confirm and reconcile
 
@@ -89,4 +91,4 @@ After confirmation, use `amose` only for destinations actually affected by confi
 
 Under Atọ́nà, return a final receipt containing the confirmation identity and durable-record links. Standalone, update the decision record first and refresh its HTML from that exact revision.
 
-If required evidence or a required specialist is unavailable, preserve the current tree, classify the frontier `BLOCKED`, and continue only independent branches. Never guess the user's material decision to make progress.
+If required evidence or a required specialist is unavailable, preserve the current tree, classify the frontier `BLOCKED` only when no material branch is currently answerable, and continue independent branches when any remain open. Never guess the user's material decision to make progress.
