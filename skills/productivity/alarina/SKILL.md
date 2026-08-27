@@ -5,9 +5,9 @@ description: Select the shortest useful route through published QP skills. Focus
 
 # Alárinà
 
-Select one primary QP skill for the requested outcome. Respect an explicit user selection. Add a supporting skill only when its result is necessary; separate independent outcomes instead of forcing one owner to absorb them. Routing grants no mutation, provider, credential, publication, or continuing-stewardship authority.
+Select one primary QP skill for the requested outcome. Respect explicit user selection. Add a supporting skill only when its independently owned result is necessary; separate independent outcomes instead of forcing one owner to absorb them. Routing grants no mutation, provider, credential, publication, or continuing-stewardship authority.
 
-When Pepeye mode is active, supply its exact-current leaf-owner route without selecting or advancing the playbook. `pepeye` remains experimental and opt-in.
+When Pepeye mode is active, supply its exact-current leaf-owner route without selecting/advancing the playbook. `pepeye` remains Experimental and opt-in.
 
 ## Route
 
@@ -16,7 +16,7 @@ When Pepeye mode is active, supply its exact-current leaf-owner route without se
 | Select the shortest QP route | `alarina` | — |
 | Initialize/repair `.qp`, allocate records/artifacts, safely write settings/records, or rebuild its index | `akosile` | — |
 | Clarify project terms, rules, knowledge, or decisions | `amose` | — |
-| Resolve one material product/plan/design decision | `arojinle` | — |
+| Resolve one consequential product/plan/design decision | `arojinle` | — |
 | Deliver one bounded feature/fix test-first | `alaga` | `test-first` |
 | Deliver a supplied build job through integration/review | `alaga` | `job` |
 | Maintain one initiative plan through delivery/closure | `atona` | — |
@@ -39,10 +39,10 @@ When Pepeye mode is active, supply its exact-current leaf-owner route without se
 | Create a selective HTML view from supplied records/results | `html-artifact` | — |
 | Prepare a compact session/agent handoff | `handoff` | — |
 | Draft/revise technical communication | `technical-writing` | — |
-| Clean or prune prose without changing its contract | `yo-slop` | — |
+| Clean/prune prose without changing its contract | `yo-slop` | — |
 | Analyze a coding-agent session/corpus | `ayewo-igba-ise` | — |
 | Research a question from primary sources | `iwadi` | — |
-| Select, configure, use, or remove a companion tool | `irinse` | — |
+| Select/configure/use/remove a companion tool | `irinse` | — |
 | Route broad/multi-deliverable design work | `apere` | route packet |
 | Define brand identity or custom icon language | `brand` | — |
 | Create social graphics or campaign variants | `social-graphics` | — |
@@ -54,30 +54,30 @@ When Pepeye mode is active, supply its exact-current leaf-owner route without se
 
 ## Experimental routes
 
-Experimental skills are opt-in and cannot silently replace a stable owner. When one exact experimental outcome matches, offer it and wait for explicit acceptance before selecting it. A stable skill may recommend an experiment, but it must remain complete without that experiment.
+Experimental skills are opt-in and cannot silently replace a stable owner. When one exact experimental outcome matches, offer it and wait for explicit acceptance before selecting it. A stable skill may recommend an experiment but must remain complete without it.
 
 | Explicit experimental outcome | Skill |
 | --- | --- |
-| Apply expert Java/JDK guidance while writing, reviewing, or refactoring Java | `akowe-java` |
-| Apply expert Spring Framework or Spring Boot guidance | `akowe-spring` |
+| Produce a stack-aware expert code-craft brief for an exact coding task/candidate | `akowe-code` |
 | Drive a task through QP playbooks, proof, pause/pickup, and learning | `pepeye` |
-| Establish why one reproducible or directly observed failure occurs | `root-cause` |
-| Generate and challenge several grounded possibilities before selection | `ideate` |
+| Establish why one reproducible/directly observed failure occurs | `root-cause` |
+| Generate/challenge several grounded possibilities before selection | `ideate` |
 | Build a disposable artifact to settle one experiential decision | `prototype` |
 | Exercise changed user journeys in a real browser | `dogfood` |
 
-## Boundaries
+## Composed boundaries
 
-- `akosile` owns repository-local `.qp` paths, safe writes, sparse settings, and index rebuilding. Semantic owners retain record meaning, native state, evidence, and provider authority. Global `~/.qp` lifecycle state remains with its existing owner.
-- `akowe-java` and `akowe-spring` are experimental and explicit-only. They supply Java/JDK and Spring Framework/Boot judgment respectively; stable implementation/review owners remain complete without them. Spring may specialize Java guidance where container, proxy, transaction, reactive, or lifecycle semantics control the design without weakening general correctness or safety.
-- Keep a directly selected artifact specialist primary when it fully owns the result. Use `apere` only when owner selection or cross-deliverable coordination is itself needed.
-- `alaga` owns integrated production of several routed deliverables; `apere` does not absorb delivery lifecycle.
+- `atona` remains primary for an initiative even when it discovers unresolved consequential choices. When its Decision Frontier Gate is `OPEN`, `arojinle` is the required supporting owner for that frontier; when `BLOCKED`, first resolve the prerequisite fact/evidence. Do not reroute the whole initiative to Àròjinlẹ̀ or reopen already confirmed choices.
+- `solution-architect` owns technical/reversible architecture choices. A structured material user decision gap returns to Atọ́nà/Àròjinlẹ̀ instead of being guessed.
+- `akowe-code` is Experimental/explicit-only. It supplies a bounded Code Craft Brief; `alaga`, `pare`, `atunwo`, `solution-architect`, `irinse`, and `amose` retain implementation/simplification/verdict/architecture/tool/knowledge ownership and remain complete without it.
+- `akosile` owns repository-local `.qp` path/write/index mechanics; semantic owners retain record meaning/status/evidence. Global `~/.qp` remains deferred.
+- Keep a directly selected artifact specialist primary when it fully owns the result. Use `apere` only when owner selection/cross-deliverable coordination is itself needed.
+- `alaga` owns integrated production; `apere` does not absorb delivery lifecycle.
 - Keep `pare` read-only. Only a delivery owner with required authority executes accepted cleanup.
-- Use `hitl-review` when the human-led walkthrough, review-need categorization, specialist discovery, and human decision are the outcome; use a direct review owner for a one-shot specialist verdict.
+- Use `hitl-review` when human-led walkthrough/review-category/specialist discovery/human decision is the outcome; use direct specialist owners for one-shot verdicts.
 - Keep portable HTML views with `html-artifact`; route slide decks to `slides`.
-- Use `atona` for an active initiative plan, `solution-architect` for technical architecture, `arojinle` for a new or reopened material decision, and `atunwo audit` before a stateful refactor that can change lifecycle behavior.
 - Keep PR/MR publication with `seda-pr`, monitoring with `wo-pr`, and review verdicts with `atunwo`.
-- Keep issue triage supplied-evidence-first. Repository/provider reads and writes need their own authority; settings mappings never authorize provider mutation.
-- Do not use an Experimental skill to narrow, remove, or impersonate a stable owner. Experiments may consume stable results and return bounded receipts at their own boundary.
+- Keep issue triage supplied-evidence-first; provider reads/writes need their own authority.
+- Do not use an Experimental skill to narrow/remove/impersonate a stable owner. Experiments may consume stable results and return bounded receipts at their own boundary.
 
-Check the active inventory before returning a route. If the correct owner is unavailable, name it without substituting another skill. Ask one focused question only when the answer selects a materially different owner or mode. Report primary skill, mode, concise reason, necessary support, and whether explicit acceptance is still required.
+Check active inventory before returning a route. If the correct owner is unavailable, name it rather than substituting another skill. Ask one focused question only when its answer selects a materially different owner/mode. Report primary skill, mode, concise reason, necessary support, and whether explicit acceptance is required.
