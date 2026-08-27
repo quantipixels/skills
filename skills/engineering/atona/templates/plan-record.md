@@ -30,6 +30,14 @@ status: Draft
 
 **Why this state:** <why no interview is needed, current questions, or missing prerequisites>
 
+### Current questions
+
+Use only while the frontier is `OPEN`; keep the whole currently answerable material round exact-current. These questions are the user-facing decision payload and the Draft HTML foreground at the next consolidation boundary.
+
+| Q | Decision | Question | Bounded choices | Recommendation | Prerequisites/evidence |
+|---|---|---|---|---|---|
+| Q1 | D1 | <material question> | <A / B / bounded alternatives> | <recommended answer and why> | <settled prerequisite or evidence> |
+
 | ID | Decision | Why material | Prerequisites | State | Owner | Evidence/receipt |
 |---|---|---|---|---|---|---|
 | D1 | <choice> | <effect on outcome/scope/risk/etc.> | <fact/result or none> | confirmed/open/blocked/deferred/not-applicable | <owner> | <identity> |
@@ -104,11 +112,13 @@ Do not copy complete specialist packets, logs, tests, or provider payloads into 
 
 **Tone and density:** <exploratory/candid | decisive/working | operational/exception-led | compact/dormant | assurance/outcome-led>
 
-**First viewport:** <include status, decision frontier when open, blocker, next action, and stage-specific essentials>
+**Projection consolidation boundary:** <first Draft handoff | material decision confirmed | arojinle round completed | lifecycle transition | formal handoff>
+
+**First viewport:** <include status, actual current questions with bounded choices/recommendations when open, blocker, next action, and stage-specific essentials>
 
 **Governing representation:** <decision tree/readiness map/phase map/delivery flow/outcome-proof map/other supplied relationship>
 
-**Foreground:** <current outcome, decision frontier/closure, status, blockers, next action, proof, or stage-specific priorities>
+**Foreground:** <current outcome, current questions/decision closure, status, blockers, next action, proof, or stage-specific priorities>
 
 **Supporting:** <material rationale, risks, constraints, trade-offs, or selected evidence>
 
