@@ -1,8 +1,10 @@
 # Suggested direction and handoff
 
-End each user-visible handoff with **What next**: recommendation, first step, owner/skill, and required authority. Align plan status, Decision Frontier Gate, and delivery summary with remaining work.
+End each settled user-visible handoff with **What next**: recommendation, first step, owner/skill, and required authority. Align plan status, Decision Frontier Gate, and delivery summary with remaining work.
 
-When a material choice remains, the handoff must surface the current frontier questions before artifact/path ceremony. Do not start the next action without its required authority.
+When the frontier is `OPEN`, the active Àròjinlẹ̀ question round is the handoff. Surface the whole currently answerable material question set with recommendations before any artifact/path ceremony. Do not interrupt that round with HTML refresh, inspection, verification, or path reporting unless the user explicitly asks for the artifact. After the round settles, Atọ́nà may consolidate the plan projection at its defined boundary.
+
+When a material choice remains outside an active round, the handoff must still surface the current frontier questions before artifact/path ceremony. Do not start the next action without its required authority.
 
 ## Status-specific handoff
 
