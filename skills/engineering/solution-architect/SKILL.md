@@ -49,23 +49,25 @@ Compare credible alternatives against drivers, operational load, security, deliv
 
 Specify only material concerns, but far enough to implement: boundaries; public interfaces/flows; data consistency/state/retention; integration failure semantics; authn/authz/secrets/privacy/trust; deployment/configuration/observability/capacity/operations; compatibility/migration/rollback/recovery/deletion; and proof for material scenarios.
 
+Before issuing or revising an implementation-ready design, read [architecture contract](references/architecture-contract.md). It adds the native-platform, complexity-budget, negative-architecture, proof-owner, material-user-decision-gap, and compact downstream contract checks without replacing this packet.
+
 ## 4. Maintain and integrate the packet
 
 Keep problem, outcomes, drivers, context, decisions, selected design, failure/recovery/migration, proof, risks, and linked evidence current. Keep evidence native and linked by exact identity instead of copying plans, research reports, logs, or provider payloads.
 
-Under an active Atọ́nà plan, return a compact receipt with plan and architecture record revisions; native result; material risks/proof; evidence freshness; plan effect/affected phases; blocker; next action; and completion condition. Do not copy the architecture packet into the plan or change plan/delivery state.
+Under an active Atọ́nà plan, return a compact receipt with plan and architecture record revisions; native result; current Architecture Contract identity when applicable; material risks/proof; evidence freshness; plan effect/affected phases; blocker; next action; and completion condition. Do not copy the architecture packet into the plan or change plan/delivery state.
 
 Use `html-artifact` for a requested visual view or when formal review/handoff materially benefits from one. Projection failure does not invalidate a current semantic architecture record.
 
 ## 5. Judge sufficiency
 
-In `design`, revise until decisions, interfaces, migration, recovery, and proof agree. Do not report readiness while a material user choice is unconfirmed, an owner is missing, or implementation requires invention.
+In `design`, revise until decisions, interfaces, migration, recovery, proof, and the applicable Architecture Contract agree. Do not report readiness while a material user choice is unconfirmed, an owner is missing, a critical invariant lacks a complete proof owner, or implementation requires invention.
 
-In `review`, pin the exact candidate and stay read-only. Trace each driver and accepted decision to it. Report defects with credible failure mechanism, affected scenario, evidence, and required correction.
+In `review`, pin the exact candidate and stay read-only. Trace each driver and accepted decision to it. Report defects with credible failure mechanism, affected scenario, evidence, and required correction. When an Architecture Contract exists, verify its implementation-shaping invariants against the exact candidate.
 
 Return one result:
 
-- `IMPLEMENTATION_READY` — every material driver is covered and implementation needs no invented material technical requirement.
+- `IMPLEMENTATION_READY` — every material driver is covered, the applicable Architecture Contract is current, and implementation needs no invented material technical requirement.
 - `NOT_READY` — a material decision, conflict, defect, migration step, recovery path, or proof obligation remains; name correction/owner.
 - `UNPROVED` — missing or stale evidence prevents a responsible result; name required evidence.
 
@@ -85,6 +87,7 @@ Context and ownership: <actors, systems, trust, data/state/lifecycle owners>
 Decisions: <selected design, alternatives, trade-offs, reversibility>
 Implementation design: <modules, interfaces, data, flows, integration, deployment, operations>
 Failure and evolution: <misuse, failure, recovery, compatibility, migration, rollback, deletion>
+Architecture Contract: <compact implementation-facing constraints, or not applicable>
 Proof: <tests, observability, operational checks, acceptance>
 Risks and gaps: <residual risks, deferrals, required owners>
 

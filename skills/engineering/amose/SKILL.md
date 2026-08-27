@@ -1,6 +1,6 @@
 ---
 name: amose
-description: Maintain one project's exact-current domain model and durable working knowledge. Use when project terms, definitions, relationships, invariants, boundaries, scenarios, .learnings, .nongoals, or architecture decision records must be clarified, created, corrected, superseded, or reconciled; exclude choosing material product or architecture decisions, implementing code, and generic documentation work.
+description: Maintain one project's exact-current domain model and durable working knowledge. Use when project terms, definitions, relationships, invariants, boundaries, scenarios, .learnings, .nongoals, architecture decision records, or authorized repository-local craft knowledge must be clarified, created, corrected, superseded, or reconciled; exclude choosing material product or architecture decisions, implementing code, and generic documentation work.
 ---
 
 # Amọ̀ṣẹ́
@@ -15,7 +15,7 @@ Pin the input candidate and authority. Separate observed behavior, established p
 
 When supplied an `atona` decision batch, pin and echo its envelope unchanged: live-plan path and revision, ordered member identifiers and packet revisions, confirmation state, evidence identity, and implementation candidate identity. Treat any envelope change as a new candidate. Reconcile every member without pre-filtering and return one ADR classification for each member.
 
-Read relevant parts of an existing project knowledge equivalent before proposing `.learnings`. Do not create a competing source of truth without agreement. Without write authority, return the required reconciliation without changing files.
+Read relevant parts of an existing project knowledge equivalent before proposing `.learnings` or another durable destination. Do not create a competing source of truth without agreement. Without write authority, return the required reconciliation without changing files.
 
 When an owning workflow supplies an accepted decision for durable propagation, pin its decision identity, confirmation evidence, scope, superseded state, affected artifacts, current applicability, authorized destinations, and downstream staleness. Reconcile it at acceptance time when authority exists; do not defer an authorized current decision until a later retrospective. Without authority, return the exact proposed destinations and required write boundary.
 
@@ -23,7 +23,7 @@ When an owning workflow supplies an accepted decision for durable propagation, p
 
 Challenge ambiguous, overloaded, synonymous, or conflicting terms when their meaning can change scope, ownership, state, or behavior. Propose one canonical term and identify alternatives to avoid only after evidence or confirmation supports it.
 
-Test definitions, relationships, ownership, boundaries, and invariants with concrete scenarios. Distinguish domain knowledge from implementation detail. Send a material unresolved product or architecture choice to `arojinle`; do not decide it or pre-qualify its ADR.
+Test definitions, relationships, ownership, boundaries, and invariants with concrete scenarios. Distinguish domain knowledge from implementation detail. Send a material unresolved product or plan choice to `arojinle` and a technical architecture choice to `solution-architect`; do not decide either.
 
 Return one revisioned, candidate-pinned packet:
 
@@ -48,10 +48,13 @@ Conflicts
 - <statement, document, code, or test conflict; or none>
 
 Open decisions
-- <material choice requiring `arojinle`; or none>
+- <material choice requiring `arojinle` or `solution-architect`; or none>
 
 Durable learnings
 - <verified non-obvious knowledge worth preserving>
+
+Local craft knowledge
+- <exact-current authorized repository-local craft record/items, or none>
 
 Freshness: CURRENT | PARTIAL | STALE
 ```
@@ -64,16 +67,17 @@ Load only the destination contracts that apply:
 
 - read [context.md](references/context.md) to create or reconcile canonical domain language, semantic relationships, or context boundaries;
 - read [learnings.md](references/learnings.md) to create, update, compact, or remove root `.learnings` knowledge;
-- read [nongoals.md](references/nongoals.md) to reconcile durable project-level exclusions; and
-- read [adrs.md](references/adrs.md) to qualify, create, supersede, or maintain architecture decision records.
+- read [nongoals.md](references/nongoals.md) to reconcile durable project-level exclusions;
+- read [adrs.md](references/adrs.md) to qualify, create, supersede, or maintain architecture decision records; and
+- read [local craft](references/local-craft.md) only when explicitly authorized reusable repository-specific coding patterns should remain private/local instead of becoming published skill guidance.
 
-When a change affects more than one destination, apply each owning reference against the same input candidate before final reconciliation. Do not load a destination contract merely because its file exists when no requested or evidenced change affects it.
+When a change affects more than one destination, apply each owning reference against the same input candidate before final reconciliation. Do not load a destination contract merely because its file or record exists when no requested or evidenced change affects it.
 
 ## 4. Reconcile and verify
 
-When one change affects `.learnings`, `.nongoals`, and ADRs, reconcile all affected records against the same input candidate. After writing, re-read the latest files, verify links and lifecycle state, pin the final post-write candidate, and reissue the project-knowledge packet against it. The input candidate explains the evidence used; only the final candidate and reissued packet identify the current result.
+When one change affects several destinations, reconcile all affected records against the same input candidate. After writing, re-read the latest files/records, verify links and lifecycle state, pin the final post-write candidate, and reissue the project-knowledge packet against it. The input candidate explains the evidence used; only the final candidate and reissued packet identify the current result.
 
-If the user corrects a learning, update or supersede it, reconcile dependent records, and mark affected packets, plans, or conclusions stale.
+If the user corrects a learning or local-craft item, update or supersede it, reconcile dependent records, and mark affected packets, plans, briefs, or conclusions stale.
 
 Return:
 
@@ -90,6 +94,7 @@ Model: CURRENT | PARTIAL | BLOCKED — <evidence>
 .nongoals: absent | unchanged | updated | blocks candidate | exception confirmed
 ADR:
 - <decision id> — required | not required | lifecycle updated | blocked — <record or reason>
+local-craft: absent | unchanged | updated | blocked
 
 Conflicts and open decisions: <items or none>
 Verification: <checks and limitations>

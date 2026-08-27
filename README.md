@@ -9,8 +9,10 @@ Browse the [QP Agent Skills documentation](https://quantipixels.com/skills).
 ## Portfolio shape
 
 - Akọsílẹ̀ owns the repository-local `.qp` workspace: root/path resolution, owner-first paths, safe writes, sparse settings, and one generated index. Semantic owners retain record meaning, native states, evidence, and provider authority.
-- Solution Architect owns technical architecture design/read-only review. Atọ́nà owns initiative planning through delivery and closure.
-- Every material Atọ́nà initiative has one continuously maintained HTML human view from early `Draft` through `Closed`; lifecycle transitions may change its focus, tone, density, layout, and governing representation.
+- Solution Architect owns technical architecture design/read-only review and emits a compact Architecture Contract for implementation. Atọ́nà owns initiative planning, the material decision frontier, delivery integration, and closure; Àròjinlẹ̀ resolves consequential user choices when that frontier is open.
+- Alága owns delivery and proof compaction; Parẹ́ owns read-only semantic/complexity simplification; Àtúnwò owns defects, proof gaps, and code-review verdicts; Irinṣẹ́ supplies bounded tool evidence.
+- Experimental `akowe-code` can produce a stack-aware Code Craft Brief from compact durable guidance and bounded current research without becoming an implementation/review owner.
+- Every material Atọ́nà initiative has one continuously maintained HTML human view from meaningful `Draft` through `Closed`; lifecycle transitions may change its focus, density, layout, and governing representation.
 - Supporting skills keep detailed results with their native owners and return compact receipts to an active plan.
 - `html-artifact` derives reader-specific views from owner records and linked evidence instead of copying complete source material.
 - Generated `.qp` records, projections, receipts, and evidence stay outside Git by default.
@@ -25,7 +27,7 @@ Browse the [QP Agent Skills documentation](https://quantipixels.com/skills).
 └── artifacts/<artifact-id>/
 ```
 
-`settings.json` contains sparse, skill-documented preferences. `INDEX.md` is rebuilt from record frontmatter; records remain authoritative. For generated resources intended for direct use, Akọsílẹ̀ returns both the resolved absolute path and the repository-relative `.qp/...` path.
+`settings.json` contains sparse, skill-documented preferences. `INDEX.md` is rebuilt from record frontmatter; records remain authoritative. For generated resources intended for direct use, Akọsílẹ̀ returns both the resolved absolute path and repository-relative `.qp/...` path.
 
 ## Install
 
@@ -71,19 +73,19 @@ Use alarina to choose the right QP skill for this request:
 | Skill | Use when |
 | --- | --- |
 | `akosile` | Repository-local `.qp` setup, owner-record/artifact paths, safe writes, settings, index rebuilding, or workspace repair is the task |
-| `alaga` | `test-first` handles one bounded feature/fix; `job` handles a supplied build job through integration, proof, and review |
-| `amose` | Project terms, `CONTEXT.md`, `.learnings`, `.nongoals`, or ADRs need clarification/reconciliation |
-| `atona` | Unclear feature, migration, or initiative work needs one exact-current plan and accessible HTML view through delivery/closure |
-| `atunwo` | Defect review or stateful refactor-parity audit is needed for a local/supplied or provider candidate |
+| `alaga` | `test-first` handles one bounded feature/fix; `job` handles a supplied build job through implementation, proof compaction, integration, and review |
+| `amose` | Project terms, `CONTEXT.md`, `.learnings`, `.nongoals`, ADRs, or authorized repository-local craft knowledge need clarification/reconciliation |
+| `atona` | Unclear feature, migration, or initiative work needs one exact-current plan, decision-frontier closure, and accessible HTML view through delivery/closure |
+| `atunwo` | Defect review, proof-gap review, or stateful refactor-parity audit is needed for a local/supplied/provider candidate |
 | `hitl-review` | A human wants to review one exact candidate interactively, classify its review needs, and surface matching specialist skills |
-| `irinse` | A companion engineering tool needs selection, setup, safe use, upgrade, or removal |
+| `irinse` | A companion engineering tool needs selection, setup, bounded evidence, upgrade, or removal |
 | `ko-skill` | One skill needs creation, revision, validation, or bounded portfolio audit |
-| `pare` | Read-only audit/review should identify material simplifications and cleanup candidates |
+| `pare` | Read-only audit/review should identify material semantic, complexity, dependency, state, or proof simplifications |
 | `se-triage` | One issue/report needs supplied-evidence-first assessment before implementation |
 | `seda-pr` | A bounded branch change needs commit, push, and a GitHub PR or GitLab MR |
 | `seda-ticket` | Supplied work needs consumable vertical tickets with blockers and acceptance |
 | `seda-sigidi` | An AI agent needs a named soul installed, ported, or refreshed |
-| `solution-architect` | Technical architecture needs implementation design or read-only sufficiency review |
+| `solution-architect` | Technical architecture needs implementation design/read-only sufficiency review and a compact downstream Architecture Contract |
 | `wo-pr` | An open PR/MR needs CI and feedback stewardship through readiness |
 
 ## Design skills
@@ -108,11 +110,11 @@ For multi-deliverable production, `apere` returns the route packet and `alaga` o
 | Skill | Use when |
 | --- | --- |
 | `alarina` | You need the shortest QP route for a request |
-| `arojinle` | One consequential product, plan, or design decision needs a complete interview and confirmation |
-| `ayewo-igba-ise` | A coding-agent session or bounded corpus needs evidence-backed friction/recurrence analysis |
+| `arojinle` | One consequential product, plan, or design decision has unresolved material branches requiring user confirmation |
+| `ayewo-igba-ise` | A coding-agent session/corpus needs evidence-backed friction, recurrence, or upstream-prevention analysis |
 | `handoff` | A conversation needs a compact handoff for another agent/session |
 | `html-artifact` | Supplied records/results need a selective, traceable portable HTML view |
-| `iwadi` | A question needs high-trust primary-source research captured in Markdown |
+| `iwadi` | A question needs substantial high-trust primary-source research captured in Markdown |
 | `ro-wo` | A material premise needs an evidence-backed check before judgment |
 | `salaye` | One supplied subject needs a plain-language explanation |
 | `technical-writing` | Technical communication needs layered structure and clarity |
@@ -124,8 +126,7 @@ Experimental skills must be selected explicitly. Stable skills may recommend the
 
 | Skill | Use when |
 | --- | --- |
-| `akowe-java` | Java 17–26 implementation, review, or refactoring needs experimental expert language and JDK guidance through 105 progressively disclosed rules |
-| `akowe-spring` | Spring Framework or Spring Boot code needs experimental version-aware expert guidance on container, web, data, security, concurrency, testing, operations, or AOT concerns |
+| `akowe-code` | An exact coding task/candidate needs a bounded stack-aware Code Craft Brief covering idiom, patterns, known-bad constructs, complexity risks, version-sensitive guidance, and proof seams |
 | `dogfood` | One branch, PR, or candidate needs real-browser functional and experiential verification of its changed user journeys |
 | `ideate` | A grounded opportunity needs several materially different possibilities generated, challenged, and reduced before selection |
 | `pepeye` | A task needs provider-neutral lifecycle control across playbooks, leaf owners, proof, pause/pickup, and learning |
@@ -138,7 +139,7 @@ Experimental skills must be selected explicitly. Stable skills may recommend the
 
 Copy the managed block from [Pepeye portable activation](skills/experimental/pepeye/references/portable-activation.md) into a supported instruction file. Explicit invocation remains the fallback.
 
-`olofofo` is retired and no longer published.
+`olofofo`, `akowe-java`, and `akowe-spring` are retired and no longer published as separate runtime skills.
 
 ### Companion-tool routing
 

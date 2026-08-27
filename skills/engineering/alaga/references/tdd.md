@@ -28,7 +28,11 @@ Write only enough production code to satisfy the controlling behavior. Do not ad
 
 Improve names, structure, duplication, and implementation depth while preserving behavior. Put durable, non-obvious rationale, policy, or invariants at their narrowest owner. Do not document what names, types, structure, and tests already make clear. Tests do not replace required API, domain, operational, or configuration documentation.
 
-Treat smoke tests, probes, and one-off harnesses as development evidence. Retain one only when it adds durable regression coverage at a stable seam and meets repository standards. Remove it when stable tests already cover the behavior or its setup was useful only during implementation.
+Treat smoke tests, probes, one-off harnesses, characterization scaffolding, and very narrow red/green tests as development evidence. Retain one only when it adds durable regression coverage at a stable seam and meets repository standards.
+
+After the complete candidate is green and production refactoring is stable, read [proof compaction](proof-compaction.md). Reclassify development proof by invariant as `KEEP | MERGE | DELETE | MOVE_TO_STRONGER_OWNER`, preserve every material contract at its cheapest complete stable seam, then rerun affected and required broader proof. TDD construction history is not itself a reason to retain a permanent test.
+
+After compaction, make one bounded craft pass over names, state representation, ownership, duplicated mechanism, and abstraction depth. If an exact-current Experimental `akowe-code` Code Craft Brief was explicitly supplied, apply only its candidate-specific guidance. Do not loop through repeated aesthetic rewrites; a behavior-changing correction returns through a fresh red/green slice.
 
 Preserve unrelated behavior. Keep focused proof current. Run broader proof at a required gate or after the candidate stabilizes, and rerun proof invalidated by later changes. Report every applicable check that did not run or pass and its exact limitation.
 

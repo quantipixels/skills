@@ -14,13 +14,31 @@ status: Draft
 
 **Outcome:** <what must become true>
 
-**Current state:** <status, delivery summary, and material state>
+**Current state:** <status, decision-frontier state, delivery summary, and material state>
 
 **Blocker:** <current blocker or none>
 
 **Next action:** <one exact action>
 
 **Completion condition:** <checkable boundary>
+
+## Decision frontier and confirmation
+
+**State:** `EMPTY | OPEN | BLOCKED`
+
+**Coverage:** <which material uncertainties/capabilities were inspected and against which candidate>
+
+**Why this state:** <why no interview is needed, current questions, or missing prerequisites>
+
+| ID | Decision | Why material | Prerequisites | State | Owner | Evidence/receipt |
+|---|---|---|---|---|---|---|
+| D1 | <choice> | <effect on outcome/scope/risk/etc.> | <fact/result or none> | confirmed/open/blocked/deferred/not-applicable | <owner> | <identity> |
+
+**User confirmation:** <message/decision identity, or not required with evidence>
+
+**Àròjinlẹ̀ result:** <record/receipt revision, or not required>
+
+**Unresolved material decisions:** <none or list>
 
 ## Outcome and acceptance
 
@@ -64,7 +82,7 @@ status: Draft
 
 ## Proof and closure
 
-<readiness, acceptance, rollback, documentation, operations, and closure obligations>
+<decision-frontier readiness, acceptance, rollback, documentation, operations, and closure obligations>
 
 ## Linked records and evidence
 
@@ -86,11 +104,11 @@ Do not copy complete specialist packets, logs, tests, or provider payloads into 
 
 **Tone and density:** <exploratory/candid | decisive/working | operational/exception-led | compact/dormant | assurance/outcome-led>
 
-**First viewport:** <what must be immediately visible for this stage>
+**First viewport:** <include status, decision frontier when open, blocker, next action, and stage-specific essentials>
 
-**Governing representation:** <decision tree, readiness map, phase/dependency map, delivery flow, outcome/proof map, or another supplied relationship>
+**Governing representation:** <decision tree/readiness map/phase map/delivery flow/outcome-proof map/other supplied relationship>
 
-**Foreground:** <current outcome, status, decisions, blockers, next action, proof, or stage-specific priorities>
+**Foreground:** <current outcome, decision frontier/closure, status, blockers, next action, proof, or stage-specific priorities>
 
 **Supporting:** <material rationale, risks, constraints, trade-offs, or selected evidence>
 
@@ -100,4 +118,4 @@ Do not copy complete specialist packets, logs, tests, or provider payloads into 
 
 ## Material history
 
-- r1 — <only a status, scope, decision, evidence, completion-boundary, reopen, closure, or ownership change worth retaining>
+- r1 — <only a status, scope, decision/frontier, evidence, completion-boundary, reopen, closure, or ownership change worth retaining>

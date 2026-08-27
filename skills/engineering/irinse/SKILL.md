@@ -15,8 +15,9 @@ Select the smallest useful tool. Do not recommend every missing tool or route or
 
 - [tldr-code](references/tldr-code.md) for compact structural, flow, impact, quality, or security leads;
 - [ast-grep](references/ast-grep.md) for syntax-aware search or structural rewriting;
-- [Semgrep](references/semgrep.md) for repeatable bug, security, or architecture rules; or
-- [IntelliJ MCP](references/intellij-mcp.md) for IDE-backed navigation, code insight, run configurations, and debugging.
+- [Semgrep](references/semgrep.md) for repeatable bug, security, or architecture rules;
+- [IntelliJ MCP](references/intellij-mcp.md) for IDE-backed navigation, code insight, run configurations, and debugging; or
+- [complexity evidence](references/complexity-evidence.md) when a consuming owner needs project-native cyclomatic, cognitive, nesting, hotspot, or related static-analysis measurements without a quality verdict.
 
 For another named tool, research its current official documentation. Stable references describe capabilities and boundaries; verify volatile commands and supported versions at execution time.
 
@@ -44,4 +45,4 @@ Coverage limits: <omissions, errors, and heuristic limits>
 Freshness: CURRENT | STALE
 ```
 
-Do not make architecture, implementation, security, maintainability, or review verdicts. Return the evidence to the owning workflow.
+Do not make architecture, implementation, security, maintainability, or review verdicts. A complexity/coverage/static-analysis score is evidence, not a verdict. Return the evidence to the owning workflow.
