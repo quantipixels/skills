@@ -1,35 +1,41 @@
 # Test-first implementation
 
-Work in vertical behavior slices. Complete one slice before starting the next: write the smallest controlling test set, observe the expected behavior failure, make it pass with the smallest implementation, then improve the code without changing behavior.
+Work in vertical behavior slices. Complete one slice before starting the next: write the smallest controlling test set, observe the expected behavior failure, make it pass with the smallest implementation, then improve production code without changing behavior.
 
-## 1. Set the behavior and seam
+TDD proof is construction evidence. It is not automatically the final retained test portfolio.
 
-Read repository instructions and confirmed domain, architecture, decision, and project-knowledge records. Derive the required behavior, applicable success, negative, boundary, recovery, and interaction cases, a stable behavior-bearing seam, and independent expected values. Return a project-boundary conflict or material unresolved seam choice to `alaga` before implementation. After resolution, re-evaluate the seam, red test, and affected proof.
+## 1. Set behavior, seam, and provisional proof owner
 
-A seam lets a test observe required behavior without depending on incidental internal structure. Use an agreed seam or the nearest behavior-bearing seam. When a supplied test strategy controls material implementation, verify that it covers the required behavior, suitable seams, independent expected values, and material failure paths.
+Read repository instructions and confirmed domain/architecture/decision/project knowledge. Derive required behavior, applicable success/negative/boundary/recovery/interaction cases, a stable behavior-bearing seam, and independent expected values.
+
+Name the material invariant each new test is meant to protect and the likely cheapest durable proof owner. Return a material unresolved seam/decision to Alága before implementation.
 
 Avoid:
 
-- **Implementation coupling:** Assert caller-visible behavior, not private structure, unstable collaborator calls, incidental steps, or non-contract side channels.
-- **Tautological expectations:** Use a specification, worked example, known literal, or another independent source. Never derive the expected value with production logic.
-- **Horizontal slicing:** Complete each behavior slice before writing tests for later slices.
+- **Implementation coupling** — assert caller-visible behavior, not private structure, incidental collaborator calls, or unstable steps.
+- **Tautological expectations** — derive expected values from a specification/worked example/known literal/independent source, never production logic.
+- **Horizontal slicing** — finish one behavior slice before writing tests for later slices.
 
-When the slice needs test doubles, read [tdd-mocking.md](tdd-mocking.md).
+When the slice needs doubles, read `tdd-mocking.md`.
 
 ## 2. Prove red
 
-Write and run the smallest test set that controls the slice. Confirm that it fails because the required behavior is missing or wrong. Fix compilation, fixture, environment, and unrelated failures before changing production code.
+Write/run the smallest test set controlling the slice. Confirm it fails because required behavior is missing/wrong. Fix compilation, fixture, environment, and unrelated failures before production code. An environment failure is not RED.
 
 ## 3. Make the slice green
 
-Write only enough production code to satisfy the controlling behavior. Do not add speculative behavior or anticipate later slices. Run the focused test set and affected proof.
+Write only enough production code for the controlling behavior. Do not speculate about later slices. Run focused and affected proof.
 
-## 4. Refactor and finish
+## 4. Refactor production code
 
-Improve names, structure, duplication, and implementation depth while preserving behavior. Put durable, non-obvious rationale, policy, or invariants at their narrowest owner. Do not document what names, types, structure, and tests already make clear. Tests do not replace required API, domain, operational, or configuration documentation.
+Improve names, state representation, ownership, structure, duplication, and implementation depth while preserving behavior. Put durable non-obvious rationale/policy/invariants at the narrowest owner. Tests do not replace required API/domain/operational/configuration documentation.
 
-Treat smoke tests, probes, and one-off harnesses as development evidence. Retain one only when it adds durable regression coverage at a stable seam and meets repository standards. Remove it when stable tests already cover the behavior or its setup was useful only during implementation.
+Treat smoke tests, probes, one-off harnesses, characterization scaffolding, and very narrow red/green tests as development evidence unless they independently protect a durable contract at a stable seam.
 
-Preserve unrelated behavior. Keep focused proof current. Run broader proof at a required gate or after the candidate stabilizes, and rerun proof invalidated by later changes. Report every applicable check that did not run or pass and its exact limitation.
+## 5. Hand proof to compaction
 
-Do not treat green TDD proof as evidence of review, publication, or other delivery work that did not occur.
+After the candidate is green/stable, do **not** automatically retain every test created during the slices. Alága applies `proof-compaction.md` across the complete candidate before final review.
+
+Preserve unrelated behavior and current focused proof until compaction is complete. Broader proof runs at required gates or after candidate stabilization, and any proof invalidated by later changes is rerun.
+
+Do not treat green TDD proof as evidence of review/publication or work that did not occur.
