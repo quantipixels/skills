@@ -14,8 +14,8 @@ Repository policy already prefers one public skill only for an independent outco
 
 1. Retire the unreleased public runtime forms of `akowe-java` and `akowe-spring`.
 2. Publish one explicit-only Experimental `akowe-code` that returns a bounded exact-candidate **Code Craft Brief**.
-3. Preserve useful Java and Spring research depth as progressively disclosed category references inside `akowe-code`; keep Kotlin, Elixir, Ktor, and Phoenix guidance internal as well. Public consolidation must not require compressing materially useful expert knowledge.
-4. Route from one small ecosystem index/compact reference into only the categories controlling the exact candidate. Do not load an ecosystem catalogue wholesale and do not add a custom search/selector engine merely to reproduce normal progressive disclosure.
+3. Preserve useful Java/Spring research depth and allow every supported ecosystem to grow into progressively disclosed mechanism-level category references. Current category trees are `java`, `spring`, `kotlin`, `ktor`, `elixir`, and `phoenix`. Public consolidation must not require knowledge compression.
+4. Route from one small ecosystem index into only categories controlling the exact candidate. Do not load an ecosystem catalogue wholesale and do not add a custom search/selector engine merely to reproduce normal progressive disclosure.
 5. Establish stack/version/module facts from repository and native project/tool evidence; unfamiliar/newer behavior uses bounded primary-source research instead of another public skill or parallel ecosystem parser.
 6. Treat known-bad patterns as a candidate-triggered layer inside Akọ̀wé Code or, when reliably mechanical, a repository tool rule. Do not restore Èèwọ̀ as a separate public skill.
 7. Runtime research never auto-mutates shared guidance. Recurrent cross-project findings go through retrospective + Kọ Skill; project-specific confirmed patterns may use an authorized Amọ̀ṣẹ́ `local-craft` owner record.
@@ -29,17 +29,18 @@ Repository policy already prefers one public skill only for an independent outco
 
 ## Consequences
 
-The public Experimental surface becomes smaller while Java/Spring knowledge depth remains available through normal progressive disclosure. Akọ̀wé Code stays context-bounded and returns one brief rather than an encyclopaedia dump. Stable workflows become stricter about decision closure, proof economy, and semantic complexity without gaining new public skills.
+The public Experimental surface becomes smaller while knowledge depth can grow independently through normal progressive disclosure. Java and Spring retain their relocated deep categories; Kotlin, Ktor, Elixir, and Phoenix now also expose mechanism-level category trees behind small ecosystem indexes. Akọ̀wé Code stays context-bounded and returns one brief rather than an encyclopaedia dump.
 
-The dated Java/Spring research documents remain source evidence. Their detailed knowledge categories now live under `skills/experimental/akowe-code/references/java/` and `references/spring/`; their former public `SKILL.md`, plugin metadata, maintainer-only files, and separate release identities are removed.
+The former Java/Spring public `SKILL.md`, plugin metadata, maintainer-only files, and separate release identities are removed. The shared Akọ̀wé Code authoring/source-map policy governs all six ecosystem trees.
 
 ## Rejected alternatives
 
 - Keep one public skill per language/framework: rejected for routing/install/release proliferation.
 - Pure real-time research: rejected for latency, inconsistency, opinion mining, and research loops.
-- Compress detailed Java/Spring research into a handful of summary bullets: rejected because public consolidation should not discard useful expert depth.
-- Always load the entire former 195-rule Java/Spring corpus behind one wrapper: rejected because task-scoped progressive disclosure should open only controlling categories.
+- Compress detailed research into summary bullets solely to keep one public skill: rejected because public consolidation should not discard useful expert depth.
+- Always load an entire ecosystem corpus behind one wrapper: rejected because task-scoped progressive disclosure should open only controlling categories.
 - Build a custom runtime search/selector solely to choose category references: rejected while ordinary candidate-driven reference routing is sufficient.
+- Force identical directory/category counts across ecosystems: rejected; split by useful mechanism and retrieval cost, not cosmetic symmetry.
 - Put code-craft resolution directly inside Alága: rejected because a craft brief is independently useful for implementation or review support and should not absorb delivery authority.
 - New public complexity/test/Èèwọ̀ skills: rejected because existing owners can express those recurring methods cleanly.
 - Automatic self-learning from runtime sessions: rejected for authority, provenance, privacy, and drift risk.
