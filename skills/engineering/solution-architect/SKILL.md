@@ -5,9 +5,9 @@ description: Design or review one implementation-ready technical architecture fo
 
 # Solution Architect
 
-Own the technical sufficiency of one solution. Produce one architecture packet an implementer can follow without inventing a material technical requirement. Use `design` to create/revise it and read-only `review` to judge an exact packet or implementation candidate.
+Own the technical sufficiency of one solution. Produce one architecture packet an implementer can follow without inventing a material technical requirement. Use `design` to create or revise it and read-only `review` to judge an exact packet or implementation candidate.
 
-Keep initiative lifecycle with `atona`, material user choices with `arojinle`, `.qp` mechanics with `akosile`, and implementation/review verdicts with their native owners.
+Keep initiative lifecycle with `atona`, material user choices with `arojinle`, persistence mechanics with `akosile`, and implementation/review verdicts with their native owners.
 
 ## 1. Pin the candidate
 
@@ -17,17 +17,7 @@ Read relevant system, domain, decision, operations, code, test, dependency, depl
 
 Derive the few drivers that can change the design. Express each as a concrete normal, failure, misuse, recovery, scale, or evolution scenario with an observable response.
 
-A material `design` result uses a canonical Markdown record when it feeds an active Atọ́nà plan or implementation, spans sessions/owners, needs handoff/recovery, or becomes an HTML projection. Small standalone consultation may remain inline.
-
-Resolve material records through `akosile`:
-
-```text
-owner: solution-architect
-record_type: architecture
-subject: <stable architecture identity>
-```
-
-Solution Architect owns the record body, revision, native result, technical validity, and material history. Akọsílẹ̀ owns path allocation, stale-write protection, and index reconciliation. In read-only `review`, do not create/update a record unless the user or active caller already authorizes that workspace result.
+Persist a material architecture result through `akosile` when it must survive across sessions/owners, feed an active plan or implementation, support recovery, or become a visual handoff. Small standalone consultation may remain inline. Solution Architect owns the architecture semantics and result; Akọsílẹ̀ owns persistence mechanics.
 
 ## 2. Research only decision-changing unknowns
 
@@ -49,15 +39,15 @@ Compare credible alternatives against drivers, operational load, security, deliv
 
 Specify only material concerns, but far enough to implement: boundaries; public interfaces/flows; data consistency/state/retention; integration failure semantics; authn/authz/secrets/privacy/trust; deployment/configuration/observability/capacity/operations; compatibility/migration/rollback/recovery/deletion; and proof for material scenarios.
 
-Before issuing or revising an implementation-ready design, read [architecture contract](references/architecture-contract.md). It adds the native-platform, complexity-budget, negative-architecture, proof-owner, material-user-decision-gap, and compact downstream contract checks without replacing this packet.
+Before issuing or revising an implementation-ready design, read [architecture contract](references/architecture-contract.md). It owns the compact implementation-facing constraints and checks for this architecture packet.
 
 ## 4. Maintain and integrate the packet
 
-Keep problem, outcomes, drivers, context, decisions, selected design, failure/recovery/migration, proof, risks, and linked evidence current. Keep evidence native and linked by exact identity instead of copying plans, research reports, logs, or provider payloads.
+Keep problem, outcomes, drivers, context, decisions, selected design, failure/recovery/migration, proof, risks, and linked evidence current. Keep detailed evidence with its native owner and link it by exact identity instead of copying it.
 
-Under an active Atọ́nà plan, return a compact receipt with plan and architecture record revisions; native result; current Architecture Contract identity when applicable; material risks/proof; evidence freshness; plan effect/affected phases; blocker; next action; and completion condition. Do not copy the architecture packet into the plan or change plan/delivery state.
+Return the exact-current architecture result to an active `atona` plan without copying the packet into the plan or changing plan/delivery state.
 
-Use `html-artifact` for a requested visual view or when formal review/handoff materially benefits from one. Projection failure does not invalidate a current semantic architecture record.
+Use `html-artifact` to visualise the architecture when a human view materially improves review or handoff. The semantic architecture result remains authoritative.
 
 ## 5. Judge sufficiency
 
