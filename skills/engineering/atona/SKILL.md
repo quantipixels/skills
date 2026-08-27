@@ -25,9 +25,11 @@ subject: <stable initiative identity>
 
 Atọ́nà owns the record body, revision, native status, decision frontier, delivery summary, decisions, projection brief, and semantic validity. Akọsílẹ̀ owns path allocation, safe writes, direct-access paths, and index reconciliation.
 
-After the first record write, ask `html-artifact` to create `index.html` in the same bundle. Refresh it after every material plan revision. If rendering fails, keep the Markdown record current, mark the view `INCOMPLETE` or `STALE`, and do not claim a current accessible handoff.
+Keep the Markdown record exact-current as material facts and confirmed answers settle. Treat HTML as a batched human projection, not a dependency of the decision loop. After the first meaningful Draft consolidation, ask `html-artifact` to create `index.html` in the same bundle. Refresh it after a material decision is confirmed, after an Àròjinlẹ̀ round completes, and at lifecycle transitions or explicit formal handoffs. When several answers settle in one round, prefer one consolidated refresh at round completion instead of regenerating per answer.
 
-When material questions are open, the user-facing handoff leads with the questions and recommended answers. Plan/HTML paths and status follow; artifact ceremony must not hide or replace decision closure.
+During an active Àròjinlẹ̀ question round, do not render, inspect, verify, browse, or hand off HTML merely because the semantic record changed. Do not interrupt the user's decision flow with projection work. If rendering fails at a consolidation boundary, keep the Markdown record current, mark the view `INCOMPLETE` or `STALE`, and do not claim a current accessible handoff.
+
+When material questions are open, the user-facing handoff leads with the questions and recommended answers. This questions-first rule overrides artifact/path-first presentation while the frontier is `OPEN`; plan/HTML paths and status follow only after the round is settled or when the user explicitly asks for them. Artifact ceremony must not hide or replace decision closure.
 
 ## 2. Maintain lifecycle state
 
@@ -78,11 +80,11 @@ Maintain one explicit frontier state in the plan:
 
 ```text
 EMPTY   — every material user decision is confirmed, already confirmed with current evidence, non-blocking deferred with a re-entry contract, or not applicable.
-OPEN    — one or more currently answerable material user decisions remain.
-BLOCKED — a material decision cannot yet be asked because a prerequisite fact/specialist result is missing.
+OPEN    — one or more currently answerable material user decisions remain. OPEN takes precedence when other material decisions are blocked but at least one independent question can be asked now.
+BLOCKED — unresolved material decisions remain, but none can currently be asked because prerequisite facts or specialist results are missing.
 ```
 
-Do not invoke `arojinle` merely to reopen settled decisions. When the frontier is `OPEN`, give it only the current material decision set and caller envelope; consume its exact-current receipt and wait for user answers. When `BLOCKED`, resolve the prerequisite fact/evidence first. When `EMPTY`, record why no interview is required.
+Do not invoke `arojinle` merely to reopen settled decisions. When the frontier is `OPEN`, give it the whole currently answerable material decision set and caller envelope, then let Àròjinlẹ̀ own the user question round. Wait for the user's answers before consuming the settled-round receipt. When some branches remain blocked, continue independent answerable branches and resolve missing prerequisites without suppressing the current open frontier. When `BLOCKED`, resolve the prerequisite fact/evidence first. When `EMPTY`, record why no interview is required.
 
 Use `amose` for project/domain knowledge only when it can materially change the plan/frontier. Use `iwadi` for substantial reusable primary-source research, `irinse` for bounded tool evidence, and `solution-architect` when technical design/review is material.
 
@@ -98,7 +100,7 @@ Before `Planned`:
 4. Verify every required specialist result against the exact plan/candidate. Require current `solution-architect: IMPLEMENTATION_READY` when architecture is material.
 5. Treat coverage as an index, not proof: trace the top credible normal, failure, misuse, recovery, compatibility, migration, and operational mechanisms.
 6. Resolve every blocking dependency, recovery, migration, proof, documentation, and operational gap.
-7. Write the `Planned` revision and regenerate the execution-ready HTML view from that exact revision.
+7. Write the `Planned` revision, regenerate the execution-ready HTML view from that exact revision, and run the lifecycle-transition verification required below.
 
 Set `Planned` only when implementation needs no invented material requirement. Approval covers only the listed decisions and exact evidence identity.
 
@@ -108,25 +110,27 @@ Keep one stable plan identity and `index.html` path, but let information directi
 
 | Status | HTML direction |
 | --- | --- |
-| `Draft` | Outcome/current understanding, **decision frontier**, assumptions/evidence gaps, next questions/actions |
+| `Draft` | Outcome/current understanding, **current decision questions and frontier**, assumptions/evidence gaps, next questions/actions |
 | `Planned` | Accepted outcome/scope, decision closure, phases/dependencies, owners, proof, risks, rollback, start condition |
 | `In Progress` | Delivery state, exact candidates, exceptions/blockers, deviations/stale evidence, decisions needed, next action |
 | `Backlog` | Pause reason, retained value, owner, reactivation trigger, stale assumptions |
 | `Closed` | Achieved outcome, accepted proof, final decisions, residual limits, durable sources |
 
-Preserve stable identity, source revision/status disclosure, and useful anchors. Do not keep one layout merely for continuity when the reader's job changes.
+Preserve stable identity, source revision/status disclosure, and useful anchors. Do not keep one layout merely for continuity when the reader's job changes. An open Draft projection must expose the actual current questions, bounded choices, and recommendations rather than only a state label or decision table.
 
 ## 6. Track delivery
 
 When tickets, multiple candidates, dependencies, implementers, multi-session handoff, or delivery authority apply, read [delivery tracking](references/delivery-tracking.md). It owns ticket integration, delivery handoffs, receipt reconciliation, and completion proof. Atọ́nà retains plan identity, decision/frontier integration, delivery-summary derivation, and closure.
 
-After a material receipt changes plan meaning, update the semantic record first and regenerate HTML from that revision. Keep non-plan-affecting operational detail outside the plan record.
+After a material receipt changes plan meaning, update the semantic record first. Refresh HTML only when the change reaches a projection consolidation boundary defined above. Keep non-plan-affecting operational detail outside the plan record.
 
-## 7. Verify the human view proportionately
+## 7. Verify the human view at lifecycle boundaries
 
-Run structural checks after every HTML refresh. Require current full browser proof for the first meaningful Draft render, lifecycle transitions that change information direction, the Planned execution-ready handoff, Closed, and applicable formal publication/review gates. Within one status, reuse current browser proof when presentation is unchanged and run targeted checks when presentation materially changes.
+Keep ordinary decision and round refreshes lightweight: require successful projection generation and structural validity, but do not run browser/visual verification merely because HTML was refreshed. Full verification must not interrupt an active Àròjinlẹ̀ round.
 
-Every user-visible handoff discloses record/projection revisions and presentation state. Return the HTML absolute and `.qp/...` path first, then the Markdown semantic-source path.
+Require current full browser proof when presentation is consolidated for a lifecycle transition that changes the reader's job, especially `Planned`, `In Progress`, `Backlog`, and `Closed`, and for applicable formal publication/review gates. Require it for the first meaningful Draft render only when that render is itself a formal user handoff rather than an in-progress decision session. Run targeted checks when a consolidated presentation materially changes without a lifecycle transition.
+
+Outside an active `OPEN` question round, every artifact-oriented user-visible handoff discloses record/projection revisions and presentation state. Return the HTML absolute and `.qp/...` path first, then the Markdown semantic-source path. While the frontier is `OPEN`, the questions-first rule in section 1 takes precedence.
 
 ## 8. Reconcile and close
 
