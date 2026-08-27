@@ -1,0 +1,5 @@
+interface:
+  display_name: "Akọ̀wé Code"
+  short_description: "Create a stack-aware expert code-craft brief"
+policy:
+  allow_implicit_invocation: false
