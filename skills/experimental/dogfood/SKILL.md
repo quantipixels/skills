@@ -39,7 +39,7 @@ Capture screenshots, reproduction steps, console output, and request evidence on
 
 Dogfood does not edit source, commit, push, publish, or declare code quality. For each failure, state the journey, exact repro, expected and observed behavior, candidate/head identity, evidence, user impact, and whether the failure is deterministic.
 
-Route an unverified report or ambiguous symptom to `se-triage`. Route a confirmed bounded correction to `alaga`. Route a code-quality concern without a runtime failure to `atunwo`. When the missing outcome is causal diagnosis, offer the explicit Experimental `root-cause` route and wait for acceptance; do not silently invoke another experiment.
+Use `se-triage` for an unverified report or ambiguous symptom, `alaga` for an accepted correction, and `atunwo` for a code-quality concern without a runtime failure. When causal diagnosis is the missing outcome, offer the explicit Experimental `root-cause` route and wait for acceptance.
 
 After a correction owner returns, refresh the exact candidate and rerun only affected journeys plus any credible interaction seam. A successful fix does not erase the original evidence or convert untested rows to `Pass`.
 
@@ -47,14 +47,4 @@ After a correction owner returns, refresh the exact candidate and rerun only aff
 
 Return the candidate and environment, changed-journey map, matrix, evidence locators, blocking findings, non-blocking observations, skipped/blocked rationale, external effects, browser and viewport coverage, candidate freshness, and readiness implication. Dogfood supplies experience-verification evidence; the plan or delivery owner decides acceptance.
 
-Return inline for a small run. For a material run, resolve one record through `akosile`:
-
-```text
-owner: dogfood
-record_type: experience-verification
-subject: <candidate or head identity>
-```
-
-Keep the matrix and exact evidence boundary in `record.md`; retain selected screenshots, console, or network evidence under the bundle's `evidence/` slot. Create a terminal `index.html` only when a human visual report materially improves review. Dogfood does not maintain continuous HTML from the first step.
-
-Under an active Atọ́nà plan, keep detailed evidence in the Dogfood record and return a compact receipt with candidate/head, covered journeys, status counts, blocking findings, proof freshness, record locator, and plan effect. Do not copy the full QA record into the initiative plan.
+Return inline for a small run. Persist a material durable run through `akosile` as an experience-verification result and keep its selected evidence with that record. Use `html-artifact` when a terminal visual report materially improves human review. Under an active `atona` plan, return Dogfood's exact-current result to the plan rather than creating a competing initiative report.
