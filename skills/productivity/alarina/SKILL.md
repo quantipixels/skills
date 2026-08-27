@@ -7,7 +7,7 @@ description: Select the shortest useful route through published QP skills. Focus
 
 Select one primary QP skill for the requested outcome. Respect explicit user selection. Add a supporting skill only when its independently owned result is necessary; separate independent outcomes instead of forcing one owner to absorb them. Routing grants no mutation, provider, credential, publication, or continuing-stewardship authority.
 
-When Pepeye mode is active, supply its exact-current leaf-owner route without selecting/advancing the playbook. `pepeye` remains Experimental and opt-in.
+When explicit Pepeye supervision is active, supply its exact-current primary owner and mode. Pepeye records the route without selecting a playbook or controlling the owner's lifecycle.
 
 ## Route
 
@@ -58,10 +58,10 @@ Experimental skills are opt-in and cannot silently replace a stable owner. When 
 
 | Explicit experimental outcome | Skill |
 | --- | --- |
-| Produce a stack-aware expert code-craft brief for an exact coding task/candidate | `akowe-code` |
-| Drive a task through QP playbooks, proof, pause/pickup, and learning | `pepeye` |
-| Establish why one reproducible/directly observed failure occurs | `root-cause` |
-| Generate/challenge several grounded possibilities before selection | `ideate` |
+| Accompany an active code change with adaptive expert implementation counsel | `akowe-code` |
+| Supervise one task's owner, candidate, authority, proof, blocker, and terminal state | `pepeye` |
+| Establish the minimal causal explanation for one reproducible/directly observed failure | `root-cause` |
+| Generate/challenge a bounded set of grounded possibilities before selection | `ideate` |
 | Build a disposable artifact to settle one experiential decision | `prototype` |
 | Exercise changed user journeys in a real browser | `dogfood` |
 
@@ -69,7 +69,8 @@ Experimental skills are opt-in and cannot silently replace a stable owner. When 
 
 - `atona` remains primary for an initiative even when it discovers unresolved consequential choices. When its Decision Frontier Gate is `OPEN`, `arojinle` is the required supporting owner for that frontier; when `BLOCKED`, first resolve the prerequisite fact/evidence. Do not reroute the whole initiative to Àròjinlẹ̀ or reopen already confirmed choices.
 - `solution-architect` owns technical/reversible architecture choices. A structured material user decision gap returns to Atọ́nà/Àròjinlẹ̀ instead of being guessed.
-- `akowe-code` is Experimental/explicit-only. It supplies a bounded Code Craft Brief; `alaga`, `pare`, `atunwo`, `solution-architect`, `irinse`, and `amose` retain implementation/simplification/verdict/architecture/tool/knowledge ownership and remain complete without it.
+- `akowe-code` is Experimental/explicit-only. It discovers relevant available skills and current primary-source evidence to return exact-candidate Expert Implementation Counsel. It owns no embedded stack catalogue, implementation, architecture, simplification, tool, project-knowledge, or review verdict.
+- `pepeye` is Experimental/explicit-only task supervision. It records the current owner, candidate, authority, acceptance, proof, blocker, and terminal state; it does not select playbooks or replace routing, planning, delivery, review, publication, handoff, or retrospective owners.
 - `akosile` owns repository-local `.qp` path/write/index mechanics; semantic owners retain record meaning/status/evidence. Global `~/.qp` remains deferred.
 - Keep a directly selected artifact specialist primary when it fully owns the result. Use `apere` only when owner selection/cross-deliverable coordination is itself needed.
 - `alaga` owns integrated production; `apere` does not absorb delivery lifecycle.
@@ -78,6 +79,6 @@ Experimental skills are opt-in and cannot silently replace a stable owner. When 
 - Keep portable HTML views with `html-artifact`; route slide decks to `slides`.
 - Keep PR/MR publication with `seda-pr`, monitoring with `wo-pr`, and review verdicts with `atunwo`.
 - Keep issue triage supplied-evidence-first; provider reads/writes need their own authority.
-- Do not use an Experimental skill to narrow/remove/impersonate a stable owner. Experiments may consume stable results and return bounded receipts at their own boundary.
+- Do not use an Experimental skill to narrow/remove/impersonate a stable owner. Experiments may consume stable results and return bounded native results at their own boundary.
 
 Check active inventory before returning a route. If the correct owner is unavailable, name it rather than substituting another skill. Ask one focused question only when its answer selects a materially different owner/mode. Report primary skill, mode, concise reason, necessary support, and whether explicit acceptance is required.
