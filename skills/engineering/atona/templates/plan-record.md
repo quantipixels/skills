@@ -32,7 +32,7 @@ status: Draft
 
 ### Current questions
 
-Use only while the frontier is `OPEN`; keep the whole currently answerable material round exact-current. These questions are the user-facing decision payload and the Draft HTML foreground at the next consolidation boundary.
+Use only while the frontier is `OPEN`; keep the whole currently answerable material round exact-current.
 
 | Q | Decision | Question | Bounded choices | Recommendation | Prerequisites/evidence |
 |---|---|---|---|---|---|
@@ -99,32 +99,6 @@ Use only while the frontier is `OPEN`; keep the whole currently answerable mater
 | <owner> | <record-ref, path, provider identity, or revision> | <revision> | current | <effect> |
 
 Do not copy complete specialist packets, logs, tests, or provider payloads into this record.
-
-## HTML projection
-
-**Lifecycle stage and reader job:** <Draft exploration | Planned startable plan | In Progress delivery monitoring | Backlog reactivation | Closed assurance>
-
-**Audience:** <primary reader>
-
-**Purpose and governing question:** <reader outcome and question for this stage>
-
-**Artifact thesis:** <one source-supported sentence>
-
-**Tone and density:** <exploratory/candid | decisive/working | operational/exception-led | compact/dormant | assurance/outcome-led>
-
-**Projection consolidation boundary:** <first Draft consolidation | material decision confirmed | arojinle round completed | lifecycle transition>
-
-**First viewport:** <include status, actual current questions with bounded choices/recommendations when open, blocker, next action, and stage-specific essentials>
-
-**Governing representation:** <decision tree/readiness map/phase map/delivery flow/outcome-proof map/other supplied relationship>
-
-**Foreground:** <current outcome, current questions/decision closure, status, blockers, next action, proof, or stage-specific priorities>
-
-**Supporting:** <material rationale, risks, constraints, trade-offs, or selected evidence>
-
-**Link-only:** <supporting records, logs, archives, or evidence>
-
-**Stable identity/anchors:** <elements that must remain discoverable across stage changes>
 
 ## Material history
 
