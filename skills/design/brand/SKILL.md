@@ -5,17 +5,17 @@ description: Define, update, create, and review brand voice, messaging, visual i
 
 # Brand
 
-Own the project’s human-readable brand source of truth and its identity assets. Keep voice, visual identity, messaging, logo and icon-language rules, asset constraints, and approval criteria together. Keep implementation-token mutation with `eto-apere`.
+Own the project's human-readable brand source of truth and identity assets. Keep voice, visual identity, messaging, logo and icon-language rules, asset constraints, and approval criteria together. Keep implementation-token mutation with `eto-apere`.
 
 ## Workflow
 
 1. Find existing brand guidance, logo files, identity assets, token files, and asset manifests. Treat existing approved guidance as authoritative unless the user explicitly changes it.
 2. For a new or changed brand, define audience, positioning, voice, personality, color roles, typography, imagery, logo constraints, icon language when custom icons are required, and prohibited treatments. Use `templates/brand-guidelines-starter.md` as a starting point.
-3. For an update, change the human-readable guidance and affected identity assets, and preserve unrelated decisions. When implementation tokens must change, give `eto-apere` the confirmed color roles, typography, source-guideline path, intended token targets, current consumers, and required compatibility.
+3. For an update, change the human-readable guidance and affected identity assets while preserving unrelated decisions. When implementation tokens must change, use `eto-apere` to reconcile the confirmed brand roles into the project's token contract.
 4. For a logo or corporate identity program, load only the applicable logo or CIP references below. Search the bundled identity data before choosing a direction, keep exploratory concepts distinct from approved assets, and use image generation only for approved bitmap exploration or mockups.
 5. For a custom icon language, read `references/icon-design.md` and define the grid, stroke/fill, corners, optical sizing, naming, and export rules. Product UI implementation remains with `asa-oju-ibanisoro`.
 6. For a review, check voice, color, typography, logo use, icon consistency, asset naming, accessibility, and cross-surface consistency. Report evidence and corrections, not taste alone.
-7. Validate assets and confirm the exact current brand guidance before a downstream handoff. When implementation tokens change, consume `eto-apere`’s exact-current token and validation result.
+7. Validate assets and confirm the exact current brand guidance before downstream handoff. Consume current downstream results when implementation work is part of the request; do not reproduce their procedures here.
 
 ## Identity helpers
 
@@ -28,7 +28,7 @@ python3 <brand-skill-root>/scripts/search.py "rounded optical" --kind icon
 node <brand-skill-root>/scripts/validate-asset.cjs assets/logo.svg --json
 ```
 
-The search helper returns ranked source rows only. It does not generate a logo brief, corporate-identity brief, palette, recommendation, or approval result; synthesize those from the current task, guidance, and retrieved evidence. Read the human-readable brand guidelines directly rather than maintaining a second parser-generated context representation. Use the host’s image-analysis capability or an installed image tool to inspect bitmap palettes, then compare the result with the current guidelines. Confirm exact source and target paths before a handoff. Do not claim token synchronization until `eto-apere` returns validated output and readback.
+The search helper returns ranked source rows only. It does not generate or approve a logo brief, corporate-identity brief, palette, or recommendation; synthesize those from the current task, guidance, and evidence. Read the human-readable brand guidelines directly rather than maintaining a second parser-generated context representation. Use the host's image-analysis capability or an installed image tool to inspect bitmap palettes, then compare the result with the current guidelines.
 
 ## Project conventions
 
@@ -40,7 +40,6 @@ Unless the project already has different paths, use:
 ## Decision rules
 
 - Use semantic color roles, not color names, in UI guidance.
-- Do not hand token work to `eto-apere` until primary, secondary, and accent roles are present. Include any confirmed neutral, foreground, background, destructive, and focus roles.
 - Define accessible text/background pairs and dark-mode behavior.
 - Limit typefaces and document fallback fonts.
 - Keep logo lockups, clear space, minimum size, and prohibited changes explicit.
