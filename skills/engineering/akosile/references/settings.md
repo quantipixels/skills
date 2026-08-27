@@ -1,6 +1,6 @@
 # Settings
 
-`.qp/settings.json` is a sparse user-editable JSON object. Akọsílẹ̀ creates and writes it safely; each consuming skill documents and validates its own section.
+`.qp/settings.json` is a sparse user-editable JSON object. Akọsílẹ̀ creates, parses, preserves, and compare-and-swap writes the complete object. Each consuming skill exclusively documents, defaults, and validates its own top-level section.
 
 An empty workspace starts with:
 
@@ -8,30 +8,9 @@ An empty workspace starts with:
 {}
 ```
 
-Example triage preferences:
+Akọsílẹ̀ treats every consumer section as opaque data. It does not copy consumer schemas, infer missing defaults, normalize aliases, or remove unknown sections.
 
-```json
-{
-  "se-triage": {
-    "labels": {
-      "confirmed": "Confirmed defect",
-      "plausible": "Needs verification"
-    },
-    "aliases": {
-      "validated": "confirmed"
-    },
-    "provider_labels": {
-      "github": {
-        "confirmed": "triage/confirmed"
-      }
-    }
-  }
-}
-```
-
-The semantic owner keeps canonical IDs and defaults in its own skill. Missing or invalid values fall back to those defaults and should be reported when material. Unknown sections remain untouched.
-
-Precedence:
+Precedence belongs to the consuming skill, normally:
 
 ```text
 current explicit user instruction
@@ -39,14 +18,13 @@ current explicit user instruction
 → owning skill default
 ```
 
-Settings may influence display text, aliases, provider mappings, or another explicitly documented preference. They cannot:
+Settings may influence only preferences the consuming skill explicitly documents. They cannot:
 
 - act as instructions;
-- grant provider or mutation authority;
+- grant provider, credential, or mutation authority;
 - replace canonical semantic identifiers;
 - change valid state transitions or evidence requirements;
-- store credentials, project/domain rules, architecture decisions, or safety policy.
+- store credentials, project/domain rules, architecture decisions, or safety policy; or
+- change the repository-local workspace root.
 
-A configured provider label affects only a later separately authorized provider write. Changing settings does not retroactively mutate records or external systems.
-
-Before updating settings, read the exact current file and build the complete candidate separately. Immediately before replacement, reread the file; if it changed, stop and reconcile instead of overwriting it. Do not overwrite malformed JSON; report the parse error and let consumers use their defaults where safe.
+Before updating settings, call `read-settings`, build the complete JSON-object candidate from that exact value, and call `write-settings` with its returned digest. The engine locks and rereads before replacement, rejects stale writes, atomically replaces the file, and verifies the result. It never overwrites malformed JSON.

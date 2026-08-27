@@ -1,12 +1,13 @@
 ---
 owner: solution-architect
 record_type: architecture
+subject: <stable architecture identity>
 title: <architecture topic>
-updated_at: <offset-aware timestamp>
-revision: 1
-candidate: <exact subject/candidate, optional>
+candidate: <exact current candidate, optional>
 status: IMPLEMENTATION_READY | NOT_READY | UNPROVED
 ---
+
+Akọsílẹ̀ assigns `updated_at` and `revision` when persisting this record.
 
 # <Architecture topic>
 

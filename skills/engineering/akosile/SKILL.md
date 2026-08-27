@@ -1,73 +1,128 @@
 ---
 name: akosile
-description: Initialize and maintain one repository-local QP `.qp` v0 workspace. Use for owner-first record or artifact paths, safe record/settings writes, workspace indexing, or workspace repair. Exclude semantic record meaning, owner-native status validity or transitions, provider mutation, project knowledge, and global `~/.qp` storage.
+description: Initialize, diagnose, repair, and safely mutate one repository-local QP `.qp` workspace. Use for owner-first record or artifact allocation, compare-and-swap record/settings writes, subject identity, slug-named HTML paths, or index rebuilding. Exclude semantic record meaning, owner-native status validity or transitions, provider mutation, project knowledge, and global `~/.qp` storage.
+compatibility: Requires Python 3, Git, PyYAML, and filelock.
 ---
 
 # Akọsílẹ̀
 
-Own the small repository-local QP workspace. Semantic skills own what records mean; Akọsílẹ̀ owns where generated records live, the canonical workspace shape, safe replacement, and how users find records again.
+Own the deterministic mechanics of one repository-local QP workspace. Semantic skills own record meaning and validity; Akọsílẹ̀ owns the canonical root, identity-safe placement, locked compare-and-swap writes, generated navigation, and exact path receipts.
 
-For `v0-experiment`, resolve the Git worktree root when available and use exactly `<repository>/.qp`. Semantic owners normally resolve record and artifact locations through Akọsílẹ̀ rather than duplicate path rules. A global `~/.qp` root is deliberately deferred until real cross-project discovery or continuity failures justify project identity, checkout resolution, and migration machinery.
+Use the bundled engine rather than rebuilding these mechanics with ad hoc shell commands. Resolve `<skill-root>` to this skill directory and use:
 
-## 1. Initialize only what is missing
-
-The default workspace is:
-
-```text
-.qp/
-├── settings.json
-├── INDEX.md
-├── records/
-│   └── <canonical-skill-name>/<record-id>/
-└── artifacts/
+```bash
+python3 <skill-root>/scripts/workspace.py <operation> --repo <repository-or-path-inside-it>
 ```
 
-Create only missing directories and files with the host's normal filesystem/shell capabilities. Initialize `settings.json` as `{}` and derive `INDEX.md` from current records without overwriting valid user files. Create owner directories lazily. Keep `.qp` out of Git through existing ignore rules or repository-local Git exclude; never edit tracked `.gitignore` merely to initialize the workspace.
+The runtime dependencies are declared in `scripts/requirements.txt`. Keep semantic judgment outside the engine.
 
-Read [workspace contract](references/workspace-contract.md) for root, path, record, write, direct-access, and index rules. Read [settings](references/settings.md) only when settings are involved.
+Read [workspace contract](references/workspace-contract.md) before record, artifact, index, doctor, or repair operations. Read [settings](references/settings.md) only when settings are involved.
 
-## 2. Resolve records and artifacts
+## 1. Pin authority and the operation
 
-A record bundle is:
+Resolve the Git worktree root and use exactly `<repository>/.qp`. Global `~/.qp` storage is not supported.
+
+Select one operation:
+
+- `init` — create only missing workspace infrastructure, preserve malformed user files, rebuild the derived index, and establish repository-local Git hygiene;
+- `resolve-record` — resolve an exact record reference or atomically allocate one owner-first bundle from owner, stable subject, and slug;
+- `read-record` — return generic metadata and the exact SHA-256 digest required for a later write;
+- `write-record` — write one owner-supplied semantic body through a locked compare-and-swap operation;
+- `resolve-artifact` — resolve or atomically allocate one standalone artifact bundle and return its real slug-named HTML path;
+- `read-settings` / `write-settings` — read or compare-and-swap the sparse JSON object;
+- `index` — rebuild `.qp/INDEX.md` from current records;
+- `doctor` — diagnose mechanical workspace defects without mutation; or
+- `repair` — repair only missing or derived infrastructure. Never rewrite semantic records, migrate legacy content, or infer identity corrections.
+
+Initialization, record/settings writes, Git exclude changes, and repair are mutations. Use them only with the caller's applicable repository/workspace authority. Reads, resolution without `--create`, indexing diagnosis, and `doctor` do not grant later mutation authority.
+
+## 2. Keep identity separate from location
+
+A new record is identified semantically by:
 
 ```text
-.qp/records/<owner>/<YYYYMMDD-stable-slug>/
-├── record.md
-├── index.html   # optional projection
-├── receipts/    # optional
-└── evidence/    # optional
+owner + subject
 ```
 
-Use the exact ASCII skill `name` as owner. Prefer an exact caller record path or candidate identity before title/slug matching. Similar titles are not identity. Keep an allocated directory stable when title, status, or projection changes.
+`owner` is the exact ASCII skill name. `subject` is a stable owner-supplied identity that survives title, status, candidate, and projection changes. The dated slug is a stable physical location, not the semantic identity. Prefer an exact `record_ref` when already known.
 
-A standalone HTML artifact without a semantic owner record belongs under:
+Create with:
+
+```bash
+python3 <skill-root>/scripts/workspace.py resolve-record \
+  --repo <repository> \
+  --owner <owner> \
+  --subject <stable-subject> \
+  --slug <stable-slug> \
+  --create
+```
+
+Legacy records without `subject` remain readable. Upgrade one only through its exact `record_ref`; do not guess its subject or allocate another record beside ambiguous legacy state.
+
+A record projection uses the resolved record slug, for example:
 
 ```text
-.qp/artifacts/<YYYYMMDD-stable-slug>/index.html
+.qp/records/atona/20260827-checkout-recovery/checkout-recovery.html
 ```
 
-Reject absolute paths supplied as record/artifact identifiers, path separators in owner/slug, `.` or `..`, symlink escape, secret-bearing identifiers, or any target outside the resolved repository `.qp` root.
+A standalone artifact uses its own real slug:
 
-For a generated resource intended for direct user access, return both its resolved absolute filesystem path and its repository-relative `.qp/...` path. Absolute machine paths are operational output, not canonical source identity.
+```text
+.qp/artifacts/20260827-architecture-review/architecture-review.html
+```
 
-## 3. Write safely without owning semantics
+Never create a new QP artifact or projection as `index.html`. Existing `index.html` files are legacy diagnostics, not new write targets.
 
-The semantic owner supplies the complete Markdown body, native status, candidate identity, and revision. Akọsílẹ̀ validates only the common record fields and canonical path.
+## 3. Write records and settings through exact-current compare-and-swap
 
-For an existing record or settings file, base the candidate on an exact current read. Immediately before replacement, reread the target; if it changed, stop instead of overwriting it. Validate the complete candidate, replace the whole target, reread the result, and rebuild `INDEX.md` after a record change. Records increment revision by exactly one. Invalid records stay visible as index diagnostics rather than disappearing.
+The semantic owner supplies:
 
-Akọsílẹ̀ does not decide whether an Atọ́nà plan is `Planned`, a Solution Architect packet is `IMPLEMENTATION_READY`, or a triage result is `confirmed`. The owner validates semantic edits before asking Akọsílẹ̀ to persist them.
+- complete owner-native frontmatter except `updated_at` and `revision`;
+- the complete Markdown body;
+- semantic validity of record type, status, transitions, candidate, evidence, and body; and
+- the exact digest returned by `read-record`, or `absent` for a new record.
 
-## 4. Keep settings sparse
+Akọsílẹ̀ validates only the generic envelope and canonical path. It locks the resource, rereads under the lock, rejects stale identity or digest, assigns `updated_at` and the next revision, atomically replaces the file, rereads it, and rebuilds the index. A verified record remains authoritative if a later index rebuild fails; report that derived failure.
 
-`.qp/settings.json` is a user-editable JSON object. It contains only overrides a consuming skill documents and understands. Akọsílẹ̀ creates, preserves, and safely writes the file; each semantic owner owns defaults and validation for its own section.
+Use JSON for the owner-supplied frontmatter candidate:
 
-Settings are data, not instructions. They never grant provider writes, change canonical semantic IDs or transitions, override evidence/safety requirements, replace project knowledge, or change the v0 workspace root.
+```bash
+python3 <skill-root>/scripts/workspace.py write-record \
+  --repo <repository> \
+  --record-ref <owner>/<record-id> \
+  --frontmatter-file <candidate.json> \
+  --body-file <candidate.md> \
+  --expected-digest <sha256-or-absent>
+```
 
-## 5. Keep one workspace protocol
+For settings, base the complete JSON-object candidate on `read-settings` and pass its exact digest. Preserve unknown sections. Never overwrite malformed settings or infer a consumer's schema.
 
-`INDEX.md` is derived navigation and may be rebuilt at any time. Records remain authoritative. Legacy paths may be read when encountered, but new QP writes use the canonical owner-first layout; do not create legacy roots as fallback destinations.
+Do not bypass the engine for a write that claims Akọsílẹ̀ safety. Writes that bypass the engine are outside this guarantee. When their drift is observed, stop and reconcile instead of retrying blindly.
 
-Akọsílẹ̀ is the normal workspace mechanism, not a custom runtime. Use host-native filesystem, shell, and Git capabilities rather than maintaining a parallel workspace CLI. Semantic skills should not duplicate Akọsílẹ̀ path mechanics or invent alternate workspace protocols.
+## 4. Keep generated navigation derived
 
-Return the workspace, affected record/artifact identity, absolute and workspace-relative paths when applicable, index state, Git-hygiene state, changed items, and any conflict or gap.
+`.qp/INDEX.md` is rebuilt from valid generic record frontmatter and sorted by the chronological instant represented by `updated_at`, newest first. It links `record.md` and the expected slug-named HTML projection only when that file exists. Invalid records and duplicate subjects remain visible as diagnostics.
+
+Records remain authoritative. The index never sets owner state, validity, completion, or lifecycle status.
+
+`doctor` may report malformed settings/records, missing subjects, duplicate subjects, stale index state, symlink or path escape, legacy roots, legacy `index.html`, and missing Git hygiene. `repair` may recreate directories, initialize missing `{}`, rebuild the index, and update repository-local Git exclude; it does not delete or migrate the reported legacy material.
+
+## 5. Return a verified workspace operation
+
+Return:
+
+```text
+Operation:
+Workspace:
+Resource identity:
+Absolute path:
+Workspace path:
+Previous digest/revision:
+Current digest/revision:
+Index state:
+Git-hygiene state:
+Result:
+Conflict or limitation:
+```
+
+Use the exact structured engine result. For generated resources intended for direct user access, lead with the resolved absolute filesystem path and repository-relative `.qp/...` path. Absolute machine paths are operational output, not portable source identity.

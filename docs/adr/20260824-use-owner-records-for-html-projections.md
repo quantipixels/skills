@@ -1,6 +1,6 @@
 # Use owner records as semantic sources for HTML projections
 
-Status: Accepted
+Status: Superseded by [Use a deterministic Akọsílẹ̀ workspace engine](20260827-use-deterministic-akosile-workspace-engine.md) for workspace writes, record identity, and HTML entry naming. The semantic-owner and projection-ownership decisions below remain historical context.
 
 QP separates semantic owner state, repository-local workspace mechanics, native evidence, compact receipts, and HTML presentation.
 

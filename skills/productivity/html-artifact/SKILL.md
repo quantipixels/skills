@@ -11,7 +11,7 @@ Do not style-dump the source. Preserve material meaning, exact obligations, evid
 
 ## 1. Establish the projection contract
 
-Use the exact projection path supplied by an owner record. For a standalone artifact, use the requested path or resolve a bounded repository-local `.qp/artifacts/` bundle through `akosile`.
+Use the exact projection path supplied by an owner record. For a standalone artifact, use the requested path or resolve a stable slug through `akosile` and write to the returned real slug-named HTML path. Never create a new QP artifact or projection as `index.html`; treat an existing `index.html` as legacy input until its owner explicitly migrates it.
 
 When an owner record is supplied, read it first and pin its path, owner, record type, title, revision, status, updated time, candidate when present, `Resume`, linked records/evidence, and projection brief. If record and HTML disagree, the record wins.
 

@@ -1,12 +1,13 @@
 ---
 owner: atona
 record_type: initiative-plan
+subject: <stable initiative identity>
 title: <initiative title>
-updated_at: <offset-aware timestamp>
-revision: 1
 candidate: <repository/source and exact revision, optional>
 status: Draft
 ---
+
+Akọsílẹ̀ assigns `updated_at` and `revision` when persisting this record.
 
 # <Initiative>
 
