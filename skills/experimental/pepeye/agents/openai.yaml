@@ -1,5 +1,5 @@
 interface:
   display_name: "Pepeye"
-  short_description: "Drive a portable task lifecycle through QP skills"
+  short_description: "Supervise one task without replacing its owner"
 policy:
   allow_implicit_invocation: false

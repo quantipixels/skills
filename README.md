@@ -11,9 +11,10 @@ Browse the [QP Agent Skills documentation](https://quantipixels.com/skills).
 - Akọsílẹ̀ owns the repository-local `.qp` workspace: root/path resolution, owner-first paths, safe writes, sparse settings, and one generated index. Semantic owners retain record meaning, native states, evidence, and provider authority.
 - Solution Architect owns technical architecture design/read-only review and emits a compact Architecture Contract for implementation. Atọ́nà owns initiative planning, the material decision frontier, delivery integration, and closure; Àròjinlẹ̀ resolves consequential user choices when that frontier is open.
 - Alága owns delivery and proof compaction; Parẹ́ owns read-only semantic/complexity simplification; Àtúnwò owns defects, proof gaps, and code-review verdicts; Irinṣẹ́ supplies bounded tool evidence.
-- Experimental `akowe-code` can produce a stack-aware Code Craft Brief from compact durable guidance and bounded current research without becoming an implementation/review owner.
+- Experimental `akowe` can accompany one active code change by discovering the smallest relevant available skills and current primary-source evidence, then maintaining exact-candidate Expert Implementation Counsel without becoming an implementation or review owner.
+- Experimental `pepeye` can supervise one explicitly selected task's owner, candidate, authority, acceptance, proof, blocker, and terminal state without imposing a second lifecycle.
 - Every material Atọ́nà initiative has one continuously maintained HTML human view from meaningful `Draft` through `Closed`; lifecycle transitions may change its focus, density, layout, and governing representation.
-- Supporting skills keep detailed results with their native owners and return compact receipts to an active plan.
+- Supporting skills keep detailed results with their native owners and return native results to callers without adopting caller-specific receipt dialects.
 - `html-artifact` derives reader-specific views from owner records and linked evidence instead of copying complete source material.
 - Generated `.qp` records, projections, receipts, and evidence stay outside Git by default.
 
@@ -126,20 +127,16 @@ Experimental skills must be selected explicitly. Stable skills may recommend the
 
 | Skill | Use when |
 | --- | --- |
-| `akowe-code` | An exact coding task/candidate needs a bounded stack-aware Code Craft Brief covering idiom, patterns, known-bad constructs, complexity risks, version-sensitive guidance, and proof seams |
-| `dogfood` | One branch, PR, or candidate needs real-browser functional and experiential verification of its changed user journeys |
-| `ideate` | A grounded opportunity needs several materially different possibilities generated, challenged, and reduced before selection |
-| `pepeye` | A task needs provider-neutral lifecycle control across playbooks, leaf owners, proof, pause/pickup, and learning |
+| `akowe` | An active coding task needs adaptive Expert Implementation Counsel from relevant available skills, current primary sources, proportionate design checks, and exact-candidate proof seams |
+| `dogfood` | One exact candidate needs real-browser verification of changed journeys and credible interaction seams against controlling expected behaviour |
+| `ideate` | A grounded opportunity needs a bounded set of materially different possibilities generated, challenged, and reduced before selection |
+| `pepeye` | One explicitly selected task needs supervision of its current owner, candidate, authority, acceptance, proof, blocker, and terminal state without a second lifecycle |
 | `prototype` | One consequential interaction, flow, interface, API, or message needs a disposable artifact to settle how it should work or feel |
-| `root-cause` | One reproducible or directly observed failure needs a complete causal chain rather than issue triage or implementation |
+| `root-cause` | One reproducible or directly observed failure needs the minimal causal mechanism or causal set rather than issue triage or implementation |
+
+`olofofo`, `akowe-java`, and `akowe-spring` are retired and no longer published as separate runtime skills. Their former research remains historical evidence; Akọ̀wé does not load an embedded replacement catalogue.
 
 ## Optional agent instructions
-
-### Default Pepeye lifecycle mode
-
-Copy the managed block from [Pepeye portable activation](skills/experimental/pepeye/references/portable-activation.md) into a supported instruction file. Explicit invocation remains the fallback.
-
-`olofofo`, `akowe-java`, and `akowe-spring` are retired and no longer published as separate runtime skills.
 
 ### Companion-tool routing
 

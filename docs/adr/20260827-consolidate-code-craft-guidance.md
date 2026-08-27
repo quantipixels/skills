@@ -1,6 +1,6 @@
 # Consolidate code-craft guidance behind one Experimental companion
 
-Status: Accepted
+Status: Superseded by `20260827-adopt-adaptive-akowe-companion.md`
 
 ## Context
 
