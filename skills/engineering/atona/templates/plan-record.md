@@ -112,7 +112,7 @@ Do not copy complete specialist packets, logs, tests, or provider payloads into 
 
 **Tone and density:** <exploratory/candid | decisive/working | operational/exception-led | compact/dormant | assurance/outcome-led>
 
-**Projection consolidation boundary:** <first Draft handoff | material decision confirmed | arojinle round completed | lifecycle transition | formal handoff>
+**Projection consolidation boundary:** <first Draft consolidation | material decision confirmed | arojinle round completed | lifecycle transition>
 
 **First viewport:** <include status, actual current questions with bounded choices/recommendations when open, blocker, next action, and stage-specific essentials>
 
