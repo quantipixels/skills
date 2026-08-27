@@ -7,7 +7,7 @@ from typing import Any, Mapping
 import yaml
 
 from .errors import WorkspaceError
-from .storage import digest, qp_path, safe_owner, safe_slug, safe_subject, workspace_root, assert_safe_path
+from .storage import assert_safe_path, digest, qp_path, safe_owner, safe_subject, workspace_root
 
 
 class FrontmatterLoader(yaml.SafeLoader):
@@ -80,7 +80,7 @@ def required_string(metadata: Mapping[str, Any], key: str) -> str:
 
 def validate_metadata(repo: Path, path: Path, metadata: Mapping[str, Any]) -> dict[str, Any]:
     owner = safe_owner(required_string(metadata, "owner"))
-    record_type = safe_slug(required_string(metadata, "record_type"))
+    record_type = required_string(metadata, "record_type")
     subject_value = metadata.get("subject")
     subject = safe_subject(subject_value) if subject_value is not None else None
     title = required_string(metadata, "title")

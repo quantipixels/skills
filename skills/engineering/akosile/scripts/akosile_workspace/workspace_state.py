@@ -110,6 +110,7 @@ def _cell(value: Any) -> str:
 
 def index_candidate(repo: Path) -> dict[str, Any]:
     rows, invalid, duplicates = scan_records(repo)
+    missing_subjects = [row["record"] for row in rows if row["subject"] is None]
     lines = [
         INDEX_NOTICE,
         "",
@@ -133,6 +134,9 @@ def index_candidate(repo: Path) -> dict[str, Any]:
             f"- `{item['path']}` — `{item['code']}`: {item.get('message', '')}"
             for item in invalid
         ]
+    if missing_subjects:
+        lines += ["", "## Legacy records missing subject", ""]
+        lines += [f"- `{path}`" for path in missing_subjects]
     if duplicates:
         lines += ["", "## Duplicate subjects", ""]
         for item in duplicates:
@@ -142,6 +146,7 @@ def index_candidate(repo: Path) -> dict[str, Any]:
         "content": "\n".join(lines) + "\n",
         "records": len(rows),
         "invalid": invalid,
+        "missing_subjects": missing_subjects,
         "duplicates": duplicates,
     }
 
@@ -155,6 +160,7 @@ def rebuild_index(repo: Path) -> dict[str, Any]:
     return {
         "records": candidate["records"],
         "invalid": candidate["invalid"],
+        "missing_subjects": candidate["missing_subjects"],
         "duplicates": candidate["duplicates"],
         "digest": digest(path),
         **resource_paths(repo, path),
@@ -214,14 +220,28 @@ def initialize(repo: Path) -> dict[str, Any]:
     }
 
 
-def _safe_component_issue(repo: Path, name: str) -> dict[str, Any] | None:
-    raw = workspace_root(repo) / name
-    if raw.exists() and raw.is_symlink():
+def _raw_workspace_root(repo: Path) -> Path:
+    return repository_root(repo) / ".qp"
+
+
+def _safe_component_issue(repo: Path, root: Path, name: str) -> dict[str, Any] | None:
+    raw = root / name
+    if raw.is_symlink():
         return {"code": "SYMLINK_ESCAPE", "path": workspace_path(repo, raw)}
     return None
 
 
 def doctor(repo: Path) -> dict[str, Any]:
+    raw_root = _raw_workspace_root(repo)
+    if raw_root.is_symlink():
+        return {
+            "status": "ISSUES_FOUND",
+            "workspace": str(raw_root),
+            "settings": None,
+            "records": 0,
+            "git_hygiene": git_hygiene(repo),
+            "issues": [{"code": "SYMLINK_ESCAPE", "path": ".qp"}],
+        }
     root = workspace_root(repo)
     if not root.exists():
         return {
@@ -231,7 +251,7 @@ def doctor(repo: Path) -> dict[str, Any]:
         }
     issues: list[dict[str, Any]] = []
     for component in ("records", "artifacts", ".locks"):
-        issue = _safe_component_issue(repo, component)
+        issue = _safe_component_issue(repo, root, component)
         if issue:
             issues.append(issue)
     if issues:
@@ -251,10 +271,30 @@ def doctor(repo: Path) -> dict[str, Any]:
         issues.append(error.payload())
     candidate = index_candidate(repo)
     issues += candidate["invalid"]
+    issues += [
+        {"code": "MISSING_SUBJECT", "path": path}
+        for path in candidate["missing_subjects"]
+    ]
     issues += [{"code": "DUPLICATE_SUBJECT", **item} for item in candidate["duplicates"]]
     index = qp_path(repo, "INDEX.md")
     if not index.exists() or index.read_text(encoding="utf-8") != candidate["content"]:
         issues.append({"code": "INDEX_STALE_OR_MISSING", "path": workspace_path(repo, index)})
+
+    records_root = qp_path(repo, "records")
+    for bundle in records_root.glob("*/*") if records_root.exists() else ():
+        if bundle.is_symlink():
+            issues.append({"code": "SYMLINK_ESCAPE", "path": workspace_path(repo, bundle)})
+        elif bundle.is_dir() and RESOURCE_ID_RE.fullmatch(bundle.name):
+            legacy = bundle / "index.html"
+            if legacy.exists():
+                record_ref = f"{bundle.parent.name}/{bundle.name}"
+                issues.append(
+                    {
+                        "code": "LEGACY_INDEX_HTML",
+                        "path": workspace_path(repo, legacy),
+                        "expected": workspace_path(repo, projection_file(repo, record_ref)),
+                    }
+                )
 
     artifacts = qp_path(repo, "artifacts")
     for bundle in artifacts.iterdir() if artifacts.exists() else ():
@@ -289,6 +329,14 @@ def doctor(repo: Path) -> dict[str, Any]:
 
 def repair(repo: Path) -> dict[str, Any]:
     before = doctor(repo)
+    if _raw_workspace_root(repo).is_symlink():
+        return {
+            "before": before,
+            "changed": {"state": "BLOCKED", "reason": "SYMLINK_ESCAPE"},
+            "after": before,
+            "semantic_records_modified": False,
+            "legacy_migration_performed": False,
+        }
     changed = initialize(repo)
     return {
         "before": before,
