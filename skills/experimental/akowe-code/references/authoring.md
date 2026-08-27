@@ -8,19 +8,30 @@ Akọ̀wé Code owns one task-scoped Code Craft Brief. A new language/framework 
 
 Do not confuse public consolidation with knowledge compression. Detailed category references are appropriate when they preserve materially useful, source-backed mechanisms and normal progressive disclosure can load only the categories the exact candidate needs.
 
-The Java and Spring catalogues deliberately retain their detailed category files under `references/java/` and `references/spring/`. Their former public `SKILL.md`, plugin metadata, maintainer-only authoring files, and separate release identities remain retired.
-
-Prefer this retrieval shape:
+All currently supported ecosystems may use the same shape:
 
 ```text
 Akọ̀wé Code SKILL.md
-→ one matching ecosystem index/compact reference
+→ one matching ecosystem index
 → only touched mechanism categories
 → only applicable rule headings
 → bounded task-local primary-source research for the remaining gap
 ```
 
-Do not add a runtime search/selector engine merely to reproduce that routing. Add executable retrieval only if a future requirement demonstrates an independently useful deterministic consumer or a materially non-trivial selection problem that instructions cannot handle reliably.
+Current deep category trees are:
+
+```text
+references/java/
+references/spring/
+references/kotlin/
+references/ktor/
+references/elixir/
+references/phoenix/
+```
+
+Java and Spring category files were relocated from their former public skills. Kotlin, Ktor, Elixir, and Phoenix were expanded from compact references into mechanism-level category trees. None of these category trees is a separate public skill or routing owner.
+
+Do not add a runtime search/selector engine merely to reproduce progressive disclosure. Add executable retrieval only if a future requirement demonstrates an independently useful deterministic consumer or a materially non-trivial selection problem that instructions cannot handle reliably.
 
 ## Admit durable guidance carefully
 
@@ -35,6 +46,12 @@ Retain guidance only when it is:
 
 Detailed references may keep stable rule IDs when they materially improve cross-reference, maintenance, or discussion. Do not manufacture IDs for compact prose that has no independent long-lived identity.
 
+## Split or merge categories from retrieval cost
+
+Create a category file when a cohesive mechanism has enough durable guidance that loading the whole ecosystem index would waste context. Merge or keep guidance in the index when the entire body is genuinely small.
+
+Do not split merely for filesystem symmetry. Do not keep an ecosystem artificially shallow merely because it started as one file.
+
 ## Promotion path
 
 ```text
@@ -47,7 +64,7 @@ repeated repository-specific finding
 
 repeated cross-project durable finding
 → ayewo evidence
-→ ko-skill change to the appropriate category/compact reference
+→ ko-skill change to the appropriate category/index
 
 reliable mechanical pattern
 → repository/native tool or irinse when tool ownership is material
@@ -66,7 +83,7 @@ Do not rewrite or shrink a category merely because it is long. Remove or consoli
 Before publishing a guidance change, verify:
 
 - every linked category exists and index links resolve;
-- the ecosystem index loads only the categories relevant to the touched mechanism;
+- the ecosystem index loads only categories relevant to the touched mechanism;
 - mixed-stack guidance composes framework specialization over language/runtime correctness without contradiction;
 - an unknown/newer stack falls through to bounded owning-source research rather than guessing;
 - the Code Craft Brief remains bounded and candidate-specific rather than dumping the catalogue;
