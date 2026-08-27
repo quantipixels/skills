@@ -42,16 +42,8 @@ Return exactly one status:
 
 Include the exact failure identity, causal chain, decisive evidence, falsified alternatives, affected boundary, confidence limits, and smallest useful next action. Do not present a plausible hypothesis as confirmed.
 
-When a confirmed diagnosis warrants a production correction and that work is authorized, give `alaga` the exact candidate, causal mechanism, required behavior, regression boundary, exclusions, and proof. Root Cause may prepare a bounded fix contract; it does not absorb delivery or final review.
+When a confirmed diagnosis warrants a production correction and that work is authorized, give `alaga` the exact diagnosis and required behavior. Root Cause does not absorb delivery or final review.
 
 ## 4. Persist only when useful
 
-Return inline by default. When the user or caller requires a durable diagnosis, resolve one record through `akosile` at that persistence boundary:
-
-```text
-owner: root-cause
-record_type: diagnosis
-subject: <stable failure identity>
-```
-
-Store the exact-current failure, hypotheses, proof, causal chain, status, and next action in `record.md`. Under an active Atọ́nà plan, return a compact diagnosis receipt to the plan instead of creating a competing initiative report. Generate a terminal HTML view only when the durable diagnosis is substantial and a human visual explanation materially helps; HTML is not required throughout the investigation.
+Return inline by default. Persist through `akosile` when the user or caller needs a durable diagnosis. Use `html-artifact` to visualise a substantial terminal diagnosis when that materially improves human understanding. Under an active `atona` plan, return Root Cause's exact-current result instead of defining a plan-specific receipt.
