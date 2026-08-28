@@ -1,34 +1,41 @@
 ---
 name: apere
-description: Route broad or multi-deliverable visual work to the narrowest design owners. Use when a design request is ambiguous, spans several deliverables, or needs design-specific prerequisites, dependency order, shared constraints, or approval boundaries; use the exact specialist directly for a focused deliverable.
+description: Route broad or multi-deliverable visual work to the smallest set of currently available design owners. Use when a design request is ambiguous, spans several deliverables, or needs design-specific prerequisites, dependency order, shared constraints, or approval boundaries; use the exact specialist directly for one focused deliverable.
 ---
 
 # Àpẹrẹ
 
 Own design-domain decomposition and routing. Return one route packet; do not create design artifacts, maintain delivery state, or copy specialist procedures.
 
-Use the exact specialist directly when one owner fully covers the request:
+## Route from current owners
 
-| Request | Owner |
-| --- | --- |
-| Brand voice, identity, logo, corporate identity, assets, custom icon language, or consistency | `brand` |
-| Feed posts, carousels, stories, reusable post templates, or multi-format social campaigns | `social-graphics` |
-| Tokens, CSS variables, component specs, or design-system implementation/migration | `eto-apere` |
-| React/web components, UI icon implementation, Tailwind, responsive UI, or accessibility fixes | `asa-oju-ibanisoro` |
-| UI/UX recommendation, style, palette, typography, interaction direction, or stack guidance | `amoye-ui-ux` |
-| Banner, cover, header, web hero, display ad, or print banner | `banner-design` |
-| Presentation or pitch-deck narrative | `slides` |
+Inspect the active host's available **design** skill descriptions/invocation metadata rather than maintaining a static second catalogue here. Respect an explicit user-selected design owner when it fits.
 
-Use `apere` when the request needs more than one of those owners, the correct owner is not yet clear, or design-specific ordering and shared constraints must be established. Read [design-routing.md](references/design-routing.md) only for that route.
+Use the exact specialist directly when one owner fully covers the requested deliverable. Use Àpẹrẹ when:
 
-Return one design route packet with:
+- the correct design owner is genuinely ambiguous;
+- several distinct design deliverables need different owners;
+- shared brand/visual/accessibility constraints must be established before parallel design work;
+- one design result is a prerequisite for another; or
+- a common approval/handoff boundary must be made explicit.
 
-- requested outcome and audience;
-- deliverables and one primary owner for each;
-- shared prerequisites and dependency order;
-- safe parallel work;
-- shared visual, brand, accessibility, and approval constraints;
-- required output formats and exact specialist results; and
-- open input gaps and the route completion boundary.
+Do not route backend/infrastructure work here. Do not add a design specialist merely because it exists.
 
-When several routed artifacts must actually be produced and integrated, hand the exact route packet to `alaga` as the build job. `apere` does not become the delivery owner.
+## Design route packet
+
+Return only what downstream owners need:
+
+```text
+Requested visual outcome and audience
+Deliverables → one current primary owner each
+Shared prerequisites / dependency order
+Safe parallel work
+Shared brand / visual / accessibility / approval constraints
+Required result/output format from each owner
+Open input gaps
+Route completion boundary
+```
+
+When several routed artifacts must actually be produced and integrated, give this packet to `alaga` as the build job. Àpẹrẹ does not become a delivery lifecycle owner.
+
+A small focused design request should not pay this coordination cost; invoke its specialist directly.
