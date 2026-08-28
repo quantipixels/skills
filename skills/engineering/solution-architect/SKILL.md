@@ -31,6 +31,8 @@ Do not maintain an exhaustive platform catalog or turn a platform feature into a
 
 Map actors, external systems, trust boundaries, owned capabilities, data/state ownership, runtime/deployment boundaries, and critical lifecycle flows. Preserve existing boundaries unless evidence justifies change.
 
+When module depth, interface shape, seams, adapters, forwarding layers, or dependency boundaries materially affect the design, read [module depth](references/module-depth.md). Use its vocabulary and examples to calibrate the decision, not as a scoring model or reason to add abstraction.
+
 For each module or seam, name callers and required knowledge; hidden behavior/policy/complexity; contract, invariants, failure semantics, and lifecycle; data/state/identity/authority crossing it; and normal/failure proof.
 
 Prefer deep modules with small stable interfaces. Reject a module that removes only forwarding calls unless a proven integration, ownership, lifecycle, policy, or testing boundary justifies it. Do not add seams only for possible future variation.
@@ -47,7 +49,7 @@ Keep problem, outcomes, drivers, context, decisions, selected design, failure/re
 
 Return the exact-current architecture result to an active `atona` plan without copying the packet into the plan or changing plan/delivery state.
 
-Use `html-artifact` to visualise the architecture when a human view materially improves review or handoff. The semantic architecture result remains authoritative.
+Use `html-artifact` to visualise the architecture when a human view materially improves review or handoff. Supply the governing technical relationship or comparison that must be understood; HTML Artifact owns representation and verification.
 
 ## 5. Judge sufficiency
 

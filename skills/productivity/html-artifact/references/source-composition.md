@@ -102,9 +102,9 @@ For each foreground section ask: if removed, would decision, action, understandi
 
 The owner updates `record.md` first. The projection records its source path and revision. Regenerate after each material semantic revision when continuous accessibility is required.
 
-Run structural checks after every projection write. Run targeted browser checks after presentation-affecting changes. Run full checks for the first substantial render, lifecycle transitions that change information direction, and applicable formal-review, readiness, terminal, or publication gates.
+Run structural checks after every projection write. Apply HTML Artifact's consequence-based verification policy after regeneration: use a visual smoke pass when ordinary rendered usability materially affects review, and deep browser proof only when presentation or interaction is itself a material acceptance claim, the artifact is production/publication/formal-decision facing, material runtime behavior must be proved, or the user requests that assurance.
 
-Within one stage, a semantic update may reuse current browser proof when presentation structure and risk remain unchanged. The regenerated HTML still needs exact source revision/status disclosure. If regeneration fails, keep the older file visibly stale and report the accessible view as incomplete.
+A first substantial render or lifecycle transition does not automatically require deep proof. Recompute the reader job and representation first, then verify only to the depth justified by the resulting claims and consequence. Within one stage, a semantic update may reuse current presentation proof when presentation structure and risk remain unchanged. The regenerated HTML still needs exact source revision/status disclosure. If regeneration fails, keep the older file visibly stale and report the accessible view as incomplete.
 
 Before delivery test:
 
@@ -113,4 +113,5 @@ Before delivery test:
 - **faithfulness:** material claims trace to current source meaning;
 - **context hygiene:** raw archives are absent unless required;
 - **deletion:** each foreground section earns its place;
-- **stage fit:** the opening, representation, tone, and action layer serve the current lifecycle stage rather than an earlier one.
+- **stage fit:** the opening, representation, tone, and action layer serve the current lifecycle stage rather than an earlier one; and
+- **verification fit:** the reported verification level matches the artifact's claims and consequence rather than its size or generation event.
