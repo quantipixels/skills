@@ -1,18 +1,20 @@
 ---
 name: social-graphics
-description: Create feed posts, carousels, stories, reusable social templates, and multi-format social campaign graphics with exact platform ratios, crop behavior, mobile legibility, and editable source. Use for social content systems and post sets; exclude covers, headers, heroes, display ads, and print banners.
+description: Create feed posts, carousels, stories, reusable post templates, and multi-format social campaign graphics with current target ratios/crop behavior, mobile legibility, brand consistency, and editable source. Exclude covers, headers, web heroes, display ads, and print banners.
 ---
 
 # Social Graphics
 
-Create one social graphic or bounded platform variant set. Keep the message, brand system, crop behavior, and editable source consistent across every requested format.
+Create one social graphic or bounded variant set from one coherent communication/visual system. Confirm platforms/surfaces, purpose, audience, supplied copy/assets, brand constraints, source/editability needs, and requested variants.
 
-1. Confirm the platform set, purpose, audience, supplied copy and assets, brand constraints, and required variants.
-2. Read [social-photos-design.md](references/social-photos-design.md) for the applicable ratios, crop behavior, hierarchy, and platform constraints.
-3. Establish one visual direction and content hierarchy. Keep text readable on mobile and critical content inside safe crop areas.
-4. Create editable source in the requested native format. Use the host's image-generation capability only for approved bitmap imagery or illustration; keep text and layout editable where practical.
-5. Verify each requested ratio, crop, contrast, mobile legibility, source editability, and export dimensions before delivery.
+1. Read [social adaptation](references/social-photos-design.md) when several ratios/crops or a carousel/story sequence must stay coherent. Use user-supplied/current platform specifications; do not preserve a QP platform-size table as production truth.
+2. Establish one message, focal point and hierarchy. Derive visual direction from current Brand/product evidence rather than a style catalogue.
+3. Build editable source in the requested/native format. Use image generation only for approved supporting imagery/illustration; keep supplied products/logos/people unchanged unless edits are explicitly requested.
+4. Recompose each platform variant intentionally around its crop/viewing context; do not stretch one master canvas.
+5. Verify every requested export at its actual ratio/size: crop/focal integrity, mobile legibility, contrast, brand consistency, source editability, exact dimensions, and any material current platform constraints.
 
-Do not absorb banner surfaces merely because they appear on social platforms. Covers, headers, heroes, display ads, and print banners belong to `banner-design`. Use `brand` when identity rules or custom icon language are missing or changing, and use `apere` only when the request spans several design owners or deliverable types.
+Covers, headers, web heroes, display ads, and print banners stay with `banner-design`. This narrow split is intentional steering: it lets users select social-post/campaign behavior without restating the surface taxonomy.
 
-Return the created variants, exact dimensions, shared direction and assumptions, source files, exports when requested, and verification performed. Keep exploratory variants distinct from approved production assets.
+Use `brand` when identity itself is missing/changing. Use `apere` only when several design owners/deliverables need design-specific coordination.
+
+Return created variants, exact current dimensions/specification source when material, shared direction/assumptions, source files, exports when requested, and verification performed. Keep exploratory variants distinct from approved production assets.

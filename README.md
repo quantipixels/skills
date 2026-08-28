@@ -11,6 +11,7 @@ Browse the [documentation](https://quantipixels.com/skills).
 - Supporting skills keep detailed results with their native owners rather than copying caller-specific receipt/lifecycle schemas.
 - HTML Artifact creates reader-specific projections over owner records/evidence rather than duplicating source archives.
 - Generated `.qp` state stays outside Git by default.
+- Small public skills may intentionally exist as reusable model-steering contracts when a narrow named behavior saves users from restating longer instructions.
 - Experimental skills are explicit-only and do not replace stable owners.
 
 ## Install
@@ -34,19 +35,36 @@ claude plugin install qp-skills@qp-skills
 
 ## Uninstall this repository's globally installed skills
 
-Until the upstream Skills CLI exposes installation source as a direct filter, use the source metadata already stored in the global lock and pass only matching names to the native remover:
+Until the upstream Skills CLI exposes installation source as a direct filter, use source metadata from the global lock and pass only matching names to the native remover. This recipe works with the older Bash shipped by macOS as well as current Bash:
 
 ```bash
-node <<'NODE' >/tmp/qp-skills.txt
+tmp=$(mktemp)
+trap 'rm -f "$tmp"' EXIT
+
+node <<'NODE' >"$tmp"
 const fs = require('fs');
 const os = require('os');
 const p = `${os.homedir()}/.agents/.skill-lock.json`;
 const lock = JSON.parse(fs.readFileSync(p, 'utf8'));
-const norm = s => String(s || '').replace(/^git\+/, '').replace(/^git@github\.com:/, 'https://github.com/').replace(/^ssh:\/\/git@github\.com\//, 'https://github.com/').replace(/^https?:\/\/github\.com\//, '').replace(/\.git\/?$/, '').replace(/\/$/, '');
-for (const [name, entry] of Object.entries(lock.skills || {})) if (norm(entry.source) === 'quantipixels/skills') console.log(name);
+const norm = s => String(s || '')
+  .replace(/^git\+/, '')
+  .replace(/^git@github\.com:/, 'https://github.com/')
+  .replace(/^ssh:\/\/git@github\.com\//, 'https://github.com/')
+  .replace(/^https?:\/\/github\.com\//, '')
+  .replace(/\.git\/?$/, '')
+  .replace(/\/$/, '');
+for (const [name, entry] of Object.entries(lock.skills || {})) {
+  if (norm(entry.source) === 'quantipixels/skills') console.log(name);
+}
 NODE
-mapfile -t qp_skills </tmp/qp-skills.txt
-((${#qp_skills[@]})) && npx skills remove --global --yes "${qp_skills[@]}"
+
+qp_skills=()
+while IFS= read -r skill; do
+  [ -n "$skill" ] && qp_skills+=("$skill")
+done <"$tmp"
+
+[ "${#qp_skills[@]}" -eq 0 ] || \
+  npx skills remove --global --yes "${qp_skills[@]}"
 ```
 
 The recipe deliberately does not use a blanket `--all`; unrelated installed skills remain untouched.
@@ -85,7 +103,7 @@ The real `.qp` belongs to the non-bare main worktree. Linked worktrees expose `.
 
 ## Design
 
-Use the exact design specialist directly when one deliverable owner is clear. `apere` remains available for design-domain multi-owner routing while that independent boundary is being evaluated.
+Use the exact design specialist directly when one deliverable owner is clear. Use `apere` when design-specific multi-owner routing, prerequisites, dependency order, shared constraints, or approval boundaries are themselves needed.
 
 | Skill | Outcome |
 | --- | --- |
@@ -98,7 +116,7 @@ Use the exact design specialist directly when one deliverable owner is clear. `a
 | `banner-design` | Covers/headers/heroes/display ads/print banners |
 | `slides` | Presentation/pitch-deck narrative and visual composition |
 
-Public design-owner consolidation candidates are proof-gated; they are not removed merely because their mechanisms overlap.
+Banner Design and Social Graphics intentionally remain narrow steering owners even though they share graphic-design fundamentals: the separate selectors encode different surface/adaptation behavior without requiring users to restate it.
 
 ## Productivity
 

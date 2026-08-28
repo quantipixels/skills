@@ -1,31 +1,27 @@
 ---
 name: banner-design
-description: Design banners, covers, headers, hero visuals, and display ads for social, web, campaigns, and print. Use when the output needs confirmed current platform or custom dimensions, safe zones, art direction, readable hierarchy, and optional generated visual assets.
+description: Design banners, covers, headers, hero visuals, display ads, and print banners with confirmed current dimensions, safe/crop behavior, clear hierarchy, and editable source. Use for constrained banner-like communication surfaces rather than feed/carousel/story systems.
 ---
 
 # Banner Design
 
-Create a banner as a constrained communication surface. Confirm purpose, platform or custom dimensions, content, brand context, style, and number of variants before composing.
+Create one constrained banner surface around one communication job. Confirm purpose, audience, target surface, supplied copy/assets, brand context, output format, and variants before composing.
 
 ## Workflow
 
-1. Read `references/banner-sizes-and-styles.md` for starting defaults. For production or platform-ready output, verify the current target-platform requirement and record its source and date, or use the user-supplied specification. Confirm safe zones, bleed, and viewing assumptions.
-2. Establish one message, one CTA, a clear focal point, and a 2-typeface maximum. Keep critical content inside the central 70–80% where platform chrome may crop the edges.
-3. Select one primary art direction and, when useful, one or two distinct alternatives. Keep variants meaningfully different in composition or visual treatment.
-4. Create the banner in the target-native format (HTML/CSS, SVG, or a project asset). Use the host’s image-generation capability for background imagery or illustrations when a bitmap asset is required; keep text and CTA editable where possible.
-5. Verify contrast, legibility at actual size, mobile safe zones, export dimensions, and reduced-motion behavior if animated. Deliver the source plus flattened exports when requested.
+1. Read [banner surface constraints](references/banner-sizes-and-styles.md) when crop/safe-area/print/platform behavior is material. Use the user-supplied specification or verify the current target's requirements; do not treat bundled historical dimensions as production truth.
+2. Establish one primary message/focal point and one primary CTA when action is required. Derive hierarchy, logo placement, color/type and art direction from the current brand/message rather than a fixed QP style taxonomy.
+3. Create the banner in the requested/native editable form (for example HTML/CSS, SVG, vector/raster project asset). Use image generation for approved supporting imagery/illustration when appropriate; keep text/CTA editable where the workflow needs reuse or localization.
+4. For variants, preserve message/brand priority while recomposing to each target ratio/crop rather than stretching one canvas.
+5. Verify the actual delivered surface: dimensions/aspect, safe crop/bleed, legibility at viewing size/distance, contrast, asset quality/performance, export format, editability, and reduced-motion/interaction semantics when applicable.
 
-For feed posts, carousels, reusable social templates, or multi-format social campaigns, use `social-graphics`. This skill owns constrained banner surfaces such as covers, headers, heroes, ads, and print banners.
+For feed posts, carousels, stories, reusable post templates, or multi-format social campaigns, use `social-graphics`. The split is a useful steering boundary even though both skills share core graphic-design principles.
 
 ## Guardrails
 
-- One CTA; action-oriented copy.
-- Minimum 4.5:1 contrast for normal text.
-- Minimum 44px tap target for interactive digital banners.
-- Avoid putting critical information near crop edges.
-- For print, account for bleed, CMYK conversion, resolution, and viewing distance.
-- Do not add logos, people, or product claims that were not supplied or approved.
+- Do not invent logos, endorsements, people, claims, or product facts.
+- Current Brand rules outrank generic design convention.
+- Platform/print specifications are volatile execution evidence; verify them when they matter.
+- A mockup/concept is not production/export approval.
 
-## Resources
-
-- `references/banner-sizes-and-styles.md` — platform dimensions, art directions, safe zones, and print rules.
+Return source, requested exports/variants, exact dimensions/specification source when material, assumptions, and verification performed.
