@@ -1,91 +1,71 @@
 # Worktrees
 
-Use this when the repository has Git linked worktrees or when existing `.qp` state may be split across worktrees.
+Use this reference only when linked worktrees exist, `.qp` may already exist in more than one worktree, or an alias is wrong/broken.
 
-`.qp` is repository-scoped state. The main worktree owns the one real `.qp` directory. Every linked worktree exposes only a symlink to that canonical directory so deleting a linked worktree cannot delete QP records or artifacts.
+## Invariant
 
-## Resolve the canonical home
+```text
+non-bare main worktree: .qp = real directory
+linked worktree:        .qp = symlink → main .qp
+```
 
-From any worktree, use Git's machine-readable worktree inventory:
+Resolve registered worktrees with `git worktree list --porcelain -z`. If its first record is `bare`, return `BARE_REPOSITORY_UNSUPPORTED` without mutation. Do not infer a main `.qp` under a bare repository.
+
+Before creating or repairing aliases, inspect `.qp` in every registered worktree. Distinguish:
+
+- absent;
+- canonical real directory;
+- link to canonical;
+- empty physical directory;
+- populated physical directory;
+- link to another existing target; and
+- broken link.
+
+A live noncanonical symlink target is a possible historical workspace and must be inventoried before the link is replaced. A broken link may be replaced only after its former target is recorded in the migration report.
+
+## Consolidate existing physical stores
+
+Keep migration agent-owned and command-oriented; do not introduce a workspace migration runtime.
+
+1. Preflight every physical/historical source before destructive mutation. Classify files by authority:
+   - `record.md`, settings and owner evidence are semantic/authoritative;
+   - `INDEX.md`, bundle `index.html`, locks and temporary files are derived/coordination state;
+   - unknown non-derived files are preserved unless proved disposable.
+2. Same authoritative relative path + same bytes → deduplicate.
+3. Unique authoritative/evidence path → preserve at the canonical relative path.
+4. Same authoritative relative path + different bytes → stop and return the conflict to the semantic owner/user. Never overwrite or create a semantic suffix.
+5. Same `record.md` + different derived `index.html` → preserve the record and regenerate the projection; projection divergence does not block semantic migration.
+6. Do not merge `INDEX.md`; regenerate it after consolidation.
+
+### Freeze before cross-filesystem copy
+
+Do not move a linked physical `.qp` to the main worktree. A rename across filesystems can fail with `EXDEV` or degrade to copy/delete semantics.
+
+For each linked physical store:
+
+```text
+preflight source
+→ atomically rename it on its own filesystem to a sibling backup outside the worktree
+→ create linked/.qp symlink to canonical main/.qp
+→ re-inventory the frozen backup
+→ copy retained files into canonical paths without overwriting conflicts
+→ verify digests/inventory
+→ regenerate derived index/projections
+→ remove backup only after all retained information is proved present
+```
+
+The backup belongs outside the linked worktree so it does not appear as untracked project content. If verification fails, remove the new alias and restore the frozen source directory before continuing.
+
+Once the alias exists, ordinary QP writers resolve the canonical main `.qp`; they do not keep writing the historical frozen store. Use `safe-write.py` for exact canonical file publication where concurrent QP writers may race.
+
+## Alias and ignore proof
+
+Prefer a relative symlink when practical. After creating an alias:
 
 ```bash
-git worktree list --porcelain -z
+git check-ignore -q -- .qp
 ```
 
-Treat the first worktree entry as the main worktree and set:
+If it is not ignored, add `/.qp` to `$(git rev-parse --git-path info/exclude)` and verify again. Do not add `/.qp/`, because the trailing slash does not match the symlink itself. Do not edit tracked `.gitignore` merely for QP setup.
 
-```text
-canonical workspace = <main-worktree>/.qp
-```
-
-Akọsílẹ̀ owns this resolution policy. Git supplies the repository/worktree facts.
-
-The invariant is:
-
-```text
-main worktree:   .qp = real directory
-linked worktree: .qp = symlink → main worktree .qp
-```
-
-The main `.qp` must never itself be a symlink. When invoking `safe-write.py` or `render-index.py`, pass the resolved real canonical `.qp` path, not a linked-worktree symlink alias. Internal symlink traversal remains rejected.
-
-Prefer a relative symlink from the linked worktree when practical. If symlinks are unavailable on the host, return a capability gap rather than creating a second physical `.qp` store.
-
-## Initialize without losing existing state
-
-Before creating or repairing aliases, inventory `.qp` at **every registered worktree**, not only the active checkout. Classify each as:
-
-```text
-ABSENT
-CANONICAL_REAL_DIRECTORY
-LINK_TO_CANONICAL
-EMPTY_REAL_DIRECTORY
-POPULATED_REAL_DIRECTORY
-WRONG_OR_BROKEN_LINK
-```
-
-Never replace a populated real directory with a symlink before migration.
-
-When the main worktree has no `.qp` and exactly one existing populated `.qp` exists across all worktrees, that directory may become the canonical content after the full inventory proves no competing state exists. Move it to the main worktree, verify, then replace its former location with the alias.
-
-When several physical `.qp` stores exist, consolidate into the main-worktree workspace first.
-
-## Consolidate conservatively
-
-Classify each resource before moving it:
-
-- same relative path + same bytes/digest → deduplicate;
-- relative path exists only in one workspace → preserve it at the same canonical relative path;
-- same relative path + different bytes → stop and reconcile; never overwrite or auto-suffix a semantic resource;
-- `INDEX.md` → never merge; regenerate from canonical records;
-- lock/temp/coordination state → do not migrate as semantic state;
-- unknown non-derived files → preserve; conflicting unknown files require explicit reconciliation.
-
-A path collision between different record contents is an owner-level semantic conflict, not a filesystem allocation problem. Return it to the record owner rather than inventing a new record ID.
-
-For `settings.json`:
-
-- identical complete files may deduplicate;
-- disjoint top-level consumer sections may be combined while preserving unknown sections;
-- the same top-level section with different values must return to that consuming skill/user for reconciliation;
-- malformed settings are preserved and reported, never overwritten as repair.
-
-## Make the final swap recoverable
-
-For each linked worktree with a real `.qp` after successful consolidation:
-
-```text
-linked/.qp
-→ rename to linked/.qp.pre-migration
-→ create linked/.qp symlink to canonical main/.qp
-→ verify alias, expected resources, and canonical index regeneration
-→ remove .qp.pre-migration only after proof succeeds
-```
-
-If any final verification fails, remove the new alias and restore the pre-migration directory.
-
-After migration, repair should enforce only the invariant above. New records and artifacts are always allocated in the canonical main-worktree `.qp`; linked worktrees merely provide access aliases.
-
-## Git hygiene
-
-`.qp` is generated local repository state. Prefer an existing ignore rule; otherwise add a repository-local exclude matching the root entry (for example `/.qp`) so both the real directory and linked-worktree symlink remain untracked. Do not edit tracked `.gitignore` merely to initialize QP.
+If symlinks are unsupported, return a capability gap rather than creating a second live physical workspace.

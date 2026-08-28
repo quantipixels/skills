@@ -1,51 +1,31 @@
-# Keep Akọsílẹ̀ repository-scoped with focused deterministic seams
+# Keep Akọsílẹ̀ repository-scoped with minimal deterministic kernels
 
 Status: Accepted
 
-Refines the workspace and safe-write parts of [Use owner records as semantic sources for HTML projections](20260824-use-owner-records-for-html-projections.md).
-
-## Context
-
-QP records and artifacts must survive linked-worktree deletion. A physical `.qp` per worktree loses repository knowledge when a temporary worktree is removed and allows concurrent worktrees to diverge silently.
-
-Akọsílẹ̀ also needs two mechanical guarantees ordinary agent command sequences do not provide reliably:
-
-- a file's working bytes and expected digest must come from the same read, with cooperating writers unable to accept the same stale prior state; and
-- generated navigation must parse record YAML and order timestamps consistently.
-
-A broader workspace runtime would duplicate Git/filesystem discovery, allocation, repair, and semantic-owner capabilities.
-
 ## Decision
 
-1. `.qp` is repository-scoped state.
-2. In repositories with linked worktrees, the main worktree owns the one real `.qp` directory. Every linked worktree exposes a symlink to that canonical directory.
-3. Resolve the main worktree from Git's worktree inventory. Akọsílẹ̀ owns the canonical-home and alias policy; native Git/filesystem operations execute it.
-4. Before establishing aliases, inventory `.qp` across every registered worktree. Never replace a populated real `.qp` with a symlink before migration.
-5. Consolidate identical or non-colliding resources mechanically; regenerate `INDEX.md`; stop on same-identity/different-content semantic conflicts and return them to the owning skill. Make the final linked-directory-to-symlink swap recoverable.
-6. Semantic owners supply record/artifact kind, stable subject, and semantic content. Akọsílẹ̀ owns canonical paths, collision allocation, safe-write protocol, and indexing.
-7. Retain the current justified deterministic helpers:
-   - `safe-write.py` returns one exact snapshot with its matching digest, or performs locked compare-and-swap replacement;
-   - `render-index.py` parses record YAML and renders an external `INDEX.md` candidate.
-8. `safe-write.py` owns only containment beneath the resolved real canonical root, exact snapshotting, the per-target lock, under-lock comparison, atomic replacement, and readback.
-9. `render-index.py` validates only the common record envelope and owner/path agreement, orders timestamps, links canonical `index.html` projections, and reports malformed records. It cannot write inside `.qp`.
-10. Publish `INDEX.md` through the same safe-write primitive; do not add a second mutation implementation.
-11. Keep canonical bundle entrypoints as `index.html` for owner projections and standalone artifacts.
-12. Do not add a general workspace CLI, subject registry, doctor/repair runtime, automatic semantic migration engine, or semantic record model. Future scripts are allowed only when they independently pass Kọ Skill's capability/script boundary.
+QP `.qp` state is repository-scoped. In a non-bare repository, the main worktree owns the one real `.qp` directory and linked worktrees expose symlinks to it. Bare repositories have no supported canonical `.qp` home.
+
+New owner records and standalone artifacts use the semantic owner's stable subject as path identity. Do not add date prefixes or automatic collision suffixes. Existing dated bundles remain valid legacy identities and are not renamed merely for consistency.
+
+Akọsílẹ̀ initializes lazily: create the canonical `.qp` directory when QP state is first needed, then create settings, index, records, artifacts, receipts or evidence only when an owning operation requires them.
+
+Worktree discovery, symlink creation, source freezing, copy/compare migration, ignore configuration and repair use native Git/filesystem operations guided by Akọsílẹ̀ invariants. Existing physical stores are preflighted conservatively. Migration freezes a linked source by local rename before any cross-filesystem copy; conflicting authoritative bytes stop for owner reconciliation. Derived `INDEX.md` and `index.html` are regenerated rather than treated as semantic conflicts.
+
+Akọsílẹ̀ retains two deterministic kernels:
+
+1. `safe-write.py` — exact snapshot plus lock-held compare-and-swap publication. Both target identity and validated candidate-byte identity are pinned. Candidates must remain outside `.qp`.
+2. `render-index.py` — canonical owner records to Markdown on stdout. It validates only the common envelope/path identity, orders offset-aware timestamps, treats metadata as literal text, links canonical `index.html` projections, and reports malformed records.
+
+`render-index.py` does not choose an output path or mutate `.qp`; the caller captures stdout and publishes through `safe-write.py` when an index is needed.
+
+Akọsílẹ̀ does not grow a general workspace CLI, migration engine, subject registry, settings semantic model, provider abstraction, or repair runtime without new demonstrated deterministic need and Kọ Skill capability-placement proof.
 
 ## Consequences
 
-Deleting a linked worktree removes only its `.qp` alias; repository records remain under the main worktree. Concurrent worktrees operate on the same physical targets and the same per-target locks.
-
-Existing worktrees with physical `.qp` directories require bounded migration before aliasing. Migration preserves unknown/user state, does not auto-rename conflicting semantic records, and remains recoverable until final verification succeeds.
-
-The helpers require Python, PyYAML, and filelock. Filesystem symlink support is required for linked-worktree aliases; unsupported hosts return a capability gap rather than creating duplicate physical stores.
-
-## Rejected alternatives
-
-- Physical `.qp` per linked worktree: loses or forks repository state when worktrees are deleted.
-- Store `.qp` inside Git's internal common directory: hides a human/agent workspace inside Git implementation state.
-- Prose-only stale checks: cannot make cooperating compare-and-swap writers atomic.
-- Separate content read and digest calculation: can describe different target states.
-- Complete workspace engine: duplicates agent and native Git/filesystem capabilities.
-- Semantic owners constructing `.qp` paths: leaks Akọsílẹ̀'s persistence boundary into callers.
-- Slug-named HTML entry files: duplicates bundle identity without a demonstrated benefit; canonical `index.html` remains simpler and portable.
+- deleting a linked worktree cannot delete canonical QP records;
+- one stable subject cannot silently become two semantic identities through `-2/-3` allocation;
+- cross-filesystem migration does not rely on rename-to-main semantics;
+- validated candidate bytes cannot change between validation and publication unnoticed;
+- empty repositories carry no unnecessary QP files beyond the canonical workspace/alias when QP state is actually needed;
+- ordinary worktree mechanics remain inspectable native commands rather than a QP-owned orchestration engine.

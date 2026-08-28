@@ -1,73 +1,107 @@
 # Portfolio audit
 
-Use only for a bounded read-only portfolio audit. Judge inventory, ownership, composition, state drift, structural health, and reference quality; do not edit, install, activate, synchronize, or publish skills.
+Use only for a bounded read-only portfolio audit. Reapply Kọ Skill's normal authoring model to existing packages; do not edit, install, activate, synchronize, or publish skills.
 
 ## Pin the inventory
 
-Record the declared roots/repositories, observation time, package/catalog surfaces, exclusions, and authority. Track each skill's `source`, `installed`, `active`, and `published` evidence independently and deduplicate aliases, caches, symlinks, and identical package copies.
+Record declared roots/repositories, observation time, package/router surfaces, exclusions, and authority. Track `source`, `installed`, `active`, and `published` evidence independently. Any source/package/manifest/router/installation/publication change stales dependent parity evidence.
 
-Any source, package, manifest, catalog, installation, activation, or publication change makes dependent parity evidence stale.
+## Structural health
 
-## Check structural health
+Run applicable deterministic checks across the inventory:
 
-Run applicable deterministic checks across the declared inventory:
-
-- frontmatter, metadata, references, scripts, templates, and resources;
-- package, manifest, catalog, router, group, and canonical-name consistency;
+- frontmatter, metadata, nested Markdown/resource links, scripts, templates, data and assets;
+- package/manifest/router/group/canonical-name consistency;
 - exact identity/digest for claimed state parity;
-- provider-capable owners against the repository provider policy; and
-- deterministic ownership or routing collisions.
+- provider-capable owners against repository provider policy; and
+- deterministic ownership/routing collisions.
 
 Structural success proves only those structures, not behavioral quality.
 
-## Audit ownership and composition
+## Outcome ownership and public surface
 
-Classify each skill as `lightweight` or `workflow` using the Kọ Skill control-shape rule. Do not treat missing workflow machinery as a defect when a lightweight result is complete without it; do flag workflow machinery that has no consequence for correctness, authority, recovery, or completion.
+Classify each skill `lightweight | workflow`. Map each recurring public outcome to one primary owner and only necessary support results. Preserve a public skill when it has a distinct independently useful outcome, authority, artifact, lifecycle, acceptance boundary, installability value, or useful reusable model-steering contract.
 
-Map each public outcome to one primary owner and necessary supporting results. Preserve a separate skill when it owns a distinct outcome, authority, artifact, lifecycle, acceptance boundary, or installation value.
+Do not retire a lightweight skill merely because the base model can perform the act. Test whether the skill reliably invokes a useful behavior users would otherwise need to restate at length; `salaye` is a valid steering-style counterexample.
 
-For every supporting relationship, inspect both directions:
+Flag public splits driven mostly by taxonomy/output type when one owner could express variants with a cleaner trigger. Any merge/removal requires before/after realistic prompt proof with selection/result/authority/proof preserved.
 
-- **caller leakage** — the caller reproduces the callee's procedure, internal stages/statuses, checks, resources, scripts, verification, persistence/artifact mechanics, or native result schema instead of stating the result it needs;
-- **callee leakage** — the callee reproduces a caller-specific plan/job/phase schema, receipt dialect, envelope, or orchestration lifecycle instead of returning one native result.
+Inspect both composition directions:
 
-Do not flag caller-owned trigger/input, freshness, acceptance, authority, recovery, or stop conditions, nor independently required safety/trust rules. Routing skills may describe owners because routing is their result.
+- caller leakage — caller reproduces callee procedure/stages/checks/resources/scripts/result schema;
+- callee leakage — callee reproduces a caller-specific plan/job/receipt lifecycle.
 
-Treat `html-artifact` and `akosile` as deep-module checks: callers should normally supply semantic intent/content while those owners retain representation or workspace mechanics.
+Keep independently required safety/trust/authority rules even when they repeat across separately installed provider owners.
 
-Check selector-facing descriptions separately. They should advertise the skill's owned outcome, trigger, and exclusions rather than implementation dependencies, except when choosing another owner is itself the skill's result.
+## References and knowledge shape
 
-## Audit reference quality and over-compression
+Apply [reference quality](reference-quality.md). Look for healthy deep references, over-compressed recurring judgment, missing calibration, dumps/catalogues, duplicates, wrong owner, poor trigger, and freshness gaps.
 
-Apply [reference quality](reference-quality.md) to material ordinary references and to skill-body rules whose non-obvious judgment may have been compressed too far.
+Do not remove long references merely for size. Do remove or reshape framework/tool manuals, volatile inventories, generic style taxonomies, or CSV/Markdown duplicate representations that current project/tool/primary-source truth supplies better.
 
-Look for both excess and missing depth:
+For genuine researched catalogues, apply [knowledge catalogues](knowledge-catalogues.md).
 
-- **healthy deep reference** — coherent expert judgment, selective trigger, bounded owner-specific consequence;
-- **over-compressed rule** — a short instruction leaves a recurring non-obvious distinction to be reconstructed or guessed;
-- **missing calibration** — good/bad examples, counterexamples, or stable vocabulary would materially improve the same recurring judgment;
-- **dump** — subject-taxonomy prose or examples whose applicability cannot be selected cheaply;
-- **duplicate** — official docs, repository facts, another owner, or deterministic tooling already supplies the material more reliably;
-- **wrong owner** — useful expertise exists but its decision consequence belongs elsewhere;
-- **poor trigger** — a reference is useful but forces unrelated context on ordinary invocations;
-- **freshness gap** — volatile guidance is preserved without a current evidence boundary.
+## Capability/resource placement
 
-Do not recommend `DEEPEN` because a skill or reference is short. Name the plausible decision error, recurrence or owner-wide consequence, and why a selectively loaded reference is the smallest prevention surface.
+Apply [capability and resource placement](resource-placement.md) to each operational skill, not only those with scripts.
 
-Do not recommend `REMOVE` because a reference is long. Name the duplication, irrelevance, stale evidence, wrong owner, or retrieval failure.
+### Bundled executables
 
-## Audit scripts and broad knowledge skills when present
+For every executable, apply [script boundary](script-boundary.md) and return:
 
-For every bundled script, apply [bundled-script boundary](script-boundary.md) and return one disposition: `KEEP`, `SHRINK`, `REPLACE_WITH_NATIVE`, `REPLACE_WITH_LIBRARY`, `MOVE_TO_OWNER`, `REMOVE`, or `NEEDS_EVIDENCE`.
+`KEEP | SHRINK | REPLACE_WITH_GUIDANCE | REPLACE_WITH_NATIVE | REPLACE_WITH_LIBRARY | MOVE_TO_OWNER | PROMOTE_TO_ENGINE | REMOVE | NEEDS_EVIDENCE`.
 
-For broad researched catalogues or resolver companions, apply [researched knowledge catalogues](knowledge-catalogues.md). Verify progressive disclosure, evidence/freshness boundaries, bounded native output, and absence of unnecessary custom retrieval machinery.
+For retained scripts, run the mandatory compression pass and name the exact remaining kernel.
 
-## Report only evidenced findings
+### Scriptless command affordances
 
-Verify every finding against exact-current files and observed states. Separate defects from optimizations and evidence gaps; deduplicate by mechanism and rank by user impact, recurrence, safety, reachability, and correction cost.
+Identify repeated evidence/provider/tool mechanics a capable agent has to rediscover each run. Add a bounded command palette only when it materially clarifies an evidence/authority boundary or removes repeated operational ambiguity. Do not create command catalogues.
 
-Recommend a new skill only from durable evidence of a recurring valuable outcome with no adequate owner. Recommend retirement only when evidence shows the route adds no independently useful outcome or completion boundary.
+### Templates
 
-For material references return the applicable `KEEP | DEEPEN | SPLIT | MOVE | RESEARCH | REMOVE` disposition and its decision consequence.
+Return `KEEP | SHRINK | MOVE_TO_REFERENCE | REPLACE_WITH_NATIVE | REMOVE | NEEDS_EVIDENCE`.
 
-Return the evidence boundary, inventory/state matrix, control-shape classification, structural results, ownership/route map, dependency-boundary findings, reference-depth findings, script dispositions, confirmed defects/optimizations, evidence gaps, rejected recommendations, prioritized actions, and limitations. “No finding” means no issue found within the declared checks, not that every skill is optimal.
+Flag default-heavy starters, duplicate templates for one artifact, implementation boilerplate, workflow procedure, volatile commands, and optional empty sections. Keep neutral semantic scaffolds only when stable shape prevents material omission/drift.
+
+### Data/catalogues
+
+Verify bundled data is itself part of the useful knowledge outcome. Flag volatile ecosystem caches, style/industry/font/component inventories, and duplicate searchable representations whose semantic value already exists in references or current primary sources.
+
+### Reusable assets
+
+Separate universal resilience from branch-specific behavior. Flag theme toggles, carousels, print controls, or similar assets made mandatory when most outputs do not use their behavior.
+
+### Support infrastructure
+
+Challenge eagerly created empty files/directories/default state. Prefer lazy creation when absence already represents the empty state and no consumer requires a seeded file.
+
+## Drift and deterministic maintenance
+
+Search nested references/resources for deleted scripts/templates/assets and obsolete command names. Reconcile deterministic CI/tests only to retained runtime kernels. Separate current runtime guidance from historical/superseded research so retrieval cannot mistake old conclusions for active contracts.
+
+## Healthy duplication
+
+Do not optimize repetition that is independently load-bearing, for example:
+
+- provider host trust, credential isolation, pagination, pre-write refresh and readback in separately installed provider owners;
+- distinct durable knowledge destinations with different semantic consequences;
+- deep expert references whose judgment is not duplicated elsewhere;
+- explicit experimental isolation from stable ownership.
+
+## Report
+
+Verify every finding against exact-current files and states. Separate defects, optimizations, evidence gaps, and proof-gated consolidation candidates. Deduplicate by mechanism and rank by user impact, recurrence, safety, reachability, stale-risk, and correction cost.
+
+Return:
+
+- evidence boundary and inventory/state matrix;
+- control-shape and ownership/route map;
+- structural/resource-drift results;
+- reference/depth/catalogue findings;
+- script and command-affordance dispositions;
+- template/data/asset/support-infrastructure findings;
+- public-owner consolidation candidates and required proof;
+- healthy repetition explicitly retained;
+- prioritized actions, rejected recommendations, gaps, and limitations.
+
+“No finding” means no issue found within declared checks, not that every skill is optimal.

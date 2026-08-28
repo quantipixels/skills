@@ -1,84 +1,80 @@
-# Bundled-script boundary
+# Bundled script boundary
 
-Read this reference only when a skill candidate adds, keeps, expands, moves, or replaces bundled executable code. The skill owns judgment and workflow. A script earns a place only at a narrow deterministic seam that guidance, native capabilities, or one focused existing library do not express adequately.
+Use this whenever a skill proposes, keeps, expands, moves, or replaces executable code. A script is not justified merely because it is useful, tested, short, or deterministic.
 
-## Apply the natural-owner veto
+## Natural-owner veto first
 
-Before writing code, ask who naturally owns the fact, query, transformation, validation, or rendering mechanic:
+Before code, ask whether the skill's owner can perform the result directly and reliably from explicit current evidence with concise guidance, a visible command/recipe, an existing project/provider/tool capability, or one focused library.
+
+Use this order:
 
 ```text
 short owner guidance or deep reference
-→ readable repository/source/config state
-→ host/native language/compiler/build/framework capability
-→ provider/project/IDE/tooling already present
-→ one focused mature library/tool
-→ only then a residual QP-owned executable seam
+→ literal native command / short recipe
+→ readable repository/source/config truth
+→ native language/compiler/build/framework capability
+→ existing project/provider/IDE/tool capability
+→ focused mature library
+→ narrow QP script
+→ QP engine only when the outcome boundary is genuinely high
 ```
 
-Do not build a QP parser or permanent command catalogue around truth already exposed by the project or its ecosystem. Discover current commands from wrappers, tasks/help output, owning documentation, or `irinse` when operating the tool is itself material.
+A visible command recipe is guidance. Do not package it merely to avoid writing the command in Markdown.
 
-## Test guidance before a script
+## Retention gates
 
-Ask:
+A bundled script survives only when all applicable gates pass:
 
-> Can the owner perform this operation directly and reliably from explicit current evidence with concise guidance, no persistent machine state, and no independent machine consumer?
+1. **Natural owner** — QP code, rather than the agent/native/project/tool owner, is the smallest credible surface.
+2. **Owner** — the owning skill genuinely owns the mechanical result.
+3. **Need** — a demonstrated recurrence, correctness, race, portability, machine-consumer, or transformation need exists.
+4. **Mechanical boundary** — state the complete operation as `Given X, deterministically produce Y`.
+5. **Narrowness** — semantic judgment, routing, acceptance, architecture, recommendation, recovery choice, and authorization remain outside the script.
+6. **Leverage** — packaging materially improves correctness/reuse beyond an equivalent visible command/recipe.
+7. **State discipline** — persistent state, locks, retries, schemas, or daemons exist only for an observed cross-process need.
+8. **Truth boundary** — repository/provider/runtime truth remains authoritative; the script does not maintain a parallel semantic model.
+9. **Output** — the next consumer needs the machine result the script actually produces.
+10. **Proof** — deterministic tests falsify the exact retained seam.
 
-If yes, use `REPLACE_WITH_GUIDANCE`. The guidance may be a short `SKILL.md` instruction or a selectively loaded expert reference.
+Line count is never an acceptance rule. Existing tests do not justify retaining obsolete runtime behavior.
 
-Typical guidance-owned work includes a small frontier/dependency checklist, a few lifecycle consistency checks, selecting an applicable reference from already-known context, comparing explicit fields, or ordinary semantic HTML composition where the model still owns the valuable representation decisions.
+## Mandatory compression pass
 
-Do not retain code merely because tests now exist for it. Delete obsolete tests with obsolete executable behavior.
+For every script that passes the first gate, attempt to strip responsibilities that can move back to natural owners:
 
-## Require one mechanical contract
+- discovery/version detection → manifests, wrappers, config, `--help`, agent;
+- domain or provider routing → semantic owner;
+- provider querying → `gh`, `glab`, connector/API;
+- ordinary Git/filesystem operations → native commands;
+- output destination/temp-file selection → caller;
+- installation/publication → mutation owner;
+- generic formatting/result envelopes → stdout/native structured output.
 
-For residual executable code, state its complete contract in one sentence:
+Prefer pure transforms (`input → stdout` or `input → deterministic artifact`) and exact mutation kernels over workflow-shaped CLIs.
 
-> Given X, deterministically produce Y.
+Examples:
 
-Reject the script when that sentence requires semantic judgment, routing, authorization, lifecycle control, readiness/acceptance, or a broad workflow. Repetition alone does not justify code.
+- custom CSV BM25 wrapper whose rows still require model judgment → `REPLACE_WITH_NATIVE` using direct source selection plus `rg`/`grep`;
+- PR provider normalizer that mostly calls `gh`/`glab` and reshapes facts for the model → `REPLACE_WITH_NATIVE` when the skill can reason over provider JSON directly;
+- Git candidate fingerprint reconstructed in Python → `REPLACE_WITH_NATIVE` when a temporary index + `git write-tree` provides the exact content-addressed identity;
+- validated candidate bytes published iff exact target identity still matches → `KEEP`; the race/atomicity guarantee is a real deterministic seam;
+- token graph validation + canonical CSS realization → `KEEP`/`SHRINK`; compiler semantics are the result;
+- generic migration workflow over `git worktree`, symlink, copy and compare → guidance/native commands unless an observed transaction guarantee cannot be expressed safely.
 
-A script may:
+## Dispositions
 
-- parse or normalize owned structured input;
-- validate explicit mechanical invariants;
-- transform or compile one representation into another;
-- fingerprint an exact candidate;
-- aggregate counts or metadata; or
-- expose a compact read-only snapshot of source or provider truth.
+Return one:
 
-A script must not own recommendations, architecture, design direction, user-intent interpretation, skill selection, mutation authority, readiness, semantic completion, another skill's lifecycle/recovery/orchestration, or a second source of truth that duplicates readable authoritative state.
+```text
+KEEP
+SHRINK
+REPLACE_WITH_GUIDANCE
+REPLACE_WITH_NATIVE
+REPLACE_WITH_LIBRARY
+MOVE_TO_OWNER
+PROMOTE_TO_ENGINE
+REMOVE
+NEEDS_EVIDENCE
+```
 
-Explicit deterministic classifications are allowed only when the categories and rules are mechanical, stable, and owned exclusively by the script. Unclassified input stays unclassified; do not split one rule system between script and model.
-
-## Apply the gates
-
-For each script, record:
-
-1. **Natural owner** — guidance/native/tool/library alternatives were checked first.
-2. **Owner** — the skill genuinely owns the residual operation.
-3. **Need** — the smaller alternatives are insufficient.
-4. **Mechanical boundary** — the result is a fact, validation, transformation, fingerprint, or bounded retrieval result rather than a semantic conclusion.
-5. **Narrowness** — the complete operation fits the `X → Y` sentence without hidden orchestration.
-6. **Leverage** — code materially reduces a repeated defect class, race, parsing ambiguity, reproducibility problem, or machine-consumer burden.
-7. **State discipline** — stateless by default; persistence requires an observed cross-process need that current source/provider truth cannot reconstruct.
-8. **Truth boundary** — source, repository, or provider state remains authoritative unless the script produces the owned artifact itself.
-9. **Output** — compact structured data or the exact transformed artifact.
-10. **Proof** — deterministic tests cover credible boundary failures proportionately.
-
-Prefer a focused mature library when it materially removes custom parsing, search, protocol, locking, or transformation code.
-
-When several justified deterministic seams may form a higher capability, read [deep capability placement](deep-capabilities.md). An engine must carry a substantial portion of the skill's native outcome; several helpers do not become a deep engine merely by being grouped together.
-
-## Choose one disposition
-
-- `KEEP` — narrow, necessary, correctly owned, and proportionately proved;
-- `SHRINK` — valid operation but avoidable executable behavior remains;
-- `REPLACE_WITH_GUIDANCE` — clear owner guidance/reference carries the behavior better;
-- `REPLACE_WITH_NATIVE` — host/provider/project/ecosystem capability already owns it;
-- `REPLACE_WITH_LIBRARY` — a focused dependency removes substantial custom mechanics;
-- `MOVE_TO_OWNER` — the deterministic operation belongs elsewhere;
-- `PROMOTE_TO_ENGINE` — justified seams together carry a substantial outcome-level deterministic vertical;
-- `REMOVE` — no justified executable capability remains;
-- `NEEDS_EVIDENCE` — necessity, ownership, leverage, or portability is unproved.
-
-Do not use line count as an acceptance rule. Default toward the smallest placement that preserves correctness and meaningful capability.
+For `KEEP`/`SHRINK`, state the exact retained deterministic kernel and which responsibilities were removed. For `REPLACE_WITH_NATIVE`, provide the stable command/recipe when useful or name the native discovery mechanism (`<wrapper> --help`, project task list, provider CLI/API) when exact flags are volatile.
