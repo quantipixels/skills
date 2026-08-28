@@ -1,0 +1,84 @@
+name: Skill behavior missing-case retries
+
+on:
+  push:
+    branches:
+      - eval/pr41-skill-behavior-missing
+  workflow_dispatch:
+
+concurrency:
+  group: qp-skill-behavior-missing
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  evaluate:
+    strategy:
+      fail-fast: false
+      matrix:
+        case_position: [0, 1, 2, 3, 4, 5]
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Install llama.cpp runner
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl -LsSf https://llama.app/install.sh | sh
+          echo "$HOME/.local/bin" >> "$GITHUB_PATH"
+
+      - name: Start local evaluation model
+        shell: bash
+        run: |
+          set -euo pipefail
+          export PATH="$HOME/.local/bin:$PATH"
+          llama serve -hf Qwen/Qwen2.5-3B-Instruct-GGUF:Q4_K_M --host 127.0.0.1 --port 8080 -c 32768 >"$RUNNER_TEMP/llama-server.log" 2>&1 &
+          echo $! > "$RUNNER_TEMP/llama-server.pid"
+          for _ in $(seq 1 180); do
+            if curl -fsS http://127.0.0.1:8080/health >/dev/null; then
+              exit 0
+            fi
+            sleep 2
+          done
+          cat "$RUNNER_TEMP/llama-server.log"
+          exit 1
+
+      - name: Run one isolated old/new case
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 evals/skill-behavior/run_missing.py --out "$RUNNER_TEMP/eval-output" --case-position "${{ matrix.case_position }}"
+
+      - name: Preserve model log
+        if: always()
+        shell: bash
+        run: |
+          mkdir -p "$RUNNER_TEMP/eval-output"
+          cp "$RUNNER_TEMP/llama-server.log" "$RUNNER_TEMP/eval-output/llama-server.log" 2>/dev/null || true
+
+      - name: Upload raw retry corpus
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: qp-skill-behavior-missing-${{ github.run_id }}-case-${{ matrix.case_position }}
+          path: ${{ runner.temp }}/eval-output
+          if-no-files-found: error
+          retention-days: 14
+
+      - name: Require complete inference case
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import json, os
+          p=os.path.join(os.environ["RUNNER_TEMP"],"eval-output","manifest.json")
+          data=json.load(open(p))
+          assert data["calls"] == 2, data
+          assert data["failures"] == 0, data
+          print(json.dumps(data,indent=2))
+          PY
