@@ -12,6 +12,7 @@ Browse the [documentation](https://quantipixels.com/skills).
 - HTML Artifact creates reader-specific projections over owner records/evidence rather than duplicating source archives.
 - Generated `.qp` state stays outside Git by default.
 - Small public skills may intentionally exist as reusable model-steering contracts when a narrow named behavior saves users from restating longer instructions.
+- Thin public convenience entrypoints may wrap native commands when one safe memorable invocation materially improves installation, removal, or other human-facing distribution UX.
 - Experimental skills are explicit-only and do not replace stable owners.
 
 ## Install
@@ -33,41 +34,13 @@ claude plugin marketplace add quantipixels/skills
 claude plugin install qp-skills@qp-skills
 ```
 
-## Uninstall this repository's globally installed skills
-
-Until the upstream Skills CLI exposes installation source as a direct filter, use source metadata from the global lock and pass only matching names to the native remover. This recipe works with the older Bash shipped by macOS as well as current Bash:
+## Uninstall
 
 ```bash
-tmp=$(mktemp)
-trap 'rm -f "$tmp"' EXIT
-
-node <<'NODE' >"$tmp"
-const fs = require('fs');
-const os = require('os');
-const p = `${os.homedir()}/.agents/.skill-lock.json`;
-const lock = JSON.parse(fs.readFileSync(p, 'utf8'));
-const norm = s => String(s || '')
-  .replace(/^git\+/, '')
-  .replace(/^git@github\.com:/, 'https://github.com/')
-  .replace(/^ssh:\/\/git@github\.com\//, 'https://github.com/')
-  .replace(/^https?:\/\/github\.com\//, '')
-  .replace(/\.git\/?$/, '')
-  .replace(/\/$/, '');
-for (const [name, entry] of Object.entries(lock.skills || {})) {
-  if (norm(entry.source) === 'quantipixels/skills') console.log(name);
-}
-NODE
-
-qp_skills=()
-while IFS= read -r skill; do
-  [ -n "$skill" ] && qp_skills+=("$skill")
-done <"$tmp"
-
-[ "${#qp_skills[@]}" -eq 0 ] || \
-  npx skills remove --global --yes "${qp_skills[@]}"
+curl -fsSL https://raw.githubusercontent.com/quantipixels/skills/ori/scripts/uninstall.sh | bash
 ```
 
-The recipe deliberately does not use a blanket `--all`; unrelated installed skills remain untouched.
+The entrypoint removes only globally installed skills whose lock-file source is `quantipixels/skills`; unrelated installed skills remain untouched.
 
 ## Repository-local workspace
 
