@@ -1,0 +1,46 @@
+name: Eval smoke
+
+on:
+  push:
+    branches:
+      - eval/pr41-behavior
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  models: read
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Call GitHub Models
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          jq -n '{
+            model: "openai/gpt-5-mini",
+            temperature: 0,
+            max_tokens: 32,
+            messages: [
+              {role: "system", content: "Follow the user instruction exactly."},
+              {role: "user", content: "Return exactly: EVAL_OK"}
+            ]
+          }' > request.json
+
+          curl --fail-with-body --silent --show-error \
+            https://models.github.ai/inference/chat/completions \
+            -H "Authorization: Bearer $GITHUB_TOKEN" \
+            -H "Content-Type: application/json" \
+            --data-binary @request.json > response.json
+
+          jq -r '.choices[0].message.content' response.json | tee output.txt
+          grep -qx 'EVAL_OK' output.txt
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: eval-smoke
+          path: |
+            request.json
+            response.json
+            output.txt
