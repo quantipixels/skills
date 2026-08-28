@@ -58,7 +58,9 @@ Recompute it after every relevant candidate, result, blocker, dependency, or evi
 
 Pin outcome, affected capabilities, scope, constraints, assumptions, non-goals, evidence, risks, and open uncertainties. Read relevant `.learnings`, complete `.nongoals`, architecture/ADRs, code, tests, history, integrations, and recovery paths. When the direction conflicts with `.nongoals`, require an authorized `amose` exception or boundary update before planning past it.
 
-Classify each material uncertainty before assigning an owner:
+When a material `Draft` initiative is too large or uncertain for its whole planning surface to be stated responsibly at once, read [progressive shaping](references/progressive-shaping.md). Use it to preserve known-but-not-yet-formulatable territory, explore breadth before depth, and re-chart only what new evidence makes formable. It does not add a lifecycle state, ticket system, owner, or Decision Frontier value.
+
+Classify each material uncertainty that can be stated responsibly before assigning an owner:
 
 ```text
 FACT
@@ -94,11 +96,12 @@ Before `Planned`:
 
 1. Re-read the exact plan as its implementer.
 2. Recompute the Decision Frontier Gate. Require `EMPTY`; no open, blocked, stale, silently assumed, or blocking-deferred material decision may cross the gate.
-3. If `arojinle` was used for the current decision set, require its exact-current final confirmation. If it was not required, record the current evidence proving why.
-4. Verify every required specialist result against the exact plan/candidate. Require current `solution-architect: IMPLEMENTATION_READY` when architecture is material.
-5. Treat coverage as an index, not proof: trace the top credible normal, failure, misuse, recovery, compatibility, migration, and operational mechanisms.
-6. Resolve every blocking dependency, recovery, migration, proof, documentation, and operational gap.
-7. Write the `Planned` revision and refresh the primary human view.
+3. When progressive shaping was needed, require no material not-yet-specifiable territory that implementation could encounter inside accepted scope. Exclude it, settle it, or give a genuine non-blocking re-entry contract rather than inventing the question.
+4. If `arojinle` was used for the current decision set, require its exact-current final confirmation. If it was not required, record the current evidence proving why.
+5. Verify every required specialist result against the exact plan/candidate. Require current `solution-architect: IMPLEMENTATION_READY` when architecture is material.
+6. Treat coverage as an index, not proof: trace the top credible normal, failure, misuse, recovery, compatibility, migration, and operational mechanisms.
+7. Resolve every blocking dependency, recovery, migration, proof, documentation, and operational gap.
+8. Write the `Planned` revision and refresh the primary human view.
 
 Set `Planned` only when implementation needs no invented material requirement. Approval covers only the listed decisions and exact evidence identity.
 
