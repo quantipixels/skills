@@ -1,56 +1,50 @@
 ---
 name: eto-apere
-description: Create or review a maintainable design-token and component-specification system, including primitive, semantic, and component tokens, CSS variables, states, Tailwind integration, and checked token usage. Use when confirmed visual direction must be formalized into a reusable implementation contract.
+description: Create or review a maintainable design-token and component-specification contract, including primitive, semantic, and component aliases, states, themes, and deterministic CSS realization. Use when confirmed visual direction must become a reusable implementation contract.
 ---
 
 # Ètò Àpẹrẹ
 
-Own the implementation contract between confirmed visual decisions and reusable tokens/specifications. Keep the three-layer architecture intact:
+Own the implementation contract between confirmed visual decisions and reusable tokens/component specifications:
 
 ```text
-primitive values → semantic purpose aliases → component properties/states
+confirmed raw values → semantic purpose aliases → component properties/states
 ```
+
+Do not seed a project with QP-default colors, fonts, spacing, radii, shadows, or component values.
 
 ## Workflow
 
-1. Read `references/token-architecture.md`, then inspect existing tokens, theme files, component conventions, and any confirmed `amoye-ui-ux` direction before adding new values. Treat Amọ̀ye direction and approved `brand` roles as visual inputs, not as a token schema or generated artifact.
-2. For React projects, confirm the UI component library with `asa-oju-ibanisoro` before defining component-level tokens. The library choice must be explicit before implementation.
-3. Define primitives for raw colors, spacing, type, radius, shadows, and durations.
-4. Map primitives to semantic roles such as background, foreground, primary, muted, destructive, and focus.
-5. Add component tokens only where a component needs a stable property or state override. Define default, hover, active, focus, disabled, loading, and error behavior when applicable.
-6. When `brand` supplies confirmed visual roles, validate that every required role has a value and reconcile them into the existing token hierarchy without discarding unrelated tokens.
-7. Generate CSS or framework configuration from JSON rather than hand-copying values. Resolve each reference target to its canonical CSS name and emit `var(--target)`; do not flatten semantic or component aliases to raw primitive values. Preserve dark-mode overrides.
-8. Validate all references, cycles, and CSS-name collisions before replacing token artifacts. Generate JSON and CSS to temporary targets, validate both, then install them as one accepted change. If either output fails, leave the current artifacts unchanged and do not claim partial output as synchronized.
-9. Validate the changed project area for inappropriate hardcoded values, invalid references, contrast, and missing states through project-native linting, focused source search, implementation review, and rendered proof. A raw literal is evidence to inspect, not automatically a token violation. Read the generated artifacts back, then read the relevant component, state, and Tailwind references on demand.
+1. Read [token architecture](references/token-architecture.md), then inspect the project's existing tokens, theme files, component conventions, selected UI library, and confirmed Brand/Amọ̀ye direction. Existing project values and approved brand roles are inputs; do not replace them with a starter palette.
+2. Define only required primitives for confirmed raw values. Map them to semantic roles such as background, foreground, primary, muted, destructive, focus, and product-specific roles.
+3. Add component tokens only when a component property/state needs a stable contract beyond the semantic layer. Read [states and variants](references/states-and-variants.md) and [component specs](references/component-specs.md) when that detail is material.
+4. Preserve aliases rather than flattening semantic/component references to primitive values. Theme switching should normally remap semantic aliases rather than rewrite components.
+5. Validate all token references, cycles, and CSS-name collisions before installing generated output. Prefer a current project-native token compiler when one already owns the representation; otherwise use the bundled narrow compiler.
+6. Install generated artifacts through the project's normal mutation/proof path. Framework integration such as Tailwind belongs to the current project/version; read [Tailwind integration](references/tailwind-integration.md) only when applicable.
+7. Review changed consumers for inappropriate hardcoded values, missing states, contrast, and broken aliases through project-native lint/typecheck/build/render proof. A raw literal is evidence to inspect, not automatically a violation.
 
 ## Token compiler
 
-Run from the skill root or substitute its absolute path:
+Fallback compiler usage:
 
 ```bash
-node <skill-root>/scripts/generate-tokens.cjs --config tokens.json --output tokens.css
+node <skill-root>/scripts/generate-tokens.cjs <tokens.json> > <temporary-tokens.css>
 ```
 
-The compiler accepts JSON token objects and validates `{path.to.token}` references, cycles, and CSS-name collisions. It emits primitive raw values and preserves semantic and component aliases. Review generated output before committing. Do not replace an existing source-of-truth token file without checking its consumers, preserving unrelated tokens, validating references, and reading back both the JSON source and generated CSS.
-
-This skill owns all declarations in project-level `assets/design-tokens.json` and generated `assets/design-tokens.css`, including `component.slide.*`. The `slides` skill consumes this token contract and returns here when required aliases are missing. The `amoye-ui-ux` result remains visual-direction input and is not duplicated into this contract.
+The compiler owns only token-graph validation and canonical CSS realization. It validates `{path.to.token}` references, cycles, and CSS-name collisions; preserves semantic/component aliases as `var(...)`; and emits optional dark semantic overrides. The caller owns temporary/output paths, installation, framework mapping, and readback.
 
 ## Decision rules
 
-- Prefer semantic aliases in components; raw hex values belong in primitives.
-- Keep naming stable and put state last: `--color-primary`, `--color-primary-hover`, `--button-bg`, `--button-bg-hover`.
-- Prefer a small coherent scale over one-off values.
-- Make theme switching an alias change, not a component rewrite.
-- Treat focus and disabled states as first-class, not optional polish.
-- If the request is only to implement UI code, hand implementation to `asa-oju-ibanisoro` after the token contract is clear.
+- Prefer semantic aliases in components; raw values belong in primitives.
+- Use naming from purpose/ownership, not a QP color scale.
+- Keep naming stable and state last where the project has no stronger convention.
+- Prefer a small coherent project-specific scale over one-off values, but do not invent a generic 4px/8px scale merely because it is common.
+- Treat focus, disabled, loading, error, selected, and other credible states as first-class when the component actually supports them.
+- If the request is only UI implementation, hand it to `asa-oju-ibanisoro` after the token/spec contract is clear.
 
 ## Resources
 
-- `references/token-architecture.md` — three-layer model and naming.
-- `references/primitive-tokens.md` — raw scales.
-- `references/semantic-tokens.md` — purpose aliases and themes.
-- `references/component-tokens.md` — component-level values.
-- `references/component-specs.md` — reusable component specification format.
-- `references/states-and-variants.md` — state and variant coverage.
-- `references/tailwind-integration.md` — mapping to Tailwind.
-- `templates/design-tokens-starter.json` — starter token configuration.
+- `references/token-architecture.md` — layer/alias/naming contract.
+- `references/component-specs.md` — reusable component specification shape.
+- `references/states-and-variants.md` — state/variant coverage.
+- `references/tailwind-integration.md` — current-project Tailwind mapping when applicable.

@@ -1,10 +1,10 @@
 ---
 owner: atona
 record_type: initiative-plan
+subject: <stable initiative subject>
 title: <initiative title>
 updated_at: <offset-aware timestamp>
 revision: 1
-candidate: <repository/source and exact revision, optional>
 status: Draft
 ---
 
@@ -14,92 +14,37 @@ status: Draft
 
 **Outcome:** <what must become true>
 
-**Current state:** <status, decision-frontier state, delivery summary, and material state>
+**Status:** <Draft | Planned | In Progress | Backlog | Closed>
 
-**Blocker:** <current blocker or none>
+**Decision frontier:** <EMPTY | OPEN | BLOCKED, with one-line reason>
+
+**Delivery:** <Not required | Not started | Active | Blocked | Complete | Stale>
 
 **Next action:** <one exact action>
 
 **Completion condition:** <checkable boundary>
 
-## Decision frontier and confirmation
-
-**State:** `EMPTY | OPEN | BLOCKED`
-
-**Coverage:** <which material uncertainties/capabilities were inspected and against which candidate>
-
-**Why this state:** <why no interview is needed, current questions, or missing prerequisites>
-
-### Current questions
-
-Use only while the frontier is `OPEN`; keep the whole currently answerable material round exact-current.
-
-| Q | Decision | Question | Bounded choices | Recommendation | Prerequisites/evidence |
-|---|---|---|---|---|---|
-| Q1 | D1 | <material question> | <A / B / bounded alternatives> | <recommended answer and why> | <settled prerequisite or evidence> |
-
-| ID | Decision | Why material | Prerequisites | State | Owner | Evidence/receipt |
-|---|---|---|---|---|---|---|
-| D1 | <choice> | <effect on outcome/scope/risk/etc.> | <fact/result or none> | confirmed/open/blocked/deferred/not-applicable | <owner> | <identity> |
-
-**User confirmation:** <message/decision identity, or not required with evidence>
-
-**Àròjinlẹ̀ result:** <record/receipt revision, or not required>
-
-**Unresolved material decisions:** <none or list>
-
 ## Outcome and acceptance
 
-<desired outcome, affected capabilities, and acceptance>
+<desired outcome and observable acceptance>
 
 ## Scope and non-goals
 
-### Scope
-
-- <included boundary>
-
-### Non-goals
-
-- <excluded boundary>
-
-## Constraints and assumptions
-
-- <confirmed constraint or explicit assumption>
+- **Scope:** <included boundaries>
+- **Non-goals:** <explicit exclusions>
 
 ## Decisions
 
-| ID | Decision | State | Evidence | Plan effect |
-|---|---|---|---|---|
-| D1 | <decision> | confirmed | <source> | <effect> |
+<confirmed decisions plus any currently open/blocked material decision set; omit empty tables/sections>
 
-## Phases and dependencies
+## Delivery and proof
 
-| Phase | Outcome | Dependencies | Owner | Acceptance | State |
-|---|---|---|---|---|---|
-| 1 | <phase outcome> | <dependencies> | <owner> | <proof> | Not started |
+<phases/dependencies/blockers only when they actually exist; current proof and closure obligations>
 
-## Delivery summary
+## Linked evidence
 
-<Not required | Not started | Active | Blocked | Complete | Stale, with reason>
-
-## Blockers, risks, and deferrals
-
-| Item | Type | Effect | Owner | Re-entry/completion condition |
-|---|---|---|---|---|
-| <item> | blocker | <effect> | <owner> | <condition> |
-
-## Proof and closure
-
-<decision-frontier readiness, acceptance, rollback, documentation, operations, and closure obligations>
-
-## Linked records and evidence
-
-| Owner/source | Record or locator | Revision/cutoff | Freshness | Plan effect or role |
-|---|---|---|---|---|
-| <owner> | <record-ref, path, provider identity, or revision> | <revision> | current | <effect> |
-
-Do not copy complete specialist packets, logs, tests, or provider payloads into this record.
+<current owner results, records, source locators, revisions/cutoffs; link detailed packets rather than copying them>
 
 ## Material history
 
-- r1 — <only a status, scope, decision/frontier, evidence, completion-boundary, reopen, closure, or ownership change worth retaining>
+- r1 — <only a material status/scope/decision/evidence/ownership/closure change worth retaining>

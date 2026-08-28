@@ -1,54 +1,50 @@
 ---
 name: asa-oju-ibanisoro
-description: Implement polished, accessible, responsive React interfaces with an explicit UI component-library choice, shadcn/ui or other established primitives, Tailwind CSS, and token-driven visual patterns. Use for components, forms, navigation, tables, charts, themes, dark mode, responsive layouts, product icons, and UI quality fixes in web projects.
+description: Implement polished, accessible, responsive React/web interfaces with an explicit component-library decision, project-native tooling, semantic tokens, and verified interaction behavior. Use for components, forms, navigation, tables, charts, themes, responsive layouts, product icons, and UI quality fixes.
 ---
 
 # Àṣà Ojú Ìbánisọ̀rọ̀
 
-Implement the approved visual system in application code. Preserve existing project conventions and use accessible primitives rather than rebuilding interaction behavior from scratch.
+Implement confirmed UI direction in application code. Preserve the project's framework, component system, tokens, and conventions; use accessible primitives rather than rebuilding mature interaction behavior.
 
 ## Before coding
 
-1. Detect the framework, Tailwind version, component registry, token source, and existing layout conventions.
-2. If the project is new or the visual direction is unclear, run `amoye-ui-ux` first and record the chosen system. If tokens are missing, use `eto-apere` to define them before broad implementation.
-3. For React work, read `references/ui-component-libraries.md`. Honor an explicit user choice of an existing library, a named new library, or custom components. Otherwise inspect the project, then ask once whether to reuse the detected library or choose from the listed libraries plus custom components. Never introduce a competing library silently.
-4. Read only the other references needed for the requested surface: component accessibility, theming, responsive behavior, or utilities.
+1. Inspect the actual project before assuming framework/tool versions or UI libraries. Useful starting evidence:
 
-## UI component library decision
+```bash
+jq '{scripts,dependencies,devDependencies}' package.json
+<project-package-manager> run
+<selected-native-cli> --help
+```
 
-When the user has not already made the choice, ask one concise question before implementation:
-
-> I found [existing library / no library]. Which UI component library should I use: reuse [detected library], choose from the project’s library list, or build custom components?
-
-If the user asks for a recommendation, compare the shortlist against the project’s framework, accessibility requirements, ownership model, theming, bundle/performance budget, design-system fit, and maintenance horizon. Record the confirmed choice and use that library consistently.
+Use the project's package manager/wrapper and manifests rather than cached QP command catalogues.
+2. If visual direction is missing, use `amoye-ui-ux`. If canonical tokens/specifications are missing or changing materially, use `eto-apere`.
+3. Read [component-library decision](references/ui-component-libraries.md) when the project/user has not already settled the library. Never silently introduce a competing library.
+4. Load only applicable implementation references: accessibility, theming, or Tailwind customization. Use current official/project documentation for component APIs and utility syntax instead of bundled component/utility manuals.
 
 ## Implementation rules
 
-- Prefer primitives from the confirmed library for dialogs, menus, forms, tabs, popovers, and similar stateful UI. Use shadcn/ui and Radix only when that is the selected project choice.
-- Use semantic tokens and Tailwind utilities; do not scatter raw colors or arbitrary spacing through components.
-- Build mobile-first and verify at 375px, 768px, 1024px, and 1440px or the project’s stated breakpoints.
-- Give every interactive element a visible hover, focus, active, disabled, and loading treatment where applicable.
-- Keep touch targets at least 44×44px, preserve keyboard navigation, and pair icon-only controls with accessible names.
-- Respect `prefers-reduced-motion`, reserve media space, and avoid layout-shifting animation.
-- Use SVG or an established icon library. When `brand` supplies a custom icon language, implement that confirmed grid, stroke/fill, corner, optical-size, and naming contract without redefining it. Never use emoji as UI icons.
-- For charts, include labels, legends/tooltips, accessible colors, and non-color encodings beyond color alone.
+- Prefer confirmed library/native primitives for dialogs, menus, forms, tabs, popovers, comboboxes, tables and similar stateful interaction.
+- Use semantic project tokens and existing utility conventions; do not scatter new raw color/spacing defaults through components.
+- Build responsive behavior from content hierarchy and the project's breakpoints rather than adding QP-owned breakpoint scales.
+- Give applicable controls visible hover/focus/pressed/disabled/loading/error behavior and accessible names.
+- Preserve keyboard operation, sensible focus order, touch usability, reduced-motion behavior, and media-space reservation.
+- Use an established icon library or confirmed Brand icon language; do not use emoji as structural UI icons.
+- For charts, keep labels/units/legends/tooltips as needed and provide non-color distinctions for material series/status.
 
 ## Platform configuration
 
-Use the active project’s package manager and official component-library or framework tooling. For shadcn/ui, inspect `components.json`, confirm the target workspace, preview the native CLI change when supported, and add components through the current `shadcn` CLI. Do not overwrite existing components unless the user explicitly accepts that replacement.
+Use active project tooling. For shadcn/ui or another registry/CLI, inspect current project config, run the installed/current CLI help, preview changes when supported, and use its native operation. Detect Tailwind/project version from the repository before editing configuration; follow the project's actual configuration model rather than creating a new file from QP defaults.
 
-Detect the Tailwind major version before changing configuration. For Tailwind CSS v4, extend the project’s existing CSS-first theme and token imports. For Tailwind CSS v3, update the existing `tailwind.config.*` through the version’s official guidance. Do not create or replace a configuration file when the project does not use one. Validate every change through the project’s own build, lint, and type-check commands.
+Do not preserve framework/component command lists here. Volatile mechanics belong to current project/tool evidence.
 
 ## Verification
 
-Run the project’s lint/typecheck/test commands, then inspect the rendered UI at the required breakpoints. Check focus order, keyboard operation, contrast, reduced motion, empty/loading/error states, and no-horizontal-scroll behavior. For visual artifacts or bitmap assets, use the host’s image-generation capability; do not add a provider-specific API key or hardcoded secret to the project.
+Run the project's own lint/typecheck/test/build commands applicable to the changed area, then inspect the rendered UI for the accepted surfaces/states. Verify only the platform/viewports/states the product actually supports, including keyboard/focus, contrast, overflow, loading/empty/error behavior, and reduced motion where applicable.
 
 ## Resources
 
-- `references/shadcn-accessibility.md` — accessible component rules.
-- `references/shadcn-components.md` — component patterns.
-- `references/shadcn-theming.md` — themes and token mapping.
-- `references/ui-component-libraries.md` — React library inventory and required selection gate.
-- `references/tailwind-customization.md` — Tailwind extension.
-- `references/tailwind-responsive.md` — responsive rules.
-- `references/tailwind-utilities.md` — utility patterns.
+- `references/ui-component-libraries.md` — component-library selection method.
+- `references/shadcn-accessibility.md` — non-obvious accessibility/interaction calibration when shadcn/Radix patterns apply.
+- `references/shadcn-theming.md` — shadcn theme/token integration when selected.
+- `references/tailwind-customization.md` — project-native Tailwind extension guidance.
