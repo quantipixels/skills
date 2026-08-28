@@ -37,7 +37,7 @@ def record(workspace, record_id, *, owner="atona", updated="2026-08-28T05:00:00+
 
 
 class RenderIndexTests(unittest.TestCase):
-    def test_orders_instants_and_uses_real_collision_slug(self):
+    def test_orders_instants_and_links_index_html(self):
         with tempfile.TemporaryDirectory() as directory:
             base = Path(directory)
             workspace, output = base / ".qp", base / "candidate.md"
@@ -49,15 +49,14 @@ class RenderIndexTests(unittest.TestCase):
                 updated="2026-08-28T09:30:00+00:00",
                 record_type="initiative/plan-v2",
             )
-            (second.parent / "second-2.html").write_text("<html></html>")
             (second.parent / "index.html").write_text("<html></html>")
             code, payload = run(workspace, output)
             text = output.read_text()
             self.assertEqual(code, 0)
             self.assertLess(text.index("second-2"), text.index("first"))
-            self.assertIn("second-2.html", text)
+            self.assertIn("20260828-second-2/index.html", text)
             self.assertIn("initiative/plan-v2", text)
-            self.assertEqual(len(payload["result"]["legacy_html"]), 1)
+            self.assertNotIn("legacy_html", payload["result"])
             self.assertFalse((workspace / "INDEX.md").exists())
 
     def test_parses_yaml_and_surfaces_invalid_records(self):
