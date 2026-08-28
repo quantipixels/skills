@@ -1,0 +1,42 @@
+name: Skill behavior eval
+
+on:
+  push:
+    branches:
+      - eval/pr41-skill-behavior
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  copilot-requests: write
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+      - name: Install Copilot CLI
+        run: npm install -g @github/copilot
+      - name: Run isolated smoke prompt
+        shell: bash
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          COPILOT_HOME: ${{ runner.temp }}/copilot-home
+        run: |
+          set -euo pipefail
+          mkdir -p "$COPILOT_HOME" "$RUNNER_TEMP/empty-eval"
+          cd "$RUNNER_TEMP/empty-eval"
+          copilot -sp \
+            --model=claude-haiku-4.5 \
+            --no-custom-instructions \
+            --no-ask-user \
+            --no-auto-update \
+            --no-remote \
+            --no-remote-export \
+            --deny-tool='shell,read,write,url,memory' \
+            -p 'Return exactly EVAL_OK and nothing else.' \
+            | tee "$RUNNER_TEMP/smoke.txt"
+          test "$(tr -d '\r\n' < "$RUNNER_TEMP/smoke.txt")" = "EVAL_OK"
