@@ -1,0 +1,84 @@
+name: Skill behavior stronger-model spotcheck
+
+on:
+  push:
+    branches:
+      - eval/pr41-skill-behavior-spotcheck
+  workflow_dispatch:
+
+concurrency:
+  group: qp-skill-behavior-spotcheck
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  evaluate:
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [0, 1, 2, 3, 4, 5]
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Install llama.cpp runner
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl -LsSf https://llama.app/install.sh | sh
+          echo "$HOME/.local/bin" >> "$GITHUB_PATH"
+
+      - name: Start stronger local evaluation model
+        shell: bash
+        run: |
+          set -euo pipefail
+          export PATH="$HOME/.local/bin:$PATH"
+          llama serve -hf Qwen/Qwen2.5-7B-Instruct-GGUF:Q4_K_M --host 127.0.0.1 --port 8080 -c 16384 -b 512 -ub 256 >"$RUNNER_TEMP/llama-server.log" 2>&1 &
+          echo $! > "$RUNNER_TEMP/llama-server.pid"
+          for _ in $(seq 1 300); do
+            if curl -fsS http://127.0.0.1:8080/health >/dev/null; then
+              exit 0
+            fi
+            sleep 2
+          done
+          cat "$RUNNER_TEMP/llama-server.log"
+          exit 1
+
+      - name: Run isolated old/new spotchecks
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 evals/skill-behavior/run_spotchecks.py --out "$RUNNER_TEMP/eval-output" --shard-index "${{ matrix.shard }}" --shard-count 6
+
+      - name: Preserve model log
+        if: always()
+        shell: bash
+        run: |
+          mkdir -p "$RUNNER_TEMP/eval-output"
+          cp "$RUNNER_TEMP/llama-server.log" "$RUNNER_TEMP/eval-output/llama-server.log" 2>/dev/null || true
+
+      - name: Upload raw spotcheck corpus
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: qp-skill-behavior-spotchecks-${{ github.run_id }}-shard-${{ matrix.shard }}
+          path: ${{ runner.temp }}/eval-output
+          if-no-files-found: error
+          retention-days: 14
+
+      - name: Require complete inference shard
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import json, os
+          p=os.path.join(os.environ["RUNNER_TEMP"],"eval-output","manifest.json")
+          data=json.load(open(p))
+          assert data["calls"] == data["cases"] * 2, data
+          assert data["failures"] == 0, data
+          print(json.dumps(data,indent=2))
+          PY
