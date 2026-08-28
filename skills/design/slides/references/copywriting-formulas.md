@@ -1,84 +1,35 @@
-# Copywriting Formulas
+# Slide copy patterns
 
-25 formulas for persuasive slide copy.
+Use these as optional shaping patterns when a slide's message is known but the headline/supporting copy is weak. Preserve evidence and brand voice; a formula never authorizes a stronger claim than the source supports.
 
-## Core Formulas
+## Useful mechanisms
 
-### PAS (Problem-Agitate-Solution)
-**Use:** Problem slides, pain points
-**Components:** Problem → Agitate → Solution
-**Template:** "[Pain point]? Every [time frame], [consequence]. [Solution] fixes this."
+- **Problem → consequence → response** — establish what is wrong, why it matters, and what changes it.
+- **Before → after → bridge** — show a credible transformation and the mechanism connecting the states.
+- **Feature → capability → user outcome** — translate product mechanics into the consequence the audience cares about.
+- **Evidence → interpretation → implication** — lead with data/proof, state what it demonstrates, then why the audience should care.
+- **Objection → evidence → resolution** — address one material concern directly rather than hiding it in feature copy.
+- **Decision → rationale → next action** — useful for board/internal/closing slides where the job is to act.
 
-### AIDA (Attention-Interest-Desire-Action)
-**Use:** CTAs, closing slides
-**Components:** Attention → Interest → Desire → Action
-**Template:** "[Bold statement]. [Benefit detail]. [Social proof]. [CTA]."
+## Headlines
 
-### FAB (Features-Advantages-Benefits)
-**Use:** Feature slides, product showcases
-**Components:** Feature → Advantage → Benefit
-**Template:** "[Feature] lets you [advantage], so you can [benefit]."
+Prefer a specific source-supported claim over a topic label:
 
-### Cost of Inaction
-**Use:** Agitation slides, urgency
-**Components:** Status Quo → Loss → Time Decay
-**Template:** "Without [solution], you're losing [amount] every [timeframe]."
+Good: `Checkout failures fell 41% after retry ownership moved to the worker.`
 
-### Before-After-Bridge
-**Use:** Transformation slides, case studies
-**Components:** Before → After → Bridge
-**Template:** "[Pain point before]. [Desired state after]. [Your solution] is the bridge."
+Bad: `Reliability Improvements`
 
-## Formula-to-Slide Mapping
+Good: `Three launch dependencies still block the September cutover.`
 
-| Slide Type | Primary Formula | Emotion |
-|------------|-----------------|---------|
-| Title/Hook | AIDA, Hook | curiosity |
-| Problem | PAS, Agitate | frustration |
-| Cost/Risk | Cost of Inaction | fear |
-| Solution | FAB, BAB | hope |
-| Features | FAB | confidence |
-| Traction | Proof Stack | trust |
-| Social Proof | Testimonial | trust |
-| Pricing | Value Stack | confidence |
-| CTA | AIDA, Urgency | urgency |
+Bad: `Roadmap`
 
-## Headline Patterns
+Keep numbers tied to denominator/timeframe/source. Do not invent urgency, popularity, customer names, savings, or social proof.
 
-### Power Words
-- "Stop [bad thing]"
-- "Get [desired result] in [timeframe]"
-- "The [adjective] way to [action]"
-- "Why [audience] choose [product]"
-- "[Number] ways to [achieve goal]"
+## Copy density
 
-### Contrast Patterns
-- "[Old way] is dead. Meet [new way]."
-- "Don't [bad action]. Instead, [good action]."
-- "From [pain point] to [benefit]."
+- Headline states the slide's main claim.
+- Supporting text supplies only evidence/context needed to understand or trust that claim.
+- Move detail to speaker notes/supporting evidence when the audience can retrieve it without crowding the slide.
+- Prefer one CTA/decision on a closing slide; multiple independent next actions belong in an explicit action list rather than competing buttons.
 
-### Social Proof Patterns
-- "[Number]+ [users/companies] trust [product]"
-- "Join [notable company] and [notable company]"
-- "As seen in [publication]"
-
-## Search Commands
-
-```bash
-# Find formula for slide type
-python3 <skill-root>/scripts/search-slides.py "problem agitation" -d copy
-
-# Get emotion-appropriate formula
-python3 <skill-root>/scripts/search-slides.py "urgency cta" -d copy
-```
-
-## Quick Reference
-
-| Need | Use Formula |
-|------|------------|
-| Create urgency | Cost of Inaction, Scarcity |
-| Build trust | Social Proof, Testimonial |
-| Show value | FAB, Value Stack |
-| Drive action | AIDA, CTA |
-| Tell story | BAB, Story Arc |
-| Present data | Proof Stack |
+Use the project's/brand's actual language. Formula names are internal aids, not labels to show the audience.

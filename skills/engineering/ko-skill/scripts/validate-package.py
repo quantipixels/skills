@@ -15,7 +15,7 @@ import yaml
 GROUPS = ("engineering", "design", "productivity", "experimental")
 MARKDOWN_LINK = re.compile(r"\[[^\]]*\]\(([^)]+)\)")
 DIRECT_REFERENCE = re.compile(r"(?<![\w])@((?:\./|\.\./)[^\s`'\"<>]+)")
-LOCAL_RESOURCE = re.compile(r"(?<![\w.-])((?:references|scripts|templates|assets|data)/[A-Za-z0-9._/@+-]+(?:/[A-Za-z0-9._@+-]+)*)")
+SKILL_ROOT_RESOURCE = re.compile(r"<[A-Za-z0-9-]*skill-root>/((?:references|scripts|templates|assets|data)/[A-Za-z0-9._/@+-]+(?:/[A-Za-z0-9._@+-]+)*)")
 REMOTE_SCHEMES = ("http://", "https://", "mailto:", "sandbox:", "data:")
 
 
@@ -56,10 +56,8 @@ def local_targets(markdown: Path) -> Iterable[str]:
         yield target
     for match in DIRECT_REFERENCE.finditer(text):
         yield match.group(1).rstrip(".,;:")
-    for match in LOCAL_RESOURCE.finditer(text):
-        target = match.group(1).rstrip(".,;:")
-        if Path(target).suffix:
-            yield "@skill/" + target
+    for match in SKILL_ROOT_RESOURCE.finditer(text):
+        yield "@skill/" + match.group(1).rstrip(".,;:")
 
 
 def resolve_target(skill_dir: Path, markdown: Path, raw_target: str) -> Path | None:
@@ -68,7 +66,9 @@ def resolve_target(skill_dir: Path, markdown: Path, raw_target: str) -> Path | N
     target = raw_target.split("#", 1)[0].split("?", 1)[0]
     if not target:
         return None
-    return (skill_dir / target.removeprefix("@skill/")).resolve(strict=False) if target.startswith("@skill/") else (markdown.parent / target).resolve(strict=False)
+    if target.startswith("@skill/"):
+        return (skill_dir / target.removeprefix("@skill/")).resolve(strict=False)
+    return (markdown.parent / target).resolve(strict=False)
 
 
 def contains_key(value: Any, key: str) -> bool:

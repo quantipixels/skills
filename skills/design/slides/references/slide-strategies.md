@@ -1,94 +1,92 @@
-# Slide Strategies
+# Deck strategy patterns
 
-15 proven deck structures with emotion arcs.
+Choose a deck sequence from the audience's decision and evidence, not a named template or fixed slide count.
 
-## Strategy Selection
+## Common narrative mechanisms
 
-| Strategy | Slides | Goal | Audience |
-|----------|--------|------|----------|
-| YC Seed Deck | 10-12 | Raise seed funding | VCs |
-| Guy Kawasaki | 10 | Pitch in 20 min | Investors |
-| Series A | 12-15 | Raise Series A | Growth VCs |
-| Product Demo | 5-8 | Demonstrate value | Prospects |
-| Sales Pitch | 7-10 | Close deal | Qualified leads |
-| Nancy Duarte Sparkline | Varies | Transform perspective | Any |
-| Problem-Solution-Benefit | 3-5 | Quick persuasion | Time-pressed |
-| QBR | 10-15 | Update stakeholders | Leadership |
-| Team All-Hands | 8-12 | Align team | Employees |
-| Conference Talk | 15-25 | Thought leadership | Attendees |
-| Workshop | 20-40 | Teach skills | Learners |
-| Case Study | 8-12 | Prove value | Prospects |
-| Competitive Analysis | 6-10 | Strategic decisions | Internal |
-| Board Meeting | 15-20 | Update board | Directors |
-| Webinar | 20-30 | Generate leads | Registrants |
+### Case for change
 
-## Common Structures
-
-### YC Seed Deck (10 slides)
-1. Title/Hook
-2. Problem
-3. Solution
-4. Traction
-5. Market
-6. Product
-7. Business Model
-8. Team
-9. Financials
-10. The Ask
-
-**Emotion arc:** curiosity→frustration→hope→confidence→trust→urgency
-
-### Sales Pitch (9 slides)
-1. Personalized Hook
-2. Their Problem
-3. Cost of Inaction
-4. Your Solution
-5. Proof/Case Studies
-6. Differentiators
-7. Pricing/ROI
-8. Objection Handling
-9. CTA + Next Steps
-
-**Emotion arc:** connection→frustration→fear→hope→trust→confidence→urgency
-
-### Product Demo (6 slides)
-1. Hook/Problem
-2. Solution Overview
-3. Live Demo/Screenshots
-4. Key Features
-5. Benefits/Pricing
-6. CTA
-
-**Emotion arc:** curiosity→frustration→hope→confidence→urgency
-
-## Duarte Sparkline Pattern
-
-Alternate between "What Is" (current pain) and "What Could Be" (better future):
-
-```
-What Is → What Could Be → What Is → What Could Be → New Bliss
-(pain)     (hope)         (pain)     (hope)         (resolution)
+```text
+current state/problem
+→ consequence / why now
+→ proposed change/mechanism
+→ evidence/feasibility
+→ trade-offs/risks
+→ decision or next action
 ```
 
-Pattern breaks at 1/3 and 2/3 positions create engagement peaks.
+Useful for investment, internal proposals, transformation programs, or executive decisions. Include market/financial/team material only when it is actual evidence for the decision.
 
-## Search Commands
+### Product or sales demonstration
 
-```bash
-# Find strategy by goal
-python3 <skill-root>/scripts/search-slides.py "investor pitch" -d strategy
-
-# Get emotion arc
-python3 <skill-root>/scripts/search-slides.py "series a funding" -d strategy --json
+```text
+audience problem/context
+→ product promise
+→ mechanism / workflow / demo
+→ proof / differentiation
+→ commercial or adoption implication
+→ next step
 ```
 
-## Matching Strategy to Context
+Keep the demo/product evidence central; do not bury it behind company-history slides.
 
-| Context | Recommended Strategy |
-|---------|---------------------|
-| Raising money | YC Seed, Series A, Guy Kawasaki |
-| Selling product | Sales Pitch, Product Demo |
-| Internal update | QBR, All-Hands, Board Meeting |
-| Public speaking | Conference Talk, Workshop |
-| Proving value | Case Study, Competitive Analysis |
-| Lead generation | Webinar |
+### Status / board / operating review
+
+```text
+current trajectory
+→ material change since last cutoff
+→ goals/actuals/variance
+→ blockers/risks/dependencies
+→ decisions needed
+→ owned next actions
+```
+
+Lead with exceptions and decisions, not a chronological activity log.
+
+### Teaching / conference explanation
+
+```text
+governing question
+→ minimum context
+→ mechanism/model
+→ examples/evidence
+→ consequences / application
+→ takeaway
+```
+
+Use repetition/examples to support learning, not to inflate slide count.
+
+### Case study / outcome record
+
+```text
+context
+→ challenge
+→ intervention/mechanism
+→ observed outcome
+→ evidence/limits
+→ transferable lesson
+```
+
+Sequence does not prove causality; preserve evidence limits.
+
+## Strategy selection
+
+Ask:
+
+1. What must the audience decide, believe, understand, or do?
+2. What evidence is required for that action?
+3. Which objections/trade-offs are material enough to surface?
+4. What sequence makes each slide depend naturally on the previous one?
+5. What can be removed without weakening the decision/understanding?
+
+Named deck conventions may be useful external references when the user/project explicitly requires them, but verify the current required form from its owning source rather than caching one version here.
+
+## Calibration
+
+Good: an investor deck includes team/market/model because those facts are material to the investment case.
+
+Bad: every startup deck receives exactly ten predefined slides because a famous template uses ten.
+
+Good: a board deck opens with trajectory, exceptions and decisions required.
+
+Bad: a board deck spends its first half recapping completed activity while current risks remain hidden.
