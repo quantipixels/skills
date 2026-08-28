@@ -45,13 +45,19 @@ For genuine researched catalogues, apply [knowledge catalogues](knowledge-catalo
 
 Apply [capability and resource placement](resource-placement.md) to each operational skill, not only those with scripts.
 
-### Bundled executables
+### Skill-runtime executables
 
-For every executable, apply [script boundary](script-boundary.md) and return:
+For every executable that carries skill/runtime capability, apply [script boundary](script-boundary.md) and return:
 
 `KEEP | SHRINK | REPLACE_WITH_GUIDANCE | REPLACE_WITH_NATIVE | REPLACE_WITH_LIBRARY | MOVE_TO_OWNER | PROMOTE_TO_ENGINE | REMOVE | NEEDS_EVIDENCE`.
 
 For retained scripts, run the mandatory compression pass and name the exact remaining kernel.
+
+### Human-facing convenience entrypoints
+
+Audit public install/bootstrap/uninstall/helper wrappers separately from internal skill runtimes. Do not remove one merely because its mechanics could be written as several shell commands. Ask whether one stable safe invocation materially improves recurring user ergonomics while delegating the underlying operation to native tooling.
+
+Return `KEEP ENTRYPOINT | SHRINK ENTRYPOINT | REPLACE_WITH_COMMAND | REMOVE | NEEDS_EVIDENCE`, and verify safe scope/defaults, portability, transparent native delegation, and absence of hidden semantic state. `scripts/uninstall.sh` is the canonical counterexample to over-aggressive command replacement.
 
 ### Scriptless command affordances
 
@@ -86,7 +92,8 @@ Do not optimize repetition that is independently load-bearing, for example:
 - provider host trust, credential isolation, pagination, pre-write refresh and readback in separately installed provider owners;
 - distinct durable knowledge destinations with different semantic consequences;
 - deep expert references whose judgment is not duplicated elsewhere;
-- explicit experimental isolation from stable ownership.
+- explicit experimental isolation from stable ownership;
+- a thin public convenience entrypoint whose value is one safe memorable invocation over native tools.
 
 ## Report
 
@@ -98,7 +105,7 @@ Return:
 - control-shape and ownership/route map;
 - structural/resource-drift results;
 - reference/depth/catalogue findings;
-- script and command-affordance dispositions;
+- skill-runtime script, public-entrypoint, and command-affordance dispositions;
 - template/data/asset/support-infrastructure findings;
 - public-owner consolidation candidates and required proof;
 - healthy repetition explicitly retained;
