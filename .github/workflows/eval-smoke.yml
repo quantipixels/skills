@@ -1,9 +1,6 @@
 name: Eval smoke
 
 on:
-  push:
-    branches:
-      - eval/pr41-behavior
   workflow_dispatch:
 
 permissions:
@@ -12,89 +9,5 @@ permissions:
 jobs:
   smoke:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
     steps:
-      - uses: actions/cache@v4
-        with:
-          path: .eval-cache
-          key: qwen3-4b-q4km-7485fe6f-llamacpp-b10516
-
-      - name: Install pinned llama.cpp binary
-        run: |
-          set -euo pipefail
-          mkdir -p .eval-cache/llama
-          archive=.eval-cache/llama-b10516-bin-ubuntu-x64.tar.gz
-          if [ ! -f "$archive" ]; then
-            curl -L --fail --retry 5 --retry-delay 3 \
-              https://github.com/ggml-org/llama.cpp/releases/download/b10516/llama-b10516-bin-ubuntu-x64.tar.gz \
-              -o "$archive"
-          fi
-          echo 'f263a91280471b4c33c4999d7c76259c0f3a0a53a0b3e692b2c0b84380137a35  '"$archive" | sha256sum --check
-          if ! find .eval-cache/llama -type f -name llama-server -print -quit | grep -q .; then
-            tar -xzf "$archive" -C .eval-cache/llama
-          fi
-          find .eval-cache/llama -type f -name 'llama-*' -maxdepth 5 -print | sort > llama-files.txt
-          cat llama-files.txt
-
-      - name: Download pinned Qwen3 model
-        run: |
-          set -euo pipefail
-          model=.eval-cache/Qwen3-4B-Q4_K_M.gguf
-          if [ ! -f "$model" ]; then
-            curl -L --fail --retry 5 --retry-delay 5 --continue-at - \
-              'https://huggingface.co/Qwen/Qwen3-4B-GGUF/resolve/bc640142c66e1fdd12af0bd68f40445458f3869b/Qwen3-4B-Q4_K_M.gguf?download=true' \
-              -o "$model"
-          fi
-          echo '7485fe6f11af29433bc51cab58009521f205840f5b4ae3a32fa7f92e8534fdf5  '"$model" | sha256sum --check
-          ls -lh "$model"
-
-      - name: Run isolated local-model prompt
-        run: |
-          set -euo pipefail
-          server=$(find .eval-cache/llama -type f -name llama-server -print -quit)
-          chmod +x "$server"
-          "$server" \
-            --model .eval-cache/Qwen3-4B-Q4_K_M.gguf \
-            --host 127.0.0.1 \
-            --port 8080 \
-            --ctx-size 8192 \
-            --threads 4 \
-            --jinja \
-            --no-webui > server.log 2>&1 &
-          server_pid=$!
-          trap 'kill "$server_pid" 2>/dev/null || true' EXIT
-
-          for _ in $(seq 1 120); do
-            curl -fsS http://127.0.0.1:8080/health >/dev/null && break
-            sleep 1
-          done
-          curl -fsS http://127.0.0.1:8080/health | tee health.json
-
-          jq -n '{
-            model: "Qwen3-4B-Q4_K_M",
-            temperature: 0,
-            seed: 42,
-            max_tokens: 64,
-            messages: [
-              {role: "system", content: "Follow the instruction exactly. /no_think"},
-              {role: "user", content: "Return exactly: EVAL_OK"}
-            ]
-          }' > request.json
-
-          curl -fsS http://127.0.0.1:8080/v1/chat/completions \
-            -H 'Content-Type: application/json' \
-            --data-binary @request.json > response.json
-          jq -r '.choices[0].message.content' response.json | sed '/^$/d' | tee output.txt
-          grep -qx 'EVAL_OK' output.txt
-
-      - uses: actions/upload-artifact@v4
-        if: always()
-        with:
-          name: eval-smoke
-          path: |
-            llama-files.txt
-            health.json
-            request.json
-            response.json
-            output.txt
-            server.log
+      - run: echo "Smoke completed previously; use the full eval workflow for current runs."

@@ -1,0 +1,93 @@
+name: Full skill behavior eval
+
+on:
+  push:
+    branches:
+      - eval/pr41-behavior
+    paths:
+      - eval/scenarios.json
+      - eval/run_evals.py
+      - .github/workflows/eval-full.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  evaluate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/cache@v4
+        with:
+          path: .eval-cache
+          key: qwen3-4b-q4km-7485fe6f-llamacpp-b10516
+          fail-on-cache-miss: true
+
+      - name: Verify pinned runtime and model
+        run: |
+          set -euo pipefail
+          archive=.eval-cache/llama-b10516-bin-ubuntu-x64.tar.gz
+          model=.eval-cache/Qwen3-4B-Q4_K_M.gguf
+          echo 'f263a91280471b4c33c4999d7c76259c0f3a0a53a0b3e692b2c0b84380137a35  '"$archive" | sha256sum --check
+          echo '7485fe6f11af29433bc51cab58009521f205840f5b4ae3a32fa7f92e8534fdf5  '"$model" | sha256sum --check
+          server=$(find .eval-cache/llama -type f -name llama-server -print -quit)
+          chmod +x "$server"
+          "$server" --version | tee llama-version.txt
+
+      - name: Start model server
+        run: |
+          set -euo pipefail
+          server=$(find .eval-cache/llama -type f -name llama-server -print -quit)
+          nohup "$server" \
+            --model .eval-cache/Qwen3-4B-Q4_K_M.gguf \
+            --host 127.0.0.1 \
+            --port 8080 \
+            --ctx-size 32768 \
+            --threads 4 \
+            --parallel 1 \
+            --batch-size 1024 \
+            --ubatch-size 512 \
+            --jinja \
+            --no-webui > eval-server.log 2>&1 &
+          echo $! > eval-server.pid
+          for _ in $(seq 1 180); do
+            if curl -fsS http://127.0.0.1:8080/health > eval-health.json; then
+              cat eval-health.json
+              exit 0
+            fi
+            sleep 1
+          done
+          cat eval-server.log
+          exit 1
+
+      - name: Run isolated old/new generations
+        env:
+          EVAL_API: http://127.0.0.1:8080/v1/chat/completions
+          PYTHONUNBUFFERED: '1'
+        run: |
+          python3 eval/run_evals.py
+
+      - name: Stop model server
+        if: always()
+        run: |
+          if [ -f eval-server.pid ]; then
+            kill "$(cat eval-server.pid)" 2>/dev/null || true
+          fi
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: qp-skill-eval-raw
+          retention-days: 14
+          compression-level: 9
+          path: |
+            eval/scenarios.json
+            eval-results/
+            llama-version.txt
+            eval-health.json
+            eval-server.log

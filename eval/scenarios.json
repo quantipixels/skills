@@ -1,0 +1,653 @@
+{
+  "baseline": "51fd76de108155ad03faabad673c7a49421344f9",
+  "candidate": "df062490acc8193cf79c02355a244bf07a2687fe",
+  "model": {
+    "name": "Qwen3-4B-Q4_K_M",
+    "source": "Qwen/Qwen3-4B-GGUF",
+    "revision": "bc640142c66e1fdd12af0bd68f40445458f3869b",
+    "sha256": "7485fe6f11af29433bc51cab58009521f205840f5b4ae3a32fa7f92e8534fdf5"
+  },
+  "seed": 42,
+  "temperature": 0,
+  "scenarios": [
+    {
+      "id": "amoye-existing-brand",
+      "skill": "amoye-ui-ux",
+      "name": "Amọ̀ye UI/UX",
+      "group": "design",
+      "prompt": "An existing internal payments dashboard uses an approved crimson-and-charcoal brand. Operators are keyboard-heavy and work dense transaction tables in a Next.js application. Recommend one coherent UX direction. Do not redesign the brand and do not implement code.",
+      "criteria": [
+        "Preserves the approved crimson/charcoal identity rather than selecting a generic finance/technology palette.",
+        "Prioritizes operator workflow, dense data hierarchy, keyboard/focus behavior, and loading/empty/error states.",
+        "Separates UX direction from framework implementation and token mutation.",
+        "Returns one coherent direction rather than raw catalogue/search output."
+      ],
+      "instruction_files": [
+        "SKILL.md",
+        "references/quick-reference.md",
+        "references/pro-rules.md"
+      ],
+      "max_tokens": 700
+    },
+    {
+      "id": "amoye-blank-slate",
+      "skill": "amoye-ui-ux",
+      "name": "Amọ̀ye UI/UX",
+      "group": "design",
+      "prompt": "A new meditation app has no brand, no existing UI, and no selected framework. Give one coherent product and interaction direction for the first release. State material assumptions. Do not implement code.",
+      "criteria": [
+        "Produces a coherent direction despite missing catalogue/default data.",
+        "States assumptions rather than presenting arbitrary colors/fonts as confirmed.",
+        "Covers user job, hierarchy, states, accessibility, motion, and responsive/mobile behavior.",
+        "Routes identity/tokens/implementation only when their separate outcomes are required."
+      ],
+      "instruction_files": [
+        "SKILL.md",
+        "references/quick-reference.md",
+        "references/pro-rules.md"
+      ],
+      "max_tokens": 700
+    },
+    {
+      "id": "apere-multi-deliverable",
+      "skill": "apere",
+      "name": "Àpẹrẹ",
+      "group": "design",
+      "prompt": "A product launch needs four design outcomes: a brand refresh, landing-page UX direction, a social campaign set, and an investor deck. Route the work and make prerequisites, dependency order, safe parallel work, shared constraints, and completion boundary explicit. Do not create any artifacts.",
+      "criteria": [
+        "Assigns one appropriate design owner to each deliverable.",
+        "Identifies brand work as a prerequisite for dependent visual work where material.",
+        "Separates safe parallel work from dependencies.",
+        "Does not become the delivery owner or reproduce specialist procedures."
+      ],
+      "instruction_files": [
+        "SKILL.md"
+      ],
+      "max_tokens": 700
+    },
+    {
+      "id": "asa-existing-mantine",
+      "skill": "asa-oju-ibanisoro",
+      "name": "Àṣà Ojú Ìbánisọ̀rọ̀",
+      "group": "design",
+      "prompt": "Implement an accessible account-switcher popover in an existing React application that already uses Mantine, CSS Modules, semantic project tokens, and custom project breakpoints. Do not introduce shadcn, Tailwind, or another component library. Describe the implementation and verification approach; no repository is attached.",
+      "criteria": [
+        "Reuses Mantine and existing project conventions without asking to choose a competing library.",
+        "Uses current project/native tooling rather than cached shadcn/Tailwind mechanics.",
+        "Covers keyboard/focus/pressed/disabled/loading/error behavior as applicable.",
+        "Uses the project's breakpoints and verification commands rather than fixed QP viewport folklore."
+      ],
+      "instruction_files": [
+        "SKILL.md",
+        "references/ui-component-libraries.md",
+        "references/shadcn-accessibility.md"
+      ],
+      "max_tokens": 700
+    },
+    {
+      "id": "banner-informational-header",
+      "skill": "banner-design",
+      "name": "Banner Design",
+      "group": "design",
+      "prompt": "Design direction for a company LinkedIn header using the user-supplied 1584×396 specification. It is informational, not clickable, so no CTA is needed. The approved brand assets and copy are supplied. Return the composition and verification plan, not an image.",
+      "criteria": [
+        "Treats supplied/current dimensions as authority.",
+        "Does not force a CTA or unrelated generic banner defaults.",
+        "Derives hierarchy and art direction from supplied brand/message.",
+        "Covers crop/safe-area, legibility, export, and editability."
+      ],
+      "instruction_files": [
+        "SKILL.md",
+        "references/banner-sizes-and-styles.md"
+      ],
+      "max_tokens": 700
+    },
+    {
+      "id": "brand-approved-crimson",
+      "skill": "brand",
+      "name": "Brand",
+      "group": "design",
+      "prompt": "Review a new hospital landing-page hero. The approved brand intentionally uses crimson, and the user explicitly says not to change the identity unless an actual requirement is violated. Assess whether the hero is on-brand from this evidence:\n- Crimson background with white text, measured contrast 7.2:1\n- Approved horizontal logo used with documented clear space\n- Headline uses the approved typeface\n- Stock image has documented license and patient consent\n- CTA copy matches the approved voice\nDo not invent additional brand rules.",
+      "criteria": [
+        "Treats approved evidence as authoritative and does not reject crimson because of generic healthcare color psychology.",
+        "Checks actual identity, accessibility, logo, typography, imagery/provenance, and voice evidence.",
+        "Does not invent generic dimensions, file-size limits, or approval claims.",
+        "Returns evidence-based verdict/corrections rather than taste."
+      ],
+      "instruction_files": [
+        "SKILL.md",
+        "references/visual-identity.md",
+        "references/approval-checklist.md",
+        "templates/brand-guidelines-starter.md"
+      ],
+      "max_tokens": 700
+    },
+    {
+      "id": "brand-blank-logo",
+      "skill": "brand",
+      "name": "Brand",
+      "group": "design",
+      "prompt": "A new B2B operations company has only this brief: audience is operations leaders at mid-market firms; positioning is calm operational clarity; personality is precise, dependable, and understated. Establish a compact brand direction and three distinct logo exploration directions. Do not claim any direction is approved.",
+      "criteria": [
+        "Builds direction from audience/positioning/personality rather than industry/style catalogues.",
+        "Produces meaningfully distinct logo directions, not generic keyword dumps.",
+        "Separates exploratory concepts from approval.",
+        "Avoids arbitrary default palette/type values unless clearly framed as proposals."
+      ],
+      "instruction_files": [
+        "SKILL.md",
+        "references/logo-design.md",
+        "references/voice-framework.md",
+        "references/visual-identity.md",
+        "templates/brand-guidelines-starter.md"
+      ],
+      "max_tokens": 700
+    },
+    {
+      "id": "eto-project-values",
+      "skill": "eto-apere",
+      "name": "Ètò Àpẹrẹ",
+      "group": "design",
+      "prompt": "The project already has an approved orange brand, a 6px spacing rhythm, and existing CSS variable naming. Formalize a semantic and component token contract for buttons and form fields without changing the visual system. Show the token-layer shape and validation/install plan; do not invent a new palette or spacing scale.",
+      "criteria": [
+        "Uses confirmed orange/6px/current naming as inputs rather than QP defaults.",
+        "Preserves primitive → semantic → component aliases.",
+        "Defines only credible component states and avoids unnecessary component tokens.",
+        "Uses project-native compiler when available or the narrow fallback, with validation before installation."
+      ],
+      "instruction_files": [
+        "SKILL.md",
+        "references/token-architecture.md",
+        "references/component-specs.md",
+        "references/states-and-variants.md"
+      ],
+      "max_tokens": 700
+    },
+    {
+      "id": "slides-board-update",
+      "skill": "slides",
+      "name": "Slides",
+      "group": "design",
+      "prompt": "Create the narrative and slide-by-slide design plan for a six-slide board update from supplied revenue data and one incident summary. There is no application design-token system. The board must decide whether to continue the rollout. Do not fabricate data and do not build the deck yet.",
+      "criteria": [
+        "Pins the board decision and gives each slide one job/claim.",
+        "Uses charts only for relationships supported by supplied data.",
+        "Does not require creating a project token system or fixed HTML scaffold.",
+        "Maintains narrative transitions, evidence discipline, and delivery verification."
+      ],
+      "instruction_files": [
+        "SKILL.md",
+        "references/create.md",
+        "references/layout-patterns.md",
+        "references/slide-strategies.md",
+        "references/copywriting-formulas.md"
+      ],
+      "max_tokens": 700
+    },
+    {
+      "id": "social-cross-platform",
+      "skill": "social-graphics",
+      "name": "Social Graphics",
+      "group": "design",
+      "prompt": "Adapt one supplied campaign into an Instagram portrait post and a LinkedIn feed post. The user supplies the current required dimensions for both. Return the shared visual direction, how each crop will be recomposed, and verification; do not render the assets.",
+      "criteria": [
+        "Uses supplied/current dimensions rather than a stale private platform table.",
+        "Recomposes each surface rather than stretching one master.",
+        "Preserves message/brand hierarchy and mobile legibility.",
+        "Keeps covers/headers/display ads outside the social-post owner."
+      ],
+      "instruction_files": [
+        "SKILL.md",
+        "references/social-photos-design.md"
+      ],
+      "max_tokens": 700
+    },
+    {
+      "id": "akosile-worktree-migration",
+      "skill": "akosile",
+      "name": "Akọsílẹ̀",
+      "group": "engineering",
+      "prompt": "A Git repository has:\n- main worktree `/repo/main` with a populated real `.qp`\n- linked worktree `/mnt/feature` on a different filesystem with another populated real `.qp`\n- the linked store contains one unique Atọ́nà record\nExplain the exact safe migration behavior and final invariant. Do not assume cross-filesystem rename to the main worktree is possible.",
+      "criteria": [
+        "Identifies the non-bare main worktree as the canonical real `.qp` home.",
+        "Inventories/preflights all stores and blocks semantic conflicts.",
+        "Uses local freeze/rename plus copy-and-verify, not rename-to-main across filesystems.",
+        "Creates/validates the linked `.qp` symlink and preserves data after linked-worktree deletion.",
+        "Distinguishes canonical records from derived INDEX/projections."
+      ],
+      "instruction_files": [
+        "SKILL.md",
+        "references/workspace-contract.md",
+        "references/worktrees.md"
+      ],
+      "max_tokens": 700
+    },
+    {
+      "id": "akosile-concurrency",
+      "skill": "akosile",
+      "name": "Akọsílẹ̀",
+      "group": "engineering",
+      "prompt": "Two agents concurrently create the same logical plan subject `payment-provider-migration`. Separately, a validated candidate file changes after validation but before publication. Explain the required identities, operations, and failure outcomes. Do not choose semantic plan content.",
+      "criteria": [
+        "Uses one stable subject path and native atomic allocation; does not create `-2/-3` semantic identities.",
+        "Reuses/re-reads an existing same-subject allocation or stops on incomplete ambiguity.",
+        "Pins both candidate and target digests.",
+        "Returns candidate-changed vs stale-target outcomes and leaves semantic reconciliation to the owner."
+      ],
+      "instruction_files": [
+        "SKILL.md",
+        "references/workspace-contract.md"
+      ],
+      "max_tokens": 700
+    },
+    {
+      "id": "alaga-selected-candidate",
+      "skill": "alaga",
+      "name": "Alága",
+      "group": "engineering",
+      "prompt": "A build is complete but uncommitted. The review candidate includes a modified tracked file, a deleted tracked file, a new symlink, and a new binary under `src/`. `docs/notes.md` is unrelated ambient work. Explain how to identify the exact review candidate without staging the real Git index or including ambient work.",
+      "criteria": [
+        "Captures all selected path states including deletion, untracked binary, and symlink.",
+        "Excludes ambient work and preserves the real index/refs.",
+        "Produces an exact stable candidate identity tied to HEAD and selected paths.",
+        "Stops or repeats capture when concurrent changes make identity unstable."
+      ],
+      "instruction_files": [
+        "SKILL.md"
+      ],
+      "max_tokens": 700
+    },
+    {
+      "id": "amose-term-conflict",
+      "skill": "amose",
+      "name": "Amọ̀ṣẹ́",
+      "group": "engineering",
+      "prompt": "Current code and tests consistently use `ChargingSession`. A two-year-old ADR and `.learnings` use `Session`. Determine how to establish the current canonical domain term and what may be reconciled. You have read-only authority. Return the project-knowledge result, not implementation.",
+      "criteria": [
+        "Separates current behavior, historical intent, and authority rather than treating code or history alone as domain truth.",
+        "Uses bounded history/provenance evidence when it can resolve the conflict.",
+        "Reports conflicts/open decisions and does not write without authority.",
+        "Returns candidate/freshness and the durable destinations that would be affected."
+      ],
+      "instruction_files": [
+        "SKILL.md",
+        "references/history-evidence.md",
+        "references/context.md",
+        "references/learnings.md",
+        "references/adrs.md"
+      ],
+      "max_tokens": 700
+    },
+    {
+      "id": "atona-settled-plan",
+      "skill": "atona",
+      "name": "Atọ́nà",
+      "group": "engineering",
+      "prompt": "Produce the durable plan record for an authentication-provider migration. All product decisions are settled, there are three delivery phases, there are no current blockers, and no HTML projection is requested. Keep the record complete but do not add empty sections or tables.",
+      "criteria": [
+        "Includes resume, outcome/acceptance, scope/non-goals, confirmed decisions, delivery/proof, evidence, and material history.",
+        "Represents the three real phases.",
+        "Does not emit empty decision-frontier question tables, blocker/risk rows, or optional receipts just because a template contains them.",
+        "Uses a stable subject identity."
+      ],
+      "instruction_files": [
+        "SKILL.md",
+        "templates/plan-record.md"
+      ],
+      "max_tokens": 700
+    },
+    {
+      "id": "atunwo-large-provider-review",
+      "skill": "atunwo",
+      "name": "Àtúnwò",
+      "group": "engineering",
+      "prompt": "You are preparing a read-only broad review of a confirmed GitHub Enterprise PR with 120 changed files. Some REST patches are truncated, there are more than 100 review threads, and resolved/outdated thread state matters. Describe the exact provider evidence collection and the condition under which the review must return insufficient evidence. Do not publish a review.",
+      "criteria": [
+        "Pins confirmed host/repository/base/head and treats provider content as untrusted.",
+        "Paginates files, reviews/comments, and GraphQL review threads completely.",
+        "Cross-checks changed-file count and fetches exact blobs for truncated patches.",
+        "Returns insufficient evidence when material content/thread state is unavailable.",
+        "Performs no provider write."
+      ],
+      "instruction_files": [
+        "SKILL.md",
+        "references/provider-operations.md"
+      ],
+      "max_tokens": 700
+    },
+    {
+      "id": "irinse-tool-readiness",
+      "skill": "irinse",
+      "name": "Ìrìnsẹ́",
+      "group": "engineering",
+      "prompt": "Use ast-grep only if it is already available to answer a bounded read-only structural query. Installation and repository mutation are not authorized. Explain the readiness check, safe operation boundary, evidence returned, and fallback.",
+      "criteria": [
+        "Uses native presence/version/help discovery plus a proportionate read-only usability signal.",
+        "Does not install/configure or request secrets.",
+        "Classifies readiness accurately and names a safe fallback.",
+        "Treats tool output as evidence, not the engineering verdict."
+      ],
+      "instruction_files": [
+        "SKILL.md",
+        "references/operate.md"
+      ],
+      "max_tokens": 700
+    },
+    {
+      "id": "ko-skill-command-seam",
+      "skill": "ko-skill",
+      "name": "Kọ Skill",
+      "group": "engineering",
+      "prompt": "Authoring brief: create a skill whose only mechanical need is finding matching rows in a local CSV. The model still selects the relevant source and decides what rows mean. Decide the capability/resource placement and propose the smallest package. Do not implement files.",
+      "criteria": [
+        "Places semantic source selection/judgment with the skill/agent.",
+        "Recommends a visible native command/short recipe before a custom search runtime.",
+        "Tests whether the CSV is genuine curated knowledge or duplicated catalogue data.",
+        "Does not promote a weak retrieval wrapper to an engine."
+      ],
+      "instruction_files": [
+        "SKILL.md",
+        "references/resource-placement.md",
+        "references/script-boundary.md",
+        "references/deep-capabilities.md"
+      ],
+      "max_tokens": 700
+    },
+    {
+      "id": "ko-skill-steering-entrypoint",
+      "skill": "ko-skill",
+      "name": "Kọ Skill",
+      "group": "engineering",
+      "prompt": "Evaluate two proposed repository resources:\n1. a tiny public skill named `salaye` that reliably requests progressive plain-language explanation so users do not repeat that long instruction;\n2. a source-aware `scripts/uninstall.sh` that gives users one safe curl command and delegates actual removal to `npx skills`.\nShould each exist, and at what surface?",
+      "criteria": [
+        "Recognizes reusable lightweight model steering as potential public-skill value.",
+        "Separates public convenience entrypoints from internal skill runtimes.",
+        "Retains only if routing/scope is clear and underlying native tool remains the operation owner.",
+        "Does not remove either solely because the base model/shell can technically perform the act."
+      ],
+      "instruction_files": [
+        "SKILL.md",
+        "references/resource-placement.md",
+        "references/script-boundary.md",
+        "references/portfolio-audit.md"
+      ],
+      "max_tokens": 700
+    },
+    {
+      "id": "pare-deep-clean",
+      "skill": "pare",
+      "name": "Parẹ́",
+      "group": "engineering",
+      "prompt": "Read-only simplification audit: a subsystem has 35 tests. Many assert implementation shape, duplicate states, snapshots, or registration details. Stronger integration/contract proof is incomplete. The user wants aggressive simplification options but has not authorized deletion or abandonment of proof. Classify the test group and describe the next decision/authority boundary. Do not run tests or edit files.",
+      "criteria": [
+        "Does not classify the tests as delete-safe without complete stronger proof.",
+        "Still expresses a useful high-risk/aggressive candidate option rather than collapsing everything to permanent retain.",
+        "Requires explicit opt-in before abandoning non-contract proof and states consequences.",
+        "Remains read-only and names future proof/authority."
+      ],
+      "instruction_files": [
+        "SKILL.md",
+        "references/complexity-and-proof.md",
+        "references/maintainability-patterns.md"
+      ],
+      "max_tokens": 700
+    },
+    {
+      "id": "pare-dead-wrapper",
+      "skill": "pare",
+      "name": "Parẹ́",
+      "group": "engineering",
+      "prompt": "Read-only candidate review: a new helper class only forwards every call to one existing dependency and adds no policy, lifecycle, ownership, integration, or testing boundary. Review it for simplification; do not edit or run tests.",
+      "criteria": [
+        "Identifies relocated/forwarding complexity.",
+        "Recommends the smallest direct form with evidence and risk.",
+        "Does not confuse file length/metrics with a finding.",
+        "Remains read-only."
+      ],
+      "instruction_files": [
+        "SKILL.md",
+        "references/complexity-and-proof.md"
+      ],
+      "max_tokens": 700
+    },
+    {
+      "id": "se-triage-source-only",
+      "skill": "se-triage",
+      "name": "Ṣe Triage",
+      "group": "engineering",
+      "prompt": "A report says CSV export hangs after 10,000 rows and includes a stack trace. Source-read is authorized. Provider-read and provider-comment are not authorized. Explain the triage investigation and return the appropriate current classification/action from the supplied evidence; do not implement.",
+      "criteria": [
+        "Respects separate source/provider/comment authorities.",
+        "Uses the smallest bounded source/history investigation needed.",
+        "Separates observation, interpretation, inference, and missing facts.",
+        "Uses one canonical classification and one next action without implementing."
+      ],
+      "instruction_files": [
+        "SKILL.md",
+        "references/evidence-commands.md"
+      ],
+      "max_tokens": 700
+    },
+    {
+      "id": "seda-pr-ambient-divergence",
+      "skill": "seda-pr",
+      "name": "Ṣẹ̀dá PR",
+      "group": "engineering",
+      "prompt": "Publish the current branch. Intended changes are under `src/`; `.qp/` and `notes.local` are ambient and must not be published. The remote branch has one new commit. There is no force-push, reviewer-notification, issue-closing, review, or merge authority. Describe the exact publish behavior and stop conditions.",
+      "criteria": [
+        "Stages only intended work and excludes `.qp`/ambient paths.",
+        "Fetches and measures divergence before push.",
+        "Integrates remote-only work only if clean/in-scope and never force-pushes.",
+        "Verifies remote SHA and uses one existing/new PR/MR without claiming readiness.",
+        "Preserves separate notification/closing/review/merge authority."
+      ],
+      "instruction_files": [
+        "SKILL.md",
+        "references/git-operations.md",
+        "references/provider-operations.md"
+      ],
+      "max_tokens": 700
+    },
+    {
+      "id": "solution-architect-native-path",
+      "skill": "solution-architect",
+      "name": "Solution Architect",
+      "group": "engineering",
+      "prompt": "An existing Spring application already uses a transactional database outbox for email work. A proposal adds Redis and a second queue only because “queues scale better.” Decide whether the architecture is implementation-ready or what evidence/decision is missing. Do not implement.",
+      "criteria": [
+        "Derives decision drivers/scenarios rather than accepting technology fashion.",
+        "Inspects active platform/project capabilities before proposing new infrastructure.",
+        "Compares operational/migration/consistency/recovery cost.",
+        "Produces an implementation-facing architecture result or names exact missing evidence.",
+        "Does not turn a technical decision into a full user interview."
+      ],
+      "instruction_files": [
+        "SKILL.md",
+        "references/native-evidence.md",
+        "references/module-depth.md",
+        "references/architecture-contract.md"
+      ],
+      "max_tokens": 700
+    },
+    {
+      "id": "wo-pr-complete",
+      "skill": "wo-pr",
+      "name": "Wò PR",
+      "group": "engineering",
+      "prompt": "Supplied exact provider facts for PR #73 at head `abc123`:\n- open, not draft, positively mergeable\n- repository requires checks `unit` and `lint`; both successful\n- all review-thread pages were fetched; no published unresolved thread remains\n- review decision is approved\n- no provider read is incomplete\nReturn the current Wò PR milestone and report. Do not merge.",
+      "criteria": [
+        "Emits HANDOFF_READY for the exact head.",
+        "States that readiness is current, not approval/merge/terminal state.",
+        "Does not merge or claim continuing background work.",
+        "Includes evidence completeness and invalidation conditions."
+      ],
+      "instruction_files": [
+        "SKILL.md",
+        "references/provider-operations.md",
+        "references/failure-heuristics.md"
+      ],
+      "max_tokens": 700
+    },
+    {
+      "id": "wo-pr-incomplete",
+      "skill": "wo-pr",
+      "name": "Wò PR",
+      "group": "engineering",
+      "prompt": "Supplied exact provider facts for PR #74 at head `def456`:\n- open, not draft, positively mergeable\n- every visible check is green\n- installed provider CLI cannot identify which checks are required\n- review threads and approval state are complete\nReturn the current Wò PR milestone and next action. Do not mutate.",
+      "criteria": [
+        "Does not emit HANDOFF_READY because required-check semantics are incomplete.",
+        "Treats missing capability as an evidence gap, not proof that no checks are required.",
+        "Names the next safe read/manual capability needed.",
+        "Performs no mutation."
+      ],
+      "instruction_files": [
+        "SKILL.md",
+        "references/provider-operations.md"
+      ],
+      "max_tokens": 700
+    },
+    {
+      "id": "root-cause-competing",
+      "skill": "root-cause",
+      "name": "Root Cause",
+      "group": "experimental",
+      "prompt": "An intermittent timeout began after a connection-pool configuration change. Two credible mechanisms remain: pool exhaustion and DNS latency. Logs correlate with both. Explain the next diagnostic cycle and the status that can be claimed now. Do not fix production.",
+      "criteria": [
+        "Pins failure and builds competing mechanisms.",
+        "Chooses discriminating probes rather than changing multiple variables.",
+        "Requires set sufficiency and per-factor necessity for confirmed root cause.",
+        "Returns an unproved/evidence-blocked status rather than false confirmation.",
+        "Does not implement a fix."
+      ],
+      "instruction_files": [
+        "SKILL.md",
+        "references/probe-commands.md"
+      ],
+      "max_tokens": 700
+    },
+    {
+      "id": "alarina-missing-owner",
+      "skill": "alarina",
+      "name": "Alárinà",
+      "group": "productivity",
+      "prompt": "Current active skill inventory includes `amoye-ui-ux`, `eto-apere`, and `asa-oju-ibanisoro`, but does not include `brand`. The user asks to establish a new brand and then recommend landing-page UX. Return the shortest route.",
+      "criteria": [
+        "Identifies Brand as an unavailable required owner rather than imitating it.",
+        "Can name Amọ̀ye only for the separate UX outcome/dependency.",
+        "Uses current available inventory rather than assuming static catalogue availability.",
+        "Returns route/required support/gap without granting mutation."
+      ],
+      "instruction_files": [
+        "SKILL.md"
+      ],
+      "max_tokens": 700
+    },
+    {
+      "id": "alarina-independent-outcomes",
+      "skill": "alarina",
+      "name": "Alárinà",
+      "group": "productivity",
+      "prompt": "The user wants two independent outcomes from supplied material: triage an incident report and create a slide deck from the incident summary. Return the shortest route; do not perform either outcome.",
+      "criteria": [
+        "Returns a small route set rather than forcing one primary owner.",
+        "Assigns triage and slides to their distinct owners.",
+        "Does not invent a coordination lifecycle when simple parallel/ordered routing suffices.",
+        "Does not perform the routed work."
+      ],
+      "instruction_files": [
+        "SKILL.md"
+      ],
+      "max_tokens": 700
+    },
+    {
+      "id": "arojinle-small",
+      "skill": "arojinle",
+      "name": "Àròjinlẹ̀",
+      "group": "productivity",
+      "prompt": "The only material product choice is whether guest checkout should be enabled. Relevant facts are already established: it improves conversion, increases fraud/support exposure, and the business accepts the extra operational cost. Ask the current decision frontier and recommend an answer. Do not decide for the user.",
+      "criteria": [
+        "Asks the one currently answerable material question with a recommendation.",
+        "Waits for user confirmation and does not silently decide.",
+        "Does not create or require HTML for this single-round decision.",
+        "Does not ask for discoverable facts already supplied."
+      ],
+      "instruction_files": [
+        "SKILL.md"
+      ],
+      "max_tokens": 700
+    },
+    {
+      "id": "arojinle-large",
+      "skill": "arojinle",
+      "name": "Àròjinlẹ̀",
+      "group": "productivity",
+      "prompt": "Resolve a multi-round onboarding/privacy decision tree. Account requirement must be settled before data-retention and consent-copy questions; age-gating affects both. The result must survive across sessions. Begin the interview with the complete current frontier and explain the support view you will maintain.",
+      "criteria": [
+        "Asks only decisions whose prerequisites are settled.",
+        "Asks the whole current frontier in one round with recommendations.",
+        "Holds dependent questions for later rounds.",
+        "Uses a durable visual decision-tree view because the surface is substantial/multi-round.",
+        "Keeps decisions with the user."
+      ],
+      "instruction_files": [
+        "SKILL.md"
+      ],
+      "max_tokens": 700
+    },
+    {
+      "id": "ayewo-disputed-timeline",
+      "skill": "ayewo-igba-ise",
+      "name": "Àyẹ̀wò Ìgbà Iṣẹ́",
+      "group": "productivity",
+      "prompt": "A coding agent says it switched branches and lost work at about 11:30. The transcript is incomplete, but exact Git reflog/history and tool timestamps are available. Explain the evidence collection, causal reconstruction, and what qualifies as a durable recommendation. Do not review code or implement changes.",
+      "criteria": [
+        "Reconstructs the then-current contract/timeline and does not judge earlier actions by later requirements.",
+        "Uses Git/reflog as correlated evidence without substituting current state for the historical candidate.",
+        "Separates execution error from tool/environment/authority/instruction friction.",
+        "Recommends only durable changes supported beyond the incident."
+      ],
+      "instruction_files": [
+        "SKILL.md",
+        "references/git-reconstruction.md",
+        "references/corpus-analysis.md"
+      ],
+      "max_tokens": 700
+    },
+    {
+      "id": "html-simple-report",
+      "skill": "html-artifact",
+      "name": "HTML Artifact",
+      "group": "productivity",
+      "prompt": "Create the implementation plan for a static internal HTML report from a supplied two-section postmortem. There are no hidden disclosures, no print-expansion behavior, no carousel, and system dark/light styling is sufficient; the user did not request an explicit theme switch. State which reusable assets and verification level apply.",
+      "criteria": [
+        "Uses a purpose-shaped selective view rather than source dump.",
+        "Uses visual foundation only when equivalent behavior is absent.",
+        "Omits theme/report/carousel controls because their behavior is not needed.",
+        "Requires structural verification and only proportionate visual smoke/deep proof.",
+        "Does not invent postmortem conclusions."
+      ],
+      "instruction_files": [
+        "SKILL.md"
+      ],
+      "max_tokens": 700
+    },
+    {
+      "id": "salaye-kafka",
+      "skill": "salaye",
+      "name": "Ṣàlàyé",
+      "group": "productivity",
+      "prompt": "What is a Kafka consumer group? I understand queues but not Kafka.",
+      "criteria": [
+        "Starts with a simple accurate mental model.",
+        "Defines Kafka-specific terms before relying on them.",
+        "Uses one concrete example/analogy without distortion.",
+        "Layers mechanism/caveat proportionally rather than turning it into an exhaustive tutorial.",
+        "Does not route to research/implementation unnecessarily."
+      ],
+      "instruction_files": [
+        "SKILL.md"
+      ],
+      "max_tokens": 700
+    }
+  ]
+}

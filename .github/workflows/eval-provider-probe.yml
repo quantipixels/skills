@@ -1,9 +1,6 @@
 name: Eval provider probe
 
 on:
-  push:
-    branches:
-      - eval/pr41-behavior
   workflow_dispatch:
 
 permissions:
@@ -12,27 +9,5 @@ permissions:
 jobs:
   probe:
     runs-on: ubuntu-latest
-    env:
-      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-      ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-      GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-      GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
-      OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
-      AZURE_OPENAI_API_KEY: ${{ secrets.AZURE_OPENAI_API_KEY }}
     steps:
-      - name: Record provider availability
-        run: |
-          : > provider-availability.txt
-          for name in OPENAI_API_KEY ANTHROPIC_API_KEY GEMINI_API_KEY GOOGLE_API_KEY OPENROUTER_API_KEY AZURE_OPENAI_API_KEY; do
-            if [ -n "${!name}" ]; then
-              printf '%s=available\n' "$name" >> provider-availability.txt
-            else
-              printf '%s=missing\n' "$name" >> provider-availability.txt
-            fi
-          done
-          cat provider-availability.txt
-
-      - uses: actions/upload-artifact@v4
-        with:
-          name: eval-provider-availability
-          path: provider-availability.txt
+      - run: echo "Hosted provider probes are disabled; the eval uses a pinned local open-weight model."
