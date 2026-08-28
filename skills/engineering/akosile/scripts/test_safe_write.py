@@ -94,16 +94,21 @@ class SafeWriteTests(unittest.TestCase):
                         "--candidate", candidate, "--expected", "absent",
                     )
                     self.assertEqual((code, payload["error"]["code"]), (2, expected))
-            link = root / "linked"
-            try:
-                link.symlink_to(outside, target_is_directory=True)
-            except OSError:
-                return
-            code, payload = run(
-                "write", "--root", root, "--target", link / "target.md",
-                "--candidate", candidate, "--expected", "absent",
-            )
-            self.assertEqual((code, payload["error"]["code"]), (2, "TARGET_OUTSIDE_ROOT"))
+
+            real = root / "real"
+            real.mkdir()
+            for name, destination in (("outside-link", outside), ("inside-link", real)):
+                link = root / name
+                try:
+                    link.symlink_to(destination, target_is_directory=True)
+                except OSError:
+                    return
+                code, payload = run(
+                    "write", "--root", root, "--target", link / "target.md",
+                    "--candidate", candidate, "--expected", "absent",
+                )
+                self.assertEqual((code, payload["error"]["code"]), (2, "SYMLINK_PATH"))
+
             snapshot_parent = outside / "scratch-link"
             snapshot_parent.symlink_to(root, target_is_directory=True)
             code, payload = run(

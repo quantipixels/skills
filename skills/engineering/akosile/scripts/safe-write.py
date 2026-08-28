@@ -42,15 +42,27 @@ def real_directory(path: Path, code: str, *, reject_symlink: bool = False) -> Pa
 
 def target_path(root: Path, supplied: Path) -> tuple[Path, Path]:
     root = real_directory(root, "INVALID_ROOT", reject_symlink=True)
-    raw = absolute(supplied if supplied.is_absolute() else root / supplied)
-    parent = real_directory(raw.parent, "INVALID_TARGET_PARENT")
-    if raw.is_symlink():
-        raise Failure("SYMLINK_TARGET", "Target cannot be a symbolic link", target=str(raw))
-    target = parent / raw.name
+    target = absolute(supplied if supplied.is_absolute() else root / supplied)
     try:
-        target.relative_to(root)
+        relative = target.relative_to(root)
     except ValueError as error:
         raise Failure("TARGET_OUTSIDE_ROOT", "Target is outside the supplied root") from error
+
+    current = root
+    for part in relative.parts:
+        current /= part
+        if current.is_symlink():
+            raise Failure(
+                "SYMLINK_PATH",
+                "Target path cannot traverse symbolic links",
+                path=str(current),
+            )
+    if not target.parent.is_dir():
+        raise Failure(
+            "INVALID_TARGET_PARENT",
+            "Target parent must be an existing directory",
+            path=str(target.parent),
+        )
     return root, target
 
 

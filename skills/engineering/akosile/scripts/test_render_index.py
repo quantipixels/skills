@@ -103,12 +103,19 @@ class RenderIndexTests(unittest.TestCase):
             self.assertEqual((code, payload["error"]["code"]), (2, "OUTPUT_INSIDE_WORKSPACE"))
             self.assertFalse((workspace / "candidate.md").exists())
 
-    def test_missing_workspace_does_not_initialize(self):
+    def test_missing_or_malformed_workspace_does_not_initialize(self):
         with tempfile.TemporaryDirectory() as directory:
             workspace = Path(directory) / ".qp"
-            code, payload = run(workspace, Path(directory) / "candidate.md")
+            output = Path(directory) / "candidate.md"
+            code, payload = run(workspace, output)
             self.assertEqual((code, payload["error"]["code"]), (2, "WORKSPACE_MISSING"))
             self.assertFalse(workspace.exists())
+
+            workspace.mkdir()
+            (workspace / "records").write_text("not a directory")
+            code, payload = run(workspace, output)
+            self.assertEqual((code, payload["error"]["code"]), (2, "INVALID_RECORDS"))
+            self.assertFalse(output.exists())
 
 
 if __name__ == "__main__":

@@ -159,6 +159,8 @@ def build(workspace: Path, output: Path) -> dict[str, Any]:
     records = workspace / "records"
     if records.is_symlink():
         raise Failure("SYMLINK_RECORDS", "records cannot be a symbolic link")
+    if records.exists() and not records.is_dir():
+        raise Failure("INVALID_RECORDS", "records must be a directory")
     rows: list[dict[str, Any]] = []
     invalid: list[dict[str, str]] = []
     legacy: list[dict[str, str]] = []
