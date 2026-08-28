@@ -1,50 +1,51 @@
-# Keep Akọsílẹ̀ scripts focused on irreducible mechanics
+# Keep Akọsílẹ̀ repository-scoped with focused deterministic seams
 
 Status: Accepted
 
-Refines the safe-write and HTML-entry naming parts of [Use owner records as semantic sources for HTML projections](20260824-use-owner-records-for-html-projections.md).
+Refines the workspace and safe-write parts of [Use owner records as semantic sources for HTML projections](20260824-use-owner-records-for-html-projections.md).
 
 ## Context
 
-Akọsílẹ̀ needs two guarantees that ordinary agent command sequences do not provide reliably:
+QP records and artifacts must survive linked-worktree deletion. A physical `.qp` per worktree loses repository knowledge when a temporary worktree is removed and allows concurrent worktrees to diverge silently.
 
-- a file's working bytes and expected digest must come from the same read; and
-- two cooperating writers must not both accept the same prior target state.
+Akọsílẹ̀ also needs two mechanical guarantees ordinary agent command sequences do not provide reliably:
 
-Generated navigation also needs consistent YAML parsing and timestamp ordering.
+- a file's working bytes and expected digest must come from the same read, with cooperating writers unable to accept the same stale prior state; and
+- generated navigation must parse record YAML and order timestamps consistently.
 
-A proposed workspace engine went much further by implementing repository discovery, lookup, allocation, identity registries, settings operations, metadata assignment, diagnosis, repair, and a general command model. Those duplicate agent, Git, filesystem, and semantic-owner capabilities.
+A broader workspace runtime would duplicate Git/filesystem discovery, allocation, repair, and semantic-owner capabilities.
 
 ## Decision
 
-1. Agents and native Git/filesystem tools own root discovery, initialization, lookup, path/slug selection, atomic directory allocation, Git exclude, diagnosis, and repair.
-2. Keep exactly two deterministic helpers:
-   - `safe-write.py` returns one exact snapshot with its matching digest, or performs locked compare-and-swap replacement.
+1. `.qp` is repository-scoped state.
+2. In repositories with linked worktrees, the main worktree owns the one real `.qp` directory. Every linked worktree exposes a symlink to that canonical directory.
+3. Resolve the main worktree from Git's worktree inventory. Akọsílẹ̀ owns the canonical-home and alias policy; native Git/filesystem operations execute it.
+4. Before establishing aliases, inventory `.qp` across every registered worktree. Never replace a populated real `.qp` with a symlink before migration.
+5. Consolidate identical or non-colliding resources mechanically; regenerate `INDEX.md`; stop on same-identity/different-content semantic conflicts and return them to the owning skill. Make the final linked-directory-to-symlink swap recoverable.
+6. Semantic owners supply record/artifact kind, stable subject, and semantic content. Akọsílẹ̀ owns canonical paths, collision allocation, safe-write protocol, and indexing.
+7. Retain the current justified deterministic helpers:
+   - `safe-write.py` returns one exact snapshot with its matching digest, or performs locked compare-and-swap replacement;
    - `render-index.py` parses record YAML and renders an external `INDEX.md` candidate.
-3. `safe-write.py` owns only containment, exact snapshotting, the per-target write lock, under-lock comparison, atomic replacement, and readback.
-4. Semantic owners select paths; supply complete content; assign revision/timestamp; validate native state; and reconcile stale writes.
-5. `render-index.py` validates only the common envelope and owner/path agreement, orders timestamps, and reports malformed records. It cannot write inside `.qp`.
-6. Publish `INDEX.md` through the same safe-write primitive; do not add a second mutation implementation.
-7. New projections and standalone artifacts use real slug filenames:
-
-   ```text
-   .qp/records/<owner>/<record-id>/<record-slug>.html
-   .qp/artifacts/<artifact-id>/<artifact-slug>.html
-   ```
-
-8. Do not add a workspace CLI, subject registry, doctor/repair runtime, automatic migration, global lock registry, or semantic record model.
+8. `safe-write.py` owns only containment beneath the resolved real canonical root, exact snapshotting, the per-target lock, under-lock comparison, atomic replacement, and readback.
+9. `render-index.py` validates only the common record envelope and owner/path agreement, orders timestamps, links canonical `index.html` projections, and reports malformed records. It cannot write inside `.qp`.
+10. Publish `INDEX.md` through the same safe-write primitive; do not add a second mutation implementation.
+11. Keep canonical bundle entrypoints as `index.html` for owner projections and standalone artifacts.
+12. Do not add a general workspace CLI, subject registry, doctor/repair runtime, automatic semantic migration engine, or semantic record model. Future scripts are allowed only when they independently pass Kọ Skill's capability/script boundary.
 
 ## Consequences
 
-Akọsílẹ̀ retains the exact-snapshot, concurrency, and deterministic-index guarantees that require code while remaining a lightweight convention driven by natural agent capabilities.
+Deleting a linked worktree removes only its `.qp` alias; repository records remain under the main worktree. Concurrent worktrees operate on the same physical targets and the same per-target locks.
 
-The helpers require Python, PyYAML, and filelock. Per-target lock files are mechanical coordination state. Existing `index.html` files remain historical inputs and are reported, not migrated automatically.
+Existing worktrees with physical `.qp` directories require bounded migration before aliasing. Migration preserves unknown/user state, does not auto-rename conflicting semantic records, and remains recoverable until final verification succeeds.
+
+The helpers require Python, PyYAML, and filelock. Filesystem symlink support is required for linked-worktree aliases; unsupported hosts return a capability gap rather than creating duplicate physical stores.
 
 ## Rejected alternatives
 
-- Prose-only stale checks: not atomic across processes.
+- Physical `.qp` per linked worktree: loses or forks repository state when worktrees are deleted.
+- Store `.qp` inside Git's internal common directory: hides a human/agent workspace inside Git implementation state.
+- Prose-only stale checks: cannot make cooperating compare-and-swap writers atomic.
 - Separate content read and digest calculation: can describe different target states.
-- Complete workspace engine: duplicates existing agent and native-tool capabilities.
-- Engine-assigned identity or metadata: belongs to semantic owners.
-- Direct index mutation by the renderer: duplicates the safe-write seam.
-- `index.html` for every artifact: hides semantic identity.
+- Complete workspace engine: duplicates agent and native Git/filesystem capabilities.
+- Semantic owners constructing `.qp` paths: leaks Akọsílẹ̀'s persistence boundary into callers.
+- Slug-named HTML entry files: duplicates bundle identity without a demonstrated benefit; canonical `index.html` remains simpler and portable.
