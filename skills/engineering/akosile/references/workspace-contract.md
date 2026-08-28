@@ -1,105 +1,98 @@
 # Workspace contract
 
-Use this reference for the repository-local `.qp` v0 layout, common record envelope, identity, deterministic writes, generated index, and direct-access receipts.
+Use this reference for the repository-local `.qp` root, shared paths, common record envelope, focused safe-write/index helpers, direct user access, and generated navigation.
 
 ## Root and layout
 
-Resolve the Git worktree root; the canonical workspace is exactly `<repository>/.qp`.
+Resolve the Git worktree root when available; the canonical workspace is exactly `<repository>/.qp`.
 
 ```text
 .qp/
 ├── settings.json
 ├── INDEX.md
-├── .locks/
 ├── records/<owner>/<record-id>/
 │   ├── record.md
 │   ├── <record-slug>.html       # optional owner projection
 │   ├── receipts/                # optional
 │   └── evidence/                # optional
 └── artifacts/<artifact-id>/
-    └── <artifact-slug>.html     # owner-selected entry artifact
+    └── <artifact-slug>.html
 ```
 
-`.locks/` is private mechanical state and never a semantic registry. New records use owner-first paths. Do not introduce open-ended roots such as `.qp/plans`, `.qp/architecture`, `.qp/reports`, `.qp/research`, `.qp/triage`, `.qp/findings`, or `.qp/state`.
+New records use owner-first paths. Do not introduce open-ended roots such as `.qp/plans`, `.qp/architecture`, `.qp/reports`, `.qp/research`, `.qp/triage`, `.qp/findings`, or `.qp/state`.
 
-This version supports repository-local `.qp` only. Do not add a global registry, background synchronizer, daemon, global/project precedence, or automatic local-to-global migration.
+This version supports repository-local `.qp` only. Do not add a global registry, daemon, synchronizer, global/project precedence, or automatic local-to-global migration.
 
 ## Identity and naming
 
-- `owner` is the canonical ASCII skill `name`.
-- `subject` is the stable semantic identity within that owner.
-- `record_ref` is `<owner>/<record-id>` and is the exact operational identity after allocation.
+- Owner is the canonical ASCII skill `name`.
 - Record and artifact IDs use `<YYYYMMDD>-<stable-slug>` with a numeric suffix on collision.
-- The physical directory remains stable across title, status, candidate, and projection changes.
-- The HTML entry filename is the actual resource slug, including any collision suffix: `<stable-slug>.html`. New writes never use `index.html`.
-- Reject absolute identifiers, separators inside owner/slug, `.`/`..`, control characters, secret-bearing identifiers, symlink traversal, and targets outside `.qp`.
+- Prefer an exact supplied path or exact candidate identity before slug matching.
+- Keep the allocated directory stable across title, status, candidate, and projection changes.
+- Use the actual allocated slug as the HTML filename, including a collision suffix: `<stable-slug>.html`.
+- New QP writes never use `index.html` as an artifact or projection entrypoint.
+- Reject absolute identifiers, separators inside owner/slug, `.`/`..`, secret-bearing identifiers, symlink traversal, and destinations outside `.qp`.
 
-Resolve by exact `record_ref` when known. Otherwise resolve a current record by `owner + subject`. Similar titles and candidates are not identity. Legacy records without `subject` remain readable but require an exact-ref update before subject-based allocation can proceed safely.
+Use native filesystem creation for allocation. Directory creation is already atomic; if the desired ID exists, select the next numeric suffix.
 
-## Common record envelope
+## Common record fields
 
-New records contain:
+A record may add owner-specific fields, but frontmatter needs:
 
 ```yaml
 owner: <canonical-skill-name>
 record_type: <owner-native type>
-subject: <stable owner-scoped identity>
 title: <human title>
-updated_at: <Akọsílẹ̀-assigned offset-aware timestamp>
-revision: <Akọsílẹ̀-assigned positive integer>
+updated_at: <offset-aware timestamp>
+revision: <positive integer>
 candidate: <exact current candidate, optional>
 status: <owner-native state>
 ```
 
-The semantic owner supplies and validates `owner`, `record_type`, `subject`, `title`, optional `candidate`, `status`, owner-specific fields, and the complete Markdown body. Akọsílẹ̀ owns `updated_at`, `revision`, the physical ID/path, generic YAML parsing, and the common-envelope/path checks.
+The semantic owner defines valid record types, statuses, transitions, evidence, candidate meaning, revision policy, timestamp policy, and body structure. Akọsílẹ̀'s index helper validates only this shared mechanical envelope and owner/path agreement.
 
-After creation, `owner` and `record_type` do not change. `subject` is assigned once and then does not change. The semantic owner defines record types, statuses, transitions, evidence, and body structure.
+## Focused safe writes
 
-## Compare-and-swap writes
+Use `scripts/safe-write.py`; do not build a workspace command layer around it.
 
-Every record or settings replacement uses the bundled engine and one expected current digest:
+The semantic owner:
 
-1. Read the exact target and retain the returned SHA-256 digest; use `absent` only for a new target.
-2. Build and semantically validate the complete candidate outside the engine.
-3. Acquire the per-resource file lock.
-4. Reread under the lock and compare the exact digest/absence.
-5. Validate the generic candidate and immutable identity.
-6. Assign record revision and `updated_at` where applicable.
-7. Write a temporary file, flush it, and atomically replace the target.
-8. Reread and validate the written result.
-9. Rebuild `INDEX.md` after a record write.
+1. reads the exact current target;
+2. records its digest, or `absent` when creating it;
+3. builds and semantically validates the complete replacement separately; and
+4. supplies the `.qp` root, exact target, candidate file, and expected digest.
 
-A stale digest, lock timeout, concurrent participating write, malformed current file, identity conflict, path escape, or ambiguous subject returns a typed conflict. Do not overwrite or silently retry it. Writes that bypass the engine are outside this guarantee.
+The helper:
 
-Record revision starts at `1` and increments by exactly one. A failed index rebuild does not invalidate a successfully verified record; the operation reports the derived index failure separately.
+1. verifies the target resolves within the supplied root;
+2. takes a per-target file lock;
+3. rereads and fingerprints the target under the lock;
+4. rejects a stale expected digest;
+5. atomically replaces the complete file;
+6. fsyncs where supported; and
+7. rereads and verifies the written digest.
 
-## Index
+The helper does not allocate paths, interpret frontmatter, assign revisions or timestamps, choose recovery, or retry stale writes. A stale write returns to the semantic owner for reconciliation.
 
-`.qp/INDEX.md` is generated from mechanically valid `record.md` frontmatter and sorted by the UTC instant represented by `updated_at`, newest first. It displays owner, record type, title, native status, record link, and optional expected slug-named HTML view.
+Hidden sibling lock files are mechanical coordination files, not records or registry state. They may remain after successful operations.
 
-Malformed records, path mismatches, and duplicate `owner + subject` identities appear in diagnostic sections rather than disappearing. Records remain authoritative; users and semantic owners do not edit the generated index.
+## Generated index
 
-## Doctor and repair
+Use `scripts/rebuild-index.py` after record writes or when navigation is stale.
 
-`doctor` is read-only. It may report:
+`.qp/INDEX.md` is generated from mechanically valid `record.md` frontmatter and sorted by the chronological instant represented by `updated_at`, newest first. It displays owner, record type, title, native status, record link, and the expected real slug-named HTML view when that file exists.
 
-- missing workspace infrastructure;
-- malformed settings or records;
-- missing or duplicate subjects;
-- path, owner, ID, or symlink violations;
-- stale/missing index state;
-- legacy roots or `index.html`; and
-- missing repository-local Git hygiene.
+Malformed records and legacy `index.html` entrypoints appear diagnostically rather than disappearing. Records remain authoritative; users and semantic owners do not edit the generated index.
 
-`repair` may create missing directories, initialize a missing settings file as `{}`, regenerate `INDEX.md`, and add `.qp/` to repository-local Git exclude. It never rewrites semantic records, deletes legacy material, migrates identities, or renames artifact entry files.
+A failed index rebuild does not invalidate a successfully verified record write.
 
 ## Direct user access
 
-For a resource intended for direct user use, return:
+For a generated resource intended for direct use, return:
 
 ```text
-Absolute path: <resolved filesystem path>
-Workspace path: <repository-relative path beginning .qp/...>
+Absolute path: <resolved absolute filesystem path>
+Workspace path: <path relative to repository root, beginning .qp/...>
 ```
 
 The workspace path is the stable project-local reference. Do not embed machine-specific absolute paths as portable source identity.

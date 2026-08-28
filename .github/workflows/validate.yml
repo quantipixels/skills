@@ -44,7 +44,7 @@ jobs:
         run: python3 skills/engineering/ko-skill/scripts/validate-package.py --repo .
 
   akosile-tests:
-    name: Akosile workspace tests
+    name: Akosile focused mechanics
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -58,7 +58,7 @@ jobs:
       - name: Install Akosile dependencies
         run: python3 -m pip install -r skills/engineering/akosile/scripts/requirements.txt
 
-      - name: Test deterministic workspace operations
+      - name: Test safe-write and index helpers
         run: python3 -m unittest discover -s skills/engineering/akosile/scripts -p 'test_*.py'
 
   wo-pr-tests:

@@ -23,9 +23,9 @@ record_type: initiative-plan
 subject: <stable initiative identity>
 ```
 
-Atọ́nà owns the record body, native status, decision frontier, delivery summary, decisions, and semantic validity. Akọsílẹ̀ owns subject-safe path allocation, compare-and-swap persistence, `updated_at`, revision, direct-access paths, and index reconciliation.
+Atọ́nà owns the record body, revision, native status, decision frontier, delivery summary, decisions, and semantic validity. Akọsílẹ̀ owns path allocation, safe writes, direct-access paths, and index reconciliation.
 
-Use `html-artifact` to visualise the outcome, status, decision frontier, confirmed decisions, phases, blockers, delivery/proof, and next action at the exact real slug-named projection path returned by Akọsílẹ̀. Keep its HTML as the primary human view. Refresh it after settled decision rounds or lifecycle transitions; never interrupt an active Àròjinlẹ̀ round for artifact work. Between those boundaries, or when a refresh fails, the semantic record remains current and the HTML must not be presented as current.
+Use `html-artifact` to visualise the outcome, status, decision frontier, confirmed decisions, phases, blockers, delivery/proof, and next action. Keep its HTML as the primary human view. Refresh it after settled decision rounds or lifecycle transitions; never interrupt an active Àròjinlẹ̀ round for artifact work. Between those boundaries, or when a refresh fails, the semantic record remains current and the HTML must not be presented as current.
 
 When material questions are open, the active Àròjinlẹ̀ round is the user-facing handoff: lead with the questions and recommended answers and wait for the user's decisions.
 
