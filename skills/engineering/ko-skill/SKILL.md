@@ -1,6 +1,6 @@
 ---
 name: ko-skill
-description: Author, revise, or validate one portable agent skill, or audit a bounded skill portfolio. Focus on one owned outcome, deep-module composition, the smallest behavior-bearing contract, and proportionate proof.
+description: Author, revise, or validate one portable agent skill, or audit a bounded skill portfolio. Focus on one owned outcome, deep-module composition, the smallest behavior-bearing contract, selectively loaded expert depth, and proportionate proof.
 ---
 
 # Kọ Skill
@@ -47,11 +47,17 @@ Prefer directional composition such as `Use <skill> to <owned outcome>` or `Use 
 
 Treat a duplicated procedure or caller-specific result dialect as an ownership defect unless evidence proves that the repeated contract is independently necessary at that boundary.
 
-## 4. Write and compress the contract
+## 4. Write the smallest useful contract and preserve expert depth
 
 Treat user constraints as the target contract. Map the candidate's material capabilities across selection, owned outcome, control flow, authority/safety, state/recovery, proof, integrations, and completion. Mark each `retain | change | move | remove`; use capabilities, not sentence count, to prove preservation.
 
-Before adding a rule, first try to delete, merge, replace, or move existing prose. Give every behavior one shortest clear owner. Keep a second representation only when it adds a distinct decision, safety, authority, recovery, verification, or owner boundary.
+Before adding a rule, first try to delete, merge, replace, or move existing prose. Give every behavior one shortest clear owner. Keep a second representation when it adds a distinct decision, safety, authority, recovery, verification, owner boundary, or material calibration that the primary form does not carry well.
+
+Keep `SKILL.md` focused on the owned outcome, trigger, universally required behavior, control flow, authority, and completion boundary. Use progressively disclosed references for cohesive expertise that materially improves recurring judgment. A substantial reference is valid when its branch is selective and its knowledge is non-obvious; do not optimize reference size or file count as an end in itself.
+
+When adding, expanding, splitting, moving, or removing an ordinary skill reference, read [reference quality](references/reference-quality.md). It owns the distinction between decision-bearing expert depth, over-compression, duplicated documentation, and disguised catalogues.
+
+When deciding whether substantial skill depth belongs in guidance, native/project tooling, a focused library, a bundled script, or a deterministic engine, read [deep capability placement](references/deep-capabilities.md). Choose placement from the owned outcome and natural capability boundary rather than equating depth with executable code.
 
 Write for a capable agent:
 
@@ -60,14 +66,14 @@ Write for a capable agent:
 - keep universally required behavior in `SKILL.md` and load branch-specific references only at the branch that needs them;
 - use judgment for variable work and precision only where a wrong interpretation is consequential;
 - point to discoverable environment facts, commands, configuration, schemas, and project tooling instead of caching them in prose;
-- use an example only when it replaces prose or prevents a material error; and
-- remove rationale, history, generic advice, repeated summaries, and reference-owned procedure that does not change execution.
+- use concise examples, counterexamples, `Good / Bad`, `Prefer / Avoid`, or similar calibration when they sharpen a recurring non-obvious distinction or prevent a plausible wrong interpretation; and
+- remove rationale, history, generic advice, repeated summaries, and reference-owned procedure that does not change execution or judgment.
 
 Name a mode only when distinct behavior/authority requires one; use the shortest clear verb or verb phrase.
 
 When adding, keeping, expanding, moving, or replacing a bundled script, read [bundled-script boundary](references/script-boundary.md). A script must own one necessary mechanical `input → deterministic output` seam; semantic judgment stays in the skill.
 
-When the skill is a broad researched knowledge catalogue or resolver companion, read [researched knowledge catalogues](references/knowledge-catalogues.md) and prefer progressive disclosure over a custom retrieval runtime.
+When the skill is a broad researched knowledge catalogue or resolver companion, read [researched knowledge catalogues](references/knowledge-catalogues.md) and prefer progressive disclosure over a custom retrieval runtime. Do not classify an execution companion or ordinary deep reference as a catalogue merely because its subject or reference is broad.
 
 Follow repository provider policy for provider-capable owners. Do not propagate provider procedure into non-provider callers.
 
@@ -79,12 +85,12 @@ Use the smallest proof that can falsify the changed contract:
 
 - **structural** — metadata, paths, references, packaging, manifest/router parity, deterministic invariants;
 - **baseline** — pre-change evidence only when correcting behavior or claiming behavioral equivalence;
-- **forward** — one or a few fresh realistic goals only when selection, authority, safety, state, branching, composition, or output remains materially uncertain;
+- **forward** — one or a few fresh realistic goals only when selection, authority, safety, state, branching, composition, reference retrieval, or output remains materially uncertain;
 - **final** — reread the exact final candidate and rerun only proof invalidated by the change.
 
 Match proof to control shape. A lightweight skill does not need workflow-shaped scenarios. A workflow must prove only the transitions, stale/partial states, authority boundaries, and recovery paths that can change its result.
 
-For a compression or ownership refactor, compare the same goal/candidate before and after when material uncertainty remains. Hide the expected answer and deny mutation/credentials unless a disposable scenario explicitly authorizes them.
+For a compression, reference-depth, or ownership refactor, compare the same goal/candidate before and after when material uncertainty remains. Prove both directions when relevant: removed material was not behavior-bearing, and newly deepened material changes a plausible judgment without forcing unrelated context. Hide the expected answer and deny mutation/credentials unless a disposable scenario explicitly authorizes them.
 
 Do not create prompt-evaluation suites to defend wording. Follow repository policy for deterministic tests and package validation. Add an independent reviewer only when consequence or ambiguity justifies it.
 
@@ -94,4 +100,4 @@ For validation, classify every material obligation as `proved`, `defect`, `evide
 
 With mutation authority, reconcile affected host metadata, package/release surfaces, catalog/router entries, and direct references. Preserve unrelated work. Changes to installation, activation, synchronization, publication, or provider state require their own authority.
 
-Report the operation, exact candidate, owned outcome/control shape, changed files, material capability moves/removals, dependency-boundary changes, script dispositions when applicable, proof and gaps, and observed `source | installed | active | published` state. For substantial simplification, include before/after size only as evidence of change, never as the acceptance target.
+Report the operation, exact candidate, owned outcome/control shape, changed files, material capability moves/removals, reference dispositions when applicable, dependency-boundary changes, script dispositions when applicable, proof and gaps, and observed `source | installed | active | published` state. For substantial simplification, include before/after size only as evidence of change, never as the acceptance target.
