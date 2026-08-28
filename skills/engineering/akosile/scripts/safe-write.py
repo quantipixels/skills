@@ -14,260 +14,175 @@ from typing import Any
 from filelock import FileLock, Timeout
 
 ABSENT = "absent"
-DIGEST_RE = re.compile(r"^[0-9a-f]{64}$")
+DIGEST = re.compile(r"^[0-9a-f]{64}$")
 
 
-class SafeWriteError(Exception):
+class Failure(Exception):
     def __init__(self, code: str, message: str, **details: Any) -> None:
         super().__init__(message)
-        self.code = code
-        self.message = message
-        self.details = details
+        self.code, self.message, self.details = code, message, details
 
-    def payload(self) -> dict[str, Any]:
-        result: dict[str, Any] = {"code": self.code, "message": self.message}
+    def as_dict(self) -> dict[str, Any]:
+        value: dict[str, Any] = {"code": self.code, "message": self.message}
         if self.details:
-            result["details"] = self.details
-        return result
+            value["details"] = self.details
+        return value
 
 
-def hash_bytes(content: bytes) -> str:
+def absolute(path: Path) -> Path:
+    return Path(os.path.abspath(path.expanduser()))
+
+
+def real_directory(path: Path, code: str, *, reject_symlink: bool = False) -> Path:
+    raw = absolute(path)
+    if not raw.is_dir() or (reject_symlink and raw.is_symlink()):
+        raise Failure(code, "Path must be an existing directory", path=str(raw))
+    return raw.resolve()
+
+
+def target_path(root: Path, supplied: Path) -> tuple[Path, Path]:
+    root = real_directory(root, "INVALID_ROOT", reject_symlink=True)
+    raw = absolute(supplied if supplied.is_absolute() else root / supplied)
+    parent = real_directory(raw.parent, "INVALID_TARGET_PARENT")
+    if raw.is_symlink():
+        raise Failure("SYMLINK_TARGET", "Target cannot be a symbolic link", target=str(raw))
+    target = parent / raw.name
+    try:
+        target.relative_to(root)
+    except ValueError as error:
+        raise Failure("TARGET_OUTSIDE_ROOT", "Target is outside the supplied root") from error
+    return root, target
+
+
+def external_file(path: Path, label: str) -> Path:
+    raw = absolute(path)
+    parent = real_directory(raw.parent, f"INVALID_{label.upper()}_PARENT")
+    if raw.is_symlink() or not raw.is_file():
+        raise Failure(
+            f"INVALID_{label.upper()}",
+            f"{label.title()} must be a regular non-symlink file",
+        )
+    return parent / raw.name
+
+
+def external_output(path: Path, root: Path) -> Path:
+    raw = absolute(path)
+    parent = real_directory(raw.parent, "INVALID_SNAPSHOT_PARENT")
+    if raw.is_symlink():
+        raise Failure("INVALID_SNAPSHOT", "Snapshot output cannot be a symbolic link")
+    output = parent / raw.name
+    try:
+        output.relative_to(root)
+    except ValueError:
+        return output
+    raise Failure("SNAPSHOT_INSIDE_ROOT", "Snapshot output must be outside the root")
+
+
+def sha256(content: bytes) -> str:
     return hashlib.sha256(content).hexdigest()
 
 
-def resolve_root(root: Path) -> Path:
-    supplied = Path(os.path.abspath(root.expanduser()))
-    if supplied.is_symlink():
-        raise SafeWriteError("SYMLINK_ROOT", "Root cannot be a symbolic link", root=str(supplied))
-    if not supplied.exists() or not supplied.is_dir():
-        raise SafeWriteError("INVALID_ROOT", "Root must be an existing directory", root=str(supplied))
-    return supplied.resolve()
-
-
-def resolve_target(root: Path, target: Path) -> tuple[Path, Path]:
-    resolved_root = resolve_root(root)
-    supplied = target.expanduser()
-    lexical = Path(os.path.abspath(supplied if supplied.is_absolute() else resolved_root / supplied))
-    try:
-        relative = lexical.relative_to(resolved_root)
-    except ValueError as error:
-        raise SafeWriteError(
-            "TARGET_OUTSIDE_ROOT",
-            "Target is outside the supplied root",
-            root=str(resolved_root),
-            target=str(lexical),
-        ) from error
-
-    current = resolved_root
-    for part in relative.parts:
-        current /= part
-        if current.is_symlink():
-            raise SafeWriteError(
-                "SYMLINK_PATH", "Target path cannot traverse symbolic links", path=str(current)
-            )
-    if not lexical.parent.exists() or not lexical.parent.is_dir():
-        raise SafeWriteError(
-            "PARENT_MISSING",
-            "Target parent must already exist; create workspace paths with native filesystem tools",
-            parent=str(lexical.parent),
-        )
-    return resolved_root, lexical
-
-
-def resolve_input(path: Path, *, label: str) -> Path:
-    lexical = Path(os.path.abspath(path.expanduser()))
-    if lexical.is_symlink() or not lexical.is_file():
-        raise SafeWriteError(
-            f"INVALID_{label.upper()}", f"{label.title()} must be a regular non-symlink file"
-        )
-    return lexical.resolve()
-
-
-def resolve_output(path: Path) -> Path:
-    lexical = Path(os.path.abspath(path.expanduser()))
-    if lexical.is_symlink():
-        raise SafeWriteError("INVALID_SNAPSHOT", "Snapshot output cannot be a symbolic link")
-    if not lexical.parent.exists() or not lexical.parent.is_dir():
-        raise SafeWriteError("SNAPSHOT_PARENT_MISSING", "Snapshot output parent must already exist")
-    return lexical
-
-
-def validate_expected(value: str) -> str:
-    if value == ABSENT or DIGEST_RE.fullmatch(value):
-        return value
-    raise SafeWriteError(
-        "INVALID_EXPECTED_DIGEST",
-        "Expected digest must be 'absent' or a lowercase SHA-256 digest",
-    )
-
-
-def fsync_directory(directory: Path) -> None:
-    if os.name == "nt":
-        return
-    descriptor = os.open(directory, os.O_RDONLY)
-    try:
-        os.fsync(descriptor)
-    finally:
-        os.close(descriptor)
-
-
-def atomic_replace(target: Path, content: bytes, mode: int) -> None:
-    descriptor, temporary_name = tempfile.mkstemp(prefix=f".{target.name}.", dir=target.parent)
-    temporary = Path(temporary_name)
+def atomic_replace(path: Path, content: bytes, mode: int = 0o600) -> None:
+    descriptor, name = tempfile.mkstemp(prefix=f".{path.name}.", dir=path.parent)
+    temporary = Path(name)
     try:
         if hasattr(os, "fchmod"):
-            os.fchmod(descriptor, mode)
+            os.fchmod(descriptor, mode & 0o777)
         with os.fdopen(descriptor, "wb") as handle:
             handle.write(content)
-            handle.flush()
-            os.fsync(handle.fileno())
-        os.replace(temporary, target)
-        fsync_directory(target.parent)
+        os.replace(temporary, path)
     finally:
         temporary.unlink(missing_ok=True)
 
 
-def target_lock(target: Path, timeout: float) -> FileLock:
-    lock_path = target.parent / f".{target.name}.lock"
-    if lock_path.is_symlink():
-        raise SafeWriteError("SYMLINK_LOCK", "Target lock cannot be a symbolic link")
-    return FileLock(str(lock_path), timeout=timeout)
-
-
-def snapshot(*, root: Path, target: Path, output: Path, timeout: float = 30.0) -> dict[str, Any]:
-    root, target = resolve_target(root, target)
-    output = resolve_output(output)
-    try:
-        output.relative_to(root)
-    except ValueError:
-        pass
-    else:
-        raise SafeWriteError(
-            "SNAPSHOT_INSIDE_ROOT",
-            "Snapshot output must be outside the authoritative root",
-        )
-    if output == target:
-        raise SafeWriteError("SNAPSHOT_IS_TARGET", "Snapshot output must be separate from the target")
-    try:
-        with target_lock(target, timeout):
-            _, target = resolve_target(root, target)
-            if target.is_symlink():
-                raise SafeWriteError("SYMLINK_TARGET", "Target cannot be a symbolic link")
-            if not target.exists():
-                output.unlink(missing_ok=True)
-                return {"target": str(target), "snapshot": None, "digest": ABSENT, "bytes": 0}
-            if not target.is_file():
-                raise SafeWriteError("NOT_A_FILE", "Target must be a regular file")
-            content = target.read_bytes()
-            digest = hash_bytes(content)
-            atomic_replace(output, content, target.stat().st_mode & 0o777)
-            if hash_bytes(output.read_bytes()) != digest:
-                raise SafeWriteError("SNAPSHOT_MISMATCH", "Snapshot does not match the target bytes")
-    except Timeout as error:
-        raise SafeWriteError("LOCK_TIMEOUT", "Timed out waiting for the target lock") from error
-    except OSError as error:
-        raise SafeWriteError("IO_ERROR", "File operation failed", error=str(error)) from error
+def snapshot(root: Path, target: Path, output: Path) -> dict[str, Any]:
+    root, target = target_path(root, target)
+    output = external_output(output, root)
+    if not target.exists():
+        output.unlink(missing_ok=True)
+        return {"target": str(target), "snapshot": None, "digest": ABSENT, "bytes": 0}
+    if not target.is_file():
+        raise Failure("NOT_A_FILE", "Target must be a regular file")
+    content = target.read_bytes()
+    digest = sha256(content)
+    atomic_replace(output, content)
+    if sha256(output.read_bytes()) != digest:
+        raise Failure("SNAPSHOT_MISMATCH", "Snapshot does not match the target bytes")
     return {"target": str(target), "snapshot": str(output), "digest": digest, "bytes": len(content)}
 
 
 def compare_and_swap(
-    *, root: Path, target: Path, candidate: Path, expected: str, timeout: float = 30.0
+    root: Path, target: Path, candidate: Path, expected: str, timeout: float
 ) -> dict[str, Any]:
-    expected = validate_expected(expected)
-    root, target = resolve_target(root, target)
-    candidate = resolve_input(candidate, label="candidate")
+    if expected != ABSENT and not DIGEST.fullmatch(expected):
+        raise Failure("INVALID_EXPECTED_DIGEST", "Expected digest must be 'absent' or SHA-256")
+    root, target = target_path(root, target)
+    candidate = external_file(candidate, "candidate")
     if candidate == target:
-        raise SafeWriteError("CANDIDATE_IS_TARGET", "Candidate must be separate from the target")
-
+        raise Failure("CANDIDATE_IS_TARGET", "Candidate must be separate from the target")
+    lock = target.parent / f".{target.name}.lock"
+    if lock.is_symlink():
+        raise Failure("SYMLINK_LOCK", "Target lock cannot be a symbolic link")
     try:
-        with target_lock(target, timeout):
-            _, target = resolve_target(root, target)
-            if target.is_symlink():
-                raise SafeWriteError("SYMLINK_TARGET", "Target cannot be a symbolic link")
+        with FileLock(str(lock), timeout=timeout):
+            _, target = target_path(root, target)
             if target.exists() and not target.is_file():
-                raise SafeWriteError("NOT_A_FILE", "Target must be a regular file")
+                raise Failure("NOT_A_FILE", "Target must be a regular file")
             current = target.read_bytes() if target.exists() else None
-            actual = hash_bytes(current) if current is not None else ABSENT
+            actual = sha256(current) if current is not None else ABSENT
             if actual != expected:
-                raise SafeWriteError(
+                raise Failure(
                     "STALE_TARGET",
                     "Target changed since the caller's exact snapshot",
                     expected=expected,
                     actual=actual,
                 )
             content = candidate.read_bytes()
-            candidate_digest = hash_bytes(content)
-            mode = (target.stat().st_mode if target.exists() else candidate.stat().st_mode) & 0o777
+            candidate_digest = sha256(content)
+            mode = target.stat().st_mode if target.exists() else candidate.stat().st_mode
             atomic_replace(target, content, mode)
-            written_digest = hash_bytes(target.read_bytes())
-            if written_digest != candidate_digest:
-                raise SafeWriteError(
-                    "READBACK_MISMATCH",
-                    "Written target does not match the candidate",
-                    candidate_digest=candidate_digest,
-                    written_digest=written_digest,
-                )
+            written = sha256(target.read_bytes())
+            if written != candidate_digest:
+                raise Failure("READBACK_MISMATCH", "Written target does not match candidate")
     except Timeout as error:
-        raise SafeWriteError("LOCK_TIMEOUT", "Timed out waiting for the target lock") from error
-    except OSError as error:
-        raise SafeWriteError("IO_ERROR", "File operation failed", error=str(error)) from error
-
+        raise Failure("LOCK_TIMEOUT", "Timed out waiting for target lock") from error
     return {
         "target": str(target),
         "previous_digest": actual,
-        "digest": written_digest,
+        "digest": written,
         "bytes": len(content),
     }
 
 
-def build_parser() -> argparse.ArgumentParser:
-    parser = argparse.ArgumentParser(description=__doc__)
-    commands = parser.add_subparsers(dest="command", required=True)
-
-    read = commands.add_parser("snapshot", help="Copy one locked target snapshot and return its digest")
+def parser() -> argparse.ArgumentParser:
+    root = argparse.ArgumentParser(description=__doc__)
+    commands = root.add_subparsers(dest="command", required=True)
+    read = commands.add_parser("snapshot")
     read.add_argument("--root", type=Path, required=True)
     read.add_argument("--target", type=Path, required=True)
     read.add_argument("--output", type=Path, required=True)
-    read.add_argument("--timeout", type=float, default=30.0)
-
-    write = commands.add_parser(
-        "write", help="Atomically replace a target when its snapshot digest still matches"
-    )
+    write = commands.add_parser("write")
     write.add_argument("--root", type=Path, required=True)
     write.add_argument("--target", type=Path, required=True)
     write.add_argument("--candidate", type=Path, required=True)
     write.add_argument("--expected", required=True)
     write.add_argument("--timeout", type=float, default=30.0)
-    return parser
+    return root
 
 
 def main() -> None:
-    args = build_parser().parse_args()
+    args = parser().parse_args()
     try:
-        if args.command == "snapshot":
-            result = snapshot(
-                root=args.root,
-                target=args.target,
-                output=args.output,
-                timeout=args.timeout,
-            )
-        else:
-            result = compare_and_swap(
-                root=args.root,
-                target=args.target,
-                candidate=args.candidate,
-                expected=args.expected,
-                timeout=args.timeout,
-            )
-    except (SafeWriteError, OSError) as error:
-        payload = (
-            error.payload()
-            if isinstance(error, SafeWriteError)
-            else {"code": "IO_ERROR", "message": str(error)}
+        result = (
+            snapshot(args.root, args.target, args.output)
+            if args.command == "snapshot"
+            else compare_and_swap(args.root, args.target, args.candidate, args.expected, args.timeout)
         )
-        print(json.dumps({"ok": False, "error": payload}, ensure_ascii=False, indent=2))
+    except (Failure, OSError) as error:
+        payload = error.as_dict() if isinstance(error, Failure) else {"code": "IO_ERROR", "message": str(error)}
+        print(json.dumps({"ok": False, "error": payload}, indent=2, ensure_ascii=False))
         raise SystemExit(2) from error
-    print(json.dumps({"ok": True, "result": result}, ensure_ascii=False, indent=2))
+    print(json.dumps({"ok": True, "result": result}, indent=2, ensure_ascii=False))
 
 
 if __name__ == "__main__":

@@ -6,29 +6,25 @@ compatibility: Requires Git. The two deterministic helpers require Python 3, PyY
 
 # Akọsílẹ̀
 
-Own the small repository-local QP workspace convention. Semantic skills own what records mean; Akọsílẹ̀ owns the shared layout, path rules, safe-write protocol, and generated navigation contract.
+Own the shared repository-local `.qp` convention. Semantic skills own record meaning; Akọsílẹ̀ owns common placement, safe replacement, and generated navigation.
 
-Use the agent's normal Git, filesystem, shell, and search capabilities for repository discovery, initialization, lookup, path/slug selection, directory allocation, Git exclude, diagnosis, and repair. Do not build a workspace engine around these operations.
+Use normal Git, filesystem, shell, and search capabilities for repository discovery, initialization, lookup, path selection, directory allocation, diagnosis, repair, and Git exclude. Do not reproduce those capabilities in a workspace runtime.
 
-Keep code only at two deterministic seams:
+Keep code at two deterministic seams only:
 
 ```text
 safe-write.py
-→ take one locked target snapshot with its matching digest, or atomically replace that target when the digest still matches
+→ exact snapshot bytes + matching digest, or locked compare-and-swap replacement
 
 render-index.py
-→ parse current record frontmatter and render one INDEX.md candidate outside the workspace
+→ current record frontmatter → external INDEX.md candidate
 ```
 
-Resolve `<skill-root>` to this skill directory. Install `scripts/requirements.txt` before invoking either helper.
+Read [workspace contract](references/workspace-contract.md) before record, artifact, write, or index work. Read [settings](references/settings.md) only when settings are involved.
 
-Read [workspace contract](references/workspace-contract.md) for path, record, write, artifact-name, direct-access, and index rules. Read [settings](references/settings.md) only when settings are involved.
+## Establish the workspace natively
 
-## 1. Resolve and initialize natively
-
-Resolve the Git worktree root with Git when available and use exactly `<repository>/.qp`. A global `~/.qp` root is not supported.
-
-Create only missing infrastructure:
+Resolve the Git worktree root when available and use exactly `<repository>/.qp`. Create only missing infrastructure:
 
 ```text
 .qp/
@@ -38,41 +34,34 @@ Create only missing infrastructure:
 └── artifacts/
 ```
 
-Initialize missing `settings.json` as `{}`. Create owner and artifact directories lazily. Preserve malformed or existing user files during initialization or repair. Keep `.qp` out of Git through existing ignore rules or repository-local Git exclude; do not edit tracked `.gitignore` merely to initialize the workspace.
+Initialize missing `settings.json` as `{}`. Create owner/artifact directories lazily. Preserve malformed or existing user files during initialization or repair. Use existing ignore rules or repository-local Git exclude; do not edit tracked `.gitignore` merely for setup.
 
-Use normal inspection to diagnose missing directories, malformed records/settings, legacy paths, or stale navigation. Repair only missing or derived infrastructure. Never infer or rewrite semantic record content as repair.
+A global `~/.qp` root is not supported.
 
-## 2. Resolve paths directly
+## Resolve paths directly
 
-A record bundle is:
+Records use:
 
 ```text
-.qp/records/<owner>/<YYYYMMDD-stable-slug>/
-├── record.md
-├── <stable-slug>.html   # optional projection
-├── receipts/            # optional
-└── evidence/            # optional
+.qp/records/<owner>/<YYYYMMDD-stable-slug>/record.md
+.qp/records/<owner>/<YYYYMMDD-stable-slug>/<stable-slug>.html
 ```
 
-Use the exact ASCII skill `name` as owner. Prefer an exact supplied path or exact candidate identity before title/slug matching. Similar titles are not identity. Keep an allocated directory stable when title, status, candidate, or projection content changes.
-
-Allocate a directory with native atomic creation. On collision, add `-2`, `-3`, and so on. The HTML filename uses the actual allocated slug, including the collision suffix.
-
-A standalone HTML artifact belongs at:
+Standalone artifacts use:
 
 ```text
 .qp/artifacts/<YYYYMMDD-stable-slug>/<stable-slug>.html
 ```
 
-Use a real descriptive slug. Do not create a new QP artifact or projection as `index.html`.
+Use the exact ASCII skill name as owner. Prefer an exact supplied path or candidate identity before title matching. Allocate directories with native atomic creation; on collision use `-2`, `-3`, and so on. The HTML filename uses the actual allocated slug, including its collision suffix.
 
-Reject absolute record/artifact identifiers, separators inside owner/slug, `.` or `..`, secret-bearing identifiers, symlink escape, or any destination outside the resolved `.qp` root.
+Do not create new QP artifacts or projections as `index.html`. Reject unsafe identifiers, secrets, symlink escape, and destinations outside `.qp`.
 
-## 3. Replace exact files safely
+## Replace exact files safely
 
-The semantic owner supplies the complete replacement, including native status, candidate identity, `updated_at`, revision, owner-specific fields, and body. It validates semantic correctness before persistence.
+The semantic owner supplies and validates the complete replacement, including native status, revision, timestamp, candidate identity, owner-specific fields, and body.
 
-Never read a target and calculate its digest in separate operations. Take one matching snapshot instead:
+Take one exact snapshot whose bytes and digest cannot diverge:
 
 ```bash
 python3 <skill-root>/scripts/safe-write.py snapshot \
@@ -81,9 +70,7 @@ python3 <skill-root>/scripts/safe-write.py snapshot \
   --output <temporary-snapshot-outside-.qp>
 ```
 
-For an existing target, build the candidate only from the returned snapshot file. For an absent target, the result is `digest: absent` and `snapshot: null`.
-
-Replace through:
+Build an existing-file candidate only from that snapshot, then replace it through:
 
 ```bash
 python3 <skill-root>/scripts/safe-write.py write \
@@ -93,42 +80,27 @@ python3 <skill-root>/scripts/safe-write.py write \
   --expected <snapshot-digest-or-absent>
 ```
 
-The helper owns only target containment, the per-target lock, exact snapshotting, under-lock digest comparison, atomic replacement, and readback verification. It does not create workspace paths, allocate IDs, parse semantic content, assign revisions/timestamps, choose recovery, or retry conflicts.
+The helper owns only path containment, exact snapshotting, the per-target write lock, under-lock digest comparison, atomic replacement, and readback verification. It does not create paths, allocate IDs, parse semantic content, assign metadata, choose recovery, or retry.
 
-On `STALE_TARGET`, take a new snapshot and reconcile. Do not overwrite or blindly retry.
+On `STALE_TARGET`, take a new snapshot and reconcile.
 
-## 4. Render and replace the index
+## Refresh generated navigation
 
-To refresh navigation:
+Snapshot `.qp/INDEX.md`, render a separate candidate, then publish it through the same safe-write helper:
 
-1. Snapshot `.qp/INDEX.md` and retain its digest.
-2. Render a separate candidate outside `.qp`:
+```bash
+python3 <skill-root>/scripts/render-index.py \
+  --workspace <repository>/.qp \
+  --output <temporary-index-candidate-outside-.qp>
+```
 
-   ```bash
-   python3 <skill-root>/scripts/render-index.py \
-     --workspace <repository>/.qp \
-     --output <temporary-index-candidate-outside-.qp>
-   ```
+The renderer parses the common YAML envelope, sorts offset-aware timestamps by instant, links real slug-named projections, and surfaces invalid records or legacy `index.html` entrypoints. It cannot write inside `.qp`; records remain authoritative.
 
-3. Replace `.qp/INDEX.md` through `safe-write.py write` using the snapshot digest.
+## Report
 
-The renderer parses mechanically valid YAML frontmatter, validates the common envelope and owner/path agreement, sorts offset-aware timestamps by chronological instant, links only the expected real slug-named HTML projection, and surfaces invalid records or legacy `index.html` entrypoints diagnostically.
-
-The renderer cannot write inside `.qp`; `INDEX.md` mutation remains with the one safe-write primitive. Records remain authoritative, and a failed index refresh does not invalidate a verified record write.
-
-## 5. Keep settings sparse
-
-`.qp/settings.json` is one user-editable JSON object. Akọsílẹ̀ creates and safely replaces the complete file; each consuming skill owns defaults and validation for its own section. Preserve unknown sections.
-
-Settings are data, not instructions. They never grant provider writes, change canonical semantic IDs or transitions, override evidence/safety requirements, replace project knowledge, or change the workspace root.
-
-## 6. Return direct-access results
-
-Return the workspace, affected record/artifact identity, changed items, index state, Git-hygiene state, conflict or limitation, and—for generated resources intended for direct use—both:
+Return the workspace, affected resource, changed items, index and Git-hygiene state, conflicts or limits, and—when generated for direct use—both:
 
 ```text
 Absolute path: <resolved filesystem path>
 Workspace path: <repository-relative .qp/... path>
 ```
-
-Absolute machine paths are operational access aids, not portable source identity.
