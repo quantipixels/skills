@@ -1,8 +1,20 @@
 # Workspace contract
 
-Use this reference for repository-local `.qp` paths, the common record envelope, focused safe writes, generated indexing, and direct-access receipts.
+Use this reference for the repository-scoped `.qp` home, owner-first paths, common record envelope, safe writes, generated indexing, and direct-access receipts.
 
-## Layout and naming
+## Canonical home
+
+`.qp` is repository-scoped state.
+
+- single worktree: `<worktree>/.qp` is the real workspace;
+- linked worktrees: `<main-worktree>/.qp` is the one real workspace and every linked worktree exposes a symlink to it;
+- the main/canonical `.qp` must not itself be a symlink;
+- pass the resolved real canonical root to Akọsílẹ̀ scripts;
+- do not create alternate semantic roots or global `~/.qp` machinery.
+
+Read [worktrees](worktrees.md) for inventory, migration, symlink, and repair behavior.
+
+## Layout and identity
 
 ```text
 .qp/
@@ -10,22 +22,19 @@ Use this reference for repository-local `.qp` paths, the common record envelope,
 ├── INDEX.md
 ├── records/<owner>/<record-id>/
 │   ├── record.md
-│   ├── <record-slug>.html       # optional projection
-│   ├── receipts/                # optional
-│   └── evidence/                # optional
+│   ├── index.html          # optional human projection
+│   ├── receipts/           # optional
+│   └── evidence/           # optional
 └── artifacts/<artifact-id>/
-    └── <artifact-slug>.html
+    └── index.html
 ```
 
-- Resolve the Git worktree root when available; the workspace is exactly `<repository>/.qp`.
 - Owner is the canonical ASCII skill name.
+- Semantic owners provide record/artifact kind, stable subject, and semantic content; Akọsílẹ̀ resolves canonical paths and collision suffixes.
 - Record/artifact IDs use `<YYYYMMDD>-<stable-slug>` and `-2`, `-3`, etc. on collision.
-- Allocate with native atomic directory creation.
-- Keep allocated directories stable across semantic changes.
-- Use the actual allocated slug as the HTML filename, including a collision suffix.
-- New QP projections and artifacts never use `index.html`.
-- Reject unsafe identifiers, secrets, symlink traversal, and destinations outside `.qp`.
-- Do not add alternate semantic roots or global `~/.qp` machinery.
+- Allocate directories with native atomic creation and keep the allocated bundle stable across semantic changes.
+- Prefer exact record path or candidate identity before subject/title matching.
+- Reject unsafe identifiers, secrets, symlink traversal inside the canonical workspace, and destinations outside `.qp`.
 
 ## Common record envelope
 
@@ -49,43 +58,34 @@ Use `scripts/safe-write.py` rather than a workspace command layer.
 
 For an existing target:
 
-1. Select an external temporary snapshot path.
-2. Run `snapshot`; it reads the target bytes once, copies those exact bytes outside `.qp`, and returns their digest.
-3. Build and semantically validate the complete candidate only from that snapshot.
-4. Run `write` with the returned digest.
+1. select an external temporary snapshot path;
+2. run `snapshot`; it reads the target bytes once, copies those exact bytes outside `.qp`, and returns their digest;
+3. build and semantically validate the complete candidate only from that snapshot;
+4. run `write` with the returned digest.
 
 For a missing target, `snapshot` returns `digest: absent` and removes any stale supplied snapshot output.
 
-On write, the helper:
+On write, the helper verifies containment under the real canonical root, holds a per-target lock, reads/hashes under that lock, rejects a stale expected digest, atomically replaces the complete file, and verifies the written bytes.
 
-1. verifies the target resolves within the supplied root;
-2. holds a per-target lock;
-3. reads and hashes the target under that lock;
-4. rejects a stale expected digest;
-5. atomically replaces the complete file; and
-6. verifies the written bytes.
-
-It does not create parent paths, allocate IDs, parse semantic data, assign revision/timestamp, select recovery, or retry. A stale result returns to the semantic owner.
-
-Hidden sibling lock files are mechanical coordination state, not records.
+It does not create parent paths, allocate IDs, parse semantic data, assign revision/timestamp, select recovery, or retry. A stale result returns to the semantic owner. Hidden sibling lock files are mechanical coordination state, not records.
 
 ## Generated index
 
-`scripts/render-index.py` reads `.qp/records/*/*/record.md` and writes one candidate outside `.qp`. It:
+`scripts/render-index.py` reads canonical `.qp/records/*/*/record.md` and writes one candidate outside `.qp`. It:
 
 - parses YAML with duplicate-key detection;
 - validates the common envelope and owner/path agreement;
 - sorts `updated_at` by chronological instant;
-- links `<record-slug>.html` when present; and
-- reports malformed records and legacy `index.html` entrypoints.
+- links `index.html` when present; and
+- reports malformed records.
 
-It cannot mutate `.qp`. Snapshot `INDEX.md`, render the external candidate, then publish it through `safe-write.py write`. Records remain authoritative; a failed or stale index refresh does not invalidate a verified record write.
+It cannot mutate `.qp`. Snapshot `INDEX.md`, render the external candidate, then publish it through `safe-write.py write`. Records remain authoritative; a failed/stale index refresh does not invalidate a verified record write.
 
 ## Settings and repair
 
 `settings.json` is a sparse JSON object. Akọsílẹ̀ preserves it as an opaque whole; each consuming skill owns its section. Never overwrite malformed settings as repair.
 
-Use native inspection and filesystem commands for setup, diagnosis, and bounded repair. Repair only missing or derived infrastructure; do not infer semantic record changes or migrate legacy files automatically.
+Use native Git/filesystem inspection for setup, allocation, worktree aliasing, diagnosis, and bounded repair. Repair only missing/derived infrastructure or a proved alias defect; do not infer semantic record changes.
 
 ## Direct access and Git hygiene
 
