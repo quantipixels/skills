@@ -28,11 +28,13 @@ SKILL.md guidance or selectively loaded expert reference
 
 A short command recipe is guidance, not a runtime capability. Prefer it when a capable agent can see, adapt, and verify the operation from current evidence without persistent machine state or a separate machine consumer.
 
+Do not apply that rule mechanically to **public human-facing entrypoints**. A thin install/bootstrap/uninstall/helper wrapper can be the smallest adequate interface when its value is one safe, memorable invocation for a recurring operation that would otherwise require users to copy or reconstruct several commands. Keep such an entrypoint transparent and narrow: delegate to native tools, preserve safe scope/defaults, avoid private semantic state, and do not grow it into an internal runtime. `scripts/uninstall.sh` is a valid example: `npx skills` owns removal; the wrapper owns source-scoped one-line UX.
+
 Do not treat “the model can already do this” as sufficient reason to remove a lightweight skill. A small public skill can still be valuable when its independently useful trigger/result reliably steers model behavior and saves users from repeating a long behavioral instruction. `salaye` is a valid example: its value is the reusable plain-language explanation contract, not hidden machinery. Keep this form only when the route is clear and it does not duplicate another published owner.
 
 ## Challenge proposed executable code
 
-Before keeping a script, attempt to move these responsibilities back to their natural owner:
+Before keeping an internal capability script, attempt to move these responsibilities back to their natural owner:
 
 - project/tool/version discovery → manifests, wrappers, config, `--help`, or the agent;
 - semantic routing/recommendation/readiness/acceptance → the skill;
@@ -41,7 +43,7 @@ Before keeping a script, attempt to move these responsibilities back to their na
 - output destination and installation → caller/mutation owner;
 - generic formatting/envelopes → stdout/native structured output.
 
-Prefer pure transforms such as `input → stdout` or `input → deterministic artifact`. A retained script must still pass [script boundary](script-boundary.md).
+Prefer pure transforms such as `input → stdout` or `input → deterministic artifact`. A retained skill-runtime script must still pass [script boundary](script-boundary.md). Evaluate thin human-facing distribution/entrypoint wrappers separately for invocation leverage, safe scoping, portability, and transparency.
 
 ## Command affordances
 
@@ -98,6 +100,7 @@ When Kọ Skill sees:
 
 - recurring non-obvious judgment → recommend a selective expert reference with examples/counterexamples;
 - one/few transparent native operations → recommend commands/recipes;
+- a recurring human-facing multi-command setup/removal action where one safe invocation materially improves use → consider a thin public entrypoint that delegates to native tools;
 - truth already owned by project/provider/framework tooling → use that native owner;
 - focused solved mechanics → use a library;
 - exact-byte identity, race, compiler, validator, or machine-consumer seam → consider a narrow deterministic script;
