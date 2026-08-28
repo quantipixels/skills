@@ -6,7 +6,7 @@ Use this whenever a skill proposes, keeps, expands, moves, or replaces executabl
 
 Before code, ask whether the skill's owner can perform the result directly and reliably from explicit current evidence with concise guidance, a visible command/recipe, an existing project/provider/tool capability, or one focused library.
 
-Use this order:
+Use this order for **skill-runtime capability**:
 
 ```text
 short owner guidance or deep reference
@@ -21,9 +21,23 @@ short owner guidance or deep reference
 
 A visible command recipe is guidance. Do not package it merely to avoid writing the command in Markdown.
 
+### Public entrypoint exception
+
+Do not confuse an internal runtime with a thin human-facing distribution/convenience entrypoint. A public install/bootstrap/uninstall/helper script may be justified even when its internals are ordinary native commands when the **invocation leverage is itself useful**: one stable safe command replaces a fiddly or error-prone multi-command sequence for users.
+
+Such an entrypoint must stay thin:
+
+- native/project tooling still owns the underlying operation;
+- scope and defaults are conservative and explicit;
+- no parallel semantic model or hidden durable state;
+- portability and failure behavior are proportionate to the advertised invocation;
+- the wrapper remains understandable enough to audit as an entrypoint, not a private engine.
+
+Example: a source-aware `uninstall.sh` that identifies this repository's globally installed skills and delegates removal to `npx skills` is a valid convenience surface even though the same mechanics can be written as a longer shell recipe.
+
 ## Retention gates
 
-A bundled script survives only when all applicable gates pass:
+A skill-runtime bundled script survives only when all applicable gates pass:
 
 1. **Natural owner** — QP code, rather than the agent/native/project/tool owner, is the smallest credible surface.
 2. **Owner** — the owning skill genuinely owns the mechanical result.
@@ -40,7 +54,7 @@ Line count is never an acceptance rule. Existing tests do not justify retaining 
 
 ## Mandatory compression pass
 
-For every script that passes the first gate, attempt to strip responsibilities that can move back to natural owners:
+For every skill-runtime script that passes the first gate, attempt to strip responsibilities that can move back to natural owners:
 
 - discovery/version detection → manifests, wrappers, config, `--help`, agent;
 - domain or provider routing → semantic owner;
@@ -59,11 +73,12 @@ Examples:
 - Git candidate fingerprint reconstructed in Python → `REPLACE_WITH_NATIVE` when a temporary index + `git write-tree` provides the exact content-addressed identity;
 - validated candidate bytes published iff exact target identity still matches → `KEEP`; the race/atomicity guarantee is a real deterministic seam;
 - token graph validation + canonical CSS realization → `KEEP`/`SHRINK`; compiler semantics are the result;
-- generic migration workflow over `git worktree`, symlink, copy and compare → guidance/native commands unless an observed transaction guarantee cannot be expressed safely.
+- generic migration workflow over `git worktree`, symlink, copy and compare → guidance/native commands unless an observed transaction guarantee cannot be expressed safely;
+- one-line public uninstall wrapper over source lookup + `npx skills remove` → `KEEP ENTRYPOINT` when it materially improves user ergonomics without becoming a runtime abstraction.
 
 ## Dispositions
 
-Return one:
+For skill-runtime executable capability, return one:
 
 ```text
 KEEP
@@ -76,5 +91,7 @@ PROMOTE_TO_ENGINE
 REMOVE
 NEEDS_EVIDENCE
 ```
+
+For a repository-level human-facing wrapper, report `KEEP ENTRYPOINT | SHRINK ENTRYPOINT | REPLACE_WITH_COMMAND | REMOVE | NEEDS_EVIDENCE` separately so the runtime deterministic-kernel bar is not misapplied to distribution UX.
 
 For `KEEP`/`SHRINK`, state the exact retained deterministic kernel and which responsibilities were removed. For `REPLACE_WITH_NATIVE`, provide the stable command/recipe when useful or name the native discovery mechanism (`<wrapper> --help`, project task list, provider CLI/API) when exact flags are volatile.
