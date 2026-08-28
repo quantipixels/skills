@@ -10,56 +10,67 @@ permissions:
   contents: read
 
 jobs:
-  smoke:
+  evaluate:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 180
     steps:
       - uses: actions/checkout@v6
         with:
           fetch-depth: 0
+
       - name: Install llama.cpp runner
         shell: bash
         run: |
           set -euo pipefail
           curl -LsSf https://llama.app/install.sh | sh
           echo "$HOME/.local/bin" >> "$GITHUB_PATH"
-      - name: Run isolated local-model smoke prompt
+
+      - name: Start local evaluation model
         shell: bash
         run: |
           set -euo pipefail
           export PATH="$HOME/.local/bin:$PATH"
-          llama serve \
-            -hf Qwen/Qwen2.5-1.5B-Instruct-GGUF:Q4_K_M \
-            --host 127.0.0.1 --port 8080 -c 4096 \
-            >"$RUNNER_TEMP/llama-server.log" 2>&1 &
-          server_pid=$!
-          trap 'kill "$server_pid" 2>/dev/null || true' EXIT
-          for _ in $(seq 1 120); do
-            curl -fsS http://127.0.0.1:8080/health >/dev/null && break
+          llama serve -hf Qwen/Qwen2.5-3B-Instruct-GGUF:Q4_K_M --host 127.0.0.1 --port 8080 -c 32768 >"$RUNNER_TEMP/llama-server.log" 2>&1 &
+          echo $! > "$RUNNER_TEMP/llama-server.pid"
+          for _ in $(seq 1 180); do
+            if curl -fsS http://127.0.0.1:8080/health >/dev/null; then
+              exit 0
+            fi
             sleep 2
           done
-          curl -fsS http://127.0.0.1:8080/health
+          cat "$RUNNER_TEMP/llama-server.log"
+          exit 1
+
+      - name: Run isolated old/new prompt matrix
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 evals/skill-behavior/run_evals.py --out "$RUNNER_TEMP/eval-output"
+
+      - name: Preserve model log
+        if: always()
+        shell: bash
+        run: |
+          mkdir -p "$RUNNER_TEMP/eval-output"
+          cp "$RUNNER_TEMP/llama-server.log" "$RUNNER_TEMP/eval-output/llama-server.log" 2>/dev/null || true
+
+      - name: Upload raw eval corpus
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: qp-skill-behavior-evals-${{ github.run_id }}
+          path: ${{ runner.temp }}/eval-output
+          if-no-files-found: error
+          retention-days: 14
+
+      - name: Require complete inference matrix
+        shell: bash
+        run: |
           python3 - <<'PY'
-          import json, urllib.request
-          body = json.dumps({
-              "model": "qwen",
-              "messages": [
-                  {"role": "system", "content": "Follow the user's instruction exactly."},
-                  {"role": "user", "content": "Return exactly EVAL_OK and nothing else."}
-              ],
-              "temperature": 0,
-              "max_tokens": 16,
-              "seed": 41
-          }).encode()
-          req = urllib.request.Request(
-              "http://127.0.0.1:8080/v1/chat/completions",
-              data=body,
-              headers={"Content-Type": "application/json"},
-          )
-          with urllib.request.urlopen(req, timeout=180) as response:
-              payload = json.load(response)
-          text = payload["choices"][0]["message"]["content"].strip()
-          print(text)
-          if text != "EVAL_OK":
-              raise SystemExit(f"unexpected output: {text!r}")
+          import json, os
+          p=os.path.join(os.environ["RUNNER_TEMP"],"eval-output","manifest.json")
+          data=json.load(open(p))
+          assert data["calls"] == data["cases"] * 2, data
+          assert data["failures"] == 0, data
+          print(json.dumps(data,indent=2))
           PY
