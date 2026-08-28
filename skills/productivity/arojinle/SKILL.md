@@ -1,28 +1,32 @@
 ---
 name: arojinle
-description: Resolve a material product, plan, or design through a relentless, complete decision-tree interview and final user confirmation. Use when consequential choices must be made. Exclude technical architecture design or review, initiative lifecycle planning, implementation, and ordinary fact-finding.
+description: Resolve material product, plan, or design choices through a complete decision-tree interview and final user confirmation. Use when consequential choices must be made. Exclude technical architecture, initiative lifecycle planning, implementation, and ordinary fact-finding.
 ---
 
 # Àròjinlẹ̀
 
-Interview the user relentlessly until you reach a shared understanding. Map this as a design tree: every decision branches into the decisions that hang off it.
+Interview the user until consequential branches are explicitly settled. Map a decision tree: each decision can expose later decisions that depend on it.
 
-Work the tree in rounds. The frontier is every decision whose prerequisites are already settled: the questions you can ask now without guessing at answers you have not heard yet. Ask the whole frontier in one round: number each question and give your recommended answer. Then wait for the user's answers before the next round.
+Work in rounds. The frontier is every material decision whose prerequisites are already settled. Ask the whole current frontier in one round; number each question and give a recommended answer. Then wait for the user's decisions before recomputing the next frontier.
 
-Each question should be formatted like so:
+Use this compact question shape:
 
 ```text
-❓ **Q1** - **<question title>**: <question and choices, as needed>
-
-💡 <brief context or example, only when it makes the decision clearer>
-
-➡️ <your recommended answer>
+❓ **Q1 — <title>:** <question and bounded choices when useful>
+💡 <only context/example that changes understanding>
+➡️ <recommended answer and why>
 ```
 
-Each round the user answers reshapes the tree: settled decisions push the frontier outward and unblock questions that depended on them. Recompute the frontier and ask the next round. A question whose answer depends on another question still open in this round belongs to a later round, not this one.
+Do not ask a question whose answer depends on another still-open question in the same round.
 
-Use `amose` before the first round when existing project knowledge can materially constrain the decision tree. Finding facts is your job, never the user's. When a frontier question needs a fact from the environment, use a bounded lookup first. Delegate when active rules permit and a fresh independent lookup materially protects the interview context or improves the evidence. Do not ask the user for facts you can find. Do not block on a running lookup: hold only its downstream questions and ask the rest of the frontier. The decisions are the user's: put each to them and wait.
+Use `amose` before the first round when existing project/domain knowledge can materially constrain the tree. Finding facts is the agent's job: resolve bounded current facts through direct evidence/`iwadi`/`irinse` as appropriate rather than asking the user for discoverable facts. Hold only questions downstream of unavailable prerequisites; continue independent frontier branches.
 
-Use `html-artifact` to visualise the decision tree, current frontier, and confirmed decisions as the primary human view. Use `amose` after confirmation when confirmed decisions change durable project knowledge.
+The decisions remain the user's. Do not silently convert a recommendation into confirmation.
 
-The session is done when the frontier is empty: every material branch of the design tree has been visited and nothing consequential is left silently assumed. Do not act on it until the user confirms you have reached a shared understanding.
+## Visual support proportionality
+
+Conversation is the primary view for a small/single-round decision set. Use `html-artifact` to visualise the tree/frontier/confirmed decisions when the decision surface is substantial, multi-round, durable across sessions/owners, or materially easier to understand as a visual relationship. Do not create/maintain an HTML projection merely because a decision interview exists.
+
+Use `amose` after confirmation when decisions materially change durable project knowledge.
+
+Finish when the material frontier is empty and the user confirms shared understanding. Return confirmed decisions, material assumptions/evidence, any explicit deferrals/re-entry condition, and the next owner/action. Do not implement the result inside Àròjinlẹ̀.

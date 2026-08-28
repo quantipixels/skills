@@ -1,79 +1,60 @@
 ---
 name: pare
-description: "Produce a read-only codebase simplification `audit` or bounded candidate `review`. Cover implementation, state, ownership, algorithms, dependencies, support artifacts, and tests; exclude execution, defects, feature delivery, and architecture."
+description: Produce a read-only codebase simplification `audit` or bounded candidate `review`. Cover implementation, state, ownership, algorithms, dependencies, support artifacts, and tests; exclude execution, defects, feature delivery, and architecture.
 ---
 
 # Parẹ́
 
 Prefer deletion, direct state, local ownership, deep modules, and YAGNI. Reject relocated complexity.
 
-## Modes
+Modes:
 
-- `audit`: every subsystem; read-only; no test runs.
-- `review`: one fixed candidate; read-only; no provider or verdict.
+- `audit` — bounded repository/subsystem simplification audit; read-only; no tests/builds.
+- `review` — one fixed candidate; read-only; no provider/verdict.
 
-Never edit files, run tests or builds, change Git state, execute cleanup, or use provider writes. Return recommendations and implementation slices only.
+`atunwo` owns defects/verdicts/stateful parity; `alaga` implements accepted slices; `solution-architect` owns technical architecture.
 
-`atunwo` owns defects, verdicts, providers, and stateful parity audits; `alaga` implements accepted slices; `solution-architect` owns technical architecture; `atona` owns initiative lifecycle plans. A `deep-clean candidate` requires explicit opt-in before `alaga` may abandon non-contract proof.
+## Evidence
 
-Use `rg` and `git` directly for proportionate read-only reachability and history checks. When a companion tool could materially improve the evidence, give `irinse` the bounded question and candidate, then consume its exact-current read-only result. `pare` retains simplification judgment and never treats tool output as a verdict.
+Pin repository/candidate, baseline, instructions and exclusions. Read [evidence commands](references/evidence-commands.md) for proportionate read-only reachability/history checks. Use project-native tooling or bounded `irinse` evidence when it materially improves the question. Tool/search output is evidence, never the simplification verdict.
 
-When control-flow, state-space, nesting, fan-out, mutable state, async/process lifecycle, complexity metrics, or test volume is material, read [complexity and proof](references/complexity-and-proof.md). Metrics are investigation signals; never recommend extraction or indirection merely to lower a score.
+When control-flow/state-space/nesting/fan-out/lifecycle/complexity/test volume materially controls the investigation, read [complexity and proof](references/complexity-and-proof.md). When recurring maintainability/ownership patterns are material, read [maintainability patterns](references/maintainability-patterns.md). Patterns and metrics are signals, never findings.
 
-When a recurring maintainability smell or ownership pattern is materially shaping the investigation, read [maintainability patterns](references/maintainability-patterns.md). Treat those patterns as calibrated investigation signals, never findings or scores; repository rules and candidate-specific evidence control the result.
+## Simplification ladder
 
-## Ladder
+Take the first sound reduction:
 
-Understand the flow; take the first sound reduction:
+1. **Delete** — no behavior, contract, consumer, or owner.
+2. **Reuse** — current codebase → stdlib/platform → installed dependency/tool.
+3. **Derive** — eliminate stored/duplicated state while preserving timing/ownership/cost.
+4. **Localize** — put policy/state with its real owner/deep module.
+5. **Shrink** — minimum direct mechanism; no speculative variation.
 
-1. Delete: no behavior, contract, consumer, or owner.
-2. Reuse: codebase → stdlib → platform → installed dependency.
-3. Derive: preserve timing, consistency, lifecycle, cost, ownership.
-4. Localize: owned model, state machine, deep module, or policy.
-5. Shrink: minimum direct mechanism; no speculation.
+Do not recommend extraction/indirection merely because a file/function is large or a score is high.
 
-- Good: remove invalid states.
-- Bad: wrap the same branches.
+## Audit
 
-## Tags and finding format
+Inventory non-overlapping source, entry-point, build, test, tooling, platform and generated subsystems. Classify implementation/dependencies/config/support artifacts `retain | delete-safe | blocked`. Run separate deletion, representation, ownership, algorithm, complexity-when-material, and proof passes.
 
-- `delete`: dead
-- `native`: stdlib/platform
-- `yagni`: unproved variation
-- `state`: invalid/duplicate
-- `owner`: scattered policy
-- `shrink`: less mechanism
-- `proof`: stronger owner
+Deletion safety needs more than search absence: check callers, dynamic/framework/generated reachability, config/data, builds, consumers, history, contracts and proof owners. Audit tests by contract value rather than count/coverage. Preserve public/security/data-integrity/concurrency/recovery/adapter/runtime/interaction/accessibility contracts when no stronger complete owner exists.
+
+Rank material reductions by impact/risk/effort/dependency and express implementation slices; do not execute them.
+
+## Review
+
+Pin the supplied candidate; otherwise use upstream merge-base diff plus applicable staged/unstaged/untracked work. Check cohesion, coupling, reuse, YAGNI, vocabulary, invalid/duplicated state, ownership, depth, proof and material semantic complexity. Route possible defects to `atunwo`; conflicting domain vocabulary to `amose`.
+
+## Findings
+
+Use tags such as `delete`, `native`, `yagni`, `state`, `owner`, `shrink`, `proof` and report:
 
 ```text
-<tag> <cost>. <smaller form>. [path]
+<tag> <cost/consequence>. <smaller form>. [location]
+Risk: <material risk>
+Proof: <evidence / future proof owner>
+Confidence: <level>
 ```
 
-Add risk, proof, confidence. Smells are not evidence. For each `Needs defect review` concern, report its location, scope, reason, evidence, and possible consequence.
+Recheck identity, reachability, ownership, proof, migration and worktree state before recommending. State future verification commands/authority but do not run tests/builds or mutate.
 
-## `audit`
-
-Pin repository, baseline, instructions, exclusions. Inventory non-overlapping source, entry-point, build, test, tool, platform, and generated subsystems; record boundary, interfaces, callers, tests, status. Exclusions need owner/reason; `not reviewed` means `PARTIAL`.
-
-Run separate deletion, representation, ownership, algorithm, complexity-when-material, and proof passes. Do not let easy dead code replace state-space, lifecycle, cross-language policy, or repeated scan/copy analysis.
-
-Classify implementation, dependencies, configuration, and support artifacts as `retain | delete-safe | blocked`. Check interfaces, callers, dynamic/platform/generated reachability, builds, consumers, and owners; search alone does not prove deletion.
-
-Audit tests with the cleanup taxonomy. Classify each coherent group as `retain | delete-safe | deep-clean candidate | blocked`; report its signal, stronger proof owner, consequence, and required authority. `delete-safe` requires complete stronger static, contract, integration, or acceptance proof. A `deep-clean candidate` may abandon non-contract proof but requires explicit opt-in before execution.
-
-Target existence, typecheck-satisfied, implementation-detail, duplicate, provider-shape, snapshot, layout, render-presence, registration, and shallow UI proof without a selected contract. Retain public, security, integrity, recovery, adapter, runtime, interaction, and accessibility contracts. Handwritten provider fixtures do not prove live compatibility.
-
-Find material reductions per subsystem. Verify semantics, ownership, migration, proof; deduplicate. Independently check coverage, materiality, priorities, dependencies. Complete when all subsystems are `recommend` or `skip`; report inventory, ranking, skips, slices, limits, worktree evidence.
-
-## `review`
-
-Pin the supplied candidate. Otherwise use the upstream merge-base diff plus applicable staged, unstaged, and untracked work; apply repository rules first. Check cohesion, coupling, reuse, YAGNI, vocabulary, waste, depth, testability, documentation, applicable audit classifications, and semantic complexity when its trigger is present. Send conflicting domain vocabulary to `amose`. Recommend compatibility removal only when proved unreleased with no consumers. Recheck identity; report findings, gaps, boundary, limits.
-
-- Good: `state Stored total can diverge from owned line items. Derive it at the owner. [checkout.ts:42]`
-- Bad: “This class is long; split it.”
-
-## Verify recommendations
-
-Recheck identity, reachability, ownership, proof, migration, risk, and worktree state with read-only evidence. State the future verification commands and authority; do not run them. Stop on ambiguity, drift, missing content, uncertain consumers, or unsupported claims.
-
-Report scope, identities, ranked reductions, retained contracts, proof owners, `deep-clean candidate` consequences, blockers, implementation slices, required execution authority, future verification, and residual risk.
+Return scope/identity, ranked reductions, retained contracts, proof owners, blockers, implementation slices, required execution authority, future verification, and residual risk.

@@ -1,30 +1,42 @@
 # Operate one companion tool
 
-Load this reference only when the selected tool must be readied, installed, configured, authenticated, integrated, used, upgraded, removed, or rolled back. The caller keeps the bounded question, candidate identity, selected tool, fallback, and result ownership from `SKILL.md`.
+Load only when the selected tool must be readied, installed, configured, authenticated, used, upgraded, removed, or rolled back. The caller keeps the bounded question, candidate, authority, fallback, and result ownership.
 
 ## Establish readiness
 
-Inspect the selected tool's presence, version, platform support, prerequisites, relevant configuration, integration state, and one proportionate usability signal. Command presence alone does not prove readiness. Do not read or report secret values.
+Start with the tool's native discovery rather than a QP command catalogue:
 
-Classify it as:
+```bash
+command -v <tool>
+<tool> --version
+<tool> --help
+```
 
-- `Ready` — present, configured for the intended use, and verified;
-- `Needs setup` — present but required configuration or verification is missing or stale;
+Then inspect only prerequisites/config/integration relevant to the bounded use and run one proportionate read-only usability signal. Command presence alone does not prove readiness.
+
+Classify:
+
+- `Ready` — present, configured for intended use, verified;
+- `Needs setup` — present but required config/verification missing/stale;
 - `Missing` — unavailable;
-- `Unsupported` — incompatible with the required platform or integration.
+- `Unsupported` — incompatible with required platform/integration.
 
-If a useful tool is missing or not ready, explain its distinct benefit and the safe fallback already identified by the owning request. Ask before installation or configuration. A request to use a tool does not by itself authorize global installation, persistent services, broad downloads, credential changes, or project-file mutation.
+Stable tool references should contain at most a small number of canonical read-only invocation patterns plus the evidence/result boundary. Discover volatile flags/version support from current `--help` and official docs at execution time.
 
-Before a mutation, state the exact tool and version choice, global or project scope, official source, platform support, download and network effects, privileges, configuration targets, credential needs, persistent state, and rollback or uninstall path. Never request secrets in chat. When authentication is required, direct the user to a supported non-chat login, environment, keychain, or provider mechanism and verify only presence or authenticated state without reading or reporting the value. Apply only the accepted action and scope.
+## Mutation authority
 
-## Use the tool safely
+A request to use a tool does not automatically authorize global installation, persistent services, downloads, credential changes, or project-file mutation. Before a mutation, state tool/version, global/project scope, official source, platform support, network/download/privilege/config/credential/state effects, and rollback/uninstall path. Ask for the required permission.
 
-Constrain paths, permissions, output size, network access, persistent state, and mutations. Prefer read-only operations. Ask separately before a command that changes source, configuration, caches, services, dependencies, or external state.
+Never request secrets in chat. Use supported login/environment/keychain/provider mechanisms and verify authenticated state without reading/printing credential values.
 
-Pin evidence to the candidate, tool version, command or operation, scope, exclusions, errors, and timestamp when freshness matters. Treat static analysis, metrics, IDE indexes, and search output as leads. Corroborate consequential claims with source, tests, compiler, runtime, configuration, or history.
+## Safe use
 
-If the candidate, relevant configuration, ignore rules, tool version, or analyzed files change, mark the evidence stale and rerun the affected operation.
+Constrain paths, output size, permissions, network and mutations. Prefer read-only operations. Pin evidence to candidate, tool version, command/operation, scope/exclusions/errors, and timestamp when freshness matters.
 
-## Verify operation state
+Static analysis/metrics/search/IDE output is evidence, not a verdict. Corroborate consequential claims through source, tests, compiler, runtime, configuration, or history as appropriate.
 
-After setup, upgrade, integration, removal, or rollback, verify the intended state from the target environment. Do not claim success from an installer exit code alone. If verification fails, stop dependent work and preserve a safe fallback.
+If candidate/config/ignore rules/tool version/analyzed files change, mark dependent evidence stale.
+
+## Verify state
+
+After setup/upgrade/integration/removal/rollback, verify intended state from the actual target environment; an installer exit code is not enough. If verification fails, stop dependent work and preserve the safe fallback.

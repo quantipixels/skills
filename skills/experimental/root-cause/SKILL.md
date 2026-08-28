@@ -6,90 +6,50 @@ disable-model-invocation: true
 
 # Root Cause
 
-Find the smallest causal mechanism or causal set that explains the observed failure and its downstream symptoms. Keep diagnosis separate from issue triage, code review, and production delivery.
+Find the smallest causal mechanism/set that explains the observed failure and downstream symptoms. Diagnosis stays separate from triage/review/fix delivery.
 
-A useful diagnosis may contain:
-
-```text
-trigger
-+ necessary enabling condition
-+ propagation mechanism
-+ missing containment, recovery, or detection
-→ observed failure
-```
-
-Do not force a complex failure into one artificial linear “first cause.”
-
-## 1. Pin the failure
-
-Record the exact symptom, expected behaviour, first known trigger, candidate or revision, environment, reproducibility, available evidence, scope, and read/probe authority. A report, stack trace, reviewer claim, correlation, changed file, or temporal order is evidence—not a cause.
-
-Use `se-triage` when the question is whether a supplied report is valid. Use `alaga` when the defect and required correction are already settled.
-
-Reproduce the failure when safe. Otherwise pin one direct observation with enough identity to compare later evidence. Separate the primary failure from secondary errors, retries, recovery noise, and unrelated warnings.
-
-## 2. Build and falsify competing explanations
-
-Write a small competing-hypothesis table. For each hypothesis, state:
-
-- proposed trigger and causal mechanism;
-- necessary enabling conditions;
-- propagation to the observed symptom;
-- what current evidence it explains;
-- one observation that distinguishes it from alternatives; and
-- the smallest safe probe that can produce that observation.
-
-Prefer read-only inspection, existing tests, logs, traces, configuration, history, and reversible diagnostic probes. Change one diagnostic variable at a time. Record what each result rules in, rules out, or leaves unresolved. Do not change several things to see what helps or retain a diagnostic mutation after the probe.
-
-Follow the chain from trigger through state transition or computation to the visible failure. Distinguish root mechanism, enabling conditions, contributing factors, propagation, and missing containment/detection.
-
-Prove a proposed minimal causal set at two levels:
-
-1. **Set sufficiency** — under equivalent conditions, does the complete proposed set reproduce or explain the failure without a material gap?
-2. **Factor necessity** — for every factor claimed as part of the minimal set, hold the other confirmed factors equivalent and remove or control that factor. The failure must cease or materially change in the predicted way.
-
-A factor that has not passed a discriminating necessity probe is not part of a confirmed minimal set. Classify it as a contributing factor, contextual condition, or unresolved factor instead. When the diagnosis depends on an unproved factor, return `DIAGNOSED_BUT_UNPROVED` rather than `CONFIRMED_ROOT_CAUSE`.
-
-This factor-level check may use a safe experiment, an existing natural comparison, trace evidence, source-level control-flow proof, or another observation that distinguishes the counterfactual. Do not require a dangerous live mutation when equivalent evidence already owns the claim.
-
-A root cause is confirmed only when the causal explanation has no material gap, the proposed set is sufficient, every factor retained in the minimal set is individually necessary given the others, and discriminating evidence supports those claims.
-
-## 3. Stop on evidence, not attempt quotas
-
-Continue while another safe observation can materially update the causal model. Stop when:
-
-- remaining hypotheses cannot be distinguished with available evidence;
-- another safe probe cannot materially change the diagnosis;
-- required observability, environment, credential, or authority is unavailable; or
-- the failure cannot be reproduced and no equivalent direct evidence exists.
-
-Do not invent hypothesis variants to appear exhaustive. Do not perform production correction attempts inside Root Cause.
-
-## 4. Return the diagnosis
-
-Return exactly one status:
-
-- `CONFIRMED_ROOT_CAUSE` — the minimal causal explanation and discriminating proof are complete;
-- `DIAGNOSED_BUT_UNPROVED` — one explanation best fits the evidence but a material proof gap remains;
-- `EVIDENCE_BLOCKED` — a named evidence, environment, authority, credential, or observability gap prevents diagnosis; or
-- `NOT_REPRODUCED` — the pinned failure could not be observed and no equivalent direct evidence exists.
-
-Include:
+A useful model may be:
 
 ```text
-Failure identity
-Status
-Minimal causal mechanism or causal set
-Per-factor necessity evidence
-Contributing, contextual, and unresolved factors
-Propagation and missing containment/detection
-Decisive evidence
-Falsified alternatives
-Affected boundary
-Confidence limits
-Smallest useful next action
+trigger + necessary enabling condition + propagation + missing containment/detection → observed failure
 ```
 
-Do not present a plausible explanation as confirmed. When a confirmed diagnosis warrants production correction and that work is authorized, give `alaga` the exact diagnosis and required behaviour. Root Cause does not absorb delivery or final review.
+## Pin the failure
 
-Return inline by default. Persist through `akosile` only when a durable diagnosis is needed. Use `html-artifact` to visualise a substantial supplied terminal diagnosis when useful. Under an active plan, return Root Cause's native exact-current result rather than defining a plan-specific receipt.
+Record exact symptom, expected behavior, first known trigger, candidate/revision, environment, reproducibility, evidence, scope, and read/probe authority. A report/stack trace/correlation/changed file/temporal order is evidence, not a cause.
+
+Use `se-triage` when the question is whether the report is valid; use `alaga` when diagnosis/correction is already settled.
+
+Reproduce safely when possible; otherwise pin one equivalent direct observation. Separate primary failure from secondary errors/retries/recovery noise.
+
+## Competing mechanisms
+
+Write a small hypothesis table. For each hypothesis state trigger/mechanism, necessary conditions, propagation, evidence explained, one distinguishing observation, and the smallest safe probe.
+
+Read [probe commands](references/probe-commands.md) when bounded source/history/Git evidence can discriminate hypotheses. Prefer existing tests/logs/traces/config/history and reversible diagnostics. Change one diagnostic variable at a time.
+
+For a proposed minimal causal set prove:
+
+1. **Set sufficiency** — the full set explains/reproduces the failure without a material gap.
+2. **Factor necessity** — for every claimed factor, hold other confirmed factors equivalent and remove/control that factor; the failure must cease/change as predicted.
+
+A factor lacking a discriminating necessity observation is contributing/contextual/unresolved, not confirmed root cause.
+
+## Stop on evidence
+
+Continue only while another safe observation can materially update the causal model. Stop when remaining hypotheses cannot be distinguished, no safe probe can change the diagnosis, required environment/observability/authority is unavailable, or the failure cannot be reproduced and no equivalent direct evidence exists.
+
+Do not perform production correction attempts inside Root Cause.
+
+## Result
+
+Return one:
+
+- `CONFIRMED_ROOT_CAUSE` — minimal causal explanation and discriminating proof complete;
+- `DIAGNOSED_BUT_UNPROVED` — best explanation has a material proof gap;
+- `EVIDENCE_BLOCKED` — named evidence/environment/authority/observability gap;
+- `NOT_REPRODUCED` — pinned failure not observed and no equivalent direct evidence.
+
+Include failure identity, minimal mechanism/set, per-factor necessity evidence, contributing/contextual/unresolved factors, propagation/containment, decisive evidence, falsified alternatives, affected boundary, confidence limits, and smallest useful next action.
+
+Persist through `akosile` only when a durable diagnosis is needed. Use `html-artifact` only when a substantial terminal diagnosis benefits from a visual view.
