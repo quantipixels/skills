@@ -14,10 +14,25 @@ jobs:
   smoke:
     runs-on: ubuntu-latest
     timeout-minutes: 10
+    env:
+      COPILOT_PAT: ${{ secrets.COPILOT_GITHUB_TOKEN || secrets.COPILOT_PAT }}
+      OPENAI_KEY: ${{ secrets.OPENAI_API_KEY }}
+      ANTHROPIC_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+      GOOGLE_KEY: ${{ secrets.GOOGLE_API_KEY }}
     steps:
       - uses: actions/checkout@v6
         with:
           fetch-depth: 0
+      - name: Report available execution paths
+        shell: bash
+        run: |
+          for item in COPILOT_PAT OPENAI_KEY ANTHROPIC_KEY GOOGLE_KEY; do
+            if [ -n "${!item:-}" ]; then
+              echo "$item=present"
+            else
+              echo "$item=absent"
+            fi
+          done
       - name: Install Copilot CLI
         run: npm install -g @github/copilot
       - name: Run isolated smoke prompt
@@ -29,6 +44,9 @@ jobs:
           set -euo pipefail
           mkdir -p "$COPILOT_HOME" "$RUNNER_TEMP/empty-eval"
           cd "$RUNNER_TEMP/empty-eval"
+          if [ -n "${COPILOT_PAT:-}" ]; then
+            export COPILOT_GITHUB_TOKEN="$COPILOT_PAT"
+          fi
           copilot -sp \
             --model=claude-haiku-4.5 \
             --no-custom-instructions \
