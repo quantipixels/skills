@@ -15,6 +15,42 @@ Keep `CONTEXT.md` implementation-neutral. Include only project-domain language:
 
 Exclude generic programming vocabulary, implementation behavior, runtime findings, research notes, task history, specifications, architecture rationale, and temporary proposals. Put evidence-backed operational knowledge in `.learnings`, durable project exclusions in `.nongoals`, and qualifying consequential decisions in ADRs.
 
+## Calibration
+
+Good `CONTEXT.md` entry:
+
+```markdown
+**Settlement**:
+The final transfer of captured funds to the merchant after provider reconciliation.
+_Avoid_: payout, when referring to the provider-to-merchant settlement event.
+```
+
+Why it belongs: it defines canonical domain meaning and removes an ambiguity that can affect communication and code vocabulary.
+
+Bad `CONTEXT.md` entry:
+
+```text
+SettlementService retries HTTP 429 three times with exponential backoff.
+```
+
+Why it does not belong: this is implementation/operational behavior. Put a durable evidenced nuance in `.learnings` or the owning architecture/implementation contract.
+
+Good `.learnings`, not `CONTEXT.md`:
+
+```text
+Provider settlement events may be delivered before the corresponding capture webhook; reconciliation must tolerate that ordering.
+```
+
+Why: it is a durable operational nuance rather than the meaning of `Settlement`.
+
+Good ADR matter, not `CONTEXT.md`:
+
+```text
+Adopt a separate Settlement bounded context because finance and charging use conflicting lifecycle semantics.
+```
+
+Why: the context-boundary choice is a consequential trade-off; `CONTEXT-MAP.md` records only the confirmed relationship after the decision.
+
 When no project format exists, use:
 
 ```markdown

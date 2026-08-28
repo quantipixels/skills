@@ -68,6 +68,12 @@ Atọ́nà adopts this continuous-view contract. Every material initiative has o
 
 The owner updates `record.md` first. HTML records its exact source revision and visibly reports staleness when regeneration fails. Structural verification follows every projection write. Full browser proof applies to the first meaningful render, lifecycle transitions that change information direction, and applicable formal-review, readiness, terminal, or publication gates; semantic updates within one stage may reuse current browser proof when presentation risk is unchanged.
 
+### Later verification refinement — 2026-08-28
+
+The final sentence above records the original verification policy and is retained as decision history. Its automatic full-browser triggers are superseded by the current `html-artifact` consequence-based verification contract.
+
+Structural verification still follows every write. Ordinary internal reports, working views, comparisons, and exploratory prototypes use visual smoke only when rendered usability materially affects review. Deep browser proof is required when presentation or interaction is itself an acceptance claim, the artifact is production/publication/formal-decision facing, material runtime behavior must be proved, or the user explicitly requests that assurance. Artifact size, first render, or lifecycle transition alone no longer force deep browser proof.
+
 ## Rejected or deferred alternatives
 
 - HTML-only state: presentation failure can destroy usable semantic state and presentation code pollutes future-agent context.
