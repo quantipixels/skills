@@ -26,6 +26,7 @@ Request only missing source/structure that can materially change truth or useful
 Load branch guidance only when applicable:
 
 - reports, living reports, evidence reports, or candidate comparisons → [report patterns](references/report-patterns.md);
+- substantial conceptual relationships where diagram/visual choice materially changes understanding → [visual reasoning](references/visual-reasoning.md);
 - supplied prototypes, demos, interface specimens, or visual variants → [prototype patterns](references/prototype-patterns.md);
 - external code, workers, WebAssembly, widgets, or live services → [dependency policy](references/dependency-policy.md).
 
