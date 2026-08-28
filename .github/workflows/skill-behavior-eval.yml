@@ -8,53 +8,58 @@ on:
 
 permissions:
   contents: read
-  copilot-requests: write
 
 jobs:
   smoke:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
-    env:
-      COPILOT_PAT: ${{ secrets.COPILOT_GITHUB_TOKEN || secrets.COPILOT_PAT }}
-      OPENAI_KEY: ${{ secrets.OPENAI_API_KEY }}
-      ANTHROPIC_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-      GOOGLE_KEY: ${{ secrets.GOOGLE_API_KEY }}
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v6
         with:
           fetch-depth: 0
-      - name: Report available execution paths
+      - name: Install llama.cpp runner
         shell: bash
-        run: |
-          for item in COPILOT_PAT OPENAI_KEY ANTHROPIC_KEY GOOGLE_KEY; do
-            if [ -n "${!item:-}" ]; then
-              echo "$item=present"
-            else
-              echo "$item=absent"
-            fi
-          done
-      - name: Install Copilot CLI
-        run: npm install -g @github/copilot
-      - name: Run isolated smoke prompt
-        shell: bash
-        env:
-          GITHUB_TOKEN: ${{ github.token }}
-          COPILOT_HOME: ${{ runner.temp }}/copilot-home
         run: |
           set -euo pipefail
-          mkdir -p "$COPILOT_HOME" "$RUNNER_TEMP/empty-eval"
-          cd "$RUNNER_TEMP/empty-eval"
-          if [ -n "${COPILOT_PAT:-}" ]; then
-            export COPILOT_GITHUB_TOKEN="$COPILOT_PAT"
-          fi
-          copilot -sp \
-            --model=claude-haiku-4.5 \
-            --no-custom-instructions \
-            --no-ask-user \
-            --no-auto-update \
-            --no-remote \
-            --no-remote-export \
-            --deny-tool='shell,read,write,url,memory' \
-            -p 'Return exactly EVAL_OK and nothing else.' \
-            | tee "$RUNNER_TEMP/smoke.txt"
-          test "$(tr -d '\r\n' < "$RUNNER_TEMP/smoke.txt")" = "EVAL_OK"
+          curl -LsSf https://llama.app/install.sh | sh
+          echo "$HOME/.local/bin" >> "$GITHUB_PATH"
+      - name: Run isolated local-model smoke prompt
+        shell: bash
+        run: |
+          set -euo pipefail
+          export PATH="$HOME/.local/bin:$PATH"
+          llama serve \
+            -hf Qwen/Qwen2.5-1.5B-Instruct-GGUF:Q4_K_M \
+            --host 127.0.0.1 --port 8080 -c 4096 \
+            >"$RUNNER_TEMP/llama-server.log" 2>&1 &
+          server_pid=$!
+          trap 'kill "$server_pid" 2>/dev/null || true' EXIT
+          for _ in $(seq 1 120); do
+            curl -fsS http://127.0.0.1:8080/health >/dev/null && break
+            sleep 2
+          done
+          curl -fsS http://127.0.0.1:8080/health
+          python3 - <<'PY'
+          import json, urllib.request
+          body = json.dumps({
+              "model": "qwen",
+              "messages": [
+                  {"role": "system", "content": "Follow the user's instruction exactly."},
+                  {"role": "user", "content": "Return exactly EVAL_OK and nothing else."}
+              ],
+              "temperature": 0,
+              "max_tokens": 16,
+              "seed": 41
+          }).encode()
+          req = urllib.request.Request(
+              "http://127.0.0.1:8080/v1/chat/completions",
+              data=body,
+              headers={"Content-Type": "application/json"},
+          )
+          with urllib.request.urlopen(req, timeout=180) as response:
+              payload = json.load(response)
+          text = payload["choices"][0]["message"]["content"].strip()
+          print(text)
+          if text != "EVAL_OK":
+              raise SystemExit(f"unexpected output: {text!r}")
+          PY
