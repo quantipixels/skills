@@ -105,13 +105,16 @@ def call_model(messages: list[dict], max_tokens: int, seed: int) -> tuple[str,di
 def main() -> int:
     ap=argparse.ArgumentParser()
     ap.add_argument("--out",required=True)
+    ap.add_argument("--shard-index",type=int,default=0)
+    ap.add_argument("--shard-count",type=int,default=1)
     args=ap.parse_args()
     out=Path(args.out)
     (out/"inputs").mkdir(parents=True,exist_ok=True)
     (out/"responses").mkdir(parents=True,exist_ok=True)
+    selected=[(idx,case) for idx,case in enumerate(DATA["cases"]) if idx % args.shard_count == args.shard_index]
     results=[]
     failures=0
-    for idx,case in enumerate(DATA["cases"]):
+    for local_pos,(idx,case) in enumerate(selected):
         order=["old","new"] if idx%2==0 else ["new","old"]
         for variant in order:
             ref=DATA["base"] if variant=="old" else DATA["head"]
@@ -145,15 +148,16 @@ def main() -> int:
                 response_path=out/"responses"/f"{case['id']}--{variant}.txt"
                 response_path.write_text(text,encoding="utf-8")
                 record.update({"status":"ok","response":text,"response_sha256":hashlib.sha256(text.encode()).hexdigest(),"usage":usage,"elapsed_seconds":round(elapsed,3)})
-                print(f"[{idx+1}/{len(DATA['cases'])}] {case['id']} {variant} OK {elapsed:.1f}s",flush=True)
+                print(f"[{local_pos+1}/{len(selected)}] {case['id']} {variant} OK {elapsed:.1f}s",flush=True)
             except Exception as exc:
                 failures+=1
                 record.update({"status":"error","error":repr(exc)})
-                print(f"[{idx+1}/{len(DATA['cases'])}] {case['id']} {variant} ERROR {exc!r}",file=sys.stderr,flush=True)
+                print(f"[{local_pos+1}/{len(selected)}] {case['id']} {variant} ERROR {exc!r}",file=sys.stderr,flush=True)
             results.append(record)
             (out/"results.jsonl").write_text("\n".join(json.dumps(x,ensure_ascii=False) for x in results)+"\n",encoding="utf-8")
     manifest={
-        "baseline":DATA["base"],"candidate":DATA["head"],"cases":len(DATA["cases"]),
+        "baseline":DATA["base"],"candidate":DATA["head"],"cases":len(selected),
+        "total_cases":len(DATA["cases"]),"shard_index":args.shard_index,"shard_count":args.shard_count,
         "calls":len(results),"failures":failures,"model":"Qwen/Qwen2.5-3B-Instruct-GGUF:Q4_K_M",
         "runner":"llama.cpp OpenAI-compatible server","generation_order":"alternating old/new per case",
         "temperature":0.1,"evaluation_type":"actual isolated model inference"

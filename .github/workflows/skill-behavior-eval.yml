@@ -6,13 +6,21 @@ on:
       - eval/pr41-skill-behavior
   workflow_dispatch:
 
+concurrency:
+  group: qp-skill-behavior-eval
+  cancel-in-progress: true
+
 permissions:
   contents: read
 
 jobs:
   evaluate:
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [0, 1, 2, 3, 4, 5]
     runs-on: ubuntu-latest
-    timeout-minutes: 180
+    timeout-minutes: 90
     steps:
       - uses: actions/checkout@v6
         with:
@@ -45,7 +53,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          python3 evals/skill-behavior/run_evals.py --out "$RUNNER_TEMP/eval-output"
+          python3 evals/skill-behavior/run_evals.py --out "$RUNNER_TEMP/eval-output" --shard-index "${{ matrix.shard }}" --shard-count 6
 
       - name: Preserve model log
         if: always()
@@ -58,12 +66,12 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: qp-skill-behavior-evals-${{ github.run_id }}
+          name: qp-skill-behavior-evals-${{ github.run_id }}-shard-${{ matrix.shard }}
           path: ${{ runner.temp }}/eval-output
           if-no-files-found: error
           retention-days: 14
 
-      - name: Require complete inference matrix
+      - name: Require complete inference shard
         shell: bash
         run: |
           python3 - <<'PY'
