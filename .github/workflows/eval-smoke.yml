@@ -8,39 +8,42 @@ on:
 
 permissions:
   contents: read
-  models: read
+  copilot-requests: write
 
 jobs:
   smoke:
     runs-on: ubuntu-latest
     steps:
-      - name: Call GitHub Models
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Install Copilot CLI
         run: |
-          jq -n '{
-            model: "openai/gpt-5-mini",
-            temperature: 0,
-            max_tokens: 32,
-            messages: [
-              {role: "system", content: "Follow the user instruction exactly."},
-              {role: "user", content: "Return exactly: EVAL_OK"}
-            ]
-          }' > request.json
+          npm install --global @github/copilot
+          copilot version | tee copilot-version.txt
+          copilot help > copilot-help.txt
 
-          curl --fail-with-body --silent --show-error \
-            https://models.github.ai/inference/chat/completions \
-            -H "Authorization: Bearer $GITHUB_TOKEN" \
-            -H "Content-Type: application/json" \
-            --data-binary @request.json > response.json
-
-          jq -r '.choices[0].message.content' response.json | tee output.txt
-          grep -qx 'EVAL_OK' output.txt
+      - name: Run isolated prompt
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          COPILOT_HOME: ${{ runner.temp }}/copilot-home
+        run: |
+          mkdir -p "$RUNNER_TEMP/eval-empty"
+          cd "$RUNNER_TEMP/eval-empty"
+          copilot \
+            --prompt 'Return exactly: EVAL_OK' \
+            --silent \
+            --model gpt-5.4 \
+            --allow-all-tools \
+            --no-ask-user \
+            --no-custom-instructions \
+            --no-remote \
+            --no-auto-update \
+            --no-color | tee "$GITHUB_WORKSPACE/output.txt"
+          grep -qx 'EVAL_OK' "$GITHUB_WORKSPACE/output.txt"
 
       - uses: actions/upload-artifact@v4
+        if: always()
         with:
           name: eval-smoke
           path: |
-            request.json
-            response.json
+            copilot-version.txt
+            copilot-help.txt
             output.txt
