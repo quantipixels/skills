@@ -20,6 +20,8 @@ Use `rg` and `git` directly for proportionate read-only reachability and history
 
 When control-flow, state-space, nesting, fan-out, mutable state, async/process lifecycle, complexity metrics, or test volume is material, read [complexity and proof](references/complexity-and-proof.md). Metrics are investigation signals; never recommend extraction or indirection merely to lower a score.
 
+When a recurring maintainability smell or ownership pattern is materially shaping the investigation, read [maintainability patterns](references/maintainability-patterns.md). Treat those patterns as calibrated investigation signals, never findings or scores; repository rules and candidate-specific evidence control the result.
+
 ## Ladder
 
 Understand the flow; take the first sound reduction:
