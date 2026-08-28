@@ -24,6 +24,46 @@ Retain an item only when:
 
 One unconfirmed task correction does **not** qualify.
 
+## Calibration
+
+Good local craft:
+
+```text
+Trigger: updating an Order aggregate.
+Prefer: call aggregate methods that own state transitions.
+Avoid: repositories or application services writing child entity state directly.
+Why: aggregate invariants and emitted domain events are owned by the aggregate.
+Material exception: read-model/projector code does not mutate aggregate state.
+Evidence: current aggregate tests + architecture decision AD-12.
+Freshness: revalidate if aggregate ownership changes.
+```
+
+Why it belongs: it is a confirmed repository-specific implementation pattern that changes future coding choices but is not a universal QP rule.
+
+Bad local craft:
+
+```text
+Prefer tabs over spaces.
+```
+
+Why it does not belong: formatting belongs to repository instructions or deterministic formatter configuration.
+
+Good `.learnings`, not local craft:
+
+```text
+Provider events can arrive out of order and must be version-checked before applying transitions.
+```
+
+Why: this is durable project behavior/operational knowledge rather than a preferred coding shape.
+
+Good architecture constraint, not local craft:
+
+```text
+All payment-provider traffic crosses the PaymentProvider boundary.
+```
+
+Why: when that boundary is part of an accepted architecture contract, keep it with the architecture authority rather than duplicating it as craft.
+
 ## Record shape
 
 ```text
