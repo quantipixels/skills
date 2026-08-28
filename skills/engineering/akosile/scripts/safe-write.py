@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Fingerprint or atomically compare-and-swap one exact file under a supplied root."""
+"""Snapshot one exact file with its digest, or atomically replace it when that digest matches."""
 from __future__ import annotations
 
 import argparse
@@ -31,28 +31,8 @@ class SafeWriteError(Exception):
         return result
 
 
-def fingerprint(path: Path) -> str:
-    path = path.expanduser()
-    if path.is_symlink():
-        raise SafeWriteError("SYMLINK_TARGET", "Target cannot be a symbolic link", target=str(path))
-    if not path.exists():
-        return ABSENT
-    if not path.is_file():
-        raise SafeWriteError("NOT_A_FILE", "Target must be a regular file", target=str(path))
-    digest = hashlib.sha256()
-    with path.open("rb") as handle:
-        for chunk in iter(lambda: handle.read(1024 * 1024), b""):
-            digest.update(chunk)
-    return digest.hexdigest()
-
-
-def validate_expected(value: str) -> str:
-    if value == ABSENT or DIGEST_RE.fullmatch(value):
-        return value
-    raise SafeWriteError(
-        "INVALID_EXPECTED_DIGEST",
-        "Expected digest must be 'absent' or a lowercase SHA-256 digest",
-    )
+def hash_bytes(content: bytes) -> str:
+    return hashlib.sha256(content).hexdigest()
 
 
 def resolve_root(root: Path) -> Path:
@@ -83,9 +63,7 @@ def resolve_target(root: Path, target: Path) -> tuple[Path, Path]:
         current /= part
         if current.is_symlink():
             raise SafeWriteError(
-                "SYMLINK_PATH",
-                "Target path cannot traverse symbolic links",
-                path=str(current),
+                "SYMLINK_PATH", "Target path cannot traverse symbolic links", path=str(current)
             )
     if not lexical.parent.exists() or not lexical.parent.is_dir():
         raise SafeWriteError(
@@ -94,6 +72,33 @@ def resolve_target(root: Path, target: Path) -> tuple[Path, Path]:
             parent=str(lexical.parent),
         )
     return resolved_root, lexical
+
+
+def resolve_input(path: Path, *, label: str) -> Path:
+    lexical = Path(os.path.abspath(path.expanduser()))
+    if lexical.is_symlink() or not lexical.is_file():
+        raise SafeWriteError(
+            f"INVALID_{label.upper()}", f"{label.title()} must be a regular non-symlink file"
+        )
+    return lexical.resolve()
+
+
+def resolve_output(path: Path) -> Path:
+    lexical = Path(os.path.abspath(path.expanduser()))
+    if lexical.is_symlink():
+        raise SafeWriteError("INVALID_SNAPSHOT", "Snapshot output cannot be a symbolic link")
+    if not lexical.parent.exists() or not lexical.parent.is_dir():
+        raise SafeWriteError("SNAPSHOT_PARENT_MISSING", "Snapshot output parent must already exist")
+    return lexical
+
+
+def validate_expected(value: str) -> str:
+    if value == ABSENT or DIGEST_RE.fullmatch(value):
+        return value
+    raise SafeWriteError(
+        "INVALID_EXPECTED_DIGEST",
+        "Expected digest must be 'absent' or a lowercase SHA-256 digest",
+    )
 
 
 def fsync_directory(directory: Path) -> None:
@@ -122,48 +127,79 @@ def atomic_replace(target: Path, content: bytes, mode: int) -> None:
         temporary.unlink(missing_ok=True)
 
 
+def target_lock(target: Path, timeout: float) -> FileLock:
+    lock_path = target.parent / f".{target.name}.lock"
+    if lock_path.is_symlink():
+        raise SafeWriteError("SYMLINK_LOCK", "Target lock cannot be a symbolic link")
+    return FileLock(str(lock_path), timeout=timeout)
+
+
+def snapshot(*, root: Path, target: Path, output: Path, timeout: float = 30.0) -> dict[str, Any]:
+    root, target = resolve_target(root, target)
+    output = resolve_output(output)
+    try:
+        output.relative_to(root)
+    except ValueError:
+        pass
+    else:
+        raise SafeWriteError(
+            "SNAPSHOT_INSIDE_ROOT",
+            "Snapshot output must be outside the authoritative root",
+        )
+    if output == target:
+        raise SafeWriteError("SNAPSHOT_IS_TARGET", "Snapshot output must be separate from the target")
+    try:
+        with target_lock(target, timeout):
+            _, target = resolve_target(root, target)
+            if target.is_symlink():
+                raise SafeWriteError("SYMLINK_TARGET", "Target cannot be a symbolic link")
+            if not target.exists():
+                output.unlink(missing_ok=True)
+                return {"target": str(target), "snapshot": None, "digest": ABSENT, "bytes": 0}
+            if not target.is_file():
+                raise SafeWriteError("NOT_A_FILE", "Target must be a regular file")
+            content = target.read_bytes()
+            digest = hash_bytes(content)
+            atomic_replace(output, content, target.stat().st_mode & 0o777)
+            if hash_bytes(output.read_bytes()) != digest:
+                raise SafeWriteError("SNAPSHOT_MISMATCH", "Snapshot does not match the target bytes")
+    except Timeout as error:
+        raise SafeWriteError("LOCK_TIMEOUT", "Timed out waiting for the target lock") from error
+    except OSError as error:
+        raise SafeWriteError("IO_ERROR", "File operation failed", error=str(error)) from error
+    return {"target": str(target), "snapshot": str(output), "digest": digest, "bytes": len(content)}
+
+
 def compare_and_swap(
     *, root: Path, target: Path, candidate: Path, expected: str, timeout: float = 30.0
 ) -> dict[str, Any]:
     expected = validate_expected(expected)
     root, target = resolve_target(root, target)
-
-    candidate_lexical = Path(os.path.abspath(candidate.expanduser()))
-    if candidate_lexical.is_symlink():
-        raise SafeWriteError(
-            "INVALID_CANDIDATE",
-            "Candidate must be a regular non-symlink file",
-            candidate=str(candidate_lexical),
-        )
-    candidate = candidate_lexical.resolve()
-    if not candidate.is_file():
-        raise SafeWriteError(
-            "INVALID_CANDIDATE",
-            "Candidate must be a regular non-symlink file",
-            candidate=str(candidate),
-        )
+    candidate = resolve_input(candidate, label="candidate")
     if candidate == target:
         raise SafeWriteError("CANDIDATE_IS_TARGET", "Candidate must be separate from the target")
 
-    lock_path = target.parent / f".{target.name}.lock"
-    if lock_path.is_symlink():
-        raise SafeWriteError("SYMLINK_LOCK", "Target lock cannot be a symbolic link")
     try:
-        with FileLock(str(lock_path), timeout=timeout):
+        with target_lock(target, timeout):
             _, target = resolve_target(root, target)
-            actual = fingerprint(target)
+            if target.is_symlink():
+                raise SafeWriteError("SYMLINK_TARGET", "Target cannot be a symbolic link")
+            if target.exists() and not target.is_file():
+                raise SafeWriteError("NOT_A_FILE", "Target must be a regular file")
+            current = target.read_bytes() if target.exists() else None
+            actual = hash_bytes(current) if current is not None else ABSENT
             if actual != expected:
                 raise SafeWriteError(
                     "STALE_TARGET",
-                    "Target changed since the caller's exact read",
+                    "Target changed since the caller's exact snapshot",
                     expected=expected,
                     actual=actual,
                 )
             content = candidate.read_bytes()
-            candidate_digest = hashlib.sha256(content).hexdigest()
+            candidate_digest = hash_bytes(content)
             mode = (target.stat().st_mode if target.exists() else candidate.stat().st_mode) & 0o777
             atomic_replace(target, content, mode)
-            written_digest = fingerprint(target)
+            written_digest = hash_bytes(target.read_bytes())
             if written_digest != candidate_digest:
                 raise SafeWriteError(
                     "READBACK_MISMATCH",
@@ -188,11 +224,14 @@ def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description=__doc__)
     commands = parser.add_subparsers(dest="command", required=True)
 
-    digest = commands.add_parser("digest", help="Print the current SHA-256 digest or 'absent'")
-    digest.add_argument("--target", type=Path, required=True)
+    read = commands.add_parser("snapshot", help="Copy one locked target snapshot and return its digest")
+    read.add_argument("--root", type=Path, required=True)
+    read.add_argument("--target", type=Path, required=True)
+    read.add_argument("--output", type=Path, required=True)
+    read.add_argument("--timeout", type=float, default=30.0)
 
     write = commands.add_parser(
-        "write", help="Atomically replace a target when its digest still matches"
+        "write", help="Atomically replace a target when its snapshot digest still matches"
     )
     write.add_argument("--root", type=Path, required=True)
     write.add_argument("--target", type=Path, required=True)
@@ -205,11 +244,13 @@ def build_parser() -> argparse.ArgumentParser:
 def main() -> None:
     args = build_parser().parse_args()
     try:
-        if args.command == "digest":
-            result: Any = {
-                "target": str(args.target.expanduser().resolve(strict=False)),
-                "digest": fingerprint(args.target),
-            }
+        if args.command == "snapshot":
+            result = snapshot(
+                root=args.root,
+                target=args.target,
+                output=args.output,
+                timeout=args.timeout,
+            )
         else:
             result = compare_and_swap(
                 root=args.root,

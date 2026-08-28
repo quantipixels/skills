@@ -49,7 +49,7 @@ candidate: <exact current candidate, optional>
 status: <owner-native state>
 ```
 
-The semantic owner defines valid record types, statuses, transitions, evidence, candidate meaning, revision policy, timestamp policy, and body structure. Akọsílẹ̀'s index helper validates only this shared mechanical envelope and owner/path agreement.
+The semantic owner defines valid record types, statuses, transitions, evidence, candidate meaning, revision policy, timestamp policy, and body structure. Akọsílẹ̀'s index renderer validates only this shared mechanical envelope and owner/path agreement.
 
 ## Focused safe writes
 
@@ -57,34 +57,35 @@ Use `scripts/safe-write.py`; do not build a workspace command layer around it.
 
 The semantic owner:
 
-1. reads the exact current target;
-2. records its digest, or `absent` when creating it;
-3. builds and semantically validates the complete replacement separately; and
-4. supplies the `.qp` root, exact target, candidate file, and expected digest.
+1. selects the exact target and an external temporary snapshot path;
+2. requests one locked snapshot whose bytes and digest come from the same read;
+3. builds and semantically validates the complete replacement from that snapshot; and
+4. supplies the `.qp` root, exact target, candidate file, and snapshot digest.
 
 The helper:
 
 1. verifies the target resolves within the supplied root;
 2. takes a per-target file lock;
-3. rereads and fingerprints the target under the lock;
-4. rejects a stale expected digest;
-5. atomically replaces the complete file;
-6. fsyncs where supported; and
-7. rereads and verifies the written digest.
+3. reads the exact target bytes once and copies those bytes to the external snapshot;
+4. returns the digest of those same bytes, or `absent` for a missing target;
+5. on write, rereads and fingerprints the target under the same lock;
+6. rejects a stale expected digest;
+7. atomically replaces the complete file; and
+8. rereads and verifies the written digest.
 
-The helper does not allocate paths, interpret frontmatter, assign revisions or timestamps, choose recovery, or retry stale writes. A stale write returns to the semantic owner for reconciliation.
+Snapshot output must remain outside `.qp`. The helper does not allocate workspace paths, interpret frontmatter, assign revisions or timestamps, choose recovery, or retry stale writes. A stale write returns to the semantic owner for reconciliation.
 
 Hidden sibling lock files are mechanical coordination files, not records or registry state. They may remain after successful operations.
 
 ## Generated index
 
-Use `scripts/rebuild-index.py` after record writes or when navigation is stale.
+Use `scripts/render-index.py` to produce a separate `INDEX.md` candidate outside `.qp`. Do not let the renderer mutate the authoritative workspace.
 
-`.qp/INDEX.md` is generated from mechanically valid `record.md` frontmatter and sorted by the chronological instant represented by `updated_at`, newest first. It displays owner, record type, title, native status, record link, and the expected real slug-named HTML view when that file exists.
+The renderer reads mechanically valid `record.md` frontmatter and sorts by the chronological instant represented by `updated_at`, newest first. It displays owner, record type, title, native status, record link, and the expected real slug-named HTML view when that file exists.
 
-Malformed records and legacy `index.html` entrypoints appear diagnostically rather than disappearing. Records remain authoritative; users and semantic owners do not edit the generated index.
+Malformed records and legacy `index.html` entrypoints appear diagnostically rather than disappearing. Records remain authoritative.
 
-A failed index rebuild does not invalidate a successfully verified record write.
+To publish the candidate, snapshot `.qp/INDEX.md` first, render the candidate, then replace `INDEX.md` through `safe-write.py` with the snapshot digest. A failed or stale index refresh does not invalidate a successfully verified record write.
 
 ## Direct user access
 

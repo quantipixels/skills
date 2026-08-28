@@ -58,7 +58,7 @@ jobs:
       - name: Install Akosile dependencies
         run: python3 -m pip install -r skills/engineering/akosile/scripts/requirements.txt
 
-      - name: Test safe-write and index helpers
+      - name: Test safe-write and index renderer
         run: python3 -m unittest discover -s skills/engineering/akosile/scripts -p 'test_*.py'
 
   wo-pr-tests:

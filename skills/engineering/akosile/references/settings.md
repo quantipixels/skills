@@ -27,4 +27,6 @@ Settings may influence only preferences the consuming skill explicitly documents
 - store credentials, project/domain rules, architecture decisions, or safety policy; or
 - change the repository-local workspace root.
 
-Before updating settings, read the exact current object, preserve unknown sections, validate that the complete candidate is a JSON object, and replace it through `scripts/safe-write.py` using the exact digest from that read. The helper protects only the atomic compare-and-swap; the consuming skill retains settings semantics.
+Before updating settings, use `scripts/safe-write.py snapshot` to obtain one exact settings snapshot and its matching digest. Build the complete JSON-object candidate from that snapshot, preserve unknown sections, validate the candidate, and replace it through `safe-write.py write` with the returned digest. For a missing file, the snapshot result is `absent`.
+
+The helper protects only the exact snapshot and atomic compare-and-swap. The consuming skill retains settings semantics and conflict reconciliation.

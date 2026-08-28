@@ -21,17 +21,30 @@ def invoke(*arguments: object) -> tuple[int, dict]:
 
 
 class SafeWriteTests(unittest.TestCase):
-    def test_create_and_digest_exact_file(self) -> None:
+    def test_snapshot_and_create_use_exact_matching_bytes(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
-            root = Path(directory)
+            base = Path(directory)
+            root = base / ".qp"
+            root.mkdir()
             target = root / "record.md"
-            candidate = root / "candidate.md"
-            candidate.write_text("first\n", encoding="utf-8")
+            snapshot = base / "snapshot.md"
+            candidate = base / "candidate.md"
 
-            code, payload = invoke("digest", "--target", target)
+            snapshot.write_text("stale\n", encoding="utf-8")
+            code, payload = invoke(
+                "snapshot",
+                "--root",
+                root,
+                "--target",
+                target,
+                "--output",
+                snapshot,
+            )
             self.assertEqual(code, 0)
             self.assertEqual(payload["result"]["digest"], "absent")
+            self.assertFalse(snapshot.exists())
 
+            candidate.write_text("first\n", encoding="utf-8")
             code, payload = invoke(
                 "write",
                 "--root",
@@ -44,20 +57,62 @@ class SafeWriteTests(unittest.TestCase):
                 "absent",
             )
             self.assertEqual(code, 0)
-            self.assertEqual(target.read_text(encoding="utf-8"), "first\n")
+
+            code, payload = invoke(
+                "snapshot",
+                "--root",
+                root,
+                "--target",
+                target,
+                "--output",
+                snapshot,
+            )
+            self.assertEqual(code, 0)
+            self.assertEqual(snapshot.read_bytes(), target.read_bytes())
             self.assertEqual(
-                payload["result"]["digest"], hashlib.sha256(b"first\n").hexdigest()
+                payload["result"]["digest"], hashlib.sha256(snapshot.read_bytes()).hexdigest()
             )
 
-    def test_stale_write_is_rejected_without_changing_target(self) -> None:
+            code, payload = invoke(
+                "snapshot",
+                "--root",
+                root,
+                "--target",
+                target,
+                "--output",
+                root / "inside.md",
+            )
+            self.assertEqual(code, 2)
+            self.assertEqual(payload["error"]["code"], "SNAPSHOT_INSIDE_ROOT")
+
+    def test_candidate_based_on_snapshot_cannot_overwrite_later_change(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
-            root = Path(directory)
+            base = Path(directory)
+            root = base / ".qp"
+            root.mkdir()
             target = root / "settings.json"
-            target.write_text("{}\n", encoding="utf-8")
-            stale = hashlib.sha256(target.read_bytes()).hexdigest()
-            target.write_text('{"current": true}\n', encoding="utf-8")
-            candidate = root / "candidate.json"
-            candidate.write_text('{"stale": true}\n', encoding="utf-8")
+            snapshot = base / "settings.snapshot.json"
+            candidate = base / "candidate.json"
+            target.write_text('{"base": true}\n', encoding="utf-8")
+
+            code, payload = invoke(
+                "snapshot",
+                "--root",
+                root,
+                "--target",
+                target,
+                "--output",
+                snapshot,
+            )
+            self.assertEqual(code, 0)
+            expected = payload["result"]["digest"]
+            self.assertEqual(snapshot.read_text(encoding="utf-8"), '{"base": true}\n')
+
+            target.write_text('{"concurrent": true}\n', encoding="utf-8")
+            candidate.write_text(
+                snapshot.read_text(encoding="utf-8").replace("true", '"edited"'),
+                encoding="utf-8",
+            )
 
             code, payload = invoke(
                 "write",
@@ -68,11 +123,11 @@ class SafeWriteTests(unittest.TestCase):
                 "--candidate",
                 candidate,
                 "--expected",
-                stale,
+                expected,
             )
             self.assertEqual(code, 2)
             self.assertEqual(payload["error"]["code"], "STALE_TARGET")
-            self.assertEqual(target.read_text(encoding="utf-8"), '{"current": true}\n')
+            self.assertEqual(target.read_text(encoding="utf-8"), '{"concurrent": true}\n')
 
     def test_concurrent_writers_accept_only_one_shared_digest(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
@@ -104,9 +159,7 @@ class SafeWriteTests(unittest.TestCase):
                 )
                 outcomes.append("OK" if code == 0 else payload["error"]["code"])
 
-            threads = [
-                threading.Thread(target=writer, args=(candidate,)) for candidate in candidates
-            ]
+            threads = [threading.Thread(target=writer, args=(candidate,)) for candidate in candidates]
             for thread in threads:
                 thread.start()
             barrier.wait()

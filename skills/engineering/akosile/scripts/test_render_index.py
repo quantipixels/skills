@@ -7,12 +7,12 @@ from pathlib import Path
 
 import yaml
 
-SCRIPT = Path(__file__).with_name("rebuild-index.py")
+SCRIPT = Path(__file__).with_name("render-index.py")
 
 
-def invoke(workspace: Path) -> tuple[int, dict]:
+def invoke(workspace: Path, output: Path) -> tuple[int, dict]:
     result = subprocess.run(
-        [sys.executable, str(SCRIPT), "--workspace", str(workspace)],
+        [sys.executable, str(SCRIPT), "--workspace", str(workspace), "--output", str(output)],
         check=False,
         capture_output=True,
         text=True,
@@ -41,17 +41,20 @@ def write_record(
         "revision": revision,
         "status": status,
     }
-    content = "---\n" + yaml.safe_dump(metadata, sort_keys=False) + "---\n\n# Body\n"
     record = bundle / "record.md"
-    record.write_text(content, encoding="utf-8")
+    record.write_text(
+        "---\n" + yaml.safe_dump(metadata, sort_keys=False) + "---\n\n# Body\n",
+        encoding="utf-8",
+    )
     return record
 
 
-class RebuildIndexTests(unittest.TestCase):
+class RenderIndexTests(unittest.TestCase):
     def test_sorts_by_instant_and_links_real_collision_slug(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
             workspace = Path(directory) / ".qp"
             workspace.mkdir()
+            output = Path(directory) / "INDEX.candidate.md"
             write_record(
                 workspace,
                 owner="atona",
@@ -70,20 +73,22 @@ class RebuildIndexTests(unittest.TestCase):
             (second.parent / "second-2.html").write_text("<html></html>", encoding="utf-8")
             (second.parent / "index.html").write_text("<html></html>", encoding="utf-8")
 
-            code, payload = invoke(workspace)
+            code, payload = invoke(workspace, output)
             self.assertEqual(code, 0)
-            index = (workspace / "INDEX.md").read_text(encoding="utf-8")
+            index = output.read_text(encoding="utf-8")
             self.assertLess(index.index("Second"), index.index("First"))
             self.assertIn("records/atona/20260828-second-2/second-2.html", index)
             self.assertIn("initiative/plan-v2", index)
             self.assertIn("## Legacy HTML entrypoints", index)
             self.assertEqual(len(payload["result"]["legacy_html"]), 1)
+            self.assertFalse((workspace / "INDEX.md").exists())
 
     def test_valid_yaml_comments_quotes_and_folded_title(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
             workspace = Path(directory) / ".qp"
             bundle = workspace / "records" / "atona" / "20260828-yaml"
             bundle.mkdir(parents=True)
+            output = Path(directory) / "candidate.md"
             (bundle / "record.md").write_text(
                 "---\n"
                 "owner: atona\n"
@@ -96,16 +101,17 @@ class RebuildIndexTests(unittest.TestCase):
                 encoding="utf-8",
             )
 
-            code, payload = invoke(workspace)
+            code, payload = invoke(workspace, output)
             self.assertEqual(code, 0)
             self.assertEqual(payload["result"]["invalid"], [])
-            index = (workspace / "INDEX.md").read_text(encoding="utf-8")
+            index = output.read_text(encoding="utf-8")
             self.assertIn("Checkout # recovery", index)
             self.assertIn("Draft # one", index)
 
     def test_invalid_records_remain_visible_diagnostics(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
             workspace = Path(directory) / ".qp"
+            output = Path(directory) / "candidate.md"
             duplicate = workspace / "records" / "atona" / "20260828-duplicate"
             duplicate.mkdir(parents=True)
             (duplicate / "record.md").write_text(
@@ -131,14 +137,13 @@ class RebuildIndexTests(unittest.TestCase):
                 encoding="utf-8",
             )
 
-            code, payload = invoke(workspace)
+            code, payload = invoke(workspace, output)
             self.assertEqual(code, 0)
-            codes = {item["code"] for item in payload["result"]["invalid"]}
             self.assertEqual(
-                codes,
+                {item["code"] for item in payload["result"]["invalid"]},
                 {"INVALID_FRONTMATTER", "INVALID_UPDATED_AT", "OWNER_PATH_MISMATCH"},
             )
-            index = (workspace / "INDEX.md").read_text(encoding="utf-8")
+            index = output.read_text(encoding="utf-8")
             self.assertIn("## Invalid records", index)
             self.assertIn("20260828-duplicate", index)
             self.assertIn("20260828-bad-time", index)
@@ -147,6 +152,7 @@ class RebuildIndexTests(unittest.TestCase):
     def test_rejects_symlinked_record_path(self) -> None:
         with tempfile.TemporaryDirectory() as directory, tempfile.TemporaryDirectory() as outside:
             workspace = Path(directory) / ".qp"
+            output = Path(directory) / "candidate.md"
             bundle = workspace / "records" / "atona" / "20260828-linked"
             bundle.mkdir(parents=True)
             outside_record = Path(outside) / "record.md"
@@ -156,30 +162,37 @@ class RebuildIndexTests(unittest.TestCase):
             except OSError:
                 self.skipTest("symlinks unavailable")
 
-            code, payload = invoke(workspace)
+            code, payload = invoke(workspace, output)
             self.assertEqual(code, 0)
             self.assertEqual(payload["result"]["invalid"][0]["code"], "SYMLINK_PATH")
 
-    def test_missing_workspace_and_symlink_index_fail_without_initializing(self) -> None:
+    def test_missing_workspace_and_symlink_output_fail_without_initializing(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
             missing = Path(directory) / ".qp"
-            code, payload = invoke(missing)
+            output = Path(directory) / "candidate.md"
+            code, payload = invoke(missing, output)
             self.assertEqual(code, 2)
             self.assertEqual(payload["error"]["code"], "WORKSPACE_MISSING")
             self.assertFalse(missing.exists())
 
             workspace = Path(directory) / "present"
             workspace.mkdir()
-            outside = Path(directory) / "outside-index.md"
+            outside = Path(directory) / "outside.md"
             outside.write_text("outside\n", encoding="utf-8")
+            linked_output = Path(directory) / "linked.md"
             try:
-                (workspace / "INDEX.md").symlink_to(outside)
+                linked_output.symlink_to(outside)
             except OSError:
                 self.skipTest("symlinks unavailable")
-            code, payload = invoke(workspace)
+            code, payload = invoke(workspace, linked_output)
             self.assertEqual(code, 2)
-            self.assertEqual(payload["error"]["code"], "SYMLINK_INDEX")
+            self.assertEqual(payload["error"]["code"], "SYMLINK_OUTPUT")
             self.assertEqual(outside.read_text(encoding="utf-8"), "outside\n")
+
+            code, payload = invoke(workspace, workspace / "INDEX.md")
+            self.assertEqual(code, 2)
+            self.assertEqual(payload["error"]["code"], "OUTPUT_INSIDE_WORKSPACE")
+            self.assertFalse((workspace / "INDEX.md").exists())
 
 
 if __name__ == "__main__":
