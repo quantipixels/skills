@@ -1,34 +1,19 @@
 # QP Agent Skills
 
-QP Agent Skills is a portable collection of focused skills for established codebases. It helps agents make decisions, plan and deliver work, review code, keep reusable local records, and create selective HTML artifacts.
+Portable focused skills for established codebases. QP aims for one independently useful outcome per public skill, deep references where judgment benefits, native commands/tools for ordinary mechanics, and bundled code only for narrow deterministic kernels.
 
-Skills belong to one Engineering, Design, Productivity, or Experimental install group.
+Browse the [documentation](https://quantipixels.com/skills).
 
-Browse the [QP Agent Skills documentation](https://quantipixels.com/skills).
+## Portfolio principles
 
-## Portfolio shape
-
-- Akọsílẹ̀ owns the repository-local `.qp` workspace: root/path resolution, owner-first paths, safe writes, sparse settings, and one generated index. Semantic owners retain record meaning, native states, evidence, and provider authority.
-- Solution Architect owns technical architecture design/read-only review and emits a compact Architecture Contract for implementation. Atọ́nà owns initiative planning, the material decision frontier, delivery integration, and closure; Àròjinlẹ̀ resolves consequential user choices when that frontier is open.
-- Alága owns delivery and proof compaction; Parẹ́ owns read-only semantic/complexity simplification; Àtúnwò owns defects, proof gaps, and code-review verdicts; Irinṣẹ́ supplies bounded tool evidence.
-- Experimental `akowe` can accompany one active code change by discovering the smallest relevant available skills and current primary-source evidence, then maintaining exact-candidate Expert Implementation Counsel without becoming an implementation or review owner.
-- Experimental `pepeye` can supervise one explicitly selected task's owner, candidate, authority, acceptance, proof, blocker, and terminal state without imposing a second lifecycle.
-- Every material Atọ́nà initiative has one continuously maintained HTML human view from meaningful `Draft` through `Closed`; lifecycle transitions may change its focus, density, layout, and governing representation.
-- Supporting skills keep detailed results with their native owners and return native results to callers without adopting caller-specific receipt dialects.
-- `html-artifact` derives reader-specific views from owner records and linked evidence instead of copying complete source material.
-- Generated `.qp` records, projections, receipts, and evidence stay outside Git by default.
-
-## Repository-local workspace
-
-```text
-.qp/
-├── settings.json
-├── INDEX.md
-├── records/<canonical-skill-name>/<record-id>/
-└── artifacts/<artifact-id>/
-```
-
-`settings.json` contains sparse, skill-documented preferences. `INDEX.md` is rebuilt from record frontmatter; records remain authoritative. For generated resources intended for direct use, Akọsílẹ̀ returns both the resolved absolute path and repository-relative `.qp/...` path.
+- Kọ Skill authors every capability/resource at the smallest adequate surface: guidance/reference → visible command → native/project/provider tool → focused library → deterministic script → engine only when it carries a substantial owned vertical.
+- Akọsílẹ̀ owns one repository-scoped `.qp`: the main worktree holds the real directory and linked worktrees expose symlinks. New records use stable semantic subjects; settings/index/record/artifact resources are created lazily.
+- Supporting skills keep detailed results with their native owners rather than copying caller-specific receipt/lifecycle schemas.
+- HTML Artifact creates reader-specific projections over owner records/evidence rather than duplicating source archives.
+- Generated `.qp` state stays outside Git by default.
+- Small public skills may intentionally exist as reusable model-steering contracts when a narrow named behavior saves users from restating longer instructions.
+- Thin public convenience entrypoints may wrap native commands when one safe memorable invocation materially improves installation, removal, or other human-facing distribution UX.
+- Experimental skills are explicit-only and do not replace stable owners.
 
 ## Install
 
@@ -36,15 +21,13 @@ Browse the [QP Agent Skills documentation](https://quantipixels.com/skills).
 npx skills add quantipixels/skills --global
 ```
 
-Follow the Skills CLI prompts to choose skills and target agents. The command does not remove retired skills.
-
-### Local checkout
+Local checkout:
 
 ```bash
 npx skills add .
 ```
 
-### Claude Code
+Claude Code:
 
 ```bash
 claude plugin marketplace add quantipixels/skills
@@ -57,101 +40,94 @@ claude plugin install qp-skills@qp-skills
 curl -fsSL https://raw.githubusercontent.com/quantipixels/skills/ori/scripts/uninstall.sh | bash
 ```
 
-## Releases
+The entrypoint removes only globally installed skills whose lock-file source is `quantipixels/skills`; unrelated installed skills remain untouched.
 
-Read the [latest GitHub release](https://github.com/quantipixels/skills/releases/latest) and [changelog](CHANGELOG.md).
+## Repository-local workspace
+
+```text
+.qp/
+├── settings.json                         optional
+├── INDEX.md                              optional generated navigation
+├── records/<owner>/<stable-subject>/     created on first record
+└── artifacts/<stable-subject>/           created on first standalone artifact
+```
+
+The real `.qp` belongs to the non-bare main worktree. Linked worktrees expose `.qp` as a symlink to it. Existing dated record/artifact directories remain valid legacy identities.
+
+## Engineering
+
+| Skill | Outcome |
+| --- | --- |
+| `akosile` | Repository-scoped `.qp` paths/worktrees, sparse settings, exact safe publication, generated index |
+| `alaga` | Deliver one supplied build job through implementation, proof, review, and handoff |
+| `amose` | Exact-current project/domain knowledge, `.learnings`, `.nongoals`, ADRs, local craft |
+| `atona` | One initiative plan from Draft through delivery/closure |
+| `atunwo` | Code defect/proof/state-parity review and provider review publication when authorized |
+| `hitl-review` | Human-led walkthrough, review coverage, specialist discovery, final human decision |
+| `irinse` | Select/ready/use/upgrade/remove one companion engineering tool and return bounded evidence |
+| `ko-skill` | Author/revise/validate one skill or audit a bounded portfolio |
+| `pare` | Read-only simplification audit/review |
+| `se-triage` | Supplied-evidence-first issue/report assessment |
+| `seda-pr` | Scoped commit/push and PR/MR creation/update |
+| `seda-ticket` | Vertical delivery tickets with blockers/acceptance |
+| `seda-sigidi` | Draft or explicitly integrate one agent's durable identity/values/boundaries/voice into a known host configuration |
+| `solution-architect` | Implementation-ready technical architecture design/read-only review |
+| `wo-pr` | Steward an open PR/MR through CI/conflict/feedback readiness |
+
+## Design
+
+Use the exact design specialist directly when one deliverable owner is clear. Use `apere` when design-specific multi-owner routing, prerequisites, dependency order, shared constraints, or approval boundaries are themselves needed.
+
+| Skill | Outcome |
+| --- | --- |
+| `apere` | Route broad/multi-deliverable design work |
+| `amoye-ui-ux` | Coherent UI/UX direction/review from current product evidence + curated judgment |
+| `brand` | Durable brand voice/identity/logo/icon/assets source of truth |
+| `social-graphics` | Feed/carousel/story/social campaign graphics |
+| `eto-apere` | Project-specific token/component-spec contract and CSS realization |
+| `asa-oju-ibanisoro` | Accessible responsive React/web UI implementation |
+| `banner-design` | Covers/headers/heroes/display ads/print banners |
+| `slides` | Presentation/pitch-deck narrative and visual composition |
+
+Banner Design and Social Graphics intentionally remain narrow steering owners even though they share graphic-design fundamentals: the separate selectors encode different surface/adaptation behavior without requiring users to restate it.
+
+## Productivity
+
+| Skill | Outcome |
+| --- | --- |
+| `alarina` | Select the shortest route from currently available QP skill descriptions |
+| `arojinle` | Resolve consequential product/plan/design choices through user-confirmed decision frontier |
+| `ayewo-igba-ise` | Evidence-backed coding-agent session/corpus retrospective |
+| `handoff` | Compact fresh-session handoff |
+| `html-artifact` | Selective traceable accessible HTML projection |
+| `iwadi` | High-trust primary-source research record |
+| `ro-wo` | Test one material premise before judgment |
+| `salaye` | Reusable plain-language explanation behavior for a supplied subject |
+| `technical-writing` | Technical communication structure/clarity |
+| `yo-slop` | Final prose cleanup / explicit pruning without contract change |
+
+`salaye` is intentionally lightweight: its value is reliable reusable model steering, not hidden machinery.
+
+## Experimental
+
+Experimental skills require explicit acceptance.
+
+| Skill | Outcome |
+| --- | --- |
+| `akowe` | Exact-candidate adaptive expert implementation counsel |
+| `dogfood` | Real-browser verification of changed user journeys |
+| `fihan` | Temporary tailnet-only access, or explicit encrypted Tailcat bearer-token access, to bounded local files |
+| `ideate` | Grounded mechanism-diverse possibilities before selection |
+| `pepeye` | Explicit task supervision without a second owner lifecycle |
+| `prototype` | Disposable truthful decision instrument |
+| `root-cause` | Minimal causal mechanism/set for an observed failure |
+
+Historical `akowe-java`, `akowe-spring`, and catalogue experiments are research evidence only; Adaptive Akọ̀wé does not load those fixed catalogues at runtime.
 
 ## Start
 
 ```text
-Use alarina to choose the right QP skill for this request:
+Use alarina to choose the shortest QP route for this request:
 
-[describe the outcome you need]
-```
-
-## Engineering skills
-
-| Skill | Use when |
-| --- | --- |
-| `akosile` | Repository-local `.qp` setup, owner-record/artifact paths, safe writes, settings, index rebuilding, or workspace repair is the task |
-| `alaga` | `test-first` handles one bounded feature/fix; `job` handles a supplied build job through implementation, proof compaction, integration, and review |
-| `amose` | Project terms, `CONTEXT.md`, `.learnings`, `.nongoals`, ADRs, or authorized repository-local craft knowledge need clarification/reconciliation |
-| `atona` | Unclear feature, migration, or initiative work needs one exact-current plan, decision-frontier closure, and accessible HTML view through delivery/closure |
-| `atunwo` | Defect review, proof-gap review, or stateful refactor-parity audit is needed for a local/supplied/provider candidate |
-| `hitl-review` | A human wants to review one exact candidate interactively, classify its review needs, and surface matching specialist skills |
-| `irinse` | A companion engineering tool needs selection, setup, bounded evidence, upgrade, or removal |
-| `ko-skill` | One skill needs creation, revision, validation, or bounded portfolio audit |
-| `pare` | Read-only audit/review should identify material semantic, complexity, dependency, state, or proof simplifications |
-| `se-triage` | One issue/report needs supplied-evidence-first assessment before implementation |
-| `seda-pr` | A bounded branch change needs commit, push, and a GitHub PR or GitLab MR |
-| `seda-ticket` | Supplied work needs consumable vertical tickets with blockers and acceptance |
-| `seda-sigidi` | An AI agent needs a named soul installed, ported, or refreshed |
-| `solution-architect` | Technical architecture needs implementation design/read-only sufficiency review and a compact downstream Architecture Contract |
-| `wo-pr` | An open PR/MR needs CI and feedback stewardship through readiness |
-
-## Design skills
-
-Use `apere` when the design owner is unclear or several deliverables must be coordinated.
-
-| Skill | Use when |
-| --- | --- |
-| `apere` | Broad/multi-deliverable design work needs owner selection, prerequisites, dependency order, or approval boundaries |
-| `amoye-ui-ux` | UI/UX direction needs styles, palettes, typography, accessibility, charts, or stack guidance |
-| `brand` | Brand voice, identity, logos, corporate identity, or custom icon language needs a durable source of truth |
-| `social-graphics` | Feed posts, carousels, stories, templates, or campaign variants are needed |
-| `eto-apere` | Tokens, CSS variables, component specifications, or theme architecture need definition/migration |
-| `asa-oju-ibanisoro` | Components, responsive interfaces, or product icons need accessible implementation |
-| `banner-design` | A cover, header, hero, ad, or print banner needs constrained design |
-| `slides` | A presentation or pitch deck needs narrative, layout, and chart guidance |
-
-For multi-deliverable production, `apere` returns the route packet and `alaga` owns the integrated build job.
-
-## Productivity skills
-
-| Skill | Use when |
-| --- | --- |
-| `alarina` | You need the shortest QP route for a request |
-| `arojinle` | One consequential product, plan, or design decision has unresolved material branches requiring user confirmation |
-| `ayewo-igba-ise` | A coding-agent session/corpus needs evidence-backed friction, recurrence, or upstream-prevention analysis |
-| `handoff` | A conversation needs a compact handoff for another agent/session |
-| `html-artifact` | Supplied records/results need a selective, traceable portable HTML view |
-| `iwadi` | A question needs substantial high-trust primary-source research captured in Markdown |
-| `ro-wo` | A material premise needs an evidence-backed check before judgment |
-| `salaye` | One supplied subject needs a plain-language explanation |
-| `technical-writing` | Technical communication needs layered structure and clarity |
-| `yo-slop` | Prose needs cleanup or explicit verbosity pruning without changing its contract |
-
-## Experimental skills
-
-Experimental skills must be selected explicitly. Stable skills may recommend them but do not depend on them.
-
-| Skill | Use when |
-| --- | --- |
-| `akowe` | An active coding task needs adaptive Expert Implementation Counsel from relevant available skills, current primary sources, proportionate design checks, and exact-candidate proof seams |
-| `dogfood` | One exact candidate needs real-browser verification of changed journeys and credible interaction seams against controlling expected behaviour |
-| `ideate` | A grounded opportunity needs a bounded set of materially different possibilities generated, challenged, and reduced before selection |
-| `pepeye` | One explicitly selected task needs supervision of its current owner, candidate, authority, acceptance, proof, blocker, and terminal state without a second lifecycle |
-| `prototype` | One consequential interaction, flow, interface, API, or message needs a disposable artifact to settle how it should work or feel |
-| `root-cause` | One reproducible or directly observed failure needs the minimal causal mechanism or causal set rather than issue triage or implementation |
-
-`olofofo`, `akowe-java`, and `akowe-spring` are retired and no longer published as separate runtime skills. Their former research remains historical evidence; Akọ̀wé does not load an embedded replacement catalogue.
-
-## Optional agent instructions
-
-### Companion-tool routing
-
-```text
-Use `irinse` when a companion tool could materially improve the result.
-```
-
-### Technical writing and prose cleanup
-
-```text
-Use `technical-writing` and `yo-slop` for communication.
-```
-
-### Consider before judgment
-
-```text
-Use `ro-wo` before agreeing or disagreeing with a material premise.
+[describe the outcome]
 ```

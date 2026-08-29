@@ -1,23 +1,23 @@
-# Social graphics
+# Social graphic adaptation
 
-Create platform-specific social imagery from one coherent visual system.
+Load when one social composition must become several posts/stories/carousel/platform variants. Current platform requirements change; use the user-supplied specification or verify the target platform's current dimensions/crop rules before production export.
 
-## Workflow
+## Adapt, do not stretch
 
-1. Confirm platforms, ratios, crop behavior, audience, message, CTA, brand, source images, and export formats.
-2. For non-banner posts, carousels, and templates, confirm current or user-supplied dimensions and record the source. Route covers, headers, heroes, and ads through `banner-design`.
-3. Create a master composition, then adapt it for each platform rather than stretching one canvas. Keep text readable on a phone.
-4. Use image generation for missing visual elements only when the user authorizes generated content; preserve supplied people, products, and logos unless edits are requested.
-5. Export named variants and inspect each at target size. Check contrast, legibility, crop, and brand consistency.
+Start from one shared communication system—message, hierarchy, brand treatment, imagery and CTA—then recompose each requested ratio around the same priority.
 
-## Content rules
+- Preserve the focal point and critical copy inside each format's proven visible/safe area.
+- Reflow/resize/crop intentionally; do not distort one master canvas into every ratio.
+- Keep mobile viewing primary for feed/story surfaces where that is the actual context.
+- When a carousel is one narrative, maintain ordering, rhythm, shared navigation cues and enough local context that each card still makes sense when encountered individually.
+- Keep variants recognizably one campaign without forcing identical composition when the formats differ materially.
 
-- Establish one message and one focal point per asset.
-- Use an accessible contrast ratio and avoid text over busy imagery without a stable overlay.
-- Keep copy concise, proofread, and editable where possible.
-- Do not infer endorsements, statistics, or people’s identities.
-- Treat generated scenes and composited mockups as concepts until approved.
+## Copy and imagery
 
-## Handoff
+Keep on-image copy concise enough for the actual surface. Preserve editable text when reuse/localization is expected. Use supplied/approved imagery and logos; generated imagery remains concept/provisional until accepted under the Brand contract.
 
-Return the platform matrix, source/master asset, variants, dimensions, copy, and verification notes.
+## Verification
+
+For each requested variant, inspect the actual exported dimensions/ration, crop/focal-point integrity, text/logo legibility, contrast, brand consistency, source editability, and current platform-specific constraints that matter to acceptance.
+
+Do not maintain a fixed QP platform-size table as authoritative production data.

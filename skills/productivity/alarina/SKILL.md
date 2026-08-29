@@ -1,84 +1,56 @@
 ---
 name: alarina
-description: Select the shortest useful route through published QP skills. Focus on one primary outcome owner and only necessary supporting skills.
+description: Select the shortest useful route through currently available QP skills. Focus on the independently useful outcome owner(s) and only necessary supporting results; respect explicit user selection and explicit-only experiments.
 ---
 
 # Alárinà
 
-Select one primary QP skill for the requested outcome. Respect explicit user selection. Add a supporting skill only when its independently owned result is necessary; separate independent outcomes instead of forcing one owner to absorb them. Routing grants no mutation, provider, credential, publication, or continuing-stewardship authority.
-
-When explicit Pepeye supervision is active, supply its exact-current primary owner and mode. Pepeye records the route without selecting a playbook or controlling the owner's lifecycle.
+Select the shortest useful route for the requested outcome from the active host's currently available skill descriptions/invocation metadata. Do not maintain a second static catalogue of every QP owner in this skill.
 
 ## Route
 
-| Starting outcome | Primary skill | Mode |
-| --- | --- | --- |
-| Select the shortest QP route | `alarina` | — |
-| Initialize/repair `.qp`, allocate records/artifacts, safely write settings/records, or rebuild its index | `akosile` | — |
-| Clarify project terms, rules, knowledge, or decisions | `amose` | — |
-| Resolve one consequential product/plan/design decision | `arojinle` | — |
-| Deliver one bounded feature/fix test-first | `alaga` | `test-first` |
-| Deliver a supplied build job through integration/review | `alaga` | `job` |
-| Maintain one initiative plan through delivery/closure | `atona` | — |
-| Design or review technical architecture | `solution-architect` | `design` or read-only `review` |
-| Audit stateful refactor/rewrite parity | `atunwo` | `audit`; local/supplied or provider target |
-| Review bounded code for defects and maintainability | `atunwo` | `broad` |
-| Review bounded code only for defects | `atunwo` | `defect-only` |
-| Review bounded code only for maintainability | `pare` | `review` |
-| Review one exact candidate interactively with a human | `hitl-review` | — |
-| Audit a repository for simplification | `pare` | `audit` |
-| Implement an accepted cleanup slice | `alaga` | `job` |
-| Author, revise, or validate one skill | `ko-skill` | — |
-| Explain a supplied subject | `salaye` | — |
-| Test one material premise | `ro-wo` | — |
-| Assess one supplied issue/report | `se-triage` | — |
-| Install or refresh an agent identity | `seda-sigidi` | — |
-| Turn supplied work into vertical tickets | `seda-ticket` | — |
-| Commit, push, and create/update a PR/MR | `seda-pr` | — |
-| Steward an open PR/MR through readiness | `wo-pr` | — |
-| Create a selective HTML view from supplied records/results | `html-artifact` | — |
-| Prepare a compact session/agent handoff | `handoff` | — |
-| Draft/revise technical communication | `technical-writing` | — |
-| Clean/prune prose without changing its contract | `yo-slop` | — |
-| Analyze a coding-agent session/corpus | `ayewo-igba-ise` | — |
-| Research a question from primary sources | `iwadi` | — |
-| Select/configure/use/remove a companion tool | `irinse` | — |
-| Route broad/multi-deliverable design work | `apere` | route packet |
-| Define brand identity or custom icon language | `brand` | — |
-| Create social graphics or campaign variants | `social-graphics` | — |
-| Define tokens or component specifications | `eto-apere` | — |
-| Implement accessible web UI or product icons | `asa-oju-ibanisoro` | — |
-| Select evidence-backed UI/UX direction | `amoye-ui-ux` | — |
-| Design a constrained banner/cover/hero/ad | `banner-design` | — |
-| Create a presentation or pitch deck | `slides` | — |
+1. Preserve an explicit user-selected skill when it owns the requested result and its invocation boundary is satisfied.
+2. Otherwise inspect the active skill inventory/selector descriptions and identify the narrowest skill whose independently owned outcome matches the request.
+3. Add a supporting skill only when its separately owned result is necessary to complete the primary result. Do not add specialists merely for lifecycle coverage.
+4. If the request contains several genuinely independent outcomes, return the small ordered/parallel route set rather than forcing one owner to absorb unrelated results. Use a routing/coordination skill only when routing/coordination itself is the useful outcome.
+5. Experimental skills are explicit-only. Offer an exact matching experiment and wait for acceptance; never silently substitute it for a stable owner.
+6. If the correct owner is unavailable, name the missing owner/capability rather than imitating it.
 
-## Experimental routes
+Routing grants no mutation, provider, credential, publication, review-verdict, or continuing-stewardship authority.
 
-Experimental skills are opt-in and cannot silently replace a stable owner. When one exact experimental outcome matches, offer it and wait for explicit acceptance before selecting it. A stable skill may recommend an experiment but must remain complete without it.
+## Resolve close boundaries by owned result
 
-| Explicit experimental outcome | Skill |
-| --- | --- |
-| Accompany an active code change with adaptive expert implementation counsel | `akowe` |
-| Supervise one task's owner, candidate, authority, proof, blocker, and terminal state | `pepeye` |
-| Establish the minimal causal explanation for one reproducible/directly observed failure | `root-cause` |
-| Generate/challenge a bounded set of grounded possibilities before selection | `ideate` |
-| Build a disposable artifact to settle one experiential decision | `prototype` |
-| Exercise changed user journeys in a real browser | `dogfood` |
+Use outcome/authority distinctions, not keywords:
 
-## Composed boundaries
+- planning lifecycle vs one material user decision vs technical architecture;
+- implementation/proof vs code review vs read-only simplification;
+- PR publication vs PR stewardship vs review verdict;
+- issue triage vs causal diagnosis vs defect implementation;
+- durable project knowledge vs generic documentation/writing cleanup;
+- artifact projection vs slide/presentation creation;
+- broad design routing vs one directly owned design deliverable;
+- tool evidence vs the engineering judgment that consumes it.
 
-- `atona` remains primary for an initiative even when it discovers unresolved consequential choices. When its Decision Frontier Gate is `OPEN`, `arojinle` is the required supporting owner for that frontier; when `BLOCKED`, first resolve the prerequisite fact/evidence. Do not reroute the whole initiative to Àròjinlẹ̀ or reopen already confirmed choices.
-- `solution-architect` owns technical/reversible architecture choices. A structured material user decision gap returns to Atọ́nà/Àròjinlẹ̀ instead of being guessed.
-- `akowe` is Experimental/explicit-only. It discovers relevant available skills and current primary-source evidence to return exact-candidate Expert Implementation Counsel. It owns no embedded stack catalogue, implementation, architecture, simplification, tool, project-knowledge, or review verdict.
-- `pepeye` is Experimental/explicit-only task supervision. It records the current owner, candidate, authority, acceptance, proof, blocker, and terminal state; it does not select playbooks or replace routing, planning, delivery, review, publication, handoff, or retrospective owners.
-- `akosile` owns repository-local `.qp` path/write/index mechanics; semantic owners retain record meaning/status/evidence. Global `~/.qp` remains deferred.
-- Keep a directly selected artifact specialist primary when it fully owns the result. Use `apere` only when owner selection/cross-deliverable coordination is itself needed.
-- `alaga` owns integrated production; `apere` does not absorb delivery lifecycle.
-- Keep `pare` read-only. Only a delivery owner with required authority executes accepted cleanup.
-- Use `hitl-review` when human-led walkthrough/review-category/specialist discovery/human decision is the outcome; use direct specialist owners for one-shot verdicts.
-- Keep portable HTML views with `html-artifact`; route slide decks to `slides`.
-- Keep PR/MR publication with `seda-pr`, monitoring with `wo-pr`, and review verdicts with `atunwo`.
-- Keep issue triage supplied-evidence-first; provider reads/writes need their own authority.
-- Do not use an Experimental skill to narrow/remove/impersonate a stable owner. Experiments may consume stable results and return bounded native results at their own boundary.
+When a plan's material user-decision frontier is open, keep the plan owner primary and use the decision owner only for that frontier. When technical/reversible architecture is material, use the architecture owner rather than turning it into a user interview. Keep `.qp` mechanics with Akọsílẹ̀ and semantic record meaning with the originating owner.
 
-Check active inventory before returning a route. If the correct owner is unavailable, name it rather than substituting another skill. Ask one focused question only when its answer selects a materially different owner/mode. Report primary skill, mode, concise reason, necessary support, and whether explicit acceptance is required.
+## Design routing
+
+Use the exact design specialist directly when one output owner is clear. Use `apere` only while it remains the published design-domain routing owner and design-specific multi-deliverable prerequisites/dependency/approval routing is itself needed. Integrated multi-artifact production belongs to `alaga`, not the router.
+
+## Human-led review
+
+Use `hitl-review` when the user wants a walkthrough, review-category coverage, specialist discovery, and a final human decision. Direct specialist review owners remain preferable for one-shot verdicts.
+
+## Report
+
+Return:
+
+```text
+Primary owner(s): <skill/mode or ordered route set>
+Why: <owned-result match>
+Required support: <only independently necessary results>
+Unavailable capability: <none or exact gap>
+Explicit acceptance required: <experimental/authority gate or no>
+```
+
+Ask one focused question only when its answer selects a materially different owner/mode and the answer cannot be established from current context/evidence.

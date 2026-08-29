@@ -86,7 +86,7 @@ BLOCKED — unresolved material decisions remain, but none can currently be aske
 
 Do not invoke `arojinle` merely to reopen settled decisions. When the frontier is `OPEN`, give it the whole currently answerable material decision set and caller context, then let Àròjinlẹ̀ own the user question round. When some branches remain blocked, continue independent answerable branches and resolve missing prerequisites without suppressing the current open frontier. When `BLOCKED`, resolve the prerequisite fact/evidence first. When `EMPTY`, record why no interview is required.
 
-Use `amose` for project/domain knowledge only when it can materially change the plan/frontier. Use `iwadi` for substantial reusable primary-source research, `irinse` for bounded tool evidence, and `solution-architect` when technical design/review is material.
+Use `amose` for project/domain knowledge only when it can materially change the plan/frontier. Use `iwadi` for substantial reusable primary-source research, `irinse` for bounded tool evidence, and `solution-architect` when technical design/review is material. Dispatch a subagent for reasonable independent tasks in this group to keep the main context focused.
 
 Supporting skills return compact exact-current results. Keep detailed packets with their native owners and link them instead of copying them.
 

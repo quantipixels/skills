@@ -1,10 +1,10 @@
 ---
 owner: solution-architect
 record_type: architecture
+subject: <stable architecture subject>
 title: <architecture topic>
 updated_at: <offset-aware timestamp>
 revision: 1
-candidate: <exact subject/candidate, optional>
 status: IMPLEMENTATION_READY | NOT_READY | UNPROVED
 ---
 
@@ -14,106 +14,48 @@ status: IMPLEMENTATION_READY | NOT_READY | UNPROVED
 
 **Problem:** <why this architecture exists>
 
-**Selected design:** <one concise design summary>
+**Selected design:** <concise design summary>
 
-**Result:** `IMPLEMENTATION_READY | NOT_READY | UNPROVED`
+**Result:** <IMPLEMENTATION_READY | NOT_READY | UNPROVED>
 
 **Next technical action:** <one exact action and completion condition>
 
-## Problem and outcomes
+## Problem, outcomes, and scope
 
-<problem, affected users/systems, and required outcomes>
-
-## Scope and non-goals
-
-### Scope
-
-- <included boundary>
-
-### Non-goals
-
-- <excluded boundary>
-
-## Constraints and assumptions
-
-- <confirmed constraint or explicit assumption>
+<required outcomes, boundaries, non-goals, constraints, assumptions>
 
 ## Drivers and scenarios
 
-| Driver | Scenario | Observable response |
-|---|---|---|
-| <driver> | <normal/failure/misuse/recovery/scale/evolution scenario> | <response> |
+<only scenarios that materially shape the design>
 
-## Context and ownership
+## Decisions
 
-<actors, external systems, trust boundaries, capabilities, data/state/runtime/deployment/lifecycle owners>
-
-## Decisions and alternatives
-
-### <Decision>
-
-<selected technical design, alternatives, trade-offs, reversibility, and evidence>
-
-## Decision gaps
-
-| Identity | Why material | Prerequisite evidence | Options/trade-off boundary | Architecture/plan effect | Required owner |
-|---|---|---|---|---|---|
-| <decision> | <effect> | <facts or none> | <bounded alternatives> | <blocked/affected design> | `arojinle` |
-
-Use `none` when no material user decision remains.
+<selected technical decisions, alternatives/trade-offs, and material user-decision gaps if any>
 
 ## Implementation design
 
-<modules, interfaces, data/state, flows, integration, authentication, deployment, configuration, observability, and operations>
+<owned modules/interfaces, data/state, flows, integrations, trust, deployment, configuration, observability, operations>
 
 ## Architecture Contract
 
-**Critical invariants**
-- <invariant>
-
-**Allowed dependency directions**
-- <allowed direction>
-
-**Forbidden directions/states**
-- <forbidden direction or invalid ownership/state>
-
-**Data/state/identity/authority owners**
-- <owner and contract>
-
-**Lifecycle/failure/recovery obligations**
-- <obligation>
-
-**Resource/capacity/complexity budgets**
-- <budget or explicit none>
-
-**Compatibility/migration constraints**
-- <constraint>
-
-**Primary proof seams / fitness owners**
-- <invariant → proof owner>
-
-**Evidence cutoff/freshness:** <identity and current/stale>
+<critical invariants, dependency directions, state/identity/authority owners, failure/recovery/migration constraints, and primary proof seams that implementation must preserve>
 
 ## Failure, recovery, migration, and deletion
 
-<timeouts, retries, idempotency, backpressure, misuse, compatibility, migration order, rollback, recovery, and old-path deletion>
+<only material lifecycle/failure/evolution obligations>
 
 ## Proof
 
-<tests, static/compiler/schema proof, observability, operational checks, and acceptance for material drivers>
+<tests/static/schema/runtime/operational evidence for material drivers>
 
 ## Risks and gaps
 
-<residual risks, deferrals, evidence gaps, and required owners>
+<residual risks, deferrals, evidence gaps, required owners>
 
-## Linked records and evidence
+## Linked evidence
 
-| Source | Record or locator | Revision/cutoff | Freshness | Role |
-|---|---|---|---|---|
-| <source> | <record-ref, path, provider identity, or revision> | <revision> | current | <role> |
-
-Keep complete research, code, logs, tests, and provider payloads with their native owners.
+<link detailed research/code/log/provider evidence by exact identity instead of copying it>
 
 ## Material history
 
-- r1 — <only a status, scope, decision/decision-gap, contract, evidence, recovery/migration, or ownership change worth retaining>
+- r1 — <only a material decision/contract/evidence/recovery/ownership/status change worth retaining>

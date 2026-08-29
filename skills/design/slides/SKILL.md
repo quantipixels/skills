@@ -1,35 +1,35 @@
 ---
 name: slides
-description: Create strategic HTML presentations and pitch decks with coherent narrative, design tokens, responsive layouts, accessible charts, and data-backed slide strategies. Use for presentations, investor decks, marketing decks, and data-driven storytelling.
+description: Create strategic presentations and pitch decks with coherent narrative, purposeful layouts, accessible charts, and verified delivery. Use for slide/deck storytelling in HTML, PowerPoint, PDF, or another requested presentation format.
 ---
 
 # Slides
 
-Turn a message into a persuasive, visually coherent presentation. Keep the narrative and the visual system aligned; a slide is not a document page with paragraphs pasted onto it.
+Turn a message into a persuasive, visually coherent presentation. Own the narrative, slide jobs, layout relationships, evidence-to-visual choices, and deck-level design coherence. Do not maintain a private layout/style search engine or a fixed HTML implementation scaffold.
 
 ## Workflow
 
-1. Confirm audience, decision or action, delivery format, slide count, source data, brand, and whether the output is HTML, PPTX, PDF, or another format. For native PowerPoint work, hand off to the host’s presentations capability after the content/design contract is ready.
-2. Read `references/create.md`, then load only the relevant layout, strategy, copywriting, and template references.
-3. Search the local slide datasets with `scripts/search.py`; treat those rows as evidence, then choose strategy, layout, copy formula, chart, typography, colors, and background direction through the current task context rather than a coded recommendation layer.
-4. Build an outline where each slide has one job, one headline claim, supporting evidence, and a clear transition. Use charts only when they make the relationship easier to understand.
-5. Consume the project token contract when one exists. `eto-apere` owns token declarations, aliases, generated CSS, and token-system validation; route there when the required contract or aliases are missing. Do not maintain a second Slides-specific token-policy scanner. Build HTML with the host’s normal artifact/code capabilities and verify the rendered deck against its actual token, contrast, state, and accessibility obligations.
-6. Select imagery and backgrounds from current task evidence or the host’s image/search capabilities rather than a bundled fixed URL catalog. Render or preview the deck at the target viewport, check overflow and contrast, and revise before delivery. Include source files and an export when requested.
+1. Confirm audience, decision/action, delivery format, slide count/range, source data/evidence, brand constraints, and target viewing context. For native PowerPoint delivery, use the host's presentations capability after the narrative/design contract is clear.
+2. Read [create](references/create.md), then load only the relevant [layout patterns](references/layout-patterns.md), [slide strategies](references/slide-strategies.md), and [copy formulas](references/copywriting-formulas.md).
+3. Build an outline where each slide has one job, one headline claim, supporting evidence, and a transition to the next idea. Do not add a slide merely to satisfy a standard deck taxonomy.
+4. Choose layout and chart forms from the relationship the slide must communicate. Use current brand/project tokens when they exist. A standalone deck does not require creating a project design-token system merely to render.
+5. Build the requested format through the host/native presentation or normal HTML/code capability. Keep implementation mechanics local to that output instead of preserving a QP-specific deck generator/template.
+6. Select imagery from supplied/current task evidence or current search/image capabilities when useful. Verify at the actual presentation viewport/export: overflow, contrast, legibility, chart labels/units, keyboard controls for interactive HTML, and reduced-motion behavior where motion exists.
 
 ## Quality rules
 
 - One dominant idea per slide.
 - Prefer a specific claim over a topic label.
-- Use visual hierarchy and whitespace; do not shrink type to rescue an overloaded slide.
-- Preserve brand voice and token relationships.
-- Respect reduced motion and provide meaningful alt text or equivalent descriptions for non-text visuals.
+- Use hierarchy and whitespace; do not rescue overloaded slides by shrinking type.
+- Keep candidates/data comparable on a common visual grammar when the slide asks for comparison.
+- Use charts only when they make the relationship easier to perceive than prose/table.
+- Preserve brand voice and current token relationships when available.
+- Respect reduced motion and provide accessible descriptions for meaningful non-text visuals.
+- Do not assume a CDN/chart library/animation system until the deck actually needs it.
 
 ## Resources
 
-- `references/layout-patterns.md` — slide composition.
-- `references/html-template.md` — HTML structure.
-- `references/copywriting-formulas.md` — headline and narrative formulas.
-- `references/slide-strategies.md` — strategy selection.
-- `references/create.md` — creation entry point.
-- `data/` — slide strategies, layouts, copy, charts, typography, colors, and backgrounds.
-- `scripts/search.py` — bounded local retrieval that returns ranked source rows.
+- `references/create.md` — creation entry point and verification boundary.
+- `references/layout-patterns.md` — relationship-driven layout selection.
+- `references/slide-strategies.md` — narrative/sequence patterns.
+- `references/copywriting-formulas.md` — headline/copy calibration.

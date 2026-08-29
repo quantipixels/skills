@@ -1,61 +1,42 @@
 ---
 name: brand
-description: Define, update, create, and review brand voice, messaging, visual identity, logos, corporate identity assets, custom icon language, colors, typography, asset organization, and consistency. Use when branded output needs a durable identity source of truth, approved identity assets, or an on-brand review.
+description: Define, update, create, and review brand voice, messaging, visual identity, logos, corporate identity, custom icon language, approved assets, and consistency. Use when branded output needs a durable human-readable identity source of truth or an on-brand review.
 ---
 
 # Brand
 
-Own the project's human-readable brand source of truth and identity assets. Keep voice, visual identity, messaging, logo and icon-language rules, asset constraints, and approval criteria together. Keep implementation-token mutation with `eto-apere`.
+Own the project's durable human-readable brand meaning and approved identity assets. Existing approved guidance is authoritative unless the user explicitly changes it. Keep implementation-token mutation with `eto-apere` and product UI implementation with `asa-oju-ibanisoro`.
 
 ## Workflow
 
-1. Find existing brand guidance, logo files, identity assets, token files, and asset manifests. Treat existing approved guidance as authoritative unless the user explicitly changes it.
-2. For a new or changed brand, define audience, positioning, voice, personality, color roles, typography, imagery, logo constraints, icon language when custom icons are required, and prohibited treatments. Use `templates/brand-guidelines-starter.md` as a starting point.
-3. For an update, change the human-readable guidance and affected identity assets while preserving unrelated decisions. When implementation tokens must change, use `eto-apere` to reconcile the confirmed brand roles into the project's token contract.
-4. For a logo or corporate identity program, load only the applicable logo or CIP references below. Search the bundled identity data before choosing a direction, keep exploratory concepts distinct from approved assets, and use image generation only for approved bitmap exploration or mockups.
-5. For a custom icon language, read `references/icon-design.md` and define the grid, stroke/fill, corners, optical sizing, naming, and export rules. Product UI implementation remains with `asa-oju-ibanisoro`.
-6. For a review, check voice, color, typography, logo use, icon consistency, asset naming, accessibility, and cross-surface consistency. Report evidence and corrections, not taste alone.
-7. Validate assets and confirm the exact current brand guidance before downstream handoff. Consume current downstream results when implementation work is part of the request; do not reproduce their procedures here.
-
-## Identity helpers
-
-Resolve `<brand-skill-root>` to this skill directory. Keep scripts only for deterministic identity-data search and asset-contract validation:
-
-```bash
-python3 <brand-skill-root>/scripts/search.py "technology geometric minimal" --kind logo --domain style
-python3 <brand-skill-root>/scripts/search.py "professional services premium" --kind cip --all --json
-python3 <brand-skill-root>/scripts/search.py "rounded optical" --kind icon
-node <brand-skill-root>/scripts/validate-asset.cjs assets/logo.svg --json
-```
-
-The search helper returns ranked source rows only. It does not generate or approve a logo brief, corporate-identity brief, palette, or recommendation; synthesize those from the current task, guidance, and evidence. Read the human-readable brand guidelines directly rather than maintaining a second parser-generated context representation. Use the host's image-analysis capability or an installed image tool to inspect bitmap palettes, then compare the result with the current guidelines.
-
-## Project conventions
-
-Unless the project already has different paths, use:
-
-- `docs/brand-guidelines.md` — human-readable identity source of truth.
-- `.assets/manifest.json` — optional asset registry.
+1. Inspect existing brand guidance, identity assets, product surfaces, token files, and asset conventions before proposing change. Do not infer a brand from an industry/style catalogue.
+2. For a new or materially revised identity, define audience, positioning, voice/personality, semantic color roles, typography direction, imagery, logo constraints, icon language when needed, and prohibited treatments. Use [the minimal brand scaffold](templates/brand-guidelines-starter.md) only when the project lacks an existing source of truth.
+3. For an update, preserve unrelated approved identity decisions and change only the affected guidance/assets. When confirmed roles must become implementation tokens, use `eto-apere`.
+4. For logo/corporate-identity work, load only the applicable logo/CIP references. Explore directions from the current brand brief, constraints, supplied evidence, and current visual research when needed; do not search a bundled style/industry database.
+5. For custom icon language, read [icon design](references/icon-design.md) and define grid, stroke/fill, corners, optical sizing, naming, and export behavior.
+6. For asset review, inspect the actual project/brand convention and use native file/image/manifest evidence. Do not impose QP-generic filename types, dimensions, formats, or size limits.
+7. For an on-brand review, check voice, semantic color roles, typography, logo/icon use, imagery, accessibility, asset provenance/approval, and cross-surface consistency. Report evidence and smallest correction, not taste alone.
 
 ## Decision rules
 
-- Use semantic color roles, not color names, in UI guidance.
-- Define accessible text/background pairs and dark-mode behavior.
-- Limit typefaces and document fallback fonts.
-- Keep logo lockups, clear space, minimum size, and prohibited changes explicit.
-- Keep a custom icon language coherent across grid, stroke/fill, corners, optical sizing, naming, and exports.
-- Use consistent filenames and metadata for assets.
+- Prefer project/user evidence over generic color psychology, industry stereotypes, trend catalogues, or AI-prompt keyword lists.
+- Use semantic color roles in guidance; exact implementation values belong to the confirmed identity/token contract.
+- Define accessible foreground/background pairs and supported theme behavior.
+- Keep logo lockups, clear space/minimum-size rules, prohibited transformations, and approved variants explicit only when they are actually established for this brand.
 - Do not claim an asset is approved without a recorded approval signal.
+- When generating visual exploration, derive prompts from the confirmed brand brief directly; do not maintain a parallel generic prompt catalogue.
+
+## Project convention
+
+Unless an existing project convention says otherwise, keep the human-readable source at `docs/brand-guidelines.md`. An asset registry such as `.assets/manifest.json` is optional, not a requirement.
 
 ## Resources
 
-Core brand guidance:
+Core identity:
 
 - `references/voice-framework.md`
-- `references/visual-identity.md`
 - `references/messaging-framework.md`
 - `references/consistency-checklist.md`
-- `references/brand-guideline-template.md`
 - `references/asset-organization.md`
 - `references/color-palette-management.md`
 - `references/typography-specifications.md`
@@ -65,11 +46,5 @@ Core brand guidance:
 Identity production:
 
 - `references/logo-design.md`
-- `references/logo-style-guide.md`
-- `references/logo-color-psychology.md`
-- `references/logo-prompt-engineering.md` — only when an image-generation prompt is required.
 - `references/cip-design.md`
-- `references/cip-deliverable-guide.md`
-- `references/cip-style-guide.md`
-- `references/cip-prompt-engineering.md` — only when an image-generation prompt is required.
 - `references/icon-design.md`

@@ -1,29 +1,32 @@
 # Logo direction
 
-Use this reference for logo exploration, not final trademark clearance or production approval.
+Use for logo exploration and design guidance, not final trademark clearance or automatic production approval.
 
-## Search the bundled logo data
+## Build the brief
 
-Resolve `<brand-skill-root>` to this skill directory:
+Derive the logo brief from the actual brand evidence:
 
-```bash
-python3 <brand-skill-root>/scripts/logo/search.py "tech startup modern" --design-brief --brand-name "BrandName"
-python3 <brand-skill-root>/scripts/logo/search.py "minimalist clean" --domain style
-python3 <brand-skill-root>/scripts/logo/search.py "healthcare medical" --domain industry
-python3 <brand-skill-root>/scripts/logo/search.py "professional blue" --domain color
-```
+- audience and positioning;
+- promise/personality;
+- naming/wordmark requirements;
+- visual qualities worth expressing;
+- confirmed color/typography constraints;
+- symbol/geometry constraints;
+- required contexts and smallest-use cases; and
+- prohibited or misleading treatments.
 
-Use the search result to write a brief containing audience, promise, personality, style, color direction, typography, symbol constraints, and prohibited treatments. Generate at least three distinct directions before selecting one.
+Do not select a style, industry symbol, or color direction from a bundled catalogue. Use current visual research only when it can materially improve or challenge the brief.
 
-## Direction rules
+## Explore directions
 
-- Make the mark recognizable at small size and in one color.
-- Define clear space, minimum size, lockups, background use, and misuse examples.
-- Avoid gradients, tiny detail, generic stock symbols, and unapproved claims unless the brief calls for them.
-- Keep wordmark typography legible and record font licensing.
-- Use the host’s image-generation capability for bitmap concept boards; use SVG or vector tooling for editable production marks.
-- Treat generated concepts as unapproved exploration until the user or brand owner accepts one.
+Generate a small set of materially different logo mechanisms when exploration is requested: for example wordmark-led, symbol-led, monogram/letterform, abstract/negative-space, or another evidence-backed mechanism. Do not generate arbitrary variants merely to hit a count.
+
+Evaluate each direction against distinctiveness, legibility, small-size/one-color behavior, brand fit, cross-surface use, reproduction constraints, and strongest confusion/genericness risk.
+
+Use image generation for bitmap concept exploration when useful; use suitable vector/native tooling for editable production marks. Generated concepts remain unapproved until the brand owner selects them.
+
+After selection, establish only real usage rules: approved lockups, one-color/background behavior, clear space, minimum-use constraint, and prohibited transformations as supported by the accepted mark.
 
 ## Handoff
 
-Return the brief, selected direction, palette, type, geometry, clear-space rule, one-color version, and open approval questions. For corporate mockups, continue with the CIP references.
+Return the brief, explored mechanisms, selected direction/approval state, palette/type/geometry constraints, required lockups/one-color behavior, production files/gaps, and open approval questions. Continue to the corporate-identity reference when collateral/mockups are a separate requested result.

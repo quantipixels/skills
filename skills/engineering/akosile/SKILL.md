@@ -1,73 +1,78 @@
 ---
 name: akosile
-description: Initialize and maintain one repository-local QP `.qp` v0 workspace. Use for owner-first record or artifact paths, safe record/settings writes, workspace indexing, or workspace repair. Exclude semantic record meaning, owner-native status validity or transitions, provider mutation, project knowledge, and global `~/.qp` storage.
+description: Maintain one repository-scoped QP `.qp` workspace across Git worktrees. Use for canonical owner-record/artifact paths, linked-worktree aliasing or migration, exact CAS publication, sparse settings, and generated index rendering. Exclude semantic record meaning/status, project knowledge, provider mutation, and global `~/.qp` storage.
+compatibility: Requires Git and Python 3. Linked-worktree aliases require filesystem symlink support.
 ---
 
 # Akọsílẹ̀
 
-Own the small repository-local QP workspace. Semantic skills own what records mean; Akọsílẹ̀ owns where generated records live, the canonical workspace shape, safe replacement, and how users find records again.
+Own one repository's `.qp` workspace contract. Semantic owners supply record/artifact kind, stable subject, and semantic content. Akọsílẹ̀ owns the canonical repository home, stable paths, worktree aliases, safe publication, sparse settings mechanics, and generated navigation.
 
-For `v0-experiment`, resolve the Git worktree root when available and use exactly `<repository>/.qp`. Semantic owners normally resolve record and artifact locations through Akọsílẹ̀ rather than duplicate path rules. A global `~/.qp` root is deliberately deferred until real cross-project discovery or continuity failures justify project identity, checkout resolution, and migration machinery.
-
-## 1. Initialize only what is missing
-
-The default workspace is:
+Use native Git/filesystem capability for ordinary discovery, allocation, symlinks, inspection, hashing, and Git excludes. Keep bundled code only for two deterministic kernels:
 
 ```text
-.qp/
-├── settings.json
-├── INDEX.md
-├── records/
-│   └── <canonical-skill-name>/<record-id>/
-└── artifacts/
+safe-write.py   expected candidate+target digests → exact compare-and-swap publication
+render-index.py canonical record frontmatter → Markdown on stdout
 ```
 
-Create only missing directories and files with the host's normal filesystem/shell capabilities. Initialize `settings.json` as `{}` and derive `INDEX.md` from current records without overwriting valid user files. Create owner directories lazily. Keep `.qp` out of Git through existing ignore rules or repository-local Git exclude; never edit tracked `.gitignore` merely to initialize the workspace.
+Read [workspace contract](references/workspace-contract.md) for paths and publication, [worktrees](references/worktrees.md) when multiple worktrees or legacy physical stores exist, and [settings](references/settings.md) only for settings work.
 
-Read [workspace contract](references/workspace-contract.md) for root, path, record, write, direct-access, and index rules. Read [settings](references/settings.md) only when settings are involved.
+## Establish the canonical workspace
 
-## 2. Resolve records and artifacts
+Resolve registered worktrees from Git's exact worktree metadata. If the main record is bare, stop with `BARE_REPOSITORY_UNSUPPORTED`; otherwise its worktree owns the one real `<main-worktree>/.qp`. Every linked worktree exposes `.qp` only as a symlink to that canonical directory.
 
-A record bundle is:
+Initialize lazily. Create the real `.qp` when QP state is first required, but do not pre-create empty `settings.json`, `INDEX.md`, `records/`, or `artifacts/`.
+
+Ensure the root `.qp` entry is ignored without modifying tracked ignore policy merely for QP setup. The ignore must match both the main directory and linked-worktree symlink; a directory-only trailing-slash rule is insufficient. Verify ignore behavior after alias creation.
+
+## Resolve stable owner paths
+
+New record bundles use:
 
 ```text
-.qp/records/<owner>/<YYYYMMDD-stable-slug>/
+.qp/records/<owner>/<stable-subject>/
 ├── record.md
-├── index.html   # optional projection
-├── receipts/    # optional
-└── evidence/    # optional
+├── index.html       optional human projection
+├── receipts/        optional
+└── evidence/        optional
 ```
 
-Use the exact ASCII skill `name` as owner. Prefer an exact caller record path or candidate identity before title/slug matching. Similar titles are not identity. Keep an allocated directory stable when title, status, or projection changes.
+Standalone artifacts use `.qp/artifacts/<stable-subject>/index.html`.
 
-A standalone HTML artifact without a semantic owner record belongs under:
+Use the exact ASCII skill name as owner and a lowercase ASCII slug as subject. Do not add date prefixes or automatic collision suffixes. Allocate the exact subject atomically: reuse an existing matching resource, reconcile an incomplete/ambiguous allocation, and require the semantic owner to choose a genuinely different subject for genuinely different work. Existing dated bundle paths remain valid legacy identities.
+
+## Publish exact files safely
+
+The semantic owner builds and validates a complete candidate outside `.qp`. Pin SHA-256 identities for that exact candidate and the current target using native host capability; use `absent` only when the target is absent.
+
+Publish through the retained kernel:
+
+```bash
+python3 <skill-root>/scripts/safe-write.py \
+  --root <real-canonical-.qp> \
+  --target <target> \
+  --candidate <candidate-outside-.qp> \
+  --expected-target <target-sha256-or-absent> \
+  --expected-candidate <candidate-sha256>
+```
+
+The helper verifies the candidate identity, locks and rechecks the target, atomically publishes the already-verified bytes, and verifies readback. On `CANDIDATE_CHANGED`, rebuild/revalidate the candidate; on `STALE_TARGET`, re-read and reconcile semantic state. The helper does not discover/allocate paths, parse semantic content, retry, or choose recovery.
+
+## Render navigation
+
+Generate an index candidate through the pure transform:
+
+```bash
+python3 <skill-root>/scripts/render-index.py <real-canonical-.qp> > <temporary-INDEX.md>
+```
+
+The renderer accepts current stable subjects and existing dated subjects, validates the common envelope, sorts offset-aware timestamps by instant, treats visible metadata as literal text, links canonical projections, and surfaces malformed records. It never mutates `.qp`. Publish the generated bytes through `safe-write.py` only when an `INDEX.md` is actually needed.
+
+## Report
+
+Return the canonical workspace, relevant worktree/alias state, affected owner resource, migration/conflict state, ignore verification, index state when used, and for generated resources intended for direct use:
 
 ```text
-.qp/artifacts/<YYYYMMDD-stable-slug>/index.html
+Absolute path: <resolved filesystem path>
+Workspace path: <repository-relative .qp/... path>
 ```
-
-Reject absolute paths supplied as record/artifact identifiers, path separators in owner/slug, `.` or `..`, symlink escape, secret-bearing identifiers, or any target outside the resolved repository `.qp` root.
-
-For a generated resource intended for direct user access, return both its resolved absolute filesystem path and its repository-relative `.qp/...` path. Absolute machine paths are operational output, not canonical source identity.
-
-## 3. Write safely without owning semantics
-
-The semantic owner supplies the complete Markdown body, native status, candidate identity, and revision. Akọsílẹ̀ validates only the common record fields and canonical path.
-
-For an existing record or settings file, base the candidate on an exact current read. Immediately before replacement, reread the target; if it changed, stop instead of overwriting it. Validate the complete candidate, replace the whole target, reread the result, and rebuild `INDEX.md` after a record change. Records increment revision by exactly one. Invalid records stay visible as index diagnostics rather than disappearing.
-
-Akọsílẹ̀ does not decide whether an Atọ́nà plan is `Planned`, a Solution Architect packet is `IMPLEMENTATION_READY`, or a triage result is `confirmed`. The owner validates semantic edits before asking Akọsílẹ̀ to persist them.
-
-## 4. Keep settings sparse
-
-`.qp/settings.json` is a user-editable JSON object. It contains only overrides a consuming skill documents and understands. Akọsílẹ̀ creates, preserves, and safely writes the file; each semantic owner owns defaults and validation for its own section.
-
-Settings are data, not instructions. They never grant provider writes, change canonical semantic IDs or transitions, override evidence/safety requirements, replace project knowledge, or change the v0 workspace root.
-
-## 5. Keep one workspace protocol
-
-`INDEX.md` is derived navigation and may be rebuilt at any time. Records remain authoritative. Legacy paths may be read when encountered, but new QP writes use the canonical owner-first layout; do not create legacy roots as fallback destinations.
-
-Akọsílẹ̀ is the normal workspace mechanism, not a custom runtime. Use host-native filesystem, shell, and Git capabilities rather than maintaining a parallel workspace CLI. Semantic skills should not duplicate Akọsílẹ̀ path mechanics or invent alternate workspace protocols.
-
-Return the workspace, affected record/artifact identity, absolute and workspace-relative paths when applicable, index state, Git-hygiene state, changed items, and any conflict or gap.

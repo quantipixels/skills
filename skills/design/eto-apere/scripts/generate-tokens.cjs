@@ -1,259 +1,155 @@
 #!/usr/bin/env node
-/**
- * Generate CSS variables from design tokens JSON
- *
- * Usage:
- *   node generate-tokens.cjs --config tokens.json -o tokens.css
- *   node generate-tokens.cjs --config tokens.json --format tailwind
- */
-
 const fs = require('fs');
 const path = require('path');
 
-/**
- * Parse command line arguments
- */
-function parseArgs() {
-  const args = process.argv.slice(2);
-  const options = {
-    config: null,
-    output: null,
-    format: 'css' // css | tailwind
-  };
+const HELP = `Usage:
+  node generate-tokens.cjs <tokens.json>
+  node generate-tokens.cjs --config <tokens.json> [--output <file>] [--format css|tailwind]
 
-  for (let i = 0; i < args.length; i++) {
-    if (args[i] === '--config' || args[i] === '-c') {
-      options.config = args[++i];
-    } else if (args[i] === '--output' || args[i] === '-o') {
-      options.output = args[++i];
-    } else if (args[i] === '--format' || args[i] === '-f') {
-      options.format = args[++i];
-    } else if (args[i] === '--help' || args[i] === '-h') {
-      console.log(`
-Usage: node generate-tokens.cjs [options]
+The positional input and CSS on stdout are the current interface.
+--config, --output, and --format tailwind are compatibility options for one release.`;
 
-Options:
-  -c, --config <file>   Input JSON token file (required)
-  -o, --output <file>   Output file (default: stdout)
-  -f, --format <type>   Output format: css | tailwind (default: css)
-  -h, --help            Show this help
-      `);
-      process.exit(0);
+function fail(message) {
+  console.error(`Error: ${message}\n\n${HELP}`);
+  process.exit(2);
+}
+
+function parseArgs(args) {
+  const options = { input: null, output: null, format: 'css', legacy: false, help: false };
+  for (let index = 0; index < args.length; index += 1) {
+    const arg = args[index];
+    if (arg === '--help' || arg === '-h') {
+      options.help = true;
+    } else if (arg === '--config' || arg === '-c') {
+      if (!args[index + 1]) fail(`${arg} requires a file`);
+      if (options.input) fail('input was supplied more than once');
+      options.input = args[++index];
+      options.legacy = true;
+    } else if (arg === '--output' || arg === '-o') {
+      if (!args[index + 1]) fail(`${arg} requires a file`);
+      options.output = args[++index];
+      options.legacy = true;
+    } else if (arg === '--format' || arg === '-f') {
+      if (!args[index + 1]) fail(`${arg} requires css or tailwind`);
+      options.format = args[++index];
+      options.legacy = true;
+    } else if (arg.startsWith('-')) {
+      fail(`unknown option: ${arg}`);
+    } else if (options.input) {
+      fail('input was supplied more than once');
+    } else {
+      options.input = arg;
     }
   }
-
+  if (options.help) return options;
+  if (!options.input) fail('a token input file is required');
+  if (!['css', 'tailwind'].includes(options.format)) fail(`unsupported format: ${options.format}`);
   return options;
 }
 
-const PRIMITIVE_CATEGORY_NAMES = {
-  spacing: 'space',
-  fontSize: 'font-size',
-  fontWeight: 'font-weight',
-  fontFamily: 'font-family',
-  lineHeight: 'line-height',
-};
-
-function toKebab(value) {
-  return String(value)
-    .replace(/([a-z0-9])([A-Z])/g, '$1-$2')
-    .replace(/_/g, '-')
-    .toLowerCase();
+const options = parseArgs(process.argv.slice(2));
+if (options.help) {
+  process.stdout.write(`${HELP}\n`);
+  process.exit(0);
 }
+if (options.legacy) console.error('Deprecated: use positional input and redirect CSS stdout; legacy flags remain for one release.');
 
-/** Convert a source token path to its canonical CSS custom-property name. */
-function toCssVarName(sourcePath) {
-  let parts = [...sourcePath];
+let tokens;
+try {
+  tokens = JSON.parse(fs.readFileSync(path.resolve(options.input), 'utf8'));
+} catch (error) {
+  fail(error.message);
+}
+const CATEGORY = { spacing: 'space', fontSize: 'font-size', fontWeight: 'font-weight', fontFamily: 'font-family', lineHeight: 'line-height' };
+const kebab = value => String(value).replace(/([a-z0-9])([A-Z])/g, '$1-$2').replace(/_/g, '-').toLowerCase();
+
+function cssName(source) {
+  let parts = [...source];
   if (parts[0] === 'dark') parts = parts.slice(1);
-
-  if (parts[0] === 'primitive') {
-    const category = PRIMITIVE_CATEGORY_NAMES[parts[1]] || toKebab(parts[1]);
-    parts = [category, ...parts.slice(2)];
-  } else if (parts[0] === 'semantic' || parts[0] === 'component') {
-    parts = parts.slice(1);
-  }
-
-  return '--' + parts.map(toKebab).join('-');
+  if (parts[0] === 'primitive') parts = [CATEGORY[parts[1]] || kebab(parts[1]), ...parts.slice(2)];
+  else if (parts[0] === 'semantic' || parts[0] === 'component') parts = parts.slice(1);
+  return '--' + parts.map(kebab).join('-');
 }
 
-function collectTokenNodes(obj, prefix = [], nodes = new Map()) {
+function collect(obj, prefix = [], nodes = new Map()) {
   for (const [key, value] of Object.entries(obj || {})) {
-    const currentPath = [...prefix, key];
-    if (value && typeof value === 'object' && value.$value !== undefined) {
-      nodes.set(currentPath.join('.'), value);
-    } else if (value && typeof value === 'object') {
-      collectTokenNodes(value, currentPath, nodes);
-    }
+    const current = [...prefix, key];
+    if (value && typeof value === 'object' && Object.prototype.hasOwnProperty.call(value, '$value')) nodes.set(current.join('.'), value);
+    else if (value && typeof value === 'object') collect(value, current, nodes);
   }
   return nodes;
 }
 
-function validateTokenGraph(tokens) {
-  const nodes = new Map();
-  collectTokenNodes(tokens.primitive, ['primitive'], nodes);
-  collectTokenNodes(tokens.semantic, ['semantic'], nodes);
-  collectTokenNodes(tokens.component, ['component'], nodes);
-  collectTokenNodes(tokens.dark, ['dark'], nodes);
+const nodes = new Map();
+collect(tokens.primitive, ['primitive'], nodes);
+collect(tokens.semantic, ['semantic'], nodes);
+collect(tokens.component, ['component'], nodes);
+collect(tokens.dark, ['dark'], nodes);
 
-  const names = new Map();
-  for (const sourcePath of nodes.keys()) {
-    const cssName = toCssVarName(sourcePath.split('.'));
-    const normalizedSource = sourcePath.replace(/^dark\./, '');
-    if (names.has(cssName) && names.get(cssName) !== normalizedSource) {
-      throw new Error(`CSS token name collision: ${sourcePath} and ${names.get(cssName)} -> ${cssName}`);
-    }
-    names.set(cssName, normalizedSource);
-  }
-
-  const visiting = new Set();
-  const visited = new Set();
-  function visit(sourcePath) {
-    if (visited.has(sourcePath)) return;
-    if (visiting.has(sourcePath)) throw new Error(`Circular token reference: ${sourcePath}`);
-    visiting.add(sourcePath);
-    const value = nodes.get(sourcePath)?.$value;
-    const match = typeof value === 'string' ? /^\{([^{}]+)\}$/.exec(value) : null;
-    if (match) {
-      if (!nodes.has(match[1])) throw new Error(`Unresolved token reference: ${value}`);
-      visit(match[1]);
-    }
-    visiting.delete(sourcePath);
-    visited.add(sourcePath);
-  }
-  for (const sourcePath of nodes.keys()) visit(sourcePath);
+const names = new Map();
+for (const source of nodes.keys()) {
+  const name = cssName(source.split('.'));
+  const normalized = source.replace(/^dark\./, '');
+  if (names.has(name) && names.get(name) !== normalized) throw new Error(`CSS token name collision: ${source} and ${names.get(name)} -> ${name}`);
+  names.set(name, normalized);
 }
 
-function cssValue(value) {
-  const match = typeof value === 'string' ? /^\{([^{}]+)\}$/.exec(value) : null;
-  return match ? `var(${toCssVarName(match[1].split('.'))})` : value;
-}
-
-/**
- * Flatten tokens into CSS variables
- */
-function flattenTokens(obj, prefix = [], result = {}) {
-  for (const [key, value] of Object.entries(obj)) {
-    const currentPath = [...prefix, key];
-
-    if (value && typeof value === 'object') {
-      if (value.$value !== undefined) {
-        // This is a token
-        const cssVar = toCssVarName(currentPath);
-        result[cssVar] = cssValue(value.$value);
-      } else {
-        // Recurse into nested object
-        flattenTokens(value, currentPath, result);
-      }
+const visiting = new Set(), visited = new Set();
+function visit(source) {
+  if (visited.has(source)) return;
+  if (visiting.has(source)) throw new Error(`Circular token reference: ${source}`);
+  visiting.add(source);
+  const value = nodes.get(source)?.$value;
+  const ref = typeof value === 'string' ? /^\{([^{}]+)\}$/.exec(value) : null;
+  if (ref) {
+    if (!nodes.has(ref[1])) throw new Error(`Unresolved token reference: ${value}`);
+    if (cssName(source.split('.')) === cssName(ref[1].split('.'))) {
+      throw new Error(`Self-referential emitted CSS alias: ${source} -> ${ref[1]}`);
     }
+    visit(ref[1]);
   }
+  visiting.delete(source);
+  visited.add(source);
+}
+for (const source of nodes.keys()) visit(source);
 
+const cssValue = value => {
+  const ref = typeof value === 'string' ? /^\{([^{}]+)\}$/.exec(value) : null;
+  return ref ? `var(${cssName(ref[1].split('.'))})` : String(value);
+};
+
+function flatten(obj, prefix = [], result = {}) {
+  for (const [key, value] of Object.entries(obj || {})) {
+    const current = [...prefix, key];
+    if (value && typeof value === 'object' && Object.prototype.hasOwnProperty.call(value, '$value')) result[cssName(current)] = cssValue(value.$value);
+    else if (value && typeof value === 'object') flatten(value, current, result);
+  }
   return result;
 }
 
-/**
- * Generate CSS output
- */
-function generateCSS(tokens) {
-  validateTokenGraph(tokens);
-  const primitive = flattenTokens(tokens.primitive || {}, ['primitive']);
-  const semantic = flattenTokens(tokens.semantic || {}, ['semantic']);
-  const component = flattenTokens(tokens.component || {}, ['component']);
-  const darkSemantic = flattenTokens(tokens.dark?.semantic || {}, ['dark', 'semantic']);
+const emit = vars => Object.entries(vars).map(([key, value]) => `  ${key}: ${value};`).join('\n');
+const primitive = flatten(tokens.primitive, ['primitive']);
+const semantic = flatten(tokens.semantic, ['semantic']);
+const component = flatten(tokens.component, ['component']);
+const dark = flatten(tokens.dark?.semantic, ['dark', 'semantic']);
 
-  let css = `/* Design Tokens - Auto-generated */
-/* Do not edit directly - modify tokens.json instead */
+let css = '/* Generated from canonical design tokens. */\n:root {\n' + emit({ ...primitive, ...semantic, ...component }) + '\n}\n';
+if (Object.keys(dark).length) css += '\n.dark {\n' + emit(dark) + '\n}\n';
 
-/* === PRIMITIVES === */
-:root {
-${Object.entries(primitive).map(([k, v]) => `  ${k}: ${v};`).join('\n')}
-}
-
-/* === SEMANTIC === */
-:root {
-${Object.entries(semantic).map(([k, v]) => `  ${k}: ${v};`).join('\n')}
-}
-
-/* === COMPONENTS === */
-:root {
-${Object.entries(component).map(([k, v]) => `  ${k}: ${v};`).join('\n')}
-}
-`;
-
-  if (Object.keys(darkSemantic).length > 0) {
-    css += `
-/* === DARK MODE === */
-.dark {
-${Object.entries(darkSemantic).map(([k, v]) => `  ${k}: ${v};`).join('\n')}
-}
-`;
-  }
-
-  return css;
-}
-
-/**
- * Generate Tailwind config output
- */
-function generateTailwind(tokens) {
-  validateTokenGraph(tokens);
-  const semantic = flattenTokens(tokens.semantic || {}, ['semantic']);
-
-  // Extract colors for Tailwind
+function generateTailwind() {
   const colors = {};
-  for (const [key, value] of Object.entries(semantic)) {
-    if (key.includes('color')) {
-      const name = key.replace('--color-', '').replace(/-/g, '.');
-      colors[name] = `var(${key})`;
-    }
+  for (const key of Object.keys(semantic)) {
+    if (key.includes('color')) colors[key.replace('--color-', '').replace(/-/g, '.')] = `var(${key})`;
   }
-
-  return `// Tailwind color config - Auto-generated
-// Add to tailwind.config.ts theme.extend.colors
-
-module.exports = {
-  colors: ${JSON.stringify(colors, null, 2).replace(/"/g, "'")}
-};
-`;
+  return `// Deprecated compatibility output. Map the emitted CSS variables in the current project instead.\nmodule.exports = {\n  colors: ${JSON.stringify(colors, null, 2).replace(/"/g, "'")}\n};\n`;
 }
 
-/**
- * Main
- */
-function main() {
-  const options = parseArgs();
-
-  if (!options.config) {
-    console.error('Error: --config is required');
-    process.exit(1);
-  }
-
-  // Resolve config path
-  const configPath = path.resolve(process.cwd(), options.config);
-
-  if (!fs.existsSync(configPath)) {
-    console.error(`Error: Config file not found: ${configPath}`);
-    process.exit(1);
-  }
-
-  // Read and parse tokens
-  const tokens = JSON.parse(fs.readFileSync(configPath, 'utf-8'));
-
-  // Generate output
-  let output;
-  if (options.format === 'tailwind') {
-    output = generateTailwind(tokens);
-  } else {
-    output = generateCSS(tokens);
-  }
-
-  // Write output
-  if (options.output) {
-    const outputPath = path.resolve(process.cwd(), options.output);
-    fs.mkdirSync(path.dirname(outputPath), { recursive: true });
-    fs.writeFileSync(outputPath, output);
-    console.log(`Generated: ${outputPath}`);
-  } else {
-    console.log(output);
-  }
+const result = options.format === 'tailwind' ? generateTailwind() : css;
+if (options.output) {
+  const output = path.resolve(options.output);
+  fs.mkdirSync(path.dirname(output), { recursive: true });
+  fs.writeFileSync(output, result);
+  process.stdout.write(`Generated: ${output}\n`);
+} else {
+  process.stdout.write(result);
 }
-
-main();

@@ -1,6 +1,6 @@
 # Historical research: Akọ̀wé catalogue consolidation experiment
 
-Date: 2026-08-27  
+Date: 2026-08-27
 Status: Superseded by `docs/adr/20260827-adopt-adaptive-akowe-companion.md`
 
 This document preserves the research behind the intermediate, unreleased `akowe-code` catalogue design. It is historical evidence only; the published Experimental identifier is `akowe`, and the runtime skill no longer loads the catalogue described below.

@@ -1,6 +1,6 @@
 # Adaptive Experimental Skills — forward experiments
 
-Date: 2026-08-27  
+Date: 2026-08-27
 Candidate: `feature/adaptive-experimental-skills` based on `ori` `1ed1196f839cc4087a8cdb97f331d45bdc8b5069`
 
 ## Method

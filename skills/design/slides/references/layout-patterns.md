@@ -1,137 +1,40 @@
-# Layout Patterns
+# Slide layout patterns
 
-25 slide layouts with CSS structures and animation classes.
+Choose layout from the relationship the slide must make obvious, not from a fixed template catalogue.
 
-## Layout Selection by Use Case
+| Slide job / relationship | Useful layout direction | Avoid when |
+| --- | --- | --- |
+| Establish one proposition | dominant headline + minimal support / one visual | several independent claims need equal weight |
+| Problem → consequence | paired text/visual, causal chain, before-state | the evidence is primarily quantitative comparison |
+| Solution / mechanism | process/flow, annotated product view, 2–4 mechanism blocks | the slide is only a feature inventory |
+| Compare candidates | common-scale table/matrix, paired columns, aligned before/after | criteria differ so much that side-by-side implies false comparability |
+| Show progression | timeline/roadmap/state sequence | sequence is not actually temporal or ordered |
+| Show several peer capabilities | bounded grid/list with equal visual grammar | one capability is materially primary and should dominate |
+| Show one key metric | large number + denominator/period/context + trend/benchmark when meaningful | the number lacks context or requires several related metrics |
+| Show several metrics | aligned small set with common definitions and material trend/variance | a dashboard grid would hide the main claim |
+| Show quantitative relationship | chart selected from comparison/trend/distribution/composition/correlation | exact lookup is more important than pattern perception |
+| Close / call to action | decision/action + proof/reason + next step/contact | unresolved material objections still need explanation |
 
-| Layout | Use Case | Animation |
-|--------|----------|-----------|
-| Title Slide | Opening/first impression | `animate-fade-up` |
-| Problem Statement | Establish pain point | `animate-stagger` |
-| Solution Overview | Introduce solution | `animate-scale` |
-| Feature Grid | Show capabilities (3-6 cards) | `animate-stagger` |
-| Metrics Dashboard | Display KPIs (3-4 metrics) | `animate-stagger-scale` |
-| Comparison Table | Compare options | `animate-fade-up` |
-| Timeline Flow | Show progression | `animate-stagger` |
-| Team Grid | Introduce people | `animate-stagger` |
-| Quote Testimonial | Customer endorsement | `animate-fade-up` |
-| Two Column Split | Compare/contrast | `animate-fade-up` |
-| Big Number Hero | Single powerful metric | `animate-count` |
-| Product Screenshot | Show product UI | `animate-scale` |
-| Pricing Cards | Present tiers | `animate-stagger` |
-| CTA Closing | Drive action | `animate-pulse` |
+## Composition principles
 
-## CSS Structures
+- One dominant idea; secondary material supports it rather than competing for hierarchy.
+- Use common alignment and visual grammar for comparisons.
+- Keep screenshots/visual evidence large enough to inspect; annotate only the parts that support the claim.
+- Prefer fewer, larger peer units over dense card grids.
+- Use whitespace to separate conceptual groups rather than decorative boxes everywhere.
+- Change layout at narrow viewports instead of hiding important relationships through overflow/clipping.
+- Do not couple a semantic layout choice to a specific CSS class, animation class, grid count, or breakpoint unless the current implementation needs it.
 
-### Title Slide
-```css
-.slide-title {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-}
-```
+## Pattern interruption
 
-### Two Column Split
-```css
-.slide-split {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 48px;
-    align-items: center;
-}
-@media (max-width: 768px) {
-    .slide-split { grid-template-columns: 1fr; gap: 24px; }
-}
-```
+Vary the visual rhythm only when the change serves narrative emphasis: a decisive metric, emotional proof, transition, product reveal, or closing action. Do not insert a full-bleed/quote/big-number slide merely because the deck has reached a certain position.
 
-### Feature Grid (3 columns)
-```css
-.slide-features {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
-}
-@media (max-width: 768px) {
-    .slide-features { grid-template-columns: repeat(2, 1fr); gap: 16px; }
-}
-@media (max-width: 480px) {
-    .slide-features { grid-template-columns: 1fr; }
-}
-```
+## Calibration
 
-### Metrics Dashboard (4 columns)
-```css
-.slide-metrics {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 16px;
-}
-@media (max-width: 768px) {
-    .slide-metrics { grid-template-columns: repeat(2, 1fr); }
-}
-@media (max-width: 480px) {
-    .slide-metrics { grid-template-columns: 1fr; }
-}
-```
+Good: a competitor slide aligns the same five decision criteria across all candidates and highlights only supported differences.
 
-## Component Variants
+Bad: six cards with unrelated icon styles because “feature grid” is a known slide template.
 
-### Card Styles
-| Style | CSS Class | Use For |
-|-------|-----------|---------|
-| Icon Left | `.card-icon-left` | Features with icons |
-| Accent Bar | `.card-accent-bar` | Highlighted features |
-| Metric Card | `.card-metric` | Numbers/stats |
-| Avatar Card | `.card-avatar` | Team members |
-| Pricing Card | `.card-pricing` | Price tiers |
+Good: a roadmap shows dependencies and the current state, not just evenly spaced dates.
 
-### Metric Styles
-| Style | Effect |
-|-------|--------|
-| `gradient-number` | Gradient text on numbers |
-| `oversized` | Extra large (120px+) |
-| `sparkline` | Small inline chart |
-| `funnel-numbers` | Conversion stages |
-
-## Visual Treatments
-
-| Treatment | When to Use |
-|-----------|-------------|
-| `gradient-glow` | Title slides, CTAs |
-| `subtle-border` | Problem statements |
-| `icon-top` | Feature grids |
-| `screenshot-shadow` | Product screenshots |
-| `popular-highlight` | Pricing (scale 1.05) |
-| `bg-overlay` | Background images |
-| `contrast-pair` | Before/after |
-| `logo-grayscale` | Client logos |
-
-## Search Commands
-
-```bash
-# Find layout for specific use
-python3 <skill-root>/scripts/search-slides.py "metrics dashboard" -d layout
-
-# Contextual recommendation
-python3 <skill-root>/scripts/search-slides.py "traction slide" \
-  --context --position 4 --total 10
-```
-
-## Layout Decision Flow
-
-```
-1. What's the slide goal?
-   └─> Search layout-logic.csv
-
-2. What emotion should it trigger?
-   └─> Search color-logic.csv
-
-3. What's the content type?
-   └─> Search typography.csv
-
-4. Should it break pattern?
-   └─> Check position (1/3, 2/3) → Use full-bleed
-```
+Bad: a timeline for unordered workstreams because the visual looks dynamic.

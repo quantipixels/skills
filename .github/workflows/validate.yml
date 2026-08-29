@@ -43,12 +43,17 @@ jobs:
       - name: Validate skill package
         run: python3 skills/engineering/ko-skill/scripts/validate-package.py --repo .
 
-  wo-pr-tests:
-    name: wo-pr snapshot tests
+  akosile-tests:
+    name: Akosile focused mechanics
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Test wo-pr fact normalization
-        run: python3 -m unittest discover -s skills/engineering/wo-pr/scripts -p 'test_*.py'
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Test safe-write and index renderer
+        run: python3 -m unittest discover -s skills/engineering/akosile/scripts -p 'test_*.py'

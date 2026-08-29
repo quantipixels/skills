@@ -1,32 +1,21 @@
 # Corporate identity program
 
-Use this reference for bounded brand collateral and mockup concepts.
+Use for a bounded corporate-identity collateral set or mockup program after the brand direction is sufficiently established.
 
 ## Build the brief
 
-Resolve `<brand-skill-root>` to this skill directory:
+Pin the audience and use, selected deliverables, brand rules, logo state, materials and production context, output formats, and approval boundary. Inspect the actual business touchpoints and current production requirements for each selected deliverable.
 
-```bash
-python3 <brand-skill-root>/scripts/cip/search.py "technology consulting" --cip-brief --brand "BrandName"
-python3 <brand-skill-root>/scripts/cip/search.py "business card letterhead" --domain deliverable
-python3 <brand-skill-root>/scripts/cip/search.py "luxury premium" --domain style
-python3 <brand-skill-root>/scripts/cip/search.py "office reception" --domain mockup
-```
+Do not choose deliverables, style, industry treatment, or mockup scenes from a bundled catalogue. Derive them from the current brand, actual business touchpoints, supplied requirements, and current visual research when needed.
 
-Select a bounded deliverable set, audience, industry, style, materials, logo state, and output format. Read `cip-deliverable-guide.md` and `cip-style-guide.md` for the selected items.
+## Mockups and production
 
-## Mockup workflow
-
-1. Confirm the logo and brand rules; if missing, mark the mockup as concept-only.
-2. Define the scene, camera, material, scale, lighting, logo placement, and what must not change.
-3. Use image generation for scene mockups and label them as conceptual. Keep text short and proofread; image models are not a substitute for production artwork.
-4. Keep production collateral editable and export print-ready files separately.
-5. If a set of images exists, render an HTML contact sheet with the deterministic renderer:
-
-```bash
-python3 <brand-skill-root>/scripts/cip/render-html.py --brand "BrandName" --images ./cip-output --output cip-preview.html
-```
+1. Confirm the current logo/identity rules. If they are unresolved, label visualizations concept-only.
+2. For each mockup, define scene/context, material, scale, lighting, placement, and what brand elements must remain exact.
+3. Use image generation only for visual concept/mockup imagery where useful; keep production artwork/text editable in the appropriate native format.
+4. Treat mockups as presentation evidence, not proof of print/manufacturing readiness.
+5. When several supplied mockups need a human comparison/contact sheet, use `html-artifact` with the supplied images and labels rather than a Brand-specific renderer.
 
 ## Handoff
 
-Return the brief, chosen deliverables, prompt constraints, generated files, production gaps, and approval state. Do not claim print readiness from a mockup alone.
+Return the selected deliverables, brand constraints, source/mockup/production files, production gaps, and approval state. Verify print/manufacturing/export requirements from the current production target rather than preserving generic dimensions here.

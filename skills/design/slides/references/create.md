@@ -1,24 +1,49 @@
 # Create a slide deck
 
-Use this reference as the standalone entry point for slide work. The `slides` skill owns the narrative, local datasets, search, validation, and HTML generation.
+Use this as the creation entry point. It defines the stable deck-level job, not one HTML implementation.
 
-## Workflow
+## Establish the deck
 
-1. Confirm audience, decision or action, delivery format, target viewport, slide count, brand constraints, source data, and output directory.
-2. Search the local knowledge base for relevant layouts, strategies, copy patterns, typography, colors, charts, and backgrounds:
+Pin:
 
-```bash
-python3 <skill-root>/scripts/search-slides.py "investor roadmap" --max-results 5
+- primary audience and decision/action;
+- delivery format and presentation context;
+- source evidence/data and any citation obligations;
+- brand/project constraints when they exist;
+- approximate slide count or time budget; and
+- export/viewport requirements.
+
+Then create a slide map:
+
+```text
+slide
+→ one job
+→ one headline claim
+→ supporting evidence
+→ visual relationship/form
+→ transition to next idea
 ```
 
-3. Build a slide-by-slide outline with one claim, evidence, visual role, and transition per slide.
-4. Before generation, require complete project token files at `assets/design-tokens.json` and `assets/design-tokens.css`, including the slide aliases declared by `eto-apere`. Stop and route to `eto-apere` when the contract is missing or incomplete.
-5. Validate token usage and semantic color rules, render at the target viewport, and check overflow, contrast, keyboard access, and reduced-motion behavior.
+Use [layout patterns](layout-patterns.md) for the relationship, [slide strategies](slide-strategies.md) for sequence, and [copy formulas](copywriting-formulas.md) only when copy shaping needs them.
 
-For deterministic generation, run:
+## Tokens and implementation
 
-```bash
-python3 <skill-root>/scripts/generate-slide.py --json deck.json --project-root <project-root> --output assets/designs/slides/deck.html
-```
+Consume an existing project/brand token contract when one is relevant. Do not require `assets/design-tokens.*` or create a project token system for a standalone deck unless the user/project actually needs that durable contract.
 
-The generator keeps output inside `--project-root`, honors an explicit `--output`, and writes the stylesheet path relative to the generated file. If the project token contract is absent or incomplete, create or repair it through `eto-apere` first.
+For HTML, build the minimum semantic deck implementation needed for the current delivery: slide regions, explicit current state, accessible navigation/control labels, target aspect/layout behavior, overflow resilience, and reduced-motion handling when transitions exist. Add a chart dependency only when a chart is required and the host/native capability does not already own it.
+
+For PowerPoint or another native presentation format, use the host's presentation capability rather than translating through a QP HTML template.
+
+## Verification
+
+Check the actual delivered format:
+
+- every slide has one clear job and readable headline claim;
+- text/data/images fit at the target viewport/export without clipping or unreadable type;
+- charts preserve units, scale meaning, labels and non-color distinction where needed;
+- brand/current token relationships are respected when applicable;
+- interactive HTML controls work by keyboard and do not require click-anywhere behavior;
+- animation is non-blocking and reduced-motion aware when present; and
+- source/evidence obligations remain traceable.
+
+Do not add framework/CDN/template mechanics merely to make a deck look “complete.”

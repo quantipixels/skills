@@ -1,91 +1,49 @@
 # Workspace contract
 
-Use this reference for the repository-local `.qp` v0 root, paths, common record fields, safe writes, direct user access, and the generated index.
+Akọsílẹ̀ owns repository-local storage mechanics. Semantic owners retain record meaning, status, evidence, transitions, and validation.
 
-## Root and layout
+## Canonical resources
 
-For `v0-experiment`, resolve the Git worktree root when available; the canonical workspace is exactly `<repository>/.qp`. Akọsílẹ̀ constructs record/artifact locations from this contract while semantic owners keep ownership of the resulting content.
+Create resources lazily under the one real repository `.qp`:
 
 ```text
 .qp/
-├── settings.json
-├── INDEX.md
-├── records/<owner>/<record-id>/
-└── artifacts/<artifact-id>/
+├── settings.json                         optional, created on first settings write
+├── INDEX.md                              optional generated navigation
+├── records/<owner>/<stable-subject>/     owner record bundle
+└── artifacts/<stable-subject>/           standalone artifact bundle
 ```
 
-New records use owner-first paths. Do not introduce open-ended roots such as `.qp/plans`, `.qp/architecture`, `.qp/reports`, `.qp/research`, `.qp/triage`, or `.qp/findings`. Existing legacy paths remain readable, but new QP writes do not use them.
+A new record subject is a lowercase ASCII slug supplied by its semantic owner. Stable subject is stable identity; do not derive a new identity from title changes, date changes, or filename collision suffixes. Existing dated bundle names are accepted legacy identities.
 
-Global `~/.qp` storage is deferred. Do not add project registries, checkout resolution, global/project settings precedence, or automatic local-to-global migration until observed cross-project discovery or continuity failures justify that architecture.
+A record bundle's semantic source is `record.md`. `index.html` is an optional derived human projection. `INDEX.md` is derived navigation. Divergent derived bytes never outrank the semantic source.
 
-## Record-bundle slots
+## Common record envelope
 
-Within an owner-record bundle, these relative slots are canonical when needed:
-
-```text
-record.md      semantic owner record
-index.html     optional human HTML projection
-receipts/      optional supporting-owner or checkpoint receipts
-evidence/      optional retained supporting evidence
-```
-
-Semantic skills may refer to these slots relative to the resolved owner bundle without repeating `.qp/records/<owner>/<record-id>/`. They describe bundle roles, not new workspace roots.
-
-## Identity
-
-- Owner is the canonical ASCII skill `name`.
-- Record and artifact IDs use `<YYYYMMDD>-<stable-slug>` with a numeric suffix on collision.
-- Prefer an exact record path or candidate identity before slug matching.
-- Keep the directory stable across title, status, and projection changes.
-- Reject absolute paths as identifiers, path separators in identifiers, `.`/`..`, symlink escape, secrets in identifiers, and targets outside the resolved repository `.qp` root.
-
-## Common record fields
-
-A record may add owner-specific fields, but frontmatter needs only:
+Akọsílẹ̀ may validate only the cross-owner envelope needed for storage/indexing:
 
 ```yaml
-owner: <canonical-skill-name>
-record_type: <owner-native type>
+owner: <canonical skill name>
+record_type: <non-empty owner-defined type>
 title: <human title>
-updated_at: <offset-aware timestamp>
+updated_at: <offset-aware ISO-8601>
 revision: <positive integer>
-candidate: <exact subject identity, optional>
-status: <owner-native state>
+status: <non-empty owner-defined state>
+subject: <stable subject, optional for legacy records>
 ```
 
-The record ID and bundle are derived from the path. The semantic owner defines valid record types, statuses, transitions, evidence, and body structure.
+Write each common-envelope value as one top-level, single-line scalar: a plain value, a JSON-compatible double-quoted string, or a YAML single-quoted string. Do not use block scalars, collections, tags, anchors, or aliases for common-envelope fields. Owner-specific nested metadata may follow; the index renderer ignores it. The renderer uses only the Python standard library, rejects duplicate top-level keys and unsupported common-envelope forms, and does not execute YAML tags or constructors.
 
-## Safe writes
+The semantic owner validates all owner-specific fields and whether its status/revision transition is valid. When `subject` is present, it must match the bundle directory.
 
-For an existing record or settings file:
+## Allocation
 
-1. Read the exact current target before building the candidate.
-2. Build and validate the complete replacement separately.
-3. Immediately before replacement, reread the target.
-4. If the target changed, stop and reconcile instead of overwriting it.
-5. Replace the complete file using the host's safe filesystem capability.
-6. Reread the written result.
-7. Rebuild `INDEX.md` after a record write.
+Create the exact owner/subject directory with native atomic directory creation. Existing directory means re-read/reuse or reconcile an incomplete allocation; never invent `-2`, `-3`, or another semantic identity to escape a collision.
 
-For records, revision starts at `1` and increments by exactly one. A failed index rebuild does not invalidate a successfully verified record.
+Create optional `receipts/`, `evidence/`, `index.html`, settings, or index only when an owning operation actually needs them.
 
-## Index
+## Safe publication
 
-`.qp/INDEX.md` is generated directly from valid `record.md` frontmatter and sorted by the chronological instant represented by `updated_at`, newest first. It displays owner, record type, title, native status, record link, and optional HTML view. Invalid records appear in a separate diagnostic section.
+Mutation roots must be the real canonical `.qp`, never a linked-worktree alias. Build complete validated candidates outside `.qp`, pin both candidate and target identity with native SHA-256 tooling, and publish through `safe-write.py` only when shared writers or an exact publication claim require CAS. The helper is a byte-publication kernel; it does not snapshot targets or own semantic merge policy.
 
-The index is navigation, not semantic state. Users edit records or settings, not the index.
-
-## Direct user access
-
-When a resource is produced for direct user consumption, return both:
-
-```text
-Absolute path: <resolved absolute filesystem path>
-Workspace path: <path relative to repository root, beginning .qp/...>
-```
-
-The absolute path is for immediate opening, attachment, or tool use. The workspace-relative path is the stable project-local reference. Do not use an absolute machine path as the canonical source identity inside portable records or HTML unless explicitly required.
-
-## Git hygiene
-
-`.qp` is generated local state. Prefer existing ignore rules; otherwise use repository-local Git exclude when workspace setup is allowed. Never stage or publish `.qp` through QP workflows.
+For generated navigation, render to stdout, capture the candidate outside `.qp`, then publish that exact candidate through the same CAS seam.
