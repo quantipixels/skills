@@ -28,6 +28,12 @@ SKILL.md guidance or selectively loaded expert reference
 
 A short command recipe is guidance, not a runtime capability. Prefer it when a capable agent can see, adapt, and verify the operation from current evidence without persistent machine state or a separate machine consumer.
 
+### Assume agent competence
+
+Specify the semantic capability, invariant, authority, or result the skill needs; let the agent map ordinary execution onto the tools and capabilities actually available in its host. Do not enumerate harness-specific fallbacks for subagents, shell/file operations, search, editing, or equivalent orchestration when a capable agent can derive the available path itself.
+
+Concrete mechanics earn instruction space when the mechanism itself establishes a correctness invariant, authority boundary, deterministic result, non-obvious safety property, machine-consumer contract, or compatibility constraint. Capability absence is normally an execution fact for the agent to adapt around, not a branch the skill must pre-author.
+
 Do not apply that rule mechanically to **public human-facing entrypoints**. A thin install/bootstrap/uninstall/helper wrapper can be the smallest adequate interface when its value is one safe, memorable invocation for a recurring operation that would otherwise require users to copy or reconstruct several commands. Keep such an entrypoint transparent and narrow: delegate to native tools, preserve safe scope/defaults, avoid private semantic state, and do not grow it into an internal runtime. `scripts/uninstall.sh` is a valid example: `npx skills` owns removal; the wrapper owns source-scoped one-line UX.
 
 Do not treat “the model can already do this” as sufficient reason to remove a lightweight skill. A small public skill can still be valuable when its independently useful trigger/result reliably steers model behavior and saves users from repeating a long behavioral instruction. `salaye` is a valid example: its value is the reusable plain-language explanation contract, not hidden machinery. Keep this form only when the route is clear and it does not duplicate another published owner.
@@ -100,6 +106,7 @@ When Kọ Skill sees:
 
 - recurring non-obvious judgment → recommend a selective expert reference with examples/counterexamples;
 - one/few transparent native operations → recommend commands/recipes;
+- an instruction enumerating host capability fallbacks the agent can infer itself → collapse it to the semantic requirement;
 - a recurring human-facing multi-command setup/removal action where one safe invocation materially improves use → consider a thin public entrypoint that delegates to native tools;
 - truth already owned by project/provider/framework tooling → use that native owner;
 - focused solved mechanics → use a library;
