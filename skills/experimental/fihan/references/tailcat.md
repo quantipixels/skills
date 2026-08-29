@@ -16,7 +16,7 @@ Use `irinse` when installation or upgrade is required. An unrelated executable/p
 
 Tailcat provides a userspace WireGuard tunnel without the normal Tailscale control plane/system routing. Public Tailcat DERP relays are best-effort and may be rate-limited or changed. Payload is encrypted end-to-end, while relay operators can observe connection metadata; report only privacy guarantees supported by current official evidence.
 
-Tailcat forwards TCP rather than serving files/directories. Fihan therefore exposes only the task-owned loopback port needed for the requested resource.
+Tailcat forwards TCP rather than serving files/directories. Fihàn therefore exposes only the task-owned loopback port needed for the requested resource.
 
 For an ordinary temporary share, use a fresh ephemeral server identity according to the current installed/upstream interface. Do not create or reuse saved server keys, stable DNS tokens, `all`-port forwarding, exit-node behavior, or auth-free SSH for this outcome. A reusable server identity changes a one-run access capability into durable authority.
 
@@ -38,4 +38,4 @@ If the chosen receiver path cannot present the required identity, return `CAPABI
 
 ## Revocation
 
-Revoke the capability by stopping the Tailcat sender before deleting temporary token/staging material, then verify the returned access target no longer reaches the resource. Remove persistent keys only when their creation was separately authorized; ordinary Fihan runs should not create them. Relay-map caches are not server private keys and are not ordinary cleanup targets.
+Revoke the capability by stopping the Tailcat sender before deleting temporary token/staging material, then verify the returned access target no longer reaches the resource. Remove persistent keys only when their creation was separately authorized; ordinary Fihàn runs should not create them. Relay-map caches are not server private keys and are not ordinary cleanup targets.
