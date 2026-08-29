@@ -1,7 +1,7 @@
 ---
 name: akosile
 description: Maintain one repository-scoped QP `.qp` workspace across Git worktrees. Use for canonical owner-record/artifact paths, linked-worktree aliasing or migration, exact snapshot/CAS publication, sparse settings, and generated index rendering. Exclude semantic record meaning/status, project knowledge, provider mutation, and global `~/.qp` storage.
-compatibility: Requires Git. Deterministic publication/index helpers require Python 3, PyYAML, and filelock. Linked-worktree aliases require filesystem symlink support.
+compatibility: Requires Git and Python 3. Linked-worktree aliases require filesystem symlink support.
 ---
 
 # Akọsílẹ̀

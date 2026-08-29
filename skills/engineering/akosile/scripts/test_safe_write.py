@@ -92,6 +92,40 @@ class SafeWriteTests(unittest.TestCase):
                 thread.join(10)
             self.assertCountEqual(outcomes, ["OK", "STALE_TARGET"])
 
+    def test_absolute_target_below_symlinked_ancestor_is_accepted(self):
+        with tempfile.TemporaryDirectory() as directory:
+            base = Path(directory)
+            real_parent = base / "real"
+            lexical_parent = base / "alias"
+            real_parent.mkdir()
+            lexical_parent.symlink_to(real_parent, target_is_directory=True)
+            root = lexical_parent / ".qp"
+            root.mkdir()
+            target = root / "record.md"
+            target.write_bytes(b"current")
+            snapshot = base / "snapshot"
+
+            code, payload = run("snapshot", "--root", root, "--target", target, "--output", snapshot)
+
+            self.assertEqual(code, 0)
+            self.assertEqual(payload["result"]["digest"], hashlib.sha256(b"current").hexdigest())
+            self.assertEqual(snapshot.read_bytes(), b"current")
+
+    def test_symlink_inside_workspace_boundary_is_rejected(self):
+        with tempfile.TemporaryDirectory() as directory:
+            base = Path(directory)
+            root = base / ".qp"
+            outside = base / "outside"
+            root.mkdir()
+            outside.mkdir()
+            (root / "linked").symlink_to(outside, target_is_directory=True)
+            target = root / "linked" / "record.md"
+            target.write_bytes(b"outside")
+
+            code, payload = run("snapshot", "--root", root, "--target", target, "--output", base / "snapshot")
+
+            self.assertEqual((code, payload["error"]["code"]), (2, "SYMLINK_PATH"))
+
 
 if __name__ == "__main__":
     unittest.main()

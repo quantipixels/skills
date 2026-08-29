@@ -1,6 +1,8 @@
 # Use owner records as semantic sources for HTML projections
 
-Status: Accepted
+Status: Accepted; path identity and workspace initialization superseded by [Keep Akọsílẹ̀ repository-scoped with minimal deterministic kernels](20260828-keep-akosile-scripts-focused.md)
+
+The dated record path and eager workspace shape below are retained as decision history. New records use stable undated subjects, and Akọsílẹ̀ creates workspace resources lazily. The remaining owner-record and HTML-projection decisions stay active unless a later section says otherwise.
 
 QP separates semantic owner state, repository-local workspace mechanics, native evidence, compact receipts, and HTML presentation.
 

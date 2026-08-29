@@ -1,10 +1,9 @@
+import json
 import subprocess
 import sys
 import tempfile
 import unittest
 from pathlib import Path
-
-import yaml
 
 SCRIPT = Path(__file__).with_name("render-index.py")
 
@@ -26,7 +25,11 @@ def record(workspace, record_subject, **values):
         "status": "Draft",
         **values,
     }
-    (bundle / "record.md").write_text("---\n" + yaml.safe_dump(data, sort_keys=False) + "---\n\nBody\n")
+    lines = []
+    for key, value in data.items():
+        encoded = json.dumps(value, ensure_ascii=False) if isinstance(value, str) else str(value)
+        lines.append(f"{key}: {encoded}")
+    (bundle / "record.md").write_text("---\n" + "\n".join(lines) + "\n---\n\nBody\n")
     return bundle
 
 
@@ -69,6 +72,43 @@ class RenderIndexTests(unittest.TestCase):
             self.assertEqual(result.returncode, 0)
             self.assertIn("SUBJECT\\_PATH\\_MISMATCH", result.stdout)
             self.assertIn("INVALID\\_FRONTMATTER", result.stdout)
+
+    def test_common_envelope_rejects_unsupported_yaml_forms(self):
+        with tempfile.TemporaryDirectory() as directory:
+            workspace = Path(directory) / ".qp"
+            workspace.mkdir()
+            block = record(workspace, "block")
+            block_record = block / "record.md"
+            block_record.write_text(block_record.read_text().replace('title: "block"', "title: >\n  block"))
+            sequence = record(workspace, "sequence")
+            sequence_record = sequence / "record.md"
+            sequence_record.write_text(sequence_record.read_text().replace('title: "sequence"', "title: [sequence]"))
+
+            result = run(workspace)
+
+            self.assertEqual(result.returncode, 0)
+            self.assertEqual(result.stdout.count("INVALID\\_FRONTMATTER"), 2)
+            self.assertNotIn("| block |", result.stdout)
+            self.assertNotIn("| sequence |", result.stdout)
+
+    def test_supported_quotes_comments_and_nested_owner_metadata(self):
+        with tempfile.TemporaryDirectory() as directory:
+            workspace = Path(directory) / ".qp"
+            workspace.mkdir()
+            bundle = record(workspace, "quoted")
+            path = bundle / "record.md"
+            text = path.read_text()
+            text = text.replace('title: "quoted"', 'title: "Quoted # title" # visible title')
+            text = text.replace('status: "Draft"', "status: 'Owner''s Draft' # current state")
+            text = text.replace("---\n\nBody", "details:\n  tags: [one, two]\n---\n\nBody")
+            path.write_text(text)
+
+            result = run(workspace)
+
+            self.assertEqual(result.returncode, 0)
+            self.assertIn("Quoted # title", result.stdout)
+            self.assertIn("Owner's Draft", result.stdout)
+            self.assertNotIn("Invalid records", result.stdout)
 
     def test_missing_workspace_fails_without_creation(self):
         with tempfile.TemporaryDirectory() as directory:

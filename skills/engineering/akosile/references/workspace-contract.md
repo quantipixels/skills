@@ -32,6 +32,8 @@ status: <non-empty owner-defined state>
 subject: <stable subject, optional for legacy records>
 ```
 
+Write each common-envelope value as one top-level, single-line scalar: a plain value, a JSON-compatible double-quoted string, or a YAML single-quoted string. Do not use block scalars, collections, tags, anchors, or aliases for common-envelope fields. Owner-specific nested metadata may follow; the index renderer ignores it. The renderer uses only the Python standard library, rejects duplicate top-level keys and unsupported common-envelope forms, and does not execute YAML tags or constructors.
+
 The semantic owner validates all owner-specific fields and whether its status/revision transition is valid. When `subject` is present, it must match the bundle directory.
 
 ## Allocation

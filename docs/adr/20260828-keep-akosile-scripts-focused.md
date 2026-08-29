@@ -12,6 +12,8 @@ Akọsílẹ̀ initializes lazily: create the canonical `.qp` directory when QP 
 
 Worktree discovery, symlink creation, source freezing, copy/compare migration, ignore configuration and repair use native Git/filesystem operations guided by Akọsílẹ̀ invariants. Existing physical stores are preflighted conservatively. Migration freezes a linked source by local rename before any cross-filesystem copy; conflicting authoritative bytes stop for owner reconciliation. Derived `INDEX.md` and `index.html` are regenerated rather than treated as semantic conflicts.
 
+The agent harness retains worktree and branch creation, session isolation, shell execution, and ordinary file editing. Akọsílẹ̀ neither wraps nor replaces those capabilities; it starts from existing worktrees and governs only shared repository-local QP state.
+
 Akọsílẹ̀ retains two deterministic kernels:
 
 1. `safe-write.py` — exact snapshot plus lock-held compare-and-swap publication. Both target identity and validated candidate-byte identity are pinned. Candidates must remain outside `.qp`.
