@@ -16,7 +16,7 @@ Modes:
 
 ## Evidence
 
-Pin repository/candidate, baseline, instructions and exclusions. Read [evidence commands](references/evidence-commands.md) for proportionate read-only reachability/history checks. Use project-native tooling or bounded `irinse` evidence when it materially improves the question. Tool/search output is evidence, never the simplification verdict.
+Pin repository/candidate, baseline, instructions and exclusions. Inspect only the current consumers, history, configuration, generated/framework reachability, and project-native evidence needed to distinguish material simplification claims. Search or tool absence is never deletion proof by itself, and tool/metric output is evidence rather than the simplification verdict.
 
 When control-flow/state-space/nesting/fan-out/lifecycle/complexity/test volume materially controls the investigation, read [complexity and proof](references/complexity-and-proof.md). When recurring maintainability/ownership patterns are material, read [maintainability patterns](references/maintainability-patterns.md). Patterns and metrics are signals, never findings.
 
@@ -42,7 +42,7 @@ Rank material reductions by impact/risk/effort/dependency and express implementa
 
 ## Review
 
-Pin the supplied candidate; otherwise use upstream merge-base diff plus applicable staged/unstaged/untracked work. Check cohesion, coupling, reuse, YAGNI, vocabulary, invalid/duplicated state, ownership, depth, proof and material semantic complexity. Route possible defects to `atunwo`; conflicting domain vocabulary to `amose`.
+Pin the supplied candidate; otherwise use the exact current change boundary. Check cohesion, coupling, reuse, YAGNI, vocabulary, invalid/duplicated state, ownership, depth, proof and material semantic complexity. Route possible defects to `atunwo`; conflicting domain vocabulary to `amose`.
 
 ## Findings
 
@@ -55,6 +55,6 @@ Proof: <evidence / future proof owner>
 Confidence: <level>
 ```
 
-Recheck identity, reachability, ownership, proof, migration and worktree state before recommending. State future verification commands/authority but do not run tests/builds or mutate.
+Recheck identity, reachability, ownership, proof, migration and worktree state before recommending. State future verification/authority without executing tests/builds or mutating.
 
 Return scope/identity, ranked reductions, retained contracts, proof owners, blockers, implementation slices, required execution authority, future verification, and residual risk.
