@@ -1,161 +1,23 @@
-# Color Palette Management
+# Color palette management
 
-Guidelines for defining, extracting, and enforcing brand colors.
+Use this reference to define or review brand color roles from project evidence. Do not supply a default palette.
 
-## Color System Structure
+## Establish the source
 
-### Hierarchy
-```
-Primary Colors (1-2)
-├── Main brand color - Used for CTAs, headers, key elements
-└── Supporting primary - Secondary emphasis
+Inspect approved brand guidance, current tokens, production surfaces, supplied assets, and recorded decisions. Record conflicts and missing approval rather than choosing a familiar palette. An extracted image color is observed evidence, not an approved brand role.
 
-Secondary Colors (2-3)
-├── Accent colors - Highlights, interactive states
-└── Supporting visuals - Icons, illustrations
+For each confirmed role, record:
 
-Neutral Palette (3-5)
-├── Background colors - Page, card, modal backgrounds
-├── Text colors - Headings, body, muted text
-└── UI elements - Borders, dividers, shadows
+- its semantic purpose and supported surfaces;
+- the exact approved value or source locator;
+- supported foreground/background pairs and themes;
+- interaction or state variants only when the product uses them; and
+- approval provenance and any explicit prohibition.
 
-Semantic Colors (4)
-├── Success - #22C55E (green)
-├── Warning - #F59E0B (amber)
-├── Error - #EF4444 (red)
-└── Info - #3B82F6 (blue)
-```
+Do not invent fixed color counts, hex values, warm/cool rules, shade ramps, or industry palettes. If a required role is unknown, leave an explicit input gap.
 
-## Color Documentation Format
+## Verify use
 
-### Markdown Table
-```markdown
-| Name | Hex | RGB | HSL | Usage |
-|------|-----|-----|-----|-------|
-| Primary Blue | #2563EB | rgb(37,99,235) | hsl(217,91%,53%) | CTAs, links |
-```
+Check applicable contrast requirements against the actual foreground/background pair. Check that meaning does not depend on color alone. Compare production values with the confirmed roles and report the smallest mismatch; do not infer approval from consistency.
 
-### CSS Variables
-```css
-:root {
-  /* Primary */
-  --color-primary: #2563EB;
-  --color-primary-light: #3B82F6;
-  --color-primary-dark: #1D4ED8;
-
-  /* Secondary */
-  --color-secondary: #8B5CF6;
-  --color-accent: #F59E0B;
-
-  /* Neutral */
-  --color-background: #FFFFFF;
-  --color-surface: #F9FAFB;
-  --color-text-primary: #111827;
-  --color-text-secondary: #6B7280;
-  --color-border: #E5E7EB;
-}
-```
-
-### Tailwind Config
-```javascript
-colors: {
-  primary: {
-    DEFAULT: '#2563EB',
-    50: '#EFF6FF',
-    100: '#DBEAFE',
-    500: '#3B82F6',
-    600: '#2563EB',
-    700: '#1D4ED8',
-  }
-}
-```
-
-## Accessibility Requirements
-
-### Contrast Ratios (WCAG 2.1)
-| Level | Normal Text | Large Text | UI Components |
-|-------|-------------|------------|---------------|
-| AA | 4.5:1 | 3:1 | 3:1 |
-| AAA | 7:1 | 4.5:1 | 4.5:1 |
-
-### Checking Contrast
-```javascript
-// Formula for relative luminance
-function luminance(r, g, b) {
-  const [rs, gs, bs] = [r, g, b].map(v => {
-    v /= 255;
-    return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4);
-  });
-  return 0.2126 * rs + 0.7152 * gs + 0.0722 * bs;
-}
-
-function contrastRatio(l1, l2) {
-  const lighter = Math.max(l1, l2);
-  const darker = Math.min(l1, l2);
-  return (lighter + 0.05) / (darker + 0.05);
-}
-```
-
-## Color Extraction
-
-### From images
-
-Use the host’s image-analysis capability or an installed image tool to extract a small dominant-color palette. Compare those values with the confirmed brand roles from `inject-brand-context.cjs --json`. Report the observed colors and material mismatches; do not invent a compliance percentage or approval state.
-
-### From brand guidelines
-
-Parse Markdown to extract:
-
-- Hex values from tables
-- CSS variable definitions
-- Color names and usage descriptions
-
-## Color Usage Guidelines
-
-### Do's
-- Use primary for main CTAs and key elements
-- Maintain consistent hover/active states
-- Test all combinations for accessibility
-- Document color decisions
-
-### Don'ts
-- Use more than 2-3 colors in single component
-- Mix warm and cool tones without intent
-- Use pure black (#000) for text (use #111 or similar)
-- Rely solely on color for meaning (use icons/text too)
-
-## Color Palette Examples
-
-### Tech/SaaS
-```
-Primary: #2563EB (Blue)
-Secondary: #8B5CF6 (Purple)
-Accent: #10B981 (Emerald)
-Background: #F9FAFB
-Text: #111827
-```
-
-### Marketing/Creative
-```
-Primary: #F97316 (Orange)
-Secondary: #EC4899 (Pink)
-Accent: #14B8A6 (Teal)
-Background: #FFFFFF
-Text: #1F2937
-```
-
-### Professional/Corporate
-```
-Primary: #1E40AF (Navy)
-Secondary: #475569 (Slate)
-Accent: #0EA5E9 (Sky)
-Background: #F8FAFC
-Text: #0F172A
-```
-
-## Tools & Resources
-
-- [Coolors](https://coolors.co) - Palette generation
-- [WebAIM Contrast Checker](https://webaim.org/resources/contrastchecker/)
-- [Tailwind Color Reference](https://tailwindcss.com/docs/customizing-colors)
-- [Color Hunt](https://colorhunt.co) - Curated palettes
+When confirmed roles must become implementation tokens, pass them to `eto-apere`. Ètò Àpẹrẹ owns token naming, aliases, themes, CSS realization, and project-framework mapping.

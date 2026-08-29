@@ -4,7 +4,7 @@ Use for a bounded corporate-identity collateral set or mockup program after the 
 
 ## Build the brief
 
-Pin the audience/use, selected deliverables, brand rules, logo state, materials/production context, output formats, and approval boundary. Read [deliverable guide](cip-deliverable-guide.md) and [style guide](cip-style-guide.md) only for the applicable items.
+Pin the audience and use, selected deliverables, brand rules, logo state, materials and production context, output formats, and approval boundary. Inspect the actual business touchpoints and current production requirements for each selected deliverable.
 
 Do not choose deliverables, style, industry treatment, or mockup scenes from a bundled catalogue. Derive them from the current brand, actual business touchpoints, supplied requirements, and current visual research when needed.
 

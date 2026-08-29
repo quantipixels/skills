@@ -1,94 +1,19 @@
-# Brand Consistency Checklist
+# Brand consistency review
 
-## Visual Consistency
+Use this reference to compare an exact surface or asset set with current approved brand evidence. Do not assume which channels, review frequency, asset types, colors, fonts, or correction methods apply.
 
-### Logo
-- [ ] Correct logo version used
-- [ ] Proper clear space maintained
-- [ ] Approved colors only
-- [ ] Legible at all sizes
-- [ ] No unauthorized modifications
+## Pin the comparison
 
-### Colors
-- [ ] Only brand palette colors
-- [ ] Consistent color application
-- [ ] Proper contrast for accessibility
-- [ ] Color ratios maintained
+Record the exact candidates, audience and use, approved guidance and asset revisions, evidence cutoff, exclusions, and approval authority. If two approved sources conflict, report the conflict rather than choosing one by taste.
 
-### Typography
-- [ ] Brand fonts used
-- [ ] Correct weights/styles
-- [ ] Proper hierarchy
-- [ ] Consistent formatting
+Check only applicable areas:
 
-### Imagery
-- [ ] Matches brand style
-- [ ] Consistent editing/filters
-- [ ] Appropriate subjects
-- [ ] Quality standards met
+- **Identity:** approved logo or icon variant, geometry, color role, typography role, imagery treatment, and prohibited uses.
+- **Voice and messaging:** confirmed terminology, personality, tone for this context, claims, proof points, and action language.
+- **Cross-surface behavior:** the same role means the same thing unless an approved contextual variation applies.
+- **Accessibility and production:** current target requirements for contrast, legibility, crop, format, resolution, loading, print, or manufacturing.
+- **Provenance and approval:** exact source/export identity, license or usage constraints, owner, and recorded approval state.
 
-## Voice Consistency
+## Report
 
-### Tone
-- [ ] Matches brand personality
-- [ ] Appropriate for context
-- [ ] Consistent across channels
-- [ ] No conflicting messages
-
-### Language
-- [ ] Brand terminology used
-- [ ] Consistent capitalization
-- [ ] Proper abbreviations
-- [ ] Jargon level appropriate
-
-### Messaging
-- [ ] Aligns with key messages
-- [ ] Value prop clear
-- [ ] Differentiators highlighted
-- [ ] CTAs consistent
-
-## Channel Audit
-
-### Website
-- [ ] Homepage
-- [ ] Product pages
-- [ ] Blog/content
-- [ ] Footer/navigation
-
-### Social Media
-- [ ] Profile images
-- [ ] Cover images
-- [ ] Bio/about sections
-- [ ] Post templates
-
-### Email
-- [ ] Header/footer
-- [ ] Templates
-- [ ] Signatures
-- [ ] Automated messages
-
-### Collateral
-- [ ] Presentations
-- [ ] One-pagers
-- [ ] Business cards
-- [ ] Promotional materials
-
-## Common Issues
-
-| Issue | Fix |
-|-------|-----|
-| Outdated logo | Replace with current version |
-| Off-brand colors | Update to palette |
-| Wrong font | Replace with brand font |
-| Inconsistent voice | Apply style guide |
-| Mixed messaging | Align to framework |
-
-## Audit Frequency
-
-| Asset Type | Frequency |
-|------------|-----------|
-| Website | Monthly |
-| Social profiles | Quarterly |
-| Email templates | Quarterly |
-| Sales materials | Quarterly |
-| Full brand audit | Annually |
+For each mismatch, name the exact candidate, approved source, observed difference, consequence, smallest correction, and proof needed. Separate an actual contradiction from an evidence gap or an intentional approved variation. Do not create a generic audit cadence or claim approval from visual similarity alone.

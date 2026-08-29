@@ -33,6 +33,8 @@ node <skill-root>/scripts/generate-tokens.cjs <tokens.json> > <temporary-tokens.
 
 The compiler owns only token-graph validation and canonical CSS realization. It validates `{path.to.token}` references, cycles, and CSS-name collisions; preserves semantic/component aliases as `var(...)`; and emits optional dark semantic overrides. The caller owns temporary/output paths, installation, framework mapping, and readback.
 
+For one compatibility release, the compiler also accepts `--config`, `--output`, `--format css|tailwind`, and `--help`. These flags emit a deprecation notice. Move callers to positional input, redirected CSS stdout, and project-owned Tailwind mapping before the next breaking release.
+
 ## Decision rules
 
 - Prefer semantic aliases in components; raw values belong in primitives.

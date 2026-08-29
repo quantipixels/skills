@@ -2,13 +2,64 @@
 const fs = require('fs');
 const path = require('path');
 
-const input = process.argv[2];
-if (!input || process.argv.length !== 3) {
-  console.error('usage: node generate-tokens.cjs <tokens.json>');
+const HELP = `Usage:
+  node generate-tokens.cjs <tokens.json>
+  node generate-tokens.cjs --config <tokens.json> [--output <file>] [--format css|tailwind]
+
+The positional input and CSS on stdout are the current interface.
+--config, --output, and --format tailwind are compatibility options for one release.`;
+
+function fail(message) {
+  console.error(`Error: ${message}\n\n${HELP}`);
   process.exit(2);
 }
 
-const tokens = JSON.parse(fs.readFileSync(path.resolve(input), 'utf8'));
+function parseArgs(args) {
+  const options = { input: null, output: null, format: 'css', legacy: false, help: false };
+  for (let index = 0; index < args.length; index += 1) {
+    const arg = args[index];
+    if (arg === '--help' || arg === '-h') {
+      options.help = true;
+    } else if (arg === '--config' || arg === '-c') {
+      if (!args[index + 1]) fail(`${arg} requires a file`);
+      if (options.input) fail('input was supplied more than once');
+      options.input = args[++index];
+      options.legacy = true;
+    } else if (arg === '--output' || arg === '-o') {
+      if (!args[index + 1]) fail(`${arg} requires a file`);
+      options.output = args[++index];
+      options.legacy = true;
+    } else if (arg === '--format' || arg === '-f') {
+      if (!args[index + 1]) fail(`${arg} requires css or tailwind`);
+      options.format = args[++index];
+      options.legacy = true;
+    } else if (arg.startsWith('-')) {
+      fail(`unknown option: ${arg}`);
+    } else if (options.input) {
+      fail('input was supplied more than once');
+    } else {
+      options.input = arg;
+    }
+  }
+  if (options.help) return options;
+  if (!options.input) fail('a token input file is required');
+  if (!['css', 'tailwind'].includes(options.format)) fail(`unsupported format: ${options.format}`);
+  return options;
+}
+
+const options = parseArgs(process.argv.slice(2));
+if (options.help) {
+  process.stdout.write(`${HELP}\n`);
+  process.exit(0);
+}
+if (options.legacy) console.error('Deprecated: use positional input and redirect CSS stdout; legacy flags remain for one release.');
+
+let tokens;
+try {
+  tokens = JSON.parse(fs.readFileSync(path.resolve(options.input), 'utf8'));
+} catch (error) {
+  fail(error.message);
+}
 const CATEGORY = { spacing: 'space', fontSize: 'font-size', fontWeight: 'font-weight', fontFamily: 'font-family', lineHeight: 'line-height' };
 const kebab = value => String(value).replace(/([a-z0-9])([A-Z])/g, '$1-$2').replace(/_/g, '-').toLowerCase();
 
@@ -52,6 +103,9 @@ function visit(source) {
   const ref = typeof value === 'string' ? /^\{([^{}]+)\}$/.exec(value) : null;
   if (ref) {
     if (!nodes.has(ref[1])) throw new Error(`Unresolved token reference: ${value}`);
+    if (cssName(source.split('.')) === cssName(ref[1].split('.'))) {
+      throw new Error(`Self-referential emitted CSS alias: ${source} -> ${ref[1]}`);
+    }
     visit(ref[1]);
   }
   visiting.delete(source);
@@ -81,4 +135,21 @@ const dark = flatten(tokens.dark?.semantic, ['dark', 'semantic']);
 
 let css = '/* Generated from canonical design tokens. */\n:root {\n' + emit({ ...primitive, ...semantic, ...component }) + '\n}\n';
 if (Object.keys(dark).length) css += '\n.dark {\n' + emit(dark) + '\n}\n';
-process.stdout.write(css);
+
+function generateTailwind() {
+  const colors = {};
+  for (const key of Object.keys(semantic)) {
+    if (key.includes('color')) colors[key.replace('--color-', '').replace(/-/g, '.')] = `var(${key})`;
+  }
+  return `// Deprecated compatibility output. Map the emitted CSS variables in the current project instead.\nmodule.exports = {\n  colors: ${JSON.stringify(colors, null, 2).replace(/"/g, "'")}\n};\n`;
+}
+
+const result = options.format === 'tailwind' ? generateTailwind() : css;
+if (options.output) {
+  const output = path.resolve(options.output);
+  fs.mkdirSync(path.dirname(output), { recursive: true });
+  fs.writeFileSync(output, result);
+  process.stdout.write(`Generated: ${output}\n`);
+} else {
+  process.stdout.write(result);
+}

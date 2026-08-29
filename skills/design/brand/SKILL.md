@@ -36,7 +36,6 @@ Core identity:
 
 - `references/voice-framework.md`
 - `references/messaging-framework.md`
-- `references/visual-identity.md`
 - `references/consistency-checklist.md`
 - `references/asset-organization.md`
 - `references/color-palette-management.md`
@@ -47,8 +46,5 @@ Core identity:
 Identity production:
 
 - `references/logo-design.md`
-- `references/logo-style-guide.md`
 - `references/cip-design.md`
-- `references/cip-deliverable-guide.md`
-- `references/cip-style-guide.md`
 - `references/icon-design.md`
