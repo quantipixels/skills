@@ -18,25 +18,11 @@ It does not authorize source editing itself, title/body/base changes, reviewer/a
 
 Read [provider operations](references/provider-operations.md) before provider work and [failure heuristics](references/failure-heuristics.md) after a failed required check.
 
-## Observe provider facts directly
+## Observe provider facts
 
-Do not normalize provider state through a QP runtime. Use the provider's structured CLI/API and keep completeness explicit.
+Read provider state directly through the confirmed provider boundary; do not normalize it through a QP runtime. One usable snapshot must cover canonical item/head identity, state/draft, mergeability, required-check semantics, published unresolved feedback, blocking review/approval state, and completeness for every claim.
 
-GitHub core snapshot:
-
-```bash
-GH_HOST="$host" gh pr view "$pr" --repo "$host/$repo" \
-  --json number,url,state,isDraft,baseRefName,baseRefOid,headRefName,headRefOid,mergeable,reviewDecision,statusCheckRollup
-
-GH_HOST="$host" gh pr checks "$pr" --repo "$host/$repo" \
-  --required --json name,state,bucket,link,workflow
-```
-
-Read review threads and any fields unavailable from those commands through the bounded paginated GraphQL/API commands in `provider-operations.md`. Use `glab api --paginate` for GitLab MR/pipeline/discussion/approval facts.
-
-Take one complete fact set before acting and another after every mutation or head change. The remote head SHA is the observation epoch: discard evidence tied to an older head rather than carrying it forward.
-
-When provider reads are incomplete because of pagination, permissions, version, authentication, or command capability, do not claim readiness; report the exact gap.
+Take one complete fact set before acting and another after every mutation or head change. The remote head SHA is the observation epoch: evidence tied to an older head is stale. Pagination, permissions, unsupported capability/version, authentication gaps, or truncated output are explicit capability/evidence gaps rather than negative evidence.
 
 ## Process the current head
 
@@ -46,7 +32,7 @@ When provider reads are incomplete because of pagination, permissions, version, 
 4. For failed required checks, inspect exact logs and apply [failure heuristics](references/failure-heuristics.md). Route clear branch defects to `alaga`. When causal diagnosis remains the unresolved outcome, offer explicit Experimental `root-cause`; do not silently invoke it.
 5. Rerun only a proved likely-flaky job within the active-run limit and only while the head still matches.
 6. Report material PR/MR narrative drift; use `seda-pr` only after explicit publication-update authority.
-7. Before every provider mutation, refresh exact target/head. Read the effect back. On unknown/partial writes, stop dependent mutations until current reads prove presence/absence.
+7. Before every provider mutation, refresh exact target/head and read the effect back. On unknown/partial writes, stop dependent mutations until current reads prove the effect.
 
 ## Readiness
 
@@ -59,7 +45,7 @@ Emit `PROVIDER_READY` only when one complete refreshed fact set proves:
 - no blocking review decision; and
 - provider evidence complete enough for every claim.
 
-`PROVIDER_READY` is a current provider-facts milestone, not integrated delivery acceptance, approval, or terminal state. Head/check/feedback/review/draft/mergeability/capability changes invalidate it.
+`PROVIDER_READY` is provider-facts evidence, not integrated delivery acceptance, approval, or terminal state. Head/check/feedback/review/draft/mergeability/capability changes invalidate it.
 
 ## Report
 
