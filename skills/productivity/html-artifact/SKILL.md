@@ -38,9 +38,10 @@ Use semantic HTML/CSS/native DOM/SVG/Canvas or one focused dependency according 
 
 Use existing artifact/project shell behavior when it already owns the need. For standalone QP HTML:
 
-- [visual foundation](assets/visual-foundation.css) supplies general accessibility/overflow/reduced-motion/print resilience and is the default reusable foundation when equivalent behavior is not already present;
+- [visual foundation](assets/visual-foundation.css) supplies general accessibility/overflow/reduced-motion/print resilience, including semantic-table containment with a tunable narrow-container rule, and is the default reusable foundation when equivalent behavior is not already present;
 - [theme control](assets/theme-control.html) is **conditional** — embed only when explicit user theme switching materially improves the artifact; system light/dark styling does not require a toggle;
 - [report control](assets/report-control.html) is **conditional** — embed only when report deep-links must open hidden ancestor disclosures or selected disclosures must expand for print/PDF;
+- [collection filter](assets/collection-filter-control.html) is **conditional** — embed only for a supplied single-select categorical view; keep category meaning/predicates source-owned and keep every item visible without JavaScript and in print;
 - [carousel control](assets/carousel-control.html) remains branch-specific to prototype/visual collections that need isolated variant navigation.
 
 A reusable asset existing in the package is never sufficient reason to include it.
