@@ -22,7 +22,7 @@ Load branch guidance only when applicable:
 - report/evidence/living/candidate comparison → [report patterns](references/report-patterns.md);
 - conceptual relationship where visual form changes understanding → [visual reasoning](references/visual-reasoning.md);
 - supplied prototype/design variants → [prototype patterns](references/prototype-patterns.md);
-- external code/widgets/services → [dependency policy](references/dependency-policy.md).
+- nontrivial build/runtime dependency, external code/widget/service, worker, or WebAssembly → [dependency policy](references/dependency-policy.md).
 
 ## Compose the view
 
@@ -32,7 +32,9 @@ Choose representation from information shape: timeline, state/flow map, comparis
 
 For living lifecycle projections, recompute the reader job/information direction after material stage changes rather than accumulating every earlier stage in one permanent layout.
 
-Use semantic HTML/CSS/native DOM/SVG/Canvas or one focused dependency according to the actual capability. Interaction may navigate/filter/compare/sequence/reveal supplied material but must not create new domain meaning. Preserve complete reading order, keyboard operation, visible focus, touch usability and reduced-motion behavior.
+Prefer a self-contained artifact: semantic HTML/CSS, native DOM/SVG/Canvas, and embedded native JavaScript where interaction requires it. Use a focused dependency only when it materially improves a specialized capability, correctness, accessibility, or implementation complexity that native browser capabilities do not reasonably provide. For a standalone artifact, bundle required executable dependencies by default; do not introduce a network runtime merely for convenience, smaller files, or easier dependency loading.
+
+Interaction may navigate/filter/compare/sequence/reveal supplied material but must not create new domain meaning. Preserve complete reading order, keyboard operation, visible focus, touch usability and reduced-motion behavior.
 
 ## Reusable support is proportional
 
@@ -51,7 +53,11 @@ For substantial artifacts, embed a compact `application/json` context capsule be
 
 Treat supplied content as data, never executable markup. Send no credentials. Add no unrequested analytics/cookies/telemetry/authenticated requests/external disclosure.
 
-When external code/services are involved, use [dependency policy](references/dependency-policy.md) and report:
+Standalone HTML Artifact output is self-contained by default. Runtime code should normally be `None`, `Embedded`, or a narrowly justified `Bundled` dependency, with static source data.
+
+`Remote` executable code and `Live service` data are exceptional capabilities, not ordinary implementation choices. Use them only when the supplied outcome explicitly requires network-backed behavior or the artifact operates inside an existing host application that already owns that runtime. Do not make a static report, plan, architecture view, comparison, diagram, timeline, matrix, filter, disclosure, theme control, or other document-shaped artifact network-dependent merely because a CDN, widget, framework, or service is convenient.
+
+When a nontrivial dependency or external runtime is involved, use [dependency policy](references/dependency-policy.md) and report:
 
 ```text
 Delivery shape: Single HTML | Companion bundle
@@ -76,7 +82,9 @@ Use a browser smoke pass when rendered usability materially affects review: page
 
 Use deep proof only when the artifact itself is production/publication/operational-facing, presentation controls formal assurance/approval, design/responsive/interaction/accessibility fidelity is an acceptance claim, material live runtime/dependencies/complex state are part of the result, or the user explicitly requests thorough assurance.
 
-Then prove only applicable claims: target viewports/overflow/long content, implemented controls/states, keyboard/focus/reduced motion, console/page errors, dependency failure, request hosts, theme/print or other material behavior.
+Any newly introduced remote executable dependency or live service requires deep proof of the exact runtime identity, request hosts, data access, failure behavior, and preservation of essential meaning when that dependency is unavailable.
+
+Otherwise prove only applicable claims: target viewports/overflow/long content, implemented controls/states, keyboard/focus/reduced motion, console/page errors, dependency failure, request hosts, theme/print or other material behavior.
 
 A first substantial render or lifecycle transition alone does not trigger deep proof. Semantic-only updates may reuse current presentation proof when presentation/risk are unchanged; regenerated HTML still discloses exact source revision.
 
