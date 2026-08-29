@@ -16,20 +16,19 @@ def run(*args):
 
 
 class SafeWriteTests(unittest.TestCase):
-    def test_snapshot_and_publish_exact_bytes(self):
+    def test_publish_exact_bytes(self):
         with tempfile.TemporaryDirectory() as directory:
             base = Path(directory)
             root, target = base / ".qp", base / ".qp/record.md"
-            snapshot, candidate = base / "snapshot", base / "candidate"
+            candidate = base / "candidate"
             root.mkdir()
             target.write_bytes(b"old\n")
-            code, payload = run("snapshot", "--root", root, "--target", target, "--output", snapshot)
-            self.assertEqual(code, 0)
             candidate.write_bytes(b"new\n")
+            target_digest = hashlib.sha256(target.read_bytes()).hexdigest()
             candidate_digest = hashlib.sha256(candidate.read_bytes()).hexdigest()
             code, _ = run(
-                "write", "--root", root, "--target", target, "--candidate", candidate,
-                "--expected-target", payload["result"]["digest"], "--expected-candidate", candidate_digest,
+                "--root", root, "--target", target, "--candidate", candidate,
+                "--expected-target", target_digest, "--expected-candidate", candidate_digest,
             )
             self.assertEqual(code, 0)
             self.assertEqual(target.read_bytes(), b"new\n")
@@ -43,7 +42,7 @@ class SafeWriteTests(unittest.TestCase):
             expected = hashlib.sha256(b"A").hexdigest()
             candidate.write_bytes(b"B")
             code, payload = run(
-                "write", "--root", root, "--target", target, "--candidate", candidate,
+                "--root", root, "--target", target, "--candidate", candidate,
                 "--expected-target", "absent", "--expected-candidate", expected,
             )
             self.assertEqual((code, payload["error"]["code"]), (2, "CANDIDATE_CHANGED"))
@@ -56,7 +55,7 @@ class SafeWriteTests(unittest.TestCase):
             candidate.write_text("x")
             digest = hashlib.sha256(b"x").hexdigest()
             code, payload = run(
-                "write", "--root", root, "--target", target, "--candidate", candidate,
+                "--root", root, "--target", target, "--candidate", candidate,
                 "--expected-target", "absent", "--expected-candidate", digest,
             )
             self.assertEqual((code, payload["error"]["code"]), (2, "CANDIDATE_INSIDE_ROOT"))
@@ -79,7 +78,7 @@ class SafeWriteTests(unittest.TestCase):
                 path, digest = item
                 barrier.wait()
                 code, payload = run(
-                    "write", "--root", root, "--target", target, "--candidate", path,
+                    "--root", root, "--target", target, "--candidate", path,
                     "--expected-target", expected, "--expected-candidate", digest,
                 )
                 outcomes.append("OK" if code == 0 else payload["error"]["code"])
@@ -103,13 +102,17 @@ class SafeWriteTests(unittest.TestCase):
             root.mkdir()
             target = root / "record.md"
             target.write_bytes(b"current")
-            snapshot = base / "snapshot"
+            candidate = base / "candidate"
+            candidate.write_bytes(b"updated")
 
-            code, payload = run("snapshot", "--root", root, "--target", target, "--output", snapshot)
+            code, _ = run(
+                "--root", root, "--target", target, "--candidate", candidate,
+                "--expected-target", hashlib.sha256(b"current").hexdigest(),
+                "--expected-candidate", hashlib.sha256(b"updated").hexdigest(),
+            )
 
             self.assertEqual(code, 0)
-            self.assertEqual(payload["result"]["digest"], hashlib.sha256(b"current").hexdigest())
-            self.assertEqual(snapshot.read_bytes(), b"current")
+            self.assertEqual(target.read_bytes(), b"updated")
 
     def test_symlink_inside_workspace_boundary_is_rejected(self):
         with tempfile.TemporaryDirectory() as directory:
@@ -121,8 +124,14 @@ class SafeWriteTests(unittest.TestCase):
             (root / "linked").symlink_to(outside, target_is_directory=True)
             target = root / "linked" / "record.md"
             target.write_bytes(b"outside")
+            candidate = base / "candidate"
+            candidate.write_bytes(b"updated")
 
-            code, payload = run("snapshot", "--root", root, "--target", target, "--output", base / "snapshot")
+            code, payload = run(
+                "--root", root, "--target", target, "--candidate", candidate,
+                "--expected-target", hashlib.sha256(b"outside").hexdigest(),
+                "--expected-candidate", hashlib.sha256(b"updated").hexdigest(),
+            )
 
             self.assertEqual((code, payload["error"]["code"]), (2, "SYMLINK_PATH"))
 

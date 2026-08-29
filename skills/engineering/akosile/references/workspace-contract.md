@@ -44,6 +44,6 @@ Create optional `receipts/`, `evidence/`, `index.html`, settings, or index only 
 
 ## Safe publication
 
-Mutation roots must be the real canonical `.qp`, never a linked-worktree alias. Build complete validated candidates outside `.qp`, pin both candidate and target identity, and publish through `safe-write.py`. The helper is a byte-publication kernel; it does not own semantic merge policy.
+Mutation roots must be the real canonical `.qp`, never a linked-worktree alias. Build complete validated candidates outside `.qp`, pin both candidate and target identity with native SHA-256 tooling, and publish through `safe-write.py` only when shared writers or an exact publication claim require CAS. The helper is a byte-publication kernel; it does not snapshot targets or own semantic merge policy.
 
 For generated navigation, render to stdout, capture the candidate outside `.qp`, then publish that exact candidate through the same CAS seam.

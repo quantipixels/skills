@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Snapshot exact target bytes or publish exact validated candidate bytes with CAS."""
+"""Publish exact validated candidate bytes with target compare-and-swap semantics."""
 from __future__ import annotations
 
 import argparse
@@ -155,22 +155,6 @@ def atomic_replace(path: Path, content: bytes, mode: int = 0o600) -> None:
         temporary.unlink(missing_ok=True)
 
 
-def snapshot(root: Path, target: Path, output: Path) -> dict[str, Any]:
-    root, target = contained_target(root, target)
-    output = outside_path(root, output, "SNAPSHOT", must_exist=False)
-    if not target.exists():
-        output.unlink(missing_ok=True)
-        return {"target": str(target), "snapshot": None, "digest": ABSENT, "bytes": 0}
-    if target.is_symlink() or not target.is_file():
-        raise Failure("NOT_A_FILE", "Target must be a regular non-symlink file")
-    content = target.read_bytes()
-    digest = sha256(content)
-    atomic_replace(output, content)
-    if sha256(output.read_bytes()) != digest:
-        raise Failure("SNAPSHOT_MISMATCH", "Snapshot does not match target bytes")
-    return {"target": str(target), "snapshot": str(output), "digest": digest, "bytes": len(content)}
-
-
 def read_candidate(root: Path, candidate: Path, expected: str) -> tuple[bytes, int, str]:
     if not DIGEST.fullmatch(expected):
         raise Failure("INVALID_CANDIDATE_DIGEST", "Expected candidate digest must be SHA-256")
@@ -209,7 +193,7 @@ def publish(root: Path, target: Path, candidate: Path, expected_target: str, exp
             current = target.read_bytes() if target.exists() else None
             actual_target = sha256(current) if current is not None else ABSENT
             if actual_target != expected_target:
-                raise Failure("STALE_TARGET", "Target changed since snapshot", expected=expected_target, actual=actual_target)
+                raise Failure("STALE_TARGET", "Target changed since its expected digest was captured", expected=expected_target, actual=actual_target)
             mode = target.stat().st_mode if target.exists() else candidate_mode
             atomic_replace(target, content, mode)
             readback = target.read_bytes()
@@ -222,27 +206,19 @@ def publish(root: Path, target: Path, candidate: Path, expected_target: str, exp
 
 def make_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description=__doc__)
-    commands = parser.add_subparsers(dest="command", required=True)
-    snap = commands.add_parser("snapshot")
-    snap.add_argument("--root", type=Path, required=True)
-    snap.add_argument("--target", type=Path, required=True)
-    snap.add_argument("--output", type=Path, required=True)
-    write = commands.add_parser("write")
-    write.add_argument("--root", type=Path, required=True)
-    write.add_argument("--target", type=Path, required=True)
-    write.add_argument("--candidate", type=Path, required=True)
-    write.add_argument("--expected-target", required=True)
-    write.add_argument("--expected-candidate", required=True)
-    write.add_argument("--timeout", type=float, default=30.0)
+    parser.add_argument("--root", type=Path, required=True)
+    parser.add_argument("--target", type=Path, required=True)
+    parser.add_argument("--candidate", type=Path, required=True)
+    parser.add_argument("--expected-target", required=True)
+    parser.add_argument("--expected-candidate", required=True)
+    parser.add_argument("--timeout", type=float, default=30.0)
     return parser
 
 
 def main() -> None:
     args = make_parser().parse_args()
     try:
-        result = snapshot(args.root, args.target, args.output) if args.command == "snapshot" else publish(
-            args.root, args.target, args.candidate, args.expected_target, args.expected_candidate, args.timeout
-        )
+        result = publish(args.root, args.target, args.candidate, args.expected_target, args.expected_candidate, args.timeout)
     except (Failure, OSError) as error:
         payload = error.payload() if isinstance(error, Failure) else {"code": "IO_ERROR", "message": str(error)}
         print(json.dumps({"ok": False, "error": payload}, ensure_ascii=False))

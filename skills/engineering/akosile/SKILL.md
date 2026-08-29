@@ -1,6 +1,6 @@
 ---
 name: akosile
-description: Maintain one repository-scoped QP `.qp` workspace across Git worktrees. Use for canonical owner-record/artifact paths, linked-worktree aliasing or migration, exact snapshot/CAS publication, sparse settings, and generated index rendering. Exclude semantic record meaning/status, project knowledge, provider mutation, and global `~/.qp` storage.
+description: Maintain one repository-scoped QP `.qp` workspace across Git worktrees. Use for canonical owner-record/artifact paths, linked-worktree aliasing or migration, exact CAS publication, sparse settings, and generated index rendering. Exclude semantic record meaning/status, project knowledge, provider mutation, and global `~/.qp` storage.
 compatibility: Requires Git and Python 3. Linked-worktree aliases require filesystem symlink support.
 ---
 
@@ -11,7 +11,7 @@ Own one repository's `.qp` workspace contract. Semantic owners supply record/art
 Use native Git/filesystem commands for discovery, directory creation, symlinks, copy/compare, inspection, and Git excludes. Keep bundled code only for two deterministic kernels:
 
 ```text
-safe-write.py   exact snapshot or exact candidate+target compare-and-swap publication
+safe-write.py   expected candidate+target digests → exact compare-and-swap publication
 render-index.py canonical record frontmatter → Markdown on stdout
 ```
 
@@ -64,27 +64,34 @@ Existing dated bundle paths remain valid legacy identities and are not renamed m
 
 ## Publish exact files safely
 
-The semantic owner builds and validates a complete candidate outside `.qp`. Snapshot the target:
+The semantic owner builds and validates a complete candidate outside `.qp`. Pin the current target and validated candidate with the host's native SHA-256 tool. Use `absent` when the target does not exist:
 
 ```bash
-python3 <skill-root>/scripts/safe-write.py snapshot \
-  --root <real-canonical-.qp> \
-  --target <target> \
-  --output <snapshot-outside-.qp>
+sha256_file() {
+  if command -v sha256sum >/dev/null 2>&1; then
+    sha256sum "$1" | awk '{print $1}'
+  else
+    shasum -a 256 "$1" | awk '{print $1}'
+  fi
+}
+
+expected_target=absent
+[ ! -f "$target" ] || expected_target=$(sha256_file "$target")
+expected_candidate=$(sha256_file "$candidate")
 ```
 
-Hash the exact candidate bytes, then publish only when both source and target identities still match:
+Publish only when both identities still match:
 
 ```bash
-python3 <skill-root>/scripts/safe-write.py write \
+python3 <skill-root>/scripts/safe-write.py \
   --root <real-canonical-.qp> \
   --target <target> \
   --candidate <candidate-outside-.qp> \
-  --expected-target <snapshot-digest-or-absent> \
-  --expected-candidate <candidate-sha256>
+  --expected-target "$expected_target" \
+  --expected-candidate "$expected_candidate"
 ```
 
-The helper reads the candidate once, verifies its expected digest, locks the target, rechecks the target digest, writes those already-verified bytes atomically, and verifies readback. On `CANDIDATE_CHANGED`, rebuild/revalidate the candidate. On `STALE_TARGET`, resnapshot and reconcile. It does not allocate paths, parse semantic content, retry, or choose recovery.
+The helper reads the candidate once, verifies its expected digest, locks the target, rechecks the target digest, writes those already-verified bytes atomically, and verifies readback. On `CANDIDATE_CHANGED`, rebuild and revalidate the candidate. On `STALE_TARGET`, re-read the current semantic target and reconcile. It does not discover paths, snapshot files, allocate paths, parse semantic content, retry, or choose recovery.
 
 ## Render navigation
 

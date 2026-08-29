@@ -16,10 +16,10 @@ The agent harness retains worktree and branch creation, session isolation, shell
 
 Akọsílẹ̀ retains two deterministic kernels:
 
-1. `safe-write.py` — exact snapshot plus lock-held compare-and-swap publication. Both target identity and validated candidate-byte identity are pinned. Candidates must remain outside `.qp`.
+1. `safe-write.py` — lock-held compare-and-swap publication from native target and candidate digests. Candidates must remain outside `.qp`.
 2. `render-index.py` — canonical owner records to Markdown on stdout. It validates only the common envelope/path identity, orders offset-aware timestamps, treats metadata as literal text, links canonical `index.html` projections, and reports malformed records.
 
-`render-index.py` does not choose an output path or mutate `.qp`; the caller captures stdout and publishes through `safe-write.py` when an index is needed.
+`safe-write.py` does not snapshot targets or replace ordinary writes. The agent uses native hashing and invokes it only when shared writers or an exact publication claim require CAS. `render-index.py` does not choose an output path or mutate `.qp`; the caller captures stdout and publishes through `safe-write.py` when an index is needed.
 
 Akọsílẹ̀ does not grow a general workspace CLI, migration engine, subject registry, settings semantic model, provider abstraction, or repair runtime without new demonstrated deterministic need and Kọ Skill capability-placement proof.
 
@@ -30,4 +30,4 @@ Akọsílẹ̀ does not grow a general workspace CLI, migration engine, subject 
 - cross-filesystem migration does not rely on rename-to-main semantics;
 - validated candidate bytes cannot change between validation and publication unnoticed;
 - empty repositories carry no unnecessary QP files beyond the canonical workspace/alias when QP state is actually needed;
-- ordinary worktree mechanics remain inspectable native commands rather than a QP-owned orchestration engine.
+- target hashing and ordinary worktree mechanics remain inspectable native commands rather than a QP-owned orchestration engine.
