@@ -1,6 +1,6 @@
 # Stacked pull request and merge request support
 
-**Research date:** 2026-08-27  
+**Research date:** 2026-08-27
 **Question:** What native support do GitHub and GitLab provide for stacked pull requests or merge requests?
 
 ## Result
