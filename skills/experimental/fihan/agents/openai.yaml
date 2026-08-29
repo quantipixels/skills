@@ -1,5 +1,5 @@
 interface:
-  display_name: "Fihan"
-  short_description: "Share files through a tailnet or bearer-token route"
+  display_name: "Fihàn"
+  short_description: "Serve a local resource privately and return its access target"
 policy:
   allow_implicit_invocation: false
