@@ -44,6 +44,7 @@ git ls-files -u -- <selected-paths...>
 If any selected path has stage 1, 2, or 3 entries, stop and record the conflict paths. Do not turn conflict-marker worktree content into an ordinary stage-0 review candidate.
 
 ```bash
+candidate_head=$(git rev-parse HEAD)
 tmp=$(mktemp -d)
 real_objects=$(git rev-parse --git-path objects)
 real_objects=$(cd "$real_objects" && pwd)
@@ -52,7 +53,7 @@ export GIT_INDEX_FILE="$tmp/index"
 export GIT_OBJECT_DIRECTORY="$tmp/objects"
 export GIT_ALTERNATE_OBJECT_DIRECTORIES="$real_objects"
 
-git read-tree HEAD
+git read-tree "$candidate_head"
 git add -A -- <selected-paths...>
 candidate_tree=$(git write-tree)
 ```
@@ -60,7 +61,7 @@ candidate_tree=$(git write-tree)
 Record:
 
 ```text
-HEAD: <git rev-parse HEAD>
+HEAD: <candidate_head>
 Tree: <candidate_tree>
 Paths: <exact selected paths>
 Ambient: <other uncommitted paths, if any>
