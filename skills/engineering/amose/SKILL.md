@@ -13,7 +13,7 @@ Read repository instructions plus only relevant code/tests/config/history/decisi
 
 Pin the candidate and authority. Separate observed behavior, established practice, confirmed knowledge, proposals, and decisions requiring another owner. Code proves current behavior, not automatic domain intent.
 
-When history/provenance can resolve a material terminology/invariant conflict, read [history evidence](references/history-evidence.md). Use the smallest bounded Git archaeology needed; history is evidence, not authority by itself.
+When history/provenance can resolve a material terminology or invariant conflict, inspect only the bounded repository history needed to establish what changed and when. History, commit messages, and old docs are evidence rather than semantic authority; current behavior and confirmed domain/decision authority determine the present model where they conflict.
 
 ## Clarify the model
 
