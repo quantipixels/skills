@@ -1,4 +1,4 @@
-# Keep Akọsílẹ̀ repository-scoped with minimal deterministic kernels
+# Keep Akọsílẹ̀ repository-scoped with one deterministic publication kernel
 
 Status: Accepted
 
@@ -12,20 +12,22 @@ Akọsílẹ̀ initializes lazily: create the canonical `.qp` directory when QP 
 
 Worktree discovery, symlink creation, source freezing, copy/compare migration, ignore configuration and repair use native Git/filesystem operations guided by Akọsílẹ̀ invariants. Existing physical stores are preflighted conservatively. Migration freezes a linked source by local rename before any cross-filesystem copy; conflicting authoritative bytes stop for owner reconciliation. Derived `INDEX.md` and `index.html` are regenerated rather than treated as semantic conflicts.
 
-Akọsílẹ̀ retains two deterministic kernels:
+Akọsílẹ̀ retains one deterministic kernel:
 
-1. `safe-write.py` — exact snapshot plus lock-held compare-and-swap publication. Both target identity and validated candidate-byte identity are pinned. Candidates must remain outside `.qp`.
-2. `render-index.py` — canonical owner records to Markdown on stdout. It validates only the common envelope/path identity, orders offset-aware timestamps, treats metadata as literal text, links canonical `index.html` projections, and reports malformed records.
+- `safe-write.py` — exact compare-and-swap publication. The caller uses native host SHA-256 tooling to pin current target identity and validated candidate-byte identity. The helper verifies the candidate, excludes concurrent target writers, rechecks target identity, atomically installs the already-verified bytes, and verifies exact readback. Candidates remain outside `.qp`.
 
-`render-index.py` does not choose an output path or mutate `.qp`; the caller captures stdout and publishes through `safe-write.py` when an index is needed.
+Akọsílẹ̀ does **not** retain a target snapshot runtime or an index renderer. Target/candidate hashing is ordinary agent/native-tool work. `INDEX.md` is derived navigation: the agent reads canonical records, composes the current view from the common storage envelope, and regenerates it whenever stale or malformed. Derived navigation does not justify a private parser/runtime because an incorrect or stale index cannot overwrite semantic truth.
 
-Akọsílẹ̀ does not grow a general workspace CLI, migration engine, subject registry, settings semantic model, provider abstraction, or repair runtime without new demonstrated deterministic need and Kọ Skill capability-placement proof.
+Akọsílẹ̀ does not grow a general workspace CLI, migration engine, subject registry, settings semantic model, provider abstraction, snapshot runtime, index compiler, or repair runtime without new demonstrated deterministic need and Kọ Skill capability-placement proof.
 
 ## Consequences
 
 - deleting a linked worktree cannot delete canonical QP records;
 - one stable subject cannot silently become two semantic identities through `-2/-3` allocation;
 - cross-filesystem migration does not rely on rename-to-main semantics;
+- concurrent writers cannot both accept the same expected target identity;
 - validated candidate bytes cannot change between validation and publication unnoticed;
-- empty repositories carry no unnecessary QP files beyond the canonical workspace/alias when QP state is actually needed;
-- ordinary worktree mechanics remain inspectable native commands rather than a QP-owned orchestration engine.
+- target/candidate snapshotting, index composition, and ordinary filesystem orchestration stay visible agent/native operations;
+- PyYAML is no longer an Akọsílẹ̀ runtime dependency;
+- stale or malformed `INDEX.md` is regenerated from canonical `record.md` files rather than repaired as authoritative state;
+- empty repositories carry no unnecessary QP files beyond the canonical workspace/alias when QP state is actually needed.

@@ -1,18 +1,17 @@
 ---
 name: akosile
-description: Maintain one repository-scoped QP `.qp` workspace across Git worktrees. Use for canonical owner-record/artifact paths, linked-worktree aliasing or migration, exact snapshot/CAS publication, sparse settings, and generated index rendering. Exclude semantic record meaning/status, project knowledge, provider mutation, and global `~/.qp` storage.
-compatibility: Requires Git. Deterministic publication/index helpers require Python 3, PyYAML, and filelock. Linked-worktree aliases require filesystem symlink support.
+description: Maintain one repository-scoped QP `.qp` workspace across Git worktrees. Use for canonical owner-record/artifact paths, linked-worktree aliasing or migration, exact compare-and-swap publication, sparse settings, and derived workspace navigation. Exclude semantic record meaning/status, project knowledge, provider mutation, and global `~/.qp` storage.
+compatibility: Requires Git. Exact concurrent publication requires Python 3 and filelock. Linked-worktree aliases require filesystem symlink support.
 ---
 
 # Akọsílẹ̀
 
-Own one repository's `.qp` workspace contract. Semantic owners supply record/artifact kind, stable subject, and semantic content. Akọsílẹ̀ owns the canonical repository home, stable paths, worktree aliases, safe publication, sparse settings mechanics, and generated navigation.
+Own one repository's `.qp` workspace contract. Semantic owners supply record/artifact kind, stable subject, semantic content, and validation. Akọsílẹ̀ owns the canonical repository home, stable paths, worktree aliases, safe concurrent publication, sparse settings mechanics, and derived navigation.
 
-Use native Git/filesystem commands for discovery, directory creation, symlinks, copy/compare, inspection, and Git excludes. Keep bundled code only for two deterministic kernels:
+Use native Git/filesystem commands and the coding agent's normal file capabilities for discovery, hashing, directory creation, symlinks, copy/compare, inspection, migration, index composition, and Git excludes. Keep bundled code only for the irreducible concurrent publication seam:
 
 ```text
-safe-write.py   exact snapshot or exact candidate+target compare-and-swap publication
-render-index.py canonical record frontmatter → Markdown on stdout
+safe-write.py   expected candidate bytes + expected target bytes → atomic CAS publication
 ```
 
 Read [workspace contract](references/workspace-contract.md) for paths and publication, [worktrees](references/worktrees.md) when multiple worktrees or legacy physical stores exist, and [settings](references/settings.md) only for settings work.
@@ -64,37 +63,55 @@ Existing dated bundle paths remain valid legacy identities and are not renamed m
 
 ## Publish exact files safely
 
-The semantic owner builds and validates a complete candidate outside `.qp`. Snapshot the target:
+The semantic owner builds and validates a complete candidate outside `.qp`. The agent pins the current target identity with the host's native SHA-256 tool and pins the exact validated candidate the same way. Use `absent` when the target does not exist.
+
+Typical Linux/macOS discovery:
 
 ```bash
-python3 <skill-root>/scripts/safe-write.py snapshot \
-  --root <real-canonical-.qp> \
-  --target <target> \
-  --output <snapshot-outside-.qp>
+sha256_file() {
+  if command -v sha256sum >/dev/null 2>&1; then
+    sha256sum "$1" | awk '{print $1}'
+  else
+    shasum -a 256 "$1" | awk '{print $1}'
+  fi
+}
+
+expected_target=absent
+[ ! -f "$target" ] || expected_target=$(sha256_file "$target")
+expected_candidate=$(sha256_file "$candidate")
 ```
 
-Hash the exact candidate bytes, then publish only when both source and target identities still match:
+Publish only when both identities still match:
 
 ```bash
-python3 <skill-root>/scripts/safe-write.py write \
+python3 <skill-root>/scripts/safe-write.py \
   --root <real-canonical-.qp> \
   --target <target> \
   --candidate <candidate-outside-.qp> \
-  --expected-target <snapshot-digest-or-absent> \
-  --expected-candidate <candidate-sha256>
+  --expected-target "$expected_target" \
+  --expected-candidate "$expected_candidate"
 ```
 
-The helper reads the candidate once, verifies its expected digest, locks the target, rechecks the target digest, writes those already-verified bytes atomically, and verifies readback. On `CANDIDATE_CHANGED`, rebuild/revalidate the candidate. On `STALE_TARGET`, resnapshot and reconcile. It does not allocate paths, parse semantic content, retry, or choose recovery.
+The helper reads the candidate once and verifies its expected digest, locks the target, rechecks the target digest, writes those already-verified bytes atomically, and verifies readback. On `CANDIDATE_CHANGED`, rebuild/revalidate or re-hash the intended candidate. On `STALE_TARGET`, re-read the current semantic target and reconcile before attempting a new publication. The helper does not discover worktrees, allocate paths, snapshot files, parse semantic content, render indexes, retry, or choose recovery.
 
-## Render navigation
+Use ordinary direct file writes when there is no shared/concurrent publication claim to protect. Use `safe-write.py` specifically when the shared repository-scoped `.qp` store may have another writer or when the caller requires exact candidate/target CAS semantics.
 
-Generate an index candidate as a pure transform:
+## Derive navigation with the agent
 
-```bash
-python3 <skill-root>/scripts/render-index.py <real-canonical-.qp> > <temporary-INDEX.md>
-```
+`INDEX.md` is derived navigation, not authoritative state. When it is useful or stale, inspect current owner records directly and compose the index with normal agent/file capabilities; no QP renderer is required.
 
-The renderer accepts current stable subjects and existing dated subjects, validates the common envelope, sorts offset-aware timestamps by instant, treats visible metadata as literal text, links canonical `index.html` projections, and surfaces malformed records. It never mutates `.qp`. Publish the generated bytes through `safe-write.py` only when an `INDEX.md` is actually needed.
+For each `.qp/records/<owner>/<subject>/record.md` considered for navigation:
+
+- preserve owner-defined semantic content without modifying it;
+- read the common envelope needed for navigation: `owner`, `record_type`, `title`, `updated_at`, `revision`, `status`, and optional `subject`;
+- require owner/path agreement, positive integer revision, and offset-aware `updated_at` for a valid navigation row;
+- accept existing dated bundle names as legacy identities; new stable bundles use their semantic subject;
+- link sibling `index.html` only when it exists;
+- surface malformed/unreadable records separately rather than silently dropping or repairing them;
+- sort valid rows by the actual `updated_at` instant descending;
+- treat visible metadata literally and escape it for Markdown rather than interpreting it as markup.
+
+Write the complete derived `INDEX.md` candidate outside `.qp`, then publish it through the same CAS seam only when concurrent/exact publication matters. If the index becomes stale or malformed, regenerate it from canonical records; never reconcile semantic state from the index.
 
 ## Report
 

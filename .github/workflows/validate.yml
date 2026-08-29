@@ -55,8 +55,8 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Install Akosile dependencies
+      - name: Install Akosile dependency
         run: python3 -m pip install -r skills/engineering/akosile/scripts/requirements.txt
 
-      - name: Test safe-write and index renderer
+      - name: Test Akosile CAS publication
         run: python3 -m unittest discover -s skills/engineering/akosile/scripts -p 'test_*.py'

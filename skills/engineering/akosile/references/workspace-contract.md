@@ -9,7 +9,7 @@ Create resources lazily under the one real repository `.qp`:
 ```text
 .qp/
 ├── settings.json                         optional, created on first settings write
-├── INDEX.md                              optional generated navigation
+├── INDEX.md                              optional derived navigation
 ├── records/<owner>/<stable-subject>/     owner record bundle
 └── artifacts/<stable-subject>/           standalone artifact bundle
 ```
@@ -20,7 +20,7 @@ A record bundle's semantic source is `record.md`. `index.html` is an optional de
 
 ## Common record envelope
 
-Akọsílẹ̀ may validate only the cross-owner envelope needed for storage/indexing:
+Akọsílẹ̀ may inspect only the cross-owner envelope needed for storage/navigation:
 
 ```yaml
 owner: <canonical skill name>
@@ -40,8 +40,27 @@ Create the exact owner/subject directory with native atomic directory creation. 
 
 Create optional `receipts/`, `evidence/`, `index.html`, settings, or index only when an owning operation actually needs them.
 
-## Safe publication
+## Exact publication
 
-Mutation roots must be the real canonical `.qp`, never a linked-worktree alias. Build complete validated candidates outside `.qp`, pin both candidate and target identity, and publish through `safe-write.py`. The helper is a byte-publication kernel; it does not own semantic merge policy.
+Mutation roots must be the real canonical `.qp`, never a linked-worktree alias. Build complete validated candidates outside `.qp`. Use the agent/host's native SHA-256 capability to pin the current target (`absent` when missing) and the exact validated candidate. Use `safe-write.py` only for the final compare-and-swap publication when shared/concurrent writers or an exact publication claim make that guarantee material.
 
-For generated navigation, render to stdout, capture the candidate outside `.qp`, then publish that exact candidate through the same CAS seam.
+`safe-write.py` owns only:
+
+```text
+expected candidate digest
++ expected target digest
++ candidate read stability
++ target writer exclusion
++ atomic replacement
++ exact readback
+```
+
+It does not snapshot targets, discover paths, interpret owner records, render derived files, retry, or choose semantic recovery.
+
+## Derived navigation
+
+`INDEX.md` has no private renderer. When navigation is needed, the agent reads canonical owner records, validates only the common envelope/path agreement needed for the index, sorts valid rows by the actual offset-aware `updated_at` instant descending, escapes visible metadata literally, links sibling `index.html` only when present, and reports malformed records separately.
+
+Compose the complete index candidate outside `.qp`. Publish it with ordinary file capabilities when no concurrent/exact publication claim exists; otherwise pass the candidate and current target/candidate digests through `safe-write.py`.
+
+A stale or broken index is regenerated from `record.md`; it never participates in semantic conflict resolution.
