@@ -13,7 +13,7 @@ Keep initiative lifecycle with `atona`, material user choices with `arojinle`, p
 
 Record mode, problem/outcomes, scope/non-goals, constraints, assumptions, evidence cutoff, and exact candidate. Separate confirmed facts, proposals, and unknowns.
 
-Read only material system/domain/decision/operations/code/test/dependency/deployment/history evidence. Use `amose` when domain language/invariants materially affect design. Read [native architecture evidence](references/native-evidence.md) when project/tool facts can change a decision; use active project wrappers/tooling and current primary sources rather than a stack command catalogue.
+Read only material system/domain/decision/operations/code/test/dependency/deployment/history evidence. Use `amose` when domain language/invariants materially affect design. When project/tool/runtime facts can change a decision, inspect exact-current repository and runtime evidence through the project's own wrappers, manifests, configuration, schemas, tooling, and primary sources. Observed structure or capability is evidence, not automatic architectural intent.
 
 Derive the few drivers that can change design, expressed as concrete normal/failure/misuse/recovery/scale/evolution scenarios with observable response.
 
