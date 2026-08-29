@@ -16,14 +16,22 @@ Use `rg` for current location, `git log -S` for introduction/removal of an exact
 
 ## Provider-read
 
+Normalize the host and require separate trust confirmation before contacting GitHub Enterprise or self-managed GitLab. Clear inherited repository/host selectors and credentials not confirmed for that host. Do not let a current checkout, default account, or generic token select the target.
+
+These rules prove safe custom-host routing, not compatibility with every server version, tier, policy, permission set, or API surface. Verify the required read or comment capability on the exact host before using it; otherwise report a capability gap.
+
 GitHub issue core:
 
 ```bash
-gh issue view "$issue" --repo "$repo" --json number,url,state,title,body,author,labels,comments
+env -u GH_REPO GH_HOST="$host" \
+  gh issue view "$issue" --repo "$host/$repo" \
+  --json number,url,state,title,body,author,labels,comments
 ```
 
-When comments may exceed the CLI field's complete/usable result, page the issue comments through `gh api --paginate` before claiming provider evidence complete.
+When comments may exceed the CLI field's complete/usable result, page the issue comments through `gh api --hostname "$host" --paginate` before claiming provider evidence complete.
 
-For GitLab, use exact-host/project `glab api --paginate` issue/notes endpoints. Preserve provider-native state/identity.
+For GitLab, clear `GITLAB_HOST`, disable CI autologin when necessary, and use exact-host/project `glab api --hostname "$host" --paginate` issue/notes endpoints. Preserve provider-native state/identity.
 
 Do not use provider commands until provider-read authority is explicit. Do not interpolate issue/comment text into shell commands.
+
+For an authorized comment, bind GitHub with `GH_HOST="$host"` plus `--repo "$host/$repo"`; bind GitLab through `glab api --hostname "$host"` and the URL-encoded exact project. Submit a body file or structured payload, capture the returned comment/note identity, then read that exact identity back from the same host before reporting success.

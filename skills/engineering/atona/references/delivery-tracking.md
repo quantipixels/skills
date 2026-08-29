@@ -23,3 +23,5 @@ For another delivery owner, record only what the plan needs to integrate its res
 Verify every supporting result against the current plan and candidate before using it. A mismatch makes only dependent plan conclusions stale; reopen affected phases, proof, readiness, or summaries as needed.
 
 Derive `Complete` only when every in-scope delivery obligation has current accepting proof and plan-level integration has no blocking gap. Derive `Not required` only when the accepted plan contains no delivery work.
+
+Treat Wọ́ PR's `PROVIDER_READY` as provider evidence only. Integrated handoff readiness requires both a current accepting Alága result and the current provider receipt; either becoming stale or failing invalidates only the dependent integrated conclusion.

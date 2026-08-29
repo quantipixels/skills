@@ -11,6 +11,8 @@ Read this reference after `SKILL.md` resolves the provider, normalized host, rep
 5. Resolve the default branch, current remote head SHA, candidate base SHA, and open same-head and same-base items. Fetch the complete target-to-head diff and detect truncation or missing pages.
 6. Refresh canonical item and head identity immediately before every write.
 
+Custom-host rules establish trust, credential isolation, and command routing. They do not prove compatibility with a target server version, tier, policy, permission set, or API surface. Verify every read and write capability required for this publication on the exact host; otherwise return a capability gap before mutation.
+
 Never create a duplicate, force-push, infer a write target from ambiguous remotes, use one item's state to authorize another mutation, or use an older generated body after the head changes. Address every existing-item mutation by its canonical number. Use native draft state, not a `Draft:` or `WIP:` title convention.
 
 Use only the canonical command families below. The skill constructs them directly; no custom runtime reparses commands that the skill itself controls.
@@ -27,11 +29,11 @@ After a write, read the PR by canonical number and verify URL, open or closed st
 
 ## GitLab
 
-Pass the exact `--hostname`, remove inherited `GITLAB_HOST`, set `GLAB_ENABLE_CI_AUTOLOGIN=false`, and remove `CI_JOB_TOKEN`. On a confirmed custom host, remove other generic GitLab token variables and require `glab` authentication configured for that host. Use `glab auth status --hostname <host>` without printing tokens.
+Remove inherited `GITLAB_HOST`, then set `GITLAB_HOST` to the confirmed host inline for every high-level `glab mr` command. Set `GLAB_ENABLE_CI_AUTOLOGIN=false` and remove `CI_JOB_TOKEN`. On a confirmed custom host, remove other generic GitLab token variables and require `glab` authentication configured for that host. Use `glab auth status --hostname <host>` without printing tokens. Pass the canonical full project URL to `--repo` because `glab mr create` and `glab mr update` do not expose `--hostname`; use `glab api --hostname <host>` for structured reads, mutations not safely covered by the high-level command, and readback.
 
 Prefer paginated `glab api` reads for exact project and MR semantics. URL-encode the project path when addressing `/projects/{project}`. Read the default branch, merge requests filtered by source and target branch, MR details, changes or diffs, labels, discussions, approvals, and linked issues.
 
-Create with `glab mr create --repo <project> --source-branch <head> --target-branch <base> --title <title> --description-file <file>`. Pass `--draft` only for an explicit draft request. Update narrative with `glab mr update <iid> --repo <project> --title <title> --description-file <file>`. Reconcile publication state only with `glab mr update <iid> --repo <project> --draft` or `--ready`.
+Create with `GITLAB_HOST=<host> glab mr create --repo https://<host>/<project> --source-branch <head> --target-branch <base> --title <title> --description-file <file>`. Pass `--draft` only for an explicit draft request. Update narrative with `GITLAB_HOST=<host> glab mr update <iid> --repo https://<host>/<project> --title <title> --description-file <file>`. Reconcile publication state only with the same inline host and canonical full-URL repository plus `glab mr update <iid> --draft` or `--ready`.
 
 After a write, read the MR by IID and verify web URL, open or closed state, draft state, source and target branches, head SHA, title, description, labels, and explicitly authorized people. Preserve GitLab-specific merge rules and closing semantics instead of translating them into GitHub terms.
 

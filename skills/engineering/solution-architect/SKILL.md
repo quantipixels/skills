@@ -1,6 +1,6 @@
 ---
 name: solution-architect
-description: Design or review one implementation-ready technical architecture for an enterprise application. Use for system boundaries, modules, data, integration, deployment, quality scenarios, trade-offs, migration, recovery, or architecture sufficiency across any stack. Exclude initiative lifecycle planning, complete user-decision interviews, implementation, workspace infrastructure, and code-review verdicts.
+description: Design or review one implementation-ready technical architecture for a software system. Use for system boundaries, modules, data, integration, deployment, quality scenarios, trade-offs, migration, recovery, or architecture sufficiency across any stack. Exclude initiative lifecycle planning, complete user-decision interviews, implementation, workspace infrastructure, and code-review verdicts.
 ---
 
 # Solution Architect
