@@ -9,18 +9,10 @@ Implement confirmed UI direction in application code. Preserve the project's fra
 
 ## Before coding
 
-1. Inspect the actual project before assuming framework/tool versions or UI libraries. Useful starting evidence:
-
-```bash
-jq '{scripts,dependencies,devDependencies}' package.json
-<project-package-manager> run
-<selected-native-cli> --help
-```
-
-Use the project's package manager/wrapper and manifests rather than cached QP command catalogues.
+1. Inspect the actual project, manifests, component conventions, configuration, and current tooling before assuming framework/tool versions or UI libraries. Use the project's own package manager/wrappers and current tool/project documentation rather than cached QP commands.
 2. If visual direction is missing, use `amoye-ui-ux`. If canonical tokens/specifications are missing or changing materially, use `eto-apere`.
 3. Read [component-library decision](references/ui-component-libraries.md) when the project/user has not already settled the library. Never silently introduce a competing library.
-4. Load only applicable implementation references: accessibility, theming, or Tailwind customization. Use current official/project documentation for component APIs and utility syntax instead of bundled component/utility manuals.
+4. Load only applicable implementation references: accessibility, theming, or Tailwind customization. Use current official/project documentation for volatile component APIs and utility syntax instead of bundled manuals.
 
 ## Implementation rules
 
@@ -34,13 +26,11 @@ Use the project's package manager/wrapper and manifests rather than cached QP co
 
 ## Platform configuration
 
-Use active project tooling. For shadcn/ui or another registry/CLI, inspect current project config, run the installed/current CLI help, preview changes when supported, and use its native operation. Detect Tailwind/project version from the repository before editing configuration; follow the project's actual configuration model rather than creating a new file from QP defaults.
-
-Do not preserve framework/component command lists here. Volatile mechanics belong to current project/tool evidence.
+Use the active project's native configuration/tooling and version-specific documentation. Preview/inspect tool-driven changes when supported and follow the project's actual configuration model rather than inventing QP defaults or a competing config surface.
 
 ## Verification
 
-Run the project's own lint/typecheck/test/build commands applicable to the changed area, then inspect the rendered UI for the accepted surfaces/states. Verify only the platform/viewports/states the product actually supports, including keyboard/focus, contrast, overflow, loading/empty/error behavior, and reduced motion where applicable.
+Run the project's applicable native proof for the changed area, then inspect the rendered UI for accepted surfaces/states. Verify only supported platforms/viewports/states, including keyboard/focus, contrast, overflow, loading/empty/error behavior, and reduced motion where applicable.
 
 ## Resources
 
