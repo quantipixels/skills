@@ -1,17 +1,18 @@
 # External dependency policy
 
-Read this only when an HTML artifact uses external build/runtime code, a worker, WebAssembly, widget, or live service.
+Read this only when an HTML artifact uses a nontrivial build/runtime dependency, worker, WebAssembly, widget, remote executable, or live service.
 
 ## Capability before technology
 
-Choose the information model, representation, and interaction first. Use native browser capabilities for straightforward behavior. Use a dependency when it provides one material specialized capability or substantially reduces algorithmic, correctness, accessibility, interaction, or maintenance complexity.
+Choose the information model, representation, and interaction first. Use native browser capabilities for straightforward behavior. Use a dependency only when it provides one material specialized capability or substantially reduces algorithmic, correctness, accessibility, interaction, or maintenance complexity.
 
 For a standalone artifact prefer:
 
 ```text
 native HTML/CSS/JS
-→ focused dependency
-→ framework only for application-like complexity
+→ bundled focused dependency
+→ existing host-application runtime
+→ remote executable/runtime service only when the outcome explicitly requires it
 ```
 
 Inside an existing application, reuse a suitable dependency only when it is already part of the artifact's actual runtime. No library is privileged and QP maintains no allowlist.
@@ -27,6 +28,10 @@ For each nontrivial dependency establish:
 - accessible output or equivalent accessible meaning;
 - explicit failure behavior;
 - no unrequested telemetry, credential use, or data disclosure.
+
+For standalone artifacts, availability from a CDN does not justify remote execution. Remote executable code requires a material capability that cannot reasonably be delivered self-contained and an explicit requirement for network-backed behavior. A live service requires the supplied outcome itself to be live; HTML Artifact must not convert static source material into a service-backed application on its own.
+
+If the task has crossed into building or operating an application/service, route that responsibility to the appropriate implementation/deployment owner.
 
 Network availability is normal. Remote execution trust, host compatibility, data disclosure, and successful loading are separate concerns.
 
