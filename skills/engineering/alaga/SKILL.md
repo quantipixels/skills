@@ -29,9 +29,19 @@ Before a planned stateful refactor/rewrite can change transitions, ordering, loc
 
 If one unit blocks, continue independent in-scope work and record the blocker, affected dependencies, proof, and exact resume trigger.
 
+Dispatch a subagent for bounded independent delivery, analysis, etc support when it materially improves progress or evidence.
+
 ## Exact uncommitted candidate identity
 
 Use Git's native content-addressed tree rather than a QP fingerprint runtime. For selected uncommitted paths, create a temporary index/object directory so the real index, refs, and ambient worktree remain untouched:
+
+Before creating the temporary index, query the real index for selected unmerged entries:
+
+```bash
+git ls-files -u -- <selected-paths...>
+```
+
+If any selected path has stage 1, 2, or 3 entries, stop and record the conflict paths. Do not turn conflict-marker worktree content into an ordinary stage-0 review candidate.
 
 ```bash
 tmp=$(mktemp -d)

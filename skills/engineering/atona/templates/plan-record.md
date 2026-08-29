@@ -20,6 +20,8 @@ status: Draft
 
 **Delivery:** <Not required | Not started | Active | Blocked | Complete | Stale>
 
+**Blocker:** <current blocker or none>
+
 **Next action:** <one exact action>
 
 **Completion condition:** <checkable boundary>

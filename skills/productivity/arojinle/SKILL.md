@@ -1,25 +1,35 @@
 ---
 name: arojinle
-description: Resolve material product, plan, or design choices through a complete decision-tree interview and final user confirmation. Use when consequential choices must be made. Exclude technical architecture, initiative lifecycle planning, implementation, and ordinary fact-finding.
+description: Resolve material product, plan, or design choices through a relentless, complete decision-tree interview and final user confirmation. Use when consequential choices must be made. Exclude technical architecture, initiative lifecycle planning, implementation, and ordinary fact-finding.
 ---
 
 # Àròjinlẹ̀
 
-Interview the user until consequential branches are explicitly settled. Map a decision tree: each decision can expose later decisions that depend on it.
+Interview the user relentlessly until you reach a shared understanding. Map this as a **design tree**: every decision branches into the decisions that hang off it.
 
-Work in rounds. The frontier is every material decision whose prerequisites are already settled. Ask the whole current frontier in one round; number each question and give a recommended answer. Then wait for the user's decisions before recomputing the next frontier.
+Work the tree in **rounds**. The **frontier** is every decision whose prerequisites are already settled: the questions you can ask now without guessing at answers you haven't heard yet. Ask the whole frontier in one round: number each question and give your recommended answer. Then wait for the user's answers before the next round.
 
 Use this compact question shape:
 
-```text
-❓ **Q1 — <title>:** <question and bounded choices when useful>
+```
+❓ **Q1** - **<question title>**: <question body, might be multiple paragraphs, including multiple choices>
+
+💡 <only context/example that changes understanding>
+➡️ <recommended answer and why>
+
+---
+
+❓ **Q2** - **<question title>**: <question body, might be multiple paragraphs, including multiple choices>
+
 💡 <only context/example that changes understanding>
 ➡️ <recommended answer and why>
 ```
 
 Do not ask a question whose answer depends on another still-open question in the same round.
 
-Use `amose` before the first round when existing project/domain knowledge can materially constrain the tree. Finding facts is the agent's job: resolve bounded current facts through direct evidence/`iwadi`/`irinse` as appropriate rather than asking the user for discoverable facts. Hold only questions downstream of unavailable prerequisites; continue independent frontier branches.
+Use `amose` before the first round when existing project/domain knowledge can materially constrain the tree.
+
+Finding facts is your job, never the user's. When a frontier question needs a fact from the environment (filesystem, tools, etc.), dispatch a sub-agent to find it; don't ask the user for anything you could look up yourself. Don't block on it: a running exploration is an unsettled prerequisite, so only the questions downstream of it wait for the sub-agent to report; ask the rest of the frontier now. The decisions are the user's: put each to them and wait.
 
 The decisions remain the user's. Do not silently convert a recommendation into confirmation.
 
