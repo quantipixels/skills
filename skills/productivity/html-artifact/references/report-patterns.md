@@ -92,6 +92,8 @@ Keep supplied designs, screens, diagrams, and other visual evidence primary when
 
 Keep the opening useful without a disclosure. When compatible, include a skip link, title and status, local navigation, governing representation, supporting evidence, limits, resource disclosure, and revision state. Omit empty sections. Link conclusions and recommendations to evidence or source identifiers.
 
+When report length or navigation makes returning to the opening context require substantial reverse scrolling, embed [back-to-top control](../assets/back-to-top-control.html) after the final reader-facing content. Target the existing opening landmark or heading; do not create a second opening merely to host the control.
+
 Before delivery, run:
 
 - **Purpose counterfactual:** changing purpose changes opening, order, or action layer.
