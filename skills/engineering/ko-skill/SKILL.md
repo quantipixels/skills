@@ -64,6 +64,8 @@ Keep `SKILL.md` focused on the owned outcome, trigger, universally required beha
 
 Write for a capable agent:
 
+- assume the agent can inspect its available tools/capabilities and adapt ordinary execution accordingly; state the semantic behavior or result rather than enumerating harness-specific capability fallbacks;
+- do not spell out subagent/tool/orchestration fallback branches that a capable agent can derive from its environment; require a concrete mechanism only when it establishes a correctness invariant, authority boundary, deterministic result, non-obvious safety property, or compatibility constraint;
 - point to discoverable environment facts, current commands/configuration/schemas, and project tooling instead of caching them in prose;
 - use concise examples, counterexamples, `Good / Bad`, `Prefer / Avoid`, or stable vocabulary when they sharpen recurring non-obvious judgment;
 - keep commands short and visible when they materially clarify an evidence/authority boundary;
