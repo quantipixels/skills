@@ -2,4 +2,4 @@
 "qp-skills": patch
 ---
 
-Restore the source-aware `scripts/uninstall.sh` one-line uninstall entrypoint and teach Kọ Skill to distinguish human-facing convenience wrappers from internal skill runtimes.
+Teach Kọ Skill to distinguish thin human-facing convenience entrypoints, including the existing source-aware `scripts/uninstall.sh`, from internal skill runtimes so native-tool-backed one-command UX is not removed by the deterministic-runtime bar.
