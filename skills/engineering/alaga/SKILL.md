@@ -13,7 +13,7 @@ Pin outcome, current/desired behavior, scope, exclusions, acceptance, proof, doc
 
 Respect explicit owner/tool choices. Use the shortest combination of current specialists and direct work. Supporting owners retain their native procedures/results; Alága owns integration and job acceptance.
 
-Derive one session policy only where it changes execution: horizon, commit granularity when authorized, continuation boundary, and extra research/evidence needs. Repository/Git state never grants commit, history-rewrite, publication, provider-write, or destructive authority.
+Derive session policy only where it changes execution: horizon, authorized commit granularity, continuation boundary, and extra research/evidence needs. Repository/Git state never grants commit, history-rewrite, publication, provider-write, or destructive authority.
 
 Read relevant root `.learnings` and complete `.nongoals` when present. Use `arojinle` for unresolved material user choices, `solution-architect` for material technical architecture, `atona` when an initiative plan must remain live, and `seda-ticket` only when supplied work benefits from consumable vertical tickets.
 
@@ -27,49 +27,17 @@ Use the proof owner for each unit. When production behavior changes or test-firs
 
 Before a planned stateful refactor/rewrite can change transitions, ordering, locking, retries, idempotency, ownership, or cross-entry behavior, require exact-current Àtúnwò `audit` and consume its contract/guardrails as implementation input.
 
-If one unit blocks, continue independent in-scope work and record the blocker, affected dependencies, proof, and exact resume trigger.
+If one unit blocks, continue independent in-scope work and record the blocker, affected dependencies, proof, and exact resume trigger. Delegate bounded independent support when it materially improves progress or evidence.
 
-Dispatch a subagent for bounded independent delivery, analysis, etc support when it materially improves progress or evidence.
+## Exact candidate identity
 
-## Exact uncommitted candidate identity
+Every review candidate must identify exactly what is being reviewed without disturbing unrelated work.
 
-Use Git's native content-addressed tree rather than a QP fingerprint runtime. For selected uncommitted paths, create a temporary index/object directory so the real index, refs, and ambient worktree remain untouched:
+For committed work, pin the exact commit/tree. For selected uncommitted work, produce a Git-native content-addressed tree for only the intended paths while leaving the real index and refs untouched. Pin the base `HEAD` once and use that same SHA as the tree's base and reported identity. Reject selected paths with unresolved index stages rather than treating conflict content as an ordinary candidate.
 
-Before creating the temporary index, query the real index for selected unmerged entries:
+Record the pinned base SHA, candidate tree SHA, exact selected paths, and ambient uncommitted paths. Ambient changes must not enter the candidate. If the pinned base or selected content changes during capture, recapture before review; when concurrent mutation is a material risk, require a stable repeated capture. Temporary capture state must not affect subsequent repository operations.
 
-```bash
-git ls-files -u -- <selected-paths...>
-```
-
-If any selected path has stage 1, 2, or 3 entries, stop and record the conflict paths. Do not turn conflict-marker worktree content into an ordinary stage-0 review candidate.
-
-```bash
-candidate_head=$(git rev-parse HEAD)
-tmp=$(mktemp -d)
-real_objects=$(git rev-parse --git-path objects)
-real_objects=$(cd "$real_objects" && pwd)
-mkdir "$tmp/objects"
-export GIT_INDEX_FILE="$tmp/index"
-export GIT_OBJECT_DIRECTORY="$tmp/objects"
-export GIT_ALTERNATE_OBJECT_DIRECTORIES="$real_objects"
-
-git read-tree "$candidate_head"
-git add -A -- <selected-paths...>
-candidate_tree=$(git write-tree)
-```
-
-Record:
-
-```text
-HEAD: <candidate_head>
-Tree: <candidate_tree>
-Paths: <exact selected paths>
-Ambient: <other uncommitted paths, if any>
-```
-
-`git add -A -- <paths>` captures modified, deleted, untracked, binary, and symlink entries inside the selected boundary. It writes temporary Git objects only under `$tmp/objects`; it does not stage the real index or create a commit/ref. When concurrent work could change the selected paths during capture, build the temporary tree twice and require identical tree SHA before review. Remove the temporary directory after the candidate identity is recorded.
-
-Use the whole worktree only when the whole worktree is intentionally the candidate. Keep unrelated/ambient changes outside the selected path set.
+Use the whole worktree only when the whole worktree is intentionally the candidate.
 
 Before review, update required ordinary documentation in the candidate and use `amose` when verified delivery changes durable project knowledge.
 
