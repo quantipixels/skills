@@ -1,36 +1,21 @@
-# Root-cause probe commands
+# Root-cause probe discipline
 
-Use only when a command produces an observation that discriminates between explicit competing hypotheses. Prefer read-only evidence; do not mutate production merely to create a test.
+Use only when a bounded observation can discriminate explicit competing hypotheses. Prefer read-only evidence; do not mutate production merely to create a test.
 
-## Historical/source discrimination
+Historical/source evidence is useful only when a predicted difference can support or falsify a mechanism. Correlation, temporal order, changed files, and nearby commits are not causation by themselves.
 
-```bash
-git log -S'<suspected condition/literal>' --all -- <paths>
-git log -G'<pattern>' -p -- <paths>
-git diff <known-good>..<known-bad> -- <suspected-paths>
-git show <candidate-sha> -- <paths>
-```
+When the failure is safely and reliably executable and repository history plausibly contains a good→bad transition, Git's native bisect can be useful in a disposable/isolated worktree. Pin the reproduction behavior and environmental assumptions, avoid real external effects/credentials, and clean up isolated state afterwards. Do not bisect nondeterministic failures, irreproducible historical environments, or probes with consequential external effects.
 
-Use these to locate changes correlated with a behavior boundary; correlation/temporal order is not causation. The probe is useful only when a predicted difference supports or falsifies a mechanism.
-
-## Deterministic revision search
-
-When the failure is safely/reliably executable and repository history plausibly contains a good→bad transition, use Git's native bisect only in a disposable/isolated worktree. Pin the exact reproduction command and environmental assumptions, avoid real external effects/credentials, and clean up the disposable worktree afterwards.
-
-Do not use bisect when builds/tests are nondeterministic, history cannot reproduce the environment, or each run has consequential external effects.
-
-## Probe discipline
-
-For every command/probe record:
+For every probe, make explicit:
 
 ```text
-Hypothesis:
-Predicted observation if true:
-Predicted observation if false:
-Command / bounded scope:
-Observed result:
-What it rules in/out:
-Coverage/limitations:
+Hypothesis
+Predicted observation if true
+Predicted observation if false
+Bounded observation/probe
+Observed result
+What it rules in/out
+Coverage/limitations
 ```
 
-A command is not progress unless its result can change the causal model.
+A probe is not progress unless its result can change the causal model. Prefer the smallest safe observation that maximally separates remaining hypotheses.
