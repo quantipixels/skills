@@ -116,6 +116,7 @@ Experimental skills require explicit acceptance.
 | --- | --- |
 | `akowe` | Exact-candidate adaptive expert implementation counsel |
 | `dogfood` | Real-browser verification of changed user journeys |
+| `fihan` | Temporary tailnet-only access, or explicit encrypted Tailcat bearer-token access, to bounded local files |
 | `ideate` | Grounded mechanism-diverse possibilities before selection |
 | `pepeye` | Explicit task supervision without a second owner lifecycle |
 | `prototype` | Disposable truthful decision instrument |

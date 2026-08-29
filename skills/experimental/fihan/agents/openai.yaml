@@ -1,0 +1,5 @@
+interface:
+  display_name: "Fihan"
+  short_description: "Share files through a tailnet or bearer-token route"
+policy:
+  allow_implicit_invocation: false
