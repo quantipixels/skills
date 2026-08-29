@@ -8,7 +8,7 @@ compatibility: Requires Git and Python 3. Linked-worktree aliases require filesy
 
 Own one repository's `.qp` workspace contract. Semantic owners supply record/artifact kind, stable subject, and semantic content. Akọsílẹ̀ owns the canonical repository home, stable paths, worktree aliases, safe publication, sparse settings mechanics, and generated navigation.
 
-Use native Git/filesystem commands for discovery, directory creation, symlinks, copy/compare, inspection, and Git excludes. Keep bundled code only for two deterministic kernels:
+Use native Git/filesystem capability for ordinary discovery, allocation, symlinks, inspection, hashing, and Git excludes. Keep bundled code only for two deterministic kernels:
 
 ```text
 safe-write.py   expected candidate+target digests → exact compare-and-swap publication
@@ -19,25 +19,15 @@ Read [workspace contract](references/workspace-contract.md) for paths and public
 
 ## Establish the canonical workspace
 
-Resolve worktrees with:
+Resolve registered worktrees from Git's exact worktree metadata. If the main record is bare, stop with `BARE_REPOSITORY_UNSUPPORTED`; otherwise its worktree owns the one real `<main-worktree>/.qp`. Every linked worktree exposes `.qp` only as a symlink to that canonical directory.
 
-```bash
-git worktree list --porcelain -z
-```
+Initialize lazily. Create the real `.qp` when QP state is first required, but do not pre-create empty `settings.json`, `INDEX.md`, `records/`, or `artifacts/`.
 
-If the first worktree record is marked `bare`, stop with `BARE_REPOSITORY_UNSUPPORTED`; do not create `.qp` inside the bare repository. Otherwise the first worktree owns the one real `<main-worktree>/.qp` directory. Every linked worktree exposes `.qp` only as a symlink to that canonical directory.
-
-Initialize lazily. Create the real `.qp` directory when QP state is first required, but do not pre-create empty `settings.json`, `INDEX.md`, `records/`, or `artifacts/`. Create each resource only when its owner first needs it. Prefer an existing ignore rule; otherwise ensure the root entry `.qp` is ignored through the repository-local exclude:
-
-```bash
-git check-ignore -q -- .qp || printf '/.qp\n' >> "$(git rev-parse --git-path info/exclude)"
-```
-
-Verify `git check-ignore -q -- .qp` after linked-worktree alias creation. Do not use `/.qp/`: a trailing slash matches a directory but not the linked-worktree symlink.
+Ensure the root `.qp` entry is ignored without modifying tracked ignore policy merely for QP setup. The ignore must match both the main directory and linked-worktree symlink; a directory-only trailing-slash rule is insufficient. Verify ignore behavior after alias creation.
 
 ## Resolve stable owner paths
 
-New record bundles use the semantic owner's stable ASCII subject directly:
+New record bundles use:
 
 ```text
 .qp/records/<owner>/<stable-subject>/
@@ -47,65 +37,40 @@ New record bundles use the semantic owner's stable ASCII subject directly:
 └── evidence/        optional
 ```
 
-Standalone artifacts use:
+Standalone artifacts use `.qp/artifacts/<stable-subject>/index.html`.
 
-```text
-.qp/artifacts/<stable-subject>/index.html
-```
-
-Use the exact ASCII skill name as owner and a lowercase ASCII slug as subject. Do not add date prefixes or automatic `-2/-3` suffixes to semantic identity. Allocate the exact subject directory with native atomic `mkdir`:
-
-- created → new identity;
-- already exists with the same resource → re-read/reuse it;
-- already exists but is incomplete/ambiguous → stop as `INCOMPLETE_ALLOCATION` and reconcile;
-- genuinely different work → the semantic owner supplies a genuinely different subject.
-
-Existing dated bundle paths remain valid legacy identities and are not renamed merely for consistency.
+Use the exact ASCII skill name as owner and a lowercase ASCII slug as subject. Do not add date prefixes or automatic collision suffixes. Allocate the exact subject atomically: reuse an existing matching resource, reconcile an incomplete/ambiguous allocation, and require the semantic owner to choose a genuinely different subject for genuinely different work. Existing dated bundle paths remain valid legacy identities.
 
 ## Publish exact files safely
 
-The semantic owner builds and validates a complete candidate outside `.qp`. Pin the current target and validated candidate with the host's native SHA-256 tool. Use `absent` when the target does not exist:
+The semantic owner builds and validates a complete candidate outside `.qp`. Pin SHA-256 identities for that exact candidate and the current target using native host capability; use `absent` only when the target is absent.
 
-```bash
-sha256_file() {
-  if command -v sha256sum >/dev/null 2>&1; then
-    sha256sum "$1" | awk '{print $1}'
-  else
-    shasum -a 256 "$1" | awk '{print $1}'
-  fi
-}
-
-expected_target=absent
-[ ! -f "$target" ] || expected_target=$(sha256_file "$target")
-expected_candidate=$(sha256_file "$candidate")
-```
-
-Publish only when both identities still match:
+Publish through the retained kernel:
 
 ```bash
 python3 <skill-root>/scripts/safe-write.py \
   --root <real-canonical-.qp> \
   --target <target> \
   --candidate <candidate-outside-.qp> \
-  --expected-target "$expected_target" \
-  --expected-candidate "$expected_candidate"
+  --expected-target <target-sha256-or-absent> \
+  --expected-candidate <candidate-sha256>
 ```
 
-The helper reads the candidate once, verifies its expected digest, locks the target, rechecks the target digest, writes those already-verified bytes atomically, and verifies readback. On `CANDIDATE_CHANGED`, rebuild and revalidate the candidate. On `STALE_TARGET`, re-read the current semantic target and reconcile. It does not discover paths, snapshot files, allocate paths, parse semantic content, retry, or choose recovery.
+The helper verifies the candidate identity, locks and rechecks the target, atomically publishes the already-verified bytes, and verifies readback. On `CANDIDATE_CHANGED`, rebuild/revalidate the candidate; on `STALE_TARGET`, re-read and reconcile semantic state. The helper does not discover/allocate paths, parse semantic content, retry, or choose recovery.
 
 ## Render navigation
 
-Generate an index candidate as a pure transform:
+Generate an index candidate through the pure transform:
 
 ```bash
 python3 <skill-root>/scripts/render-index.py <real-canonical-.qp> > <temporary-INDEX.md>
 ```
 
-The renderer accepts current stable subjects and existing dated subjects, validates the common envelope, sorts offset-aware timestamps by instant, treats visible metadata as literal text, links canonical `index.html` projections, and surfaces malformed records. It never mutates `.qp`. Publish the generated bytes through `safe-write.py` only when an `INDEX.md` is actually needed.
+The renderer accepts current stable subjects and existing dated subjects, validates the common envelope, sorts offset-aware timestamps by instant, treats visible metadata as literal text, links canonical projections, and surfaces malformed records. It never mutates `.qp`. Publish the generated bytes through `safe-write.py` only when an `INDEX.md` is actually needed.
 
 ## Report
 
-Return the canonical workspace, active worktree/alias state when relevant, affected owner resource, migration/conflict state, Git-ignore verification, index state when used, and for generated resources intended for direct use:
+Return the canonical workspace, relevant worktree/alias state, affected owner resource, migration/conflict state, ignore verification, index state when used, and for generated resources intended for direct use:
 
 ```text
 Absolute path: <resolved filesystem path>
