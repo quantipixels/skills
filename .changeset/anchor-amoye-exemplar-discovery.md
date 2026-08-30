@@ -2,4 +2,4 @@
 "qp-skills": minor
 ---
 
-Give `amoye-ui-ux` reference-driven composition a small set of live exemplar discovery anchors—shadcn/ui, Beautiful UI, beUI, Rare UI, and Transitions.dev—without treating them as a canonical catalogue, default dependencies, or substitutes for product-specific design judgment.
+Keep `amoye-ui-ux` reference-driven composition source-agnostic. Discover exemplars from the bounded design question using product evidence, current first-party/component sources, maintained implementations, and comparable live products instead of maintaining a fixed external inspiration-site list.

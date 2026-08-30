@@ -6,19 +6,21 @@ Load this branch only when current product/brand evidence and durable design jud
 
 Name the exact uncertainty before searching: for example dashboard density, command palette composition, onboarding progress, empty-state treatment, motion between related states, data-card hierarchy, or mobile navigation behavior. Search only far enough to expose a small set of strong, materially different exemplars.
 
-Prefer current first-party demos, component documentation, open-source implementations, or live product surfaces that let you inspect the relevant behavior. Secondary inspiration galleries may help discover candidates but should not be the only evidence for interaction claims.
+Search by the missing design decision rather than by a fixed source list. Include the actual platform/framework/product domain when it changes relevance. A useful query shape is:
 
-### Current discovery anchors
+```text
+<platform/framework/domain> + <bounded design question> + <interaction/state/pattern>
+```
 
-These are useful starting surfaces, not a canonical library list, approved dependency set, or substitute for current product evidence. Use only the source that answers the bounded question and verify its current implementation/licensing before any code reuse:
+Prefer evidence in this order when applicable:
 
-- shadcn/ui components and blocks — https://ui.shadcn.com/docs/components and https://ui.shadcn.com/blocks — broad composable web component/layout examples;
-- Beautiful UI — https://www.beautifului.dev/ — AI-native interface primitives and product patterns;
-- beUI — https://beui.dev/ — animated React/component composition and interaction examples;
-- Rare UI — https://www.rareui.com/ — distinctive animated React component examples; and
-- Transitions.dev — https://transitions.dev/ — focused product-motion and state-transition examples.
+1. the product's existing UI and approved design system;
+2. first-party platform, framework, component, or design-system documentation and demos;
+3. maintained open-source implementations with inspectable behavior;
+4. comparable live product surfaces; and
+5. inspiration galleries only to discover candidates that are then verified against stronger evidence when interaction behavior matters.
 
-Treat this list as an operational anchor: it reduces repeated discovery of useful exemplar surfaces but does not establish taste, correctness, accessibility, compatibility, or project fit. Search beyond it when the bounded question calls for a different product/domain/platform, and retire or replace an anchor when it stops being useful rather than accumulating a permanent inspiration catalogue.
+Do not assume any fixed source list remains useful. Component collections, design-system demos, product screenshots, motion libraries, and framework examples are candidates only when they answer the bounded question now.
 
 ## Extract, do not copy
 
