@@ -30,6 +30,8 @@ Before adding or retaining commands, references, scripts, templates, data, asset
 
 When material expert judgment belongs outside `SKILL.md`, use [reference quality](references/reference-quality.md). If executable code still appears necessary after placement, apply [script boundary](references/script-boundary.md). Use [knowledge catalogues](references/knowledge-catalogues.md) only when a maintained researched corpus is itself part of the useful outcome.
 
+For multi-host portability, keep one canonical semantic contract in the skill/owning source. Host manifests, rules, hooks, or command adapters should be the thinnest projection needed by actual loader semantics; do not maintain divergent handwritten copies of the behavior. Mechanically verify projections when an adapter exists and semantic drift would be consequential. Do not add host adapters merely to claim compatibility that current installation/distribution already provides.
+
 Name modes only when behavior or authority truly differs. Prefer current project/provider/framework/tool truth over cached command catalogues or starter defaults.
 
 Reference another repository skill by its exact frontmatter `name` trigger in backticks, for example `alarina`. Do not use another skill's localized/display title as a cross-skill identifier. A skill may use its own display name inside its own package, headings, and prose. Within this repository, `skill`, `route`, `owner`, `specialist`, and similar terms already refer to the portfolio; do not add a redundant repository namespace prefix unless a real external namespace must be distinguished.
@@ -52,6 +54,10 @@ Do not turn every sentence into a bullet or add headings that do not improve nav
 Use the smallest evidence that can falsify the changed contract. Structural/package validation is baseline; add realistic forward behavior only when selection, authority, safety, state, branching, composition, resource choice, or output remains materially uncertain. Re-run only proof invalidated by later changes.
 
 For behavior corrections, use pinned pre-change evidence when it already proves the failure; otherwise exercise the smallest safe realistic baseline. For compression, script/catalogue/template removal, ownership moves, or skill consolidation, compare the same realistic goal before/after when material uncertainty remains. Prove both that removed material was not uniquely behavior-bearing and that the smaller placement preserves result quality, authority, proof, discoverability, and any useful operational anchor.
+
+For a skill whose primary value is model steering rather than deterministic mechanics, use **steering-effect proof** only when material behavioral uncertainty remains: run the same realistic bounded task/candidate/context against the prior/no contract and the changed contract, verify the target judgment/behavior changes in the intended direction, and separately verify correctness/safety/required output did not regress. Keep this proof temporary and proportionate; do not turn it into a prompt-evaluation suite merely to defend wording.
+
+Do not claim saved LOC, tokens, cost, latency, time, or quality improvement without an observed comparable baseline. The unbuilt counterfactual is not a measurement. Structural reduction is evidence of simplification, never proof of productivity savings.
 
 Do not build prompt-evaluation suites merely to defend wording. Match proof to the actual control shape and consequence.
 
