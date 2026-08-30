@@ -1,6 +1,6 @@
 # Component contract
 
-Use when a reusable component property, variant, state, or theme behavior needs a design-system contract beyond semantic tokens. Derive the contract from confirmed product/design evidence, the selected component library, and current implementation constraints; do not begin from a QP component catalogue.
+Use when a reusable component property, variant, state, or theme behavior needs a design-system contract beyond semantic tokens. Derive the contract from confirmed product/design evidence, the selected component library, and current implementation constraints; do not begin from a generic component catalogue.
 
 ## Establish only real component meaning
 
@@ -30,4 +30,4 @@ A field may be omitted when the project/library already owns it or the product h
 
 ## Review
 
-A component contract is sufficient when an implementer can apply the confirmed design-system decisions without inventing a material visual/state requirement and without being forced into QP-default values. Report missing evidence rather than completing a familiar component schema for its own sake.
+A component contract is sufficient when an implementer can apply the confirmed design-system decisions without inventing a material visual/state requirement and without being forced into repository-default values. Report missing evidence rather than completing a familiar component schema for its own sake.

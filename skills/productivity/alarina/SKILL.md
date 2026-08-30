@@ -1,26 +1,26 @@
 ---
 name: alarina
-description: Inventory and route through the QP skills published in this repository. Use when the user or agent is unsure which repo skill owns an outcome, asks what QP skills are available, or needs the shortest useful QP route; respect explicit user selection and explicit-only experiments.
+description: Select the shortest useful route through the skills published in this repository. Use when the user or agent is unsure which repo skill owns an outcome, asks what skills are available, or needs the shortest useful route; respect explicit user selection and explicit-only experiments.
 ---
 
 # Alárinà
 
-Serve as the routing interface to this repository's skill portfolio. Build the current QP inventory from the repository/package skill descriptions and invocation metadata rather than maintaining a second static catalogue inside Alárinà.
+Serve as the routing interface to this repository's skill portfolio. Build the current inventory from repository/package skill descriptions and invocation metadata rather than maintaining a second static catalogue inside Alárinà.
 
 If the user asks what skills exist, list the current repository skills with their category, owned outcome, and Experimental/explicit-only status. For an ordinary routing request, inspect the same inventory but surface only the relevant shortlist and selected route.
 
-Alárinà routes **QP skills from this repository**. It does not maintain a catalogue or fallback tree for external/non-QP skills or generic agent capabilities. When no QP owner is useful, return `NO_QP_ROUTE`; the calling agent can continue with its ordinary capabilities and environment.
+Alárinà routes skills from this repository. It does not maintain a catalogue or fallback tree for external skills or generic agent capabilities. When no repository owner is useful, return `NO_ROUTE`; the calling agent can continue with its ordinary capabilities and environment.
 
 ## Route
 
 1. Pin the requested outcome and any explicit skill/mode choice.
 2. Read the current repository skill inventory from its `SKILL.md` descriptions/invocation metadata.
 3. Preserve an explicit user-selected skill when it owns the requested result and its invocation boundary is satisfied.
-4. Otherwise identify the narrowest QP skill whose independently owned outcome matches the request.
-5. Add a supporting QP skill only when its separately owned result is necessary to complete the primary result. Do not add specialists merely for lifecycle coverage.
+4. Otherwise identify the narrowest skill whose independently owned outcome matches the request.
+5. Add a supporting skill only when its separately owned result is necessary to complete the primary result. Do not add specialists merely for lifecycle coverage.
 6. If the request contains several genuinely independent outcomes, return the small ordered/parallel route set rather than forcing one owner to absorb unrelated results. Use a routing/coordination skill only when routing/coordination itself is the useful outcome.
 7. Experimental skills are explicit-only. Offer an exact matching experiment and wait for acceptance; never silently substitute it for a stable owner.
-8. If no repository skill materially improves the result, return `NO_QP_ROUTE` rather than inventing an external dependency.
+8. If no repository skill materially improves the result, return `NO_ROUTE` rather than inventing an external dependency.
 
 Routing grants no mutation, provider, credential, publication, review-verdict, or continuing-stewardship authority.
 
@@ -37,7 +37,7 @@ Use outcome/authority distinctions, not keywords:
 - broad design routing vs one directly owned design deliverable;
 - tool evidence vs the engineering judgment that consumes it.
 
-When a plan's material user-decision frontier is open, keep the plan owner primary and use the decision owner only for that frontier. When technical/reversible architecture is material, use the architecture owner rather than turning it into a user interview. Keep `.qp` mechanics with Akọsílẹ̀ and semantic record meaning with the originating owner.
+When a plan's material user-decision frontier is open, keep the plan owner primary and use the decision owner only for that frontier. When technical/reversible architecture is material, use the architecture owner rather than turning it into a user interview. Keep `.qp` mechanics with `akosile` and semantic record meaning with the originating owner.
 
 ## Design routing
 
@@ -52,14 +52,14 @@ Use `hitl-review` when the user wants a walkthrough, review-category coverage, s
 For a routing request, return:
 
 ```text
-QP inventory: <repository/package identity>
-Relevant QP skills: <shortlist or none>
-Primary owner(s): <skill/mode or ordered route set | NO_QP_ROUTE>
+Inventory: <repository/package identity>
+Relevant skills: <shortlist or none>
+Primary owner(s): <skill/mode or ordered route set | NO_ROUTE>
 Why: <owned-result match>
-Required QP support: <only independently necessary results>
+Required support: <only independently necessary results>
 Explicit acceptance required: <experimental/authority gate or no>
 ```
 
 For an inventory request, list the repository skills rather than forcing a route.
 
-Ask one focused question only when its answer selects a materially different QP owner/mode and the answer cannot be established from current context/evidence.
+Ask one focused question only when its answer selects a materially different owner/mode and the answer cannot be established from current context/evidence.

@@ -36,4 +36,4 @@ Otherwise:
 
 Record the detected evidence, selected library/custom decision or delegated architecture decision, why it fits the actual project, integration/theming constraints, migration/lock-in implications, and the first components/primitives affected.
 
-Use the selected library's current docs/CLI/project installation for component names and commands. Do not maintain a QP component catalogue.
+Use the selected library's current docs/CLI/project installation for component names and commands. Do not maintain a component catalogue.
