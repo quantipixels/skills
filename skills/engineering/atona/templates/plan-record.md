@@ -28,7 +28,7 @@ status: Draft
 
 ## Outcome and acceptance
 
-<desired outcome and observable acceptance>
+<current problem or gap, affected actors when material, desired outcome, and observable acceptance>
 
 ## Scope and non-goals
 
@@ -41,7 +41,7 @@ status: Draft
 
 ## Delivery and proof
 
-<phases/dependencies/blockers only when they actually exist; current proof and closure obligations>
+<governing specification identity/readiness when present; phases/dependencies/blockers only when they actually exist; current proof and closure obligations>
 
 ## Linked evidence
 

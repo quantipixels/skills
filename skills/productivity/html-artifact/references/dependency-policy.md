@@ -17,6 +17,8 @@ native HTML/CSS/JS
 
 Inside an existing application, reuse a suitable dependency only when it is already part of the artifact's actual runtime. No library is privileged and QP maintains no allowlist.
 
+Bind a dependency to the capability it provides, not to the lane that first selected it. A renderer chosen for a diff, relationship map, chart, or another representation may support any HTML Artifact lane when the same capability and admission boundary apply. Do not make the dependency a default elsewhere merely because it is already bundled as a reusable resource.
+
 ## Admission boundary
 
 For each nontrivial dependency establish:

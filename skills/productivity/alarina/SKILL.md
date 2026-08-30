@@ -25,6 +25,7 @@ Most substantial product/engineering work can enter somewhere along this path:
   ├─ Support: `iwadi` for substantial primary-source research
   ├─ Support: `irinse` for bounded companion-tool evidence
   ├─ Support: `ro-wo` for one consequential premise
+  ├─ When needed: `seda-spec` for a normative behavior contract
   └─ Then when useful: `seda-ticket` for consumable delivery slices
         ↓
       `alaga`
@@ -37,6 +38,8 @@ Most substantial product/engineering work can enter somewhere along this path:
 Enter at the current stage:
 
 - Use `atona` when one initiative plan must remain live through readiness, delivery integration, and closure.
+- A settled conversation, issue, or specification that needs one implementation-ready plan enters through `atona`; it uses `seda-spec` when material behavior needs a separate normative contract and `seda-ticket` afterward only when consumable delivery slices are useful.
+- Use `seda-spec` directly when the requested outcome is one confirmed implementation-independent behavior specification without initiative lifecycle management.
 - Use `arojinle` directly when the useful outcome is one consequential user decision set rather than an initiative lifecycle.
 - Use `solution-architect` directly when the useful outcome is technical architecture design/review.
 - Use `seda-ticket` directly when supplied work only needs vertical decomposition, dependencies, acceptance, and a startable frontier.
@@ -51,6 +54,7 @@ Enter at the current stage:
 - Confirmed/understood fix → `alaga`.
 - Existing code candidate needing a defect/proof verdict → `atunwo`.
 - Existing candidate/repository needing simplification or maintainability judgment → `pare`.
+- Supplied diff or pinned code-change evidence needing a review view → `html-artifact`; when only a pull-request or merge-request locator is supplied, use `atunwo` first for exact read-only candidate identity and evidence without an unrelated review.
 - Human wants a walkthrough, specialist-backed review coverage, and their own final decision → `hitl-review`.
 - Completed coding-agent work needs a retrospective on waste, failure modes, or prevention opportunities → `ayewo-igba-ise`, then route only the resulting concrete prevention owner when another result is actually requested.
 
@@ -81,7 +85,8 @@ These skills often support another owner but are also directly useful outcomes:
 - `irinse` — select/ready/operate one companion engineering tool and return bounded evidence; consuming owners keep judgment.
 - `ro-wo` — test one material premise before it becomes a decision or recommendation.
 - `akosile` — repository-scoped `.qp` paths/worktrees/settings/safe publication/index mechanics; semantic owners retain meaning.
-- `html-artifact` — selective traceable HTML projection of supplied owner material; it does not originate domain conclusions.
+- `html-artifact` — selective traceable HTML projection of supplied material; it does not originate conclusions.
+- `seda-spec` — confirmed implementation-independent behavior specification for planning, decomposition, implementation, and review.
 - `handoff` — portable fresh-session/agent handoff when context actually needs to travel.
 - `technical-writing` — technical prose structure/clarity; use `yo-slop` afterward when final prose cleanup/pruning is needed without changing meaning.
 - `salaye` — reusable plain-language explanation behavior for a supplied subject.
@@ -124,6 +129,8 @@ Routing grants no mutation, provider, credential, publication, review-verdict, o
 - `se-triage` vs Experimental `root-cause` vs `alaga` — report validity/classification vs causal diagnosis vs implementation.
 - `amose` vs `technical-writing` — durable project/domain knowledge vs prose quality/structure.
 - `html-artifact` vs `slides` — projection of supplied material vs presentation/deck creation.
+- `html-artifact` vs `atunwo` — visual projection of supplied or pinned code-change evidence vs a code-review verdict.
+- `atona` vs `seda-spec` vs `seda-ticket` — initiative lifecycle vs normative behavior contract vs delivery decomposition.
 - `apere` vs a design specialist — design coordination vs one directly owned deliverable.
 - `irinse` vs the consuming owner — tool evidence vs the engineering/product/design judgment made from it.
 
