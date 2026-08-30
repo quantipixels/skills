@@ -8,7 +8,17 @@ Name the exact uncertainty before searching: for example dashboard density, comm
 
 Prefer current first-party demos, component documentation, open-source implementations, or live product surfaces that let you inspect the relevant behavior. Secondary inspiration galleries may help discover candidates but should not be the only evidence for interaction claims.
 
-Do not assume any fixed source list remains useful. Sources such as component collections, design-system demos, product screenshots, motion libraries, or framework examples are candidates only when they answer the bounded question now.
+### Current discovery anchors
+
+These are useful starting surfaces, not a canonical library list, approved dependency set, or substitute for current product evidence. Use only the source that answers the bounded question and verify its current implementation/licensing before any code reuse:
+
+- shadcn/ui components and blocks — https://ui.shadcn.com/docs/components and https://ui.shadcn.com/blocks — broad composable web component/layout examples;
+- Beautiful UI — https://www.beautifului.dev/ — AI-native interface primitives and product patterns;
+- beUI — https://beui.dev/ — animated React/component composition and interaction examples;
+- Rare UI — https://www.rareui.com/ — distinctive animated React component examples; and
+- Transitions.dev — https://transitions.dev/ — focused product-motion and state-transition examples.
+
+Treat this list as an operational anchor: it reduces repeated discovery of useful exemplar surfaces but does not establish taste, correctness, accessibility, compatibility, or project fit. Search beyond it when the bounded question calls for a different product/domain/platform, and retire or replace an anchor when it stops being useful rather than accumulating a permanent inspiration catalogue.
 
 ## Extract, do not copy
 
