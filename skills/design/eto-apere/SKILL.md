@@ -11,11 +11,11 @@ Own the implementation contract between confirmed visual decisions and reusable 
 confirmed raw values → semantic purpose aliases → component properties/states
 ```
 
-Do not seed a project with QP-default colors, fonts, spacing, radii, shadows, component variants, dimensions, state treatments, animation timings, or framework mappings.
+Do not seed a project with default colors, fonts, spacing, radii, shadows, component variants, dimensions, state treatments, animation timings, or framework mappings.
 
 ## Workflow
 
-1. Read [token architecture](references/token-architecture.md), then inspect the project's existing tokens, theme files, component conventions, selected UI library, and confirmed Brand/Amọ̀ye direction. Existing project values and approved brand roles are inputs; do not replace them with starter defaults.
+1. Read [token architecture](references/token-architecture.md), then inspect the project's existing tokens, theme files, component conventions, selected UI library, and confirmed `brand` / `amoye-ui-ux` direction. Existing project values and approved brand roles are inputs; do not replace them with starter defaults.
 2. Define only required primitives for confirmed raw values. Map them to semantic roles such as background, foreground, primary, muted, destructive, focus, and product-specific roles.
 3. Add component tokens/specifications only when a component property, variant, or state needs a stable reusable contract beyond the semantic layer. Read [component contract](references/component-contract.md) when that detail is material. Do not invent component anatomy, variants, states, sizes, timings, or accessibility behavior that the product/library has not established.
 4. Preserve aliases rather than flattening semantic/component references to primitive values. Theme switching should normally remap semantic aliases rather than rewrite components.
@@ -38,7 +38,7 @@ For one compatibility release, the compiler also accepts legacy `--config`, `--o
 ## Decision rules
 
 - Prefer semantic aliases in components; raw values belong in primitives.
-- Use naming from purpose/ownership, not a QP color scale.
+- Use naming from purpose/ownership, not a generic color scale.
 - Keep naming stable and state last where the project has no stronger convention.
 - Prefer a small coherent project-specific scale over one-off values, but do not invent a generic scale merely because it is common.
 - Treat focus, disabled, loading, error, selected, and other credible states as first-class only when the component/product actually supports them.

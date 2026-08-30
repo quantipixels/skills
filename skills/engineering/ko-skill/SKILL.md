@@ -32,6 +32,8 @@ When material expert judgment belongs outside `SKILL.md`, use [reference quality
 
 Name modes only when behavior or authority truly differs. Prefer current project/provider/framework/tool truth over cached command catalogues or starter defaults.
 
+Reference another repository skill by its exact frontmatter `name` trigger in backticks, for example `alarina`. Do not use another skill's localized/display title as a cross-skill identifier. A skill may use its own display name inside its own package, headings, and prose. Within this repository, `skill`, `route`, `owner`, `specialist`, and similar terms already refer to the portfolio; do not add a redundant repository namespace prefix unless a real external namespace must be distinguished.
+
 ### Format for execution
 
 Use Markdown to expose semantic structure, not to decorate prose:

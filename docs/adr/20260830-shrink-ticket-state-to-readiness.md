@@ -4,7 +4,7 @@ Status: Accepted
 
 ## Context
 
-`Ṣẹ̀dá Ticket` exists to turn supplied work into portable vertical delivery slices with explicit dependencies, acceptance, and a startable frontier. Its current `Ready → In Progress → Blocked → In Review → Done/Cancelled` lifecycle duplicates active execution and review state already owned by delivery/review results such as Alága and Àtúnwò.
+`seda-ticket` exists to turn supplied work into portable vertical delivery slices with explicit dependencies, acceptance, and a startable frontier. Its current `Ready → In Progress → Blocked → In Review → Done/Cancelled` lifecycle duplicates active execution and review state already owned by delivery/review results such as `alaga` and `atunwo`.
 
 The earlier ticket decision deliberately removed durable graph/persistence ownership and retained a small portable state vocabulary. The remaining execution/review states still make callers reconcile two lifecycles for the same work.
 
@@ -20,6 +20,6 @@ The earlier ticket decision deliberately removed durable graph/persistence owner
 
 ## Consequences
 
-Tickets remain portable and independently useful without becoming a second delivery tracker. Atọ́nà can derive initiative delivery state from owner receipts while using the ticket set only for decomposition/dependency/startability semantics. Alága and Àtúnwò retain their native progress and review contracts.
+Tickets remain portable and independently useful without becoming a second delivery tracker. `atona` can derive initiative delivery state from owner receipts while using the ticket set only for decomposition/dependency/startability semantics. `alaga` and `atunwo` retain their native progress and review contracts.
 
 This refines the replacement described in `20260813-keep-plan-tickets-local.md`; it does not restore durable ticket graphs, persistence, transition logs, assignees, or provider state.
