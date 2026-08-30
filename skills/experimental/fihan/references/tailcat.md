@@ -4,9 +4,17 @@ Load only when Tailscale Serve is unavailable/unsuitable and the intended reader
 
 ## Resolve the actual Tailcat interface
 
+Authoritative upstream: https://github.com/tailscale/tailcat
+
 Tailcat has no stability promise for its CLI, API, wire format, or public relay service. Do not treat this reference as a versioned command manual.
 
-If Tailcat is installed, identify its build/version provenance and use the binary's official embedded README/help together with the matching official `tailscale/tailcat` source/docs when that revision can be resolved. Installed behavior outranks examples from a newer upstream revision.
+If Tailcat is installed, identify its build/version provenance and use its embedded upstream README first:
+
+```bash
+tailcat --readme
+```
+
+Use `tailcat --help` when the embedded README does not answer the bounded interface question. The upstream embeds its README specifically so the installed binary can explain current usage without web access. Reconcile that installed evidence with the matching official `tailscale/tailcat` source/docs when the revision can be resolved; installed behavior outranks examples from a newer upstream revision.
 
 If Tailcat is absent and installation is authorized, use the latest official `tailscale/tailcat` README/source for installation and serving/receiver syntax. Because upstream currently has no stable releases, latest official mainline documentation is the setup source of truth; refresh it at execution time rather than pinning an old setup recipe here.
 
