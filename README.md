@@ -118,6 +118,7 @@ Experimental skills require explicit acceptance.
 | `dogfood` | Real-browser verification of changed user journeys |
 | `fihan` | Serve one bounded local resource privately and return its exact HTTPS URL or Tailcat receiver invocation |
 | `ideate` | Grounded mechanism-diverse possibilities before selection |
+| `orisun` | Exact-version upstream source grounding for one bounded technical question |
 | `pepeye` | Explicit task supervision without a second owner lifecycle |
 | `prototype` | Disposable truthful decision instrument |
 | `root-cause` | Minimal causal mechanism/set for an observed failure |
