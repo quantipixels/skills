@@ -12,13 +12,20 @@ The local resource remains authoritative. Explicit invocation authorizes task-sc
 
 ## Resolve tooling from current official evidence
 
-Do not hardcode installation/setup recipes or assume current CLI syntax.
+Do not hardcode an installation/setup manual or assume current CLI syntax, but retain the smallest entry surfaces needed to avoid rediscovering each selected transport from zero.
+
+Authoritative entry points:
+
+- Tailscale Serve: https://tailscale.com/docs/features/tailscale-serve
+- Tailcat upstream: https://github.com/tailscale/tailcat
+
+If Tailscale is already installed, `tailscale serve --help` confirms the installed interface and `tailscale serve status` is the representative read-only pre-state check. Resolve the exact route/target syntax from installed help and current Serve documentation before mutation.
+
+If Tailcat is already installed, prefer its embedded upstream documentation via `tailcat --readme` (and `tailcat --help` when needed) before consulting a newer upstream revision. Tailcat explicitly makes no CLI/API/wire-format stability promise, so do not freeze its sender/receiver syntax here.
 
 - If the transport tool is already installed, identify the installed version/build/provenance and use its own help/embedded documentation plus official documentation appropriate to that version. Where the official site is not versioned, reconcile current official docs with the installed CLI rather than assuming newer flags/features exist.
 - If the tool is absent and setup is authorized, use the latest official installation/setup documentation and current stable release. For an upstream with no stable releases, use its latest official upstream documentation/source and treat the interface as unstable.
 - Use `irinse` when installation, upgrade, authentication, or readiness itself requires material work. Fihàn still owns the serving outcome after the tool is ready.
-
-Prefer first-party Tailscale documentation for Tailscale Serve and the official `tailscale/tailcat` repository/embedded README for Tailcat. Do not preserve volatile setup commands in this skill.
 
 ## Bound the resource
 

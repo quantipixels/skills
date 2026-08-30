@@ -11,7 +11,7 @@ Prefer, in order:
 ```text
 SKILL.md guidance or selective expert reference
 → native/project/provider/framework/IDE capability
-→ short visible command/recipe when it clarifies a boundary
+→ small operational anchor or short visible recipe when it materially improves discoverability
 → focused mature library/tool
 → narrow deterministic script
 → engine only when deterministic machinery carries a substantial part of the owned outcome
@@ -21,13 +21,19 @@ A capable agent already knows how to search, inspect files, operate Git/shell/fi
 
 Concrete mechanics are justified when the mechanism itself protects correctness, authority, deterministic identity/output, concurrency/atomicity, non-obvious safety, an external/machine protocol, or compatibility. Exact-host provider binding, lock-held compare-and-swap, or a compiler interface can qualify; ordinary repository inspection usually does not.
 
+Do not confuse abstraction with simplification. After a **concrete capability is selected**, keep a small operational anchor when removing every concrete entry point would force the agent to rediscover how to enter that same capability on each use. A useful anchor may include the authoritative documentation or discovery surface, the canonical interface/endpoint/protocol, and one representative invocation or discovery command.
+
+Do not use an operational anchor to choose the capability in the first place or to freeze an open-ended discovery space. Lists of inspiration sites, candidate vendors, libraries, frameworks, hosts, products, or sources are not anchors merely because they are convenient starting points. For those spaces, keep durable selection criteria, query/discovery shape, and current evidence. A finite named set is appropriate only when that set is itself part of the owner's explicit compatibility or protocol boundary.
+
+Keep anchors deliberately small: volatile versions, flags, quotas, inventories, installation matrices, and secondary examples remain current-tool evidence to revalidate at use time. The anchor should reduce recurring discovery cost without becoming a QP-owned manual.
+
 ## Preserve useful depth
 
 Depth is not synonymous with executable code. A lightweight skill can be deep through curated expert judgment or a native/tool-backed capability.
 
 Keep a selective reference when recurring non-obvious judgment materially improves the result. Prefer examples, counterexamples, triggers, exceptions, and decision criteria over generic advice or cached ecosystem facts.
 
-Use current project/tool/provider/framework truth for volatile APIs, versions, component inventories, commands, and platform behavior. Existing project artifacts outrank bundled starters.
+Use current project/tool/provider/framework truth for volatile APIs, versions, component inventories, commands, and platform behavior. Existing project artifacts outrank bundled starters. An operational anchor may preserve a representative current invocation, but it must point back to authoritative current truth and explicitly leave volatile details open to revalidation.
 
 ## Executable boundary
 
@@ -60,6 +66,8 @@ For every material resource ask:
 - What outcome does this resource uniquely improve?
 - Is the information/mechanic already naturally owned by the agent, project, provider, framework, tool, or a mature library?
 - Is this recurring non-obvious judgment, or merely recoverable procedure?
+- Has the concrete capability already been selected, or is this resource quietly choosing/caching candidates for the agent?
+- Would removing every concrete pointer make the agent repeatedly rediscover the same selected capability entry point? If so, what is the smallest operational anchor that prevents that?
 - If prescribing a mechanism, what invariant or external contract requires that exactness?
 - If proposing code, what deterministic result cannot be carried as guidance/native tooling?
 - If proposing an engine, what substantial portion of the native outcome moves behind it?

@@ -18,7 +18,7 @@ Classify control shape only when it helps expose unnecessary workflow ceremony. 
 
 Apply [capability and resource placement](resource-placement.md) to material commands, references, scripts, templates, data, assets, libraries, and public owners.
 
-In particular, challenge instructions that teach a capable agent ordinary search, Git, shell/filesystem, editing, tool discovery, or host-capability fallback choreography. Keep concrete mechanics only where they establish a real invariant, authority/safety boundary, deterministic seam, external protocol, or compatibility requirement.
+In particular, challenge instructions that teach a capable agent ordinary search, Git, shell/filesystem, editing, tool discovery, or host-capability fallback choreography. Preserve a small operational anchor when it materially reduces recurring rediscovery of a **selected concrete capability**; do not mistake removal of every usable pointer for simplification. Also flag the opposite overreach: candidate/vendor/source/library/framework/host lists presented as anchors even though the skill is actually meant to discover or choose among them. An anchor should remain smaller than a manual and leave volatile flags, versions, limits, and inventories to current authoritative evidence.
 
 Apply [reference quality](reference-quality.md) to substantial expert references. Preserve recurring non-obvious judgment even when the model could reconstruct some of it; remove generic advice, stale framework/tool manuals, volatile inventories, duplicated representations, and wrong-owner material.
 
@@ -30,7 +30,7 @@ Challenge templates/default state/support assets that exist for convenience rath
 
 Search for stale links to removed resources, obsolete commands/names, duplicate active guidance, and historical research presented as current contract. Keep deterministic CI/tests only for retained deterministic seams and package integrity.
 
-For proposed compression/consolidation, require before/after realistic proof only where material uncertainty remains. Size reduction is not acceptance; preserve selection, result quality, authority, discoverability, and behavior-bearing expertise.
+For proposed compression/consolidation, require before/after realistic proof only where material uncertainty remains. Size reduction is not acceptance; preserve selection, result quality, authority, discoverability, useful operational anchors, and behavior-bearing expertise.
 
 ## Report
 
