@@ -4,15 +4,11 @@ Use when a consuming owner needs deterministic or IDE/static-analysis evidence a
 
 ## Prefer current project tooling
 
-Inspect existing build/plugins/config first. Examples include:
+Inspect the repository's build, plugins, configuration, IDE/static-analysis setup, scripts, CI, and documented engineering conventions first. Prefer an analyzer already established for the exact project/language/candidate when it can answer the bounded question.
 
-- Java/JVM: PMD, Sonar/SonarLint, SpotBugs-adjacent metrics, IntelliJ inspections, ArchUnit for architecture boundaries;
-- Kotlin: detekt complexity rules, IntelliJ inspections, Sonar where established;
-- Elixir: Credo refactor/complexity/nesting checks;
-- Python: Radon or repository-selected analyzers;
-- cross-language: lizard or another repository-approved analyzer when its language coverage is suitable.
+Do not maintain a QP language-by-language analyzer catalogue. If no project tool owns the needed signal, select a current suitable tool from the available environment or owning documentation only when the evidence is materially useful and direct source inspection is insufficient. Installing or changing tooling still follows Irinṣẹ́'s normal authority boundary.
 
-Do not install a new tool merely because it can output a cyclomatic number if source inspection or an existing tool answers the bounded question.
+Do not introduce a tool merely because it can output a complexity number.
 
 ## Collect enough context to interpret later
 
