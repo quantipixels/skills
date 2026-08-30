@@ -104,6 +104,7 @@ Banner Design and Social Graphics intentionally remain narrow steering owners ev
 | `iwadi` | High-trust primary-source research record |
 | `ro-wo` | Test one material premise before judgment |
 | `salaye` | Reusable plain-language explanation behavior for a supplied subject |
+| `system-cleanup` | Safe macOS storage audit, regenerable cleanup, worktree review, and external-drive offload |
 | `technical-writing` | Technical communication structure/clarity |
 | `yo-slop` | Final prose cleanup / explicit pruning without contract change |
 

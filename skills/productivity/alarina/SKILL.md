@@ -93,6 +93,10 @@ These skills often support another owner but are also directly useful outcomes:
 - `seda-sigidi` — draft or explicitly integrate one agent's durable identity/values/boundaries/voice into a known host configuration.
 - `ko-skill` — author/revise/validate one skill or audit a bounded skill portfolio.
 
+## Local environment maintenance
+
+- Low macOS storage, a full Data volume, regenerable cache/build cleanup, stale Git worktree cleanup, or selected external-drive offload → `system-cleanup`.
+
 ## Explicit-only Experimental detours
 
 Experimental skills never silently replace or become prerequisites for stable owners. Offer the exact branch and wait for acceptance.
