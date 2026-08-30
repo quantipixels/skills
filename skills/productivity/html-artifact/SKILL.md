@@ -1,6 +1,6 @@
 ---
 name: html-artifact
-description: Transform supplied owner records, results, reports, analysis, data, decisions, designs, or behavior into one selective, traceable, accessible HTML projection or bounded linked variant set. Preserve material meaning and retrieval paths without reproducing source volume. Exclude originating domain analysis, production applications, deployments, and reusable libraries.
+description: Turn supplied material into a selective, traceable, accessible HTML visualization. Preserve its meaning, authority, and retrieval paths without reproducing source volume. Exclude originating analysis, production applications, deployments, and reusable libraries.
 ---
 
 # HTML Artifact
@@ -20,6 +20,8 @@ Request only missing structure that can change truth/usefulness. Never invent do
 Load branch guidance only when applicable:
 
 - report/evidence/living/candidate comparison → [report patterns](references/report-patterns.md);
+- diff, commit/branch change, or pinned pull-request or merge-request evidence → [code-change review](references/code-change-review.md);
+- interactive relationship map, multiple coordinated views, or guided walkthrough → [interactive projections](references/interactive-projections.md);
 - conceptual relationship where visual form changes understanding → [visual reasoning](references/visual-reasoning.md);
 - supplied prototype/design variants → [prototype patterns](references/prototype-patterns.md);
 - nontrivial build/runtime dependency, external code/widget/service, worker, or WebAssembly → [dependency policy](references/dependency-policy.md).
@@ -48,6 +50,8 @@ Use existing artifact/project shell behavior when it already owns the need. For 
 - [carousel control](assets/carousel-control.html) remains branch-specific to prototype/visual collections that need isolated variant navigation.
 
 Follow each asset's stated default or trigger. Its existence is not another reason to include it.
+
+For every icon-only control, hide the icon from assistive technology and include localized `data-visually-hidden` text inside the control. Use that text as the accessible name. Keep visible text visible when the label helps every reader.
 
 For substantial artifacts, embed a compact `application/json` context capsule before large presentation resources: identity, owner-record path/revision, purpose, current outcome/status, blockers, next action, completion condition, high-value source locators, projected source revision and proof freshness. Never embed complete records/logs/archives or machine-specific absolute paths merely for context.
 

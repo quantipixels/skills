@@ -1,0 +1,3 @@
+interface:
+  display_name: "System Cleanup"
+  short_description: "Reclaim macOS disk space safely"

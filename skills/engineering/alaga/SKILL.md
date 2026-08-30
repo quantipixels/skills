@@ -14,7 +14,8 @@ Pin:
 - outcome and current/desired behavior;
 - scope and exclusions;
 - acceptance and proof;
-- documentation destinations;
+- governing specification identity and material behavior references when present;
+- documentation and durable-knowledge reconciliation obligations and destinations;
 - workspace and authority; and
 - the minimum real user/operational path that must pass.
 
@@ -26,6 +27,7 @@ Pin:
 - Use `arojinle` for unresolved material user choices.
 - Use `solution-architect` for material technical architecture.
 - Use `atona` when an initiative plan must remain live.
+- Use `seda-spec` when material normative behavior is not settled enough for implementation without invention.
 - Use `seda-ticket` only when supplied work benefits from consumable vertical tickets.
 - When stack/version/idiom uncertainty materially affects implementation quality, Alága may offer Experimental `akowe` as expert implementation counsel. Wait for explicit acceptance before invoking it; declining or lacking Akọ̀wé is not a delivery gap.
 
@@ -75,21 +77,21 @@ Record:
 
 Ambient changes must not enter the candidate. If the pinned base or selected content changes during capture, recapture before review; when concurrent mutation is a material risk, require a stable repeated capture. Temporary capture state must not affect subsequent repository operations.
 
-Before review, update required ordinary documentation in the candidate and use `amose` when verified delivery changes durable project knowledge.
+Before review, update required ordinary documentation in the candidate, record its exact destinations, and use `amose` when verified delivery changes durable project knowledge. Consume applicable Atọ́nà reconciliation items without copying the lifecycle archive into delivery state.
 
 ## 3. Review and converge
 
 1. Review each stable, understandable, verifiable, reversible candidate once. Keep dependent changes together when separation creates a broken intermediate result; split independent candidates.
 2. After implementation proof is green, source code/tests require broad `atunwo`. Other candidates use their native verification/review owner. Findings remain hypotheses until verified.
 3. Apply behavior-changing corrections through TDD/proof owner, recapture the exact candidate, and rerun invalidated proof/review. Do not finish with a blocking finding or material evidence gap.
-4. Close a candidate only after acceptance, proof, documentation, and required review pass. Close the job only when every in-scope unit maps to the requested outcome and job-level integration/acceptance passes.
+4. Close a candidate only after acceptance, proof, documentation, and required review pass against the governing specification when present. Close the job only when every in-scope unit maps to the requested outcome and job-level integration/acceptance passes.
 
 ## 4. Report
 
 Return:
 
 - job boundary and session policy;
-- delivered units and documentation;
+- delivered units plus documentation and durable-knowledge reconciliation;
 - proof/review state;
 - commit state and exact candidate identities;
 - blockers and residual limits;

@@ -29,6 +29,23 @@ Use `html-artifact` to visualise the outcome, status, decision frontier, confirm
 
 When material questions are open, the active Àròjinlẹ̀ round is the user-facing handoff: lead with the questions and recommended answers and wait for the user's decisions.
 
+### Synthesize settled context
+
+When a supplied conversation, specification, or issue already contains enough settled context, synthesize it directly into the initiative plan rather than replaying discovery or starting an interview. Capture:
+
+- the current problem or gap and affected actors when material;
+- the desired outcome and observable acceptance;
+- confirmed decisions;
+- proof expectations and existing proof seams;
+- scope and non-goals; and
+- linked evidence with current identities.
+
+Inspect the repository only enough to use current project vocabulary, behavior, ADRs, and proof seams accurately.
+
+Separate confirmed context from inference. When the Decision Frontier is `EMPTY`, do not ask questions merely because this entry began as a conversation. When a material gap remains, classify and resolve it through the normal frontier instead of inventing a complete specification.
+
+Use `seda-spec` when the initiative needs a normative behavior contract beyond concise plan-local outcome and acceptance. Consume its exact-current result and specification identity without copying the specification into the plan. A specification can precede the plan or exist without one; Atọ́nà retains only the lifecycle meaning and links needed for readiness and delivery.
+
 ## 2. Maintain lifecycle state
 
 Track one status:
@@ -100,8 +117,9 @@ Before `Planned`:
 4. If `arojinle` was used for the current decision set, require its exact-current final confirmation. If it was not required, record the current evidence proving why.
 5. Verify every required specialist result against the exact plan/candidate. Require current `solution-architect: IMPLEMENTATION_READY` when architecture is material.
 6. Treat coverage as an index, not proof: trace the top credible normal, failure, misuse, recovery, compatibility, migration, and operational mechanisms.
-7. Resolve every blocking dependency, recovery, migration, proof, documentation, and operational gap.
-8. Write the `Planned` revision and refresh the primary human view.
+7. For each material behavior, require either current `seda-spec: SPEC_READY` when a separate normative contract is needed or plan-local observable acceptance with a named proof seam when it is not. Prefer the highest stable existing seam that can falsify the behavior. Justify a new seam and route any material architecture change to `solution-architect`; detailed test-first mechanics remain with `alaga`.
+8. Resolve every blocking dependency, recovery, migration, proof, documentation, and operational gap.
+9. Write the `Planned` revision and refresh the primary human view.
 
 Set `Planned` only when implementation needs no invented material requirement. Approval covers only the listed decisions and exact evidence identity.
 
@@ -111,11 +129,13 @@ When tickets, multiple candidates, dependencies, implementers, multi-session han
 
 After a material owner result changes plan meaning, update the semantic record first and refresh the primary human view at the next settled boundary. Keep non-plan-affecting operational detail outside the plan record.
 
+When a lifecycle result establishes knowledge that may outlive the initiative, add it to the plan's durable reconciliation inventory and reconcile it at the natural delivery boundary when possible.
+
 ## 6. Reconcile and close
 
-Before `Closed`, verify the decision frontier remains empty; no blocking decision/gap remains; delivery/review match the exact candidate; proof gaps/deferrals are explicit; freezes hold; and no material obsolete guidance remains.
+Before `Closed`, verify the decision frontier remains empty; no blocking decision/gap remains; delivery/review match the exact candidate; proof gaps/deferrals are explicit; and freezes hold.
 
-For affected `.learnings`, `.nongoals`, ADRs, or authorized project-local craft knowledge, require exact-current `amose` reconciliation. For ordinary documentation, require `updated now`, `already reconciled` with evidence, or `not applicable`.
+Read [durable knowledge reconciliation](references/durable-reconciliation.md). Require every material lifecycle insight to have a proved disposition, no obsolete guidance to remain, and no knowledge needed by future work to survive only in an untracked lifecycle resource.
 
 Update the record with final receipts/material semantic history and refresh the primary human view.
 

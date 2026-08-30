@@ -32,6 +32,14 @@ It does **not** authorize:
 
 Read [provider operations](references/provider-operations.md) before provider work and [failure heuristics](references/failure-heuristics.md) after a failed required check.
 
+## Delegate stewardship
+
+When subagents are available, the main agent delegates the active stewardship loop to one dedicated subagent. Give it the exact target identity, confirmed host trust, current head, authority boundaries, provider references, material reporting conditions, and stop conditions. Reuse that subagent for the run instead of creating a new watcher for each snapshot.
+
+The delegated agent owns observation, refreshes, allowed actions, and blocker routing. It reports immediately when the head, checks, mergeability, feedback, review state, capability, authority need, or readiness changes materially. It does not send unchanged-poll summaries. The main agent remains the user-facing coordinator, relays new instructions or authority, reports material concerns, and continues unrelated authorized work without duplicating the watcher.
+
+Do not run competing stewardship loops or concurrent mutations against the same item. Execute directly only when delegation is unavailable or this skill is already running inside the dedicated subagent.
+
 ## Observe provider facts
 
 Read provider state directly through the confirmed provider boundary; do not normalize it through a QP runtime.

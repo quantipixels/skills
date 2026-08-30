@@ -81,10 +81,12 @@ Without JavaScript, every item remains visible and the controls remain hidden.
   <div data-carousel-controls data-carousel-composition="compact" data-print="hide" hidden>
     <button type="button" data-carousel-previous>
       <span data-carousel-direction-glyph aria-hidden="true">&lt;</span>
+      <span data-carousel-previous-text data-visually-hidden></span>
     </button>
     <output data-carousel-position aria-live="off"></output>
     <button type="button" data-carousel-next>
       <span data-carousel-direction-glyph aria-hidden="true">&gt;</span>
+      <span data-carousel-next-text data-visually-hidden></span>
     </button>
   </div>
 
@@ -106,16 +108,18 @@ Without JavaScript, every item remains visible and the controls remain hidden.
 
   <!--
   Overlay composition: use when controls should sit at the visual edges.
-  The visible glyphs are hidden from assistive technology; aria-label supplies
-  each accessible name. Add artifact-specific contrast and hit-area styles.
+  The visible glyphs are hidden from assistive technology; visually hidden text
+  supplies each accessible name. Add artifact-specific contrast and hit-area styles.
 
   <div data-carousel-controls data-carousel-composition="overlay" data-print="hide" hidden>
     <button type="button" data-carousel-previous>
       <span data-carousel-direction-glyph aria-hidden="true">&lt;</span>
+      <span data-carousel-previous-text data-visually-hidden></span>
     </button>
     <output data-carousel-position data-visually-hidden aria-live="off"></output>
     <button type="button" data-carousel-next>
       <span data-carousel-direction-glyph aria-hidden="true">&gt;</span>
+      <span data-carousel-next-text data-visually-hidden></span>
     </button>
   </div>
   -->
@@ -159,12 +163,11 @@ Without JavaScript, every item remains visible and the controls remain hidden.
       if (Object.values(strings).some((value) => !value)) return;
 
       carousel.setAttribute("aria-roledescription", strings.role);
-      previous.setAttribute("aria-label", strings.previous);
-      next.setAttribute("aria-label", strings.next);
       const previousText = previous.querySelector("[data-carousel-previous-text]");
       const nextText = next.querySelector("[data-carousel-next-text]");
-      if (previousText) previousText.textContent = strings.previous;
-      if (nextText) nextText.textContent = strings.next;
+      if (!previousText || !nextText) return;
+      previousText.textContent = strings.previous;
+      nextText.textContent = strings.next;
       items.forEach((item) => item.setAttribute("aria-roledescription", strings.itemRole));
 
       let current = 0;

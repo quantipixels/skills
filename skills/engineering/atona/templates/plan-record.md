@@ -28,7 +28,7 @@ status: Draft
 
 ## Outcome and acceptance
 
-<desired outcome and observable acceptance>
+<current problem or gap, affected actors when material, desired outcome, and observable acceptance>
 
 ## Scope and non-goals
 
@@ -41,11 +41,15 @@ status: Draft
 
 ## Delivery and proof
 
-<phases/dependencies/blockers only when they actually exist; current proof and closure obligations>
+<governing specification identity/readiness when present; phases/dependencies/blockers only when they actually exist; current proof and closure obligations>
 
 ## Linked evidence
 
 <current owner results, records, source locators, revisions/cutoffs; link detailed packets rather than copying them>
+
+## Durable reconciliation
+
+<each material lifecycle insight with source identity, PROMOTE | ALREADY_REPRESENTED | LIFECYCLE_ONLY | NOT_APPLICABLE | BLOCKED, destination/owner, and exact proof; record an evidence-backed none when no durable obligation exists>
 
 ## Material history
 

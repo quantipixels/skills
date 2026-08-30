@@ -9,7 +9,7 @@ Browse the [documentation](https://quantipixels.com/skills).
 - Kọ Skill authors every capability/resource at the smallest adequate surface: guidance/reference → visible command → native/project/provider tool → focused library → deterministic script → engine only when it carries a substantial owned vertical.
 - Akọsílẹ̀ owns one repository-scoped `.qp`: the main worktree holds the real directory and linked worktrees expose symlinks. New records use stable semantic subjects; settings/index/record/artifact resources are created lazily.
 - Supporting skills keep detailed results with their native owners rather than copying caller-specific receipt/lifecycle schemas.
-- HTML Artifact creates reader-specific projections over owner records/evidence rather than duplicating source archives.
+- HTML Artifact creates reader-specific projections of supplied material without duplicating source archives or originating conclusions.
 - Generated `.qp` state stays outside Git by default.
 - Small public skills may intentionally exist as reusable model-steering contracts when a narrow named behavior saves users from restating longer instructions.
 - Thin public convenience entrypoints may wrap native commands when one safe memorable invocation materially improves installation, removal, or other human-facing distribution UX.
@@ -69,6 +69,7 @@ The real `.qp` belongs to the non-bare main worktree. Linked worktrees expose `.
 | `pare` | Read-only simplification audit/review |
 | `se-triage` | Supplied-evidence-first issue/report assessment |
 | `seda-pr` | Scoped commit/push and PR/MR creation/update |
+| `seda-spec` | Confirmed implementation-independent behavior specification |
 | `seda-ticket` | Vertical delivery tickets with blockers/acceptance |
 | `seda-sigidi` | Draft or explicitly integrate one agent's durable identity/values/boundaries/voice into a known host configuration |
 | `solution-architect` | Implementation-ready technical architecture design/read-only review |
@@ -99,10 +100,11 @@ Banner Design and Social Graphics intentionally remain narrow steering owners ev
 | `arojinle` | Resolve consequential product/plan/design choices through user-confirmed decision frontier |
 | `ayewo-igba-ise` | Evidence-backed coding-agent session/corpus retrospective |
 | `handoff` | Compact fresh-session handoff |
-| `html-artifact` | Selective traceable accessible HTML projection |
+| `html-artifact` | Selective traceable accessible HTML visualization of supplied material |
 | `iwadi` | High-trust primary-source research record |
 | `ro-wo` | Test one material premise before judgment |
 | `salaye` | Reusable plain-language explanation behavior for a supplied subject |
+| `system-cleanup` | Safe macOS storage audit, regenerable cleanup, worktree review, and external-drive offload |
 | `technical-writing` | Technical communication structure/clarity |
 | `yo-slop` | Final prose cleanup / explicit pruning without contract change |
 
