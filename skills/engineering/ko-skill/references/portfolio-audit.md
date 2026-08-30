@@ -18,7 +18,7 @@ Classify control shape only when it helps expose unnecessary workflow ceremony. 
 
 Apply [capability and resource placement](resource-placement.md) to material commands, references, scripts, templates, data, assets, libraries, and public owners.
 
-In particular, challenge instructions that teach a capable agent ordinary search, Git, shell/filesystem, editing, tool discovery, or host-capability fallback choreography. Preserve a small operational anchor when it materially reduces recurring rediscovery of a real capability entry point; do not mistake removal of every usable pointer for simplification. An anchor should remain smaller than a manual and leave volatile flags, versions, limits, and inventories to current authoritative evidence.
+In particular, challenge instructions that teach a capable agent ordinary search, Git, shell/filesystem, editing, tool discovery, or host-capability fallback choreography. Preserve a small operational anchor when it materially reduces recurring rediscovery of a **selected concrete capability**; do not mistake removal of every usable pointer for simplification. Also flag the opposite overreach: candidate/vendor/source/library/framework/host lists presented as anchors even though the skill is actually meant to discover or choose among them. An anchor should remain smaller than a manual and leave volatile flags, versions, limits, and inventories to current authoritative evidence.
 
 Apply [reference quality](reference-quality.md) to substantial expert references. Preserve recurring non-obvious judgment even when the model could reconstruct some of it; remove generic advice, stale framework/tool manuals, volatile inventories, duplicated representations, and wrong-owner material.
 
