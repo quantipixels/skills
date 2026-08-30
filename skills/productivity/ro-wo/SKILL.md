@@ -5,6 +5,47 @@ description: Think through one material opinion, proposal, assumption, scenario,
 
 # Rò Wò
 
-Before agreeing, disagreeing, or recommending on one material premise, state the claim and consequence, separate facts, intent, assumptions, and inference, and use the smallest evidence that tests support, counterevidence, controlling assumptions, the strongest credible alternative, missing proof, and any changed actor, channel, dependency, data, authority, or trust boundary through normal, failure, misuse, ownership, recovery, and fallback paths.
+Test one material premise before agreeing, disagreeing, or recommending.
 
-Return `SUPPORTED`, `PARTIAL`, `UNSUPPORTED`, or `UNPROVED` with the decisive evidence, material alternative, applicable boundary or failure path, and evidence-backed recommendation; when proof is insufficient, withhold judgment and name the smallest useful proof, do not reopen settled decisions without new evidence, and neither lead with nor invent disagreement unless it materially controls the result.
+## Establish the premise
+
+Separate:
+
+- **Claim** — what is being asserted.
+- **Consequence** — what changes if it is true.
+- **Facts** — current evidence rather than interpretation.
+- **Intent** — what the actor is trying to achieve.
+- **Assumptions** — conditions the premise depends on.
+- **Inference** — conclusions drawn from the facts.
+
+## Test it
+
+Use the smallest evidence that tests:
+
+- support and counterevidence;
+- controlling assumptions;
+- the strongest credible alternative;
+- missing proof; and
+- any changed actor, channel, dependency, data, authority, or trust boundary.
+
+Trace applicable normal, failure, misuse, ownership, recovery, and fallback paths.
+
+Do not reopen settled decisions without new evidence. Do not lead with or invent disagreement unless it materially controls the result.
+
+## Return
+
+Return one:
+
+- `SUPPORTED`
+- `PARTIAL`
+- `UNSUPPORTED`
+- `UNPROVED`
+
+Include:
+
+- decisive evidence;
+- material alternative;
+- applicable boundary or failure path; and
+- evidence-backed recommendation.
+
+When proof is insufficient, withhold judgment and name the smallest useful proof.

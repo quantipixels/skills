@@ -10,9 +10,28 @@ Publish one scoped current branch as one ready-for-review or explicitly requeste
 
 ## Authority
 
-Invocation authorizes staging/committing the scoped work, non-force pushing the current branch, and creating/updating one item with title/body and existing high-confidence labels. New items default to ready. Create/transition to draft only when the current request explicitly asks for draft. Preserve an existing item's publication state unless an explicit transition is requested.
+Invocation authorizes:
 
-It does not authorize source edits, unrelated changes, empty commits, amend/rebase/squash/history rewrite, hook bypass, force-push, reviewer/assignee notifications, approval, merge, close, or issue-closing effects without their separate authority.
+- staging/committing the scoped work;
+- non-force pushing the current branch;
+- creating/updating one item with title/body; and
+- applying existing high-confidence labels.
+
+Publication-state rules:
+
+- new items default to ready;
+- create/transition to draft only when the current request explicitly asks for draft; and
+- preserve an existing item's publication state unless an explicit transition is requested.
+
+Invocation does **not** authorize:
+
+- source edits or unrelated changes;
+- empty commits;
+- amend, rebase, squash, or other history rewrite;
+- hook bypass or force-push;
+- reviewer/assignee notifications;
+- approval, merge, or close; or
+- issue-closing effects without their separate authority.
 
 ## Publish
 
@@ -27,4 +46,16 @@ Preserve existing labels; apply only existing high-confidence labels. Reviewer s
 
 ## Report
 
-Return commit SHA when created, remote/readback SHA, canonical PR/MR URL, requested/observed publication state, applied/suggested labels, verification, capability gaps, issue-link effects, and next action. Do not claim merge readiness or approval.
+Return:
+
+- commit SHA when created;
+- remote/readback SHA;
+- canonical PR/MR URL;
+- requested/observed publication state;
+- applied/suggested labels;
+- verification;
+- capability gaps;
+- issue-link effects; and
+- next action.
+
+Do not claim merge readiness or approval.
