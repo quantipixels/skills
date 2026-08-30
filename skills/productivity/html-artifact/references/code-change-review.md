@@ -66,17 +66,27 @@ The representative vanilla entry point is:
 import { FileDiff, parsePatchFiles } from "@pierre/diffs";
 
 const patches = parsePatchFiles(patchText, candidateCacheKey);
-const view = new FileDiff({
-  theme: { dark: "pierre-dark", light: "pierre-light" },
-});
+const files = patches.flatMap((patch) => patch.files);
+const container = document.querySelector<HTMLElement>("#diff")!;
 
-view.render({
-  fileDiff: patches[0].files[0],
-  containerWrapper: document.querySelector<HTMLElement>("#diff")!,
-});
+container.replaceChildren();
+if (files.length === 0) {
+  container.dataset.diffState = "empty";
+  container.textContent = "No renderable file diffs were found.";
+} else {
+  for (const fileDiff of files) {
+    const fileContainer = document.createElement("section");
+    container.append(fileContainer);
+
+    const view = new FileDiff({
+      theme: { dark: "pierre-dark", light: "pierre-light" },
+    });
+    view.render({ fileDiff, containerWrapper: fileContainer });
+  }
+}
 ```
 
-Use `parsePatchFiles` for a supplied unified patch. Patch metadata is partial unless authorized full old/new contents hydrate it. Use `parseDiffFromFile` when exact file contents are available; pass `null` for the missing side of an added or deleted file. Derive cache keys from the pinned candidate and change them whenever source contents, filename, language, or revision changes.
+Use `parsePatchFiles` for a supplied unified patch and render every returned file. If the view intentionally renders only one file, label it `Partial` and identify the omitted coverage. Patch metadata is partial unless authorized full old/new contents hydrate it. Use `parseDiffFromFile` when exact file contents are available; pass `null` for the missing side of an added or deleted file. Derive cache keys from the pinned candidate and change them whenever source contents, filename, language, or revision changes.
 
 Pierre renders code; it does not fetch a pull request or merge request, decide completeness, perform review, or publish comments. Do not use its experimental editing, merge-resolution, or worker surfaces for a read-only review view unless the requested outcome requires that distinct behavior and it is separately justified and proved.
 
