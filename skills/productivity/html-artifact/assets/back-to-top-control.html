@@ -23,15 +23,16 @@ script keeps keyboard focus aligned with the destination after navigation.
     block-size: var(--back-to-top-size, 2.75rem);
     border: var(--back-to-top-border-width, 1px) solid var(--back-to-top-border-color, currentColor);
     border-radius: var(--back-to-top-radius, 50%);
+    box-sizing: border-box;
     box-shadow: var(--back-to-top-shadow, 0 0.25rem 0.75rem rgb(0 0 0 / 0.18));
     color: var(--back-to-top-color, CanvasText);
     display: inline-flex;
     inline-size: var(--back-to-top-size, 2.75rem);
-    inset-block-end: max(var(--back-to-top-inset-block, 1rem), env(safe-area-inset-bottom));
-    inset-inline-end: max(var(--back-to-top-inset-inline, 1rem), env(safe-area-inset-right));
+    bottom: max(var(--back-to-top-inset-bottom, 1rem), env(safe-area-inset-bottom));
     justify-content: center;
     padding: 0;
     position: fixed;
+    right: max(var(--back-to-top-inset-right, 1rem), env(safe-area-inset-right));
     text-decoration: none;
     touch-action: manipulation;
     z-index: var(--back-to-top-z-index, 1000);
@@ -62,11 +63,10 @@ Add the target attributes to the artifact's existing opening element:
 </header>
 -->
 
-<a data-back-to-top href="#artifact-top">
+<a data-back-to-top href="#artifact-top" aria-label="Back to top">
   <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24">
     <path d="m6 15 6-6 6 6"></path>
   </svg>
-  <span data-visually-hidden>Back to top</span>
 </a>
 
 <script>
