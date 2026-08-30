@@ -1,0 +1,158 @@
+<!--
+Reusable single-select collection filtering for HTML Artifact output.
+
+Embed assets/visual-foundation.css first. Keep the controls hidden in source so
+all items remain visible when JavaScript is unavailable. Give each control one
+exact data-filter-value token. Give each item a comma-separated list of exact
+tokens in data-filter-values. The all token, templates, labels, and visible
+control text are artifact-owned translatable data. Keep {count}, {total}, and
+{label} exact inside the result template and {label} exact inside the zero
+template.
+
+This control owns presentation state only. It does not infer categories,
+predicates, search terms, sort order, pagination, or URL state. Use a separate
+control instance for each independently filtered collection.
+-->
+
+<style>
+  [data-filter-controls] {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--collection-filter-gap, 0.75rem);
+  }
+
+  [data-filter-control] {
+    max-inline-size: 100%;
+    min-block-size: var(--collection-filter-min-block-size, 2.75rem);
+    padding-block: var(--collection-filter-padding-block, 0.5rem);
+    padding-inline: var(--collection-filter-padding-inline, 0.75rem);
+    white-space: normal;
+  }
+
+  [data-filter-control][aria-pressed="true"] {
+    font-weight: 700;
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+  }
+
+  @media print {
+    [data-filter-controls],
+    [data-filter-status],
+    [data-filter-zero] {
+      display: none !important;
+    }
+
+    [data-filter-item][hidden] {
+      display: revert !important;
+    }
+  }
+</style>
+
+<section
+  data-collection-filter
+  data-filter-all-value="all"
+  data-filter-result-template="Showing {count} of {total} items for {label}."
+  data-filter-zero-template="No items match {label}."
+  aria-label="[Describe this filterable collection]"
+>
+  <div data-filter-controls role="group" aria-label="[Describe these filter controls]" hidden>
+    <button type="button" data-filter-control data-filter-value="all" aria-pressed="true">All</button>
+    <!-- Add one button per supplied filter value. -->
+  </div>
+
+  <p data-filter-status role="status" aria-atomic="true"></p>
+  <p data-filter-zero hidden></p>
+
+  <div data-filter-items>
+    <!--
+    <article data-filter-item data-filter-values="example,secondary">
+      Add one supplied collection item here.
+    </article>
+    -->
+  </div>
+</section>
+
+<script>
+  (() => {
+    const format = (template, values) => Object.entries(values).reduce(
+      (text, [key, value]) => text.replaceAll(`{${key}}`, () => String(value)),
+      template,
+    );
+
+    const tokens = (value) => value
+      .split(",")
+      .map((token) => token.trim())
+      .filter(Boolean);
+
+    document.querySelectorAll("[data-collection-filter]").forEach((filter) => {
+      const owned = (selector) => Array.from(filter.querySelectorAll(selector))
+        .filter((element) => element.closest("[data-collection-filter]") === filter);
+
+      const controls = owned("[data-filter-controls]")[0];
+      const status = owned("[data-filter-status]")[0];
+      const zero = owned("[data-filter-zero]")[0];
+      const items = owned("[data-filter-item]");
+      if (!controls || !status || !zero || !items.length) return;
+
+      controls.hidden = true;
+      const buttons = Array.from(controls.querySelectorAll("button[data-filter-control][data-filter-value]"))
+        .filter((button) => button.closest("[data-collection-filter]") === filter);
+      const allValue = filter.dataset.filterAllValue;
+      const resultTemplate = filter.dataset.filterResultTemplate;
+      const zeroTemplate = filter.dataset.filterZeroTemplate;
+      const values = buttons.map((button) => button.dataset.filterValue).filter(Boolean);
+      const itemValues = items.map((item) => tokens(item.dataset.filterValues || ""));
+      const pressed = buttons.filter((button) => button.getAttribute("aria-pressed") === "true");
+      const valid = buttons.length > 1
+        && allValue
+        && resultTemplate
+        && zeroTemplate
+        && ["{count}", "{total}", "{label}"].every((token) => resultTemplate.includes(token))
+        && zeroTemplate.includes("{label}")
+        && values.length === buttons.length
+        && new Set(values).size === values.length
+        && values.every((value) => value === value.trim() && !value.includes(","))
+        && values.includes(allValue)
+        && buttons.every((button) => button.textContent.trim())
+        && pressed.length <= 1
+        && itemValues.every((itemTokens) => itemTokens.length
+          && itemTokens.every((token) => token !== allValue && values.includes(token)));
+      if (!valid) return;
+
+      const apply = (value, announce) => {
+        const active = buttons.find((button) => button.dataset.filterValue === value)
+          || buttons.find((button) => button.dataset.filterValue === allValue);
+        if (!active) return;
+
+        const activeValue = active.dataset.filterValue;
+        const label = active.textContent.trim();
+        let count = 0;
+
+        buttons.forEach((button) => {
+          button.setAttribute("aria-pressed", String(button === active));
+        });
+
+        items.forEach((item) => {
+          const matches = activeValue === allValue
+            || tokens(item.dataset.filterValues).includes(activeValue);
+          item.hidden = !matches;
+          if (matches) count += 1;
+        });
+
+        const message = format(resultTemplate, { count, total: items.length, label });
+        status.textContent = announce ? message : "";
+        zero.textContent = format(zeroTemplate, { count, total: items.length, label });
+        zero.hidden = count !== 0;
+      };
+
+      buttons.forEach((button) => {
+        button.addEventListener("click", () => apply(button.dataset.filterValue, true));
+      });
+
+      const initial = pressed[0]?.dataset.filterValue || allValue;
+      apply(initial, false);
+      controls.hidden = false;
+      filter.dataset.filterReady = "true";
+    });
+  })();
+</script>

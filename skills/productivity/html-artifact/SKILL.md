@@ -40,12 +40,14 @@ Interaction may navigate/filter/compare/sequence/reveal supplied material but mu
 
 Use existing artifact/project shell behavior when it already owns the need. For standalone QP HTML:
 
-- [visual foundation](assets/visual-foundation.css) supplies general accessibility/overflow/reduced-motion/print resilience and is the default reusable foundation when equivalent behavior is not already present;
-- [theme control](assets/theme-control.html) is **conditional** — embed only when explicit user theme switching materially improves the artifact; system light/dark styling does not require a toggle;
+- [visual foundation](assets/visual-foundation.css) supplies general accessibility/overflow/reduced-motion/print resilience, including semantic-table containment with a tunable narrow-container rule, and is the default reusable foundation when equivalent behavior is not already present;
+- [theme control](assets/theme-control.html) is **default** — embed it unless the existing artifact/project shell supplies an equivalent explicit user control; system light/dark styling alone does not replace the toggle;
+- [back-to-top control](assets/back-to-top-control.html) is **required after its trigger** — embed it when page length or navigation makes returning to the opening context require substantial reverse scrolling; omit it for a short single-view artifact;
 - [report control](assets/report-control.html) is **conditional** — embed only when report deep-links must open hidden ancestor disclosures or selected disclosures must expand for print/PDF;
+- [collection filter](assets/collection-filter-control.html) is **conditional** — embed only for a supplied single-select categorical view; keep category meaning/predicates source-owned and keep every item visible without JavaScript and in print;
 - [carousel control](assets/carousel-control.html) remains branch-specific to prototype/visual collections that need isolated variant navigation.
 
-A reusable asset existing in the package is never sufficient reason to include it.
+Follow each asset's stated default or trigger. Its existence is not another reason to include it.
 
 For substantial artifacts, embed a compact `application/json` context capsule before large presentation resources: identity, owner-record path/revision, purpose, current outcome/status, blockers, next action, completion condition, high-value source locators, projected source revision and proof freshness. Never embed complete records/logs/archives or machine-specific absolute paths merely for context.
 

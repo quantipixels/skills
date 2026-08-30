@@ -92,6 +92,8 @@ Keep supplied designs, screens, diagrams, and other visual evidence primary when
 
 Keep the opening useful without a disclosure. When compatible, include a skip link, title and status, local navigation, governing representation, supporting evidence, limits, resource disclosure, and revision state. Omit empty sections. Link conclusions and recommendations to evidence or source identifiers.
 
+When report length or navigation makes returning to the opening context require substantial reverse scrolling, embed [back-to-top control](../assets/back-to-top-control.html) after the final reader-facing content. Target the existing opening landmark or heading; do not create a second opening merely to host the control.
+
 Before delivery, run:
 
 - **Purpose counterfactual:** changing purpose changes opening, order, or action layer.
@@ -113,7 +115,9 @@ Use an accepted companion evidence bundle when exact evidence is important but t
 
 Give sources, evidence groups, and retained entries stable identifiers. Mark required print disclosures with `data-print-expand` and embed [report control](../assets/report-control.html). It reveals fragment targets and restores disclosure state after print. Do not print-expand a large raw log when an indexed native source provides coverage.
 
-Use `data-report-section`, `data-table-wrap`, `data-long-text`, and `data-log` for their named foundation behavior. Add report styling only when the material needs it.
+Use `data-report-section`, `data-table-wrap`, `data-long-text`, and `data-log` for their named foundation behavior. Keep a wide semantic table inside `data-table-wrap`. Give a scrollable wrapper `tabindex="0"` plus an accessible label or description. Tune `--artifact-table-min-inline-size` and the foundation's container query to the actual columns. Do not stack cells into cards or duplicate header text as presentation data.
+
+When one supplied categorical filter materially reduces scanning, embed [collection filter](../assets/collection-filter-control.html). Keep its value tokens, labels, and category membership source-owned. The control owns only the visible subset and result state. It does not own search, compound predicates, sorting, pagination, or URL state.
 
 After a material living update, reconcile title, version, context capsule, summary, navigation, affected detail, recommendations, dispositions, source register, limits, and revision note. Never let new detail silently contradict an earlier headline or status.
 
