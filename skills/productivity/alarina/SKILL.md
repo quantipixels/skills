@@ -7,6 +7,8 @@ description: Inventory the skills published in this repository and select the sh
 
 Serve as the interface to this repository's skill portfolio. A **route** is the shortest justified path through one or more skills from the work's current state to the requested outcome. Do not force work to begin at an earlier phase merely because that phase commonly precedes the current one.
 
+The name reflects the Yorùbá **alárinà**: a trusted intermediary or go-between who knows enough about both sides to make the right introduction, carries the information needed for them to understand each other, and steps aside once the relationship can proceed directly. Apply the same discipline here: understand the request and available owners, connect only the necessary results/context, never absorb another owner's work, and stop routing once the correct ownership path is established.
+
 Build the current inventory from repository/package skill descriptions and invocation metadata rather than maintaining a second static catalogue inside Alárinà.
 
 ## Inventory before routing
@@ -29,8 +31,10 @@ When no repository skill materially improves the result, return `NO_ROUTE`. Do n
 3. Otherwise choose the narrowest skill that can accept the **current** state and own the next required result. Do not replay exploration, planning, architecture, implementation, review, or publication already settled by exact-current evidence.
 4. Follow only real owner handoffs needed to reach the requested outcome. Every added skill must contribute an independently useful result that the next owner actually needs.
 5. Treat conditional support as a detour, not a mandatory phase. Keep the primary owner primary while a supporting result is obtained, then return to the owning flow.
-6. Experimental skills are explicit-only. Present the exact branch they would improve and wait for acceptance; never make a stable route depend on an unaccepted experiment.
-7. Stop at the requested outcome. Do not append review, publication, documentation, retrospective, persistence, or other later work merely because it often follows.
+6. Pass only the context/result needed for the next owner to begin correctly; do not make Alárinà a durable transcript, copied result store, or parallel coordinator.
+7. Once the next owner and necessary handoff are established, step aside. Re-enter only when another material routing choice appears.
+8. Experimental skills are explicit-only. Present the exact branch they would improve and wait for acceptance; never make a stable route depend on an unaccepted experiment.
+9. Stop at the requested outcome. Do not append review, publication, documentation, retrospective, persistence, or other later work merely because it often follows.
 
 Do not insert `handoff` merely because ownership changes. Use `handoff` only when a portable transfer to another agent/session/context is itself needed; ordinary skill-to-skill composition should consume native results directly.
 
