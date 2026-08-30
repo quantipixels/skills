@@ -30,7 +30,7 @@ Invocation does **not** authorize:
 - amend, rebase, squash, or other history rewrite;
 - hook bypass or force-push;
 - reviewer/assignee notifications;
-- approval, merge, close, or reopen; or
+- approval, merge, or close; or
 - issue-closing effects without their separate authority.
 
 ## Publish
