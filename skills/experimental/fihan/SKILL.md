@@ -12,16 +12,14 @@ The local resource remains authoritative. Explicit invocation authorizes task-sc
 
 ## Resolve tooling from current official evidence
 
-Do not hardcode an installation/setup manual or assume current CLI syntax, but retain the smallest entry surfaces needed to avoid rediscovering each transport from zero.
+Do not hardcode an installation/setup manual or assume current CLI syntax, but retain the smallest entry surfaces needed to avoid rediscovering each selected transport from zero.
 
-Current authoritative anchors:
+Authoritative entry points:
 
-- Tailscale Serve overview: https://tailscale.com/docs/features/tailscale-serve
-- Tailscale Serve CLI: https://tailscale.com/docs/reference/tailscale-cli/serve
-- Tailscale Serve examples: https://tailscale.com/docs/reference/examples/serve
+- Tailscale Serve: https://tailscale.com/docs/features/tailscale-serve
 - Tailcat upstream: https://github.com/tailscale/tailcat
 
-If Tailscale is already installed, `tailscale serve --help` confirms the installed interface and `tailscale serve status` is the representative read-only pre-state check. Current Serve syntax has the shape `tailscale serve [flags] <target>`; resolve the exact target form from installed help/current docs before mutation.
+If Tailscale is already installed, `tailscale serve --help` confirms the installed interface and `tailscale serve status` is the representative read-only pre-state check. Resolve the exact route/target syntax from installed help and current Serve documentation before mutation.
 
 If Tailcat is already installed, prefer its embedded upstream documentation via `tailcat --readme` (and `tailcat --help` when needed) before consulting a newer upstream revision. Tailcat explicitly makes no CLI/API/wire-format stability promise, so do not freeze its sender/receiver syntax here.
 
