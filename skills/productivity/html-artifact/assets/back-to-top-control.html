@@ -5,7 +5,8 @@ Use this control when page length or navigation makes returning to the opening
 context require substantial reverse scrolling. Add id="artifact-top",
 data-back-to-top-target, and tabindex="-1" to the existing top landmark or
 opening heading. Place the link after the final reader-facing content and
-translate its visible text to the artifact language.
+translate its accessible label to the artifact language. The default style
+keeps that document order while presenting a floating icon at the bottom-right.
 
 The native fragment link still scrolls when JavaScript is unavailable. The
 script keeps keyboard focus aligned with the destination after navigation.
@@ -18,11 +19,33 @@ script keeps keyboard focus aligned with the destination after navigation.
 
   [data-back-to-top] {
     align-items: center;
+    background: var(--back-to-top-background, Canvas);
+    block-size: var(--back-to-top-size, 2.75rem);
+    border: var(--back-to-top-border-width, 1px) solid var(--back-to-top-border-color, currentColor);
+    border-radius: var(--back-to-top-radius, 50%);
+    box-sizing: border-box;
+    box-shadow: var(--back-to-top-shadow, 0 0.25rem 0.75rem rgb(0 0 0 / 0.18));
+    color: var(--back-to-top-color, CanvasText);
     display: inline-flex;
-    max-inline-size: 100%;
-    min-block-size: var(--back-to-top-min-block-size, 2.75rem);
-    padding-block: var(--back-to-top-padding-block, 0.5rem);
-    padding-inline: var(--back-to-top-padding-inline, 0.75rem);
+    inline-size: var(--back-to-top-size, 2.75rem);
+    bottom: max(var(--back-to-top-inset-bottom, 1rem), env(safe-area-inset-bottom));
+    justify-content: center;
+    padding: 0;
+    position: fixed;
+    right: max(var(--back-to-top-inset-right, 1rem), env(safe-area-inset-right));
+    text-decoration: none;
+    touch-action: manipulation;
+    z-index: var(--back-to-top-z-index, 1000);
+  }
+
+  [data-back-to-top] svg {
+    block-size: var(--back-to-top-icon-size, 1.25rem);
+    fill: none;
+    inline-size: var(--back-to-top-icon-size, 1.25rem);
+    stroke: currentColor;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 2;
   }
 
   @media print {
@@ -40,7 +63,11 @@ Add the target attributes to the artifact's existing opening element:
 </header>
 -->
 
-<a data-back-to-top href="#artifact-top">Back to top</a>
+<a data-back-to-top href="#artifact-top" aria-label="Back to top">
+  <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24">
+    <path d="m6 15 6-6 6 6"></path>
+  </svg>
+</a>
 
 <script>
   (() => {
