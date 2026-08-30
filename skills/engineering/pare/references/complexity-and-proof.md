@@ -45,15 +45,26 @@ Before recommending extraction/splitting, compare before/after:
 
 If these do not fall, the change likely relocates complexity.
 
-## Test explosion as representation evidence
+## Proof portfolio
 
-Many tests can be necessary, but first ask whether they compensate for accidental implementation states. If simplification removes impossible states/duplicate branches, recompute the required proof portfolio rather than preserving tests for paths that no longer exist.
+Audit proof by invariant rather than file count or coverage percentage. Many tests can be necessary, but first ask whether they compensate for accidental states, duplicated branches, or implementation choreography.
 
-A compact proof portfolio still retains distinct public/security/data/transaction/concurrency/recovery/adapter/interaction invariants. Do not delete tests merely to match a target count.
+When proof volume or duplication is material, classify each coherent proof group:
+
+- `KEEP` — uniquely protects a material stable contract;
+- `MERGE` — several tests protect the same invariant and can become one clearer parameterized/boundary contract without losing distinct failure detection;
+- `DELETE` — implementation-detail, duplicate, obsolete-state, or temporary scaffolding proof whose complete signal survives elsewhere; or
+- `MOVE_TO_STRONGER_OWNER` — compiler, type system, schema, static rule, architecture rule, integration seam, or other owner can prove the same invariant more cheaply and reliably.
+
+Every `DELETE` or `MOVE_TO_STRONGER_OWNER` recommendation names the surviving proof owner. Do not recommend deletion merely because code looks simple or test count is high.
+
+A compact proof portfolio still retains distinct public/API compatibility, authorization/security, money/data integrity, transaction/locking/idempotency, concurrency/cancellation, recovery/restart/migration, external adapter/provider, runtime, accessibility, and interaction invariants when no stronger complete owner exists.
+
+If simplification removes impossible states or duplicate branches, recompute the required proof portfolio instead of preserving tests for paths that no longer exist. Parẹ́ remains read-only: `alaga` or the active implementation owner applies accepted proof changes and reruns affected gates.
 
 ## Output supplement
 
-For a material complexity finding include:
+For a material complexity/proof finding include:
 
 ```text
 Signals:
@@ -63,5 +74,6 @@ State-space/ownership issue:
 Relocation risk:
 Smallest semantic reduction or keep reason:
 Proof consequence:
+Surviving proof owner:
 Confidence/limits:
 ```
