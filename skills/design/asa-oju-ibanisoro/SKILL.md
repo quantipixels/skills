@@ -11,8 +11,8 @@ Implement confirmed UI direction in application code. Preserve the project's fra
 
 1. Inspect the actual project, manifests, component conventions, configuration, and current tooling before assuming framework/tool versions or UI libraries. Use the project's own package manager/wrappers and current tool/project documentation rather than cached QP commands.
 2. If visual direction is missing, use `amoye-ui-ux`. If canonical tokens/specifications are missing or changing materially, use `eto-apere`.
-3. Read [component-library decision](references/ui-component-libraries.md) when the project/user has not already settled the library. Never silently introduce a competing library.
-4. Load only applicable implementation references: accessibility, theming, or Tailwind customization. Use current official/project documentation for volatile component APIs and utility syntax instead of bundled manuals.
+3. Read [component-library decision](references/ui-component-libraries.md) when the project/user has not already settled the library. Never silently introduce a competing library. When introducing or switching a library materially changes system-wide source ownership, runtime/bundle architecture, compatibility/migration, or long-term integration boundaries, use `solution-architect` for that technical decision before implementation.
+4. For accessibility, component APIs, theming, utility/framework configuration, and version-specific behavior, use the selected library/framework's current official documentation plus current project conventions. Do not rely on QP-bundled framework manuals.
 
 ## Implementation rules
 
@@ -34,7 +34,4 @@ Run the project's applicable native proof for the changed area, then inspect the
 
 ## Resources
 
-- `references/ui-component-libraries.md` — component-library selection method.
-- `references/shadcn-accessibility.md` — non-obvious accessibility/interaction calibration when shadcn/Radix patterns apply.
-- `references/shadcn-theming.md` — shadcn theme/token integration when selected.
-- `references/tailwind-customization.md` — project-native Tailwind extension guidance.
+- `references/ui-component-libraries.md` — component-library selection method when the choice is not already settled.
