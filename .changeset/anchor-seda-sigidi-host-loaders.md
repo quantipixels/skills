@@ -2,4 +2,4 @@
 "qp-skills": minor
 ---
 
-Anchor `seda-sigidi` host-loader guidance to current Codex, Claude Code, OpenCode, and OpenClaw documentation. Keep a small loader starting point in the skill while requiring exact-current verification before integration instead of leaving host discovery as an abstract search instruction.
+Make `seda-sigidi` resolve each agent host's exact-current instruction/persona loader from host-owned documentation, diagnostics, and configuration instead of maintaining a fixed Codex/Claude Code/OpenCode/OpenClaw loader table. Integration now requires evidence that the edited target is actually loaded.

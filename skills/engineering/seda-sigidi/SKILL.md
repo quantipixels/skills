@@ -14,16 +14,11 @@ Give one AI agent a durable soul: identity, values, boundaries, and voice ground
 
 ## 1. Pin the host contract
 
-Discover which files the host loads without being told, and decide single-file versus split by loader behavior, not by taste. The table below is an operational anchor, not a frozen loader specification. Verify the exact-current rule from the linked host documentation before integration when loader behavior can affect the target.
+Identify the actual agent host/product and material version/configuration when it affects loading. Discover its current instruction, memory, workspace, or persona loading contract from the host's own documentation, installed help/diagnostics, and exact current configuration rather than from a QP-maintained host table.
 
-| Host | Current loading anchor | Separate persona files | Authoritative entry |
-| --- | --- | --- | --- |
-| Codex | Codex home (`$CODEX_HOME`, default `~/.codex`) loads `AGENTS.override.md` or `AGENTS.md`; project guidance is discovered from project root toward the working directory using `AGENTS.override.md` / `AGENTS.md` | none | https://developers.openai.com/codex/guides/agents-md |
-| Claude Code | project/user `CLAUDE.md` instructions, including parent-chain and nested discovery rules | none | https://code.claude.com/docs/en/memory |
-| OpenCode | global/project `AGENTS.md` instruction discovery | none | https://opencode.ai/docs/rules |
-| OpenClaw | agent workspace bootstrap files including `AGENTS.md`, `SOUL.md`, `IDENTITY.md`, and `USER.md` | supported | https://docs.openclaw.ai/concepts/agent-workspace |
+Establish which targets are actually loaded, their precedence/scope, and whether the host supports a dedicated persona/soul file or requires identity content inline in an already-loaded instruction file. Decide single-file versus split by loader behavior, not by taste. Existing loaded project/user instructions outrank a generic starter shape.
 
-Use the host's current diagnostics/discovery surface when available to confirm what actually loaded rather than inferring activation from a file existing on disk. Do not expand this table into a cached catalogue of precedence flags, limits, fallback filenames, or host versions.
+Use a host-provided diagnostics or inspection surface when available to confirm what actually loaded rather than inferring activation from a file existing on disk. Treat current loader paths, fallback filenames, precedence, limits, and host-specific capabilities as volatile host evidence. If `integrate` cannot establish an exact loaded target responsibly, return the loader/configuration evidence gap instead of guessing a familiar filename.
 
 When a split soul file would not load, integrate inline. Ask before overwriting an existing identity block. Preserve unrelated content outside that block.
 
@@ -47,9 +42,10 @@ For `draft`, verify the proposed content against the confirmed evidence and temp
 
 For `integrate`, read back the complete changed file, and check structure, frontmatter, and unchanged neighbors. Report:
 
+- the host/loading evidence that establishes the edited target is active;
 - a moves table from old location to new section;
 - dropped, duplicated, or weakened items, each with its reason;
-- open questions that need the human's decision;
+- open questions that need the human's decision; and
 - final state as `source | installed | active | published`.
 
 Return the proposed soul for `draft`, or the report and changed file path for `integrate`. Do not install, activate, synchronize, publish, commit, or push; those need separate authority.
