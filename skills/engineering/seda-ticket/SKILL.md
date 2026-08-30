@@ -1,11 +1,11 @@
 ---
 name: seda-ticket
-description: Break a supplied plan, specification, issue, conversation, or work description into consumable delivery tickets. Use when work needs small vertical slices, explicit blockers, acceptance criteria, and a clear startable frontier; exclude persistence, publication, implementation, review, Git, and provider operations.
+description: Break a supplied plan, specification, issue, conversation, or work description into consumable delivery tickets. Use when work needs small vertical slices, explicit dependencies, acceptance criteria, and a clear startable frontier; exclude persistence, publication, implementation, active execution/review tracking, Git, and provider operations.
 ---
 
 # Ṣẹ̀dá Ticket
 
-Turn supplied work into a confirmed set of tickets that fresh coding agents can implement and verify. Own decomposition and the portable lifecycle semantics only; the caller owns grouping, storage, publication, execution, and lifecycle transitions.
+Turn supplied work into a confirmed set of tickets that fresh coding agents can implement and verify. Own decomposition, dependency/startability semantics, and terminal ticket disposition only; the caller owns grouping, storage, publication, execution, review progress, and reconciliation from owner results.
 
 ## 1. Understand the work
 
@@ -32,33 +32,41 @@ Each ticket contains:
 - **What it delivers** — the end-to-end behavior and value.
 - **Context** — only required stable facts, constraints, or source references.
 - **Acceptance and proof** — observable completion conditions and how to verify them.
-- **Blocked by** — exact draft numbers or supplied ticket identities that prevent starting, or `None`.
+- **Depends on** — exact draft numbers or supplied ticket identities that must be `Done`, or `None`.
+- **External prerequisite** — only when a named non-ticket fact/authority/resource prevents starting; include owner/trigger when known.
 - **Boundary** — only when an exclusion prevents a plausible wrong implementation.
-- **State** — `Ready` for every newly confirmed ticket.
-- **Allowed next** — derived from the current state.
-- **State evidence** — only when the current state requires it.
+- **State** — `Open`, `Done`, or `Cancelled`.
+- **Terminal evidence** — acceptance/proof result for `Done`; cancellation authority/reason for `Cancelled`.
 
-Use temporary numbers while drafting and preserve identities supplied by the caller. Return an ungrouped dependency-ordered set unless the caller supplies grouping. Do not create synthetic parent tickets or own durable IDs, lifecycle persistence, transition execution, lineage, or reconciliation.
+Use temporary numbers while drafting and preserve identities supplied by the caller. Return an ungrouped dependency-ordered set unless the caller supplies grouping. Do not create synthetic parent tickets or own durable IDs, lifecycle persistence, execution/review states, transition history, assignees, timestamps, lineage, or reconciliation.
 
 Avoid guessed file paths, long snippets, generic implementation checklists, duplicated repository rules, and artificial dependencies. Include an exact stable reference when necessary. Include a short prototype-derived snippet only when prose cannot preserve the decision, and label its source.
 
-Use this lifecycle:
+## Startability and terminal disposition
 
-| State | Allowed next | Required state evidence |
+Ticket state is deliberately not an execution-progress state machine:
+
+| State | Meaning | Required evidence |
 | --- | --- | --- |
-| `Ready` | `In Progress`, `Cancelled` | none |
-| `In Progress` | `Blocked`, `In Review`, `Cancelled` | none |
-| `Blocked` | its recorded `resume_to`, `Cancelled` | reason, unblock owner or trigger, and `resume_to` set to either `In Progress` or `In Review`; retain exact candidate and proof summary when resuming review |
-| `In Review` | `In Progress`, `Blocked`, `Done`, `Cancelled` | exact candidate and proof summary |
-| `Done` | none | acceptance and proof result |
-| `Cancelled` | none | cancellation authority and reason |
+| `Open` | delivery remains outstanding | none |
+| `Done` | current owner evidence proves the ticket's acceptance/proof | acceptance and proof result |
+| `Cancelled` | the ticket is intentionally removed from required delivery | cancellation authority and reason |
 
-Only `Done` resolves a dependency. Keep a dependant `Ready` until every dependency is `Done`; a `Cancelled` dependency requires re-planning. The **Startable frontier** is every `Ready` ticket whose dependencies are all `Done`. Remove stale state evidence when a transition no longer requires it. Do not add lifecycle history, timestamps, assignees, or an event log.
+Derive startability for an `Open` ticket:
+
+- `STARTABLE` — every ticket dependency is `Done` and no external prerequisite is active;
+- `BLOCKED` — at least one ticket dependency or named external prerequisite is unresolved.
+
+Only `Done` resolves a ticket dependency. A `Cancelled` dependency requires re-planning rather than silently unblocking dependants.
+
+Do not add `In Progress`, `In Review`, or runtime `Blocked` ticket states. Active implementation, proof, review, runtime blockers, candidate identity, and recovery live in the native results of `alaga`, `atunwo`, or another current execution/review owner. A caller may reconcile `Open → Done | Cancelled` from those exact-current results without importing their lifecycle into the ticket contract.
+
+The **Startable frontier** is every `Open` ticket currently derived as `STARTABLE`.
 
 ## 3. Confirm and return
 
-Check that every ticket is independently verifiable, blockers are genuine and acyclic, acceptance is observable, and the complete supplied scope is covered without overlap. For every non-vertical ticket, verify that its exception is necessary, independently testable, and connected to a named green integration boundary.
+Check that every ticket is independently verifiable, dependencies are genuine and acyclic, external prerequisites are real, acceptance is observable, and the complete supplied scope is covered without overlap. For every non-vertical ticket, verify that its exception is necessary, independently testable, and connected to a named green integration boundary.
 
-When confirmation is required, show the draft and ask whether its granularity and blockers are correct. Iterate until confirmed.
+When confirmation is required, show the draft and ask whether its granularity and dependencies are correct. Iterate until confirmed.
 
-Return confirmed tickets in dependency order, blockers first, with the startable frontier. Return tickets only; do not persist or publish them, operate Git or a provider, implement them, or decide review status.
+Return confirmed tickets in dependency order, blocked prerequisites first, with the startable frontier. Return tickets only; do not persist or publish them, operate Git or a provider, implement them, or decide execution/review progress.
