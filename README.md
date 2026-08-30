@@ -7,6 +7,7 @@ Browse the [documentation](https://quantipixels.com/skills).
 ## Portfolio principles
 
 - Kọ Skill authors every capability/resource at the smallest adequate surface: guidance/reference → visible command → native/project/provider tool → focused library → deterministic script → engine only when it carries a substantial owned vertical.
+- Alárinà is the normal QP front door for generic `Use QP` intent: it selects the shortest current owner/flow and steps aside without becoming a task lifecycle or super-skill.
 - Akọsílẹ̀ owns one repository-scoped `.qp`: the main worktree holds the real directory and linked worktrees expose symlinks. New records use stable semantic subjects; settings/index/record/artifact resources are created lazily.
 - Supporting skills keep detailed results with their native owners rather than copying caller-specific receipt/lifecycle schemas.
 - HTML Artifact creates reader-specific projections of supplied material without duplicating source archives or originating conclusions.
@@ -96,7 +97,7 @@ Banner Design and Social Graphics intentionally remain narrow steering owners ev
 
 | Skill | Outcome |
 | --- | --- |
-| `alarina` | Select the shortest route from currently available QP skill descriptions |
+| `alarina` | QP front door: select the shortest current route without owning the task lifecycle |
 | `arojinle` | Resolve consequential product/plan/design choices through user-confirmed decision frontier |
 | `ayewo-igba-ise` | Evidence-backed coding-agent session/corpus retrospective |
 | `handoff` | Compact fresh-session handoff |
@@ -129,8 +130,12 @@ Historical `akowe-java`, `akowe-spring`, and catalogue experiments are research 
 
 ## Start
 
+For ordinary use, describe the outcome and invoke QP generically:
+
 ```text
-Use alarina to choose the shortest QP route for this request:
+Use QP for this:
 
 [describe the outcome]
 ```
+
+Alárinà routes that request to the shortest current owner/flow and steps aside. You can still invoke any exact skill directly when you already know the owner you want.

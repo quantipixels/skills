@@ -1,6 +1,6 @@
 ---
 name: alarina
-description: Inventory the skills published in this repository and select the shortest useful skill or flow from the work's current state to the requested outcome. Use when the user or agent is unsure what skill to use, asks what skills are available, or needs the route between several owned outcomes; respect explicit user selection and explicit-only experiments.
+description: "Serve as the QP portfolio front door: inventory current repository skills and select the shortest useful skill or flow from the work's exact current state to the requested outcome. Use when the user says to use QP or qp-skills, asks what QP capability applies, is unsure what skill to use, asks what skills are available, or needs the route between several owned outcomes; respect explicit user selection and explicit-only experiments."
 ---
 
 # Alárinà
@@ -12,6 +12,18 @@ The name reflects the Yorùbá **alárinà**: a trusted intermediary or go-betwe
 The map below is the maintained routing topology, not a copy of every skill procedure. It should name the portfolio Alárinà is expected to route, organised by how work enters and moves between owners. For ordinary routing, start from this map and verify only the shortlisted skills against current repository/host descriptions when freshness or a close boundary matters. For an inventory request, enumerate the current repository skills from their metadata. If the map and current inventory disagree, current metadata wins and the drift should be reported rather than guessed around.
 
 When no repository skill materially improves the result, return `NO_ROUTE`. Do not maintain a catalogue or fallback tree for external skills, tools, plugins, or generic agent capabilities; the calling agent can continue with its ordinary capabilities and environment.
+
+## Generic QP entrance
+
+Treat a generic request such as `Use QP for this`, `Use qp-skills`, or equivalent wording as a routing request over the current portfolio, not as authority for Alárinà to become a task lifecycle, implementation owner, supervisor, or universal mode.
+
+- Pin the requested outcome and current work state exactly as for any other route.
+- Preserve an explicitly selected QP skill when it owns the requested result; generic QP wording does not override a narrower owner choice.
+- Select the shortest current owner/flow and pass only the context it needs. When the active host or calling agent can continue through that owner, Alárinà steps aside after establishing the handoff. Otherwise return the route so the caller can continue it.
+- Re-enter only when the next owner is genuinely unknown or a material state change requires another routing choice.
+- Do not introduce a parallel `qp-mode`, generic QP lifecycle, copied owner state, or mandatory playbook sequence merely to provide one front door.
+
+Generic QP invocation grants no additional side-effect or specialist authority.
 
 ## Main delivery flow
 
