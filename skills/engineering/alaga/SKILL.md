@@ -27,6 +27,7 @@ Pin:
 - Use `solution-architect` for material technical architecture.
 - Use `atona` when an initiative plan must remain live.
 - Use `seda-ticket` only when supplied work benefits from consumable vertical tickets.
+- When stack/version/idiom uncertainty materially affects implementation quality, Alága may offer Experimental `akowe` as expert implementation counsel. Wait for explicit acceptance before invoking it; declining or lacking Akọ̀wé is not a delivery gap.
 
 Read [job report](references/job-report.md) when the job is multi-candidate, blocked/handoff-prone, migration/security/recovery sensitive, externally destructive, or otherwise meets that reference's report gate. Reuse an active Atọ́nà plan instead of creating a parallel job report.
 
@@ -44,6 +45,8 @@ Repository/Git state never grants commit, history-rewrite, publication, provider
 ## 2. Deliver and prove
 
 Prepare the workspace without disturbing unrelated changes. Continue through the confirmed horizon until completion, a material decision/authority gap, or no safe independent work remains.
+
+If Experimental `akowe` is active, pass it the exact job boundary, candidate, accepted architecture/domain constraints, material stack versions, touched mechanisms, and proof expectations. Obtain its initial counsel before material implementation and refresh it only when the candidate, touched mechanism, stack/version, accepted contract, material premise, or controlling evidence changes. Treat its result as advisory implementation input; it does not replace proof, delivery acceptance, or final review.
 
 Use the proof owner for each unit. When production behavior changes or test-first work is requested, apply [TDD](references/tdd.md) in coherent green slices. Run focused/affected proof per unit, then job-level integration/acceptance proof.
 
