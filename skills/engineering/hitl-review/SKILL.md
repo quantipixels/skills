@@ -1,6 +1,6 @@
 ---
 name: hitl-review
-description: Guide a human through one exact reviewable candidate, classify the review needs, surface matching installed specialists, and keep the human decision separate from specialist results. Use for “review this with me,” walkthroughs, or challenging findings before deciding; exclude one-shot specialist review, implementation, monitoring, and provider actions.
+description: Guide a human through one exact reviewable candidate, classify the review needs, use Alárinà to route matching QP specialists, and keep the human decision separate from specialist results. Use for “review this with me,” walkthroughs, or challenging findings before deciding; exclude one-shot specialist review, implementation, monitoring, and provider actions.
 ---
 
 # Human-led review
@@ -45,15 +45,17 @@ Review coverage
 
 If the human wants only a walkthrough, no specialist is required; finish with `NO_DECISION`.
 
-For every `required` category, and a `useful` category only when its expected evidence justifies the work, inspect the active host's available skill descriptions and invocation metadata. Select the smallest skill whose owned outcome matches the category and candidate. One skill may cover several categories; do not invoke another merely to fill a label.
+For every `required` category, and a `useful` category only when its expected evidence justifies the work, give `alarina` the exact candidate and review need. Consume its current QP route instead of reimplementing repository-skill discovery here. One selected skill may cover several categories; do not invoke another merely to fill a label.
 
-For each selected specialist, show:
+For each routed QP specialist, show:
 
 ```text
 <category or need> → <skill> — <why it matches>
 ```
 
-Do not select `hitl-review` itself. A routing or coordination skill may help locate an owner but cannot satisfy a review category unless reviewing that routing result is itself the requested outcome. Do not keep a fixed dependency list, preload the portfolio, or select by keyword alone. Respect explicit user choice and each skill's invocation policy; offer explicit-only skills instead of silently invoking them. Pass the exact candidate and review need, preserve the returned result without rewriting it, and keep a required category open when no suitable skill is available.
+Alárinà's route identifies a QP owner; it does not satisfy the review category itself. Do not select `hitl-review` as its own specialist. Respect explicit user choice and each skill's invocation policy; offer explicit-only skills instead of silently invoking them. Pass the exact candidate and review need, preserve each specialist's native result without rewriting it, and keep a required category open when its evidence remains insufficient.
+
+When Alárinà returns `NO_QP_ROUTE`, do not invent another QP dependency or maintain a non-QP fallback list here. The agent may use its ordinary capabilities when appropriate to the review need.
 
 ## Review and decide
 
@@ -72,7 +74,7 @@ Record one human disposition:
 - `DEFER`
 - `NEEDS_EVIDENCE`
 
-No disposition authorizes a source, Git, provider, artifact, or other mutation; detect follow-up needs through the same categorise-and-discover rule.
+No disposition authorizes a source, Git, provider, artifact, or other mutation. Route a follow-up QP owner through Alárinà only when the owner is not already clear from the accepted result.
 
 Before the final decision:
 
@@ -85,7 +87,7 @@ Return:
 
 - candidate identity and walkthrough;
 - category coverage;
-- matched specialists and reasons;
+- matched QP specialists and reasons;
 - findings and dispositions;
 - evidence gaps;
 - final decision; and

@@ -1,20 +1,26 @@
 ---
 name: alarina
-description: Select the shortest useful route through currently available QP skills. Focus on the independently useful outcome owner(s) and only necessary supporting results; respect explicit user selection and explicit-only experiments.
+description: Inventory and route through the QP skills published in this repository. Use when the user or agent is unsure which repo skill owns an outcome, asks what QP skills are available, or needs the shortest useful QP route; respect explicit user selection and explicit-only experiments.
 ---
 
 # Alárinà
 
-Select the shortest useful route for the requested outcome from the active host's currently available skill descriptions/invocation metadata. Do not maintain a second static catalogue of every QP owner in this skill.
+Serve as the routing interface to this repository's skill portfolio. Build the current QP inventory from the repository/package skill descriptions and invocation metadata rather than maintaining a second static catalogue inside Alárinà.
+
+If the user asks what skills exist, list the current repository skills with their category, owned outcome, and Experimental/explicit-only status. For an ordinary routing request, inspect the same inventory but surface only the relevant shortlist and selected route.
+
+Alárinà routes **QP skills from this repository**. It does not maintain a catalogue or fallback tree for external/non-QP skills or generic agent capabilities. When no QP owner is useful, return `NO_QP_ROUTE`; the calling agent can continue with its ordinary capabilities and environment.
 
 ## Route
 
-1. Preserve an explicit user-selected skill when it owns the requested result and its invocation boundary is satisfied.
-2. Otherwise inspect the active skill inventory/selector descriptions and identify the narrowest skill whose independently owned outcome matches the request.
-3. Add a supporting skill only when its separately owned result is necessary to complete the primary result. Do not add specialists merely for lifecycle coverage.
-4. If the request contains several genuinely independent outcomes, return the small ordered/parallel route set rather than forcing one owner to absorb unrelated results. Use a routing/coordination skill only when routing/coordination itself is the useful outcome.
-5. Experimental skills are explicit-only. Offer an exact matching experiment and wait for acceptance; never silently substitute it for a stable owner.
-6. If the correct owner is unavailable, name the missing owner/capability rather than imitating it.
+1. Pin the requested outcome and any explicit skill/mode choice.
+2. Read the current repository skill inventory from its `SKILL.md` descriptions/invocation metadata.
+3. Preserve an explicit user-selected skill when it owns the requested result and its invocation boundary is satisfied.
+4. Otherwise identify the narrowest QP skill whose independently owned outcome matches the request.
+5. Add a supporting QP skill only when its separately owned result is necessary to complete the primary result. Do not add specialists merely for lifecycle coverage.
+6. If the request contains several genuinely independent outcomes, return the small ordered/parallel route set rather than forcing one owner to absorb unrelated results. Use a routing/coordination skill only when routing/coordination itself is the useful outcome.
+7. Experimental skills are explicit-only. Offer an exact matching experiment and wait for acceptance; never silently substitute it for a stable owner.
+8. If no repository skill materially improves the result, return `NO_QP_ROUTE` rather than inventing an external dependency.
 
 Routing grants no mutation, provider, credential, publication, review-verdict, or continuing-stewardship authority.
 
@@ -39,18 +45,21 @@ Use the exact design specialist directly when one output owner is clear. Use `ap
 
 ## Human-led review
 
-Use `hitl-review` when the user wants a walkthrough, review-category coverage, specialist discovery, and a final human decision. Direct specialist review owners remain preferable for one-shot verdicts.
+Use `hitl-review` when the user wants a walkthrough, review-category coverage, specialist-backed evidence, and a final human decision. Direct specialist review owners remain preferable for one-shot verdicts.
 
 ## Report
 
-Return:
+For a routing request, return:
 
 ```text
-Primary owner(s): <skill/mode or ordered route set>
+QP inventory: <repository/package identity>
+Relevant QP skills: <shortlist or none>
+Primary owner(s): <skill/mode or ordered route set | NO_QP_ROUTE>
 Why: <owned-result match>
-Required support: <only independently necessary results>
-Unavailable capability: <none or exact gap>
+Required QP support: <only independently necessary results>
 Explicit acceptance required: <experimental/authority gate or no>
 ```
 
-Ask one focused question only when its answer selects a materially different owner/mode and the answer cannot be established from current context/evidence.
+For an inventory request, list the repository skills rather than forcing a route.
+
+Ask one focused question only when its answer selects a materially different QP owner/mode and the answer cannot be established from current context/evidence.
