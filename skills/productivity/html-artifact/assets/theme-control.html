@@ -4,8 +4,8 @@ Reusable HTML Artifact theme control.
 Embed the first script early in <head>, merge the style into the artifact CSS,
 and place the button plus final script in <body>. The artifact's color tokens
 must respond to html[data-theme="light"] and html[data-theme="dark"].
-Translate aria-label, data-theme-light-label, and data-theme-dark-label to
-the artifact language before embedding this control.
+Translate the visible-in-source control text, data-theme-light-label, and
+data-theme-dark-label to the artifact language before embedding this control.
 -->
 
 <script>
@@ -54,7 +54,6 @@ the artifact language before embedding this control.
   data-theme-toggle
   data-theme-light-label="Use light theme"
   data-theme-dark-label="Use dark theme"
-  aria-label="Change theme"
   hidden
 >
   <svg data-theme-icon="dark" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -68,14 +67,16 @@ the artifact language before embedding this control.
     <circle cx="12" cy="12" r="4"></circle>
     <path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.66 6.34l1.41-1.41"></path>
   </svg>
+  <span data-theme-label data-visually-hidden>Change theme</span>
 </button>
 
 <script>
   (() => {
     const root = document.documentElement;
     const control = document.querySelector("[data-theme-toggle]");
+    const labelText = control?.querySelector("[data-theme-label]");
     const media = window.matchMedia("(prefers-color-scheme: dark)");
-    if (!control) return;
+    if (!control || !labelText) return;
 
     const apply = (theme, source) => {
       root.dataset.theme = theme;
@@ -84,7 +85,7 @@ the artifact language before embedding this control.
       const label = next === "dark"
         ? control.dataset.themeDarkLabel
         : control.dataset.themeLightLabel;
-      control.setAttribute("aria-label", label);
+      labelText.textContent = label;
       control.setAttribute("title", label);
     };
 

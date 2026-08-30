@@ -103,6 +103,10 @@ Do not create a visual when:
 
 A strong paragraph or compact table is preferable to decorative visualization.
 
+## Mermaid diagrams
+
+Mermaid is a supported optional renderer when its diagram grammar fits the supplied relationship. Preserve the Mermaid source and provide equivalent accessible text or native structure. For a standalone artifact, bundle the admitted runtime under the [external dependency policy](dependency-policy.md); do not depend on a CDN. Make Mermaid colors respond to the artifact's light and dark theme tokens, and keep the accessible fallback usable if rendering fails.
+
 ## Verification cue
 
 The representation must encode a material supplied relationship. For ordinary review artifacts, verify it with HTML Artifact's structural checks and visual smoke when rendered usability matters. Deep browser proof is required only when the visual/interaction itself is an acceptance claim or the artifact's consequence otherwise requires it.

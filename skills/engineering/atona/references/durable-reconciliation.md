@@ -9,7 +9,7 @@ Read the exact-current initiative plan and only the linked specifications, decis
 Atọ́nà owns the inventory, disposition coverage, and closure judgment. Semantic owners perform their native reconciliation:
 
 - `amose` owns domain context, `.learnings`, `.nongoals`, ADR lifecycle, and authorized local craft;
-- the current delivery owner owns ordinary documentation and enforceable code, tests, schemas, types, or static rules;
+- the current delivery owner owns ordinary documentation, source-level documentation, and enforceable code, tests, schemas, types, or static rules;
 - `seda-spec` owns specification meaning and supersession; and
 - `akosile` owns `.qp` path and publication mechanics.
 
@@ -34,6 +34,7 @@ Use the project's existing source of truth. Common destinations are:
 | Knowledge | Natural destination |
 | --- | --- |
 | user-visible behavior, setup, or usage | README, product documentation, or API documentation |
+| durable intent, contract, constraint, or usage attached to a source symbol | inline code comment, doc comment, KDoc, Javadoc, or the language's equivalent through the delivery owner |
 | canonical terms, relationships, and domain invariants | existing domain documentation or `CONTEXT.md` through `amose` |
 | hard-to-reverse, surprising decision with a genuine trade-off | qualifying ADR through `amose` |
 | reusable operational constraint or non-obvious gotcha | `.learnings` through `amose` |
@@ -41,7 +42,7 @@ Use the project's existing source of truth. Common destinations are:
 | behavior that can be enforced | code, tests, schemas, types, configuration, or static rules through the delivery owner |
 | temporary status, abandoned path, or execution transcript | exact lifecycle record only |
 
-Do not promote every record. Summarize only settled knowledge that changes future action. Preserve provenance without copying conversations, research transcripts, ticket history, review chatter, or implementation logs into durable documentation.
+Do not promote every record. Summarize only settled knowledge that changes future action. Add a source comment only when the knowledge belongs beside that code and explains intent, contract, constraint, or non-obvious behavior that the code cannot express clearly. Preserve provenance without copying conversations, research transcripts, ticket history, review chatter, or implementation logs into durable documentation or source comments.
 
 An untracked `.qp` resource can remain working memory or historical evidence, but it is not sufficient when knowledge must survive a clone, machine loss, archival gap, or future agent without that workspace. In that case require a versioned repository destination or an explicitly authorized durable provider. Authorized `amose` local craft remains untracked by design; promote clone-critical rules to repository instructions or another visible project authority instead.
 
@@ -51,7 +52,7 @@ For each `PROMOTE` item:
 
 1. Give the semantic owner the exact source identity, confirmed knowledge, intended destination, and current candidate.
 2. Make the smallest update that leaves one source of truth and removes or marks materially stale guidance.
-3. Include ordinary documentation and enforceable artifacts in the exact delivery candidate before its final review when possible.
+3. Include ordinary documentation, applicable source-level documentation, and enforceable artifacts in the exact delivery candidate before its final review when possible.
 4. Re-read every written destination and verify that its meaning, links, lifecycle state, and evidence match the delivered candidate.
 5. Record the destination path or provider identity, revision or commit/candidate identity, owner result, and remaining limit in the initiative plan.
 
