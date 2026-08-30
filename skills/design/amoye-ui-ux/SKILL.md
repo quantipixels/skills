@@ -31,7 +31,35 @@ Own one coherent interface direction from current product/project evidence and d
 
 ## Output
 
-For a recommendation, return the user/job, selected product/interaction pattern, visual direction, semantic color/typography/layout rules, state/motion/accessibility constraints, chart/data direction when relevant, implementation handoff constraints, and anti-patterns. When external references materially shaped the direction, also identify the bounded question, selected exemplars, transferable principles adopted, rejected mismatches, and any evidence gap. For a review, identify the violated UX/design principle, affected behavior, evidence, and smallest useful correction.
+### Recommendation
+
+Return:
+
+- user/job;
+- selected product/interaction pattern;
+- visual direction;
+- semantic color, typography, and layout rules;
+- state, motion, and accessibility constraints;
+- chart/data direction when relevant;
+- implementation handoff constraints; and
+- anti-patterns.
+
+When external references materially shaped the direction, also identify:
+
+- bounded design question;
+- selected exemplars;
+- transferable principles adopted;
+- rejected mismatches; and
+- any evidence gap.
+
+### Review
+
+Return:
+
+- violated UX/design principle;
+- affected behavior;
+- evidence; and
+- smallest useful correction.
 
 ## Resources
 

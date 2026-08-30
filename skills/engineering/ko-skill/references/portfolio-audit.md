@@ -26,6 +26,19 @@ Apply [script boundary](script-boundary.md) only to executable capability that s
 
 Challenge templates/default state/support assets that exist for convenience rather than a stable recurring contract. Existing project/native scaffolds outrank bundled starters; optional behavior should remain conditional; absence should represent empty state when no consumer requires seeded resources.
 
+## Presentation shape
+
+Audit whether Markdown exposes the structure the skill already expects the agent to execute:
+
+- keep connected rationale, nuance, and invariants as prose;
+- use bullets for parallel inputs, requirements, constraints, checks, outputs, or independent obligations;
+- use numbered lists only where order is behavior-bearing;
+- use tables for finite states, modes, mappings, or comparisons when side-by-side scanning improves clarity;
+- use fenced blocks for exact command, schema, state, or result shapes; and
+- flag dense paragraphs that force the reader to reconstruct a hidden checklist before acting.
+
+Do not reward list count, short paragraphs, or extra headings by themselves. Reformat only when the information shape becomes clearer without changing authority, sequencing, conditions, or meaning.
+
 ## Drift and proof
 
 Search for stale links to removed resources, obsolete commands/names, duplicate active guidance, and historical research presented as current contract. Keep deterministic CI/tests only for retained deterministic seams and package integrity.
@@ -36,6 +49,6 @@ For proposed compression/consolidation, require before/after realistic proof onl
 
 Verify findings against exact-current files/state. Separate defects, optimizations, evidence gaps, healthy repetition, and proof-gated consolidation candidates. Deduplicate by mechanism and rank by user impact, recurrence, safety, stale-risk, and correction cost.
 
-Return inventory/state boundary, ownership/control findings, structural/resource drift, capability/reference/script/template/data/asset dispositions, consolidation candidates with proof needs, healthy repetition retained, prioritized actions, rejected recommendations, and limitations.
+Return inventory/state boundary, ownership/control findings, structural/resource drift, capability/reference/script/template/data/asset dispositions, presentation-shape findings, consolidation candidates with proof needs, healthy repetition retained, prioritized actions, rejected recommendations, and limitations.
 
 “No finding” means no issue found within the declared checks, not that every skill is optimal.

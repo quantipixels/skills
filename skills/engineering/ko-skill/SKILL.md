@@ -32,6 +32,19 @@ When material expert judgment belongs outside `SKILL.md`, use [reference quality
 
 Name modes only when behavior or authority truly differs. Prefer current project/provider/framework/tool truth over cached command catalogues or starter defaults.
 
+### Format for execution
+
+Use Markdown to expose semantic structure, not to decorate prose:
+
+- use **prose** for connected explanation, rationale, nuance, and invariants that must be understood together;
+- use **bullets** for parallel inputs, requirements, constraints, checks, outputs, or independent obligations;
+- use **numbered lists** only when execution order matters;
+- use **tables** when finite states, modes, mappings, or comparison dimensions are easier to scan side by side;
+- use **fenced blocks** for exact schemas, command shapes, state shapes, or output contracts; and
+- split a paragraph when it hides several independently actionable obligations that the agent would otherwise need to reconstruct as a checklist.
+
+Do not turn every sentence into a bullet or add headings that do not improve navigation. Dense prose is not simpler when the reader must recover a latent list before acting.
+
 ## 3. Prove the exact candidate
 
 Use the smallest evidence that can falsify the changed contract. Structural/package validation is baseline; add realistic forward behavior only when selection, authority, safety, state, branching, composition, resource choice, or output remains materially uncertain. Re-run only proof invalidated by later changes.
