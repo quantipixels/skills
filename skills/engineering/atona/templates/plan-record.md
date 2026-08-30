@@ -47,6 +47,10 @@ status: Draft
 
 <current owner results, records, source locators, revisions/cutoffs; link detailed packets rather than copying them>
 
+## Durable reconciliation
+
+<each material lifecycle insight with source identity, PROMOTE | ALREADY_REPRESENTED | LIFECYCLE_ONLY | NOT_APPLICABLE | BLOCKED, destination/owner, and exact proof; record an evidence-backed none when no durable obligation exists>
+
 ## Material history
 
 - r1 — <only a material status/scope/decision/evidence/ownership/closure change worth retaining>

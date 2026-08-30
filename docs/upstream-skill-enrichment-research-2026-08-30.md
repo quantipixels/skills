@@ -11,8 +11,8 @@ Which durable behaviors from Warp's PR walkthrough and research skills, and Matt
 Place the capabilities with four owners:
 
 - `html-artifact` owns PR/code-change orientation as a selective projection and exposes interactive relationship rendering as a lane-neutral capability;
-- `iwadi` owns durable primary-source research and gains a noise-aware delegation threshold plus a compact evidence-packet handoff; and
-- `seda-spec` owns standalone conversation-to-spec synthesis and specification readiness; and
+- `iwadi` owns durable primary-source research and gains a noise-aware delegation threshold plus a compact evidence-packet handoff;
+- `seda-spec` owns standalone conversation-to-spec synthesis, specification readiness, placement, and retirement; and
 - `atona` consumes a ready specification when an initiative needs a normative behavior contract, while retaining plan lifecycle and readiness.
 
 Keep code-review verdicts and provider evidence with `atunwo`, human review decisions with `hitl-review`, delivery decomposition with `seda-ticket`, and test-first implementation with `alaga`. Do not copy the upstream `pr-walkthrough`, `research`, or `to-spec` skills as parallel owners.
@@ -74,6 +74,14 @@ material initiative
 ```
 
 Do not import the absolute no-interview rule: `seda-spec` should avoid replaying settled decisions but must expose any material unresolved behavior. Do not require exhaustive user stories when a shorter observable contract is unambiguous. Do not import automatic GitHub issue publication because specification ownership grants no provider authority. [Source: `to-spec`](https://github.com/mattpocock/skills/blob/6654f6b60cd9d5be8b54c6fafe44346dabeb3b76/skills/engineering/to-spec/SKILL.md)
+
+## Specification persistence and lifecycle reconciliation
+
+The upstream skill makes the issue tracker the durable delivery location. QP keeps the transferable durability intent without making one provider mandatory. `seda-spec` follows an existing project convention or explicit destination first. With neither, `seda-spec` uses inline content only for immediate bounded work, an `akosile`-managed `.qp` record for reusable working state, and a versioned project document when the specification itself must remain normative after delivery.
+
+An untracked `.qp` record is not sufficient for knowledge that must survive repository clones, machine loss, archival gaps, or future work without the local workspace. Before an Atọ́nà plan closes, it therefore classifies every material lifecycle insight as promoted, already represented, lifecycle-only, not applicable, or blocked. Durable domain knowledge routes through `amose`; ordinary documentation and enforceable behavior route through the delivery owner; specification meaning and supersession remain with `seda-spec`.
+
+The reconciliation preserves only knowledge that changes future action. Conversation transcripts, temporary status, abandoned approaches, ticket history, and implementation logs remain lifecycle evidence rather than becoming permanent repository documentation.
 
 ## Evidence limits
 

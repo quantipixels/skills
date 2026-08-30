@@ -15,7 +15,7 @@ Pin:
 - scope and exclusions;
 - acceptance and proof;
 - governing specification identity and material behavior references when present;
-- documentation destinations;
+- documentation and durable-knowledge reconciliation obligations and destinations;
 - workspace and authority; and
 - the minimum real user/operational path that must pass.
 
@@ -77,7 +77,7 @@ Record:
 
 Ambient changes must not enter the candidate. If the pinned base or selected content changes during capture, recapture before review; when concurrent mutation is a material risk, require a stable repeated capture. Temporary capture state must not affect subsequent repository operations.
 
-Before review, update required ordinary documentation in the candidate and use `amose` when verified delivery changes durable project knowledge.
+Before review, update required ordinary documentation in the candidate, record its exact destinations, and use `amose` when verified delivery changes durable project knowledge. Consume applicable Atọ́nà reconciliation items without copying the lifecycle archive into delivery state.
 
 ## 3. Review and converge
 
@@ -91,7 +91,7 @@ Before review, update required ordinary documentation in the candidate and use `
 Return:
 
 - job boundary and session policy;
-- delivered units and documentation;
+- delivered units plus documentation and durable-knowledge reconciliation;
 - proof/review state;
 - commit state and exact candidate identities;
 - blockers and residual limits;

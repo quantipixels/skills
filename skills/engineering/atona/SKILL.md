@@ -129,11 +129,13 @@ When tickets, multiple candidates, dependencies, implementers, multi-session han
 
 After a material owner result changes plan meaning, update the semantic record first and refresh the primary human view at the next settled boundary. Keep non-plan-affecting operational detail outside the plan record.
 
+When a lifecycle result establishes knowledge that may outlive the initiative, add it to the plan's durable reconciliation inventory and reconcile it at the natural delivery boundary when possible.
+
 ## 6. Reconcile and close
 
-Before `Closed`, verify the decision frontier remains empty; no blocking decision/gap remains; delivery/review match the exact candidate; proof gaps/deferrals are explicit; freezes hold; and no material obsolete guidance remains.
+Before `Closed`, verify the decision frontier remains empty; no blocking decision/gap remains; delivery/review match the exact candidate; proof gaps/deferrals are explicit; and freezes hold.
 
-For affected `.learnings`, `.nongoals`, ADRs, or authorized project-local craft knowledge, require exact-current `amose` reconciliation. For ordinary documentation, require `updated now`, `already reconciled` with evidence, or `not applicable`.
+Read [durable knowledge reconciliation](references/durable-reconciliation.md). Require every material lifecycle insight to have a proved disposition, no obsolete guidance to remain, and no knowledge needed by future work to survive only in an untracked lifecycle resource.
 
 Update the record with final receipts/material semantic history and refresh the primary human view.
 
