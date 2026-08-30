@@ -8,7 +8,23 @@ disable-model-invocation: true
 
 Given an eligible local resource, make it temporarily reachable through the narrowest private transport available and return the exact thing the user must open or run. Do not stop at transport recommendation, readiness, or setup guidance when the resource can be served safely now.
 
-The local resource remains authoritative. Explicit invocation authorizes task-scoped staging, an ephemeral local listener when the selected transport needs one, and one narrow temporary private route using already-ready tooling. Installation, persistent startup/configuration, saved credentials/keys, DNS publication, public exposure, broad served roots, and unrelated mutation require separate authority.
+The local resource remains authoritative.
+
+Explicit invocation authorizes:
+
+- task-scoped staging;
+- an ephemeral local listener when the selected transport needs one; and
+- one narrow temporary private route using already-ready tooling.
+
+Separate authority is required for:
+
+- installation;
+- persistent startup/configuration;
+- saved credentials/keys;
+- DNS publication;
+- public exposure;
+- broad served roots; and
+- unrelated mutation.
 
 ## Resolve tooling from current official evidence
 
@@ -29,7 +45,21 @@ If Tailcat is already installed, prefer its embedded upstream documentation via 
 
 ## Bound the resource
 
-Pin the exact file, directory, or already-running local web resource; required companion assets; intended reader/access mode; and expiry condition. Reject a repository/home/credential directory, traversal target, unresolved symlink, or boundary containing unrelated secrets. When companions are required, expose only a reviewed allowlist; stage them narrowly when the chosen transport cannot preserve that boundary directly.
+Pin:
+
+- exact file, directory, or already-running local web resource;
+- required companion assets;
+- intended reader/access mode; and
+- expiry condition.
+
+Reject:
+
+- repository/home/credential directories;
+- traversal targets;
+- unresolved symlinks; or
+- boundaries containing unrelated secrets.
+
+When companions are required, expose only a reviewed allowlist; stage them narrowly when the chosen transport cannot preserve that boundary directly.
 
 ## Serve it
 
@@ -55,7 +85,7 @@ If Tailcat must be installed or changed, use `irinse`; never silently substitute
 
 ## Prove the access target
 
-Before reporting success, prove the applicable claims:
+Before reporting success, prove:
 
 - the exact requested resource is reachable through the returned URL or receiver invocation;
 - content outside the accepted boundary is not reachable;
@@ -66,11 +96,34 @@ Receiver-side execution by the human is not required to call the route ready whe
 
 ## Revoke cleanly
 
-On failure or expiry, revoke remote access first, then stop/delete only task-owned local listeners, staging, and ephemeral secret material. Verify unrelated transport state matches the captured pre-state. If cleanup is incomplete, report the exact residual route/process/secret and recovery action; never claim cleanup succeeded.
+On failure or expiry:
 
-Return:
+1. Revoke remote access first.
+2. Stop/delete only task-owned local listeners, staging, and ephemeral secret material.
+3. Verify unrelated transport state matches the captured pre-state.
+
+If cleanup is incomplete, report the exact residual route/process/secret and recovery action; never claim cleanup succeeded.
+
+## Return
+
+Return one:
 
 - `AVAILABLE` — the private serving route is live, bounded, verified, and the exact access target is returned; or
 - `CAPABILITY_GAP` — a named transport, reader, authority, privacy, or access-mode requirement prevents serving the resource.
 
-Lead with the exact access target. For Tailscale Serve, this is the direct HTTPS URL for the supplied resource. For Tailcat, this is the complete receiver invocation plus the separately secured token-delivery requirement. Then include transport, access boundary, reader prerequisite if any, expiry, verification, limitations, and cleanup/revocation. Never place a live Tailcat token in durable records, logs, screenshots, Git, or broad chat/issue channels.
+Lead with the exact access target:
+
+- **Tailscale Serve:** direct HTTPS URL for the supplied resource.
+- **Tailcat:** complete receiver invocation plus the separately secured token-delivery requirement.
+
+Then include:
+
+- transport;
+- access boundary;
+- reader prerequisite if any;
+- expiry;
+- verification;
+- limitations; and
+- cleanup/revocation.
+
+Never place a live Tailcat token in durable records, logs, screenshots, Git, or broad chat/issue channels.
