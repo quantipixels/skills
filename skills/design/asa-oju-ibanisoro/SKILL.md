@@ -9,24 +9,24 @@ Implement confirmed UI direction in application code. Preserve the project's fra
 
 ## Before coding
 
-1. Inspect the actual project, manifests, component conventions, configuration, and current tooling before assuming framework/tool versions or UI libraries. Use the project's own package manager/wrappers and current tool/project documentation rather than cached QP commands.
+1. Inspect the actual project, manifests, component conventions, configuration, and current tooling before assuming framework/tool versions or UI libraries. Use the project's own package manager/wrappers and current tool/project documentation rather than cached generic commands.
 2. If visual direction is missing, use `amoye-ui-ux`. If canonical tokens/specifications are missing or changing materially, use `eto-apere`.
-3. Read [component-library decision](references/ui-component-libraries.md) when the project/user has not already settled the library. Never silently introduce a competing library.
-4. Load only applicable implementation references: accessibility, theming, or Tailwind customization. Use current official/project documentation for volatile component APIs and utility syntax instead of bundled manuals.
+3. Read [component-library decision](references/ui-component-libraries.md) when the project/user has not already settled the library. Never silently introduce a competing library. When introducing or switching a library materially changes system-wide source ownership, runtime/bundle architecture, compatibility/migration, or long-term integration boundaries, use `solution-architect` for that technical decision before implementation.
+4. For accessibility, component APIs, theming, utility/framework configuration, and version-specific behavior, use the selected library/framework's current official documentation plus current project conventions. Do not rely on bundled framework manuals.
 
 ## Implementation rules
 
 - Prefer confirmed library/native primitives for dialogs, menus, forms, tabs, popovers, comboboxes, tables and similar stateful interaction.
 - Use semantic project tokens and existing utility conventions; do not scatter new raw color/spacing defaults through components.
-- Build responsive behavior from content hierarchy and the project's breakpoints rather than adding QP-owned breakpoint scales.
+- Build responsive behavior from content hierarchy and the project's breakpoints rather than adding repository-owned breakpoint scales.
 - Give applicable controls visible hover/focus/pressed/disabled/loading/error behavior and accessible names.
 - Preserve keyboard operation, sensible focus order, touch usability, reduced-motion behavior, and media-space reservation.
-- Use an established icon library or confirmed Brand icon language; do not use emoji as structural UI icons.
+- Use an established icon library or confirmed `brand` icon language; do not use emoji as structural UI icons.
 - For charts, keep labels/units/legends/tooltips as needed and provide non-color distinctions for material series/status.
 
 ## Platform configuration
 
-Use the active project's native configuration/tooling and version-specific documentation. Preview/inspect tool-driven changes when supported and follow the project's actual configuration model rather than inventing QP defaults or a competing config surface.
+Use the active project's native configuration/tooling and version-specific documentation. Preview/inspect tool-driven changes when supported and follow the project's actual configuration model rather than inventing defaults or a competing config surface.
 
 ## Verification
 
@@ -34,7 +34,4 @@ Run the project's applicable native proof for the changed area, then inspect the
 
 ## Resources
 
-- `references/ui-component-libraries.md` — component-library selection method.
-- `references/shadcn-accessibility.md` — non-obvious accessibility/interaction calibration when shadcn/Radix patterns apply.
-- `references/shadcn-theming.md` — shadcn theme/token integration when selected.
-- `references/tailwind-customization.md` — project-native Tailwind extension guidance.
+- `references/ui-component-libraries.md` — component-library selection method when the choice is not already settled.

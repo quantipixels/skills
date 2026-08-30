@@ -12,6 +12,8 @@ Run applicable deterministic package/link/manifest/name checks. Structural succe
 
 Map recurring public outcomes to primary owners and necessary supporting results. Flag competing owners, caller copies of callee procedure/result schema, callee copies of caller lifecycle, and public splits driven mainly by taxonomy. Preserve independently required safety/trust/authority rules and useful named model-steering contracts.
 
+Flag cross-skill references that use another skill's display/localized title instead of its exact frontmatter `name` trigger, omit backticks around that trigger, or add a redundant repository namespace prefix to ordinary skill/route/owner/specialist vocabulary. A skill may use its own display name inside its own package.
+
 Classify control shape only when it helps expose unnecessary workflow ceremony. Importance alone does not justify lifecycle machinery.
 
 ## Capability and knowledge placement

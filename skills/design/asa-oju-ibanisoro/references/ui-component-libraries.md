@@ -20,8 +20,9 @@ Otherwise:
    - component breadth actually needed;
    - design-system fit and customization cost;
    - maintenance/release horizon and licensing when relevant.
-3. Ask for the choice when it materially changes implementation, or recommend one when the user delegates the decision.
-4. Confirm the current option from official/project sources before installation; do not rely on a bundled dated inventory.
+3. Keep the choice inside Àṣà Ojú Ìbánisọ̀rọ̀ when it is a bounded implementation selection inside settled technical architecture. When introducing or switching a library materially changes system-wide source ownership, runtime/bundle architecture, compatibility/migration, or long-term integration boundaries, route that technical decision to `solution-architect` and consume its exact-current result before implementation.
+4. Ask for the choice when it is a material user/product preference, or recommend one when the user delegates a bounded implementation choice.
+5. Confirm the current option from official/project sources before installation; do not rely on a bundled dated inventory.
 
 ## Decision signals
 
@@ -33,6 +34,6 @@ Otherwise:
 
 ## Output
 
-Record the detected evidence, selected library/custom decision, why it fits the actual project, integration/theming constraints, migration/lock-in implications, and the first components/primitives affected.
+Record the detected evidence, selected library/custom decision or delegated architecture decision, why it fits the actual project, integration/theming constraints, migration/lock-in implications, and the first components/primitives affected.
 
-Use the selected library's current docs/CLI/project installation for component names and commands. Do not maintain a QP component catalogue.
+Use the selected library's current docs/CLI/project installation for component names and commands. Do not maintain a component catalogue.
