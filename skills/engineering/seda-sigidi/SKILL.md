@@ -14,14 +14,16 @@ Give one AI agent a durable soul: identity, values, boundaries, and voice ground
 
 ## 1. Pin the host contract
 
-Discover which files the host loads without being told, and decide single-file versus split by loader behavior, not by taste. Verify current loading rules against live documentation when uncertain; search before guessing. Known starting points:
+Discover which files the host loads without being told, and decide single-file versus split by loader behavior, not by taste. The table below is an operational anchor, not a frozen loader specification. Verify the exact-current rule from the linked host documentation before integration when loader behavior can affect the target.
 
-| Host | Loaded automatically | Separate persona files |
-| --- | --- | --- |
-| Codex | `~/.codex/AGENTS.md` and project `AGENTS.md` | none |
-| Claude Code | the `CLAUDE.md` memory chain | none |
-| opencode | global and project `AGENTS.md` | none |
-| OpenClaw | workspace `AGENTS.md`, `SOUL.md`, `IDENTITY.md`, and `USER.md` | supported |
+| Host | Current loading anchor | Separate persona files | Authoritative entry |
+| --- | --- | --- | --- |
+| Codex | Codex home (`$CODEX_HOME`, default `~/.codex`) loads `AGENTS.override.md` or `AGENTS.md`; project guidance is discovered from project root toward the working directory using `AGENTS.override.md` / `AGENTS.md` | none | https://developers.openai.com/codex/guides/agents-md |
+| Claude Code | project/user `CLAUDE.md` instructions, including parent-chain and nested discovery rules | none | https://code.claude.com/docs/en/memory |
+| OpenCode | global/project `AGENTS.md` instruction discovery | none | https://opencode.ai/docs/rules |
+| OpenClaw | agent workspace bootstrap files including `AGENTS.md`, `SOUL.md`, `IDENTITY.md`, and `USER.md` | supported | https://docs.openclaw.ai/concepts/agent-workspace |
+
+Use the host's current diagnostics/discovery surface when available to confirm what actually loaded rather than inferring activation from a file existing on disk. Do not expand this table into a cached catalogue of precedence flags, limits, fallback filenames, or host versions.
 
 When a split soul file would not load, integrate inline. Ask before overwriting an existing identity block. Preserve unrelated content outside that block.
 
