@@ -1,28 +1,54 @@
 ---
 name: alarina
-description: Select the shortest useful route through the skills published in this repository. Use when the user or agent is unsure which repo skill owns an outcome, asks what skills are available, or needs the shortest useful route; respect explicit user selection and explicit-only experiments.
+description: Inventory the skills published in this repository and select the shortest useful skill or flow from the work's current state to the requested outcome. Use when the user or agent is unsure what skill to use, asks what skills are available, or needs the route between several owned outcomes; respect explicit user selection and explicit-only experiments.
 ---
 
 # Alárinà
 
-Serve as the routing interface to this repository's skill portfolio. Build the current inventory from repository/package skill descriptions and invocation metadata rather than maintaining a second static catalogue inside Alárinà.
+Serve as the interface to this repository's skill portfolio. A **route** is the shortest justified path through one or more skills from the work's current state to the requested outcome. Do not force work to begin at an earlier phase merely because that phase commonly precedes the current one.
 
-If the user asks what skills exist, list the current repository skills with their category, owned outcome, and Experimental/explicit-only status. For an ordinary routing request, inspect the same inventory but surface only the relevant shortlist and selected route.
+Build the current inventory from repository/package skill descriptions and invocation metadata rather than maintaining a second static catalogue inside Alárinà.
 
-Alárinà routes skills from this repository. It does not maintain a catalogue or fallback tree for external skills or generic agent capabilities. When no repository owner is useful, return `NO_ROUTE`; the calling agent can continue with its ordinary capabilities and environment.
+## Inventory before routing
 
-## Route
+For an inventory request, list the current repository skills with:
 
-1. Pin the requested outcome and any explicit skill/mode choice.
-2. Read the current repository skill inventory from its `SKILL.md` descriptions/invocation metadata.
-3. Preserve an explicit user-selected skill when it owns the requested result and its invocation boundary is satisfied.
-4. Otherwise identify the narrowest skill whose independently owned outcome matches the request.
-5. Add a supporting skill only when its separately owned result is necessary to complete the primary result. Do not add specialists merely for lifecycle coverage.
-6. If the request contains several genuinely independent outcomes, return the small ordered/parallel route set rather than forcing one owner to absorb unrelated results. Use a routing/coordination skill only when routing/coordination itself is the useful outcome.
-7. Experimental skills are explicit-only. Offer an exact matching experiment and wait for acceptance; never silently substitute it for a stable owner.
-8. If no repository skill materially improves the result, return `NO_ROUTE` rather than inventing an external dependency.
+- category;
+- exact trigger;
+- owned outcome; and
+- Experimental/explicit-only status when applicable.
+
+For an ordinary routing request, inspect the same inventory but surface only the relevant shortlist. Use descriptions/metadata for the first pass; read shortlisted `SKILL.md` contracts only when their ownership boundary, accepted input, handoff, or invocation policy is needed to distinguish the route.
+
+When no repository skill materially improves the result, return `NO_ROUTE`. Do not maintain a catalogue or fallback tree for external skills, tools, plugins, or generic agent capabilities; the calling agent can continue with its ordinary capabilities and environment.
+
+## Route from the current work state
+
+1. Pin the requested outcome, current work state, supplied artifacts/results, active owner when known, and any explicit skill/mode choice.
+2. Preserve an explicit user-selected skill when it owns the requested result and its invocation boundary is satisfied.
+3. Otherwise choose the narrowest skill that can accept the **current** state and own the next required result. Do not replay exploration, planning, architecture, implementation, review, or publication already settled by exact-current evidence.
+4. Follow only real owner handoffs needed to reach the requested outcome. Every added skill must contribute an independently useful result that the next owner actually needs.
+5. Treat conditional support as a detour, not a mandatory phase. Keep the primary owner primary while a supporting result is obtained, then return to the owning flow.
+6. Experimental skills are explicit-only. Present the exact branch they would improve and wait for acceptance; never make a stable route depend on an unaccepted experiment.
+7. Stop at the requested outcome. Do not append review, publication, documentation, retrospective, persistence, or other later work merely because it often follows.
+
+Do not insert `handoff` merely because ownership changes. Use `handoff` only when a portable transfer to another agent/session/context is itself needed; ordinary skill-to-skill composition should consume native results directly.
 
 Routing grants no mutation, provider, credential, publication, review-verdict, or continuing-stewardship authority.
+
+## Route relationships
+
+Use these relationships rather than a fixed flow catalogue:
+
+| Relationship | Meaning |
+| --- | --- |
+| **Start** | owner that can accept the current state and produce the next required result |
+| **Support** | independently useful result required while another owner remains primary |
+| **Then** | successor owner needed for another requested outcome |
+| **Detour** | conditional branch whose result may materially change the main path |
+| **Stop** | requested outcome is satisfied; do not continue automatically |
+
+A request may therefore be one skill, a short flow, or an entry into the middle of a longer possible flow.
 
 ## Resolve close boundaries by owned result
 
@@ -49,15 +75,15 @@ Use `hitl-review` when the user wants a walkthrough, review-category coverage, s
 
 ## Report
 
-For a routing request, return:
+For a route, return only the useful path:
 
 ```text
-Inventory: <repository/package identity>
-Relevant skills: <shortlist or none>
-Primary owner(s): <skill/mode or ordered route set | NO_ROUTE>
-Why: <owned-result match>
-Required support: <only independently necessary results>
-Explicit acceptance required: <experimental/authority gate or no>
+Start: <skill/mode> — <why this is the current entry>
+Support: <skill/mode + condition, or none>
+Then: <next owner + why, only when required>
+Detour: <conditional or explicit-only branch, or none>
+Stop: <requested outcome>
+Why not: <closest materially different route, when useful>
 ```
 
 For an inventory request, list the repository skills rather than forcing a route.
