@@ -12,13 +12,15 @@ Deliver one supplied job as a coherent proved result. Use `test-first` only when
 Pin:
 
 - outcome and current/desired behavior;
-- scope and task exclusions;
+- scope and **local non-goals / task exclusions** that constrain implementation direction for this job without becoming repository-level `.nongoals`;
 - expected change envelope: likely owners/subsystems/surfaces plus explicitly unchanged contracts;
 - acceptance and the smallest sufficient proof;
 - governing specification identity and material behavior references when present;
 - documentation and durable-knowledge reconciliation obligations and destinations;
 - workspace and authority; and
 - the minimum real user/operational path that must pass.
+
+Treat local non-goals as active negative implementation boundaries, not descriptive footnotes. A proposal that violates one is out of scope unless the owning task/plan/spec changes it. Root `.nongoals` remains the separate durable project-wide exclusion contract owned by `amose`.
 
 The change envelope is an evidence-backed expectation, not a prohibition on necessary discovery. Material growth is a signal to re-check understanding, causal ownership, and scope rather than preserve the first plan with workaround layers.
 
@@ -85,7 +87,7 @@ If one unit blocks:
 
 - record the blocker, affected dependencies, proof, and exact resume trigger;
 - continue independent in-scope work; and
-- delegate bounded independent support when it materially improves progress or evidence.
+- delegate bounded independent support when it materially improves progress/evidence or keeps noisy investigation out of the primary delivery context.
 
 ## Exact candidate identity
 
@@ -110,7 +112,7 @@ Before review, update required ordinary documentation in the candidate, record i
 
 1. Review each stable, understandable, verifiable, reversible candidate once. Keep dependent changes together when separation creates a broken intermediate result; split independent candidates.
 2. After implementation proof is sufficient, source code/tests require broad `atunwo`. Other candidates use their native verification/review owner. Findings remain hypotheses until verified. Review may discover broadly; it does not silently enlarge the accepted delivery contract.
-3. Before implementing a correction, confirm it is inside the accepted contract/blocking criteria, ask whether the causal state/branch/duplicate owner can be removed or strengthened instead, prefer an existing mechanism at the real owner, and identify any scope-expansion event. Route genuine expansion through its decision/authority boundary.
+3. Before implementing a correction, confirm it is inside the accepted contract/blocking criteria and local non-goals, ask whether the causal state/branch/duplicate owner can be removed or strengthened instead, prefer an existing mechanism at the real owner, and identify any scope-expansion event. Route genuine expansion through its decision/authority boundary.
 4. Apply behavior-changing corrections through TDD only when they meet the TDD admission gate; otherwise use the appropriate proof owner. Recapture the exact candidate and rerun only invalidated proof/review. Do not finish with a blocking finding or material evidence gap.
 5. Before closing, justify every touched file, new abstraction, dependency, compatibility path, and durable test by the requested contract or necessary proof. Passing tests and smaller line counts are evidence, not permission for unnecessary structure.
 6. Close a candidate only after acceptance, proof, documentation, and required review pass against the governing specification when present. Close the job only when every in-scope unit maps to the requested outcome and job-level integration/acceptance passes.
@@ -121,7 +123,7 @@ When a deliberate simplification has a known ceiling, record the simplification,
 
 Return:
 
-- job boundary, task exclusions, expected/final change envelope, and session policy;
+- job boundary, local non-goals/task exclusions, expected/final change envelope, and session policy;
 - delivered units plus documentation and durable-knowledge reconciliation;
 - proof/review state;
 - commit state and exact candidate identities;

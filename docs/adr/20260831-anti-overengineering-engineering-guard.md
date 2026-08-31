@@ -144,6 +144,14 @@ Real agent sessions/corpora feed `ayewo-igba-ise`. Repeated evidence can justify
 
 Experimental skills remain opt-in and cannot silently displace stable owners. However, exact-current evidence from an explicitly selected experiment may be evaluated by `ko-skill` for later promotion, consolidation, or stable-owner correction; the stable portfolio remains authoritative until that decision is made.
 
+## Evidence-gated open questions
+
+Do not change these from intuition alone:
+
+- the mandatory `technical-writing` → `yo-slop` chain for ordinary PR descriptions, commit messages, and small technical communication should be compared against direct owner output and `technical-writing` alone before being narrowed; preserve the chain until evidence shows the second pass adds no reliable value;
+- lightweight steering owners such as `salaye` and `ro-wo` remain valid while their named contracts provide useful reusable behavior; base-model capability alone is not removal evidence; and
+- Experimental `pepeye` remains explicit-only until repeated task evidence justifies promotion or architecture-level adoption.
+
 ## Rejected alternatives
 
 - no QP clone of Ponytail review/audit/debt/gain/help skills;

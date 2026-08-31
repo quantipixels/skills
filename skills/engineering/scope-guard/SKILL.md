@@ -1,6 +1,6 @@
 ---
 name: scope-guard
-description: Constrain one bounded coding task against over-engineering before or during implementation. Pin the exact outcome, task exclusions, expected change envelope, proof, scope-expansion events, and minimum sufficient mechanism. Use when the user asks to prevent scope creep or over-engineering, keep an agent narrow, make the smallest sound change, or establish a pre-implementation guard. Exclude implementation, architecture ownership, review verdicts, and repo-wide simplification.
+description: Constrain one bounded coding task against over-engineering before or during implementation. Pin the exact outcome, local non-goals/task exclusions, expected change envelope, proof, scope-expansion events, and minimum sufficient mechanism. Use when the user asks to prevent scope creep or over-engineering, keep an agent narrow, make the smallest sound change, or establish a pre-implementation guard. Exclude implementation, architecture ownership, review verdicts, and repo-wide simplification.
 ---
 
 # Scope Guard
@@ -12,7 +12,7 @@ Keep one coding task from silently becoming a larger task. Scope Guard is a ligh
 Understand the affected flow, current owners, contracts, and real callers before minimizing anything. Then pin:
 
 - **outcome** — the exact requested behavior/result;
-- **task exclusions** — what this task is not changing; do not confuse these with repository-level `.nongoals`;
+- **local non-goals / task exclusions** — strong negative implementation boundaries for what this task will not solve or change; keep them with this task/plan/spec and do not promote them into repository-level `.nongoals` unless `amose` separately establishes a durable project-wide exclusion;
 - **expected change envelope** — likely owners, subsystems, files/surfaces, and explicitly unchanged contracts; this is an evidence-backed expectation, not a prohibition on necessary discovery; and
 - **proof** — the smallest evidence that can establish completion.
 
@@ -76,7 +76,7 @@ When used as a standalone guard, return only:
 
 ```text
 Outcome: <exact result>
-Exclusions: <task exclusions>
+Local non-goals / exclusions: <strong negative implementation boundaries>
 Change envelope: <expected owners/surfaces + unchanged contracts>
 Proof: <smallest sufficient proof>
 Expansion gates: <material unapproved scope-expansion events>
