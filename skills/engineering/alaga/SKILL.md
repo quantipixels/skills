@@ -35,7 +35,8 @@ The change envelope is an evidence-backed expectation, not a prohibition on nece
 - Use `atona` when an initiative plan must remain live.
 - Use `seda-spec` when material normative behavior is not settled enough for implementation without invention.
 - Use `seda-ticket` only when supplied work benefits from consumable vertical tickets.
-- When stack/version/idiom uncertainty materially affects implementation quality, Alága may offer Experimental `akowe` as expert implementation counsel. Wait for explicit acceptance before invoking it; declining or lacking Akọ̀wé is not a delivery gap.
+- Use `root-cause` for a reproducible or directly observed defect when causal ownership/mechanism remains materially uncertain and competing explanations would lead to materially different corrections. Do not require it when the causal owner is already sufficiently established for a responsible fix.
+- Use `akowe` during material implementation when consequential implementation choices benefit from independent expert scrutiny of stack-native behavior, ownership/lifecycle, compatibility, proportionality, or exact-version evidence. Keep it candidate-pinned and skip it for obvious mechanical edits whose sound shape is already determined by current project evidence.
 
 Read [job report](references/job-report.md) when the job is multi-candidate, blocked/handoff-prone, migration/security/recovery sensitive, externally destructive, or otherwise meets that reference's report gate. Reuse an active Atọ́nà plan instead of creating a parallel job report.
 
@@ -54,7 +55,7 @@ Repository/Git state never grants commit, history-rewrite, publication, provider
 
 Prepare the workspace without disturbing unrelated changes. Continue through the confirmed horizon until completion, a material decision/authority gap, or no safe independent work remains.
 
-If Experimental `akowe` is active, pass it the exact job boundary, candidate, accepted architecture/domain constraints, material stack versions, touched mechanisms, and proof expectations. Obtain its initial counsel before material implementation and refresh it only when the candidate, touched mechanism, stack/version, accepted contract, material premise, or controlling evidence changes. Treat its result as advisory implementation input; it does not replace proof, delivery acceptance, or final review.
+If `akowe` is active, pass it the exact job boundary, candidate, accepted architecture/domain constraints, material stack versions, touched mechanisms, and proof expectations. Use it to scrutinize consequential implementation choices as they are made: obtain initial counsel before the first material choice, refresh only when the candidate, touched mechanism, stack/version, accepted contract, material premise, or controlling evidence changes, and consume only counsel that can change the implementation or proof. Akọ̀wé remains advisory; it does not replace delivery ownership, proof, or final review.
 
 ### Minimum sufficient mechanism
 
@@ -81,6 +82,8 @@ Apply [TDD](references/tdd.md) only when test-first is requested or a material b
 
 Run focused/affected proof per unit, then job-level integration/acceptance proof.
 
+When delivery changes literal user journeys and material browser-dependent acceptance claims remain that narrower proof cannot establish, use `dogfood` for the smallest complete affected journey set. Do not use Dogfood for document-shaped HTML, routine visual smoke, or a whole-product audit.
+
 Before a planned stateful refactor/rewrite can change transitions, ordering, locking, retries, idempotency, ownership, or cross-entry behavior, require exact-current Àtúnwò `audit` and consume its contract/guardrails as implementation input.
 
 If one unit blocks, record the blocker/resume trigger, continue independent in-scope work, and delegate bounded independent/noisy support only when it improves progress/evidence or protects the primary delivery context.
@@ -100,6 +103,8 @@ Before review, update required ordinary documentation in the candidate and use `
 ### Pre-review convergence
 
 Before handing the candidate to an independent reviewer, remove anything you already know the reviewer should not have to tell you about. Recheck local non-goals/change-envelope drift, the causal owner, unnecessary files/abstractions/dependencies/state/compatibility paths, temporary scaffolding, low-value durable tests, and whether proof can actually discriminate plausible wrong behavior. This is a self-check, not a postmortem or substitute for independent review.
+
+When `akowe` is active, obtain its final exact-candidate comparison during this convergence. Resolve any material `UNRESOLVED` counsel that can still change implementation/proof, or record the evidence-backed reason for a deliberate `DEPARTED` choice. Akọ̀wé status is advisory evidence, not review acceptance.
 
 Good: remove an interface introduced only for mocking when no production boundary requires it.
 

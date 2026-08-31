@@ -9,9 +9,9 @@ metadata:
 
 Attach **Expert Implementation Counsel** to one exact coding task. Help the active delivery owner build the smallest credible solution that satisfies current contracts and can be defended with current evidence.
 
-The natural caller is an active implementation owner, most often `alaga`. Akọ̀wé advises that owner before and during material implementation; it never absorbs delivery, proof, or final review.
+The natural caller is an active implementation owner, most often `alaga`. Akọ̀wé advises that owner before and during material implementation; it never absorbs delivery, proof, or final review. Its experiment is whether candidate-pinned expert scrutiny improves consequential implementation choices enough to justify its context/evidence cost, so challenge material choices as they are made rather than producing only an up-front brief.
 
-Akọ̀wé is an explicit Experimental companion. It does not implement, choose architecture, issue a review verdict, maintain a private language/framework encyclopaedia, or make stable delivery and review owners depend on it.
+Akọ̀wé is an Experimental companion. It does not implement, choose architecture, issue a review verdict, maintain a private language/framework encyclopaedia, or make stable delivery and review owners depend on it unconditionally.
 
 ## When to attach
 
@@ -42,7 +42,7 @@ These are conditional handoffs, not a preload list. Discover additional current 
 | material technical architecture | `solution-architect` | obtain an exact-current implementation-ready Architecture Contract before advising across that decision |
 | domain term, invariant, relationship, or durable project knowledge | `amose` | consume the exact-current project-knowledge result rather than inventing domain intent |
 | bounded companion-tool evidence | `irinse` | use the tool evidence as a lead/input, not as implementation judgment |
-| exact upstream source truth for the controlling version | Experimental `orisun` | use only when it is separately explicitly accepted; otherwise perform the smallest direct primary-source lookup or offer the experiment |
+| exact upstream source truth for the controlling version | `orisun` | use when nontrivial tracing of upstream implementation/tests materially controls counsel; otherwise perform the smallest direct primary-source read |
 | reusable or multi-source primary research | `iwadi` | consume the sourced research record when the research outcome deserves independent persistence/auditability |
 | consequential premise rather than discoverable fact | `ro-wo` | consume the evidence-backed premise judgment before carrying the assumption into counsel |
 | implementation, proof, candidate convergence | active delivery owner, normally `alaga` | return counsel; do not mutate or close delivery on its behalf |
@@ -80,7 +80,7 @@ Derive material expertise needs from the touched code and its credible failure p
 
 Inspect the active host's available skill descriptions and invocation metadata when that capability exists; otherwise use the skills available in the current context. Select the smallest skills whose independently owned results can materially change this implementation. Match by owned outcome, exact mechanism, candidate relevance, and evidence boundary—not by keyword alone.
 
-One skill may satisfy several needs. Do not invoke another merely to fill a category. Respect explicit-only invocation and user choice. Pass the exact candidate and exact question, consume the native result without copying its procedure or result schema, and keep detailed evidence with its owner.
+One skill may satisfy several needs. Do not invoke another merely to fill a category. Respect each skill's trigger, intent, authority, and cost boundary. Pass the exact candidate and exact question, consume the native result without copying its procedure or result schema, and keep detailed evidence with its owner.
 
 Use `alarina` only when route selection itself is needed. Use relevant stable or Experimental skills as their own policies permit. If no suitable skill is available, or its result is stale or materially incomplete, treat the remainder as a research gap rather than imitating that specialist.
 

@@ -62,7 +62,7 @@ Classify each material result as:
 
 For each failure or concern, state the journey, exact reproduction, expected and observed behaviour, candidate/head identity, evidence, user impact, determinism, and classification.
 
-Dogfood does not edit source, commit, push, publish, diagnose source causality, or declare code quality. Use `se-triage` for an ambiguous report, `root-cause` for accepted explicit causal diagnosis, `alaga` for an accepted correction, and `atunwo` for code-quality review. Respect each owner's invocation policy and do not invoke another experiment silently.
+Dogfood does not edit source, commit, push, publish, diagnose source causality, or declare code quality. Use `se-triage` for an ambiguous report, `root-cause` when causal diagnosis is the missing result and its observation boundary is satisfied, `alaga` for an accepted correction, and `atunwo` for code-quality review. Respect each owner's trigger and authority boundary.
 
 After a correction owner returns, refresh the exact candidate and rerun only affected journeys plus credible interaction seams. A successful correction does not erase original evidence or convert untested rows to `Pass`.
 

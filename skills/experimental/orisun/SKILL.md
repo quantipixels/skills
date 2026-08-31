@@ -1,13 +1,13 @@
 ---
 name: orisun
-description: Ground one technical question or active engineering task in exact relevant upstream source code, tests, and first-party evidence for the version actually in use. Use only when explicitly invoked or after explicit experimental acceptance, including requests to use btca. Exclude ordinary inspection of the current repository, broad durable research records, implementation ownership, and answers that do not require upstream source truth.
+description: Ground one technical question or active engineering task in exact relevant upstream source code, tests, and first-party evidence for the version actually in use. Use when exact upstream source truth can materially change the answer, including requests to use btca. Exclude ordinary inspection of the current repository, broad durable research records, implementation ownership, and answers that do not require upstream source truth.
 ---
 
 # Orísun
 
 Ground one bounded technical question in the smallest exact upstream evidence needed to answer it. Prefer project-resolved truth over model memory and current upstream head. Return compact evidence that another owner can consume without inheriting the research procedure.
 
-Orísun is an explicit Experimental companion. It does not implement code, choose architecture, issue a review verdict, maintain a dependency catalogue, or create a durable research report. Use `iwadi` when the research result should persist independently as a sourced repository record.
+Orísun is an Experimental source-grounding companion. It does not implement code, choose architecture, issue a review verdict, maintain a dependency catalogue, or create a durable research report. Use `iwadi` when the research result should persist independently as a sourced repository record.
 
 ## Pin the target truth
 

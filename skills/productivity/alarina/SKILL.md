@@ -1,6 +1,6 @@
 ---
 name: alarina
-description: Inventory the skills published in this repository and select the shortest useful skill or flow from the work's current state to the requested outcome. Use when the user or agent is unsure what skill to use, asks what skills are available, or needs the route between several owned outcomes; respect explicit user selection and explicit-only experiments.
+description: Inventory the skills published in this repository and select the shortest useful skill or flow from the work's current state to the requested outcome. Use when the user or agent is unsure what skill to use, asks what skills are available, or needs the route between several owned outcomes; respect explicit user selection and skill-specific intent/authority gates.
 ---
 
 # Alárinà
@@ -34,7 +34,7 @@ This is a composition map, not a mandatory pipeline. Enter at the current stage:
 Issue/failure/learning on-ramps:
 
 - report validity/classification → `se-triage`;
-- minimal causal mechanism → explicit Experimental `root-cause`;
+- minimal causal mechanism → `root-cause`;
 - confirmed correction → `alaga`;
 - completed/abandoned/disputed work or incident needing lessons → `ayewo-igba-ise`;
 - code defect/proof verdict or stateful parity audit → `atunwo`;
@@ -45,7 +45,7 @@ For Design, use `apere` only when design-specific multi-owner routing is itself 
 
 Supporting skills may also be direct outcomes. Use current metadata to select them rather than maintaining another list in this file.
 
-Treat representation and experience as different outcomes. `html-artifact` owns document-shaped visualization of supplied information; ordinary filters, disclosures, charts, comparison controls, and navigation do not turn a report/resource/plan/review into UI work. When the rendered interaction/design itself is what the user wants to create or evaluate, route to Experimental `prototype` or the current Design/UI owner and use `html-artifact` only as supporting representation when useful.
+Treat representation and experience as different outcomes. `html-artifact` owns document-shaped visualization of supplied information; ordinary filters, disclosures, charts, comparison controls, and navigation do not turn a report/resource/plan/review into UI work. When the rendered interaction/design itself is what the user wants to create or evaluate, route to `prototype` or the current Design/UI owner and use `html-artifact` only as supporting representation when useful.
 
 ## Route rules
 
@@ -55,7 +55,7 @@ Treat representation and experience as different outcomes. `html-artifact` owns 
 4. Every added owner must contribute an independently useful result the next owner actually needs. Conditional support is a detour, not a phase.
 5. Pass only the input/result needed for the next owner. Do not make Alárinà a transcript store, receipt schema, lifecycle, or coordinator.
 6. `scope-guard` is support, never a mandatory stage when the active owner already carries the relevant scope/minimality contract.
-7. Experimental skills are explicit-only: offer the exact detour and wait for acceptance; never make one a silent stable prerequisite.
+7. Experimental skills participate as first-party candidates. Experimental status alone is not a user-confirmation gate: select by owned outcome, current-state fit, cost, and skill-specific intent/authority. Never invoke an experiment only to collect data, make one an unconditional prerequisite, or let its existence redefine stable ownership before promotion.
 8. Stop at the requested outcome. Do not append review, publication, documentation, persistence, handoff, or retrospective merely because it often follows.
 
 Use `handoff` only when a portable transfer to another agent/session/context is itself needed; ordinary owner composition consumes native results directly.
@@ -64,13 +64,17 @@ When no repository skill materially improves the result, return `NO_ROUTE` and l
 
 ## Close boundaries
 
+- `ideate` / `arojinle` / `atona` — generate credible mechanism-diverse possibilities / resolve consequential selection / maintain initiative lifecycle.
 - `atona` / `arojinle` / `solution-architect` — initiative lifecycle / consequential user decision / technical architecture.
 - `atona` / `seda-spec` / `seda-ticket` — lifecycle / normative behavior / delivery decomposition.
 - `scope-guard` / `alaga` / `pare` — prospective scope steering / implementation+proof / read-only simplification.
+- `alaga` / `akowe` / `atunwo` — delivery ownership / candidate-pinned expert implementation scrutiny / independent final code-review verdict.
+- `akowe` / `orisun` / `iwadi` — broad active implementation counsel / one exact-version upstream source finding / durable multi-source research.
 - `alaga` / `atunwo` / `pare` — implementation+proof / code-review verdict+parity / simplification.
 - `seda-pr` / `wo-pr` / `atunwo` — publication / open-PR stewardship / review verdict.
-- `se-triage` / Experimental `root-cause` / `ayewo-igba-ise` / `alaga` — report classification / causal diagnosis / completed-event postmortem / implementation.
-- `html-artifact` / Experimental `prototype` / Design or UI owner — information projection / disposable rendered experience for a decision / actual interface design or implementation.
+- `se-triage` / `root-cause` / `alaga` — report classification / causal diagnosis / implementation.
+- `html-artifact` / `prototype` / Design or UI owner / `dogfood` — information projection / disposable rendered experience for a decision / actual interface design or implementation / real-browser candidate journey proof.
+- `pepeye` / `atona` / `handoff` — user-requested task supervision across owners / initiative lifecycle / portable context transfer.
 - `amose` / `technical-writing` — durable project/domain knowledge / prose structure and clarity.
 - `irinse` / consuming owner — tool evidence / the judgment made from it.
 
