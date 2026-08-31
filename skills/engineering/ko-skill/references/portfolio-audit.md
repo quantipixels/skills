@@ -44,35 +44,31 @@ Do not classify deliberate friction as bloat merely because it is expensive. Rel
 
 Simulate representative end-to-end paths, not only isolated skills. Identify every owner invocation, user interruption, subagent/context boundary, persistent artifact, review, proof/test action, and external effect. Flag a cascade only when one of those steps does not independently protect the requested result or when repeated correction cannot converge without unauthorized scope expansion.
 
-## Experimental incubation
+## Experimental portfolio judgment
 
-When Experimental skills are in scope, evaluate **opportunity and incremental value**, not raw invocation count or directory status.
+Kọ Skill does not discover historical skill usage from repository structure, router metadata, or current package state. When an Experimental skill is being evaluated for portfolio disposition, consume verified real-use evidence supplied by the user, `ayewo-igba-ise` corpus analysis, Skill Doctor, or another source whose population, availability, and evidence boundary are explicit.
 
-For each experiment, establish:
+Use that evidence together with the current package and portfolio to judge:
 
-1. **owned outcome** — the independently useful result that would justify selecting it;
-2. **eligible opportunities** — real tasks/sessions where that result was needed and the skill was actually installed/active/discoverable;
-3. **selection** — eligible-selected, eligible-missed, ineligible, mis-triggered, unavailable/capability-blocked, or uncertain;
-4. **selection correctness** — whether the exact trigger, intent/authority, candidate, and cost boundary were satisfied;
-5. **incremental value** — what decision, implementation choice, diagnosis, proof, access outcome, or task coherence materially improved because the experiment ran;
-6. **cost** — extra interruption, context, latency, browser/tool work, persistence, review, or rework attributable to it;
-7. **boundary health** — whether it preserved the stable owner's lifecycle/result/authority instead of duplicating or stealing it; and
-8. **missed-opportunity evidence** — whether an eligible active session reimplemented the same specialist result, made a weaker decision, or incurred avoidable correction because the experiment was not selected.
+- whether the owned outcome remains independently useful and distinct;
+- whether trigger, authority, cost, and adjacent-owner boundaries are healthy;
+- whether the current public skill shape is the right placement for the useful behavior; and
+- when real-use evidence is sufficient, whether observed value and cost justify changing maturity or shape.
 
-Do not count a session as a missed opportunity merely because the experiment could theoretically have been used; prove that its owned result was materially needed and that the skill was available to that session. Likewise, low use is not negative evidence for a genuinely rare outcome when the eligible denominator is small.
+A useful evidence packet may include eligible-opportunity denominator, selected/missed/mis-triggered/unavailable cases, observed incremental value and cost, boundary-health observations, counterevidence, and coverage limits. Treat missing historical evidence as an evidence gap; do not infer invocation frequency, missed opportunities, recurrence, or incremental value from source structure.
 
-Never invoke an experiment merely to create incubation evidence during real user work. Use realistic temporary steering comparisons only when selection behavior itself remains materially uncertain.
+Use one disposition when the available structural and real-use evidence supports it:
 
-Use one disposition:
-
-- `PROMOTE` — repeated/representative evidence shows distinct recurring value, healthy boundaries, and justified cost;
-- `KEEP_EXPERIMENTING` — boundary is credible but opportunity/value evidence is still insufficient or sparse;
-- `NARROW` — useful result exists but the trigger/scope is broader than earned;
+- `PROMOTE` — representative real-use evidence shows distinct recurring value, healthy boundaries, and justified cost;
+- `KEEP_EXPERIMENTING` — the boundary remains credible but real-use evidence is insufficient or sparse;
+- `NARROW` — useful behavior is proved but trigger/scope is broader than justified;
 - `FOLD` — useful behavior belongs inside another owner rather than as an independent public skill;
-- `REPLACE` — the hypothesis remains valuable but this experimental shape is not the best vehicle; or
-- `REMOVE` — evidence shows no independently useful result, harmful/mis-triggered behavior, or unjustified recurring cost.
+- `REPLACE` — the capability hypothesis remains useful but this public shape is not the best vehicle; or
+- `REMOVE` — structural evidence proves the public owner is invalid/redundant, or real-use evidence proves no independent value, harmful/mis-triggered behavior, or unjustified recurring cost.
 
-One success never authorizes stable-owner removal/narrowing by itself. A severe one-off can justify safety correction, but promotion still requires evidence that the independent outcome is worth exposing as a stable skill.
+`PROMOTE` cannot be justified from structure alone. Likewise, do not remove a structurally credible experiment merely because usage evidence is absent or invocation count is low. Structural defects may still justify `NARROW`, `FOLD`, `REPLACE`, or `REMOVE` without historical usage when the defect itself is proved from current ownership/behavior boundaries.
+
+Never invoke an experiment merely to manufacture graduation evidence. One success never authorizes stable-owner removal/narrowing by itself.
 
 ## Capability and knowledge placement
 
@@ -103,13 +99,13 @@ Do not reward list count, short paragraphs, or extra headings by themselves. Ref
 
 Search for stale links to removed resources, obsolete commands/names, duplicate active guidance, and historical research presented as current contract. Keep deterministic CI/tests only for retained deterministic seams and package integrity.
 
-For proposed compression/consolidation, require before/after realistic proof only where material uncertainty remains. For model-steering changes, use temporary steering-effect comparison when the behavioral delta is uncertain rather than assuming fewer instructions are better. Size reduction is not acceptance; preserve selection, result quality, authority, discoverability, useful operational anchors, deliberate context/representation controls, and behavior-bearing expertise.
+For proposed compression/consolidation, require before/after realistic proof only where material uncertainty remains. For model-steering changes, use temporary steering-effect comparison when the behavioral delta is uncertain rather than assuming fewer instructions are better. Size reduction is not acceptance; preserve selection, result quality, authority, proof, discoverability, useful operational anchors, deliberate context/representation controls, and behavior-bearing expertise.
 
 ## Report
 
 Verify findings against exact-current files/state. Separate defects, optimizations, evidence gaps, healthy repetition, deliberate friction retained, and proof-gated consolidation candidates. Deduplicate by mechanism and rank by user impact, recurrence, safety, stale-risk, and correction cost.
 
-For Experimental skills, include eligible-opportunity denominator, selection/missed-opportunity evidence, incremental value/cost, boundary health, and one incubation disposition.
+For an Experimental portfolio judgment, identify the verified evidence packet consumed, any missing real-use evidence, the structural/boundary assessment, and the resulting disposition only to the extent the evidence supports it.
 
 Return inventory/state boundary, ownership/control findings, behavioral instruction dispositions, structural/resource drift, capability/reference/script/template/data/asset dispositions, presentation-shape findings, composition-path findings, consolidation candidates with proof needs, healthy repetition/deliberate friction retained, prioritized actions, rejected recommendations, and limitations.
 

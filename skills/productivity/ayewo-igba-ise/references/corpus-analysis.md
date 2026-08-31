@@ -18,9 +18,9 @@ Call a pattern repeated only when the same material mechanism appears in at leas
 
 Normalize corpus counts to the pinned unit and report the numerator, denominator, and exclusions when they matter. Use counts and elapsed time only when the record supports them.
 
-### Experimental opportunity ledger
+### Experimental opportunity evidence
 
-When the corpus is being used to evaluate Experimental skills, reconstruct opportunity separately from invocation.
+When the corpus is being used to evaluate Experimental skills, Àyẹ̀wò owns reconstruction of historical opportunity and use. Separate opportunity from invocation.
 
 For each root session and experiment in scope, classify only when evidence supports it:
 
@@ -37,11 +37,33 @@ Raw invocation count is never the denominator. A rare experiment may be healthy 
 
 Do not manufacture experiment invocations during real user work to improve sample size. The corpus observes natural eligible opportunities; temporary controlled steering comparisons belong to skill evaluation only when selection behavior remains materially uncertain.
 
+Produce a compact evidence packet that another owner can consume without reconstructing the corpus:
+
+```text
+Experimental use evidence
+
+Skill:
+Corpus/population:
+Source | installed | active | published boundary:
+Eligible opportunities:
+Selected:
+Missed:
+Mis-triggered:
+Unavailable:
+Observed incremental value:
+Observed cost:
+Boundary-health evidence:
+Counterevidence:
+Coverage/evidence gaps:
+```
+
+This packet is historical evidence, not a promotion/removal verdict. `ko-skill` may consume it when a portfolio disposition is requested.
+
 ## Report the corpus
 
 Return the executive verdict, population and unit definitions, inventory and sampling ledger, repeated-pattern matrix with independent supporting records and counterevidence, representative causal chains, ranked frictions, effective recoveries, recommendation assessment, rejected recommendations, and residual limits.
 
-When Experimental evaluation is in scope, also return the opportunity ledger per experiment: eligible denominator, selected/missed/mis-triggered/unavailable counts, incremental value/cost evidence, boundary-health observations, and unresolved evidence gaps. Leave promotion/narrow/fold/replace/remove disposition to `ko-skill` unless that judgment is explicitly requested through the owning workflow.
+When Experimental evaluation is in scope, also return the opportunity evidence packet per experiment. Do not infer promotion, narrowing, folding, replacement, or removal from invocation counts; leave portfolio-shape judgment to `ko-skill` unless that judgment is explicitly part of a broader authorized workflow.
 
 When the corpus spans projects, include one dossier for every normalized project in the population, not only sampled or problematic projects. Each dossier must state:
 
