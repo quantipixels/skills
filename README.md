@@ -7,6 +7,7 @@ Browse the [documentation](https://quantipixels.com/skills).
 ## Portfolio principles
 
 - Kọ Skill authors every capability/resource at the smallest adequate surface: guidance/reference → visible command → native/project/provider tool → focused library → deterministic script → engine only when it carries a substantial owned vertical.
+- Generic `Use QP` requests enter through Alárinà; an explicit skill selection bypasses routing when it already owns the requested outcome.
 - Akọsílẹ̀ owns one repository-scoped `.qp`: the main worktree holds the real directory and linked worktrees expose symlinks. New records use stable semantic subjects; settings/index/record/artifact resources are created lazily.
 - Supporting skills keep detailed results with their native owners rather than copying caller-specific receipt/lifecycle schemas.
 - HTML Artifact creates reader-specific projections of supplied material without duplicating source archives or originating conclusions.
@@ -33,6 +34,14 @@ Claude Code:
 claude plugin marketplace add quantipixels/skills
 claude plugin install qp-skills@qp-skills
 ```
+
+Optional QP main agent after plugin installation:
+
+```bash
+claude --agent qp-skills:qp
+```
+
+The QP Agent is a thin host adapter over Alárinà. Direct skill invocation and skill-only hosts remain first-class.
 
 ## Uninstall
 
@@ -83,11 +92,11 @@ Use the exact design specialist directly when one deliverable owner is clear. Us
 | Skill | Outcome |
 | --- | --- |
 | `apere` | Route broad/multi-deliverable design work |
-| `amoye-ui-ux` | Coherent UI/UX direction/review from current product evidence + curated judgment |
+| `amoye-ui-ux` | UI/UX direction, proportionate design exploration, selection, and rendered convergence from current product evidence |
 | `brand` | Durable brand voice/identity/logo/icon/assets source of truth |
 | `social-graphics` | Feed/carousel/story/social campaign graphics |
 | `eto-apere` | Project-specific token/component-spec contract and CSS realization |
-| `asa-oju-ibanisoro` | Accessible responsive React/web UI implementation |
+| `asa-oju-ibanisoro` | Accessible responsive React/web UI implementation with native proof and material rendered-convergence handoff |
 | `banner-design` | Covers/headers/heroes/display ads/print banners |
 | `slides` | Presentation/pitch-deck narrative and visual composition |
 
@@ -97,7 +106,7 @@ Banner Design and Social Graphics intentionally remain narrow steering owners ev
 
 | Skill | Outcome |
 | --- | --- |
-| `alarina` | Select the shortest route from currently available QP skill descriptions |
+| `alarina` | QP front door: select the shortest route from currently available skill metadata |
 | `arojinle` | Resolve consequential product/plan/design choices through user-confirmed decision frontier |
 | `ayewo-igba-ise` | Evidence-backed postmortem for completed/abandoned/disputed work, incidents, sessions, or corpora |
 | `handoff` | Compact fresh-session handoff |
@@ -131,7 +140,9 @@ Historical `akowe-java`, `akowe-spring`, and catalogue experiments are research 
 ## Start
 
 ```text
-Use alarina to choose the shortest QP route for this request:
+Use QP for this:
 
 [describe the outcome]
 ```
+
+Alárinà selects the shortest route from the work's current state and steps aside once ownership is clear. If you already know the exact owner you want, invoke that skill directly.
