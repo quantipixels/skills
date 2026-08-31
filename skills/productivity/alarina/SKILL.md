@@ -88,7 +88,7 @@ For a route, return only:
 Start: <skill/mode> — <why this is the current entry>
 Support: <skill/mode + condition, or none>
 Then: <next owner + why, only when required>
-Detour: <conditional or explicit-only branch, or none>
+Detour: <conditional or intent/authority-gated branch, or none>
 Stop: <requested outcome>
 Why not: <closest materially different route, when useful>
 ```
