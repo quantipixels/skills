@@ -1,11 +1,13 @@
 ---
 name: alarina
-description: Inventory the skills published in this repository and select the shortest useful skill or flow from the work's current state to the requested outcome. Use when the user or agent is unsure what skill to use, asks what skills are available, or needs the route between several owned outcomes; respect explicit user selection and skill-specific intent/authority/host invocation gates.
+description: "Serve as the QP portfolio front door by inventorying current repository skill metadata and selecting the shortest useful skill or flow from the work's current state to the requested outcome. Use when the user says to use QP or qp-skills, is unsure what skill to use, asks what skills are available, or needs the route between several owned outcomes; respect explicit user selection and skill-specific intent, authority, cost, safety, and host invocation gates."
 ---
 
 # Alárinà
 
 Route from the work's **current state** to the requested outcome through the shortest justified owner path. Connect the owners, pass only the context/results they need, and step aside once ownership is clear.
+
+Treat generic wording such as `Use QP for this` or `Use qp-skills` as a routing request over the current portfolio. Preserve an explicit owner selection when it already owns the requested result. Generic QP invocation does not create a task lifecycle, supervisor, playbook mode, or additional mutation/provider authority.
 
 Current repository skill metadata is the inventory. Do not maintain another prose catalogue of every skill here. For an inventory request, enumerate current metadata; for routing, shortlist from current metadata and use the stable composition/boundary rules below. When cached routing prose and current metadata disagree, current metadata wins and the drift is a finding.
 

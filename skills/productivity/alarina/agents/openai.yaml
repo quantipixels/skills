@@ -1,3 +1,3 @@
 interface:
   display_name: "Alárinà"
-  short_description: "Route one prompt through the shortest QP path"
+  short_description: "Route generic QP requests to the shortest owner"
