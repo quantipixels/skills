@@ -1,7 +1,6 @@
 ---
 name: pepeye
 description: Supervise one explicitly selected task by keeping its outcome, current owner, candidate, authority, acceptance, proof, blocker, and terminal state coherent without selecting playbooks or reproducing owner lifecycles. Use only when the user explicitly invokes Pepeye for task-wide supervision. Exclude routing ownership, implementation, planning, review, publication, default activation, and provider-specific runtimes.
-disable-model-invocation: true
 ---
 
 # Pepeye

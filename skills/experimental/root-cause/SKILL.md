@@ -1,7 +1,6 @@
 ---
 name: root-cause
 description: Establish the minimal causal explanation for one reproducible or directly observed failure by building and falsifying competing mechanisms. Use when the missing outcome is diagnosis rather than issue validity, code review, or implementation.
-disable-model-invocation: true
 ---
 
 # Root Cause

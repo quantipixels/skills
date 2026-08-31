@@ -1,7 +1,6 @@
 ---
 name: orisun
 description: Ground one technical question or active engineering task in exact relevant upstream source code, tests, and first-party evidence for the version actually in use. Use only when explicitly invoked or after explicit experimental acceptance, including requests to use btca. Exclude ordinary inspection of the current repository, broad durable research records, implementation ownership, and answers that do not require upstream source truth.
-disable-model-invocation: true
 ---
 
 # Orísun

@@ -1,7 +1,6 @@
 ---
 name: dogfood
 description: Exercise the changed user journeys of one exact branch, pull request, or candidate in a real browser and report functional, responsive, accessibility, and experiential evidence. Exclude source review, autonomous fixing, invented product expectations, and whole-product audit.
-disable-model-invocation: true
 ---
 
 # Dogfood

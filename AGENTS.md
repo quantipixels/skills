@@ -6,13 +6,9 @@ Do not add or generate a `default_prompt` field in skill agent metadata.
 
 Keep every skill in exactly one `skills/engineering`, `skills/design`, `skills/productivity`, or `skills/experimental` group. When a skill is added, removed, renamed, moved, or rerouted, reconcile its group, [`.claude-plugin/plugin.json`](./.claude-plugin/plugin.json), [`alarina`](./skills/productivity/alarina/SKILL.md), and `README.md`.
 
-## Experimental isolation
+## Experimental
 
-Treat `skills/experimental` as an opt-in, isolated portfolio when analyzing or changing skill ownership, routing, overlap, redundancy, lifecycle boundaries, or outcome boundaries. Exclude Experimental skills from baseline comparisons among Engineering, Design, and Productivity skills unless the user explicitly includes an experiment or the change directly affects it.
-
-An Experimental skill does not become a stable owner, prerequisite, or reason to remove, narrow, merge, or reroute a non-Experimental owner merely because the experiment exists or succeeds once. However, exact-current evidence from an explicitly selected experiment may inform a later `ko-skill` promotion, consolidation, or stable-owner decision when that evidence is evaluated for recurrence/generality and the stable portfolio remains authoritative until the decision is made.
-
-When a change directly affects an Experimental skill, reconcile its group, manifest, router, README entry, and explicit stable-skill dependencies without treating the experiment as a baseline owner.
+An Experimental skill exists as an idea to explore. It can be treated as a first-party member of qp-skills. It's goal in life is to provde it utility, limitation, or otherwise and be promoted to a stable skill or be removed. Sometime a new experiment can take its place if deems worthy.
 
 ## Evaluation policy
 

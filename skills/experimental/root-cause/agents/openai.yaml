@@ -1,5 +1,3 @@
 interface:
   display_name: "Root Cause"
   short_description: "Prove the minimal causal explanation for one failure"
-policy:
-  allow_implicit_invocation: false

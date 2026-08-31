@@ -1,7 +1,6 @@
 ---
 name: fihan
 description: Serve one explicit local file, directory, or local web resource through private Tailscale Serve or an explicitly accepted encrypted Tailcat fallback, and return the exact access target. Use only when explicitly invoked or after explicit experimental acceptance. Exclude public/anonymous tunnels, permanent hosting, production serving, and artifact creation.
-disable-model-invocation: true
 ---
 
 # Fihàn

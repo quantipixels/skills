@@ -1,5 +1,3 @@
 interface:
   display_name: "Ideate"
   short_description: "Generate and challenge grounded alternatives"
-policy:
-  allow_implicit_invocation: false

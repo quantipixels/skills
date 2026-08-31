@@ -1,8 +1,6 @@
 ---
 name: akowe
 description: Accompany one active code change by discovering the smallest relevant available skills and current primary-source evidence, then maintain exact-candidate expert implementation counsel through handoff. Use when code should be idiomatic, proportionate, version-aware, and defensible to an expert. Exclude implementation ownership, architecture decisions, final review verdicts, and embedded language or framework catalogues.
-license: MIT
-disable-model-invocation: true
 metadata:
   version: "0.2.0"
 ---

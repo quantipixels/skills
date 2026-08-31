@@ -1,7 +1,6 @@
 ---
 name: prototype
 description: Build one disposable artifact at the minimum truthful fidelity needed to settle how a consequential interaction, flow, interface, API, or message should work or feel. Exclude production implementation, routine mockups, and polish.
-disable-model-invocation: true
 ---
 
 # Prototype

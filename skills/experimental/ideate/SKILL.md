@@ -1,7 +1,6 @@
 ---
 name: ideate
 description: Generate, challenge, and reduce a bounded set of materially different evidence-grounded possibilities before one is selected for decision or planning. Use when the user needs credible directions, improvements, or opportunities rather than refinement of one existing proposal.
-disable-model-invocation: true
 ---
 
 # Ideate

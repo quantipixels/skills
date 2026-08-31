@@ -1,5 +1,3 @@
 interface:
   display_name: "Prototype"
   short_description: "Build a disposable artifact to settle one decision"
-policy:
-  allow_implicit_invocation: false

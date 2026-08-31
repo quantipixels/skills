@@ -1,5 +1,3 @@
 interface:
   display_name: "Pepeye"
   short_description: "Supervise one task without replacing its owner"
-policy:
-  allow_implicit_invocation: false

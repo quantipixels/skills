@@ -1,5 +1,3 @@
 interface:
   display_name: "Fihàn"
   short_description: "Serve a local resource privately and return its access target"
-policy:
-  allow_implicit_invocation: false
