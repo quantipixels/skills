@@ -31,7 +31,11 @@ Use `amose` before the first round when existing project/domain knowledge can ma
 
 Finding facts is your job, never the user's. Delegate bounded independent/noisy lookup when doing it inline would materially pollute the decision context; return only the compact fact/evidence needed, let only dependent questions wait, and continue asking the rest of the frontier.
 
-The decisions remain the user's. Do not silently convert a recommendation into confirmation.
+When a material frontier decision requires comparing approaches but current evidence does not yet provide a credible mechanism-diverse candidate set, use `ideate` to generate/challenge only the possibilities needed for that decision. Consume its survivors, rejections, assumptions, and gaps as decision input; Ideate does not choose for the user. Do not invoke it merely to enlarge an already credible or settled option set.
+
+When a material frontier decision cannot responsibly be settled by discussion or static evidence because direct experience of behavior, visual treatment, interaction, API/CLI ergonomics, message treatment, or another runnable dimension could change the answer, use `prototype` only when cheaper evidence is insufficient. Resume the same decision frontier from the user's observed prototype evidence; disposable implementation never becomes the product candidate by default.
+
+The decisions remain the user's. Do not silently convert a recommendation, Ideate survivor, or Prototype observation into confirmation.
 
 ## Visual support proportionality
 

@@ -13,7 +13,7 @@ Browse the [documentation](https://quantipixels.com/skills).
 - Generated `.qp` state stays outside Git by default.
 - Small public skills may intentionally exist as reusable model-steering contracts when a narrow named behavior saves users from restating longer instructions.
 - Thin public convenience entrypoints may wrap native commands when one safe memorable invocation materially improves installation, removal, or other human-facing distribution UX.
-- Experimental skills are explicit-only and do not replace stable owners.
+- Experimental skills are first-party runtime candidates under their normal trigger, intent, authority, cost, safety, and host invocation gates. Experimental marks evidence/promotion maturity rather than adding a category-wide acceptance tax; experiments do not become unconditional prerequisites or redefine stable owners before promotion.
 
 ## Install
 
@@ -113,16 +113,16 @@ Banner Design and Social Graphics intentionally remain narrow steering owners ev
 
 ## Experimental
 
-Experimental skills require explicit acceptance.
+Experimental skills participate in normal first-party routing when their owned outcome fits and host invocation metadata permits it. A skill may deliberately require direct user activation when its boundary is an intent island; this is a skill-specific gate, not category-wide isolation. Experiments exist to prove their utility and limits in real work, then be promoted, kept experimental, narrowed/folded, replaced, or removed. Do not invoke one merely to collect experiment data, and do not treat low raw invocation count as failure when the owned outcome is genuinely rare.
 
 | Skill | Outcome |
 | --- | --- |
 | `akowe` | Exact-candidate adaptive expert implementation counsel |
 | `dogfood` | Real-browser verification of changed user journeys |
-| `fihan` | Serve one bounded local resource privately and return its exact HTTPS URL or Tailcat receiver invocation |
+| `fihan` | Explicitly activated private serving of one bounded local resource |
 | `ideate` | Grounded mechanism-diverse possibilities before selection |
-| `orisun` | Exact-version upstream source grounding for one bounded technical question |
-| `pepeye` | Explicit task supervision without a second owner lifecycle |
+| `orisun` | Exact-version upstream source escalation for one bounded technical question |
+| `pepeye` | User-requested task supervision without a second owner lifecycle |
 | `prototype` | Disposable truthful decision instrument |
 | `root-cause` | Minimal causal mechanism/set for an observed failure |
 

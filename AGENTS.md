@@ -8,7 +8,9 @@ Keep every skill in exactly one `skills/engineering`, `skills/design`, `skills/p
 
 ## Experimental
 
-An Experimental skill exists as an idea to explore. It can be treated as a first-party member of qp-skills. It's goal in life is to provde it utility, limitation, or otherwise and be promoted to a stable skill or be removed. Sometime a new experiment can take its place if deems worthy.
+Experimental skills are first-party runtime candidates whose maturity is under evaluation. Experimental status alone does not require separate user acceptance and does not make a skill ineligible for normal routing. Use one when its owned outcome is the narrowest useful match and its normal intent, authority, cost, safety, and host invocation gates are satisfied; never invoke one merely to generate experiment data.
+
+Host invocation metadata may deliberately require direct user activation for an intent island without changing the portfolio status of the skill. Experimental status constrains portfolio evolution, not ordinary invocation. Do not make an experiment an unconditional prerequisite, let one successful use redefine/remove/narrow a stable owner, or promote it without evidence across real eligible work. Evaluate whether it was discoverable when eligible, selected correctly, added independent value, imposed justified cost, and preserved owner boundaries. Rare outcomes are not failures merely because invocation count is low. Promote, keep experimenting, narrow/fold, replace, or remove from that evidence.
 
 ## Evaluation policy
 

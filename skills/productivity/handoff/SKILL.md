@@ -45,7 +45,7 @@ Treat a change in outcome, primary owner, repository or candidate, mutation auth
 
 Resolve every source session and artifact before treating it as confirmed. If a required source is unavailable, name the gap, limit `Confirmed` to independently verified facts, and make the first action obtain the smallest recovery bundle: a transcript or prior handoff, candidate identity, completed proof, and the next verifiable action.
 
-When Pepeye is active, include its exact-current lifecycle checkpoint and required leaf-owner results in the handoff; do not reproduce or advance Pepeye's lifecycle.
+When `pepeye` is active, include its exact-current supervision checkpoint and required owner results in the handoff; do not reproduce or advance Pepeye's task supervision.
 
 Include only verified current state. Mark information that may be stale. Remove credentials and unnecessary sensitive information.
 
