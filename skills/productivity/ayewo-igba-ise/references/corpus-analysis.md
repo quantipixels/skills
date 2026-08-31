@@ -18,9 +18,30 @@ Call a pattern repeated only when the same material mechanism appears in at leas
 
 Normalize corpus counts to the pinned unit and report the numerator, denominator, and exclusions when they matter. Use counts and elapsed time only when the record supports them.
 
+### Experimental opportunity ledger
+
+When the corpus is being used to evaluate Experimental skills, reconstruct opportunity separately from invocation.
+
+For each root session and experiment in scope, classify only when evidence supports it:
+
+- `ELIGIBLE_SELECTED` — the experiment was installed/active/discoverable, its owned result was materially needed, and it was selected;
+- `ELIGIBLE_MISSED` — the experiment was installed/active/discoverable and its owned result was materially needed, but it was not selected;
+- `MIS_TRIGGERED` — it was selected without the owned result being materially needed or outside its intent/authority/cost boundary;
+- `INELIGIBLE` — the owned result was not needed;
+- `UNAVAILABLE` — the result was needed but the skill was not installed/active/discoverable or a named capability blocked it; or
+- `UNCERTAIN` — evidence cannot responsibly establish opportunity or availability.
+
+For `ELIGIBLE_SELECTED`, record what materially changed because the experiment ran, its incremental cost, and whether it preserved the stable owner's lifecycle/result/authority. For `ELIGIBLE_MISSED`, identify the observed consequence only when the record supports it—for example duplicated specialist work, weaker evidence, rework, or a later correction. Do not invent counterfactual time/token savings.
+
+Raw invocation count is never the denominator. A rare experiment may be healthy with very few uses if it was selected in the few genuinely eligible sessions. Conversely, frequent invocation can be negative evidence when it is repeatedly mis-triggered or adds no independent value.
+
+Do not manufacture experiment invocations during real user work to improve sample size. The corpus observes natural eligible opportunities; temporary controlled steering comparisons belong to skill evaluation only when selection behavior remains materially uncertain.
+
 ## Report the corpus
 
 Return the executive verdict, population and unit definitions, inventory and sampling ledger, repeated-pattern matrix with independent supporting records and counterevidence, representative causal chains, ranked frictions, effective recoveries, recommendation assessment, rejected recommendations, and residual limits.
+
+When Experimental evaluation is in scope, also return the opportunity ledger per experiment: eligible denominator, selected/missed/mis-triggered/unavailable counts, incremental value/cost evidence, boundary-health observations, and unresolved evidence gaps. Leave promotion/narrow/fold/replace/remove disposition to `ko-skill` unless that judgment is explicitly requested through the owning workflow.
 
 When the corpus spans projects, include one dossier for every normalized project in the population, not only sampled or problematic projects. Each dossier must state:
 

@@ -44,6 +44,36 @@ Do not classify deliberate friction as bloat merely because it is expensive. Rel
 
 Simulate representative end-to-end paths, not only isolated skills. Identify every owner invocation, user interruption, subagent/context boundary, persistent artifact, review, proof/test action, and external effect. Flag a cascade only when one of those steps does not independently protect the requested result or when repeated correction cannot converge without unauthorized scope expansion.
 
+## Experimental incubation
+
+When Experimental skills are in scope, evaluate **opportunity and incremental value**, not raw invocation count or directory status.
+
+For each experiment, establish:
+
+1. **owned outcome** — the independently useful result that would justify selecting it;
+2. **eligible opportunities** — real tasks/sessions where that result was needed and the skill was actually installed/active/discoverable;
+3. **selection** — eligible-selected, eligible-missed, ineligible, mis-triggered, unavailable/capability-blocked, or uncertain;
+4. **selection correctness** — whether the exact trigger, intent/authority, candidate, and cost boundary were satisfied;
+5. **incremental value** — what decision, implementation choice, diagnosis, proof, access outcome, or task coherence materially improved because the experiment ran;
+6. **cost** — extra interruption, context, latency, browser/tool work, persistence, review, or rework attributable to it;
+7. **boundary health** — whether it preserved the stable owner's lifecycle/result/authority instead of duplicating or stealing it; and
+8. **missed-opportunity evidence** — whether an eligible active session reimplemented the same specialist result, made a weaker decision, or incurred avoidable correction because the experiment was not selected.
+
+Do not count a session as a missed opportunity merely because the experiment could theoretically have been used; prove that its owned result was materially needed and that the skill was available to that session. Likewise, low use is not negative evidence for a genuinely rare outcome when the eligible denominator is small.
+
+Never invoke an experiment merely to create incubation evidence during real user work. Use realistic temporary steering comparisons only when selection behavior itself remains materially uncertain.
+
+Use one disposition:
+
+- `PROMOTE` — repeated/representative evidence shows distinct recurring value, healthy boundaries, and justified cost;
+- `KEEP_EXPERIMENTING` — boundary is credible but opportunity/value evidence is still insufficient or sparse;
+- `NARROW` — useful result exists but the trigger/scope is broader than earned;
+- `FOLD` — useful behavior belongs inside another owner rather than as an independent public skill;
+- `REPLACE` — the hypothesis remains valuable but this experimental shape is not the best vehicle; or
+- `REMOVE` — evidence shows no independently useful result, harmful/mis-triggered behavior, or unjustified recurring cost.
+
+One success never authorizes stable-owner removal/narrowing by itself. A severe one-off can justify safety correction, but promotion still requires evidence that the independent outcome is worth exposing as a stable skill.
+
 ## Capability and knowledge placement
 
 Apply [capability and resource placement](resource-placement.md) to material commands, references, scripts, templates, data, assets, libraries, and public owners.
@@ -78,6 +108,8 @@ For proposed compression/consolidation, require before/after realistic proof onl
 ## Report
 
 Verify findings against exact-current files/state. Separate defects, optimizations, evidence gaps, healthy repetition, deliberate friction retained, and proof-gated consolidation candidates. Deduplicate by mechanism and rank by user impact, recurrence, safety, stale-risk, and correction cost.
+
+For Experimental skills, include eligible-opportunity denominator, selection/missed-opportunity evidence, incremental value/cost, boundary health, and one incubation disposition.
 
 Return inventory/state boundary, ownership/control findings, behavioral instruction dispositions, structural/resource drift, capability/reference/script/template/data/asset dispositions, presentation-shape findings, composition-path findings, consolidation candidates with proof needs, healthy repetition/deliberate friction retained, prioritized actions, rejected recommendations, and limitations.
 
