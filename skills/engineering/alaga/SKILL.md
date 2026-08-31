@@ -83,11 +83,7 @@ Run focused/affected proof per unit, then job-level integration/acceptance proof
 
 Before a planned stateful refactor/rewrite can change transitions, ordering, locking, retries, idempotency, ownership, or cross-entry behavior, require exact-current Àtúnwò `audit` and consume its contract/guardrails as implementation input.
 
-If one unit blocks:
-
-- record the blocker, affected dependencies, proof, and exact resume trigger;
-- continue independent in-scope work; and
-- delegate bounded independent support when it materially improves progress/evidence or keeps noisy investigation out of the primary delivery context.
+If one unit blocks, record the blocker/resume trigger, continue independent in-scope work, and delegate bounded independent/noisy support only when it improves progress/evidence or protects the primary delivery context.
 
 ## Exact candidate identity
 
@@ -97,22 +93,23 @@ Every review candidate must identify exactly what is being reviewed without dist
 - **Selected uncommitted work:** produce a Git-native content-addressed tree for only the intended paths while leaving the real index and refs untouched. Pin the base `HEAD` once and use that same SHA as the tree's base and reported identity. Reject selected paths with unresolved index stages rather than treating conflict content as an ordinary candidate.
 - **Whole worktree:** use only when the whole worktree is intentionally the candidate.
 
-Record:
+Record the pinned base SHA, candidate tree SHA, exact selected paths, and ambient uncommitted paths. Ambient changes must not enter the candidate. If the pinned base or selected content changes during capture, recapture before review; when concurrent mutation is a material risk, require a stable repeated capture.
 
-- pinned base SHA;
-- candidate tree SHA;
-- exact selected paths; and
-- ambient uncommitted paths.
+Before review, update required ordinary documentation in the candidate and use `amose` when verified delivery changes durable project knowledge. Consume applicable Atọ́nà reconciliation items without copying the lifecycle archive into delivery state.
 
-Ambient changes must not enter the candidate. If the pinned base or selected content changes during capture, recapture before review; when concurrent mutation is a material risk, require a stable repeated capture. Temporary capture state must not affect subsequent repository operations.
+### Pre-review convergence
 
-Before review, update required ordinary documentation in the candidate, record its exact destinations, and use `amose` when verified delivery changes durable project knowledge. Consume applicable Atọ́nà reconciliation items without copying the lifecycle archive into delivery state.
+Before handing the candidate to an independent reviewer, remove anything you already know the reviewer should not have to tell you about. Recheck local non-goals/change-envelope drift, the causal owner, unnecessary files/abstractions/dependencies/state/compatibility paths, temporary scaffolding, low-value durable tests, and whether proof can actually discriminate plausible wrong behavior. This is a self-check, not a postmortem or substitute for independent review.
+
+Good: remove an interface introduced only for mocking when no production boundary requires it.
+
+Bad: run a retrospective, reconsider settled architecture, or manufacture edge cases before review.
 
 ## 3. Review and converge
 
 1. Review each stable, understandable, verifiable, reversible candidate once. Keep dependent changes together when separation creates a broken intermediate result; split independent candidates.
 2. After implementation proof is sufficient, source code/tests require broad `atunwo`. Other candidates use their native verification/review owner. Findings remain hypotheses until verified. Review may discover broadly; it does not silently enlarge the accepted delivery contract.
-3. Before implementing a correction, confirm it is inside the accepted contract/blocking criteria and local non-goals, ask whether the causal state/branch/duplicate owner can be removed or strengthened instead, prefer an existing mechanism at the real owner, and identify any scope-expansion event. Route genuine expansion through its decision/authority boundary.
+3. Before implementing a correction, confirm it is inside the accepted contract/blocking criteria and local non-goals. Before adding special-case machinery, ask whether removing the causal state, branch, or duplicate owner would make the edge case impossible; otherwise prefer an existing mechanism at the real owner and surface genuine scope expansion.
 4. Apply behavior-changing corrections through TDD only when they meet the TDD admission gate; otherwise use the appropriate proof owner. Recapture the exact candidate and rerun only invalidated proof/review. Do not finish with a blocking finding or material evidence gap.
 5. Before closing, justify every touched file, new abstraction, dependency, compatibility path, and durable test by the requested contract or necessary proof. Passing tests and smaller line counts are evidence, not permission for unnecessary structure.
 6. Close a candidate only after acceptance, proof, documentation, and required review pass against the governing specification when present. Close the job only when every in-scope unit maps to the requested outcome and job-level integration/acceptance passes.
