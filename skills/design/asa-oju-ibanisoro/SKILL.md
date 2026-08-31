@@ -31,7 +31,3 @@ Use the active project's native configuration/tooling and version-specific docum
 ## Verification
 
 Run the project's applicable native proof for the changed area, then inspect the rendered UI for accepted surfaces/states. Verify only supported platforms/viewports/states, including keyboard/focus, contrast, overflow, loading/empty/error behavior, and reduced motion where applicable.
-
-## Resources
-
-- `references/ui-component-libraries.md` — component-library selection method when the choice is not already settled.

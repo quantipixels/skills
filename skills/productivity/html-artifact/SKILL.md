@@ -40,7 +40,7 @@ Interaction may navigate/filter/compare/sequence/reveal supplied material but mu
 
 ## Standalone support
 
-Use an existing artifact/project shell when it already owns the need. For standalone QP HTML, use `assets/visual-foundation.css` and `assets/theme-control.html` unless the host already supplies equivalent behavior. Add `back-to-top-control.html`, `report-control.html`, `collection-filter-control.html`, or `carousel-control.html` only when that asset's own trigger applies; read only the selected asset before embedding it. Asset existence is never another inclusion reason.
+Use an existing artifact/project shell when it already owns the need. For standalone QP HTML, use the [visual foundation](assets/visual-foundation.css) and [theme control](assets/theme-control.html) unless the host already supplies equivalent behavior. Add the [back-to-top control](assets/back-to-top-control.html), [report control](assets/report-control.html), [collection filter control](assets/collection-filter-control.html), or [carousel control](assets/carousel-control.html) only when that asset's own trigger applies; read only the selected asset before embedding it. Asset existence is never another inclusion reason.
 
 For icon-only controls, hide the icon from assistive technology and provide the asset's visually-hidden accessible label. For substantial artifacts, embed only a compact context capsule (identity/revision, purpose/status, blockers/next action, high-value source locators, proof freshness); never clone records/logs/archives or machine-specific absolute paths into it.
 

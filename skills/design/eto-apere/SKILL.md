@@ -43,8 +43,3 @@ For one compatibility release, the compiler also accepts legacy `--config`, `--o
 - Prefer a small coherent project-specific scale over one-off values, but do not invent a generic scale merely because it is common.
 - Treat focus, disabled, loading, error, selected, and other credible states as first-class only when the component/product actually supports them.
 - If the request is only UI implementation, hand it to `asa-oju-ibanisoro` after the token/spec contract is clear.
-
-## Resources
-
-- `references/token-architecture.md` — layer/alias/naming contract.
-- `references/component-contract.md` — evidence-backed reusable component property/variant/state contract.
