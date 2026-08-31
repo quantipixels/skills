@@ -1,6 +1,6 @@
 When creating, updating, or validating a skill, use `ko-skill`.
 
-For developer documentation and technical communication, use `technical-writing` for structure and clarity, then `yo-slop` for final prose cleanup. Apply the same chain to human-facing artifact copy when it fits, without changing the artifact owner's facts, schema, authority, or acceptance.
+For developer documentation and technical communication, use `technical-writing` when structure or clarity is the requested or required result. Use `yo-slop` separately only when final cleanup or explicit pruning is independently useful; do not append it as a mandatory post-writing phase. Apply the same owner boundary to human-facing artifact copy without changing the artifact owner's facts, schema, authority, or acceptance.
 
 Do not add or generate a `default_prompt` field in skill agent metadata.
 
