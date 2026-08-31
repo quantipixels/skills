@@ -27,6 +27,8 @@ Atọ́nà owns the record body, revision, native status, decision frontier, del
 
 Use `html-artifact` to visualise the outcome, status, decision frontier, confirmed decisions, phases, blockers, delivery/proof, and next action. Keep its HTML as the primary human view. Refresh it after settled decision rounds or lifecycle transitions; never interrupt an active Àròjinlẹ̀ round for artifact work. Between those boundaries, or when a refresh fails, the semantic record remains current and the HTML must not be presented as current.
 
+The initiative-plan projection is document-shaped. Routine semantic refreshes use HTML Artifact's structural proof boundary and reuse current render proof while presentation behavior is unchanged.
+
 When material questions are open, the active Àròjinlẹ̀ round is the user-facing handoff: lead with the questions and recommended answers and wait for the user's decisions.
 
 ### Synthesize settled context

@@ -26,6 +26,15 @@ Load branch guidance only when applicable:
 - supplied prototype/design variants → [prototype patterns](references/prototype-patterns.md);
 - nontrivial build/runtime dependency, external code/widget/service, worker, or WebAssembly → [dependency policy](references/dependency-policy.md).
 
+## Classify representation vs experience
+
+Classify the artifact job before choosing proof.
+
+- **Document-shaped projection** — the browser presents supplied information. This includes reports, plans, decision trees/frontiers, research/resources, specifications, tickets/work breakdowns, architecture packets/diagrams, code-change/review/maintainability/triage/premise views, postmortems, status/progress views, timelines, matrices/comparisons, and evidence reports. Themes, disclosures, filters, sorting, charts, anchors, and simple navigation remain document affordances when they only navigate/reveal/compare supplied information; they do not promote the artifact into a UI acceptance surface.
+- **Interface-shaped artifact** — the rendered UI/interaction itself is part of the requested result or decision, such as a UI prototype, product/application interface, interaction/design candidate, responsive workflow, or component/state demonstration. The caller's accepted result must actually depend on rendered experience; interactivity alone is insufficient.
+
+When a document-shaped artifact's accepted result genuinely changes so rendered experience itself is being designed or evaluated, reclassify from the current request/owner contract rather than from HTML features. For literal UI/design/application work, keep the appropriate `prototype`/Design/UI owner primary and use HTML Artifact only for the representation work it owns.
+
 ## Compose the view
 
 Build one governing representation/result that explains the main supplied relationship better than a prose dump. Foreground outcomes, decisions, current status, blockers, warnings, material evidence, risks and next action. Keep supporting rationale/trade-offs/constraints and selected evidence retrievable without cloning source archives.
@@ -61,13 +70,29 @@ Evidence: Embedded | Linked | Mixed
 
 ## Verification
 
-Verification follows claims/consequence, not file size.
+Verification follows the artifact job and accepted claims, not importance, size, longevity, publication status, or HTML feature count.
 
-- **Structural — always:** reread after every write; check applicable source/projection revision, required anchors/context, script syntax, source mapping, runtime disclosure, and dependency identity. HTML existence alone does not require a browser.
-- **Visual smoke — when rendered usability materially affects review:** prove the page opens, the governing representation is visible, no catastrophic layout/overflow blocks reading, and required controls do not obviously fail. Add only targeted viewport/interaction checks for material risks.
-- **Deep browser proof — earned:** use when the artifact is production/publication/operational-facing; presentation controls formal assurance; design/responsive/interaction/accessibility fidelity is an acceptance claim; material live runtime/dependencies/complex state are part of the result; or the user explicitly requests thorough assurance. A new remote executable dependency/live service also earns deep proof of exact runtime identity, request hosts, data access, failure behavior, and essential-meaning fallback.
+### Document-shaped projection — structural ceiling
 
-A first substantial render/lifecycle transition alone does not trigger deep proof. Semantic-only updates may reuse current presentation proof when presentation/risk are unchanged; regenerated HTML still discloses the exact source revision.
+Structural proof is the normal completion boundary. After every write, reread and check applicable source/projection revision, required content/anchors/context, script syntax, source mapping, runtime disclosure, and dependency identity.
+
+Use at most one bounded render smoke only when rendered readability is materially uncertain: open the artifact, confirm the governing content is visible and no catastrophic layout/overflow failure prevents reading, then stop. Do not run a render merely because HTML exists.
+
+Do not escalate a document-shaped projection to targeted or deep browser proof merely because it is substantial, public, polished, interactive, long-lived, operationally relevant, or contains ordinary document controls. Semantic-only updates may reuse current presentation proof while presentation behavior is unchanged.
+
+### Interface-shaped artifact — risk-driven browser proof
+
+When rendered experience itself is part of acceptance, start with the smallest render/interaction check that can falsify the accepted UI claim. Escalate to targeted browser proof only for specific material risks structural proof cannot establish, such as materially different responsive layouts, state transitions, keyboard/focus behavior, interaction semantics, or runtime behavior.
+
+### Deep browser proof — exceptional
+
+Use deep browser proof only for interface-shaped artifacts whose material browser-dependent acceptance claims remain uncertain after narrower checks, or when the user explicitly requests thorough browser assurance.
+
+Before starting, pin the exact browser-dependent claims and the smallest representative states, viewports, and interactions capable of falsifying them. Do not create a combinatorial browser matrix or exploratory regression sweep merely because more combinations exist.
+
+A new remote executable dependency or live service earns targeted runtime proof of exact runtime identity, request hosts, data access, failure behavior, and preservation of essential meaning. It does not by itself promote a document-shaped projection to deep browser proof.
+
+After a proved defect, rerun only proof invalidated by the correction. Unrelated observations do not automatically expand proof scope. Stop when every declared material browser-dependent claim is `proved`, an explicit evidence gap, or `not applicable`.
 
 ## Deliver
 

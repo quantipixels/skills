@@ -45,6 +45,8 @@ For Design, use `apere` only when design-specific multi-owner routing is itself 
 
 Supporting skills may also be direct outcomes. Use current metadata to select them rather than maintaining another list in this file.
 
+Treat representation and experience as different outcomes. `html-artifact` owns document-shaped visualization of supplied information; ordinary filters, disclosures, charts, comparison controls, and navigation do not turn a report/resource/plan/review into UI work. When the rendered interaction/design itself is what the user wants to create or evaluate, route to Experimental `prototype` or the current Design/UI owner and use `html-artifact` only as supporting representation when useful.
+
 ## Route rules
 
 1. Pin the requested outcome, current work state, supplied exact-current artifacts/results, active owner when known, and explicit skill/mode choice.
@@ -68,6 +70,7 @@ When no repository skill materially improves the result, return `NO_ROUTE` and l
 - `alaga` / `atunwo` / `pare` — implementation+proof / code-review verdict+parity / simplification.
 - `seda-pr` / `wo-pr` / `atunwo` — publication / open-PR stewardship / review verdict.
 - `se-triage` / Experimental `root-cause` / `ayewo-igba-ise` / `alaga` — report classification / causal diagnosis / completed-event postmortem / implementation.
+- `html-artifact` / Experimental `prototype` / Design or UI owner — information projection / disposable rendered experience for a decision / actual interface design or implementation.
 - `amose` / `technical-writing` — durable project/domain knowledge / prose structure and clarity.
 - `irinse` / consuming owner — tool evidence / the judgment made from it.
 

@@ -38,6 +38,12 @@ Concrete mechanics earn instruction space when the mechanism establishes correct
 
 Before adding or retaining commands, references, scripts, templates, data, assets, or another public owner, read [capability and resource placement](references/resource-placement.md). Keep `SKILL.md` focused on the universally required contract and load branch-specific depth only where needed. In prose, link package-local resources directly. When a local resource cannot reasonably be linked, make its base explicit as relative to the directory containing this `SKILL.md` (the skill root), for example `SKILL_ROOT/references/example.md`; do not leave bare `references/...`, `assets/...`, `templates/...`, or `scripts/...` paths whose base must be inferred.
 
+For human-facing artifacts, distinguish **representation proof** from **experience proof**. HTML or ordinary document interactivity does not earn UI/browser assurance unless rendered experience itself is part of the owner's acceptance contract.
+
+Good: a postmortem/report gets structural proof and, only when readability is materially uncertain, one bounded render smoke; a checkout prototype gets browser interaction proof because interaction is being evaluated.
+
+Bad: a filterable report triggers viewport/theme/filter/accessibility browser matrices merely because it is polished or interactive.
+
 When material expert judgment belongs outside `SKILL.md`, use [reference quality](references/reference-quality.md). If executable code still appears necessary after placement, apply [script boundary](references/script-boundary.md). Use [knowledge catalogues](references/knowledge-catalogues.md) only when a maintained researched corpus is itself part of the useful outcome.
 
 For multi-host portability, keep one canonical semantic contract in the skill/owning source. Host manifests, rules, hooks, or command adapters should be the thinnest projection needed by actual loader semantics; do not maintain divergent handwritten copies of the behavior. Mechanically verify projections when an adapter exists and semantic drift would be consequential. Do not add host adapters merely to claim compatibility that current installation/distribution already provides.

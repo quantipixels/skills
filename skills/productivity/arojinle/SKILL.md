@@ -37,6 +37,8 @@ The decisions remain the user's. Do not silently convert a recommendation into c
 
 Conversation is the primary view for a small/single-round decision set. Use `html-artifact` to visualise the tree/frontier/confirmed decisions when the decision surface is substantial, multi-round, durable across sessions/owners, or materially easier to understand as a visual relationship. Do not create/maintain an HTML projection merely because a decision interview exists.
 
+A decision-tree/frontier visualization is document-shaped: navigation, disclosure, filtering, or other ordinary document affordances do not promote it into UI proof. Use HTML Artifact's document proof boundary.
+
 Use `amose` after confirmation when decisions materially change durable project knowledge.
 
 Finish when the material frontier is empty and the user confirms shared understanding. Return confirmed decisions, material assumptions/evidence, any explicit deferrals/re-entry condition, and the next owner/action. Do not implement the result inside Àròjinlẹ̀.

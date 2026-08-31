@@ -75,4 +75,4 @@ Return:
 - rejected lessons/recommendations; and
 - residual limits.
 
-Persist through `akosile` only when a durable postmortem record is required. Use `html-artifact` only when a substantial visual view materially improves the result.
+Persist through `akosile` only when a durable postmortem record is required. Use `html-artifact` only when a substantial visual view materially improves the result. A Postmortem visualization is document-shaped unless the requested result itself is an interface experience; use HTML Artifact's document proof boundary.
