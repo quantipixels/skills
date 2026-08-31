@@ -1,6 +1,6 @@
 ---
 name: alarina
-description: Inventory the skills published in this repository and select the shortest useful skill or flow from the work's current state to the requested outcome. Use when the user or agent is unsure what skill to use, asks what skills are available, or needs the route between several owned outcomes; respect explicit user selection and skill-specific intent/authority gates.
+description: Inventory the skills published in this repository and select the shortest useful skill or flow from the work's current state to the requested outcome. Use when the user or agent is unsure what skill to use, asks what skills are available, or needs the route between several owned outcomes; respect explicit user selection and skill-specific intent/authority/host invocation gates.
 ---
 
 # Alárinà
@@ -50,12 +50,12 @@ Treat representation and experience as different outcomes. `html-artifact` owns 
 ## Route rules
 
 1. Pin the requested outcome, current work state, supplied exact-current artifacts/results, active owner when known, and explicit skill/mode choice.
-2. Respect an explicit user-selected skill when it owns the result and its invocation boundary is satisfied.
+2. Respect an explicit user-selected skill when it owns the result and its invocation boundary is satisfied. Respect host invocation metadata; a skill with model invocation disabled may be returned as a direct-user-activation detour but must not be silently invoked.
 3. Otherwise select the narrowest current owner that can accept the current state and produce the next required result. Do not replay settled exploration, planning, architecture, implementation, review, publication, or postmortem work.
 4. Every added owner must contribute an independently useful result the next owner actually needs. Conditional support is a detour, not a phase.
 5. Pass only the input/result needed for the next owner. Do not make Alárinà a transcript store, receipt schema, lifecycle, or coordinator.
 6. `scope-guard` is support, never a mandatory stage when the active owner already carries the relevant scope/minimality contract.
-7. Experimental skills participate as first-party candidates. Experimental status alone is not a user-confirmation gate: select by owned outcome, current-state fit, cost, and skill-specific intent/authority. Never invoke an experiment only to collect data, make one an unconditional prerequisite, or let its existence redefine stable ownership before promotion.
+7. Experimental skills participate as first-party candidates. Experimental status alone is not a user-confirmation gate: select by owned outcome, current-state fit, cost, and skill-specific intent/authority/host invocation boundary. Never invoke an experiment only to collect data, make one an unconditional prerequisite, or let its existence redefine stable ownership before promotion.
 8. Stop at the requested outcome. Do not append review, publication, documentation, persistence, handoff, or retrospective merely because it often follows.
 
 Use `handoff` only when a portable transfer to another agent/session/context is itself needed; ordinary owner composition consumes native results directly.
@@ -69,7 +69,7 @@ When no repository skill materially improves the result, return `NO_ROUTE` and l
 - `atona` / `seda-spec` / `seda-ticket` — lifecycle / normative behavior / delivery decomposition.
 - `scope-guard` / `alaga` / `pare` — prospective scope steering / implementation+proof / read-only simplification.
 - `alaga` / `akowe` / `atunwo` — delivery ownership / candidate-pinned expert implementation scrutiny / independent final code-review verdict.
-- `akowe` / `orisun` / `iwadi` — broad active implementation counsel / one exact-version upstream source finding / durable multi-source research.
+- `akowe` / `ro-wo` / `iwadi` / `orisun` — active implementation counsel / premise challenge before deeper research / sufficient multi-source or durable primary research / exact-version upstream source escalation.
 - `alaga` / `atunwo` / `pare` — implementation+proof / code-review verdict+parity / simplification.
 - `seda-pr` / `wo-pr` / `atunwo` — publication / open-PR stewardship / review verdict.
 - `se-triage` / `root-cause` / `alaga` — report classification / causal diagnosis / implementation.
@@ -88,7 +88,7 @@ For a route, return only:
 Start: <skill/mode> — <why this is the current entry>
 Support: <skill/mode + condition, or none>
 Then: <next owner + why, only when required>
-Detour: <conditional or intent/authority-gated branch, or none>
+Detour: <conditional or direct-user-activation branch, or none>
 Stop: <requested outcome>
 Why not: <closest materially different route, when useful>
 ```

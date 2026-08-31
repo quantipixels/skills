@@ -9,9 +9,9 @@ metadata:
 
 Attach **Expert Implementation Counsel** to one exact coding task. Help the active delivery owner build the smallest credible solution that satisfies current contracts and can be defended with current evidence.
 
-The natural caller is an active implementation owner, most often `alaga`. Akọ̀wé advises that owner before and during material implementation; it never absorbs delivery, proof, or final review. Its experiment is whether candidate-pinned expert scrutiny improves consequential implementation choices enough to justify its context/evidence cost, so challenge material choices as they are made rather than producing only an up-front brief.
+The natural caller is an active implementation owner, most often `alaga`. Akọ̀wé challenges consequential implementation choices as they are made and refreshes only when the candidate, touched mechanism, controlling contract, version, premise, or evidence materially changes. It never absorbs delivery, proof, or final review.
 
-Akọ̀wé is an Experimental companion. It does not implement, choose architecture, issue a review verdict, maintain a private language/framework encyclopaedia, or make stable delivery and review owners depend on it unconditionally.
+It does not implement, choose architecture, issue a review verdict, maintain a private language/framework encyclopaedia, or make delivery/review owners depend on it unconditionally.
 
 ## When to attach
 
@@ -42,9 +42,9 @@ These are conditional handoffs, not a preload list. Discover additional current 
 | material technical architecture | `solution-architect` | obtain an exact-current implementation-ready Architecture Contract before advising across that decision |
 | domain term, invariant, relationship, or durable project knowledge | `amose` | consume the exact-current project-knowledge result rather than inventing domain intent |
 | bounded companion-tool evidence | `irinse` | use the tool evidence as a lead/input, not as implementation judgment |
-| exact upstream source truth for the controlling version | `orisun` | use when nontrivial tracing of upstream implementation/tests materially controls counsel; otherwise perform the smallest direct primary-source read |
-| reusable or multi-source primary research | `iwadi` | consume the sourced research record when the research outcome deserves independent persistence/auditability |
-| consequential premise rather than discoverable fact | `ro-wo` | consume the evidence-backed premise judgment before carrying the assumption into counsel |
+| consequential premise rather than discoverable fact | `ro-wo` | challenge the premise before paying for deeper research whose need depends on it |
+| reusable or multi-source primary research | `iwadi` | consume the sourced research result when it can establish the needed claim or deserves independent persistence/auditability |
+| exact upstream implementation/test truth for the controlling version | `orisun` | escalate only when exact source tracing remains decision-changing after project evidence, direct primary-source reads, and any sufficient `iwadi` result |
 | implementation, proof, candidate convergence | active delivery owner, normally `alaga` | return counsel; do not mutate or close delivery on its behalf |
 | final code-review verdict | `atunwo` through the delivery/review flow | stop at advisory handoff; do not convert counsel into review approval |
 
@@ -80,9 +80,9 @@ Derive material expertise needs from the touched code and its credible failure p
 
 Inspect the active host's available skill descriptions and invocation metadata when that capability exists; otherwise use the skills available in the current context. Select the smallest skills whose independently owned results can materially change this implementation. Match by owned outcome, exact mechanism, candidate relevance, and evidence boundary—not by keyword alone.
 
-One skill may satisfy several needs. Do not invoke another merely to fill a category. Respect each skill's trigger, intent, authority, and cost boundary. Pass the exact candidate and exact question, consume the native result without copying its procedure or result schema, and keep detailed evidence with its owner.
+One skill may satisfy several needs. Do not invoke another merely to fill a category. Respect each skill's trigger, intent, authority, cost, and host invocation boundary. Pass the exact candidate and exact question, consume the native result without copying its procedure or result schema, and keep detailed evidence with its owner.
 
-Use `alarina` only when route selection itself is needed. Use relevant stable or Experimental skills as their own policies permit. If no suitable skill is available, or its result is stale or materially incomplete, treat the remainder as a research gap rather than imitating that specialist.
+Use `alarina` only when route selection itself is needed. Use relevant skills as their own policies permit. If no suitable skill is available, or its result is stale or materially incomplete, treat the remainder as a research gap rather than imitating that specialist.
 
 ## 3. Close only material evidence gaps
 
@@ -97,9 +97,11 @@ For one or a few task-local facts, perform a bounded read-only lookup against ow
 
 Pin the claim, candidate/version boundary, source identity, cutoff, and implementation consequence. Stop when further lookup cannot change the counsel.
 
-Use `iwadi` when several primary sources must be reconciled, the result is independently reusable or auditable, a material standards/security/compatibility conclusion needs a durable report, or the caller explicitly requests one.
+When the need for deeper research rests on a consequential premise, use `ro-wo` first. If the premise fails, stop; do not pay for evidence that can no longer change the implementation.
 
-Use `ro-wo` when the material gap is a consequential premise rather than a discoverable fact. Test the premise, strongest credible alternative, controlling assumptions, and failure boundaries before carrying it into the counsel.
+Use `iwadi` when several primary sources must be reconciled, the result is independently reusable or auditable, a material standards/security/compatibility conclusion needs a durable report, or its bounded primary-source result can establish the needed claim without exact upstream implementation tracing.
+
+Use `orisun` only when exact-version upstream implementation/test evidence still materially controls the counsel after current project evidence, normal direct primary-source reads, and any sufficient `iwadi` result. Do not turn ordinary framework/library research into source archaeology merely because source is available.
 
 When primary evidence is unavailable or contradictory, narrow the counsel to what is proved, prefer the most conservative direct implementation compatible with confirmed contracts, and state what evidence would invalidate it. Never turn secondary consensus or general familiarity into official behaviour.
 
@@ -171,4 +173,4 @@ Before handoff, compare the exact candidate with the active counsel and return o
 - `STALE` — candidate or evidence changes made the item irrelevant; or
 - `UNRESOLVED` — a material counsel or proof gap remains.
 
-This final comparison is advisory evidence, not a delivery, maintainability, defect, parity, security, or review verdict. Stop when the current delivery horizon reaches handoff, the user ends the experiment, or the candidate can no longer be pinned.
+This final comparison is advisory evidence, not a delivery, maintainability, defect, parity, security, or review verdict. Stop when the current delivery horizon reaches handoff, the user ends this counsel, or the candidate can no longer be pinned.

@@ -7,7 +7,7 @@ description: Supervise one user-requested task-wide workflow by keeping its outc
 
 Supervise one task without becoming its delivery system. Keep the task's exact-current owner, candidate, authority, acceptance, proof, blocker, and terminal state coherent while every specialist retains its native lifecycle and result.
 
-Pepeye is Experimental and intent-gated. Activate only when the user asks for task-wide supervision/continuity; task size, duration, or number of skills does not activate it. Do not install or activate it as a default global/project mode while this boundary remains experimental.
+Activate only when the user asks for task-wide supervision/continuity; task size, duration, or number of skills does not activate it. Do not install or activate it as a default global/project mode.
 
 ## 1. Establish the supervision frame
 

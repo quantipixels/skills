@@ -1,13 +1,15 @@
 ---
 name: orisun
-description: Ground one technical question or active engineering task in exact relevant upstream source code, tests, and first-party evidence for the version actually in use. Use when exact upstream source truth can materially change the answer, including requests to use btca. Exclude ordinary inspection of the current repository, broad durable research records, implementation ownership, and answers that do not require upstream source truth.
+description: Ground one technical question or active engineering task in exact relevant upstream source code, tests, and first-party evidence for the version actually in use. Use when the user explicitly asks for source grounding or when exact-version upstream implementation/test truth is necessary for a decision-changing answer and cheaper current evidence cannot establish it. Exclude ordinary inspection of the current repository, broad durable research records, implementation ownership, and answers that do not require upstream source truth.
 ---
 
 # Orísun
 
 Ground one bounded technical question in the smallest exact upstream evidence needed to answer it. Prefer project-resolved truth over model memory and current upstream head. Return compact evidence that another owner can consume without inheriting the research procedure.
 
-Orísun is an Experimental source-grounding companion. It does not implement code, choose architecture, issue a review verdict, maintain a dependency catalogue, or create a durable research report. Use `iwadi` when the research result should persist independently as a sourced repository record.
+This is source-level escalation, not default research. Unless the user explicitly asks for source grounding, do not trace upstream implementation when exact project evidence, current first-party documentation, bounded direct primary-source reads, or an available `iwadi` result already establishes the decision-changing claim. Use `iwadi` when several sources must be reconciled or the research result should persist independently. Continue here only when exact-version implementation/tests remain material.
+
+It does not implement code, choose architecture, issue a review verdict, maintain a dependency catalogue, or create a durable research report.
 
 ## Pin the target truth
 
