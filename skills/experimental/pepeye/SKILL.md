@@ -1,17 +1,17 @@
 ---
 name: pepeye
-description: Supervise one explicitly selected task by keeping its outcome, current owner, candidate, authority, acceptance, proof, blocker, and terminal state coherent without selecting playbooks or reproducing owner lifecycles. Use only when the user explicitly invokes Pepeye for task-wide supervision. Exclude routing ownership, implementation, planning, review, publication, default activation, and provider-specific runtimes.
+description: Supervise one user-requested task-wide workflow by keeping its outcome, current owner, candidate, authority, acceptance, proof, blocker, and terminal state coherent without selecting playbooks or reproducing owner lifecycles. Use when the user asks for task-wide supervision or continuity across owners, candidates, proof states, or pauses. Exclude routing ownership, implementation, planning, review, publication, default activation, and provider-specific runtimes.
 ---
 
 # Pepeye
 
 Supervise one task without becoming its delivery system. Keep the task's exact-current owner, candidate, authority, acceptance, proof, blocker, and terminal state coherent while every specialist retains its native lifecycle and result.
 
-Pepeye is Experimental and explicit-only. Do not install or activate it as a default global/project mode while this boundary remains experimental.
+Pepeye is Experimental and intent-gated. Activate only when the user asks for task-wide supervision/continuity; task size, duration, or number of skills does not activate it. Do not install or activate it as a default global/project mode while this boundary remains experimental.
 
 ## 1. Establish the supervision frame
 
-After explicit invocation, pin:
+After a qualifying supervision request, pin:
 
 ```text
 Requested outcome

@@ -1,6 +1,6 @@
 ---
 name: fihan
-description: Serve one explicit local file, directory, or local web resource through private Tailscale Serve or an explicitly accepted encrypted Tailcat fallback, and return the exact access target. Use only when explicitly invoked or after explicit experimental acceptance. Exclude public/anonymous tunnels, permanent hosting, production serving, and artifact creation.
+description: Serve one user-requested local file, directory, or local web resource through private Tailscale Serve or an explicitly accepted encrypted Tailcat fallback, and return the exact access target. Use when the user asks to make that local resource temporarily reachable through a private transport. Exclude public/anonymous tunnels, permanent hosting, production serving, and artifact creation.
 ---
 
 # Fihàn
@@ -9,7 +9,7 @@ Given an eligible local resource, make it temporarily reachable through the narr
 
 The local resource remains authoritative.
 
-Explicit invocation authorizes:
+An explicit user request to privately serve/share the eligible local resource authorizes:
 
 - task-scoped staging;
 - an ephemeral local listener when the selected transport needs one; and

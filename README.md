@@ -13,7 +13,7 @@ Browse the [documentation](https://quantipixels.com/skills).
 - Generated `.qp` state stays outside Git by default.
 - Small public skills may intentionally exist as reusable model-steering contracts when a narrow named behavior saves users from restating longer instructions.
 - Thin public convenience entrypoints may wrap native commands when one safe memorable invocation materially improves installation, removal, or other human-facing distribution UX.
-- Experimental skills are explicit-only and do not replace stable owners.
+- Experimental skills are first-party runtime candidates under their normal trigger, intent, authority, cost, and safety gates. Experimental marks evidence/promotion maturity rather than adding a separate acceptance tax; experiments do not become unconditional prerequisites or redefine stable owners before promotion.
 
 ## Install
 
@@ -113,7 +113,7 @@ Banner Design and Social Graphics intentionally remain narrow steering owners ev
 
 ## Experimental
 
-Experimental skills require explicit acceptance.
+Experimental skills participate in normal first-party routing when their owned outcome fits. They exist to prove their utility and limits in real work, then be promoted, kept experimental, narrowed/folded, replaced, or removed. Do not invoke one merely to collect experiment data, and do not treat low raw invocation count as failure when the owned outcome is genuinely rare.
 
 | Skill | Outcome |
 | --- | --- |
@@ -122,7 +122,7 @@ Experimental skills require explicit acceptance.
 | `fihan` | Serve one bounded local resource privately and return its exact HTTPS URL or Tailcat receiver invocation |
 | `ideate` | Grounded mechanism-diverse possibilities before selection |
 | `orisun` | Exact-version upstream source grounding for one bounded technical question |
-| `pepeye` | Explicit task supervision without a second owner lifecycle |
+| `pepeye` | User-requested task supervision without a second owner lifecycle |
 | `prototype` | Disposable truthful decision instrument |
 | `root-cause` | Minimal causal mechanism/set for an observed failure |
 
