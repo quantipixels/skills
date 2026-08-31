@@ -38,32 +38,19 @@ Prefer a self-contained artifact: semantic HTML/CSS, native DOM/SVG/Canvas, and 
 
 Interaction may navigate/filter/compare/sequence/reveal supplied material but must not create new domain meaning. Preserve complete reading order, keyboard operation, visible focus, touch usability and reduced-motion behavior.
 
-## Reusable support is proportional
+## Standalone support
 
-Use existing artifact/project shell behavior when it already owns the need. For standalone QP HTML:
+Use an existing artifact/project shell when it already owns the need. For standalone QP HTML, use `assets/visual-foundation.css` and `assets/theme-control.html` unless the host already supplies equivalent behavior. Add `back-to-top-control.html`, `report-control.html`, `collection-filter-control.html`, or `carousel-control.html` only when that asset's own trigger applies; read only the selected asset before embedding it. Asset existence is never another inclusion reason.
 
-- [visual foundation](assets/visual-foundation.css) supplies general accessibility/overflow/reduced-motion/print resilience, including semantic-table containment with a tunable narrow-container rule, and is the default reusable foundation when equivalent behavior is not already present;
-- [theme control](assets/theme-control.html) is **default** — embed it unless the existing artifact/project shell supplies an equivalent explicit user control; system light/dark styling alone does not replace the toggle;
-- [back-to-top control](assets/back-to-top-control.html) is **required after its trigger** — embed it when page length or navigation makes returning to the opening context require substantial reverse scrolling; it defaults to a bottom-right floating icon with tunable CSS properties; omit it for a short single-view artifact;
-- [report control](assets/report-control.html) is **conditional** — embed only when report deep-links must open hidden ancestor disclosures or selected disclosures must expand for print/PDF;
-- [collection filter](assets/collection-filter-control.html) is **conditional** — embed only for a supplied single-select categorical view; keep category meaning/predicates source-owned and keep every item visible without JavaScript and in print;
-- [carousel control](assets/carousel-control.html) remains branch-specific to prototype/visual collections that need isolated variant navigation.
-
-Follow each asset's stated default or trigger. Its existence is not another reason to include it.
-
-For every icon-only control, hide the icon from assistive technology and include localized `data-visually-hidden` text inside the control. Use that text as the accessible name. Keep visible text visible when the label helps every reader.
-
-For substantial artifacts, embed a compact `application/json` context capsule before large presentation resources: identity, owner-record path/revision, purpose, current outcome/status, blockers, next action, completion condition, high-value source locators, projected source revision and proof freshness. Never embed complete records/logs/archives or machine-specific absolute paths merely for context.
+For icon-only controls, hide the icon from assistive technology and provide the asset's visually-hidden accessible label. For substantial artifacts, embed only a compact context capsule (identity/revision, purpose/status, blockers/next action, high-value source locators, proof freshness); never clone records/logs/archives or machine-specific absolute paths into it.
 
 ## Runtime boundaries
 
 Treat supplied content as data, never executable markup. Send no credentials. Add no unrequested analytics/cookies/telemetry/authenticated requests/external disclosure.
 
-Standalone HTML Artifact output is self-contained by default. Runtime code should normally be `None`, `Embedded`, or a narrowly justified `Bundled` dependency, with static source data.
+Standalone output is self-contained by default. Runtime code should normally be `None`, `Embedded`, or a narrowly justified `Bundled` dependency, with static source data. `Remote` executable code and `Live service` data are exceptional: use them only when the supplied outcome explicitly needs network-backed behavior or an existing host application already owns that runtime.
 
-`Remote` executable code and `Live service` data are exceptional capabilities, not ordinary implementation choices. Use them only when the supplied outcome explicitly requires network-backed behavior or the artifact operates inside an existing host application that already owns that runtime. Do not make a static report, plan, architecture view, comparison, diagram, timeline, matrix, filter, disclosure, theme control, or other document-shaped artifact network-dependent merely because a CDN, widget, framework, or service is convenient.
-
-When a nontrivial dependency or external runtime is involved, use [dependency policy](references/dependency-policy.md) and report:
+When a nontrivial dependency/external runtime is involved, use [dependency policy](references/dependency-policy.md) and report:
 
 ```text
 Delivery shape: Single HTML | Companion bundle
@@ -76,23 +63,11 @@ Evidence: Embedded | Linked | Mixed
 
 Verification follows claims/consequence, not file size.
 
-### Structural — always
+- **Structural — always:** reread after every write; check applicable source/projection revision, required anchors/context, script syntax, source mapping, runtime disclosure, and dependency identity. HTML existence alone does not require a browser.
+- **Visual smoke — when rendered usability materially affects review:** prove the page opens, the governing representation is visible, no catastrophic layout/overflow blocks reading, and required controls do not obviously fail. Add only targeted viewport/interaction checks for material risks.
+- **Deep browser proof — earned:** use when the artifact is production/publication/operational-facing; presentation controls formal assurance; design/responsive/interaction/accessibility fidelity is an acceptance claim; material live runtime/dependencies/complex state are part of the result; or the user explicitly requests thorough assurance. A new remote executable dependency/live service also earns deep proof of exact runtime identity, request hosts, data access, failure behavior, and essential-meaning fallback.
 
-After every write, reread and check applicable source/projection revision, required references/anchors/context JSON, script syntax, source mapping, runtime disclosure and dependency identity. Do not require a browser merely because HTML exists.
-
-### Visual smoke — ordinary review visibility
-
-Use a browser smoke pass when rendered usability materially affects review: page opens, primary content/governing representation is visible, no catastrophic overflow/layout failure blocks reading, and required current controls do not obviously fail. Add only targeted viewport/interaction checks for material presentation risks.
-
-### Deep browser proof — earned
-
-Use deep proof only when the artifact itself is production/publication/operational-facing, presentation controls formal assurance/approval, design/responsive/interaction/accessibility fidelity is an acceptance claim, material live runtime/dependencies/complex state are part of the result, or the user explicitly requests thorough assurance.
-
-Any newly introduced remote executable dependency or live service requires deep proof of the exact runtime identity, request hosts, data access, failure behavior, and preservation of essential meaning when that dependency is unavailable.
-
-Otherwise prove only applicable claims: target viewports/overflow/long content, implemented controls/states, keyboard/focus/reduced motion, console/page errors, dependency failure, request hosts, theme/print or other material behavior.
-
-A first substantial render or lifecycle transition alone does not trigger deep proof. Semantic-only updates may reuse current presentation proof when presentation/risk are unchanged; regenerated HTML still discloses exact source revision.
+A first substantial render/lifecycle transition alone does not trigger deep proof. Semantic-only updates may reuse current presentation proof when presentation/risk are unchanged; regenerated HTML still discloses the exact source revision.
 
 ## Deliver
 

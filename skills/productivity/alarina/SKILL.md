@@ -5,146 +5,77 @@ description: Inventory the skills published in this repository and select the sh
 
 # Alárinà
 
-Serve as the interface to this repository's skill portfolio. A **route** is the shortest justified path through one or more skills from the work's current state to the requested outcome. Do not force work to begin at an earlier phase merely because that phase commonly precedes the current one.
+Route from the work's **current state** to the requested outcome through the shortest justified owner path. Connect the owners, pass only the context/results they need, and step aside once ownership is clear.
 
-The name reflects the Yorùbá **alárinà**: a trusted intermediary or go-between who knows enough about both sides to make the right introduction, carries the information needed for them to understand each other, and steps aside once the relationship can proceed directly. Apply the same discipline here: understand the request and available owners, connect only the necessary results/context, never absorb another owner's work, and stop routing once the correct ownership path is established.
+Current repository skill metadata is the inventory. Do not maintain another prose catalogue of every skill here. For an inventory request, enumerate current metadata; for routing, shortlist from current metadata and use the stable composition/boundary rules below. When cached routing prose and current metadata disagree, current metadata wins and the drift is a finding.
 
-The map below is the maintained routing topology, not a copy of every skill procedure. It should name the portfolio Alárinà is expected to route, organised by how work enters and moves between owners. For ordinary routing, start from this map and verify only the shortlisted skills against current repository/host descriptions when freshness or a close boundary matters. For an inventory request, enumerate the current repository skills from their metadata. If the map and current inventory disagree, current metadata wins and the drift should be reported rather than guessed around.
+## Stable composition
 
-When no repository skill materially improves the result, return `NO_ROUTE`. Do not maintain a catalogue or fallback tree for external skills, tools, plugins, or generic agent capabilities; the calling agent can continue with its ordinary capabilities and environment.
-
-## Main delivery flow
-
-Most substantial product/engineering work can enter somewhere along this path:
+Substantial product/engineering work commonly composes as:
 
 ```text
 `atona`
-  ├─ Support: `arojinle` for unresolved material user decisions
-  ├─ Support: `solution-architect` for material technical architecture
-  ├─ Support: `amose` for durable project/domain knowledge
-  ├─ Support: `iwadi` for substantial primary-source research
-  ├─ Support: `irinse` for bounded companion-tool evidence
-  ├─ Support: `ro-wo` for one consequential premise
-  ├─ When needed: `seda-spec` for a normative behavior contract
-  └─ Then when useful: `seda-ticket` for consumable delivery slices
+  ├─ `arojinle` — unresolved material user decisions
+  ├─ `solution-architect` — material technical architecture
+  ├─ `amose` — durable project/domain knowledge
+  ├─ `iwadi` / `irinse` / `ro-wo` — only when their evidence/judgment is independently needed
+  ├─ `seda-spec` — when behavior needs a separate normative contract
+  └─ `seda-ticket` — when consumable delivery slices are useful
         ↓
       `alaga`
-        ↓ only when publication is requested
+        ↓ publication requested
       `seda-pr`
-        ↓ only when ongoing PR stewardship is requested
+        ↓ ongoing PR stewardship requested
       `wo-pr`
 ```
 
-Enter at the current stage:
+This is a composition map, not a mandatory pipeline. Enter at the current stage: use `arojinle`, `solution-architect`, `seda-spec`, `seda-ticket`, `alaga`, `seda-pr`, `wo-pr`, `scope-guard`, or another exact owner directly when earlier results are already settled or irrelevant.
 
-- Use `atona` when one initiative plan must remain live through readiness, delivery integration, and closure.
-- A settled conversation, issue, or specification that needs one implementation-ready plan enters through `atona`; it uses `seda-spec` when material behavior needs a separate normative contract and `seda-ticket` afterward only when consumable delivery slices are useful.
-- Use `seda-spec` directly when the requested outcome is one confirmed implementation-independent behavior specification without initiative lifecycle management.
-- Use `arojinle` directly when the useful outcome is one consequential user decision set rather than an initiative lifecycle.
-- Use `solution-architect` directly when the useful outcome is technical architecture design/review.
-- Use `seda-ticket` directly when supplied work only needs vertical decomposition, dependencies, acceptance, and a startable frontier.
-- Use `alaga` directly when the outcome/constraints are already settled and the requested result is implementation through proof/review/handoff.
-- Use `scope-guard` directly or as lightweight support when the requested result is an explicit anti-overengineering/scope-control contract around bounded coding work; it does not replace the implementation or review owner.
-- Use `seda-pr` directly for scoped commit/push plus PR/MR creation/update. Use `wo-pr` for an already-open PR/MR that needs CI/conflict/feedback stewardship.
+Issue/failure/learning on-ramps:
 
-`atunwo` owns code-review verdicts and stateful parity audits. It may be consumed inside delivery, but it is not an automatic visible phase after every `alaga` route. `pare` owns read-only simplification/maintainability review and likewise enters only when that result is needed.
+- report validity/classification → `se-triage`;
+- minimal causal mechanism → explicit Experimental `root-cause`;
+- confirmed correction → `alaga`;
+- completed/abandoned/disputed work or incident needing lessons → `ayewo-igba-ise`;
+- code defect/proof verdict or stateful parity audit → `atunwo`;
+- simplification/maintainability judgment → `pare`;
+- human-led walkthrough plus final human decision → `hitl-review`.
 
-## Issue, failure, review, and learning on-ramps
+For Design, use `apere` only when design-specific multi-owner routing is itself needed; otherwise select the direct current Design owner from metadata. Do not duplicate the Design inventory here.
 
-- Raw bug/incident/request report → `se-triage` to assess validity/classification and the smallest next action.
-- Confirmed/understood fix → `alaga`.
-- Coding task that explicitly needs prevention of scope creep/over-engineering → `scope-guard`, then continue with the current implementation/architecture owner without creating a second lifecycle.
-- Existing code candidate needing a defect/proof verdict → `atunwo`.
-- Existing candidate/repository needing simplification or maintainability judgment → `pare`.
-- Supplied diff or pinned code-change evidence needing a review view → `html-artifact`; when only a pull-request or merge-request locator is supplied, use `atunwo` first for exact read-only candidate identity and evidence without an unrelated review.
-- Human wants a walkthrough, specialist-backed review coverage, and their own final decision → `hitl-review`.
-- Completed, abandoned, or disputed work/incident/session needs an evidence-backed account of what happened, recovery cost, and which durable changes are justified → `ayewo-igba-ise`.
+Supporting skills may also be direct outcomes. Use current metadata to select them rather than maintaining another list in this file.
 
-Experimental `root-cause` is an explicit-only diagnosis detour when the missing outcome is a minimal causal mechanism rather than triage validity, postmortem synthesis, or implementation.
+## Route rules
 
-## Design flow
+1. Pin the requested outcome, current work state, supplied exact-current artifacts/results, active owner when known, and explicit skill/mode choice.
+2. Respect an explicit user-selected skill when it owns the result and its invocation boundary is satisfied.
+3. Otherwise select the narrowest current owner that can accept the current state and produce the next required result. Do not replay settled exploration, planning, architecture, implementation, review, publication, or postmortem work.
+4. Every added owner must contribute an independently useful result the next owner actually needs. Conditional support is a detour, not a phase.
+5. Pass only the input/result needed for the next owner. Do not make Alárinà a transcript store, receipt schema, lifecycle, or coordinator.
+6. `scope-guard` is support, never a mandatory stage when the active owner already carries the relevant scope/minimality contract.
+7. Experimental skills are explicit-only: offer the exact detour and wait for acceptance; never make one a silent stable prerequisite.
+8. Stop at the requested outcome. Do not append review, publication, documentation, persistence, handoff, or retrospective merely because it often follows.
 
-Use `apere` only when design-domain routing/coordination is itself needed. When one deliverable owner is already clear, go directly to the specialist.
+Use `handoff` only when a portable transfer to another agent/session/context is itself needed; ordinary owner composition consumes native results directly.
 
-```text
-Direction/review          → `amoye-ui-ux`
-Brand identity/voice      → `brand`
-Reusable tokens/specs     → `eto-apere`
-React/web implementation  → `asa-oju-ibanisoro`
-Banner/cover/hero/ad       → `banner-design`
-Feed/carousel/story        → `social-graphics`
-Presentation/deck          → `slides`
-```
+When no repository skill materially improves the result, return `NO_ROUTE` and let the calling agent use its ordinary capabilities. Routing grants no mutation, provider, credential, publication, review-verdict, or continuing-stewardship authority.
 
-Common composition is `amoye-ui-ux` and/or `brand` → `eto-apere` when a reusable token/component contract is needed → `asa-oju-ibanisoro` for application UI implementation. Do not force that chain when the current project already has the earlier result.
+## Close boundaries
 
-## Knowledge, evidence, representation, and communication
+- `atona` / `arojinle` / `solution-architect` — initiative lifecycle / consequential user decision / technical architecture.
+- `atona` / `seda-spec` / `seda-ticket` — lifecycle / normative behavior / delivery decomposition.
+- `scope-guard` / `alaga` / `pare` — prospective scope steering / implementation+proof / read-only simplification.
+- `alaga` / `atunwo` / `pare` — implementation+proof / code-review verdict+parity / simplification.
+- `seda-pr` / `wo-pr` / `atunwo` — publication / open-PR stewardship / review verdict.
+- `se-triage` / Experimental `root-cause` / `ayewo-igba-ise` / `alaga` — report classification / causal diagnosis / completed-event postmortem / implementation.
+- `amose` / `technical-writing` — durable project/domain knowledge / prose structure and clarity.
+- `irinse` / consuming owner — tool evidence / the judgment made from it.
 
-These skills often support another owner but are also directly useful outcomes:
-
-- `amose` — durable exact-current project/domain knowledge, `.learnings`, `.nongoals`, ADRs, and authorized local craft.
-- `iwadi` — substantial reusable primary-source research captured as a sourced record.
-- `irinse` — select/ready/operate one companion engineering tool and return bounded evidence; consuming owners keep judgment.
-- `ro-wo` — test one material premise before it becomes a decision or recommendation.
-- `akosile` — repository-scoped `.qp` paths/worktrees/settings/safe publication/index mechanics; semantic owners retain meaning.
-- `html-artifact` — selective traceable HTML projection of supplied material; it does not originate conclusions.
-- `seda-spec` — confirmed implementation-independent behavior specification for planning, decomposition, implementation, and review.
-- `handoff` — portable fresh-session/agent handoff when context actually needs to travel.
-- `technical-writing` — technical prose structure/clarity; use `yo-slop` afterward when final prose cleanup/pruning is needed without changing meaning.
-- `salaye` — reusable plain-language explanation behavior for a supplied subject.
-- `seda-sigidi` — draft or explicitly integrate one agent's durable identity/values/boundaries/voice into a known host configuration.
-- `ko-skill` — author/revise/validate one skill or audit a bounded skill portfolio.
-- `ayewo-igba-ise` — evidence-backed postmortem for completed/abandoned/disputed work, incidents, sessions, rollouts, or bounded corpora.
-
-## Local environment maintenance
-
-- Low macOS storage, a full Data volume, regenerable cache/build cleanup, stale Git worktree cleanup, or selected external-drive offload → `system-cleanup`.
-
-## Explicit-only Experimental detours
-
-Experimental skills never silently replace or become prerequisites for stable owners. Offer the exact branch and wait for acceptance.
-
-- `ideate` — generate/challenge materially different possibilities before one is selected for decision/planning.
-- `prototype` — build a disposable truthful artifact when experience/runnable behavior is needed to settle one decision.
-- `root-cause` — establish the minimal causal mechanism/set for an observed failure.
-- `akowe` — candidate-specific expert implementation counsel alongside an active delivery owner.
-- `orisun` — exact-version upstream source grounding for one bounded technical question.
-- `dogfood` — real-browser verification of changed user journeys.
-- `fihan` — privately serve one bounded local resource and return the usable access result.
-- `pepeye` — explicit task-wide supervision without replacing the current owner or reproducing owner lifecycles.
-
-## Route from the current work state
-
-1. Pin the requested outcome, current work state, supplied artifacts/results, active owner when known, and any explicit skill/mode choice.
-2. Preserve an explicit user-selected skill when it owns the requested result and its invocation boundary is satisfied.
-3. Otherwise choose the narrowest skill in the map that can accept the **current** state and own the next required result. Do not replay exploration, planning, architecture, implementation, review, publication, or retrospective work already settled by exact-current evidence.
-4. Follow only real owner handoffs needed to reach the requested outcome. Every added skill must contribute an independently useful result that the next owner actually needs.
-5. Treat conditional support as a detour, not a mandatory phase. Keep the primary owner primary while a supporting result is obtained, then return to the owning flow. `scope-guard` is never a required stage when the active owner already carries the needed scope/minimality contract.
-6. Pass only the context/result needed for the next owner to begin correctly; do not make Alárinà a durable transcript, copied result store, or parallel coordinator.
-7. Once the next owner and necessary handoff are established, step aside. Re-enter only when another material routing choice appears.
-8. Stop at the requested outcome. Do not append review, publication, documentation, retrospective, persistence, or other later work merely because it often follows.
-
-Do not insert `handoff` merely because ownership changes. Use `handoff` only when a portable transfer to another agent/session/context is itself needed; ordinary skill-to-skill composition should consume native results directly.
-
-Routing grants no mutation, provider, credential, publication, review-verdict, or continuing-stewardship authority.
-
-## Resolve close boundaries by named owners
-
-- `atona` vs `arojinle` vs `solution-architect` — initiative lifecycle vs consequential user decision vs technical architecture.
-- `scope-guard` vs `alaga` vs `pare` — prospective anti-overengineering/scope steering vs implementation/proof vs read-only simplification judgment.
-- `alaga` vs `atunwo` vs `pare` — implementation/proof vs code-review verdict/parity audit vs read-only simplification.
-- `seda-pr` vs `wo-pr` vs `atunwo` — PR publication vs open-PR stewardship vs review verdict.
-- `se-triage` vs Experimental `root-cause` vs `ayewo-igba-ise` vs `alaga` — report validity/classification vs causal diagnosis vs completed-event postmortem vs implementation.
-- `amose` vs `technical-writing` — durable project/domain knowledge vs prose quality/structure.
-- `html-artifact` vs `slides` — projection of supplied material vs presentation/deck creation.
-- `html-artifact` vs `atunwo` — visual projection of supplied or pinned code-change evidence vs a code-review verdict.
-- `atona` vs `seda-spec` vs `seda-ticket` — initiative lifecycle vs normative behavior contract vs delivery decomposition.
-- `apere` vs a design specialist — design coordination vs one directly owned deliverable.
-- `irinse` vs the consuming owner — tool evidence vs the engineering/product/design judgment made from it.
+Use current metadata to resolve other direct boundaries; add another explicit boundary here only when recurring routing evidence shows metadata alone is insufficient.
 
 ## Report
 
-For a route, return only the useful path:
+For a route, return only:
 
 ```text
 Start: <skill/mode> — <why this is the current entry>
@@ -155,6 +86,4 @@ Stop: <requested outcome>
 Why not: <closest materially different route, when useful>
 ```
 
-For an inventory request, list the current repository skills rather than forcing a route.
-
-Ask one focused question only when its answer selects a materially different owner/mode and the answer cannot be established from current context/evidence.
+For an inventory request, list current repository skills from metadata. Ask one focused question only when it selects a materially different owner/mode and current evidence cannot answer it.
