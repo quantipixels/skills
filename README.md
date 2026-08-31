@@ -99,7 +99,7 @@ Banner Design and Social Graphics intentionally remain narrow steering owners ev
 | --- | --- |
 | `alarina` | Select the shortest route from currently available QP skill descriptions |
 | `arojinle` | Resolve consequential product/plan/design choices through user-confirmed decision frontier |
-| `ayewo-igba-ise` | Evidence-backed coding-agent session/corpus retrospective |
+| `ayewo-igba-ise` | Evidence-backed postmortem for completed/abandoned/disputed work, incidents, sessions, or corpora |
 | `handoff` | Compact fresh-session handoff |
 | `html-artifact` | Selective traceable accessible HTML visualization of supplied material |
 | `iwadi` | High-trust primary-source research record |

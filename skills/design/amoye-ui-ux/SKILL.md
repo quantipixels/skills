@@ -60,9 +60,3 @@ Return:
 - affected behavior;
 - evidence; and
 - smallest useful correction.
-
-## Resources
-
-- `references/quick-reference.md` — durable cross-platform UX/design judgment.
-- `references/pro-rules.md` — native/mobile polish and final delivery checks.
-- `references/reference-driven-composition.md` — live exemplar scouting and synthesis when internal evidence is insufficient.

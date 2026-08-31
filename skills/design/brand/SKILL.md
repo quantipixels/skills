@@ -36,16 +36,16 @@ When no durable destination exists, return the proposed brand source plus the un
 
 Core identity:
 
-- `references/language-and-messaging.md`
-- `references/consistency-checklist.md`
-- `references/asset-organization.md`
-- `references/color-palette-management.md`
-- `references/typography-specifications.md`
-- `references/logo-usage-rules.md`
-- `references/approval-checklist.md`
+- [language and messaging](references/language-and-messaging.md)
+- [consistency checklist](references/consistency-checklist.md)
+- [asset organization](references/asset-organization.md)
+- [color palette management](references/color-palette-management.md)
+- [typography specifications](references/typography-specifications.md)
+- [logo usage rules](references/logo-usage-rules.md)
+- [approval checklist](references/approval-checklist.md)
 
 Identity production:
 
-- `references/logo-design.md`
-- `references/cip-design.md`
-- `references/icon-design.md`
+- [logo design](references/logo-design.md)
+- [corporate identity design](references/cip-design.md)
+- [icon design](references/icon-design.md)

@@ -93,7 +93,7 @@ Before readiness, read [architecture contract](references/architecture-contract.
 
 ## Judge sufficiency
 
-Use `html-artifact` only when a human visual view materially improves architecture comparison/review/handoff; it is not mandatory for small consultation.
+Use `html-artifact` only when a human visual view materially improves architecture comparison/review/handoff; it is not mandatory for small consultation. Architecture visualization is document-shaped even when diagrams, comparisons, disclosures, or navigation are interactive; use HTML Artifact's document proof boundary.
 
 - In `design`, revise until decisions, interfaces, migration, recovery, proof, and Architecture Contract agree.
 - In `review`, pin the candidate and stay read-only; trace each driver/decision/contract invariant to current evidence and challenge unnecessary scope/indirection as well as missing sufficiency.
