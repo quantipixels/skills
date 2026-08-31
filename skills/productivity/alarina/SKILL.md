@@ -49,7 +49,7 @@ Enter at the current stage:
 
 `atunwo` owns code-review verdicts and stateful parity audits. It may be consumed inside delivery, but it is not an automatic visible phase after every `alaga` route. `pare` owns read-only simplification/maintainability review and likewise enters only when that result is needed.
 
-## Issue, failure, and review on-ramps
+## Issue, failure, review, and learning on-ramps
 
 - Raw bug/incident/request report → `se-triage` to assess validity/classification and the smallest next action.
 - Confirmed/understood fix → `alaga`.
@@ -58,9 +58,9 @@ Enter at the current stage:
 - Existing candidate/repository needing simplification or maintainability judgment → `pare`.
 - Supplied diff or pinned code-change evidence needing a review view → `html-artifact`; when only a pull-request or merge-request locator is supplied, use `atunwo` first for exact read-only candidate identity and evidence without an unrelated review.
 - Human wants a walkthrough, specialist-backed review coverage, and their own final decision → `hitl-review`.
-- Completed coding-agent work needs a retrospective on waste, failure modes, or prevention opportunities → `ayewo-igba-ise`, then route only the resulting concrete prevention owner when another result is actually requested.
+- Completed, abandoned, or disputed work/incident/session needs an evidence-backed account of what happened, recovery cost, and which durable changes are justified → `ayewo-igba-ise`.
 
-Experimental `root-cause` is an explicit-only diagnosis detour when the missing outcome is a minimal causal mechanism rather than triage validity or implementation.
+Experimental `root-cause` is an explicit-only diagnosis detour when the missing outcome is a minimal causal mechanism rather than triage validity, postmortem synthesis, or implementation.
 
 ## Design flow
 
@@ -94,6 +94,7 @@ These skills often support another owner but are also directly useful outcomes:
 - `salaye` — reusable plain-language explanation behavior for a supplied subject.
 - `seda-sigidi` — draft or explicitly integrate one agent's durable identity/values/boundaries/voice into a known host configuration.
 - `ko-skill` — author/revise/validate one skill or audit a bounded skill portfolio.
+- `ayewo-igba-ise` — evidence-backed postmortem for completed/abandoned/disputed work, incidents, sessions, rollouts, or bounded corpora.
 
 ## Local environment maintenance
 
@@ -116,7 +117,7 @@ Experimental skills never silently replace or become prerequisites for stable ow
 
 1. Pin the requested outcome, current work state, supplied artifacts/results, active owner when known, and any explicit skill/mode choice.
 2. Preserve an explicit user-selected skill when it owns the requested result and its invocation boundary is satisfied.
-3. Otherwise choose the narrowest skill in the map that can accept the **current** state and own the next required result. Do not replay exploration, planning, architecture, implementation, review, or publication already settled by exact-current evidence.
+3. Otherwise choose the narrowest skill in the map that can accept the **current** state and own the next required result. Do not replay exploration, planning, architecture, implementation, review, publication, or retrospective work already settled by exact-current evidence.
 4. Follow only real owner handoffs needed to reach the requested outcome. Every added skill must contribute an independently useful result that the next owner actually needs.
 5. Treat conditional support as a detour, not a mandatory phase. Keep the primary owner primary while a supporting result is obtained, then return to the owning flow. `scope-guard` is never a required stage when the active owner already carries the needed scope/minimality contract.
 6. Pass only the context/result needed for the next owner to begin correctly; do not make Alárinà a durable transcript, copied result store, or parallel coordinator.
@@ -133,7 +134,7 @@ Routing grants no mutation, provider, credential, publication, review-verdict, o
 - `scope-guard` vs `alaga` vs `pare` — prospective anti-overengineering/scope steering vs implementation/proof vs read-only simplification judgment.
 - `alaga` vs `atunwo` vs `pare` — implementation/proof vs code-review verdict/parity audit vs read-only simplification.
 - `seda-pr` vs `wo-pr` vs `atunwo` — PR publication vs open-PR stewardship vs review verdict.
-- `se-triage` vs Experimental `root-cause` vs `alaga` — report validity/classification vs causal diagnosis vs implementation.
+- `se-triage` vs Experimental `root-cause` vs `ayewo-igba-ise` vs `alaga` — report validity/classification vs causal diagnosis vs completed-event postmortem vs implementation.
 - `amose` vs `technical-writing` — durable project/domain knowledge vs prose quality/structure.
 - `html-artifact` vs `slides` — projection of supplied material vs presentation/deck creation.
 - `html-artifact` vs `atunwo` — visual projection of supplied or pinned code-change evidence vs a code-review verdict.
