@@ -55,8 +55,7 @@ Treat representation and experience as different outcomes. `html-artifact` owns 
 4. Every added owner must contribute an independently useful result the next owner actually needs. Conditional support is a detour, not a phase.
 5. Pass only the input/result needed for the next owner. Do not make Alárinà a transcript store, receipt schema, lifecycle, or coordinator.
 6. `scope-guard` is support, never a mandatory stage when the active owner already carries the relevant scope/minimality contract.
-7. Experimental skills participate as first-party candidates. Experimental status alone is not a user-confirmation gate: select by owned outcome, current-state fit, cost, and skill-specific intent/authority/host invocation boundary. Never invoke an experiment only to collect data, make one an unconditional prerequisite, or let its existence redefine stable ownership before promotion.
-8. Stop at the requested outcome. Do not append review, publication, documentation, persistence, handoff, or retrospective merely because it often follows.
+7. Stop at the requested outcome. Do not append review, publication, documentation, persistence, handoff, or retrospective merely because it often follows.
 
 Use `handoff` only when a portable transfer to another agent/session/context is itself needed; ordinary owner composition consumes native results directly.
 
