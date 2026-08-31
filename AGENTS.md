@@ -8,13 +8,17 @@ Keep every skill in exactly one `skills/engineering`, `skills/design`, `skills/p
 
 ## Experimental isolation
 
-Treat `skills/experimental` as an opt-in, isolated portfolio when analyzing or changing skill ownership, routing, overlap, redundancy, lifecycle boundaries, or outcome boundaries. Exclude Experimental skills from comparisons among Engineering, Design, and Productivity skills unless the user explicitly includes an experiment or the change directly affects it. Do not use an Experimental skill to justify removing, narrowing, merging, or rerouting a non-Experimental owner.
+Treat `skills/experimental` as an opt-in, isolated portfolio when analyzing or changing skill ownership, routing, overlap, redundancy, lifecycle boundaries, or outcome boundaries. Exclude Experimental skills from baseline comparisons among Engineering, Design, and Productivity skills unless the user explicitly includes an experiment or the change directly affects it.
+
+An Experimental skill does not become a stable owner, prerequisite, or reason to remove, narrow, merge, or reroute a non-Experimental owner merely because the experiment exists or succeeds once. However, exact-current evidence from an explicitly selected experiment may inform a later `ko-skill` promotion, consolidation, or stable-owner decision when that evidence is evaluated for recurrence/generality and the stable portfolio remains authoritative until the decision is made.
 
 When a change directly affects an Experimental skill, reconcile its group, manifest, router, README entry, and explicit stable-skill dependencies without treating the experiment as a baseline owner.
 
 ## Evaluation policy
 
-Do not add prompt-evaluation suites or new behavioral tests. Before deleting an old eval, move each unique current expectation into its owning skill and record obsolete or redundant expectations in the delivery record. Keep a deterministic test only while it proves current source behavior.
+Do not add standing prompt-evaluation suites merely to defend wording. Temporary realistic steering-effect comparison is allowed when a model-steering change has material behavioral uncertainty: compare the same bounded task/candidate/context under the prior or absent contract and the changed contract, then verify both the intended behavior shift and preserved correctness/safety.
+
+Persist a behavioral regression suite only when recurring stable risk justifies its maintenance. Before deleting an old eval, move each unique current expectation into its owning skill and record obsolete or redundant expectations in the delivery record. Keep deterministic tests only while they prove current source behavior or package/mechanical invariants.
 
 ## Provider policy
 

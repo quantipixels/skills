@@ -18,7 +18,9 @@ convergence + proof control
 
 ## 1. Scope control
 
-Before material coding, establish the exact outcome, task exclusions, expected change envelope, explicitly unchanged contracts, and smallest sufficient proof. Understand the affected flow and real owners before optimizing for a small diff.
+Before material coding, establish the exact outcome, local non-goals/task exclusions, expected change envelope, explicitly unchanged contracts, and smallest sufficient proof. Understand the affected flow and real owners before optimizing for a small diff.
+
+Local non-goals/task exclusions are strong negative boundaries for this task, plan, specification, or implementation. They do not become the project's durable root `.nongoals`; that file remains the project-wide exclusion contract owned by `amose`.
 
 The expected change envelope is not a frozen file list. Material growth is a diagnostic event: re-check whether initial understanding was incomplete, the causal owner is wrong, workaround layers are accumulating, or a genuine scope expansion has been discovered.
 
@@ -87,6 +89,34 @@ TDD is used when the user explicitly requests test-first delivery or when a mate
 
 TDD is red → green in vertical behavior slices. Structural refactoring and durable test-portfolio simplification happen in the normal review/convergence stage, where the full candidate can be judged together. Development tests/probes/harnesses do not automatically earn permanent repository residence.
 
+## Instruction design discipline
+
+QP optimizes for the smallest instruction surface that reliably produces the intended behavior, not the fewest instructions. A deliberately expensive instruction is valid when it overrides a likely model tendency that would otherwise damage the owner's outcome and its cost is proportionate to the improvement.
+
+Audit each consequential instruction by:
+
+```text
+default tendency
+→ owner-specific failure
+→ deliberate override
+→ value gained
+→ cost incurred
+→ trigger calibration
+→ cross-owner composition
+```
+
+Do not simplify these established patterns merely because they add friction:
+
+- `arojinle`'s relentless complete material decision frontier trades convenience for decision completeness, clarity, and explicit user authority;
+- `atona` keeps semantic Markdown as the exact-current machine/agent record while HTML remains its primary approachable human operating view;
+- bounded delegation in owners such as `arojinle`, `atona`, and `wo-pr` may deliberately isolate noisy/independent work so it does not pollute the primary reasoning/user context;
+- local non-goals remain strong task/plan/spec/implementation direction guards while root `.nongoals` remains durable project-wide exclusion knowledge;
+- Alága's delivery proof followed by Àtúnwò broad review and Parẹ́ maintainability/simplification review is deliberate defense-in-depth; constrain correction scope/convergence rather than deleting review merely because it is expensive;
+- Wò PR's use of `se-triage` for reviewer claims prevents a reviewer statement from becoming mutation authority by default; and
+- provider-capable owners repeat independently required trust, credential, completeness, refresh, and readback invariants so each remains safe when invoked alone.
+
+An instruction still fails when a useful mechanism is mis-triggered. Eager TDD was such a case: tests can be valuable while `production behavior changed → TDD` was too broad.
+
 ## Owner mapping
 
 - `scope-guard` — reusable prospective steering contract; no lifecycle.
@@ -95,7 +125,7 @@ TDD is red → green in vertical behavior slices. Structural refactoring and dur
 - `atunwo` — defect/review verdict; tests count as proof only when they can independently discriminate wrong behavior; review findings do not grant scope-expansion authority.
 - `solution-architect` — native/current capability before new mechanisms, real-boundary requirement for abstraction, and simpler causal/state models before reconciliation machinery.
 - `irinse` — current/project-native evidence before adding tools; new tooling is surfaced as consuming-task scope expansion when not already accepted.
-- `ko-skill` — one canonical semantic skill contract, thin host projections, steering-effect proof when materially needed, and no counterfactual productivity claims without a comparable observed baseline.
+- `ko-skill` — one canonical semantic skill contract, thin host projections, behavioral instruction admission, steering-effect proof when materially needed, and no counterfactual productivity claims without a comparable observed baseline.
 - `ayewo-igba-ise` — evidence-backed retrospective signals for recurring scope/test/review over-engineering; it does not turn the signals into automatic scores or new rules.
 
 ## Host portability
@@ -108,9 +138,11 @@ Do not add adapters merely to claim compatibility already supplied by normal ski
 
 QP does not add a standing prompt benchmark suite merely to defend these instructions. When a model-steering change remains materially uncertain, `ko-skill` may compare the same realistic bounded task/candidate/context under the prior/no contract and changed contract, then verify both the intended behavior shift and preserved correctness/safety.
 
-Do not claim saved LOC, tokens, cost, time, latency, or quality without an observed comparable baseline. A smaller source tree or diff is simplification evidence, not a counterfactual productivity measurement.
+Persist a behavioral regression suite only when recurring stable risk justifies maintaining it. Do not claim saved LOC, tokens, cost, time, latency, or quality without an observed comparable baseline. A smaller source tree or diff is simplification evidence, not a counterfactual productivity measurement.
 
 Real agent sessions/corpora feed `ayewo-igba-ise`. Repeated evidence can justify a later smaller policy correction through `ko-skill`; one incident does not earn another rule.
+
+Experimental skills remain opt-in and cannot silently displace stable owners. However, exact-current evidence from an explicitly selected experiment may be evaluated by `ko-skill` for later promotion, consolidation, or stable-owner correction; the stable portfolio remains authoritative until that decision is made.
 
 ## Rejected alternatives
 
@@ -122,6 +154,7 @@ Real agent sessions/corpora feed `ayewo-igba-ise`. Repeated evidence can justify
 - no fixed requirement to leave one new test behind;
 - no "fewest LOC wins" acceptance target;
 - no automatic reviewer-found edge case → implementation expansion;
-- no handwritten behavior copies across host adapters.
+- no handwritten behavior copies across host adapters;
+- no instruction cleanup that removes deliberate friction solely because a capable model can perform the underlying act.
 
-The stable owners remain independently useful deep modules. The engineering guard constrains how they choose scope, mechanism, and proof without creating a new coordinator above them.
+The stable owners remain independently useful deep modules. The engineering guard constrains how they choose scope, mechanism, proof, and instruction behavior without creating a new coordinator above them.

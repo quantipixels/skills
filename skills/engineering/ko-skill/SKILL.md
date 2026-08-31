@@ -20,11 +20,29 @@ Use the smallest control shape that preserves correctness:
 
 Do not add lifecycle, statuses, receipts, schemas, or ceremony merely because the outcome is important.
 
+### Admit deliberate behavior, not only minimal prose
+
+A capable agent's default behavior is not automatically the desired behavior for a skill. Keep an instruction when it deliberately overrides a likely default tendency and the resulting cost materially improves this owner's outcome.
+
+For each consequential instruction, establish:
+
+- **default tendency** — what a capable agent would likely do without it;
+- **failure prevented** — the material miss, ambiguity, context loss, unsafe effect, premature inference, weak proof, or other owner-specific failure that tendency creates;
+- **override** — the exact different behavior the instruction forces;
+- **value** — completeness, clarity, focus, human visibility, correctness, safety, authority, convergence, or another owned improvement;
+- **cost** — user interruption, context, latency, delegation, artifact/persistence, review, proof, or ceremony;
+- **trigger** — why the override is active for this branch; and
+- **composition** — whether adjacent owner rules reinforce the result or accidentally create a harmful loop.
+
+Do not optimize away deliberate friction merely because a base model could proceed with less of it. A relentless decision frontier, an independently safe provider contract, a human-facing projection, negative scope boundaries, adversarial review, or context-isolating delegation may be load-bearing when that behavior is part of the useful result. Conversely, a valuable mechanism with an over-broad trigger is still defective.
+
 ## 2. Compose and place capability
 
-Treat skills as deep modules. A caller supplies only the bounded input, reason/freshness/authority and caller-owned acceptance needed by the callee. The callee retains its procedure, internal state, resources, verification, persistence/representation mechanics, and native result. Do not copy lifecycle/result schemas across owner boundaries; repeat only independently required safety, trust, authority, or acceptance rules.
+Treat skills as deep modules. A caller supplies only the bounded input, reason/freshness/authority and caller-owned acceptance needed by the callee. The callee retains its procedure, internal state, resources, verification, persistence/representation mechanics, and native result. Do not copy lifecycle/result schemas across owner boundaries; repeat only independently required safety, trust, authority, acceptance, or owner-specific steering rules.
 
-Write for a capable agent. State semantic behavior, invariants, authority and completion; let the agent adapt ordinary search, shell/filesystem work, Git use, editing, tool discovery, delegation/subagents, and equivalent orchestration to its available environment. Do not pre-author capability fallback trees the agent can infer. Concrete mechanics earn instruction space when the mechanism establishes correctness, authority, determinism, non-obvious safety, a machine/external protocol, or a compatibility boundary, or when a small operational anchor materially reduces recurring rediscovery of how to enter a **selected concrete capability**. After the tool, provider, protocol, runtime, or other concrete interface is selected, an anchor may point to authoritative current documentation or a canonical interface and include one representative invocation or discovery command. Do not use operational anchors to preselect or cache open-ended source, vendor, library, framework, host, inspiration, or candidate inventories; keep those as selection criteria and current discovery. Keep volatile details subject to revalidation instead of expanding an anchor into a command catalogue.
+Write for a capable agent. State semantic behavior, invariants, authority and completion; let the agent adapt ordinary search, shell/filesystem work, Git use, editing, tool discovery, and equivalent orchestration to its available environment. Do not pre-author capability fallback trees the agent can infer. Ordinary delegation is likewise agent-owned, but an owner may prescribe delegation/isolation when moving bounded independent or noisy work out of the primary context is itself necessary to preserve context quality, focus, continuity, or independent observation.
+
+Concrete mechanics earn instruction space when the mechanism establishes correctness, authority, determinism, non-obvious safety, a machine/external protocol, or a compatibility boundary, or when a small operational anchor materially reduces recurring rediscovery of how to enter a **selected concrete capability**. After the tool, provider, protocol, runtime, or other concrete interface is selected, an anchor may point to authoritative current documentation or a canonical interface and include one representative invocation or discovery command. Do not use operational anchors to preselect or cache open-ended source, vendor, library, framework, host, inspiration, or candidate inventories; keep those as selection criteria and current discovery. Keep volatile details subject to revalidation instead of expanding an anchor into a command catalogue.
 
 Before adding or retaining commands, references, scripts, templates, data, assets, or another public owner, read [capability and resource placement](references/resource-placement.md). Prefer the natural owner and the smallest adequate surface. Keep `SKILL.md` focused on the universally required contract and load branch-specific depth only where needed.
 
@@ -55,11 +73,11 @@ Use the smallest evidence that can falsify the changed contract. Structural/pack
 
 For behavior corrections, use pinned pre-change evidence when it already proves the failure; otherwise exercise the smallest safe realistic baseline. For compression, script/catalogue/template removal, ownership moves, or skill consolidation, compare the same realistic goal before/after when material uncertainty remains. Prove both that removed material was not uniquely behavior-bearing and that the smaller placement preserves result quality, authority, proof, discoverability, and any useful operational anchor.
 
-For a skill whose primary value is model steering rather than deterministic mechanics, use **steering-effect proof** only when material behavioral uncertainty remains: run the same realistic bounded task/candidate/context against the prior/no contract and the changed contract, verify the target judgment/behavior changes in the intended direction, and separately verify correctness/safety/required output did not regress. Keep this proof temporary and proportionate; do not turn it into a prompt-evaluation suite merely to defend wording.
+For a skill whose primary value is model steering rather than deterministic mechanics, use **steering-effect proof** only when material behavioral uncertainty remains: run the same realistic bounded task/candidate/context against the prior/no contract and the changed contract, verify the target judgment/behavior changes in the intended direction, and separately verify correctness/safety/required output did not regress. Keep this proof temporary and proportionate; persist a behavioral regression only when recurring stable risk justifies maintaining it.
 
 Do not claim saved LOC, tokens, cost, latency, time, or quality improvement without an observed comparable baseline. The unbuilt counterfactual is not a measurement. Structural reduction is evidence of simplification, never proof of productivity savings.
 
-Do not build prompt-evaluation suites merely to defend wording. Match proof to the actual control shape and consequence.
+Do not build standing prompt-evaluation suites merely to defend wording. Match proof to the actual control shape and consequence.
 
 For validation classify material obligations as `proved | defect | evidence gap | not applicable`. Return `VERIFIED` only when required proof passes against the exact candidate, `CHANGES_REQUIRED` for a proved defect, and `INSUFFICIENT_EVIDENCE` for a material proof gap. Validation does not authorize repair.
 
