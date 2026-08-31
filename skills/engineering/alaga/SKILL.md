@@ -5,25 +5,31 @@ description: Deliver one supplied build job from settled outcome through impleme
 
 # Alága
 
-Deliver one supplied job as a coherent proved result. Use `test-first` for a bounded behavior change that warrants TDD; otherwise use `job`. A job is the complete requested outcome; delivery units are only useful existing slices inside it.
+Deliver one supplied job as a coherent proved result. Use `test-first` only when the user requests it or a material behavior-bearing seam with an independent oracle makes a failing test capable of controlling implementation; otherwise use `job`. A job is the complete requested outcome; delivery units are only useful existing slices inside it.
 
 ## 1. Map the job
 
 Pin:
 
 - outcome and current/desired behavior;
-- scope and exclusions;
-- acceptance and proof;
+- scope and **local non-goals / task exclusions** that constrain implementation direction for this job without becoming repository-level `.nongoals`;
+- expected change envelope: likely owners/subsystems/surfaces plus explicitly unchanged contracts;
+- acceptance and the smallest sufficient proof;
 - governing specification identity and material behavior references when present;
 - documentation and durable-knowledge reconciliation obligations and destinations;
 - workspace and authority; and
 - the minimum real user/operational path that must pass.
+
+Treat local non-goals as active negative implementation boundaries, not descriptive footnotes. A proposal that violates one is out of scope unless the owning task/plan/spec changes it. Root `.nongoals` remains the separate durable project-wide exclusion contract owned by `amose`.
+
+The change envelope is an evidence-backed expectation, not a prohibition on necessary discovery. Material growth is a signal to re-check understanding, causal ownership, and scope rather than preserve the first plan with workaround layers.
 
 ### Ownership and supporting results
 
 - Respect explicit owner/tool choices.
 - Use the shortest combination of current specialists and direct work. Supporting owners retain their native procedures/results; Alága owns integration and job acceptance.
 - Read relevant root `.learnings` and complete `.nongoals` when present.
+- Use `scope-guard` when the user explicitly wants a portable anti-overengineering guard or when a bounded task needs its scope contract surfaced independently; do not make it a mandatory phase because Alága carries the delivery-critical invariants directly.
 - Use `arojinle` for unresolved material user choices.
 - Use `solution-architect` for material technical architecture.
 - Use `atona` when an initiative plan must remain live.
@@ -50,7 +56,30 @@ Prepare the workspace without disturbing unrelated changes. Continue through the
 
 If Experimental `akowe` is active, pass it the exact job boundary, candidate, accepted architecture/domain constraints, material stack versions, touched mechanisms, and proof expectations. Obtain its initial counsel before material implementation and refresh it only when the candidate, touched mechanism, stack/version, accepted contract, material premise, or controlling evidence changes. Treat its result as advisory implementation input; it does not replace proof, delivery acceptance, or final review.
 
-Use the proof owner for each unit. When production behavior changes or test-first work is requested, apply [TDD](references/tdd.md) in coherent green slices. Run focused/affected proof per unit, then job-level integration/acceptance proof.
+### Minimum sufficient mechanism
+
+Understand the real affected flow and callers before minimizing. Then take the first sound option:
+
+1. eliminate an unnecessary mechanism or causal state/branch;
+2. reuse an existing project owner/module/helper/pattern;
+3. use stdlib/framework/platform/language/database native capability;
+4. use an already-selected dependency/tool;
+5. derive duplicated state or localize policy/state at its real owner; then
+6. add the minimum mechanism still required.
+
+Do not add indirection for hypothetical variation. A new interface, adapter, factory, generic/configuration layer, or similar abstraction needs either a current second consumer/variant or an independently real production boundary such as an external protocol, trust boundary, persistence boundary, volatile platform integration, or owned lifecycle/policy boundary. Do not create production architecture solely to make testing convenient.
+
+For a defect, correct the narrowest confirmed causal owner that covers the affected paths. Do not optimize for the smallest textual patch when it leaves sibling paths broken.
+
+Treat an unplanned new dependency/service/infrastructure component, public API/schema/storage/wire/compatibility change, material design-shape abstraction, unrelated subsystem cleanup, parallel implementation, new test infrastructure, or destructive effect as a scope-expansion event. If the accepted outcome cannot be achieved without it, surface the reason and required decision/authority instead of silently enlarging the job.
+
+### Proof policy
+
+Proof is required; a new test is not. Use the smallest evidence that can independently falsify the changed contract: existing affected tests, compiler/type guarantees, static analysis, builds/schema checks, focused runtime probes, real integration checks, bug reproduction, browser/manual verification, or another stronger current proof surface.
+
+Apply [TDD](references/tdd.md) only when test-first is requested or a material behavior-bearing seam has an independent oracle and a failing test can materially control implementation. Glue, wiring, declarative configuration, trivial delegation, framework-native behavior, or similarly low-information changes do not earn a new test merely because production behavior changed. Never manufacture an abstraction or test harness just to satisfy a test-first ceremony.
+
+Run focused/affected proof per unit, then job-level integration/acceptance proof.
 
 Before a planned stateful refactor/rewrite can change transitions, ordering, locking, retries, idempotency, ownership, or cross-entry behavior, require exact-current Àtúnwò `audit` and consume its contract/guardrails as implementation input.
 
@@ -58,7 +87,7 @@ If one unit blocks:
 
 - record the blocker, affected dependencies, proof, and exact resume trigger;
 - continue independent in-scope work; and
-- delegate bounded independent support when it materially improves progress or evidence.
+- delegate bounded independent support when it materially improves progress/evidence or keeps noisy investigation out of the primary delivery context.
 
 ## Exact candidate identity
 
@@ -82,18 +111,23 @@ Before review, update required ordinary documentation in the candidate, record i
 ## 3. Review and converge
 
 1. Review each stable, understandable, verifiable, reversible candidate once. Keep dependent changes together when separation creates a broken intermediate result; split independent candidates.
-2. After implementation proof is green, source code/tests require broad `atunwo`. Other candidates use their native verification/review owner. Findings remain hypotheses until verified.
-3. Apply behavior-changing corrections through TDD/proof owner, recapture the exact candidate, and rerun invalidated proof/review. Do not finish with a blocking finding or material evidence gap.
-4. Close a candidate only after acceptance, proof, documentation, and required review pass against the governing specification when present. Close the job only when every in-scope unit maps to the requested outcome and job-level integration/acceptance passes.
+2. After implementation proof is sufficient, source code/tests require broad `atunwo`. Other candidates use their native verification/review owner. Findings remain hypotheses until verified. Review may discover broadly; it does not silently enlarge the accepted delivery contract.
+3. Before implementing a correction, confirm it is inside the accepted contract/blocking criteria and local non-goals, ask whether the causal state/branch/duplicate owner can be removed or strengthened instead, prefer an existing mechanism at the real owner, and identify any scope-expansion event. Route genuine expansion through its decision/authority boundary.
+4. Apply behavior-changing corrections through TDD only when they meet the TDD admission gate; otherwise use the appropriate proof owner. Recapture the exact candidate and rerun only invalidated proof/review. Do not finish with a blocking finding or material evidence gap.
+5. Before closing, justify every touched file, new abstraction, dependency, compatibility path, and durable test by the requested contract or necessary proof. Passing tests and smaller line counts are evidence, not permission for unnecessary structure.
+6. Close a candidate only after acceptance, proof, documentation, and required review pass against the governing specification when present. Close the job only when every in-scope unit maps to the requested outcome and job-level integration/acceptance passes.
+
+When a deliberate simplification has a known ceiling, record the simplification, ceiling, and observable revisit trigger at its natural owner: local comment for a local mechanism, ADR for architecture, issue for planned work, or `.learnings` for durable project knowledge. Do not create a parallel debt ledger merely for this convention.
 
 ## 4. Report
 
 Return:
 
-- job boundary and session policy;
+- job boundary, local non-goals/task exclusions, expected/final change envelope, and session policy;
 - delivered units plus documentation and durable-knowledge reconciliation;
 - proof/review state;
 - commit state and exact candidate identities;
+- scope-expansion decisions plus deliberate simplification ceilings/triggers when any;
 - blockers and residual limits;
 - remaining work; and
 - next safe action.

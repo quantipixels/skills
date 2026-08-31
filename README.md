@@ -67,6 +67,7 @@ The real `.qp` belongs to the non-bare main worktree. Linked worktrees expose `.
 | `irinse` | Select/ready/use/upgrade/remove one companion engineering tool and return bounded evidence |
 | `ko-skill` | Author/revise/validate one skill or audit a bounded portfolio |
 | `pare` | Read-only simplification audit/review |
+| `scope-guard` | Prevent coding scope drift and enforce the minimum sufficient mechanism/proof |
 | `se-triage` | Supplied-evidence-first issue/report assessment |
 | `seda-pr` | Scoped commit/push and PR/MR creation/update |
 | `seda-spec` | Confirmed implementation-independent behavior specification |

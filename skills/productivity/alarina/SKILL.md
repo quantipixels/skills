@@ -44,6 +44,7 @@ Enter at the current stage:
 - Use `solution-architect` directly when the useful outcome is technical architecture design/review.
 - Use `seda-ticket` directly when supplied work only needs vertical decomposition, dependencies, acceptance, and a startable frontier.
 - Use `alaga` directly when the outcome/constraints are already settled and the requested result is implementation through proof/review/handoff.
+- Use `scope-guard` directly or as lightweight support when the requested result is an explicit anti-overengineering/scope-control contract around bounded coding work; it does not replace the implementation or review owner.
 - Use `seda-pr` directly for scoped commit/push plus PR/MR creation/update. Use `wo-pr` for an already-open PR/MR that needs CI/conflict/feedback stewardship.
 
 `atunwo` owns code-review verdicts and stateful parity audits. It may be consumed inside delivery, but it is not an automatic visible phase after every `alaga` route. `pare` owns read-only simplification/maintainability review and likewise enters only when that result is needed.
@@ -52,6 +53,7 @@ Enter at the current stage:
 
 - Raw bug/incident/request report → `se-triage` to assess validity/classification and the smallest next action.
 - Confirmed/understood fix → `alaga`.
+- Coding task that explicitly needs prevention of scope creep/over-engineering → `scope-guard`, then continue with the current implementation/architecture owner without creating a second lifecycle.
 - Existing code candidate needing a defect/proof verdict → `atunwo`.
 - Existing candidate/repository needing simplification or maintainability judgment → `pare`.
 - Supplied diff or pinned code-change evidence needing a review view → `html-artifact`; when only a pull-request or merge-request locator is supplied, use `atunwo` first for exact read-only candidate identity and evidence without an unrelated review.
@@ -116,7 +118,7 @@ Experimental skills never silently replace or become prerequisites for stable ow
 2. Preserve an explicit user-selected skill when it owns the requested result and its invocation boundary is satisfied.
 3. Otherwise choose the narrowest skill in the map that can accept the **current** state and own the next required result. Do not replay exploration, planning, architecture, implementation, review, or publication already settled by exact-current evidence.
 4. Follow only real owner handoffs needed to reach the requested outcome. Every added skill must contribute an independently useful result that the next owner actually needs.
-5. Treat conditional support as a detour, not a mandatory phase. Keep the primary owner primary while a supporting result is obtained, then return to the owning flow.
+5. Treat conditional support as a detour, not a mandatory phase. Keep the primary owner primary while a supporting result is obtained, then return to the owning flow. `scope-guard` is never a required stage when the active owner already carries the needed scope/minimality contract.
 6. Pass only the context/result needed for the next owner to begin correctly; do not make Alárinà a durable transcript, copied result store, or parallel coordinator.
 7. Once the next owner and necessary handoff are established, step aside. Re-enter only when another material routing choice appears.
 8. Stop at the requested outcome. Do not append review, publication, documentation, retrospective, persistence, or other later work merely because it often follows.
@@ -128,6 +130,7 @@ Routing grants no mutation, provider, credential, publication, review-verdict, o
 ## Resolve close boundaries by named owners
 
 - `atona` vs `arojinle` vs `solution-architect` — initiative lifecycle vs consequential user decision vs technical architecture.
+- `scope-guard` vs `alaga` vs `pare` — prospective anti-overengineering/scope steering vs implementation/proof vs read-only simplification judgment.
 - `alaga` vs `atunwo` vs `pare` — implementation/proof vs code-review verdict/parity audit vs read-only simplification.
 - `seda-pr` vs `wo-pr` vs `atunwo` — PR publication vs open-PR stewardship vs review verdict.
 - `se-triage` vs Experimental `root-cause` vs `alaga` — report validity/classification vs causal diagnosis vs implementation.

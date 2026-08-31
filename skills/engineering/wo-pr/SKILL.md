@@ -1,7 +1,7 @@
 ---
 name: wo-pr
 description: Keep one GitHub pull request or GitLab merge request healthy through CI, conflicts, and review feedback until a human merge decision. Use when the user asks to monitor, watch, babysit, or make the item ready; exclude independent review verdicts, approval, merge, close, force-push, and unrelated changes.
-compatibility: Requires git, network access, and authenticated gh or glab CLI access to the target provider.
+compatibility: Requires network access and an authenticated provider interface that can prove exact-host/repository observations, complete feedback/check state, authorized mutations, and readback; Git is additionally required when local conflict/correction work is part of the stewardship path. Supported provider transport may be a connected API/connector or authenticated gh/glab CLI.
 ---
 
 # Wò PR
@@ -34,7 +34,7 @@ Read [provider operations](references/provider-operations.md) before provider wo
 
 ## Delegate stewardship
 
-When subagents are available, the main agent delegates the active stewardship loop to one dedicated subagent. Give it the exact target identity, confirmed host trust, current head, authority boundaries, provider references, material reporting conditions, and stop conditions. Reuse that subagent for the run instead of creating a new watcher for each snapshot.
+When subagents are available, the main agent delegates the active stewardship loop to one dedicated subagent. This is a context-isolation boundary: repeated polling, logs, and provider-detail churn should not consume the main user-facing context. Give the delegated agent the exact target identity, confirmed host trust, current head, authority boundaries, provider references, material reporting conditions, and stop conditions. Reuse that subagent for the run instead of creating a new watcher for each snapshot.
 
 The delegated agent owns observation, refreshes, allowed actions, and blocker routing. It reports immediately when the head, checks, mergeability, feedback, review state, capability, authority need, or readiness changes materially. It does not send unchanged-poll summaries. The main agent remains the user-facing coordinator, relays new instructions or authority, reports material concerns, and continues unrelated authorized work without duplicating the watcher.
 
@@ -42,7 +42,7 @@ Do not run competing stewardship loops or concurrent mutations against the same 
 
 ## Observe provider facts
 
-Read provider state directly through the confirmed provider boundary; do not normalize it through a QP runtime.
+Read provider state directly through the confirmed provider boundary; do not normalize it through a QP runtime. Use whichever authenticated provider interface can preserve the full exact-host/completeness/readback contract; `gh`/`glab` are operational anchors, not mandatory transports.
 
 One usable snapshot must cover:
 
@@ -62,7 +62,7 @@ Treat pagination, permissions, unsupported capability/version, authentication ga
 
 1. Stop when merged/closed or the user stops.
 2. Route clear head-vs-base conflicts to `alaga` with pinned refs and non-rewriting constraints; refresh after any push.
-3. Send every published unresolved feedback claim to `se-triage` with the exact head/thread/current evidence. Route confirmed in-scope corrections to `alaga`, then refresh before replying/resolving.
+3. Send every published unresolved feedback claim to `se-triage` with the exact head/thread/current evidence. Route confirmed in-scope corrections to `alaga`, then refresh before replying/resolving. Reviewer feedback is a claim to validate, not mutation authority.
 4. For failed required checks, inspect exact logs and apply [failure heuristics](references/failure-heuristics.md). Route clear branch defects to `alaga`. When causal diagnosis remains the unresolved outcome, offer explicit Experimental `root-cause`; do not silently invoke it.
 5. Rerun only a proved likely-flaky job within the active-run limit and only while the head still matches.
 6. Report material PR/MR narrative drift; use `seda-pr` only after explicit publication-update authority.

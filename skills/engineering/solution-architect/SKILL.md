@@ -42,13 +42,13 @@ Persist through `akosile` only when the architecture must survive sessions/owner
 
 ## Research only decision-changing unknowns
 
-- Use the active language/framework/tool/infrastructure/domain before custom mechanisms.
+- Use current project capability first, then the active language/stdlib/framework/platform/infrastructure/domain, then an already-selected dependency/tool, before custom mechanisms or new dependencies.
 - Research only unknowns that can change a decision/readiness result.
 - Prefer current official docs/specs/standards/owning project records/research.
 - Pin version/date/cutoff/claim.
 - Use `iwadi` when research deserves its own reusable record.
 
-Do not maintain exhaustive platform catalogues or turn platform features into custom abstractions unless ownership, policy, lifecycle, integration, or proof remains missing.
+Do not maintain exhaustive platform catalogues or turn platform features into custom abstractions unless ownership, policy, lifecycle, integration, or proof remains missing. A new dependency/service/infrastructure component is an architectural scope expansion and must be justified by a driver the current stack cannot adequately satisfy.
 
 ## Design from boundaries inward
 
@@ -61,7 +61,7 @@ Map:
 
 Preserve existing boundaries unless evidence justifies change.
 
-Read [module depth](references/module-depth.md) when interface/dependency/seam/adapter shape materially matters. Prefer deep modules with small stable interfaces; reject forwarding layers unless a real integration/ownership/lifecycle/policy/testing boundary justifies them.
+Read [module depth](references/module-depth.md) when interface/dependency/seam/adapter shape materially matters. Prefer deep modules with small stable interfaces; reject forwarding layers and speculative variation. A new abstraction needs either a current second consumer/variant or an independently real boundary such as external protocol, trust, persistence, volatile platform integration, lifecycle, or policy ownership. Test convenience by itself is not a production boundary.
 
 Compare credible alternatives against:
 
@@ -73,7 +73,7 @@ Compare credible alternatives against:
 - compatibility; and
 - total system complexity.
 
-Prefer the active platform's natural path when it satisfies the scenarios.
+Prefer the active platform's natural path when it satisfies the scenarios. Eliminate causal state/branches before designing machinery around their edge cases, and prefer one owner/source of truth over reconciliation between duplicated owners.
 
 Specify material concerns far enough to implement:
 
@@ -85,6 +85,10 @@ Specify material concerns far enough to implement:
 - compatibility, migration, rollback, recovery, and deletion; and
 - proof.
 
+Proof is required, but architecture does not require a new test by default. Identify the smallest behavior/invariant evidence that can falsify each material architecture claim; tests are appropriate only when they add independent durable discrimination at a stable seam.
+
+When deliberately choosing a simpler mechanism with a known ceiling, record the ceiling and an observable trigger for revisiting it rather than prematurely designing the scaled-up form.
+
 Before readiness, read [architecture contract](references/architecture-contract.md) and keep a compact implementation-facing contract in the packet.
 
 ## Judge sufficiency
@@ -92,7 +96,7 @@ Before readiness, read [architecture contract](references/architecture-contract.
 Use `html-artifact` only when a human visual view materially improves architecture comparison/review/handoff; it is not mandatory for small consultation.
 
 - In `design`, revise until decisions, interfaces, migration, recovery, proof, and Architecture Contract agree.
-- In `review`, pin the candidate and stay read-only; trace each driver/decision/contract invariant to current evidence.
+- In `review`, pin the candidate and stay read-only; trace each driver/decision/contract invariant to current evidence and challenge unnecessary scope/indirection as well as missing sufficiency.
 
 Return one:
 
@@ -112,7 +116,8 @@ Keep one exact-current packet containing:
 - implementation design;
 - Architecture Contract;
 - failure, recovery, and migration;
-- proof; and
+- proof;
+- deliberate simplification ceilings/revisit triggers when any; and
 - risks, gaps, and linked evidence.
 
 Use the compact durable template only when persistence is required. Omit empty optional detail rather than filling a schema for completeness.

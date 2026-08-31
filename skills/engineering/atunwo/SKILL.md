@@ -33,7 +33,7 @@ For working-tree changes, staged changes, commits, branches, files, supplied cod
 
 - candidate or comparison boundary;
 - baseline;
-- contract and non-goals;
+- contract and task/repository non-goals as applicable;
 - blocking criteria and standards; and
 - proof sources.
 
@@ -84,7 +84,7 @@ Outside `audit` scope, read [`references/finding-contract.md`](references/findin
 
 - **Contract:** required behavior, actors, permissions, states, failures, recovery, compatibility, migration, security, rollout, and rollback.
 - **Standards:** repository architecture, ownership, naming, errors, observability, dependencies, resources, and secret safety.
-- **Proof:** whether tests and other evidence detect incorrect caller-visible behavior.
+- **Proof:** whether tests and other evidence can independently detect plausible incorrect caller-visible behavior. Green status, coverage, mock choreography, or an assertion that mirrors production logic is not sufficient proof by itself.
 - **Bug hunt:** candidate-caused failures in applicable normal, negative, degraded, and hostile conditions.
 
 For broad review, also consume the current `pare review` result. Send any material concern that requires defect judgment through the applicable defect branch rather than treating maintainability evidence as a defect verdict.
@@ -104,20 +104,24 @@ Each branch must produce findings, an evidence-backed clean claim, or a named ev
 
 ## 3. Challenge, reconcile, and decide
 
+Review may discover broadly; it does not silently expand the accepted implementation contract. A concern outside the pinned contract/blocking criteria may be useful follow-up evidence, but it is not automatically a blocking correction requirement.
+
 For each material defect finding:
 
 1. Restate its failure mechanism and assumptions.
 2. Search the current candidate for counterevidence and safeguards.
 3. Trace the path when practical.
-4. Challenge scope and consequence.
-5. Compare its correction direction with a smaller credible alternative.
-6. Classify it as `CONFIRMED`, `NARROWED`, `REJECTED`, `DUPLICATE`, or `UNPROVED`.
+4. Challenge scope and consequence against the pinned contract/blocking criteria.
+5. Ask whether the causal state/branch/duplicate owner can be removed or strengthened so the edge case disappears.
+6. Compare its correction direction with an existing mechanism at the real owner and the smaller credible alternative.
+7. Identify whether correction would add a dependency/service/infrastructure component, public contract/schema/storage change, material new abstraction, unrelated subsystem work, parallel implementation/compatibility path, new test infrastructure, or destructive effect. Such scope expansion is evidence for the delivery/decision owner; review does not authorize it.
+8. Classify the finding as `CONFIRMED`, `NARROWED`, `REJECTED`, `DUPLICATE`, or `UNPROVED`.
 
 For broad review, verify the `pare` result is current for the pinned candidate and blocking criteria. Challenge material maintainability findings or clean claims only enough to integrate them into the combined verdict; do not redo maintainability discovery.
 
 Challenge each defect clean claim at the highest-risk changed behavior. Record missing proof as an evidence gap. Send a distinct new defect through the same finding validation and classify it as `NEW`. State any material limit on reviewer independence.
 
-Deduplicate findings by failure mechanism and reconcile contradictory claims.
+Deduplicate findings by failure mechanism and reconcile contradictory claims. Do not create a reviewer/fixer loop where each rare edge case grows new machinery whose own edge cases become the next round; prefer a smaller causal correction or surface the true scope expansion.
 
 In provider mode, classify each prior discussion and new concern as:
 
@@ -148,7 +152,7 @@ Outside `audit` scope, report in this order:
 3. verdict;
 4. reviewed boundary and candidate identity;
 5. supporting result identities;
-6. proof gaps; and
+6. proof gaps and any correction scope-expansion facts; and
 7. residual risk.
 
 In `audit` scope, report the parity result defined by its reference plus the mapped verdict. Do not imply provider or organizational approval.

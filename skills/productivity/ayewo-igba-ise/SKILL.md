@@ -50,6 +50,18 @@ Inspect three non-overlapping lenses for material work:
 - tools/environment/context/authority actually available; and
 - second-order effects, counterevidence, avoided failures, and recovery cost.
 
+When over-engineering, scope drift, or test bloat is part of the question, reconstruct only evidenced signals such as:
+
+- unplanned dependency/service/infrastructure or public-contract expansion;
+- unexpected subsystem/file growth relative to the then-current task boundary;
+- speculative abstractions/configuration, parallel implementations, or compatibility paths;
+- production architecture or test infrastructure introduced mainly to make testing convenient;
+- reviewer/fixer cycles where an edge-case correction creates new machinery and new edge cases;
+- tests that mirror implementation, verify configured mocks/choreography, duplicate stronger proof, or later get deleted as construction history; and
+- later deletion/reversion/rework attributable to the expanded design.
+
+These are diagnostic signals, not automatic findings or quality scores. Establish the causal sequence and then judge whether the expansion was required, reasonable, or avoidable under the contract that existed at the time.
+
 Distinguish execution error from structural friction in instructions, ownership, sequencing, evidence gates, tools, environment, or authority. Rank only evidenced friction by impact, recurrence likelihood, and leverage beyond the incident.
 
 Classify causes as one of:
@@ -80,6 +92,7 @@ Route follow-up by owned result:
 
 - skill changes → `ko-skill`;
 - project knowledge → `amose`;
+- prospective coding scope control → `scope-guard`;
 - codebase simplification → `pare`;
 - implementation → `alaga`.
 

@@ -9,9 +9,11 @@ Own one companion tool from need through safe readiness and bounded evidence. Le
 
 ## 1. Bound the need and select the tool
 
-Identify the question the tool should answer, exact candidate, required evidence, acceptable fallback, mutation authority, and freshness boundary. HEAD alone is not an exact identity for analyzed uncommitted content. Prefer direct source reading and existing safe tools when they answer the question proportionately.
+Identify the question the tool should answer, exact candidate, required evidence, acceptable fallback, mutation authority, and freshness boundary. HEAD alone is not an exact identity for analyzed uncommitted content. Prefer direct source reading, project-native commands/wrappers, and existing safe tools when they answer the question proportionately.
 
-Select the smallest useful tool. Do not recommend every missing tool or route ordinary shell/search work through `irinse`. Load only the selected reference:
+Select the smallest useful tool. Do not recommend every missing tool or route ordinary shell/search work through `irinse`. Do not introduce a new tool merely to make one proof step convenient when current project/platform capability already provides sufficient evidence. For a consuming task that did not already authorize tooling expansion, adopting a new dependency/tool/integration is a scope-expansion fact to return to that owner rather than silently changing its surface.
+
+Load only the selected reference:
 
 - [tldr-code](references/tldr-code.md) for compact structural, flow, impact, quality, or security leads;
 - [ast-grep](references/ast-grep.md) for syntax-aware search or structural rewriting;
@@ -30,4 +32,4 @@ When the selected tool must be readied, installed, configured, authenticated, in
 
 ## 3. Return the evidence
 
-Return the bounded need/candidate, tool identity/version, readiness state, authorized operation, observations with provenance, corroboration, coverage limits/errors, and freshness. Do not turn tool output or scores into architecture, implementation, security, maintainability, or review verdicts; return the evidence to the owning workflow.
+Return the bounded need/candidate, tool identity/version, readiness state, authorized operation, observations with provenance, corroboration, coverage limits/errors, freshness, and any consuming-task scope-expansion fact. Do not turn tool output or scores into architecture, implementation, security, maintainability, or review verdicts; return the evidence to the owning workflow.

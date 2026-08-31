@@ -1,0 +1,3 @@
+interface:
+  display_name: "Scope Guard"
+  short_description: "Prevent coding scope drift and over-engineering"
