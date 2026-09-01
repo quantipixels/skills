@@ -12,7 +12,7 @@ Own technical sufficiency of one solution. Produce one architecture packet an im
 | `design` | create or revise the architecture |
 | `review` | judge one exact packet/candidate read-only |
 
-Keep initiative lifecycle with `atona`, material user choices with `arojinle`, persistence mechanics with `akosile`, and implementation/review verdicts with their native owners.
+Keep initiative lifecycle, consequential user-choice closure, workspace persistence mechanics, implementation, and code-review verdicts outside this architecture result.
 
 ## Pin and evidence
 

@@ -63,7 +63,7 @@ Derive startability for an `Open` ticket:
 
 Only `Done` resolves a ticket dependency. A `Cancelled` dependency requires re-planning rather than silently unblocking dependants.
 
-Do not add `In Progress`, `In Review`, or runtime `Blocked` ticket states. Active implementation, proof, review, runtime blockers, candidate identity, and recovery live in the native results of `alaga`, `atunwo`, or another current execution/review owner. A caller may reconcile `Open → Done | Cancelled` from those exact-current results without importing their lifecycle into the ticket contract.
+Do not add `In Progress`, `In Review`, or runtime `Blocked` ticket states. Active implementation, proof, review, runtime blockers, candidate identity, and recovery remain outside ticket state and with the active execution/review owner. A caller may reconcile `Open → Done | Cancelled` from exact-current owner results without importing another owner's lifecycle into the ticket contract.
 
 The **Startable frontier** is every `Open` ticket currently derived as `STARTABLE`.
 

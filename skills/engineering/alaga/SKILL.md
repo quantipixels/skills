@@ -26,16 +26,9 @@ The change envelope is an evidence-backed expectation, not a prohibition on nece
 
 ### Ownership and supporting results
 
-- Respect explicit owner/tool choices.
-- Use the shortest combination of current specialists and direct work. Supporting owners retain their native procedures/results; Alága owns integration and job acceptance.
-- Read relevant root `.learnings` and complete `.nongoals` when present.
-- Use `scope-guard` when the user explicitly wants a portable anti-overengineering guard or when a bounded task needs its scope contract surfaced independently; do not make it a mandatory phase because Alága carries the delivery-critical invariants directly.
-- Use `arojinle` for unresolved material user choices.
-- Use `solution-architect` for material technical architecture.
-- Use `atona` when an initiative plan must remain live.
-- Use `seda-spec` when material normative behavior is not settled enough for implementation without invention.
-- Use `seda-ticket` only when supplied work benefits from consumable vertical tickets.
-- Use `root-cause` for a reproducible or directly observed defect when causal ownership/mechanism remains materially uncertain and competing explanations would lead to materially different corrections. Do not require it when the causal owner is already sufficiently established for a responsible fix.
+Respect explicit owner/tool choices and use the shortest combination of current specialists and direct work. Supporting owners retain their native procedures/results; Alága owns integration and job acceptance. Read relevant root `.learnings` and complete `.nongoals` when present.
+
+Do not absorb an unresolved consequential user decision, material technical architecture, normative behavior contract, causal diagnosis, or initiative lifecycle merely because it appears during delivery. Preserve and consume an exact-current result from its established owner only when that independent result is actually required before delivery can proceed. Use `scope-guard` only when the user explicitly wants its portable anti-overengineering result, and `root-cause` when causal diagnosis itself remains the missing outcome rather than a settled implementation premise.
 
 When consequential implementation choices need deeper scrutiny of stack-native behavior, ownership/lifecycle, compatibility, proportionality, or version-specific evidence, read [expert implementation counsel](references/expert-implementation-counsel.md). This is a selectively loaded Alága path, not another owner. Skip it for obvious mechanical edits whose sound shape is already determined by current project evidence.
 

@@ -12,7 +12,7 @@ Modes:
 - `audit` — bounded repository/subsystem simplification audit; read-only; no tests/builds.
 - `review` — one fixed candidate; read-only; no provider/verdict.
 
-`atunwo` owns defects/verdicts/stateful parity; `alaga` implements accepted slices; `solution-architect` owns technical architecture.
+Keep defect verdicts/stateful parity, implementation, and technical architecture outside this read-only simplification result.
 
 ## Evidence
 
