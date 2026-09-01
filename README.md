@@ -36,6 +36,14 @@ claude plugin marketplace add quantipixels/skills
 claude plugin install qp-skills@qp-skills
 ```
 
+Optional QP main agent after plugin installation:
+
+```bash
+claude --agent qp-skills:qp
+```
+
+The QP agent is a thin host adapter over `alarina`; direct skill invocation and skill-only hosts remain first-class.
+
 ## Uninstall
 
 ```bash
@@ -85,11 +93,11 @@ Use the exact design specialist directly when one deliverable owner is clear. Us
 | Skill | Outcome |
 | --- | --- |
 | `apere` | Route broad/multi-deliverable design work |
-| `amoye-ui-ux` | Coherent UI/UX direction/review from current product evidence + curated judgment |
+| `amoye-ui-ux` | UI/UX direction, proportionate design exploration, explicit affordance acceptance, and rendered convergence |
 | `brand` | Durable brand voice/identity/logo/icon/assets source of truth |
 | `social-graphics` | Feed/carousel/story/social campaign graphics |
 | `eto-apere` | Project-specific token/component-spec contract and CSS realization |
-| `asa-oju-ibanisoro` | Accessible responsive React/web UI implementation |
+| `asa-oju-ibanisoro` | Accessible responsive React/web UI implementation with native proof and rendered convergence |
 | `banner-design` | Covers/headers/heroes/display ads/print banners |
 | `slides` | Presentation/pitch-deck narrative and visual composition |
 
