@@ -59,7 +59,7 @@ The real `.qp` belongs to the non-bare main worktree. Linked worktrees expose `.
 | Skill | Outcome |
 | --- | --- |
 | `akosile` | Repository-scoped `.qp` paths/worktrees, sparse settings, exact safe publication, generated index |
-| `alaga` | Deliver one supplied build job through implementation, proof, review, and handoff |
+| `alaga` | Deliver one supplied build job through implementation, candidate-pinned expert scrutiny when material, proof, review, and handoff |
 | `amose` | Exact-current project/domain knowledge, `.learnings`, `.nongoals`, ADRs, local craft |
 | `atona` | One initiative plan from Draft through delivery/closure |
 | `atunwo` | Code defect/proof/state-parity review and provider review publication when authorized |
@@ -102,7 +102,7 @@ Banner Design and Social Graphics intentionally remain narrow steering owners ev
 | `ayewo-igba-ise` | Evidence-backed postmortem for completed/abandoned/disputed work, incidents, sessions, or corpora |
 | `handoff` | Compact fresh-session handoff |
 | `html-artifact` | Selective traceable accessible HTML visualization of supplied material |
-| `iwadi` | High-trust primary-source research record |
+| `iwadi` | High-trust primary-source research with high-threshold exact-version source escalation when ordinary research cannot resolve the claim |
 | `ro-wo` | Test one material premise before judgment |
 | `salaye` | Reusable plain-language explanation behavior for a supplied subject |
 | `system-cleanup` | Safe macOS storage audit, regenerable cleanup, worktree review, and external-drive offload |
@@ -117,16 +117,14 @@ Experimental skills participate in normal first-party routing when their owned o
 
 | Skill | Outcome |
 | --- | --- |
-| `akowe` | Exact-candidate adaptive expert implementation counsel |
 | `dogfood` | Real-browser verification of changed user journeys |
 | `fihan` | Explicitly activated private serving of one bounded local resource |
 | `ideate` | Grounded mechanism-diverse possibilities before selection |
-| `orisun` | Exact-version upstream source escalation for one bounded technical question |
 | `pepeye` | User-requested task supervision without a second owner lifecycle |
 | `prototype` | Disposable truthful decision instrument |
 | `root-cause` | Minimal causal mechanism/set for an observed failure |
 
-Historical `akowe-java`, `akowe-spring`, and catalogue experiments are research evidence only; Adaptive Akọ̀wé does not load those fixed catalogues at runtime.
+Historical Akọ̀wé and Orísun experiments remain research evidence. Their useful methods now live behind Alága's implementation-counsel path and Ìwádìí's exact-source escalation instead of occupying public routing surface.
 
 ## Start
 
