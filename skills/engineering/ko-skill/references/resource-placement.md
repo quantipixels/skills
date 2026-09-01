@@ -55,9 +55,13 @@ Keep reusable CSS/HTML/JS assets only when exact shared behavior prevents recurr
 
 ## Public skill gate
 
-Create or retain a public skill when it owns a recurring independently useful outcome, authority/artifact/lifecycle/acceptance boundary, failure mode, or useful named model-steering contract. Do not split skills merely because output taxonomy differs when one owner can carry the variants cleanly.
+Grow capability depth faster than public surface area. Before creating or retaining another public skill, ask whether an existing owner can absorb the capability coherently without weakening its owned outcome. If yes, prefer owner-local guidance, a selective reference, native capability, or another internal path.
 
-Do not remove a lightweight steering skill solely because the base model can perform the underlying behavior. The question is whether the named contract independently improves reliable selection/use without duplicating another owner.
+A useful capability is not enough. A public identity must also have independently useful direct invocation/result/authority and make selection or use materially simpler than keeping the capability behind its dominant owner. Another name that mainly exposes internal composition is a cost, not modularity.
+
+Create/retain the public skill only when its independent identity reduces rather than increases user/router cognitive burden. Otherwise fold the useful behavior behind its owner. Do not split skills merely because output taxonomy or implementation method differs when one owner can carry the variants cleanly.
+
+Do not remove a lightweight steering skill solely because the base model can perform the underlying behavior. The question is whether the named contract independently improves reliable selection/use without duplicating another owner **and whether users/agents benefit from selecting it separately**.
 
 ## Placement test
 
@@ -65,13 +69,16 @@ For every material resource ask:
 
 - What outcome does this resource uniquely improve?
 - Is the information/mechanic already naturally owned by the agent, project, provider, framework, tool, or a mature library?
+- Can the current public owner absorb this capability coherently without weakening its outcome contract?
+- If proposing another public skill, what direct user/agent choice becomes materially simpler because this new name exists?
+- Would folding the capability behind its dominant owner preserve the benefit while reducing routing/public mental load?
 - Is this recurring non-obvious judgment, deliberate behavioral override, or merely recoverable procedure?
 - Has the concrete capability already been selected, or is this resource quietly choosing/caching candidates for the agent?
 - Would removing every concrete pointer make the agent repeatedly rediscover the same selected capability entry point? If so, what is the smallest operational anchor that prevents that?
 - If prescribing a mechanism, what invariant, context-isolation need, human-visibility requirement, or external contract requires that exactness?
 - If proposing code, what deterministic result cannot be carried as guidance/native tooling?
 - If proposing an engine, what substantial portion of the native outcome moves behind it?
-- What maintenance, freshness, portability, context, or runtime burden does the resource introduce?
+- What maintenance, freshness, portability, context, runtime, or public-surface burden does the resource introduce?
 - What proof would show the smaller alternative is insufficient?
 
 Prefer the smallest placement that preserves correctness, judgment quality, authority, discoverability, useful depth, and deliberate behavior. Size reduction alone is not acceptance.

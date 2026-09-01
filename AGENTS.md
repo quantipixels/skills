@@ -1,10 +1,12 @@
 When creating, updating, or validating a skill, use `ko-skill`.
 
-For developer documentation and technical communication, use `technical-writing` for structure and clarity, then `yo-slop` for final prose cleanup. Apply the same chain to human-facing artifact copy when it fits, without changing the artifact owner's facts, schema, authority, or acceptance.
+For developer documentation and technical communication, use `technical-writing` when structure or technical clarity needs an owning pass. Use `yo-slop` only when cleanup/pruning is itself requested or material filler, AI-tells, repetition, or instruction noise remains after the owning content work; do not make it a routine second pass. Apply the same boundary to human-facing artifact copy without changing the artifact owner's facts, schema, authority, or acceptance.
 
 Do not add or generate a `default_prompt` field in skill agent metadata.
 
 Keep every skill in exactly one `skills/engineering`, `skills/design`, `skills/productivity`, or `skills/experimental` group. When a skill is added, removed, renamed, moved, or rerouted, reconcile its group, [`.claude-plugin/plugin.json`](./.claude-plugin/plugin.json), [`alarina`](./skills/productivity/alarina/SKILL.md), and `README.md`.
+
+Grow capability depth faster than public surface area. Prefer deepening an existing owner through owner-local guidance, selective references, native capabilities, or internal paths when it can carry the behavior coherently. A new public skill must make direct selection or use materially simpler than keeping that capability behind an existing owner; do not expose internal composition merely to name another reusable method.
 
 ## Experimental
 

@@ -6,7 +6,7 @@ license: MIT
 
 # Technical writing
 
-Write technical prose a tired engineer can understand on the first read. Own document mode, instruction structure, technical sentence clarity, and unambiguous syntax. Use `yo-slop` after meaning and structure are settled for final prose cleanup; do not duplicate its filler, AI-tell, voice, or pruning catalogue here.
+Write technical prose a tired engineer can understand on the first read. Own document mode, instruction structure, technical sentence clarity, and unambiguous syntax. Produce complete usable prose from this owner; do not require a second cleanup skill for normal completion.
 
 The codebase is the word list. Use the real symbol, file, flag, command, and project term rather than an invented synonym.
 
@@ -72,4 +72,4 @@ PR descriptions, commit messages, handoffs, and human-facing technical artifacts
 
 Do not rewrite exact identifiers or facts for style. Make paths, symbols, commands, counts, and generated-tree claims true for the candidate being described. Product UI strings follow the product's copy rules rather than this documentation contract.
 
-After the technical structure and meaning are correct, use `yo-slop` for final cleanup without changing facts, authority, required structure, or technical terminology.
+Use `yo-slop` only when the user explicitly asks for its cleanup/pruning outcome or when a distinct material filler/AI-tell/repetition problem remains after the technical writing is already correct. Do not invoke it merely because Technical Writing completed.

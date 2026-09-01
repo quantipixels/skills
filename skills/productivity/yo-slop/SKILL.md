@@ -7,6 +7,8 @@ description: Refine human- or agent-facing prose by removing AI tells, filler, v
 
 Make supplied prose clearer and less machine-shaped while preserving its contract. Keep exact identifiers, quotations, facts, citations, schemas, required formats, accepted terminology, and the owning artifact's decisions.
 
+This is a direct or conditional cleanup outcome, not a mandatory tail stage after `technical-writing` or another writing owner. Use it when cleanup/pruning is explicitly requested or a material filler, AI-tell, repetition, vague-abstraction, or instruction-noise problem remains in otherwise settled prose.
+
 ## Choose the pass
 
 Use the normal cleanup pass for local clarity and voice problems. When the request explicitly asks to shorten prose, reduce verbosity, remove repetition, or lower instruction load, use `prune` and read [prune prose](references/prune.md). Do not infer `prune` from an ordinary editing or final-pass request.
