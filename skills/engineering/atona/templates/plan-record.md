@@ -41,7 +41,7 @@ status: Draft
 
 ## Delivery and proof
 
-<governing specification identity/readiness when present; phases/dependencies/blockers only when they actually exist; current proof and closure obligations>
+<governing specification identity/readiness when present; phases/dependencies/blockers only when they actually exist; current proof and closure obligations; when delivery coordination is material, include the lightweight expected delivery-shape envelope, any material cumulative drift, and replan/review trigger without turning counts into quotas>
 
 ## Linked evidence
 

@@ -36,6 +36,8 @@ A changed component is not automatically a journey. Identify the user goal, entr
 
 Create one row per journey with status `Pass`, `Fail`, `Blocked`, or `Skipped`. A blocked or skipped row must state why, user impact, and what would clear it. Do not silently drop an unreachable route.
 
+When one representative fixture, document, account, dataset, or scenario can cheaply exercise several material changed states together, use it for the final integrated journey instead of proving only isolated controls. Derive the specimen from accepted behavior and credible risk; do not create or maintain a universal fixture schema. Ensure it contains both positive and negative/alternate states when those materially affect the experience.
+
 Exercise only coverage justified by acceptance and risk. Applicable dimensions may include:
 
 - primary success and critical alternate paths;
@@ -75,6 +77,7 @@ Candidate and environment
 Expected-behaviour evidence
 Changed journeys and blast radius
 Journey matrix
+Representative integrated specimen when used
 Material findings and classifications
 Evidence locators
 Blocked/skipped rationale
