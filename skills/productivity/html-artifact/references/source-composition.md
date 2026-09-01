@@ -102,9 +102,9 @@ For each foreground section ask: if removed, would decision, action, understandi
 
 The owner updates `record.md` first. The projection records its source path and revision. Regenerate after each material semantic revision when continuous accessibility is required.
 
-Run structural checks after every projection write. Apply HTML Artifact's consequence-based verification policy after regeneration: use a visual smoke pass when ordinary rendered usability materially affects review, and deep browser proof only when presentation or interaction is itself a material acceptance claim, the artifact is production/publication/formal-decision facing, material runtime behavior must be proved, or the user requests that assurance.
+Run structural checks after every projection write. Apply the parent HTML Artifact verification contract without widening it here: document-shaped projections normally stop at structural proof, with at most one bounded render smoke when readability is materially uncertain. Targeted or deep browser proof belongs only to interface-shaped acceptance, a specific material browser/runtime claim the parent contract admits, or explicit user-requested assurance. Publication importance, formality, lifecycle stage, artifact size, or ordinary document interactivity do not independently justify escalation.
 
-A first substantial render or lifecycle transition does not automatically require deep proof. Recompute the reader job and representation first, then verify only to the depth justified by the resulting claims and consequence. Within one stage, a semantic update may reuse current presentation proof when presentation structure and risk remain unchanged. The regenerated HTML still needs exact source revision/status disclosure. If regeneration fails, keep the older file visibly stale and report the accessible view as incomplete.
+A first substantial render or lifecycle transition does not automatically require deep proof. Recompute the reader job and representation first, then verify only to the depth justified by the resulting accepted claims. Within one stage, a semantic update may reuse current presentation proof when presentation structure and risk remain unchanged. The regenerated HTML still needs exact source revision/status disclosure. If regeneration fails, keep the older file visibly stale and report the accessible view as incomplete.
 
 Before delivery test:
 
@@ -114,4 +114,4 @@ Before delivery test:
 - **context hygiene:** raw archives are absent unless required;
 - **deletion:** each foreground section earns its place;
 - **stage fit:** the opening, representation, tone, and action layer serve the current lifecycle stage rather than an earlier one; and
-- **verification fit:** the reported verification level matches the artifact's claims and consequence rather than its size or generation event.
+- **verification fit:** the reported verification level matches the artifact's accepted claims rather than its size, publication importance, or generation event.

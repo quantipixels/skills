@@ -49,7 +49,7 @@ Pepeye must not:
 - add specialists merely to demonstrate lifecycle coverage; or
 - use delegation to evade an authority gate or obscure one accountable owner.
 
-When the active owner changes, record why, the exact handoff boundary, and which prior evidence became stale.
+When the active owner changes, record why and the exact handoff boundary. Record owner-reported stale results and observable candidate/revision/contract identity mismatches as freshness risks; do not independently invalidate another owner's semantic result from the transition alone.
 
 ## 3. Guard task-level acceptance
 

@@ -13,18 +13,16 @@ Resolve the exact branch, PR, commit, or supplied candidate; comparison base; cu
 
 Never test an unpinned moving candidate. Use a local, preview, or explicitly authorized test environment. Do not use production data or trigger real payments, emails, messages, account changes, or third-party effects without separate explicit authority.
 
-Establish expected behaviour from the strongest available evidence:
+Establish controlling expected behaviour only from normative authority:
 
 ```text
 explicit user direction and accepted criteria
-→ confirmed product, plan, design, or domain contract
-→ exact-current documented behaviour
-→ pinned baseline behaviour
-→ stated reporter expectation
+→ confirmed product, plan, specification, design, or domain contract
+→ exact-current documentation only when that documentation is itself authoritative
 → unresolved expectation gap
 ```
 
-Do not convert common UI convention or personal preference into a product failure. When the expected result remains unresolved, test the observable behaviour and report the expectation gap separately.
+Pinned baseline behaviour, reporter expectations, convention, and historical behaviour are comparison or hypothesis evidence, not normative product truth. When no controlling expectation resolves a mismatch, test the observable behaviour and classify the result as an experience observation or `UNVERIFIED_CONCERN`, not `PRODUCT_FAILURE`.
 
 Prefer a browser surface integrated into the active host when it can navigate, inspect rendered and interactive state, click, fill, press keys, capture screenshots, and inspect console or network failures. Otherwise use one already available companion browser capability. Do not install or bundle a third browser stack for this skill.
 
@@ -57,10 +55,10 @@ Capture screenshots, reproduction steps, console output, and request evidence on
 
 Classify each material result as:
 
-- `PRODUCT_FAILURE` — observed behaviour contradicts a controlling expectation;
+- `PRODUCT_FAILURE` — observed behaviour contradicts a controlling normative expectation;
 - `ENVIRONMENT_BLOCKER` — environment, identity, data, credential, or capability prevented proof;
-- `EXPERIENCE_OBSERVATION` — usability, accessibility, responsiveness, copy, or hierarchy evidence without a proved product failure; or
-- `UNVERIFIED_CONCERN` — a credible issue whose expected behaviour or reproduction remains incomplete.
+- `EXPERIENCE_OBSERVATION` — usability, accessibility, responsiveness, copy, hierarchy, baseline comparison, or other observed evidence without a proved product failure; or
+- `UNVERIFIED_CONCERN` — a credible issue whose controlling expectation or reproduction remains incomplete.
 
 For each failure or concern, state the journey, exact reproduction, expected and observed behaviour, candidate/head identity, evidence, user impact, determinism, and classification.
 
@@ -74,7 +72,7 @@ Return:
 
 ```text
 Candidate and environment
-Expected-behaviour evidence
+Expected-behaviour authority and comparison evidence
 Changed journeys and blast radius
 Journey matrix
 Representative integrated specimen when used

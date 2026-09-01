@@ -7,17 +7,7 @@ description: Create or refine one confirmed, implementation-independent behavior
 
 Turn supplied intent into one compact behavior specification that a fresh human or agent can use as an independent implementation and review oracle. Own normative behavior, scope, examples, acceptance, proof traceability, and specification readiness.
 
-Do not absorb adjacent outcomes:
-
-- `atona` owns initiative lifecycle;
-- `arojinle` owns unresolved consequential user choices;
-- `solution-architect` owns technical design;
-- `seda-ticket` owns delivery decomposition;
-- `alaga` owns implementation and proof;
-- `amose` owns durable project/domain truth; and
-- `akosile` owns `.qp` path and publication mechanics.
-
-Provider publication requires a separately authorized owner.
+Keep initiative lifecycle, consequential user-choice closure, technical design, delivery decomposition, implementation/proof, durable project knowledge, workspace mechanics, and provider publication outside the specification result.
 
 ## Establish the contract boundary
 

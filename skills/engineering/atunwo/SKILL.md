@@ -21,8 +21,6 @@ In `audit` scope, do not implement a correction or infer delivery authority. Ret
 
 For broad review, consume `pare review` maintainability findings and clean claims without reproducing its discovery procedure. Àtúnwò owns defect discovery, reconciliation, the combined verdict, and provider operations.
 
-When another skill owns the requested review outcome for a provider candidate, Àtúnwò may provide the exact read-only candidate identity and evidence it needs without running an unrelated review. Provider access or write authority does not transfer with that result.
-
 Treat proof produced by concurrent commands that share mutable state as contaminated; rerun it in one controlled environment.
 
 ## 1. Pin the candidate and authority

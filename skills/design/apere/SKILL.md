@@ -15,11 +15,11 @@ Use the exact specialist directly when one owner fully covers the requested deli
 
 - the correct design owner is genuinely ambiguous;
 - several distinct design deliverables need different owners;
-- shared brand/visual/accessibility constraints must be established before parallel design work;
+- confirmed shared brand/visual/accessibility constraints must be passed consistently across owners;
 - one design result is a prerequisite for another; or
 - a common approval/handoff boundary must be made explicit.
 
-Do not route backend/infrastructure work here. Do not add a design specialist merely because it exists.
+Do not route backend/infrastructure work here. Do not add a design specialist merely because it exists. Missing shared constraints are prerequisite gaps or routes, not constraints Àpẹrẹ may invent.
 
 ## Design route packet
 
@@ -30,11 +30,13 @@ Requested visual outcome and audience
 Deliverables → one current primary owner each
 Shared prerequisites / dependency order
 Safe parallel work
-Shared brand / visual / accessibility / approval constraints
-Required result/output format from each owner
+Confirmed shared constraints to pass through unchanged
+Requested deliverable/output constraints
 Open input gaps
 Route completion boundary
 ```
+
+Each specialist retains its native result contract; Àpẹrẹ does not prescribe internal result schemas merely to simplify coordination.
 
 When several routed artifacts must actually be produced and integrated, give this packet to `alaga` as the build job. Àpẹrẹ does not become a delivery lifecycle owner.
 

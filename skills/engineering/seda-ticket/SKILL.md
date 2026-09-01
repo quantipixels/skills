@@ -5,7 +5,7 @@ description: Break a supplied plan, specification, issue, conversation, or work 
 
 # Ṣẹ̀dá Ticket
 
-Turn supplied work into a confirmed set of tickets that fresh coding agents can implement and verify. Own decomposition, dependency/startability semantics, and terminal ticket disposition only; the caller owns grouping, storage, publication, execution, review progress, and reconciliation from owner results.
+Turn supplied work into a confirmed set of tickets that a fresh implementer can understand and deliver without reconstructing parent narrative. Own decomposition, dependency/startability semantics, and terminal ticket disposition only; the caller owns grouping, storage, publication, execution, review progress, and reconciliation from owner results.
 
 ## 1. Understand the work
 
@@ -21,7 +21,7 @@ Default each ticket to one narrow, outcome-complete vertical slice that:
 
 - delivers an independently verifiable user, operator, or system outcome;
 - crosses only the layers needed for that outcome;
-- fits one fresh agent context and remains coherent for a reviewer without prescribing candidate, commit, branch, PR/MR, test-file, or agent-session boundaries; and
+- is self-contained enough for a fresh implementer and reviewer without prescribing candidate, commit, branch, PR/MR, test-file, or agent-session boundaries; and
 - can stay valid without copied parent narrative or guessed implementation detail.
 
 Do not split one behavior into separate schema, API, UI, or test tickets. Use a non-vertical ticket only for an independently verifiable enabling capability that genuinely blocks later work, or when vertical delivery cannot remain green. Record the exception and its green integration boundary in the ticket context.
@@ -33,7 +33,7 @@ Each ticket contains:
 - **Title** — a short outcome in project vocabulary.
 - **What it delivers** — the end-to-end behavior and value.
 - **Context** — only required stable facts, constraints, or source references.
-- **Acceptance and proof** — observable completion conditions, governing specification behavior identities when present, and how to verify them.
+- **Acceptance and proof** — observable completion conditions, governing specification behavior identities when present, and the proof obligation or stable seam when material; the execution/proof owner chooses mechanics.
 - **Depends on** — exact draft numbers or supplied ticket identities that must be `Done`, or `None`.
 - **External prerequisite** — only when a named non-ticket fact/authority/resource prevents starting; include owner/trigger when known.
 - **Boundary** — only when an exclusion prevents a plausible wrong implementation.
@@ -63,7 +63,7 @@ Derive startability for an `Open` ticket:
 
 Only `Done` resolves a ticket dependency. A `Cancelled` dependency requires re-planning rather than silently unblocking dependants.
 
-Do not add `In Progress`, `In Review`, or runtime `Blocked` ticket states. Active implementation, proof, review, runtime blockers, candidate identity, and recovery live in the native results of `alaga`, `atunwo`, or another current execution/review owner. A caller may reconcile `Open → Done | Cancelled` from those exact-current results without importing their lifecycle into the ticket contract.
+Do not add `In Progress`, `In Review`, or runtime `Blocked` ticket states. Active implementation, proof, review, runtime blockers, candidate identity, and recovery remain outside ticket state and with the active execution/review owner. A caller may reconcile `Open → Done | Cancelled` from exact-current owner results without importing another owner's lifecycle into the ticket contract.
 
 The **Startable frontier** is every `Open` ticket currently derived as `STARTABLE`.
 

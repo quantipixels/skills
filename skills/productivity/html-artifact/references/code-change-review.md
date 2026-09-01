@@ -2,7 +2,7 @@
 
 Read this file only when supplied code-change evidence must become an HTML view for human review. The input can be a unified diff, exact old/new file contents, a pinned commit or branch comparison, or a materialized pull-request or merge-request snapshot.
 
-HTML Artifact owns the review view, not the review verdict. Use `atunwo` when the requested result includes defect discovery, severity, disposition, or provider review publication. Use `pare` for a simplification or maintainability judgment. A pull-request or merge-request URL is a locator, not sufficient evidence. Use `atunwo` to supply exact read-only candidate identity and evidence without an unrelated review, then consume that complete snapshot rather than adding provider access to this branch.
+HTML Artifact owns the review view, not the review verdict. Use `atunwo` when the requested result includes defect discovery, severity, disposition, or provider review publication. Use `pare` for a simplification or maintainability judgment. A pull-request or merge-request URL is a locator, not sufficient evidence; acquire the exact candidate through ordinary trusted Git/provider capability or consume a supplied pinned snapshot. Do not invoke a review owner merely to materialize evidence.
 
 ## Pin the candidate and coverage
 
@@ -25,12 +25,12 @@ Make the first viewport identify the candidate, review purpose or supplied dispo
 
 ### Orient before inspection when needed
 
-Use the diff to locate the affected subsystem, then read enough exact-current surrounding code to explain what the changed parts mean. A diff proves change; it does not establish the stable architecture around that change.
+Use supplied surrounding code or other pinned context when it is needed to explain what the changed parts mean. HTML Artifact may organize and explain supplied evidence, but it does not perform source analysis to establish new architecture, ownership, state-path, or behavioral conclusions for the view. When that meaning is missing and materially required, surface the input gap or consume an independently owned result.
 
 Select only the views that improve this review:
 
-- a compact, change-independent system orientation for the affected owners, boundaries, or extension points;
-- a change-specific data, dependency, state, or user-action path;
+- a compact supplied system orientation for affected owners, boundaries, or extension points;
+- a supplied or source-owned change-specific data, dependency, state, or user-action path;
 - exact diff inspection; and
 - supplied specs, tests, findings, review discussion, or visual evidence attached to the relevant surface.
 
@@ -98,7 +98,7 @@ Apply [dependency policy](dependency-policy.md). Disclose the exact package iden
 
 ## Verify the review view
 
-Run structural proof against the exact candidate:
+Always run structural proof against the exact candidate:
 
 - compare rendered file/hunk counts and identities with the supplied evidence;
 - confirm truncation, omissions, partial views, and unavailable content remain visible;
@@ -107,4 +107,4 @@ Run structural proof against the exact candidate:
 - confirm the bundled dependency identity and absence of unrequested runtime hosts; and
 - confirm the fallback preserves the candidate identity, essential change meaning, and retrieval path.
 
-Every Pierre-backed artifact requires browser proof because renderer behavior is part of review correctness. Check initial and multi-file rendering, split/unified behavior when present, long lines and overflow, narrow width, keyboard and focus operation, theme and print behavior, asynchronous highlighting completion, console/page errors, and the dependency-failure fallback. Add deeper interaction or accessibility proof when those properties control the review or approval decision.
+Pierre does not by itself promote a document-shaped review view into browser acceptance. Apply the parent HTML Artifact verification contract: use at most a bounded render smoke when renderer/readability uncertainty materially threatens the document result; use targeted or deep browser proof only when rendered interaction itself is part of the accepted result or a specific runtime/browser-dependent claim remains material. Test only the smallest Pierre behavior needed to falsify that claim.
