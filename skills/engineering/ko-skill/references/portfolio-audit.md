@@ -14,6 +14,8 @@ Map recurring public outcomes to primary owners and necessary supporting results
 
 For every public owner, distinguish **capability value** from **public-identity value**. Ask whether users/agents materially benefit from selecting this name directly, or whether folding its useful depth behind a dominant owner would preserve the capability while reducing routing and cognitive surface. Flag support-shaped public skills whose separate identity mainly exposes internal composition.
 
+For each cross-skill reference, require one behavior-bearing role: owner selection/disambiguation, consumption of an independently useful result, outcome handoff, a distinct authority/completion boundary, or router-owned portfolio selection. Flag explanatory neighborhood topology, speculative support routing, and duplicated owner catalogues when the skill can state its own exclusion semantically instead. Do not optimize for fewer references; healthy composition may remain explicit.
+
 Flag cross-skill references that use another skill's display/localized title instead of its exact frontmatter `name` trigger, omit backticks around that trigger, or add a redundant repository namespace prefix to ordinary skill/route/owner/specialist vocabulary. A skill may use its own display name inside its own package.
 
 Classify control shape only when it helps expose unnecessary workflow ceremony. Importance alone does not justify lifecycle machinery.

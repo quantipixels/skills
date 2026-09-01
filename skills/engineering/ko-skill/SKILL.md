@@ -38,6 +38,8 @@ Treat skills as deep modules. A caller supplies only the bounded input, reason/f
 
 Keep supporting depth behind its active owner when another public selector adds no independent user/agent-facing value. Surface another owner only when its independently useful result, authority, or completion boundary must become visible to the caller.
 
+Keep portfolio knowledge at the narrowest useful boundary. A router may name candidate owners because selection is its result. Otherwise name another skill only when the current owner must disambiguate an overlapping trigger, consume that skill's independently useful result, hand off an outcome, or preserve a distinct authority/completion boundary. Describe exclusions semantically instead of restating the surrounding ownership graph.
+
 Do not project one owner's semantic units one-to-one onto another owner's operational containers unless the destination contract requires that mapping. Tickets, requirements, phases, proof obligations, and capability boundaries describe meaning; commits, candidates, branches, PRs/MRs, test files, browser runs, and agent sessions are chosen independently for their own integration, review, rollback, ownership, release, or evidence value.
 
 Good: several outcome-complete tickets are delivered through one coherent candidate and PR because they form one integrated review unit.
