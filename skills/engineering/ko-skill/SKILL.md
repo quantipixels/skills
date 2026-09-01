@@ -40,6 +40,10 @@ Keep supporting depth behind its active owner when another public selector adds 
 
 Keep portfolio knowledge at the narrowest useful boundary. A router may name candidate owners because selection is its result. Otherwise name another skill only when the current owner must disambiguate an overlapping trigger, consume that skill's independently useful result, hand off an outcome, or preserve a distinct authority/completion boundary. Describe exclusions semantically instead of restating the surrounding ownership graph.
 
+A supporting owner may choose the mechanics required to produce its native result. It must not originate or redefine a consuming owner's normative expectations, thresholds, lifecycle/status, semantic freshness, priorities, verdicts, acceptance policy, or private result schema. Pass through confirmed caller constraints and raw evidence without promoting them into consumer semantics.
+
+A selectively loaded reference may deepen its parent owner's method, but it must not widen the parent's authority, redefine its acceptance/completion policy, or create a second semantic owner inside the package. When a reference conflicts with its parent `SKILL.md`, the parent contract wins and the reference must be corrected.
+
 Do not project one owner's semantic units one-to-one onto another owner's operational containers unless the destination contract requires that mapping. Tickets, requirements, phases, proof obligations, and capability boundaries describe meaning; commits, candidates, branches, PRs/MRs, test files, browser runs, and agent sessions are chosen independently for their own integration, review, rollback, ownership, release, or evidence value.
 
 Good: several outcome-complete tickets are delivered through one coherent candidate and PR because they form one integrated review unit.

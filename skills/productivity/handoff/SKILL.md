@@ -41,7 +41,7 @@ Use this compact form:
 
 Do not select a new skill route. Do not duplicate content from existing artifacts. Reference each artifact and summarize only the state needed to continue.
 
-Treat a change in outcome, primary owner, repository or candidate, mutation authority, product or plan phase, or acceptance boundary as a contract transition. Record the prior contract, changed fields, retained decisions, newly stale evidence, next owner, and stop boundary. Re-baseline the template when the same owner continues; when ownership changes, make the receiving owner's exact first action explicit.
+Serialize exact owner-reported state rather than reconstructing lifecycle meaning. Record observed changes in outcome, owner, candidate/revision, authority, phase, or acceptance when they matter to continuation, but preserve owner-reported freshness/staleness and next-owner decisions as supplied. An identity mismatch may be reported as a freshness risk; do not independently declare another owner's semantic result stale or choose a new owner from the transition alone.
 
 Resolve every source session and artifact before treating it as confirmed. If a required source is unavailable, name the gap, limit `Confirmed` to independently verified facts, and make the first action obtain the smallest recovery bundle: a transcript or prior handoff, candidate identity, completed proof, and the next verifiable action.
 

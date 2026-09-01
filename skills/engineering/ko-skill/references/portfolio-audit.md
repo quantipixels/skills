@@ -16,6 +16,10 @@ For every public owner, distinguish **capability value** from **public-identity 
 
 For each cross-skill reference, require one behavior-bearing role: owner selection/disambiguation, consumption of an independently useful result, outcome handoff, a distinct authority/completion boundary, or router-owned portfolio selection. Flag explanatory neighborhood topology, speculative support routing, and duplicated owner catalogues when the skill can state its own exclusion semantically instead. Do not optimize for fewer references; healthy composition may remain explicit.
 
+Audit support relationships for semantic leakage. A supporting owner may choose mechanics for its native result, but flag any instruction that originates or redefines the consuming owner's normative expectations, thresholds, lifecycle/status, semantic freshness, priorities, verdicts, acceptance policy, or private result schema. Passing confirmed caller constraints and raw evidence through unchanged is healthy.
+
+Inspect selectively loaded references against their parent `SKILL.md`. A reference may deepen method but must not widen the parent's authority, redefine its acceptance/completion policy, or establish a second semantic owner inside the package. Treat a conflicting reference as drift in the child, not as permission to broaden the parent contract.
+
 Flag cross-skill references that use another skill's display/localized title instead of its exact frontmatter `name` trigger, omit backticks around that trigger, or add a redundant repository namespace prefix to ordinary skill/route/owner/specialist vocabulary. A skill may use its own display name inside its own package.
 
 Classify control shape only when it helps expose unnecessary workflow ceremony. Importance alone does not justify lifecycle machinery.

@@ -2,4 +2,4 @@
 "qp-skills": minor
 ---
 
-Keep cross-skill references at behavior-bearing ownership boundaries: routers may retain portfolio selection knowledge, while other skills name another owner only for trigger disambiguation, result consumption, outcome handoff, or distinct authority/completion. Apply the rule across core delivery, simplification, specification, ticketing, and architecture guidance without removing genuine composition.
+Keep skill composition at behavior-bearing ownership boundaries: narrow cross-skill references, prevent support owners and selectively loaded references from redefining consumer semantics or parent acceptance, remove complexity interpretation from Irinṣẹ́, keep candidate acquisition native, preserve owner-reported lifecycle freshness, separate Dogfood's normative oracle from comparison evidence, and keep router/ticket contracts semantic rather than operational.
