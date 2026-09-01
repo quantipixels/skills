@@ -6,6 +6,8 @@ Do not add or generate a `default_prompt` field in skill agent metadata.
 
 Keep every skill in exactly one `skills/engineering`, `skills/design`, `skills/productivity`, or `skills/experimental` group. When a skill is added, removed, renamed, moved, or rerouted, reconcile its group, [`.claude-plugin/plugin.json`](./.claude-plugin/plugin.json), [`alarina`](./skills/productivity/alarina/SKILL.md), and `README.md`.
 
+Grow capability depth faster than public surface area. Prefer deepening an existing owner through owner-local guidance, selective references, native capabilities, or internal paths when it can carry the behavior coherently. A new public skill must make direct selection or use materially simpler than keeping that capability behind an existing owner; do not expose internal composition merely to name another reusable method.
+
 ## Experimental
 
 Experimental skills are first-party runtime candidates whose maturity is under evaluation. Experimental status alone does not require separate user acceptance and does not make a skill ineligible for normal routing. Use one when its owned outcome is the narrowest useful match and its normal intent, authority, cost, safety, and host invocation gates are satisfied; never invoke one merely to generate experiment data.
