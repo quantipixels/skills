@@ -7,7 +7,8 @@ Browse the [documentation](https://quantipixels.com/skills).
 ## Portfolio principles
 
 - Kọ Skill authors every capability/resource at the smallest adequate surface: guidance/reference → visible command → native/project/provider tool → focused library → deterministic script → engine only when it carries a substantial owned vertical.
-- Generic `Use QP` requests enter through Alárinà; an explicit skill selection bypasses routing when it already owns the requested outcome.
+- Grow capability depth faster than public surface area. A separate public skill must improve independent selection/direct use enough to justify another name; otherwise deepen an existing owner.
+- Use the obvious outcome owner directly. Generic `Use QP` requests enter through Alárinà when the owner is unclear or several independently useful outcomes need routing.
 - Akọsílẹ̀ owns one repository-scoped `.qp`: the main worktree holds the real directory and linked worktrees expose symlinks. New records use stable semantic subjects; settings/index/record/artifact resources are created lazily.
 - Supporting skills keep detailed results with their native owners rather than copying caller-specific receipt/lifecycle schemas.
 - HTML Artifact creates reader-specific projections of supplied material without duplicating source archives or originating conclusions.
@@ -106,7 +107,7 @@ Banner Design and Social Graphics intentionally remain narrow steering owners ev
 
 | Skill | Outcome |
 | --- | --- |
-| `alarina` | QP front door: select the shortest route from currently available skill metadata |
+| `alarina` | Route ambiguous/multi-owner QP requests through independently meaningful ownership transitions |
 | `arojinle` | Resolve consequential product/plan/design choices through user-confirmed decision frontier |
 | `ayewo-igba-ise` | Evidence-backed postmortem for completed/abandoned/disputed work, incidents, sessions, or corpora |
 | `handoff` | Compact fresh-session handoff |
@@ -139,10 +140,21 @@ Historical `akowe-java`, `akowe-spring`, and catalogue experiments are research 
 
 ## Start
 
+If the outcome owner is obvious, invoke it directly:
+
+```text
+Implement this → alaga
+Plan this initiative → atona
+Review this code → atunwo
+Resolve these decisions → arojinle
+```
+
+If the owner is unclear or several independently useful outcomes need routing:
+
 ```text
 Use QP for this:
 
 [describe the outcome]
 ```
 
-Alárinà selects the shortest route from the work's current state and steps aside once ownership is clear. If you already know the exact owner you want, invoke that skill directly.
+Alárinà selects the shortest public ownership route from the work's current state and steps aside once ownership is clear.

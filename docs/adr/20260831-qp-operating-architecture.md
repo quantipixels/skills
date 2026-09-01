@@ -1,25 +1,33 @@
 # QP operating architecture
 
-QP exposes one low-cognitive-load operating surface over independently owned skills. Generic `Use QP` intent enters through `alarina`; an explicit valid owner selection bypasses routing. Every selected owner keeps its semantic outcome, authority, lifecycle, result, proof, and recovery semantics.
+QP exposes a low-cognitive-load public surface over deep independently owned capabilities.
 
-Engineering, Design, Productivity, and Experimental are all first-party parts of the current portfolio. Experimental marks evidence/promotion maturity, not a category-wide acceptance tax or routing exclusion. Runtime eligibility remains governed by each skill's normal trigger, intent, authority, cost, safety, evidence, and host-invocation boundaries.
+Use the obvious outcome owner directly. When ownership is unclear or several independently useful outcomes require routing, generic `Use QP` intent enters through `alarina`. Every selected owner keeps its semantic outcome, authority, lifecycle, result, proof, and recovery semantics.
+
+Engineering, Design, Productivity, and Experimental are first-party parts of the current portfolio. Experimental marks evidence/promotion maturity, not a category-wide routing exclusion. Runtime eligibility remains governed by each skill's normal trigger, intent, authority, cost, safety, evidence, and host-invocation boundaries.
 
 Evidence cutoff: `quantipixels/skills` `ori` at `ed9ff7d84cc84cba71684caa6a5ddf340a3463c3` (`Give Experimental skills earned runtime opportunities (#58)`), 2026-08-31.
 
 ## Decision
 
-QP consolidates the **operating surface**, not the expertise.
+QP consolidates the **public operating surface**, not the expertise.
 
-One independently useful outcome has one semantic owner. QP may route or execute across owners, but no router, host adapter, convenience entrypoint, or maturity group absorbs another owner's result or lifecycle.
+The governing portfolio rule is:
 
-The useful architecture is:
+> **Grow capability depth faster than public surface area. Deep owners may know many capabilities; users and routers should need to know few owners.**
+
+One independently useful outcome has one semantic owner. But independent capability value alone does not justify another public name. A public skill must also earn **public identity value**: independent selection or direct invocation must materially improve the interface for a user or genuinely independent caller through clearer ownership, authority, result identity, reuse, or lower recurring instruction burden.
+
+If an existing owner can absorb a capability coherently without weakening its outcome contract, deepen that owner. If folding a useful capability behind its dominant owner preserves its benefit while reducing public/routing complexity, keep it behind that owner.
+
+## Operating surface
 
 ```text
 User / host
    │
-   ├── exact owner named ───────────────────────────────► exact owner
+   ├── obvious/exact owner ─────────────────────────────► exact owner
    │
-   └── generic `Use QP`
+   └── owner unclear / several independent outcomes
             │
             ├── host supports QP Agent ─► QP Agent ─┐
             │                                       │
@@ -27,85 +35,133 @@ User / host
                                                     ▼
                                                 `alarina`
                                                     │
-                                      shortest current owner/flow
+                                  public semantic owner transition
                                                     │
                                                     ▼
-                                             native owner results
+                                             native owner result
 ```
 
-## Alárinà is the QP front door
+Direct owner invocation is first-class and preferred when ownership is obvious. Alárinà is the ambiguity/multi-owner router, not a mandatory gateway.
 
-`alarina` owns generic portfolio entry and current-state routing.
+## Alárinà routes ownership, not internal capability graphs
 
-- `Use QP for this` and `Use qp-skills` are routing intent, not a new execution mode.
-- An explicit valid skill selection bypasses routing when that skill already owns the requested result.
-- Current repository skill metadata is the inventory; Alárinà does not maintain a copied catalogue.
-- Routing starts from the exact current state and does not replay settled exploration, planning, architecture, implementation, review, publication, or postmortem work.
-- Every added owner must contribute an independently useful result that is actually required.
-- Routing grants no extra mutation, provider, credential, publication, destructive-action, or specialist authority.
-- If no QP owner materially improves the requested result, Alárinà returns `NO_ROUTE`.
+`alarina` owns generic/ambiguous portfolio routing from exact current state.
+
+It may expose public transitions such as:
+
+- initiative lifecycle → `atona`;
+- consequential decision → `arojinle`;
+- technical architecture → `solution-architect`;
+- normative behavior → `seda-spec`;
+- delivery decomposition → `seda-ticket`;
+- implementation → `alaga`;
+- issue classification → `se-triage`;
+- causal diagnosis → `root-cause`;
+- review → `atunwo`;
+- simplification → `pare`;
+- publication → `seda-pr`;
+- PR stewardship → `wo-pr`;
+- durable project/domain knowledge → `amose`; and
+- Design-domain decomposition → `apere`.
+
+This is not a second inventory. Current skill metadata remains authoritative.
+
+A selected owner may use deeper supporting capabilities under its own contract. Alárinà does **not** expose internal composition merely because it exists. For example, Alága may decide whether Akọ̀wé or Dogfood improves delivery; Akọ̀wé may decide whether Ro Wo, Ìwádìí, or Orísun is needed. Those relationships are deep-owner behavior unless the supporting result itself is independently requested, semantic ownership must change, or direct user activation is required.
+
+Alárinà's route result therefore exposes only:
+
+```text
+Start: <current semantic owner>
+Then: <next independently useful owner, only when ownership must change>
+Activation: <direct-user activation required, or none>
+Stop: <requested outcome>
+```
+
+It does not expose `Support`, internal detours, caller-side lifecycle schemas, or copied specialist procedure.
+
+If no QP owner materially improves the requested result, Alárinà returns `NO_ROUTE`. Routing grants no additional mutation, provider, credential, publication, destructive-action, review-verdict, or specialist authority.
 
 ## QP Agent
 
-QP defines one optional **main-agent host adapter** for hosts that support custom agents. It provides a single QP-facing execution surface without introducing another semantic owner.
+QP defines an optional main-agent host adapter for hosts that support custom agents.
 
 The QP Agent:
 
-- preloads the canonical `alarina` routing contract;
-- delegates generic route selection to Alárinà instead of copying route policy;
-- executes or coordinates the selected owners in the host's normal context;
+- preloads the canonical `alarina` contract;
+- preserves direct exact-owner invocation;
+- delegates ambiguous route selection to Alárinà;
+- executes selected owners in the host's normal context;
 - passes only context/results needed by the active owner relationship;
-- respects each skill's normal trigger, intent, authority, cost, safety, evidence, and host-invocation boundaries; and
+- respects each owner's authority and stop boundary; and
 - stops at the requested outcome.
 
 It does **not** own routing policy, planning, implementation, review verdicts, publication, durable state, acceptance, proof, or a copied skill catalogue. It has no independent task lifecycle.
 
-A host with no custom-agent support uses Alárinà or exact skills directly. The QP Agent is therefore an optional projection, not a portability dependency or shared runtime.
+Hosts without custom-agent support use exact owners or Alárinà directly. The agent is an optional projection, not a shared runtime.
 
-## Owner composition
+## Deep-owner composition
 
-QP has no universal task lifecycle. Route from the work's current state and add an owner only when its result is independently required.
+QP has no universal task lifecycle. Once semantic ownership is clear, the selected owner may compose supporting capabilities required to deliver its result.
 
-Representative substantial software delivery may compose:
+Representative substantial delivery may look like:
 
 ```text
 shape / contract → deliver → review / prove
 ```
 
-This is orientation, not a mandatory playbook. Any stage may be absent and direct invocation may begin anywhere.
+This is an orientation, not a public playbook. Any stage may be absent and direct invocation may begin anywhere.
 
-Common owners include:
+Owner-internal supporting depth belongs with the owner that can judge whether the support is worth its cost. Do not copy that graph into Alárinà, README usage, or another public coordinator.
 
-- initiative lifecycle: `atona`;
-- material user decisions: `arojinle`;
-- technical architecture: `solution-architect`;
-- normative behavior: `seda-spec` when a separate behavior contract is required;
-- prospective scope/minimality steering: `scope-guard` when that result is independently useful;
-- delivery decomposition: `seda-ticket` when consumable slices help;
-- implementation and integrated proof: `alaga`;
-- candidate-pinned implementation scrutiny: `akowe` when its normal admission/cost boundary is satisfied;
-- causal diagnosis: `root-cause` when competing mechanisms must be resolved before a responsible correction;
-- code verdict/parity: `atunwo`;
-- simplification: `pare`;
-- human-led review disposition: `hitl-review`;
-- browser journey proof: `dogfood` when literal user journeys and browser-dependent acceptance claims remain.
+Publication, stewardship, postmortem, handoff, representation, research, cleanup, and durable reconciliation remain conditional independent outcomes rather than automatic suffixes.
 
-Publication, stewardship, postmortem, handoff, representation, research, and durable reconciliation are conditional owner outcomes, not automatic suffixes.
+## Public skill admission
+
+Kọ Skill owns admission and portfolio audit.
+
+A public skill must pass both:
+
+1. **Capability value** — recurring independently useful outcome, authority/artifact/acceptance boundary, failure mode, or useful reusable steering contract.
+2. **Public identity value** — separate selection/direct invocation materially improves the interface for a user or genuinely independent caller.
+
+Use this decision:
+
+```text
+new capability
+  ↓
+Can an existing owner absorb it coherently?
+  ├─ yes → deepen existing owner
+  └─ no
+      ↓
+Does independent invocation/result/authority/reuse matter?
+  ├─ no → reference/support/native capability
+  └─ yes
+      ↓
+Does another public name reduce or clearly justify
+routing/cognitive burden?
+  ├─ no → keep behind owner
+  └─ yes → public skill
+```
+
+Public skill count is not a target. A lightweight model-steering owner may remain public when its independent name materially improves reliable selection/use. Infrastructure-shaped owners such as `akosile` and `scope-guard` receive the same public-identity test; they are not automatically folded or exempted.
 
 ## Experimental maturity
 
-#58 establishes the portfolio rule: Experimental skills are first-party runtime candidates whose maturity is under evaluation.
+#58 remains authoritative for Experimental runtime opportunity.
 
-This architecture does not add a second Experimental policy. It relies on the current repository/skill contracts:
+Experimental skills are first-party runtime candidates. Their group marks maturity/evidence status, not a category-wide invocation tax.
 
-- Experimental status alone neither requires manual acceptance nor grants invocation.
-- Normal trigger, intent, authority, cost, safety, evidence, and host-invocation gates decide runtime eligibility.
-- A skill may deliberately require direct user activation when that is part of its own intent island.
-- Experiments are never invoked merely to manufacture graduation evidence.
-- One successful use does not silently redefine another owner or justify promotion.
-- Promotion, keep-experimenting, narrowing/folding, replacement, or removal requires the evidence boundary owned by `ko-skill` and supplied verified real-use evidence when historical opportunity/value claims are material.
+For portfolio disposition, capability value and public-skill value are separate questions. An experiment can prove that its method works and still fail to earn a stable public identity.
 
-The QP Agent and Alárinà preserve these per-skill gates rather than creating a group-wide override.
+`PROMOTE` therefore requires representative real-use evidence for:
+
+- recurring distinct capability value;
+- healthy trigger/authority/cost/boundaries; and
+- independent public-identity value.
+
+If folding the proven behavior behind a dominant owner preserves the benefit while reducing public/routing complexity, `FOLD` is the appropriate disposition rather than `PROMOTE`.
+
+Experiments are never invoked merely to manufacture graduation evidence. One successful use never authorizes stable-owner removal/narrowing or promotion by itself.
 
 ## Playbook policy
 
@@ -114,123 +170,108 @@ QP has no first-class top-level playbook layer.
 Repeated behavior belongs at the smallest surface that owns it:
 
 - owner-specific recurring procedure → owner-local invariant/reference;
-- stable cross-owner routing relationship → `alarina`;
+- public semantic routing relationship → `alarina`;
 - initiative sequencing → `atona`;
-- implementation/convergence procedure → `alaga` or the relevant implementation owner;
-- independently useful new outcome with its own authority/acceptance boundary → only then consider a new public skill.
+- implementation/convergence procedure → the relevant implementation owner;
+- independently useful behavior without public-identity value → deep reference/support capability;
+- independently useful behavior **with** public-identity value → only then consider another public skill.
 
-Do not create feature/bug/refactor/research playbook skills merely to restate combinations current owners can derive. A shared playbook or deep module must pass the same deletion test as every seam: removing it must lose real policy, lifecycle, authority, compatibility, proof, or independently reusable judgment.
+Do not create feature/bug/refactor/research playbook skills merely to restate combinations current owners can derive.
 
 ## Writing composition
 
-`technical-writing` and `yo-slop` remain separate useful outcomes.
+`technical-writing` and `yo-slop` remain separate outcomes.
 
-- `technical-writing` owns document mode, instruction structure, technical sentence clarity, and unambiguous syntax.
-- `yo-slop` owns final cleanup or explicit pruning without changing facts/contract.
-- Repository guidance no longer forces `technical-writing → yo-slop` as a mandatory mini-pipeline.
-- Use cleanup only when that separate result is independently useful; otherwise stop when the technical-writing outcome is complete.
-
-This applies the same architecture rule to productivity work: a commonly useful next action is not automatically a required phase.
+Technical Writing owns document mode, structure, technical sentence clarity, and unambiguous syntax. Yọ Slop owns cleanup or explicit pruning. Repository guidance does not force `technical-writing → yo-slop`; use Yọ Slop only when that separate result is independently useful.
 
 ## Design vertical
 
-Design uses the same operating surface as the rest of QP.
+Design uses the same public-surface rule.
 
-`apere` remains a valid Design-domain router because broad/multi-deliverable Design work can require design-specific prerequisites, dependency order, parallelism, shared constraints, and approval boundaries. Focused Design work still goes directly to its specialist.
+Use the exact Design specialist directly for a clear deliverable. Use `apere` only when Design-domain multi-owner decomposition itself is useful.
 
-The Quanti Pixels redesign pilot proved one deeper stable Design capability worth promoting into existing owners rather than creating a new lifecycle owner:
+The Quanti Pixels redesign pilot promoted deeper convergence behavior into existing owners rather than adding another public lifecycle owner:
 
 ```text
-actual product evidence
-  → freeze settled product/brand constraints
-  → identify the unresolved material design question
-  → explore materially different mechanisms only when the choice is genuinely open
-  → select one coherent direction
+product evidence
+  → freeze settled constraints
+  → explore materially different mechanisms only when genuinely open
+  → select one direction
   → implementation owner
   → exact rendered result
-  → Amọ̀ye review against accepted direction
+  → Amọ̀ye review
   → smallest material correction
-  → implementation owner rerender/native proof
-  → stop when material deficiencies are resolved
+  → rerender/native proof
+  → stop
 ```
 
-`amoye-ui-ux` owns design direction, proportional exploration, selection, and rendered design judgment. `asa-oju-ibanisoro` owns React/web implementation, native proof, applying accepted corrections, and rerendering. Neither absorbs the other's result or lifecycle.
-
-Durable project-specific design truth discovered through selection/convergence goes to `amose` only when it is non-obvious, reusable, and confirmed. Generic UX advice, rejected taste, and one-off polish do not become project knowledge.
+`amoye-ui-ux` owns design judgment; `asa-oju-ibanisoro` owns React/web implementation and native proof. Durable confirmed project-specific design truth goes to `amose` only when reusable.
 
 ## Portfolio audit disposition
 
-A bounded stable/leaf-owner audit found no broad merge/removal required by this architecture. Most current owners already satisfy the one-outcome/conditional-composition rule, so mass edits would be churn rather than consolidation.
+The migration does not mass-merge current skills. Existing owners are reconsidered only when exact-current evidence shows either:
 
-Close boundaries reviewed as independently useful include:
+- their capability is not independently useful; or
+- their capability is useful but the separate public identity does not earn its cognitive/routing cost.
 
-- `seda-spec` / `seda-ticket` — normative behavior versus delivery decomposition;
-- `scope-guard` / `alaga` / `pare` — prospective scope steering versus implementation versus read-only simplification;
-- `se-triage` / `root-cause` / `alaga` — report classification versus causal diagnosis versus correction;
-- `atunwo` / `pare` / `hitl-review` — code verdict/parity versus simplification versus human-led review decision;
-- `seda-pr` / `wo-pr` — publication versus continuing stewardship;
-- `akowe` / `ro-wo` / `iwadi` / `orisun` — candidate implementation counsel versus premise challenge versus sufficient/durable research versus exact-version upstream-source escalation;
-- `alarina` / `apere` — portfolio routing versus Design-domain multi-owner decomposition;
-- `technical-writing` / `yo-slop` / `salaye` — technical structure versus cleanup/pruning versus reusable plain-language explanation; and
-- `html-artifact` / `prototype` / Design owner / `dogfood` — information projection versus disposable decision instrument versus actual interface work versus real-browser journey proof.
-
-Do not consolidate toward a numerical skill target. Merge, fold, promote, replace, or remove only from exact-current ownership evidence and the applicable real-use evidence boundary.
+This distinction is especially important for experiments such as Akọ̀wé and Orísun, whose capabilities may prove valuable while their eventual stable placement remains an evidence question. It also applies to stable infrastructure-shaped owners. No current owner is folded solely from architectural preference without the applicable evidence.
 
 ## Global versus owner-local guidance
 
-There is no universal QP runtime instruction file or `qp` super-skill.
+Portfolio-wide guidance is intentionally small:
 
-Portfolio-wide invariants are projected only where needed:
+- grow depth faster than public surface;
+- direct owner when obvious;
+- Alárinà only for ambiguity/real ownership transitions;
+- current skill metadata is the inventory;
+- public identity must earn its cost;
+- Experimental runtime/evidence semantics follow #58.
 
-- Alárinà owns generic QP entry and routing;
-- repository guidance owns portfolio/maturity policy;
-- a QP Agent carries only minimal host-adapter rules;
-- current skill metadata remains the inventory; and
-- each specialist independently preserves the authority/safety rules required for its own invocation.
-
-Keep owner admission rules, procedure, state, proof, deep references, provider safety, outputs, and recovery with the owner. Do not centralize them into a shared runtime merely to reduce prose.
+Owner admission rules, procedure, state, deep support graph, proof, provider safety, outputs, and recovery remain owner-local.
 
 ## Failure and recovery
 
-- **Inventory drift:** current distribution/skill metadata wins; stale routing prose is a defect, not authority.
-- **Already-settled work:** enter at the current owner and do not replay prior stages.
-- **No useful QP owner:** Alárinà returns `NO_ROUTE`; the host may continue with ordinary capabilities.
-- **Stale owner result:** the consuming owner refreshes the exact result/candidate it depends on; no coordinator reconciles copied state.
-- **Long or multi-session work:** use the active semantic owner record and `handoff` only when context must move.
-- **QP Agent unavailable:** use Alárinà or direct owner invocation; QP remains fully usable.
-- **Experiment unsuitable/unavailable:** continue through another justified route; Experimental status itself is neither blocker nor guarantee.
+- **Inventory drift:** current distribution/skill metadata wins.
+- **Obvious owner:** bypass Alárinà.
+- **Already-settled work:** enter at the current semantic owner.
+- **No useful QP owner:** Alárinà returns `NO_ROUTE`.
+- **Owner needs support:** the owner selects its own support; the router does not reconstruct that graph.
+- **Direct-activation requirement:** expose it as `Activation`, without promoting the support path into a public workflow.
+- **Long/multi-session work:** use the active semantic owner record and `handoff` only when context must move.
+- **QP Agent unavailable:** use direct owner invocation or Alárinà.
+- **Experiment unsuitable/unavailable:** continue through another justified route.
 
 ## Architecture contract
 
 ```text
-Candidate:
-QP operating architecture / 2026-08-31 / #58-aligned migration
-
 Critical invariants:
 - Current distribution/skill metadata is the portfolio inventory.
-- Generic QP intent routes through alarina.
-- Explicit valid owner selection bypasses routing.
+- Use an obvious exact owner directly.
+- Use alarina for generic/ambiguous QP routing or real semantic owner transitions.
 - One independently useful outcome has one semantic owner.
+- Public skill identity requires independent interface value in addition to capability value.
+- Grow capability depth faster than public surface area.
+- Alarina/QP Agent do not expose or own deep-owner support topology.
 - Owners retain lifecycle, authority, result, proof, and recovery semantics.
 - QP Agent is an execution adapter, never a semantic owner.
-- Experimental runtime eligibility remains per-skill and maturity-agnostic.
-- Conditional later outcomes are selected only when independently requested/needed.
+- Experimental runtime eligibility remains per-skill and maturity-agnostic under #58.
+- Conditional later outcomes are selected only when independently required.
 
 Allowed directions:
-- user/host → explicit current owner
-- user/host → alarina → selected owner(s)
-- user/host → QP Agent → alarina → selected owner(s)
-- owner → supporting owner when its independent result is required
+- user/host → exact current owner
+- user/host → alarina → semantic owner(s)
+- user/host → QP Agent → alarina → semantic owner(s)
+- owner → supporting owner under the owner's native contract
 - alarina → apere when Design-domain routing itself is needed
-- experimental owner/result → consumer when current contracts permit it
 - owner result → amose when durable reusable project/domain truth is established
 
 Forbidden states:
+- public skill whose capability could sit behind an existing owner with no lost independent interface value
 - alarina or QP Agent owning specialist lifecycle/state/acceptance/proof
+- alarina exposing owner-internal support graphs as public routing
 - copied skill catalogue inside a host agent/coordinator
 - mandatory public playbook sequence
-- category membership alone granting stronger authority or forcing a detour
-- routing granting mutation/provider/credential/publication authority
+- routing granting stronger authority
 - caller copies of callee procedure/result schemas
 - unconditional publication/postmortem/handoff/cleanup/compound stages
 - consolidation to satisfy a numerical skill-count target
@@ -242,59 +283,49 @@ Complexity budget:
 - no required provider-specific host adapter
 - no duplicate runtime owner catalogue
 
-Compatibility:
-- preserve all current skill names/direct invocation
-- preserve current installation/distribution model
-- generic Use QP discovers alarina
-- hosts with no custom-agent support remain first-class
-- preserve #58 Experimental runtime and evidence boundaries
-
 Primary proof seams:
-- current distribution/skill metadata → inventory
-- alarina contract → current-state/direct-owner behavior
-- repository validation/CI → package/link/metadata integrity
-- plugin-agent validator → host projection structure/preload integrity
-- QP Agent → thin-projection parity against alarina/this ADR
-- Design owner contracts → rendered-convergence ownership boundary
-- Experimental portfolio disposition → ko-skill + verified real-use evidence when required
-
-Evidence cutoff:
-quantipixels/skills ori @ ed9ff7d84cc84cba71684caa6a5ddf340a3463c3, 2026-08-31
+- current skill metadata → inventory
+- ko-skill public-surface gate → admission/audit
+- alarina contract → direct-owner/semantic-transition behavior
+- repository CI → package/link/metadata integrity
+- plugin-agent validator → host projection integrity
+- Experimental disposition → ko-skill + verified real-use evidence
 ```
 
 ## Rejected alternatives
 
-**Task-wide `qp-mode` skill** — rejected because it duplicates specialist lifecycle/authority and creates another semantic owner.
+**Mandatory Alárinà gateway** — rejected. Direct owner invocation is the lower-cognitive route when ownership is obvious.
 
-**Shared executable orchestration runtime** — rejected; the host adapter is instructions plus native host skill invocation, not a service/runtime layer.
+**Front-door support graph** — rejected. Deep owners choose supporting capabilities; exposing them in Alárinà makes users/routers understand implementation depth they do not need.
 
-**Public playbook catalogue** — rejected because current owner contracts and routing derive the needed composition.
+**Public name for every useful capability** — rejected. Capability value is necessary but not sufficient; public identity must independently improve the interface.
 
-**Agent as semantic coordinator** — rejected. The QP Agent is a thin host execution adapter.
+**Task-wide `qp-mode` skill** — rejected because it duplicates specialist ownership.
 
-**Experimental as permanent quarantine** — rejected by #58. Experimental is runtime maturity/evidence status; individual skills own their own invocation gates.
+**Shared executable orchestration runtime** — rejected.
 
-**Mandatory writing cleanup** — rejected because cleanup/pruning is a separate outcome, not an inevitable stage after technical writing.
+**Public playbook catalogue** — rejected.
 
-**New Design convergence owner** — rejected because the useful behavior belongs cleanly inside existing design-judgment and implementation owners.
+**Agent as semantic coordinator** — rejected.
 
-**Mass skill consolidation** — rejected as an architecture goal. Revisit individual skills only from exact-current overlap and evidence.
+**Experimental as permanent quarantine** — rejected by #58.
+
+**Mandatory writing cleanup** — rejected.
+
+**New Design convergence owner** — rejected; the behavior belongs inside Amọ̀ye/Àṣà.
+
+**Mass skill consolidation** — rejected as a count-driven goal.
 
 ## Implemented migration
 
-This architecture is implemented through bounded changes rather than blanket edits to every skill:
+The architecture is implemented through bounded changes:
 
-- **Generic QP entrance** — Alárinà is discoverable from `Use QP` / `Use qp-skills` and remains a router only.
-- **Claude Code host projection** — `agents/qp.md` plus plugin registration provide the optional QP main-agent surface without a new runtime or copied catalogue.
-- **Host projection proof** — deterministic validation checks plugin-agent paths, frontmatter, names, local preloads, and per-skill model-invocation restrictions.
-- **Writing composition** — repository guidance no longer forces `technical-writing → yo-slop`.
-- **Design convergence** — the real Quanti Pixels redesign pilot promoted constraint freezing, proportionate mechanism-diverse exploration, exact rendered review, and Amọ̀ye/Àṣà convergence into stable Design owners.
-- **No gratuitous leaf churn** — audited owners that already satisfy the architecture remain unchanged.
+- generic/ambiguous QP routing through Alárinà while direct exact owners remain first-class;
+- optional QP Agent host projection;
+- deterministic host-agent validation;
+- conditional writing cleanup;
+- rendered Design convergence inside Amọ̀ye/Àṣà;
+- public-skill admission/audit that separates capability value from public-identity value; and
+- simplified Alárinà output that hides deep-owner support topology.
 
-#58's Experimental runtime changes are preserved as the governing portfolio policy rather than duplicated or rolled back by this migration.
-
-## Implementation proof
-
-Repository CI is the package-integrity owner for the published candidate. The final migration requires the existing package-state/Akọsílẹ̀ checks plus the QP skill-package validator and plugin-agent validator to pass on the exact PR head.
-
-The plugin-agent validator is deliberately per-skill: group membership is not a failure; an individual `disable-model-invocation: true` remains enforceable when a skill uses it.
+Owners that already satisfy these rules remain unchanged.
