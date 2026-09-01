@@ -55,9 +55,38 @@ Keep reusable CSS/HTML/JS assets only when exact shared behavior prevents recurr
 
 ## Public skill gate
 
-Create or retain a public skill when it owns a recurring independently useful outcome, authority/artifact/lifecycle/acceptance boundary, failure mode, or useful named model-steering contract. Do not split skills merely because output taxonomy differs when one owner can carry the variants cleanly.
+Grow capability depth faster than public surface area.
 
-Do not remove a lightweight steering skill solely because the base model can perform the underlying behavior. The question is whether the named contract independently improves reliable selection/use without duplicating another owner.
+First ask whether an existing owner can absorb the capability coherently without weakening its outcome contract. If yes, deepen that owner.
+
+Create or retain another public skill only when both are true:
+
+- the behavior owns a recurring independently useful outcome, authority/artifact/lifecycle/acceptance boundary, failure mode, or useful named model-steering contract; and
+- the separate public identity materially improves selection, direct invocation, authority, result identity, reuse, or recurring instruction burden for a user or genuinely independent caller.
+
+A valid capability can still fail the public gate. If folding it behind its dominant owner preserves the benefit while reducing public/routing complexity, keep it behind that owner or as a selectively loaded reference/support capability.
+
+Do not split skills merely because output taxonomy differs when one owner can carry the variants cleanly. Do not remove a lightweight steering skill solely because the base model can perform the underlying behavior; the question is whether the named **public identity** independently improves reliable selection/use without duplicating another owner.
+
+Use this gate:
+
+```text
+new capability
+  ↓
+Can an existing owner absorb it coherently?
+  ├─ yes → deepen existing owner
+  └─ no
+      ↓
+Does independent invocation/result/authority/reuse
+matter to a user or genuinely independent caller?
+  ├─ no → reference/support/native capability
+  └─ yes
+      ↓
+Does exposing another name reduce or clearly justify
+routing/cognitive burden?
+  ├─ no → keep behind owner
+  └─ yes → public skill
+```
 
 ## Placement test
 
@@ -71,7 +100,9 @@ For every material resource ask:
 - If prescribing a mechanism, what invariant, context-isolation need, human-visibility requirement, or external contract requires that exactness?
 - If proposing code, what deterministic result cannot be carried as guidance/native tooling?
 - If proposing an engine, what substantial portion of the native outcome moves behind it?
+- If proposing or retaining a public owner, would the useful behavior remain fully available behind an existing owner? What independent selection/direct-use/authority/reuse value would be lost?
+- Does another public name reduce or increase the user's/router's cognitive burden?
 - What maintenance, freshness, portability, context, or runtime burden does the resource introduce?
 - What proof would show the smaller alternative is insufficient?
 
-Prefer the smallest placement that preserves correctness, judgment quality, authority, discoverability, useful depth, and deliberate behavior. Size reduction alone is not acceptance.
+Prefer the smallest placement that preserves correctness, judgment quality, authority, discoverability, useful depth, deliberate behavior, and justified public identity. Size reduction alone is not acceptance.

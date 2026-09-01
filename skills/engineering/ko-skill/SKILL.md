@@ -11,7 +11,14 @@ Create, revise, or validate one exact skill. Mutation requires explicit authorit
 
 Read the candidate package plus affected repository/host instructions and integration metadata. Pin the operation, exact candidate, desired outcome, triggers, exclusions, authority, adjacent owners, and relevant `source | installed | active | published` evidence.
 
-Revise an existing owner instead of creating a competitor. A public skill earns its place when it owns a recurring independently useful outcome, authority/artifact/acceptance boundary, failure mode, or useful reusable model-steering contract. Do not remove a lightweight skill merely because the base model can perform the act when the named contract reliably saves users from restating material behavior.
+Grow capability depth faster than public surface area. Revise an existing owner instead of creating a competitor when it can absorb the capability without weakening its outcome contract.
+
+A public skill must pass both tests:
+
+1. **Capability value** — it owns a recurring independently useful outcome, authority/artifact/acceptance boundary, failure mode, or useful reusable model-steering contract.
+2. **Public identity value** — independent selection or direct invocation materially improves the interface for a user or genuinely independent caller through clearer selection, authority, result identity, reuse, or lower recurring instruction burden than keeping the capability behind an existing owner.
+
+A useful capability can fail the second test. When folding it behind an existing owner preserves the benefit while reducing public/routing complexity, deepen that owner instead of exposing another name. Do not remove a lightweight skill merely because the base model can perform the act when its named public identity reliably saves users or independent callers from restating material behavior.
 
 Use the smallest control shape that preserves correctness:
 
