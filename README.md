@@ -6,12 +6,14 @@ Browse the [documentation](https://quantipixels.com/skills).
 
 ## Portfolio principles
 
+- Grow capability depth faster than public surface area. Deepen an existing owner when it can carry a capability coherently; add another public skill only when its independent identity materially simplifies direct selection or use.
 - Kọ Skill authors every capability/resource at the smallest adequate surface: guidance/reference → visible command → native/project/provider tool → focused library → deterministic script → engine only when it carries a substantial owned vertical.
+- Use an obvious outcome owner directly. Use a router only when ownership is genuinely unclear or several independently useful owners need sequencing.
+- Supporting composition belongs behind the active owner unless another owner's independently useful result or separate authority must become visible.
 - Akọsílẹ̀ owns one repository-scoped `.qp`: the main worktree holds the real directory and linked worktrees expose symlinks. New records use stable semantic subjects; settings/index/record/artifact resources are created lazily.
-- Supporting skills keep detailed results with their native owners rather than copying caller-specific receipt/lifecycle schemas.
 - HTML Artifact creates reader-specific projections of supplied material without duplicating source archives or originating conclusions.
 - Generated `.qp` state stays outside Git by default.
-- Small public skills may intentionally exist as reusable model-steering contracts when a narrow named behavior saves users from restating longer instructions.
+- Small public skills may intentionally exist as reusable model-steering contracts when a narrow named behavior saves users from restating longer instructions and the public identity itself improves selection/use.
 - Thin public convenience entrypoints may wrap native commands when one safe memorable invocation materially improves installation, removal, or other human-facing distribution UX.
 - Experimental skills are first-party runtime candidates under their normal trigger, intent, authority, cost, safety, and host invocation gates. Experimental marks evidence/promotion maturity rather than adding a category-wide acceptance tax; experiments do not become unconditional prerequisites or redefine stable owners before promotion.
 
@@ -97,7 +99,7 @@ Banner Design and Social Graphics intentionally remain narrow steering owners ev
 
 | Skill | Outcome |
 | --- | --- |
-| `alarina` | Select the shortest route from currently available QP skill descriptions |
+| `alarina` | Route only when the correct owner is unclear or several independent owner results need sequencing |
 | `arojinle` | Resolve consequential product/plan/design choices through user-confirmed decision frontier |
 | `ayewo-igba-ise` | Evidence-backed postmortem for completed/abandoned/disputed work, incidents, sessions, or corpora |
 | `handoff` | Compact fresh-session handoff |
@@ -128,8 +130,13 @@ Historical Akọ̀wé and Orísun experiments remain research evidence. Their us
 
 ## Start
 
-```text
-Use alarina to choose the shortest QP route for this request:
+Use the obvious owner directly when the requested outcome is clear:
 
-[describe the outcome]
+```text
+Implement or fix code → alaga
+Plan a material initiative → atona
+Review a code candidate → atunwo
+Resolve consequential choices → arojinle
 ```
+
+Use `alarina` only when the correct owner is unclear or the request genuinely needs sequencing across several independently useful owner results.

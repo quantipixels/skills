@@ -11,7 +11,11 @@ Create, revise, or validate one exact skill. Mutation requires explicit authorit
 
 Read the candidate package plus affected repository/host instructions and integration metadata. Pin the operation, exact candidate, desired outcome, triggers, exclusions, authority, adjacent owners, and relevant `source | installed | active | published` evidence.
 
-Revise an existing owner instead of creating a competitor. A public skill earns its place when it owns a recurring independently useful outcome, authority/artifact/acceptance boundary, failure mode, or useful reusable model-steering contract. Do not remove a lightweight skill merely because the base model can perform the act when the named contract reliably saves users from restating material behavior.
+Grow capability depth faster than public surface area. Revise/deepen an existing owner before adding another public selector when that owner can carry the capability coherently through inline guidance, a selective reference, native capability, or another owner-local path.
+
+A useful capability is not automatically a useful public skill. A public identity earns its place only when it both owns a recurring independently useful outcome, authority/artifact/acceptance boundary, failure mode, or useful reusable steering contract **and** materially simplifies direct selection/use compared with keeping the capability behind an existing owner. If folding it behind its dominant owner preserves the benefit while reducing routing or user mental load, fold it.
+
+Do not remove a lightweight skill merely because the base model can perform the act when the named contract reliably saves users from restating material behavior and its separate identity still improves selection/use.
 
 Use the smallest control shape that preserves correctness:
 
@@ -31,6 +35,8 @@ Before creating a new skill/reference or appending another paragraph, try to exp
 ## 2. Compose and place capability
 
 Treat skills as deep modules. A caller supplies only the bounded input, reason/freshness/authority and caller-owned acceptance needed by the callee. The callee retains its procedure, internal state, resources, verification, persistence/representation mechanics, and native result. Do not copy lifecycle/result schemas across owner boundaries; repeat only independently required safety, trust, authority, acceptance, or owner-specific steering rules.
+
+Keep supporting depth behind its active owner when another public selector adds no independent user/agent-facing value. Surface another owner only when its independently useful result, authority, or completion boundary must become visible to the caller.
 
 Write for a capable agent. State semantic behavior, invariants, authority and completion; let the agent adapt ordinary search, shell/filesystem work, Git use, editing, tool discovery, and equivalent orchestration to its available environment. Do not pre-author capability fallback trees the agent can infer. Ordinary delegation is agent-owned; prescribe isolation only when bounded independent/noisy work must leave the primary context to preserve focus, continuity, or independent observation.
 

@@ -12,6 +12,8 @@ Run applicable deterministic package/link/manifest/name checks. Structural succe
 
 Map recurring public outcomes to primary owners and necessary supporting results. Flag competing owners, caller copies of callee procedure/result schema, callee copies of caller lifecycle, and public splits driven mainly by taxonomy. Preserve independently required safety/trust/authority rules and useful named model-steering contracts.
 
+For every public owner, distinguish **capability value** from **public-identity value**. Ask whether users/agents materially benefit from selecting this name directly, or whether folding its useful depth behind a dominant owner would preserve the capability while reducing routing and cognitive surface. Flag support-shaped public skills whose separate identity mainly exposes internal composition.
+
 Flag cross-skill references that use another skill's display/localized title instead of its exact frontmatter `name` trigger, omit backticks around that trigger, or add a redundant repository namespace prefix to ordinary skill/route/owner/specialist vocabulary. A skill may use its own display name inside its own package.
 
 Classify control shape only when it helps expose unnecessary workflow ceremony. Importance alone does not justify lifecycle machinery.
@@ -42,7 +44,7 @@ Use these dispositions when they sharpen the finding:
 
 Do not classify deliberate friction as bloat merely because it is expensive. Relentless interviews, human-facing visual projections, negative scope boundaries, context-isolating delegation, independent provider safety rules, adversarial review, or reviewer-claim validation may be the mechanism that makes an owner useful. Challenge whether their trigger/cost still serves the outcome instead of optimizing them away by default.
 
-Simulate representative end-to-end paths, not only isolated skills. Identify every owner invocation, user interruption, subagent/context boundary, persistent artifact, review, proof/test action, and external effect. Flag a cascade only when one of those steps does not independently protect the requested result or when repeated correction cannot converge without unauthorized scope expansion.
+Simulate representative end-to-end paths, not only isolated skills. Identify every owner invocation, user interruption, subagent/context boundary, persistent artifact, review, proof/test action, and external effect. Flag a cascade only when one of those steps does not independently protect the requested result or when repeated correction cannot converge without unauthorized scope expansion. Treat a public support invocation as suspect when the active owner could carry the same depth internally without losing an independently useful result or authority boundary.
 
 ## Experimental portfolio judgment
 
@@ -50,19 +52,22 @@ Kọ Skill does not discover historical skill usage from repository structure, r
 
 Use that evidence together with the current package and portfolio to judge:
 
-- whether the owned outcome remains independently useful and distinct;
+- whether the capability remains useful;
+- whether its owned outcome remains independently useful and distinct;
 - whether trigger, authority, cost, and adjacent-owner boundaries are healthy;
-- whether the current public skill shape is the right placement for the useful behavior; and
+- whether its **separate public identity** materially improves direct selection/use compared with folding the capability behind another owner; and
 - when real-use evidence is sufficient, whether observed value and cost justify changing maturity or shape.
+
+Capability success does not by itself justify `PROMOTE`. If folding the capability behind its dominant owner preserves the observed benefit while reducing public/routing surface, use `FOLD` even when the method itself worked well.
 
 A useful evidence packet may include eligible-opportunity denominator, selected/missed/mis-triggered/unavailable cases, observed incremental value and cost, boundary-health observations, counterevidence, and coverage limits. Treat missing historical evidence as an evidence gap; do not infer invocation frequency, missed opportunities, recurrence, or incremental value from source structure.
 
 Use one disposition when the available structural and real-use evidence supports it:
 
-- `PROMOTE` — representative real-use evidence shows distinct recurring value, healthy boundaries, and justified cost;
-- `KEEP_EXPERIMENTING` — the boundary remains credible but real-use evidence is insufficient or sparse;
+- `PROMOTE` — representative real-use evidence shows distinct recurring value, healthy boundaries, justified cost, **and useful independent public selection**;
+- `KEEP_EXPERIMENTING` — the boundary remains credible but real-use or public-identity evidence is insufficient;
 - `NARROW` — useful behavior is proved but trigger/scope is broader than justified;
-- `FOLD` — useful behavior belongs inside another owner rather than as an independent public skill;
+- `FOLD` — useful behavior belongs inside another owner and its public identity adds unnecessary routing/cognitive surface;
 - `REPLACE` — the capability hypothesis remains useful but this public shape is not the best vehicle; or
 - `REMOVE` — structural evidence proves the public owner is invalid/redundant, or real-use evidence proves no independent value, harmful/mis-triggered behavior, or unjustified recurring cost.
 
@@ -105,7 +110,7 @@ For proposed compression/consolidation, require before/after realistic proof onl
 
 Verify findings against exact-current files/state. Separate defects, optimizations, evidence gaps, healthy repetition, deliberate friction retained, and proof-gated consolidation candidates. Deduplicate by mechanism and rank by user impact, recurrence, safety, stale-risk, and correction cost.
 
-For an Experimental portfolio judgment, identify the verified evidence packet consumed, any missing real-use evidence, the structural/boundary assessment, and the resulting disposition only to the extent the evidence supports it.
+For an Experimental portfolio judgment, identify the verified evidence packet consumed, any missing real-use evidence, the structural/boundary assessment, public-identity assessment, and resulting disposition only to the extent the evidence supports it.
 
 Return inventory/state boundary, ownership/control findings, behavioral instruction dispositions, structural/resource drift, capability/reference/script/template/data/asset dispositions, presentation-shape findings, composition-path findings, consolidation candidates with proof needs, healthy repetition/deliberate friction retained, prioritized actions, rejected recommendations, and limitations.
 
