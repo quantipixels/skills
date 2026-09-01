@@ -9,7 +9,7 @@ Turn unclear intent into one live initiative plan. Keep one exact-current semant
 
 Own plan meaning, decision coverage, lifecycle sufficiency, delivery integration, and closure. Keep technical architecture with `solution-architect`, consequential user-choice closure with `arojinle`, implementation with delivery owners, `.qp` root/path mechanics with `akosile`, and route selection with `alarina`.
 
-When a confirmed decision or material fact changes, reopen affected decisions/phases, mark dependent proof stale, record affected implementation/documentation surfaces, and rerun affected decision/readiness/closure checks.
+When a confirmed decision or material fact changes, create one scoped amendment map for affected owner results, reopen affected decisions/phases, mark only dependent proof stale, record affected implementation/documentation surfaces, and rerun affected decision/readiness/closure checks. Never present a partly superseded result as wholly current.
 
 ## 1. Establish the plan
 
@@ -120,8 +120,9 @@ Before `Planned`:
 5. Verify every required specialist result against the exact plan/candidate. Require current `solution-architect: IMPLEMENTATION_READY` when architecture is material.
 6. Treat coverage as an index, not proof: trace the top credible normal, failure, misuse, recovery, compatibility, migration, and operational mechanisms.
 7. For each material behavior, require either current `seda-spec: SPEC_READY` when a separate normative contract is needed or plan-local observable acceptance with a named proof seam when it is not. Prefer the highest stable existing seam that can falsify the behavior. Justify a new seam and route any material architecture change to `solution-architect`; detailed test-first mechanics remain with `alaga`.
-8. Resolve every blocking dependency, recovery, migration, proof, documentation, and operational gap.
-9. Write the `Planned` revision and refresh the primary human view.
+8. When delivery coordination is material, apply [delivery tracking](references/delivery-tracking.md)'s cumulative delivery-shape envelope before `Planned`. Require current expectations for production owners/subsystems, proof owners, new dependencies or public contracts, candidate/review topology, and material replan triggers; counts may inform judgment but cannot become quotas.
+9. Resolve every blocking dependency, recovery, migration, proof, documentation, and operational gap.
+10. Write the `Planned` revision and refresh the primary human view.
 
 Set `Planned` only when implementation needs no invented material requirement. Approval covers only the listed decisions and exact evidence identity.
 

@@ -39,6 +39,10 @@ status: Draft
 
 <confirmed decisions plus any currently open/blocked material decision set; omit empty tables/sections>
 
+## Amendment impact
+
+<only when a material amendment changes accepted or completed owner results: governing authority/revision; affected earlier results and clause locators; superseded/stale versus retained clauses; candidate/proof freshness; required owner refresh and re-entry proof; omit otherwise>
+
 ## Delivery and proof
 
 <governing specification identity/readiness when present; phases/dependencies/blockers only when they actually exist; current proof and closure obligations; when delivery coordination is material, include the lightweight expected delivery-shape envelope, any material cumulative drift, and replan/review trigger without turning counts into quotas>

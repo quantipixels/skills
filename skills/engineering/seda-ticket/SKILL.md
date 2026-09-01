@@ -21,7 +21,7 @@ Default each ticket to one narrow, outcome-complete vertical slice that:
 
 - delivers an independently verifiable user, operator, or system outcome;
 - crosses only the layers needed for that outcome;
-- fits one fresh agent context and one coherent reviewable change; and
+- fits one fresh agent context and remains coherent for a reviewer without prescribing candidate, commit, branch, PR/MR, test-file, or agent-session boundaries; and
 - can stay valid without copied parent narrative or guessed implementation detail.
 
 Do not split one behavior into separate schema, API, UI, or test tickets. Use a non-vertical ticket only for an independently verifiable enabling capability that genuinely blocks later work, or when vertical delivery cannot remain green. Record the exception and its green integration boundary in the ticket context.
