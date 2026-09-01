@@ -67,8 +67,6 @@ When no repository skill materially improves the result, return `NO_ROUTE` and l
 - `atona` / `arojinle` / `solution-architect` — initiative lifecycle / consequential user decision / technical architecture.
 - `atona` / `seda-spec` / `seda-ticket` — lifecycle / normative behavior / delivery decomposition.
 - `scope-guard` / `alaga` / `pare` — prospective scope steering / implementation+proof / read-only simplification.
-- `alaga` / `akowe` / `atunwo` — delivery ownership / candidate-pinned expert implementation scrutiny / independent final code-review verdict.
-- `akowe` / `ro-wo` / `iwadi` / `orisun` — active implementation counsel / premise challenge before deeper research / sufficient multi-source or durable primary research / exact-version upstream source escalation.
 - `alaga` / `atunwo` / `pare` — implementation+proof / code-review verdict+parity / simplification.
 - `seda-pr` / `wo-pr` / `atunwo` — publication / open-PR stewardship / review verdict.
 - `se-triage` / `root-cause` / `alaga` — report classification / causal diagnosis / implementation.

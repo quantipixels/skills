@@ -8,6 +8,8 @@ This retires `tdd`, `simplify`, and `skill-portfolio-audit` as standalone skills
 
 Keeping every method independently installable was rejected because it increased routing and release surface while the primary owner already required the method. Copying each method into its owner's main instructions was also rejected because it would increase default context. Conditional references preserve focused context at the cost of broader owner descriptions and removal of three public identifiers.
 
+The same rule now consolidates the Adaptive Akọ̀wé and Orísun experiments. Candidate-pinned expert implementation scrutiny is an Alága delivery path loaded only when consequential implementation choices earn it. Exact-version upstream source tracing is an Ìwádìí escalation loaded only when ordinary project evidence and web/first-party research cannot resolve a material peculiar/version-specific claim. Their methods remain available without exposing two more public selectors.
+
 Ko Skill's later authority modes were superseded by [one shared single-skill workflow](20260818-unify-ko-skill-workflow.md); bounded portfolio audit remains a conditional read-only reference.
 
 The stateful refactor parity audit later moved into [`atunwo`](20260818-move-refactor-parity-audit-into-atunwo.md). It remains a read-only conditional review method; `alaga` owns refactor implementation.
