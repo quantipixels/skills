@@ -15,6 +15,9 @@
     "skills",
     "productivity"
   ],
+  "agents": [
+    "./agents/qp.md"
+  ],
   "skills": [
     "./skills/design/amoye-ui-ux",
     "./skills/design/apere",

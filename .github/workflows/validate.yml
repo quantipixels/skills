@@ -43,6 +43,9 @@ jobs:
       - name: Validate skill package
         run: python3 skills/engineering/ko-skill/scripts/validate-package.py --repo .
 
+      - name: Validate plugin agents
+        run: python3 skills/engineering/ko-skill/scripts/validate-plugin-agents.py --repo .
+
   akosile-tests:
     name: Akosile focused mechanics
     runs-on: ubuntu-latest
