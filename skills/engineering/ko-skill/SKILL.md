@@ -32,6 +32,12 @@ Before creating a new skill/reference or appending another paragraph, try to exp
 
 Treat skills as deep modules. A caller supplies only the bounded input, reason/freshness/authority and caller-owned acceptance needed by the callee. The callee retains its procedure, internal state, resources, verification, persistence/representation mechanics, and native result. Do not copy lifecycle/result schemas across owner boundaries; repeat only independently required safety, trust, authority, acceptance, or owner-specific steering rules.
 
+Do not project one owner's semantic units one-to-one onto another owner's operational containers unless the destination contract requires that mapping. Tickets, requirements, phases, proof obligations, and capability boundaries describe meaning; commits, candidates, branches, PRs/MRs, test files, browser runs, and agent sessions are chosen independently for their own integration, review, rollback, ownership, release, or evidence value.
+
+Good: several outcome-complete tickets are delivered through one coherent candidate and PR because they form one integrated review unit.
+
+Bad: create one branch, PR, test file, or agent session per ticket merely because the ticket decomposition exists.
+
 Write for a capable agent. State semantic behavior, invariants, authority and completion; let the agent adapt ordinary search, shell/filesystem work, Git use, editing, tool discovery, and equivalent orchestration to its available environment. Do not pre-author capability fallback trees the agent can infer. Ordinary delegation is agent-owned; prescribe isolation only when bounded independent/noisy work must leave the primary context to preserve focus, continuity, or independent observation.
 
 Concrete mechanics earn instruction space when the mechanism establishes correctness, authority, determinism, non-obvious safety, a machine/external protocol, or a compatibility boundary, or when a small operational anchor materially reduces recurring rediscovery of how to enter a selected concrete capability. Do not use operational anchors to preselect/copy open-ended vendor/library/framework/source inventories; keep volatile details subject to current evidence.

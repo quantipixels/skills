@@ -42,6 +42,8 @@ Each ticket contains:
 
 Use temporary numbers while drafting and preserve identities supplied by the caller. Return an ungrouped dependency-ordered set unless the caller supplies grouping. Do not create synthetic parent tickets or own durable IDs, lifecycle persistence, execution/review states, transition history, assignees, timestamps, lineage, or reconciliation.
 
+Ticket identity is semantic, not operational: a ticket boundary does not imply a commit, candidate, branch, PR/MR, test-file, or agent-session boundary. The delivery caller chooses those containers independently from integration, review, rollback, ownership, and release needs.
+
 Avoid guessed file paths, long snippets, generic implementation checklists, duplicated repository rules, and artificial dependencies. Include an exact stable reference when necessary. Include a short prototype-derived snippet only when prose cannot preserve the decision, and label its source.
 
 ## Startability and terminal disposition
