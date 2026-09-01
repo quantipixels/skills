@@ -21,7 +21,7 @@ Default each ticket to one narrow, outcome-complete vertical slice that:
 
 - delivers an independently verifiable user, operator, or system outcome;
 - crosses only the layers needed for that outcome;
-- fits one fresh agent context and one coherent reviewable change; and
+- fits one fresh agent context and remains coherent for a reviewer without prescribing candidate, commit, branch, PR/MR, test-file, or agent-session boundaries; and
 - can stay valid without copied parent narrative or guessed implementation detail.
 
 Do not split one behavior into separate schema, API, UI, or test tickets. Use a non-vertical ticket only for an independently verifiable enabling capability that genuinely blocks later work, or when vertical delivery cannot remain green. Record the exception and its green integration boundary in the ticket context.
@@ -41,6 +41,8 @@ Each ticket contains:
 - **Terminal evidence** — acceptance/proof result for `Done`; cancellation authority/reason for `Cancelled`.
 
 Use temporary numbers while drafting and preserve identities supplied by the caller. Return an ungrouped dependency-ordered set unless the caller supplies grouping. Do not create synthetic parent tickets or own durable IDs, lifecycle persistence, execution/review states, transition history, assignees, timestamps, lineage, or reconciliation.
+
+Ticket identity is semantic, not operational: a ticket boundary does not imply a commit, candidate, branch, PR/MR, test-file, or agent-session boundary. The delivery caller chooses those containers independently from integration, review, rollback, ownership, and release needs.
 
 Avoid guessed file paths, long snippets, generic implementation checklists, duplicated repository rules, and artificial dependencies. Include an exact stable reference when necessary. Include a short prototype-derived snippet only when prose cannot preserve the decision, and label its source.
 

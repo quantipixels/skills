@@ -14,7 +14,8 @@ Own one coherent interface direction from current product/project evidence and d
 3. Read [quick reference](references/quick-reference.md) for the applicable interaction/layout/design branch. For native/mobile polish or a final app review, also read [professional app rules](references/pro-rules.md).
 4. When internal evidence does not adequately establish visual treatment, component composition, interaction detail, or polish, read [reference-driven composition](references/reference-driven-composition.md). Use live exemplars to strengthen judgment, not to outsource it or copy a design.
 5. Resolve one direction: product pattern, visual character, semantic color roles, typography behavior, density, layout hierarchy, interaction/state behavior, motion policy, data/chart treatment, and a short anti-pattern list. Use current primary sources only for volatile platform/framework requirements that can change the recommendation; do not cache them here.
-6. When a recommendation becomes React/web UI code, route implementation to `asa-oju-ibanisoro`. When confirmed direction needs canonical tokens/component specifications, route that contract to `eto-apere`. Use `brand` when identity itself is missing or changing.
+6. When a screenshot, mockup, prototype, or other visual reference materially controls acceptance, enumerate the materially visible and interactive affordances separately from underlying semantic capability. For each, explicitly adopt, preserve, adapt, or reject it. Do not treat support for a semantic node/state/component as proof that its visible affordance, hierarchy, discoverability, or interaction matches the accepted direction.
+7. When a recommendation becomes React/web UI code, route implementation to `asa-oju-ibanisoro`. When confirmed direction needs canonical tokens/component specifications, route that contract to `eto-apere`. Use `brand` when identity itself is missing or changing.
 
 ## Decision rules
 
@@ -43,6 +44,13 @@ Return:
 - chart/data direction when relevant;
 - implementation handoff constraints; and
 - anti-patterns.
+
+When a supplied visual reference materially shaped acceptance, also identify:
+
+- semantic capability expectations;
+- materially visible/interactive affordances;
+- adopt | preserve | adapt | reject disposition for each; and
+- any affordance whose acceptance still needs rendered/interaction proof.
 
 When external references materially shaped the direction, also identify:
 
