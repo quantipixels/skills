@@ -77,7 +77,7 @@ Treat an unplanned new dependency/service/infrastructure component, public API/s
 
 ### Proof policy
 
-Proof is required; a new test is not. Use the smallest evidence that can independently falsify the changed contract: existing affected tests, compiler/type guarantees, static analysis, builds/schema checks, focused runtime probes, real integration checks, bug reproduction, browser/manual verification, or another stronger current proof surface.
+Proof is required; a new test is not. Use the smallest evidence that can independently falsify the changed contract: existing affected tests, compiler/type guarantees, static analysis, builds/schema checks, focused runtime probes, real integration checks, bug reproduction, browser/manual verification, or another stronger current proof surface. When existing proof tooling already exposes coverage, mutation, or equivalent evidence, use it to identify changed behavior that is not adequately constrained rather than pursuing the metric itself.
 
 Apply [TDD](references/tdd.md) only when test-first is requested or a material behavior-bearing seam has an independent oracle and a failing test can materially control implementation. Glue, wiring, declarative configuration, trivial delegation, framework-native behavior, or similarly low-information changes do not earn a new test merely because production behavior changed. Never manufacture an abstraction or test harness just to satisfy a test-first ceremony.
 
