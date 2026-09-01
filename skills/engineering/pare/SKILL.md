@@ -54,7 +54,7 @@ Also check:
 - edge-case machinery that could disappear by eliminating/strengthening the causal state or owner; and
 - durable tests against stable seam, independent oracle, falsifiability, stronger existing proof, and maintenance burden.
 
-Treat passing tests, coverage, line-count reduction, or tool scores as evidence only. Route possible defects to `atunwo`; conflicting domain vocabulary to `amose`.
+Treat passing tests, coverage, line-count reduction, or tool scores as evidence only. Demonstrably dead or redundant code may be surfaced as a cleanup recommendation when safe removal is supported by evidence; its mere presence is not a blocking finding. Route possible defects to `atunwo`; conflicting domain vocabulary to `amose`.
 
 When a deliberate simplification has a documented ceiling/revisit trigger, preserve it if current evidence supports it. A material deliberate limitation with no observable revisit trigger is a maintainability concern, not a reason to manufacture a separate debt system.
 
