@@ -36,7 +36,8 @@ The change envelope is an evidence-backed expectation, not a prohibition on nece
 - Use `seda-spec` when material normative behavior is not settled enough for implementation without invention.
 - Use `seda-ticket` only when supplied work benefits from consumable vertical tickets.
 - Use `root-cause` for a reproducible or directly observed defect when causal ownership/mechanism remains materially uncertain and competing explanations would lead to materially different corrections. Do not require it when the causal owner is already sufficiently established for a responsible fix.
-- Use `akowe` during material implementation when consequential implementation choices benefit from independent expert scrutiny of stack-native behavior, ownership/lifecycle, compatibility, proportionality, or exact-version evidence. Keep it candidate-pinned and skip it for obvious mechanical edits whose sound shape is already determined by current project evidence.
+
+When consequential implementation choices need deeper scrutiny of stack-native behavior, ownership/lifecycle, compatibility, proportionality, or version-specific evidence, read [expert implementation counsel](references/expert-implementation-counsel.md). This is a selectively loaded Alága path, not another owner. Skip it for obvious mechanical edits whose sound shape is already determined by current project evidence.
 
 Read [job report](references/job-report.md) when the job is multi-candidate, blocked/handoff-prone, migration/security/recovery sensitive, externally destructive, or otherwise meets that reference's report gate. Reuse an active Atọ́nà plan instead of creating a parallel job report.
 
@@ -55,7 +56,7 @@ Repository/Git state never grants commit, history-rewrite, publication, provider
 
 Prepare the workspace without disturbing unrelated changes. Continue through the confirmed horizon until completion, a material decision/authority gap, or no safe independent work remains.
 
-If `akowe` is active, pass it the exact job boundary, candidate, accepted architecture/domain constraints, material stack versions, touched mechanisms, and proof expectations. Use it to scrutinize consequential implementation choices as they are made: obtain initial counsel before the first material choice, refresh only when the candidate, touched mechanism, stack/version, accepted contract, material premise, or controlling evidence changes, and consume only counsel that can change the implementation or proof. Akọ̀wé remains advisory; it does not replace delivery ownership, proof, or final review.
+When the expert-counsel path is active, keep it candidate-pinned and use it while consequential choices are being made. Refresh only when the candidate, touched mechanism, stack/version, accepted contract, material premise, or controlling evidence changes. The counsel remains part of delivery judgment; it does not replace proof or independent final review.
 
 ### Minimum sufficient mechanism
 
@@ -104,7 +105,7 @@ Before review, update required ordinary documentation in the candidate and use `
 
 Before handing the candidate to an independent reviewer, remove anything you already know the reviewer should not have to tell you about. Recheck local non-goals/change-envelope drift, the causal owner, unnecessary files/abstractions/dependencies/state/compatibility paths, temporary scaffolding, low-value durable tests, and whether proof can actually discriminate plausible wrong behavior. This is a self-check, not a postmortem or substitute for independent review.
 
-When `akowe` is active, obtain its final exact-candidate comparison during this convergence. Resolve any material `UNRESOLVED` counsel that can still change implementation/proof, or record the evidence-backed reason for a deliberate `DEPARTED` choice. Akọ̀wé status is advisory evidence, not review acceptance.
+When the expert-counsel path was active, perform its final exact-candidate comparison during this convergence. Resolve material unresolved counsel that can still change implementation/proof, or record the evidence-backed reason for a deliberate departure. Counsel status is delivery evidence, not review acceptance.
 
 Good: remove an interface introduced only for mocking when no production boundary requires it.
 

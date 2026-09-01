@@ -6,12 +6,14 @@ Browse the [documentation](https://quantipixels.com/skills).
 
 ## Portfolio principles
 
+- Grow capability depth faster than public surface area. Deepen an existing owner when it can carry a capability coherently; add another public skill only when its independent identity materially simplifies direct selection or use.
 - Kọ Skill authors every capability/resource at the smallest adequate surface: guidance/reference → visible command → native/project/provider tool → focused library → deterministic script → engine only when it carries a substantial owned vertical.
+- Use an obvious outcome owner directly. Use a router only when ownership is genuinely unclear or several independently useful owners need sequencing.
+- Supporting composition belongs behind the active owner unless another owner's independently useful result or separate authority must become visible.
 - Akọsílẹ̀ owns one repository-scoped `.qp`: the main worktree holds the real directory and linked worktrees expose symlinks. New records use stable semantic subjects; settings/index/record/artifact resources are created lazily.
-- Supporting skills keep detailed results with their native owners rather than copying caller-specific receipt/lifecycle schemas.
 - HTML Artifact creates reader-specific projections of supplied material without duplicating source archives or originating conclusions.
 - Generated `.qp` state stays outside Git by default.
-- Small public skills may intentionally exist as reusable model-steering contracts when a narrow named behavior saves users from restating longer instructions.
+- Small public skills may intentionally exist as reusable model-steering contracts when a narrow named behavior saves users from restating longer instructions and the public identity itself improves selection/use.
 - Thin public convenience entrypoints may wrap native commands when one safe memorable invocation materially improves installation, removal, or other human-facing distribution UX.
 - Experimental skills are first-party runtime candidates under their normal trigger, intent, authority, cost, safety, and host invocation gates. Experimental marks evidence/promotion maturity rather than adding a category-wide acceptance tax; experiments do not become unconditional prerequisites or redefine stable owners before promotion.
 
@@ -59,7 +61,7 @@ The real `.qp` belongs to the non-bare main worktree. Linked worktrees expose `.
 | Skill | Outcome |
 | --- | --- |
 | `akosile` | Repository-scoped `.qp` paths/worktrees, sparse settings, exact safe publication, generated index |
-| `alaga` | Deliver one supplied build job through implementation, proof, review, and handoff |
+| `alaga` | Deliver one supplied build job through implementation, candidate-pinned expert scrutiny when material, proof, review, and handoff |
 | `amose` | Exact-current project/domain knowledge, `.learnings`, `.nongoals`, ADRs, local craft |
 | `atona` | One initiative plan from Draft through delivery/closure |
 | `atunwo` | Code defect/proof/state-parity review and provider review publication when authorized |
@@ -97,12 +99,12 @@ Banner Design and Social Graphics intentionally remain narrow steering owners ev
 
 | Skill | Outcome |
 | --- | --- |
-| `alarina` | Select the shortest route from currently available QP skill descriptions |
+| `alarina` | Route only when the correct owner is unclear or several independent owner results need sequencing |
 | `arojinle` | Resolve consequential product/plan/design choices through user-confirmed decision frontier |
 | `ayewo-igba-ise` | Evidence-backed postmortem for completed/abandoned/disputed work, incidents, sessions, or corpora |
 | `handoff` | Compact fresh-session handoff |
 | `html-artifact` | Selective traceable accessible HTML visualization of supplied material |
-| `iwadi` | High-trust primary-source research record |
+| `iwadi` | High-trust primary-source research with high-threshold exact-version source escalation when ordinary research cannot resolve the claim |
 | `ro-wo` | Test one material premise before judgment |
 | `salaye` | Reusable plain-language explanation behavior for a supplied subject |
 | `system-cleanup` | Safe macOS storage audit, regenerable cleanup, worktree review, and external-drive offload |
@@ -117,21 +119,24 @@ Experimental skills participate in normal first-party routing when their owned o
 
 | Skill | Outcome |
 | --- | --- |
-| `akowe` | Exact-candidate adaptive expert implementation counsel |
 | `dogfood` | Real-browser verification of changed user journeys |
 | `fihan` | Explicitly activated private serving of one bounded local resource |
 | `ideate` | Grounded mechanism-diverse possibilities before selection |
-| `orisun` | Exact-version upstream source escalation for one bounded technical question |
 | `pepeye` | User-requested task supervision without a second owner lifecycle |
 | `prototype` | Disposable truthful decision instrument |
 | `root-cause` | Minimal causal mechanism/set for an observed failure |
 
-Historical `akowe-java`, `akowe-spring`, and catalogue experiments are research evidence only; Adaptive Akọ̀wé does not load those fixed catalogues at runtime.
+Historical Akọ̀wé and Orísun experiments remain research evidence. Their useful methods now live behind Alága's implementation-counsel path and Ìwádìí's exact-source escalation instead of occupying public routing surface.
 
 ## Start
 
-```text
-Use alarina to choose the shortest QP route for this request:
+Use the obvious owner directly when the requested outcome is clear:
 
-[describe the outcome]
+```text
+Implement or fix code → alaga
+Plan a material initiative → atona
+Review a code candidate → atunwo
+Resolve consequential choices → arojinle
 ```
+
+Use `alarina` only when the correct owner is unclear or the request genuinely needs sequencing across several independently useful owner results.
