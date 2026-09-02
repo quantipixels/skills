@@ -17,6 +17,10 @@ A useful capability is not automatically a useful public skill. A public identit
 
 Do not remove a lightweight skill merely because the base model can perform the act when the named contract reliably saves users from restating material behavior and its separate identity still improves selection/use.
 
+Frame the subject at the abstraction level the outcome actually owns. Do not narrow a broadly useful owner to codebase, repository, software, product, or another historical context merely because current examples, persistence, tooling, or delivery mechanics happen to live there. Likewise, do not generalize a domain-specific owner beyond the evidence, authority, or capabilities required to produce its result. Persistence and mechanical integrations are composition unless they are intrinsic to admission or completion.
+
+Curate reasoning, not frameworks. Borrow a durable principle from any relevant discipline only when it materially corrects or calibrates a likely agent failure for this owner; express the useful behavior directly as the smallest invariant, discriminating question, or decision rule. Do not add discipline role-play, methodology checklists, named-framework ceremony, or prestige-driven analogies when the behavior can stand on its own. The principle earns space from its owner-specific failure mode, trigger, and behavioral value rather than from its source label.
+
 Use the smallest control shape that preserves correctness:
 
 - **lightweight** — consequential invariants can directly produce the result;
