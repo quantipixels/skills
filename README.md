@@ -1,16 +1,18 @@
 # QP Agent Skills
 
-Portable focused skills for established codebases. QP aims for one independently useful outcome per public skill, deep references where judgment benefits, native commands/tools for ordinary mechanics, and bundled code only for narrow deterministic kernels.
+Portable focused skills for demanding work across reasoning, planning, research, design, engineering, and delivery. QP aims for one independently useful outcome per public skill, deep references where judgment benefits, native capabilities for ordinary mechanics, and bundled code only for narrow deterministic kernels.
 
 Browse the [documentation](https://quantipixels.com/skills).
 
 ## Portfolio principles
 
 - Grow capability depth faster than public surface area. Deepen an existing owner when it can carry a capability coherently; add another public skill only when its independent identity materially simplifies direct selection or use.
+- Frame each owner at the natural level of the outcome it owns: initiative, decision, candidate, project knowledge, artifact, implementation, software system, repository, runtime, or another exact subject. Do not let historical software/repository examples or persistence mechanics narrow a broadly useful outcome, and do not generalize a domain-specific owner beyond its real capability.
+- Curate reasoning, not methodology catalogues. Embed compact transferable principles where they materially improve an owner's judgment; express the useful behavior directly instead of adding discipline role-play, framework ceremony, or another public method selector.
 - Kọ Skill authors every capability/resource at the smallest adequate surface: guidance/reference → visible command → native/project/provider tool → focused library → deterministic script → engine only when it carries a substantial owned vertical.
 - Use an obvious outcome owner directly. Use a router only when ownership is genuinely unclear or several independently useful owners need sequencing.
 - Supporting composition belongs behind the active owner unless another owner's independently useful result or separate authority must become visible.
-- Akọsílẹ̀ owns one repository-scoped `.qp`: the main worktree holds the real directory and linked worktrees expose symlinks. New records use stable semantic subjects; settings/index/record/artifact resources are created lazily.
+- Akọsílẹ̀ owns repository-scoped `.qp` mechanics when that persistence surface is selected; broadly useful owners must not require a repository merely because `.qp` is one available durable destination.
 - HTML Artifact creates reader-specific projections of supplied material without duplicating source archives or originating conclusions.
 - Generated `.qp` state stays outside Git by default.
 - Small public skills may intentionally exist as reusable model-steering contracts when a narrow named behavior saves users from restating longer instructions and the public identity itself improves selection/use.
@@ -76,7 +78,7 @@ The real `.qp` belongs to the non-bare main worktree. Linked worktrees expose `.
 | `hitl-review` | Human-led walkthrough, review coverage, specialist discovery, final human decision |
 | `irinse` | Select/ready/use/upgrade/remove one companion engineering tool and return bounded evidence |
 | `ko-skill` | Author/revise/validate one skill or audit a bounded portfolio |
-| `pare` | Read-only simplification audit/review |
+| `pare` | Read-only software-system simplification audit/review |
 | `scope-guard` | Prevent coding scope drift and enforce the minimum sufficient mechanism/proof |
 | `se-triage` | Supplied-evidence-first issue/report assessment |
 | `seda-pr` | Scoped commit/push and PR/MR creation/update |
@@ -108,7 +110,7 @@ Banner Design and Social Graphics intentionally remain narrow steering owners ev
 | Skill | Outcome |
 | --- | --- |
 | `alarina` | Route only when the correct owner is unclear or several independent owner results need sequencing |
-| `arojinle` | Resolve consequential product/plan/design choices through user-confirmed decision frontier |
+| `arojinle` | Resolve consequential choices through a user-confirmed decision frontier |
 | `ayewo-igba-ise` | Evidence-backed postmortem for completed/abandoned/disputed work, incidents, sessions, or corpora |
 | `handoff` | Compact fresh-session handoff |
 | `html-artifact` | Selective traceable accessible HTML visualization of supplied material |

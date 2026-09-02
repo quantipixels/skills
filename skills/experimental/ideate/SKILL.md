@@ -5,11 +5,11 @@ description: Generate, challenge, and reduce a bounded set of materially differe
 
 # Ideate
 
-Expand one grounded opportunity into a bounded, mechanism-diverse candidate set; challenge every candidate; and explain only the credible survivors. Do not choose for the user, turn an idea into requirements, or skip directly to implementation.
+Expand one grounded opportunity into a bounded, mechanism-diverse candidate set; challenge every candidate; and explain only the credible survivors. Do not choose for the user, turn an idea into requirements, or skip directly to delivery.
 
 ## 1. Ground the opportunity
 
-Pin the problem or opportunity, intended beneficiaries, current project or product reality, constraints, known non-goals, evidence boundary, time horizon, and what would make a direction useful. Read only the project surfaces needed to avoid detached suggestions.
+Pin the problem or opportunity, intended beneficiaries, current relevant reality, constraints, known non-goals, evidence boundary, time horizon, and what would make a direction useful. Read only the evidence surfaces needed to avoid detached suggestions.
 
 Use `iwadi` when current external primary-source evidence can materially change the candidate set. Use `irinse` only when bounded tool evidence can expose a relevant structure or pattern. Load either only when its native result is needed.
 
@@ -55,4 +55,4 @@ One next-step menu
 
 Use `arojinle` when the user wants consequential survivors resolved through a decision, and `atona` when a selected direction must become an initiative plan. Invoke the next owner only after the user selects or explicitly requests that result.
 
-Return inline by default. Persist through `akosile` only when stable candidate identities are needed downstream or the user requests an archive. Use `html-artifact` when a substantial supplied comparison needs a human visual view. Under an active plan, return Ideate's native exact-current result rather than defining a plan-specific receipt.
+Return inline by default. Persist only when stable candidate identities or an archive are genuinely needed; use the existing/user-selected durable destination, and use `akosile` only when that destination is a repository-scoped QP workspace. Use `html-artifact` when a substantial supplied comparison needs a human visual view. Under an active plan, return Ideate's native exact-current result rather than defining a plan-specific receipt.

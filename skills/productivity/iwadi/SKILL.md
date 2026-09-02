@@ -23,7 +23,7 @@ Do not create a durable research record for one/few routine facts, a small known
 
 ### Evidence escalation
 
-Start with exact project/runtime evidence and ordinary web research against current first-party sources: official docs, specifications, release/migration notes, maintained examples, first-party APIs, and available source snippets/tests when easy to reach.
+Start with exact current contextual evidence and ordinary research against current first-party sources: official docs, specifications, standards, policy/decision records, release/migration notes, maintained examples, first-party APIs, and available source snippets/tests when relevant and easy to reach.
 
 Do **not** jump to upstream source archaeology merely because source exists. Escalate only when all of these hold:
 
@@ -36,7 +36,7 @@ When that threshold is met, read [exact source grounding](references/exact-sourc
 
 ## Context isolation
 
-Delegate collection only when the investigation is substantially noisier than its useful conclusion and the active host/repository rules permit it. The purpose is to keep source-search volume out of the primary reasoning context, not to delegate merely because subagents exist. Do not delegate a small known read or raw material the current agent must immediately edit.
+Delegate collection only when the investigation is substantially noisier than its useful conclusion and the active host/context rules permit it. The purpose is to keep source-search volume out of the primary reasoning context, not to delegate merely because subagents exist. Do not delegate a small known read or raw material the current agent must immediately edit.
 
 When delegation is useful, require one compact evidence packet:
 
@@ -50,10 +50,10 @@ The current agent owns source selection, synthesis, the durable report when one 
 
 ## Research contract
 
-1. Prefer **primary sources** — official docs, source code, specs, standards, first-party APIs — and follow every material claim back to the source that owns it.
+1. Prefer **primary sources** — official docs, source code, specs, standards, authoritative policy/decision records, first-party APIs — and follow every material claim back to the source that owns it.
 2. Pin a source version, revision, or retrieval date when its content can change materially.
 3. Cite each material claim's source and state what the evidence supports without stretching it.
 4. State material conflicts between primary sources and any evidence gap that limits the conclusion.
 5. Lead with the question and direct conclusion/verdict, then present supporting evidence and limits without reproducing the discovery transcript.
-6. When the result deserves independent persistence, save it where the repository already keeps research notes. If no convention exists, persist a QP research record through `akosile` with `owner: iwadi`, `record_type: research`, and the stable research topic as subject.
+6. When the result deserves independent persistence, use the existing or user-selected durable research/knowledge destination. When the selected destination is a repository-scoped QP workspace, persist through `akosile` with `owner: iwadi`, `record_type: research`, and the stable research topic as subject. Do not require a repository merely because `.qp` is one available destination; when no durable destination is available or authorized, return the complete sourced result and report the persistence gap instead of blocking the research itself.
 7. When Ìwádìí is only supporting another owner and persistence adds no independent value, return the compact sourced finding to that owner and stop instead of creating a record by ceremony.

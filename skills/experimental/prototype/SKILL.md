@@ -1,6 +1,6 @@
 ---
 name: prototype
-description: Build one disposable artifact at the minimum truthful fidelity needed to settle how a consequential interaction, flow, interface, API, or message should work or feel. Exclude production implementation, routine mockups, and polish.
+description: Build one disposable artifact at the minimum truthful fidelity needed to settle how a consequential process, interaction, flow, service, interface, API/CLI, or message should work or feel. Exclude accepted delivery, routine mockups, and polish.
 ---
 
 # Prototype
@@ -9,7 +9,7 @@ Build a throwaway decision instrument for one question that discussion, static p
 
 > Do not fake the dimension being tested.
 
-A behaviour question needs functioning behaviour. A visual-reading question needs sufficient visual fidelity. A CLI or API ergonomics question needs a runnable interaction. The prototype produces decision evidence; it is not the product candidate.
+A behavior/process question needs a truthfully exercisable representation of that behavior. A visual-reading question needs sufficient visual fidelity. A CLI or API ergonomics question needs a runnable interaction. The prototype produces decision evidence; it is not the accepted delivery result.
 
 ## 1. Pin the decision question and evidence claim
 
@@ -17,37 +17,37 @@ State the one material question, why cheaper evidence is insufficient, who must 
 
 One prototype boundary may contain several variants when they answer the same pinned question and test the same dimension. A new material question, audience, or evidence claim requires a new boundary.
 
-Do not start when the user is asking what to build, requesting production implementation, or asking for ordinary polish. Use `arojinle` for unresolved consequential choices that do not yet require an artifact and `alaga` for the accepted production result.
+Do not start when the user is asking what to build, requesting the accepted/production result, or asking for ordinary polish. Use `arojinle` for unresolved consequential choices that do not yet require an artifact. Use `alaga` only when the accepted result is a software/build delivery job; otherwise hand the confirmed decision to the current delivery/implementation owner.
 
 When the question depends on subjective experience, require an attending human. An unattended run cannot invent how the interaction feels or what the user prefers.
 
 ## 2. Build the minimum truthful artifact
 
-Choose the smallest medium and fidelity that can answer the question. Reuse the project's existing runtime, components, tokens, fixtures, or local server when that improves truth without turning the prototype into production work.
+Choose the smallest medium and fidelity that can answer the question. Reuse existing project/runtime components, templates, fixtures, documents, process artifacts, or host-native preview capability when that improves truth without turning the prototype into accepted delivery work.
 
-Use an OS temporary directory or isolated disposable workspace by default. Do not modify the production candidate unless separately authorized for a bounded prototype location. Avoid real customer data, production credentials, irreversible effects, external messages, or payments. Label simulated behaviour clearly, but never simulate the dimension being decided.
+Use an OS temporary directory or isolated disposable workspace by default for file-based prototypes. Do not modify the accepted/production candidate unless separately authorized for a bounded prototype location. Avoid real customer data, production credentials, irreversible effects, external messages, or payments. Label simulated behavior clearly, but never simulate the dimension being decided.
 
-Do not add a bundled preview server merely for this workflow. Use the existing application server, a host-native preview, or a standard available local server.
+Do not add a bundled preview server merely for this workflow. Use an existing application server, a host-native preview, or a standard available local server when a server is actually needed.
 
 ## 3. Let the user experience and decide
 
-Give the user the runnable path and a concise observation prompt tied to the question. Record what they actually observed, not what the author expected. Compare variants only against the pinned dimension.
+Give the user the runnable, inspectable, or otherwise directly experienceable path and a concise observation prompt tied to the question. Record what they actually observed, not what the author expected. Compare variants only against the pinned dimension.
 
 Revise only when the next version still answers the same question. Finish with exactly one result:
 
 - `DECIDED` — direct experience selected or confirmed an answer;
-- `INCONCLUSIVE` — the artifact ran but did not distinguish the alternatives;
+- `INCONCLUSIVE` — the artifact was exercised but did not distinguish the alternatives;
 - `BLOCKED` — a named environment, capability, authority, evidence, or human-attendance gap prevented the test; or
 - `ABANDONED` — the user ended the experiment without a decision.
 
-Return the question, artifact path, variants, fidelity, simulations, observations, result, unresolved alternatives, and limitations.
+Return the question, artifact path/locator, variants, fidelity, simulations, observations, result, unresolved alternatives, and limitations.
 
-State the evidence boundary explicitly. A visual prototype does not prove performance, security, accessibility, integration, or maintainability unless that dimension was represented truthfully. A runnable interaction does not prove production readiness.
+State the evidence boundary explicitly. A visual prototype does not prove performance, security, accessibility, integration, maintainability, operational viability, or another dimension unless that dimension was represented truthfully. A runnable interaction does not prove production readiness.
 
 ## 4. Retain the decision, not disposable implementation
 
-Prototype code is not the production candidate. The next owner should carry forward the confirmed decision, interaction contract, selected assets, measurements, and limitations—not copy the disposable implementation by default.
+Prototype implementation/material is not the accepted delivery result. The next owner should carry forward the confirmed decision, interaction/process contract, selected assets, measurements, and limitations—not copy the disposable implementation by default.
 
-Temporary work may be deleted after the evidence is captured. Persist through `akosile` only when a durable decision-prototype result is needed. A durable HTML prototype may itself be the runnable artifact; use `html-artifact` only for a separate human report about supplied evidence.
+Temporary work may be deleted after the evidence is captured. When a durable decision-prototype result is genuinely needed, use the existing/user-selected durable destination; use `akosile` only when that destination is a repository-scoped QP workspace. A durable HTML prototype may itself be the experiential artifact; use `html-artifact` only for a separate human report about supplied evidence.
 
 Under an active `arojinle` interview or `atona` plan, return Prototype's native exact-current result. The caller owns the resulting decision or plan update.

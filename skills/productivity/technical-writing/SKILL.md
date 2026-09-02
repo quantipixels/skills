@@ -1,14 +1,14 @@
 ---
 name: technical-writing
-description: "Layered technical-writing standard: Diátaxis structure, Google developer style sentences, STE instruction rules, and Global English syntax. Use when writing or reviewing docs, RFCs, readmes, PR descriptions, commit messages, technical communication, or human-facing artifact copy."
+description: "Layered technical-writing standard: Diátaxis structure, Google developer style sentences, STE instruction rules, and Global English syntax. Use when writing or reviewing technical docs, procedures, specifications, reports, RFCs, readmes, PR descriptions, commit messages, technical communication, or human-facing artifact copy."
 license: MIT
 ---
 
 # Technical writing
 
-Write technical prose a tired engineer can understand on the first read. Own document mode, instruction structure, technical sentence clarity, and unambiguous syntax. Produce complete usable prose from this owner; do not require a second cleanup skill for normal completion.
+Write technical prose a tired reader can understand on the first read. Own document mode, instruction structure, technical sentence clarity, and unambiguous syntax. Produce complete usable prose from this owner; do not require a second cleanup skill for normal completion.
 
-The codebase is the word list. Use the real symbol, file, flag, command, and project term rather than an invented synonym.
+Use the vocabulary of the thing being described. Prefer its established domain/project terms and exact identifiers—symbols, files, flags, commands, standards, labels, component names, or other authoritative terms—over invented synonyms.
 
 ## Pick one document mode
 
@@ -33,8 +33,8 @@ Apply the transferable Google developer-style rules:
 - Put a condition before the instruction it guards.
 - Put the common case before exceptions.
 - Use descriptive link text, sentence-case headings, numbered lists for sequences, and bullets otherwise.
-- Use exact code formatting for symbols and **bold** for UI elements.
-- Prefer the project's established terminology over synonyms.
+- Use exact code formatting for code/command identifiers and **bold** for UI elements when those forms apply.
+- Prefer the subject's established terminology over synonyms.
 
 Source: developers.google.com/style, fetched 2026-07-18.
 
@@ -66,10 +66,10 @@ Apply Global English where ambiguity matters:
 
 Source: Kohl, *The Global English Style Guide* (SAS Press), source material fetched 2026-07-18.
 
-## Repository-facing writing
+## Applied technical writing
 
-PR descriptions, commit messages, handoffs, and human-facing technical artifacts use the same sentence rules even when Diátaxis does not apply as a whole-document model.
+Procedures, specifications, reports, operational instructions, PR descriptions, commit messages, handoffs, and human-facing technical artifacts use the same sentence rules even when Diátaxis does not apply as a whole-document model.
 
-Do not rewrite exact identifiers or facts for style. Make paths, symbols, commands, counts, and generated-tree claims true for the candidate being described. Product UI strings follow the product's copy rules rather than this documentation contract.
+Do not rewrite exact identifiers or facts for style. Make paths, symbols, commands, quantities, standards references, counts, statuses, and other exact claims true for the subject being described. Product UI strings follow the product's copy rules rather than this documentation contract.
 
 Use `yo-slop` only when the user explicitly asks for its cleanup/pruning outcome or when a distinct material filler/AI-tell/repetition problem remains after the technical writing is already correct. Do not invoke it merely because Technical Writing completed.

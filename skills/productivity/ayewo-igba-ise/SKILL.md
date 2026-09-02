@@ -50,15 +50,17 @@ For each proposed durable improvement, state:
 - expected benefit/risk; and
 - proof needed after the change.
 
-Prefer replacing, removing, moving, or clarifying existing guidance over appending another rule. Reject a proposed instruction change when the current instruction already required the correct behavior, the evidence is model variance, the real fix belongs to product/infra/code, or the only edit would restate/hedge the same rule.
+Prefer replacing, removing, moving, or clarifying existing guidance over appending another rule. Reject a proposed instruction change when the current instruction already required the correct behavior, the evidence is model variance, the real fix belongs to the owning product/system/process, or the only edit would restate/hedge the same rule.
 
-Route follow-up only when another owned result is actually requested:
+Route follow-up only when another owned result is actually requested. Current QP examples include:
 
 - skill/instruction change → `ko-skill`;
-- project/domain knowledge → `amose`;
+- repository/project domain knowledge → `amose`;
 - prospective coding scope control → `scope-guard`;
-- codebase simplification → `pare`;
-- implementation → `alaga`.
+- software-system simplification → `pare`;
+- software/build delivery → `alaga`.
+
+Do not force a non-software follow-up through a software owner when no current QP owner fits.
 
 ## Report
 
@@ -75,4 +77,4 @@ Return:
 - rejected lessons/recommendations; and
 - residual limits.
 
-Persist through `akosile` only when a durable postmortem record is required. Use `html-artifact` only when a substantial visual view materially improves the result. A Postmortem visualization is document-shaped unless the requested result itself is an interface experience; use HTML Artifact's document proof boundary.
+When a durable postmortem is required, use the existing/user-selected destination; use `akosile` only when that destination is a repository-scoped QP workspace. Use `html-artifact` only when a substantial visual view materially improves the result. A Postmortem visualization is document-shaped unless the requested result itself is an interface experience; use HTML Artifact's document proof boundary.
