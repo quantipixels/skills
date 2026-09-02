@@ -1,21 +1,21 @@
 ---
 name: atona
-description: Maintain one exact-current initiative plan from early Draft through delivery and closure. Use when a feature, migration, or material workstream needs exploration, shaping, lifecycle-plan readiness, coordinated handoffs, proof, and final reconciliation. Exclude technical architecture design or review, complete decision interviews, implementation, workspace infrastructure, and generic routing.
+description: Maintain one exact-current initiative plan from early Draft through delivery and closure. Use when an initiative, migration, rollout, feature, or material workstream needs exploration, shaping, lifecycle readiness, coordinated handoffs, proof, and final reconciliation. Exclude specialist design/review, complete decision interviews, delivery execution, workspace infrastructure, and generic routing.
 ---
 
 # Atọ́nà
 
-Turn unclear intent into one live initiative plan. Keep one exact-current semantic record and use `html-artifact` to visualise it as the primary human view.
+Turn unclear intent into one live initiative plan. Keep one exact-current semantic plan and use `html-artifact` to visualise it as the primary human view when a visual artifact materially improves planning, review, or continuity.
 
-Own plan meaning, decision coverage, lifecycle sufficiency, delivery integration, and closure. Keep technical architecture with `solution-architect`, consequential user-choice closure with `arojinle`, implementation with delivery owners, `.qp` root/path mechanics with `akosile`, and route selection with `alarina`.
+Own plan meaning, decision coverage, lifecycle sufficiency, delivery integration, and closure. Keep consequential user-choice closure with `arojinle`, delivery execution with its active owners, repository `.qp` mechanics with `akosile` when that persistence path is used, and route selection with `alarina`. Use a specialist owner only when its independently useful result is actually required; software/system technical architecture belongs to `solution-architect`.
 
-When a confirmed decision or material fact changes, create one scoped amendment map for affected owner results, reopen affected decisions/phases, mark only dependent proof stale, record affected implementation/documentation surfaces, and rerun affected decision/readiness/closure checks. Never present a partly superseded result as wholly current.
+When a confirmed decision or material fact changes, create one scoped amendment map for affected owner results, reopen affected decisions/phases, mark only dependent proof stale, record affected delivery/representation/operational surfaces, and rerun affected decision/readiness/closure checks. Never present a partly superseded result as wholly current.
 
 ## 1. Establish the plan
 
-For every material initiative, maintain one semantic Markdown record using [the plan record template](templates/plan-record.md) as a semantic contract, not a rigid outline.
+For every material initiative, maintain one exact-current semantic plan using [the plan record template](templates/plan-record.md) as a semantic contract, not a rigid outline.
 
-Resolve or create it through `akosile`:
+Keep the plan in current context when one-session use is sufficient. Persist it when continuity, recovery, independent review, or downstream consumption needs a durable identity. Prefer an existing or user-selected destination. When the selected destination is a repository-scoped QP workspace, resolve it through `akosile`:
 
 ```text
 owner: atona
@@ -23,9 +23,9 @@ record_type: initiative-plan
 subject: <stable initiative identity>
 ```
 
-Atọ́nà owns the record body, revision, native status, decision frontier, delivery summary, decisions, and semantic validity. Akọsílẹ̀ owns path allocation, safe writes, direct-access paths, and index reconciliation.
+Do not require Git, a repository, or `.qp` merely to admit an initiative. Atọ́nà owns the plan body, revision, native status, decision frontier, delivery summary, decisions, and semantic validity. The selected persistence mechanism owns only its path/publication mechanics; Akọsílẹ̀ owns those mechanics when `.qp` is the selected destination.
 
-Use `html-artifact` to visualise the outcome, status, decision frontier, confirmed decisions, phases, blockers, delivery/proof, and next action. Keep its HTML as the primary human view. Refresh it after settled decision rounds or lifecycle transitions; never interrupt an active Àròjinlẹ̀ round for artifact work. Between those boundaries, or when a refresh fails, the semantic record remains current and the HTML must not be presented as current.
+Use `html-artifact` to visualise the outcome, status, decision frontier, confirmed decisions, phases, blockers, delivery/proof, and next action when the visual relationship materially improves the human view. Refresh a maintained projection after settled decision rounds or lifecycle transitions; never interrupt an active Àròjinlẹ̀ round for artifact work. Between those boundaries, or when a refresh fails, the semantic plan remains current and an older projection must not be presented as current.
 
 The initiative-plan projection is document-shaped. Routine semantic refreshes use HTML Artifact's structural proof boundary and reuse current render proof while presentation behavior is unchanged.
 
@@ -33,7 +33,7 @@ When material questions are open, the active Àròjinlẹ̀ round is the user-fa
 
 ### Synthesize settled context
 
-When a supplied conversation, specification, or issue already contains enough settled context, synthesize it directly into the initiative plan rather than replaying discovery or starting an interview. Capture:
+When a supplied conversation, specification, issue, brief, or other source already contains enough settled context, synthesize it directly into the initiative plan rather than replaying discovery or starting an interview. Capture:
 
 - the current problem or gap and affected actors when material;
 - the desired outcome and observable acceptance;
@@ -42,11 +42,11 @@ When a supplied conversation, specification, or issue already contains enough se
 - scope and non-goals; and
 - linked evidence with current identities.
 
-Inspect the repository only enough to use current project vocabulary, behavior, ADRs, and proof seams accurately.
+Inspect the current work context only enough to use established vocabulary, behavior, constraints, durable decisions, and proof seams accurately. In a repository this may include instructions, code, tests, configuration, history, ADRs, integrations, and operations; none is required merely because Atọ́nà is active.
 
 Separate confirmed context from inference. When the Decision Frontier is `EMPTY`, do not ask questions merely because this entry began as a conversation. When a material gap remains, classify and resolve it through the normal frontier instead of inventing a complete specification.
 
-Use `seda-spec` when the initiative needs a normative behavior contract beyond concise plan-local outcome and acceptance. Consume its exact-current result and specification identity without copying the specification into the plan. A specification can precede the plan or exist without one; Atọ́nà retains only the lifecycle meaning and links needed for readiness and delivery.
+Use a separate normative contract only when the initiative actually needs one beyond concise plan-local outcome and acceptance. Use `seda-spec` when the required contract is software/system behavior; otherwise consume the current domain's exact specification/authority when one exists. Keep only the lifecycle meaning and identity needed for readiness and delivery rather than copying the full contract into the plan.
 
 ## 2. Maintain lifecycle state
 
@@ -62,20 +62,20 @@ Track one status:
 
 The status is Atọ́nà's judgment. Tickets, jobs, reviews, providers, settings labels, workspace indexes, and HTML cannot set it.
 
-Derive one delivery summary from exact-current owner receipts:
+Derive one delivery summary from exact-current owner results:
 
 - `Not required` — accepted plan needs no delivery work.
-- `Not started` — delivery is required but no candidate has started.
-- `Active` — authorized candidates are active and none blocks all safe progress.
+- `Not started` — delivery is required but no owned work has started.
+- `Active` — authorized delivery is active and none blocks all safe progress.
 - `Blocked` — a current blocker prevents all required safe progress.
-- `Complete` — every in-scope candidate/phase has accepting proof.
+- `Complete` — every in-scope delivery obligation has accepting proof.
 - `Stale` — changed evidence/identity invalidates a used result.
 
-Recompute it after every relevant candidate, result, blocker, dependency, or evidence change.
+Recompute it after every relevant result, blocker, dependency, candidate/work-item identity, or evidence change.
 
 ## 3. Shape the plan through the Decision Frontier Gate
 
-Pin outcome, affected capabilities, scope, constraints, assumptions, non-goals, evidence, risks, and open uncertainties. Read relevant `.learnings`, complete `.nongoals`, architecture/ADRs, code, tests, history, integrations, and recovery paths. When the direction conflicts with `.nongoals`, require an authorized `amose` exception or boundary update before planning past it.
+Pin outcome, affected capabilities, scope, constraints, assumptions, non-goals, evidence, risks, and open uncertainties. Read the current domain/project constraints and durable decisions that can materially affect the plan. When working in a repository, include relevant `.learnings`, complete `.nongoals`, architecture/ADRs, code, tests, history, integrations, and recovery paths as applicable. When a repository direction conflicts with `.nongoals`, require an authorized `amose` exception or boundary update before planning past it.
 
 When a material `Draft` initiative is too large or uncertain for its whole planning surface to be stated responsibly at once, read [progressive shaping](references/progressive-shaping.md). Use it to preserve known-but-not-yet-formulatable territory, explore breadth before depth, and re-chart only what new evidence makes formable. It does not add a lifecycle state, ticket system, owner, or Decision Frontier value.
 
@@ -88,8 +88,8 @@ FACT
 PLAN_LOCAL
 → reversible plan detail that does not require user authority; Atọ́nà may recommend/settle it from current evidence.
 
-TECHNICAL_DESIGN
-→ architecture/engineering design owned by solution-architect.
+SPECIALIST_DESIGN
+→ independently useful domain/technical design result owned by the current specialist when one exists. Software/system architecture → solution-architect. If QP has no fitting owner, keep the need explicit rather than forcing it through a software owner.
 
 MATERIAL_USER_DECISION
 → consequential choice that changes accepted outcome, scope, policy, user experience, risk, cost, compatibility, or trade-off; owned by arojinle.
@@ -105,7 +105,7 @@ BLOCKED — unresolved material decisions remain, but none can currently be aske
 
 Do not invoke `arojinle` merely to reopen settled decisions. When the frontier is `OPEN`, give it the whole currently answerable material decision set and caller context, then let Àròjinlẹ̀ own the user question round. When some branches remain blocked, continue independent answerable branches and resolve missing prerequisites without suppressing the current open frontier. When `BLOCKED`, resolve the prerequisite fact/evidence first. When `EMPTY`, record why no interview is required.
 
-Use `amose` for project/domain knowledge only when it can materially change the plan/frontier. Use `iwadi` for substantial reusable primary-source research, `irinse` for bounded tool evidence, and `solution-architect` when technical design/review is material. Delegate bounded independent/noisy planning work when inline exploration would materially pollute the plan context; consume only the compact result needed to continue.
+Use `amose` for repository/project domain knowledge only when its native result can materially change the plan/frontier. Use `iwadi` for substantial reusable primary-source research, `irinse` for bounded tool evidence, and the current specialist only when its independently useful result is material. Delegate bounded independent/noisy planning work when inline exploration would materially pollute the plan context; consume only the compact result needed to continue.
 
 Supporting skills return compact exact-current results. Keep detailed packets with their native owners and link them instead of copying them.
 
@@ -113,33 +113,33 @@ Supporting skills return compact exact-current results. Keep detailed packets wi
 
 Before `Planned`:
 
-1. Re-read the exact plan as its implementer.
+1. Re-read the exact plan as its delivery owner.
 2. Recompute the Decision Frontier Gate. Require `EMPTY`; no open, blocked, stale, silently assumed, or blocking-deferred material decision may cross the gate.
-3. When progressive shaping was needed, require no material not-yet-specifiable territory that implementation could encounter inside accepted scope. Exclude it, settle it, or give a genuine non-blocking re-entry contract rather than inventing the question.
+3. When progressive shaping was needed, require no material not-yet-specifiable territory that delivery could encounter inside accepted scope. Exclude it, settle it, or give a genuine non-blocking re-entry contract rather than inventing the question.
 4. If `arojinle` was used for the current decision set, require its exact-current final confirmation. If it was not required, record the current evidence proving why.
-5. Verify every required specialist result against the exact plan/candidate. Require current `solution-architect: IMPLEMENTATION_READY` when architecture is material.
-6. Treat coverage as an index, not proof: trace the top credible normal, failure, misuse, recovery, compatibility, migration, and operational mechanisms.
-7. For each material behavior, require either current `seda-spec: SPEC_READY` when a separate normative contract is needed or plan-local observable acceptance with a named proof seam when it is not. Prefer the highest stable existing seam that can falsify the behavior. Justify a new seam and route any material architecture change to `solution-architect`; detailed test-first mechanics remain with `alaga`.
-8. When delivery coordination is material, apply [delivery tracking](references/delivery-tracking.md)'s cumulative delivery-shape envelope before `Planned`. Require current expectations for production owners/subsystems, proof owners, new dependencies or public contracts, candidate/review topology, and material replan triggers; counts may inform judgment but cannot become quotas.
-9. Resolve every blocking dependency, recovery, migration, proof, documentation, and operational gap.
-10. Write the `Planned` revision and refresh the primary human view.
+5. Verify every required specialist result against the exact plan/current identity. Require current `solution-architect: IMPLEMENTATION_READY` only when software/system architecture is material; require another specialist's native readiness/result only when that owner actually governs the needed design.
+6. Treat coverage as an index, not proof: trace the top credible normal, failure, misuse, recovery, compatibility, migration/changeover, and operational mechanisms that apply to this initiative.
+7. For each material obligation, require either an exact-current normative/specialist result when a separate contract is needed or plan-local observable acceptance with a named proof seam when it is not. Use `seda-spec` for software/system behavior contracts; detailed test-first mechanics remain with `alaga` only when software delivery applies.
+8. When delivery coordination is material, apply [delivery tracking](references/delivery-tracking.md)'s cumulative delivery-shape envelope before `Planned`. Require current expectations for delivery owners/workstreams or affected systems/surfaces, proof/evidence owners, new dependencies/contracts, handoff/review topology, and material replan triggers; counts may inform judgment but cannot become quotas.
+9. Resolve every blocking dependency, recovery/changeover, proof, documentation, and operational gap.
+10. Write the `Planned` revision and refresh any maintained primary human view.
 
-Set `Planned` only when implementation needs no invented material requirement. Approval covers only the listed decisions and exact evidence identity.
+Set `Planned` only when delivery can begin without inventing a material requirement. Approval covers only the listed decisions and exact evidence identity.
 
 ## 5. Track delivery
 
-When tickets, multiple candidates, dependencies, implementers, multi-session handoff, or delivery authority apply, read [delivery tracking](references/delivery-tracking.md). It owns ticket integration, delivery handoffs, receipt reconciliation, and completion proof. Atọ́nà retains plan identity, decision/frontier integration, delivery-summary derivation, and closure.
+When multiple work units/candidates, dependencies, implementers, multi-session handoff, or delivery authority apply, read [delivery tracking](references/delivery-tracking.md). It owns delivery integration, handoffs, result reconciliation, and completion proof. Atọ́nà retains plan identity, decision/frontier integration, delivery-summary derivation, and closure.
 
-After a material owner result changes plan meaning, update the semantic record first and refresh the primary human view at the next settled boundary. Keep non-plan-affecting operational detail outside the plan record.
+After a material owner result changes plan meaning, update the semantic plan first and refresh any maintained human view at the next settled boundary. Keep non-plan-affecting operational detail outside the plan.
 
 When a lifecycle result establishes knowledge that may outlive the initiative, add it to the plan's durable reconciliation inventory and reconcile it at the natural delivery boundary when possible.
 
 ## 6. Reconcile and close
 
-Before `Closed`, verify the decision frontier remains empty; no blocking decision/gap remains; delivery/review match the exact candidate; proof gaps/deferrals are explicit; and freezes hold.
+Before `Closed`, verify the decision frontier remains empty; no blocking decision/gap remains; delivery/review match the exact current result/candidate; proof gaps/deferrals are explicit; and freezes hold.
 
-Read [durable knowledge reconciliation](references/durable-reconciliation.md). Require every material lifecycle insight to have a proved disposition, no obsolete guidance to remain, and no knowledge needed by future work to survive only in an untracked lifecycle resource.
+Read [durable knowledge reconciliation](references/durable-reconciliation.md). Require every material lifecycle insight to have a proved disposition, no obsolete guidance to remain, and no knowledge needed by future work to survive only in transient lifecycle context.
 
-Update the record with final receipts/material semantic history and refresh the primary human view.
+Update the plan with final results/material semantic history and refresh any maintained human view.
 
-Before every user-visible handoff, align plan status, decision frontier, delivery summary, record freshness, remaining work, and next action, then apply [suggested direction](references/suggested-direction.md).
+Before every user-visible handoff, align plan status, decision frontier, delivery summary, plan freshness, remaining work, and next action, then apply [suggested direction](references/suggested-direction.md).
