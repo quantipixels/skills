@@ -2,4 +2,4 @@
 "qp-skills": minor
 ---
 
-Decouple Atọ́nà initiative planning, delivery tracking, and durable reconciliation from mandatory repository/software mechanics while preserving software-specific owners as conditional composition.
+Keep Atọ́nà, Amọ̀ṣẹ́, Ṣẹ̀dá Spec, and Ṣẹ̀dá Ticket usable across their natural project/initiative boundaries without mandatory repository/software mechanics, while preserving software-specific specialists as conditional composition.

@@ -2,4 +2,4 @@
 "qp-skills": minor
 ---
 
-Keep broadly useful decision, research, prototype, postmortem, diagnosis, writing, and HTML owners usable outside repositories while retaining repository/software owners only where their native result actually applies.
+Keep broadly useful planning, research, prototype, postmortem, diagnosis, writing, handoff, supervision, and HTML outcomes usable outside repository/software mechanics while retaining narrow software/design/tool owners only where their native result applies.
