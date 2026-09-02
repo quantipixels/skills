@@ -38,6 +38,6 @@ Route completion boundary
 
 Each specialist retains its native result contract; Àpẹrẹ does not prescribe internal result schemas merely to simplify coordination.
 
-When several routed artifacts must actually be produced and integrated, give this packet to `alaga` as the build job. Àpẹrẹ does not become a delivery lifecycle owner.
+When several routed artifacts must actually be produced or integrated, hand this packet to the current delivery/integration owner when one exists. Use `alaga` only when the integrated result is genuinely a software/build job; otherwise let the selected design owners or current host/domain delivery owner produce and integrate their native results. Àpẹrẹ does not become a delivery lifecycle owner.
 
 A small focused design request should not pay this coordination cost; invoke its specialist directly.

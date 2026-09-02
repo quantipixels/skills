@@ -5,14 +5,14 @@ description: Design or review one implementation-ready technical architecture fo
 
 # Solution Architect
 
-Own technical sufficiency of one solution. Produce one architecture packet an implementer can follow without inventing a material technical requirement.
+Own technical sufficiency of one software-system solution. Produce one architecture packet an implementer can follow without inventing a material technical requirement.
 
 | Mode | Purpose |
 | --- | --- |
 | `design` | create or revise the architecture |
 | `review` | judge one exact packet/candidate read-only |
 
-Keep initiative lifecycle, consequential user-choice closure, workspace persistence mechanics, implementation, and code-review verdicts outside this architecture result.
+Keep initiative lifecycle, consequential user-choice closure, persistence mechanics, implementation, and code-review verdicts outside this architecture result.
 
 ## Pin and evidence
 
@@ -30,23 +30,23 @@ Read only material evidence from:
 
 - system/domain/decision records;
 - operations and deployment;
-- code and tests;
+- code and tests when implementation exists;
 - dependencies and configuration; and
-- relevant history.
+- relevant history/provenance.
 
-Use `amose` when domain language/invariants materially affect design. When project/tool/runtime facts can change a decision, inspect exact-current repository and runtime evidence through the project's own wrappers, manifests, configuration, schemas, tooling, and primary sources. Observed structure or capability is evidence, not automatic architectural intent.
+Use `amose` when domain/project language or invariants materially affect design. When project/tool/runtime facts can change a decision, inspect exact-current implementation/runtime evidence through the active project's wrappers, manifests, configuration, schemas, tooling, and primary sources. Observed structure or capability is evidence, not automatic architectural intent.
 
 Derive the few drivers that can change design. Express them as concrete normal, failure, misuse, recovery, scale, or evolution scenarios with observable responses.
 
-Persist through `akosile` only when the architecture must survive sessions/owners, feed a plan/implementation, support recovery, or become a durable visual handoff.
+Keep the packet in current context when one-session use is sufficient. Persist it when architecture must survive sessions/owners, feed a plan/delivery, support recovery, or become a durable handoff. Prefer an existing or user-selected destination; use `akosile` only when that destination is a repository-scoped QP workspace. Architecture can be valid before a Git repository exists.
 
 ## Research only decision-changing unknowns
 
-- Use current project capability first, then the active language/stdlib/framework/platform/infrastructure/domain, then an already-selected dependency/tool, before custom mechanisms or new dependencies.
+- Use current project/platform capability first, then the active language/stdlib/framework/infrastructure/domain, then an already-selected dependency/tool, before custom mechanisms or new dependencies.
 - Research only unknowns that can change a decision/readiness result.
-- Prefer current official docs/specs/standards/owning project records/research.
+- Prefer current authoritative evidence appropriate to the claim: official docs/specs/standards, owning project records, exact runtime/project evidence, and applicable research.
 - Pin version/date/cutoff/claim.
-- Use `iwadi` when research deserves its own reusable record.
+- Use `iwadi` when research deserves its own reusable result.
 
 Do not maintain exhaustive platform catalogues or turn platform features into custom abstractions unless ownership, policy, lifecycle, integration, or proof remains missing. A new dependency/service/infrastructure component is an architectural scope expansion and must be justified by a driver the current stack cannot adequately satisfy.
 
