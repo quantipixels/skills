@@ -46,7 +46,7 @@ Inspect the current work context only enough to use established vocabulary, beha
 
 Separate confirmed context from inference. When the Decision Frontier is `EMPTY`, do not ask questions merely because this entry began as a conversation. When a material gap remains, classify and resolve it through the normal frontier instead of inventing a complete specification.
 
-Use a separate normative contract only when the initiative actually needs one beyond concise plan-local outcome and acceptance. Use `seda-spec` when the required contract is software/system behavior; otherwise consume the current domain's exact specification/authority when one exists. Keep only the lifecycle meaning and identity needed for readiness and delivery rather than copying the full contract into the plan.
+Use `seda-spec` when the initiative needs a compact implementation-independent behavior/operating contract beyond concise plan-local outcome and acceptance and that owner fits the subject. When another domain authority owns the normative contract, consume that current result instead. Keep only the lifecycle meaning and identity needed for readiness and delivery rather than copying the full contract into the plan.
 
 ## 2. Maintain lifecycle state
 
@@ -105,7 +105,7 @@ BLOCKED — unresolved material decisions remain, but none can currently be aske
 
 Do not invoke `arojinle` merely to reopen settled decisions. When the frontier is `OPEN`, give it the whole currently answerable material decision set and caller context, then let Àròjinlẹ̀ own the user question round. When some branches remain blocked, continue independent answerable branches and resolve missing prerequisites without suppressing the current open frontier. When `BLOCKED`, resolve the prerequisite fact/evidence first. When `EMPTY`, record why no interview is required.
 
-Use `amose` for repository/project domain knowledge only when its native result can materially change the plan/frontier. Use `iwadi` for substantial reusable primary-source research, `irinse` for bounded tool evidence, and the current specialist only when its independently useful result is material. Delegate bounded independent/noisy planning work when inline exploration would materially pollute the plan context; consume only the compact result needed to continue.
+Use `amose` for project/domain knowledge only when its native result can materially change the plan/frontier. Use `iwadi` for substantial reusable research, `irinse` for bounded tool evidence, and the current specialist only when its independently useful result is material. Delegate bounded independent/noisy planning work when inline exploration would materially pollute the plan context; consume only the compact result needed to continue.
 
 Supporting skills return compact exact-current results. Keep detailed packets with their native owners and link them instead of copying them.
 
@@ -119,7 +119,7 @@ Before `Planned`:
 4. If `arojinle` was used for the current decision set, require its exact-current final confirmation. If it was not required, record the current evidence proving why.
 5. Verify every required specialist result against the exact plan/current identity. Require current `solution-architect: IMPLEMENTATION_READY` only when software/system architecture is material; require another specialist's native readiness/result only when that owner actually governs the needed design.
 6. Treat coverage as an index, not proof: trace the top credible normal, failure, misuse, recovery, compatibility, migration/changeover, and operational mechanisms that apply to this initiative.
-7. For each material obligation, require either an exact-current normative/specialist result when a separate contract is needed or plan-local observable acceptance with a named proof seam when it is not. Use `seda-spec` for software/system behavior contracts; detailed test-first mechanics remain with `alaga` only when software delivery applies.
+7. For each material obligation, require either current `seda-spec: SPEC_READY` when its implementation-independent behavior contract fits and a separate normative contract is needed, another domain authority's current contract when it does not, or plan-local observable acceptance with a named proof/evidence seam.
 8. When delivery coordination is material, apply [delivery tracking](references/delivery-tracking.md)'s cumulative delivery-shape envelope before `Planned`. Require current expectations for delivery owners/workstreams or affected systems/surfaces, proof/evidence owners, new dependencies/contracts, handoff/review topology, and material replan triggers; counts may inform judgment but cannot become quotas.
 9. Resolve every blocking dependency, recovery/changeover, proof, documentation, and operational gap.
 10. Write the `Planned` revision and refresh any maintained primary human view.

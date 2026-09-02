@@ -4,13 +4,13 @@ Use this contract when the plan has material delivery coordination: multiple wor
 
 ## Decompose delivery when needed
 
-Use `seda-ticket` only when software/implementation delivery benefits from consumable QP delivery tickets. For another delivery shape, consume the active owner's native work units and dependencies rather than forcing the initiative into ticket semantics.
+Use `seda-ticket` when the settled plan benefits from consumable semantic delivery tickets with explicit dependencies, acceptance, and a startable frontier. Give it the scope, constraints, dependencies, acceptance, proof/evidence obligations, rollback/recovery boundaries, and exact `seda-spec` identity when one governs the work. Consume its current ticket set and derived startable frontier; do not reproduce its decomposition, dependency, startability, or terminal-disposition rules here.
 
-When tickets apply, give `seda-ticket` the scope, constraints, dependencies, acceptance, proof, rollback boundaries, and exact `seda-spec` identity when one governs the work. Consume its current ticket set and derived startable frontier; do not reproduce its decomposition, dependency, startability, or terminal-disposition rules here.
+When another delivery owner already has a stronger native work-unit/dependency model, consume that result instead of forcing parallel ticket semantics. Tickets are optional decomposition, not Atọ́nà's universal delivery representation.
 
 Keep the plan in `Draft` while required decomposition is missing, ambiguous, incomplete, or cyclic. A work unit's state/startability never sets plan status, phase state, delivery authority, or Atọ́nà's delivery summary.
 
-Semantic delivery units do not determine operational topology. Choose candidate, commit, branch, session, PR/MR, document, review package, handoff, or other execution containers independently for their own review, rollback, ownership, release, integration, or evidence value. When Git/provider delivery applies, default one integration branch and review unit when several tickets form one coherent integrated change; split only when the resulting units are independently useful and safely reviewable/mergeable. Never create one branch, PR/MR, commit, test file, or agent session per ticket merely because the ticket boundary exists.
+Semantic delivery units do not determine operational topology. Choose candidate, commit, branch, session, PR/MR, document, review package, handoff, deployment unit, or other execution containers independently for their own review, rollback/recovery, ownership, release, integration, or evidence value. When Git/provider delivery applies, default one integration branch and review unit when several tickets form one coherent integrated change; split only when the resulting units are independently useful and safely reviewable/mergeable. Never create one operational container per ticket merely because the ticket boundary exists.
 
 ## Track authorized delivery
 
@@ -20,7 +20,7 @@ Before material delivery begins, establish a lightweight cumulative **delivery-s
 
 Require delivery authority before execution starts. Set the plan to `In Progress` when authorized delivery begins; investigation, clarification, and plan edits do not start delivery.
 
-Give each delivery owner the exact plan outcome, settled scope, dependencies, acceptance, proof, rollback/recovery boundary, and governing specification identity when present. Use `alaga` when the supplied work is a software/build job that must deliver one or more candidates through implementation, proof, and required review. Otherwise consume the current delivery owner's exact-current native result rather than translating it into Alága semantics.
+Give each delivery owner the exact plan outcome, settled scope, dependencies, acceptance, proof/evidence obligation, rollback/recovery boundary, and governing specification identity when present. Use `alaga` when the supplied work is a software/build job that must deliver one or more candidates through implementation, proof, and required review. Otherwise consume the current delivery owner's exact-current native result rather than translating it into Alága semantics.
 
 Execution/review progress comes from the active owner results, not from ticket/work-unit progress states. When exact-current owner evidence proves a ticket's acceptance, the caller may reconcile that ticket to `Done`; cancellation still requires its own authority. A delivery blocker remains with the active owner and affects Atọ́nà's delivery summary without creating a parallel lifecycle.
 
