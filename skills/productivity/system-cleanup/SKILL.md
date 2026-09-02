@@ -1,6 +1,7 @@
 ---
 name: system-cleanup
 description: Reclaim disk space on macOS by auditing APFS usage, clearing build artifacts and package-manager caches, reviewing stale Git worktrees, and offloading large keepers to an external drive. Use for low storage, a full disk, “out of space” errors, large System Data, and cleanup or offload requests; exclude performance tuning, malware removal, and unapproved deletion of personal or application data.
+disable-model-invocation: true
 ---
 
 # System cleanup
