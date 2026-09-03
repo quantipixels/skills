@@ -17,7 +17,7 @@ State the one material question, why cheaper evidence is insufficient, who must 
 
 One prototype boundary may contain several variants when they answer the same pinned question and test the same dimension. A new material question, audience, or evidence claim requires a new boundary.
 
-Do not start when the user is asking what to build, requesting the accepted/production result, or asking for ordinary polish. Use `arojinle` for unresolved consequential choices that do not yet require an artifact. Use `alaga` only when the accepted result is a software/build delivery job; otherwise hand the confirmed decision to the current delivery/implementation owner.
+Do not start when the missing outcome is selection without experiential evidence, accepted/production delivery, or ordinary polish.
 
 When the question depends on subjective experience, require an attending human. An unattended run cannot invent how the interaction feels or what the user prefers.
 
@@ -25,29 +25,27 @@ When the question depends on subjective experience, require an attending human. 
 
 Choose the smallest medium and fidelity that can answer the question. Reuse existing project/runtime components, templates, fixtures, documents, process artifacts, or host-native preview capability when that improves truth without turning the prototype into accepted delivery work.
 
-Use an OS temporary directory or isolated disposable workspace by default for file-based prototypes. Do not modify the accepted/production candidate unless separately authorized for a bounded prototype location. Avoid real customer data, production credentials, irreversible effects, external messages, or payments. Label simulated behavior clearly, but never simulate the dimension being decided.
+Use a disposable or isolated location for file-based prototypes. Do not modify the accepted/production candidate unless separately authorized for a bounded prototype location. Avoid real customer data, production credentials, irreversible effects, external messages, or payments. Label simulated behavior clearly, but never simulate the dimension being decided.
 
-Do not add a bundled preview server merely for this workflow. Use an existing application server, a host-native preview, or a standard available local server when a server is actually needed.
+Use an existing preview/server capability when one is needed; do not add a bundled server merely for this workflow.
 
 ## 3. Let the user experience and decide
 
 Give the user the runnable, inspectable, or otherwise directly experienceable path and a concise observation prompt tied to the question. Record what they actually observed, not what the author expected. Compare variants only against the pinned dimension.
 
-Revise only when the next version still answers the same question. Finish with exactly one result:
+Revise only while the next version still answers the same question. Finish with exactly one result:
 
 - `DECIDED` — direct experience selected or confirmed an answer;
 - `INCONCLUSIVE` — the artifact was exercised but did not distinguish the alternatives;
 - `BLOCKED` — a named environment, capability, authority, evidence, or human-attendance gap prevented the test; or
 - `ABANDONED` — the user ended the experiment without a decision.
 
-Return the question, artifact path/locator, variants, fidelity, simulations, observations, result, unresolved alternatives, and limitations.
+Return the question, artifact locator, variants, fidelity, simulations, observations, result, unresolved alternatives, and limitations.
 
 State the evidence boundary explicitly. A visual prototype does not prove performance, security, accessibility, integration, maintainability, operational viability, or another dimension unless that dimension was represented truthfully. A runnable interaction does not prove production readiness.
 
 ## 4. Retain the decision, not disposable implementation
 
-Prototype implementation/material is not the accepted delivery result. The next owner should carry forward the confirmed decision, interaction/process contract, selected assets, measurements, and limitations—not copy the disposable implementation by default.
+Prototype implementation/material is not the accepted delivery result. Carry forward the confirmed decision, interaction/process contract, selected assets, measurements, and limitations—not the disposable implementation by default.
 
-Temporary work may be deleted after the evidence is captured. When a durable decision-prototype result is genuinely needed, use the existing/user-selected durable destination; use `akosile` only when that destination is a repository-scoped QP workspace. A durable HTML prototype may itself be the experiential artifact; use `html-artifact` only for a separate human report about supplied evidence.
-
-Under an active `arojinle` interview or `atona` plan, return Prototype's native exact-current result. The caller owns the resulting decision or plan update.
+Temporary work may be deleted after the evidence is captured. Persist the decision instrument only when a durable result is separately required.
