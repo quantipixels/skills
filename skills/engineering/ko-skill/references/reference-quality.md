@@ -6,7 +6,7 @@ A healthy reference is not a private encyclopaedia. It is a selectively loaded p
 
 ## Reference or catalogue?
 
-A **reference** belongs to one skill outcome and is loaded when a bounded branch of that outcome needs deeper judgment, vocabulary, examples, counterexamples, or stable decision rules.
+A **reference** belongs to one skill outcome and is loaded when a bounded branch of that outcome needs deeper judgment, vocabulary, examples, counterexamples, stable decision rules, or an authoritative conceptual anchor.
 
 A **catalogue** maintains a reusable body of language, framework, platform, standards, or domain knowledge because that knowledge is itself necessary to the skill's public result. Apply [researched knowledge catalogues](knowledge-catalogues.md) only for that shape.
 
@@ -23,7 +23,7 @@ A reference earns its place when most of these are true:
 - **Recurrence** — it applies across multiple plausible invocations or protects one owner-wide high-consequence boundary.
 - **Selective trigger** — the owner can load it only when the branch matters.
 - **Stable basis** — it is durable enough to preserve, or it states the evidence/freshness boundary that requires revalidation.
-- **Calibration value** — examples, counterexamples, or a stable vocabulary materially sharpen the rule.
+- **Calibration value** — examples, counterexamples, a named reasoning model, or stable vocabulary materially sharpen the rule.
 - **Bounded output** — the reference improves the native result without being dumped into that result.
 
 Do not keep a reference merely because it is informative. Move, research, or remove material that:
@@ -34,6 +34,23 @@ Do not keep a reference merely because it is informative. Move, research, or rem
 - freezes volatile framework/platform behavior better read from current owning sources;
 - records one task's temporary state, rationale, or history; or
 - cannot change the skill's judgment, action, proof, safety, authority, or completion result.
+
+### Preserve useful named models
+
+Do not remove a named model, standard, or concept merely because its currently selected rules can be paraphrased. Keep the name when it provides material conceptual compression, stable vocabulary, authoritative scope, or a retrieval anchor that helps the agent handle cases not enumerated in local bullets.
+
+When keeping one, bind it explicitly:
+
+```text
+named model/standard
+→ QP-relevant reasoning job
+→ selected behavior-bearing subset
+→ boundary: the name does not import the whole framework
+```
+
+Prefer current owning sources for volatile or normative detail. Remove names that add only prestige, generic ceremony, canned templates, or latent rules QP does not intend to adopt.
+
+When compressing or removing a reference, check the residual material decision surface: a smaller representation is worse if the deleted depth merely turns a consequential constraint or distinction into model inference.
 
 ## Use examples as calibration
 
