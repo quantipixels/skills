@@ -30,6 +30,8 @@ Respect explicit owner/tool choices and use the shortest combination of current 
 
 Do not resolve an independent decision, architecture, specification, diagnosis, or initiative-lifecycle outcome inside delivery. Consume its established owner result only when delivery actually depends on it. Use `scope-guard` only when the user explicitly wants its portable anti-overengineering result, and `root-cause` when causal diagnosis itself remains the missing outcome rather than a settled implementation premise.
 
+Ordinary implementation discretion remains agent-owned only while the choice stays inside accepted behavior, architecture, authority, safety, compatibility, ownership/lifecycle, and material risk/cost boundaries. When a choice can materially change one of those and current evidence/contract does not determine it, surface a decision gap instead of selecting a plausible default from model priors.
+
 When consequential implementation choices need deeper scrutiny of stack-native behavior, ownership/lifecycle, compatibility, proportionality, or version-specific evidence, read [expert implementation counsel](references/expert-implementation-counsel.md). This is a selectively loaded Alága path, not another owner. Skip it for obvious mechanical edits whose sound shape is already determined by current project evidence.
 
 Read [job report](references/job-report.md) when the job is multi-candidate, blocked/handoff-prone, migration/security/recovery sensitive, externally destructive, or otherwise meets that reference's report gate. Reuse an active Atọ́nà plan instead of creating a parallel job report.

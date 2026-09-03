@@ -26,6 +26,7 @@ Own one coherent interface direction from current product/project evidence and d
 - Use external references to answer a bounded design question; do not browse for novelty after the direction is already supported.
 - Extract transferable hierarchy, composition, interaction, motion, density, and state-treatment principles. Do not reproduce distinctive layouts, illustrations, copy, branding, or proprietary assets.
 - Use semantic color roles and accessible foreground/background pairs; do not invent a palette because a template says blue or green is conventional.
+- For web surfaces, use current **WCAG** guidance as the accessibility baseline; for native/mobile surfaces, use current platform accessibility guidance plus applicable cross-platform principles. When custom/composed web widgets need interaction semantics beyond native/library behavior, use the current **WAI-ARIA Authoring Practices (APG)** as a reasoning/reference anchor rather than maintaining a bundled accessibility manual.
 - Prefer established platform primitives and predictable interaction behavior over decorative novelty.
 - Make normal, loading, empty, error, disabled, focus/pressed, and recovery states explicit when the surface needs them.
 - Use responsive behavior from content and hierarchy, not fixed device-size folklore.

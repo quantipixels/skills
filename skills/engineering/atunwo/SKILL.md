@@ -80,7 +80,7 @@ In provider mode, fetch the exact target-to-head candidate without changing unre
 
 Outside `audit` scope, read [`references/finding-contract.md`](references/finding-contract.md) and review each defect-discovery branch:
 
-- **Contract:** required behavior, actors, permissions, states, failures, recovery, compatibility, migration, security, rollout, and rollback.
+- **Contract:** required behavior, actors, permissions, states, failures, recovery, compatibility, migration, security, rollout, and rollback; also identify material behavior or policy introduced by the candidate for which the accepted contract, confirmed decision, project invariant, or other current authority provides no basis. Passing proof does not license invented behavior.
 - **Standards:** repository architecture, ownership, naming, errors, observability, dependencies, resources, and secret safety.
 - **Proof:** whether tests and other evidence can independently detect plausible incorrect caller-visible behavior. Green status, coverage, mock choreography, or an assertion that mirrors production logic is not sufficient proof by itself.
 - **Bug hunt:** candidate-caused failures in applicable normal, negative, degraded, and hostile conditions.
