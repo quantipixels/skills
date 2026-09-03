@@ -14,4 +14,6 @@ Explain the supplied subject so a capable newcomer can form the right mental mod
 - Match depth to the question. A simple “what is X?” should not become a tutorial or exhaustive reference unless the user asks.
 - Separate fact from approximation and say when current external verification is needed rather than inventing certainty.
 
-Return the explanation directly. Do not turn an explanation request into research, decision closure, review, or implementation unless that outcome is separately requested.
+When structure materially shortens the explanation, use the smallest inline representation that exposes the relationship: pseudocode for logic, a call tree for execution/order, a component or shallow file tree for composition/ownership, a shape-aware diff for before/after, or a small diagram when two-dimensional relationships are genuinely clearer. Show the whole block/shape when omission would hide ownership or order. Keep the representation adjacent to the explanation it replaces or supports.
+
+Return the explanation directly. `html-artifact` becomes the owner only when the requested result is a standalone browser information projection rather than conversational understanding. Do not turn an explanation request into research, decision closure, review, or implementation unless that outcome is separately requested.
