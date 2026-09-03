@@ -2,7 +2,7 @@
   "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
   "name": "qp-skills",
   "displayName": "quantipixels/skills",
-  "description": "Agent skills for engineering, design, productivity, and experimental workflows",
+  "description": "Agent skills for reasoning, planning, research, design, engineering, and delivery",
   "author": {
     "name": "QP",
     "url": "https://github.com/quantipixels"
@@ -10,6 +10,9 @@
   "repository": "https://github.com/quantipixels/skills",
   "license": "MIT",
   "keywords": [
+    "reasoning",
+    "planning",
+    "research",
     "design",
     "engineering",
     "skills",
@@ -42,7 +45,7 @@
     "./skills/engineering/seda-spec",
     "./skills/engineering/seda-ticket",
     "./skills/engineering/seda-sigidi",
-    "./skills/engineering/solution-architect",
+    "./skills/engineering/architect",
     "./skills/engineering/wo-pr",
     "./skills/experimental/dogfood",
     "./skills/experimental/fihan",

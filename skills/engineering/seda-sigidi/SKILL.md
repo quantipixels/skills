@@ -1,6 +1,7 @@
 ---
 name: seda-sigidi
 description: Draft or integrate one AI agent's durable soul—identity, values, boundaries, and voice—grounded in evidence about its human. Use `draft` for naming or authoring without configuration changes, and `integrate` for explicit read/write work in the configuration its host loads; exclude configuration edits with no identity decision, generic documentation work, skill authoring, provider operations, and installing, activating, publishing, committing, or pushing anything.
+disable-model-invocation: true
 ---
 
 # Fẹ̀mí Sínú Sigidi

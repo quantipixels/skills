@@ -1,6 +1,6 @@
 ---
 name: pare
-description: Produce a read-only codebase simplification `audit` or bounded candidate `review`. Cover implementation, state, ownership, algorithms, dependencies, support artifacts, and tests; exclude execution, defects, feature delivery, and architecture.
+description: Produce a read-only software-system simplification `audit` or bounded candidate `review`. Cover implementation, state, ownership, algorithms, dependencies, support artifacts, and tests; exclude execution, defects, feature delivery, and architecture.
 ---
 
 # Parẹ́
@@ -9,14 +9,14 @@ Prefer elimination, direct state, local ownership, deep modules, native capabili
 
 Modes:
 
-- `audit` — bounded repository/subsystem simplification audit; read-only; no tests/builds.
-- `review` — one fixed candidate; read-only; no provider/verdict.
+- `audit` — bounded software system/subsystem simplification audit; read-only; no tests/builds.
+- `review` — one fixed software candidate; read-only; no provider/verdict.
 
 Keep defect verdicts/stateful parity, implementation, and technical architecture outside this read-only simplification result.
 
 ## Evidence
 
-Pin repository/candidate, baseline, instructions and exclusions. Inspect only the current consumers, history, configuration, generated/framework reachability, and project-native evidence needed to distinguish material simplification claims. Search or tool absence is never deletion proof by itself, and tool/metric output is evidence rather than the simplification verdict.
+Pin the software system/candidate, baseline, instructions and exclusions. Inspect only the current consumers, implementation/configuration, history, generated/framework reachability, and system-native evidence needed to distinguish material simplification claims. Search or tool absence is never deletion proof by itself, and tool/metric output is evidence rather than the simplification verdict.
 
 When control-flow/state-space/nesting/fan-out/lifecycle/complexity/test volume materially controls the investigation, read [complexity and proof](references/complexity-and-proof.md). When recurring maintainability/ownership patterns are material, read [maintainability patterns](references/maintainability-patterns.md). Patterns and metrics are signals, never findings.
 
@@ -25,7 +25,7 @@ When control-flow/state-space/nesting/fan-out/lifecycle/complexity/test volume m
 Take the first sound reduction after understanding the real flow/consumers/contracts:
 
 1. **Eliminate** — the mechanism need not exist, or an existing element has no required behavior, contract, consumer, or owner.
-2. **Reuse** — current codebase → stdlib/framework/platform → installed dependency/tool.
+2. **Reuse** — current implementation/system capability → stdlib/framework/platform → installed dependency/tool.
 3. **Derive** — eliminate stored/duplicated state while preserving timing/ownership/cost.
 4. **Localize** — put policy/state with its real owner/deep module.
 5. **Shrink** — minimum direct mechanism; no speculative variation.
@@ -34,7 +34,7 @@ Do not recommend extraction/indirection merely because a file/function is large 
 
 ## Audit
 
-Inventory non-overlapping source, entry-point, build, test, tooling, platform and generated subsystems. Classify implementation/dependencies/config/support artifacts `retain | delete-safe | blocked`. Run separate deletion, representation, ownership, algorithm, complexity-when-material, and proof passes.
+Inventory non-overlapping source, entry-point, build, test, tooling, platform, runtime/configuration, and generated subsystems. Classify implementation/dependencies/config/support artifacts `retain | delete-safe | blocked`. Run separate deletion, representation, ownership, algorithm, complexity-when-material, and proof passes.
 
 Deletion safety needs more than search absence: check callers, dynamic/framework/generated reachability, config/data, builds, consumers, history, contracts and proof owners. Preserve public/security/data-integrity/concurrency/recovery/adapter/runtime/interaction/accessibility contracts when no stronger complete owner exists.
 
@@ -54,7 +54,7 @@ Also check:
 - edge-case machinery that could disappear by eliminating/strengthening the causal state or owner; and
 - durable tests against stable seam, independent oracle, falsifiability, stronger existing proof, and maintenance burden.
 
-Treat passing tests, coverage, line-count reduction, or tool scores as evidence only. Demonstrably dead or redundant code may be surfaced as a cleanup recommendation when safe removal is supported by evidence; its mere presence is not a blocking finding. Route possible defects to `atunwo`; conflicting domain vocabulary to `amose`.
+Treat passing tests, coverage, line-count reduction, or tool scores as evidence only. Demonstrably dead or redundant code may be surfaced as a cleanup recommendation when safe removal is supported by evidence; its mere presence is not a blocking finding. Route possible defects to `atunwo`; conflicting project/domain vocabulary to `amose`.
 
 When a deliberate simplification has a documented ceiling/revisit trigger, preserve it if current evidence supports it. A material deliberate limitation with no observable revisit trigger is a maintainability concern, not a reason to manufacture a separate debt system.
 
@@ -69,6 +69,6 @@ Proof: <evidence / future proof owner>
 Confidence: <level>
 ```
 
-Recheck identity, reachability, ownership, proof, migration and worktree state before recommending. State future verification/authority without executing tests/builds or mutating.
+Recheck identity, reachability, ownership, proof, migration and relevant workspace state before recommending. State future verification/authority without executing tests/builds or mutating.
 
 Return scope/identity, ranked reductions, retained contracts, proof owners, blockers, implementation slices, required execution authority, future verification, and residual risk.

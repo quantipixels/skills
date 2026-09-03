@@ -9,7 +9,7 @@ Turn supplied material into a purpose-shaped visual view. Own semantic compressi
 
 ## Projection contract
 
-Use an owner-supplied projection path when present; otherwise use the requested path or resolve a standalone `.qp/artifacts/<subject>/index.html` through `akosile`.
+Use an owner-supplied projection path when present; otherwise use the requested path or the active host's normal artifact/output surface. When the selected destination is a repository-scoped QP workspace, resolve a standalone `.qp/artifacts/<subject>/index.html` through `akosile`. Do not require a repository merely to produce an HTML artifact.
 
 When an owner record exists, read it first and pin identity/revision/status/candidate, `Resume`, linked evidence, and projection brief. Record wins when HTML disagrees.
 
@@ -96,11 +96,6 @@ After a proved defect, rerun only proof invalidated by the correction. Unrelated
 
 ## Deliver
 
-For direct user access, return first:
-
-```text
-Absolute path: <resolved filesystem path>
-Workspace path: <repository-relative .qp/... path>
-```
+Return the exact direct-access locator supported by the active host: a file path, artifact attachment/URL, or equivalent. When the artifact lives in a repository-scoped QP workspace, also return its repository-relative `.qp/...` workspace path. Do not invent an absolute filesystem path or `.qp` locator when the host/destination does not have one.
 
 Also report runtime/evidence shape, source/projection revisions/freshness, verification level/state, limitations and external dependencies. Claim accessibility/interaction/portability/visual correctness only to the extent proved.

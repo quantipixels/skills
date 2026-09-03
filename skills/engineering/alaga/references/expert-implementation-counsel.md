@@ -23,7 +23,7 @@ Challenge consequential choices as they are made rather than producing a large u
 
 Start with current repository, dependency, compiler, runtime, framework, IDE, and native-tool evidence. Do not begin from a fixed language/framework catalogue.
 
-- Use `solution-architect` when the missing result is material technical architecture.
+- Use `architect` when the missing result is material technical architecture.
 - Use `amose` for domain invariants or durable project knowledge.
 - Use `root-cause` when a reproducible failure still lacks a causal mechanism and different mechanisms imply different fixes.
 - Use `ro-wo` when the alleged need for deeper research rests on a consequential premise; challenge the premise before paying for more evidence.

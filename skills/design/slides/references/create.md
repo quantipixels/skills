@@ -6,7 +6,7 @@ Use this as the creation entry point. It defines the stable deck-level job, not 
 
 Pin:
 
-- primary audience and decision/action;
+- primary audience and intended reader outcome: understand, learn, compare, review, decide, act, or another explicit job;
 - delivery format and presentation context;
 - source evidence/data and any citation obligations;
 - brand/project constraints when they exist;
@@ -18,13 +18,13 @@ Then create a slide map:
 ```text
 slide
 → one job
-→ one headline claim
-→ supporting evidence
+→ message/content appropriate to that job
+→ supporting evidence when applicable
 → visual relationship/form
-→ transition to next idea
+→ transition or relationship to the surrounding deck
 ```
 
-Use [layout patterns](layout-patterns.md) for the relationship, [slide strategies](slide-strategies.md) for sequence, and [copy formulas](copywriting-formulas.md) only when copy shaping needs them.
+Use [layout patterns](layout-patterns.md) for the relationship, [slide strategies](slide-strategies.md) for sequence, and [copy patterns](copywriting-formulas.md) only when persuasive/claim-oriented copy shaping is actually needed.
 
 ## Tokens and implementation
 
@@ -38,7 +38,7 @@ For PowerPoint or another native presentation format, use the host's presentatio
 
 Check the actual delivered format:
 
-- every slide has one clear job and readable headline claim;
+- every slide has one clear job and an appropriate readable heading/message;
 - text/data/images fit at the target viewport/export without clipping or unreadable type;
 - charts preserve units, scale meaning, labels and non-color distinction where needed;
 - brand/current token relationships are respected when applicable;
