@@ -15,16 +15,18 @@ Do not ask a question whose answer depends on another still-open question in the
 
 Finding facts is your job, never the user's. Resolve bounded facts directly; isolate noisy lookup only when it materially protects the decision context. Let only dependent questions wait while independent frontier questions continue.
 
-When terminology, relationships, invariants, ownership, identity, state boundaries, or conceptual framing can materially change the tree, challenge ambiguous or conflicting language and test it with concrete scenarios. Current implementation or operations are evidence of existing behavior, not automatic authority for desired meaning.
+When terminology, relationships, invariants, ownership, identity, state boundaries, or conceptual framing can materially change the tree, challenge ambiguous/conflicting language and test it with concrete scenarios. Current implementation or operations are evidence of existing behavior, not automatic authority for desired meaning.
+
+When a frontier choice has several credible alternatives and at least two independent criteria can materially change the recommendation, use a compact decision-specific rubric. Apply hard gates first; derive only the criteria that matter to this decision; show the decisive factor, strongest credible alternative, and material counterevidence. Do not manufacture scores for a trivial/already-determined choice or let an average hide a gate. The rubric supports the recommendation; the decision remains the user's.
 
 When a material frontier decision lacks a credible mechanism-diverse option set, use `ideate` only for that decision. When direct experience of behavior, process, visual treatment, interaction, service treatment, API/CLI ergonomics, message treatment, or another truthfully representable dimension could change the answer and cheaper evidence is insufficient, use `prototype` only for that decision.
 
-The decisions remain the user's. Do not silently convert a recommendation, generated option, or prototype observation into confirmation.
+The decisions remain the user's. Do not silently convert a recommendation, generated option, comparative grade, or prototype observation into confirmation.
 
 ## Visual support proportionality
 
-Conversation is the primary view for a small or single-round decision set. Use `html-artifact` only when a substantial multi-round tree is materially easier to understand as a visual relationship or needs a durable human projection.
+Conversation is the primary view for a small or single-round decision set. Use `html-artifact` only when a substantial multi-round tree is materially easier to understand as a visual relationship or needs a durable human projection. A visual comparison must preserve hard gates, confidence/uncertainty, and counterevidence rather than reducing the choice to cosmetic ranking.
 
 Before declaring the material frontier empty, challenge the current tree for consequential assumptions, missing branches, contradictory decisions, and dependencies that were never made explicit.
 
-Finish only when that challenge leaves no unresolved material branch and the user confirms shared understanding. Return confirmed decisions, material assumptions/evidence, any explicit deferrals/re-entry condition, and the next outcome boundary. When confirmed decisions establish or change durable project/domain knowledge, give the confirmed semantic delta to `amose` for reconciliation rather than turning the decision interview into a knowledge store. Do not execute the resulting delivery inside Àròjinlẹ̀.
+Finish only when that challenge leaves no unresolved material branch and the user confirms shared understanding. Return confirmed decisions, material assumptions/evidence, decision-changing alternatives/criteria when they constrained the choice, explicit deferrals/re-entry conditions, and the next outcome boundary. When confirmed decisions establish/change durable project/domain knowledge, give the confirmed semantic delta to `amose` for reconciliation. Do not execute resulting delivery inside Àròjinlẹ̀.
