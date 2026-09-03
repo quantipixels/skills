@@ -13,6 +13,8 @@ Read the candidate package plus affected repository/host instructions and integr
 
 Grow capability depth faster than public surface area. A public skill must own an independently useful result, authority/artifact/acceptance boundary, failure mode, or reusable steering contract **and** make direct selection/use materially simpler than keeping the capability behind an existing owner. Do not remove a useful lightweight steering contract merely because a capable model can perform the underlying act.
 
+Do not optimize for fewer owners, resources, or stages. Fold only when the smaller shape preserves a coherent outcome without braiding independently useful results, authority or acceptance boundaries, lifecycle/state, or distinct reasons to change.
+
 Frame the owner at the natural level of its outcome. Do not narrow a broadly useful result to a historical repository/software/tool context, and do not broaden a domain-specific owner beyond the evidence, authority, or capability needed to produce its result. Generalize the mechanism, never the authority.
 
 Protect the **material decision surface**. Compression, folding, or generalization must not turn a previously owned constraint, evidence requirement, authority boundary, or consequential choice into unlabeled model inference. A material choice that can change accepted behavior, safety, compatibility, ownership/lifecycle, architecture, authority, or consequential risk/cost must be determined by current evidence/contract, explicitly owned, or surfaced as unresolved. Leave ordinary implementation and tool mechanics to the capable agent.

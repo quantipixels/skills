@@ -42,7 +42,7 @@ Do not rewrite terminal work units or owner results to make the amended contract
 
 After each materially shape-changing slice or before a material publication/review/handoff boundary, reconcile cumulative actual shape against the delivery-shape envelope. Counts may be useful telemetry in domains where they carry information, but counts are never the acceptance target. Material drift includes unexpected workstream/system/surface spread, repeated new proof owners, new dependencies/contracts, or handoff/review topology that has multiplied beyond its independent value.
 
-When drift is material, stop automatic accretion and determine the owning correction: reopen Atọ́nà when accepted outcome/scope changed; use the current specialist when domain/technical boundaries changed; use `solution-architect` when software/system architecture changed; or use `pare` when software implementation/test/support structure has accumulated without clear value. Do not force a non-software drift problem through a software owner.
+When drift is material, stop automatic accretion and determine the owning correction: reopen Atọ́nà when accepted outcome/scope changed; use the current specialist when domain/technical boundaries changed; use `architect` when software/system architecture changed; or use `pare` when software implementation/test/support structure has accumulated without clear value. Do not force a non-software drift problem through a software owner.
 
 Derive `Complete` only when every in-scope delivery obligation has current accepting proof and plan-level integration has no blocking gap. Derive `Not required` only when the accepted plan contains no delivery work.
 

@@ -28,7 +28,7 @@ When no repository skill materially improves the result, return `NO_ROUTE` and l
 Keep only boundaries where current metadata can plausibly select the wrong **independent owner**:
 
 - `ideate` / `arojinle` / `atona` — generate credible possibilities / resolve consequential user selection / maintain initiative lifecycle.
-- `atona` / `arojinle` / current specialist — initiative lifecycle / consequential user decision / independently useful specialist design. For software/system technical architecture, that specialist is `solution-architect`.
+- `atona` / `arojinle` / current specialist — initiative lifecycle / consequential user decision / independently useful specialist design. For software/system technical architecture, that specialist is `architect`.
 - `atona` / `seda-spec` / `seda-ticket` — lifecycle / implementation-independent behavior contract / semantic delivery decomposition when those results fit the work; none is mandatory merely because a plan exists.
 - `scope-guard` / `alaga` / `pare` — standalone coding-scope steering / software-build delivery / read-only software-system simplification.
 - `alaga` / `atunwo` / `pare` — software delivery / independent code-review verdict+parity / software-system simplification.

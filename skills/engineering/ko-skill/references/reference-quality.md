@@ -10,7 +10,7 @@ A **reference** belongs to one skill outcome and is loaded when a bounded branch
 
 A **catalogue** maintains a reusable body of language, framework, platform, standards, or domain knowledge because that knowledge is itself necessary to the skill's public result. Apply [researched knowledge catalogues](knowledge-catalogues.md) only for that shape.
 
-Good reference: a Solution Architect module-depth guide explaining when an adapter owns enough lifecycle/policy to justify a seam.
+Good reference: an Architect module-depth guide explaining when an adapter owns enough lifecycle/policy to justify a seam.
 
 Bad disguised catalogue: a hidden Java/Spring/Kotlin best-practice corpus inside an execution companion.
 

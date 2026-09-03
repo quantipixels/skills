@@ -7,7 +7,7 @@ description: Maintain one exact-current initiative plan from early Draft through
 
 Turn unclear intent into one live initiative plan. Keep one exact-current semantic plan and use `html-artifact` to visualise it as the primary human view when a visual artifact materially improves planning, review, or continuity.
 
-Own plan meaning, decision coverage, lifecycle sufficiency, delivery integration, and closure. Keep consequential user-choice closure with `arojinle`, delivery execution with its active owners, repository `.qp` mechanics with `akosile` when that persistence path is used, and route selection with `alarina`. Use a specialist owner only when its independently useful result is actually required; software/system technical architecture belongs to `solution-architect`.
+Own plan meaning, decision coverage, lifecycle sufficiency, delivery integration, and closure. Keep consequential user-choice closure with `arojinle`, delivery execution with its active owners, repository `.qp` mechanics with `akosile` when that persistence path is used, and route selection with `alarina`. Use a specialist owner only when its independently useful result is actually required; software/system technical architecture belongs to `architect`.
 
 When a confirmed decision or material fact changes, create one scoped amendment map for affected owner results, reopen affected decisions/phases, mark only dependent proof stale, record affected delivery/representation/operational surfaces, and rerun affected decision/readiness/closure checks. Never present a partly superseded result as wholly current.
 
@@ -89,7 +89,7 @@ PLAN_LOCAL
 → reversible plan detail that does not require user authority; Atọ́nà may recommend/settle it from current evidence.
 
 SPECIALIST_DESIGN
-→ independently useful domain/technical design result owned by the current specialist when one exists. Software/system architecture → solution-architect. If QP has no fitting owner, keep the need explicit rather than forcing it through a software owner.
+→ independently useful domain/technical design result owned by the current specialist when one exists. Software/system architecture → architect. If QP has no fitting owner, keep the need explicit rather than forcing it through a software owner.
 
 MATERIAL_USER_DECISION
 → consequential choice that changes accepted outcome, scope, policy, user experience, risk, cost, compatibility, or trade-off; owned by arojinle.
@@ -117,7 +117,7 @@ Before `Planned`:
 2. Recompute the Decision Frontier Gate. Require `EMPTY`; no open, blocked, stale, silently assumed, or blocking-deferred material decision may cross the gate.
 3. When progressive shaping was needed, require no material not-yet-specifiable territory that delivery could encounter inside accepted scope. Exclude it, settle it, or give a genuine non-blocking re-entry contract rather than inventing the question.
 4. If `arojinle` was used for the current decision set, require its exact-current final confirmation. If it was not required, record the current evidence proving why.
-5. Verify every required specialist result against the exact plan/current identity. Require current `solution-architect: IMPLEMENTATION_READY` only when software/system architecture is material; require another specialist's native readiness/result only when that owner actually governs the needed design.
+5. Verify every required specialist result against the exact plan/current identity. Require current `architect: IMPLEMENTATION_READY` only when software/system architecture is material; require another specialist's native readiness/result only when that owner actually governs the needed design.
 6. Treat coverage as an index, not proof: trace the top credible normal, failure, misuse, recovery, compatibility, migration/changeover, and operational mechanisms that apply to this initiative.
 7. For each material obligation, require either current `seda-spec: SPEC_READY` when its implementation-independent behavior contract fits and a separate normative contract is needed, another domain authority's current contract when it does not, or plan-local observable acceptance with a named proof/evidence seam.
 8. When delivery coordination is material, apply [delivery tracking](references/delivery-tracking.md)'s cumulative delivery-shape envelope before `Planned`. Require current expectations for delivery owners/workstreams or affected systems/surfaces, proof/evidence owners, new dependencies/contracts, handoff/review topology, and material replan triggers; counts may inform judgment but cannot become quotas.

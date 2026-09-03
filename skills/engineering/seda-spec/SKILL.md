@@ -53,7 +53,7 @@ A specification defines what must be true. It does not choose modules, teams, de
 
 ## Resolve material gaps
 
-Separate confirmed behavior from inference. Resolve discoverable facts directly or through `iwadi` when substantial reusable research is needed. Use `arojinle` for unresolved consequential user decisions. Use the current specialist when specification readiness depends on an independently useful design result; software/system technical architecture belongs to `solution-architect`.
+Separate confirmed behavior from inference. Resolve discoverable facts directly or through `iwadi` when substantial reusable research is needed. Use `arojinle` for unresolved consequential user decisions. Use the current specialist when specification readiness depends on an independently useful design result; software/system technical architecture belongs to `architect`.
 
 Do not fill a gap with a plausible requirement. If a material behavior cannot be specified without invention, keep the gap visible and return `SPEC_NOT_READY`.
 
@@ -64,6 +64,6 @@ Return one result:
 - `SPEC_READY` — every in-scope material behavior is observable, internally consistent, traceable to current authority, and mapped to a credible proof/evidence seam; no unresolved material decision or evidence gap remains.
 - `SPEC_NOT_READY` — name each blocking ambiguity, conflict, missing authority, or evidence gap and the owner/evidence needed to resolve it.
 
-Tests are one possible evidence type against a specification, not a universal source from which desired expectations are reverse-engineered. A ready specification grants no specialist-design, delivery, publication, or unrelated persistence authority. Write only to a destination covered by the request/caller authority.
+Tests are one possible evidence type against the specification, not a universal source from which desired expectations are reverse-engineered. A ready specification grants no specialist-design, delivery, publication, or unrelated persistence authority. Write only to a destination covered by the request/caller authority.
 
 Return the specification, result, exact source identities, destination/persistence shape, current or superseded state, unresolved limits, and the next owner when one is required. When downstream work depends on it, also return its stable identity, revision, or content digest.

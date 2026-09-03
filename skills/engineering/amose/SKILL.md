@@ -27,7 +27,7 @@ When history/provenance can resolve a material terminology or invariant conflict
 
 Challenge ambiguous, overloaded, synonymous, or conflicting terms when meaning changes scope, ownership, state, policy, or behavior. Propose canonical vocabulary only with evidence/confirmation. Test definitions, relationships, and invariants against concrete scenarios and separate durable domain/project knowledge from transient implementation detail.
 
-Use `arojinle` for unresolved consequential user choices. Use the current specialist for an independently useful design result when one is required; software/system technical architecture belongs to `solution-architect`.
+Use `arojinle` for unresolved consequential user choices. Use the current specialist for an independently useful design result when one is required; software/system technical architecture belongs to `architect`.
 
 Return one candidate-pinned packet containing:
 

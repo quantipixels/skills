@@ -20,7 +20,7 @@ Otherwise:
    - component breadth actually needed;
    - design-system fit and customization cost;
    - maintenance/release horizon and licensing when relevant.
-3. Keep the choice inside Àṣà Ojú Ìbánisọ̀rọ̀ when it is a bounded implementation selection inside settled technical architecture. When introducing or switching a library materially changes system-wide source ownership, runtime/bundle architecture, compatibility/migration, or long-term integration boundaries, route that technical decision to `solution-architect` and consume its exact-current result before implementation.
+3. Keep the choice inside Àṣà Ojú Ìbánisọ̀rọ̀ when it is a bounded implementation selection inside settled technical architecture. When introducing or switching a library materially changes system-wide source ownership, runtime/bundle architecture, compatibility/migration, or long-term integration boundaries, route that technical decision to `architect` and consume its exact-current result before implementation.
 4. Ask for the choice when it is a material user/product preference, or recommend one when the user delegates a bounded implementation choice.
 5. Confirm the current option from official/project sources before installation; do not rely on a bundled dated inventory.
 

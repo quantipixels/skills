@@ -1,9 +1,9 @@
 ---
-name: solution-architect
+name: architect
 description: Design or review one implementation-ready technical architecture for a software system. Use for system boundaries, modules, data, integration, deployment, quality scenarios, trade-offs, migration, recovery, or architecture sufficiency across any stack. Exclude initiative lifecycle planning, complete user-decision interviews, implementation, workspace infrastructure, and code-review verdicts.
 ---
 
-# Solution Architect
+# Architect
 
 Own technical sufficiency of one software-system solution. Produce one architecture packet an implementer can follow without inventing a material technical requirement.
 
