@@ -32,6 +32,15 @@ Start with current repository, dependency, compiler, runtime, framework, IDE, an
 
 For one/few task-local facts, perform the smallest direct primary-source read. Do not invoke another owner merely to fill a category or because more evidence exists.
 
+## Load curated mechanism depth only from candidate cues
+
+After establishing the exact stack, use a local mechanism reference only when the touched code exposes its trigger and the extra depth can change code or proof:
+
+- Java concurrency/visibility, equality/ordering, absence/failure, or resource-lifetime semantics → [Java runtime mechanics](java-runtime-mechanics.md);
+- Spring proxy/advice, transactions, JPA/Hibernate persistence, application lifecycle, or reactive execution semantics → [Spring runtime mechanics](spring-runtime-mechanics.md).
+
+These references are compact calibration distilled from earlier QP research, not hidden language/framework catalogues and not substitutes for current source truth. Load neither merely because Java or Spring appears in the repository. Project contracts and exact-current first-party/runtime evidence override them; unfamiliar or version-sensitive behavior remains a bounded current-source question.
+
 ## Apply the proportionality gate
 
 For each proposed abstraction, layer, dependency, queue, cache, interface, wrapper, pattern, or state object ask:
