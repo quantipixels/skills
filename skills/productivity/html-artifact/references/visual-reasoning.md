@@ -1,12 +1,59 @@
 # Visual reasoning
 
-Use this only when a substantial conceptual relationship can be understood or compared more accurately through a visual representation than through prose alone.
+Use when a material relationship can be understood, compared, or challenged more accurately through a shaped representation than through prose alone.
 
-This is calibration, not a template library. Choose the representation from the supplied relationship and reader job. Do not force a diagram merely because the subject is technical.
+Coverage comes first. “Smallest sufficient view” means the least representational machinery that preserves all meaning the reader must see; it never means omitting human-critical facts merely to make the page smaller.
+
+Choose representation per relationship/reader question, not per Markdown section. Keep one coherent page grammar across different representations.
+
+## Low-cost structural grammar
+
+Prefer the form that exposes the governing shape with the least machinery:
+
+```text
+logic / algorithm         → pseudocode
+runtime / order           → call tree
+UI/composition            → component tree
+ownership / repository    → shallow file/responsibility tree
+before / after            → shape-aware explanatory diff
+new whole shape           → complete code/config/block
+traceability              → directed chain / requirement map
+state / lifecycle         → state sketch/diagram
+comparison                → aligned comparison
+quantitative relationship → chart/plot
+large connected structure → graph/network view
+```
+
+Use prose when prose is already clearer. Use a table when the relationship is aligned lookup/comparison rather than topology or flow.
+
+## Shape-aware change
+
+When change is the governing relationship, match the diff grammar to the thing that changed:
+
+```text
+literal source change      → exact source diff
+runtime interaction        → call-tree diff
+responsibility/ownership   → ownership-tree diff
+architecture/boundary      → module/boundary diff
+UI composition             → component-tree diff
+state behavior             → state-flow diff
+repository shape           → file-tree diff
+```
+
+An explanatory shape diff is not source evidence. Preserve its epistemic status and the exact evidence it was derived from.
+
+## Epistemic status
+
+For non-literal visuals make the status clear where ambiguity could increase apparent authority:
+
+- `Observed` — directly established by supplied evidence.
+- `Inferred` — derived from evidence; inference remains distinguishable from observation.
+- `Proposed` — candidate future shape owned by the applicable decision/design result.
+- `Illustrative` — teaching simplification, not a literal implementation claim.
 
 ## Before / after structure
 
-Use when the reader must understand how ownership, flow, state, or dependency shape changes.
+Use when ownership, flow, state, dependency, or concentration changes materially. Keep scale/grammar comparable and mark what changed versus remained.
 
 Good:
 
@@ -19,77 +66,59 @@ UI → provider client
       └─ owns retries, auth, error translation, lifecycle
 ```
 
-The visual shows what disappeared and what the surviving owner now owns.
-
-Bad: two screenshots or diagrams at different scales with no marked changed/unchanged elements.
-
-Avoid when the change is only wording or a tiny local edit better represented by a diff.
+Bad: unrelated screenshots/diagrams at different scales with no changed/unchanged relation.
 
 ## Call-graph collapse
 
-Use when repeated forwarding layers or indirection are the material issue.
-
-Good: show the actual call sequence, label forwarding-only nodes, then show the shorter sequence with the remaining responsibility owner.
-
-Bad: a generic box diagram that does not reveal which calls or responsibilities were removed.
+Use when repeated forwarding/indirection is the issue. Show the actual call sequence, forwarding-only nodes, then the shorter surviving ownership path.
 
 ## Responsibility map
 
-Use when the question is where policy, lifecycle, state, authority, or data ownership belongs.
-
-Good: group responsibilities under current owners and highlight duplicated or ownerless behavior.
-
-Bad: color every package/module differently without showing responsibility.
+Use when policy, lifecycle, state, authority, or data ownership is the question. Group responsibilities under actual owners and expose duplicated/ownerless behavior rather than color-coding modules decoratively.
 
 ## State or lifecycle transition
 
-Use when the source establishes states, allowed transitions, blockers, recovery, or stale paths.
+Use source-backed states, transition labels, blockers, stale paths, and recovery. Do not invent intermediate states to make the diagram look complete.
 
-Good: show only source-backed states and transition labels; emphasize the current state or invalid transition that matters.
+## Evidence and assurance trace
 
-Bad: invent intermediate states to make the diagram look complete.
-
-## Evidence trace
-
-Use for assurance, review, or decision artifacts where the governing relationship is claim → evidence → disposition.
+Use when the relationship is claim → evidence → disposition, or when the reader must see acceptance → contract → implementation → proof. Broken/stale/conditional links are part of the meaning.
 
 Good:
 
 ```text
 Requirement R3
   ↓
+Implementation I4
+  ↓
 Test T8 + runtime evidence E2
   ↓
 Satisfied
 ```
 
-Bad: a decorative evidence count that hides which claim each source supports.
+Bad: evidence counts or health percentages that hide which claim each source supports.
+
+## Bidirectional traceability
+
+When initiative/review evidence requires it, also reason backward from material implementation/proof:
+
+- requirement orphan — accepted obligation lacks adequate implementation/proof;
+- implementation orphan — material mechanism lacks accepted contract/decision basis;
+- proof orphan — evidence no longer establishes a current material claim.
+
+Do not infer orphan status from a diagram alone; consume the owning semantic result/evidence.
 
 ## Candidate comparison
 
-Use when alternatives must remain comparable.
+Keep candidates on the same visual grammar, scale, criteria, and labeling. A comparison rubric is useful only when multiple viable candidates remain and several independent criteria can change the result; hard gates are not scored or averaged away.
 
-Keep the same visual grammar, scale, criteria, and labeling across candidates. Show changed and unchanged structure when material.
+## Mass / concentration and cross-section
 
-Good: two architecture alternatives use the same boundary map and annotate trade-offs beside the affected seam.
+Use visual weight only from supplied evidence when the reader must see where complexity/state/dependencies concentrate. Use a cross-section when several concerns cross one boundary—identity, data, trust, lifecycle, failure, migration, or proof.
 
-Bad: one candidate gets a detailed architecture diagram while another is summarized in prose.
+## Renderer selection
 
-## Mass / concentration diagram
-
-Use when the point is where complexity, state, dependencies, or behavior are concentrated rather than exact sequence.
-
-Good: visually weight modules by supplied responsibility/complexity evidence to reveal a deep owner versus scattered thin wrappers.
-
-Bad: size boxes by arbitrary line count while presenting the result as architectural importance.
-
-## Cross-section
-
-Use when several concerns cross the same boundary: identity, data, trust, lifecycle, failure, migration, or proof.
-
-Good: a boundary cross-section shows what crosses, who owns translation, and which failures stay on each side.
-
-Bad: a conventional architecture overview that hides the boundary-specific question.
+Once the representation is chosen, read [representation capabilities](representation-capabilities.md) when a mature grammar/renderer could materially improve it. Renderer choice is not representation choice, and delivery/runtime policy must not force a weaker representation merely because native HTML is available.
 
 ## Choose prose when prose is better
 
@@ -98,15 +127,9 @@ Do not create a visual when:
 - no meaningful relationship is supplied;
 - the visual only restates a short list;
 - exact wording is the evidence;
-- the source cannot support causal, state, scale, or ownership claims; or
+- source evidence cannot support the implied state/causal/scale/ownership relation; or
 - the diagram would require invented structure.
-
-A strong paragraph or compact table is preferable to decorative visualization.
-
-## Mermaid diagrams
-
-Mermaid is a supported optional renderer when its diagram grammar fits the supplied relationship. Preserve the Mermaid source and provide equivalent accessible text or native structure. For a standalone artifact, bundle the admitted runtime under the [external dependency policy](dependency-policy.md); do not depend on a CDN. Make Mermaid colors respond to the artifact's light and dark theme tokens, and keep the accessible fallback usable if rendering fails.
 
 ## Verification cue
 
-The representation must encode a material supplied relationship. For ordinary review artifacts, verify it with HTML Artifact's structural checks and visual smoke when rendered usability matters. Deep browser proof is required only when the visual/interaction itself is an acceptance claim or the artifact's consequence otherwise requires it.
+The representation must encode a material supplied relationship and preserve provenance. Structural proof checks the modeled relationship and source mapping; render/runtime proof is proportional to browser-dependent claims introduced by the chosen renderer or interaction.

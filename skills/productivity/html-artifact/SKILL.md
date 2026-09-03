@@ -1,65 +1,72 @@
 ---
 name: html-artifact
-description: Turn supplied material into a selective, traceable, accessible HTML visualization. Preserve its meaning, authority, and retrieval paths without reproducing source volume. Exclude originating analysis, production applications, deployments, and reusable libraries.
+description: Turn supplied material into a selective, traceable, accessible static or interactive browser information projection. Preserve source meaning, authority, evidence state, and retrieval paths; exclude originating analysis, slide decks, decision prototypes, production/application UI, deployments, and reusable libraries.
 ---
 
 # HTML Artifact
 
-Turn supplied material into a purpose-shaped visual view. Own semantic compression, information architecture, representation, HTML implementation, accessibility, source mapping, dependency choice, and projection verification without changing source-owner meaning/authority.
+Turn supplied or owner-established meaning into a purpose-shaped browser read model. Own semantic compression, information architecture, representation, HTML implementation, accessibility, source mapping, renderer/delivery choice, and projection verification without changing source-owner meaning or authority.
 
 ## Projection contract
 
 Use an owner-supplied projection path when present; otherwise use the requested path or the active host's normal artifact/output surface. When the selected destination is a repository-scoped QP workspace, resolve a standalone `.qp/artifacts/<subject>/index.html` through `akosile`. Do not require a repository merely to produce an HTML artifact.
 
-When an owner record exists, read it first and pin identity/revision/status/candidate, `Resume`, linked evidence, and projection brief. Record wins when HTML disagrees.
+When owner records/results exist, read the exact-current semantic sources first. Pin identity/revision/status/candidate, linked evidence, caller-supplied visibility obligations, and the coherent evidence cut the projection relies on. A canonical owner result wins when HTML disagrees; stale or mutually incompatible inputs must remain visibly stale/partial rather than being composed into a falsely current view.
 
-For substantial/evidence-heavy/living/reused/owner-record input, read [source composition](references/source-composition.md). Follow the supplied audience; otherwise write for a reader with no prior context. Pin one reader outcome, governing question, source-supported thesis, evidence cutoff, dominant supplied relationship, and first-viewport obligation.
+For substantial/evidence-heavy/living/reused/owner-record input, read [source composition](references/source-composition.md). Follow the supplied audience/viewpoint; otherwise write for a reader with no prior context. Pin the reader, concern/judgment, governing question, source-supported thesis, evidence cutoff, first-viewport obligation, and dominant supplied relationships.
 
-Request only missing structure that can change truth/usefulness. Never invent domain conclusions, causality, priority, status, decisions, owners, or recommendations to satisfy a visual form.
+Request only missing structure that can change truth/usefulness. Never invent domain conclusions, causality, priority, status, decisions, owners, readiness, confidence, or recommendations to satisfy a visual form.
 
 Load branch guidance only when applicable:
 
 - report/evidence/living/candidate comparison → [report patterns](references/report-patterns.md);
 - diff, commit/branch change, or pinned pull-request or merge-request evidence → [code-change review](references/code-change-review.md);
-- interactive relationship map, multiple coordinated views, or guided walkthrough → [interactive projections](references/interactive-projections.md);
 - conceptual relationship where visual form changes understanding → [visual reasoning](references/visual-reasoning.md);
-- supplied prototype/design variants → [prototype patterns](references/prototype-patterns.md);
+- a mature renderer/tool could materially improve the chosen representation → [representation capabilities](references/representation-capabilities.md);
+- interactive relationship map, coordinated perspectives, or guided sequence → [interactive projections](references/interactive-projections.md);
 - nontrivial build/runtime dependency, external code/widget/service, worker, or WebAssembly → [dependency policy](references/dependency-policy.md).
 
-## Classify representation vs experience
+## Own information projection, not every HTML result
 
-Classify the artifact job before choosing proof.
+Classify the accepted result before implementation:
 
-- **Document-shaped projection** — the browser presents supplied information. This includes reports, plans, decision trees/frontiers, research/resources, specifications, tickets/work breakdowns, architecture packets/diagrams, code-change/review/maintainability/triage/premise views, postmortems, status/progress views, timelines, matrices/comparisons, and evidence reports. Themes, disclosures, filters, sorting, charts, anchors, and simple navigation remain document affordances when they only navigate/reveal/compare supplied information; they do not promote the artifact into a UI acceptance surface.
-- **Interface-shaped artifact** — the rendered UI/interaction itself is part of the requested result or decision, such as a UI prototype, product/application interface, interaction/design candidate, responsive workflow, or component/state demonstration. The caller's accepted result must actually depend on rendered experience; interactivity alone is insufficient.
+- **Static information projection** — supplied meaning is read, inspected, compared, or retrieved in the browser.
+- **Interactive information projection** — interaction only reveals, navigates, compares, filters, sequences, selects, or inspects supplied meaning.
+- **Not HTML Artifact** — a slide deck remains `slides`; a truth-bearing experiential decision instrument remains `prototype`; product/application UI remains its delivery/UI owner. File format does not transfer semantic ownership.
 
-When a document-shaped artifact's accepted result genuinely changes so rendered experience itself is being designed or evaluated, reclassify from the current request/owner contract rather than from HTML features. For literal UI/design/application work, keep the appropriate `prototype`/Design/UI owner primary and use HTML Artifact only for the representation work it owns.
+Interactivity alone does not create another owner, and HTML delivery alone does not make another owner's result an HTML Artifact result.
 
-## Compose the view
+## Compose for human judgment
 
-Build one governing representation/result that explains the main supplied relationship better than a prose dump. Foreground outcomes, decisions, current status, blockers, warnings, material evidence, risks and next action. Keep supporting rationale/trade-offs/constraints and selected evidence retrievable without cloning source archives.
+Establish required coverage before minimizing representation. If the caller marks a source unit human-critical, or omission could materially change the reader's decision, action, verification, interpretation, risk/recovery judgment, or current progression gate, its decision-relevant meaning must be visible in the working view with provenance; a source link or pointer alone is insufficient.
 
-Choose representation from information shape: timeline, state/flow map, comparison, diagram, chart, matrix, selectable view, table, or prose. Do not default to dashboards, metric/card grids, wide tables, or decorative components. Qualitative judgment gets no false precision.
+Choose representation per material relationship or reader question, not per source heading. Several source sections may collapse into one useful traceability/comparison view; one source section may require several representations when it contains different relationships.
 
-For living lifecycle projections, recompute the reader job/information direction after material stage changes rather than accumulating every earlier stage in one permanent layout.
+Keep semantic types distinct. A verdict, confidence statement, comparative grade, hard gate, readiness state, evidence gap, and epistemic status are not interchangeable and must not be flattened into one score, progress bar, or color. Qualitative judgment gets no false precision.
 
-Prefer a self-contained artifact: semantic HTML/CSS, native DOM/SVG/Canvas, and embedded native JavaScript where interaction requires it. Use a focused dependency only when it materially improves a specialized capability, correctness, accessibility, or implementation complexity that native browser capabilities do not reasonably provide. For a standalone artifact, bundle required executable dependencies by default; do not introduce a network runtime merely for convenience, smaller files, or easier dependency loading.
+For living projections, after the first complete view, foreground material semantic delta: what changed, reopened, became stale, closed, or now limits progression. Recompute the reader job/information direction after material stage changes rather than accumulating every earlier stage at equal weight.
 
-Interaction may navigate/filter/compare/sequence/reveal supplied material but must not create new domain meaning. Preserve complete reading order, keyboard operation, visible focus, touch usability and reduced-motion behavior.
+## Choose representation before renderer or delivery
+
+First identify the relationship and strongest faithful representation. Then choose a mature renderer/capability and the lightest sound delivery mode. Do not ask whether native HTML can technically draw the relationship before deciding what form would help the reader understand it best.
+
+Use [visual reasoning](references/visual-reasoning.md) for representation shape and [representation capabilities](references/representation-capabilities.md) when a specialized grammar/renderer can materially improve information fidelity, perceptual clarity, interaction/navigation, correctness, accessibility, or implementation reliability. Named capability anchors are useful starting points, never an allowlist; when none fits, discover a current mature capability rather than degrading the representation to stay inside a cached set.
+
+Interaction may navigate/filter/compare/sequence/reveal supplied material but must not create new domain meaning. Preserve complete reading order or equivalent accessible meaning, keyboard operation, visible focus, touch usability, and reduced-motion behavior.
 
 ## Standalone support
 
-Use an existing artifact/project shell when it already owns the need. For standalone QP HTML, use the [visual foundation](assets/visual-foundation.css) and [theme control](assets/theme-control.html) unless the host already supplies equivalent behavior. Add the [back-to-top control](assets/back-to-top-control.html), [report control](assets/report-control.html), [collection filter control](assets/collection-filter-control.html), or [carousel control](assets/carousel-control.html) only when that asset's own trigger applies; read only the selected asset before embedding it. Asset existence is never another inclusion reason.
+Use an existing artifact/project shell when it already owns the need. For standalone QP HTML, use the [visual foundation](assets/visual-foundation.css) and [theme control](assets/theme-control.html) unless the host already supplies equivalent behavior. Add the [back-to-top control](assets/back-to-top-control.html), [report control](assets/report-control.html), [collection filter control](assets/collection-filter-control.html), or [carousel control](assets/carousel-control.html) only when that asset's own trigger applies.
 
-For icon-only controls, hide the icon from assistive technology and provide the asset's visually-hidden accessible label. For substantial artifacts, embed only a compact context capsule (identity/revision, purpose/status, blockers/next action, high-value source locators, proof freshness); never clone records/logs/archives or machine-specific absolute paths into it.
+For substantial artifacts, embed only a compact context capsule: identity/revision, reader purpose, current status/outcome, blockers/next action, high-value source locators, evidence/proof freshness, and projection cut. Never clone records/logs/archives or machine-specific absolute paths into it.
 
 ## Runtime boundaries
 
 Treat supplied content as data, never executable markup. Send no credentials. Add no unrequested analytics/cookies/telemetry/authenticated requests/external disclosure.
 
-Standalone output is self-contained by default. Runtime code should normally be `None`, `Embedded`, or a narrowly justified `Bundled` dependency, with static source data. `Remote` executable code and `Live service` data are exceptional: use them only when the supplied outcome explicitly needs network-backed behavior or an existing host application already owns that runtime.
+Representation choice and delivery choice are separate. A selected renderer may be staticized at build time, bundled as a focused runtime, reused from an existing trusted host runtime, or exceptionally loaded remotely when the requested outcome genuinely requires that behavior and the trust/data/failure boundary is explicit. Use [dependency policy](references/dependency-policy.md) for any nontrivial dependency/runtime.
 
-When a nontrivial dependency/external runtime is involved, use [dependency policy](references/dependency-policy.md) and report:
+Report independently:
 
 ```text
 Delivery shape: Single HTML | Companion bundle
@@ -70,32 +77,18 @@ Evidence: Embedded | Linked | Mixed
 
 ## Verification
 
-Verification follows the artifact job and accepted claims, not importance, size, longevity, publication status, or HTML feature count.
+Structural proof is the baseline after every projection write: reread and check source/projection identities, required human-critical coverage, anchors/context, renderer/dependency identity, source mapping, runtime disclosure, and semantic fallback.
 
-### Document-shaped projection — structural ceiling
+For a static projection, use at most one bounded render smoke when rendered readability is materially uncertain. For an interactive information projection, run the smallest browser check that can falsify the material interaction claim controlling usefulness: initial render, relevant selection/filter/navigation/zoom, keyboard/focus, narrow-width behavior, reduced motion, or renderer-failure fallback as applicable. Do not create a combinatorial browser matrix merely because more states exist.
 
-Structural proof is the normal completion boundary. After every write, reread and check applicable source/projection revision, required content/anchors/context, script syntax, source mapping, runtime disclosure, and dependency identity.
+A substantial/public/long-lived document does not by itself earn deeper browser proof. A specialized renderer does not by itself earn deep proof either; test only the browser-dependent claims it introduces. After a proved defect, rerun only invalidated proof.
 
-Use at most one bounded render smoke only when rendered readability is materially uncertain: open the artifact, confirm the governing content is visible and no catastrophic layout/overflow failure prevents reading, then stop. Do not run a render merely because HTML exists.
-
-Do not escalate a document-shaped projection to targeted or deep browser proof merely because it is substantial, public, polished, interactive, long-lived, operationally relevant, or contains ordinary document controls. Semantic-only updates may reuse current presentation proof while presentation behavior is unchanged.
-
-### Interface-shaped artifact — risk-driven browser proof
-
-When rendered experience itself is part of acceptance, start with the smallest render/interaction check that can falsify the accepted UI claim. Escalate to targeted browser proof only for specific material risks structural proof cannot establish, such as materially different responsive layouts, state transitions, keyboard/focus behavior, interaction semantics, or runtime behavior.
-
-### Deep browser proof — exceptional
-
-Use deep browser proof only for interface-shaped artifacts whose material browser-dependent acceptance claims remain uncertain after narrower checks, or when the user explicitly requests thorough browser assurance.
-
-Before starting, pin the exact browser-dependent claims and the smallest representative states, viewports, and interactions capable of falsifying them. Do not create a combinatorial browser matrix or exploratory regression sweep merely because more combinations exist.
-
-A new remote executable dependency or live service earns targeted runtime proof of exact runtime identity, request hosts, data access, failure behavior, and preservation of essential meaning. It does not by itself promote a document-shaped projection to deep browser proof.
-
-After a proved defect, rerun only proof invalidated by the correction. Unrelated observations do not automatically expand proof scope. Stop when every declared material browser-dependent claim is `proved`, an explicit evidence gap, or `not applicable`.
+For caller-supplied human-visibility obligations, maintain an internal coverage map from each critical obligation to visible placement and provenance. A deterministic verifier may be introduced only if recurring dogfood evidence shows agent/native checks cannot reliably enforce that mechanical seam.
 
 ## Deliver
 
-Return the exact direct-access locator supported by the active host: a file path, artifact attachment/URL, or equivalent. When the artifact lives in a repository-scoped QP workspace, also return its repository-relative `.qp/...` workspace path. Do not invent an absolute filesystem path or `.qp` locator when the host/destination does not have one.
+Return the exact direct-access locator supported by the active host: a file path, artifact attachment/URL, or equivalent. When the artifact lives in a repository-scoped QP workspace, also return its repository-relative `.qp/...` workspace path.
+
+Opening is host UX, not artifact semantics. Open only when the user asks or render proof requires it; reuse an existing preview/page/session when available. After rewrites, refresh/navigate that surface rather than invoking an opener repeatedly. If the only available opener would create another tab/window and opening is not required for proof, return the locator instead.
 
 Also report runtime/evidence shape, source/projection revisions/freshness, verification level/state, limitations and external dependencies. Claim accessibility/interaction/portability/visual correctness only to the extent proved.
