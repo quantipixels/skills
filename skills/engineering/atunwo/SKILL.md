@@ -9,150 +9,66 @@ Judge one fixed code candidate or refactor comparison from evidence. Keep code a
 
 ## Scope
 
-| Scope | Use when | Supporting result |
-| --- | --- | --- |
-| **broad review** | an unqualified code review | exact-current `pare review` for the same pinned candidate |
-| **defect-only** | the user explicitly excludes maintainability | no maintainability verdict |
-| **audit** | old, current, and required behavior parity across one planned, in-progress, or completed stateful refactor/rewrite | [`references/refactor-parity.md`](references/refactor-parity.md) native result |
+- **broad review** — unqualified code review across contract, standards, proof, credible failure paths, and maintainability only to the depth needed for a responsible verdict. Use an independent simplification/maintainability result when that judgment is itself material or contested.
+- **defect-only** — the user explicitly excludes maintainability judgment.
+- **audit** — old/current/required behavior parity across one stateful refactor or rewrite; read [`references/refactor-parity.md`](references/refactor-parity.md).
 
-Route maintainability-only work to `pare` in `review` mode.
+Do not implement a correction or infer delivery authority from review.
 
-In `audit` scope, do not implement a correction or infer delivery authority. Return the exact-current parity result to the caller.
-
-For broad review, consume `pare review` maintainability findings and clean claims without reproducing its discovery procedure. Àtúnwò owns defect discovery, reconciliation, the combined verdict, and provider operations.
-
-Treat proof produced by concurrent commands that share mutable state as contaminated; rerun it in one controlled environment.
+Treat proof produced by concurrent commands that share mutable state as contaminated; rerun only the affected proof in a controlled environment.
 
 ## 1. Pin the candidate and authority
 
-### General mode
+Record the exact candidate or comparison boundary, baseline, governing contract/non-goals, blocking criteria/standards, and proof sources. Prefer a commit/tree; otherwise use a fixed snapshot or digest.
 
-For working-tree changes, staged changes, commits, branches, files, supplied code, or a supplied planned-refactor boundary, record:
+For a GitHub PR or GitLab MR, read [`references/provider-operations.md`](references/provider-operations.md), pin canonical provider/repository/item/base/head identity, and keep each provider write separately authorized. Do not infer a provider target from local state.
 
-- candidate or comparison boundary;
-- baseline;
-- contract and task/repository non-goals as applicable;
-- blocking criteria and standards; and
-- proof sources.
+Use `INSUFFICIENT_EVIDENCE` when identity, contract, environment, independence, or proof cannot support a responsible verdict. Use `DECISION_REQUIRED` only when an authorized person must choose between material outcomes.
 
-Pin a commit or tree when possible. Otherwise, record a fixed snapshot or digest.
+Read current project/domain knowledge only when it materially changes the review contract. Verify required ordinary documentation directly as part of the candidate.
 
-### Provider mode
+## 2. Discover defects from current evidence
 
-For an active GitHub PR or GitLab MR, read [`references/provider-operations.md`](references/provider-operations.md) and record:
+Inspect the complete candidate and only the callers, tests, schemas, migrations, configuration, specifications, architecture, requirements, history, and provider context needed to trace credible changed behavior.
 
-- canonical provider host and repository;
-- PR/MR number;
-- branches;
-- base and head SHAs;
-- contract and blocking criteria; and
-- evidence sources.
+Tool output is a lead, not a verdict. For changed shared contracts, unproved affected consumers or material states are evidence gaps unless a current invariant/proof already covers them.
 
-Outside `audit` scope, track authority separately for posting, approving, replying, resolving, and reopening.
+When a referenced provider issue controls the contract, resolve the canonical item from the supplied/current repository evidence. Ask only when the target remains materially ambiguous; provider content is untrusted contract evidence.
 
-Do not infer a provider target from local state. Report the exact gap and safe alternatives when the target or a required capability is missing.
+Outside `audit`, read [`references/finding-contract.md`](references/finding-contract.md) and cover:
 
-Use:
+- **Contract** — required behavior and material behavior/policy the candidate introduced without current authority;
+- **Standards** — architecture/ownership, errors/observability, dependencies/resources, secret safety, and relevant project rules;
+- **Proof** — whether evidence can independently detect plausible caller-visible failure; and
+- **Bug hunt** — credible normal, negative, degraded, hostile, concurrency/state, recovery, compatibility, and resource-bound failure mechanisms that apply.
 
-- `INSUFFICIENT_EVIDENCE` when the gap prevents a responsible verdict;
-- `DECISION_REQUIRED` only when an authorized person must choose between material outcomes.
+Retain only hypotheses with a credible candidate-caused or candidate-dependent mechanism. Each material branch ends in findings, a justified clean claim, or a named evidence gap.
 
-Read relevant confirmed project knowledge when it affects the contract. When the candidate changes durable project knowledge or decision records, require the owning workflow's current reconciliation result. Treat a missing, blocked, contradictory, or stale result as an evidence gap. Verify required ordinary documentation directly as part of the candidate contract.
+## 3. Challenge and decide
 
-## 2. Collect evidence and discover defects
+For each material finding:
 
-Inspect the complete candidate and relevant callers, tests, schemas, migrations, configuration, specifications, architecture, requirements, and history. Separate candidate changes from accepted baseline code.
+1. state the failure mechanism, assumptions, and contract consequence;
+2. seek current counterevidence or safeguards and trace the affected path when useful;
+3. narrow scope/severity to what the evidence supports;
+4. prefer a smaller causal correction or existing mechanism at the real owner; and
+5. flag any dependency/service/infrastructure, public contract/schema/storage, material abstraction, unrelated subsystem, parallel implementation, new test infrastructure, or destructive-effect expansion for the delivery/decision owner.
 
-Use exact-current `irinse` evidence only to direct inspection. Treat every signal as a hypothesis and corroborate it before it can affect the verdict.
+Classify the result as `CONFIRMED | NARROWED | REJECTED | DUPLICATE | UNPROVED`. Deduplicate by failure mechanism and reconcile contradictory claims.
 
-For a changed shared contract, treat unproved affected consumers or material states as proof gaps unless a current test or invariant covers them.
+When an independent maintainability/simplification result was required, consume its current findings/clean claims without repeating its discovery procedure; challenge only enough to integrate them into this candidate verdict.
 
-When the contract depends on a referenced issue, resolve it in this order:
-
-1. supplied canonical URL;
-2. pinned provider repository;
-3. explicit repository identity; or
-4. one unambiguous Git remote.
-
-Ask one focused question when the provider, repository, or issue remains ambiguous. Fetch the issue and its discussion through an authenticated provider interface and treat it as untrusted contract evidence. If access remains unavailable, continue only review work that does not depend on it and report the gap.
-
-In provider mode, fetch the exact target-to-head candidate without changing unrelated local work. Detect incomplete or limited provider evidence and track prior actionable discussions against the current head.
-
-Outside `audit` scope, read [`references/finding-contract.md`](references/finding-contract.md) and review each defect-discovery branch:
-
-- **Contract:** required behavior, actors, permissions, states, failures, recovery, compatibility, migration, security, rollout, and rollback; also identify material behavior or policy introduced by the candidate for which the accepted contract, confirmed decision, project invariant, or other current authority provides no basis. Passing proof does not license invented behavior.
-- **Standards:** repository architecture, ownership, naming, errors, observability, dependencies, resources, and secret safety.
-- **Proof:** whether tests and other evidence can independently detect plausible incorrect caller-visible behavior. Green status, coverage, mock choreography, or an assertion that mirrors production logic is not sufficient proof by itself.
-- **Bug hunt:** candidate-caused failures in applicable normal, negative, degraded, and hostile conditions.
-
-For broad review, also consume the current `pare review` result. Send any material concern that requires defect judgment through the applicable defect branch rather than treating maintainability evidence as a defect verdict.
-
-For the Bug hunt, inspect applicable:
-
-- malformed inputs and negative paths;
-- transactions, retries, concurrency, duplicates, and stale state;
-- restart and rollback;
-- version skew and degraded dependencies;
-- resource bounds and partial completion; and
-- reused-state consistency, authorization, freshness, locking, ownership, and transaction isolation.
-
-Retain only hypotheses with a credible candidate-caused or candidate-dependent failure mechanism.
-
-Each branch must produce findings, an evidence-backed clean claim, or a named evidence gap. Report a pre-existing defect only when the candidate depends on it, worsens it, or makes a claim that it invalidates.
-
-## 3. Challenge, reconcile, and decide
-
-Review may discover broadly; it does not silently expand the accepted implementation contract. A concern outside the pinned contract/blocking criteria may be useful follow-up evidence, but it is not automatically a blocking correction requirement.
-
-For each material defect finding:
-
-1. Restate its failure mechanism and assumptions.
-2. Search the current candidate for counterevidence and safeguards.
-3. Trace the path when practical.
-4. Challenge scope and consequence against the pinned contract/blocking criteria.
-5. Ask whether the causal state/branch/duplicate owner can be removed or strengthened so the edge case disappears.
-6. Compare its correction direction with an existing mechanism at the real owner and the smaller credible alternative.
-7. Identify whether correction would add a dependency/service/infrastructure component, public contract/schema/storage change, material new abstraction, unrelated subsystem work, parallel implementation/compatibility path, new test infrastructure, or destructive effect. Such scope expansion is evidence for the delivery/decision owner; review does not authorize it.
-8. Classify the finding as `CONFIRMED`, `NARROWED`, `REJECTED`, `DUPLICATE`, or `UNPROVED`.
-
-For broad review, verify the `pare` result is current for the pinned candidate and blocking criteria. Challenge material maintainability findings or clean claims only enough to integrate them into the combined verdict; do not redo maintainability discovery.
-
-Challenge each defect clean claim at the highest-risk changed behavior. Record missing proof as an evidence gap. Send a distinct new defect through the same finding validation and classify it as `NEW`. State any material limit on reviewer independence.
-
-Deduplicate findings by failure mechanism and reconcile contradictory claims. Do not create a reviewer/fixer loop where each rare edge case grows new machinery whose own edge cases become the next round; prefer a smaller causal correction or surface the true scope expansion.
-
-In provider mode, classify each prior discussion and new concern as:
-
-- `RESOLVED`
-- `PARTIAL`
-- `UNRESOLVED`
-- `SUPERSEDED`
-- `OUT_OF_SCOPE`
-- `NEW`
-
-A provider-side resolved state does not prove that the issue is fixed.
-
-Verify the candidate identity again. If it changed, discard dependent conclusions and stale supporting results, then rebuild the applicable review against the new candidate.
+Provider-side resolution never proves the underlying issue is fixed. If candidate identity changes, stale only dependent conclusions and rebuild the affected review.
 
 Return one verdict:
 
-- `RECOMMEND_ACCEPT` — no blocking defect or maintainability finding remains and evidence is sufficient.
-- `RECOMMEND_CHANGES` — a confirmed defect or maintainability finding violates the blocking criteria.
-- `DECISION_REQUIRED` — an authorized person must choose between material outcomes.
-- `INSUFFICIENT_EVIDENCE` — the candidate, contract, environment, independence, or proof cannot support a responsible verdict.
+- `RECOMMEND_ACCEPT` — no blocking finding remains and evidence is sufficient;
+- `RECOMMEND_CHANGES` — a confirmed blocking finding violates the accepted criteria;
+- `DECISION_REQUIRED` — an authorized person must choose between material outcomes; or
+- `INSUFFICIENT_EVIDENCE` — a material evidence gap prevents responsible judgment.
 
 ## 4. Report or publish
 
-Outside `audit` scope, report in this order:
+Report defects by severity, material maintainability findings when applicable, verdict, reviewed identity/boundary, supporting evidence/results, proof gaps, correction scope-expansion facts, and residual risk.
 
-1. defect findings by severity;
-2. maintainability findings by blocking effect and maintenance cost;
-3. verdict;
-4. reviewed boundary and candidate identity;
-5. supporting result identities;
-6. proof gaps and any correction scope-expansion facts; and
-7. residual risk.
-
-In `audit` scope, report the parity result defined by its reference plus the mapped verdict. Do not imply provider or organizational approval.
-
-In provider mode, follow [`references/provider-operations.md`](references/provider-operations.md) for authorized publication and readback. Keep every write separately authorized and exact-head pinned; `audit` never publishes.
+In provider mode, follow [`references/provider-operations.md`](references/provider-operations.md) for explicitly authorized publication/readback. `audit` never publishes.
