@@ -34,18 +34,22 @@ Do not reopen settled decisions without new evidence. Do not lead with or invent
 
 ## Return
 
-Return one:
+Return one verdict:
 
 - `SUPPORTED`
 - `PARTIAL`
 - `UNSUPPORTED`
 - `UNPROVED`
 
+Keep confidence separate from the verdict. Use `High | Medium | Low` only when evidence strength/coverage materially helps interpretation; explain the limiting evidence rather than inventing percentage precision. Confidence describes how strongly the evidence supports the verdict, not how desirable the recommendation is.
+
 Include:
 
-- decisive evidence;
-- material alternative;
-- applicable boundary or failure path; and
-- evidence-backed recommendation.
+- decisive evidence and counterevidence;
+- strongest material alternative;
+- applicable boundary or failure path;
+- controlling assumptions;
+- evidence-backed recommendation; and
+- the smallest evidence that would materially change the verdict when uncertainty remains.
 
 When proof is insufficient, withhold judgment and name the smallest useful proof.

@@ -13,50 +13,55 @@ Read the candidate package plus affected repository/host instructions and integr
 
 Grow capability depth faster than public surface area. A public skill must own an independently useful result, authority/artifact/acceptance boundary, failure mode, or reusable steering contract **and** make direct selection/use materially simpler than keeping the capability behind an existing owner. Do not remove a useful lightweight steering contract merely because a capable model can perform the underlying act.
 
-Do not optimize for fewer owners, resources, or stages. Fold only when the smaller shape preserves a coherent outcome without braiding independently useful results, authority or acceptance boundaries, lifecycle/state, or distinct reasons to change.
+Do not optimize for fewer owners/resources/stages. Fold only when the smaller shape preserves a coherent outcome without braiding independently useful results, authority/acceptance boundaries, lifecycle/state, or distinct reasons to change.
 
-Frame the owner at the natural level of its outcome. Do not narrow a broadly useful result to a historical repository/software/tool context, and do not broaden a domain-specific owner beyond the evidence, authority, or capability needed to produce its result. Generalize the mechanism, never the authority.
+Frame the owner at the natural level of its outcome. Generalize the mechanism, never the authority. Protect the **material decision surface**: compression/folding/generalization must not turn an owned constraint, evidence requirement, authority boundary, or consequential choice into unlabeled model inference.
 
-Protect the **material decision surface**. Compression, folding, or generalization must not turn a previously owned constraint, evidence requirement, authority boundary, or consequential choice into unlabeled model inference. A material choice that can change accepted behavior, safety, compatibility, ownership/lifecycle, architecture, authority, or consequential risk/cost must be determined by current evidence/contract, explicitly owned, or surfaced as unresolved. Leave ordinary implementation and tool mechanics to the capable agent.
+Curate frameworks **into** reasoning. Preserve a named model, standard, concept, or mature capability when its vocabulary, conceptual structure, authority, durable problem fit, or retrieval value materially improves this owner's judgment. State the QP-relevant subset/boundary directly; a name imports neither the whole methodology nor a closed ecosystem.
 
-Curate frameworks **into** reasoning. Preserve a named model, standard, or concept when its vocabulary, conceptual structure, authority, or retrieval value materially improves this owner's judgment. State the QP-relevant subset and boundary directly; the name does not import the whole framework. Remove framework names that add only prestige, ceremony, generic templates, or stale implementation knowledge.
-
-Use the smallest control shape that preserves correctness:
-
-- **lightweight** — consequential invariants can directly produce the result;
-- **workflow** — correctness genuinely depends on ordered stages, durable/external state, stale/partial recovery, multiple actors/candidates, or distinct side-effect authorities.
-
-Do not add lifecycle, statuses, receipts, schemas, or ceremony merely because the outcome is important.
+Use the smallest control shape that preserves correctness: `lightweight` when consequential invariants can directly produce the result; `workflow` when ordered stages, durable/external state, stale/partial recovery, multiple actors/candidates, or distinct side-effect authorities genuinely control correctness. Do not add lifecycle/status/receipts/schemas merely because the outcome is important.
 
 ### Admit only behavior-bearing instruction
 
-A capable agent's default behavior is not automatically the desired behavior. Keep a consequential instruction only when its trigger, failure prevented, forced behavioral difference, value, and recurring cost justify occupying default context.
+A capable agent's default behavior is not automatically desired behavior. Keep an instruction only when its trigger, failure prevented, forced behavioral difference, value, and recurring cost justify default context.
 
-Prefer replacing or sharpening existing guidance over appending another rule. Before adding a paragraph, reference, or public owner, try one precise invariant, one discriminating question, or one strong `Good / Bad` boundary. Use a selective reference only when branch-specific non-obvious judgment would otherwise burden the hot path.
+Prefer replacing/sharpening existing guidance over appending another rule. Before adding a paragraph/reference/public owner, try one precise invariant, discriminating question, or strong `Good / Bad` boundary. Use a selective reference only when branch-specific non-obvious judgment would otherwise burden the hot path.
+
+### Evaluate proposals without rubric theatre
+
+When several credible capability/architecture/portfolio options remain and at least two independent criteria can materially change the choice, make the comparison explicit:
+
+1. apply hard gates first—authority, accepted behavior, safety/security/privacy, compatibility, required accessibility, owner boundaries, and explicit non-goals cannot be averaged away;
+2. derive only decision-changing criteria from the owned outcome, such as gap closure, agent leverage, architecture fit, decision-surface effect, reuse, evidence integrity, portability/maintenance, or runtime cost;
+3. compare the strongest credible alternatives and material counterevidence;
+4. use a grade/score only when it clarifies comparison and never as a substitute for the decisive reason; and
+5. return a task-native disposition such as `ADOPT | ADAPT | FOLD | INCUBATE | DEFER | REJECT | NEEDS_EVIDENCE`, plus the proof/revisit trigger when uncertainty remains.
+
+Keep verdict/evidence status, confidence, comparative grade, readiness, and disposition distinct. Do not create a universal QP scorecard or numeric confidence without a meaningful model.
 
 ## 2. Compose and place capability
 
-Treat skills as deep modules. Pass only the bounded input, current evidence/identity, authority, and caller-owned acceptance another owner needs. The callee retains its native procedure, resources, proof, persistence/representation mechanics, and result. Supporting owners and references must not originate or redefine the consumer/parent's normative expectations, lifecycle, freshness, priorities, verdicts, acceptance, or authority.
+Treat skills as deep modules. Pass only bounded input, current evidence/identity, authority, and caller-owned acceptance another owner needs. The callee retains native procedure, resources, proof, persistence/representation mechanics, and result. Supporting owners/references must not originate or redefine consumer semantics, lifecycle, freshness, priorities, verdicts, acceptance, or authority.
 
-Do not project semantic units one-to-one onto operational containers unless the destination contract requires it. Requirements, tickets, phases, proof obligations, and capability boundaries describe meaning; commits, candidates, branches, PRs/MRs, test files, browser runs, and agent sessions are chosen for their own integration, review, rollback, ownership, release, or evidence value.
+Do not project semantic units one-to-one onto operational containers unless the destination contract requires it. Requirements/tickets/phases/proof obligations/capability boundaries describe meaning; commits/candidates/branches/PRs/tests/browser runs/sessions are chosen for integration/review/rollback/ownership/release/evidence value.
 
-Write for a capable agent. State semantic behavior, invariants, authority, and completion. Leave ordinary search, shell/filesystem work, Git use, editing, tool discovery, and host-specific delegation mechanics adaptable. Prescribe isolation only when bounded independent/noisy work must leave the primary context to protect focus, continuity, or independent observation.
+Write for a capable agent. State semantic behavior, invariants, authority, and completion. Leave ordinary search, shell/filesystem work, Git, editing, tool discovery, and host-specific delegation mechanics adaptable. Prescribe isolation only when bounded independent/noisy work must leave primary context to protect focus/continuity/independent observation.
 
-Before adding or retaining commands, references, scripts, templates, data, assets, libraries, or another public owner, read [capability and resource placement](references/resource-placement.md). Use [reference quality](references/reference-quality.md) for substantial expert depth, [script boundary](references/script-boundary.md) when executable code still appears necessary, and [knowledge catalogues](references/knowledge-catalogues.md) only when maintained researched knowledge is itself part of the useful outcome.
+Before adding/retaining commands, references, scripts, templates, data, assets, libraries, or another public owner, read [capability and resource placement](references/resource-placement.md). Use [reference quality](references/reference-quality.md) for substantial expert depth, [script boundary](references/script-boundary.md) when executable code still appears necessary, and [knowledge catalogues](references/knowledge-catalogues.md) only when maintained researched knowledge is itself part of the useful outcome.
 
-Keep one canonical semantic contract across hosts. Host manifests, rules, hooks, or command adapters should be the thinnest projection required by actual loader semantics and mechanically checked when drift would be consequential. Name modes only when behavior or authority truly differs. Cross-skill references use the exact frontmatter `name` trigger in backticks.
+Keep one canonical semantic contract across hosts. Host manifests/rules/hooks/adapters should be the thinnest projection required by loader semantics and mechanically checked when drift would be consequential. Name modes only when behavior/authority truly differs. Cross-skill references use exact frontmatter `name` triggers in backticks.
 
-For human-facing artifacts, match proof to the owned result: representation/document structure does not earn browser/UI assurance unless rendered experience is itself material to acceptance.
+For human-facing artifacts, match proof to the owned result: representation/document structure does not earn browser/UI assurance unless rendered behavior itself materially controls acceptance.
 
 ## 3. Prove the exact candidate
 
 Use the smallest evidence that can falsify the changed contract. Structural/package validation is baseline; add realistic forward behavior only when selection, authority, safety, state, branching, composition, resource choice, or output remains materially uncertain. Re-run only proof invalidated by later changes.
 
-For compression, consolidation, framework/reference removal, ownership moves, or domain generalization, compare the same realistic bounded goal before/after when material uncertainty remains. Prove that removed material was not uniquely behavior-bearing **and** that the new shape does not enlarge the material decision surface or lose useful conceptual/retrieval anchors.
+For compression/consolidation/framework/reference removal/ownership moves/domain generalization, compare the same realistic bounded goal before/after when material uncertainty remains. Prove removed material was not uniquely behavior-bearing **and** the new shape does not enlarge the material decision surface or lose useful conceptual/retrieval anchors.
 
-For model-steering changes with material uncertainty, compare the same bounded task/candidate/context under the prior/no contract and changed contract. Verify the intended behavioral delta plus preserved correctness, safety, authority, and output. Keep temporary steering proof temporary unless recurring stable risk earns regression coverage.
+For model-steering changes with material uncertainty, compare the same bounded task/candidate/context under the prior/no contract and changed contract. Verify intended behavioral delta plus preserved correctness, safety, authority, and output. Keep temporary steering proof temporary unless recurring stable risk earns regression coverage.
 
-Do not claim saved LOC, tokens, cost, latency, time, or quality without an observed comparable baseline. Structural reduction is simplification evidence, never the acceptance target.
+Do not claim saved LOC/tokens/cost/latency/time/quality without an observed comparable baseline. Structural reduction is simplification evidence, never acceptance.
 
 For validation classify material obligations as `proved | defect | evidence gap | not applicable`. Return `VERIFIED` only when required proof passes against the exact candidate, `CHANGES_REQUIRED` for a proved defect, and `INSUFFICIENT_EVIDENCE` for a material proof gap. Validation does not authorize repair.
 
@@ -64,4 +69,4 @@ For validation classify material obligations as `proved | defect | evidence gap 
 
 With mutation authority, reconcile only affected metadata/manifests/routes, direct resource links, deterministic tests/CI, and release surfaces. Preserve unrelated work.
 
-Report the exact candidate, owned outcome/control shape, material owner/capability/resource changes, decision-surface effects, proof/gaps, and relevant external state.
+Report the exact candidate, owned outcome/control shape, material owner/capability/resource changes, decision-surface effects, proof/gaps, relevant external state, and disposition/revisit condition when a comparative evaluation controlled the change.
