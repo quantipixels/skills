@@ -37,9 +37,13 @@ For one/few task-local facts, perform the smallest direct primary-source read. D
 After establishing the exact stack, use a local mechanism reference only when the touched code exposes its trigger and the extra depth can change code or proof:
 
 - Java concurrency/visibility, equality/ordering, absence/failure, or resource-lifetime semantics → [Java runtime mechanics](java-runtime-mechanics.md);
-- Spring proxy/advice, transactions, JPA/Hibernate persistence, application lifecycle, or reactive execution semantics → [Spring runtime mechanics](spring-runtime-mechanics.md).
+- Spring proxy/advice, transactions, JPA/Hibernate persistence, application lifecycle, or reactive execution semantics → [Spring runtime mechanics](spring-runtime-mechanics.md);
+- Kotlin type/interop, coroutine/cancellation, Flow/shared-state, JVM ABI, or multiplatform-boundary semantics → [Kotlin runtime mechanics](kotlin-runtime-mechanics.md);
+- Ktor application/plugin, HTTP/error, request-cancellation, client/resilience, streaming, or resource-lifecycle semantics → [Ktor runtime mechanics](ktor-runtime-mechanics.md);
+- Elixir/OTP process ownership, GenServer state, supervision/Task failure, mailbox/ETS/resource, or configuration-lifecycle semantics → [Elixir and OTP mechanics](elixir-otp-mechanics.md);
+- Phoenix/Ecto/LiveView routing/context, authorization, transaction/data, Channel/PubSub/Presence, LiveView-state, or background-work semantics → [Phoenix runtime mechanics](phoenix-runtime-mechanics.md).
 
-These references are compact calibration distilled from earlier QP research, not hidden language/framework catalogues and not substitutes for current source truth. Load neither merely because Java or Spring appears in the repository. Project contracts and exact-current first-party/runtime evidence override them; unfamiliar or version-sensitive behavior remains a bounded current-source question.
+These references are compact calibration distilled from earlier QP research, not hidden language/framework catalogues and not substitutes for current source truth. Load none merely because its ecosystem appears in the repository. Project contracts and exact-current first-party/runtime evidence override them; unfamiliar or version-sensitive behavior remains a bounded current-source question.
 
 ## Apply the proportionality gate
 
