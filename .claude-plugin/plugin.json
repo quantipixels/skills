@@ -22,14 +22,6 @@
     "./agents/qp.md"
   ],
   "skills": [
-    "./skills/design/amoye-ui-ux",
-    "./skills/design/apere",
-    "./skills/design/asa-oju-ibanisoro",
-    "./skills/design/banner-design",
-    "./skills/design/brand",
-    "./skills/design/eto-apere",
-    "./skills/design/slides",
-    "./skills/design/social-graphics",
     "./skills/engineering/akosile",
     "./skills/engineering/alaga",
     "./skills/engineering/amose",
@@ -47,6 +39,8 @@
     "./skills/engineering/seda-sigidi",
     "./skills/engineering/architect",
     "./skills/engineering/wo-pr",
+    "./skills/experimental/amoye-ui-ux",
+    "./skills/experimental/brand",
     "./skills/experimental/dogfood",
     "./skills/experimental/fihan",
     "./skills/experimental/ideate",
@@ -62,6 +56,7 @@
     "./skills/productivity/iwadi",
     "./skills/productivity/ro-wo",
     "./skills/productivity/salaye",
+    "./skills/productivity/slides",
     "./skills/productivity/system-cleanup",
     "./skills/productivity/yo-slop"
   ]

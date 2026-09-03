@@ -47,7 +47,7 @@ Review only surfaces/states that materially support the accepted direction and c
 
 ## Converge through owner boundaries
 
-Amọ̀ye returns design findings only. `asa-oju-ibanisoro` or the applicable implementation owner applies accepted corrections, runs native proof, and rerenders affected surfaces/states.
+Amọ̀ye returns design findings only. `alaga` or another applicable implementation owner applies accepted corrections, runs native proof, and rerenders affected surfaces/states.
 
 Request another Amọ̀ye review only when the correction can materially change the design verdict or clear the previous evidence gap. Stop when no material design deficiency remains against the accepted direction and controlling product evidence.
 
