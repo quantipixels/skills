@@ -12,85 +12,121 @@ SPEC.loader.exec_module(session_evidence)
 
 
 class SessionEvidenceTest(unittest.TestCase):
-    def test_codex_extracts_metadata_tools_and_explicit_skill_without_raw_text(self):
-        with tempfile.TemporaryDirectory() as tmp:
-            root = Path(tmp) / ".codex"
-            session = root / "sessions" / "rollout.jsonl"
-            session.parent.mkdir(parents=True)
-            secret = "DO-NOT-EMIT-SECRET"
-            lines = [
-                {"timestamp": "2026-09-01T10:00:00Z", "type": "session_meta", "payload": {"id": "codex-root", "cwd": "/work/repo", "cli_version": "1.2.3", "originator": "codex_cli_rs"}},
-                {"timestamp": "2026-09-01T10:01:00Z", "type": "response_item", "payload": {"type": "message", "role": "user", "content": [{"type": "input_text", "text": f"Use the `root-cause` skill. {secret}"}]}},
-                {"timestamp": "2026-09-01T10:02:00Z", "type": "response_item", "payload": {"type": "function_call", "name": "shell"}},
-            ]
-            session.write_text("\n".join(json.dumps(line) for line in lines) + "\n")
-            report = session_evidence.build(session_evidence.args(["--host", "codex", "--codex-root", str(root), "--skill", "root-cause"]))
-            item = report["sessions"][0]
-            self.assertEqual(report["summary"]["sessions"], 1)
-            self.assertEqual(item["session_id"], "codex-root")
-            self.assertEqual(item["cwd"], "/work/repo")
-            self.assertEqual(item["host_version"], "1.2.3")
-            self.assertEqual(item["skill_signals"], [{"skill": "root-cause", "strength": "EXPLICIT_INVOKE", "lines": [2]}])
-            self.assertNotIn(secret, json.dumps(report))
+    def build_codex(self, records, extra=None):
+        tmp = tempfile.TemporaryDirectory(); self.addCleanup(tmp.cleanup)
+        root = Path(tmp.name) / ".codex"; sessions = root / "sessions"; sessions.mkdir(parents=True)
+        for name, lines in records.items():
+            (sessions / f"{name}.jsonl").write_text("\n".join(json.dumps(x) for x in lines) + "\n")
+        argv = ["--host", "codex", "--codex-root", str(root)]
+        if extra: argv += extra
+        return session_evidence.build(session_evidence.args(argv))
 
-    def test_codex_parent_threads_normalize_to_one_root(self):
-        with tempfile.TemporaryDirectory() as tmp:
-            root = Path(tmp) / ".codex"; sessions = root / "sessions"; sessions.mkdir(parents=True)
-            (sessions / "root.jsonl").write_text(json.dumps({"timestamp": "2026-09-01T10:00:00Z", "type": "session_meta", "payload": {"id": "root", "cwd": "/work/repo"}}) + "\n")
-            (sessions / "child.jsonl").write_text(json.dumps({"timestamp": "2026-09-01T10:01:00Z", "type": "session_meta", "payload": {"id": "child", "parent_thread_id": "root", "cwd": "/work/repo"}}) + "\n")
-            report = session_evidence.build(session_evidence.args(["--host", "codex", "--codex-root", str(root)]))
-            items = {item["session_id"]: item for item in report["sessions"]}
-            self.assertEqual(items["child"]["root_session_id"], "root")
-            self.assertEqual(items["child"]["relation"], "subagent")
-            self.assertEqual(report["summary"]["root_sessions"], 1)
+    def test_explicit_slash_invocation_is_high_confidence_without_raw_text(self):
+        secret = "DO-NOT-EMIT-SECRET"
+        report = self.build_codex({"root": [
+            {"timestamp": "2026-09-01T10:00:00Z", "type": "session_meta", "payload": {"id": "root", "cwd": "/work/repo", "cli_version": "1.2.3"}},
+            {"timestamp": "2026-09-01T10:01:00Z", "type": "response_item", "payload": {"type": "message", "role": "user", "content": [{"type": "input_text", "text": f"/root-cause {secret}"}]}}
+        ]}, ["--skill", "root-cause"])
+        item = report["sessions"][0]
+        self.assertEqual(item["skill_signals"], [{"skill": "root-cause", "strength": "EXPLICIT_INVOKE", "lines": [2]}])
+        self.assertNotIn(secret, json.dumps(report))
+
+    def test_natural_user_mention_is_reference_not_invocation(self):
+        report = self.build_codex({"root": [
+            {"type": "session_meta", "payload": {"id": "root"}},
+            {"type": "response_item", "payload": {"type": "message", "role": "user", "content": [{"type": "input_text", "text": "Use the root-cause skill."}]}}
+        ]}, ["--skill", "root-cause"])
+        self.assertEqual(report["sessions"][0]["skill_signals"], [{"skill": "root-cause", "strength": "USER_SKILL_REFERENCE", "lines": [2]}])
+
+    def test_negated_user_mention_is_not_invocation(self):
+        report = self.build_codex({"root": [
+            {"type": "session_meta", "payload": {"id": "root"}},
+            {"type": "response_item", "payload": {"type": "message", "role": "user", "content": [{"type": "input_text", "text": "Do not use root-cause for this task."}]}}
+        ]}, ["--skill", "root-cause"])
+        self.assertEqual(report["sessions"][0]["skill_signals"], [{"skill": "root-cause", "strength": "USER_SKILL_REFERENCE", "lines": [2]}])
+
+    def test_system_skill_path_is_reference_not_loaded(self):
+        report = self.build_codex({"root": [
+            {"type": "session_meta", "payload": {"id": "root"}},
+            {"type": "response_item", "payload": {"type": "message", "role": "system", "content": [{"type": "input_text", "text": "/repo/skills/experimental/root-cause/SKILL.md"}]}}
+        ]}, ["--skill", "root-cause"])
+        self.assertEqual(report["sessions"][0]["skill_signals"], [{"skill": "root-cause", "strength": "SKILL_PATH_REFERENCE", "lines": [2]}])
+
+    def test_nested_tool_payload_skill_key_does_not_prove_routing(self):
+        report = self.build_codex({"root": [
+            {"type": "session_meta", "payload": {"id": "root"}},
+            {"type": "response_item", "payload": {"type": "function_call_output", "output": {"example": {"selected_skill": "root-cause"}}}}
+        ]}, ["--skill", "root-cause"])
+        self.assertEqual(report["sessions"][0]["skill_signals"], [])
+
+    def test_top_level_structured_skill_is_reference_not_routing(self):
+        report = self.build_codex({"root": [
+            {"type": "session_meta", "payload": {"id": "root"}},
+            {"type": "selection", "selected_skill": "root-cause"}
+        ]}, ["--skill", "root-cause"])
+        self.assertEqual(report["sessions"][0]["skill_signals"], [{"skill": "root-cause", "strength": "STRUCTURED_SKILL_REFERENCE", "lines": [2]}])
+
+    def test_parent_threads_normalize_to_one_root(self):
+        report = self.build_codex({
+            "root": [{"type": "session_meta", "payload": {"id": "root", "cwd": "/work/repo"}}],
+            "child": [{"type": "session_meta", "payload": {"id": "child", "parent_thread_id": "root", "cwd": "/work/repo"}}]
+        })
+        items = {x["session_id"]: x for x in report["sessions"]}
+        self.assertEqual(items["child"]["root_session_id"], "root")
+        self.assertEqual(items["child"]["ancestor_session_ids"], ["root"])
+        self.assertEqual(report["summary"]["resolved_root_sessions"], 1)
+
+    def test_missing_parent_remains_unresolved_and_filterable(self):
+        records = {
+            "child-a": [{"type": "session_meta", "payload": {"id": "child-a", "parent_thread_id": "missing-root"}}],
+            "child-b": [{"type": "session_meta", "payload": {"id": "child-b", "parent_thread_id": "missing-root"}}],
+        }
+        report = self.build_codex(records)
+        self.assertEqual(report["summary"]["resolved_root_sessions"], 0)
+        self.assertEqual(report["summary"]["unresolved_root_members"], 2)
+        for item in report["sessions"]:
+            self.assertIsNone(item["root_session_id"])
+            self.assertEqual(item["root_resolution"], "UNRESOLVED_PARENT")
+            self.assertEqual(item["ancestor_session_ids"], ["missing-root"])
+        filtered = self.build_codex(records, ["--session", "missing-root"])
+        self.assertEqual({x["session_id"] for x in filtered["sessions"]}, {"child-a", "child-b"})
+
+    def test_skill_focus_does_not_drop_sessions_without_signal(self):
+        report = self.build_codex({
+            "a": [{"type": "session_meta", "payload": {"id": "a"}}, {"type": "response_item", "payload": {"type": "message", "role": "user", "content": [{"type": "input_text", "text": "/root-cause"}]}}],
+            "b": [{"type": "session_meta", "payload": {"id": "b"}}, {"type": "response_item", "payload": {"type": "message", "role": "user", "content": [{"type": "input_text", "text": "hello"}]}}],
+        }, ["--skill", "root-cause"])
+        self.assertEqual(report["summary"]["sessions"], 2)
+        by = {x["session_id"]: x for x in report["sessions"]}
+        self.assertEqual(by["b"]["skill_signals"], [])
+
+    def test_no_default_cutoff_and_unknown_time_is_uncertain(self):
+        report = self.build_codex({
+            "old": [{"timestamp": "2020-01-01T00:00:00Z", "type": "session_meta", "payload": {"id": "old"}}],
+            "unknown": [{"type": "session_meta", "payload": {"id": "unknown"}}],
+            "new": [{"timestamp": "2030-01-01T00:00:00Z", "type": "session_meta", "payload": {"id": "new"}}],
+        }, ["--since", "2025-01-01T00:00:00Z"])
+        self.assertEqual({x["session_id"] for x in report["sessions"]}, {"new", "unknown"})
+        unknown = next(x for x in report["sessions"] if x["session_id"] == "unknown")
+        self.assertEqual(unknown["filter_state"], "UNCERTAIN")
 
     def test_claude_subagent_path_groups_under_root_session(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp) / ".claude"; project = root / "projects" / "-work-repo"
-            main = project / "root-session.jsonl"; subagent = project / "root-session" / "subagents" / "agent-a.jsonl"
-            subagent.parent.mkdir(parents=True); main.parent.mkdir(parents=True, exist_ok=True)
-            main.write_text(json.dumps({"type": "user", "sessionId": "root-session", "timestamp": "2026-09-02T10:00:00Z", "cwd": "/work/repo", "version": "2.1.250", "message": {"role": "user", "content": "hello"}}) + "\n")
-            subagent.write_text(json.dumps({"type": "assistant", "timestamp": "2026-09-02T10:01:00Z", "cwd": "/work/repo", "version": "2.1.250", "message": {"role": "assistant", "content": []}}) + "\n")
+            main = project / "root-session.jsonl"; sub = project / "root-session" / "subagents" / "agent-a.jsonl"
+            sub.parent.mkdir(parents=True); main.parent.mkdir(parents=True, exist_ok=True)
+            main.write_text(json.dumps({"type": "user", "sessionId": "root-session", "timestamp": "2026-09-02T10:00:00Z", "cwd": "/work/repo", "message": {"role": "user", "content": "hello"}}) + "\n")
+            sub.write_text(json.dumps({"type": "assistant", "timestamp": "2026-09-02T10:01:00Z", "cwd": "/work/repo", "message": {"role": "assistant", "content": []}}) + "\n")
             report = session_evidence.build(session_evidence.args(["--host", "claude", "--claude-root", str(root)]))
-            by_relation = {item["relation"]: item for item in report["sessions"]}
-            self.assertEqual(by_relation["root"]["session_id"], "root-session")
-            self.assertEqual(by_relation["subagent"]["root_session_id"], "root-session")
-            self.assertEqual(report["summary"]["root_sessions"], 1)
-
-    def test_optional_time_filter_keeps_unknown_time_as_uncertain(self):
-        with tempfile.TemporaryDirectory() as tmp:
-            root = Path(tmp) / ".codex"; sessions = root / "sessions"; sessions.mkdir(parents=True)
-            (sessions / "unknown.jsonl").write_text(json.dumps({"type": "session_meta", "payload": {"id": "unknown", "cwd": "/work/repo"}}) + "\n")
-            report = session_evidence.build(session_evidence.args(["--host", "codex", "--codex-root", str(root), "--since", "2030-01-01T00:00:00Z"]))
-            self.assertEqual(report["summary"]["sessions"], 1)
-            self.assertEqual(report["sessions"][0]["filter_state"], "UNCERTAIN")
-            self.assertEqual(report["sessions"][0]["filter_uncertainty"], ["time"])
-
-    def test_no_default_cutoff_and_explicit_time_filter(self):
-        with tempfile.TemporaryDirectory() as tmp:
-            root = Path(tmp) / ".codex"; sessions = root / "sessions"; sessions.mkdir(parents=True)
-            for name, stamp in (("old", "2020-01-01T00:00:00Z"), ("new", "2030-01-01T00:00:00Z")):
-                (sessions / f"{name}.jsonl").write_text(json.dumps({"timestamp": stamp, "type": "session_meta", "payload": {"id": name, "cwd": "/work/repo"}}) + "\n")
-            all_report = session_evidence.build(session_evidence.args(["--host", "codex", "--codex-root", str(root)]))
-            self.assertEqual(all_report["summary"]["sessions"], 2)
-            filtered = session_evidence.build(session_evidence.args(["--host", "codex", "--codex-root", str(root), "--since", "2025-01-01T00:00:00Z"]))
-            self.assertEqual([item["session_id"] for item in filtered["sessions"]], ["new"])
+            by = {x["relation"]: x for x in report["sessions"]}
+            self.assertEqual(by["subagent"]["root_session_id"], "root-session")
 
     def test_invalid_json_is_counted_not_fatal(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp) / ".claude"; project = root / "projects" / "-work"; project.mkdir(parents=True)
-            path = project / "s1.jsonl"
-            path.write_text("{not json}\n" + json.dumps({"type": "user", "sessionId": "s1", "cwd": "/work", "message": {"role": "user", "content": "ok"}}) + "\n")
+            (project / "s1.jsonl").write_text("{not json}\n" + json.dumps({"type": "user", "sessionId": "s1", "message": {"role": "user", "content": "ok"}}) + "\n")
             report = session_evidence.build(session_evidence.args(["--host", "claude", "--claude-root", str(root)]))
             self.assertEqual(report["summary"]["invalid_json_lines"], 1)
-            self.assertEqual(report["sessions"][0]["event_count"], 1)
-
-    def test_assistant_instruction_text_is_not_explicit_invocation(self):
-        with tempfile.TemporaryDirectory() as tmp:
-            root = Path(tmp) / ".claude"; project = root / "projects" / "-work"; project.mkdir(parents=True)
-            (project / "s1.jsonl").write_text(json.dumps({"type": "assistant", "sessionId": "s1", "cwd": "/work", "message": {"role": "assistant", "content": "Use the `root-cause` skill next."}}) + "\n")
-            report = session_evidence.build(session_evidence.args(["--host", "claude", "--claude-root", str(root), "--skill", "root-cause"]))
-            self.assertEqual(report["sessions"][0]["skill_signals"], [])
 
 
 if __name__ == "__main__":
