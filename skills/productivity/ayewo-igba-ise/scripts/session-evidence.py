@@ -106,22 +106,36 @@ def direct_user_text(o):
 
 
 def skill_patterns(names):
-    return {n: re.compile(rf"(?<![\w/.-])/{re.escape(n)}(?![\w-])|(?<![\w-])\${re.escape(n)}(?![\w-])|\b(?:use|using|invoke|run|load|with)\s+(?:the\s+)?[`'\"]?{re.escape(n)}[`'\"]?(?:\s+skill)?\b", re.I) for n in names}
+    return {
+        n: {
+            "explicit": re.compile(rf"(?<![\w/.-])/{re.escape(n)}(?![\w-])|(?<![\w-])\${re.escape(n)}(?![\w-])", re.I),
+            "reference": re.compile(rf"(?<![\w-]){re.escape(n)}(?![\w-])", re.I),
+        }
+        for n in names
+    }
 
 
 def signals(o, line, names, patterns):
-    rank = {"SKILL_LOADED": 1, "HOST_ROUTED": 2, "EXPLICIT_INVOKE": 3}; found = {}
-    def keep(n, s):
-        if n in names and (n not in found or rank[s] > rank[found[n]]): found[n] = s
-    for d in dicts(o):
-        for k, v in d.items():
-            if k.lower() in SKILL_KEYS and isinstance(v, str): keep(v.rsplit(":", 1)[-1], "HOST_ROUTED")
-    for text in strings(o):
-        for m in SKILL_PATH.finditer(text): keep(m.group(1), "SKILL_LOADED")
+    found = set()
     for text in direct_user_text(o):
         for n, p in patterns.items():
-            if p.search(text): keep(n, "EXPLICIT_INVOKE")
-    return [(n, s, line) for n, s in sorted(found.items())]
+            if p["explicit"].search(text): found.add((n, "EXPLICIT_INVOKE"))
+            elif p["reference"].search(text): found.add((n, "USER_SKILL_REFERENCE"))
+    for source in (o, o.get("payload")):
+        if not isinstance(source, dict): continue
+        for k, v in source.items():
+            if k.lower() in SKILL_KEYS and isinstance(v, str):
+                n = v.rsplit(":", 1)[-1]
+                if n in names: found.add((n, "STRUCTURED_SKILL_REFERENCE"))
+    for text in strings(o):
+        for m in SKILL_PATH.finditer(text):
+            n = m.group(1)
+            if n in names: found.add((n, "SKILL_PATH_REFERENCE"))
+    rank = {"SKILL_PATH_REFERENCE": 1, "STRUCTURED_SKILL_REFERENCE": 2, "USER_SKILL_REFERENCE": 3, "EXPLICIT_INVOKE": 4}
+    best = {}
+    for n, strength in found:
+        if n not in best or rank[strength] > rank[best[n]]: best[n] = strength
+    return [(n, s, line) for n, s in sorted(best.items())]
 
 
 def roots(a):
@@ -146,7 +160,7 @@ def shown(p):
 
 def parse(host, path, names):
     counts = Counter(); roles = Counter(); sig = {}; times = []; invalid = 0; total = 0
-    sid = root_id = parent = cwd = version = None; relation = "root"
+    sid = root_id = parent = cwd = version = None; relation = "root"; root_resolution = "RESOLVED"
     if host == "claude":
         if path.parent.name == "subagents": sid, root_id, relation = path.stem, path.parent.parent.name, "subagent"
         else: sid = root_id = path.stem
@@ -174,19 +188,41 @@ def parse(host, path, names):
                 if relation == "root" and isinstance(v, str): sid = root_id = v
                 cwd = cwd or (o.get("cwd") if isinstance(o.get("cwd"), str) else None)
                 version = version or (o.get("version") if isinstance(o.get("version"), str) else None)
-    sid = sid or path.stem; root_id = root_id or parent or sid
-    return {"host": host, "session_id": sid, "root_session_id": root_id, "relation": relation,
-            "parent_session_id": parent, "source_path": shown(path), "cwd": cwd, "host_version": version,
-            "started_at": iso(min(times)) if times else None, "ended_at": iso(max(times)) if times else None,
-            "event_count": total, "invalid_json_lines": invalid, "event_types": dict(sorted(counts.items())),
-            "roles": dict(sorted(roles.items())), "skill_signals": [{"skill": n, "strength": s, "lines": sorted(ls)} for (n, s), ls in sorted(sig.items())],
+    sid = sid or path.stem
+    if host == "codex":
+        root_id = sid if parent is None else None
+        root_resolution = "RESOLVED" if parent is None else "PENDING_PARENT"
+    else: root_id = root_id or sid
+    return {"host": host, "session_id": sid, "root_session_id": root_id, "root_resolution": root_resolution,
+            "ancestor_session_ids": [], "relation": relation, "parent_session_id": parent, "source_path": shown(path),
+            "cwd": cwd, "host_version": version, "started_at": iso(min(times)) if times else None,
+            "ended_at": iso(max(times)) if times else None, "event_count": total, "invalid_json_lines": invalid,
+            "event_types": dict(sorted(counts.items())), "roles": dict(sorted(roles.items())),
+            "skill_signals": [{"skill": n, "strength": s, "lines": sorted(ls)} for (n, s), ls in sorted(sig.items())],
             "filter_state": "MATCH", "filter_uncertainty": []}
+
+
+def normalize_codex_roots(sessions):
+    codex = {s["session_id"]: s for s in sessions if s["host"] == "codex"}
+    for s in codex.values():
+        parent = s.get("parent_session_id")
+        if not parent:
+            s["root_session_id"] = s["session_id"]; s["root_resolution"] = "RESOLVED"; s["ancestor_session_ids"] = []; continue
+        ancestors = []; seen = {s["session_id"]}; current_parent = parent; resolved = None; resolution = "UNRESOLVED_PARENT"
+        while current_parent:
+            ancestors.append(current_parent)
+            if current_parent in seen: resolution = "CYCLE"; break
+            seen.add(current_parent); node = codex.get(current_parent)
+            if node is None: break
+            next_parent = node.get("parent_session_id")
+            if not next_parent: resolved = node["session_id"]; resolution = "RESOLVED"; break
+            current_parent = next_parent
+        s["ancestor_session_ids"] = ancestors; s["root_session_id"] = resolved; s["root_resolution"] = resolution
 
 
 def skill_names(a):
     explicit = {x.strip() for x in a.skill if x.strip()}
-    if explicit:
-        return explicit
+    if explicit: return explicit
     out = set(); root = a.skills_root
     if root is None:
         for parent in Path(__file__).resolve().parents:
@@ -199,7 +235,9 @@ def norm(p): return os.path.normcase(os.path.normpath(str(Path(p).expanduser()))
 
 
 def keep_session(s, a, since, until):
-    if a.session and s["session_id"] not in a.session and s["root_session_id"] not in a.session: return False
+    if a.session:
+        related = {s["session_id"], s.get("root_session_id"), s.get("parent_session_id"), *s.get("ancestor_session_ids", [])}
+        if not related.intersection(a.session): return False
     uncertain = []
     if a.project:
         if not s["cwd"]: uncertain.append("project")
@@ -227,17 +265,13 @@ def build(a):
         for p in fs:
             try: sessions.append(parse(host, p, names))
             except OSError as e: observed.append({"host": host, "path": shown(p), "status": "unreadable", "files": 0, "error": str(e)})
-    codex = {s["session_id"]: s for s in sessions if s["host"] == "codex"}
-    for s in codex.values():
-        cur, seen = s, {s["session_id"]}
-        while cur.get("parent_session_id") in codex and cur["parent_session_id"] not in seen:
-            cur = codex[cur["parent_session_id"]]; seen.add(cur["session_id"])
-        s["root_session_id"] = cur["session_id"]
+    normalize_codex_roots(sessions)
     sessions = [s for s in sessions if keep_session(s, a, since, until)]
-    sessions.sort(key=lambda s: (s["started_at"] is None, s["started_at"] or "", s["host"], s["root_session_id"], s["session_id"]))
+    sessions.sort(key=lambda s: (s["started_at"] is None, s["started_at"] or "", s["host"], s["root_session_id"] or "", s["session_id"]))
+    resolved_roots = {(s["host"], s["root_session_id"]) for s in sessions if s["root_session_id"] is not None}
     return {"schema": SCHEMA, "filters": {"hosts": sorted(rs), "since": iso(since), "until": iso(until), "projects": [str(p.expanduser()) for p in a.project], "session_ids": sorted(a.session), "skills": sorted(names)},
             "privacy": {"raw_transcript_content_emitted": False, "source_files_modified": False}, "roots": observed,
-            "summary": {"sessions": len(sessions), "root_sessions": len({(s["host"], s["root_session_id"]) for s in sessions}), "subagent_sessions": sum(s["relation"] == "subagent" for s in sessions), "invalid_json_lines": sum(s["invalid_json_lines"] for s in sessions)},
+            "summary": {"sessions": len(sessions), "resolved_root_sessions": len(resolved_roots), "unresolved_root_members": sum(s["root_session_id"] is None for s in sessions), "subagent_sessions": sum(s["relation"] == "subagent" for s in sessions), "invalid_json_lines": sum(s["invalid_json_lines"] for s in sessions)},
             "sessions": sessions}
 
 
