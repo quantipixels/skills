@@ -58,13 +58,13 @@ A profile is an installation/discovery mechanism, not permission to merge skill 
 
 ## Core scenario set
 
-Use fresh contexts. These cases intentionally cover both obvious owners and close neighbours.
+Use fresh contexts. These cases intentionally cover both obvious owners and close neighbours. Make the requested **result and authority** explicit enough that a correct owner is actually discriminated; do not grade an underspecified implementation-vs-review prompt as an owner failure.
 
 | ID | User intent | Expected first owner | Closest wrong route |
 | --- | --- | --- | --- |
 | D1 | Implement a bounded code fix with proof | `alaga` | `atunwo`, `se-triage` |
 | D2 | Review a supplied code candidate for defects/verdict | `atunwo` | `alaga`, `wo-pr` |
-| D3 | Simplify a working software system without changing behavior | `pare` | `architect`, `alaga` |
+| D3 | Read-only audit of a working software system for behavior-preserving simplification opportunities; do not implement changes | `pare` | `architect`, `alaga` |
 | D4 | Decide whether a reported engineering issue is valid/in-scope | `se-triage` | `root-cause`, `alaga` |
 | D5 | Find the causal mechanism behind an observed failure | `root-cause` | `se-triage`, `alaga` |
 | D6 | Resolve a consequential user choice with dependent branches | `arojinle` | `atona`, `architect` |
