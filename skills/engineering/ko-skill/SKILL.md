@@ -32,6 +32,8 @@ Before adding, re-exposing, or promoting a public owner, apply hard gates in thi
 
 If the capability is useful but the public identity has not earned selection value, keep or fold the capability behind its natural owner. If a distinct outcome is credible but recurrence/public-identity value remains unproved, use the repository's Experimental disposition rather than pretending maturity. Do not choose a target number of skills first and then force owners to fit it.
 
+When an Experimental skill's maturity or public identity is itself being changed—promote, keep experimental, narrow, fold, replace, or remove—read [experimental skill disposition](references/experimental-disposition.md). Do not infer recurrence, selection frequency, or incremental value from source structure when that disposition requires real-use evidence.
+
 ### Admit only behavior-bearing instruction
 
 A capable agent's default behavior is not automatically desired behavior. Keep an instruction only when its trigger, failure prevented, forced behavioral difference, value, and recurring cost justify default context.
