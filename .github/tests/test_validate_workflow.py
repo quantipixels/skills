@@ -29,12 +29,17 @@ class ValidateWorkflowContractTest(unittest.TestCase):
     def test_merge_queue_candidates_are_validated(self):
         self.assertIn("merge_group", self.triggers)
 
+    def test_compatibility_smoke_is_part_of_validation(self):
+        compatibility = self.jobs["compatibility-smoke"]
+        self.assertEqual(compatibility["name"], "Compatibility smoke")
+        self.assertEqual(compatibility["env"]["SKILLS_CLI_VERSION"], "1.5.23")
+
     def test_exposes_one_stable_aggregate_check(self):
         validate = self.jobs["validate"]
         self.assertEqual(validate["name"], "Validate")
         self.assertEqual(
             set(validate["needs"]),
-            {"package-state", "skill-package", "akosile-tests"},
+            {"package-state", "skill-package", "akosile-tests", "compatibility-smoke"},
         )
 
 
