@@ -16,10 +16,10 @@ Never create a duplicate, force-push, infer a write target from ambiguous remote
 
 ## Stack context
 
-Prefer the provider's current native stack representation but preserve branch topology as the semantic boundary.
+Prefer the provider's current native stack representation when it exists, but preserve the exact source/head-to-target/base relationship as the semantic boundary. Revalidate current provider stack fields, APIs, synchronization behavior, and availability before depending on them.
 
-- **GitHub:** when the stack object/Stacks API is available, use it to read current membership, position, size, trunk, and parent/base. GitHub stack APIs are capability-gated and may change while the feature remains preview. Creating the requested current PR against its confirmed parent may establish or extend its stack relationship; do not call stack-restructure/dissolve operations or mutate neighboring layers without separate authority.
-- **GitLab:** derive stack membership from open merge-request source/target relationships: a layer targets the source branch of the layer below it. Native stacked-MR UI requires a supporting server version; absence of that UI/API surface does not erase branch topology. Do not treat `blocks` dependencies, merge trains, or the experimental `glab stack` local workflow as the stack identity itself.
+- **GitHub:** use current native stack metadata/endpoints when available to strengthen membership, position, trunk, and parent evidence. If that surface is unavailable or incomplete, exact open PR head/base relationships may still prove a partial chain. Creating the requested current PR against its confirmed parent may establish or extend the relationship; do not restructure/dissolve the stack or mutate neighboring layers without separate authority.
+- **GitLab:** use current native stack metadata when available; otherwise derive only what exact open MR source/target relationships prove. Do not substitute dependency, merge-scheduling, or local stack-workflow features for the actual source/target relationship unless current provider evidence establishes that equivalence.
 
 If stack membership/position cannot be proved completely, report `unknown`/partial topology and still preserve the explicitly confirmed base relationship for the current item.
 

@@ -16,10 +16,10 @@ Custom-host trust proves routing/credential isolation, not server-version/tier/r
 
 ## Stack context
 
-Use provider-native stack state as evidence, not as automatic mutation authority.
+Use current provider-native stack state as evidence, not as automatic mutation authority. Revalidate current stack fields, APIs, synchronization behavior, merge/rebase semantics, and availability before relying on them.
 
-- **GitHub:** prefer the pull request `stack` object/current Stacks API when available, with exact branch relationships as a consistency check. GitHub evaluates stacked-PR requirements against the stack trunk and requires linear history; changes to a lower layer or trunk can require a cascading rebase. Wò PR may observe this and coordinate the reconciliation barrier, but must not invoke stack rebase/restructure/merge operations without the separate mutation/merge authority they require. After provider-driven retarget/rebase, refresh every affected open layer before preserving prior evidence.
-- **GitLab:** determine the stack from open merge requests whose target branches chain to the source branch below. Native stacked-MR UI is version/capability dependent. `blocks` dependencies and merge trains are not stack topology. The experimental `glab stack` workflow may be an available mutation mechanism for an authorized delivery path, but its presence does not expand Wò PR authority. After target retargeting or stack synchronization, refresh the affected suffix before resuming stewardship.
+- **GitHub:** prefer current native stack metadata when available, with exact branch relationships as a consistency/fallback check. Determine from current provider evidence whether a lower-layer or trunk change requires retargeting, rebasing, or another synchronization step. Wò PR may observe the need and coordinate the reconciliation barrier, but must not perform stack restructure/rebase/merge operations without their separate authority. After provider-driven topology or base/head changes, refresh every affected open layer before preserving prior evidence.
+- **GitLab:** prefer current native stack metadata when available; otherwise derive only what the exact open MR source/target chain proves. Determine synchronization/retarget behavior from current provider evidence rather than cached version assumptions. Do not substitute dependency, merge-scheduling, or local stack-workflow features for the actual MR source/target topology unless current provider evidence establishes that equivalence. After target or synchronization changes, refresh the affected suffix before resuming stewardship.
 
 For a single-layer invocation, surrounding stack layers are observation context only. For an explicit stack invocation, all open layers form one stewardship context; still apply mutation limits independently to each operation.
 
@@ -27,7 +27,7 @@ For a single-layer invocation, surrounding stack layers are observation context 
 
 Resolve exact current syntax from installed help/current provider documentation rather than caching command recipes here.
 
-- **GitHub:** `gh auth status --hostname <host>` is the entry check. Bind `gh pr`, `gh run`, GraphQL/API/stack reads and writes to the confirmed host/repository. Required checks and review threads must be read completely; page threads/comments where material. Capability-check preview stack fields/endpoints before depending on them.
+- **GitHub:** `gh auth status --hostname <host>` is the entry check. Bind `gh pr`, `gh run`, GraphQL/API/stack reads and writes to the confirmed host/repository. Required checks and review threads must be read completely; page threads/comments where material. Capability-check current stack fields/endpoints before depending on them.
 - **GitLab:** `glab auth status --hostname <host>` is the entry check. Bind API/MR operations to the confirmed host/project, clear/disable ambient CI or generic credentials that could redirect access, page pipelines/discussions/jobs as needed, and preserve GitLab merge/review/approval/stack semantics.
 
 ## Unknown or partial writes

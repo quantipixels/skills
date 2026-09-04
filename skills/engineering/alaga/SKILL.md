@@ -58,11 +58,9 @@ For a planned stateful refactor/rewrite that can change transitions, ordering, l
 
 ## Exact candidate boundary
 
-Before independent review, pin the exact candidate with the strongest native content identity available: commit, tree, snapshot, digest, or equivalent. For a PR/MR candidate, the current base is part of that identity; when the candidate is one stack layer, pin at least the head SHA plus the current base-ref SHA/effective parent epoch. A stable head with a changed effective base is a changed review candidate.
+Before independent review, pin the exact candidate with the strongest native content identity available: commit, tree, snapshot, digest, or equivalent. For a PR/MR candidate, the current base is part of that identity; when the candidate is one stack layer, pin at least the head SHA plus the current base-ref SHA. A stable head with a changed base-ref SHA is a changed review candidate.
 
-Ambient unrelated changes must not enter the candidate. If the candidate/base changes, an ancestor changes the effective stacked base, or unresolved conflict state makes the content ambiguous, refresh the identity before relying on review evidence. Preserve proof that is independently unaffected by the base change; rerun only evidence whose falsification boundary moved.
-
-Do not seek independent review of a descendant stack layer while a lower ancestor is known to have a source-changing blocker or unresolved reconciliation that will move its effective base. Let the active stack steward establish a stable frontier, or report the dependency gap when no steward owns it. Leave ordinary Git/restack mechanics to native capability under the required mutation authority.
+Ambient unrelated changes must not enter the candidate. If the candidate/base changes, an ancestor changes the effective stacked base, or unresolved conflict state makes the content ambiguous, refresh the identity before relying on review evidence. Preserve proof that is independently unaffected by the base change; rerun only evidence whose falsification boundary moved. Leave ordinary Git/restack mechanics to native capability under the required mutation authority.
 
 Before review, include required ordinary documentation. Do not promote task rationale, findings, or reversible implementation choices into durable project knowledge unless they independently qualify under the current durable-knowledge policy.
 
