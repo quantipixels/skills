@@ -1,10 +1,10 @@
 ---
-name: fihan
+name: pese
 description: Serve one explicitly invoked local file, directory, or local web resource through private Tailscale Serve or an explicitly accepted encrypted Tailcat fallback, and return the exact access target. Use only when directly invoked to make that local resource temporarily reachable through a private transport. Exclude public/anonymous tunnels, permanent hosting, production serving, and artifact creation.
 disable-model-invocation: true
 ---
 
-# Fihàn
+# Pèsè
 
 Given an eligible local resource, make it temporarily reachable through the narrowest private transport available and return the exact thing the user must open or run. Do not stop at transport recommendation, readiness, or setup guidance when the resource can be served safely now.
 
@@ -41,7 +41,7 @@ If Tailcat is already installed, prefer its embedded upstream documentation via 
 
 - If the transport tool is already installed, identify the installed version/build/provenance and use its own help/embedded documentation plus official documentation appropriate to that version. Where the official site is not versioned, reconcile current official docs with the installed CLI rather than assuming newer flags/features exist.
 - If the tool is absent and setup is authorized, use the latest official installation/setup documentation and current stable release. For an upstream with no stable releases, use its latest official upstream documentation/source and treat the interface as unstable.
-- Use `irinse` when installation, upgrade, authentication, or readiness itself requires material work. Fihàn still owns the serving outcome after the tool is ready.
+- Use `irinse` when installation, upgrade, authentication, or readiness itself requires material work. Pèsè still owns the serving outcome after the tool is ready.
 
 ## Bound the resource
 
@@ -92,7 +92,7 @@ Before reporting success, prove:
 - no public or unintended listener/route was enabled; and
 - pre-existing transport configuration remains unchanged except for the task-owned route.
 
-Receiver-side execution by the human is not required to call the route ready when it cannot be performed from the current environment. Fihàn succeeds when the serving route itself is live, containment is proved, and the exact usable access target has been produced. State any remaining reader prerequisite explicitly.
+Receiver-side execution by the human is not required to call the route ready when it cannot be performed from the current environment. Pèsè succeeds when the serving route itself is live, containment is proved, and the exact usable access target has been produced. State any remaining reader prerequisite explicitly.
 
 ## Revoke cleanly
 
