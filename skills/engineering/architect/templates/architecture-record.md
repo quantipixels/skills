@@ -1,61 +1,42 @@
 ---
-owner: solution-architect
+owner: architect
 record_type: architecture
 subject: <stable architecture subject>
 title: <architecture topic>
 updated_at: <offset-aware timestamp>
 revision: 1
-status: IMPLEMENTATION_READY | NOT_READY | UNPROVED
+# Include only when readiness itself is the record result:
+# status: IMPLEMENTATION_READY | NOT_READY | UNPROVED
 ---
 
 # <Architecture topic>
 
-## Resume
+## Question and result
 
-**Problem:** <why this architecture exists>
+**Architecture question:** <the technical structure this record resolves>
 
-**Selected design:** <concise design summary>
+**Selected structure:** <concise design summary>
 
-**Result:** <IMPLEMENTATION_READY | NOT_READY | UNPROVED>
+**Readiness:** <omit unless implementation readiness is the requested/required result>
 
-**Next technical action:** <one exact action and completion condition>
+## Material drivers
 
-## Problem, outcomes, and scope
+<only constraints/scenarios that materially shape the structure>
 
-<required outcomes, boundaries, non-goals, constraints, assumptions>
+## Structure and ownership
 
-## Drivers and scenarios
+<system/subsystem/module ownership, interfaces/seams, data/state/identity, and integrations>
 
-<only scenarios that materially shape the design>
+Include trust, deployment/runtime, operations, failure/recovery, compatibility, migration, rollback, or deletion only when they materially shape this architecture.
 
-## Decisions
+## Critical invariants
 
-<selected technical decisions, alternatives/trade-offs, and material user-decision gaps if any>
+<implementation-shaping rules and forbidden dependency/trust/state directions>
 
-## Implementation design
+## Decisions and alternatives
 
-<owned modules/interfaces, data/state, flows, integrations, trust, deployment, configuration, observability, operations>
+<selected technical choices, decisive trade-offs, and strongest credible alternatives worth retaining>
 
-## Architecture Contract
+## Gaps and evidence
 
-<critical invariants, dependency directions, state/identity/authority owners, failure/recovery/migration constraints, and primary proof seams that implementation must preserve>
-
-## Failure, recovery, migration, and deletion
-
-<only material lifecycle/failure/evolution obligations>
-
-## Proof
-
-<tests/static/schema/runtime/operational evidence for material drivers>
-
-## Risks and gaps
-
-<residual risks, deferrals, evidence gaps, required owners>
-
-## Linked evidence
-
-<link detailed research/code/log/provider evidence by exact identity instead of copying it>
-
-## Material history
-
-- r1 — <only a material decision/contract/evidence/recovery/ownership/status change worth retaining>
+<unresolved architecture gaps, evidence limits, and exact linked sources needed for review/recovery>

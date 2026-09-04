@@ -90,7 +90,7 @@ The catalogue headings below mirror repository package organization, not semanti
 | `seda-spec` | Confirmed implementation-independent behavior/operating specification |
 | `seda-ticket` | Outcome-complete delivery tickets with dependencies, acceptance, and startable frontier |
 | `seda-sigidi` | Draft or explicitly integrate one agent's durable identity/values/boundaries/voice into a known host configuration |
-| `architect` | Implementation-ready software-system architecture design/read-only review |
+| `architect` | Technical-structure design/review from consequential module seams through system architecture; implementation-readiness gate when needed |
 | `wo-pr` | Steward an open PR/MR through CI/conflict/feedback readiness |
 
 ## Productivity
