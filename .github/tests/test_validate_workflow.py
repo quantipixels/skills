@@ -39,6 +39,9 @@ class ValidateWorkflowContractTest(unittest.TestCase):
             "@anthropic-ai/claude-code@${CLAUDE_CODE_VERSION} plugin validate .",
             runs,
         )
+        self.assertIn('plugin marketplace add "$GITHUB_WORKSPACE" --scope user', runs)
+        self.assertIn("plugin install qp-skills@qp-skills --scope user", runs)
+        self.assertIn("plugin list --json", runs)
 
     def test_portable_mechanics_cover_supported_os_families(self):
         portable = self.jobs["portable-mechanics"]
