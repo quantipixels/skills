@@ -47,6 +47,7 @@ plain-language understanding   → salaye
 visual understanding           → fihanmi
 standalone browser projection  → html-artifact
 presentation/deck              → slides
+Yorùbá technical term/glossary  → yoruba-glossary
 decision instrument            → prototype
 
 interface direction judgment   → amoye-ui-ux
@@ -71,6 +72,7 @@ Keep these distinctions explicit when they prevent a plausible wrong route:
 - `amose` / `iwadi` / `irinse` — domain-model establishment/clarification plus exceptional durable project knowledge / reusable research conclusion / companion engineering-tool readiness or bounded evidence.
 - `amoye-ui-ux` / `brand` / `alaga` — interface direction / durable identity / UI implementation.
 - `pepeye` / `atona` / `handoff` — requested task supervision / initiative lifecycle / portable context transfer.
+- `yoruba-glossary` / `technical-writing` — technical term confirmation and authorized glossary maintenance / clarity and structure of technical prose. Ordinary reuse of existing terms does not require glossary work.
 
 Use `scope-guard` only when explicit scope steering is independently useful; it is not a mandatory stage.
 

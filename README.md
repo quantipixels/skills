@@ -110,6 +110,7 @@ The catalogue headings below mirror repository package organization, not semanti
 | `system-cleanup` | Safe macOS storage audit, regenerable cleanup, worktree review, and external-drive offload |
 | `technical-writing` | Technical communication structure/clarity from direct reader/job/syntax principles |
 | `yo-slop` | Final prose cleanup / explicit pruning without contract change |
+| `yoruba-glossary` | Yorùbá/English technical term decisions and authorized, validated CSV glossary maintenance |
 
 `salaye` is intentionally lightweight: its value is reliable reusable model steering, not hidden machinery.
 
