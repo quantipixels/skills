@@ -1,12 +1,12 @@
 ---
 name: akosile
-description: Maintain one repository-scoped QP `.qp` workspace across Git worktrees. Use for canonical owner-record/artifact paths, linked-worktree aliasing or migration, exact CAS publication, sparse settings, and generated index rendering. Exclude semantic record meaning/status, project knowledge, provider mutation, and global `~/.qp` storage.
-compatibility: Requires Git and Python 3. Linked-worktree aliases require filesystem symlink support.
+description: Maintain one repository-scoped workspace shared across Git worktrees. Use for canonical owner-record/artifact paths, worktree-visible `.qp` aliases or migration, exact CAS publication, sparse settings, and generated index rendering. Exclude semantic record meaning/status, project knowledge, provider mutation, and global `~/.qp` storage.
+compatibility: Requires Git and Python 3. Worktree-visible `.qp` aliases require filesystem symlink support.
 ---
 
 # Akọsílẹ̀
 
-Own one repository's `.qp` workspace contract. Semantic owners supply record/artifact kind, stable subject, and semantic content. Akọsílẹ̀ owns the canonical repository home, stable paths, worktree aliases, safe publication, sparse settings mechanics, and generated navigation.
+Own one repository's workspace contract. Semantic owners supply record/artifact kind, stable subject, and semantic content. Akọsílẹ̀ owns canonical repository state, stable paths, reconstructible worktree aliases, safe publication, sparse settings mechanics, and generated navigation.
 
 Use native Git/filesystem capability for ordinary discovery, allocation, symlinks, inspection, hashing, and Git excludes. Keep bundled code only for two deterministic kernels:
 
@@ -15,64 +15,70 @@ safe-write.py   expected candidate+target digests → exact compare-and-swap pub
 render-index.py canonical record frontmatter → Markdown on stdout
 ```
 
-Read [workspace contract](references/workspace-contract.md) for paths and publication, [worktrees](references/worktrees.md) when multiple worktrees or legacy physical stores exist, and [settings](references/settings.md) only for settings work.
+Read [workspace contract](references/workspace-contract.md) for paths/publication, [worktrees](references/worktrees.md) when aliases or legacy physical stores are material, and [settings](references/settings.md) only for settings work.
 
 ## Establish the canonical workspace
 
-Resolve registered worktrees from Git's exact worktree metadata. If the main record is bare, stop with `BARE_REPOSITORY_UNSUPPORTED`; otherwise its worktree owns the one real `<main-worktree>/.qp`. Every linked worktree exposes `.qp` only as a symlink to that canonical directory.
+Resolve the repository's exact Git common directory from Git metadata and make `<git-common-dir>/qp` the one physical workspace. Repository state is shared state, not property of whichever worktree happens to be the main worktree.
 
-Initialize lazily. Create the real `.qp` when QP state is first required, but do not pre-create empty `settings.json`, `INDEX.md`, `records/`, or `artifacts/`.
+Every registered non-bare worktree may expose a root `.qp` symlink to that canonical directory when a worktree-visible path is useful. The alias is derived state: repair/recreate it from Git metadata rather than treating its target/path as durable state. A bare repository with no worktree can still own canonical state; it simply has no worktree `.qp` alias.
 
-Ensure the root `.qp` entry is ignored without modifying tracked ignore policy merely for QP setup. The ignore must match both the main directory and linked-worktree symlink; a directory-only trailing-slash rule is insufficient. Verify ignore behavior after alias creation.
+Initialize lazily. Create the canonical `qp` directory only when workspace state is first required; do not pre-create empty `settings.json`, `INDEX.md`, `records/`, or `artifacts/`.
+
+Keep worktree `.qp` aliases ignored without modifying tracked ignore policy merely for workspace setup. Prefer the repository's shared local exclude when suitable so the same rule applies across worktrees; verify the actual alias is ignored. A directory-only trailing-slash pattern is insufficient for a symlink.
+
+If symlinks are unavailable, canonical repository state remains valid, but a consumer requiring the worktree-relative `.qp/...` view has an alias capability gap. Do not create a second physical workspace as fallback.
 
 ## Resolve stable owner paths
 
-New record bundles use:
+Canonical physical bundles live under `<git-common-dir>/qp`, while worktree-visible paths remain `.qp/...` when an alias exists:
 
 ```text
-.qp/records/<owner>/<stable-subject>/
-├── record.md
-├── index.html       optional human projection
-├── receipts/        optional
-└── evidence/        optional
+<git-common-dir>/qp/
+├── records/<owner>/<stable-subject>/
+│   ├── record.md
+│   ├── index.html       optional human projection
+│   ├── receipts/        optional
+│   └── evidence/        optional
+└── artifacts/<stable-subject>/index.html
 ```
 
-Standalone artifacts use `.qp/artifacts/<stable-subject>/index.html`.
-
-Use the exact ASCII skill name as owner and a lowercase ASCII slug as subject. Do not add date prefixes or automatic collision suffixes. Allocate the exact subject atomically: reuse an existing matching resource, reconcile an incomplete/ambiguous allocation, and require the semantic owner to choose a genuinely different subject for genuinely different work. Existing dated bundle paths remain valid legacy identities.
+Use exact ASCII skill name as owner and lowercase ASCII slug as subject. Do not add date prefixes or automatic collision suffixes. Allocate the exact subject atomically: reuse an existing matching resource, reconcile incomplete/ambiguous allocation, and require the semantic owner to choose a genuinely different subject for genuinely different work. Existing dated bundle paths remain valid legacy identities.
 
 ## Publish exact files safely
 
-The semantic owner builds and validates a complete candidate outside `.qp`. Pin SHA-256 identities for that exact candidate and the current target using native host capability; use `absent` only when the target is absent.
+The semantic owner builds and validates a complete candidate outside the canonical workspace. Pin SHA-256 identities for the exact candidate and current target using native host capability; use `absent` only when the target is absent.
 
-Publish through the retained kernel:
+Publish through the retained kernel against the real canonical root, never through a worktree alias:
 
 ```bash
 python3 <skill-root>/scripts/safe-write.py \
-  --root <real-canonical-.qp> \
+  --root <real-git-common-dir>/qp \
   --target <target> \
-  --candidate <candidate-outside-.qp> \
+  --candidate <candidate-outside-workspace> \
   --expected-target <target-sha256-or-absent> \
   --expected-candidate <candidate-sha256>
 ```
 
-The helper verifies the candidate identity, locks and rechecks the target, atomically publishes the already-verified bytes, and verifies readback. On `CANDIDATE_CHANGED`, rebuild/revalidate the candidate; on `STALE_TARGET`, re-read and reconcile semantic state. The helper does not discover/allocate paths, parse semantic content, retry, or choose recovery.
+The helper verifies candidate identity, locks/rechecks the target, atomically publishes already-verified bytes, and verifies readback. On `CANDIDATE_CHANGED`, rebuild/revalidate the candidate; on `STALE_TARGET`, re-read and reconcile semantic state. The helper does not discover paths, parse semantic content, retry, or choose recovery.
 
 ## Render navigation
 
 Generate an index candidate through the pure transform:
 
 ```bash
-python3 <skill-root>/scripts/render-index.py <real-canonical-.qp> > <temporary-INDEX.md>
+python3 <skill-root>/scripts/render-index.py <real-git-common-dir>/qp > <temporary-INDEX.md>
 ```
 
-The renderer accepts current stable subjects and existing dated subjects, validates the common envelope, sorts offset-aware timestamps by instant, treats visible metadata as literal text, links canonical projections, and surfaces malformed records. It never mutates `.qp`. Publish the generated bytes through `safe-write.py` only when an `INDEX.md` is actually needed.
+The renderer accepts stable/current and legacy dated subjects, validates the common envelope, sorts timestamps by instant, treats visible metadata as literal text, links projections, and surfaces malformed records. It never mutates the workspace. Publish generated bytes through `safe-write.py` only when `INDEX.md` is actually needed.
 
 ## Report
 
-Return the canonical workspace, relevant worktree/alias state, affected owner resource, migration/conflict state, ignore verification, index state when used, and for generated resources intended for direct use:
+Return the canonical Git-common workspace, current worktree alias state when applicable, affected owner resource, migration/conflict state, ignore verification, index state when used, and for generated resources intended for direct use:
 
 ```text
-Absolute path: <resolved filesystem path>
-Workspace path: <repository-relative .qp/... path>
+Canonical path: <resolved filesystem path under git-common-dir/qp>
+Workspace path: <repository-relative .qp/... path, only when a worktree alias exists>
 ```
+
+Never invent a worktree-relative locator for a bare/no-worktree context.

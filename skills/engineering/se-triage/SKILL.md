@@ -55,7 +55,7 @@ Choose one action:
 
 When a confirmed report—or a plausible report with an equivalent direct observation available—still needs causal diagnosis before a correction can be responsibly scoped, name `root-cause` as the next owner and hand it the pinned failure/evidence boundary. When causal ownership is already sufficiently established, hand the confirmed behavioral brief to `alaga`. Ṣe Triage does not perform causal diagnosis or implementation itself.
 
-When `.qp/settings.json` exists, read [optional vocabulary settings](references/settings.md). Its vocabulary may rename display labels or interpret explicit aliases but cannot alter canonical classifications, evidence requirements, actions, or authority.
+When repository workspace settings are available, read [optional vocabulary settings](references/settings.md). Its vocabulary may rename display labels or interpret explicit aliases but cannot alter canonical classifications, evidence requirements, actions, or authority. Resolve settings through the canonical workspace; do not assume a worktree `.qp` alias exists.
 
 Persist through `akosile` only when handoff/recovery or an explicit durable triage record is needed.
 
