@@ -1,6 +1,8 @@
 # Optional vocabulary settings
 
-Load this reference only when `.qp/settings.json` exists. Read only its optional `se-triage` object:
+Load this reference only when canonical repository workspace settings exist. Resolve the canonical Git-common workspace through `akosile` and read its `settings.json`; `.qp/settings.json` is only an optional worktree alias to the same file and must not be required.
+
+Read only the optional `se-triage` object:
 
 ```json
 {

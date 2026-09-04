@@ -13,9 +13,9 @@ Browse the [documentation](https://quantipixels.com/skills).
 - Kọ Skill authors every capability/resource at the smallest adequate surface: guidance/reference → visible command → native/project/provider tool → focused library → deterministic script → engine only when it carries a substantial owned vertical.
 - Use an obvious outcome owner directly. Use a router only when ownership is genuinely unclear or several independently useful owners need sequencing.
 - Supporting composition belongs behind the active owner unless another owner's independently useful result or separate authority must become visible.
-- Akọsílẹ̀ owns repository-scoped `.qp` mechanics when that persistence surface is selected; broadly useful owners must not require a repository merely because `.qp` is one available durable destination.
+- Akọsílẹ̀ owns repository-scoped workspace mechanics when that persistence surface is selected; broadly useful owners must not require a repository merely because the workspace is one available durable destination.
 - HTML Artifact creates reader-specific projections of supplied material without duplicating source archives or originating conclusions.
-- Generated `.qp` state stays outside Git by default.
+- Generated workspace state stays outside Git by default.
 - Small public skills may intentionally exist as reusable model-steering contracts when a narrow named behavior saves users from restating longer instructions and the public identity itself improves selection/use.
 - Thin public convenience entrypoints may wrap native commands when one safe memorable invocation materially improves installation, removal, or other human-facing distribution UX.
 - Experimental skills are first-party runtime candidates under their normal trigger, intent, authority, cost, safety, and host invocation gates. Experimental marks evidence/promotion maturity rather than adding a category-wide acceptance tax; experiments do not become unconditional prerequisites or redefine stable owners before promotion.
@@ -57,15 +57,17 @@ The entrypoint removes only globally installed skills whose lock-file source is 
 
 ## Repository-local workspace
 
+Canonical repository state lives under Git's shared common directory:
+
 ```text
-.qp/
+<git-common-dir>/qp/
 ├── settings.json                         optional
 ├── INDEX.md                              optional generated navigation
 ├── records/<owner>/<stable-subject>/     created on first record
 └── artifacts/<stable-subject>/           created on first standalone artifact
 ```
 
-The real `.qp` belongs to the non-bare main worktree. Linked worktrees expose `.qp` as a symlink to it. Existing dated record/artifact directories remain valid legacy identities.
+A registered worktree may expose `.qp` as a reconstructible symlink to that shared store. No worktree is privileged as the physical owner, and a bare repository may own state without a worktree alias. Existing dated record/artifact directories remain valid legacy identities.
 
 The catalogue headings below mirror repository package organization, not semantic domain boundaries. Select by each skill's owned outcome/trigger: broadly useful planning, review, knowledge, specification, and delivery-decomposition owners may live under `engineering` without requiring a software task.
 
@@ -73,7 +75,7 @@ The catalogue headings below mirror repository package organization, not semanti
 
 | Skill | Outcome |
 | --- | --- |
-| `akosile` | Repository-scoped `.qp` paths/worktrees, sparse settings, exact safe publication, generated index |
+| `akosile` | Repository-scoped Git-common workspace, worktree aliases/migration, sparse settings, exact safe publication, generated index |
 | `alaga` | Deliver one supplied software/build job through implementation, proof, review, and handoff, including UI delivery depth when the job materially changes product interfaces |
 | `amose` | Exact-current project/domain model and durable working knowledge across the project's natural sources of truth |
 | `atona` | One initiative plan from Draft through delivery/closure |

@@ -9,7 +9,7 @@ Turn supplied or owner-established meaning into a purpose-shaped browser read mo
 
 ## Projection contract
 
-Use an owner-supplied projection path when present; otherwise use the requested path or the active host's normal artifact/output surface. When the selected destination is a repository-scoped QP workspace, resolve a standalone `.qp/artifacts/<subject>/index.html` through `akosile`. Do not require a repository merely to produce an HTML artifact.
+Use an owner-supplied projection path when present; otherwise use the requested path or the active host's normal artifact/output surface. When the selected destination is a repository-scoped workspace, use `akosile` to resolve the canonical artifact under `<git-common-dir>/qp/artifacts/<subject>/index.html`. A registered worktree may expose the same artifact as `.qp/artifacts/<subject>/index.html`; that repository-relative path is an optional alias locator, not a requirement. Do not require a repository merely to produce an HTML artifact.
 
 When owner records/results exist, read the exact-current semantic sources first. Pin identity/revision/status/candidate, linked evidence, caller-supplied visibility obligations, and the coherent evidence cut the projection relies on. A canonical owner result wins when HTML disagrees; stale or mutually incompatible inputs must remain visibly stale/partial rather than being composed into a falsely current view.
 
@@ -56,7 +56,7 @@ Interaction may navigate/filter/compare/sequence/reveal supplied material but mu
 
 ## Standalone support
 
-Use an existing artifact/project shell when it already owns the need. For standalone QP HTML, use the [visual foundation](assets/visual-foundation.css) and [theme control](assets/theme-control.html) unless the host already supplies equivalent behavior. Add the [back-to-top control](assets/back-to-top-control.html), [report control](assets/report-control.html), [collection filter control](assets/collection-filter-control.html), or [carousel control](assets/carousel-control.html) only when that asset's own trigger applies.
+Use an existing artifact/project shell when it already owns the need. For standalone HTML artifacts, use the [visual foundation](assets/visual-foundation.css) and [theme control](assets/theme-control.html) unless the host already supplies equivalent behavior. Add the [back-to-top control](assets/back-to-top-control.html), [report control](assets/report-control.html), [collection filter control](assets/collection-filter-control.html), or [carousel control](assets/carousel-control.html) only when that asset's own trigger applies.
 
 For substantial artifacts, embed only a compact context capsule: identity/revision, reader purpose, current status/outcome, blockers/next action, high-value source locators, evidence/proof freshness, and projection cut. Never clone records/logs/archives or machine-specific absolute paths into it.
 
@@ -87,7 +87,7 @@ For caller-supplied human-visibility obligations, maintain an internal coverage 
 
 ## Deliver
 
-Return the exact direct-access locator supported by the active host: a file path, artifact attachment/URL, or equivalent. When the artifact lives in a repository-scoped QP workspace, also return its repository-relative `.qp/...` workspace path.
+Return the exact direct-access locator supported by the active host: a file path, artifact attachment/URL, or equivalent. For an artifact in the repository-scoped workspace, always return the canonical artifact path/locator resolved by `akosile`; also return the repository-relative `.qp/...` locator only when a current worktree alias exists and resolves to that canonical store. Never fabricate a `.qp/...` locator for a bare/no-worktree or alias-capability-gap context.
 
 Opening is host UX, not artifact semantics. Open only when the user asks or render proof requires it; reuse an existing preview/page/session when available. After rewrites, refresh/navigate that surface rather than invoking an opener repeatedly. If the only available opener would create another tab/window and opening is not required for proof, return the locator instead.
 
