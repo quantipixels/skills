@@ -61,11 +61,51 @@ Coverage/evidence gaps:
 
 This packet is historical evidence, not a promotion/removal verdict. `ko-skill` may consume it when a portfolio disposition is requested.
 
+### Stable-skill improvement evidence
+
+When real-use history is being used to improve an already-stable skill, Àyẹ̀wò owns reconstruction and returns a compact packet rather than drafting the skill change itself.
+
+For every material repeated failure mechanism, distinguish the smallest cause supported by the historical record:
+
+- `CONTRACT_MISSING` — the active skill lacked a behavior-bearing rule/boundary that the repeated cases needed;
+- `CONTRACT_AMBIGUOUS` — the active rule plausibly supported more than one consequential behavior and the ambiguity contributed to the failure;
+- `CLEAR_RULE_VIOLATED` — the active skill already required the correct behavior but the agent did not follow it;
+- `SELECTION_MISROUTED` — the wrong owner was selected or the right owner was not discoverable when needed;
+- `TOOL_OR_ENVIRONMENT_GAP` — the skill contract was adequate but a host/tool/environment capability prevented the intended behavior;
+- `REASONABLE_VARIANCE_OR_OBSOLETE` — the observed choice was reasonable under the then-current contract or later requirements made it obsolete; or
+- `NOT_IMPLICATED` — the skill did not materially cause the observed failure.
+
+Do not convert `CLEAR_RULE_VIOLATED`, `TOOL_OR_ENVIRONMENT_GAP`, or ordinary model variance into another skill instruction merely because the incident was costly. A stable-skill edit is earned when evidence shows a reusable owner-contract deficiency—normally `CONTRACT_MISSING`, `CONTRACT_AMBIGUOUS`, or a repeated selection boundary defect—or when one severe owner-wide failure is enough under Kọ Skill's normal admission rule.
+
+Return this packet when Kọ Skill or another authoring decision needs the historical evidence:
+
+```text
+Stable skill improvement evidence
+
+Skill:
+Corpus/population:
+Source | installed | active | published boundary:
+Repeated failure mechanism:
+Independent supporting root sessions:
+User corrections / recovery evidence:
+Current-contract assessment: <classification + exact active rule/evidence>
+Selection / adjacent-owner evidence:
+Observed consequence / recovery cost:
+Counterevidence / healthy cases:
+Smallest plausible owning change:
+Proof needed after change:
+Coverage/evidence gaps:
+```
+
+The packet is evidence, not an edit instruction or verdict. Kọ Skill decides whether the smallest justified response is `NO_CHANGE`, selection/discovery repair, host/tool repair, instruction clarification, reference/resource change, owner-boundary change, or another task-native disposition.
+
 ## Report the corpus
 
 Return the executive verdict, population and unit definitions, inventory and sampling ledger, repeated-pattern matrix with independent supporting records and counterevidence, representative causal chains, ranked frictions, effective recoveries, recommendation assessment, rejected recommendations, and residual limits.
 
 When Experimental evaluation is in scope, also return the opportunity evidence packet per experiment. Do not infer promotion, narrowing, folding, replacement, or removal from invocation counts; leave portfolio-shape judgment to `ko-skill` unless that judgment is explicitly part of a broader authorized workflow.
+
+When stable-skill improvement is in scope, return the stable-skill improvement packet for each skill whose contract/selection boundary is materially implicated. Preserve `NO_CHANGE` evidence when the current contract was adequate; do not report only problematic sessions.
 
 When the corpus spans projects, include one dossier for every normalized project in the population, not only sampled or problematic projects. Each dossier must state:
 
