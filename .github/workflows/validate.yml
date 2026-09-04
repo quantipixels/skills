@@ -65,6 +65,41 @@ jobs:
       - name: Test safe-write and index renderer
         run: python3 -m unittest discover -s skills/engineering/akosile/scripts -p 'test_*.py'
 
+  compatibility-smoke:
+    name: Compatibility smoke
+    runs-on: ubuntu-latest
+    env:
+      SKILLS_CLI_VERSION: 1.5.23
+      DISABLE_TELEMETRY: "1"
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Discover QP through Skills CLI
+        run: |
+          npx --yes skills@${SKILLS_CLI_VERSION} add "$GITHUB_WORKSPACE" --list | tee /tmp/qp-skills-list.txt
+          grep -F 'alaga' /tmp/qp-skills-list.txt
+          grep -F 'wo-pr' /tmp/qp-skills-list.txt
+          grep -F 'root-cause' /tmp/qp-skills-list.txt
+
+      - name: Install every QP skill for Codex
+        run: |
+          target="$(mktemp -d)"
+          cd "$target"
+          npx --yes skills@${SKILLS_CLI_VERSION} add "$GITHUB_WORKSPACE" --agent codex --skill '*' --copy -y
+
+          expected="$(find "$GITHUB_WORKSPACE/skills" -mindepth 3 -maxdepth 3 -name SKILL.md | wc -l | tr -d ' ')"
+          installed="$(find "$target/.agents/skills" -mindepth 2 -maxdepth 2 -name SKILL.md | wc -l | tr -d ' ')"
+
+          test "$installed" -eq "$expected"
+          test -f "$target/.agents/skills/alaga/SKILL.md"
+          test -f "$target/.agents/skills/root-cause/SKILL.md"
+
   validate:
     name: Validate
     if: ${{ always() }}
@@ -72,6 +107,7 @@ jobs:
       - package-state
       - skill-package
       - akosile-tests
+      - compatibility-smoke
     runs-on: ubuntu-latest
     steps:
       - name: Require all validation jobs
@@ -79,7 +115,9 @@ jobs:
           PACKAGE_STATE_RESULT: ${{ needs.package-state.result }}
           SKILL_PACKAGE_RESULT: ${{ needs.skill-package.result }}
           AKOSILE_TESTS_RESULT: ${{ needs.akosile-tests.result }}
+          COMPATIBILITY_SMOKE_RESULT: ${{ needs.compatibility-smoke.result }}
         run: |
           test "$PACKAGE_STATE_RESULT" = success
           test "$SKILL_PACKAGE_RESULT" = success
           test "$AKOSILE_TESTS_RESULT" = success
+          test "$COMPATIBILITY_SMOKE_RESULT" = success
