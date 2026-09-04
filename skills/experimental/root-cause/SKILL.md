@@ -54,4 +54,4 @@ Return one:
 
 Include failure identity, minimal mechanism/set, per-factor evidence and causal role, interactions/alternative sufficient paths when material, contributing/contextual/unresolved factors, propagation/containment, decisive evidence, falsified alternatives, affected boundary, confidence limits, and smallest useful next action.
 
-When a durable diagnosis is needed, use the existing/user-selected destination; use `akosile` only when that destination is a repository-scoped QP workspace. Use `html-artifact` only when a substantial terminal diagnosis benefits from a visual view.
+When a durable diagnosis is needed, use the existing/user-selected destination; use `akosile` only when that destination is a repository-scoped `.qp` workspace. Use `html-artifact` only when a substantial terminal diagnosis benefits from a visual view.

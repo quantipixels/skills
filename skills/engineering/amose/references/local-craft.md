@@ -1,6 +1,6 @@
 # Repository-local craft knowledge
 
-Use this destination only when the user/repository explicitly authorizes preserving a **confirmed, reusable, project-specific coding pattern** that should remain local instead of becoming a published QP rule.
+Use this destination only when the user/repository explicitly authorizes preserving a **confirmed, reusable, project-specific coding pattern** that should remain local instead of becoming a published cross-project rule.
 
 Resolve one owner record through `akosile`:
 
@@ -38,7 +38,7 @@ Evidence: current aggregate tests + architecture decision AD-12.
 Freshness: revalidate if aggregate ownership changes.
 ```
 
-Why it belongs: it is a confirmed repository-specific implementation pattern that changes future coding choices but is not a universal QP rule.
+Why it belongs: it is a confirmed repository-specific implementation pattern that changes future coding choices but is not a universal cross-project rule.
 
 Bad local craft:
 

@@ -43,12 +43,12 @@ When keeping one, bind it explicitly:
 
 ```text
 named model/standard
-→ QP-relevant reasoning job
+→ skill-relevant reasoning job
 → selected behavior-bearing subset
 → boundary: the name does not import the whole framework
 ```
 
-Prefer current owning sources for volatile or normative detail. Remove names that add only prestige, generic ceremony, canned templates, or latent rules QP does not intend to adopt.
+Prefer current owning sources for volatile or normative detail. Remove names that add only prestige, generic ceremony, canned templates, or latent rules the skill does not intend to adopt.
 
 When compressing or removing a reference, check the residual material decision surface: a smaller representation is worse if the deleted depth merely turns a consequential constraint or distinction into model inference.
 

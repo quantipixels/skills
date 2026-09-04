@@ -68,4 +68,4 @@ Use `yo-slop` only when the user explicitly asks for its cleanup/pruning outcome
 
 ## Provenance and boundary
 
-QP intentionally uses selected reasoning from Diátaxis, the Google developer documentation style guide, ASD-STE100 Issue 9, and Kohl's *The Global English Style Guide*. The named models provide useful vocabulary and reasoning anchors; the rules above are the behavior-bearing subset for this skill. Do not import each source as a complete mandatory methodology or replace its current authoritative text with cached QP guidance.
+This skill intentionally uses selected reasoning from Diátaxis, the Google developer documentation style guide, ASD-STE100 Issue 9, and Kohl's *The Global English Style Guide*. The named models provide useful vocabulary and reasoning anchors; the rules above are the behavior-bearing subset for this skill. Do not import each source as a complete mandatory methodology or replace its current authoritative text with cached local guidance.

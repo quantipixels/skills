@@ -17,7 +17,7 @@ Do not optimize for fewer owners/resources/stages. Fold only when the smaller sh
 
 Frame the owner at the natural level of its outcome. Generalize the mechanism, never the authority. Protect the **material decision surface**: compression/folding/generalization must not turn an owned constraint, evidence requirement, authority boundary, or consequential choice into unlabeled model inference.
 
-Curate frameworks **into** reasoning. Preserve a named model, standard, concept, or mature capability when its vocabulary, conceptual structure, authority, durable problem fit, or retrieval value materially improves this owner's judgment. State the QP-relevant subset/boundary directly; a name imports neither the whole methodology nor a closed ecosystem.
+Curate frameworks **into** reasoning. Preserve a named model, standard, concept, or mature capability when its vocabulary, conceptual structure, authority, durable problem fit, or retrieval value materially improves this owner's judgment. State the skill-relevant subset/boundary directly; a name imports neither the whole methodology nor a closed ecosystem.
 
 Use the smallest control shape that preserves correctness: `lightweight` when consequential invariants can directly produce the result; `workflow` when ordered stages, durable/external state, stale/partial recovery, multiple actors/candidates, or distinct side-effect authorities genuinely control correctness. Do not add lifecycle/status/receipts/schemas merely because the outcome is important.
 
@@ -37,7 +37,7 @@ When several credible capability/architecture/portfolio options remain and at le
 4. use a grade/score only when it clarifies comparison and never as a substitute for the decisive reason; and
 5. return a task-native disposition such as `ADOPT | ADAPT | FOLD | INCUBATE | DEFER | REJECT | NEEDS_EVIDENCE`, plus the proof/revisit trigger when uncertainty remains.
 
-Keep verdict/evidence status, confidence, comparative grade, readiness, and disposition distinct. Do not create a universal QP scorecard or numeric confidence without a meaningful model.
+Keep verdict/evidence status, confidence, comparative grade, readiness, and disposition distinct. Do not create a universal portfolio scorecard or numeric confidence without a meaningful model.
 
 ## 2. Compose and place capability
 

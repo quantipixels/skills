@@ -13,7 +13,7 @@ Turn supplied material and a reader outcome into a visually coherent presentatio
 2. Read [create](references/create.md), then load only the relevant [layout patterns](references/layout-patterns.md), [slide strategies](references/slide-strategies.md), and [copy patterns](references/copywriting-formulas.md).
 3. Build an outline where each slide has one clear job, the minimum message/content needed for that job, supporting evidence when applicable, and a transition/relationship to the surrounding deck. Use a claim-style headline when the slide is making an evidence-backed assertion; do not force reference, instructional, agenda, or status slides into persuasive claim copy.
 4. Choose layout and chart forms from the relationship the slide must communicate. Use current brand/project tokens when they exist. A standalone deck does not require creating a project design-token system merely to render.
-5. Build the requested format through the host/native presentation or normal HTML/code capability. Keep implementation mechanics local to that output instead of preserving a QP-specific deck generator/template.
+5. Build the requested format through the host/native presentation or normal HTML/code capability. Keep implementation mechanics local to that output instead of preserving a package-specific deck generator/template.
 6. Select imagery from supplied/current task evidence or current search/image capabilities when useful. Verify at the actual presentation viewport/export: overflow, contrast, legibility, chart labels/units, keyboard controls for interactive HTML, and reduced-motion behavior where motion exists.
 
 ## Quality rules

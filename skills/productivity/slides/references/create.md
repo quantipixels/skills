@@ -32,7 +32,7 @@ Consume an existing project/brand token contract when one is relevant. Do not re
 
 For HTML, build the minimum semantic deck implementation needed for the current delivery: slide regions, explicit current state, accessible navigation/control labels, target aspect/layout behavior, overflow resilience, and reduced-motion handling when transitions exist. Add a chart dependency only when a chart is required and the host/native capability does not already own it.
 
-For PowerPoint or another native presentation format, use the host's presentation capability rather than translating through a QP HTML template.
+For PowerPoint or another native presentation format, use the host's presentation capability rather than translating through an intermediate HTML template.
 
 ## Verification
 
