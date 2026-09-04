@@ -58,7 +58,7 @@ Outside those repository conventions, preserve the same semantic knowledge in th
 
 When one change affects several destinations, reconcile them from the same input candidate. Preserve exact owning decisions rather than reinterpreting them. When durable reconciliation is required but no destination or write authority exists, return the complete current packet plus the destination/authority gap instead of silently choosing one.
 
-Use `akosile` only when the selected durable destination is a repository-scoped QP workspace; it owns path/publication mechanics, not Amọ̀ṣẹ́ semantics.
+Use `akosile` only when the selected durable destination is a repository-scoped `.qp` workspace; it owns path/publication mechanics, not Amọ̀ṣẹ́ semantics.
 
 ## Report
 

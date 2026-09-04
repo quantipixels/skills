@@ -6,11 +6,11 @@ Read this file before `Closed`. Use it to prevent confirmed knowledge from survi
 
 Read the exact-current initiative plan and only the linked specifications, decisions, research, delivery results, reviews, current durable sources, and other evidence needed to identify material knowledge established or changed during the lifecycle.
 
-Atọ́nà owns the inventory, disposition coverage, and closure judgment. Semantic owners perform their native reconciliation. Use the active domain/project owner when one exists; in repository-scoped QP work:
+Atọ́nà owns the inventory, disposition coverage, and closure judgment. Semantic owners perform their native reconciliation. Use the active domain/project owner when one exists; in repository-scoped work:
 
 - `amose` owns domain context, `.learnings`, `.nongoals`, ADR lifecycle, and authorized local craft;
 - the current delivery owner owns ordinary documentation and enforceable implementation artifacts within its result;
-- `seda-spec` owns software/system behavior-specification meaning and supersession; and
+- `seda-spec` owns behavior-specification meaning and supersession; and
 - `akosile` owns `.qp` path and publication mechanics when `.qp` is the selected destination.
 
 External publication remains separately authorized. Do not infer permission to create or update an issue, pull request, wiki, shared drive, policy store, knowledge base, or another external record from plan closure.
@@ -37,8 +37,8 @@ Use the active domain's existing source of truth. Possible destinations include:
 | durable intent, contract, constraint, or rationale attached to a maintained artifact | the artifact's own documented authority: source comment, specification note, operating instruction, procedure, design record, or equivalent |
 | canonical terms, relationships, and domain invariants | existing domain/project documentation or the current knowledge owner |
 | hard-to-reverse surprising decision with a genuine trade-off | the domain's existing decision record; in repository technical work, a qualifying ADR through `amose` |
-| reusable operational constraint or non-obvious gotcha | existing runbook/playbook/project knowledge; `.learnings` through `amose` when repository QP knowledge is the natural destination |
-| durable project-wide exclusion | the project's governing constraints; `.nongoals` through `amose` when that repository contract applies |
+| reusable operational constraint or non-obvious gotcha | existing runbook/playbook/project knowledge; `.learnings` through `amose` when that repository convention is the natural destination |
+| durable project-wide exclusion | the project's governing constraints; `.nongoals` through `amose` when that repository convention applies |
 | behavior/rule that can be enforced | the strongest natural control: policy, configuration, schema, type, test/check, automation, code, checklist, or other domain mechanism through its owner |
 | temporary status, abandoned path, or execution transcript | exact lifecycle record only |
 

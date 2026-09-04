@@ -97,7 +97,7 @@ The catalogue headings below mirror repository package organization, not semanti
 
 | Skill | Outcome |
 | --- | --- |
-| `alarina` | Route only when the correct owner is unclear or several independent owner results need sequencing |
+| `alarina` | Inventory available skills and route when ownership is unclear or several independent owner results need sequencing |
 | `arojinle` | Resolve consequential choices through a user-confirmed decision frontier |
 | `ayewo-igba-ise` | Evidence-backed postmortem for completed/abandoned/disputed work, incidents, sessions, or corpora |
 | `fihanmi` | Visual understanding of supplied/current material through the smallest faithful representation |
@@ -125,14 +125,14 @@ Experimental skills participate in normal first-party routing when their owned o
 | `brand` | Durable brand voice/identity/logo/icon/assets source of truth |
 | `dogfood` | Real-browser verification of changed user journeys |
 | `ideate` | Grounded mechanism-diverse possibilities before selection |
-| `pepeye` | User-requested task supervision across QP or ordinary host/domain owners without a second lifecycle |
+| `pepeye` | User-requested task supervision across skill or ordinary host/domain owners without a second lifecycle |
 | `pese` | Explicitly activated private serving of one bounded local resource |
 | `prototype` | Disposable truthful decision instrument |
 | `root-cause` | Minimal evidence-backed causal mechanism/set for an observed failure |
 
 Pèsè is the renamed private-serving owner and retains Fihàn's explicit activation/security boundary.
 
-Amọ̀ye and Brand remain independent judgment/semantic outcomes while their portfolio maturity is exercised. UI implementation and reusable token/component realization are internal delivery depth behind Alága rather than separate public owners. Banner/social surface taxonomies and design-only routing are retired; ordinary host/image/design capability remains available when no QP owner materially improves the result.
+Amọ̀ye and Brand remain independent judgment/semantic outcomes while their portfolio maturity is exercised. UI implementation and reusable token/component realization are internal delivery depth behind Alága rather than separate public owners. Banner/social surface taxonomies and design-only routing are retired; ordinary host/image/design capability remains available when no skill materially improves the result.
 
 Historical Akọ̀wé and Orísun experiments remain research evidence. Their useful methods now live behind Alága's implementation-counsel path and Ìwádìí's exact-source escalation instead of occupying public routing surface.
 
@@ -150,4 +150,4 @@ Show a current relationship visually → fihanmi
 Diagnose an observed failure → root-cause
 ```
 
-Use `alarina` only when the correct owner is unclear or the request genuinely needs sequencing across several independently useful owner results.
+Use `alarina` when the user asks which skills are available, when the correct owner is unclear, or when the request genuinely needs sequencing across several independently useful owner results.

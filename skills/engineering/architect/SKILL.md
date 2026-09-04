@@ -24,7 +24,7 @@ Use `amose` when domain/project language or invariants materially affect design.
 
 Derive the few drivers that can change design. Express them as concrete normal, failure, misuse, recovery, scale, or evolution scenarios with observable responses.
 
-Keep the packet in current context when one-session use is sufficient. Persist it when architecture must survive sessions/owners, feed a plan/delivery, support recovery, or become a durable handoff. Prefer an existing/user-selected destination; use `akosile` only for repository-scoped QP persistence.
+Keep the packet in current context when one-session use is sufficient. Persist it when architecture must survive sessions/owners, feed a plan/delivery, support recovery, or become a durable handoff. Prefer an existing/user-selected destination; use `akosile` only for repository-scoped `.qp` persistence.
 
 ## Research only decision-changing unknowns
 

@@ -4,7 +4,7 @@ Load only when the selected tool must be readied, installed, configured, authent
 
 ## Readiness
 
-Establish the actual tool identity/version, required configuration/integration, and one proportionate usability signal for the bounded operation. Command presence alone does not prove readiness; discover volatile flags and supported versions from the current tool/project/official documentation rather than a QP command catalogue.
+Establish the actual tool identity/version, required configuration/integration, and one proportionate usability signal for the bounded operation. Command presence alone does not prove readiness; discover volatile flags and supported versions from the current tool/project/official documentation rather than a package-specific command catalogue.
 
 Classify `Ready | Needs setup | Missing | Unsupported` from the intended use, not installation alone.
 

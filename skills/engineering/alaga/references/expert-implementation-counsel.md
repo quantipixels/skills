@@ -43,7 +43,7 @@ After establishing the exact stack, use a local mechanism reference only when th
 - Elixir/OTP process ownership, GenServer state, supervision/Task failure, mailbox/ETS/resource, or configuration-lifecycle semantics → [Elixir and OTP mechanics](elixir-otp-mechanics.md);
 - Phoenix/Ecto/LiveView routing/context, authorization, transaction/data, Channel/PubSub/Presence, LiveView-state, or background-work semantics → [Phoenix runtime mechanics](phoenix-runtime-mechanics.md).
 
-These references are compact calibration distilled from earlier QP research, not hidden language/framework catalogues and not substitutes for current source truth. Load none merely because its ecosystem appears in the repository. Project contracts and exact-current first-party/runtime evidence override them; unfamiliar or version-sensitive behavior remains a bounded current-source question.
+These references are compact calibration distilled from earlier curated research, not hidden language/framework catalogues and not substitutes for current source truth. Load none merely because its ecosystem appears in the repository. Project contracts and exact-current first-party/runtime evidence override them; unfamiliar or version-sensitive behavior remains a bounded current-source question.
 
 ## Apply the proportionality gate
 

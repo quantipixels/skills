@@ -64,7 +64,7 @@ Flag any consequential choice that became unlabeled model inference. Do not coun
 
 ### Named models, standards, and concepts
 
-When a change removes a named framework/model/standard, use [reference quality](reference-quality.md). Preserve the name when it materially provides conceptual compression, stable vocabulary, authoritative scope, a discriminating lens, or a useful retrieval anchor. Do not preserve it merely for prestige, methodology ceremony, generic templates, or latent rules outside QP's intended subset.
+When a change removes a named framework/model/standard, use [reference quality](reference-quality.md). Preserve the name when it materially provides conceptual compression, stable vocabulary, authoritative scope, a discriminating lens, or a useful retrieval anchor. Do not preserve it merely for prestige, methodology ceremony, generic templates, or latent rules outside the skill's intended subset.
 
 Simulate representative end-to-end paths rather than auditing skills only in isolation. Flag cascades only when a step does not independently protect the requested result or repeated correction cannot converge without unauthorized scope expansion.
 

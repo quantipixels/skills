@@ -13,7 +13,7 @@ When a confirmed decision or material fact changes, update the affected plan mea
 
 For every material initiative, maintain one semantic plan using [the plan record template](templates/plan-record.md) as a contract rather than a rigid outline.
 
-Keep it in current context when one-session use is sufficient. Persist only when continuity, recovery, independent review, or downstream consumption needs durable identity. Prefer an existing or user-selected destination; when that destination is repository-scoped QP state, use `akosile` for storage mechanics.
+Keep it in current context when one-session use is sufficient. Persist only when continuity, recovery, independent review, or downstream consumption needs durable identity. Prefer an existing or user-selected destination; when that destination is repository-scoped `.qp` state, use `akosile` for storage mechanics.
 
 For a substantial multi-record/multi-session initiative, or whenever separate owner records would otherwise hide information the user needs to judge viability, maintain an `html-artifact` projection using [human view](references/human-view.md). The semantic plan and specialist owner results remain authoritative; the projection is a denormalized human read model and may be absent/stale without changing semantic truth.
 
@@ -35,7 +35,7 @@ Atọ́nà alone sets plan status. Supporting results, tickets, provider state, 
 
 Derive a compact delivery summary from current owner results: `Not required | Not started | Active | Blocked | Complete | Stale`.
 
-Keep the **current gate** explicit: the next material progression judgment the human/initiative must satisfy (for example planning readiness, delivery start, integration acceptance, rollout, or closure). Do not turn the initiative into a health score. A required gate condition cannot be averaged away by otherwise strong evidence.
+Keep the **current gate** explicit: the next material progression judgment the human/initiative must satisfy. Do not turn the initiative into a health score. A required gate condition cannot be averaged away by otherwise strong evidence.
 
 ## 3. Shape through the Decision Frontier
 
@@ -53,7 +53,7 @@ PLAN_LOCAL
 → reversible planning detail within accepted authority.
 
 SPECIALIST_RESULT
-→ independently useful design/domain/technical result the plan cannot responsibly invent.
+→ independently useful design/domain/technical/normative result the plan cannot responsibly invent.
 
 MATERIAL_USER_DECISION
 → consequential choice that changes accepted outcome, scope, policy, experience, risk, cost, compatibility, or trade-off; resolve through `arojinle`.
@@ -69,19 +69,35 @@ BLOCKED — material user decisions remain but prerequisite evidence/results are
 
 When `OPEN`, give Àròjinlẹ̀ the whole currently answerable material decision set and consume its confirmed result. Do not reopen settled decisions. When `BLOCKED`, resolve only prerequisite evidence/results that can make the next decision formable.
 
-Use another specialist/research/tool owner only when its independently useful result is material to plan readiness; do not maintain a support-owner catalogue inside the plan.
+Use another skill only when its independently useful result is material to plan readiness. Do not turn supporting capabilities into plan stages.
 
-## 4. Prove readiness
+## 4. Resolve required results and prove readiness
+
+Before setting `Planned`, ask whether a fresh delivery/review owner would otherwise have to invent a material behavior/rule, technical architecture, consequential user decision, or delivery decomposition.
+
+Use these seams when they are actually required:
+
+- **Normative behavior / operating rules** — require current `seda-spec: SPEC_READY` when material behavior needs an implementation-independent contract for delivery/review, unless an established domain authority already owns the equivalent contract.
+- **Software/system architecture** — require current `architect: IMPLEMENTATION_READY` when delivery would otherwise have to invent material system boundaries, ownership, topology, migration/recovery, compatibility, or another architecture-level decision.
+- **Consequential user choice** — keep the Decision Frontier open/blocked and resolve through `arojinle`; do not bury the decision inside another specialist result.
+- **Delivery decomposition** — use `seda-ticket` when several semantic work units need explicit dependency/startability structure before delivery can begin safely. Do not require tickets for one coherent job merely because it has several implementation steps or independently checkable acceptance.
+
+For other material specialist needs, use the relevant skill when its independent result is required. Keep only the result identity/readiness needed by the plan; do not copy another skill's procedure or lifecycle.
+
+When delivery coordination or decomposition can affect planning readiness, read [delivery tracking](references/delivery-tracking.md) before declaring `Planned`; loading it does not authorize delivery.
 
 Set `Planned` only when all are true:
 
 - the Decision Frontier is `EMPTY`, with no silently assumed material user choice;
 - no in-scope material territory remains that delivery could encounter but the plan cannot state responsibly;
-- every required specialist/normative result is current enough for the plan to rely on it;
-- every material delivery obligation has observable acceptance and a credible proof/evidence seam; and
+- every required independent/normative result is present, accepting, current, and exact enough for the plan to rely on;
+- every material delivery obligation has observable acceptance and a credible proof/evidence seam;
+- required delivery decomposition/startability is established when the initiative needs it; and
 - blocking dependency, changeover/recovery, documentation, operational, and delivery-shape gaps are resolved or explicitly outside scope with a valid re-entry condition.
 
-Treat coverage, counts, rubric scores, and checklists as evidence rather than readiness by themselves. When several viable planning choices remain, compare only the criteria that can change the decision and apply hard gates first; do not let an aggregate score obscure a decisive constraint. Approval covers only confirmed decisions and the evidence cut used by the plan.
+Treat coverage, counts, rubric scores, and checklists as evidence rather than readiness by themselves. When several viable planning choices remain, compare only the criteria that can change the decision and apply hard gates first; do not let an aggregate score obscure a decisive constraint.
+
+If a required result is absent, stale, blocked, or not ready, keep the plan `Draft` and make that gap visible when it controls progression.
 
 ## 5. Track delivery
 

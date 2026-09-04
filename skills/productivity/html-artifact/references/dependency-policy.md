@@ -18,7 +18,7 @@ build-time/staticized output
 
 Native HTML/CSS/JS remains an excellent implementation when it is also the strongest credible representation mechanism. It is not a preference that overrides a materially stronger specialized grammar/renderer.
 
-Inside an existing application, reuse a suitable capability already owned by that runtime when it serves the same representational job. QP maintains no allowlist; named anchors are non-exclusive expert entry points.
+Inside an existing application, reuse a suitable capability already owned by that runtime when it serves the same representational job. No renderer allowlist is maintained; named anchors are non-exclusive expert entry points.
 
 Bind a dependency to the capability it provides, not to the lane that first selected it. A renderer chosen for a diff, chart, graph, diagram, map, or another representation may support any HTML Artifact lane when the same capability and admission boundary apply.
 
