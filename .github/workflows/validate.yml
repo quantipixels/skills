@@ -73,6 +73,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       SKILLS_CLI_VERSION: 1.5.23
+      CLAUDE_CODE_VERSION: 2.1.260
       DISABLE_TELEMETRY: "1"
     steps:
       - name: Checkout
@@ -102,6 +103,11 @@ jobs:
           test "$installed" -eq "$expected"
           test -f "$target/.agents/skills/alaga/SKILL.md"
           test -f "$target/.agents/skills/root-cause/SKILL.md"
+
+      - name: Validate Claude Code plugin
+        run: |
+          cd "$GITHUB_WORKSPACE"
+          npx --yes @anthropic-ai/claude-code@${CLAUDE_CODE_VERSION} plugin validate .
 
   validate:
     name: Validate
