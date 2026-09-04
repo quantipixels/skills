@@ -112,7 +112,6 @@ The catalogue headings below mirror repository package organization, not semanti
 | `system-cleanup` | Safe macOS storage audit, regenerable cleanup, worktree review, and external-drive offload |
 | `technical-writing` | Technical communication structure/clarity from direct reader/job/syntax principles |
 | `yo-slop` | Final prose cleanup / explicit pruning without contract change |
-| `yoruba-glossary` | Yorùbá/English technical term decisions and authorized, validated CSV glossary maintenance |
 
 `salaye` is intentionally lightweight: its value is reliable reusable model steering, not hidden machinery.
 
@@ -132,6 +131,7 @@ Experimental skills participate in normal first-party routing when their owned o
 | `pese` | Explicitly activated private serving of one bounded local resource |
 | `prototype` | Disposable truthful decision instrument |
 | `root-cause` | Minimal evidence-backed causal mechanism/set for an observed failure |
+| `yoruba-glossary` | Yorùbá/English technical term decisions and authorized, validated CSV glossary maintenance |
 
 Pèsè is the renamed private-serving owner and retains Fihàn's explicit activation/security boundary.
 
