@@ -33,12 +33,13 @@ confirmed primitive values
 
 The layers describe responsibilities, not a default palette or scale.
 
-- Primitive values come from accepted project/brand evidence; do not seed colors, typography, spacing, radii, shadows, motion, or dimensions from QP defaults.
+- Primitive values come from accepted project/brand evidence; do not seed colors, typography, spacing, radii, shadows, motion, or dimensions from package defaults.
 - Semantic aliases describe purpose and are the normal theme-switching boundary.
 - Add a component alias only when a real reusable property/state must remain governed across implementations/themes; do not tokenise every CSS property or mirror a component catalogue.
 - Preserve semantic/component aliases rather than flattening them to raw values.
 - Define component anatomy, variants, states, responsive/theme differences, and token relationships only where current product/library evidence establishes them. Missing evidence stays a gap rather than being completed from familiar design-system schemas.
-- Prefer the active project's existing token/compiler/configuration path. If none exists, choose the smallest current project-native or mature focused capability that realizes the accepted contract; do not add a QP-specific fallback compiler merely to make token generation deterministic.
+- Prefer the active project's existing token/compiler/configuration path. If none exists, choose the smallest current project-native or mature focused capability that realizes the accepted contract; do not add a package-specific fallback compiler merely to make token generation deterministic.
+- Whatever realization path is selected, validate the token graph for unresolved references, reference cycles, and generated-name collisions before installation or consumption. A successful CSS/build step is not token-graph proof unless the selected capability explicitly establishes those invariants.
 
 ## Prove the rendered result proportionately
 
