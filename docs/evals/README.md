@@ -6,9 +6,9 @@ QP keeps evaluator-owned behavioral evidence separate from runtime skill guidanc
 
 - [`stacked-pr-stewardship.md`](stacked-pr-stewardship.md) — stacked PR/MR stewardship, publication boundaries, and activation. Run its critical wave first, then the preservation wave when critical behavior passes.
 - [`portfolio-discovery.md`](portfolio-discovery.md) — current-surface versus outcome-first discovery, with a reduced/profiled arm blocked unless A/B prove simultaneous visibility remains a material problem.
-- [`assurance-closeout.md`](assurance-closeout.md) — controls and cases added after the original packs: prior-contract comparison, current-portfolio Yorùbá Glossary admission, first-touch/invocation-mode behavior, Kọ public-owner admission, Kọ stable-skill improvement, and the Codex/Claude behavioral-host matrix.
+- [`assurance-closeout.md`](assurance-closeout.md) — prior-contract comparison, first-touch/invocation-mode behavior, Kọ public-owner admission, Kọ stable-skill improvement, the Codex/Claude behavioral-host matrix, and current-surface glossary admission cases when that optional owner is under review.
 
-For a candidate containing #85/#89 or their descendants, the assurance-closeout extension is part of the required evaluation set; the older packs alone do not cover the exact public portfolio or the newer Kọ evidence contracts.
+Apply only the packs that control the candidate's changed behavior. #89 and its core-assurance descendants do not inherit the optional glossary admission gate. A `yoruba-glossary` candidate separately requires its current-surface positive/adjacent-negative admission cases before that public owner merges.
 
 ## Evidence boundary
 

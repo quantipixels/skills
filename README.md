@@ -131,7 +131,6 @@ Experimental skills participate in normal first-party routing when their owned o
 | `pese` | Explicitly activated private serving of one bounded local resource |
 | `prototype` | Disposable truthful decision instrument |
 | `root-cause` | Minimal evidence-backed causal mechanism/set for an observed failure |
-| `yoruba-glossary` | Yorùbá/English technical term decisions and authorized, validated CSV glossary maintenance |
 
 Pèsè is the renamed private-serving owner and retains Fihàn's explicit activation/security boundary.
 
