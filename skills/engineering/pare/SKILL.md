@@ -40,7 +40,7 @@ Deletion safety needs more than search absence: check callers, dynamic/framework
 
 Audit tests by durable contract value rather than count/coverage. A test is a simplification candidate when evidence shows it cannot independently falsify a material contract, recomputes/mirrors production logic, verifies mocks/choreography rather than behavior, protects private structure, tests framework/library behavior the project does not own, duplicates stronger proof, requires disproportionate scaffolding, or survives only as construction history. Do not recommend deletion when the test uniquely protects a material stable invariant even if its implementation is small.
 
-Rank material reductions by impact/risk/effort/dependency and express implementation slices; do not execute them.
+Rank material reductions by impact/risk/effort/dependency and express implementation slices; do not execute them. When scattered caller knowledge, forwarding layers, duplicated policy, or shallow seams indicate a deepening opportunity, identify the misplaced responsibility and caller burden. If selecting the replacement module/interface/seam is itself a consequential architecture question, use `architect` rather than designing the replacement inside `pare`.
 
 ## Review
 
@@ -54,7 +54,7 @@ Also check:
 - edge-case machinery that could disappear by eliminating/strengthening the causal state or owner; and
 - durable tests against stable seam, independent oracle, falsifiability, stronger existing proof, and maintenance burden.
 
-Treat passing tests, coverage, line-count reduction, or tool scores as evidence only. Demonstrably dead or redundant code may be surfaced as a cleanup recommendation when safe removal is supported by evidence; its mere presence is not a blocking finding. Route possible defects to `atunwo`; conflicting project/domain vocabulary to `amose`.
+Treat passing tests, coverage, line-count reduction, or tool scores as evidence only. Demonstrably dead or redundant code may be surfaced as a cleanup recommendation when safe removal is supported by evidence; its mere presence is not a blocking finding. Route possible defects to `atunwo`; conflicting project/domain vocabulary to `amose`. When a material simplification finding requires a new consequential module/interface/seam design, leave that technical shape to `architect` and retain only the evidence-backed simplification need here.
 
 When a deliberate simplification has a documented ceiling/revisit trigger, preserve it if current evidence supports it. A material deliberate limitation with no observable revisit trigger is a maintainability concern, not a reason to manufacture a separate debt system.
 

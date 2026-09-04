@@ -16,12 +16,12 @@ Pin only what can change delivery:
 - expected change envelope and explicitly unchanged contracts;
 - acceptance and smallest sufficient proof;
 - governing specification/decision identities when present;
-- documentation or durable-knowledge obligations that belong in the delivered result; and
+- ordinary documentation required by the delivered contract; and
 - workspace and mutation authority.
 
 Treat local non-goals as active negative implementation boundaries. Material growth outside the expected envelope is a signal to re-check understanding, causal ownership, or scope rather than preserve the first plan with workaround layers.
 
-Respect explicit owner/tool choices and consume another owner's result only when delivery actually depends on an independently useful decision, architecture, specification, diagnosis, or lifecycle result. Ordinary implementation discretion remains agent-owned while it stays inside accepted behavior, architecture, authority, safety, compatibility, ownership/lifecycle, and material risk/cost boundaries. Otherwise surface the decision gap instead of selecting a plausible default from model priors.
+Respect explicit owner/tool choices and consume another owner's result only when delivery actually depends on an independently useful decision, architecture, specification, diagnosis, or lifecycle result. Ordinary implementation discretion remains agent-owned while it stays inside accepted behavior, architecture, authority, safety, compatibility, ownership/lifecycle, and material risk/cost boundaries. When unresolved technical structure is consequential at the system, module, interface, or seam level, use `architect`; do not escalate ordinary local implementation choices merely because several code shapes are possible. Otherwise surface the decision gap instead of selecting a plausible default from model priors.
 
 When consequential stack-native behavior, ownership/lifecycle, compatibility, proportionality, or version-specific evidence is genuinely non-obvious, read [expert implementation counsel](references/expert-implementation-counsel.md). When the job materially changes a product interface, component system, design-token contract, responsive behavior, or rendered interaction, read [UI delivery](references/ui-delivery.md). For multi-candidate, blocked/handoff-prone, migration/security/recovery-sensitive, or externally destructive work, read [job report](references/job-report.md). Do not create parallel reporting when an active plan already owns that continuity.
 
@@ -60,7 +60,7 @@ For a planned stateful refactor/rewrite that can change transitions, ordering, l
 
 Before independent review, pin the exact candidate with the strongest native content identity available: commit, tree, snapshot, digest, or equivalent. Ambient unrelated changes must not enter the candidate. If the candidate/base changes, or unresolved conflict state makes the content ambiguous, refresh the identity before relying on review evidence. Leave ordinary Git mechanics to native Git capability.
 
-Before review, include required ordinary documentation and durable knowledge that belongs to the delivered contract.
+Before review, include required ordinary documentation. Do not promote task rationale, findings, or reversible implementation choices into durable project knowledge unless they independently qualify under the current durable-knowledge policy.
 
 ### Pre-review convergence
 
