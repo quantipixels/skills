@@ -1,82 +1,76 @@
 ---
 name: architect
-description: Design or review one implementation-ready technical architecture for a software system. Use for system boundaries, modules, data, integration, deployment, quality scenarios, trade-offs, migration, recovery, or architecture sufficiency across any stack. Exclude initiative lifecycle planning, complete user-decision interviews, implementation, workspace infrastructure, and code-review verdicts.
+description: Design or review the technical structure of a software system or consequential module at the smallest scale needed to resolve the architecture question. Use for system boundaries, module/interface/seam shape, data/state ownership, integrations, deployment, quality scenarios, trade-offs, migration/recovery, or architecture sufficiency; exclude initiative lifecycle planning, user-decision closure, implementation, workspace infrastructure, and code-review verdicts.
 ---
 
 # Architect
 
-Own technical sufficiency of one software-system solution. Produce one architecture packet an implementer can follow without inventing a material technical requirement.
+Own the technical structure of a software system or consequential module. Resolve the architecture question at the smallest scale that is materially sufficient: a bounded module question gets a bounded design answer; a system-wide design gets the system depth it actually needs.
 
 | Mode | Purpose |
 | --- | --- |
-| `design` | create or revise the architecture |
-| `review` | judge one exact packet/candidate read-only |
+| `design` | create or revise the technical structure |
+| `review` | judge one exact architecture/design candidate read-only |
 
-Keep initiative lifecycle, consequential user-choice closure, persistence mechanics, implementation, and code-review verdicts outside this architecture result.
+Do not turn every design question into a full implementation-ready architecture packet. Use an implementation-readiness result only when the caller explicitly needs a gate, delivery would otherwise have to invent a material technical requirement, or the architecture spans enough consequential concerns that readiness itself is the useful result.
 
-## Pin and evidence
+## Understand the architecture question
 
-Record mode/exact candidate, problem/outcomes, scope/non-goals, constraints/assumptions, and evidence cutoff. Separate confirmed facts, proposals, and unknowns.
+Pin only what can change the technical design: subject/candidate, problem or desired outcome, scope/non-goals, material constraints/drivers, current relevant structure, and evidence limits.
 
-Read only material evidence from system/domain/decision records, operations/deployment, code/tests when implementation exists, dependencies/configuration, and relevant history/provenance.
+Read only evidence capable of changing the architecture: current domain/project knowledge, code/tests/configuration when implementation exists, runtime/deployment/operations evidence, governing decisions, and bounded history/provenance where it explains current structure. Observed implementation proves current structure or behavior, not automatic architectural intent.
 
-Use `amose` when domain/project language or invariants materially affect design. When project/tool/runtime facts can change a decision, inspect exact-current implementation/runtime evidence through the active project's wrappers, manifests, configuration, schemas, tooling, and primary sources. Observed structure/capability is evidence, not automatic architectural intent.
+Use `amose` when unresolved project/domain meaning or invariants materially change the technical structure. Reading established domain language does not require an `amose` handoff.
 
-Derive the few drivers that can change design. Express them as concrete normal, failure, misuse, recovery, scale, or evolution scenarios with observable responses.
+Resolve only unknowns capable of changing the architecture. Prefer exact current project/platform evidence and authoritative owning sources. Use `iwadi` when the research itself deserves an independent reusable result rather than expanding `architect` into a research workflow.
 
-Keep the packet in current context when one-session use is sufficient. Persist it when architecture must survive sessions/owners, feed a plan/delivery, support recovery, or become a durable handoff. Prefer an existing/user-selected destination; use `akosile` only for repository-scoped `.qp` persistence.
+## Design the smallest sufficient structure
 
-## Research only decision-changing unknowns
+Design from owned responsibilities and real boundaries inward. Specify only the concerns material to the question:
 
-- Use current project/platform capability first, then the active language/stdlib/framework/infrastructure/domain, then an already-selected dependency/tool, before custom mechanisms or new dependencies.
-- Research only unknowns that can change a decision/readiness result.
-- Prefer current authoritative evidence appropriate to the claim: official docs/specs/standards, owning project records, exact runtime/project evidence, and applicable research.
-- Pin version/date/cutoff/claim.
-- Use `iwadi` when research deserves its own reusable result.
+- ownership and system/subsystem boundaries;
+- modules, interfaces, seams, and adapters;
+- data/state/identity ownership and consistency;
+- dependencies and integrations, including failure semantics;
+- trust/security/privacy boundaries;
+- deployment/runtime/configuration/operations when they shape the design;
+- compatibility, migration, rollback, recovery, or deletion when material; and
+- critical invariants implementation must preserve.
 
-Do not maintain exhaustive platform catalogues or turn platform features into custom abstractions unless ownership, policy, lifecycle, integration, or proof remains missing. A new dependency/service/infrastructure component is architectural scope expansion and must be justified by a driver the current stack cannot adequately satisfy.
+When module/interface/seam shape is material, read [module design](references/module-design.md). Prefer deep modules with small high-leverage interfaces and strong locality. Do not expose internal seams merely because implementation or tests use them.
 
-## Design from boundaries inward
+Every architectural element must pay for itself with a material driver or independently real boundary. Prefer the smaller direct structure only when removing a service, queue, datastore, cache, module, interface, adapter, abstraction, or deployment unit loses no required responsibility and does not push required complexity, policy, state, trust, lifecycle, compatibility, or failure knowledge into callers or another worse owner.
 
-Map actors/external systems/trust boundaries, owned capabilities, data/state/runtime/deployment/lifecycle ownership, and critical flows. Preserve existing boundaries unless evidence justifies change.
+### Compare alternatives only when the design is genuinely open
 
-Read [module depth](references/module-depth.md) when interface/dependency/seam/adapter shape materially matters. Prefer deep modules with small stable interfaces; reject forwarding layers and speculative variation. A new abstraction needs either a current second consumer/variant or an independently real boundary such as external protocol, trust, persistence, volatile platform integration, lifecycle, or policy ownership. Test convenience by itself is not a production boundary.
+Apply hard constraints first: accepted behavior, security/privacy/trust, required compatibility, ownership/lifecycle, recovery/changeover, and explicit non-goals.
 
-### Compare viable alternatives without averaging away gates
+When several credible structures remain and at least two independent criteria can materially change the choice, compare only decision-changing factors such as depth, locality, caller burden, operational load, migration cost, reversibility, compatibility, failure containment, or total system complexity. State the strongest credible alternative and decisive reason for the selected structure. Do not create a universal architecture scorecard.
 
-Apply non-negotiable architecture conditions first: accepted behavior, trust/security/privacy, required compatibility, ownership/lifecycle, recovery/changeover, and any explicit project/task non-goal. A candidate that fails a hard condition is not rescued by a high comparative score elsewhere.
+When a technical choice is reversible within accepted constraints and authority, `architect` may select it. When the choice changes accepted outcome, scope, policy, user experience, material cost/risk, compatibility, or another trade-off requiring user authority, surface the unresolved choice and its architecture consequence; use `arojinle` for decision closure rather than deciding it here.
 
-When several viable alternatives remain and at least two independent criteria can materially change the choice, use a compact task-specific comparison. Derive only decision-changing criteria from the drivers—for example operational load, delivery risk, reversibility, migration cost, compatibility, proofability, performance, or total system complexity. Do not create a universal architecture scorecard.
+## Verify architectural sufficiency
 
-Lead with the decisive factor or violated gate. A grade/score is optional comparative evidence, never the architecture verdict. State the strongest credible alternative, material counterevidence, and what evidence could change the selected direction when uncertainty remains.
+Architecture must be coherent and falsifiable, but `architect` does not own delivery proof mechanics. State the critical invariants and ensure there is a credible way to verify the consequential claims. Name a specific enforcement/proof mechanism only when that mechanism materially shapes the architecture.
 
-Prefer the active platform's natural path when it satisfies the scenarios. Eliminate causal state/branches before designing machinery around their edge cases, and prefer one owner/source of truth over reconciliation between duplicated owners.
+For a bounded design question, return the selected technical structure, decisive trade-offs, critical invariants, and unresolved gaps directly.
 
-Specify material concerns far enough to implement: modules/interfaces; state/data consistency; integrations/failure semantics; auth/authz/secrets/privacy/trust; deployment/config/observability/capacity/operations; compatibility/migration/rollback/recovery/deletion; and proof.
+When implementation readiness is the requested or required result, read [architecture contract](references/architecture-contract.md) and return one:
 
-Proof is required, but architecture does not require a new test by default. Identify the smallest behavior/invariant evidence that can falsify each material architecture claim; tests are appropriate only when they add independent durable discrimination at a stable seam.
-
-When deliberately choosing a simpler mechanism with a known ceiling, record the ceiling and an observable trigger for revisiting it rather than prematurely designing the scaled-up form.
-
-Before readiness, read [architecture contract](references/architecture-contract.md) and keep a compact implementation-facing contract in the packet.
-
-## Judge sufficiency
-
-Use `html-artifact` only when a human visual view materially improves architecture comparison/review/handoff; it is not mandatory for small consultation. The architecture packet remains authoritative.
-
-- In `design`, revise until decisions, interfaces, migration, recovery, proof, and Architecture Contract agree.
-- In `review`, pin the candidate and stay read-only; trace each driver/decision/contract invariant to current evidence and challenge unnecessary scope/indirection as well as missing sufficiency.
-
-Return one:
-
-- `IMPLEMENTATION_READY` — every material driver covered and implementation needs no invented technical requirement;
-- `NOT_READY` — material decision/conflict/defect/migration/recovery/proof obligation remains;
+- `IMPLEMENTATION_READY` — every material driver is covered, ownership/interfaces/invariants are coherent, and implementation needs no invented material technical requirement;
+- `NOT_READY` — a material technical decision, conflict, migration/recovery obligation, or architecture defect remains; or
 - `UNPROVED` — missing/stale evidence prevents responsible judgment.
 
-When useful, state `Confidence: High | Medium | Low` separately from this readiness result and name the evidence limitation controlling it. Confidence never converts `UNPROVED` into readiness.
+Keep confidence separate from readiness when evidence strength materially helps interpretation. Confidence never converts `UNPROVED` into readiness.
 
-## Packet
+## Review mode
 
-Keep one exact-current packet containing identity/mode/candidate/evidence; problem/outcomes/scope/non-goals; drivers/scenarios; context/ownership; decisions and strongest credible alternatives; decisive criteria/gates when comparison mattered; implementation design; Architecture Contract; failure/recovery/migration; proof; simplification ceilings/revisit triggers; and risks/gaps/linked evidence.
+In `review`, pin the exact architecture/design candidate and stay read-only. Judge the design at its existing scale rather than expanding it into a larger architecture exercise. Trace material drivers and invariants to the structure, challenge missing ownership/interfaces as well as unnecessary layers, and return the smallest evidence-backed correction or unresolved gap.
 
-Use the compact durable template only when persistence is required. Omit empty optional detail rather than filling a schema for completeness.
+Use `html-artifact` only when a visual human view materially improves a substantial architecture comparison/review/handoff. The architecture result remains authoritative.
+
+## Persistence
+
+Keep ordinary bounded architecture work in current context. Persist only when the caller/workflow needs durable identity, cross-session/owner handoff, recovery, or an implementation-readiness record. Prefer an existing/user-selected destination; repository workspace mechanics remain outside `architect` semantics.
+
+When persistence is required, use the compact [architecture record](templates/architecture-record.md). A persisted bounded design does not acquire an implementation-readiness status merely because it is durable; include readiness only when readiness itself is the result.
