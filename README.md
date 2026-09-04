@@ -77,7 +77,7 @@ The catalogue headings below mirror repository package organization, not semanti
 | --- | --- |
 | `akosile` | Repository-scoped Git-common workspace, worktree aliases/migration, sparse settings, exact safe publication, generated index |
 | `alaga` | Deliver one supplied software/build job through implementation, proof, review, and handoff, including UI delivery depth when the job materially changes product interfaces |
-| `amose` | Exact-current project/domain model and durable working knowledge across the project's natural sources of truth |
+| `amose` | Active project/domain model clarification with exceptional durable knowledge reconciliation |
 | `atona` | One initiative plan from Draft through delivery/closure |
 | `atunwo` | Code defect/proof/state-parity review and provider review publication when authorized |
 | `hitl-review` | Human-led walkthrough, review coverage, specialist discovery, final human decision |

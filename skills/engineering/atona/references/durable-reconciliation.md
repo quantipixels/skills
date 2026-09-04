@@ -18,7 +18,7 @@ If any condition is missing, leave the information in the initiative's normal ar
 
 When the gate passes, read only the exact-current initiative result and the durable sources needed to reconcile that knowledge. Semantic owners retain their native contracts; for repository-scoped work this may include:
 
-- `amose` for durable domain/project knowledge, `.learnings`, `.nongoals`, qualifying ADR lifecycle, and authorized local craft;
+- `amose` for durable domain/project knowledge, `.learnings`, `.nongoals`, and qualifying ADR lifecycle;
 - the current delivery owner for maintained user/operator documentation or enforceable implementation artifacts;
 - `seda-spec` for durable behavior-specification meaning when the specification itself must remain authoritative; and
 - `akosile` only for `.qp` path/publication mechanics when `.qp` is the selected destination.

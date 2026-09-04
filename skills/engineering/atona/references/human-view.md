@@ -1,8 +1,6 @@
 # Initiative human view
 
-Read when an Atọ́nà initiative maintains a browser projection because separate records, lifecycle depth, or multi-session work would otherwise make conscious human judgment expensive.
-
-The semantic plan and specialist results remain authoritative. The projection is a denormalized Initiative Assurance View: it must expose the meaning a human needs to judge the current gate without forcing record archaeology.
+Read whenever an Atọ́nà initiative maintains its browser projection. The semantic plan and specialist results remain authoritative. The projection is a denormalized Initiative Assurance View: it must expose the meaning a human needs to judge the current gate without forcing record archaeology.
 
 ## Pin the viewpoint
 

@@ -18,7 +18,8 @@ atona
 ├─ consequential user decisions        → arojinle
 ├─ normative behavior/operating rules  → seda-spec
 ├─ material software architecture      → architect
-├─ durable project/domain knowledge    → amose, when independently needed
+├─ domain-model change/clarification   → amose, when independently needed
+├─ exceptional durable project knowledge → amose, when independently needed
 ├─ substantial reusable research       → iwadi, when independently needed
 ├─ engineering-tool readiness/evidence → irinse, when independently needed
 └─ delivery decomposition              → seda-ticket, when separate dependency/startability structure is needed
@@ -67,7 +68,7 @@ Keep these distinctions explicit when they prevent a plausible wrong route:
 - `seda-pr` / `wo-pr` — publication / open provider-item stewardship.
 - `se-triage` / `root-cause` / `alaga` — report classification / causal diagnosis / software correction delivery.
 - `salaye` / `fihanmi` / `html-artifact` / `slides` / `prototype` — explanation / visual understanding / browser information projection / presentation / disposable experiential decision evidence.
-- `amose` / `iwadi` / `irinse` — durable project/domain knowledge / reusable research conclusion / companion engineering-tool readiness or bounded evidence.
+- `amose` / `iwadi` / `irinse` — domain-model establishment/clarification plus exceptional durable project knowledge / reusable research conclusion / companion engineering-tool readiness or bounded evidence.
 - `amoye-ui-ux` / `brand` / `alaga` — interface direction / durable identity / UI implementation.
 - `pepeye` / `atona` / `handoff` — requested task supervision / initiative lifecycle / portable context transfer.
 
