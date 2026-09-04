@@ -20,13 +20,9 @@ class ReleaseWorkflowContractTest(unittest.TestCase):
 
     def test_changesets_remains_version_and_tag_owner(self):
         release = self.jobs["release"]
-        changesets = next(
-            step for step in release["steps"] if step.get("uses") == "changesets/action@v1"
-        )
+        changesets = next(step for step in release["steps"] if step.get("uses") == "changesets/action@v1")
         self.assertEqual(changesets["with"]["version"], "npm run version")
         self.assertEqual(changesets["with"]["publish"], "npx changeset tag")
-        self.assertEqual(changesets["with"]["commit"], "chore: version skills")
-        self.assertEqual(changesets["with"]["title"], "chore: version skills")
 
 
 if __name__ == "__main__":

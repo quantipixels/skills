@@ -2,4 +2,4 @@
 "qp-skills": patch
 ---
 
-Harden executable proof: make Àyẹ̀wò `--skill` an explicit signal focus without shrinking the session denominator, smoke-test source-aware uninstall safely, and run applicable package/session/Akọsílẹ̀ mechanics across Linux, macOS, and Windows.
+Harden executable proof without duplicating Linux coverage: smoke-test source-aware uninstall safely, exercise applicable package/session/Akọsílẹ̀ mechanics on macOS and Windows, and keep native-command failures independently visible.

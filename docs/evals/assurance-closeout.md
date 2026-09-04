@@ -16,7 +16,10 @@ After the critical wave passes, run the preservation/full wave `W4`, `W6`, `S1`,
 
 ## 2. Current-portfolio discovery and public admission
 
-Run these alongside D1-D16/R1-R3 in both discovery Arms A and B. They update the scenario population for the current portfolio rather than creating a third discovery treatment.
+These cases serve two different decisions and must not be conflated:
+
+- run D17-D19 on the **current installed/public surface (Arm A)** for `yoruba-glossary` admission;
+- include the same cases in Arm B only when running the separate portfolio-discovery experiment, where Arm B tests an unshipped presentation treatment rather than the skill's current admission boundary.
 
 | ID | User intent | Expected first owner | Closest wrong route |
 | --- | --- | --- | --- |
@@ -26,9 +29,11 @@ Run these alongside D1-D16/R1-R3 in both discovery Arms A and B. They update the
 
 ### Yorùbá Glossary admission rule
 
-#85 is a new public owner even though it is Experimental. It may merge only when D17-D19 pass on the required behavioral hosts. Experimental status relaxes later maturity/recurrence evidence; it does not waive the public-owner boundary gate.
+#85 is a new public owner even though it is Experimental. It may merge only when **Arm A/current-surface** D17-D19 pass on the required behavioral hosts. Experimental status relaxes later maturity/recurrence evidence; it does not waive the public-owner boundary gate.
 
-If D17 fails, the separate selector has not proved positive selection value. If D18 or D19 fails, the adjacent-owner boundary is not safe enough for public admission. In either case return `NEEDS_EVIDENCE`/`CHANGES_REQUIRED` as appropriate rather than treating Experimental placement as sufficient.
+Arm B is not an admission prerequisite. A failure caused only by the temporary outcome-first Arm B treatment is evidence about that proposed discovery treatment, not evidence that the current-surface skill must be rejected.
+
+If current-surface D17 fails, the separate selector has not proved positive selection value. If current-surface D18 or D19 fails, the adjacent-owner boundary is not safe enough for public admission. In either case return `NEEDS_EVIDENCE`/`CHANGES_REQUIRED` as appropriate rather than treating Experimental placement as sufficient.
 
 ## 3. First-touch and invocation-mode cases
 
@@ -55,7 +60,7 @@ Run as two separate fresh cases.
 
 ## 4. Kọ public-owner admission cases
 
-These test the gate itself, not any particular proposed skill.
+These test **Kọ's consumption of a supplied admission-evidence state**, not whether Kọ can independently discover that state from raw sessions. Give the case only the evidence facts needed to establish the stated condition; keep the expected disposition out of the model context.
 
 ### G1 — plausible structure, missing boundary proof
 
@@ -77,7 +82,7 @@ The positive case routes correctly but a closest adjacent-negative case repeated
 
 ## 5. Kọ stable-skill improvement cases
 
-Give Kọ one compact verified historical evidence packet per case. Do not inject the expected action.
+These test **Kọ's response to a verified historical evidence packet**, not Àyẹ̀wò's diagnosis of the raw corpus. Give Kọ one compact verified packet per case and do not inject the expected action.
 
 ### K1 — missing contract
 
@@ -113,7 +118,8 @@ A small number of awkward sessions exist, but representative counterexamples sho
 
 QP's explicit behavioral support target is Codex + Claude Code. Compatibility/install validation alone does not prove equivalent skill selection.
 
-- Run **activation/discovery/public-admission** cases on both Codex and Claude Code: the stacked activation cases, discovery A/B including D17-D19 and F1-F3, and G1-G3 when a public admission decision depends on host selection behavior.
+- Run **current-surface activation and public-admission** cases on both Codex and Claude Code when those claims are intended for both hosts: stacked activation cases, D17-D19 Arm A, F1-F3, and G1-G3 when a public-admission decision depends on host selection behavior.
+- Run discovery Arms A/B on both hosts when making a portfolio discovery/presentation decision. Their result does not become a prerequisite for unrelated skill or compatibility changes.
 - Injected semantic cases may begin on one host when the claim is host-neutral model reasoning, but any claim of behavioral host parity requires representative runs on both.
 - Record exact host version/model/tier/candidate. A PASS on one host never silently upgrades another host.
 
@@ -124,9 +130,9 @@ QP's explicit behavioral support target is Codex + Claude Code. Compatibility/in
 | Stacked critical current candidate | NOT_RUN | NOT_RUN | Required before #82/#83 behavioral verification |
 | Stacked prior-contract controls | NOT_RUN | NOT_RUN | Comparison evidence; control need not fail |
 | Stacked preservation/full wave | NOT_RUN | NOT_RUN | Run after critical wave passes |
-| Discovery Arm A + current extension | NOT_RUN | NOT_RUN | Required for portfolio decision |
-| Discovery Arm B + current extension | NOT_RUN | NOT_RUN | Required for portfolio decision |
-| Yorùbá Glossary D17-D19 | NOT_RUN | NOT_RUN | Required before #85 public admission |
+| Yorùbá Glossary D17-D19 — Arm A/current surface | NOT_RUN | NOT_RUN | Required before #85 public admission |
+| Discovery Arm A + current extension | NOT_RUN | NOT_RUN | Required only for portfolio discovery decision |
+| Discovery Arm B + current extension | NOT_RUN | NOT_RUN | Required only for portfolio discovery decision |
 | First-touch F1-F3 | NOT_RUN | NOT_RUN | Required for first-touch/invocation-mode claim |
 | Kọ admission G1-G3 | NOT_RUN | NOT_RUN | Required to verify the new admission steering contract |
 | Kọ stable-improvement K1-K5 | NOT_RUN | NOT_RUN | Required to verify the historical-evidence consumption contract |
