@@ -20,4 +20,4 @@ Do not invent fixed color counts, hex values, warm/cool rules, shade ramps, or i
 
 Check applicable contrast requirements against the actual foreground/background pair. Check that meaning does not depend on color alone. Compare production values with the confirmed roles and report the smallest mismatch; do not infer approval from consistency.
 
-When confirmed roles must become implementation tokens, pass them to `eto-apere`. Ètò Àpẹrẹ owns token naming, aliases, themes, CSS realization, and project-framework mapping.
+When confirmed roles must become implementation tokens, pass the confirmed semantic roles and values to `alaga`. Alága owns token/component realization through the product's current implementation system; Brand remains authoritative for identity meaning and approval.

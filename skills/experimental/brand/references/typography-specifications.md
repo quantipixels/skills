@@ -18,4 +18,4 @@ Do not substitute a fashionable font, generic modular scale, common breakpoint, 
 
 Render representative headings, body copy, controls, dense data, long words, and every required script. Check legibility at actual target sizes and widths, fallback behavior, font loading, clipping, reflow, and unavailable weights. Treat accessibility thresholds and product conventions as constraints on the confirmed system, not as permission to invent the system.
 
-When approved typography must become implementation tokens, pass the confirmed roles and values to `eto-apere`.
+When approved typography must become implementation tokens, pass the confirmed roles and values to `alaga`. Alága owns token/component realization through the product's current implementation system; Brand remains authoritative for typography meaning and approval.

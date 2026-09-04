@@ -54,8 +54,8 @@ Transferable principles adopted
 Rejected mismatches and why
 Resulting composition / interaction direction
 Accessibility, responsive, state, and motion constraints
-Implementation constraints for asa-oju-ibanisoro
+Implementation constraints for alaga
 Remaining evidence gaps
 ```
 
-When code is needed, `asa-oju-ibanisoro` owns implementation and must still preserve the project's chosen component library, tokens, framework conventions, and accessibility behavior. Do not hand off copied source code unless its license and the user's authority explicitly permit reuse and reuse is preferable to implementing the derived principle with project-native primitives.
+When code is needed, `alaga` owns implementation and must still preserve the project's chosen component library, tokens, framework conventions, accessibility behavior, and the accepted design direction. Do not hand off copied source code unless its license and the user's authority explicitly permit reuse and reuse is preferable to implementing the derived principle with project-native primitives.
