@@ -1,9 +1,9 @@
 # Historical research: Akọ̀wé catalogue consolidation experiment
 
 Date: 2026-08-27
-Status: Superseded by `docs/adr/20260827-adopt-adaptive-akowe-companion.md`
+Status: Superseded; the surviving task-local capability is folded into [`Alága` expert implementation counsel](../skills/engineering/alaga/references/expert-implementation-counsel.md).
 
-This document preserves the research behind the intermediate, unreleased `akowe-code` catalogue design. It is historical evidence only; the published Experimental identifier is `akowe`, and the runtime skill no longer loads the catalogue described below.
+This document preserves the research behind the intermediate, unreleased `akowe-code` and later `akowe` experiments. It is historical evidence only; no Akọ̀wé public owner remains, and Alága now carries the applicable candidate-pinned implementation counsel without loading the catalogue described below.
 
 ## Result at the time
 
@@ -60,4 +60,4 @@ These counts were not quotas.
 
 ## Why it was superseded
 
-The later experiment showed that Akọ̀wé's useful invariant is adaptive synthesis, not possession of this internal corpus. Relevant installed skills, exact repository/runtime evidence, and current owning sources provide a more extensible expertise boundary. The category trees and their runtime maintenance policy were therefore removed before release.
+The later experiment showed that Akọ̀wé's useful invariant is adaptive synthesis, not possession of this internal corpus. Exact repository/runtime evidence, current owning sources, and selectively loaded mechanism depth provide a more extensible boundary. The catalogue and its public owner were therefore retired; the surviving task-local behavior is maintained inside Alága's expert implementation counsel.
