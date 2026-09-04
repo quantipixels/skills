@@ -74,7 +74,7 @@ The catalogue headings below mirror repository package organization, not semanti
 | Skill | Outcome |
 | --- | --- |
 | `akosile` | Repository-scoped `.qp` paths/worktrees, sparse settings, exact safe publication, generated index |
-| `alaga` | Deliver one supplied software/build job through implementation, proof, review, and handoff |
+| `alaga` | Deliver one supplied software/build job through implementation, proof, review, and handoff, including UI delivery depth when the job materially changes product interfaces |
 | `amose` | Exact-current project/domain model and durable working knowledge across the project's natural sources of truth |
 | `atona` | One initiative plan from Draft through delivery/closure |
 | `atunwo` | Code defect/proof/state-parity review and provider review publication when authorized |
@@ -91,23 +91,6 @@ The catalogue headings below mirror repository package organization, not semanti
 | `architect` | Implementation-ready software-system architecture design/read-only review |
 | `wo-pr` | Steward an open PR/MR through CI/conflict/feedback readiness |
 
-## Design
-
-Use the exact design specialist directly when one deliverable owner is clear. Use `apere` when design-specific multi-owner routing, prerequisites, dependency order, shared constraints, or approval boundaries are themselves needed.
-
-| Skill | Outcome |
-| --- | --- |
-| `apere` | Route broad/multi-deliverable design work without becoming its delivery owner |
-| `amoye-ui-ux` | UI/UX direction, proportionate design exploration, explicit affordance acceptance, and rendered convergence |
-| `brand` | Durable brand voice/identity/logo/icon/assets source of truth |
-| `social-graphics` | Feed/carousel/story/social campaign graphics |
-| `eto-apere` | Project-specific token/component-spec contract and CSS realization |
-| `asa-oju-ibanisoro` | Accessible responsive React/web UI implementation with native proof and rendered convergence |
-| `banner-design` | Covers/headers/heroes/display ads/print banners |
-| `slides` | Explanatory, instructional, status, review, strategic, or persuasive presentation design |
-
-Banner Design and Social Graphics intentionally remain narrow steering owners even though they share graphic-design fundamentals: the separate selectors encode different surface/adaptation behavior without requiring users to restate it.
-
 ## Productivity
 
 | Skill | Outcome |
@@ -120,6 +103,7 @@ Banner Design and Social Graphics intentionally remain narrow steering owners ev
 | `iwadi` | High-trust claim-appropriate research with high-threshold exact-version technical source escalation |
 | `ro-wo` | Test one material premise before judgment |
 | `salaye` | Reusable plain-language explanation behavior for a supplied subject |
+| `slides` | Explanatory, instructional, status, review, strategic, or persuasive presentation design |
 | `system-cleanup` | Safe macOS storage audit, regenerable cleanup, worktree review, and external-drive offload |
 | `technical-writing` | Technical communication structure/clarity from direct reader/job/syntax principles |
 | `yo-slop` | Final prose cleanup / explicit pruning without contract change |
@@ -132,12 +116,16 @@ Experimental skills participate in normal first-party routing when their owned o
 
 | Skill | Outcome |
 | --- | --- |
+| `amoye-ui-ux` | UI/UX direction, proportionate design exploration, explicit affordance acceptance, and rendered convergence |
+| `brand` | Durable brand voice/identity/logo/icon/assets source of truth |
 | `dogfood` | Real-browser verification of changed user journeys |
 | `fihan` | Explicitly activated private serving of one bounded local resource |
 | `ideate` | Grounded mechanism-diverse possibilities before selection |
 | `pepeye` | User-requested task supervision across QP or ordinary host/domain owners without a second lifecycle |
 | `prototype` | Disposable truthful decision instrument |
 | `root-cause` | Minimal evidence-backed causal mechanism/set for an observed failure |
+
+Amọ̀ye and Brand remain independent judgment/semantic outcomes while their portfolio maturity is exercised. UI implementation and reusable token/component realization are internal delivery depth behind Alága rather than separate public owners. Banner/social surface taxonomies and design-only routing are retired; ordinary host/image/design capability remains available when no QP owner materially improves the result.
 
 Historical Akọ̀wé and Orísun experiments remain research evidence. Their useful methods now live behind Alága's implementation-counsel path and Ìwádìí's exact-source escalation instead of occupying public routing surface.
 

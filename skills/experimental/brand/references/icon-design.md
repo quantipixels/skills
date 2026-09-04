@@ -1,6 +1,6 @@
 # Icon direction
 
-Use this reference for custom SVG icon sets. For ordinary product UI, prefer an established library and `asa-oju-ibanisoro`.
+Use this reference for custom SVG icon sets. For ordinary product UI, prefer an established library and let `alaga` own implementation through the current product's UI-delivery path.
 
 ## Define the system
 
