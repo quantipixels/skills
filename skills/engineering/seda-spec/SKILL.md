@@ -19,7 +19,7 @@ Pin:
 - freshness, version, compatibility, or changeover boundaries when material; and
 - confirmed authority, inferences, and unresolved material questions.
 
-Use settled context directly. Do not replay discovery or start an interview merely because the source is conversational. Inspect the current work context only enough to use established vocabulary, behavior, governing decisions, interfaces, and proof/evidence seams accurately. In repository work this may include code, tests, ADRs, schemas, configuration, and history; none is required merely because Ṣẹ̀dá Spec is active.
+Use settled context directly. Do not replay discovery or start an interview merely because the source is conversational. Inspect the current work context only enough to use established vocabulary, behavior, governing decisions, interfaces, and proof/evidence seams accurately. In repository work this may include code, tests, ADRs, schemas, configuration, and history; none is required merely because `seda-spec` is active.
 
 Current implementation or operating practice is evidence of existing behavior, not automatic authority for desired behavior. Do not turn implementation detail into a requirement unless the supplied or confirmed contract requires it.
 
@@ -53,7 +53,9 @@ A specification defines what must be true. It does not choose modules, teams, de
 
 ## Resolve material gaps
 
-Separate confirmed behavior from inference. Resolve discoverable facts directly or through `iwadi` when substantial reusable research is needed. Use `arojinle` for unresolved consequential user decisions. Use the current specialist when specification readiness depends on an independently useful design result; software/system technical architecture belongs to `architect`.
+Separate confirmed behavior from inference. Resolve discoverable facts directly or through `iwadi` when substantial reusable research is needed. Use `amose` when unresolved domain terminology, conceptual boundaries, relationships, or invariants prevent the behavior contract from being stated unambiguously; consume its resolved model rather than defining domain meaning inside the specification. Reading established project vocabulary does not require an `amose` handoff.
+
+Use `arojinle` for unresolved consequential user decisions. Use the current specialist when specification readiness depends on an independently useful design result; software/system technical architecture belongs to `architect`.
 
 Do not fill a gap with a plausible requirement. If a material behavior cannot be specified without invention, keep the gap visible and return `SPEC_NOT_READY`.
 

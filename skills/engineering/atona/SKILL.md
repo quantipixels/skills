@@ -15,7 +15,7 @@ For every material initiative, maintain one semantic plan using [the plan record
 
 Keep it in current context when one-session use is sufficient. Persist only when continuity, recovery, independent review, or downstream consumption needs durable identity. Prefer an existing or user-selected destination; when that destination is repository-scoped `.qp` state, use `akosile` for storage mechanics.
 
-For a substantial multi-record/multi-session initiative, or whenever separate owner records would otherwise hide information the user needs to judge viability, maintain an `html-artifact` projection using [human view](references/human-view.md). The semantic plan and specialist owner results remain authoritative; the projection is a denormalized human read model and may be absent/stale without changing semantic truth.
+For every material initiative beyond a minor bounded fix, maintain an `html-artifact` projection using [human view](references/human-view.md) as the approachable human operating view. The semantic plan and specialist owner results remain authoritative; HTML is a denormalized read model and may be absent or stale without changing semantic truth. Regenerate it after material plan changes, but let `html-artifact` keep verification proportional: structural/source/freshness checks are the default, while browser proof is earned only when rendered or interactive behavior materially controls acceptance.
 
 When supplied context already settles the initiative, synthesize it directly rather than replaying discovery. Separate confirmed context from inference and capture only the problem/outcome, acceptance, confirmed decisions, scope/non-goals, material proof expectations, current progression gate, and evidence identities needed to plan responsibly.
 
@@ -40,6 +40,8 @@ Keep the **current gate** explicit: the next material progression judgment the h
 ## 3. Shape through the Decision Frontier
 
 Pin outcome, scope, constraints, assumptions, non-goals, evidence, risks, and open uncertainties. Read only current project/domain evidence that can materially change the plan.
+
+When unresolved terminology, conceptual boundaries, relationships, or invariants make the initiative itself ambiguous enough that planning would otherwise invent meaning, use `amose` for that independent domain-model clarification and consume its resolved model delta. Reading already-established project vocabulary does not require an `amose` handoff.
 
 When the initiative is too uncertain to state responsibly at full depth, read [progressive shaping](references/progressive-shaping.md). Preserve known-but-not-yet-formulatable territory without inventing future requirements.
 
@@ -67,7 +69,7 @@ OPEN    — at least one material user decision is answerable now.
 BLOCKED — material user decisions remain but prerequisite evidence/results are missing.
 ```
 
-When `OPEN`, give Àròjinlẹ̀ the whole currently answerable material decision set and consume its confirmed result. Do not reopen settled decisions. When `BLOCKED`, resolve only prerequisite evidence/results that can make the next decision formable.
+When `OPEN`, give `arojinle` the whole currently answerable material decision set and consume its confirmed result. Do not reopen settled decisions. When `BLOCKED`, resolve only prerequisite evidence/results that can make the next decision formable.
 
 Use another skill only when its independently useful result is material to plan readiness. Do not turn supporting capabilities into plan stages.
 

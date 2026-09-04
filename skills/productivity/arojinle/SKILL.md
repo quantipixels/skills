@@ -1,6 +1,6 @@
 ---
 name: arojinle
-description: Resolve consequential choices through a relentless, complete decision-tree interview and final user confirmation. Use when material choices must be made and their dependent decisions need to be surfaced; exclude specialist design/architecture, initiative lifecycle planning, delivery execution, and ordinary fact-finding.
+description: Resolve consequential choices through a relentless, complete decision-tree interview and final user confirmation. Use when material choices must be made, dependent decisions need to be surfaced, or the user asks to grill or stress-test a plan, design, idea, or decision; exclude specialist design/architecture, initiative lifecycle planning, delivery execution, and ordinary fact-finding.
 ---
 
 # Àròjinlẹ̀
@@ -15,7 +15,11 @@ Do not ask a question whose answer depends on another still-open question in the
 
 Finding facts is your job, never the user's. Resolve bounded facts directly; isolate noisy lookup only when it materially protects the decision context. Let only dependent questions wait while independent frontier questions continue.
 
-When terminology, relationships, invariants, ownership, identity, state boundaries, or conceptual framing can materially change the tree, challenge ambiguous/conflicting language and test it with concrete scenarios. Current implementation or operations are evidence of existing behavior, not automatic authority for desired meaning.
+Use another skill only when its independent result is needed to form or resolve a frontier decision. Keep the relentless interview and decision-tree ownership in `arojinle`; supporting capabilities do not become separate interview stages.
+
+When project/domain terminology, conceptual boundaries, relationships, or invariants materially change the decision tree and current evidence/domain authority can clarify them without a consequential user choice, use `amose` for that independent model clarification and continue from its resolved delta. If the meaning itself is the consequential choice, keep that decision in `arojinle`; after the user confirms it, give the resulting semantic delta to `amose` when reconciliation is authorized. Reading already-established domain language does not require an `amose` handoff.
+
+As a round confirms project/domain terms, relationships, invariants, or context boundaries that should change the maintained domain model, give only the confirmed semantic delta to `amose` as it crystallises when reconciliation is authorized. Do not batch settled domain language until the final recap. `arojinle` owns the consequential choice; `amose` owns domain-model reconciliation and applies its own durable-promotion/ADR gates. Ordinary decision rationale remains in the decision result or surrounding lifecycle/history unless it independently qualifies for a durable destination.
 
 When a frontier choice has several credible alternatives and at least two independent criteria can materially change the recommendation, use a compact decision-specific rubric. Apply hard gates first; derive only the criteria that matter to this decision; show the decisive factor, strongest credible alternative, and material counterevidence. Do not manufacture scores for a trivial/already-determined choice or let an average hide a gate. The rubric supports the recommendation; the decision remains the user's.
 
@@ -29,4 +33,4 @@ Conversation is the primary view for a small or single-round decision set. Use `
 
 Before declaring the material frontier empty, challenge the current tree for consequential assumptions, missing branches, contradictory decisions, and dependencies that were never made explicit.
 
-Finish only when that challenge leaves no unresolved material branch and the user confirms shared understanding. Return confirmed decisions, material assumptions/evidence, decision-changing alternatives/criteria when they constrained the choice, explicit deferrals/re-entry conditions, and the next outcome boundary. When confirmed decisions establish/change durable project/domain knowledge, give the confirmed semantic delta to `amose` for reconciliation. Do not execute resulting delivery inside Àròjinlẹ̀.
+Finish only when that challenge leaves no unresolved material branch and the user confirms shared understanding. Return confirmed decisions, material assumptions/evidence, decision-changing alternatives/criteria when they constrained the choice, explicit deferrals/re-entry conditions, and the next outcome boundary. Reconcile only any remaining confirmed domain-model delta through `amose`; do not turn the final recap into a second durable-knowledge ceremony. Do not execute resulting delivery inside `arojinle`.
