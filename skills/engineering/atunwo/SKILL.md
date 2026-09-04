@@ -54,6 +54,8 @@ For each material finding:
 4. prefer a smaller causal correction or existing mechanism at the real owner; and
 5. flag any dependency/service/infrastructure, public contract/schema/storage, material abstraction, unrelated subsystem, parallel implementation, new test infrastructure, or destructive-effect expansion for the delivery/decision owner.
 
+When a confirmed finding cannot be corrected responsibly without a consequential system/module/interface/seam redesign, name `architect` as the design owner and keep `atunwo` on the defect/verdict. Do not turn review into a competing architecture exercise.
+
 Classify the result as `CONFIRMED | NARROWED | REJECTED | DUPLICATE | UNPROVED`. Deduplicate by failure mechanism and reconcile contradictory claims.
 
 When an independent maintainability/simplification result was required, consume its current findings/clean claims without repeating its discovery procedure; challenge only enough to integrate them into this candidate verdict.
