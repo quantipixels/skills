@@ -109,6 +109,43 @@ jobs:
           cd "$GITHUB_WORKSPACE"
           npx --yes @anthropic-ai/claude-code@${CLAUDE_CODE_VERSION} plugin validate .
 
+  portable-mechanics:
+    name: Portable mechanics (${{ matrix.os }})
+    strategy:
+      fail-fast: false
+      matrix:
+        os:
+          - ubuntu-latest
+          - macos-latest
+          - windows-latest
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install validator dependency
+        run: python -m pip install -r skills/engineering/ko-skill/scripts/requirements.txt
+
+      - name: Validate package and host projections
+        run: |
+          python skills/engineering/ko-skill/scripts/validate-package.py --repo .
+          python skills/engineering/ko-skill/scripts/validate-plugin-agents.py --repo .
+
+      - name: Test local session evidence adapter
+        run: python -m unittest discover -s skills/productivity/ayewo-igba-ise/scripts -p 'test_*.py'
+
+      - name: Test Akosile focused mechanics
+        run: python -m unittest discover -s skills/engineering/akosile/scripts -p 'test_*.py'
+
+      - name: Test safe global uninstall
+        if: runner.os != 'Windows'
+        run: python -m unittest scripts/test_uninstall.py
+
   validate:
     name: Validate
     if: ${{ always() }}
@@ -117,6 +154,7 @@ jobs:
       - skill-package
       - akosile-tests
       - compatibility-smoke
+      - portable-mechanics
     runs-on: ubuntu-latest
     steps:
       - name: Require all validation jobs
@@ -125,8 +163,10 @@ jobs:
           SKILL_PACKAGE_RESULT: ${{ needs.skill-package.result }}
           AKOSILE_TESTS_RESULT: ${{ needs.akosile-tests.result }}
           COMPATIBILITY_SMOKE_RESULT: ${{ needs.compatibility-smoke.result }}
+          PORTABLE_MECHANICS_RESULT: ${{ needs.portable-mechanics.result }}
         run: |
           test "$PACKAGE_STATE_RESULT" = success
           test "$SKILL_PACKAGE_RESULT" = success
           test "$AKOSILE_TESTS_RESULT" = success
           test "$COMPATIBILITY_SMOKE_RESULT" = success
+          test "$PORTABLE_MECHANICS_RESULT" = success

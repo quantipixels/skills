@@ -184,7 +184,10 @@ def parse(host, path, names):
 
 
 def skill_names(a):
-    out = {x.strip() for x in a.skill if x.strip()}; root = a.skills_root
+    explicit = {x.strip() for x in a.skill if x.strip()}
+    if explicit:
+        return explicit
+    out = set(); root = a.skills_root
     if root is None:
         for parent in Path(__file__).resolve().parents:
             if (parent / "skills").is_dir(): root = parent / "skills"; break

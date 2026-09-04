@@ -2,7 +2,7 @@
 
 Use only when a session or bounded multi-session postmortem depends on persisted local Codex or Claude Code history.
 
-The bundled adapter is a **read-only evidence indexer**, not an analytics engine. Its deterministic seam is: given local session stores plus optional explicit filters, emit a privacy-preserving structural inventory that Àyẹ̀wò can use to choose and inspect the smallest relevant sample.
+The bundled adapter is a **read-only evidence indexer**, not an analytics engine. Its deterministic seam is: given local session stores plus optional explicit corpus filters and skill-signal focus, emit a privacy-preserving structural inventory that Àyẹ̀wò can use to choose and inspect the smallest relevant sample.
 
 ## Boundary
 
@@ -12,8 +12,9 @@ The adapter may:
 - inventory JSONL session files without modifying them;
 - normalize exact session/root-session relationships when the host record or storage path proves them;
 - emit host/session/root IDs, cwd/project evidence, host version when present, observed time range, event/role counts, parse gaps, and source line references for structural skill signals;
-- filter by explicitly supplied host, project, session/root ID, time range, or skill names; and
-- mark a filter dimension `UNCERTAIN` instead of silently excluding a record whose required metadata is absent.
+- filter the corpus by explicitly supplied host, project, session/root ID, or time range;
+- focus skill-signal extraction on explicitly supplied skill names without removing sessions that have no matching signal; and
+- mark a corpus-filter dimension `UNCERTAIN` instead of silently excluding a record whose required metadata is absent.
 
 It must not:
 
@@ -33,7 +34,7 @@ From a QP checkout:
 python3 skills/productivity/ayewo-igba-ise/scripts/session-evidence.py
 ```
 
-No time boundary is assumed. Narrow only when the analysis question calls for it:
+No time boundary is assumed. Narrow the corpus only when the analysis question calls for it:
 
 ```bash
 python3 skills/productivity/ayewo-igba-ise/scripts/session-evidence.py \
@@ -42,7 +43,7 @@ python3 skills/productivity/ayewo-igba-ise/scripts/session-evidence.py \
   --skill root-cause
 ```
 
-`--since` and `--until` accept explicit ISO-8601 bounds; omitting them means no date cutoff. `--session` accepts a session or normalized root-session ID. `--skill` is repeatable. When running outside a full QP checkout, pass `--skills-root <path-to-qp-skills/skills>` if current QP skill-name detection is needed.
+`--since` and `--until` accept explicit ISO-8601 corpus bounds; omitting them means no date cutoff. `--session` accepts a session or normalized root-session ID. `--skill` is repeatable and **focuses emitted skill-use signals; it is not a session filter**. Sessions with no matching signal remain in the inventory so Àyẹ̀wò can still identify possible missed opportunities from raw sampled evidence. When `--skill` is omitted, the adapter discovers current QP skill names from the available `skills` tree for broad structural signal extraction. When running outside a full QP checkout, pass `--skills-root <path-to-qp-skills/skills>` for that auto-discovery path.
 
 The default roots are current host conventions, not QP-owned state:
 
@@ -53,18 +54,18 @@ Redirect output only when a durable local index is useful. Generated evidence st
 
 ## Skill-use evidence strength
 
-The adapter emits only observed evidence:
+The adapter emits only observed evidence for the selected signal focus:
 
 - `EXPLICIT_INVOKE` — direct user-input text explicitly names/invokes the skill;
 - `HOST_ROUTED` — a structured host record names the selected skill; and
 - `SKILL_LOADED` — the persisted record contains a structural path to that skill's `SKILL.md`.
 
-These signals establish different facts. A load does not prove the skill's result was needed or useful. No emitted signal does not prove the skill was unavailable. Eligibility, missed opportunity, incremental value, and mis-triggering require Àyẹ̀wò to inspect the bounded session evidence.
+These signals establish different facts. A load does not prove the skill's result was needed or useful. No emitted signal does not prove the skill was unavailable or ineligible. Eligibility, missed opportunity, incremental value, and mis-triggering require Àyẹ̀wò to inspect the bounded session evidence.
 
 ## Corpus use
 
 1. Inventory the full permitted local population first.
-2. Pin the corpus from the decision being made: host, project/repository, QP snapshot/version evidence, session roots, skills, or caller-supplied time range as relevant. Do not bake a repository inception date or rolling-window default into the analyser.
+2. Pin the corpus from the decision being made: host, project/repository, QP snapshot/version evidence, session roots, or caller-supplied time range as relevant. Use `--skill` only to reduce signal noise/cost for the skill(s) under investigation; do not shrink the denominator to sessions that already show a skill signal.
 3. Normalize root sessions before counting opportunities. Treat resumed/copied/forked/subagent records as related evidence and establish independence before using them as separate denominator units.
 4. Select representative and risk-weighted root sessions from the inventory.
 5. Read raw transcript lines only for the selected records and only to the extent needed to reconstruct the contract, owner selection, user corrections, proof, rework, recovery, or incremental value.
