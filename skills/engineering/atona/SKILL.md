@@ -29,7 +29,7 @@ Track one status:
 | `Planned` | delivery can start without inventing a material requirement |
 | `In Progress` | authorized delivery is active |
 | `Backlog` | intentionally inactive with an owner/re-entry trigger |
-| `Closed` | planning, delivery, proof, documentation, and durable reconciliation obligations are complete |
+| `Closed` | planning, delivery, proof, documentation, and any required durable reconciliation obligations are complete |
 
 Atọ́nà alone sets plan status. Supporting results, tickets, provider state, projections, and workspace indexes are evidence only.
 
@@ -107,8 +107,8 @@ After a material result changes plan meaning, update the semantic plan first. Re
 
 ## 6. Reconcile and close
 
-Before `Closed`, require the Decision Frontier to remain empty, no blocking plan gap, current accepting delivery/proof for every in-scope obligation, explicit residual deferrals/limits, and completed durable knowledge reconciliation.
+Before `Closed`, require the Decision Frontier to remain empty, no blocking plan gap, current accepting delivery/proof for every in-scope obligation, explicit residual deferrals/limits, and no unresolved durable-knowledge obligation that actually meets the promotion threshold below.
 
-Read [durable knowledge reconciliation](references/durable-reconciliation.md) only at closure or when a durable insight can be reconciled naturally earlier. Preserve only knowledge that changes future work; do not turn lifecycle history into a documentation dump.
+Treat the initiative's normal artifacts and history—plan, specification, tickets, PR/MR, review, commits, and provider history—as sufficient for ordinary implementation choices, rationale, findings, and reversible portfolio/design changes. Read [durable knowledge reconciliation](references/durable-reconciliation.md) only when the initiative established or changed stable governing knowledge that future work must rely on outside those normal lifecycle artifacts, or when an existing durable source of truth became materially stale.
 
 Before user-visible handoff, align plan status, current gate, Decision Frontier, delivery summary, evidence/projection freshness, weakest material claim or blocker, remaining work, and next action. When a maintained human projection applies, require the current [human-view](references/human-view.md) visibility/assurance contract before presenting it as the current view. Use [suggested direction](references/suggested-direction.md) only when a separate build-direction handoff is actually useful.
