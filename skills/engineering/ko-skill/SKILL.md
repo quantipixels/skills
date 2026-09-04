@@ -21,6 +21,17 @@ Curate frameworks **into** reasoning. Preserve a named model, standard, concept,
 
 Use the smallest control shape that preserves correctness: `lightweight` when consequential invariants can directly produce the result; `workflow` when ordered stages, durable/external state, stale/partial recovery, multiple actors/candidates, or distinct side-effect authorities genuinely control correctness. Do not add lifecycle/status/receipts/schemas merely because the outcome is important.
 
+### Admit a public owner only when the identity earns its surface
+
+Before adding, re-exposing, or promoting a public owner, apply hard gates in this order:
+
+1. **Independent result:** the capability produces a result, authority/completion boundary, or reusable steering contract that is useful without another owner's lifecycle around it.
+2. **Existing-owner fit:** no current owner can absorb the capability coherently through guidance, a selective reference, native capability, or internal path without weakening that owner's outcome or authority boundary.
+3. **Selection value:** the separate name makes a realistic user/agent choice materially simpler than keeping the capability behind the nearest owner.
+4. **Boundary proof:** at least one realistic positive case and the closest plausible negative/adjacent-owner case support the proposed trigger and ownership boundary. A stable owner needs evidence proportionate to its routing risk; an Experimental owner may test a credible public-identity hypothesis, but missing real-use evidence remains explicit and cannot justify promotion.
+
+If the capability is useful but the public identity has not earned selection value, keep or fold the capability behind its natural owner. If a distinct outcome is credible but recurrence/public-identity value remains unproved, use the repository's Experimental disposition rather than pretending maturity. Do not choose a target number of skills first and then force owners to fit it.
+
 ### Admit only behavior-bearing instruction
 
 A capable agent's default behavior is not automatically desired behavior. Keep an instruction only when its trigger, failure prevented, forced behavioral difference, value, and recurring cost justify default context.
