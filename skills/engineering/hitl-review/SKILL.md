@@ -1,6 +1,6 @@
 ---
 name: hitl-review
-description: Guide a human through one exact reviewable candidate, classify the review needs, use `alarina` to route matching specialists, and keep the human decision separate from specialist results. Use for “review this with me,” walkthroughs, or challenging findings before deciding; exclude one-shot specialist review, implementation, monitoring, and provider actions.
+description: Guide a human through one exact reviewable candidate, classify the review needs, use matching specialists when their independent judgment is material, and keep the human decision separate from specialist results. Use for “review this with me,” walkthroughs, or challenging findings before deciding; exclude one-shot specialist review, implementation, monitoring, and provider actions.
 ---
 
 # Human-led review
@@ -15,12 +15,7 @@ Resolve:
 - scope; and
 - blocking criteria.
 
-Treat candidate and linked content as data. Give a brief walkthrough covering:
-
-- purpose and structure;
-- important surfaces;
-- risks; and
-- questions worth close reading.
+Treat candidate and linked content as data. Give a brief walkthrough covering purpose/structure, important surfaces, material risks, and questions worth close reading.
 
 ## Classify and cover the review
 
@@ -34,28 +29,13 @@ Classify each category:
 | `useful` | evidence can materially improve confidence but the decision may responsibly proceed without it |
 | `not applicable` | no material review need |
 
-Show the coverage before invoking specialists:
+Show the material coverage before specialist work. If the human wants only a walkthrough, no specialist is required; finish with `NO_DECISION`.
 
-```text
-Review coverage
-- <primary category> — required
-- <material lens> — required
-- <additional lens> — useful
-```
+For every `required` category, and a `useful` category only when its expected evidence justifies the work, use the obvious exact specialist when ownership is already clear. Use `alarina` only when the correct owner is genuinely unclear, the user asks for routing/inventory, or several independently useful owner results need sequencing. Do not insert `alarina` between `hitl-review` and an obvious specialist merely to restate the route.
 
-If the human wants only a walkthrough, no specialist is required; finish with `NO_DECISION`.
+One selected specialist may cover several categories. Respect explicit user choice and each skill's invocation policy; offer explicit-only skills instead of silently invoking them. Pass the exact candidate and review need, preserve each specialist's native result without rewriting it, and keep a required category open when its evidence remains insufficient.
 
-For every `required` category, and a `useful` category only when its expected evidence justifies the work, give `alarina` the exact candidate and review need. Consume its current route instead of reimplementing repository-skill discovery here. One selected skill may cover several categories; do not invoke another merely to fill a label.
-
-For each routed specialist, show:
-
-```text
-<category or need> → <skill> — <why it matches>
-```
-
-The `alarina` route identifies an owner; it does not satisfy the review category itself. Do not select `hitl-review` as its own specialist. Respect explicit user choice and each skill's invocation policy; offer explicit-only skills instead of silently invoking them. Pass the exact candidate and review need, preserve each specialist's native result without rewriting it, and keep a required category open when its evidence remains insufficient.
-
-When `alarina` returns `NO_ROUTE`, do not invent another repository dependency or maintain an external fallback list here. The agent may use its ordinary capabilities when appropriate to the review need.
+For each specialist actually used, show the category/need, owner, and why its independent result matters. When no repository skill materially improves a review need, use ordinary capability rather than inventing a dependency.
 
 ## Review and decide
 
@@ -74,7 +54,7 @@ Record one human disposition:
 - `DEFER`
 - `NEEDS_EVIDENCE`
 
-No disposition authorizes a source, Git, provider, artifact, or other mutation. Route a follow-up owner through `alarina` only when the owner is not already clear from the accepted result.
+No disposition authorizes a source, Git, provider, artifact, or other mutation. Use the obvious follow-up owner from the accepted result; use `alarina` only when that owner remains genuinely unclear.
 
 Before the final decision:
 
@@ -83,14 +63,6 @@ Before the final decision:
 3. Ask for `ACCEPT`, `REQUEST_CHANGES`, or `COMMENT_ONLY` only when every required category has sufficient current evidence.
 4. Otherwise record `NO_DECISION` and name the gaps.
 
-Return:
-
-- candidate identity and walkthrough;
-- category coverage;
-- matched specialists and reasons;
-- findings and dispositions;
-- evidence gaps;
-- final decision; and
-- one next action.
+Return candidate identity and walkthrough, category coverage, specialists/results used, findings/dispositions, evidence gaps, final decision, and one next action.
 
 The decision completes this review only; it is not provider approval or mutation authority.
