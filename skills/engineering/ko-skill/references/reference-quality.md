@@ -78,7 +78,7 @@ Do not require examples to replace prose. Keep them when they make a recurring j
 
 Do not impose an arbitrary maximum reference size or file count. Prefer one cohesive reference when its sections normally load together. Split only when branches can be selected independently enough to save material context or carry materially different freshness/evidence boundaries.
 
-Good: one cohesive `module-depth.md` loaded for module/interface design.
+Good: one cohesive `module-design.md` loaded for module/interface design.
 
 Bad: seven tiny files that must all be opened for every module-boundary decision.
 
@@ -98,7 +98,7 @@ observed recurring or owner-wide misjudgment
 
 Recurrence is not a numeric quota. One strong owner-wide failure can justify a reference when the consequence and generality are clear. One unconfirmed task correction does not.
 
-Project-specific confirmed patterns stay with the project's existing owner such as Amọ̀ṣẹ́ local craft rather than being promoted automatically.
+Project-specific confirmed patterns stay with the strongest existing maintained project source. When no stronger source exists and a pattern independently clears the stable, recurring, consequential admission gate, use `amose` to reconcile it into `.learnings`; do not promote it automatically into a cross-project skill reference.
 
 ## Return one disposition
 
