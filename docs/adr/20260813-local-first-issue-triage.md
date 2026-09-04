@@ -1,7 +1,0 @@
-# Keep issue triage local-first
-
-QP will publish `se-triage` as the dedicated owner for assessing one issue before implementation. It summarizes supplied evidence first, classifies it, then selects one next action: verify, request information, hand off a confirmed mechanism, or explain direct counter-evidence. Lack of reproduction or missing evidence must not become a “not a bug” conclusion. This outcome does not belong to `iwadi` or `atunwo`.
-
-Triage uses only user-supplied evidence by default. A URL identifies an issue but does not authorize access. Inspecting source repository content, reading GitHub or GitLab issue state, and writing to the provider require separate explicit permission. A provider-comment grant includes only the narrow duplicate check and readback required for that one write. The comment uses a stable marker; a successful write with failed readback is partial and must not retry without absence proof. Comment authority does not authorize closing, assigning, labeling, or editing the issue. When analysis is material, needs persistence or handoff, or the user requests it, the skill may create a timestamped Markdown artifact under `.qp/triage`; this local write does not authorize source inspection.
-
-This boundary accepts possible incomplete evidence and an extra permission step in exchange for local privacy, clear authority, and prevention of speculative repository investigation or provider mutation.

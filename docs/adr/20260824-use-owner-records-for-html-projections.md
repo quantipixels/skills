@@ -86,4 +86,4 @@ Structural verification still follows every write. Ordinary internal reports, wo
 - Per-owner machine contracts and a second machine registry: they duplicate skill semantics and record frontmatter without a demonstrated need.
 - Global `~/.qp` as the v0 canonical store: deferred until cross-project maturity justifies project identity and resolution infrastructure.
 
-This decision partially supersedes [Separate solution architecture from lifecycle planning](20260823-separate-solution-architecture-from-lifecycle-planning.md). Atọ́nà still owns one initiative plan; Markdown is its semantic source and the continuously maintained HTML is its primary human-facing view.
+This decision preserves the earlier separation of solution architecture from lifecycle planning recorded by [the historical implementation commit](https://github.com/quantipixels/skills/commit/18fbce191df033b08f1b635e76e908a8ed155117). Atọ́nà still owns one initiative plan; Markdown is its semantic source and the continuously maintained HTML is its primary human-facing view.
