@@ -50,6 +50,9 @@ jobs:
       - name: Validate plugin agents
         run: python3 skills/engineering/ko-skill/scripts/validate-plugin-agents.py --repo .
 
+      - name: Test local session evidence adapter
+        run: python3 -m unittest discover -s skills/productivity/ayewo-igba-ise/scripts -p 'test_*.py'
+
   akosile-tests:
     name: Akosile focused mechanics
     runs-on: ubuntu-latest

@@ -6,6 +6,8 @@ Load this reference only when the evidence unit is a bounded multi-session corpu
 
 Pin the time range, session roots, repositories, inclusion and exclusion rules, selection method, and requested output before drawing conclusions.
 
+When the corpus comes from persisted local Codex or Claude Code history, read [local session evidence](local-session-evidence.md) before sampling. Use its adapter only for deterministic inventory/normalization and structural evidence signals; eligibility, owner selection quality, incremental value, causal reconstruction, and portfolio judgment remain semantic work here or with Kọ Skill.
+
 Inventory the corpus before sampling. Distinguish a user task, root session, resumed or copied history, rollout file, and subagent rollout. Do not treat rollout count as task count, first-to-last span as labour time, or repeated transcript content as independent evidence.
 
 For a large corpus, use deterministic extraction for counts and metadata, then read the smallest representative and risk-weighted sample that can answer the question. Record the population, sample, exclusions, and evidence gaps.
