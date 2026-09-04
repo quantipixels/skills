@@ -100,6 +100,7 @@ The catalogue headings below mirror repository package organization, not semanti
 | `alarina` | Route only when the correct owner is unclear or several independent owner results need sequencing |
 | `arojinle` | Resolve consequential choices through a user-confirmed decision frontier |
 | `ayewo-igba-ise` | Evidence-backed postmortem for completed/abandoned/disputed work, incidents, sessions, or corpora |
+| `fihanmi` | Visual understanding of supplied/current material through the smallest faithful representation |
 | `handoff` | Compact host-neutral fresh-session handoff packet |
 | `html-artifact` | Selective traceable accessible HTML visualization of supplied material |
 | `iwadi` | High-trust claim-appropriate research with high-threshold exact-version technical source escalation |
@@ -112,6 +113,8 @@ The catalogue headings below mirror repository package organization, not semanti
 
 `salaye` is intentionally lightweight: its value is reliable reusable model steering, not hidden machinery.
 
+Fihànmí is likewise deliberately thin: its selected result is visual legibility itself. It uses pseudocode, trees, shaped diffs, Mermaid, aligned comparisons, or a whole target shape as appropriate without becoming another semantic analyst. Use Ṣàlàyé for newcomer-oriented plain-language explanation, HTML Artifact for substantial standalone browser projections, and Slides for presentation/deck outcomes.
+
 ## Experimental
 
 Experimental skills participate in normal first-party routing when their owned outcome fits and host invocation metadata permits it. A skill may deliberately require direct user activation when its boundary is an intent island; this is a skill-specific gate, not category-wide isolation. Experiments exist to prove their utility and limits in real work, then be promoted, kept experimental, narrowed/folded, replaced, or removed. Do not invoke one merely to collect experiment data, and do not treat low raw invocation count as failure when the owned outcome is genuinely rare.
@@ -121,11 +124,13 @@ Experimental skills participate in normal first-party routing when their owned o
 | `amoye-ui-ux` | UI/UX direction, proportionate design exploration, explicit affordance acceptance, and rendered convergence |
 | `brand` | Durable brand voice/identity/logo/icon/assets source of truth |
 | `dogfood` | Real-browser verification of changed user journeys |
-| `fihan` | Explicitly activated private serving of one bounded local resource |
 | `ideate` | Grounded mechanism-diverse possibilities before selection |
 | `pepeye` | User-requested task supervision across QP or ordinary host/domain owners without a second lifecycle |
+| `pese` | Explicitly activated private serving of one bounded local resource |
 | `prototype` | Disposable truthful decision instrument |
 | `root-cause` | Minimal evidence-backed causal mechanism/set for an observed failure |
+
+Pèsè is the renamed private-serving owner and retains Fihàn's explicit activation/security boundary.
 
 Amọ̀ye and Brand remain independent judgment/semantic outcomes while their portfolio maturity is exercised. UI implementation and reusable token/component realization are internal delivery depth behind Alága rather than separate public owners. Banner/social surface taxonomies and design-only routing are retired; ordinary host/image/design capability remains available when no QP owner materially improves the result.
 
@@ -141,6 +146,7 @@ Plan a material initiative → atona
 Review a code candidate → atunwo
 Resolve consequential choices → arojinle
 Research a material claim → iwadi
+Show a current relationship visually → fihanmi
 Diagnose an observed failure → root-cause
 ```
 
