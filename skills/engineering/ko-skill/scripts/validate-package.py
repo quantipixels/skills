@@ -12,6 +12,8 @@ from typing import Any, Iterable
 
 import yaml
 
+from package_metadata import UniqueKeyLoader, read_frontmatter
+
 GROUPS = ("engineering", "design", "productivity", "experimental")
 MARKDOWN_LINK = re.compile(r"\[[^\]]*\]\(([^)]+)\)")
 DIRECT_REFERENCE = re.compile(r"(?<![\w])@((?:\./|\.\./)[^\s`'\"<>]+)")
@@ -32,20 +34,6 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--skill", type=Path)
     parser.add_argument("--format", choices=("text", "json"), default="text")
     return parser.parse_args()
-
-
-def read_frontmatter(path: Path) -> dict[str, Any]:
-    lines = path.read_text(encoding="utf-8").splitlines()
-    if not lines or lines[0].strip() != "---":
-        raise ValueError("missing opening YAML frontmatter delimiter")
-    try:
-        end = next(index for index, line in enumerate(lines[1:], start=1) if line.strip() == "---")
-    except StopIteration as error:
-        raise ValueError("missing closing YAML frontmatter delimiter") from error
-    value = yaml.safe_load("\n".join(lines[1:end]))
-    if not isinstance(value, dict):
-        raise ValueError("frontmatter must be a YAML mapping")
-    return value
 
 
 def local_targets(markdown: Path) -> Iterable[str]:
@@ -94,6 +82,9 @@ def validate_skill(repo: Path, skill_dir: Path) -> list[Finding]:
         metadata = read_frontmatter(skill_file)
     except (OSError, UnicodeError, ValueError, yaml.YAMLError) as error:
         return findings + [Finding("frontmatter.invalid", str(relative_dir / "SKILL.md"), str(error))]
+    name = metadata.get("name")
+    if not isinstance(name, str) or len(name) > 64 or re.fullmatch(r"[a-z0-9]+(?:-[a-z0-9]+)*", name) is None:
+        findings.append(Finding("frontmatter.identifier", str(relative_dir / "SKILL.md"), "name must be a canonical lowercase ASCII identifier of at most 64 characters"))
     if metadata.get("name") != skill_dir.name:
         findings.append(Finding("frontmatter.name", str(relative_dir / "SKILL.md"), f"frontmatter name must be {skill_dir.name!r}, got {metadata.get('name')!r}"))
     if not isinstance(metadata.get("description"), str) or not metadata["description"].strip():
@@ -120,7 +111,7 @@ def validate_skill(repo: Path, skill_dir: Path) -> list[Finding]:
     agent = skill_dir / "agents" / "openai.yaml"
     if agent.exists():
         try:
-            value = yaml.safe_load(agent.read_text(encoding="utf-8"))
+            value = yaml.load(agent.read_text(encoding="utf-8"), Loader=UniqueKeyLoader)
         except (OSError, UnicodeError, yaml.YAMLError) as error:
             findings.append(Finding("agent.invalid", str(agent.relative_to(repo)), str(error)))
         else:
@@ -138,12 +129,39 @@ def inventory(repo: Path) -> list[Path]:
     return result
 
 
+def validate_inventory(repo: Path, skills: list[Path]) -> list[Finding]:
+    findings: list[Finding] = []
+    root = repo / "skills"
+    names: dict[str, Path] = {}
+    for skill in skills:
+        if skill.name in names:
+            findings.append(Finding("skill.duplicate", str(skill.relative_to(repo)), f"public name already used at {names[skill.name]}"))
+        names[skill.name] = skill.relative_to(repo)
+    if not root.is_dir():
+        return findings
+    expected = {path / "SKILL.md" for path in skills}
+    for path in root.rglob("SKILL.md"):
+        if "node_modules" in path.parts or "__pycache__" in path.parts:
+            continue
+        if path not in expected:
+            findings.append(Finding("skill.group", str(path.relative_to(repo)), "entrypoint is not directly under one canonical group"))
+    for group in GROUPS:
+        directory = root / group
+        if directory.is_dir():
+            for path in directory.iterdir():
+                if path.is_dir() and path.name != "__pycache__" and not (path / "SKILL.md").is_file():
+                    findings.append(Finding("skill.missing", str(path.relative_to(repo)), "skill directory has no SKILL.md"))
+    return findings
+
+
 def validate_manifest(repo: Path, skills: list[Path]) -> list[Finding]:
     path = repo / ".claude-plugin" / "plugin.json"
     try:
         manifest = json.loads(path.read_text(encoding="utf-8"))
     except (OSError, UnicodeError, json.JSONDecodeError) as error:
         return [Finding("manifest.invalid", str(path.relative_to(repo)), str(error))]
+    if not isinstance(manifest, dict):
+        return [Finding("manifest.invalid", str(path.relative_to(repo)), "manifest must be an object")]
     entries = manifest.get("skills")
     if not isinstance(entries, list) or any(not isinstance(item, str) for item in entries):
         return [Finding("manifest.skills", str(path.relative_to(repo)), "skills must be a string array")]
@@ -174,6 +192,7 @@ def main() -> int:
     else:
         skills = inventory(repo)
         findings = [] if skills else [Finding("portfolio.empty", "skills", "no skills found")]
+        findings.extend(validate_inventory(repo, skills))
         for skill in skills:
             findings.extend(validate_skill(repo, skill))
         findings.extend(validate_manifest(repo, skills))
