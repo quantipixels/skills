@@ -1,4 +1,5 @@
 """Exercise shipped HTML controls, not substitute implementations."""
+import base64
 import os
 from pathlib import Path
 import re
@@ -30,14 +31,17 @@ def filtered(identity):
 
 
 def fixture():
-    return ('<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Control proof</title><style>'
-            + (ASSETS / 'visual-foundation.css').read_text() + '</style></head><body>'
-            + '<header id="artifact-top" data-back-to-top-target tabindex="-1"><h1>Control proof</h1></header>'
-            + asset('theme-control.html') + carousel('one') + carousel('two')
+    template = asset('base.html')
+    # Embed the shipped images so this interaction fixture stays network-free.
+    for name, mime in (('favicon.png', 'image/png'), ('logo.svg', 'image/svg+xml')):
+        encoded = base64.b64encode((ASSETS / name).read_bytes()).decode('ascii')
+        template = template.replace(f'"{name}"', f'"data:{mime};base64,{encoded}"')
+    content = (carousel('one') + carousel('two')
             + filtered('first') + filtered('second')
             + '<details id="closed" data-print-expand><summary>Evidence</summary><p id="deep">Visible evidence</p></details>'
             + '<details id="already-open" data-print-expand open><summary>Open evidence</summary><p>Retained</p></details>'
-            + asset('report-control.html') + asset('back-to-top-control.html') + '</body></html>')
+            + asset('report-control.html'))
+    return template.replace('</main>', content + '</main>', 1)
 
 
 class ControlBrowserProof(unittest.TestCase):

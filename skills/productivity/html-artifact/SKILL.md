@@ -58,8 +58,6 @@ Interaction may navigate/filter/compare/sequence/reveal supplied material but mu
 
 Start standalone artifacts from the [base template](assets/base.html) by default. It includes the minimal header/main layout, foundation styles, linked [favicon](assets/favicon.png), [Quantipixels logo](assets/logo.svg), theme control, and back-to-top control. Copy the template and both images into the artifact directory, keeping the relative image paths valid. Replace the title and heading, set the document language and control labels, and build the supplied representation inside `main`. Use an existing host shell or user-supplied branding when present.
 
-The shipped images come from `https://quantipixels.com/assets/brand/favicon-32.png` and `https://quantipixels.com/assets/brand/logo-full-white.svg`. Keep them local; the template displays the white logo on a dark background in both themes. Deliver the HTML and images together as a self-contained companion bundle. If a single HTML file is required, embed these same shipped images as data URLs.
-
 Add the [report control](assets/report-control.html), [collection filter control](assets/collection-filter-control.html), or [carousel control](assets/carousel-control.html) only when that asset's own trigger applies; read only the selected asset before embedding it.
 
 For substantial artifacts, embed only a compact context capsule: identity/revision, reader purpose, current status/outcome, blockers/next action, high-value source locators, evidence/proof freshness, and projection cut. Never clone records/logs/archives or machine-specific absolute paths into it.
