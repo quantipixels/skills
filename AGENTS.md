@@ -20,6 +20,12 @@ Do not add standing prompt-evaluation suites merely to defend wording. Temporary
 
 Persist a behavioral regression suite only when recurring stable risk justifies its maintenance. Before deleting an old eval, move each unique current expectation into its owning skill and record obsolete or redundant expectations in the delivery record. Keep deterministic tests only while they prove current source behavior or package/mechanical invariants.
 
+## Release stabilization
+
+Changesets remains QP's version/release owner. When a release owner explicitly declares a major/minor candidate `STABILIZING`, follow [`docs/release-stabilization.md`](./docs/release-stabilization.md): freeze new public-surface growth for that candidate, allow blocker/evidence corrections, and refresh only proof invalidated by a changed candidate epoch. Do not create a second release state machine, version file, or publishing workflow for stabilization.
+
+A new public owner still needs Kọ's admission proof before it may enter a stabilized release, including when that owner is Experimental. Promotion/fold/removal decisions keep their separate real-use evidence requirements.
+
 ## Provider policy
 
 Keep provider execution within its independently installed owning skill. Do not add a shared executable provider runtime without an architecture decision. Each provider-capable skill must own applicable rules for untrusted content, exact target and normalized-host trust, credential isolation, structured requests, complete pagination, capability gaps, pre-write identity and head refresh, and post-write readback receipts. `ko-skill` propagates this contract.
