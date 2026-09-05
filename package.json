@@ -1,6 +1,6 @@
 {
   "name": "qp-skills",
-  "version": "3.0.0",
+  "version": "4.0.0",
   "private": true,
   "description": "Agent skills for reasoning, planning, research, design, engineering, and delivery",
   "repository": {
