@@ -34,7 +34,7 @@ class ValidateWorkflowContractTest(unittest.TestCase):
         self.assertEqual(validate["name"], "Validate")
         self.assertEqual(
             set(validate["needs"]),
-            {"package-state", "skill-package", "akosile-tests"},
+            {"package-state", "skill-package", "akosile-tests", "browser-controls"},
         )
 
 
