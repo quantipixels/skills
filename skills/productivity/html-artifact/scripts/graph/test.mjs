@@ -61,6 +61,8 @@ test('full text and legal disclosure survive without enhancement; shell needs on
   assert.ok(embedded.includes('<h1>Owner explanation</h1>'));
   assert.ok(embedded.includes('<h2>Service relationships</h2>'));
   assert.equal(embedded.match(/<!doctype html>/g).length, 1);
+  assert.ok(!embedded.includes('body {'), 'the component must not style its owner document body');
+  assert.ok(!embedded.includes('html[data-theme=dark] {'), 'theme variables belong to the component');
   await assert.rejects(renderGraph(input(), '<html>No marker</html>'));
   await assert.rejects(renderGraph(input(), '<!-- QP_GRAPH --><!-- QP_GRAPH -->'));
 });

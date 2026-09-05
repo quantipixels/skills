@@ -10,6 +10,7 @@ import { validate, escapeHtml as h } from './model.mjs';
 
 const here = dirname(fileURLToPath(import.meta.url));
 const marker = '<!-- QP_GRAPH -->';
+const standaloneCss = 'body { margin: 0; } [data-theme-toggle] { margin: .75rem; } html[data-theme=dark] body { color: #eef3fa; background: #161e29; }';
 const policy = "default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src data:; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'";
 const css = `
 [data-qp-graph] { color: var(--graph-text,#172033); background: var(--graph-bg,#fff); font: 1rem/1.6 system-ui,sans-serif; padding: clamp(1rem,4vw,2.5rem); max-width: 90rem; margin: auto; overflow-wrap: anywhere; }
@@ -21,9 +22,7 @@ const css = `
 [data-graph-view] { width: 100%; height: min(60vh,40rem); min-height: 20rem; border: 1px solid #52687e; margin-top: 1rem; }
 [data-qp-graph] a { color: var(--graph-link,#16457a); }
 [data-graph-view] { background: #fff; }
-html[data-theme=dark] { --graph-text: #eef3fa; --graph-bg: #161e29; --graph-link: #aacff7; }
-body { margin: 0; color: var(--graph-text,#172033); background: var(--graph-bg,#fff); }
-[data-theme-toggle] { margin: .75rem; }
+html[data-theme=dark] [data-qp-graph] { --graph-text: #eef3fa; --graph-bg: #161e29; --graph-link: #aacff7; }
 [data-qp-graph] pre { white-space: pre-wrap; }
 @media print { [data-graph-controls], [data-graph-view] { display: none !important; } }
 `;
@@ -71,7 +70,7 @@ export async function renderGraph(input, shell) {
   }
   const foundation = await readFile(join(here, '../../assets/visual-foundation.css'), 'utf8');
   const theme = await readFile(join(here, '../../assets/theme-control.html'), 'utf8');
-  return `<!doctype html>\n<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta http-equiv="Content-Security-Policy" content="${h(policy)}"><title>${h(model.title)}</title><style>${foundation}</style></head><body>${theme}${fragment}</body></html>\n`;
+  return `<!doctype html>\n<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta http-equiv="Content-Security-Policy" content="${h(policy)}"><title>${h(model.title)}</title><style>${foundation}\n${standaloneCss}</style></head><body>${theme}${fragment}</body></html>\n`;
 }
 
 async function main() {
