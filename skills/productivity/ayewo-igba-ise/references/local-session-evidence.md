@@ -29,6 +29,8 @@ Those judgments stay with [corpus analysis](corpus-analysis.md) and Kọ Skill.
 
 ## Run the inventory
 
+When persisted local history is the selected evidence source, **Àyẹ̀wò runs this adapter itself** through the active host's local shell/filesystem capability. The command below is an agent execution primitive, not a prerequisite for the user. Ask the user to run or export it only when the active host genuinely cannot access the local session stores and no equivalent local capability is available.
+
 From a QP checkout:
 
 ```bash

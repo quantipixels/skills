@@ -8,6 +8,8 @@ Pin the time range, session roots, repositories, inclusion and exclusion rules, 
 
 When the corpus comes from persisted local Codex or Claude Code history, read [local session evidence](local-session-evidence.md) before sampling. Use its adapter only for deterministic inventory/normalization and structural evidence signals; eligibility, owner selection quality, incremental value, causal reconstruction, and portfolio judgment remain semantic work here or with Kọ Skill.
 
+Àyẹ̀wò remains the user-facing workflow owner for a requested historical-analysis flow. When that same requested outcome includes skill/portfolio disposition or authorized skill remediation, compose `ko-skill` internally after reconstructing the evidence below, pass the bounded evidence packet plus current mutation authority, and continue to one integrated result. Do not return the packet as a prerequisite for the user to invoke Kọ separately, and do not ask Kọ to reconstruct the same corpus again.
+
 Inventory the corpus before sampling. Distinguish a user task, root session, resumed or copied history, rollout file, and subagent rollout. Do not treat rollout count as task count, first-to-last span as labour time, or repeated transcript content as independent evidence.
 
 For a large corpus, use deterministic extraction for counts and metadata, then read the smallest representative and risk-weighted sample that can answer the question. Record the population, sample, exclusions, and evidence gaps.
@@ -39,7 +41,7 @@ Raw invocation count is never the denominator. A rare experiment may be healthy 
 
 Do not manufacture experiment invocations during real user work to improve sample size. The corpus observes natural eligible opportunities; temporary controlled steering comparisons belong to skill evaluation only when selection behavior remains materially uncertain.
 
-Produce a compact evidence packet that another owner can consume without reconstructing the corpus:
+Produce a compact evidence packet that Kọ Skill can consume without reconstructing the corpus:
 
 ```text
 Experimental use evidence
@@ -59,7 +61,7 @@ Counterevidence:
 Coverage/evidence gaps:
 ```
 
-This packet is historical evidence, not a promotion/removal verdict. `ko-skill` may consume it when a portfolio disposition is requested.
+This packet is historical evidence, not a promotion/removal verdict. When portfolio disposition is part of the requested outcome, pass it internally to `ko-skill` and continue the workflow; otherwise report the evidence without silently expanding scope.
 
 ### Stable-skill improvement evidence
 
@@ -97,15 +99,15 @@ Proof needed after change:
 Coverage/evidence gaps:
 ```
 
-The packet is evidence, not an edit instruction or verdict. Kọ Skill decides whether the smallest justified response is `NO_CHANGE`, selection/discovery repair, host/tool repair, instruction clarification, reference/resource change, owner-boundary change, or another task-native disposition.
+The packet is evidence, not an edit instruction or verdict. Kọ Skill decides whether the smallest justified response is `NO_CHANGE`, selection/discovery repair, host/tool repair, instruction clarification, reference/resource change, owner-boundary change, or another task-native disposition. When improvement/disposition is already requested, Àyẹ̀wò passes this packet to Kọ internally and integrates the returned decision or authorized remediation rather than stopping at the handoff.
 
 ## Report the corpus
 
 Return the executive verdict, population and unit definitions, inventory and sampling ledger, repeated-pattern matrix with independent supporting records and counterevidence, representative causal chains, ranked frictions, effective recoveries, recommendation assessment, rejected recommendations, and residual limits.
 
-When Experimental evaluation is in scope, also return the opportunity evidence packet per experiment. Do not infer promotion, narrowing, folding, replacement, or removal from invocation counts; leave portfolio-shape judgment to `ko-skill` unless that judgment is explicitly part of a broader authorized workflow.
+When Experimental evaluation is in scope, also return the opportunity evidence packet per experiment. Do not infer promotion, narrowing, folding, replacement, or removal from invocation counts; use `ko-skill` internally when that portfolio-shape judgment is part of the requested outcome.
 
-When stable-skill improvement is in scope, return the stable-skill improvement packet for each skill whose contract/selection boundary is materially implicated. Preserve `NO_CHANGE` evidence when the current contract was adequate; do not report only problematic sessions.
+When stable-skill improvement is in scope, return the stable-skill improvement packet for each skill whose contract/selection boundary is materially implicated. Preserve `NO_CHANGE` evidence when the current contract was adequate; do not report only problematic sessions. If authorized remediation is part of the request, continue internally through Kọ Skill and report the proved result/gaps in the same final response.
 
 When the corpus spans projects, include one dossier for every normalized project in the population, not only sampled or problematic projects. Each dossier must state:
 

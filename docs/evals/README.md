@@ -7,6 +7,7 @@ QP keeps evaluator-owned behavioral evidence separate from runtime skill guidanc
 - [`stacked-pr-stewardship.md`](stacked-pr-stewardship.md) — stacked PR/MR stewardship, publication boundaries, and activation. Run its critical wave first, then the preservation wave when critical behavior passes.
 - [`portfolio-discovery.md`](portfolio-discovery.md) — current-surface versus outcome-first discovery, with a reduced/profiled arm blocked unless A/B prove simultaneous visibility remains a material problem.
 - [`assurance-closeout.md`](assurance-closeout.md) — prior-contract comparison, first-touch/invocation-mode behavior, Kọ public-owner admission reasoning, Kọ stable-skill improvement reasoning, and the Codex/Claude behavioral-host boundary.
+- [`ayewo-internal-handoff.md`](ayewo-internal-handoff.md) — continuous historical-analysis ownership across Àyẹ̀wò → specialist handoffs, including authorized remediation and Kọ anti-recursion.
 - [`yoruba-glossary-admission.md`](yoruba-glossary-admission.md) — owner-specific positive and closest-adjacent-negative selection proof for the optional `yoruba-glossary` public owner.
 
 Owner-specific public-admission cases belong with the owner candidate that needs them rather than in the reusable assurance pack.
