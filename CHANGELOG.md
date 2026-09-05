@@ -1,5 +1,17 @@
 # Changelog
 
+## 4.1.0
+
+### Minor Changes
+
+- [#99](https://github.com/quantipixels/skills/pull/99) [`f37802d`](https://github.com/quantipixels/skills/commit/f37802d0b7cdc1013a7a4a6d88476c288e4384d6) Thanks [@mosobande](https://github.com/mosobande)! - Simplify PR publication and babysitting around their outcomes. Babysitting now includes scoped fixes and publication while watching stays read-only. Load stack coordination only for dependent PRs, retain provider and reconciliation safeguards, and return concise results.
+
+### Patch Changes
+
+- [#98](https://github.com/quantipixels/skills/pull/98) [`9c0662f`](https://github.com/quantipixels/skills/commit/9c0662f2db6640ba74cdc1e10cced9aaa8534b56) Thanks [@mosobande](https://github.com/mosobande)! - Ship the Quantipixels favicon and logo with a default HTML Artifact base template containing the minimal layout, theme control, and back-to-top control. Consolidate the foundation styles and both default controls into the template, and retain report, filter, and carousel controls as optional assets.
+
+- [#100](https://github.com/quantipixels/skills/pull/100) [`126b74a`](https://github.com/quantipixels/skills/commit/126b74a4c6e6b806b24a7f9ff110b93f205c268d) Thanks [@mosobande](https://github.com/mosobande)! - Simplify premise testing, session handoffs, and issue triage while preserving evidence and authority boundaries. Refocus Kọ Skill on authoring and verification, selectively load governance and resource guidance, and permit useful domain expertise within execution skills. Require an independent purpose for committed documentation and retire duplicate/superseded reports.
+
 ## 4.0.0
 
 ### Major Changes
