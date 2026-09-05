@@ -1,23 +1,10 @@
-# Failure heuristics for `wo-pr`
+# Failures and feedback
 
-Use this checklist only after a complete snapshot identifies failed required work. Read the failed job logs before classifying and keep the result against the exact head SHA and provider job ID.
+Read exact failed-job logs and full unresolved feedback against the current candidate before acting. A red title, green bot badge, or resolved thread alone does not prove a defect, acceptance, or correction.
 
-## Branch-related
+- **Branch defect:** reproduce or directly trace the failure to the changed behavior. Use `alaga` for the scoped source correction, proof, and review, then resume babysitting with its verified result.
+- **Likely flake:** require evidence of a transient failure and no candidate change to its mechanism. With correction authority, rerun once per candidate/job; resuming does not reset that allowance. Diagnose a repeat instead of retrying until green.
+- **Infrastructure/policy:** report the runner, quota, permission, dependency, or provider blocker. Do not change CI, dependencies, or tests to mask an unrelated failure.
+- **Unclear cause:** make a bounded diagnosis attempt, then report decisive missing evidence and the next action. Use `root-cause` when causal investigation is itself the needed result.
 
-Prefer branch-related when logs point to changed code or an affected contract: compile, type, lint, static analysis, unit, integration, snapshot, migration, packaging, or compatibility failure in the candidate path. Reproduce or obtain another direct proof when practical. Route the bounded correction to `alaga` with the current head, acceptance, and proof.
-
-## Likely flaky
-
-Prefer likely flaky only when evidence shows a transient runner, network, registry, service, test timing, or known nondeterministic failure and the candidate does not change the failing mechanism. Retry at most once for that exact head and job during the active run. A resumed run does not infer a fresh retry budget; diagnose before another retry. Never modify code to make an unrelated flake disappear.
-
-## Infrastructure or provider
-
-Classify runner provisioning, provider incidents, permission denial, exhausted quota, repository policy failure unrelated to the branch, unavailable dependency service, and persistent rate limits as infrastructure or provider blockers. Do not edit CI configuration, dependency pins, tests, or build scripts without direct candidate causality and separate implementation authority.
-
-## Causally unresolved
-
-Perform one bounded diagnosis attempt. If branch causality remains unclear, return the failed job, log evidence, candidate relation, attempted hypotheses, missing fact, and safest next action. Offer the explicit Experimental `root-cause` route when a causal investigation is the actual missing outcome. Do not spend a retry to avoid diagnosis.
-
-## Review feedback
-
-Act only on published, unresolved feedback against the current head. A provider-side resolution does not prove the issue is fixed. Send the claim to `se-triage`; do not recreate its classifications here. Reply or resolve only after the returned disposition and any required correction are verified against a refreshed head.
+Validate review claims directly when the evidence is clear; use `se-triage` only for material uncertainty. Check whether older feedback still applies rather than discarding it merely because the head moved. Fix valid in-scope findings; explain false positives, duplicates, or out-of-scope requests with evidence. An out-of-scope request that still blocks approval remains a blocker, not a silently dismissed success. Refresh the candidate before replying/resolving, and verify the provider effect. Read-only watching never authorizes these mutations.
