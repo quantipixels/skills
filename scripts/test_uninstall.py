@@ -11,7 +11,9 @@ SCRIPT = REPO_ROOT / "scripts" / "uninstall.sh"
 
 
 class UninstallSmokeTest(unittest.TestCase):
+
     def run_uninstall(self, lock, malformed=False, action="remove"):
+
         tmp = tempfile.TemporaryDirectory()
         self.addCleanup(tmp.cleanup)
         home = Path(tmp.name) / "home"
@@ -31,8 +33,10 @@ class UninstallSmokeTest(unittest.TestCase):
             """#!/usr/bin/env bash
 set -euo pipefail
 printf '%s\\n' \"$*\" >> \"$NPX_LOG\"
+
 if [[ \"${REMOVAL_ACTION:-remove}\" == fail ]]; then exit 17; fi
 if [[ \"${REMOVAL_ACTION:-remove}\" == noop ]]; then exit 0; fi
+
 python3 - \"$HOME/.agents/.skill-lock.json\" \"$@\" <<'PY'
 import json
 from pathlib import Path
@@ -54,7 +58,9 @@ PY
         env = os.environ.copy()
         env["HOME"] = str(home)
         env["NPX_LOG"] = str(log)
+
         env["REMOVAL_ACTION"] = action
+
         env["PATH"] = str(bin_dir) + os.pathsep + env.get("PATH", "")
         result = subprocess.run(
             ["bash", str(SCRIPT)],
@@ -62,7 +68,9 @@ PY
             env=env,
             text=True,
             capture_output=True,
+
             timeout=10,
+
         )
         return result, lock_path, log
 
@@ -99,6 +107,7 @@ PY
         self.assertFalse(log.exists())
 
 
+
     def test_malformed_schema_fails_without_calling_native_removal(self):
         for lock in ([], None, {"skills": []}, {"skills": None},
                      {"skills": {"alaga": None}}, {"skills": {"alaga": {"source": 3}}}):
@@ -130,6 +139,7 @@ PY
         self.assertNotEqual(result.returncode, 0)
         self.assertIn("Removal incomplete", result.stderr)
         self.assertIn("alaga", json.loads(target.read_text())["skills"])
+
 
 if __name__ == "__main__":
     unittest.main()
