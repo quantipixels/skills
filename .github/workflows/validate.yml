@@ -132,6 +132,17 @@ jobs:
           cd "$GITHUB_WORKSPACE"
           npx --yes @anthropic-ai/claude-code@${CLAUDE_CODE_VERSION} plugin validate .
 
+      - name: Clean-install Claude Code plugin
+        run: |
+          export CLAUDE_CONFIG_DIR="$(mktemp -d)"
+          cd "$GITHUB_WORKSPACE"
+          npx --yes @anthropic-ai/claude-code@${CLAUDE_CODE_VERSION} plugin marketplace add "$GITHUB_WORKSPACE" --scope user
+          npx --yes @anthropic-ai/claude-code@${CLAUDE_CODE_VERSION} plugin install qp-skills@qp-skills --scope user
+          npx --yes @anthropic-ai/claude-code@${CLAUDE_CODE_VERSION} plugin marketplace list --json | tee /tmp/qp-claude-marketplaces.json
+          npx --yes @anthropic-ai/claude-code@${CLAUDE_CODE_VERSION} plugin list --json | tee /tmp/qp-claude-plugins.json
+          grep -F 'qp-skills' /tmp/qp-claude-marketplaces.json
+          grep -F 'qp-skills' /tmp/qp-claude-plugins.json
+
   portable-mechanics:
     name: Portable mechanics (${{ matrix.os }})
     strategy:
