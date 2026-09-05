@@ -66,7 +66,7 @@ Keep these distinctions explicit when they prevent a plausible wrong route:
 
 - `atona` / `arojinle` / `seda-spec` / `architect` / `seda-ticket` — initiative lifecycle / consequential user choice / normative behavior / technical architecture / delivery decomposition.
 - `alaga` / `atunwo` / `pare` — implementation+proof / code-review verdict or parity / read-only simplification.
-- `seda-pr` / `wo-pr` — publication / open provider-item stewardship.
+- `seda-pr` / `wo-pr` — publication / PR babysitting with scoped corrections, or read-only watching.
 - `se-triage` / `root-cause` / `alaga` — report classification / causal diagnosis / software correction delivery.
 - `salaye` / `fihanmi` / `html-artifact` / `slides` / `prototype` — explanation / visual understanding / browser information projection / presentation / disposable experiential decision evidence.
 - `amose` / `iwadi` / `irinse` — domain-model establishment/clarification plus exceptional durable project knowledge / reusable research conclusion / companion engineering-tool readiness or bounded evidence.

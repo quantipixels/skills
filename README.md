@@ -93,7 +93,7 @@ The catalogue headings below mirror repository package organization, not semanti
 | `seda-ticket` | Outcome-complete delivery tickets with dependencies, acceptance, and startable frontier |
 | `seda-sigidi` | Draft or explicitly integrate one agent's durable identity/values/boundaries/voice into a known host configuration |
 | `architect` | Technical-structure design/review from consequential module seams through system architecture; implementation-readiness gate when needed |
-| `wo-pr` | Steward an open PR/MR through CI/conflict/feedback readiness |
+| `wo-pr` | Babysit a PR/MR through scoped fixes, CI, conflicts, and feedback; watch read-only when requested |
 
 ## Productivity
 
