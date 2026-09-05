@@ -23,6 +23,7 @@ Load branch guidance only when applicable:
 - diff, commit/branch change, or pinned pull-request or merge-request evidence → [code-change review](references/code-change-review.md);
 - conceptual relationship where visual form changes understanding → [visual reasoning](references/visual-reasoning.md);
 - a mature renderer/tool could materially improve the chosen representation → [representation capabilities](references/representation-capabilities.md);
+- a selected mature renderer needs build-time staticization, local bundling, or task-specific browser composition → [native renderer composition](references/native-renderer-composition.md);
 - interactive relationship map, coordinated perspectives, or guided sequence → [interactive projections](references/interactive-projections.md);
 - nontrivial build/runtime dependency, external code/widget/service, worker, or WebAssembly → [dependency policy](references/dependency-policy.md).
 
