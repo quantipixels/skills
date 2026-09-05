@@ -36,9 +36,9 @@ When an Experimental skill's maturity or public identity is itself being changed
 
 ### Admit only behavior-bearing instruction
 
-A capable agent's default behavior is not automatically desired behavior. Keep an instruction only when its trigger, failure prevented, forced behavioral difference, value, and recurring cost justify default context.
+Start with the outcome, scope, completion evidence, and exceptional decisions. Let the model choose routine mechanics. Keep extra instruction only for a concrete failure, useful expertise, or deliberate override; stronger models do not infer missing authority or unavailable evidence.
 
-Prefer replacing/sharpening existing guidance over appending another rule. Before adding a paragraph/reference/public owner, try one precise invariant, discriminating question, or strong `Good / Bad` boundary. Use a selective reference only when branch-specific non-obvious judgment would otherwise burden the hot path.
+Make the ordinary path sufficient on its own. Trigger specialist references and handoffs at the condition that needs them, not merely because a capability exists. State a rule once per loading path unless repetition protects an independent boundary. Prefer replacing a weak rule or adding a discriminating example over another checklist. Internal reasoning checks are not mandatory output fields; require a fixed report/schema only when a consumer needs it.
 
 ### Evaluate proposals without rubric theatre
 
