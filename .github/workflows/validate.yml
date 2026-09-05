@@ -121,10 +121,8 @@ jobs:
           target="$(mktemp -d)"
           cd "$target"
           npx --yes skills@${SKILLS_CLI_VERSION} add "$GITHUB_WORKSPACE" --agent codex --skill '*' --copy -y
-
           expected="$(find "$GITHUB_WORKSPACE/skills" -mindepth 3 -maxdepth 3 -name SKILL.md | wc -l | tr -d ' ')"
           installed="$(find "$target/.agents/skills" -mindepth 2 -maxdepth 2 -name SKILL.md | wc -l | tr -d ' ')"
-
           test "$installed" -eq "$expected"
           test -f "$target/.agents/skills/alaga/SKILL.md"
           test -f "$target/.agents/skills/root-cause/SKILL.md"
@@ -133,6 +131,43 @@ jobs:
         run: |
           cd "$GITHUB_WORKSPACE"
           npx --yes @anthropic-ai/claude-code@${CLAUDE_CODE_VERSION} plugin validate .
+
+  portable-mechanics:
+    name: Portable mechanics (${{ matrix.os }})
+    strategy:
+      fail-fast: false
+      matrix:
+        os:
+          - macos-latest
+          - windows-latest
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install validator dependency
+        run: python -m pip install -r skills/engineering/ko-skill/scripts/requirements.txt
+
+      - name: Validate skill package
+        run: python skills/engineering/ko-skill/scripts/validate-package.py --repo .
+
+      - name: Validate plugin agents
+        run: python skills/engineering/ko-skill/scripts/validate-plugin-agents.py --repo .
+
+      - name: Test local session evidence adapter
+        run: python -m unittest discover -s skills/productivity/ayewo-igba-ise/scripts -p 'test_*.py'
+
+      - name: Test Akosile focused mechanics
+        run: python -m unittest discover -s skills/engineering/akosile/scripts -p 'test_*.py'
+
+      - name: Test safe global uninstall
+        if: runner.os == 'macOS'
+        run: python -m unittest scripts/test_uninstall.py
 
   validate:
     name: Validate
@@ -143,6 +178,7 @@ jobs:
       - akosile-tests
       - browser-controls
       - compatibility-smoke
+      - portable-mechanics
     runs-on: ubuntu-latest
     steps:
       - name: Require all validation jobs
@@ -152,9 +188,11 @@ jobs:
           BROWSER_CONTROLS_RESULT: ${{ needs.browser-controls.result }}
           AKOSILE_TESTS_RESULT: ${{ needs.akosile-tests.result }}
           COMPATIBILITY_SMOKE_RESULT: ${{ needs.compatibility-smoke.result }}
+          PORTABLE_MECHANICS_RESULT: ${{ needs.portable-mechanics.result }}
         run: |
           test "$PACKAGE_STATE_RESULT" = success
           test "$SKILL_PACKAGE_RESULT" = success
           test "$AKOSILE_TESTS_RESULT" = success
           test "$BROWSER_CONTROLS_RESULT" = success
           test "$COMPATIBILITY_SMOKE_RESULT" = success
+          test "$PORTABLE_MECHANICS_RESULT" = success

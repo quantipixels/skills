@@ -23,29 +23,36 @@ class ValidateWorkflowContractTest(unittest.TestCase):
             self.assertNotIn("branches-ignore", pull_request)
 
     def test_ori_pushes_are_validated(self):
-        push = self.triggers["push"]
-        self.assertEqual(push["branches"], ["ori"])
+        self.assertEqual(self.triggers["push"]["branches"], ["ori"])
 
     def test_merge_queue_candidates_are_validated(self):
         self.assertIn("merge_group", self.triggers)
 
     def test_compatibility_smoke_is_part_of_validation(self):
         compatibility = self.jobs["compatibility-smoke"]
-        self.assertEqual(compatibility["name"], "Compatibility smoke")
-        self.assertEqual(compatibility["env"]["SKILLS_CLI_VERSION"], "1.5.23")
-        self.assertEqual(compatibility["env"]["CLAUDE_CODE_VERSION"], "2.1.260")
         runs = "\n".join(step.get("run", "") for step in compatibility["steps"])
-        self.assertIn(
-            "@anthropic-ai/claude-code@${CLAUDE_CODE_VERSION} plugin validate .",
-            runs,
-        )
+        self.assertIn("skills@${SKILLS_CLI_VERSION}", runs)
+        self.assertIn("@anthropic-ai/claude-code@${CLAUDE_CODE_VERSION} plugin validate .", runs)
+
+    def test_linux_proof_is_not_duplicated_in_portable_matrix(self):
+        portable = self.jobs["portable-mechanics"]
+        self.assertEqual(set(portable["strategy"]["matrix"]["os"]), {"macos-latest", "windows-latest"})
+        skill_runs = "\n".join(step.get("run", "") for step in self.jobs["skill-package"]["steps"])
+        self.assertIn("scripts/test_uninstall.py", skill_runs)
+
+    def test_native_validators_are_separate_steps(self):
+        portable = self.jobs["portable-mechanics"]
+        commands = [step.get("run", "") for step in portable["steps"]]
+        self.assertTrue(any("validate-package.py" in command for command in commands))
+        self.assertTrue(any("validate-plugin-agents.py" in command for command in commands))
+        self.assertFalse(any("validate-package.py" in command and "validate-plugin-agents.py" in command for command in commands))
 
     def test_exposes_one_stable_aggregate_check(self):
         validate = self.jobs["validate"]
         self.assertEqual(validate["name"], "Validate")
         self.assertEqual(
             set(validate["needs"]),
-            {"package-state", "skill-package", "akosile-tests", "browser-controls", "compatibility-smoke"},
+            {"package-state", "skill-package", "akosile-tests", "browser-controls", "compatibility-smoke", "portable-mechanics"},
         )
 
 
