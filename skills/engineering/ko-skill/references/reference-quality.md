@@ -1,128 +1,29 @@
 # Reference quality
 
-Use this when adding, expanding, splitting, moving, or removing a skill reference. Judge the reference by the expert judgment it carries when its branch is relevant, not by raw line count or file count.
+Read when adding, changing, splitting, or removing expert reference content.
 
-A healthy reference is not a private encyclopaedia. It is a selectively loaded part of one owner that helps a capable agent make a recurring non-obvious decision more reliably.
+A reference earns its place by improving a recurring non-obvious decision within the skill's result. It needs a useful loading trigger, sufficient depth, and a stable basis or clear freshness boundary. It need not be short, and expertise may belong inside an execution skill.
 
-## Reference or catalogue?
+Keep examples, counterexamples, exceptions, and named models when they sharpen judgment. A named standard provides vocabulary or a retrieval anchor, not permission to import its entire methodology. State the relevant subset and scope.
 
-A **reference** belongs to one skill outcome and is loaded when a bounded branch of that outcome needs deeper judgment, vocabulary, examples, counterexamples, stable decision rules, or an authoritative conceptual anchor.
+Good: a module-design reference explains when an adapter owns real lifecycle, retry, or trust responsibilities. Bad: a universal abstraction rule or a subject catalogue unrelated to the current outcome.
 
-A **catalogue** maintains a reusable body of language, framework, platform, standards, or domain knowledge because that knowledge is itself necessary to the skill's public result. Apply [researched knowledge catalogues](knowledge-catalogues.md) only for that shape.
+## Content and loading
 
-Good reference: an Architect module-depth guide explaining when an adapter owns enough lifecycle/policy to justify a seam.
+Remove duplicated official documentation, discoverable repository facts, tool-enforced trivia, stale version inventories, task histories, and material that cannot change judgment or execution. A maintained researched corpus uses [knowledge catalogues](knowledge-catalogues.md); it is not required for every expert reference.
 
-Bad disguised catalogue: a hidden Java/Spring/Kotlin best-practice corpus inside an execution companion.
+Split by independently selectable task branches, not file-size targets. Keep cohesive material together when it normally loads together. Do not preserve decorative example variants or headings as evidence of depth.
 
-## Keep decision-bearing depth
+Before a material cut, check that unique constraints, exceptions, authority boundaries, and conceptual/retrieval anchors survive. A shorter reference is worse if the model must guess a consequential distinction previously supplied.
 
-A reference earns its place when most of these are true:
+## Provenance and persistence
 
-- **Owner fit** — the knowledge can materially change this owner's native result.
-- **Non-obvious judgment** — a capable agent can plausibly get the distinction wrong without calibration.
-- **Recurrence** — it applies across multiple plausible invocations or protects one owner-wide high-consequence boundary.
-- **Selective trigger** — the owner can load it only when the branch matters.
-- **Stable basis** — it is durable enough to preserve, or it states the evidence/freshness boundary that requires revalidation.
-- **Calibration value** — examples, counterexamples, a named reasoning model, or stable vocabulary materially sharpen the rule.
-- **Bounded output** — the reference improves the native result without being dumped into that result.
+Place authoritative sources beside the claims that need them. Preserve applicable licence/attribution notices for copied or adapted material, and pin versions or access dates when required to interpret it. State a refresh trigger when future drift could change the rule.
 
-Do not keep a reference merely because it is informative. Move, research, or remove material that:
+Comparison-only inspiration, alternatives considered, measurements, and task verification normally belong in the PR/discussion or CI. They do not require a research document. Apply the repository's documentation-admission rule before adding one; attribution obligations remain mandatory regardless of document length.
 
-- duplicates current official documentation or discoverable repository facts;
-- restates formatter, compiler, linter, schema, or static-tool output that a deterministic owner can provide more reliably;
-- mirrors a subject taxonomy without an owner-specific decision consequence;
-- freezes volatile framework/platform behavior better read from current owning sources;
-- records one task's temporary state, rationale, or history; or
-- cannot change the skill's judgment, action, proof, safety, authority, or completion result.
+## Durable lessons
 
-## Record material source provenance proportionately
+Promote an observation into reusable guidance only when evidence establishes a recurring or owner-wide consequential gap. One strong general failure can suffice; an unconfirmed correction cannot. Do not add prose to compensate for a correct instruction that was unavailable or ignored.
 
-When an external repository, standard, paper, provider document, or mature capability materially shapes QP behavior, a bundled resource, or a durable reasoning rule, preserve enough provenance to reproduce the adoption decision without turning every citation into portfolio infrastructure.
-
-Use the nearest existing owner-local research/reference/change record and capture only what matters:
-
-- source identity and authoritative URL/repository;
-- exact commit/tag/version when the source is versioned, or research/access date when mutable documentation is the evidence;
-- copied/adapted/compared mechanism and the local owner/result it changed;
-- upstream licence when code/assets/text are copied or materially adapted rather than merely compared/paraphrased; and
-- the event that should trigger revalidation, such as upstream semantic change, provider behavior drift, a failed regression case, or a local owner-boundary change.
-
-Comparison-only inspiration does not need to become a runtime reference. Volatile upstream facts should remain retrieval anchors/current evidence rather than frozen local truth. Do not introduce a central provenance ledger until duplicated source records or missed refreshes create a demonstrated cross-owner drift problem; centralization is not evidence by itself.
-
-### Preserve useful named models
-
-Do not remove a named model, standard, or concept merely because its currently selected rules can be paraphrased. Keep the name when it provides material conceptual compression, stable vocabulary, authoritative scope, or a retrieval anchor that helps the agent handle cases not enumerated in local bullets.
-
-When keeping one, bind it explicitly:
-
-```text
-named model/standard
-→ skill-relevant reasoning job
-→ selected behavior-bearing subset
-→ boundary: the name does not import the whole framework
-```
-
-Prefer current owning sources for volatile or normative detail. Remove names that add only prestige, generic ceremony, canned templates, or latent rules the skill does not intend to adopt.
-
-When compressing or removing a reference, check the residual material decision surface: a smaller representation is worse if the deleted depth merely turns a consequential constraint or distinction into model inference.
-
-## Use examples as calibration
-
-Examples are first-class when they teach a material boundary. Use concise forms such as `Good / Bad`, `Prefer / Avoid`, `Use when / Avoid when`, or one strong counterexample.
-
-Good:
-
-```text
-Deep module
-Good: a small interface owns retries, lifecycle, provider quirks, and failure translation.
-Bad: an interface mirrors every implementation method and exists only for hypothetical variation.
-Exception: a thin adapter is valid when it owns a real external integration or trust boundary.
-```
-
-Bad:
-
-```text
-Good: clean code.
-Bad: messy code.
-```
-
-Do not require examples to replace prose. Keep them when they make a recurring judgment more precise than prose alone. Remove cosmetic variants that teach no new distinction.
-
-## Split by retrieval boundary, not aesthetics
-
-Do not impose an arbitrary maximum reference size or file count. Prefer one cohesive reference when its sections normally load together. Split only when branches can be selected independently enough to save material context or carry materially different freshness/evidence boundaries.
-
-Good: one cohesive `module-design.md` loaded for module/interface design.
-
-Bad: seven tiny files that must all be opened for every module-boundary decision.
-
-Use headings, local examples, and retrieval cues so a substantial reference remains navigable.
-
-## Mature shared guidance deliberately
-
-Task-local findings do not automatically become shared skill guidance. When evidence suggests a durable gap:
-
-```text
-observed recurring or owner-wide misjudgment
-→ exact-current retrospective/evidence when needed
-→ identify the earliest owning skill
-→ author the smallest durable principle/reference through Kọ Skill
-→ prove the changed judgment against a realistic boundary
-```
-
-Recurrence is not a numeric quota. One strong owner-wide failure can justify a reference when the consequence and generality are clear. One unconfirmed task correction does not.
-
-Project-specific confirmed patterns stay with the strongest existing maintained project source. When no stronger source exists and a pattern independently clears the stable, recurring, consequential admission gate, use `amose` to reconcile it into `.learnings`; do not promote it automatically into a cross-project skill reference.
-
-## Return one disposition
-
-For each material reference under review, use one disposition:
-
-- `KEEP` — coherent, selectively useful expert depth.
-- `DEEPEN` — the owner is correct but recurring non-obvious judgment is under-specified.
-- `SPLIT` — independently selectable branches currently force unnecessary context.
-- `MOVE` — another owner or deterministic mechanism is the correct source.
-- `RESEARCH` — the guidance is useful but evidence/freshness is insufficient.
-- `REMOVE` — duplicate, obvious, stale, task-local, or result-irrelevant material.
-
-Every `DEEPEN`, `SPLIT`, `MOVE`, or `REMOVE` finding must name the decision consequence. Reference length alone is never a finding.
+Project-specific facts stay in the strongest maintained project source; use `amose` when qualifying project knowledge needs reconciliation. Retire superseded text once unique current knowledge has an appropriate home. Explain the change and remaining uncertainty in the task's normal result, not a mandatory reference-audit dossier.

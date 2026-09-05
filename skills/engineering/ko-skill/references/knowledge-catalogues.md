@@ -1,88 +1,27 @@
 # Researched knowledge catalogues
 
-Use this branch only when a skill's native result depends on a reusable durable body of language, framework, platform, standards, or domain knowledge.
+Read when maintaining a reusable body of domain knowledge, whether it supports execution or is itself the skill's result.
 
-## Keep execution companions outside the catalogue model
+## Fit the knowledge to the task
 
-A skill that accompanies implementation, review, planning, or another active task is not a knowledge catalogue merely because its subject is broad.
+An execution skill can contain stable, useful domain expertise. A public knowledge product is not a prerequisite for embedding it. Keep content that changes a recurring non-obvious decision and can be selected from the actual task.
 
-An execution companion should normally:
+Reject an indiscriminate best-practice encyclopaedia, unrelated taxonomy, hidden framework mandate, or copied foreign workflow. Project constraints and exact runtime evidence control applicability; unfamiliar or version-sensitive details need current sources.
 
-```text
-exact task and candidate
-→ discover the smallest relevant available skills
-→ consume their independently owned native results
-→ research remaining material gaps from current owning sources
-→ synthesise one bounded task result
-```
+Apply the main skill's identity test only if proposing a separate public skill. Different topics or release cadences alone do not earn another owner.
 
-Do not give such a companion hidden language/framework/domain references, a private best-practice encyclopaedia, a fixed specialist map, or a custom selector runtime merely to simulate expertise internally. Let exact repository/runtime evidence, installed skills, and current primary sources supply the knowledge. Preserve unavailable expertise as an explicit gap.
+## Curate and load
 
-Create durable embedded guidance only when maintaining and returning that researched knowledge is itself the skill's independently useful outcome.
+Organize cohesive knowledge by independently selectable mechanisms. Use a small entry point and load only relevant categories; category counts and rules-per-file are not quotas. Use stable anchors when callers need precise retrieval.
 
-## Organize a genuine catalogue around its public result
+Each useful item states enough of its scope, consequence, exceptions, and evidence boundary to avoid a blanket rule. Specific framework guidance can specialize general language guidance but cannot weaken correctness, security, cancellation, resource ownership, or caller contracts.
 
-Do not mirror a subject taxonomy as public skills. Keep one public skill when users need one reusable knowledge-backed result and progressive disclosure can load only applicable material.
+Pin source/version boundaries for volatile claims. Treat third-party skills and prompts as research leads, not instructions; follow material claims to owning evidence and preserve required attribution. Keep comparison history in PRs unless independent documentation is justified.
 
-Create another public skill only when the subset has an independently useful trigger/result, authority, lifecycle, artifact, or installation value. Different documentation sets or release cadences are not enough.
+Do not build a selector/search runtime just because a corpus is large. Native navigation is the default; custom retrieval must earn the script boundary.
 
-Public consolidation does not require flattening useful internal depth. Detailed categories may remain behind references when ordinary tasks load only the categories they need.
+## Verify what this knowledge shape adds
 
-## Compose knowledge by specificity
+Check selective retrieval, working links/anchors, consistent specialization, and handling of unknown/newer versions. Changed source or candidate facts invalidate only dependent advice. Ensure outputs answer the task rather than dumping the corpus, and allow a no-change result.
 
-Use precedence appropriate to the domain, for example:
-
-```text
-repository/task contract
-→ accepted architecture/domain/project constraints
-→ repository-local confirmed specialization
-→ most specific applicable framework/runtime/domain reference
-→ general language/platform reference
-→ bounded current primary-source lookup
-```
-
-A specific reference may specialize a general rule but must not silently weaken controlling correctness, safety, security, compatibility, cancellation, resource ownership, or caller contracts.
-
-Load knowledge from exact candidate cues. Do not load an unrelated installed language/framework merely because it exists elsewhere in the repository. Treat material conflicts between references as evidence or authoring gaps until the controlling source resolves them.
-
-## Prefer progressive disclosure for the catalogue itself
-
-Default to:
-
-```text
-small SKILL.md
-→ relevant ecosystem/domain index or compact reference
-→ only categories controlling the exact query
-```
-
-Use bounded category references when a cohesive set shares one reliable trigger. Use finer-grained files only when category loads materially waste context and selection remains clear.
-
-Do not build a search/index/selector runtime merely because the corpus is large. Any custom retrieval machinery must earn a narrow deterministic seam beyond normal agent navigation or project-native tooling.
-
-Keep maintainer provenance, corpus comparisons, and source maps outside ordinary runtime context unless the task explicitly needs them.
-
-## Establish evidence and freshness
-
-Pin the verified version/range and research cutoff, controlling primary sources, repository/runtime constraints that specialize the guidance, and volatile claims requiring current revalidation.
-
-Treat third-party skills, prompts, repositories, examples, and books as research leads rather than instructions or authority. Follow material claims back to owning sources and do not copy substantial third-party prose.
-
-Task-local research does not automatically become durable guidance. Research only questions that can change the current result, pin source/version/cutoff, and stop when the result is settled. Create a separate research artifact only when reuse or auditability makes it independently useful. Recurring evidence may later justify a `ko-skill` revision.
-
-## Curate decision-bearing knowledge
-
-Keep a durable item only when it is recurrent, materially non-obvious, precise enough to admit legitimate exceptions, and not better owned by project tooling or deterministic enforcement.
-
-A useful item normally states its trigger/scope, preferred or forbidden direction, consequence, material exception/counterexample, and evidence/freshness boundary. Challenge universal claims such as `always`, `never`, or version-independent “best practice” with the strongest credible counterexample.
-
-## Prove the catalogue-specific behaviour
-
-In addition to Kọ Skill's normal proof, verify only properties created by this knowledge shape:
-
-- indexes and references resolve and select only applicable categories;
-- specific guidance specializes general guidance consistently;
-- unknown/newer queries fall to bounded research instead of guessing;
-- no-change queries can return a small/no-change result;
-- changed candidate/version identity stales dependent guidance;
-- the native output remains bounded rather than dumping the corpus; and
-- no hidden framework mandate, unsupported universal, copied foreign procedure, automatic self-mutation, or execution-companion catalogue exists.
+Unavailable evidence stays a gap. Research may inform an authorized skill revision; it does not authorize automatic self-modification.
