@@ -1,30 +1,42 @@
-name: Export current repository
+name: Publish PR95 rework
 on:
   push:
     branches: [work/audit-transfer-20260905]
 permissions:
-  contents: read
+  contents: write
 jobs:
-  snapshot:
+  publish:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-          persist-credentials: false
-      - name: Fetch all branches and export bundle
+      - name: Rebase exact local change onto current ori and update PR branch
         shell: bash
         run: |
           set -euo pipefail
+          base64 -d .transfer/95-rework.b64 > /tmp/95-rework.bundle
+          echo 'a334a49a6916319572dc5fe7695870e11afcf89a0cd496d417363514ce957ebe  /tmp/95-rework.bundle' | sha256sum -c -
+          git bundle verify /tmp/95-rework.bundle
           git fetch origin '+refs/heads/*:refs/remotes/origin/*' --prune
-          git bundle create /tmp/qp-current.bundle --all
-          git show-ref --heads --remotes > /tmp/qp-current-refs.txt || true
-          git rev-parse refs/remotes/origin/ori > /tmp/ori-sha.txt
-      - uses: actions/upload-artifact@v4
-        with:
-          name: qp-current-repository
-          retention-days: 1
-          path: |
-            /tmp/qp-current.bundle
-            /tmp/qp-current-refs.txt
-            /tmp/ori-sha.txt
+          git fetch /tmp/95-rework.bundle HEAD:refs/heads/pr95-local
+          test "$(git rev-parse pr95-local)" = f15b59ac9a79f38b8bb9445d9db00ab7fad7fab4
+          git config user.name 'Olúwaṣèyí'
+          git config user.email '52331341+mosobande@users.noreply.github.com'
+          git checkout -B pr95-reworked refs/remotes/origin/ori
+          git cherry-pick f15b59ac9a79f38b8bb9445d9db00ab7fad7fab4
+          expected_paths=$(printf '%s\n' \
+            .changeset/deepen-native-renderer-composition.md \
+            skills/productivity/html-artifact/SKILL.md \
+            skills/productivity/html-artifact/references/dependency-policy.md \
+            skills/productivity/html-artifact/references/native-renderer-composition.md \
+            skills/productivity/html-artifact/references/representation-capabilities.md)
+          actual_paths=$(git diff --name-only refs/remotes/origin/ori...HEAD | sort)
+          test "$actual_paths" = "$(printf '%s\n' "$expected_paths" | sort)"
+          git diff --check refs/remotes/origin/ori...HEAD
+          python skills/engineering/ko-skill/scripts/validate-package.py
+          python skills/engineering/ko-skill/scripts/validate-plugin-agents.py
+          old=909cabc2253ec646d9055206a26be20601ec2bee
+          test "$(git rev-parse refs/remotes/origin/feat/offline-relationship-renderer)" = "$old"
+          git push --force-with-lease=refs/heads/feat/offline-relationship-renderer:$old origin HEAD:refs/heads/feat/offline-relationship-renderer
+          echo "PR95 head $(git rev-parse HEAD) on ori $(git rev-parse refs/remotes/origin/ori)"
