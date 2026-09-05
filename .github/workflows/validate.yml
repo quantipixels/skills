@@ -68,6 +68,15 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Install pinned graph build dependencies
+        working-directory: skills/productivity/html-artifact/scripts/graph
+        run: npm ci --ignore-scripts
+      - name: Test graph data and build contracts
+        working-directory: skills/productivity/html-artifact/scripts/graph
+        run: npm test
       - name: Install pinned browser proof tools
         run: |
           python -m pip install -r .github/browser/requirements.txt

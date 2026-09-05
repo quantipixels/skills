@@ -92,6 +92,8 @@ def validate_skill(repo: Path, skill_dir: Path) -> list[Finding]:
 
     seen: set[tuple[Path, str]] = set()
     for markdown in sorted(skill_dir.rglob("*.md")):
+        if any(part in {"node_modules", "__pycache__", ".git", ".venv"} for part in markdown.relative_to(skill_dir).parts):
+            continue
         for raw in local_targets(markdown):
             key = (markdown, raw)
             if key in seen:

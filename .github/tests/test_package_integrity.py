@@ -98,6 +98,13 @@ class PackageIntegrityTests(unittest.TestCase):
         (self.repo / 'agents/qp.md').write_text('---\nname: qp\ndescription: Main agent.\nskills: [qp-skills:example]\n---\n')
         self.assert_invalid('validate-plugin-agents.py')
 
+    def test_installed_dependency_docs_are_not_qp_resource_contracts(self):
+        vendor = self.repo / 'skills/engineering/example/scripts/node_modules/dependency'
+        vendor.mkdir(parents=True)
+        (vendor / 'README.md').write_text('[upstream file](not-shipped.md)\n', encoding='utf-8')
+        result = self.run_validator()
+        self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+
     def test_forbidden_default_prompt_is_rejected(self):
         target = self.repo / 'skills/engineering/example/agents/openai.yaml'
         target.parent.mkdir()

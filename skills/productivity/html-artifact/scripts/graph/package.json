@@ -1,0 +1,16 @@
+{
+  "name": "qp-artifact-graph",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "cytoscape": "3.34.2",
+    "esbuild": "0.28.2"
+  },
+  "scripts": {
+    "test": "node --test test.mjs"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}
