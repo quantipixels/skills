@@ -35,6 +35,20 @@ Do not keep a reference merely because it is informative. Move, research, or rem
 - records one task's temporary state, rationale, or history; or
 - cannot change the skill's judgment, action, proof, safety, authority, or completion result.
 
+## Record material source provenance proportionately
+
+When an external repository, standard, paper, provider document, or mature capability materially shapes QP behavior, a bundled resource, or a durable reasoning rule, preserve enough provenance to reproduce the adoption decision without turning every citation into portfolio infrastructure.
+
+Use the nearest existing owner-local research/reference/change record and capture only what matters:
+
+- source identity and authoritative URL/repository;
+- exact commit/tag/version when the source is versioned, or research/access date when mutable documentation is the evidence;
+- copied/adapted/compared mechanism and the local owner/result it changed;
+- upstream licence when code/assets/text are copied or materially adapted rather than merely compared/paraphrased; and
+- the event that should trigger revalidation, such as upstream semantic change, provider behavior drift, a failed regression case, or a local owner-boundary change.
+
+Comparison-only inspiration does not need to become a runtime reference. Volatile upstream facts should remain retrieval anchors/current evidence rather than frozen local truth. Do not introduce a central provenance ledger until duplicated source records or missed refreshes create a demonstrated cross-owner drift problem; centralization is not evidence by itself.
+
 ### Preserve useful named models
 
 Do not remove a named model, standard, or concept merely because its currently selected rules can be paraphrased. Keep the name when it provides material conceptual compression, stable vocabulary, authoritative scope, or a retrieval anchor that helps the agent handle cases not enumerated in local bullets.
