@@ -2,7 +2,7 @@
 
 Portable focused skills for demanding work across reasoning, planning, research, design, engineering, and delivery. QP aims for one independently useful outcome per public skill, deep references where judgment benefits, native capabilities for ordinary mechanics, and bundled code only for narrow deterministic kernels.
 
-Browse the [documentation](https://quantipixels.com/skills).
+Browse the [documentation](https://quantipixels.com/skills). See [compatibility claims](docs/compatibility.md) for the exact host/install paths QP currently proves rather than relying on a blanket portability claim.
 
 ## Portfolio principles
 
@@ -25,6 +25,8 @@ Browse the [documentation](https://quantipixels.com/skills).
 ```bash
 npx skills add quantipixels/skills --global
 ```
+
+This is the portable Skills CLI entrypoint; the exact destination/loading behavior is owned by the current CLI and selected agent. QP release CI currently proves repository discovery and Codex project installation, while other host paths remain bounded by the [compatibility matrix](docs/compatibility.md).
 
 Local checkout:
 

@@ -14,6 +14,18 @@ Both products support stacked review workflows natively, but their maturity and 
 
 GitHub is the stronger choice when an integration needs first-class stack APIs, webhooks, and whole-stack merge behavior. GitLab has native stack detection and review navigation, but its documented API exposes merge-request dependencies rather than a first-class stack resource.
 
+## QP adoption record
+
+This research materially shaped `seda-pr` and `wo-pr`; `alaga` consumes only the resulting exact-candidate identity rule.
+
+- **Local adoption:** preserve the exact PR/MR head-to-base/source-to-target relationship as the semantic stack boundary; use provider-native stack metadata when current and available; treat a changed base as candidate-invalidating evidence even when the head is unchanged; keep provider topology separate from mutation authority.
+- **Not adopted as durable truth:** provider preview/version status, exact stack API/CLI commands, automatic retarget/rebase behavior, and provider-specific merge semantics. The skills now require those volatile details to be revalidated from current provider evidence when they matter.
+- **Source treatment:** official GitHub/GitLab documentation and GitHub's changelog were compared/paraphrased; no provider code or assets were copied into QP, so no upstream code licence is imported by this adoption.
+- **Local implementation:** PR #82 (`feat(pr): make stacked stewardship converge bottom-up`), with the Kọ Skill tightening and merged-base reconciliation recorded in that PR history.
+- **Refresh trigger:** re-run provider research when current stack metadata/branch topology no longer explains observed behavior, an evaluator case fails because provider semantics changed, or QP broadens stack mutation/merge authority.
+
+The dated research below remains historical evidence. Runtime provider references intentionally point back to current provider behavior instead of treating every statement below as timeless contract.
+
 ## GitHub
 
 GitHub supports stacked pull requests as a public-preview feature. A stack contains two or more pull requests in one repository. Each pull request above the bottom layer targets the head branch of the pull request below it. GitHub can create and link stacks in the web UI, then show the ordered layers in a stack map. [About stacked pull requests](https://docs.github.com/en/pull-requests/get-started/about-stacked-prs)
