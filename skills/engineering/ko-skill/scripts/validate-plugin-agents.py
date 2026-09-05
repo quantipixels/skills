@@ -12,6 +12,8 @@ from typing import Any, Iterable
 
 import yaml
 
+from package_metadata import read_frontmatter
+
 GROUPS = ("engineering", "design", "productivity", "experimental")
 PLUGIN_IGNORED_FIELDS = ("hooks", "mcpServers", "permissionMode")
 AGENT_NAME = re.compile(r"[a-z][a-z0-9-]*\Z")
@@ -27,19 +29,6 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--repo", type=Path, default=Path.cwd())
     return parser.parse_args()
 
-def read_frontmatter(path: Path) -> dict[str, Any]:
-    lines = path.read_text(encoding="utf-8").splitlines()
-    if not lines or lines[0].strip() != "---":
-        raise ValueError("missing opening YAML frontmatter delimiter")
-    try:
-        end = next(index for index, line in enumerate(lines[1:], start=1) if line.strip() == "---")
-    except StopIteration as error:
-        raise ValueError("missing closing YAML frontmatter delimiter") from error
-    value = yaml.safe_load("\n".join(lines[1:end]))
-    if not isinstance(value, dict):
-        raise ValueError("frontmatter must be a YAML mapping")
-    return value
-
 def skill_metadata(repo: Path) -> dict[str, tuple[Path, dict[str, Any]]]:
     result: dict[str, tuple[Path, dict[str, Any]]] = {}
     for group in GROUPS:
@@ -53,6 +42,8 @@ def skill_metadata(repo: Path) -> dict[str, tuple[Path, dict[str, Any]]]:
             metadata = read_frontmatter(skill_file)
             name = metadata.get("name")
             if isinstance(name, str):
+                if name in result:
+                    raise ValueError(f"duplicate public skill identity {name!r}")
                 result[name] = (skill_dir, metadata)
     return result
 
@@ -88,6 +79,8 @@ def validate(repo: Path) -> list[Finding]:
         manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
     except (OSError, UnicodeError, json.JSONDecodeError) as error:
         return [Finding("agent.manifest", str(manifest_path.relative_to(repo)), str(error))]
+    if not isinstance(manifest, dict):
+        return [Finding("agent.manifest", str(manifest_path.relative_to(repo)), "manifest must be an object")]
     plugin_name = manifest.get("name")
     if not isinstance(plugin_name, str) or not plugin_name:
         return [Finding("agent.manifest_name", str(manifest_path.relative_to(repo)), "plugin name must be non-empty")]

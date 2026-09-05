@@ -50,6 +50,31 @@ jobs:
       - name: Validate plugin agents
         run: python3 skills/engineering/ko-skill/scripts/validate-plugin-agents.py --repo .
 
+      - name: Setup Node.js for uninstall proof
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Test safe global uninstall
+        run: python3 -m unittest scripts/test_uninstall.py
+
+  browser-controls:
+    name: Browser controls
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install pinned browser proof tools
+        run: |
+          python -m pip install -r .github/browser/requirements.txt
+          python -m playwright install --with-deps chromium
+      - name: Exercise shipped controls and fallback
+        run: python -m unittest discover -s .github/browser -p 'test_*.py'
+
   akosile-tests:
     name: Akosile focused mechanics
     runs-on: ubuntu-latest
@@ -72,14 +97,17 @@ jobs:
       - package-state
       - skill-package
       - akosile-tests
+      - browser-controls
     runs-on: ubuntu-latest
     steps:
       - name: Require all validation jobs
         env:
           PACKAGE_STATE_RESULT: ${{ needs.package-state.result }}
           SKILL_PACKAGE_RESULT: ${{ needs.skill-package.result }}
+          BROWSER_CONTROLS_RESULT: ${{ needs.browser-controls.result }}
           AKOSILE_TESTS_RESULT: ${{ needs.akosile-tests.result }}
         run: |
           test "$PACKAGE_STATE_RESULT" = success
           test "$SKILL_PACKAGE_RESULT" = success
           test "$AKOSILE_TESTS_RESULT" = success
+          test "$BROWSER_CONTROLS_RESULT" = success
