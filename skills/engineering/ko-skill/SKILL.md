@@ -74,6 +74,8 @@ For compression/consolidation/framework/reference removal/ownership moves/domain
 
 For model-steering changes with material uncertainty, compare the same bounded task/candidate/context under the prior/no contract and changed contract. Verify intended behavioral delta plus preserved correctness, safety, authority, and output. Keep temporary steering proof temporary unless recurring stable risk earns regression coverage.
 
+When a proposed change to a stable skill is justified from historical multi-session behavior rather than one current task, use `ayewo-igba-ise` to reconstruct the bounded corpus and return its stable-skill improvement evidence packet. Treat that packet as evidence, not an edit instruction. A clear active rule that agents violated, a host/tool gap, or ordinary model variance does not earn another instruction by itself; prefer the actual selection, host/tool, or execution owner unless the corpus establishes a reusable missing/ambiguous contract or owner-boundary defect.
+
 Do not claim saved LOC/tokens/cost/latency/time/quality without an observed comparable baseline. Structural reduction is simplification evidence, never acceptance.
 
 For validation classify material obligations as `proved | defect | evidence gap | not applicable`. Return `VERIFIED` only when required proof passes against the exact candidate, `CHANGES_REQUIRED` for a proved defect, and `INSUFFICIENT_EVIDENCE` for a material proof gap. Validation does not authorize repair.

@@ -33,6 +33,12 @@ class ValidateWorkflowContractTest(unittest.TestCase):
         compatibility = self.jobs["compatibility-smoke"]
         self.assertEqual(compatibility["name"], "Compatibility smoke")
         self.assertEqual(compatibility["env"]["SKILLS_CLI_VERSION"], "1.5.23")
+        self.assertEqual(compatibility["env"]["CLAUDE_CODE_VERSION"], "2.1.260")
+        runs = "\n".join(step.get("run", "") for step in compatibility["steps"])
+        self.assertIn(
+            "@anthropic-ai/claude-code@${CLAUDE_CODE_VERSION} plugin validate .",
+            runs,
+        )
 
     def test_exposes_one_stable_aggregate_check(self):
         validate = self.jobs["validate"]
