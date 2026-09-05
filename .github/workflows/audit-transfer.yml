@@ -1,24 +1,30 @@
-name: Publish verified local commits
+name: Export current repository
 on:
   push:
     branches: [work/audit-transfer-20260905]
 permissions:
-  contents: write
+  contents: read
 jobs:
-  publish:
+  snapshot:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - name: Transfer verified component-isolation fix to staging
+          persist-credentials: false
+      - name: Fetch all branches and export bundle
         shell: bash
         run: |
           set -euo pipefail
-          echo '85c1483e9db3e72820ba4b058231aafbad010bea2869bc5db2aaa4d4c81dda43  .transfer/renderer-fix.bundle' | sha256sum -c -
-          git bundle verify .transfer/renderer-fix.bundle
-          git fetch .transfer/renderer-fix.bundle HEAD:refs/heads/local-renderer
-          test "$(git rev-parse local-renderer)" = c9b30a73a10ce21d0e4f72bbfa22f67cd826889c
-          test "$(git ls-remote origin refs/heads/work/staged-renderer | cut -f1)" = 909cabc2253ec646d9055206a26be20601ec2bee
-          git push origin refs/heads/local-renderer:refs/heads/work/staged-renderer
-          test "$(git ls-remote origin refs/heads/work/staged-renderer | cut -f1)" = c9b30a73a10ce21d0e4f72bbfa22f67cd826889c
+          git fetch origin '+refs/heads/*:refs/remotes/origin/*' --prune
+          git bundle create /tmp/qp-current.bundle --all
+          git show-ref --heads --remotes > /tmp/qp-current-refs.txt || true
+          git rev-parse refs/remotes/origin/ori > /tmp/ori-sha.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: qp-current-repository
+          retention-days: 1
+          path: |
+            /tmp/qp-current.bundle
+            /tmp/qp-current-refs.txt
+            /tmp/ori-sha.txt
