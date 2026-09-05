@@ -1,99 +1,35 @@
 # Capability and resource placement
 
-Use when authoring/revising a skill that may need references, commands, scripts, templates, data, assets, libraries, or another public owner.
+Read when adding a resource, changing its responsibility, or investigating a placement problem.
 
-## Choose the smallest adequate surface
+Choose the least burdensome implementation that preserves the useful capability: instructions or selective expert guidance, native/project tooling, a focused mature library, or justified bundled code. Compare correctness, judgment quality, context, maintenance, portability, and trust; fewer files or dependencies is not the objective.
 
-Start from the owned outcome and separate material capabilities such as judgment, evidence retrieval, provider/project operation, deterministic transformation, mutation/concurrency, artifact delivery, and specialist representation.
+## Expertise and capability anchors
 
-Prefer the smallest placement that preserves the useful capability:
+Keep domain knowledge when it changes a recurring non-obvious decision. Execution skills may own that expertise behind a simple entry point; a new public identity must satisfy the main skill's identity test.
 
-```text
-SKILL.md guidance or selective expert reference
-→ native/project/provider/framework/IDE capability
-→ small operational or capability anchor when it materially reduces recurring rediscovery
-→ focused mature library/tool
-→ narrow deterministic script
-→ engine only when deterministic machinery carries a substantial part of the owned outcome
-```
+A named mature tool or conceptual model can prevent repeated rediscovery. Retain its distinctive problem fit and authoritative retrieval surface, while verifying volatile versions/APIs at use time. A small non-exclusive anchor is useful expertise, not an allowlist.
 
-This is a placement ladder, not a rule that native mechanisms must beat mature external capabilities on representational/expert quality before those capabilities may be considered.
+Example: Vega-Lite can anchor declarative quantitative visualization without forbidding a better-fitting renderer. If it does not fit, discover alternatives rather than hand-building a weaker result or choosing from a frozen vendor list.
 
-A capable agent already knows ordinary search/files/Git/shell/editing/tool-help mechanics. State semantic results/invariants rather than replacing deleted runtimes with command catalogues. Concrete mechanics are justified when they protect correctness, authority, deterministic identity/output, concurrency/atomicity, non-obvious safety, external/machine protocol, or compatibility.
+Use [reference quality](reference-quality.md) for the judgment carried by expert text and [knowledge catalogues](knowledge-catalogues.md) when maintaining a researched corpus.
 
-## Preserve strategic capability anchors without creating allowlists
+## Executable capability
 
-Do not confuse a volatile candidate catalogue with a durable capability anchor.
+Leave ordinary discovery, routing, provider facts, Git/filesystem orchestration, and authorization with their natural owners. If code still provides a material advantage, use [script boundary](script-boundary.md).
 
-A named mature capability may be worth retaining when:
+An engine must carry a substantial deterministic part of the outcome and reduce real defect/implementation variance. Several convenience wrappers do not meet that bar. A focused mature library may be better than bespoke code; assess total burden, not dependency count.
 
-- it has a stable, distinctive problem/representation fit that materially improves owner judgment/output;
-- naming it reduces recurring ecosystem rediscovery or bespoke implementation uncertainty;
-- the anchor points to authoritative current evidence and leaves versions/APIs/configuration open to revalidation;
-- it is explicitly non-exclusive—unsupported needs remain open to discovering a better current capability; and
-- the skill owns the selection criteria rather than blindly choosing the named tool.
+A public install/bootstrap/uninstall entry point may earn its place by providing one safe, stable user invocation even when native tools own its internals.
 
-Good: “For declarative quantitative visualization, Vega-Lite is a strong current capability anchor; verify current official behavior, and discover another mature renderer when the information shape does not fit.”
+## Templates, data, and assets
 
-Bad: “Use only libraries A/B/C,” or a long vendor/framework inventory maintained for inspiration.
+Keep a template when a stable recurring shape prevents costly omissions and no project/native scaffold already owns it. Remove arbitrary defaults, optional-empty sections, and duplicated procedure.
 
-An operational anchor may include the authoritative documentation/discovery surface, canonical interface/protocol, and one representative entry point only when that materially reduces rediscovery after the capability is selected. Keep volatile versions, flags, quotas, installation matrices, and secondary examples in current-tool evidence.
+Bundle data only when maintaining it supports the result, with an explicit freshness boundary. Reusable UI assets must provide useful shared behavior or representation, including applicable accessibility; their existence does not make every feature mandatory.
 
-## Open-ended discovery spaces
+Prefer existing project artifacts. Split resources only where callers can independently select the branches. If several tiny files always load together, they may belong together.
 
-For ecosystems where no stable anchor fits the current need, retain durable selection criteria and discovery shape rather than caching candidates. When a known anchor does not fit, do not downgrade the owner's result merely to avoid an unnamed external resource; discover current mature capabilities and compare representational/functional gain against build/runtime, trust, accessibility, portability, and maintenance cost.
+## Decide
 
-A finite named set is mandatory only when it is itself a compatibility/protocol boundary. Otherwise a small anchor set is expertise, not an allowlist.
-
-## Preserve useful depth
-
-Depth is not synonymous with executable code. A lightweight skill can be deep through curated expert judgment or native/tool-backed capability.
-
-Keep a selective reference when recurring non-obvious judgment materially improves the result. Prefer examples, counterexamples, triggers, exceptions, decision criteria, and authoritative retrieval anchors over generic advice or cached ecosystem facts.
-
-Use current project/tool/provider/framework truth for volatile APIs/versions/component inventories/commands/platform behavior. Existing project artifacts outrank bundled starters.
-
-## Executable boundary
-
-Before keeping internal code, move ordinary discovery, routing, provider facts, Git/filesystem orchestration, destination selection, and installation/publication back to natural owners. Prefer pure transforms or exact mutation kernels. If code still appears necessary, apply [script boundary](script-boundary.md).
-
-An engine has a much higher bar than “several scripts”: deterministic machinery must carry a meaningful vertical of the skill's native outcome and remove material implementation/defect variance. Search wrappers, prompt/reference filtering, tiny graph/frontier calculations, generic rendering, provider normalization for model consumption, and wrappers around native commands are normally below that bar.
-
-Do not reject a focused mature library merely because equivalent bespoke code could be written. Compare total semantic/implementation burden, correctness, accessibility, maintenance, and recurring leverage—not dependency count alone.
-
-## Human-facing entrypoints
-
-A thin public install/bootstrap/uninstall/helper wrapper can still be the smallest interface when one stable safe invocation materially improves recurring user UX. Keep it transparent, conservatively scoped, native-tool-backed, and free of parallel semantic state.
-
-## Templates, data and assets
-
-Bundle a template only when its recurring semantic shape is stable, omission/drift is costly, no project/native scaffold owns it, and starting from it is better than generating from the contract. Remove arbitrary defaults, optional-empty sections, workflow procedure, volatile commands, and duplicated skill content.
-
-Bundle data only when maintained knowledge itself is part of the result. Do not duplicate the same rules in CSV/Markdown or cache volatile ecosystem inventories. Use [knowledge catalogues](knowledge-catalogues.md) for a genuine researched corpus.
-
-Keep reusable CSS/HTML/JS assets only when exact shared behavior prevents recurring correctness/accessibility cost. Make optional behavior conditional unless the owner intentionally promises that representation/control as part of its native result; existence alone is never another inclusion reason.
-
-## Public skill gate
-
-Grow capability depth faster than public surface area. Before creating/retaining another public skill, ask whether an existing owner can absorb the capability coherently without weakening its owned outcome. A useful capability is insufficient: a public identity must also have independently useful direct invocation/result/authority and make selection/use materially simpler.
-
-Do not remove a lightweight steering skill solely because the base model can perform the underlying act. The question is whether the named contract independently improves reliable selection/use without duplicating another owner and whether users/agents benefit from selecting it separately.
-
-## Placement test
-
-For every material resource ask:
-
-- What outcome does this resource uniquely improve?
-- Is the capability already naturally owned by the agent/project/provider/framework/tool or a mature library?
-- Does a named mature capability have durable problem fit worth preserving as a non-exclusive anchor?
-- If no anchor fits, what criteria should current capability discovery optimize rather than falling back to a weaker result?
-- Can the current public owner absorb the capability coherently?
-- If proposing another public skill, what direct choice becomes materially simpler because the name exists?
-- Is this recurring non-obvious judgment/deliberate override or merely recoverable procedure?
-- Would removing every concrete pointer force recurring rediscovery of the same useful capability?
-- If prescribing a mechanism, what invariant, context-isolation need, human-visibility requirement, or external contract requires exactness?
-- If proposing code, what deterministic result cannot be carried as guidance/native/mature tooling?
-- What maintenance/freshness/portability/context/runtime/trust burden does the resource introduce?
-- What proof would show the smaller/alternative placement is insufficient?
-
-Prefer the placement that preserves correctness, judgment quality, authority, discoverability, useful depth, and deliberate behavior with the least total burden. Size/dependency reduction alone is not acceptance.
+Identify what the resource uniquely improves and the consequence of removing or replacing it. Preserve worthwhile operational anchors, expertise, and deterministic boundaries. Report only material trade-offs and proof gaps; no separate placement report or fixed disposition vocabulary is required.

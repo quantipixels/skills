@@ -1,6 +1,6 @@
 # Experimental skill disposition
 
-Read only when a portfolio audit must decide whether an Experimental skill should be promoted, kept experimental, narrowed, folded, replaced, or removed.
+Read only when the requested work decides whether an Experimental skill should be promoted, kept experimental, narrowed, folded, replaced, or removed. An unrelated edit does not reopen maturity. Use the main skill's public-identity criteria; this reference adds real-use evidence requirements.
 
 ## Require real-use evidence
 

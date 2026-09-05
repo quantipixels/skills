@@ -18,7 +18,15 @@ Host invocation metadata may deliberately require direct user activation for an 
 
 Do not add standing prompt-evaluation suites merely to defend wording. Temporary realistic steering-effect comparison is allowed when a model-steering change has material behavioral uncertainty: compare the same bounded task/candidate/context under the prior or absent contract and the changed contract, then verify both the intended behavior shift and preserved correctness/safety.
 
-Persist a behavioral regression suite only when recurring stable risk justifies its maintenance. Before deleting an old eval, move each unique current expectation into its owning skill and record obsolete or redundant expectations in the delivery record. Keep deterministic tests only while they prove current source behavior or package/mechanical invariants.
+Persist a behavioral regression suite only when recurring stable risk justifies its maintenance. Before deleting an old eval, preserve unique current expectations in the owning skill or appropriate test and explain retired expectations in the PR/discussion. Keep deterministic tests only while they prove current source behavior or package/mechanical invariants.
+
+## Documentation admission
+
+Commit a new document only when it has a future reader, a recurring task or enduring decision to support, and no adequate existing home. Update current guidance in place. Put execution instructions in the owning skill, meaningful regression protection in tests, and significant non-obvious enduring trade-offs in a short ADR.
+
+Change rationale, research comparisons, measurements, review findings, and verification results normally belong in the PR/discussion and CI. A requirement to report or preserve evidence does not require a repository file. Use working context or `.qp` for temporary state only when persistence helps; do not create an archive by default.
+
+Keep required attribution/licence notices and sources beside the claims they support. When guidance is superseded, preserve any unique current knowledge in its owner, check links, and remove the redundant document. Retain historical records only for a specific continuing need, not because the work happened.
 
 ## Release stabilization
 
