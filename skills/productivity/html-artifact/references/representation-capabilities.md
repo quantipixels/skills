@@ -21,6 +21,8 @@ Do not let delivery cost choose a weaker representation before comparing represe
 
 These are durable problem-fit anchors. Revalidate current APIs, package identity, support, and delivery details at use time.
 
+Prefer a capability's native grammar/data/configuration surface over a QP translation layer when it already expresses the reader's relationship faithfully. Add an intermediate QP schema only when a real stable consumer, repeated transformation boundary, or portability requirement needs one; a convenient first implementation is not enough. Task-authored renderer configuration is implementation code, while supplied source material remains data.
+
 ### Mermaid — structured diagrams
 
 Authoritative entry: https://mermaid.js.org/
@@ -43,7 +45,7 @@ Strong fit for syntax-aware multi-file diffs, annotations, selection, virtualiza
 
 Authoritative entry: https://js.cytoscape.org/
 
-Strong fit when connected structure is too large/dense for a simple structured diagram and the reader benefits from layout, selection, filtering, zoom/pan, neighborhood inspection, or graph-oriented navigation: dependency/call/ownership/impact/traceability/evidence graphs.
+Strong fit when connected structure is too large/dense for a simple structured diagram and the reader benefits from layout, selection, filtering, zoom/pan, neighborhood inspection, or graph-oriented navigation: dependency/call/ownership/impact/traceability/evidence graphs. Use Cytoscape's native elements, classes, stylesheet, layout, compound-node, and event APIs as the implementation surface when those capabilities matter; do not flatten them into a fixed QP graph envelope. Preserve any configuration that changes source-to-view meaning with the artifact's source map.
 
 ### D3 — bespoke data-driven visual reasoning
 

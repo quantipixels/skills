@@ -22,6 +22,14 @@ Inside an existing application, reuse a suitable capability already owned by tha
 
 Bind a dependency to the capability it provides, not to the lane that first selected it. A renderer chosen for a diff, chart, graph, diagram, map, or another representation may support any HTML Artifact lane when the same capability and admission boundary apply.
 
+## Native integration before wrappers
+
+When the selected capability already exposes a suitable CLI, API, grammar, or browser library, use that native surface first. Reuse the containing project's dependency manager, bundler, renderer, and lockfile when they already own the build. Otherwise create a task-local build context, pin exact dependency identities there, and record the resolved versions with the artifact evidence. Do not vendor `node_modules` or other install trees into a skill.
+
+Keep source material as data. Renderer configuration, styles, transforms, event handlers, and build code authored for the artifact are implementation and may use the renderer's native surface directly. Do not forward untrusted source markup or arbitrary source fields into executable configuration.
+
+A QP wrapper/helper must independently earn its place through the Kọ Skill script boundary: recurring use, a bounded mechanical guarantee, a real consumer, and falsifiable proof. Do not create a generic renderer adapter, universal artifact schema, or per-renderer application merely to make native tools look uniform.
+
 ## Admission boundary
 
 For each nontrivial dependency establish:
