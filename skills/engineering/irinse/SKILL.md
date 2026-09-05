@@ -18,9 +18,8 @@ Load only the selected reference:
 - [tldr-code](references/tldr-code.md) for compact structural, flow, impact, quality, or security leads;
 - [ast-grep](references/ast-grep.md) for syntax-aware search or structural rewriting;
 - [Semgrep](references/semgrep.md) for repeatable bug, security, or architecture rules;
-- [IntelliJ MCP](references/intellij-mcp.md) for IDE-backed navigation, code insight, run configurations, and debugging;
-- [Firecrawl](references/firecrawl.md) for agent-oriented search, scrape, crawl, or browser-backed web acquisition when ordinary fetch/search cannot reliably expose the needed evidence; or
-- [complexity evidence](references/complexity-evidence.md) when a consuming owner needs project-native complexity/static-analysis measurements without a quality verdict.
+- [IntelliJ MCP](references/intellij-mcp.md) for IDE-backed navigation, code insight, run configurations, and debugging; or
+- [Firecrawl](references/firecrawl.md) for agent-oriented search, scrape, crawl, or browser-backed web acquisition when ordinary fetch/search cannot reliably expose the needed evidence.
 
 For another named tool, use current official documentation. Stable references describe capabilities and boundaries; volatile commands/version support belong to current tool/project evidence.
 
@@ -32,4 +31,4 @@ When the selected tool must be readied, installed, configured, authenticated, in
 
 ## 3. Return the evidence
 
-Return the bounded need/candidate, tool identity/version, readiness state, authorized operation, observations with provenance, corroboration, coverage limits/errors, freshness, and any consuming-task scope-expansion fact. Do not turn tool output or scores into architecture, implementation, security, maintainability, or review verdicts; return the evidence to the owning workflow.
+Return the bounded need/candidate, tool identity/version, readiness state, authorized operation, observations with provenance, corroboration, configured rule/threshold/severity when the tool reports one, coverage limits/errors, freshness, and any consuming-task scope-expansion fact. Do not turn tool output or scores into architecture, implementation, security, maintainability, or review verdicts; return the evidence to the owning workflow.

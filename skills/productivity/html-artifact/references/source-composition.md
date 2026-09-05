@@ -1,117 +1,146 @@
 # Source composition
 
-Read this for a substantial, evidence-heavy, living, reused, or owner-record input. Preserve meaning and retrievability without reproducing source volume.
+Read this for a substantial, evidence-heavy, living, reused, or owner-record input. Preserve authority and retrievability while deliberately denormalizing the meaning a human needs to judge the current outcome.
 
-## Treat HTML as a view
+## Treat HTML as a read model
 
-An artifact is a purpose-shaped view over supplied sources, not their default archive. Preserve material meaning, exact obligations, decisions, status, exceptions, uncertainty, evidence relationships, and retrieval paths. Do not preserve source order, prose volume, table shape, or log volume merely because it was supplied.
+An artifact is a purpose-shaped read model over supplied sources, not their archive or semantic source of truth. Canonical records/results remain normalized with their owners; HTML may intentionally repeat concise decision-relevant meaning when colocation materially improves human understanding.
 
-`html-artifact` may group, deduplicate, order, summarize, aggregate, select representative evidence, assign presentation placement, and choose representation. It may not create a domain conclusion, causal claim, decision, priority, owner, status, or recommendation absent from the source owner.
+`html-artifact` may group, deduplicate, order, summarize, aggregate, select representative evidence, assign placement, and choose representation. It may not create a domain conclusion, causal claim, decision, priority, owner, status, readiness, confidence, or recommendation absent from the source owner/caller.
 
 ## Pin the conversion contract
 
 Establish:
 
 ```text
-Primary reader and outcome
+Primary reader / stakeholder
+Current concern and judgment/action
 Governing question
 Artifact thesis
 Evidence cutoff and authority
-Dominant supplied relationship
+Projection/evidence cut across composed sources
+Human-visibility obligations supplied by the caller
+Dominant supplied relationships
 First-viewport obligation
 Snapshot or living view
-Lifecycle stage and reader job, when supplied
+Lifecycle stage, when supplied
 ```
 
-The thesis is one source-supported sentence: this artifact helps `<reader>` `<act>` by showing `<result or relationship>`. Every foreground section must advance it.
+The thesis is one source-supported sentence: this artifact helps `<reader>` `<act/judge>` by showing `<result or relationship>`. Every foreground element must advance that reader job.
 
-When an owner record exists, read it before raw evidence. Pin owner, record type, title, revision, status, updated time, candidate when supplied, `Resume`, linked records/evidence, and projection brief. If record and HTML disagree, the record wins.
+When owner records/results exist, read them before raw evidence. Pin owner, type, title, revision/status, updated time, candidate when supplied, linked records/evidence, and any projection brief. If sources were produced against incompatible controlling revisions, do not silently call the composition current: identify the stale/partial dependency or obtain a coherent cut first.
 
-For a lifecycle record, do not freeze one information direction across all stages. A status transition may change the reader's job, purpose, tone, density, layout, governing representation, and foreground material. Preserve the same record identity, projection path, source disclosure, and useful anchors, but recompute the visual argument from the owner-supplied stage brief.
-
-When the owner requires a continuously available human view, create the first projection from the first meaningful record revision and regenerate it after every material semantic revision. A temporarily stale projection may exist after a failed render, but it is not a current accessible handoff.
+For a lifecycle record, a status/gate transition may change reader concern, first viewport, density, representation, and foreground material. Preserve source identity and useful anchors, but recompute the visual argument rather than accumulating earlier stages.
 
 ## Classify source units
 
-Identify meaningful units such as facts, findings, decisions, status, blockers, actions, constraints, risks, assumptions, events, evidence, examples, notes, logs, sources, and superseded conclusions. Group equivalent statements and retain the strongest current formulation plus source references.
+Identify meaningful units such as facts, findings, decisions, status, blockers, actions, constraints, risks, assumptions, events, evidence, examples, logs, and superseded conclusions. Group equivalent statements and retain the strongest current formulation plus source identity.
 
-For substantial work, decide three independent properties:
+For substantial work decide independently:
 
 ### Coverage
 
-- `Complete` — required meaning and proof path are preserved.
-- `Partial` — required source, condition, or detail is unavailable.
+- `Complete` — required meaning and proof/retrieval path are preserved.
+- `Partial` — required source, condition, or detail is unavailable/stale.
 - `Input gap` — sources cannot support a required claim or representation.
 - `Excluded` — scope or authority excludes the unit; retain the reason when material.
 
 ### Placement
 
-- `Foreground` — needed for outcome comprehension or next action.
-- `Supporting` — needed for rationale, trade-offs, confidence, or context.
-- `Evidence` — needed to verify a material claim, not for first-pass comprehension.
-- `Source-only` — covered by a reliable source and not duplicated.
-- `Archive` — raw or exhaustive evidence outside the working view.
+- `Foreground` — needed for current judgment/action or to understand a limiting claim.
+- `Supporting` — needed for rationale, trade-offs, confidence/counterevidence, or context.
+- `Evidence` — needed to verify a material claim rather than first-pass comprehension.
+- `Source-only` — safely retrievable detail whose omission cannot change the current judgment.
+- `Archive` — raw/exhaustive evidence outside the working view.
 - `Superseded` — retained through history/source linkage, not current.
 
 ### Fidelity
 
-- `Exact` — preserve identifiers, quantities, statuses, accepted wording, code, schema, or conditions precisely.
-- `Meaning-preserving` — summarize without changing scope, implication, uncertainty, or exceptions.
-- `Aggregate` — combine repeated instances while preserving denominator, grouping rule, and exceptions.
-- `Representative` — show selected examples, state the basis, and link the complete inventory.
-- `Pointer` — retain identity, role, freshness, and retrieval path with a bounded summary.
-- `Omit` — remove duplicate, irrelevant, invalid, or out-of-scope material.
+- `Exact` — identifiers, quantities, statuses, accepted wording, code/schema/conditions must remain precise.
+- `Meaning-preserving` — summarize without changing implication, uncertainty, exceptions, or scope.
+- `Aggregate` — combine repeated instances while preserving denominator/grouping rule/exceptions.
+- `Representative` — show selected examples, selection basis, and complete inventory locator.
+- `Pointer` — retain identity, role, freshness, and retrieval path with bounded summary.
+- `Omit` — duplicate, irrelevant, invalid, or out-of-scope material.
 
-A unit can be `Complete`, `Source-only`, and `Pointer`. Full coverage does not require co-location. An in-page anchor or collapsed `<details>` does not reduce HTML or future-agent context.
+## Human-critical closure
 
-## Decide relevance
+A unit is human-critical when omission could materially change the reader's judgment of outcome/scope, current gate, consequential decision, contract sufficiency, architecture/design condition, delivery state, proof strength, risk/recovery, freshness, or next action.
 
-Apply in order:
+A human-critical unit cannot be satisfied only by `Source-only`, `Archive`, or a bare `Pointer`. Show its decision-relevant meaning in `Foreground` or `Supporting` placement and attach the canonical provenance. The complete packet may remain linked.
 
-1. Would omission change the reader's decision, action, verification, monitoring, comparison, or understanding?
-2. Could omission cause unsafe, invalid, irreversible, financial, or incomplete action?
-3. Does it constrain interpretation?
-4. Is it minimum proof for a material claim?
-5. Is it current and authoritative for this candidate?
-6. Does it add unique meaning?
-7. Can complete detail be retrieved reliably elsewhere?
+Caller-supplied visibility obligations override generic compression. Do not interpret “avoid duplication” as “hide critical meaning.” Conversely, human-critical closure does not authorize copying entire linked Markdown files; retain only the meaning required for the reader's current judgment.
 
-Foreground current outcome, decisions, status, blockers, warnings, next action, governing relationship, and material exceptions. Summarize key evidence. Aggregate repeated findings. Use aligned comparison for repeated candidates. Include only necessary code fragments. Keep raw logs, transcripts, exhaustive inventories, and routine history linked unless exact inline inspection is required.
+## Keep evaluation semantics honest
 
-## Build two useful resolutions
+Preserve semantic distinctions supplied by owners:
 
-### Human working view
+- **verdict** — what evidence establishes;
+- **confidence** — strength/limits of that evidence or judgment;
+- **grade/score** — comparative performance against an explicit rubric;
+- **gate** — mandatory condition that cannot be averaged away;
+- **readiness** — whether progression is currently justified;
+- **evidence gap** — missing proof capable of changing the result;
+- **epistemic status** — observed, inferred, proposed, or illustrative.
 
-Show thesis, outcome, governing representation, material exceptions, action, and concise navigation. It must be complete for the reader's current purpose. For living lifecycle records, the working view should evolve with the reader's stage-specific job rather than accumulate every earlier stage as equal-weight content.
+Do not derive one from another or turn them into a generic health score. When a hard gate or weakest material claim controls progression, foreground it instead of averaging it with supported claims.
 
-### Agent context capsule
+## Build the human working view
 
-For substantial artifacts, embed compact `application/json` before large presentation resources. Include identity, owner record path/revision, purpose, current status/outcome, blockers, next action, completion condition, high-value source locators, projected source revision, and proof freshness. Exclude the complete record, inventories, logs, and archives.
+Use progressive disclosure:
 
-Link supporting records/evidence with stable relative paths or pinned provider identities. Keep credentials, secret-bearing URLs, unnecessary personal data, machine-local absolute paths, and protected locators out of shared HTML.
+```text
+Visible now
+→ everything required to judge current state/gate/outcome
 
-## Compose around one relationship
+One action away
+→ supporting rationale, important alternatives, counterevidence, detailed proof
 
-Choose one dominant supplied relationship or result and let it organize the artifact. Supporting sections explain meaning, confidence, exceptions, action, and evidence. Do not add a central visual and then repeat every source unit below it.
+Canonical source
+→ exhaustive logs, complete packets, historical/archive evidence
+```
 
-Use a matrix, timeline, state map, flow, comparison, architecture map, chart, or another form when it replaces repeated prose. Change form on narrow screens when containment would hide the relationship.
+Blocking, conditional, stale, or unproved information that can change the current judgment must not be hidden inside disclosure controls.
 
-For each foreground section ask: if removed, would decision, action, understanding, verification, or trust materially worsen? If not, demote, link, merge, or remove it.
+Choose representation per material relationship, not source section. One section can need several representations; several records/sections can collapse into one traceability, comparison, timeline, or assurance view when that improves comprehension without changing meaning.
+
+For substantial artifacts embed a compact `application/json` context capsule before large presentation resources. Include identity, owner source revisions, purpose, current status/outcome, blockers/next action, high-value source locators, projection cut, and proof freshness. Exclude complete records, inventories, logs, archives, credentials, secret-bearing URLs, unnecessary personal data, and machine-local absolute paths.
+
+## Living projections: delta first
+
+After the first complete projection, prominently show material delta from the prior useful view: changed decisions, reopened/stale claims, new candidate/evidence, closed proof, new blockers, and changed next action. Reuse unchanged supporting material at lower visual weight rather than making the reader rediscover change by rereading the whole page.
+
+The owner updates semantic truth first. Regenerate after material semantic revisions when the projection is maintained. An older projection may remain available as visibly stale evidence; it is not a current handoff.
+
+## Projection coverage proof
+
+For caller-supplied or derived human-critical obligations, keep an internal coverage map:
+
+```text
+obligation identity
+source owner/revision/candidate
+meaning that must remain visible
+why omission could change judgment
+visible placement / representation
+provenance locator
+coverage: present | partial | stale | missing
+```
+
+Before delivery require every material obligation to be `present`, or expose the `partial/stale/missing` state as an input/projection gap. Do not add a runtime/schema merely for this map; deterministic machinery must earn itself from recurring failures.
 
 ## Keep living projections honest
 
-The owner updates `record.md` first. The projection records its source path and revision. Regenerate after each material semantic revision when continuous accessibility is required.
-
-Run structural checks after every projection write. Apply HTML Artifact's consequence-based verification policy after regeneration: use a visual smoke pass when ordinary rendered usability materially affects review, and deep browser proof only when presentation or interaction is itself a material acceptance claim, the artifact is production/publication/formal-decision facing, material runtime behavior must be proved, or the user requests that assurance.
-
-A first substantial render or lifecycle transition does not automatically require deep proof. Recompute the reader job and representation first, then verify only to the depth justified by the resulting claims and consequence. Within one stage, a semantic update may reuse current presentation proof when presentation structure and risk remain unchanged. The regenerated HTML still needs exact source revision/status disclosure. If regeneration fails, keep the older file visibly stale and report the accessible view as incomplete.
+Run structural checks after every projection write. Apply the parent verification boundary: static information projections normally stop at structural proof plus at most one bounded render smoke when readability is materially uncertain; interactive projections prove only the material interaction claims they introduce.
 
 Before delivery test:
 
-- **agent entry:** current state and next action are available without reading full HTML;
-- **retrieval:** one requested detail is obtainable through a source link;
-- **faithfulness:** material claims trace to current source meaning;
+- **critical closure:** no human-critical obligation is pointer-only or silently omitted;
+- **coherence:** composed sources form a declared current cut, or stale/partial dependencies are visible;
+- **agent entry:** current state, weakest limiting claim, and next action are available without reading full HTML when applicable;
+- **retrieval:** requested detail is obtainable through a canonical source path;
+- **faithfulness:** material claims trace to current source meaning and epistemic status;
+- **counterevidence:** material conditions/limits are not hidden by presentation;
 - **context hygiene:** raw archives are absent unless required;
-- **deletion:** each foreground section earns its place;
-- **stage fit:** the opening, representation, tone, and action layer serve the current lifecycle stage rather than an earlier one; and
-- **verification fit:** the reported verification level matches the artifact's claims and consequence rather than its size or generation event.
+- **deletion:** each foreground element earns its place;
+- **stage/viewpoint fit:** opening, representation, tone, and action layer serve the current reader concern; and
+- **verification fit:** reported proof matches the accepted browser claims rather than artifact size or formality.

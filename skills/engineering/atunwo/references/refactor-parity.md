@@ -6,7 +6,7 @@ Treat a refactor as a behavioral parity exercise unless an authority explicitly 
 
 Keep this audit and provider state read-only. Implementation and test changes belong to `alaga` or the current implementation owner. An audit result does not authorize delivery or replace the final review required for an implemented candidate.
 
-Read relevant confirmed `.learnings` and `amose` scenarios when domain rules affect parity. Treat them as evidence and verify them against baseline behavior. Report model conflicts to `amose`; do not redefine canonical terms or rules inside the parity ledger.
+Read relevant confirmed `.learnings`, specifications/accepted decisions, current domain language, and supplied or previously confirmed domain scenarios when domain rules affect parity. Scenario evidence from an `amose` model delta may be used when present, but `atunwo` must not require `amose` to persist scenarios. Treat all such material as evidence and verify it against baseline behavior. Use `amose` only when domain meaning itself needs clarification/change; do not redefine canonical terms or rules inside the parity ledger.
 
 Use an exact-current `irinse` result when bounded call, impact, or data-flow signals can widen the trace surface. Revalidate every consequential path against source and observable behavior.
 

@@ -16,11 +16,13 @@ status: Draft
 
 **Status:** <Draft | Planned | In Progress | Backlog | Closed>
 
+**Current gate:** <next material progression judgment/condition>
+
 **Decision frontier:** <EMPTY | OPEN | BLOCKED, with one-line reason>
 
 **Delivery:** <Not required | Not started | Active | Blocked | Complete | Stale>
 
-**Blocker:** <current blocker or none>
+**Blocker / weakest material gap:** <current limiting claim/gap or none>
 
 **Next action:** <one exact action>
 
@@ -37,15 +39,19 @@ status: Draft
 
 ## Decisions
 
-<confirmed decisions plus any currently open/blocked material decision set; omit empty tables/sections>
+<confirmed decisions plus any currently open/blocked material decision set; keep decision-changing alternatives, evidence/limits, and revisit triggers when they constrain current/future work; omit empty tables/sections>
+
+## Amendment impact
+
+<only when a material amendment changes accepted/completed owner results: governing authority/revision; affected earlier results/clauses; superseded/stale versus retained clauses; candidate/proof freshness; required owner refresh/re-entry proof; omit otherwise>
 
 ## Delivery and proof
 
-<governing specification identity/readiness when present; phases/dependencies/blockers only when they actually exist; current proof and closure obligations>
+<governing contract/spec identity/readiness when present; current gate evidence; phases/dependencies/blockers only when real; current proof/closure obligations; when coordination is material, include expected delivery-shape envelope, material cumulative drift, and replan/review trigger without turning counts into quotas>
 
 ## Linked evidence
 
-<current owner results, records, source locators, revisions/cutoffs; link detailed packets rather than copying them>
+<current owner results, records, source locators, revisions/cutoffs; keep detailed packets canonical rather than copying them into the plan>
 
 ## Durable reconciliation
 
@@ -53,4 +59,4 @@ status: Draft
 
 ## Material history
 
-- r1 — <only a material status/scope/decision/evidence/ownership/closure change worth retaining>
+- r1 — <only a material status/gate/scope/decision/evidence/ownership/closure change worth retaining>

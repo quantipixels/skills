@@ -20,16 +20,16 @@ A small diff in the wrong place is not simplification. Revisit the causal owner 
 
 ## Minimum sufficient mechanism
 
-After understanding the real flow, take the first sound option:
+After understanding the real flow, prefer in order:
 
-1. **Eliminate** — the requested mechanism is unnecessary because existing behavior already satisfies the outcome, or the causal state/branch can be removed.
-2. **Reuse project capability** — use an existing helper, owner, module, pattern, or proof surface.
-3. **Use native capability** — standard library, framework, platform, language, database, or other native mechanism.
-4. **Use an already-selected dependency/tool** — do not add a dependency for behavior current capabilities adequately provide.
-5. **Derive or localize** — remove duplicated/stored state or place policy/state at its real owner.
-6. **Add minimally** — introduce only the mechanism the confirmed outcome still requires.
+1. eliminate unnecessary mechanism or causal state;
+2. reuse existing project capability;
+3. use native platform/framework/language capability;
+4. use an already-selected dependency/tool;
+5. derive duplicated state or localize policy at its real owner; then
+6. add only the mechanism the confirmed outcome still requires.
 
-Do not introduce indirection for hypothetical variation. A new interface, adapter, factory, configuration layer, generic mechanism, or similar abstraction needs either a current second consumer/variant or an independently real boundary such as an external protocol, trust boundary, persistence boundary, volatile platform integration, or owned lifecycle/policy boundary.
+Do not introduce indirection for hypothetical variation. A new abstraction needs a current real variant/consumer or independently real production boundary; testing convenience alone is not such a boundary.
 
 For a defect, prefer the narrowest confirmed causal owner that covers the affected paths rather than the smallest textual patch or repeated guards at symptoms.
 
@@ -45,30 +45,21 @@ Treat these as material expansion signals when they were not already part of the
 - new test infrastructure or production architecture introduced mainly for testability; and
 - destructive data, history, credential, deployment, or provider effects.
 
-An extra touched file is not automatically scope expansion. When the envelope grows materially, ask whether the original outcome can still be achieved without the expansion. If yes, shrink back. If no, state why the expansion is necessary, what contract/authority it changes, and route any required decision or authority instead of silently enlarging the task.
+An extra touched file is not automatically scope expansion. When the envelope grows materially, ask whether the original outcome can still be achieved without the expansion. If yes, shrink back. If no, state why the expansion is necessary and what contract or authority changes instead of silently enlarging the task.
 
-## Proof without test inflation
+## Proportional proof
 
-Proof is required; a new test is not.
+Proof is required; a new test is not. Prefer existing affected proof, type/compiler guarantees, static analysis, build/schema validation, focused runtime probes, real integration checks, bug reproduction, browser/manual verification, or another stronger current proof surface when it can falsify the changed contract.
 
-Prefer existing affected proof, type/compiler guarantees, static analysis, build/schema validation, focused runtime probes, real integration checks, bug reproduction, browser/manual verification, or another stronger current proof surface when they can falsify the changed contract.
-
-A new durable test earns its place only when it protects a material contract through a stable behavior-bearing seam, has an expectation/oracle independent of production logic, and would fail for a plausible wrong implementation for the right reason. Do not create a production abstraction solely to make a test convenient unless that abstraction also owns a real production boundary. New test infrastructure is a scope-expansion event.
+Do not add durable tests, test infrastructure, or production abstractions merely to increase proof volume. When test/proof portfolio judgment itself becomes material, leave the deeper maintainability or delivery judgment to its owning result rather than reproducing it here.
 
 ## Converge instead of accreting
 
-Review may discover broadly; it does not silently enlarge the accepted implementation contract. Before implementing a review correction, ask:
-
-1. Is the concern inside the accepted contract/blocking criteria?
-2. Can the state, branch, duplicate owner, or causal condition producing the edge case be removed or strengthened instead?
-3. Can an existing mechanism handle it at the real owner?
-4. Would the correction trigger a scope-expansion event?
-
-Prefer eliminating the cause over adding edge-case machinery. If the required correction genuinely expands scope, surface the expansion instead of building a second system around the first.
+Review may discover broadly; it does not silently enlarge the accepted implementation contract. Before accepting a correction, ask whether it is inside the accepted contract, whether the causal state/duplicate mechanism can be removed instead, whether an existing owner/mechanism already covers it, and whether the correction triggers scope expansion.
 
 Before completion, every touched file, new abstraction, dependency, compatibility path, and durable test should have a concise contract/proof reason to exist. Passing tests or a smaller line count do not justify unnecessary structure.
 
-When a deliberate simplification has a known ceiling, record the simplification, the ceiling, and an observable revisit trigger at its natural owner: local code comment for a local mechanism, ADR for architecture, issue for planned work, or `.learnings` for durable project knowledge. Do not create a separate debt ledger merely for the convention.
+When a deliberate simplification has a known ceiling, record the simplification, ceiling, and observable revisit trigger at its natural owner rather than creating a parallel debt ledger.
 
 ## Result
 

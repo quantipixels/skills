@@ -5,13 +5,11 @@ description: Generate, challenge, and reduce a bounded set of materially differe
 
 # Ideate
 
-Expand one grounded opportunity into a bounded, mechanism-diverse candidate set; challenge every candidate; and explain only the credible survivors. Do not choose for the user, turn an idea into requirements, or skip directly to implementation.
+Expand one grounded opportunity into a bounded, mechanism-diverse candidate set; challenge every candidate; and explain only the credible survivors. Do not choose for the user, turn an idea into requirements, or skip directly to delivery.
 
 ## 1. Ground the opportunity
 
-Pin the problem or opportunity, intended beneficiaries, current project or product reality, constraints, known non-goals, evidence boundary, time horizon, and what would make a direction useful. Read only the project surfaces needed to avoid detached suggestions.
-
-Use `iwadi` when current external primary-source evidence can materially change the candidate set. Use `irinse` only when bounded tool evidence can expose a relevant structure or pattern. Load either only when its native result is needed.
+Pin the problem or opportunity, intended beneficiaries, current relevant reality, constraints, known non-goals, evidence boundary, time horizon, and what would make a direction useful. Resolve only the facts needed to avoid detached suggestions; deeper research or tool evidence is separate only when it produces an independently useful result.
 
 ## 2. Generate materially different mechanisms
 
@@ -31,15 +29,15 @@ Stop generating when another candidate would only rename, repackage, combine, or
 
 ## 3. Critique every candidate
 
-Assess each candidate against value, distinctiveness, fit, feasibility, reversibility, operational burden, trust/data boundaries, strongest credible alternative, and the decisive assumptions.
+Assess each candidate against value, distinctiveness, fit, feasibility, reversibility, operational burden, trust/data boundaries, strongest credible alternative, and decisive assumptions.
 
 Reject duplicates, weak variants, off-strategy ideas, and candidates whose expected value does not justify their cost. State one concise rejection reason for every removed candidate.
 
 Rank survivors only when the criteria make them genuinely comparable. Otherwise group them by trade-off or decision type. Explain why each survived, what evidence it still needs, and the material decision it would create. Novelty is not a benefit by itself.
 
-Use `ro-wo` only when testing one survivor's decisive premise is the requested next result. Do not inflate ordinary candidate critique into a separate premise investigation.
+Do not turn ordinary candidate critique into a separate premise investigation unless premise testing is itself the requested next result.
 
-## 4. Hand off without choosing
+## 4. Return decision-ready possibilities
 
 Return:
 
@@ -50,9 +48,7 @@ Rejected candidates and reasons
 Ranked or trade-off-grouped survivors
 Decisive assumptions and evidence gaps
 NO_CREDIBLE_DIRECTION when applicable
-One next-step menu
+Recommended next decision/action boundary
 ```
 
-Use `arojinle` when the user wants consequential survivors resolved through a decision, and `atona` when a selected direction must become an initiative plan. Invoke the next owner only after the user selects or explicitly requests that result.
-
-Return inline by default. Persist through `akosile` only when stable candidate identities are needed downstream or the user requests an archive. Use `html-artifact` when a substantial supplied comparison needs a human visual view. Under an active plan, return Ideate's native exact-current result rather than defining a plan-specific receipt.
+Do not select, plan, persist, or visualize the survivors unless that separate result is requested or materially required downstream.

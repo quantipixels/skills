@@ -6,11 +6,11 @@ A healthy reference is not a private encyclopaedia. It is a selectively loaded p
 
 ## Reference or catalogue?
 
-A **reference** belongs to one skill outcome and is loaded when a bounded branch of that outcome needs deeper judgment, vocabulary, examples, counterexamples, or stable decision rules.
+A **reference** belongs to one skill outcome and is loaded when a bounded branch of that outcome needs deeper judgment, vocabulary, examples, counterexamples, stable decision rules, or an authoritative conceptual anchor.
 
 A **catalogue** maintains a reusable body of language, framework, platform, standards, or domain knowledge because that knowledge is itself necessary to the skill's public result. Apply [researched knowledge catalogues](knowledge-catalogues.md) only for that shape.
 
-Good reference: a Solution Architect module-depth guide explaining when an adapter owns enough lifecycle/policy to justify a seam.
+Good reference: an Architect module-depth guide explaining when an adapter owns enough lifecycle/policy to justify a seam.
 
 Bad disguised catalogue: a hidden Java/Spring/Kotlin best-practice corpus inside an execution companion.
 
@@ -23,7 +23,7 @@ A reference earns its place when most of these are true:
 - **Recurrence** — it applies across multiple plausible invocations or protects one owner-wide high-consequence boundary.
 - **Selective trigger** — the owner can load it only when the branch matters.
 - **Stable basis** — it is durable enough to preserve, or it states the evidence/freshness boundary that requires revalidation.
-- **Calibration value** — examples, counterexamples, or a stable vocabulary materially sharpen the rule.
+- **Calibration value** — examples, counterexamples, a named reasoning model, or stable vocabulary materially sharpen the rule.
 - **Bounded output** — the reference improves the native result without being dumped into that result.
 
 Do not keep a reference merely because it is informative. Move, research, or remove material that:
@@ -34,6 +34,37 @@ Do not keep a reference merely because it is informative. Move, research, or rem
 - freezes volatile framework/platform behavior better read from current owning sources;
 - records one task's temporary state, rationale, or history; or
 - cannot change the skill's judgment, action, proof, safety, authority, or completion result.
+
+## Record material source provenance proportionately
+
+When an external repository, standard, paper, provider document, or mature capability materially shapes QP behavior, a bundled resource, or a durable reasoning rule, preserve enough provenance to reproduce the adoption decision without turning every citation into portfolio infrastructure.
+
+Use the nearest existing owner-local research/reference/change record and capture only what matters:
+
+- source identity and authoritative URL/repository;
+- exact commit/tag/version when the source is versioned, or research/access date when mutable documentation is the evidence;
+- copied/adapted/compared mechanism and the local owner/result it changed;
+- upstream licence when code/assets/text are copied or materially adapted rather than merely compared/paraphrased; and
+- the event that should trigger revalidation, such as upstream semantic change, provider behavior drift, a failed regression case, or a local owner-boundary change.
+
+Comparison-only inspiration does not need to become a runtime reference. Volatile upstream facts should remain retrieval anchors/current evidence rather than frozen local truth. Do not introduce a central provenance ledger until duplicated source records or missed refreshes create a demonstrated cross-owner drift problem; centralization is not evidence by itself.
+
+### Preserve useful named models
+
+Do not remove a named model, standard, or concept merely because its currently selected rules can be paraphrased. Keep the name when it provides material conceptual compression, stable vocabulary, authoritative scope, or a retrieval anchor that helps the agent handle cases not enumerated in local bullets.
+
+When keeping one, bind it explicitly:
+
+```text
+named model/standard
+→ skill-relevant reasoning job
+→ selected behavior-bearing subset
+→ boundary: the name does not import the whole framework
+```
+
+Prefer current owning sources for volatile or normative detail. Remove names that add only prestige, generic ceremony, canned templates, or latent rules the skill does not intend to adopt.
+
+When compressing or removing a reference, check the residual material decision surface: a smaller representation is worse if the deleted depth merely turns a consequential constraint or distinction into model inference.
 
 ## Use examples as calibration
 
@@ -61,7 +92,7 @@ Do not require examples to replace prose. Keep them when they make a recurring j
 
 Do not impose an arbitrary maximum reference size or file count. Prefer one cohesive reference when its sections normally load together. Split only when branches can be selected independently enough to save material context or carry materially different freshness/evidence boundaries.
 
-Good: one cohesive `module-depth.md` loaded for module/interface design.
+Good: one cohesive `module-design.md` loaded for module/interface design.
 
 Bad: seven tiny files that must all be opened for every module-boundary decision.
 
@@ -81,7 +112,7 @@ observed recurring or owner-wide misjudgment
 
 Recurrence is not a numeric quota. One strong owner-wide failure can justify a reference when the consequence and generality are clear. One unconfirmed task correction does not.
 
-Project-specific confirmed patterns stay with the project's existing owner such as Amọ̀ṣẹ́ local craft rather than being promoted automatically.
+Project-specific confirmed patterns stay with the strongest existing maintained project source. When no stronger source exists and a pattern independently clears the stable, recurring, consequential admission gate, use `amose` to reconcile it into `.learnings`; do not promote it automatically into a cross-project skill reference.
 
 ## Return one disposition
 

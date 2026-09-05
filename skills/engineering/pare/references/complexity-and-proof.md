@@ -17,7 +17,7 @@ Inspect together where applicable:
 - churn × complexity when history exists;
 - test count/fixture burden around one semantic invariant.
 
-A threshold from a repository/tool is an **investigation trigger**, not an automatic finding. Record tool/config/version/scope when a metric influences prioritization.
+A threshold or composite score already surfaced by project tooling is an **investigation trigger**, not an automatic finding. Treat complexity coupled with weak proof as a stronger signal than either alone: coverage gaps, CRAP or equivalent complexity × proof signals can help identify where investigation is worthwhile without becoming targets themselves.
 
 ## State-space check
 
@@ -48,6 +48,8 @@ If these do not fall, the change likely relocates complexity.
 ## Proof portfolio
 
 Audit proof by invariant rather than file count or coverage percentage. Many tests can be necessary, but first ask whether they compensate for accidental states, duplicated branches, or implementation choreography.
+
+When mutation results are already available, surviving non-equivalent mutants around changed or important behavior are evidence that current proof may not discriminate plausible wrong implementations. Investigate the behavior they expose rather than optimizing for a universal zero-survivor target.
 
 When proof volume or duplication is material, classify each coherent proof group:
 

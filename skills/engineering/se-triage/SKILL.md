@@ -36,6 +36,8 @@ For provider reads or comments, read [provider operations](references/provider-o
 
 Restate claimed vs expected behavior, affected user/system/version/environment, reproduction/frequency/impact/evidence, and missing facts that could change the result. Separate observation, reporter interpretation, and inference.
 
+Use established project/domain language naturally. When unresolved terminology or a conceptual boundary materially changes what “expected” versus “observed” means, use `amose` for that clarification rather than inventing aliases or domain meaning inside triage. Passive vocabulary lookup does not require an `amose` handoff.
+
 Use exactly one classification:
 
 - `confirmed` — current evidence directly reproduces/traces the failure;
@@ -53,7 +55,7 @@ Choose one action:
 - `NO_BUG_ON_CURRENT_EVIDENCE` — requires positive `disproved` evidence plus reopen condition;
 - `HANDOFF_CONFIRMED` — durable behavioral brief with observed/desired behavior, contracts, acceptance, exclusions, unknowns, provenance.
 
-When `.qp/settings.json` exists, read [optional vocabulary settings](references/settings.md). Its vocabulary may rename display labels or interpret explicit aliases but cannot alter canonical classifications, evidence requirements, actions, or authority.
+When a confirmed report—or a plausible report with an equivalent direct observation available—still needs causal diagnosis before a correction can be responsibly scoped, name `root-cause` as the next owner and hand it the pinned failure/evidence boundary. When causal ownership is already sufficiently established, hand the confirmed behavioral brief to `alaga`. `se-triage` does not perform causal diagnosis or implementation itself.
 
 Persist through `akosile` only when handoff/recovery or an explicit durable triage record is needed.
 

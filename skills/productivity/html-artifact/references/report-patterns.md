@@ -88,7 +88,7 @@ Build the opening, hierarchy, and governing representation from the direction br
 
 Do not default to a dashboard, hero metrics, or uniform card grid. Use a dashboard scan layer only when the reader must monitor simultaneous measures and exceptions. Use cards for independently scanned peer units, not generic section containers. Decorative variation is not a report direction.
 
-Keep supplied designs, screens, diagrams, and other visual evidence primary when safe. Do not reduce them to filenames or prose. Report composition does not authorize design options or a prototype. Load [prototype patterns](prototype-patterns.md) only for a supplied prototype, demo, interface specimen, or design-variant set.
+Keep supplied designs, screens, diagrams, prototypes, demos, interface specimens, and other visual evidence primary when safe. Do not reduce them to filenames or prose. Report composition does not authorize creating or iterating a prototype; treat supplied prototype-like material only as source evidence for the report.
 
 Keep the opening useful without a disclosure. When compatible, include a skip link, title and status, local navigation, governing representation, supporting evidence, limits, resource disclosure, and revision state. Omit empty sections. Link conclusions and recommendations to evidence or source identifiers.
 

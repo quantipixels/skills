@@ -2,9 +2,10 @@ name: Validate
 
 on:
   pull_request:
+  push:
     branches:
       - ori
-      - feature/source-to-artifact-records-plan
+  merge_group:
 
 permissions:
   contents: read
@@ -40,8 +41,42 @@ jobs:
       - name: Install validator dependency
         run: python3 -m pip install -r skills/engineering/ko-skill/scripts/requirements.txt
 
+      - name: Validate workflow contract
+        run: python3 -m unittest discover -s .github/tests -p 'test_*.py'
+
       - name: Validate skill package
         run: python3 skills/engineering/ko-skill/scripts/validate-package.py --repo .
+
+      - name: Validate plugin agents
+        run: python3 skills/engineering/ko-skill/scripts/validate-plugin-agents.py --repo .
+
+      - name: Test local session evidence adapter
+        run: python3 -m unittest discover -s skills/productivity/ayewo-igba-ise/scripts -p 'test_*.py'
+
+      - name: Setup Node.js for uninstall proof
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Test safe global uninstall
+        run: python3 -m unittest scripts/test_uninstall.py
+
+  browser-controls:
+    name: Browser controls
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install pinned browser proof tools
+        run: |
+          python -m pip install -r .github/browser/requirements.txt
+          python -m playwright install --with-deps chromium
+      - name: Exercise shipped controls and fallback
+        run: python -m unittest discover -s .github/browser -p 'test_*.py'
 
   akosile-tests:
     name: Akosile focused mechanics
@@ -57,3 +92,118 @@ jobs:
 
       - name: Test safe-write and index renderer
         run: python3 -m unittest discover -s skills/engineering/akosile/scripts -p 'test_*.py'
+
+  compatibility-smoke:
+    name: Compatibility smoke
+    runs-on: ubuntu-latest
+    env:
+      SKILLS_CLI_VERSION: 1.5.23
+      CLAUDE_CODE_VERSION: 2.1.260
+      DISABLE_TELEMETRY: "1"
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Discover QP through Skills CLI
+        run: |
+          npx --yes skills@${SKILLS_CLI_VERSION} add "$GITHUB_WORKSPACE" --list | tee /tmp/qp-skills-list.txt
+          grep -F 'alaga' /tmp/qp-skills-list.txt
+          grep -F 'wo-pr' /tmp/qp-skills-list.txt
+          grep -F 'root-cause' /tmp/qp-skills-list.txt
+
+      - name: Install every QP skill for Codex
+        run: |
+          target="$(mktemp -d)"
+          cd "$target"
+          npx --yes skills@${SKILLS_CLI_VERSION} add "$GITHUB_WORKSPACE" --agent codex --skill '*' --copy -y
+          expected="$(find "$GITHUB_WORKSPACE/skills" -mindepth 3 -maxdepth 3 -name SKILL.md | wc -l | tr -d ' ')"
+          installed="$(find "$target/.agents/skills" -mindepth 2 -maxdepth 2 -name SKILL.md | wc -l | tr -d ' ')"
+          test "$installed" -eq "$expected"
+          test -f "$target/.agents/skills/alaga/SKILL.md"
+          test -f "$target/.agents/skills/root-cause/SKILL.md"
+
+      - name: Validate Claude Code plugin
+        run: |
+          cd "$GITHUB_WORKSPACE"
+          npx --yes @anthropic-ai/claude-code@${CLAUDE_CODE_VERSION} plugin validate .
+
+      - name: Clean-install Claude Code plugin
+        run: |
+          export CLAUDE_CONFIG_DIR="$(mktemp -d)"
+          cd "$GITHUB_WORKSPACE"
+          npx --yes @anthropic-ai/claude-code@${CLAUDE_CODE_VERSION} plugin marketplace add "$GITHUB_WORKSPACE" --scope user
+          npx --yes @anthropic-ai/claude-code@${CLAUDE_CODE_VERSION} plugin install qp-skills@qp-skills --scope user
+          npx --yes @anthropic-ai/claude-code@${CLAUDE_CODE_VERSION} plugin marketplace list --json | tee /tmp/qp-claude-marketplaces.json
+          npx --yes @anthropic-ai/claude-code@${CLAUDE_CODE_VERSION} plugin list --json | tee /tmp/qp-claude-plugins.json
+          grep -F 'qp-skills' /tmp/qp-claude-marketplaces.json
+          grep -F 'qp-skills' /tmp/qp-claude-plugins.json
+
+  portable-mechanics:
+    name: Portable mechanics (${{ matrix.os }})
+    strategy:
+      fail-fast: false
+      matrix:
+        os:
+          - macos-latest
+          - windows-latest
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install validator dependency
+        run: python -m pip install -r skills/engineering/ko-skill/scripts/requirements.txt
+
+      - name: Validate skill package
+        run: python skills/engineering/ko-skill/scripts/validate-package.py --repo .
+
+      - name: Validate plugin agents
+        run: python skills/engineering/ko-skill/scripts/validate-plugin-agents.py --repo .
+
+      - name: Test local session evidence adapter
+        run: python -m unittest discover -s skills/productivity/ayewo-igba-ise/scripts -p 'test_*.py'
+
+      - name: Test Akosile focused mechanics
+        run: python -m unittest discover -s skills/engineering/akosile/scripts -p 'test_*.py'
+
+      - name: Test safe global uninstall
+        if: runner.os == 'macOS'
+        run: python -m unittest scripts/test_uninstall.py
+
+  validate:
+    name: Validate
+    if: ${{ always() }}
+    needs:
+      - package-state
+      - skill-package
+      - akosile-tests
+      - browser-controls
+      - compatibility-smoke
+      - portable-mechanics
+    runs-on: ubuntu-latest
+    steps:
+      - name: Require all validation jobs
+        env:
+          PACKAGE_STATE_RESULT: ${{ needs.package-state.result }}
+          SKILL_PACKAGE_RESULT: ${{ needs.skill-package.result }}
+          BROWSER_CONTROLS_RESULT: ${{ needs.browser-controls.result }}
+          AKOSILE_TESTS_RESULT: ${{ needs.akosile-tests.result }}
+          COMPATIBILITY_SMOKE_RESULT: ${{ needs.compatibility-smoke.result }}
+          PORTABLE_MECHANICS_RESULT: ${{ needs.portable-mechanics.result }}
+        run: |
+          test "$PACKAGE_STATE_RESULT" = success
+          test "$SKILL_PACKAGE_RESULT" = success
+          test "$AKOSILE_TESTS_RESULT" = success
+          test "$BROWSER_CONTROLS_RESULT" = success
+          test "$COMPATIBILITY_SMOKE_RESULT" = success
+          test "$PORTABLE_MECHANICS_RESULT" = success
