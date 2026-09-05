@@ -25,14 +25,33 @@ function normalizeSource(source) {
     .replace(/^git@github\.com:/, 'https://github.com/')
     .replace(/^ssh:\/\/git@github\.com\//, 'https://github.com/')
     .replace(/^https?:\/\/github\.com\//, '')
-    .replace(/\.git$/, '')
-    .replace(/\/$/, '');
+    .replace(/\/+$/, '')
+    .replace(/\.git$/, '');
 }
 
-const skills = Object.entries(lock.skills ?? {})
-  .filter(([, entry]) => normalizeSource(entry?.source) === repository)
-  .map(([name]) => name)
-  .sort();
+const object = value => value !== null && typeof value === 'object' && !Array.isArray(value);
+const reject = message => {
+  console.error(`Invalid global skills lock: ${message}`);
+  process.exit(1);
+};
+if (!object(lock)) reject('root must be an object');
+const entries = lock.skills === undefined ? {} : lock.skills;
+if (!object(entries)) reject('skills must be an object');
+
+const skills = [];
+for (const [name, entry] of Object.entries(entries)) {
+  if (!object(entry) || typeof entry.source !== 'string') {
+    reject('each skill must have an object entry with a string source');
+  }
+  if (normalizeSource(entry.source) !== repository) continue;
+  // Native removal treats wildcards/options specially; never forward them.
+  // Validate before newline framing so one lock key stays one argument.
+  if (name.length > 64 || !/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(name)) {
+    reject('QP skill names must be canonical lowercase ASCII identifiers');
+  }
+  skills.push(name);
+}
+skills.sort();
 
 process.stdout.write(skills.join('\n'));
 NODE
