@@ -89,7 +89,7 @@ Run these first because they cover the observed failure mechanism and authority 
 
 **Passing behavior:** retain the ordinary one-PR stewardship path. Do not manufacture stack posture, frontier state, or reconciliation work when none exists.
 
-**Failure:** requiring stack discovery ceremony after standalone state is already proved; changing the original authority/readiness contract for an isolated PR.
+**Failure:** requiring stack discovery ceremony after standalone state is already proved; treating a read-only watch as permission to fix, or requiring fresh permission for scoped fixes in an explicit babysitting request. The simplification revision deliberately distinguishes those intents; readiness still requires complete current provider evidence.
 
 ## Ṣẹ̀dá PR cases
 

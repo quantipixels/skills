@@ -56,7 +56,9 @@ Interaction may navigate/filter/compare/sequence/reveal supplied material but mu
 
 ## Standalone support
 
-Use an existing artifact/project shell when it already owns the need. For standalone HTML artifacts, use the [visual foundation](assets/visual-foundation.css) and [theme control](assets/theme-control.html) unless the host already supplies equivalent behavior. Add the [back-to-top control](assets/back-to-top-control.html), [report control](assets/report-control.html), [collection filter control](assets/collection-filter-control.html), or [carousel control](assets/carousel-control.html) only when that asset's own trigger applies.
+Start standalone artifacts from the [base template](assets/base.html) by default. It includes the minimal header/main layout, foundation styles, linked [favicon](assets/favicon.png), [Quantipixels logo](assets/logo.svg), theme control, and back-to-top control. Copy the template and both images into the artifact directory, keeping the relative image paths valid. Replace the title and heading, set the document language and control labels, and build the supplied representation inside `main`. Use an existing host shell or user-supplied branding when present.
+
+Add the [report control](assets/report-control.html), [collection filter control](assets/collection-filter-control.html), or [carousel control](assets/carousel-control.html) only when that asset's own trigger applies; read only the selected asset before embedding it.
 
 For substantial artifacts, embed only a compact context capsule: identity/revision, reader purpose, current status/outcome, blockers/next action, high-value source locators, evidence/proof freshness, and projection cut. Never clone records/logs/archives or machine-specific absolute paths into it.
 
