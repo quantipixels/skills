@@ -10,28 +10,36 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          fetch-depth: 0
+          ref: 98402375ec5562e1aae19d0a080eacb445a8a09a
           persist-credentials: false
-      - name: Export source and history without credentials
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Prepare pinned build dependencies and observe native install schema
         shell: bash
+        env:
+          DISABLE_TELEMETRY: '1'
         run: |
           set -euo pipefail
-          git bundle create /tmp/qp-audit.bundle --all
-          git archive --format=tar.gz 98402375ec5562e1aae19d0a080eacb445a8a09a > /tmp/qp-audit-source.tar.gz
-          git clone --depth 1 https://github.com/cursor/plugins.git /tmp/cursor-plugins
-          git -C /tmp/cursor-plugins rev-parse HEAD > /tmp/pstack-source-sha.txt
-          tar -czf /tmp/pstack-source.tar.gz -C /tmp/cursor-plugins pstack
-          git clone --depth 1 https://github.com/EveryInc/compound-engineering-plugin.git /tmp/compound-engineering
-          git -C /tmp/compound-engineering rev-parse HEAD > /tmp/compound-source-sha.txt
-          git -C /tmp/compound-engineering archive --format=tar.gz HEAD > /tmp/compound-source.tar.gz
+          mkdir /tmp/qp-render-deps
+          cd /tmp/qp-render-deps
+          printf '%s\n' '{"name":"qp-artifact-graph","version":"0.0.0","private":true,"type":"module"}' > package.json
+          npm install --save-exact esbuild cytoscape
+          npm ls --json > dependency-versions.json
+          tar -czf /tmp/qp-render-deps.tar.gz -C /tmp qp-render-deps
+          export CLAUDE_CONFIG_DIR="$(mktemp -d)"
+          cd "$GITHUB_WORKSPACE"
+          npx --yes @anthropic-ai/claude-code@2.1.260 plugin marketplace add "$GITHUB_WORKSPACE" --scope user
+          npx --yes @anthropic-ai/claude-code@2.1.260 plugin install qp-skills@qp-skills --scope user
+          npx --yes @anthropic-ai/claude-code@2.1.260 plugin marketplace list --json > /tmp/claude-marketplaces.json
+          npx --yes @anthropic-ai/claude-code@2.1.260 plugin list --json > /tmp/claude-plugins.json
+          find "$CLAUDE_CONFIG_DIR" -name plugin.json -o -name installed_plugins.json > /tmp/claude-install-paths.txt
       - uses: actions/upload-artifact@v4
         with:
-          name: qp-audit-checkout
+          name: qp-build-dependencies
           retention-days: 1
           path: |
-            /tmp/qp-audit.bundle
-            /tmp/qp-audit-source.tar.gz
-            /tmp/pstack-source-sha.txt
-            /tmp/pstack-source.tar.gz
-            /tmp/compound-source-sha.txt
-            /tmp/compound-source.tar.gz
+            /tmp/qp-render-deps.tar.gz
+            /tmp/claude-marketplaces.json
+            /tmp/claude-plugins.json
+            /tmp/claude-install-paths.txt
