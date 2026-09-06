@@ -11,8 +11,8 @@ Browse the [documentation](https://quantipixels.com/skills). See [compatibility 
 - Curate frameworks into reasoning. Preserve a named model, standard, or concept when its vocabulary, conceptual structure, authority, or retrieval value materially improves judgment; expose only the QP-relevant subset and do not import the whole framework as ceremony.
 - Constrain material decision surfaces, not ordinary mechanics. A consequential choice that can change accepted behavior, safety, compatibility, ownership/lifecycle, architecture, authority, or material risk/cost must be grounded in current evidence/contract, explicitly owned, or surfaced as unresolved.
 - Kọ Skill authors every capability/resource at the smallest adequate surface: guidance/reference → visible command → native/project/provider tool → focused library → deterministic script → engine only when it carries a substantial owned vertical.
-- Use an obvious outcome owner directly. Use a router only when ownership is genuinely unclear or several independently useful owners need sequencing.
-- Supporting composition belongs behind the active owner unless another owner's independently useful result or separate authority must become visible.
+- Use obvious skills directly, including combinations. Use a router for requested routing/inventory or genuine uncertainty about selection or sequencing.
+- Compose expertise by reference rather than copying instructions or requiring a separate agent, handoff, or report for each skill.
 - Akọsílẹ̀ owns repository-scoped workspace mechanics when that persistence surface is selected; broadly useful owners must not require a repository merely because the workspace is one available durable destination.
 - HTML Artifact creates reader-specific projections of supplied material without duplicating source archives or originating conclusions.
 - Generated workspace state stays outside Git by default.
@@ -133,7 +133,7 @@ The catalogue headings below mirror repository package organization, not semanti
 
 | Skill | Outcome |
 | --- | --- |
-| `alarina` | Inventory available skills and route when ownership is unclear or several independent owner results need sequencing |
+| `alarina` | Inventory available skills and resolve unclear selection or sequencing |
 | `arojinle` | Resolve consequential choices through a user-confirmed decision frontier |
 | `ayewo-igba-ise` | Evidence-backed postmortem for completed/abandoned/disputed work, incidents, sessions, or corpora |
 | `fihanmi` | Visual understanding of supplied/current material through the smallest faithful representation |
@@ -187,4 +187,4 @@ Show a current relationship visually → fihanmi
 Diagnose an observed failure → root-cause
 ```
 
-Use `alarina` when the user asks which skills are available, when the correct owner is unclear, or when the request genuinely needs sequencing across several independently useful owner results.
+Use `alarina` for requested inventory/routing or genuinely unclear selection or sequencing. Combining skills does not by itself require a router.
