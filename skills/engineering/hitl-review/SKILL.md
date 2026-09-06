@@ -31,11 +31,11 @@ Classify each category:
 
 Show the material coverage before specialist work. If the human wants only a walkthrough, no specialist is required; finish with `NO_DECISION`.
 
-For every `required` category, and a `useful` category only when its expected evidence justifies the work, use the obvious exact specialist when ownership is already clear. Use `alarina` only when the correct owner is genuinely unclear, the user asks for routing/inventory, or several independently useful owner results need sequencing. Do not insert `alarina` between `hitl-review` and an obvious specialist merely to restate the route.
+Use the relevant specialist for every `required` category, and for `useful` categories when the evidence justifies the work. Read `alarina` only for unclear selection or requested inventory/routing.
 
 One selected specialist may cover several categories. Respect explicit user choice and each skill's invocation policy; offer explicit-only skills instead of silently invoking them. Pass the exact candidate and review need, preserve each specialist's native result without rewriting it, and keep a required category open when its evidence remains insufficient.
 
-For each specialist actually used, show the category/need, owner, and why its independent result matters. When no repository skill materially improves a review need, use ordinary capability rather than inventing a dependency.
+Identify the specialists used and their contribution to each category. Use ordinary capability where no skill adds value.
 
 ## Review and decide
 
@@ -54,7 +54,7 @@ Record one human disposition:
 - `DEFER`
 - `NEEDS_EVIDENCE`
 
-No disposition authorizes a source, Git, provider, artifact, or other mutation. Use the obvious follow-up owner from the accepted result; use `alarina` only when that owner remains genuinely unclear.
+No disposition authorizes a source, Git, provider, artifact, or other mutation.
 
 Before the final decision:
 
