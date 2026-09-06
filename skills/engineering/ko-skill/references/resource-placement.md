@@ -22,6 +22,12 @@ An engine must carry a substantial deterministic part of the outcome and reduce 
 
 A public install/bootstrap/uninstall entry point may earn its place by providing one safe, stable user invocation even when native tools own its internals.
 
+## Host adapters
+
+Keep reusable behavior in its skill and host-specific selection/loading in a thin adapter. Before choosing a file or setting, establish whether it controls the primary session or a spawned worker, replaces or supplements native instructions, and propagates to children. A worker named `default` is not evidence of primary-agent selection.
+
+Make activation scope explicit, preserve existing instructions and permissions, and prevent inherited coordinator instructions from turning workers into supervisors. Verify syntax and package wiring separately from authenticated loading, delegation, and continuation; a valid configuration is not runtime proof.
+
 ## Templates, data, and assets
 
 Keep a template when a stable recurring shape prevents costly omissions and no project/native scaffold already owns it. Remove arbitrary defaults, optional-empty sections, and duplicated procedure.
