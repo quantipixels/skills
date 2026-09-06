@@ -41,7 +41,7 @@ Keep the **current gate** explicit: the next material progression judgment the h
 
 Pin outcome, scope, constraints, assumptions, non-goals, evidence, risks, and open uncertainties. Read only current project/domain evidence that can materially change the plan.
 
-When unresolved terminology, conceptual boundaries, relationships, or invariants make the initiative itself ambiguous enough that planning would otherwise invent meaning, use `amose` for that independent domain-model clarification and consume its resolved model delta. Reading already-established project vocabulary does not require an `amose` handoff.
+Use `amose` only when unresolved domain meaning would make planning invent terms, boundaries, relationships, or invariants. Supply the ambiguity and current evidence; consume its resolved model delta. Read established vocabulary directly.
 
 When the initiative is too uncertain to state responsibly at full depth, read [progressive shaping](references/progressive-shaping.md). Preserve known-but-not-yet-formulatable territory without inventing future requirements.
 
@@ -109,8 +109,8 @@ After a material result changes plan meaning, update the semantic plan first. Re
 
 ## 6. Reconcile and close
 
-Before `Closed`, require the Decision Frontier to remain empty, no blocking plan gap, current accepting delivery/proof for every in-scope obligation, explicit residual deferrals/limits, and no unresolved durable-knowledge obligation that actually meets the promotion threshold below.
+Before `Closed`, require the Decision Frontier to remain empty, no blocking plan gap, current accepting delivery/proof for every in-scope obligation, explicit residual deferrals/limits, and no unresolved durable-knowledge obligation required by the governing contract or owning result.
 
-Treat the initiative's normal artifacts and history—plan, specification, tickets, PR/MR, review, commits, and provider history—as sufficient for ordinary implementation choices, rationale, findings, and reversible portfolio/design changes. Read [durable knowledge reconciliation](references/durable-reconciliation.md) only when the initiative established or changed stable governing knowledge that future work must rely on outside those normal lifecycle artifacts, or when an existing durable source of truth became materially stale.
+Keep ordinary rationale in normal initiative artifacts. Read [durable knowledge reconciliation](references/durable-reconciliation.md) only when stable governing knowledge must survive beyond them or an existing durable authority is materially stale; the knowledge owner decides admission and reconciliation.
 
 Before user-visible handoff, align plan status, current gate, Decision Frontier, delivery summary, evidence/projection freshness, weakest material claim or blocker, remaining work, and next action. When a human view is required, consume HTML Artifact's current result against the initiative brief; a missing or stale view does not satisfy that deliverable. Use [suggested direction](references/suggested-direction.md) only when a separate build-direction handoff is actually useful.

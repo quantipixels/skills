@@ -39,7 +39,9 @@ When a term or context relationship is confirmed and write authority exists, rec
 
 Domain clarification does not imply durable promotion. Ordinary implementation rationale, one-off discoveries, temporary decisions, and useful history stay in their normal plan/spec/PR/history surfaces.
 
-Only when stable governing knowledge independently needs durable reconciliation, use the project's existing destination or user-selected equivalent. Repository-specific conditional contracts are:
+Admit new durable knowledge only when current evidence supports it, it is stable beyond the initiative, and future work needs it to avoid a consequential wrong action rather than mere rediscovery. Updating an existing stale authority is separate from admitting a new record; apply that source's maintenance or supersession rules.
+
+Use the project's existing destination or user-selected equivalent. For repository work, load only the applicable record contract:
 
 - [learnings](references/learnings.md) — stable, non-obvious recurring project knowledge whose loss risks consequential wrong action;
 - [nongoals](references/nongoals.md) — durable project-wide exclusions; and
