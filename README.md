@@ -49,7 +49,7 @@ claude --agent qp-skills:qp
 
 The QP agent is a thin host adapter over `alarina`; direct skill invocation and skill-only hosts remain first-class.
 
-For requested task/subagent supervision, invoke `/qp-skills:pepeye <goal>` in Claude Code or `$pepeye <goal>` in Codex. Pepeye runs in the main conversation and reports a compact worker table. See [Pepeye host setup](skills/experimental/pepeye/references/hosts.md) for installation, candidate testing, and available controls; no separate manager agent is required.
+For a coordinator-led session, use `claude --agent qp-skills:pepeye`, or `codex --profile pepeye` after installing the [shipped Codex profile](skills/experimental/pepeye/references/hosts.md). The same guide covers explicit startup defaults, candidate testing, prompt-replacement boundaries, and rollback. Direct `/qp-skills:pepeye <goal>` and `$pepeye <goal>` remain task-scoped options. Pepeye stays in the main conversation and reports a compact worker table; installation alone changes no default.
 
 ## Uninstall
 
@@ -129,7 +129,7 @@ Experimental skills participate in normal first-party routing when their owned o
 | `brand` | Durable brand voice/identity/logo/icon/assets source of truth |
 | `dogfood` | Real-browser verification of changed user journeys |
 | `ideate` | Grounded mechanism-diverse possibilities before selection |
-| `pepeye` | Requested main-agent supervision, reusable workers, model/effort selection, timely guidance, and compact team reporting without replacing specialist owners |
+| `pepeye` | Opt-in session or task coordinator, reusable workers, model/effort selection, timely guidance, and compact team reporting without replacing specialist owners |
 | `pese` | Explicitly activated private serving of one bounded local resource |
 | `prototype` | Disposable truthful decision instrument |
 | `root-cause` | Minimal evidence-backed causal mechanism/set for an observed failure |
