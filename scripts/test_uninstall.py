@@ -23,7 +23,7 @@ class UninstallSmokeTest(unittest.TestCase):
         if malformed:
             lock_path.write_text("{not json")
         else:
-            lock_path.write_text(json.dumps(lock))
+            lock_path.write_text(json.dumps({"version": 3, **lock} if isinstance(lock, dict) else lock))
 
         bin_dir = Path(tmp.name) / "bin"
         bin_dir.mkdir()
@@ -45,7 +45,7 @@ lock_path = Path(sys.argv[1])
 args = sys.argv[2:]
 lock = json.loads(lock_path.read_text())
 try:
-    start = args.index('--yes') + 1
+    start = args.index('--yes', 1) + 1
 except ValueError:
     raise SystemExit('missing --yes')
 for name in args[start:]:
@@ -56,6 +56,8 @@ PY
         )
         stub.chmod(0o755)
         env = os.environ.copy()
+        for key in ("XDG_STATE_HOME", "CLAUDE_CONFIG_DIR", "CODEX_HOME"):
+            env.pop(key, None)
         env["HOME"] = str(home)
         env["NPX_LOG"] = str(log)
 
@@ -88,7 +90,7 @@ PY
         remaining = json.loads(lock_path.read_text())["skills"]
         self.assertEqual(set(remaining), {"other"})
         invocation = log.read_text()
-        self.assertIn("skills remove --global --yes", invocation)
+        self.assertIn("--yes skills@1.5.23 remove --global --yes", invocation)
         self.assertIn("qp-one", invocation)
         self.assertIn("qp-two", invocation)
         self.assertIn("qp-three", invocation)
@@ -124,7 +126,7 @@ PY
                 result, target, log = self.run_uninstall(lock)
                 self.assertNotEqual(result.returncode, 0)
                 self.assertFalse(log.exists())
-                self.assertEqual(json.loads(target.read_text()), lock)
+                self.assertEqual(json.loads(target.read_text()), {"version": 3, **lock})
 
     def test_native_failure_is_not_reported_as_removal(self):
         result, target, _ = self.run_uninstall(

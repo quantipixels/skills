@@ -22,24 +22,34 @@ Browse the [documentation](https://quantipixels.com/skills). See [compatibility 
 
 ## Install
 
+For the global Codex/Claude **skill-only** bundle on macOS or Linux:
+
 ```bash
-npx skills add quantipixels/skills --global
+installer=$(mktemp)
+curl -fsSL https://raw.githubusercontent.com/quantipixels/skills/ori/scripts/install.sh -o "$installer"
+bash "$installer" --codex --dry-run
+bash "$installer" --codex --prune
+rm "$installer"
 ```
 
-This is the portable Skills CLI entrypoint; the exact destination/loading behavior is owned by the current CLI and selected agent. QP release CI currently proves repository discovery and Codex project installation, while other host paths remain bounded by the [compatibility matrix](docs/compatibility.md).
+Requires Node.js 18+, npx, curl, and Git. Add `--claude` for Claude Code, or use both host flags. `--ref` selects a published branch or tag (default `ori`); the pinned CLI cannot clone a raw commit SHA. The helper resolves that ref and verifies installed files against that revision before optional cleanup. Re-running refreshes QP-owned copies; keep local edits in a checkout.
 
-Local checkout:
+`--prune` removes retired QP-owned names across global Skills CLI targets, including unselected hosts. Preserve independently managed same-name copies first. The helper respects `XDG_STATE_HOME` and `CLAUDE_CONFIG_DIR`, and installs no hooks, main-agent profiles, or startup defaults. Do not run competing installers concurrently.
+
+For a local checkout, uncommitted work, or other native installation options:
 
 ```bash
 npx skills add .
 ```
 
-Claude Code:
+For Claude Code's plugin **including Pepeye**, use this instead of the Claude skill-only path:
 
 ```bash
 claude plugin marketplace add quantipixels/skills
 claude plugin install qp-skills@qp-skills
 ```
+
+Do not install QP through both Claude paths. See [compatibility claims](docs/compatibility.md) for the tested host boundaries.
 
 ## Main agent: Pepeye
 
@@ -79,7 +89,7 @@ For an explicitly requested startup default, merge the same instruction block at
 
 ### Direct use and verification
 
-Without selecting a main agent, invoke exact skills normally; use `/qp-skills:pepeye <goal>` in Claude or `$pepeye <goal>` in Codex for delegated-work coordination. Skills do not require a Pepeye agent installation.
+Without selecting a main agent, invoke exact skills normally; use `/qp-skills:pepeye <goal>` in the Claude plugin, `/pepeye <goal>` in its skill-only installation, or `$pepeye <goal>` in Codex for delegated-work coordination. Skills do not require a Pepeye agent installation.
 
 See the [runtime check](docs/compatibility.md#pepeye-runtime-check) before claiming authenticated behavior. To undo a default, restore only the changed setting/instruction block and start a fresh session; omitting `--agent`/`--profile` alone does not undo a configured default. Existing sessions may retain their role. Skill uninstallation is separate.
 
@@ -89,7 +99,7 @@ See the [runtime check](docs/compatibility.md#pepeye-runtime-check) before claim
 curl -fsSL https://raw.githubusercontent.com/quantipixels/skills/ori/scripts/uninstall.sh | bash
 ```
 
-The entrypoint removes only globally installed skills whose lock-file source is `quantipixels/skills`; unrelated installed skills remain untouched.
+Use `bash scripts/uninstall.sh --dry-run` to preview. Removal selects global lock entries owned by `quantipixels/skills` and uses the same pinned CLI from an isolated working directory. Native cleanup applies selected names across host directories: preserve independently managed same-name copies before removal. Project installs, native plugins, main-agent profiles, and startup settings are separate.
 
 ## Repository-local workspace
 
