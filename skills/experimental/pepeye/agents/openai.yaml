@@ -1,3 +1,3 @@
 interface:
-  display_name: "Pepeye"
-  short_description: "Main-agent coordination with reusable subagents"
+  display_name: "Pepeye coordination"
+  short_description: "Supervise delegated work and integrate results"

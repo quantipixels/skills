@@ -41,15 +41,47 @@ claude plugin marketplace add quantipixels/skills
 claude plugin install qp-skills@qp-skills
 ```
 
-Optional QP main agent after plugin installation:
+## Main agent: Pepeye
+
+Pepeye is QP's single general conversational agent. It answers ordinary requests directly and loads useful skills on demand. The separately invocable `pepeye` **skill** coordinates delegated work; selecting the **agent** does not preload that workflow or require workers for every request. `alarina` remains optional skill inventory/routing, not a second agent.
+
+### Claude Code
+
+After plugin installation:
 
 ```bash
-claude --agent qp-skills:qp
+claude --agent qp-skills:pepeye
 ```
 
-The QP agent is a thin host adapter over `alarina`; direct skill invocation and skill-only hosts remain first-class.
+For an unmerged checkout, launch from the target project with `claude --plugin-dir /absolute/path/to/skills --agent qp-skills:pepeye`. To select it by default, merge `"agent": "qp-skills:pepeye"` into the requested `.claude/settings.json` scope. Installing QP alone changes no default.
 
-For a coordinator-led session, use `claude --agent qp-skills:pepeye`, or `codex --profile pepeye` after installing the [shipped Codex profile](skills/experimental/pepeye/references/hosts.md). The same guide covers explicit startup defaults, candidate testing, prompt-replacement boundaries, and rollback. Direct `/qp-skills:pepeye <goal>` and `$pepeye <goal>` remain task-scoped options. Pepeye stays in the main conversation and reports a compact worker table; installation alone changes no default.
+**Migration:** replace `qp-skills:qp` with `qp-skills:pepeye` in existing startup commands/settings. The old `qp` agent is removed, not retained as a competing alias. QP package names and `.qp` workspace paths are unchanged.
+
+Claude's [main-agent mode](https://code.claude.com/docs/en/sub-agents#invoke-subagents-explicitly) replaces its built-in system prompt; `model: inherit` inherits only the model. Project instructions still load. Use ordinary skill invocation instead when keeping the native prompt matters.
+
+### Codex
+
+Install the required skills in the target project, or keep an existing QP installation:
+
+```bash
+npx skills add quantipixels/skills --agent codex --skill '*' --copy -y
+```
+
+On Codex **0.134.0+**, copy [the main-agent profile](agents/codex/pepeye.config.toml) to `$CODEX_HOME/pepeye.config.toml` (normally `~/.codex/pepeye.config.toml`), then run:
+
+```bash
+codex --profile pepeye
+```
+
+Preserve existing profiles and merge any effective `developer_instructions` before selection: profile strings replace rather than append. The profile ships with the repository, not the Skills CLI's skill-only installation. For an unmerged candidate, install skills from that checkout and copy its profile. See [current profile loading](https://developers.openai.com/codex/config-advanced); older versions need their own documented format.
+
+For an explicitly requested startup default, merge the same instruction block at the top level of the trusted project's `.codex/config.toml` or the user config. Preserve existing instructions and permissions. This does not create a spawned-worker definition or replace built-in instructions through `model_instructions_file`.
+
+### Direct use and verification
+
+Without selecting a main agent, invoke exact skills normally; use `/qp-skills:pepeye <goal>` in Claude or `$pepeye <goal>` in Codex for delegated-work coordination. Skills do not require a Pepeye agent installation.
+
+See the [runtime check](docs/compatibility.md#pepeye-runtime-check) before claiming authenticated behavior. To undo a default, restore only the changed setting/instruction block and start a fresh session; omitting `--agent`/`--profile` alone does not undo a configured default. Existing sessions may retain their role. Skill uninstallation is separate.
 
 ## Uninstall
 
@@ -129,7 +161,7 @@ Experimental skills participate in normal first-party routing when their owned o
 | `brand` | Durable brand voice/identity/logo/icon/assets source of truth |
 | `dogfood` | Real-browser verification of changed user journeys |
 | `ideate` | Grounded mechanism-diverse possibilities before selection |
-| `pepeye` | Opt-in session or task coordinator, reusable workers, model/effort selection, timely guidance, and compact team reporting without replacing specialist owners |
+| `pepeye` | Delegated-work coordination: staffing, model/effort selection, active supervision, worker reuse, and integration |
 | `pese` | Explicitly activated private serving of one bounded local resource |
 | `prototype` | Disposable truthful decision instrument |
 | `root-cause` | Minimal evidence-backed causal mechanism/set for an observed failure |

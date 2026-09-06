@@ -19,7 +19,6 @@
     "productivity"
   ],
   "agents": [
-    "./agents/qp.md",
     "./agents/pepeye.md"
   ],
   "skills": [

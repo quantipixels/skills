@@ -111,14 +111,15 @@ class PackageIntegrityTests(unittest.TestCase):
 class PepeyeAdapterTests(unittest.TestCase):
     """Check loadable wiring; these tests do not prove model behavior."""
 
-    def test_claude_entry_preloads_main_context_skill(self):
+    def test_single_main_agent_with_lazy_skill_loading(self):
         repo = Path(__file__).resolve().parents[2]
         manifest = json.loads((repo / '.claude-plugin/plugin.json').read_text())
-        self.assertIn('./agents/pepeye.md', manifest['agents'])
+        self.assertEqual(manifest['agents'], ['./agents/pepeye.md'])
+        self.assertEqual(sorted(p.name for p in (repo / 'agents').glob('*.md')), ['pepeye.md'])
         agent = yaml.safe_load((repo / 'agents/pepeye.md').read_text().split('---', 2)[1])
         self.assertEqual(agent['name'], 'pepeye')
         self.assertEqual(agent['model'], 'inherit')
-        self.assertEqual(agent['skills'], ['qp-skills:pepeye'])
+        self.assertEqual(agent.get('skills', []), [])
         skill_path = './skills/experimental/pepeye'
         self.assertIn(skill_path, manifest['skills'])
         skill = yaml.safe_load((repo / skill_path / 'SKILL.md').read_text().split('---', 2)[1])
@@ -128,12 +129,15 @@ class PepeyeAdapterTests(unittest.TestCase):
 
     def test_codex_profile_only_sets_developer_instructions(self):
         repo = Path(__file__).resolve().parents[2]
-        path = repo / 'skills/experimental/pepeye/assets/codex/pepeye.config.toml'
+        path = repo / 'agents/codex/pepeye.config.toml'
         profile = tomllib.loads(path.read_text(encoding='utf-8'))
         # Prevent a profile from quietly replacing native prompts, permissions, or models.
         self.assertEqual(set(profile), {'developer_instructions'})
         self.assertIsInstance(profile['developer_instructions'], str)
         self.assertTrue(profile['developer_instructions'].strip())
+        # The two native formats must not drift into competing main-agent roles.
+        body = (repo / 'agents/pepeye.md').read_text(encoding='utf-8').split('---', 2)[2]
+        self.assertEqual(profile['developer_instructions'].strip(), body.strip())
 
 
 if __name__ == '__main__':

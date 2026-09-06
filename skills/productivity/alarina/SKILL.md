@@ -5,7 +5,7 @@ description: Inventory the available skills and select the shortest useful owner
 
 # Alárinà
 
-Route only when routing itself is needed. If one skill clearly owns the requested outcome, use it directly. A user-selected main agent remains the conversational owner while routed specialists own their results; routing does not require replacing that agent or spawning another coordinator.
+Route only when routing itself is needed. If one skill clearly owns the requested outcome, use it directly.
 
 For an inventory request, list the available skills and their native outcomes. For routing, use the compact map below as orientation rather than a mandatory pipeline or exhaustive catalogue.
 
@@ -54,7 +54,7 @@ interface direction judgment   → amoye-ui-ux
 durable identity/brand meaning → brand
 real-browser changed journeys  → dogfood
 
-session/task supervision selected → pepeye
+delegated-work coordination     → pepeye
 portable session transfer       → handoff
 ```
 
@@ -71,7 +71,7 @@ Keep these distinctions explicit when they prevent a plausible wrong route:
 - `salaye` / `fihanmi` / `html-artifact` / `slides` / `prototype` — explanation / visual understanding / browser information projection / presentation / disposable experiential decision evidence.
 - `amose` / `iwadi` / `irinse` — domain-model establishment/clarification plus exceptional durable project knowledge / reusable research conclusion / companion engineering-tool readiness or bounded evidence.
 - `amoye-ui-ux` / `brand` / `alaga` — interface direction / durable identity / UI implementation.
-- `pepeye` / `atona` / `handoff` — explicitly selected session/task coordination / initiative lifecycle / portable context transfer. Startup selection satisfies Pepeye's supervision intent; installation alone does not. Delegated workers are not additional coordinators.
+- `pepeye` / `atona` / `handoff` — delegated-work coordination / initiative lifecycle / portable context transfer.
 - `yoruba-glossary` / `technical-writing` — technical term confirmation and authorized glossary maintenance / clarity and structure of technical prose. Ordinary reuse of existing terms does not require glossary work.
 
 Use `scope-guard` only when explicit scope steering is independently useful; it is not a mandatory stage.
