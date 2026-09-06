@@ -77,7 +77,7 @@ Use fresh contexts. These cases intentionally cover both obvious owners and clos
 | D13 | Clarify conflicting project/domain terminology | `amose` | `arojinle`, ordinary lookup |
 | D14 | Produce an implementation-independent behavior contract | `seda-spec` | `architect`, `seda-ticket` |
 | D15 | Design a consequential module/interface/system structure | `architect` | `pare`, `alaga` |
-| D16 | Explicitly supervise the whole task across owners | `pepeye` | `atona`, `alarina` |
+| D16 | Coordinate delegated work: brief, supervise, reuse workers, and integrate their results | `pepeye` coordination skill | `atona`, `alarina` |
 
 Add a case only when a real recurring owner collision or distinct public outcome is not discriminated by the current set. Do not expand to one row per skill for coverage theatre.
 

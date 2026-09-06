@@ -15,7 +15,7 @@ Give a fresh agent enough verified context to continue without repeating settled
 
 Use this as a coverage check, not a fixed form. Omit inapplicable fields and link existing artifacts rather than copying them. The handoff is the result; use a file only when the user or host needs portable/durable transport, otherwise return it inline or through the host's native surface. Do not change source work or existing artifacts just to transfer context.
 
-Preserve owner-reported lifecycle, freshness, and next-owner decisions. Report an identity mismatch as a risk; do not independently reinterpret another owner's status or choose a new route. When `pepeye` is active, carry its exact supervision checkpoint and required owner results without advancing its process.
+Preserve owner-reported lifecycle, freshness, and next-owner decisions. Report an identity mismatch as a risk; do not independently reinterpret another owner's status or choose a new route. For ongoing delegated work, include useful handles, their host/session and last observed state, cancellation decisions, and enough context to replace unavailable workers. A saved handle is not proof of a resumable run; refresh live state before reuse.
 
 Verify sources before calling state confirmed. If a source is unavailable, state the gap, retain only independently verified facts, and make the first action obtain the smallest missing recovery context. Mark potentially stale information and remove credentials and unnecessary sensitive data.
 

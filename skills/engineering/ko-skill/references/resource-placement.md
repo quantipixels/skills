@@ -22,6 +22,12 @@ An engine must carry a substantial deterministic part of the outcome and reduce 
 
 A public install/bootstrap/uninstall entry point may earn its place by providing one safe, stable user invocation even when native tools own its internals.
 
+## Host adapters
+
+Keep conversational identity in the agent entrypoint, task methods in skills, and installation/default selection in host setup. Do not create another public agent merely to expose one capability of the existing main agent.
+
+Before selecting a file or setting, establish whether it controls the primary session or a worker, replaces or supplements native instructions, and propagates to children. Preserve existing instructions and permissions. Repeat a minimal bootstrap or role guard only when independently loaded host paths need it; avoid another shared runtime merely to remove those few lines. Verify package wiring separately from authenticated behavior.
+
 ## Templates, data, and assets
 
 Keep a template when a stable recurring shape prevents costly omissions and no project/native scaffold already owns it. Remove arbitrary defaults, optional-empty sections, and duplicated procedure.
