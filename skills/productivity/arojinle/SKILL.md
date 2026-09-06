@@ -5,6 +5,8 @@ description: Resolve consequential choices through a relentless, complete decisi
 
 # Àròjinlẹ̀
 
+Read `amose`.
+
 Relentlessly test the material decision surface until no consequential branch remains silently assumed. Map it as a **decision tree**: every decision branches into the decisions that depend on it.
 
 Work the tree in **rounds**. The **frontier** is every decision whose prerequisites are already settled. Ask the whole answerable frontier in one round, number the questions, include only context that can change understanding, and give a recommended answer with the reason. Then wait for the user's answers before advancing dependent branches.
@@ -15,11 +17,7 @@ Do not ask a question whose answer depends on another still-open question in the
 
 Finding facts is your job, never the user's. Resolve bounded facts directly; isolate noisy lookup only when it materially protects the decision context. Let only dependent questions wait while independent frontier questions continue.
 
-Use another skill only when its independent result is needed to form or resolve a frontier decision. Keep the relentless interview and decision-tree ownership in `arojinle`; supporting capabilities do not become separate interview stages.
-
-When unresolved domain meaning changes the decision frontier and current evidence can clarify it without a consequential user choice, use `amose` and consume its model delta. Read established vocabulary directly. Keep consequential choices with the user in this interview; a supporting owner returns unresolved choices here rather than starting another interview.
-
-As confirmed decisions change the maintained domain model, pass only the confirmed delta and write authority to `amose` for immediate reconciliation when authorized. Do not postpone accepted vocabulary until the final recap. Amọ̀ṣẹ́ owns reconciliation and durable-record policy; ordinary decision rationale stays with this decision result.
+Use other skills only when their independent results are needed to form or resolve a frontier decision. Keep the relentless interview and decision-tree ownership in `arojinle`; supporting capabilities do not become separate interview stages.
 
 When a frontier choice has several credible alternatives and at least two independent criteria can materially change the recommendation, use a compact decision-specific rubric. Apply hard gates first; derive only the criteria that matter to this decision; show the decisive factor, strongest credible alternative, and material counterevidence. Do not manufacture scores for a trivial/already-determined choice or let an average hide a gate. The rubric supports the recommendation; the decision remains the user's.
 
@@ -33,4 +31,4 @@ Conversation is the primary view for a small or single-round decision set. Use `
 
 Before declaring the material frontier empty, challenge the current tree for consequential assumptions, missing branches, contradictory decisions, and dependencies that were never made explicit.
 
-Finish only when that challenge leaves no unresolved material branch and the user confirms shared understanding. Return confirmed decisions, material assumptions/evidence, decision-changing alternatives/criteria when they constrained the choice, explicit deferrals/re-entry conditions, and the next outcome boundary. Send only any unprocessed confirmed model delta to `amose` under the same authority; do not replay completed reconciliation. Do not execute resulting delivery inside `arojinle`.
+Finish only when that challenge leaves no unresolved material branch and the user confirms shared understanding. Return confirmed decisions, material assumptions/evidence, decision-changing alternatives/criteria when they constrained the choice, explicit deferrals/re-entry conditions, and the next outcome boundary. Do not execute resulting delivery inside `arojinle`.
