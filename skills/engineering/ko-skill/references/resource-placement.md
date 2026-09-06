@@ -24,9 +24,9 @@ A public install/bootstrap/uninstall entry point may earn its place by providing
 
 ## Host adapters
 
-Keep reusable behavior in its skill and host-specific selection/loading in a thin adapter. Before choosing a file or setting, establish whether it controls the primary session or a spawned worker, replaces or supplements native instructions, and propagates to children. A worker named `default` is not evidence of primary-agent selection.
+Keep conversational identity in the agent entrypoint, task methods in skills, and installation/default selection in host setup. Do not create another public agent merely to expose one capability of the existing main agent.
 
-Make activation scope explicit, preserve existing instructions and permissions, and prevent inherited coordinator instructions from turning workers into supervisors. Verify syntax and package wiring separately from authenticated loading, delegation, and continuation; a valid configuration is not runtime proof.
+Before selecting a file or setting, establish whether it controls the primary session or a worker, replaces or supplements native instructions, and propagates to children. Preserve existing instructions and permissions. Repeat a minimal bootstrap or role guard only when independently loaded host paths need it; avoid another shared runtime merely to remove those few lines. Verify package wiring separately from authenticated behavior.
 
 ## Templates, data, and assets
 

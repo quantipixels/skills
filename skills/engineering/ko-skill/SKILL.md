@@ -17,7 +17,11 @@ If a new identity is credible but its independent value remains unproved, keep t
 
 ## Shape the skill
 
-State the outcome, scope, completion evidence, and consequential exceptions. Supply useful expertise and examples, not just behavioral restrictions. Let a capable model choose routine search, Git, editing, and tool mechanics.
+Establish the focal point: the one result or steering effect the skill owns and the recurring non-obvious decisions it improves. Keep instructions, references, tools, state, and reports only when they strengthen that result or protect a necessary boundary. Move adjacent-owner work out; leave routine mechanics to the model and native tools.
+
+Compare competing identities at the same layer by outcome, decision surface, and completion evidence, not shared words. Merge or internalize a redundant identity only after preserving independently useful results and independently loaded safety boundaries. A conversational agent, a coordination skill, and a worker are different roles, not three copies of one skill.
+
+State the scope, completion evidence, and consequential exceptions. Supply useful expertise and examples, not just behavioral restrictions.
 
 Preserve deep-module composition: one simple entry point may carry substantial selectively loaded expertise or tooling. Supporting skills own their method and proof; pass what they need without copying their workflow or redefining the caller's authority, meaning, or acceptance. Add stages, handoffs, state, or fixed output fields only when they protect a distinct result or consumer.
 
