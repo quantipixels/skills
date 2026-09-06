@@ -55,7 +55,7 @@ status: Draft
 
 ## Durable reconciliation
 
-<each material lifecycle insight with source identity, PROMOTE | ALREADY_REPRESENTED | LIFECYCLE_ONLY | NOT_APPLICABLE | BLOCKED, destination/owner, and exact proof; record an evidence-backed none when no durable obligation exists>
+<omit this entire section unless a required durable-knowledge obligation exists; for each required obligation, give the owner, destination, current result/proof, and any unresolved authority or evidence gap>
 
 ## Material history
 
