@@ -9,3 +9,5 @@ Simplify skill composition throughout entrypoints and references to direct use o
 Use supervised subagents for substantial analysis, research, and expert work in long-running skills, keeping the main context focused.
 
 Use semantic color in HTML Artifact diagrams and data views, including Mermaid, while preserving contrast, non-color cues, and consistent meaning across themes.
+
+Restore Alárinà as the QP-specific router with named entrypoints and useful work paths.

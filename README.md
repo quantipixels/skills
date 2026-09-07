@@ -56,7 +56,7 @@ Removal verifies recorded links and installed content before deleting anything. 
 
 ## Use
 
-Use the skill that helps achieve the requested result. Common entrypoints are `alaga` for implementation, `atunwo` for review, `atona` for planning, `arojinle` for consequential choices, `amose` for domain modelling, and `html-artifact` for browser projections. `arojinle` uses `amose` naturally during its interview. Use `alarina` for inventory or genuinely uncertain selection, not every combination.
+Use the skill that helps achieve the requested result. Common entrypoints are `alaga` for implementation, `atunwo` for review, `atona` for planning, `arojinle` for consequential choices, `amose` for domain modelling, and `html-artifact` for browser projections. `arojinle` uses `amose` naturally during its interview. Use [`alarina`](skills/alarina/SKILL.md) for QP entrypoints, useful skill combinations, and the next route from your current work.
 
 The `pepeye` skill is independently usable for staffing, model/effort selection, supervision, worker reuse, and integration. It is a coordination method, not a second conversational identity. Native hosts own tools, permissions, and worker sessions; unavailable controls remain explicit limitations.
 
