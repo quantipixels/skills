@@ -80,10 +80,15 @@ class ControlBrowserProof(unittest.TestCase):
             requests = []
             page.on('request', lambda request: requests.append(request.url))
             page.goto(standalone.as_uri())
-            logo = page.get_by_role('img', name='Quanti Pixels', exact=True)
+            brand = page.get_by_role('img', name='Quanti Pixels Skills', exact=True)
+            expect(brand).to_be_visible()
+            logo = page.locator('.artifact-brand > svg')
             expect(logo).to_be_visible()
+            expect(logo).to_have_attribute('class', 'brand-logo')
+            expect(logo).to_have_attribute('aria-hidden', 'true')
             box = logo.bounding_box()
             self.assertGreater(box['width'], 0)
+            self.assertAlmostEqual(box['width'], 155, delta=1)
             view = [float(v) for v in logo.get_attribute('viewBox').replace(',', ' ').split()]
             self.assertAlmostEqual(box['width'] / box['height'], view[2] / view[3], places=2)
             self.assertLessEqual(page.evaluate('document.documentElement.scrollWidth'), 320)
@@ -107,7 +112,9 @@ class ControlBrowserProof(unittest.TestCase):
         page.emulate_media(media='print')
         expect(page.locator('html')).to_have_css('color-scheme', 'light')
         expect(page.locator('.artifact-brand')).to_have_css('background-color', 'rgba(0, 0, 0, 0)')
-        expect(page.locator('.artifact-brand [fill="currentColor"]').first).to_have_css('fill', 'rgb(17, 17, 17)')
+        expect(page.locator('.artifact-brand [fill="#ffffff"]').first).to_have_css('fill', 'rgb(17, 17, 17)')
+        expect(page.locator('.artifact-brand [stroke="#ffffff"]').first).to_have_css('stroke', 'rgb(17, 17, 17)')
+        expect(page.locator('.artifact-brand [stroke="#d52e1e"]')).to_have_css('stroke', 'rgb(213, 46, 30)')
         expect(page.locator('[data-theme-toggle]')).to_be_hidden()
         expect(page.locator('[data-back-to-top]')).to_be_hidden()
 

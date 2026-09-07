@@ -252,11 +252,13 @@ overflow, reduced-motion, and print plumbing without choosing an aesthetic.
     .artifact-shell { max-inline-size: 72rem; margin-inline: auto; }
     .artifact-header { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
     .artifact-brand { display: block; flex-shrink: 0; padding: 0.5rem 0.75rem; border-radius: 0.25rem; background: #111; color: #fff; }
-    .artifact-brand > svg { display: block; inline-size: 125px; }
+    .artifact-brand > svg { display: block; inline-size: 155px; }
     main { margin-block-start: 2rem; }
     @media print {
       html[data-theme], :root { color-scheme: light; }
       .artifact-brand { background: transparent; color: #111; }
+      .artifact-brand [stroke="#ffffff"] { stroke: #111; }
+      .artifact-brand [fill="#ffffff"] { fill: #111; }
     }
   </style>
 </head>
@@ -264,23 +266,22 @@ overflow, reduced-motion, and print plumbing without choosing an aesthetic.
   <a class="skip-link" href="#artifact-content">Skip to content</a>
   <div class="artifact-shell">
     <header class="artifact-header" id="artifact-top" data-back-to-top-target tabindex="-1">
-      <!-- Wordmark source: https://quantipixels.com/assets/brand/logo-full-white.svg; geometry preserved; white foreground uses currentColor. -->
-      <div class="artifact-brand">
-        <svg role="img" aria-label="Quanti Pixels" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 132" aria-labelledby="artifact-brand-title">
-  <title id="artifact-brand-title">Quanti Pixels</title>
-  <g fill="none" stroke-width="9" stroke-linecap="round" stroke-linejoin="round">
-    <g stroke="currentColor">
-      <circle cx="45" cy="42" r="27"/>
-      <circle cx="115" cy="42" r="27"/>
-      <path d="M8 42h10M142 42h10"/>
-      <path d="M72 42v53M88 42v53"/>
-    </g>
-    <circle cx="45" cy="65" r="6.5" fill="currentColor" stroke="none"/>
-    <circle cx="115" cy="65" r="6.5" fill="currentColor" stroke="none"/>
-    <path stroke="#d52e1e" d="M41 108Q80 134 119 108"/>
-  </g>
-  <text x="178" y="78" fill="currentColor" font-family="Arial, Helvetica, sans-serif" font-size="48" font-weight="700" letter-spacing="-1.5">quanti pixels</text>
-</svg>
+      <!-- Brand mark copied from the live https://quantipixels.com/skills header. -->
+      <div class="artifact-brand" role="img" aria-label="Quanti Pixels Skills">
+        <svg class="brand-logo" viewBox="0 0 310 132" width="155" height="66" aria-hidden="true" focusable="false">
+        <g fill="none" stroke-width="9" stroke-linecap="round" stroke-linejoin="round">
+          <g stroke="#ffffff">
+            <circle cx="45" cy="42" r="27"/>
+            <circle cx="115" cy="42" r="27"/>
+            <path d="M8 42h10M142 42h10"/>
+            <path d="M72 42v53M88 42v53"/>
+          </g>
+          <circle class="brand__gaze-dot" cx="45" cy="65" r="6.5" fill="#ffffff" stroke="none"/>
+          <circle class="brand__gaze-dot" cx="115" cy="65" r="6.5" fill="#ffffff" stroke="none"/>
+          <path stroke="#d52e1e" d="M41 108Q80 134 119 108"/>
+        </g>
+        <text x="178" y="78" fill="#ffffff" font-family="Arial, Helvetica, sans-serif" font-size="48" font-weight="700" letter-spacing="-1.5">skills</text>
+      </svg>
       </div>
 <button
   class="theme-toggle"

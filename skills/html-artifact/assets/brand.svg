@@ -1,15 +1,14 @@
-<svg role="img" aria-label="Quanti Pixels" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 132" aria-labelledby="artifact-brand-title">
-  <title id="artifact-brand-title">Quanti Pixels</title>
-  <g fill="none" stroke-width="9" stroke-linecap="round" stroke-linejoin="round">
-    <g stroke="currentColor">
-      <circle cx="45" cy="42" r="27"/>
-      <circle cx="115" cy="42" r="27"/>
-      <path d="M8 42h10M142 42h10"/>
-      <path d="M72 42v53M88 42v53"/>
-    </g>
-    <circle cx="45" cy="65" r="6.5" fill="currentColor" stroke="none"/>
-    <circle cx="115" cy="65" r="6.5" fill="currentColor" stroke="none"/>
-    <path stroke="#d52e1e" d="M41 108Q80 134 119 108"/>
-  </g>
-  <text x="178" y="78" fill="currentColor" font-family="Arial, Helvetica, sans-serif" font-size="48" font-weight="700" letter-spacing="-1.5">quanti pixels</text>
-</svg>
+<svg class="brand-logo" viewBox="0 0 310 132" width="155" height="66" aria-hidden="true" focusable="false">
+        <g fill="none" stroke-width="9" stroke-linecap="round" stroke-linejoin="round">
+          <g stroke="#ffffff">
+            <circle cx="45" cy="42" r="27"/>
+            <circle cx="115" cy="42" r="27"/>
+            <path d="M8 42h10M142 42h10"/>
+            <path d="M72 42v53M88 42v53"/>
+          </g>
+          <circle class="brand__gaze-dot" cx="45" cy="65" r="6.5" fill="#ffffff" stroke="none"/>
+          <circle class="brand__gaze-dot" cx="115" cy="65" r="6.5" fill="#ffffff" stroke="none"/>
+          <path stroke="#d52e1e" d="M41 108Q80 134 119 108"/>
+        </g>
+        <text x="178" y="78" fill="#ffffff" font-family="Arial, Helvetica, sans-serif" font-size="48" font-weight="700" letter-spacing="-1.5">skills</text>
+      </svg>

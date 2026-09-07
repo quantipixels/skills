@@ -17,3 +17,5 @@ Keep artifact theme and back-to-top controls icon-only with accessible labels; v
 Restore Àròjinlẹ̀'s conversational question blocks and explicit ask–wait cycle while delegated fact-finding proceeds independently.
 
 Keep Fihànmí renderer-neutral; Mermaid guidance remains in HTML Artifact.
+
+Use the exact inline SVG brand mark from the live Quantipixels Skills header in HTML Artifact.
