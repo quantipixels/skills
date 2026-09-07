@@ -21,6 +21,10 @@ Use `arojinle`, `amose`, `seda-spec`, `architect`, and `seda-ticket` as needed.
 
 When the initiative cannot yet be responsibly stated at full depth, read [progressive shaping](references/progressive-shaping.md). Resolve prerequisites without inventing future requirements or blocking independent work.
 
+## Challenge readiness
+
+Before presenting an initiative plan as ready to execute, run a [premortem](references/premortem.md) against the current plan. Reconcile material findings into the plan before declaring readiness; formal lifecycle work must pass this gate before `Planned`. Keep the analysis proportional and in the existing plan or conversation, not a separate report.
+
 ## Keep it current
 
 After a material decision, discovery, or delivery result, update the affected plan. Reopen only dependent choices and invalidate only proof that no longer applies. A partly superseded plan is not wholly current.
