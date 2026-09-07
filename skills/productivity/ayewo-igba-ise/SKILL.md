@@ -1,6 +1,6 @@
 ---
 name: ayewo-igba-ise
-description: Produce an evidence-backed postmortem for one completed, abandoned, or disputed work event, incident, rollout, session, or bounded corpus. Use when the user asks what happened, why the work failed or became wasteful, what recovery cost, what patterns repeat, or which durable improvements the evidence justifies. Own historical-analysis workflows end-to-end; when the requested outcome includes skill/process disposition or authorized remediation, compose the natural specialist owner internally rather than requiring a second user invocation. Exclude live delivery and ordinary code review.
+description: Produce an evidence-backed postmortem for one completed, abandoned, or disputed work event, incident, rollout, session, or bounded corpus. Use when the user asks what happened, why the work failed or became wasteful, what recovery cost, what patterns repeat, or which durable improvements the evidence justifies. Include requested skill/process assessment or authorized remediation using relevant skills. Exclude live delivery and ordinary code review.
 ---
 
 # Àyẹ̀wò Ìgbà Iṣẹ́
@@ -32,7 +32,7 @@ Build the smallest evidence-backed sequence needed to explain the outcome. Separ
 
 Do not judge an earlier action by a requirement introduced later. Current state does not prove historical state. Temporal order, correlation, or a later successful recovery is not causal proof by itself.
 
-When the missing result is a causal mechanism that materially changes the postmortem, obtain that diagnosis through the natural specialist owner inside the same requested workflow when needed. Do not require the user to invoke another skill merely to continue an already-requested analysis. If the diagnosis is not required to support useful conclusions, proceed without manufacturing certainty.
+Use `root-cause` when a missing causal diagnosis materially changes the postmortem. Otherwise proceed with the evidence and its uncertainty.
 
 ## Distinguish incident from structural friction
 
@@ -52,7 +52,7 @@ For each proposed durable improvement, state:
 
 Prefer replacing, removing, moving, or clarifying existing guidance over appending another rule. Reject an instruction change when the current instruction already required the correct behavior, the evidence is model variance, the real fix belongs to the owning product/system/process, or the edit would only restate the same rule.
 
-Do not expand a postmortem into unrequested remediation. When diagnosis, disposition, or improvement is already part of the user's requested outcome, continue through the natural specialist owner internally using the evidence already reconstructed. Pass the bounded evidence packet and current authority; do not restart the analysis or require the user to invoke another skill. Mutation still requires explicit authority and stays with the specialist owner that owns the changed result.
+Use the relevant skills for requested disposition or remediation, reusing the reconstructed evidence. Make changes only within explicit authority; analysis alone does not authorize remediation.
 
 ## Report
 
@@ -69,6 +69,6 @@ Return:
 - rejected lessons/recommendations; and
 - residual limits.
 
-When the requested outcome included downstream disposition or authorized remediation, integrate that specialist result into the same final response and preserve evidence gaps/no-change findings. Do not expose an internal skill handoff as another step for the user.
+Include requested downstream results in the same response, preserving no-change findings and evidence gaps.
 
 When a durable postmortem is required, use the existing or user-selected destination. Create a separate visual projection only when it materially improves comprehension of the supplied evidence.

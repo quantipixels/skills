@@ -4,10 +4,10 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Artifact title</title>
-  <link rel="icon" type="image/png" sizes="32x32" href="favicon.png">
-  <!-- Copy this template, favicon.png, and logo.svg together. Set the language,
-       title, heading, and control labels for the artifact; add supplied content
-       inside main. Keep the brand assets local when moving the output. -->
+  <link rel="icon" type="image/png" sizes="32x32" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABmJLR0QA/wD/AP+gvaeTAAADTklEQVRYhe2VT2gcZRjGf+83M21JtmJKy0bZP98kG6TSbbVRsHip9qIHoVSoIB56ETx4sKEgQqE9tmD1LBS04EGFaKCK1EO9WUFiIImtmF1mFirYxFPAEHdn5vXQWdymm9lNmuLBPDB8M9/3Ps/3vO/3Z2Ab2+iBfD4/mM/nBx8WT7p1WmuHgXeBk8DjaffvIvK5MeZivV5f3CrefQZKpdLzIjIlInuBZWAmHToM7AaWVPV4o9H4YSt4pvOjWCyOGmO+FpEhVT0L5MMwPBqG4dEoivLAOWCPiFwtl8v+g/K6lfALa636vv92Rsw71lq11n72oDzoWAJr7aPAIhCEYbgfSNbRMtbaX4Gy67r7oigym+HVarVlALdQKOxxXfdDVS2IiAdMZ4gAJMaY6SRJxqIoOpImsSFeq9X6ylp7O4qi067neYUkSV4XERdARB7JEAFAVQtpO55yEJFiH7zdafyLqhp5nnfJBEEwm8vlhhzHeSYNMtkykCTJYwDGmEXXdZfSvuE+DLhpeziXyw0FQTB7zzG01v4CPOE4zlP1en2+m4jv+4dUdQYQY8wr6eRXAXUc52AP3rSq3mo0GtV2/z3Zish5wInj+MtSqTSSmnrN9/2TAKOjoxVVnaT7BSZ98BzuHsl/SWtVrLUfAKeBFRH5VlVfTc1NqurLwABwAziypgI/As9l8UTkUhAEZzrnu2+9wzCcAN5S1ZW2CED6/peIvAl816UC13rx1k4O4HYRIgzDj6y1V1T1mDFmf5rlTRG5HgTBqrX2/GZ43ThdDaRiq8A36dM3NsrreeQeNv5zA+suQQ8kAHEcK9y9Ccm+hrfWgIhMqepIHMc3AFzXvSIiU5vSyhqcO1A46BjnWW/F+3SsVvt7I8ILlcrO1kDrjTiJf6rO355dLy5zDzjGTCh6uTnQnLtZLR7XPvaMgpk7VD7RHGzOK3rZMWYiKz6zAgtPD+9rRt4FRE6lZuui8kmsXN+16k23q7JQqexc3dUaF4djonoKGAES0I93OK33xmb+WNqUgTZuVUvjscgZQU8AOzrSXU5VOn/hTUEmgfefnG383Eu7LwNtzB3w82Lilwy8gDCmKnsBRPRPhd9E+T5OnGvV+eDORnS38f/GPz6FrN7CzMXlAAAAAElFTkSuQmCC">
+  <!-- Copy this template as one file. The favicon and Quantipixels logo are
+       embedded. Set the language, title, heading, and control labels for
+       the artifact; add supplied content inside main. -->
   <script>
   (() => {
     const media = window.matchMedia("(prefers-color-scheme: dark)");
@@ -251,16 +251,35 @@ overflow, reduced-motion, and print plumbing without choosing an aesthetic.
     }
     .artifact-shell { max-inline-size: 72rem; margin-inline: auto; }
     .artifact-header { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
-    .artifact-brand { display: block; flex-shrink: 0; padding: 0.5rem 0.75rem; border-radius: 0.25rem; background: #111; }
-    .artifact-brand img { display: block; inline-size: 125px; }
+    .artifact-brand { display: block; flex-shrink: 0; padding: 0.5rem 0.75rem; border-radius: 0.25rem; background: #111; color: #fff; }
+    .artifact-brand > svg { display: block; inline-size: 125px; }
     main { margin-block-start: 2rem; }
+    @media print {
+      html[data-theme], :root { color-scheme: light; }
+      .artifact-brand { background: transparent; color: #111; }
+    }
   </style>
 </head>
 <body>
   <a class="skip-link" href="#artifact-content">Skip to content</a>
   <div class="artifact-shell">
     <header class="artifact-header" id="artifact-top" data-back-to-top-target tabindex="-1">
-      <div class="artifact-brand"><img src="logo.svg" width="500" height="132" alt="Quanti Pixels"></div>
+      <div class="artifact-brand">
+        <svg viewBox="0 0 500 132" role="img" aria-label="Quanti Pixels">
+          <g fill="none" stroke-width="9" stroke-linecap="round" stroke-linejoin="round">
+            <g stroke="currentColor">
+              <circle cx="45" cy="42" r="27"></circle>
+              <circle cx="115" cy="42" r="27"></circle>
+              <path d="M8 42h10M142 42h10"></path>
+              <path d="M72 42v53M88 42v53"></path>
+            </g>
+            <circle cx="45" cy="65" r="6.5" fill="currentColor" stroke="none"></circle>
+            <circle cx="115" cy="65" r="6.5" fill="currentColor" stroke="none"></circle>
+            <path stroke="#d52e1e" d="M41 108Q80 134 119 108"></path>
+          </g>
+          <text x="178" y="78" fill="currentColor" font-family="Arial, Helvetica, sans-serif" font-size="48" font-weight="700" letter-spacing="-1.5">quanti pixels</text>
+        </svg>
+      </div>
 <button
   class="theme-toggle"
   type="button"

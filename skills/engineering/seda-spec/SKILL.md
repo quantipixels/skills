@@ -53,9 +53,9 @@ A specification defines what must be true. It does not choose modules, teams, de
 
 ## Resolve material gaps
 
-Separate confirmed behavior from inference. Resolve discoverable facts directly or through `iwadi` when substantial reusable research is needed. Use `amose` when unresolved domain terminology, conceptual boundaries, relationships, or invariants prevent the behavior contract from being stated unambiguously; consume its resolved model rather than defining domain meaning inside the specification. Reading established project vocabulary does not require an `amose` handoff.
+Separate confirmed behavior from inference. Resolve facts directly; use `iwadi` for substantial reusable research. Use `amose` when unresolved domain meaning prevents an unambiguous behavior contract.
 
-Use `arojinle` for unresolved consequential user decisions. Use the current specialist when specification readiness depends on an independently useful design result; software/system technical architecture belongs to `architect`.
+Use `arojinle` for unresolved consequential user decisions. Use the relevant design skill when its result is required for readiness, including `architect` for software/system technical structure.
 
 Do not fill a gap with a plausible requirement. If a material behavior cannot be specified without invention, keep the gap visible and return `SPEC_NOT_READY`.
 

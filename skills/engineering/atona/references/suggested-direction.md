@@ -20,20 +20,4 @@ When the plan first becomes `Planned` and delivery is required, state delivery a
 
 Add/refresh **Suggested direction** when the plan becomes Planned, delivery authority changes, direction changes materially, or the user asks for build guidance. On other Planned handoffs, state only current authority and recommended starting point.
 
-Give `alarina` the exact plan identity/revision, settled outcomes, `frontier: EMPTY`, required proof, constraints, and known gaps. Present the returned route as advice, not delivery authority.
-
-End with Alárinà's recommended starting owner and first plan-specific action. If delivery authority is required, end with that authority action instead.
-
-```text
-Delivery authority: Confirmed | Required
-
-Suggested direction
-1. <skill> — <plan-specific outcome/proof and why needed>.
-2. <skill> — <plan-specific outcome/proof and why needed>.
-
-Required skill gap: <skill — required outcome/proof>.
-
-Recommended starting point: <skill + first plan-specific action | prerequisite authority action>.
-```
-
-Omit the skill-gap line when none exists.
+Use the obvious next skill directly; use `alarina` only when selection or sequencing is unclear. Base the recommendation on the current plan, scope, constraints, required proof, and known gaps. Name any missing capability or authority that must be resolved first. End with the first plan-specific action, not a compulsory skill itinerary. Advice does not authorize delivery.

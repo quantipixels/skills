@@ -11,8 +11,8 @@ Browse the [documentation](https://quantipixels.com/skills). See [compatibility 
 - Curate frameworks into reasoning. Preserve a named model, standard, or concept when its vocabulary, conceptual structure, authority, or retrieval value materially improves judgment; expose only the QP-relevant subset and do not import the whole framework as ceremony.
 - Constrain material decision surfaces, not ordinary mechanics. A consequential choice that can change accepted behavior, safety, compatibility, ownership/lifecycle, architecture, authority, or material risk/cost must be grounded in current evidence/contract, explicitly owned, or surfaced as unresolved.
 - Kọ Skill authors every capability/resource at the smallest adequate surface: guidance/reference → visible command → native/project/provider tool → focused library → deterministic script → engine only when it carries a substantial owned vertical.
-- Use an obvious outcome owner directly. Use a router only when ownership is genuinely unclear or several independently useful owners need sequencing.
-- Supporting composition belongs behind the active owner unless another owner's independently useful result or separate authority must become visible.
+- Use obvious skills directly, including combinations. Use a router for requested routing/inventory or genuine uncertainty about selection or sequencing.
+- Compose expertise by reference rather than copying instructions or requiring a separate agent, handoff, or report for each skill.
 - Akọsílẹ̀ owns repository-scoped workspace mechanics when that persistence surface is selected; broadly useful owners must not require a repository merely because the workspace is one available durable destination.
 - HTML Artifact creates reader-specific projections of supplied material without duplicating source archives or originating conclusions.
 - Generated workspace state stays outside Git by default.
@@ -22,24 +22,34 @@ Browse the [documentation](https://quantipixels.com/skills). See [compatibility 
 
 ## Install
 
+For the global Codex/Claude **skill-only** bundle on macOS or Linux:
+
 ```bash
-npx skills add quantipixels/skills --global
+installer=$(mktemp)
+curl -fsSL https://raw.githubusercontent.com/quantipixels/skills/ori/scripts/install.sh -o "$installer"
+bash "$installer" --codex --dry-run
+bash "$installer" --codex --prune
+rm "$installer"
 ```
 
-This is the portable Skills CLI entrypoint; the exact destination/loading behavior is owned by the current CLI and selected agent. QP release CI currently proves repository discovery and Codex project installation, while other host paths remain bounded by the [compatibility matrix](docs/compatibility.md).
+Requires Node.js 18+, npx, curl, and Git. Add `--claude` for Claude Code, or use both host flags. `--ref` selects a published branch or tag (default `ori`); the pinned CLI cannot clone a raw commit SHA. The helper resolves that ref and verifies installed files against that revision before optional cleanup. Re-running refreshes QP-owned copies; keep local edits in a checkout.
 
-Local checkout:
+`--prune` removes retired QP-owned skills only from the shared Codex directory and verified Claude/legacy-Codex links. Unmanaged same-name copies block cleanup; other host directories are not removal targets. Shared canonical skills retained by the native CLI are reported as incomplete, not force-deleted. The helper respects `XDG_STATE_HOME`, `CLAUDE_CONFIG_DIR`, and `CODEX_HOME`; it installs no hooks, profiles, or startup defaults. Do not run competing installers concurrently.
+
+For a local checkout, uncommitted work, or other native installation options:
 
 ```bash
 npx skills add .
 ```
 
-Claude Code:
+For Claude Code's plugin **including Pepeye**, use this instead of the Claude skill-only path:
 
 ```bash
 claude plugin marketplace add quantipixels/skills
 claude plugin install qp-skills@qp-skills
 ```
+
+Do not install QP through both Claude paths. See [compatibility claims](docs/compatibility.md) for the tested host boundaries.
 
 ## Main agent: Pepeye
 
@@ -79,7 +89,7 @@ For an explicitly requested startup default, merge the same instruction block at
 
 ### Direct use and verification
 
-Without selecting a main agent, invoke exact skills normally; use `/qp-skills:pepeye <goal>` in Claude or `$pepeye <goal>` in Codex for delegated-work coordination. Skills do not require a Pepeye agent installation.
+Without selecting a main agent, invoke exact skills normally; use `/qp-skills:pepeye <goal>` in the Claude plugin, `/pepeye <goal>` in its skill-only installation, or `$pepeye <goal>` in Codex for delegated-work coordination. Skills do not require a Pepeye agent installation.
 
 See the [runtime check](docs/compatibility.md#pepeye-runtime-check) before claiming authenticated behavior. To undo a default, restore only the changed setting/instruction block and start a fresh session; omitting `--agent`/`--profile` alone does not undo a configured default. Existing sessions may retain their role. Skill uninstallation is separate.
 
@@ -89,7 +99,7 @@ See the [runtime check](docs/compatibility.md#pepeye-runtime-check) before claim
 curl -fsSL https://raw.githubusercontent.com/quantipixels/skills/ori/scripts/uninstall.sh | bash
 ```
 
-The entrypoint removes only globally installed skills whose lock-file source is `quantipixels/skills`; unrelated installed skills remain untouched.
+Use `bash scripts/uninstall.sh --dry-run` to preview. Removal selects QP-owned global lock entries and uses the same guarded Codex/Claude cleanup as the installer, from an isolated working directory. It checks both the lock and installed paths before reporting success. Unmanaged copies need separate resolution; project installs, other hosts, native plugins, profiles, and startup settings remain separate.
 
 ## Repository-local workspace
 
@@ -133,7 +143,7 @@ The catalogue headings below mirror repository package organization, not semanti
 
 | Skill | Outcome |
 | --- | --- |
-| `alarina` | Inventory available skills and route when ownership is unclear or several independent owner results need sequencing |
+| `alarina` | Inventory available skills and resolve unclear selection or sequencing |
 | `arojinle` | Resolve consequential choices through a user-confirmed decision frontier |
 | `ayewo-igba-ise` | Evidence-backed postmortem for completed/abandoned/disputed work, incidents, sessions, or corpora |
 | `fihanmi` | Visual understanding of supplied/current material through the smallest faithful representation |
@@ -187,4 +197,4 @@ Show a current relationship visually → fihanmi
 Diagnose an observed failure → root-cause
 ```
 
-Use `alarina` when the user asks which skills are available, when the correct owner is unclear, or when the request genuinely needs sequencing across several independently useful owner results.
+Use `alarina` for requested inventory/routing or genuinely unclear selection or sequencing. Combining skills does not by itself require a router.

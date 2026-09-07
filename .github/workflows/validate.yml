@@ -61,6 +61,9 @@ jobs:
       - name: Test safe global uninstall
         run: python3 -m unittest scripts/test_uninstall.py
 
+      - name: Test safe global installer
+        run: python3 -m unittest scripts/test_install.py
+
   browser-controls:
     name: Browser controls
     runs-on: ubuntu-latest
@@ -127,6 +130,23 @@ jobs:
           test -f "$target/.agents/skills/alaga/SKILL.md"
           test -f "$target/.agents/skills/root-cause/SKILL.md"
 
+      - name: Round-trip public global installer
+        if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository)
+        env:
+          SOURCE_REF: ${{ github.head_ref || github.ref_name }}
+        run: |
+          export HOME="$(mktemp -d)"
+          export XDG_STATE_HOME="$HOME/state"
+          export CLAUDE_CONFIG_DIR="$HOME/claude-config"
+          bash "$GITHUB_WORKSPACE/scripts/install.sh" --ref "$SOURCE_REF" --codex --claude
+          bash "$GITHUB_WORKSPACE/scripts/install.sh" --ref "$SOURCE_REF" --codex --claude --prune
+          test -L "$CLAUDE_CONFIG_DIR/skills/alaga"
+          test -f "$HOME/.agents/skills/alaga/SKILL.md"
+          bash "$GITHUB_WORKSPACE/scripts/uninstall.sh"
+          test ! -e "$HOME/.agents/skills/alaga"
+          test ! -L "$CLAUDE_CONFIG_DIR/skills/alaga"
+          bash "$GITHUB_WORKSPACE/scripts/uninstall.sh"
+
       - name: Validate Claude Code plugin
         run: |
           cd "$GITHUB_WORKSPACE"
@@ -175,6 +195,16 @@ jobs:
 
       - name: Test Akosile focused mechanics
         run: python -m unittest discover -s skills/engineering/akosile/scripts -p 'test_*.py'
+
+      - name: Setup Node.js for installer tests
+        if: runner.os == 'macOS'
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Test safe global installer
+        if: runner.os == 'macOS'
+        run: python -m unittest scripts/test_install.py
 
       - name: Test safe global uninstall
         if: runner.os == 'macOS'
