@@ -44,7 +44,9 @@ An unchanged resource does not trigger a fresh architectural review.
 
 ## Check behavior
 
-Run applicable package checks and test the changed behavior where its correctness remains uncertain. For material compression, composition, authority, or selection changes, compare the same realistic task before/after and check preserved boundaries. Measure the actual loading/execution path, including references and handoffs; word count alone does not prove quality, cost, or reliability.
+Run applicable package checks and test the changed behavior where its correctness remains uncertain. Use fresh host sessions for changed behavioral claims. For material compression, composition, authority, or selection changes, compare the same realistic task, evidence, permissions, and host configuration before/after. Include the ordinary host as a baseline when the claim is incremental skill value; an adequate baseline is a valid finding. Keep evaluator expectations out of the tested agent's instructions so the harness does not supply the missing behavior.
+
+Check selection, outcome, and preserved boundaries on the actual loading/execution path, including references and handoffs. Record the exact candidate, host/version, observed model/settings, actions, and evidence limits. Word count or a skill name in an answer does not prove quality, cost, selection, or execution. Validation of a supplied change does not require searching for a better variant.
 
 Use `ayewo-igba-ise` as needed. Reuse existing evidence rather than reconstructing the same corpus.
 

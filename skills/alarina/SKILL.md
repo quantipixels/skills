@@ -31,7 +31,8 @@ A settled change can go straight to `alaga`; an unsettled initiative may use `ar
 | Incoming report needs assessment | `se-triage` |
 | Failure needs a causal explanation | `root-cause`; use `alaga` when the requested next result is a fix |
 | Code or refactor needs independent review | `atunwo` |
-| System needs a simplification audit | `pare` |
+| System needs a read-only simplification audit | `pare` |
+| Find a better variant against a measured outcome; the winning change is unknown | `optimize` (Experimental) |
 | Human wants to walk through a candidate | `hitl-review` |
 | A completed event or session needs a postmortem | `ayewo-igba-ise` |
 | Interface direction, identity, or journey verification | `amoye-ui-ux`, `brand`, or `dogfood` respectively |
@@ -43,6 +44,8 @@ A settled change can go straight to `alaga`; an unsettled initiative may use `ar
 | Author or revise an agent skill | `ko-skill` |
 
 Triage assesses a report; diagnosis explains a failure; delivery fixes it. Start with the unresolved question rather than sending every bug through all three. Likewise, a request to review code starts at `atunwo`, not at implementation.
+
+An improvement request is not automatically an experiment. `pare` judges structural simplification; `optimize` searches for a measured gain; `prototype` settles a question through truthful experience. Validate a supplied skill change with `ko-skill` and keep routine model/effort selection with `pepeye`. Add an optimization search only when a measurable objective and an unknown winning variant make that a distinct requested result. Do not send these owners through each other as mandatory stages.
 
 ## Supporting capabilities
 
