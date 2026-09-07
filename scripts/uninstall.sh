@@ -10,8 +10,8 @@ for arg in "$@"; do
     --dry-run) dry_run=true ;;
     --help|-h)
       echo 'Usage: uninstall.sh [--dry-run]'
-      echo 'Remove QP-owned names from global Skills CLI targets across hosts.'
-      echo 'Preserve independently managed same-name copies before removal.'
+      echo 'Remove QP-owned global skills from Codex/Claude targets.'
+      echo 'Unmanaged same-name copies block removal; other hosts are not cleanup targets.'
       echo 'Native plugins, main-agent profiles, and startup settings are separate.'
       exit 0 ;;
     *) echo "QP uninstall: unknown argument: $arg" >&2; exit 2 ;;
@@ -26,17 +26,41 @@ done
 LOCK_FILE=$(node -e "const { homedir } = require('node:os'); const { join } = require('node:path'); process.stdout.write(process.env.XDG_STATE_HOME ? join(process.env.XDG_STATE_HOME, 'skills', '.skill-lock.json') : join(homedir(), '.agents', '.skill-lock.json'))")
 
 qp_skills() {
-  node - "$LOCK_FILE" "$REPO" <<'NODE'
+  node - "$LOCK_FILE" "$REPO" "$@" <<'NODE'
 const fs = require('node:fs');
-const [lockFile, repository] = process.argv.slice(2);
+const path = require('node:path');
+const os = require('node:os');
+const [lockFile, repository, phase, ...previous] = process.argv.slice(2);
+const home = os.homedir();
+const root = path.join(home, '.agents', 'skills');
+const claude = path.join(process.env.CLAUDE_CONFIG_DIR?.trim() || path.join(home, '.claude'), 'skills');
+const stat = p => { try { return fs.lstatSync(p); } catch (e) { if (e.code === 'ENOENT') return null; throw e; } };
+
+const codex = path.join(process.env.CODEX_HOME?.trim() || path.join(home, '.codex'), 'skills');
+function checkRemoval(name, removed = false) {
+  const canonical = path.join(root, name);
+  for (const target of new Set([canonical, path.join(claude, name), path.join(codex, name)])) {
+    const current = stat(target);
+    if (!current) continue;
+    if (removed) throw new Error(`removal incomplete, installed path remains: ${target}`);
+    if (target === canonical) {
+      if (!current.isDirectory()) throw new Error(`refusing non-directory canonical skill: ${target}`);
+    } else if (!current.isSymbolicLink() || path.resolve(path.dirname(target), fs.readlinkSync(target)) !== canonical) {
+      throw new Error(`refusing unmanaged same-name skill: ${target}`);
+    }
+  }
+}
+
 
 let lock;
 try {
   lock = JSON.parse(fs.readFileSync(lockFile, 'utf8'));
 } catch (error) {
-  if (error && error.code === 'ENOENT') process.exit(0);
-  console.error(`Could not read the global skills lock: ${error.message}`);
-  process.exit(1);
+  if (error && error.code === 'ENOENT') lock = {};
+  else {
+    console.error(`Could not read the global skills lock: ${error.message}`);
+    process.exit(1);
+  }
 }
 
 function normalizeSource(source) {
@@ -74,12 +98,15 @@ for (const [name, entry] of Object.entries(entries)) {
   skills.push(name);
 }
 skills.sort();
+try {
+  for (const name of phase === 'after' ? previous : skills) checkRemoval(name, phase === 'after');
+} catch (error) { console.error(`QP uninstall: ${error.message}`); process.exit(1); }
 
 process.stdout.write(skills.join('\n'));
 NODE
 }
 
-skill_output=$(qp_skills)
+skill_output=$(qp_skills before)
 skills=()
 while IFS= read -r skill; do
   [[ -n "$skill" ]] && skills+=("$skill")
@@ -95,13 +122,13 @@ command -v npx >/dev/null || { echo 'QP uninstall: npx is required' >&2; exit 1;
 # The native CLI also checks legacy project-relative paths during global removal.
 work=$(mktemp -d)
 trap 'rm -rf -- "$work"' EXIT
-(cd "$work"; npx --yes "skills@$SKILLS_CLI_VERSION" remove --global --yes "${skills[@]}" </dev/null)
+(cd "$work"; npx --yes "skills@$SKILLS_CLI_VERSION" remove --global --agent codex claude-code --yes "${skills[@]}" </dev/null)
 
-remaining=$(qp_skills)
+remaining=$(qp_skills after "${skills[@]}")
 if [[ -n "$remaining" ]]; then
   remaining=${remaining//$'\n'/, }
-  echo "Removal incomplete: $remaining" >&2
+  echo "Removal incomplete (possibly shared with another host): $remaining" >&2
   exit 1
 fi
 
-echo "All globally installed QP skills were removed."
+echo "QP skill removal verified for Codex/Claude."

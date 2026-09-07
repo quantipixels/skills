@@ -17,15 +17,15 @@ Install all QP skills globally through the pinned Skills CLI. Default: Codex.
   --codex    Use the shared ~/.agents/skills discovery path.
   --claude   Also/instead link skills for Claude Code (not its plugin).
   --ref REF  Published branch or tag; default: ori. Commit SHAs are unsupported.
-  --prune    Remove retired QP-owned names across global Skills CLI targets
+  --prune    Remove retired QP-owned skills from Codex/Claude targets
              only after the installed bundle passes verification.
   --dry-run  Fetch/check the candidate and report changes without installing.
   --help     Show this help.
 
 Requires Node.js 18+, npx, curl, and Git. Updates replace QP-owned copies.
 Keep local edits in a checkout. Use `npx skills add .` for uncommitted files.
-Pruning uses native name-based removal across hosts, including unselected hosts;
-preserve independently managed same-name copies before using --prune.
+Cleanup is limited to Codex/Claude; unmanaged same-name copies block removal.
+Shared canonical skills retained by another host are reported as incomplete.
 No hooks, credentials, main-agent profiles, or startup defaults are installed.
 Use the native Claude plugin instead for Pepeye; do not use both Claude paths.
 HELP
@@ -64,12 +64,12 @@ fetch "https://raw.githubusercontent.com/$REPO/$sha/.claude-plugin/plugin.json" 
 fetch "https://api.github.com/repos/$REPO/git/trees/$sha?recursive=1" "$work/tree.json"
 
 check() {
-  node - "$work" "$1" "$ref" "${agents[@]}" <<'NODE'
+  node - "$work" "$1" "$ref" "$prune" "${agents[@]}" <<'NODE'
 const fs = require('node:fs');
 const path = require('node:path');
 const os = require('node:os');
 const crypto = require('node:crypto');
-const [work, phase, ref, ...agents] = process.argv.slice(2);
+const [work, phase, ref, prune, ...agents] = process.argv.slice(2);
 const object = v => v !== null && typeof v === 'object' && !Array.isArray(v);
 const validName = n => n.length <= 64 && /^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(n);
 const normalize = s => s.trim().replace(/^git\+/, '').replace(/^git@github\.com:/, 'https://github.com/')
@@ -81,6 +81,22 @@ const claude = path.join(process.env.CLAUDE_CONFIG_DIR?.trim() || path.join(home
 const stat = p => { try { return fs.lstatSync(p); } catch (e) { if (e.code === 'ENOENT') return null; throw e; } };
 const owned = entry => entry && normalize(entry.source) === 'quantipixels/skills';
 const json = file => JSON.parse(fs.readFileSync(file, 'utf8'));
+
+const codex = path.join(process.env.CODEX_HOME?.trim() || path.join(home, '.codex'), 'skills');
+function checkRemoval(name, removed = false) {
+  const canonical = path.join(root, name);
+  for (const target of new Set([canonical, path.join(claude, name), path.join(codex, name)])) {
+    const current = stat(target);
+    if (!current) continue;
+    if (removed) throw new Error(`removal incomplete, installed path remains: ${target}`);
+    if (target === canonical) {
+      if (!current.isDirectory()) throw new Error(`refusing non-directory canonical skill: ${target}`);
+    } else if (!current.isSymbolicLink() || path.resolve(path.dirname(target), fs.readlinkSync(target)) !== canonical) {
+      throw new Error(`refusing unmanaged same-name skill: ${target}`);
+    }
+  }
+}
+
 try {
   const manifest = json(path.join(work, 'manifest.json'));
   if (!object(manifest) || manifest.name !== 'qp-skills' || !Array.isArray(manifest.skills) || !manifest.skills.length)
@@ -137,8 +153,14 @@ try {
     const previous = json(path.join(work, 'stale'));
     for (const name of previous) if (entries[name] && !owned(entries[name])) throw new Error(`ownership changed before pruning: ${name}`);
     // A removed lock entry no longer authorizes cleanup of that name.
-    fs.writeFileSync(path.join(work, 'remove'), previous.filter(n => owned(entries[n])).join('\n'));
-  } else if (stale.length) throw new Error(`pruning incomplete: ${stale.join(', ')}`);
+    const removable = previous.filter(n => owned(entries[n]));
+    if (prune === 'true') for (const name of removable) checkRemoval(name);
+    fs.writeFileSync(path.join(work, 'remove'), removable.join('\n'));
+  } else {
+    if (stale.length) throw new Error(`pruning incomplete (possibly shared with another host): ${stale.join(', ')}`);
+    for (const name of fs.readFileSync(path.join(work, 'remove'), 'utf8').split('\n').filter(Boolean))
+      checkRemoval(name, true);
+  }
 } catch (e) { console.error(`QP install: ${e.message}`); process.exit(1); }
 NODE
 }
@@ -153,7 +175,7 @@ if $prune; then
   stale=()
   while IFS= read -r name || [[ -n "$name" ]]; do [[ -n "$name" ]] && stale+=("$name"); done < "$work/remove"
   if [[ ${#stale[@]} -gt 0 ]]; then
-    (cd "$work"; npx --yes "skills@$SKILLS_CLI_VERSION" remove --global --yes "${stale[@]}" </dev/null)
+    (cd "$work"; npx --yes "skills@$SKILLS_CLI_VERSION" remove --global --agent codex claude-code --yes "${stale[@]}" </dev/null)
   fi
   check pruned
 fi

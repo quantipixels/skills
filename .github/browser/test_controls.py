@@ -3,6 +3,7 @@ import base64
 import os
 from pathlib import Path
 import re
+import tempfile
 import unittest
 
 from playwright.sync_api import expect, sync_playwright
@@ -32,9 +33,6 @@ def filtered(identity):
 
 def fixture():
     template = asset('base.html')
-    # Embed the shipped favicon so this interaction fixture stays network-free.
-    encoded = base64.b64encode((ASSETS / 'favicon.png').read_bytes()).decode('ascii')
-    template = template.replace('"favicon.png"', f'"data:image/png;base64,{encoded}"')
     content = (carousel('one') + carousel('two')
             + filtered('first') + filtered('second')
             + '<details id="closed" data-print-expand><summary>Evidence</summary><p id="deep">Visible evidence</p></details>'
@@ -69,12 +67,45 @@ class ControlBrowserProof(unittest.TestCase):
         self.addCleanup(lambda: self.assertEqual(requests, []))
         return page
 
-    def test_base_template_embeds_brand_logo(self):
-        template = asset('base.html')
-        self.assertNotIn('logo.svg', template)
-        self.assertFalse((ASSETS / 'logo.svg').exists())
-        self.assertIn('class="artifact-brand"', template)
-        self.assertIn('aria-label="Quanti Pixels"', template)
+    def test_base_template_opens_alone_without_javascript_or_companions(self):
+        with tempfile.TemporaryDirectory() as directory:
+            standalone = Path(directory) / 'index.html'
+            standalone.write_bytes((ASSETS / 'base.html').read_bytes())
+            context = self.browser.new_context(java_script_enabled=False, viewport={'width': 320, 'height': 640})
+            self.addCleanup(context.close)
+            page = context.new_page()
+            requests = []
+            page.on('request', lambda request: requests.append(request.url))
+            page.goto(standalone.as_uri())
+            logo = page.get_by_role('img', name='Quanti Pixels', exact=True)
+            expect(logo).to_be_visible()
+            box = logo.bounding_box()
+            self.assertGreater(box['width'], 0)
+            self.assertAlmostEqual(box['width'] / box['height'], 500 / 132, places=2)
+            self.assertLessEqual(page.evaluate('document.documentElement.scrollWidth'), 320)
+            favicon = page.locator('link[rel="icon"]').get_attribute('href')
+            self.assertTrue(favicon.startswith('data:image/png;base64,'))
+            self.assertEqual(base64.b64decode(favicon.split(',', 1)[1], validate=True),
+                             (ASSETS / 'favicon.png').read_bytes())
+            size = page.evaluate("""async (source) => {
+                const image = new Image(); image.src = source; await image.decode();
+                return [image.naturalWidth, image.naturalHeight];
+            }""", favicon)
+            self.assertEqual(size, [32, 32])
+            self.assertEqual(requests, [standalone.as_uri()])
+
+    def test_print_keeps_brand_visible_without_printed_backgrounds(self):
+        context = self.browser.new_context(color_scheme='dark')
+        self.addCleanup(context.close)
+        page = context.new_page()
+        page.set_content(asset('base.html'))
+        expect(page.locator('html')).to_have_attribute('data-theme', 'dark')
+        page.emulate_media(media='print')
+        expect(page.locator('html')).to_have_css('color-scheme', 'light')
+        expect(page.locator('.artifact-brand')).to_have_css('background-color', 'rgba(0, 0, 0, 0)')
+        expect(page.locator('.artifact-brand text')).to_have_css('fill', 'rgb(17, 17, 17)')
+        expect(page.locator('.artifact-brand g[stroke]')).to_have_css('stroke', 'rgb(17, 17, 17)')
+        expect(page.locator('[data-theme-toggle]')).to_be_hidden()
 
     def test_javascript_off_keeps_content_and_native_navigation(self):
         page = self.open_fixture(javascript=False)

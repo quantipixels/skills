@@ -97,13 +97,20 @@ if args[2] == 'add':
     if mode == 'lost-owner': state['skills'].pop('retired', None)
 elif args[2] == 'remove':
     if mode == 'prune-noop': sys.exit(0)
+    if mode == 'shared-retained': sys.exit(0)
     # Model the upstream legacy cleanup to test caller-project isolation.
     shutil.rmtree(Path.cwd() / 'agent/skills/alaga', ignore_errors=True)
     for name in args[args.index('--yes', 2) + 1:]:
         state['skills'].pop(name, None)
+        if mode == 'remove-lock-only': continue
         shutil.rmtree(canonical / name, ignore_errors=True)
-        alias = claude / name
-        if alias.is_symlink(): alias.unlink()
+        # Native removal recursively removes paths, not only known symlinks.
+        targets = [claude, Path(os.environ.get('CODEX_HOME', str(home / '.codex'))) / 'skills']
+        if '--agent' not in args: targets.append(home / '.cursor/skills')
+        for directory in targets:
+            alias = directory / name
+            if alias.is_symlink(): alias.unlink()
+            elif alias.exists(): shutil.rmtree(alias)
 else: raise AssertionError(args)
 lock.write_text(json.dumps(state))
 ''')
@@ -244,6 +251,69 @@ lock.write_text(json.dumps(state))
         self.assertEqual(set(json.loads(self.lock.read_text())['skills']), {'other'})
         self.env['XDG_STATE_HOME'] = 'relative'
         for uninstall in (False, True): self.assertNotEqual(self.run_script(uninstall=uninstall).returncode, 0)
+
+
+    def test_cleanup_preserves_unmanaged_same_name_on_supported_hosts(self):
+        self.env['CODEX_HOME'] = str(self.home / 'custom codex')
+        self.env['CLAUDE_CONFIG_DIR'] = str(self.home / 'custom claude')
+        for directory in ('custom codex', 'custom claude'):
+            for linked in (False, True):
+                self.state({name: {'source': SOURCE, 'ref': 'ori'} for name in ('retired', 'alaga', 'arojinle')})
+                alias = self.home / directory / 'skills/retired'
+                alias.parent.mkdir(parents=True, exist_ok=True)
+                foreign = self.work / ('foreign-' + directory)
+                foreign.mkdir(exist_ok=True)
+                (foreign / 'mine').write_text('independently managed')
+                if linked:
+                    alias.symlink_to(foreign, target_is_directory=True)
+                else:
+                    alias.mkdir()
+                    (alias / 'mine').write_text('independently managed')
+                for uninstall in (False, True):
+                    with self.subTest(directory=directory, linked=linked, uninstall=uninstall):
+                        result = self.run_script(*(() if uninstall else ('--prune',)), uninstall=uninstall)
+                        self.assertNotEqual(result.returncode, 0, result.stdout)
+                        self.assertEqual((alias / 'mine').read_text(), 'independently managed')
+                        self.assertIn('retired', json.loads(self.lock.read_text())['skills'])
+                if linked:
+                    alias.unlink()
+                else:
+                    import shutil
+                    shutil.rmtree(alias)
+        self.assertTrue(all(call[3] == 'add' for call in self.calls()))
+
+    def test_cleanup_does_not_target_other_hosts(self):
+        for uninstall in (False, True):
+            self.state({'retired': {'source': SOURCE}})
+            foreign = self.home / '.cursor/skills/retired'
+            foreign.mkdir(parents=True, exist_ok=True)
+            (foreign / 'mine').write_text('other host')
+            result = self.run_script(*(() if uninstall else ('--prune',)), uninstall=uninstall)
+            self.assertEqual(result.returncode, 0, result.stderr)
+            self.assertEqual((foreign / 'mine').read_text(), 'other host')
+
+    def test_cleanup_rejects_lock_only_success(self):
+        for uninstall in (False, True):
+            self.state({'retired': {'source': SOURCE}})
+            target = self.home / '.agents/skills/retired'
+            target.mkdir(parents=True, exist_ok=True)
+            (target / 'SKILL.md').write_text('still discoverable')
+            result = self.run_script(*(() if uninstall else ('--prune',)),
+                                     uninstall=uninstall, mode='remove-lock-only')
+            self.assertNotEqual(result.returncode, 0, result.stdout)
+            self.assertEqual((target / 'SKILL.md').read_text(), 'still discoverable')
+
+    def test_cleanup_preserves_native_shared_install_retention(self):
+        self.state({'retired': {'source': SOURCE}})
+        target = self.home / '.agents/skills/retired'
+        target.mkdir(parents=True)
+        (target / 'SKILL.md').write_text('shared')
+        for uninstall in (False, True):
+            result = self.run_script(*(() if uninstall else ('--prune',)),
+                                     uninstall=uninstall, mode='shared-retained')
+            self.assertNotEqual(result.returncode, 0)
+            self.assertEqual((target / 'SKILL.md').read_text(), 'shared')
+            self.assertIn('retired', json.loads(self.lock.read_text())['skills'])
 
 
 if __name__ == '__main__':
