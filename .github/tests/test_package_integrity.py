@@ -22,6 +22,9 @@ class PackageIntegrityTests(unittest.TestCase):
         self.agent()
         self.skill('example')
         self.manifest()
+        (self.repo / '.codex-plugin').mkdir()
+        (self.repo / '.codex-plugin/plugin.json').write_text(
+            json.dumps({'name': 'qp-skills', 'skills': './skills/'}))
 
     def skill(self, name, text=None):
         path = self.repo / 'skills' / name / 'SKILL.md'

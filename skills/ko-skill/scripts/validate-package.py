@@ -148,6 +148,28 @@ def validate_manifest(repo: Path, skills: list[Path]) -> list[Finding]:
     return []
 
 
+
+def validate_codex_manifest(repo: Path) -> list[Finding]:
+    """Check QP's thin native adapter, not the host's complete manifest schema."""
+    path = repo / ".codex-plugin" / "plugin.json"
+    relative = str(path.relative_to(repo))
+    try:
+        manifest = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, UnicodeError, json.JSONDecodeError) as error:
+        return [Finding("codex_manifest.invalid", relative, str(error))]
+    if not isinstance(manifest, dict):
+        return [Finding("codex_manifest.invalid", relative, "manifest must be an object")]
+    findings = []
+    if manifest.get("name") != "qp-skills":
+        findings.append(Finding("codex_manifest.name", relative, "name must be qp-skills"))
+    if manifest.get("skills") != "./skills/":
+        findings.append(Finding("codex_manifest.inventory", relative, "use the shared ./skills/ directory, not another inventory"))
+    target = repo / "skills"
+    if not target.is_dir() or not target.resolve().is_relative_to(repo.resolve()):
+        findings.append(Finding("codex_manifest.target", relative, "skills target must be an existing directory inside the package"))
+    return findings
+
+
 def main() -> int:
     args = parse_args()
     repo = args.repo.expanduser().resolve()
@@ -163,6 +185,7 @@ def main() -> int:
         for skill in skills:
             findings.extend(validate_skill(repo, skill))
         findings.extend(validate_manifest(repo, skills))
+        findings.extend(validate_codex_manifest(repo))
     payload = {"valid": not findings, "skills_checked": len(skills), "findings": [asdict(item) for item in findings]}
     if args.format == "json":
         print(json.dumps(payload, indent=2, ensure_ascii=False))

@@ -23,6 +23,12 @@ claude --agent qp-skills:pepeye
 
 Claude's [main-agent selection](https://code.claude.com/docs/en/sub-agents) replaces its built-in system prompt. `model: inherit` inherits the model, not that prompt. Ordinary skill invocation retains the native main agent. Installing the plugin changes no startup default.
 
+### Native Codex plugin package
+
+The repository also includes `.codex-plugin/plugin.json`, pointing at the same `skills/` tree. It adds no hooks, MCP servers, startup defaults, or second skill catalogue. Its optional version field is omitted; Changesets remains the package version authority.
+
+This path has structural validation, not an authenticated installation/runtime claim. Keep an existing installation until the native path is verified on your host, and avoid loading QP twice through different managers. For local testing, use an inspected checkout with `codex plugin marketplace add /path/to/checkout`, then follow the host's [plugin installation guidance](https://developers.openai.com/plugins/build/plugins). The existing Claude marketplace is a legacy-compatible source; selecting it does not select Pepeye or grant additional permissions. Public-directory submission is separate and is not part of this package.
+
 ### Direct Codex or Claude skill installation
 
 For macOS/Linux with Git and Python 3.10+, clone and inspect the source, then run:
