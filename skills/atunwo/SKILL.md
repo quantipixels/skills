@@ -27,7 +27,7 @@ For a GitHub PR or GitLab MR, read [`references/provider-operations.md`](referen
 
 Use `INSUFFICIENT_EVIDENCE` when identity, contract, environment, independence, or proof cannot support a responsible verdict. Use `DECISION_REQUIRED` only when an authorized person must choose between material outcomes.
 
-Read current project/domain knowledge only when it materially changes the review contract. Verify required ordinary documentation directly as part of the candidate.
+When project knowledge could change the review contract or a failure hypothesis, reuse applicable evidence already supplied; otherwise search the existing knowledge and research destinations by affected concepts and components. Read plausible matches and check their authority and current applicability. Historical guidance is evidence, not permission to change the contract; report material conflicts. An empty search does not require a new record. Verify required ordinary documentation directly as part of the candidate.
 
 ## 2. Discover defects from current evidence
 

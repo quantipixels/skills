@@ -18,6 +18,10 @@ Preserve an existing human-readable format. Create the file lazily only when a q
 
 Keep hypotheses, temporary task state, session history, speculative preferences, obvious code facts, routine implementation choices, secrets, credentials, and personal data out. Require user or confirmed-decision authority before promoting observed behavior into a business rule, project boundary, or architecture decision.
 
+When an entry conflicts with implementation, first distinguish a descriptive claim from independently supported intent. A policy that still requires approval does not become obsolete because the implementation stopped enforcing it; report the possible product regression rather than rewriting the policy to match. Missing evidence is not proof of falsity. Reconcile or retain uncertainty only under the admission and maintenance rules above; reading a conflict does not grant write authority.
+
+Expensive research whose loss would cause rediscovery, but not a consequential wrong action, does not enter `.learnings`. Use `iwadi` and an existing research destination when independent persistence is warranted. Consumers can retrieve that research without promoting it into a governing rule.
+
 ## Calibration
 
 Good `.learnings` entry:

@@ -43,6 +43,6 @@ After any authorized write, read back the changed entry and verify the target's 
 
 ## Boundary
 
-Use `amose` and `technical-writing` as needed.
+Use `amose` and `oro-ologbon` as needed.
 
 Return the settled term decisions, unresolved gaps, and any authorized glossary write/readback. Do not turn terminology work into a general translation, documentation, or project-knowledge lifecycle.

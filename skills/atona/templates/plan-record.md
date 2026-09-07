@@ -45,6 +45,10 @@ status: Draft
 
 <only when a material amendment changes accepted/completed owner results: governing authority/revision; affected earlier results/clauses; superseded/stale versus retained clauses; candidate/proof freshness; required owner refresh/re-entry proof; omit otherwise>
 
+## Premortem
+
+<current plan/revision examined; credible material failure scenarios, evidence or counterevidence, dispositions and resulting plan changes; residual risk authority and any necessary owner, warning/re-entry trigger, and recovery condition; readiness conclusion or a missing/stale analysis blocker. Keep this with existing risks when that is their natural home; do not duplicate a register.>
+
 ## Delivery and proof
 
 <governing contract/spec identity/readiness when present; current gate evidence; phases/dependencies/blockers only when real; current proof/closure obligations; when coordination is material, include expected delivery-shape envelope, material cumulative drift, and replan/review trigger without turning counts into quotas>

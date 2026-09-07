@@ -1,12 +1,19 @@
 ---
-name: technical-writing
-description: Write or review clear technical docs, procedures, specifications, reports, RFCs, readmes, PR descriptions, commit messages, technical communication, and human-facing artifact copy. Use when the reader job, instruction structure, sentence clarity, terminology, or unambiguous syntax needs an owning pass.
-license: MIT
+name: oro-ologbon
+description: Write or review technical communication, or edit and prune supplied human- or agent-facing prose. Use for document structure, clarity, voice, ambiguity, filler, repetition, and instruction load. Editing preserves facts, authority, structure, and intended voice; exclude factual review, translation, and code style.
 ---
 
-# Technical writing
+# Ọ̀rọ̀ Ọlọ́gbọ́n
 
-Write technical prose a tired reader can understand on the first read. Own reader/document job, instruction structure, technical sentence clarity, and unambiguous syntax. Produce complete usable prose from this owner; do not require a second cleanup skill for normal completion.
+Write prose a tired reader can understand on the first read. Own technical document structure and sentence clarity, plus meaning-preserving cleanup of supplied prose. Produce complete usable prose without a second cleanup skill.
+
+## Choose the operation
+
+- **Author or review technical communication:** establish the reader/document job and use the writing guidance below.
+- **Edit supplied prose:** read [editing prose](references/editing-prose.md) for clarity, voice, filler, and agent-instruction preservation. This mode also accepts nontechnical prose; do not force a technical-document structure onto it.
+- **Prune:** when explicitly asked to shorten, remove repetition, or reduce instruction load, use the editing guidance and [prune prose](references/prune.md). Ordinary editing does not imply pruning.
+
+Follow the requested language, locale, voice, and product copy rules. For editing/pruning, preserve the supplied structure and artifact decisions; an authoring guideline does not authorize redesigning them. Cleanup is not an automatic extra pass on unrelated tasks.
 
 Use the vocabulary of the thing being described. Prefer its established domain/project terms and exact identifiers—symbols, files, flags, commands, standards, labels, component names, or other authoritative terms—over invented synonyms.
 
@@ -64,7 +71,7 @@ Procedures, specifications, reports, operational instructions, PR descriptions, 
 
 Do not rewrite exact identifiers or facts for style. Make paths, symbols, commands, quantities, standards references, counts, statuses, and other exact claims true for the subject being described. Product UI strings follow the product's copy rules rather than this documentation contract.
 
-Use `yo-slop` as needed.
+Return authored or revised prose first. For a review request, return findings. Report only material meaning, authority, or evidence questions; pruning also reports material count changes and preservation limits.
 
 ## Provenance and boundary
 

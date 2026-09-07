@@ -25,7 +25,7 @@ Track one status:
 | Status | Meaning |
 | --- | --- |
 | `Draft` | planning/readiness has a material open gap |
-| `Planned` | delivery can start without inventing a material requirement |
+| `Planned` | a current premortem supports readiness and delivery can start without inventing a material requirement |
 | `In Progress` | authorized delivery is active |
 | `Backlog` | intentionally inactive with an owner/re-entry trigger |
 | `Closed` | planning, delivery, proof, documentation, and any required durable reconciliation obligations are complete |
@@ -87,8 +87,11 @@ Retain the identities and readiness of required specialist results, not their pr
 
 When delivery coordination or decomposition can affect planning readiness, read [delivery tracking](delivery-tracking.md) before declaring `Planned`; loading it does not authorize delivery.
 
+Run the [plan premortem](premortem.md) against this candidate plan, or verify that an existing premortem still applies. Reconcile its material findings before assessing the gate.
+
 Set `Planned` only when all are true:
 
+- the premortem is current, its material readiness threats are resolved, and any residual risk is justified within accepted constraints and the responsible decision-maker's authority;
 - the Decision Frontier is `EMPTY`, with no silently assumed material user choice;
 - no in-scope material territory remains that delivery could encounter but the plan cannot state responsibly;
 - every required independent/normative result is present, accepting, current, and exact enough for the plan to rely on;
@@ -98,7 +101,7 @@ Set `Planned` only when all are true:
 
 Treat coverage, counts, rubric scores, and checklists as evidence rather than readiness by themselves. When several viable planning choices remain, compare only the criteria that can change the decision and apply hard gates first; do not let an aggregate score obscure a decisive constraint.
 
-If a required result is absent, stale, blocked, or not ready, keep the plan `Draft` and make that gap visible when it controls progression.
+If the premortem or another required result is absent, stale, blocked, or not ready, keep the plan `Draft` and make that gap visible when it controls progression.
 
 ## 5. Track delivery
 

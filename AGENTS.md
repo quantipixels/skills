@@ -1,4 +1,4 @@
-Use `ko-skill` for skill authoring and verification. Use `technical-writing` for technical communication and `yo-slop` for requested pruning or remaining instruction noise.
+Use `ko-skill` for skill authoring and verification. Use `oro-ologbon` for technical communication, prose editing, and requested pruning or remaining instruction noise.
 
 QP is a library of expertise, methods, and focused capabilities. Pepeye is its optional general main agent. Use related skills directly; keep their instructions in their own files.
 
@@ -10,7 +10,9 @@ Keep the useful depth and minimise accidental mechanism. Do not remove a lightwe
 
 ## Verify
 
-Test the actual changed boundary. Keep filesystem safety, package integrity, candidate identity, and browser-dependent behavior mechanically checked. Temporary realistic host comparisons may test changed model behavior; syntax and installation success are not authenticated runtime proof. Do not add standing prompt tests merely to defend wording.
+Test the actual changed boundary. Keep a small suite for shipped mechanics: filesystem safety, package integrity, candidate identity, and browser-dependent behavior. Retain rejection cases and real regressions; remove duplicate checks, incidental configuration snapshots, and exhaustive permutations of library-owned behavior. Do not add tests merely to defend prompt wording.
+
+Standing model-behavior datasets, judge rubrics, harnesses, and run artifacts belong in the separate internal eval repository, not this package. Until that repository is available, keep task-local evidence in the PR and report unrun evaluations honestly. Package CI must remain usable without private eval access or model credentials. Syntax and installation success are not authenticated runtime proof.
 
 When retiring old evaluations or documents, preserve unique current expectations at their real owner or in an appropriate test. Keep source attribution and licences. Experimental skills remain usable under their own gates; promotion needs proportional real-use evidence, not a raw invocation count.
 

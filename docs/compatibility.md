@@ -1,24 +1,18 @@
 # Compatibility
 
-A claim applies only to the stated path. `CI_PROVED` means that path is exercised by candidate CI; `STRUCTURAL` means configuration/package checks only; `NOT_RUN` is an unproved runtime path; `NOT_CLAIMED` is outside the release claim.
+Claims are scoped to the path shown. `CI_PROVED` means the current candidate CI exercises that mechanical path; `STRUCTURAL` means package/configuration checks only; `NOT_RUN` means authenticated runtime behavior is unproved; `NOT_CLAIMED` is outside the package claim.
 
-| Path | Evidence | State |
+| Surface | Evidence | State |
 | --- | --- | --- |
-| Flat Agent Skills package and local resources | Strict package/agent validators and rejection tests | CI_PROVED |
-| Skills CLI discovery and Codex project copy | Pinned `skills@1.5.23` against the exact checkout | CI_PROVED |
-| Claude plugin validation and clean local-marketplace installation | Pinned `@anthropic-ai/claude-code@2.1.260` | CI_PROVED |
-| Direct QP snapshot install/update/remove | Exact-checkout round-trip on Ubuntu; filesystem/interruption tests on Linux and macOS | CI_PROVED |
-| Remote installer bootstrap | Exact same-repository head fetch on pushes and same-repository PRs; skipped for forks/merge groups | CI_PROVED |
-| Pepeye native adapter structure | One lazy-loading main agent; equivalent Codex instruction body; no model/permission overrides | STRUCTURAL |
-| Authenticated skill selection, decision-tree composition, supervision and worker reuse | [Native-host checks](verification.md); package success is not model behavior | NOT_RUN |
-| Akọsílẹ̀ and local session parsers | Existing deterministic tests on Linux, macOS and Windows | CI_PROVED |
-| Direct installer on Windows | Uses POSIX symlinks and `flock`; use the native Skills CLI instead | NOT_CLAIMED |
-| Other hosts, model-runtime parity and macOS storage cleanup | Per-host proof not supplied by this package | NOT_CLAIMED |
+| Flat skill package and local resources | package/agent validation in CI | `CI_PROVED` |
+| Skills CLI discovery/copy | compatibility smoke in CI | `CI_PROVED` |
+| Claude plugin validation and clean installation | compatibility smoke in CI | `CI_PROVED` |
+| Direct snapshot install/update/remove on macOS/Linux | round-trip and interruption/filesystem checks | `CI_PROVED` |
+| Native Codex manifest and shared `skills/` target | package validation only | `STRUCTURAL` |
+| Native Codex plugin install/update/remove and authenticated invocation | no host round-trip supplied | `NOT_RUN` |
+| Skill selection, premortem quality, review quality, agent-facing design, measured optimization, and Pepeye coordination | model evaluation not run for this release | `NOT_RUN` |
+| Direct snapshot installer on Windows | POSIX symlink/locking path is not supported | `NOT_CLAIMED` |
 
-The direct installer owns only its generation store and recorded host links. It neither adopts native plugin/Skills CLI installations nor edits their locks, hooks, credentials, startup defaults, or policies. It refuses foreign collisions and modified installed content. Interrupted visible-link changes recover from the journal; an incomplete unowned staging copy is preserved rather than guessed away.
+Exact tool pins and platform jobs live in [the validation workflow](../.github/workflows/validate.yml); this file records claims rather than duplicating CI configuration.
 
-The external Skills CLI remains an independent alternative, not the direct installer's backend. Its pin makes discovery/copy tests reproducible, not a recommendation to retain that version forever. The Claude CLI pin proves validation and installation, not authenticated load or every future host version. Update a pin together with its relevant tests and claim.
-
-Claude's [main-agent selection](https://code.claude.com/docs/en/sub-agents) replaces the built-in system prompt. Codex's [profile](https://developers.openai.com/codex/config-advanced) adds primary-session configuration, and an instruction string replaces rather than appends to an existing string. The adapters intentionally expose this distinction. Read the installed host's documentation when behavior differs; do not loosen permissions to obtain a preferred topology.
-
-No general orchestration server, custom skill runtime, or authenticated behavior guarantee is implied by these checks.
+Package success does not establish model behavior. Model datasets, rubrics, harnesses, and comparison runs belong in the separate internal eval repository; unavailable evaluations remain `NOT_RUN`.
