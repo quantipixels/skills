@@ -1,0 +1,165 @@
+name: Validate
+on:
+  pull_request:
+  push:
+    branches: [ori]
+  merge_group:
+permissions:
+  contents: read
+jobs:
+  package-state:
+    name: Package state
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Verify package lock
+        run: npm ci
+
+  skill-package:
+    name: Skill package
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install -r skills/ko-skill/scripts/requirements.txt
+      - name: Validate package and workflow contracts
+        run: python -m unittest discover -s .github/tests -p 'test_*.py'
+      - run: python skills/ko-skill/scripts/validate-package.py --repo .
+      - run: python skills/ko-skill/scripts/validate-plugin-agents.py --repo .
+      - run: python -m unittest discover -s skills/ayewo-igba-ise/scripts -p 'test_*.py'
+      - name: Test owned snapshot installation
+        run: python -m unittest scripts/test_distribution.py
+
+  browser-controls:
+    name: Browser controls
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install pinned browser tools
+        run: |
+          python -m pip install -r .github/browser/requirements.txt
+          python -m playwright install --with-deps chromium
+      - name: Exercise delivered assets and controls
+        run: python -m unittest discover -s .github/browser -p 'test_*.py'
+
+  akosile-tests:
+    name: Akosile focused mechanics
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m unittest discover -s skills/akosile/scripts -p 'test_*.py'
+
+  compatibility-smoke:
+    name: Compatibility smoke
+    runs-on: ubuntu-latest
+    env:
+      SKILLS_CLI_VERSION: 1.5.23
+      CLAUDE_CODE_VERSION: 2.1.260
+      DISABLE_TELEMETRY: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Discover and copy exact candidate through Skills CLI
+        run: |
+          npx --yes skills@${SKILLS_CLI_VERSION} add "$GITHUB_WORKSPACE" --list
+          target="$(mktemp -d)"
+          cd "$target"
+          npx --yes skills@${SKILLS_CLI_VERSION} add "$GITHUB_WORKSPACE" --agent codex --skill '*' --copy -y
+          expected="$(find "$GITHUB_WORKSPACE/skills" -mindepth 2 -maxdepth 2 -name SKILL.md | wc -l)"
+          installed="$(find "$target/.agents/skills" -mindepth 2 -maxdepth 2 -name SKILL.md | wc -l)"
+          test "$installed" -eq "$expected"
+      - name: Round-trip exact-checkout direct installation
+        run: |
+          export HOME="$(mktemp -d)"
+          export XDG_DATA_HOME="$HOME/data" XDG_STATE_HOME="$HOME/state"
+          export CLAUDE_CONFIG_DIR="$HOME/claude" CODEX_HOME="$HOME/codex"
+          mkdir -p "$CLAUDE_CONFIG_DIR" "$CODEX_HOME"
+          printf '{"existing":true}\n' > "$CLAUDE_CONFIG_DIR/settings.json"
+          printf 'developer_instructions = "preserve me"\n' > "$CODEX_HOME/config.toml"
+          bash scripts/install.sh --source "$GITHUB_WORKSPACE" --codex --claude --dry-run
+          test ! -e "$XDG_DATA_HOME/qp-skills"
+          bash scripts/install.sh --source "$GITHUB_WORKSPACE" --codex --claude
+          bash scripts/install.sh --source "$GITHUB_WORKSPACE"
+          test -L "$HOME/.agents/skills/amose"
+          test -L "$CLAUDE_CONFIG_DIR/skills/arojinle"
+          diff -r --exclude=__pycache__ "$GITHUB_WORKSPACE/skills" "$XDG_DATA_HOME/qp-skills/current/skills"
+          bash scripts/uninstall.sh
+          bash scripts/uninstall.sh
+          test ! -L "$HOME/.agents/skills/amose"
+          test ! -L "$CLAUDE_CONFIG_DIR/skills/arojinle"
+          grep -F 'preserve me' "$CODEX_HOME/config.toml"
+          grep -F 'existing' "$CLAUDE_CONFIG_DIR/settings.json"
+      - name: Remote bootstrap accepts an exact Git revision
+        if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository)
+        env:
+          SOURCE_REF: ${{ github.event.pull_request.head.sha || github.sha }}
+        run: |
+          export HOME="$(mktemp -d)"
+          export XDG_DATA_HOME="$HOME/data" XDG_STATE_HOME="$HOME/state"
+          cat scripts/install.sh | bash -s -- --ref "$SOURCE_REF" --codex
+          test -L "$HOME/.agents/skills/amose"
+          bash scripts/uninstall.sh
+      - name: Validate Claude Code plugin
+        run: npx --yes @anthropic-ai/claude-code@${CLAUDE_CODE_VERSION} plugin validate .
+      - name: Clean-install Claude Code plugin
+        run: |
+          export CLAUDE_CONFIG_DIR="$(mktemp -d)"
+          npx --yes @anthropic-ai/claude-code@${CLAUDE_CODE_VERSION} plugin marketplace add "$GITHUB_WORKSPACE" --scope user
+          npx --yes @anthropic-ai/claude-code@${CLAUDE_CODE_VERSION} plugin install qp-skills@qp-skills --scope user
+          npx --yes @anthropic-ai/claude-code@${CLAUDE_CODE_VERSION} plugin list --json | tee /tmp/qp-plugins.json
+          grep -F 'qp-skills' /tmp/qp-plugins.json
+
+  portable-mechanics:
+    name: Portable mechanics (${{ matrix.os }})
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [macos-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install -r skills/ko-skill/scripts/requirements.txt
+      - run: python skills/ko-skill/scripts/validate-package.py --repo .
+      - run: python skills/ko-skill/scripts/validate-plugin-agents.py --repo .
+      - run: python -m unittest discover -s skills/ayewo-igba-ise/scripts -p 'test_*.py'
+      - run: python -m unittest discover -s skills/akosile/scripts -p 'test_*.py'
+      - name: Test owned snapshot installation
+        if: runner.os == 'macOS'
+        run: python -m unittest scripts/test_distribution.py
+
+  validate:
+    name: Validate
+    if: ${{ always() }}
+    needs: [package-state, skill-package, akosile-tests, browser-controls, compatibility-smoke, portable-mechanics]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Require every validation job
+        env:
+          RESULTS: ${{ toJSON(needs) }}
+        run: |
+          python3 - <<'PY'
+          import json, os
+          results = json.loads(os.environ['RESULTS'])
+          assert results and all(job['result'] == 'success' for job in results.values()), results
+          PY

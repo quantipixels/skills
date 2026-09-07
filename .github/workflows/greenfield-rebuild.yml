@@ -1,0 +1,42 @@
+name: Greenfield candidate migration
+on:
+  pull_request:
+permissions:
+  contents: write
+concurrency:
+  group: qp-greenfield-candidate-migration
+  cancel-in-progress: false
+jobs:
+  migrate:
+    if: github.event.pull_request.head.repo.full_name == github.repository && github.head_ref == 'greenfield-focused-skills'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: greenfield-focused-skills
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Execute the approved one-time source migration
+        env:
+          PYTHONDONTWRITEBYTECODE: '1'
+        run: |
+          if [ ! -f .github/greenfield/migrate.py ]; then
+            echo 'Already migrated; no further branch changes.'
+            exit 0
+          fi
+          python -m pip install -r skills/engineering/ko-skill/scripts/requirements.txt
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          python .github/greenfield/migrate.py
+          cp /tmp/qp-final-validate.yml .github/workflows/validate.yml
+          python skills/ko-skill/scripts/validate-package.py --repo .
+          python skills/ko-skill/scripts/validate-plugin-agents.py --repo .
+          python -m unittest discover -s .github/tests -p 'test_*.py'
+          python -m unittest scripts/test_distribution.py
+          python -m unittest discover -s skills/akosile/scripts -p 'test_*.py'
+          python -m unittest discover -s skills/ayewo-igba-ise/scripts -p 'test_*.py'
+          git restore .github/workflows/validate.yml
+          git diff --exit-code
+          git push origin HEAD:greenfield-focused-skills
