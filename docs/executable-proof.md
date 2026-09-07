@@ -4,14 +4,14 @@ QP keeps executable code only at deterministic/mechanical seams or as a thin hum
 
 | Executable | Owned mechanical result | Candidate proof | Platform claim |
 | --- | --- | --- | --- |
-| `skills/engineering/akosile/scripts/safe-write.py` | containment-aware candidate/target CAS publication and atomic readback | focused Akọsílẹ̀ unit tests; `Portable mechanics` matrix | Linux, macOS, Windows |
-| `skills/engineering/akosile/scripts/render-index.py` | pure deterministic `.qp` index rendering | focused Akọsílẹ̀ unit tests; `Portable mechanics` matrix | Linux, macOS, Windows |
-| `skills/engineering/ko-skill/scripts/validate-package.py` | package/frontmatter/resource integrity | `Skill package`; `Portable mechanics` matrix | Linux, macOS, Windows |
-| `skills/engineering/ko-skill/scripts/validate-plugin-agents.py` | host-manifest/agent-preload structural integrity | `Skill package`; `Portable mechanics` matrix | Linux, macOS, Windows |
-| `skills/productivity/ayewo-igba-ise/scripts/session-evidence.py` | read-only local Codex/Claude session inventory and structural evidence normalization | focused synthetic tests; `Portable mechanics` matrix | Linux, macOS, Windows parser/package mechanics; real host stores remain host-owned |
+| `skills/akosile/scripts/safe-write.py` | containment-aware candidate/target CAS publication and atomic readback | focused Akọsílẹ̀ unit tests; `Portable mechanics` matrix | Linux, macOS, Windows |
+| `skills/akosile/scripts/render-index.py` | pure deterministic `.qp` index rendering | focused Akọsílẹ̀ unit tests; `Portable mechanics` matrix | Linux, macOS, Windows |
+| `skills/ko-skill/scripts/validate-package.py` | package/frontmatter/resource integrity | `Skill package`; `Portable mechanics` matrix | Linux, macOS, Windows |
+| `skills/ko-skill/scripts/validate-plugin-agents.py` | host-manifest/agent-preload structural integrity | `Skill package`; `Portable mechanics` matrix | Linux, macOS, Windows |
+| `skills/ayewo-igba-ise/scripts/session-evidence.py` | read-only local Codex/Claude session inventory and structural evidence normalization | focused synthetic tests; `Portable mechanics` matrix | Linux, macOS, Windows parser/package mechanics; real host stores remain host-owned |
 | `scripts/uninstall.sh` | source-aware removal of globally installed QP skills only | fake-HOME/fake-lock/fake-`npx` smoke with post-removal verification | Linux, macOS; not claimed on Windows |
 
-`skills/engineering/ko-skill/scripts/requirements.txt` is dependency input, not an executable owner. `test_*.py` files are proof harnesses, not runtime capability.
+`skills/ko-skill/scripts/requirements.txt` is dependency input, not an executable owner. `test_*.py` files are proof harnesses, not runtime capability.
 
 ## Release rule
 

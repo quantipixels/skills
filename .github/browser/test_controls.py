@@ -9,7 +9,7 @@ import unittest
 from playwright.sync_api import expect, sync_playwright
 
 ROOT = Path(__file__).resolve().parents[2]
-ASSETS = ROOT / 'skills/productivity/html-artifact/assets'
+ASSETS = ROOT / 'skills/html-artifact/assets'
 
 
 def asset(name):
