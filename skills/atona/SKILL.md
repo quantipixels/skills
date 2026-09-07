@@ -13,6 +13,8 @@ Delegate substantial analysis, research, and expert work to subagents, returning
 
 Start from supplied decisions and current evidence. Do not replay discovery or ask the user for facts you can establish. Distinguish confirmed requirements from inference, and keep the scope and non-goals explicit.
 
+When project knowledge could change the approach, constraints, sequence, or proof, reuse applicable evidence already supplied; otherwise search the existing knowledge and research destinations by affected concepts and components. Read plausible matches, check their authority and current applicability, and carry forward only what changes this plan. Flag conflicts rather than treating historical guidance as current authority. An empty search does not itself require a new record or a repository-wide search.
+
 Include the outcome and observable acceptance, the material decisions and assumptions, a useful delivery sequence, dependencies and risks that can change it, the current blocker, and the next action. Match detail to what a fresh contributor would otherwise have to invent. Omit empty sections and bookkeeping that has no consumer.
 
 Use `arojinle`, `amose`, `seda-spec`, `architect`, and `seda-ticket` as needed.

@@ -21,6 +21,8 @@ Pin only what can change delivery:
 - ordinary documentation required by the delivered contract; and
 - workspace and mutation authority.
 
+When project knowledge could change implementation or proof, reuse applicable evidence already supplied; otherwise search the existing knowledge and research destinations by affected concepts and components. Read plausible matches and check their authority and current applicability before applying a constraint or avoiding a past approach. Flag material conflicts; an empty search does not require documentation or knowledge maintenance.
+
 Treat local non-goals as active negative implementation boundaries. Material growth outside the expected envelope is a signal to re-check understanding, causal ownership, or scope rather than preserve the first plan with workaround layers.
 
 Use `amose`, `architect`, and `arojinle` as needed. Make local implementation choices within the accepted scope and contracts; surface unresolved requirements rather than inventing them.
