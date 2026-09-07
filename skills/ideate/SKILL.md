@@ -11,7 +11,7 @@ Expand one grounded opportunity into a bounded, mechanism-diverse candidate set;
 
 ## 1. Ground the opportunity
 
-Pin the problem or opportunity, intended beneficiaries, current relevant reality, constraints, known non-goals, evidence boundary, time horizon, and what would make a direction useful. Resolve only the facts needed to avoid detached suggestions; deeper research or tool evidence is separate only when it produces an independently useful result.
+Pin the problem or opportunity, intended beneficiaries, current relevant reality, constraints, known non-goals, evidence boundary, time horizon, and what would make a direction useful. Ground the suggestions in current facts; use `iwadi` and `irinse` as needed.
 
 ## 2. Generate materially different mechanisms
 
@@ -37,7 +37,7 @@ Reject duplicates, weak variants, off-strategy ideas, and candidates whose expec
 
 Rank survivors only when the criteria make them genuinely comparable. Otherwise group them by trade-off or decision type. Explain why each survived, what evidence it still needs, and the material decision it would create. Novelty is not a benefit by itself.
 
-Do not turn ordinary candidate critique into a separate premise investigation unless premise testing is itself the requested next result.
+Use `ro-wo` as needed.
 
 ## 4. Return decision-ready possibilities
 

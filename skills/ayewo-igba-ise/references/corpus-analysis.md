@@ -8,7 +8,7 @@ Pin the time range, session roots, repositories, inclusion and exclusion rules, 
 
 When the corpus comes from persisted local Codex or Claude Code history, read [local session evidence](local-session-evidence.md) before sampling. Use its adapter only for deterministic inventory/normalization and structural evidence signals; eligibility, owner selection quality, incremental value, causal reconstruction, and portfolio judgment remain semantic work here or with Kọ Skill.
 
-Àyẹ̀wò remains the user-facing workflow owner for a requested historical-analysis flow. When that same requested outcome includes skill/portfolio disposition or authorized skill remediation, compose `ko-skill` internally after reconstructing the evidence below, pass the bounded evidence packet plus current mutation authority, and continue to one integrated result. Do not return the packet as a prerequisite for the user to invoke Kọ separately, and do not ask Kọ to reconstruct the same corpus again.
+Use `ko-skill` for requested skill assessment or remediation, reusing the reconstructed evidence. Complete the requested work in the same response.
 
 Inventory the corpus before sampling. Distinguish a user task, root session, resumed or copied history, rollout file, and subagent rollout. Do not treat rollout count as task count, first-to-last span as labour time, or repeated transcript content as independent evidence.
 
@@ -61,7 +61,7 @@ Counterevidence:
 Coverage/evidence gaps:
 ```
 
-This packet is historical evidence, not a promotion/removal verdict. When portfolio disposition is part of the requested outcome, pass it internally to `ko-skill` and continue the workflow; otherwise report the evidence without silently expanding scope.
+Use `ko-skill` as needed; counts alone do not justify changing the portfolio.
 
 ### Stable-skill improvement evidence
 
@@ -105,9 +105,9 @@ The packet is evidence, not an edit instruction or verdict. Kọ Skill decides w
 
 Return the executive verdict, population and unit definitions, inventory and sampling ledger, repeated-pattern matrix with independent supporting records and counterevidence, representative causal chains, ranked frictions, effective recoveries, recommendation assessment, rejected recommendations, and residual limits.
 
-When Experimental evaluation is in scope, also return the opportunity evidence packet per experiment. Do not infer promotion, narrowing, folding, replacement, or removal from invocation counts; use `ko-skill` internally when that portfolio-shape judgment is part of the requested outcome.
+For Experimental evaluation, include opportunity evidence. Do not infer promotion or removal from invocation counts.
 
-When stable-skill improvement is in scope, return the stable-skill improvement packet for each skill whose contract/selection boundary is materially implicated. Preserve `NO_CHANGE` evidence when the current contract was adequate; do not report only problematic sessions. If authorized remediation is part of the request, continue internally through Kọ Skill and report the proved result/gaps in the same final response.
+When stable-skill improvement is in scope, return the stable-skill improvement packet for each skill whose contract/selection boundary is materially implicated. Preserve `NO_CHANGE` evidence when the current contract was adequate; do not report only problematic sessions. Complete authorized remediation and report its result and gaps in the same response.
 
 When the corpus spans projects, include one dossier for every normalized project in the population, not only sampled or problematic projects. Each dossier must state:
 

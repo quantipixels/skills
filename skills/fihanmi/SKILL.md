@@ -142,11 +142,7 @@ function expandSkill(command: string): string {
 
 Keep only the calls, files, props, states, boundaries, options, and evidence needed to answer the current question.
 
-## Adjacent results
-
-Use `salaye` when the requested result is primarily a newcomer-oriented plain-language explanation. Use `html-artifact` when the requested result is a substantial standalone browser information projection. A requested presentation/deck remains `slides`.
-
-These are result boundaries, not mandatory stages. Do not escalate merely because a richer representation is possible.
+Use `salaye`, `html-artifact`, or `slides` as needed.
 
 ## Output
 

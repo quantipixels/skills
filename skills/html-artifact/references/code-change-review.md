@@ -2,7 +2,7 @@
 
 Read this file only when supplied code-change evidence must become an HTML view for human review. The input can be a unified diff, exact old/new file contents, a pinned commit or branch comparison, or a materialized pull-request or merge-request snapshot.
 
-HTML Artifact owns the review view, not the review verdict. Use `atunwo` when the requested result includes defect discovery, severity, disposition, or provider review publication. Use `pare` for a simplification or maintainability judgment. A pull-request or merge-request URL is a locator, not sufficient evidence; acquire the exact candidate through ordinary trusted Git/provider capability or consume a supplied pinned snapshot. Do not invoke a review owner merely to materialize evidence.
+Use `atunwo` and `pare` as needed. Pin the actual diff and evidence behind a PR/MR URL; the URL alone does not establish its contents.
 
 ## Pin the candidate and coverage
 

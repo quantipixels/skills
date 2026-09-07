@@ -5,7 +5,7 @@ description: Establish, sharpen, or reconcile one project's exact-current domain
 
 # Amọ̀ṣẹ́
 
-Actively sharpen the project's domain model when meaning itself is being established, changed, or is unclear. Reading established project/domain language is ordinary capability and does not require `amose`.
+Actively sharpen the project's domain model as concepts emerge and change.
 
 ## Clarify the model
 
@@ -23,11 +23,9 @@ Challenge the model as concepts crystallize. A useful clarification may establis
 - semantic relationships or invariants; and
 - contradictions between stated meaning and current behavior.
 
-Use `arojinle` when `amose` is the primary owner and resolving the model requires a consequential user choice rather than clarification. When `amose` is supporting an active `arojinle` interview, return any unresolved consequential choice to that caller instead of recursively invoking `arojinle`.
+Use `arojinle` and `architect` as needed.
 
-Use the relevant design owner when an independently useful design result is required; consequential software/system technical structure belongs to `architect`.
-
-For a reusable handoff, return only the compact model delta needed downstream: affected context, resolved terms/distinctions/relationships/invariants, any concrete scenario that materially distinguishes the resolved meaning for a downstream consumer, conflicts or open decisions, and controlling evidence/limits. Do not create a universal project-knowledge packet, freshness lifecycle, or status ceremony for ordinary clarification.
+Return the resolved terms, relationships, invariants, distinguishing examples, and any conflicts or open decisions with their evidence.
 
 ## Reconcile canonical language
 
@@ -49,7 +47,7 @@ Use the project's existing destination or user-selected equivalent. For reposito
 
 Prefer stronger maintained sources such as domain context, architecture, policy, configuration, code, tests, runbooks, or product/service documentation when they already own the truth. Do not create a second durable record merely because information is useful.
 
-When requested durable reconciliation is required but the natural destination, evidence, or write authority is missing, return the exact gap instead of inventing a destination. Use `akosile` only when a selected durable destination is repository-scoped `.qp` state; `akosile` owns path/publication mechanics, not `amose` semantics.
+When required reconciliation lacks a destination, evidence, or write authority, report the gap. For a selected `.qp` destination, use `akosile`.
 
 ## Return
 

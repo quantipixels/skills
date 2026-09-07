@@ -64,7 +64,7 @@ Procedures, specifications, reports, operational instructions, PR descriptions, 
 
 Do not rewrite exact identifiers or facts for style. Make paths, symbols, commands, quantities, standards references, counts, statuses, and other exact claims true for the subject being described. Product UI strings follow the product's copy rules rather than this documentation contract.
 
-Use `yo-slop` only when the user explicitly asks for its cleanup/pruning outcome or when a distinct material filler/AI-tell/repetition problem remains after the technical writing is already correct. Do not invoke it merely because Technical Writing completed.
+Use `yo-slop` as needed.
 
 ## Provenance and boundary
 

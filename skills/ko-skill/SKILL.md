@@ -23,7 +23,7 @@ Compare competing identities at the same layer by outcome, decision surface, and
 
 State the scope, completion evidence, and consequential exceptions. Supply useful expertise and examples, not just behavioral restrictions.
 
-Preserve deep-module composition: one simple entry point may carry substantial selectively loaded expertise or tooling. Compose skills by reference; the agent can combine their instructions. State only the trigger and caller-specific constraints not already covered by the target. Preserve distinct authority, independent proof, and completion requirements where they matter.
+Keep a simple entry point with selectively loaded depth. Use related skills by name, where they fit the work; do not repeat their instructions or explain how to combine them.
 
 Keep each rule in one authoritative place per loading path unless repetition protects an independent boundary. Preserve deliberate overrides, useful named concepts, and constraints that would otherwise become consequential guesswork. Compare credible alternatives when they could change the choice; a score or disposition vocabulary is not required.
 
@@ -42,7 +42,7 @@ An unchanged resource does not trigger a fresh architectural review.
 
 Run applicable package checks and test the changed behavior where its correctness remains uncertain. For material compression, composition, authority, or selection changes, compare the same realistic task before/after and check preserved boundaries. Measure the actual loading/execution path, including references and handoffs; word count alone does not prove quality, cost, or reliability.
 
-Use `ayewo-igba-ise` when required historical multi-session evidence is missing; reuse a supplied valid packet instead of reconstructing the corpus. Evidence informs judgment, not automatic edits.
+Use `ayewo-igba-ise` as needed. Reuse existing evidence rather than reconstructing the same corpus.
 
 Retest only what later changes or unresolved findings invalidate. Keep temporary simulations temporary; retain regression cases only for justified recurring risk. Use `VERIFIED` only when required proof passes, `CHANGES_REQUIRED` for a demonstrated defect, and `INSUFFICIENT_EVIDENCE` for a material proof gap. Source checks do not prove installation or behavior on untested hosts/models.
 

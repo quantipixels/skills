@@ -4,7 +4,7 @@ Read only when the requested work decides whether an Experimental skill should b
 
 ## Require real-use evidence
 
-Kọ Skill does not infer historical usage from repository structure, router metadata, or current package state. Consume verified evidence supplied by the user, `ayewo-igba-ise` corpus analysis, Skill Doctor, or another source whose population, availability, and evidence boundary are explicit.
+Use `ayewo-igba-ise` as needed. Assess real-use evidence with an explicit population and availability; repository structure does not establish usage.
 
 Useful evidence may include:
 

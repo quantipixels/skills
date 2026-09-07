@@ -19,7 +19,7 @@ Use Ìwádìí when at least one is true:
 - a peculiar version-specific technical question remains materially unresolved after ordinary first-party/project research; or
 - the user explicitly requests a research result or source-level grounding.
 
-Do not create a durable research record for one/few routine facts, a small known documentation read, or a transient lookup whose result is immediately consumed by another owner. Let the active owner perform that bounded lookup directly.
+Keep routine lookups in the current task; persist research only when it needs to outlive that task.
 
 ## Match evidence to the claim
 
@@ -65,5 +65,5 @@ The current agent owns evidence selection, synthesis, durable report when warran
 5. Separate authoritative/normative statements from empirical observations and from synthesis/inference.
 6. Lead with the question and direct conclusion/verdict, then supporting evidence and limits without reproducing the discovery transcript.
 7. When evidence strength materially helps downstream judgment, state `Confidence: High | Medium | Low` separately from the conclusion and explain the controlling source-quality/directness/consistency/freshness/coverage/conflict limit. Do not invent numeric confidence without a meaningful model. State what evidence could materially overturn or narrow the conclusion when non-obvious.
-8. When the result deserves independent persistence, use the existing/user-selected durable research/knowledge destination. When repository-scoped `.qp` persistence is selected, use `akosile` with the research owner/subject. Do not require a repository merely because `.qp` persistence is available.
-9. When Ìwádìí only supports another owner and persistence adds no independent value, return the compact sourced finding and stop instead of creating a record by ceremony.
+8. When the result deserves independent persistence, use the existing/user-selected durable research/knowledge destination. Use `akosile` for a selected shared workspace.
+9. Return concise sourced findings rather than a discovery transcript.

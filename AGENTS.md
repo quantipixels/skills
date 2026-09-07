@@ -1,6 +1,6 @@
 Use `ko-skill` for skill authoring and verification. Use `technical-writing` for technical communication and `yo-slop` for requested pruning or remaining instruction noise.
 
-QP is a library of useful expertise, methods, and focused capabilities. Pepeye is its optional general main agent. Use skills by reference; the agent can combine them. Preserve a concrete authority, independent-proof, or completion boundary where it matters, not a handoff protocol for every combination.
+QP is a library of expertise, methods, and focused capabilities. Pepeye is its optional general main agent. Use related skills directly; keep their instructions in their own files.
 
 ## Package
 

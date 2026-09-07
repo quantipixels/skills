@@ -4,11 +4,11 @@ Read this reference only when `atunwo` selects `audit` scope for one planned, in
 
 Treat a refactor as a behavioral parity exercise unless an authority explicitly accepts a behavior change. Compare complete processes, not matching names or shapes.
 
-Keep this audit and provider state read-only. Implementation and test changes belong to `alaga` or the current implementation owner. An audit result does not authorize delivery or replace the final review required for an implemented candidate.
+Keep this audit and provider state read-only. Use `alaga` for separately authorized corrections, with independent review of the corrected candidate.
 
-Read relevant confirmed `.learnings`, specifications/accepted decisions, current domain language, and supplied or previously confirmed domain scenarios when domain rules affect parity. Scenario evidence from an `amose` model delta may be used when present, but `atunwo` must not require `amose` to persist scenarios. Treat all such material as evidence and verify it against baseline behavior. Use `amose` only when domain meaning itself needs clarification/change; do not redefine canonical terms or rules inside the parity ledger.
+Read current specifications, domain language, accepted decisions, and relevant scenarios. Use `amose` as needed. Compare stated rules with baseline behavior rather than treating implementation as intent.
 
-Use an exact-current `irinse` result when bounded call, impact, or data-flow signals can widen the trace surface. Revalidate every consequential path against source and observable behavior.
+Use `irinse` as needed. Check consequential tool findings against source and observable behavior.
 
 When independent baseline and candidate traces would materially improve the evidence join, the audit owner may request each bounded trace from a host-provided subagent. Give each trace the exact source identity, boundary, scenarios, and required provenance. The audit owner revalidates both identities, joins the ledger, resolves conflicts, and makes the parity recommendation.
 
@@ -37,7 +37,7 @@ Create one ledger row for each in-scope entry point, event, job, command, API, h
 - ordering, time, retries, replay, idempotency, locking, and concurrency;
 - observability, recovery, existing proof, and missing proof.
 
-Do not add empty ledger fields for facets that cannot affect the behavior in scope. Use a compact inline ledger for a local refactor. When the user needs a durable record, use the verified ledger as input to the owning plan or `html-artifact`; do not create another artifact lifecycle.
+Keep the parity ledger inline unless a durable record is needed. Omit irrelevant facets; use `html-artifact` as needed.
 
 Give the baseline, candidate, and required states explicit sources. Name each changed entry point in the boundary. Keep proof attached to its exact revision and environment.
 
@@ -57,7 +57,7 @@ Cover each applicable scenario:
 
 For the candidate, confirm the purpose, conditions, lookup chain, mutations, outputs, serialized representation, failures, ordering, and side effects without using structural similarity as evidence. A moved method counts as preserved only when its complete behavior still agrees.
 
-For planned work, name the characterization tests required at the nearest behavior-bearing seam. Record them as bounded `alaga` test-first work or implementation-owner work. When another skill owns necessary work, name that owner and one bounded next action.
+For planned work, identify the required characterization tests and their seams. Use `alaga` for authorized test-first work.
 
 Record source evidence or an explicit unknown for each material ledger value on both sides. Attach each important behavior or ordering claim to a test seam or named proof gap.
 

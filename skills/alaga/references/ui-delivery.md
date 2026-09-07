@@ -2,7 +2,7 @@
 
 Read when an Alága build job materially changes a user-facing web/mobile interface, component system, design-token contract, responsive behavior, or rendered interaction.
 
-UI work remains one software-delivery job unless a separate design/identity/architecture judgment is independently useful. Alága owns implementation, exact candidate identity, native proof, and convergence. A confirmed `amoye-ui-ux` direction or `brand` identity is controlling input when present; do not invoke either merely because UI exists. Use `amoye-ui-ux` when the visual/interaction direction itself is materially underdetermined or needs independent rendered judgment, and `brand` only when durable identity itself is missing/changing. A component-library decision belongs to `architect` only when it materially changes system-wide ownership, runtime/bundle architecture, compatibility/migration, or another architecture boundary.
+Use `amoye-ui-ux`, `brand`, and `architect` as needed. Preserve approved direction, identity, and affordances while implementing the interface.
 
 ## Start from current product reality
 
@@ -47,6 +47,6 @@ Run the project's native code/build/type/lint/test proof appropriate to the chan
 
 Inspect only relevant supported surfaces/states: normal plus credible loading/empty/error/disabled/recovery states, narrow/wide layouts, keyboard/focus, contrast, overflow, reduced motion, and changed integration boundaries as applicable. Do not mechanically test every dimension for every UI change.
 
-When a confirmed `amoye-ui-ux` direction materially governs acceptance and independent design judgment can still change the result, return the exact rendered evidence plus the accepted direction/affordance constraints for review. Apply accepted corrections through Alága's normal implementation/proof path and request another design pass only when the new render can materially change the previous verdict or clear an evidence gap.
+Use `amoye-ui-ux` to review the rendered interface against the accepted direction. Apply accepted corrections and recheck the affected behavior.
 
 The implementation must remain startable and reviewable without reconstructing hidden design intent from source code, but design review does not become a second delivery lifecycle.

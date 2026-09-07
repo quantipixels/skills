@@ -4,7 +4,7 @@ Use this contract when the plan has material delivery coordination: multiple wor
 
 ## Decompose delivery when needed
 
-Use `seda-ticket` when the settled plan benefits from consumable semantic delivery tickets with explicit dependencies, acceptance, and a startable frontier. Give it the scope, constraints, dependencies, acceptance, proof/evidence obligations, rollback/recovery boundaries, and exact `seda-spec` identity when one governs the work. Consume its current ticket set and derived startable frontier; do not reproduce its decomposition, dependency, startability, or terminal-disposition rules here.
+Use `seda-ticket` with the settled plan and governing specification.
 
 When another delivery owner already has a stronger native work-unit/dependency model, consume that result instead of forcing parallel ticket semantics. Tickets are optional decomposition, not Atọ́nà's universal delivery representation.
 
@@ -20,7 +20,7 @@ Before material delivery begins, establish a lightweight cumulative **delivery-s
 
 Require delivery authority before execution starts. Set the plan to `In Progress` when authorized delivery begins; investigation, clarification, and plan edits do not start delivery.
 
-Give each delivery owner the exact plan outcome, settled scope, dependencies, acceptance, proof/evidence obligation, rollback/recovery boundary, and governing specification identity when present. Use `alaga` when the supplied work is a software/build job that must deliver one or more candidates through implementation, proof, and required review. Otherwise consume the current delivery owner's exact-current native result rather than translating it into Alága semantics.
+Use `alaga` for software delivery. Supply the current plan and acceptance; track actual delivery evidence.
 
 Execution/review progress comes from the active owner results, not from ticket/work-unit progress states. When exact-current owner evidence proves a ticket's acceptance, the caller may reconcile that ticket to `Done`; cancellation still requires its own authority. A delivery blocker remains with the active owner and affects Atọ́nà's delivery summary without creating a parallel lifecycle.
 
@@ -42,7 +42,7 @@ Do not rewrite terminal work units or owner results to make the amended contract
 
 After each materially shape-changing slice or before a material publication/review/handoff boundary, reconcile cumulative actual shape against the delivery-shape envelope. Counts may be useful telemetry in domains where they carry information, but counts are never the acceptance target. Material drift includes unexpected workstream/system/surface spread, repeated new proof owners, new dependencies/contracts, or handoff/review topology that has multiplied beyond its independent value.
 
-When drift is material, stop automatic accretion and determine the owning correction: reopen Atọ́nà when accepted outcome/scope changed; use the current specialist when domain/technical boundaries changed; use `architect` when software/system architecture changed; or use `pare` when software implementation/test/support structure has accumulated without clear value. Do not force a non-software drift problem through a software owner.
+When drift is material, replan from the changed scope and constraints. Use `architect` or `pare` as needed.
 
 Derive `Complete` only when every in-scope delivery obligation has current accepting proof and plan-level integration has no blocking gap. Derive `Not required` only when the accepted plan contains no delivery work.
 

@@ -4,7 +4,7 @@ Load this contract at job acceptance and after decomposition or a material shift
 
 ## Reuse an active `atona` plan
 
-When an active `atona` plan governs the job, return the exact-current job result to `atona` and do not create a parallel user-facing report. Keep job-local execution mechanics and detailed evidence with Alága or their native owners.
+Update the active `atona` plan with the job result and evidence instead of creating a parallel report.
 
 ## Require an explicit job report
 
@@ -38,6 +38,6 @@ Next safe action
 
 The report may be returned directly in the current handoff/output. Do not require an HTML artifact, durable file, owner record, or other representation merely because the report gate fired.
 
-Use `html-artifact` only when a substantial visual view materially improves comparison, navigation, review, or handoff, or when the user explicitly requests that representation. `html-artifact` owns only the projection/representation mechanics; Alága remains the semantic owner.
+Use `html-artifact` as needed.
 
 When a durable file/record is actually required, preserve the caller/repository's existing destination and persistence owner rather than inventing a new Alága storage convention.

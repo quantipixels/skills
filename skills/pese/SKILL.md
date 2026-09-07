@@ -43,7 +43,7 @@ If Tailcat is already installed, prefer its embedded upstream documentation via 
 
 - If the transport tool is already installed, identify the installed version/build/provenance and use its own help/embedded documentation plus official documentation appropriate to that version. Where the official site is not versioned, reconcile current official docs with the installed CLI rather than assuming newer flags/features exist.
 - If the tool is absent and setup is authorized, use the latest official installation/setup documentation and current stable release. For an upstream with no stable releases, use its latest official upstream documentation/source and treat the interface as unstable.
-- Use `irinse` when installation, upgrade, authentication, or readiness itself requires material work. Pèsè still owns the serving outcome after the tool is ready.
+- Use `irinse` as needed.
 
 ## Bound the resource
 

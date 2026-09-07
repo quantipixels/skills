@@ -31,11 +31,11 @@ Classify each category:
 
 Show the material coverage before specialist work. If the human wants only a walkthrough, no specialist is required; finish with `NO_DECISION`.
 
-Use the relevant specialist for every `required` category, and for `useful` categories when the evidence justifies the work. Use `alarina` only for unclear selection or requested inventory/routing.
+Use relevant skills for the required review categories; use `alarina` as needed.
 
-One selected specialist may cover several categories. Respect explicit user choice and each skill's invocation policy; offer explicit-only skills instead of silently invoking them. Pass the exact candidate and review need, preserve each specialist's native result without rewriting it, and keep a required category open when its evidence remains insufficient.
+Respect explicit-only activation. Review the exact candidate and keep required categories open until their evidence is sufficient.
 
-Identify the specialists used and their contribution to each category. Use ordinary capability where no skill adds value.
+Identify the skills used and the evidence they contributed.
 
 ## Review and decide
 

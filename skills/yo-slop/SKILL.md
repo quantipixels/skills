@@ -7,7 +7,7 @@ description: Refine human- or agent-facing prose by removing AI tells, filler, v
 
 Make supplied prose clearer and less machine-shaped while preserving its contract. Keep exact identifiers, quotations, facts, citations, schemas, required formats, accepted terminology, and the owning artifact's decisions.
 
-This is a direct or conditional cleanup outcome, not a mandatory tail stage after `technical-writing` or another writing owner. Use it when cleanup/pruning is explicitly requested or a material filler, AI-tell, repetition, vague-abstraction, or instruction-noise problem remains in otherwise settled prose.
+Clean up the supplied prose; do not add an automatic editing pass to unrelated tasks.
 
 ## Choose the pass
 
@@ -17,7 +17,7 @@ Use the normal cleanup pass for local clarity and voice problems. When the reque
 
 Identify the reader, artifact owner, purpose, language and locale, intended voice, and text that must remain exact. If these are unclear, fix only unambiguous filler and ask before a change that could alter meaning or tone.
 
-Use the owning skill for content structure, evidence, technical truth, accessibility, localization, or acceptance. `technical-writing` owns human-facing developer documentation, technical communication, and applicable artifact copy. `ko-skill` owns skill behavior and proof. Yọ Slop owns cleanup and explicit pruning of settled prose, not structural or factual changes.
+Use `technical-writing` and `ko-skill` as needed.
 
 ## Match the reader
 

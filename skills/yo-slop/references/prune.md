@@ -6,7 +6,7 @@ Read this file only when the request explicitly asks to shorten prose, reduce ve
 
 Identify the artifact owner, reader, purpose, language, voice, required structure, and content that must remain exact. Preserve facts, evidence, citations, decisions, authority, schemas, identifiers, accepted terms, uncertainty, and required output fields.
 
-For agent-facing prose, use the owning skill to map each capability as `retain`, `change`, `move`, or `remove`. Yọ Slop may compress settled behavior but cannot decide which behavior the agent no longer needs. Return an ambiguous cut to the owner. When pruning requires a structural change, the owning skill makes it.
+Use `ko-skill` when pruning skill instructions. Preserve the intended behavior, not redundant explanations of it.
 
 Record the baseline word count for the bounded target. For agent instructions, count each active loading path instead of treating the whole package as one prompt. Use a supplied reduction target as a constraint, not proof of quality. Do not invent a quota.
 
@@ -30,7 +30,7 @@ Stop when the next cut would require guessing about meaning, coverage, authority
 Compare the final prose with the exact baseline.
 
 - For human-facing prose, verify that facts, argument, required structure, citations, uncertainty, and voice remain intact.
-- For agent-facing prose, verify every trigger, branch, action, prohibition, completion condition, status, field, and authority boundary. Use the owning skill to compare old and new against the same raw goal, context, authority, and stop condition when wording could change behavior. Do not add a prompt-evaluation harness for prose wording.
+- For agent-facing prose, verify every trigger, branch, action, prohibition, completion condition, status, field, and authority boundary. Compare old and new against the same goal and context when wording could change behavior. Do not add a prompt-evaluation harness for prose wording.
 - Report before-and-after counts for material pruning. State which capabilities moved or merged and any proof gap. Never claim equivalence from word count alone.
 
 Return the pruned prose first. Then report only material count, meaning, authority, or evidence notes.

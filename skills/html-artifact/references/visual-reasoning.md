@@ -2,7 +2,7 @@
 
 Use when an HTML Artifact needs shaped visual reasoning beyond ordinary prose/table composition.
 
-Use `fihanmi` as the canonical low-cost visual-understanding grammar for pseudocode, call/component/responsibility trees, shape-aware explanatory diffs, whole-shape admission, small Mermaid views, and the base epistemic rules for non-literal visuals. Apply that capability as supporting representation behavior when useful; do not create a visible ownership handoff merely because HTML Artifact uses the same grammar.
+Use `fihanmi`.
 
 HTML Artifact adds only the browser-projection concerns below.
 
@@ -62,7 +62,7 @@ Keep named renderer anchors open-ended. If none fits the information shape, disc
 
 ## Browser-specific epistemic and provenance rules
 
-Carry forward `fihanmi`'s distinction between `Observed | Inferred | Proposed | Illustrative`, and between literal source evidence and explanatory shape. HTML additionally preserves source identity, evidence cut, freshness, and retrieval/provenance in the page when material.
+Preserve source identity, evidence cutoff, freshness, and provenance in the page.
 
 A visually polished or interactive projection never increases semantic authority. Stale, partial, conditional, inferred, or proposed content remains visibly so.
 

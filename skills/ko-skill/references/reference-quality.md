@@ -26,4 +26,4 @@ Comparison-only inspiration, alternatives considered, measurements, and task ver
 
 Promote an observation into reusable guidance only when evidence establishes a recurring or owner-wide consequential gap. One strong general failure can suffice; an unconfirmed correction cannot. Do not add prose to compensate for a correct instruction that was unavailable or ignored.
 
-Project-specific facts stay in the strongest maintained project source; use `amose` when qualifying project knowledge needs reconciliation. Retire superseded text once unique current knowledge has an appropriate home. Explain the change and remaining uncertainty in the task's normal result, not a mandatory reference-audit dossier.
+Use `amose` as needed. Retire superseded guidance and report the change in the PR or discussion.

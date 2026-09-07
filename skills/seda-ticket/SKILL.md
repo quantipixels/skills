@@ -13,7 +13,7 @@ Use the context already supplied. Read a referenced source in full when it gover
 
 Do not invent a material requirement. Ask for confirmation when decomposition authority is absent or the granularity/dependency structure is ambiguous. A caller can supply an already confirmed breakdown.
 
-When material behavior or operating rules are not settled enough to slice without invention, use `seda-spec` when its implementation-independent behavior contract fits the need, or consume the current domain's established normative authority. Keep the exact contract identity/reference; do not rewrite the governing specification as ticket-local acceptance.
+Use `seda-spec` as needed. Preserve the governing contract’s identity and requirements when decomposing it.
 
 ## 2. Prefer outcome-complete vertical tickets
 

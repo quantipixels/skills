@@ -20,9 +20,9 @@ Pin only what can change the technical design: subject/candidate, problem or des
 
 Read only evidence capable of changing the architecture: current domain/project knowledge, code/tests/configuration when implementation exists, runtime/deployment/operations evidence, governing decisions, and bounded history/provenance where it explains current structure. Observed implementation proves current structure or behavior, not automatic architectural intent.
 
-Use `amose` when unresolved project/domain meaning or invariants materially change the technical structure. Reading established domain language does not require an `amose` handoff.
+Use `amose` and `iwadi` as needed.
 
-Resolve only unknowns capable of changing the architecture. Prefer exact current project/platform evidence and authoritative owning sources. Use `iwadi` when the research itself deserves an independent reusable result rather than expanding `architect` into a research workflow.
+Resolve unknowns that can change the design against current project and authoritative sources.
 
 ## Design the smallest sufficient structure
 
@@ -47,7 +47,7 @@ Apply hard constraints first: accepted behavior, security/privacy/trust, require
 
 When several credible structures remain and at least two independent criteria can materially change the choice, compare only decision-changing factors such as depth, locality, caller burden, operational load, migration cost, reversibility, compatibility, failure containment, or total system complexity. State the strongest credible alternative and decisive reason for the selected structure. Do not create a universal architecture scorecard.
 
-When a technical choice is reversible within accepted constraints and authority, `architect` may select it. When the choice changes accepted outcome, scope, policy, user experience, material cost/risk, compatibility, or another trade-off requiring user authority, surface the unresolved choice and its architecture consequence; use `arojinle` for decision closure rather than deciding it here.
+Select reversible technical choices within accepted constraints. Use `arojinle` for consequential user decisions.
 
 ## Verify architectural sufficiency
 
@@ -67,7 +67,7 @@ Keep confidence separate from readiness when evidence strength materially helps 
 
 In `review`, pin the exact architecture/design candidate and stay read-only. Judge the design at its existing scale rather than expanding it into a larger architecture exercise. Trace material drivers and invariants to the structure, challenge missing ownership/interfaces as well as unnecessary layers, and return the smallest evidence-backed correction or unresolved gap.
 
-Use `html-artifact` only when a visual human view materially improves a substantial architecture comparison/review/handoff. The architecture result remains authoritative.
+Use `html-artifact` as needed.
 
 ## Persistence
 

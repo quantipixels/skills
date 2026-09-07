@@ -5,7 +5,7 @@ description: Select, install, configure, integrate, use, verify, upgrade, or rem
 
 # Irinṣẹ́
 
-Own one companion tool from need through safe readiness and bounded evidence. Let the consuming outcome skill retain its judgment and verdict.
+Select, ready, and use a companion tool to answer the current engineering question.
 
 ## 1. Bound the need and select the tool
 

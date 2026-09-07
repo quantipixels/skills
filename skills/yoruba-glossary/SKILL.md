@@ -43,6 +43,6 @@ After any authorized write, read back the changed entry and verify the target's 
 
 ## Boundary
 
-Use `technical-writing` for prose clarity/structure that merely consumes established terminology. Use `amose` for project/domain semantic clarification when no Yorùbá/English term decision or glossary artifact is the requested result.
+Use `amose` and `technical-writing` as needed.
 
 Return the settled term decisions, unresolved gaps, and any authorized glossary write/readback. Do not turn terminology work into a general translation, documentation, or project-knowledge lifecycle.

@@ -66,7 +66,7 @@ The anchors above must never become a ceiling. When none fits:
 3. Compare the strongest credible simple form and candidate capability against decision-changing criteria: information fidelity, perceptual clarity, interaction/navigation value, correctness, accessibility, implementation reliability, build/runtime cost, portability, trust/data boundary, and maintenance.
 4. Treat non-negotiable trust, authority, accessibility, privacy, compatibility, or runtime boundaries as gates, not scoreable trade-offs.
 5. Prefer the mature capability when its representational leverage materially exceeds the credible simpler form. Do not downgrade to prose/`<pre>` merely because the capability is not named here.
-6. Use `irinse` when installation/configuration/readiness itself requires material work; HTML Artifact retains representation judgment.
+6. Use `irinse` as needed.
 7. Apply [dependency policy](dependency-policy.md) to delivery, exact identity, fallback, runtime trust and disclosure.
 
 Do not turn current ecosystem search results into a permanent library catalogue. Add another named anchor only when recurring use shows a stable problem fit worth avoiding repeated rediscovery.

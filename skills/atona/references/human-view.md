@@ -1,6 +1,6 @@
 # Initiative projection brief
 
-Read when an initiative needs a browser view. Give `html-artifact` the initiative-specific meaning below; do not reproduce its composition or verification workflow.
+Use `html-artifact` with the initiative brief below.
 
 Supply the reader's decision, current concern, exact plan revision, and relevant owner-result/candidate/evidence identities. Use one viewpoint unless another reader's distinct decision requires a separate view.
 
@@ -16,4 +16,4 @@ Outcome / acceptance → decision / contract → architecture / owner → delive
 
 Pass owner-established gaps in either direction: accepted obligations without implementation/proof, mechanisms without an accepted basis, or evidence that no longer proves a current claim. Do not infer those gaps from diagram structure.
 
-Atọ́nà owns the progression judgment and these visibility obligations. HTML Artifact owns representation, accessibility, source mapping, and proportional projection proof. Consume its result and reported gaps without running a second projection checklist; the plan and specialist sources remain authoritative.
+Preserve the plan’s progression judgment and visibility requirements in the view.

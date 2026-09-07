@@ -35,7 +35,7 @@ Evaluate candidates against the actual user job, product/brand evidence, content
 
 Select one direction when evidence is sufficient. Preserve rejected alternatives only when the rejection teaches an implementation boundary, prevents a likely regression, or explains a consequential trade-off. Do not keep a permanent gallery of losing ideas.
 
-When no candidate can be selected because a consequential product/design choice requires user authority, return that material decision to `arojinle`; do not silently convert Amọ̀ye judgment into product authority.
+Use `arojinle` for unresolved user choices.
 
 ## Review the real render
 
@@ -45,23 +45,12 @@ When a visual reference materially controls acceptance, compare the rendered res
 
 Review only surfaces/states that materially support the accepted direction and current change. Distinguish material deficiencies from subjective polish preferences; another aesthetically plausible variant is not by itself a reason to iterate.
 
-## Converge through owner boundaries
+## Converge
 
-Amọ̀ye returns design findings only. `alaga` or another applicable implementation owner applies accepted corrections, runs native proof, and rerenders affected surfaces/states.
+Use `alaga` for accepted implementation corrections; recheck the changed render.
 
 Request another Amọ̀ye review only when the correction can materially change the design verdict or clear the previous evidence gap. Stop when no material design deficiency remains against the accepted direction and controlling product evidence.
 
-```text
-accepted direction
-  → implementation owner
-  → exact rendered result
-  → Amọ̀ye review
-  → accepted correction when needed
-  → implementation owner
-  → rerender / native proof
-  → stop when material deficiencies are resolved
-```
-
 ## Reconcile only durable project truth
 
-When selection or convergence establishes non-obvious reusable project-specific design knowledge—a stable hierarchy rule, interaction constraint, brand/product composition principle, accessibility boundary, or other confirmed project truth—use `amose` to reconcile its natural durable destination. Otherwise stop. Do not persist generic UX principles, one-off visual fixes, rejected taste, or transient implementation details as project knowledge.
+Use `amose` as needed.

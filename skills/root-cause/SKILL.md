@@ -19,7 +19,7 @@ trigger + enabling conditions + propagation + missing containment/detection → 
 
 Record exact symptom, expected behavior, first known trigger, candidate/revision or event identity, environment/context, reproducibility, evidence, scope, and read/probe authority. A report, stack trace, correlation, changed artifact, or temporal order is evidence, not a cause.
 
-Use `se-triage` when an engineering/software report still needs issue-validity classification. Use `alaga` only when the diagnosis is settled and the correction is a software/build delivery job; otherwise return the diagnosis to the current correction owner.
+Use `se-triage` and `alaga` for requested follow-on work.
 
 Reproduce safely when possible; otherwise pin one equivalent direct observation. Separate primary failure from secondary errors, retries, compensating behavior, and recovery noise.
 
@@ -56,4 +56,4 @@ Return one:
 
 Include failure identity, minimal mechanism/set, per-factor evidence and causal role, interactions/alternative sufficient paths when material, contributing/contextual/unresolved factors, propagation/containment, decisive evidence, falsified alternatives, affected boundary, confidence limits, and smallest useful next action.
 
-When a durable diagnosis is needed, use the existing/user-selected destination; use `akosile` only when that destination is a repository-scoped `.qp` workspace. Use `html-artifact` only when a substantial terminal diagnosis benefits from a visual view.
+Preserve a needed durable diagnosis in the existing project destination. Use `akosile` for a selected shared workspace and `html-artifact` as needed.

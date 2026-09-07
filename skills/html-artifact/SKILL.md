@@ -9,7 +9,7 @@ Turn supplied or owner-established meaning into a purpose-shaped browser read mo
 
 ## Projection contract
 
-Use an owner-supplied projection path when present; otherwise use the requested path or the active host's normal artifact/output surface. When the selected destination is a repository-scoped workspace, use `akosile` to resolve the canonical artifact under `<git-common-dir>/qp/artifacts/<subject>/index.html`. A registered worktree may expose the same artifact as `.qp/artifacts/<subject>/index.html`; that repository-relative path is an optional alias locator, not a requirement. Do not require a repository merely to produce an HTML artifact.
+Use the requested output path or the host's artifact surface. For a selected shared workspace, use `akosile`.
 
 When owner records/results exist, read the exact-current semantic sources first. Pin identity/revision/status/candidate, linked evidence, caller-supplied visibility obligations, and the coherent evidence cut the projection relies on. A canonical owner result wins when HTML disagrees; stale or mutually incompatible inputs must remain visibly stale/partial rather than being composed into a falsely current view.
 
@@ -25,16 +25,6 @@ Load branch guidance only when applicable:
 - a mature renderer/tool could materially improve the chosen representation → [representation capabilities](references/representation-capabilities.md);
 - interactive relationship map, coordinated perspectives, or guided sequence → [interactive projections](references/interactive-projections.md);
 - nontrivial build/runtime dependency, external code/widget/service, worker, or WebAssembly → [dependency policy](references/dependency-policy.md).
-
-## Own information projection, not every HTML result
-
-Classify the accepted result before implementation:
-
-- **Static information projection** — supplied meaning is read, inspected, compared, or retrieved in the browser.
-- **Interactive information projection** — interaction only reveals, navigates, compares, filters, sequences, selects, or inspects supplied meaning.
-- **Not HTML Artifact** — a slide deck remains `slides`; a truth-bearing experiential decision instrument remains `prototype`; product/application UI remains its delivery/UI owner. File format does not transfer semantic ownership.
-
-Interactivity alone does not create another owner, and HTML delivery alone does not make another owner's result an HTML Artifact result.
 
 ## Compose for human judgment
 
@@ -89,7 +79,7 @@ For caller-supplied human-visibility obligations, maintain an internal coverage 
 
 ## Deliver
 
-Return the exact direct-access locator supported by the active host: a file path, artifact attachment/URL, or equivalent. For an artifact in the repository-scoped workspace, always return the canonical artifact path/locator resolved by `akosile`; also return the repository-relative `.qp/...` locator only when a current worktree alias exists and resolves to that canonical store. Never fabricate a `.qp/...` locator for a bare/no-worktree or alias-capability-gap context.
+Return the verified artifact locator. For a selected shared workspace, return the canonical path from `akosile` and any verified worktree alias.
 
 Opening is host UX, not artifact semantics. Open only when the user asks or render proof requires it; reuse an existing preview/page/session when available. After rewrites, refresh/navigate that surface rather than invoking an opener repeatedly. If the only available opener would create another tab/window and opening is not required for proof, return the locator instead.
 

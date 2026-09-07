@@ -2,7 +2,6 @@
 
 Use this branch only when the governing workflow needs named readiness states, coordinated multi-candidate delivery, or a maintained lifecycle record. Ordinary plans use the main skill directly. These gates preserve formal consumers; they are not mandatory stages of every task.
 
-
 # Atọ́nà
 
 Turn unclear intent into one exact-current initiative plan. Own plan meaning, decision coverage, lifecycle sufficiency, delivery integration, current progression gate, and closure; do not absorb specialist design, consequential user decisions, delivery execution, persistence mechanics, or generic routing.
@@ -15,7 +14,7 @@ For every material initiative, maintain one semantic plan using [the plan record
 
 Keep it in current context when one-session use is sufficient. Persist only when continuity, recovery, independent review, or downstream consumption needs durable identity. Prefer an existing or user-selected destination; when that destination is repository-scoped `.qp` state, use `akosile` for storage mechanics.
 
-Maintain an `html-artifact` view when the user or governing workflow requires it, or a browser view materially helps the reader judge the initiative; initiative size alone does not require HTML. Supply the [initiative brief](human-view.md); HTML Artifact owns composition and projection verification. Update the semantic plan first. Batch view refreshes at confirmed decisions, completed rounds, or material frontier/lifecycle changes rather than interrupting active questions. The plan and specialist results remain authoritative; a stale view cannot stand as current evidence.
+Use `html-artifact` as needed with [the initiative brief](human-view.md). Update the plan before refreshing a maintained view; a stale view is not current evidence.
 
 When supplied context already settles the initiative, synthesize it directly rather than replaying discovery. Separate confirmed context from inference and capture only the problem/outcome, acceptance, confirmed decisions, scope/non-goals, material proof expectations, current progression gate, and evidence identities needed to plan responsibly.
 
@@ -41,7 +40,7 @@ Keep the **current gate** explicit: the next material progression judgment the h
 
 Pin outcome, scope, constraints, assumptions, non-goals, evidence, risks, and open uncertainties. Read only current project/domain evidence that can materially change the plan.
 
-Use `amose` when unresolved terms, boundaries, relationships, or invariants affect the plan.
+Use `amose`.
 
 When the initiative is too uncertain to state responsibly at full depth, read [progressive shaping](progressive-shaping.md). Preserve known-but-not-yet-formulatable territory without inventing future requirements.
 
@@ -69,7 +68,7 @@ OPEN    — at least one material user decision is answerable now.
 BLOCKED — material user decisions remain but prerequisite evidence/results are missing.
 ```
 
-When `OPEN`, give `arojinle` the whole currently answerable material decision set and consume its confirmed result. Do not reopen settled decisions. When `BLOCKED`, resolve only prerequisite evidence/results that can make the next decision formable.
+When `OPEN`, use `arojinle` on the answerable decision frontier. When `BLOCKED`, resolve the missing prerequisites. Do not reopen settled decisions.
 
 Use other skills when they improve the plan; keep routine composition out of its lifecycle stages.
 
@@ -82,7 +81,7 @@ Use these seams when they are actually required:
 - **Normative behavior / operating rules** — require current `seda-spec: SPEC_READY` when material behavior needs an implementation-independent contract for delivery/review, unless an established domain authority already owns the equivalent contract.
 - **Software/system architecture** — require current `architect: IMPLEMENTATION_READY` when delivery would otherwise have to invent material system boundaries, ownership, topology, migration/recovery, compatibility, or another architecture-level decision.
 - **Consequential user choice** — keep the Decision Frontier open/blocked and resolve through `arojinle`; do not bury the decision inside another specialist result.
-- **Delivery decomposition** — use `seda-ticket` when several semantic work units need explicit dependency/startability structure before delivery can begin safely. Do not require tickets for one coherent job merely because it has several implementation steps or independently checkable acceptance.
+- **Delivery decomposition** — use `seda-ticket` as needed.
 
 Retain the identities and readiness of required specialist results, not their procedures.
 

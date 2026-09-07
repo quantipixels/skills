@@ -13,11 +13,11 @@ Get the requested PR/MR ready for a human merge decision. Use the explicit targe
 ## Work the loop
 
 1. Read the current head and base commits, conflicts, required checks, blocking reviews, and all unresolved feedback. Missing permissions, pagination, or unsupported capabilities mean unknown, not green. When dependencies affect the target, read [stacked PRs](references/stacked-prs.md); otherwise stay with one PR.
-2. Investigate failures and feedback against the current code. Read [failure and feedback guidance](references/failure-heuristics.md) when either exists. Deliver justified source corrections through `alaga` for implementation, proof, and review; retain this loop's ownership and already-granted scope. Use `se-triage` only when a report's validity or scope remains uncertain. Explain rejected feedback with evidence. Do not implement every bot suggestion or weaken checks to obtain green results.
+2. Investigate failures and feedback against the current code. Read [failure and feedback guidance](references/failure-heuristics.md) when either exists. Use `alaga` for justified corrections and `se-triage` as needed. Explain rejected feedback with evidence. Do not implement every bot suggestion or weaken checks to obtain green results.
 3. Publish verified corrections through `seda-pr`, then wait for checks and requested reviews to finish. Recheck affected evidence after a head or base change, even if the head alone is unchanged. Resolve feedback only after verifying its disposition and any fix. Repeat while actionable work remains.
 4. Return when ready, closed, stopped by the user, or blocked on authority/access/an external decision. For an explicit ongoing watch, use the host's supported wait/monitoring mechanism; report material changes and never imply monitoring continues after the run ends. Do not create a detached daemon or local watcher-state file.
 
-An extra independent review uses `atunwo`; feed its findings through the same loop. Delegate that review only when requested or permitted by the host, not every poll.
+Use `atunwo` for an additional review, not on every poll.
 
 ## Provider safety
 

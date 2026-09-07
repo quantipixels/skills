@@ -23,14 +23,7 @@ Challenge consequential choices as they are made rather than producing a large u
 
 Start with current repository, dependency, compiler, runtime, framework, IDE, and native-tool evidence. Do not begin from a fixed language/framework catalogue.
 
-- Use `architect` when the missing result is material technical architecture.
-- Use `amose` only when domain meaning/invariants need independent clarification or change, or qualifying durable project knowledge actually needs reconciliation. Reading established domain constraints does not require an `amose` handoff.
-- Use `root-cause` when a reproducible failure still lacks a causal mechanism and different mechanisms imply different fixes.
-- Use `ro-wo` when the alleged need for deeper research rests on a consequential premise; challenge the premise before paying for more evidence.
-- Use `iwadi` when substantial primary-source research is independently needed. Let `iwadi` decide whether ordinary research is sufficient or its high-cost exact-source path is earned.
-- Use `irinse` only when bounded companion-tool evidence is itself needed.
-
-For one/few task-local facts, perform the smallest direct primary-source read. Do not invoke another owner merely to fill a category or because more evidence exists.
+Use `architect`, `amose`, `root-cause`, `ro-wo`, `iwadi`, and `irinse` as needed.
 
 ## Load curated mechanism depth only from candidate cues
 

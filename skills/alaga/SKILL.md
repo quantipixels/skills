@@ -21,7 +21,7 @@ Pin only what can change delivery:
 
 Treat local non-goals as active negative implementation boundaries. Material growth outside the expected envelope is a signal to re-check understanding, causal ownership, or scope rather than preserve the first plan with workaround layers.
 
-Respect explicit choices and use relevant skills when they improve delivery. Preserve a distinct decision, architecture, specification, diagnosis, or review result when the job actually depends on it. Ordinary implementation discretion remains agent-owned while it stays inside accepted behavior, architecture, authority, safety, compatibility, ownership/lifecycle, and material risk/cost boundaries. When unresolved technical structure is consequential at the system, module, interface, or seam level, use `architect`; do not escalate ordinary local implementation choices merely because several code shapes are possible. Otherwise surface the decision gap instead of selecting a plausible default from model priors.
+Use `amose`, `architect`, and `arojinle` as needed. Make local implementation choices within the accepted scope and contracts; surface unresolved requirements rather than inventing them.
 
 When consequential stack-native behavior, ownership/lifecycle, compatibility, proportionality, or version-specific evidence is genuinely non-obvious, read [expert implementation counsel](references/expert-implementation-counsel.md). When the job materially changes a product interface, component system, design-token contract, responsive behavior, or rendered interaction, read [UI delivery](references/ui-delivery.md). For multi-candidate, blocked/handoff-prone, migration/security/recovery-sensitive, or externally destructive work, read [job report](references/job-report.md). Do not create parallel reporting when an active plan already owns that continuity.
 
@@ -70,7 +70,7 @@ Remove issues you already know an independent reviewer should not need to discov
 
 ## 3. Review and converge
 
-Review each stable, understandable candidate once at the smallest coherent boundary. Source code/tests require independent code review after implementation proof is sufficient; other candidates use their native review/proof boundary.
+Use `atunwo` for independent code review after implementation proof. Review each stable candidate at the smallest coherent boundary; use the relevant checks for non-code work.
 
 A review finding is a hypothesis, not automatic mutation authority. Before correcting it:
 

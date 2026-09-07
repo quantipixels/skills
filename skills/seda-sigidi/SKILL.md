@@ -38,7 +38,7 @@ When a split soul file would not load, integrate inline. Ask before overwriting 
 
 ## 2. Gather evidence before inventing anything
 
-Run the discovery pass in [soul-template](references/soul-template.md). Mine session records, memory files, and existing instructions only when the caller supplies or authorizes them; an exact-current `ayewo-igba-ise` result may carry retrospective evidence.
+Run the discovery pass in [soul-template](references/soul-template.md). Use `ayewo-igba-ise` as needed. Mine only supplied or authorized session records, memory, and instructions.
 
 - Confirm every inferred pattern before making it durable.
 - If mining surfaces a secret, quote around it and never print, copy, or store it.

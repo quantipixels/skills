@@ -14,6 +14,6 @@ Explain the supplied subject so a capable newcomer can form the right mental mod
 - Match depth to the question. A simple “what is X?” should not become a tutorial or exhaustive reference unless the user asks.
 - Separate fact from approximation and say when current external verification is needed rather than inventing certainty.
 
-Use `fihanmi` when a visual would clarify the explanation.
+Use `fihanmi` and `html-artifact` as needed.
 
-Return the explanation directly. Use `html-artifact` only when the requested result is a standalone browser information projection rather than conversational understanding. Do not turn an explanation request into research, decision closure, review, or implementation unless that outcome is separately requested.
+Return the explanation directly.
