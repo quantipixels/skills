@@ -1,11 +1,11 @@
 ---
 name: alarina
-description: Inventory the available skills and select the shortest useful owner path when the correct owner is unclear or several independently useful owner results need sequencing. Use for skill inventory or genuine cross-owner routing; use an obvious exact owner directly instead.
+description: Inventory available skills or resolve unclear skill selection and sequencing. Use for requested inventory/routing or genuine ambiguity; use obvious skills directly. Combining several skills does not by itself require routing.
 ---
 
 # Alárinà
 
-Route only when routing itself is needed. If one skill clearly owns the requested outcome, use it directly.
+Use obvious skills directly, including combinations. Route only when selection or sequencing is unclear, or the user requests routing or inventory.
 
 For an inventory request, list the available skills and their native outcomes. For routing, use the compact map below as orientation rather than a mandatory pipeline or exhaustive catalogue.
 
@@ -81,7 +81,7 @@ Use `scope-guard` only when explicit scope steering is independently useful; it 
 1. Pin the requested outcome, current work state, supplied current results/artifacts, and any explicit owner choice.
 2. Respect an explicit valid owner selection.
 3. Start with one owner that can accept the current state and produce the requested outcome.
-4. Add another owner only when it produces an independently useful result or owns a distinct authority/completion boundary.
+4. Combine useful skills without turning each into a separate stage or handoff.
 5. Enter at the current state; do not replay settled work.
 6. Pass only what the next owner needs across a real boundary.
 7. Stop at the requested outcome; do not append common follow-on work by habit.
@@ -90,14 +90,4 @@ When two plausible owners remain genuinely ambiguous, distinguish them by their 
 
 ## Report
 
-Return only public ownership transitions:
-
-```text
-Start: <current owner + why>
-Then: <next independently useful owner + why, only when ownership must change>
-Activation: <direct-user activation required, or none>
-Stop: <requested outcome>
-Why not: <closest materially different route, only when useful>
-```
-
-For an inventory request, enumerate the available skills rather than reproducing only this route map.
+For routing, name the next useful skill and why. Include sequence, activation requirements, or a rejected alternative only when they affect the route. For inventory, enumerate available skills and their outcomes rather than only this map.

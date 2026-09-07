@@ -41,7 +41,7 @@ Keep the **current gate** explicit: the next material progression judgment the h
 
 Pin outcome, scope, constraints, assumptions, non-goals, evidence, risks, and open uncertainties. Read only current project/domain evidence that can materially change the plan.
 
-Use `amose` only when unresolved domain meaning would make planning invent terms, boundaries, relationships, or invariants. Supply the ambiguity and current evidence; consume its resolved model delta. Read established vocabulary directly.
+Read `amose` when unresolved terms, boundaries, relationships, or invariants affect the plan.
 
 When the initiative is too uncertain to state responsibly at full depth, read [progressive shaping](references/progressive-shaping.md). Preserve known-but-not-yet-formulatable territory without inventing future requirements.
 
@@ -71,7 +71,7 @@ BLOCKED — material user decisions remain but prerequisite evidence/results are
 
 When `OPEN`, give `arojinle` the whole currently answerable material decision set and consume its confirmed result. Do not reopen settled decisions. When `BLOCKED`, resolve only prerequisite evidence/results that can make the next decision formable.
 
-Use another skill only when its independently useful result is material to plan readiness. Do not turn supporting capabilities into plan stages.
+Read other skills when they improve the plan; keep routine composition out of its lifecycle stages.
 
 ## 4. Resolve required results and prove readiness
 
@@ -84,7 +84,7 @@ Use these seams when they are actually required:
 - **Consequential user choice** — keep the Decision Frontier open/blocked and resolve through `arojinle`; do not bury the decision inside another specialist result.
 - **Delivery decomposition** — use `seda-ticket` when several semantic work units need explicit dependency/startability structure before delivery can begin safely. Do not require tickets for one coherent job merely because it has several implementation steps or independently checkable acceptance.
 
-For other material specialist needs, use the relevant skill when its independent result is required. Keep only the result identity/readiness needed by the plan; do not copy another skill's procedure or lifecycle.
+Retain the identities and readiness of required specialist results, not their procedures.
 
 When delivery coordination or decomposition can affect planning readiness, read [delivery tracking](references/delivery-tracking.md) before declaring `Planned`; loading it does not authorize delivery.
 
