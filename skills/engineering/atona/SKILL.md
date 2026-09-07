@@ -41,7 +41,7 @@ Keep the **current gate** explicit: the next material progression judgment the h
 
 Pin outcome, scope, constraints, assumptions, non-goals, evidence, risks, and open uncertainties. Read only current project/domain evidence that can materially change the plan.
 
-Read `amose` when unresolved terms, boundaries, relationships, or invariants affect the plan.
+Use `amose` when unresolved terms, boundaries, relationships, or invariants affect the plan.
 
 When the initiative is too uncertain to state responsibly at full depth, read [progressive shaping](references/progressive-shaping.md). Preserve known-but-not-yet-formulatable territory without inventing future requirements.
 
@@ -71,7 +71,7 @@ BLOCKED — material user decisions remain but prerequisite evidence/results are
 
 When `OPEN`, give `arojinle` the whole currently answerable material decision set and consume its confirmed result. Do not reopen settled decisions. When `BLOCKED`, resolve only prerequisite evidence/results that can make the next decision formable.
 
-Read other skills when they improve the plan; keep routine composition out of its lifecycle stages.
+Use other skills when they improve the plan; keep routine composition out of its lifecycle stages.
 
 ## 4. Resolve required results and prove readiness
 
