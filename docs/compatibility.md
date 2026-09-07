@@ -1,60 +1,24 @@
-# QP compatibility claims
+# Compatibility
 
-Compatibility is a release property, not a blanket promise that every host-specific feature works everywhere.
+A claim applies only to the stated path. `CI_PROVED` means that path is exercised by candidate CI; `STRUCTURAL` means configuration/package checks only; `NOT_RUN` is an unproved runtime path; `NOT_CLAIMED` is outside the release claim.
 
-Use these evidence states:
+| Path | Evidence | State |
+| --- | --- | --- |
+| Flat Agent Skills package and local resources | Strict package/agent validators and rejection tests | CI_PROVED |
+| Skills CLI discovery and Codex project copy | Pinned `skills@1.5.23` against the exact checkout | CI_PROVED |
+| Claude plugin validation and clean local-marketplace installation | Pinned `@anthropic-ai/claude-code@2.1.260` | CI_PROVED |
+| Direct QP snapshot install/update/remove | Exact-checkout round-trip on Ubuntu; filesystem/interruption tests on Linux and macOS | CI_PROVED |
+| Remote installer bootstrap | Exact same-repository head fetch on pushes and same-repository PRs; skipped for forks/merge groups | CI_PROVED |
+| Pepeye native adapter structure | One lazy-loading main agent; equivalent Codex instruction body; no model/permission overrides | STRUCTURAL |
+| Authenticated skill selection, decision-tree composition, supervision and worker reuse | [Native-host checks](verification.md); package success is not model behavior | NOT_RUN |
+| Akọsílẹ̀ and local session parsers | Existing deterministic tests on Linux, macOS and Windows | CI_PROVED |
+| Direct installer on Windows | Uses POSIX symlinks and `flock`; use the native Skills CLI instead | NOT_CLAIMED |
+| Other hosts, model-runtime parity and macOS storage cleanup | Per-host proof not supplied by this package | NOT_CLAIMED |
 
-- **CI_PROVED** — the exact path is exercised on every validated candidate;
-- **STRUCTURAL** — repository metadata/package shape is deterministically validated, but the target host runtime is not exercised;
-- **NOT_RUN** — a plausible path exists but QP has no current proof for it;
-- **NOT_CLAIMED** — QP deliberately makes no release claim for that path.
+The direct installer owns only its generation store and recorded host links. It neither adopts native plugin/Skills CLI installations nor edits their locks, hooks, credentials, startup defaults, or policies. It refuses foreign collisions and modified installed content. Interrupted visible-link changes recover from the journal; an incomplete unowned staging copy is preserved rather than guessed away.
 
-## Current matrix
+The external Skills CLI remains an independent alternative, not the direct installer's backend. Its pin makes discovery/copy tests reproducible, not a recommendation to retain that version forever. The Claude CLI pin proves validation and installation, not authenticated load or every future host version. Update a pin together with its relevant tests and claim.
 
-| Surface | Claim | Evidence | State |
-| --- | --- | --- | --- |
-| Core Agent Skills package | Every public QP skill has valid `SKILL.md` structure and local resource integrity | `ko-skill/scripts/validate-package.py` in `Validate` | CI_PROVED |
-| Skills CLI discovery | Pinned `skills@1.5.23` can discover QP from a local checkout | `Compatibility smoke` job runs `skills add <checkout> --list` | CI_PROVED |
-| Codex project install through Skills CLI | Pinned `skills@1.5.23` can copy every current QP skill into the Codex project skill surface on Ubuntu | `Compatibility smoke` installs `--skill '*' --agent codex --copy -y` and compares installed/current skill counts | CI_PROVED |
-| Claude Code plugin structure | `.claude-plugin/plugin.json`, marketplace metadata, the sole Pepeye main-agent entry, and current skill/frontmatter surfaces pass QP structural checks and the pinned Claude Code CLI validator | QP package/plugin validators plus `@anthropic-ai/claude-code@2.1.260 plugin validate .` | CI_PROVED |
-| Claude Code clean marketplace install | A clean isolated Claude config can add the candidate checkout as a local marketplace, install `qp-skills@qp-skills`, and list both marketplace/plugin records | pinned Claude CLI marketplace-add/install/list smoke in `Compatibility smoke` | CI_PROVED |
-| Claude Code model-visible load/invocation | Clean install is proved, but CI does not start an authenticated model session and demonstrate QP skill/agent selection inside that runtime | Fresh-host behavioral/runtime proof still required | NOT_RUN |
-| Pepeye host-adapter wiring | One Claude main-agent entry with no mandatory skill preloads; the Codex profile carries the same role without native-prompt/model/permission overrides | Focused adapter tests in `.github/tests/test_package_integrity.py`; model-visible loading is not proved | STRUCTURAL |
-| Pepeye supervision on Claude Code/Codex | Session/default selection, worker-role isolation, delegation, guidance, reuse, settings readback, and cancellation need authenticated runtime proof | [Main-agent setup](../README.md#main-agent-pepeye) and the runtime check below; syntax/install checks do not prove orchestration | NOT_RUN |
-| Claude Code through Skills CLI | The upstream Skills CLI supports a Claude Code target, but QP does not currently make a release claim for that project/global path | No QP smoke; upstream behavior can change independently | NOT_CLAIMED |
-| Other Skills CLI agents | QP follows the portable Agent Skills package shape, but host destination/loading behavior belongs to the current CLI/host | No QP per-host smoke | NOT_CLAIMED |
-| `system-cleanup` runtime | macOS-specific behavior as declared by the skill | Skill contract; no cross-platform claim | STRUCTURAL |
+Claude's [main-agent selection](https://code.claude.com/docs/en/sub-agents) replaces the built-in system prompt. Codex's [profile](https://developers.openai.com/codex/config-advanced) adds primary-session configuration, and an instruction string replaces rather than appends to an existing string. The adapters intentionally expose this distinction. Read the installed host's documentation when behavior differs; do not loosen permissions to obtain a preferred topology.
 
-## Pepeye runtime check
-
-In a fresh selected session, ask a simple question, request an exact specialist result, then request two independent read-only checks with a related follow-up to one worker. Confirm direct handling without an unnecessary router/coordination pass, specialist selection, early guidance, actual handle reuse, honest settings/status reporting, and worker-role isolation. Cancel a worker and verify it is not restarted. Prohibit edits/publication. Refresh live state after resume or compaction; a saved handle is not proof of continuity. Record unsupported controls and observed evidence separately from package/install success.
-
-## External capability records
-
-### Skills CLI
-
-The compatibility smoke uses the external [`skills`](https://www.npmjs.com/package/skills) CLI from [`vercel-labs/skills`](https://github.com/vercel-labs/skills), pinned in QP CI to **1.5.23**. Current CLI behavior and supported-agent destinations remain upstream-owned; QP adopts only the exact discovery/install path exercised by its smoke.
-
-- **Adoption:** local-repository discovery and Codex project copy installation for all current QP skills.
-- **Not adopted as QP truth:** the CLI's full supported-agent matrix, future install locations, or Claude/Codex runtime loading semantics beyond the path QP exercises.
-- **Copied material:** none; QP invokes the external CLI and records its behavior.
-- **Refresh trigger:** change the pin, change QP package layout, change a claimed destination/host path, or investigate a smoke failure caused by upstream behavior.
-
-### Claude Code CLI
-
-The Claude compatibility smoke uses Anthropic's [`@anthropic-ai/claude-code`](https://www.npmjs.com/package/@anthropic-ai/claude-code), pinned in QP CI to **2.1.260** and recorded on **2026-09-04**. Current Anthropic documentation exposes non-interactive `claude plugin validate`, `plugin marketplace add`, `plugin install`, `plugin marketplace list --json`, and `plugin list --json` surfaces for local marketplace testing and automation.
-
-- **Adoption:** candidate-local plugin validation plus a clean isolated-config local-marketplace add/install/list path for `qp-skills@qp-skills`.
-- **What this proves:** the candidate marketplace can be registered, the plugin can be installed through Claude's own CLI, and Claude's installed-plugin inventory reports QP.
-- **Not adopted as QP truth:** authenticated model-visible skill/agent loading, invocation correctness, or equivalence between CLI acceptance and every Claude runtime session surface.
-- **Known boundary:** upstream Claude Code issues [#60725](https://github.com/anthropics/claude-code/issues/60725) and [#62400](https://github.com/anthropics/claude-code/issues/62400) document cases where CLI validation and runtime plugin acceptance diverged. Clean install narrows that gap but does not replace a model-visible fresh-host run.
-- **Copied material:** none; QP invokes the external CLI and records its behavior.
-- **Refresh trigger:** change the pin, change Claude plugin/package/marketplace layout, change the claimed runtime boundary, or investigate a validator/install/runtime mismatch.
-
-## Release rule
-
-Do not upgrade a compatibility state from `STRUCTURAL`/`NOT_RUN` to `CI_PROVED` because a manifest looks plausible or an upstream tool lists a host as supported. Exercise the QP package through that exact path on the candidate.
-
-When a pinned compatibility tool version changes, rerun the relevant smoke and update this matrix in the same logical change. The version pin exists to make a QP release claim reproducible; it is not a recommendation that users stay on that version forever.
-
-A host-specific capability may still work outside this matrix. `NOT_CLAIMED` means QP does not use it as release evidence.
+No general orchestration server, custom skill runtime, or authenticated behavior guarantee is implied by these checks.

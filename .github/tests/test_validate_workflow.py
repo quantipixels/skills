@@ -41,7 +41,7 @@ class ValidateWorkflowContractTest(unittest.TestCase):
         portable = self.jobs["portable-mechanics"]
         self.assertEqual(set(portable["strategy"]["matrix"]["os"]), {"macos-latest", "windows-latest"})
         skill_runs = "\n".join(step.get("run", "") for step in self.jobs["skill-package"]["steps"])
-        self.assertIn("scripts/test_uninstall.py", skill_runs)
+        self.assertIn("scripts/test_distribution.py", skill_runs)
 
     def test_native_validators_are_separate_steps(self):
         commands = [step.get("run", "") for step in self.jobs["portable-mechanics"]["steps"]]

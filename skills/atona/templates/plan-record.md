@@ -1,0 +1,62 @@
+---
+owner: atona
+record_type: initiative-plan
+subject: <stable initiative subject>
+title: <initiative title>
+updated_at: <offset-aware timestamp>
+revision: 1
+status: Draft
+---
+
+# <Initiative>
+
+## Resume
+
+**Outcome:** <what must become true>
+
+**Status:** <Draft | Planned | In Progress | Backlog | Closed>
+
+**Current gate:** <next material progression judgment/condition>
+
+**Decision frontier:** <EMPTY | OPEN | BLOCKED, with one-line reason>
+
+**Delivery:** <Not required | Not started | Active | Blocked | Complete | Stale>
+
+**Blocker / weakest material gap:** <current limiting claim/gap or none>
+
+**Next action:** <one exact action>
+
+**Completion condition:** <checkable boundary>
+
+## Outcome and acceptance
+
+<current problem or gap, affected actors when material, desired outcome, and observable acceptance>
+
+## Scope and non-goals
+
+- **Scope:** <included boundaries>
+- **Non-goals:** <explicit exclusions>
+
+## Decisions
+
+<confirmed decisions plus any currently open/blocked material decision set; keep decision-changing alternatives, evidence/limits, and revisit triggers when they constrain current/future work; omit empty tables/sections>
+
+## Amendment impact
+
+<only when a material amendment changes accepted/completed owner results: governing authority/revision; affected earlier results/clauses; superseded/stale versus retained clauses; candidate/proof freshness; required owner refresh/re-entry proof; omit otherwise>
+
+## Delivery and proof
+
+<governing contract/spec identity/readiness when present; current gate evidence; phases/dependencies/blockers only when real; current proof/closure obligations; when coordination is material, include expected delivery-shape envelope, material cumulative drift, and replan/review trigger without turning counts into quotas>
+
+## Linked evidence
+
+<current owner results, records, source locators, revisions/cutoffs; keep detailed packets canonical rather than copying them into the plan>
+
+## Durable reconciliation
+
+<omit this entire section unless a required durable-knowledge obligation exists; for each required obligation, give the owner, destination, current result/proof, and any unresolved authority or evidence gap>
+
+## Material history
+
+- r1 — <only a material status/gate/scope/decision/evidence/ownership/closure change worth retaining>
