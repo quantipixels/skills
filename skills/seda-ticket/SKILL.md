@@ -7,7 +7,7 @@ description: Break a supplied plan, specification, issue, conversation, or work 
 
 Turn supplied work into a confirmed set of tickets that a fresh delivery owner can understand and complete without reconstructing parent narrative. Own decomposition, dependency/startability semantics, and terminal ticket disposition only; the caller owns grouping, storage, publication, execution, review progress, and reconciliation from owner results.
 
-Use `pepeye` to delegate substantial analysis, research, and expert work to subagents, returning concise findings and evidence links to keep the main context lean.
+Delegate substantial analysis, research, and expert work to subagents, returning concise findings and evidence links to keep the main context lean.
 
 ## 1. Understand the work
 

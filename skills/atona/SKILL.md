@@ -7,7 +7,7 @@ description: Shape and maintain a useful initiative plan from the current goal, 
 
 Keep one current plan that makes the desired outcome, remaining choices, dependencies, and next action clear.
 
-Use `pepeye` to delegate substantial analysis, research, and expert work to subagents, returning concise findings and evidence links to keep the main context lean.
+Delegate substantial analysis, research, and expert work to subagents, returning concise findings and evidence links to keep the main context lean.
 
 ## Shape the plan
 

@@ -7,7 +7,7 @@ description: Produce a read-only software-system simplification `audit` or bound
 
 Prefer elimination, direct state, local ownership, deep modules, native capability, and YAGNI. Reject relocated complexity.
 
-Use `pepeye` to delegate substantial analysis, research, and expert work to subagents, returning concise findings and evidence links to keep the main context lean.
+Delegate substantial analysis, research, and expert work to subagents, returning concise findings and evidence links to keep the main context lean.
 
 Modes:
 

@@ -9,7 +9,7 @@ metadata:
 
 Find the smallest causal mechanism or sufficient causal set that explains the observed failure and downstream symptoms. Diagnosis stays separate from triage/review/correction delivery.
 
-Use `pepeye` to delegate substantial analysis, research, and expert work to subagents, returning concise findings and evidence links to keep the main context lean.
+Delegate substantial analysis, research, and expert work to subagents, returning concise findings and evidence links to keep the main context lean.
 
 A useful model may be:
 

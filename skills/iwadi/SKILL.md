@@ -50,7 +50,7 @@ Do not jump to source archaeology merely because source exists. Escalate only wh
 
 ## Context isolation
 
-Use `pepeye` to delegate substantial analysis, research, and expert work to subagents, returning concise findings and evidence links to keep the main context lean.
+Delegate substantial analysis, research, and expert work to subagents, returning concise findings and evidence links to keep the main context lean.
 
 When delegation is useful, require a compact evidence packet: direct conclusion; exact source identities/locators; what each establishes; source/evidence class and fit; conflicts/surprises/caveats/coverage gaps; checks/freshness.
 

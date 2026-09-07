@@ -8,7 +8,7 @@ compatibility: Requires authenticated provider access; local fixes also require 
 
 Get the requested PR/MR ready for a human merge decision. Use the explicit target, otherwise the current branch's unambiguous open item. Ask only when the target or permission is genuinely unclear.
 
-Use `pepeye` to delegate substantial analysis, research, and expert work to subagents, returning concise findings and evidence links to keep the main context lean.
+Delegate substantial analysis, research, and expert work to subagents, returning concise findings and evidence links to keep the main context lean.
 
 “Babysit” or “get ready” authorizes in-scope fixes, verification, commits, non-force pushes, and evidence-backed feedback replies/resolution. “Watch,” status checks, and explicit read-only requests authorize observation only unless the user also requests corrections. Preserve unrelated work. Approval, merge/close/reopen, draft changes, retargeting, history rewrite, hook bypass, reviewer/assignee changes, and unrelated edits require separate authority.
 
