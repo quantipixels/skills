@@ -17,7 +17,7 @@ Use the normal cleanup pass for local clarity and voice problems. When the reque
 
 Identify the reader, artifact owner, purpose, language and locale, intended voice, and text that must remain exact. If these are unclear, fix only unambiguous filler and ask before a change that could alter meaning or tone.
 
-Use `technical-writing` and `ko-skill` as needed.
+Use `technical-writing` as needed.
 
 ## Match the reader
 

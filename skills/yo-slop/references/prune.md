@@ -6,7 +6,7 @@ Read this file only when the request explicitly asks to shorten prose, reduce ve
 
 Identify the artifact owner, reader, purpose, language, voice, required structure, and content that must remain exact. Preserve facts, evidence, citations, decisions, authority, schemas, identifiers, accepted terms, uncertainty, and required output fields.
 
-Use `ko-skill` when pruning skill instructions. Preserve the intended behavior, not redundant explanations of it.
+Preserve the intended behavior, not redundant explanations of it.
 
 Record the baseline word count for the bounded target. For agent instructions, count each active loading path instead of treating the whole package as one prompt. Use a supplied reduction target as a constraint, not proof of quality. Do not invent a quota.
 
