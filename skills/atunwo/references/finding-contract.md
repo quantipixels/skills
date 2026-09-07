@@ -23,6 +23,8 @@ Severity is independent of correction effort:
 
 Reject generic style, unrelated debt, deterministic-tool noise, unsupported speculation, and findings without a candidate-caused or candidate-dependent mechanism. Send maintainability-only concerns to `pare` in `review` mode.
 
+When a candidate changes verification gates, stateful retries/cancellation, migrations/rollouts, or agent/provider operations, read [boundary failure examples](boundary-failures.md). Select by the changed behaviour and consequence, not file extension or line count.
+
 ## Proof-gap gate
 
 Do not recommend a new test merely because a method, class, branch, or line lacks dedicated coverage. Before reporting a proof gap that needs new or changed proof, record:

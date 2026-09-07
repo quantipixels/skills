@@ -41,6 +41,8 @@ Design from owned responsibilities and real boundaries inward. Specify only the 
 
 When module/interface/seam shape is material, read [module design](references/module-design.md). Prefer deep modules with small high-leverage interfaces and strong locality. Do not expose internal seams merely because implementation or tests use them.
 
+When the requested system creates or materially changes agent tools, an assistant/automation surface, or agent-accessible product behaviour, read [agent-facing systems](references/agent-native-systems.md). Do not introduce an agent surface for unrelated work.
+
 Every architectural element must pay for itself with a material driver or independently real boundary. Prefer the smaller direct structure only when removing a service, queue, datastore, cache, module, interface, adapter, abstraction, or deployment unit loses no required responsibility and does not push required complexity, policy, state, trust, lifecycle, compatibility, or failure knowledge into callers or another worse owner.
 
 ### Compare alternatives only when the design is genuinely open
