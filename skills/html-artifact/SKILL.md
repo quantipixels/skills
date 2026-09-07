@@ -32,6 +32,8 @@ Establish required coverage before minimizing representation. If the caller mark
 
 Choose representation per material relationship or reader question, not per source heading. Several source sections may collapse into one useful traceability/comparison view; one source section may require several representations when it contains different relationships.
 
+Use `salaye` for clearer visual representations within relevant sections. Apply its guidance in place beside the supported text/evidence; this is not a new artifact request.
+
 Keep semantic types distinct. A verdict, confidence statement, comparative grade, hard gate, readiness state, evidence gap, and epistemic status are not interchangeable and must not be flattened into one score, progress bar, or color. Qualitative judgment gets no false precision.
 
 Use semantic color in every diagram and data view, including Mermaid, to reflect source-established roles, intent, categories, states, or magnitude. Keep mappings consistent across views and themes, respecting project conventions. Choose categorical, sequential, or diverging palettes to suit the data. Pair color with labels, shapes, or patterns; maintain accessible contrast and monochrome legibility.

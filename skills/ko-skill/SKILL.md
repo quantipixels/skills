@@ -25,7 +25,7 @@ Compare competing identities at the same layer by outcome, decision surface, and
 
 State the scope, completion evidence, and consequential exceptions. Supply useful expertise and examples, not just behavioral restrictions.
 
-Use `yo-slop` as needed.
+Use `oro-ologbon` for prose editing or requested pruning as needed.
 
 Keep a simple entry point with selectively loaded depth. Use related skills by name, where they fit the work; keep supporting skills independent of their callers. Do not repeat their instructions or explain how to combine them.
 

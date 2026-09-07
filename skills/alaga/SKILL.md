@@ -1,11 +1,13 @@
 ---
 name: alaga
-description: Deliver one supplied build job from settled outcome through implementation, proof, review, and handoff. Use for a bounded test-first feature/fix or any build/migration requiring an exact reviewed candidate. Exclude pure explanation, bare review, monitoring, and provider publication except where they support delivery.
+description: Define a coding task's boundaries or deliver one supplied build job through implementation, proof, review, and handoff. Use scope-only for non-goals and expansion triggers without implementation; use job or test-first for authorized delivery. Exclude pure explanation, bare review, monitoring, and provider publication except where they support delivery.
 ---
 
 # Alága
 
-Deliver one supplied software/build job as a coherent proved result. Use `test-first` only when the user requests it or a material behavior-bearing seam with an independent oracle makes a failing test capable of controlling implementation; otherwise use `job`.
+Choose the requested result before acting. Use `scope-only` when the user wants just the coding boundaries, protected behavior, or expansion triggers; map the job below and return the guard without starting delivery. For authorized delivery, use `test-first` only when the user requests it or a material behavior-bearing seam with an independent oracle makes a failing test capable of controlling implementation; otherwise use `job`.
+
+A scope correction during already-authorized delivery updates its active boundaries and preserves that delivery authorization unless the user pauses or narrows it. Do not turn ordinary local choices inside the accepted scope into new approval gates.
 
 Delegate substantial analysis, research, and expert work to subagents, returning concise findings and evidence links to keep the main context lean.
 
@@ -25,11 +27,15 @@ When project knowledge could change implementation or proof, reuse applicable ev
 
 Treat local non-goals as active negative implementation boundaries. Material growth outside the expected envelope is a signal to re-check understanding, causal ownership, or scope rather than preserve the first plan with workaround layers.
 
+Use project behavior and accepted decisions to define boundaries, not arbitrary file, line, test, or dependency quotas. Expose changes to accepted interfaces, storage, compatibility, permissions, operational burden, or material risk/cost as expansion; require a current reason for new dependencies, infrastructure, abstractions, unrelated cleanup, or test frameworks.
+
 Use `amose`, `architect`, and `arojinle` as needed. Make local implementation choices within the accepted scope and contracts; surface unresolved requirements rather than inventing them.
 
 When consequential stack-native behavior, ownership/lifecycle, compatibility, proportionality, or version-specific evidence is genuinely non-obvious, read [expert implementation counsel](references/expert-implementation-counsel.md). When the job materially changes a product interface, component system, design-token contract, responsive behavior, or rendered interaction, read [UI delivery](references/ui-delivery.md). For multi-candidate, blocked/handoff-prone, migration/security/recovery-sensitive, or externally destructive work, read [job report](references/job-report.md). Do not create parallel reporting when an active plan already owns that continuity.
 
 Repository/Git state never grants commit, history-rewrite, publication, provider-write, or destructive authority.
+
+For `scope-only`, return the desired result, protected behavior/areas, exclusions, sufficient evidence, and the event that requires reconsidering scope. Stop here: do not edit, implement, run delivery proof, commit, or publish from a guard-only request.
 
 ## 2. Deliver and prove
 

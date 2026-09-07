@@ -46,6 +46,8 @@ Common entrypoints are `atona` for planning, `alaga` for implementation, `atunwo
 
 Use `pepeye` for delegated staffing, supervision, worker reuse, and integration when that coordination is useful.
 
+For explanations, use `salaye` for visual sketches and focused HTML, including relevant sections of larger artifacts. `oro-ologbon` combines technical authoring with prose editing and pruning; `alaga` supports scope-only requests that stop before implementation. Update former `fihanmi` invocations to `salaye`, `technical-writing` and `yo-slop` to `oro-ologbon`, and `scope-guard` to `alaga` scope-only mode, including references in project guidance. The standalone `handoff` skill is retired; request a session handoff directly.
+
 ## Project
 
 [Compatibility](docs/compatibility.md) records what the package currently proves. Use [`AGENTS.md`](AGENTS.md) and `ko-skill` for contribution and skill-authoring guidance. Change evidence belongs in PRs and CI rather than new repository reports.

@@ -1,4 +1,4 @@
-Use `ko-skill` for skill authoring and verification. Use `technical-writing` for technical communication and `yo-slop` for requested pruning or remaining instruction noise.
+Use `ko-skill` for skill authoring and verification. Use `oro-ologbon` for technical communication, prose editing, and requested pruning or remaining instruction noise.
 
 QP is a library of expertise, methods, and focused capabilities. Pepeye is its optional general main agent. Use related skills directly; keep their instructions in their own files.
 
