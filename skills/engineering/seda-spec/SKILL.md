@@ -53,9 +53,9 @@ A specification defines what must be true. It does not choose modules, teams, de
 
 ## Resolve material gaps
 
-Separate confirmed behavior from inference. Resolve facts directly; read `iwadi` for substantial reusable research. Read `amose` when unresolved domain meaning prevents an unambiguous behavior contract.
+Separate confirmed behavior from inference. Resolve facts directly; use `iwadi` for substantial reusable research. Use `amose` when unresolved domain meaning prevents an unambiguous behavior contract.
 
-Read `arojinle` for unresolved consequential user decisions. Use the relevant design skill when its result is required for readiness, including `architect` for software/system technical structure.
+Use `arojinle` for unresolved consequential user decisions. Use the relevant design skill when its result is required for readiness, including `architect` for software/system technical structure.
 
 Do not fill a gap with a plausible requirement. If a material behavior cannot be specified without invention, keep the gap visible and return `SPEC_NOT_READY`.
 
