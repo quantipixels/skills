@@ -11,9 +11,9 @@ A claim applies only to the stated path. `CI_PROVED` means that path is exercise
 | Remote installer bootstrap | Exact same-repository head fetch on pushes and same-repository PRs; skipped for forks/merge groups | CI_PROVED |
 | Native Codex manifest and shared skill target | Package validator and rejection tests; no bundled hooks, servers, or startup settings | STRUCTURAL |
 | Native Codex plugin installation, update/removal and authenticated invocation | Host round-trip and behavioral checks not supplied | NOT_RUN |
-| Knowledge retrieval, premortem readiness, boundary review, agent-facing design and measured optimization | Source guidance and [targeted native-host cases](verification.md), not observed model comparisons | NOT_RUN |
+| Knowledge retrieval, premortem readiness, boundary review, agent-facing design and measured optimization | Source guidance only; [model evaluations](verification.md#model-evaluations) have not run | NOT_RUN |
 | Pepeye native adapter structure | One lazy-loading main agent; equivalent Codex instruction body; no model/permission overrides | STRUCTURAL |
-| Authenticated skill selection, decision-tree composition, supervision and worker reuse | [Native-host checks](verification.md); package success is not model behavior | NOT_RUN |
+| Authenticated skill selection, decision-tree composition, supervision and worker reuse | [Model evaluations](verification.md#model-evaluations) not run; package success is not model behavior | NOT_RUN |
 | Akọsílẹ̀ and local session parsers | Existing deterministic tests on Linux, macOS and Windows | CI_PROVED |
 | Direct installer on Windows | Uses POSIX symlinks and `flock`; use the native Skills CLI instead | NOT_CLAIMED |
 | Other hosts, model-runtime parity and macOS storage cleanup | Per-host proof not supplied by this package | NOT_CLAIMED |

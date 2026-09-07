@@ -23,8 +23,8 @@ class PackageIntegrityTests(unittest.TestCase):
         self.skill('example')
         self.manifest()
         (self.repo / '.codex-plugin').mkdir()
-        (self.repo / '.codex-plugin/plugin.json').write_text(
-            json.dumps({'name': 'qp-skills', 'skills': './skills/'}))
+        (self.repo / '.codex-plugin/plugin.json').write_bytes(
+            (ROOT / '.codex-plugin/plugin.json').read_bytes())
 
     def skill(self, name, text=None):
         path = self.repo / 'skills' / name / 'SKILL.md'
@@ -53,6 +53,39 @@ class PackageIntegrityTests(unittest.TestCase):
         for name in ('validate-package.py', 'validate-plugin-agents.py'):
             result = self.run_validator(name)
             self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+
+    def test_missing_or_invalid_codex_manifest_is_rejected(self):
+        path = self.repo / '.codex-plugin/plugin.json'
+        for text in (None, '{', '[]'):
+            with self.subTest(text=text):
+                if text is None:
+                    path.unlink()
+                else:
+                    path.write_text(text)
+                self.assertIn('[codex_manifest.invalid]', self.assert_invalid().stdout)
+                path.write_bytes((ROOT / '.codex-plugin/plugin.json').read_bytes())
+
+    def test_codex_manifest_keeps_package_identity_and_shared_inventory(self):
+        path = self.repo / '.codex-plugin/plugin.json'
+        original = json.loads(path.read_text())
+        for key, value, code in (('name', 'other', 'name'),
+                                 ('skills', '../skills/', 'inventory')):
+            with self.subTest(key=key):
+                path.write_text(json.dumps({**original, key: value}))
+                self.assertIn(f'[codex_manifest.{code}]', self.assert_invalid().stdout)
+                path.write_text(json.dumps(original))
+
+    def test_codex_skill_target_exists_and_stays_inside_package(self):
+        source = self.repo / 'skills'
+        with tempfile.TemporaryDirectory() as outside:
+            target = Path(outside) / 'skills'
+            source.rename(target)
+            self.assertIn('[codex_manifest.target]', self.assert_invalid().stdout)
+            try:
+                source.symlink_to(target, target_is_directory=True)
+            except OSError as error:
+                self.skipTest(f'symlinks unavailable: {error}')
+            self.assertIn('[codex_manifest.target]', self.assert_invalid().stdout)
 
     def test_duplicate_frontmatter_identity_is_rejected(self):
         self.skill('other', '---\nname: example\ndescription: Conflicting identity.\n---\n')
