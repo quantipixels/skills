@@ -5,9 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Artifact title</title>
   <link rel="icon" type="image/png" sizes="32x32" href="favicon.png">
-  <!-- Copy this template, favicon.png, and logo.svg together. Set the language,
-       title, heading, and control labels for the artifact; add supplied content
-       inside main. Keep the brand assets local when moving the output. -->
+  <!-- Copy this template and favicon.png together. The Quantipixels logo is
+       embedded below. Set the language, title, heading, and control labels for
+       the artifact; add supplied content inside main. -->
   <script>
   (() => {
     const media = window.matchMedia("(prefers-color-scheme: dark)");
@@ -252,7 +252,7 @@ overflow, reduced-motion, and print plumbing without choosing an aesthetic.
     .artifact-shell { max-inline-size: 72rem; margin-inline: auto; }
     .artifact-header { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
     .artifact-brand { display: block; flex-shrink: 0; padding: 0.5rem 0.75rem; border-radius: 0.25rem; background: #111; }
-    .artifact-brand img { display: block; inline-size: 125px; }
+    .artifact-brand > svg { display: block; inline-size: 125px; }
     main { margin-block-start: 2rem; }
   </style>
 </head>
@@ -260,7 +260,22 @@ overflow, reduced-motion, and print plumbing without choosing an aesthetic.
   <a class="skip-link" href="#artifact-content">Skip to content</a>
   <div class="artifact-shell">
     <header class="artifact-header" id="artifact-top" data-back-to-top-target tabindex="-1">
-      <div class="artifact-brand"><img src="logo.svg" width="500" height="132" alt="Quanti Pixels"></div>
+      <div class="artifact-brand">
+        <svg viewBox="0 0 500 132" role="img" aria-label="Quanti Pixels">
+          <g fill="none" stroke-width="9" stroke-linecap="round" stroke-linejoin="round">
+            <g stroke="#ffffff">
+              <circle cx="45" cy="42" r="27"></circle>
+              <circle cx="115" cy="42" r="27"></circle>
+              <path d="M8 42h10M142 42h10"></path>
+              <path d="M72 42v53M88 42v53"></path>
+            </g>
+            <circle cx="45" cy="65" r="6.5" fill="#ffffff" stroke="none"></circle>
+            <circle cx="115" cy="65" r="6.5" fill="#ffffff" stroke="none"></circle>
+            <path stroke="#d52e1e" d="M41 108Q80 134 119 108"></path>
+          </g>
+          <text x="178" y="78" fill="#ffffff" font-family="Arial, Helvetica, sans-serif" font-size="48" font-weight="700" letter-spacing="-1.5">quanti pixels</text>
+        </svg>
+      </div>
 <button
   class="theme-toggle"
   type="button"
