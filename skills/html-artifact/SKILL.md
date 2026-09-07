@@ -34,6 +34,8 @@ Choose representation per material relationship or reader question, not per sour
 
 Keep semantic types distinct. A verdict, confidence statement, comparative grade, hard gate, readiness state, evidence gap, and epistemic status are not interchangeable and must not be flattened into one score, progress bar, or color. Qualitative judgment gets no false precision.
 
+Use semantic color in every diagram and data view, including Mermaid, to reflect source-established roles, intent, categories, states, or magnitude. Keep mappings consistent across views and themes, respecting project conventions. Choose categorical, sequential, or diverging palettes to suit the data. Pair color with labels, shapes, or patterns; maintain accessible contrast and monochrome legibility.
+
 For living projections, after the first complete view, foreground material semantic delta: what changed, reopened, became stale, closed, or now limits progression. Recompute the reader job/information direction after material stage changes rather than accumulating every earlier stage at equal weight.
 
 ## Choose representation before renderer or delivery
@@ -69,7 +71,7 @@ Evidence: Embedded | Linked | Mixed
 
 ## Verification
 
-Structural proof is the baseline after every projection write: reread and check source/projection identities, required human-critical coverage, anchors/context, renderer/dependency identity, source mapping, runtime disclosure, and semantic fallback.
+Structural proof is the baseline after every projection write: reread and check source/projection identities, required human-critical coverage, anchors/context, renderer/dependency identity, source mapping, semantic color mappings and non-color cues, contrast, runtime disclosure, and semantic fallback.
 
 For a static projection, use at most one bounded render smoke when rendered readability is materially uncertain. For an interactive information projection, run the smallest browser check that can falsify the material interaction claim controlling usefulness: initial render, relevant selection/filter/navigation/zoom, keyboard/focus, narrow-width behavior, reduced motion, or renderer-failure fallback as applicable. Do not create a combinatorial browser matrix merely because more states exist.
 

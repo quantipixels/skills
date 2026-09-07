@@ -27,6 +27,8 @@ Authoritative entry: https://mermaid.js.org/
 
 Strong fit for structured relationships that its current grammar expresses naturally: flow/sequence/state, architecture/boundary, requirement/traceability, timelines and other supported diagram forms. Prefer static SVG/build-time rendering when runtime adds no reader value; bundle/reuse runtime when live rendering or interaction materially helps. Preserve source plus accessible equivalent meaning.
 
+Apply the semantic palette through the diagram type's supported styling, such as flowchart `classDef`. Verify that SVG export, embedding, and theme changes preserve the encoding.
+
 ### Vega-Lite — quantitative/statistical grammar
 
 Authoritative entry: https://vega.github.io/vega-lite/

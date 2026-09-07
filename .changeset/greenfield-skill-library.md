@@ -7,3 +7,5 @@ Use one flat native-discovery skill library with optional Pepeye. Preserve all s
 Simplify skill composition throughout entrypoints and references to direct use of the named skills, without repeating their methods or prescribing handoff protocols. Keep supporting skills independent of their callers by removing redundant reverse dependencies.
 
 Use supervised subagents for substantial analysis, research, and expert work in long-running skills, keeping the main context focused.
+
+Use semantic color in HTML Artifact diagrams and data views, including Mermaid, while preserving contrast, non-color cues, and consistent meaning across themes.
