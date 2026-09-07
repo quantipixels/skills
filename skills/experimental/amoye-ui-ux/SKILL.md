@@ -10,13 +10,13 @@ Own one coherent interface direction from current product/project evidence and d
 ## Workflow
 
 1. Inspect the actual product, existing brand guidance, screenshots/designs, platform, component conventions, tokens, and relevant project manifests before recommending direction. Existing approved identity and product conventions outrank bundled examples.
-2. Pin the user/job, primary surfaces, platform constraints, content/data shape, accessibility needs, density, and existing design decisions. When reviewing implementation, also pin the accepted direction and exact rendered candidate/evidence. Read `amose` when unresolved domain concepts affect information architecture, labels, workflow states, or grouping.
+2. Pin the user/job, primary surfaces, platform constraints, content/data shape, accessibility needs, density, and existing design decisions. When reviewing implementation, also pin the accepted direction and exact rendered candidate/evidence. Use `amose` when unresolved domain concepts affect information architecture, labels, workflow states, or grouping.
 3. Read [quick reference](references/quick-reference.md) for the applicable interaction/layout/design branch. For native/mobile polish or a final app review, also read [professional app rules](references/pro-rules.md).
 4. When a material direction is genuinely underdetermined, several materially different compositions remain credible, or an implemented result needs design convergence, read [design convergence](references/design-convergence.md). Explore only enough design space to expose a real choice; do not manufacture variants when current evidence already determines the direction.
 5. When internal evidence does not adequately establish visual treatment, component composition, interaction detail, or polish, read [reference-driven composition](references/reference-driven-composition.md). Use live exemplars to strengthen judgment, not to outsource it or copy a design.
 6. Resolve one direction: product pattern, visual character, semantic color roles, typography behavior, density, layout hierarchy, interaction/state behavior, motion policy, data/chart treatment, and a short anti-pattern list. Use current primary sources only for volatile platform/framework requirements that can change the recommendation; do not cache them here.
 7. When a screenshot, mockup, prototype, or other visual reference materially controls acceptance, enumerate materially visible and interactive affordances separately from underlying semantic capability. For each, explicitly adopt, preserve, adapt, or reject it. Do not treat support for a semantic node/state/component as proof that its visible affordance, hierarchy, discoverability, or interaction matches the accepted direction.
-8. Use `alaga` for UI or token/component implementation under the accepted direction, affordance expectations, and identity constraints. Read `brand` when durable identity is missing or changing.
+8. Use `alaga` for UI or token/component implementation under the accepted direction, affordance expectations, and identity constraints. Use `brand` when durable identity is missing or changing.
 
 ## Decision rules
 
