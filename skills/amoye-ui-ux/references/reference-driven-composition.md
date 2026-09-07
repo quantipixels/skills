@@ -58,4 +58,4 @@ Implementation constraints for alaga
 Remaining evidence gaps
 ```
 
-Use `alaga` for requested implementation, preserving the accepted direction and project conventions. Do not hand off copied source code unless its license and the user's authority explicitly permit reuse and reuse is preferable to implementing the derived principle with project-native primitives.
+Do not hand off copied source code unless its license and the user's authority explicitly permit reuse and reuse is preferable to implementing the derived principle with project-native primitives.

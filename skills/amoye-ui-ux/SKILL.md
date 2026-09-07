@@ -18,7 +18,7 @@ Own one coherent interface direction from current product/project evidence and d
 5. When internal evidence does not adequately establish visual treatment, component composition, interaction detail, or polish, read [reference-driven composition](references/reference-driven-composition.md). Use live exemplars to strengthen judgment, not to outsource it or copy a design.
 6. Resolve one direction: product pattern, visual character, semantic color roles, typography behavior, density, layout hierarchy, interaction/state behavior, motion policy, data/chart treatment, and a short anti-pattern list. Use current primary sources only for volatile platform/framework requirements that can change the recommendation; do not cache them here.
 7. When a screenshot, mockup, prototype, or other visual reference materially controls acceptance, enumerate materially visible and interactive affordances separately from underlying semantic capability. For each, explicitly adopt, preserve, adapt, or reject it. Do not treat support for a semantic node/state/component as proof that its visible affordance, hierarchy, discoverability, or interaction matches the accepted direction.
-8. Use `brand` as needed and `alaga` for requested implementation.
+8. Use `brand` as needed.
 
 ## Decision rules
 

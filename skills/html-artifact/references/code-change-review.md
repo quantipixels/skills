@@ -2,7 +2,7 @@
 
 Read this file only when supplied code-change evidence must become an HTML view for human review. The input can be a unified diff, exact old/new file contents, a pinned commit or branch comparison, or a materialized pull-request or merge-request snapshot.
 
-Use `atunwo` and `pare` as needed. Pin the actual diff and evidence behind a PR/MR URL; the URL alone does not establish its contents.
+Pin the actual diff and evidence behind a PR/MR URL; the URL alone does not establish its contents.
 
 ## Pin the candidate and coverage
 

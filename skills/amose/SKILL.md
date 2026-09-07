@@ -23,8 +23,6 @@ Challenge the model as concepts crystallize. A useful clarification may establis
 - semantic relationships or invariants; and
 - contradictions between stated meaning and current behavior.
 
-Use `arojinle` and `architect` as needed.
-
 Return the resolved terms, relationships, invariants, distinguishing examples, and any conflicts or open decisions with their evidence.
 
 ## Reconcile canonical language

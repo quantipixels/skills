@@ -6,9 +6,9 @@ Load this reference only when the evidence unit is a bounded multi-session corpu
 
 Pin the time range, session roots, repositories, inclusion and exclusion rules, selection method, and requested output before drawing conclusions.
 
-When the corpus comes from persisted local Codex or Claude Code history, read [local session evidence](local-session-evidence.md) before sampling. Use its adapter only for deterministic inventory/normalization and structural evidence signals; eligibility, owner selection quality, incremental value, causal reconstruction, and portfolio judgment remain semantic work here or with Kọ Skill.
+When the corpus comes from persisted local Codex or Claude Code history, read [local session evidence](local-session-evidence.md) before sampling. Use its adapter only for deterministic inventory/normalization and structural evidence signals; eligibility, owner selection quality, incremental value, causal reconstruction, and portfolio judgment remain semantic work.
 
-Use `ko-skill` for requested skill assessment or remediation, reusing the reconstructed evidence. Complete the requested work in the same response.
+Reuse the reconstructed evidence for requested follow-on work.
 
 Inventory the corpus before sampling. Distinguish a user task, root session, resumed or copied history, rollout file, and subagent rollout. Do not treat rollout count as task count, first-to-last span as labour time, or repeated transcript content as independent evidence.
 
@@ -41,7 +41,7 @@ Raw invocation count is never the denominator. A rare experiment may be healthy 
 
 Do not manufacture experiment invocations during real user work to improve sample size. The corpus observes natural eligible opportunities; temporary controlled steering comparisons belong to skill evaluation only when selection behavior remains materially uncertain.
 
-Produce a compact evidence packet that Kọ Skill can consume without reconstructing the corpus:
+Return compact opportunity evidence:
 
 ```text
 Experimental use evidence
@@ -61,7 +61,7 @@ Counterevidence:
 Coverage/evidence gaps:
 ```
 
-Use `ko-skill` as needed; counts alone do not justify changing the portfolio.
+Counts alone do not justify changing the portfolio.
 
 ### Stable-skill improvement evidence
 
@@ -77,9 +77,9 @@ For every material repeated failure mechanism, distinguish the smallest cause su
 - `REASONABLE_VARIANCE_OR_OBSOLETE` — the observed choice was reasonable under the then-current contract or later requirements made it obsolete; or
 - `NOT_IMPLICATED` — the skill did not materially cause the observed failure.
 
-Do not convert `CLEAR_RULE_VIOLATED`, `TOOL_OR_ENVIRONMENT_GAP`, or ordinary model variance into another skill instruction merely because the incident was costly. A stable-skill edit is earned when evidence shows a reusable owner-contract deficiency—normally `CONTRACT_MISSING`, `CONTRACT_AMBIGUOUS`, or a repeated selection boundary defect—or when one severe owner-wide failure is enough under Kọ Skill's normal admission rule.
+Do not convert `CLEAR_RULE_VIOLATED`, `TOOL_OR_ENVIRONMENT_GAP`, or ordinary model variance into another skill instruction merely because the incident was costly. Identify demonstrated contract gaps separately from execution failures.
 
-Return this packet when Kọ Skill or another authoring decision needs the historical evidence:
+For an authoring decision, return the historical evidence:
 
 ```text
 Stable skill improvement evidence
@@ -99,7 +99,7 @@ Proof needed after change:
 Coverage/evidence gaps:
 ```
 
-The packet is evidence, not an edit instruction or verdict. Kọ Skill decides whether the smallest justified response is `NO_CHANGE`, selection/discovery repair, host/tool repair, instruction clarification, reference/resource change, owner-boundary change, or another task-native disposition. When improvement/disposition is already requested, Àyẹ̀wò passes this packet to Kọ internally and integrates the returned decision or authorized remediation rather than stopping at the handoff.
+The packet is evidence, not an edit instruction or verdict.
 
 ## Report the corpus
 

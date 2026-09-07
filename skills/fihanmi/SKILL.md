@@ -142,8 +142,6 @@ function expandSkill(command: string): string {
 
 Keep only the calls, files, props, states, boundaries, options, and evidence needed to answer the current question.
 
-Use `salaye`, `html-artifact`, or `slides` as needed.
-
 ## Output
 
 Place each visual next to only the short text or exact evidence it supports. The representation is the result; do not append a second analysis, decision, or report.

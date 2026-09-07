@@ -19,5 +19,3 @@ Do not invent fixed color counts, hex values, warm/cool rules, shade ramps, or i
 ## Verify use
 
 Check applicable contrast requirements against the actual foreground/background pair. Check that meaning does not depend on color alone. Compare production values with the confirmed roles and report the smallest mismatch; do not infer approval from consistency.
-
-Use `alaga` for requested implementation of the approved palette.

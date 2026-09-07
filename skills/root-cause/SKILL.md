@@ -19,8 +19,6 @@ trigger + enabling conditions + propagation + missing containment/detection → 
 
 Record exact symptom, expected behavior, first known trigger, candidate/revision or event identity, environment/context, reproducibility, evidence, scope, and read/probe authority. A report, stack trace, correlation, changed artifact, or temporal order is evidence, not a cause.
 
-Use `se-triage` and `alaga` for requested follow-on work.
-
 Reproduce safely when possible; otherwise pin one equivalent direct observation. Separate primary failure from secondary errors, retries, compensating behavior, and recovery noise.
 
 ## Competing mechanisms

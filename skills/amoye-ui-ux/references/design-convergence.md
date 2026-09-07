@@ -47,7 +47,7 @@ Review only surfaces/states that materially support the accepted direction and c
 
 ## Converge
 
-Use `alaga` for accepted implementation corrections; recheck the changed render.
+Review the updated render against the accepted corrections.
 
 Request another Amọ̀ye review only when the correction can materially change the design verdict or clear the previous evidence gap. Stop when no material design deficiency remains against the accepted direction and controlling product evidence.
 

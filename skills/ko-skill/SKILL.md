@@ -25,7 +25,7 @@ State the scope, completion evidence, and consequential exceptions. Supply usefu
 
 Use `yo-slop` as needed.
 
-Keep a simple entry point with selectively loaded depth. Use related skills by name, where they fit the work; do not repeat their instructions or explain how to combine them.
+Keep a simple entry point with selectively loaded depth. Use related skills by name, where they fit the work; keep supporting skills independent of their callers. Do not repeat their instructions or explain how to combine them.
 
 Keep each rule in one authoritative place per loading path unless repetition protects an independent boundary. Preserve deliberate overrides, useful named concepts, and constraints that would otherwise become consequential guesswork. Compare credible alternatives when they could change the choice; a score or disposition vocabulary is not required.
 

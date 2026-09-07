@@ -4,7 +4,7 @@ Read this reference only when `atunwo` selects `audit` scope for one planned, in
 
 Treat a refactor as a behavioral parity exercise unless an authority explicitly accepts a behavior change. Compare complete processes, not matching names or shapes.
 
-Keep this audit and provider state read-only. Use `alaga` for separately authorized corrections, with independent review of the corrected candidate.
+Keep this audit and provider state read-only.
 
 Read current specifications, domain language, accepted decisions, and relevant scenarios. Use `amose` as needed. Compare stated rules with baseline behavior rather than treating implementation as intent.
 
@@ -57,7 +57,7 @@ Cover each applicable scenario:
 
 For the candidate, confirm the purpose, conditions, lookup chain, mutations, outputs, serialized representation, failures, ordering, and side effects without using structural similarity as evidence. A moved method counts as preserved only when its complete behavior still agrees.
 
-For planned work, identify the required characterization tests and their seams. Use `alaga` for authorized test-first work.
+For planned work, identify the required characterization tests and their seams.
 
 Record source evidence or an explicit unknown for each material ledger value on both sides. Attach each important behavior or ordering claim to a test seam or named proof gap.
 

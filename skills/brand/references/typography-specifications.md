@@ -17,5 +17,3 @@ Do not substitute a fashionable font, generic modular scale, common breakpoint, 
 ## Verify use
 
 Render representative headings, body copy, controls, dense data, long words, and every required script. Check legibility at actual target sizes and widths, fallback behavior, font loading, clipping, reflow, and unavailable weights. Treat accessibility thresholds and product conventions as constraints on the confirmed system, not as permission to invent the system.
-
-Use `alaga` for requested implementation of the approved typography.
