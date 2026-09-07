@@ -32,10 +32,9 @@ def filtered(identity):
 
 def fixture():
     template = asset('base.html')
-    # Embed the shipped images so this interaction fixture stays network-free.
-    for name, mime in (('favicon.png', 'image/png'), ('logo.svg', 'image/svg+xml')):
-        encoded = base64.b64encode((ASSETS / name).read_bytes()).decode('ascii')
-        template = template.replace(f'"{name}"', f'"data:{mime};base64,{encoded}"')
+    # Embed the shipped favicon so this interaction fixture stays network-free.
+    encoded = base64.b64encode((ASSETS / 'favicon.png').read_bytes()).decode('ascii')
+    template = template.replace('"favicon.png"', f'"data:image/png;base64,{encoded}"')
     content = (carousel('one') + carousel('two')
             + filtered('first') + filtered('second')
             + '<details id="closed" data-print-expand><summary>Evidence</summary><p id="deep">Visible evidence</p></details>'
@@ -70,8 +69,16 @@ class ControlBrowserProof(unittest.TestCase):
         self.addCleanup(lambda: self.assertEqual(requests, []))
         return page
 
+    def test_base_template_embeds_brand_logo(self):
+        template = asset('base.html')
+        self.assertNotIn('logo.svg', template)
+        self.assertFalse((ASSETS / 'logo.svg').exists())
+        self.assertIn('class="artifact-brand"', template)
+        self.assertIn('aria-label="Quanti Pixels"', template)
+
     def test_javascript_off_keeps_content_and_native_navigation(self):
         page = self.open_fixture(javascript=False)
+        expect(page.locator('.artifact-brand > svg')).to_have_count(1)
         expect(page.locator('[data-carousel-item]:visible')).to_have_count(6)
         expect(page.locator('[data-filter-item]:visible')).to_have_count(4)
         expect(page.locator('[data-carousel-controls]:visible')).to_have_count(0)

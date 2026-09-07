@@ -56,7 +56,7 @@ Interaction may navigate/filter/compare/sequence/reveal supplied material but mu
 
 ## Standalone support
 
-Start standalone artifacts from the [base template](assets/base.html) by default. It includes the minimal header/main layout, foundation styles, linked [favicon](assets/favicon.png), [Quantipixels logo](assets/logo.svg), theme control, and back-to-top control. Copy the template and both images into the artifact directory, keeping the relative image paths valid. Replace the title and heading, set the document language and control labels, and build the supplied representation inside `main`. Use an existing host shell or user-supplied branding when present.
+Start standalone artifacts from the [base template](assets/base.html) by default. It includes the minimal header/main layout, foundation styles, linked [favicon](assets/favicon.png), embedded Quantipixels logo, theme control, and back-to-top control. Copy the template and favicon into the artifact directory, keeping the favicon path valid. The logo is inline in the template; do not recreate it or add a companion logo dependency. Replace the title and heading, set the document language and control labels, and build the supplied representation inside `main`. Use an existing host shell or user-supplied branding when present.
 
 Add the [report control](assets/report-control.html), [collection filter control](assets/collection-filter-control.html), or [carousel control](assets/carousel-control.html) only when that asset's own trigger applies; read only the selected asset before embedding it.
 
