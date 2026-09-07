@@ -109,6 +109,7 @@ class ControlBrowserProof(unittest.TestCase):
         expect(page.locator('.artifact-brand')).to_have_css('background-color', 'rgba(0, 0, 0, 0)')
         expect(page.locator('.artifact-brand [fill="currentColor"]').first).to_have_css('fill', 'rgb(17, 17, 17)')
         expect(page.locator('[data-theme-toggle]')).to_be_hidden()
+        expect(page.locator('[data-back-to-top]')).to_be_hidden()
 
     def test_javascript_off_keeps_content_and_native_navigation(self):
         page = self.open_fixture(javascript=False)
@@ -125,14 +126,69 @@ class ControlBrowserProof(unittest.TestCase):
         page = self.open_fixture()
         page.emulate_media(color_scheme='dark')
         expect(page.locator('html')).to_have_attribute('data-theme', 'dark')
-        control = page.locator('[data-theme-toggle]')
+        control = page.get_by_role('button', name='Use light theme', exact=True)
+        expect(control).to_have_attribute('title', 'Use light theme')
+        expect(control.locator('[data-theme-icon="light"]')).to_be_visible()
+        expect(control.locator('[data-theme-icon="dark"]')).to_be_hidden()
+        for icon in control.locator('svg').all():
+            expect(icon).to_have_attribute('aria-hidden', 'true')
+            expect(icon).to_have_attribute('focusable', 'false')
+        label = control.locator('[data-theme-label]')
+        expect(label).to_have_css('clip-path', 'inset(50%)')
+        expect(label).to_have_text('Use light theme')
         control.focus()
         page.keyboard.press('Enter')
+        control = page.get_by_role('button', name='Use dark theme', exact=True)
         expect(page.locator('html')).to_have_attribute('data-theme', 'light')
+        expect(control.locator('[data-theme-icon="dark"]')).to_be_visible()
+        expect(control.locator('[data-theme-icon="light"]')).to_be_hidden()
+        expect(control.locator('[data-theme-label]')).to_have_text('Use dark theme')
         page.emulate_media(color_scheme='light')
         page.emulate_media(color_scheme='dark')
         expect(page.locator('html')).to_have_attribute('data-theme', 'light')
         expect(control).to_have_attribute('title', 'Use dark theme')
+
+    def test_back_to_top_stays_visible_at_bottom_right_while_scrolling(self):
+        for width, javascript in ((320, False), (1100, True)):
+            with self.subTest(width=width, javascript=javascript):
+                context = self.browser.new_context(
+                    java_script_enabled=javascript,
+                    viewport={'width': width, 'height': 640}, reduced_motion='reduce')
+                try:
+                    page = context.new_page()
+                    # Use the shipped control unchanged in a realistically long artifact.
+                    content = '<p>Long report content.</p>' * 100
+                    page.set_content(asset('base.html').replace('</main>', content + '</main>', 1))
+                    control = page.get_by_role('link', name='Back to top', exact=True)
+                    expect(control).to_have_attribute('title', 'Back to top')
+                    expect(control.locator('svg')).to_be_visible()
+                    expect(control.locator('svg')).to_have_attribute('aria-hidden', 'true')
+                    expect(control.locator('[data-visually-hidden]')).to_have_css('clip-path', 'inset(50%)')
+                    expect(control).to_have_css('position', 'fixed')
+                    first = control.bounding_box()
+                    self.assertIsNotNone(first)
+                    self.assertAlmostEqual(first['x'] + first['width'], width - 16, delta=1)
+                    self.assertAlmostEqual(first['y'] + first['height'], 624, delta=1)
+                    for fraction in (0, 0.5, 1):
+                        page.evaluate("fraction => window.scrollTo(0, fraction * document.documentElement.scrollHeight)", fraction)
+                        if fraction:
+                            self.assertGreater(page.evaluate('window.scrollY'), 0)
+                        expect(control).to_be_visible()
+                        box = control.bounding_box()
+                        for coordinate in ('x', 'y', 'width', 'height'):
+                            self.assertAlmostEqual(box[coordinate], first[coordinate], delta=1)
+                        self.assertTrue(control.evaluate("""node => {
+                            const r = node.getBoundingClientRect();
+                            return node.contains(document.elementFromPoint(r.x + r.width / 2, r.y + r.height / 2));
+                        }"""))
+                    control.focus()
+                    page.keyboard.press('Enter')
+                    page.wait_for_function('window.scrollY < 100')
+                    self.assertTrue(page.url.endswith('#artifact-top'))
+                    if javascript:
+                        expect(page.locator('#artifact-top')).to_be_focused()
+                finally:
+                    context.close()
 
     def test_carousel_keyboard_bounds_hash_and_instances(self):
         page = self.open_fixture(narrow=True)

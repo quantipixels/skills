@@ -11,3 +11,5 @@ Use supervised subagents for substantial analysis, research, and expert work in 
 Use semantic color in HTML Artifact diagrams and data views, including Mermaid, while preserving contrast, non-color cues, and consistent meaning across themes.
 
 Restore Alárinà as the QP-specific router with named entrypoints and useful work paths.
+
+Keep artifact theme and back-to-top controls icon-only with accessible labels; verify back-to-top stays fixed and visible at the bottom right while scrolling.

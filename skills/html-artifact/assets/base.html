@@ -288,16 +288,17 @@ overflow, reduced-motion, and print plumbing without choosing an aesthetic.
   data-theme-toggle
   data-theme-light-label="Use light theme"
   data-theme-dark-label="Use dark theme"
+  title="Change theme"
   hidden
 >
-  <svg data-theme-icon="dark" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <svg data-theme-icon="dark" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
     <mask id="artifact-theme-moon-cutout">
       <rect width="24" height="24" fill="white"></rect>
       <circle cx="15" cy="8" r="7" fill="black"></circle>
     </mask>
     <circle cx="10" cy="12" r="8" fill="currentColor" stroke="none" mask="url(#artifact-theme-moon-cutout)"></circle>
   </svg>
-  <svg data-theme-icon="light" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <svg data-theme-icon="light" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
     <circle cx="12" cy="12" r="4"></circle>
     <path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.66 6.34l1.41-1.41"></path>
   </svg>
@@ -309,7 +310,7 @@ overflow, reduced-motion, and print plumbing without choosing an aesthetic.
       <!-- Add the supplied content and its governing representation here. -->
     </main>
   </div>
-<a data-back-to-top href="#artifact-top">
+<a data-back-to-top href="#artifact-top" title="Back to top">
   <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24">
     <path d="m6 15 6-6 6 6"></path>
   </svg>
