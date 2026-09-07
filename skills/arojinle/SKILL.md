@@ -7,15 +7,24 @@ description: Resolve consequential choices through a relentless, complete decisi
 
 Use `amose`.
 
-Relentlessly test the material decision surface until no consequential branch remains silently assumed. Map it as a **decision tree**: every decision branches into the decisions that depend on it.
+Interview the user relentlessly until shared understanding is reached and no consequential branch remains silently assumed. Map it as a **decision tree**: every decision branches into the decisions that depend on it.
 
-Work the tree in **rounds**. The **frontier** is every decision whose prerequisites are already settled. Ask the whole answerable frontier in one round, number the questions, include only context that can change understanding, and give a recommended answer with the reason. Then wait for the user's answers before advancing dependent branches.
+Work the tree in **rounds**. The **frontier** is every decision whose prerequisites are already settled. Ask the whole answerable frontier in one round, then wait for the user's answers before starting the next.
+
+Present each round in the conversation using numbered question blocks, separated by horizontal rules:
+
+```markdown
+❓ **Q<n> - <topic>**
+<question, enough context to answer, and choices where useful>
+
+➡️ **Recommendation:** <answer and reason>
+```
 
 Each round reshapes the tree. Recompute the material frontier from confirmed answers before asking the next round; answers may create, remove, merge, split, or reframe dependent branches. Do not merely continue the previously imagined tree.
 
 Do not ask a question whose answer depends on another still-open question in the same round.
 
-Finding facts is your job, never the user's. Resolve bounded facts directly. Let only dependent questions wait while independent frontier questions continue.
+Finding facts is your job, never the user's. Resolve bounded facts directly. While subagents investigate a prerequisite, ask independent frontier questions now; only questions depending on that evidence wait.
 
 Delegate substantial analysis, research, and expert work to subagents, returning concise findings and evidence links to keep the main context lean.
 
