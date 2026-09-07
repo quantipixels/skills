@@ -7,6 +7,8 @@ description: Shape and maintain a useful initiative plan from the current goal, 
 
 Keep one current plan that makes the desired outcome, remaining choices, dependencies, and next action clear.
 
+Use `pepeye` to delegate substantial analysis, research, and expert work to subagents, returning concise findings and evidence links to keep the main context lean.
+
 ## Shape the plan
 
 Start from supplied decisions and current evidence. Do not replay discovery or ask the user for facts you can establish. Distinguish confirmed requirements from inference, and keep the scope and non-goals explicit.

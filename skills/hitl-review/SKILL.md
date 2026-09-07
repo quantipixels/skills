@@ -7,6 +7,8 @@ description: Guide a human through one exact reviewable candidate, classify the 
 
 Review one fixed candidate with the human. The candidate may be code, a plan, specification, document, design, architecture, artifact, incident record, or other bounded work. Own the review conversation and final human decision, not specialist verdicts or mutations.
 
+Use `pepeye` to delegate substantial analysis, research, and expert work to subagents, returning concise findings and evidence links to keep the main context lean.
+
 ## Pin and orient
 
 Resolve:

@@ -15,7 +15,9 @@ Each round reshapes the tree. Recompute the material frontier from confirmed ans
 
 Do not ask a question whose answer depends on another still-open question in the same round.
 
-Finding facts is your job, never the user's. Resolve bounded facts directly; isolate noisy lookup only when it materially protects the decision context. Let only dependent questions wait while independent frontier questions continue.
+Finding facts is your job, never the user's. Resolve bounded facts directly. Let only dependent questions wait while independent frontier questions continue.
+
+Use `pepeye` to delegate substantial analysis, research, and expert work to subagents, returning concise findings and evidence links to keep the main context lean.
 
 Use other skills as needed to form or resolve frontier decisions; continue the same interview.
 

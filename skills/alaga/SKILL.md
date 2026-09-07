@@ -7,6 +7,8 @@ description: Deliver one supplied build job from settled outcome through impleme
 
 Deliver one supplied software/build job as a coherent proved result. Use `test-first` only when the user requests it or a material behavior-bearing seam with an independent oracle makes a failing test capable of controlling implementation; otherwise use `job`.
 
+Use `pepeye` to delegate substantial analysis, research, and expert work to subagents, returning concise findings and evidence links to keep the main context lean.
+
 ## 1. Map the job
 
 Pin only what can change delivery:

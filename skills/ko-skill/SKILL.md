@@ -7,6 +7,8 @@ description: Create, improve, or validate an agent skill that reliably produces 
 
 Deliver a useful skill with clear scope, appropriate depth, and enough verification to trust the change. Authoring requires permission to edit; validation and audits remain read-only. Installation, activation, publication, and provider mutations need their own authority.
 
+Use `pepeye` to delegate substantial analysis, research, and expert work to subagents, returning concise findings and evidence links to keep the main context lean.
+
 ## Define the job
 
 Establish the intended result, trigger, boundaries, and requested change from the candidate and applicable host/repository rules. Before prescribing more instructions, distinguish missing expertise or unclear guidance from ignored/unavailable instructions, insufficient tools, or an environment failure. No change is a valid result.

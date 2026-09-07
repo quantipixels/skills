@@ -7,6 +7,8 @@ description: Produce an evidence-backed postmortem for one completed, abandoned,
 
 Turn one finished or materially paused event into a postmortem: what happened, what mattered, what recovery cost, what worked, what failed, and which durable changes are justified.
 
+Use `pepeye` to delegate substantial analysis, research, and expert work to subagents, returning concise findings and evidence links to keep the main context lean.
+
 Do not invent a new rule for every mistake. Prefer no change over a speculative lesson.
 
 ## Pin the evidence unit
