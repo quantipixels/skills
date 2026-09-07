@@ -18,8 +18,8 @@ UI / composition         → component tree
 ownership / repository   → shallow responsibility or file tree
 before / after           → shape-aware explanatory diff
 new complete shape       → whole block
-state / lifecycle        → state sketch or Mermaid
-interaction / data flow  → Mermaid or concise directed flow
+state / lifecycle        → state sketch
+interaction / data flow  → concise directed flow
 comparison               → aligned comparison
 ```
 
@@ -54,18 +54,6 @@ src/
 ├── commands/      # parses actions
 ├── sessions/      # owns state
 └── transport/     # sends requests
-```
-
-Use Mermaid when interaction, sequence, state, or topology is materially clearer in two dimensions:
-
-```mermaid
-sequenceDiagram
-    participant User
-    participant UI
-    participant Daemon
-    User->>UI: choose command
-    UI->>Daemon: send expanded prompt
-    Daemon-->>UI: stream result
 ```
 
 Use prose when a visual would only restate a short sentence or list. Use several forms only when they expose genuinely different relationships; do not produce a gallery by default.

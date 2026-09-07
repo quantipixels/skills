@@ -15,3 +15,5 @@ Restore Alárinà as the QP-specific router with named entrypoints and useful wo
 Keep artifact theme and back-to-top controls icon-only with accessible labels; verify back-to-top stays fixed and visible at the bottom right while scrolling.
 
 Restore Àròjinlẹ̀'s conversational question blocks and explicit ask–wait cycle while delegated fact-finding proceeds independently.
+
+Keep Fihànmí renderer-neutral; Mermaid guidance remains in HTML Artifact.
