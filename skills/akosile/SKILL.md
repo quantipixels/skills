@@ -6,6 +6,8 @@ compatibility: Requires Git and Python 3. Worktree-visible `.qp` aliases require
 
 # Akọsílẹ̀
 
+Use this workspace only when shared repository state or protected concurrent publication is actually needed and selected. Ordinary plans, reviews, and artifacts can stay in the conversation or an existing project destination. Do not create `.qp` merely because another skill contributes to the task.
+
 Own one repository's workspace contract. Semantic owners supply record/artifact kind, stable subject, and semantic content. Akọsílẹ̀ owns canonical repository state, stable paths, reconstructible worktree aliases, safe publication, sparse settings mechanics, and generated navigation.
 
 Use native Git/filesystem capability for ordinary discovery, allocation, symlinks, inspection, hashing, and Git excludes. Keep bundled code only for two deterministic kernels:

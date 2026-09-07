@@ -66,11 +66,4 @@ Remove formatting preferences, speculative alternatives, deterministic tool conc
 
 Refresh counsel only when the candidate, touched mechanism, stack/version, accepted contract, material premise, or controlling evidence changes. Return only what changed rather than regenerating a large brief.
 
-Before independent review, compare the exact candidate with active counsel and classify material items as:
-
-- `SATISFIED` — candidate follows the counsel;
-- `DEPARTED` — deliberate evidence-backed departure;
-- `STALE` — candidate/evidence change made the counsel irrelevant; or
-- `UNRESOLVED` — a material implementation/proof gap remains.
-
-Resolve `UNRESOLVED` items that can still change implementation/proof before review. This comparison is delivery evidence, never a defect, maintainability, parity, security, or final-review verdict.
+Apply relevant counsel as implementation changes. Resolve material evidence gaps that can still change code or proof before independent review; do not create a separate counsel ledger or classify every ordinary implementation choice.
