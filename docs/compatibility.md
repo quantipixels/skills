@@ -9,6 +9,9 @@ A claim applies only to the stated path. `CI_PROVED` means that path is exercise
 | Claude plugin validation and clean local-marketplace installation | Pinned `@anthropic-ai/claude-code@2.1.260` | CI_PROVED |
 | Direct QP snapshot install/update/remove | Exact-checkout round-trip on Ubuntu; filesystem/interruption tests on Linux and macOS | CI_PROVED |
 | Remote installer bootstrap | Exact same-repository head fetch on pushes and same-repository PRs; skipped for forks/merge groups | CI_PROVED |
+| Native Codex manifest and shared skill target | Package validator and rejection tests; no bundled hooks, servers, or startup settings | STRUCTURAL |
+| Native Codex plugin installation, update/removal and authenticated invocation | Host round-trip and behavioral checks not supplied | NOT_RUN |
+| Knowledge retrieval, premortem readiness, boundary review, agent-facing design and measured optimization | Source guidance and [targeted native-host cases](verification.md), not observed model comparisons | NOT_RUN |
 | Pepeye native adapter structure | One lazy-loading main agent; equivalent Codex instruction body; no model/permission overrides | STRUCTURAL |
 | Authenticated skill selection, decision-tree composition, supervision and worker reuse | [Native-host checks](verification.md); package success is not model behavior | NOT_RUN |
 | Akọsílẹ̀ and local session parsers | Existing deterministic tests on Linux, macOS and Windows | CI_PROVED |

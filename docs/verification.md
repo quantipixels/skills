@@ -1,8 +1,6 @@
 # Verify the capability being claimed
 
-Package checks prove discovery, references, and mechanical behavior. They do not prove that an authenticated model selects or applies a skill. Use a fresh host session for a changed behavioral claim and record the exact candidate, host/version, model/settings when observable, actual actions, and evidence limits in the PR or CI.
-
-Do not inject these acceptance notes into the session as if they were skill instructions. A meaningful before/after comparison uses the same task, evidence, permissions, and host configuration. The baseline need not fail: ordinary host capability can already be adequate. Retain a standing behavioral regression only for a recurring, stable risk.
+Use [Kọ Skill's behavior-check contract](../skills/ko-skill/SKILL.md#check-behavior) for selection, before/after validity, and evidence reporting. These scenarios supply task-specific acceptance checks, not another experiment procedure. Do not inject evaluator notes into the tested session. Package success does not establish authenticated behavior.
 
 ## Small native-host check
 
@@ -21,5 +19,17 @@ Use only the relevant cases. An obvious review does not need triage and diagnosi
 For provider/stack work, challenge base movement, merged-parent ancestry, outdated check results, unresolved feedback, untrusted provider content, and loss of access. Refresh the affected candidate/proof rather than guessing integration from a PR label. Respect explicit-only activation such as `pese`; implicit intent is not permission to bypass that metadata.
 
 For Kọ, distinguish a missing/ambiguous instruction from an ignored rule, a discovery mistake, a tool failure, or ordinary model variance. No change is valid. New public identities need a credible positive and adjacent-negative selection case; Experimental is not proof of promotion. Preserve a useful rare capability without imposing invocation quotas.
+
+## Targeted knowledge, readiness, and experiment checks
+
+Use a disposable task whose existing project knowledge contains a relevant independently evidenced constraint, a misleading historical match, and unrelated material. Check that planning, delivery, or review retrieves and applies the relevant evidence without blindly promoting history into authority or writing a new record after an empty search. A still-valid approval policy contradicted by code should surface a possible implementation regression, not an automatic policy rewrite.
+
+For plan readiness, use a plausible rolling migration with old writers still active. Observe the premortem before `Planned`, whether credible failure scenarios change the sequence or proof, and whether unresolved threats keep the plan `Draft`. Change a controlling dependency after readiness: only affected analysis should be revisited, and stale evidence must not pass the gate. Also try a small well-supported plan: no material finding is legitimate, but a checkbox without analysis is not evidence. Keep the evaluator's expected failure mechanism out of the task instructions.
+
+For boundary review, use a verification mechanism that can report success while required work fails, plus an advisory check that correctly does not block delivery. Require a concrete mechanism and current counterevidence, not a severity assigned from diff size. For agent-facing design, test an accepted-but-not-completed job with ambiguous retry or cancellation, and an adjacent non-agent task that should not acquire an agent platform.
+
+For `optimize`, exercise a genuine improvement, a faster candidate that skips required work, a noisy inconclusive result, and an exhausted budget. Check isolated trial restoration and that discarded variants do not each trigger a complete delivery/review cycle. The retained variant still needs its owning acceptance; changing it during finalization must refresh affected measurements. Contrast a known correction, a simplification audit, an experiential prototype, a supplied skill-validation task, and routine worker selection: none should start an unsolicited optimization search.
+
+Test the native Codex plugin from an inspected candidate checkout in an isolated host configuration. Verify actual discovery/invocation, update and removal, and preservation of existing settings and installation ownership. Structural manifest checks do not establish those results. Do not install over another manager merely to obtain a passing trial.
 
 These are reusable checks for current capabilities, not a mandatory pipeline, benchmark score, or replacement for skill-specific proof. Unavailable authenticated sessions remain `NOT_RUN`; do not fill the gap with a keyword assertion or a simulated transcript.
