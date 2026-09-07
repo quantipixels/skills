@@ -216,6 +216,19 @@ class DistributionTests(unittest.TestCase):
             with self.assertRaises(d.InstallError): action()
         self.assertTrue((self.source / 'skills/alpha/SKILL.md').is_file())
 
+    def test_substituted_generation_parent_is_rejected_before_any_removal(self):
+        self.install('codex', 'claude')
+        old = d.current(self.root)
+        outside = self.work / 'outside-generations'
+        (self.root / 'generations').rename(outside)
+        (self.root / 'generations').symlink_to(outside, target_is_directory=True)
+        for action in (self.install, d.uninstall):
+            with self.assertRaises(d.InstallError): action()
+            self.assertTrue((outside / old / 'skills/alpha/SKILL.md').is_file())
+            self.assertTrue((self.home / '.agents/skills/alpha').is_symlink())
+            self.assertTrue((self.root / 'current').is_symlink())
+            self.assertFalse((self.root / 'transaction.json').exists())
+
     def test_real_shell_entrypoints_work_with_spaces(self):
         for name in ('install.sh', 'uninstall.sh'):
             shutil.copy2(SCRIPT.with_name(name), self.source / 'scripts' / name)

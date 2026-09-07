@@ -86,6 +86,8 @@ def location() -> Path:
 
 
 def generation(root: Path, identity: str) -> Path:
+    if (root / "generations").is_symlink():
+        raise InstallError("Generations directory must not be a symlink")
     if not isinstance(identity, str) or not GENERATION.fullmatch(identity):
         raise InstallError("Invalid generation identity")
     path = root / "generations" / identity
