@@ -1,28 +1,20 @@
 name: Validate
-
 on:
   pull_request:
   push:
-    branches:
-      - ori
+    branches: [ori]
   merge_group:
-
 permissions:
   contents: read
-
 jobs:
   package-state:
     name: Package state
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: 22
-
       - name: Verify package lock
         run: npm ci
 
@@ -30,39 +22,18 @@ jobs:
     name: Skill package
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Setup Python
-        uses: actions/setup-python@v5
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
         with:
-          python-version: "3.12"
-
-      - name: Install validator dependency
-        run: python3 -m pip install -r skills/engineering/ko-skill/scripts/requirements.txt
-
-      - name: Validate workflow contract
-        run: python3 -m unittest discover -s .github/tests -p 'test_*.py'
-
-      - name: Validate skill package
-        run: python3 skills/engineering/ko-skill/scripts/validate-package.py --repo .
-
-      - name: Validate plugin agents
-        run: python3 skills/engineering/ko-skill/scripts/validate-plugin-agents.py --repo .
-
-      - name: Test local session evidence adapter
-        run: python3 -m unittest discover -s skills/productivity/ayewo-igba-ise/scripts -p 'test_*.py'
-
-      - name: Setup Node.js for uninstall proof
-        uses: actions/setup-node@v4
-        with:
-          node-version: 22
-
-      - name: Test safe global uninstall
-        run: python3 -m unittest scripts/test_uninstall.py
-
-      - name: Test safe global installer
-        run: python3 -m unittest scripts/test_install.py
+          python-version: '3.12'
+      - run: python -m pip install -r skills/ko-skill/scripts/requirements.txt
+      - name: Validate package and workflow contracts
+        run: python -m unittest discover -s .github/tests -p 'test_*.py'
+      - run: python skills/ko-skill/scripts/validate-package.py --repo .
+      - run: python skills/ko-skill/scripts/validate-plugin-agents.py --repo .
+      - run: python -m unittest discover -s skills/ayewo-igba-ise/scripts -p 'test_*.py'
+      - name: Test owned snapshot installation
+        run: python -m unittest scripts/test_distribution.py
 
   browser-controls:
     name: Browser controls
@@ -73,28 +44,23 @@ jobs:
           persist-credentials: false
       - uses: actions/setup-python@v5
         with:
-          python-version: "3.12"
-      - name: Install pinned browser proof tools
+          python-version: '3.12'
+      - name: Install pinned browser tools
         run: |
           python -m pip install -r .github/browser/requirements.txt
           python -m playwright install --with-deps chromium
-      - name: Exercise shipped controls and fallback
+      - name: Exercise delivered assets and controls
         run: python -m unittest discover -s .github/browser -p 'test_*.py'
 
   akosile-tests:
     name: Akosile focused mechanics
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Setup Python
-        uses: actions/setup-python@v5
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
         with:
-          python-version: "3.12"
-
-      - name: Test safe-write and index renderer
-        run: python3 -m unittest discover -s skills/engineering/akosile/scripts -p 'test_*.py'
+          python-version: '3.12'
+      - run: python -m unittest discover -s skills/akosile/scripts -p 'test_*.py'
 
   compatibility-smoke:
     name: Compatibility smoke
@@ -102,138 +68,98 @@ jobs:
     env:
       SKILLS_CLI_VERSION: 1.5.23
       CLAUDE_CODE_VERSION: 2.1.260
-      DISABLE_TELEMETRY: "1"
+      DISABLE_TELEMETRY: '1'
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: 22
-
-      - name: Discover QP through Skills CLI
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Discover and copy exact candidate through Skills CLI
         run: |
-          npx --yes skills@${SKILLS_CLI_VERSION} add "$GITHUB_WORKSPACE" --list | tee /tmp/qp-skills-list.txt
-          grep -F 'alaga' /tmp/qp-skills-list.txt
-          grep -F 'wo-pr' /tmp/qp-skills-list.txt
-          grep -F 'root-cause' /tmp/qp-skills-list.txt
-
-      - name: Install every QP skill for Codex
-        run: |
+          npx --yes skills@${SKILLS_CLI_VERSION} add "$GITHUB_WORKSPACE" --list
           target="$(mktemp -d)"
           cd "$target"
           npx --yes skills@${SKILLS_CLI_VERSION} add "$GITHUB_WORKSPACE" --agent codex --skill '*' --copy -y
-          expected="$(find "$GITHUB_WORKSPACE/skills" -mindepth 3 -maxdepth 3 -name SKILL.md | wc -l | tr -d ' ')"
-          installed="$(find "$target/.agents/skills" -mindepth 2 -maxdepth 2 -name SKILL.md | wc -l | tr -d ' ')"
+          expected="$(find "$GITHUB_WORKSPACE/skills" -mindepth 2 -maxdepth 2 -name SKILL.md | wc -l)"
+          installed="$(find "$target/.agents/skills" -mindepth 2 -maxdepth 2 -name SKILL.md | wc -l)"
           test "$installed" -eq "$expected"
-          test -f "$target/.agents/skills/alaga/SKILL.md"
-          test -f "$target/.agents/skills/root-cause/SKILL.md"
-
-      - name: Round-trip public global installer
-        if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository)
-        env:
-          SOURCE_REF: ${{ github.head_ref || github.ref_name }}
+      - name: Round-trip exact-checkout direct installation
         run: |
           export HOME="$(mktemp -d)"
-          export XDG_STATE_HOME="$HOME/state"
-          export CLAUDE_CONFIG_DIR="$HOME/claude-config"
-          bash "$GITHUB_WORKSPACE/scripts/install.sh" --ref "$SOURCE_REF" --codex --claude
-          bash "$GITHUB_WORKSPACE/scripts/install.sh" --ref "$SOURCE_REF" --codex --claude --prune
-          test -L "$CLAUDE_CONFIG_DIR/skills/alaga"
-          test -f "$HOME/.agents/skills/alaga/SKILL.md"
-          bash "$GITHUB_WORKSPACE/scripts/uninstall.sh"
-          test ! -e "$HOME/.agents/skills/alaga"
-          test ! -L "$CLAUDE_CONFIG_DIR/skills/alaga"
-          bash "$GITHUB_WORKSPACE/scripts/uninstall.sh"
-
-      - name: Validate Claude Code plugin
+          export XDG_DATA_HOME="$HOME/data" XDG_STATE_HOME="$HOME/state"
+          export CLAUDE_CONFIG_DIR="$HOME/claude" CODEX_HOME="$HOME/codex"
+          mkdir -p "$CLAUDE_CONFIG_DIR" "$CODEX_HOME"
+          printf '{"existing":true}\n' > "$CLAUDE_CONFIG_DIR/settings.json"
+          printf 'developer_instructions = "preserve me"\n' > "$CODEX_HOME/config.toml"
+          bash scripts/install.sh --source "$GITHUB_WORKSPACE" --codex --claude --dry-run
+          test ! -e "$XDG_DATA_HOME/qp-skills"
+          bash scripts/install.sh --source "$GITHUB_WORKSPACE" --codex --claude
+          bash scripts/install.sh --source "$GITHUB_WORKSPACE"
+          test -L "$HOME/.agents/skills/amose"
+          test -L "$CLAUDE_CONFIG_DIR/skills/arojinle"
+          diff -r --exclude=__pycache__ "$GITHUB_WORKSPACE/skills" "$XDG_DATA_HOME/qp-skills/current/skills"
+          bash scripts/uninstall.sh
+          bash scripts/uninstall.sh
+          test ! -L "$HOME/.agents/skills/amose"
+          test ! -L "$CLAUDE_CONFIG_DIR/skills/arojinle"
+          grep -F 'preserve me' "$CODEX_HOME/config.toml"
+          grep -F 'existing' "$CLAUDE_CONFIG_DIR/settings.json"
+      - name: Remote bootstrap accepts an exact Git revision
+        if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository)
+        env:
+          SOURCE_REF: ${{ github.event.pull_request.head.sha || github.sha }}
         run: |
-          cd "$GITHUB_WORKSPACE"
-          npx --yes @anthropic-ai/claude-code@${CLAUDE_CODE_VERSION} plugin validate .
-
+          export HOME="$(mktemp -d)"
+          export XDG_DATA_HOME="$HOME/data" XDG_STATE_HOME="$HOME/state"
+          cat scripts/install.sh | bash -s -- --ref "$SOURCE_REF" --codex
+          test -L "$HOME/.agents/skills/amose"
+          bash scripts/uninstall.sh
+      - name: Validate Claude Code plugin
+        run: npx --yes @anthropic-ai/claude-code@${CLAUDE_CODE_VERSION} plugin validate .
       - name: Clean-install Claude Code plugin
         run: |
           export CLAUDE_CONFIG_DIR="$(mktemp -d)"
-          cd "$GITHUB_WORKSPACE"
           npx --yes @anthropic-ai/claude-code@${CLAUDE_CODE_VERSION} plugin marketplace add "$GITHUB_WORKSPACE" --scope user
           npx --yes @anthropic-ai/claude-code@${CLAUDE_CODE_VERSION} plugin install qp-skills@qp-skills --scope user
-          npx --yes @anthropic-ai/claude-code@${CLAUDE_CODE_VERSION} plugin marketplace list --json | tee /tmp/qp-claude-marketplaces.json
-          npx --yes @anthropic-ai/claude-code@${CLAUDE_CODE_VERSION} plugin list --json | tee /tmp/qp-claude-plugins.json
-          grep -F 'qp-skills' /tmp/qp-claude-marketplaces.json
-          grep -F 'qp-skills' /tmp/qp-claude-plugins.json
+          npx --yes @anthropic-ai/claude-code@${CLAUDE_CODE_VERSION} plugin list --json | tee /tmp/qp-plugins.json
+          grep -F 'qp-skills' /tmp/qp-plugins.json
 
   portable-mechanics:
     name: Portable mechanics (${{ matrix.os }})
     strategy:
       fail-fast: false
       matrix:
-        os:
-          - macos-latest
-          - windows-latest
+        os: [macos-latest, windows-latest]
     runs-on: ${{ matrix.os }}
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Setup Python
-        uses: actions/setup-python@v5
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
         with:
-          python-version: "3.12"
-
-      - name: Install validator dependency
-        run: python -m pip install -r skills/engineering/ko-skill/scripts/requirements.txt
-
-      - name: Validate skill package
-        run: python skills/engineering/ko-skill/scripts/validate-package.py --repo .
-
-      - name: Validate plugin agents
-        run: python skills/engineering/ko-skill/scripts/validate-plugin-agents.py --repo .
-
-      - name: Test local session evidence adapter
-        run: python -m unittest discover -s skills/productivity/ayewo-igba-ise/scripts -p 'test_*.py'
-
-      - name: Test Akosile focused mechanics
-        run: python -m unittest discover -s skills/engineering/akosile/scripts -p 'test_*.py'
-
-      - name: Setup Node.js for installer tests
+          python-version: '3.12'
+      - run: python -m pip install -r skills/ko-skill/scripts/requirements.txt
+      - run: python skills/ko-skill/scripts/validate-package.py --repo .
+      - run: python skills/ko-skill/scripts/validate-plugin-agents.py --repo .
+      - run: python -m unittest discover -s skills/ayewo-igba-ise/scripts -p 'test_*.py'
+      - run: python -m unittest discover -s skills/akosile/scripts -p 'test_*.py'
+      - name: Test owned snapshot installation
         if: runner.os == 'macOS'
-        uses: actions/setup-node@v4
-        with:
-          node-version: 22
-
-      - name: Test safe global installer
-        if: runner.os == 'macOS'
-        run: python -m unittest scripts/test_install.py
-
-      - name: Test safe global uninstall
-        if: runner.os == 'macOS'
-        run: python -m unittest scripts/test_uninstall.py
+        run: python -m unittest scripts/test_distribution.py
 
   validate:
     name: Validate
     if: ${{ always() }}
-    needs:
-      - package-state
-      - skill-package
-      - akosile-tests
-      - browser-controls
-      - compatibility-smoke
-      - portable-mechanics
+    needs: [package-state, skill-package, akosile-tests, browser-controls, compatibility-smoke, portable-mechanics]
     runs-on: ubuntu-latest
     steps:
-      - name: Require all validation jobs
+      - name: Require every validation job
         env:
-          PACKAGE_STATE_RESULT: ${{ needs.package-state.result }}
-          SKILL_PACKAGE_RESULT: ${{ needs.skill-package.result }}
-          BROWSER_CONTROLS_RESULT: ${{ needs.browser-controls.result }}
-          AKOSILE_TESTS_RESULT: ${{ needs.akosile-tests.result }}
-          COMPATIBILITY_SMOKE_RESULT: ${{ needs.compatibility-smoke.result }}
-          PORTABLE_MECHANICS_RESULT: ${{ needs.portable-mechanics.result }}
+          RESULTS: ${{ toJSON(needs) }}
         run: |
-          test "$PACKAGE_STATE_RESULT" = success
-          test "$SKILL_PACKAGE_RESULT" = success
-          test "$AKOSILE_TESTS_RESULT" = success
-          test "$BROWSER_CONTROLS_RESULT" = success
-          test "$COMPATIBILITY_SMOKE_RESULT" = success
-          test "$PORTABLE_MECHANICS_RESULT" = success
+          python3 - <<'PY'
+          import json, os
+          results = json.loads(os.environ['RESULTS'])
+          assert results and all(job['result'] == 'success' for job in results.values()), results
+          PY
