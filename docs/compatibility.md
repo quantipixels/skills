@@ -4,7 +4,7 @@ Compatibility is a release property, not a blanket promise that every host-speci
 
 Use these evidence states:
 
-- **CI_PROVED** — the exact path is exercised on every validated candidate;
+- **CI_PROVED** — the exact path is exercised in CI within the stated host and event scope;
 - **STRUCTURAL** — repository metadata/package shape is deterministically validated, but the target host runtime is not exercised;
 - **NOT_RUN** — a plausible path exists but QP has no current proof for it;
 - **NOT_CLAIMED** — QP deliberately makes no release claim for that path.
@@ -21,7 +21,9 @@ Use these evidence states:
 | Claude Code model-visible load/invocation | Clean install is proved, but CI does not start an authenticated model session and demonstrate QP skill/agent selection inside that runtime | Fresh-host behavioral/runtime proof still required | NOT_RUN |
 | Pepeye host-adapter wiring | One Claude main-agent entry with no mandatory skill preloads; the Codex profile carries the same role without native-prompt/model/permission overrides | Focused adapter tests in `.github/tests/test_package_integrity.py`; model-visible loading is not proved | STRUCTURAL |
 | Pepeye supervision on Claude Code/Codex | Session/default selection, worker-role isolation, delegation, guidance, reuse, settings readback, and cancellation need authenticated runtime proof | [Main-agent setup](../README.md#main-agent-pepeye) and the runtime check below; syntax/install checks do not prove orchestration | NOT_RUN |
-| Claude Code through Skills CLI | The upstream Skills CLI supports a Claude Code target, but QP does not currently make a release claim for that project/global path | No QP smoke; upstream behavior can change independently | NOT_CLAIMED |
+| Codex/Claude global skill-only install and cleanup | Install/reinstall through `scripts/install.sh`, verify candidate bytes and Claude links, then uninstall/repeat removal in an isolated home on Ubuntu | `Round-trip public global installer` in `Compatibility smoke`, on pushes and same-repository PRs only; skipped for forks and merge groups | CI_PROVED |
+| Global cleanup safety boundaries | Refuse unmanaged same-name Codex/Claude paths, leave other host directories untargeted, and detect lock-only cleanup or native shared-install retention | `scripts/test_install.py` and `scripts/test_uninstall.py` on Linux/macOS, using filesystem state and controlled native commands | CI_PROVED |
+| Claude Code project installation through Skills CLI | The upstream CLI supports this target, but QP has no project-install smoke | Global skill-only installation above is a different path | NOT_CLAIMED |
 | Other Skills CLI agents | QP follows the portable Agent Skills package shape, but host destination/loading behavior belongs to the current CLI/host | No QP per-host smoke | NOT_CLAIMED |
 | `system-cleanup` runtime | macOS-specific behavior as declared by the skill | Skill contract; no cross-platform claim | STRUCTURAL |
 
@@ -35,7 +37,7 @@ In a fresh selected session, ask a simple question, request an exact specialist 
 
 The compatibility smoke uses the external [`skills`](https://www.npmjs.com/package/skills) CLI from [`vercel-labs/skills`](https://github.com/vercel-labs/skills), pinned in QP CI to **1.5.23**. Current CLI behavior and supported-agent destinations remain upstream-owned; QP adopts only the exact discovery/install path exercised by its smoke.
 
-- **Adoption:** local-repository discovery and Codex project copy installation for all current QP skills.
+- **Adoption:** local-repository discovery, Codex project copy installation, and the event-scoped global Codex/Claude install–reinstall–uninstall path above. Cleanup uses the native CLI only after checking the QP lock and its permitted paths; retained shared installations are not force-removed.
 - **Not adopted as QP truth:** the CLI's full supported-agent matrix, future install locations, or Claude/Codex runtime loading semantics beyond the path QP exercises.
 - **Copied material:** none; QP invokes the external CLI and records its behavior.
 - **Refresh trigger:** change the pin, change QP package layout, change a claimed destination/host path, or investigate a smoke failure caused by upstream behavior.

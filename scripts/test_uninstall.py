@@ -90,7 +90,7 @@ PY
         remaining = json.loads(lock_path.read_text())["skills"]
         self.assertEqual(set(remaining), {"other"})
         invocation = log.read_text()
-        self.assertIn("--yes skills@1.5.23 remove --global --yes", invocation)
+        self.assertIn("--yes skills@1.5.23 remove --global --agent codex claude-code --yes", invocation)
         self.assertIn("qp-one", invocation)
         self.assertIn("qp-two", invocation)
         self.assertIn("qp-three", invocation)

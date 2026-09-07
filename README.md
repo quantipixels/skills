@@ -34,7 +34,7 @@ rm "$installer"
 
 Requires Node.js 18+, npx, curl, and Git. Add `--claude` for Claude Code, or use both host flags. `--ref` selects a published branch or tag (default `ori`); the pinned CLI cannot clone a raw commit SHA. The helper resolves that ref and verifies installed files against that revision before optional cleanup. Re-running refreshes QP-owned copies; keep local edits in a checkout.
 
-`--prune` removes retired QP-owned names across global Skills CLI targets, including unselected hosts. Preserve independently managed same-name copies first. The helper respects `XDG_STATE_HOME` and `CLAUDE_CONFIG_DIR`, and installs no hooks, main-agent profiles, or startup defaults. Do not run competing installers concurrently.
+`--prune` removes retired QP-owned skills only from the shared Codex directory and verified Claude/legacy-Codex links. Unmanaged same-name copies block cleanup; other host directories are not removal targets. Shared canonical skills retained by the native CLI are reported as incomplete, not force-deleted. The helper respects `XDG_STATE_HOME`, `CLAUDE_CONFIG_DIR`, and `CODEX_HOME`; it installs no hooks, profiles, or startup defaults. Do not run competing installers concurrently.
 
 For a local checkout, uncommitted work, or other native installation options:
 
@@ -99,7 +99,7 @@ See the [runtime check](docs/compatibility.md#pepeye-runtime-check) before claim
 curl -fsSL https://raw.githubusercontent.com/quantipixels/skills/ori/scripts/uninstall.sh | bash
 ```
 
-Use `bash scripts/uninstall.sh --dry-run` to preview. Removal selects global lock entries owned by `quantipixels/skills` and uses the same pinned CLI from an isolated working directory. Native cleanup applies selected names across host directories: preserve independently managed same-name copies before removal. Project installs, native plugins, main-agent profiles, and startup settings are separate.
+Use `bash scripts/uninstall.sh --dry-run` to preview. Removal selects QP-owned global lock entries and uses the same guarded Codex/Claude cleanup as the installer, from an isolated working directory. It checks both the lock and installed paths before reporting success. Unmanaged copies need separate resolution; project installs, other hosts, native plugins, profiles, and startup settings remain separate.
 
 ## Repository-local workspace
 
