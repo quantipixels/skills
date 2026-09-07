@@ -2,4 +2,4 @@
 "qp-skills": patch
 ---
 
-Use the official Quantipixels wordmark from the approved site rather than the earlier reconstructed drawing. Keep it embedded and adapt only its white foreground for legible printing.
+Verify the embedded Quantipixels wordmark against the official site asset, preserve its geometry, and keep an exact embedding regression. Its foreground remains legible when printing without backgrounds.
