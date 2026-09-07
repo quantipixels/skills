@@ -32,7 +32,7 @@ Build the smallest evidence-backed sequence needed to explain the outcome. Separ
 
 Do not judge an earlier action by a requirement introduced later. Current state does not prove historical state. Temporal order, correlation, or a later successful recovery is not causal proof by itself.
 
-Read `root-cause` when a missing causal diagnosis materially changes the postmortem. Otherwise proceed with the evidence and its uncertainty.
+Use `root-cause` when a missing causal diagnosis materially changes the postmortem. Otherwise proceed with the evidence and its uncertainty.
 
 ## Distinguish incident from structural friction
 

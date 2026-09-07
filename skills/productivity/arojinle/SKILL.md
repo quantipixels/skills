@@ -5,7 +5,7 @@ description: Resolve consequential choices through a relentless, complete decisi
 
 # Àròjinlẹ̀
 
-Read `amose`.
+Use `amose`.
 
 Relentlessly test the material decision surface until no consequential branch remains silently assumed. Map it as a **decision tree**: every decision branches into the decisions that depend on it.
 
@@ -17,7 +17,7 @@ Do not ask a question whose answer depends on another still-open question in the
 
 Finding facts is your job, never the user's. Resolve bounded facts directly; isolate noisy lookup only when it materially protects the decision context. Let only dependent questions wait while independent frontier questions continue.
 
-Read other skills as needed to form or resolve frontier decisions; continue the same interview.
+Use other skills as needed to form or resolve frontier decisions; continue the same interview.
 
 When a frontier choice has several credible alternatives and at least two independent criteria can materially change the recommendation, use a compact decision-specific rubric. Apply hard gates first; derive only the criteria that matter to this decision; show the decisive factor, strongest credible alternative, and material counterevidence. Do not manufacture scores for a trivial/already-determined choice or let an average hide a gate. The rubric supports the recommendation; the decision remains the user's.
 
