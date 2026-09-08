@@ -137,10 +137,10 @@ class ConfigurationTests(unittest.TestCase):
         self.assertEqual(list(self.home.iterdir()), [])
         self.sync()
         native = self.home / ".codex/agents/qp-atona.toml"
-        self.assertNotIn("model", tomllib.loads(native.read_text()))
+        self.assertNotIn("model", tomllib.loads(native.read_text(encoding="utf-8")))
         c.sync(("codex",), "repo", self.repo, home=self.home)
         local = self.repo / ".codex/agents/qp-atona.toml"
-        self.assertEqual(tomllib.loads(local.read_text())["model"], "repo-model")
+        self.assertEqual(tomllib.loads(local.read_text(encoding="utf-8"))["model"], "repo-model")
 
     def test_sync_updates_owned_files_clears_pins_and_preserves_host_configuration(self):
         originals = {self.home / ".claude/settings.json": b'{"permissions":{"deny":["Bash"]}}',
@@ -152,11 +152,11 @@ class ConfigurationTests(unittest.TestCase):
         self.sync()
         self.sync()
         native = self.home / ".codex/agents/qp-atona.toml"
-        self.assertEqual(tomllib.loads(native.read_text())["model"], "fixed")
+        self.assertEqual(tomllib.loads(native.read_text(encoding="utf-8"))["model"], "fixed")
         self.setting(self.home, {"codex": {"model": "inherit", "reasoning": "adaptive"}})
         self.sync()
-        self.assertNotIn("model", tomllib.loads(native.read_text()))
-        self.assertNotIn("model_reasoning_effort", tomllib.loads(native.read_text()))
+        self.assertNotIn("model", tomllib.loads(native.read_text(encoding="utf-8")))
+        self.assertNotIn("model_reasoning_effort", tomllib.loads(native.read_text(encoding="utf-8")))
         for path, data in originals.items():
             self.assertEqual(path.read_bytes(), data)
         self.assertTrue((self.home / ".qp/setting.json").is_file())
@@ -173,7 +173,7 @@ class ConfigurationTests(unittest.TestCase):
         foreign.write_text("personal file")
         with self.assertRaises(s.ConfigError):
             self.sync()
-        self.assertEqual(foreign.read_text(), "personal file")
+        self.assertEqual(foreign.read_text(encoding="utf-8"), "personal file")
         self.assertFalse((self.home / ".claude").exists())
         self.assertFalse((foreign.parent / c.STATE).exists())
 
@@ -240,7 +240,7 @@ class ConfigurationTests(unittest.TestCase):
         modified.write_bytes(previous)
         self.sync()
         self.assertEqual(header((self.home / ".claude/agents/qp-atona.md").read_bytes())["model"], "new-model")
-        self.assertEqual(tomllib.loads((self.home / ".codex/agents/qp-atona.toml").read_text())["model_reasoning_effort"], "high")
+        self.assertEqual(tomllib.loads((self.home / ".codex/agents/qp-atona.toml").read_text(encoding="utf-8"))["model_reasoning_effort"], "high")
 
     def test_stale_lock_requires_inspection_and_cannot_be_overwritten(self):
         folder = self.home / ".claude/agents"
@@ -249,20 +249,20 @@ class ConfigurationTests(unittest.TestCase):
         lock.write_text("prior process")
         with self.assertRaisesRegex(s.ConfigError, "Setup lock"):
             self.sync()
-        self.assertEqual(lock.read_text(), "prior process")
+        self.assertEqual(lock.read_text(encoding="utf-8"), "prior process")
         self.assertFalse((folder / c.STATE).exists())
 
     def test_invalid_ownership_paths_cannot_escape_the_agent_directory(self):
         self.sync()
         manifest = self.home / ".codex/agents" / c.STATE
-        data = json.loads(manifest.read_text())
+        data = json.loads(manifest.read_text(encoding="utf-8"))
         victim = self.home / "victim"
         victim.write_text("preserve")
         data["files"]["../../victim"] = [c.digest(victim.read_bytes())]
         manifest.write_text(json.dumps(data))
         with self.assertRaises(s.ConfigError):
             self.sync(remove=True)
-        self.assertEqual(victim.read_text(), "preserve")
+        self.assertEqual(victim.read_text(encoding="utf-8"), "preserve")
 
     def test_remove_is_idempotent_ignores_invalid_preferences_and_preserves_other_agents(self):
         self.sync()
@@ -272,8 +272,8 @@ class ConfigurationTests(unittest.TestCase):
         foreign.write_text("keep")
         self.sync(remove=True)
         self.sync(remove=True)
-        self.assertEqual(setting.read_text(), "invalid now")
-        self.assertEqual(foreign.read_text(), "keep")
+        self.assertEqual(setting.read_text(encoding="utf-8"), "invalid now")
+        self.assertEqual(foreign.read_text(encoding="utf-8"), "keep")
         self.assertFalse((foreign.parent / c.STATE).exists())
         self.assertEqual(list(foreign.parent.glob("qp-*.toml")), [])
 
@@ -305,11 +305,11 @@ class PackagedAdapterTests(unittest.TestCase):
             with self.subTest(path=relative):
                 self.assertEqual((root / relative).read_bytes(), data)
         source_roles = set(s.roles())
-        manifest = json.loads((root / ".claude-plugin/plugin.json").read_text())
+        manifest = json.loads((root / ".claude-plugin/plugin.json").read_text(encoding="utf-8"))
         self.assertEqual(set(manifest["agents"]), {f"./agents/{name}.md" for name in source_roles})
         self.assertEqual(set(p.stem for p in (root / "agents").glob("*.md")), source_roles)
         # The shared schema must not grow another source of role/effort defaults.
-        self.assertEqual(json.loads((s.ASSETS / "setting.schema.json").read_text()), s.schema())
+        self.assertEqual(json.loads((s.ASSETS / "setting.schema.json").read_text(encoding="utf-8")), s.schema())
 
 
 if __name__ == "__main__":

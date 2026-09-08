@@ -35,7 +35,7 @@ Explicit task language and output contracts override the preference. Code, ident
 
 ```json
 {
-  "$schema": "https://raw.githubusercontent.com/quantipixels/skills/ori/skills/configure-qp/assets/setting.schema.json",
+  "$schema": "https://raw.githubusercontent.com/quantipixels/skills/ori/skills/qp-setup/assets/setting.schema.json",
   "version": 1,
   "communication": "adaptive",
   "codex": {
@@ -58,7 +58,7 @@ Model identifiers are host-owned strings. The schema intentionally does not main
 
 ## Inspect
 
-From an installed `configure-qp` skill:
+From an installed `qp-setup` skill:
 
 ```bash
 python3 scripts/configure.py inspect

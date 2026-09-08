@@ -1,11 +1,11 @@
 ---
-name: configure-qp
+name: qp-setup
 description: Inspect layered QP communication and worker model/reasoning settings, or explicitly set up QP native workflow agents for Claude Code and Codex. Inspection is read-only; installation, removal, and preference edits require authorization. Exclude orchestration and host permission management.
 metadata:
   maturity: experimental
 ---
 
-# Configure QP
+# QP Setup
 
 Resolve preferences without replacing the host's configuration. Use [settings and native setup](references/settings.md) for the contract, examples, and commands. The deterministic helper is [configure.py](scripts/configure.py), requiring Python 3.11+.
 

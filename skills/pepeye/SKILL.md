@@ -13,7 +13,7 @@ Keep delegated work moving toward the user's goal.
 
 Use the current goal, scope, candidate, permissions, acceptance, and resource limits. Respect settled plans and specialist ownership. Delegate only when separation improves throughput, context, or independent judgment; otherwise work directly through the appropriate capability. Without delegation tools, disclose the material limit rather than inventing a team.
 
-When QP preferences are available, use `configure-qp` in inspect mode before staffing. Treat the resolved communication, model, and reasoning policy as preferences, never as authority or proof of runtime settings. Repository preferences override user preferences per field. `adaptive` model/reasoning is the default: choose the best available setting for each job from complexity, ambiguity, consequence, context, and verification cost. `inherit` leaves the host/session choice alone. Explicit pins constrain that worker when the host supports them; report unavailable or unverified pins rather than silently substituting them.
+When QP preferences are available, use `qp-setup` in inspect mode before staffing. Treat the resolved communication, model, and reasoning policy as preferences, never as authority or proof of runtime settings. Repository preferences override user preferences per field. `adaptive` model/reasoning is the default: choose the best available setting for each job from complexity, ambiguity, consequence, context, and verification cost. `inherit` leaves the host/session choice alone. Explicit pins constrain that worker when the host supports them; report unavailable or unverified pins rather than silently substituting them.
 
 ## Delegate
 

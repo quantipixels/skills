@@ -46,7 +46,7 @@ The repository also includes a native Codex plugin manifest. See [compatibility]
 
 Common entrypoints are `atona` for planning, `alaga` for implementation, `atunwo` for review, `arojinle` for consequential choices, `amose` for domain modelling, and `html-artifact` for browser projections. Use [`alarina`](skills/alarina/SKILL.md) when you want the QP inventory or help choosing the next skill.
 
-Use `pepeye` for delegated staffing, supervision, worker reuse, and integration when that coordination is useful. `configure-qp` resolves optional `~/.qp/setting.json` and repository `.qp/setting.json` preferences for communication and worker model/reasoning, and can safely sync native Claude/Codex worker files when explicitly requested. Defaults remain adaptive for model/reasoning and no-op for communication.
+Use `pepeye` for delegated staffing, supervision, worker reuse, and integration when that coordination is useful. `qp-setup` resolves optional `~/.qp/setting.json` and repository `.qp/setting.json` preferences for communication and worker model/reasoning, and can safely sync native Claude/Codex worker files when explicitly requested. Defaults remain adaptive for model/reasoning and no-op for communication.
 
 For explanations, use `salaye` for visual sketches and focused HTML, including relevant sections of larger artifacts. `oro-ologbon` combines technical authoring with prose editing and pruning; `alaga` supports scope-only requests that stop before implementation. Update former `fihanmi` invocations to `salaye`, `technical-writing` and `yo-slop` to `oro-ologbon`, and `scope-guard` to `alaga` scope-only mode, including references in project guidance. The standalone `handoff` skill is retired; request a session handoff directly.
 
