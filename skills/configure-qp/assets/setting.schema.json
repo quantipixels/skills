@@ -1,0 +1,167 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "QP preferences (.qp/setting.json)",
+  "type": "object",
+  "additionalProperties": false,
+  "$defs": {
+    "claudePolicy": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "model": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/@+-]{0,199}(?![\\s\\S])",
+          "default": "adaptive"
+        },
+        "reasoning": {
+          "enum": [
+            "adaptive",
+            "inherit",
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
+          ],
+          "default": "adaptive"
+        }
+      }
+    },
+    "codexPolicy": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "model": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/@+-]{0,199}(?![\\s\\S])",
+          "default": "adaptive"
+        },
+        "reasoning": {
+          "enum": [
+            "adaptive",
+            "inherit",
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max",
+            "ultra"
+          ],
+          "default": "adaptive"
+        }
+      }
+    }
+  },
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "version": {
+      "type": "integer",
+      "const": 1
+    },
+    "communication": {
+      "enum": [
+        "default",
+        "adaptive",
+        "yoruba"
+      ],
+      "default": "default"
+    },
+    "claude": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "model": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/@+-]{0,199}(?![\\s\\S])",
+          "default": "adaptive"
+        },
+        "reasoning": {
+          "enum": [
+            "adaptive",
+            "inherit",
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
+          ],
+          "default": "adaptive"
+        },
+        "agents": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "atona": {
+              "$ref": "#/$defs/claudePolicy"
+            },
+            "alaga": {
+              "$ref": "#/$defs/claudePolicy"
+            },
+            "atunwo": {
+              "$ref": "#/$defs/claudePolicy"
+            },
+            "iwadi": {
+              "$ref": "#/$defs/claudePolicy"
+            },
+            "architect": {
+              "$ref": "#/$defs/claudePolicy"
+            },
+            "ko-skill": {
+              "$ref": "#/$defs/claudePolicy"
+            }
+          }
+        }
+      }
+    },
+    "codex": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "model": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/@+-]{0,199}(?![\\s\\S])",
+          "default": "adaptive"
+        },
+        "reasoning": {
+          "enum": [
+            "adaptive",
+            "inherit",
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max",
+            "ultra"
+          ],
+          "default": "adaptive"
+        },
+        "agents": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "atona": {
+              "$ref": "#/$defs/codexPolicy"
+            },
+            "alaga": {
+              "$ref": "#/$defs/codexPolicy"
+            },
+            "atunwo": {
+              "$ref": "#/$defs/codexPolicy"
+            },
+            "iwadi": {
+              "$ref": "#/$defs/codexPolicy"
+            },
+            "architect": {
+              "$ref": "#/$defs/codexPolicy"
+            },
+            "ko-skill": {
+              "$ref": "#/$defs/codexPolicy"
+            }
+          }
+        }
+      }
+    }
+  }
+}
