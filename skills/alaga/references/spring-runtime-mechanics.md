@@ -18,11 +18,14 @@ When AspectJ/weaving or another mechanism is selected, reason from that mechanis
 ## Transactions should match the atomic use case
 
 - Put the database transaction around the application operation that owns the atomic state change, not around transport plumbing or scattered repository calls by habit.
+- Do not treat `@Transactional` or an ordinary read followed by a write inside one transaction as proof that a mutable-state invariant is protected. Establish the effective propagation and database isolation/locking behavior, including inherited/default settings, against the exact access pattern.
+- A single repository call or SQL statement is not general concurrency proof when its predicate depends on other rows, absence, counts, or ranges. Prefer the database constraint, conditional write/version check, lock, or isolation semantics that actually cover the invariant; verify the selected database/provider behavior rather than relying on the annotation shape.
 - Make rollback semantics match the failure contract. Caught/swallowed failures and exception-type defaults can change commit/rollback behavior.
+- If a concurrency abort is retried, re-enter the owning transactional use case from fresh authoritative state when the database/framework requires it; do not retry only an inner write using a stale managed/detached entity or earlier decision.
 - Do not hold a local database transaction open across slow or irreversible remote effects as a substitute for cross-system atomicity. Prefer durable intent/outbox/event delivery, idempotency, or an explicit compensating workflow when the accepted architecture requires it.
 - Treat `readOnly` as intent/optimization where supported, not an authorization boundary or universal write prohibition.
 
-A transaction annotation is not proof. Verify the effective interceptor, propagation, database/provider behavior, and committed/rolled-back outcomes when material.
+A transaction annotation is not proof. Verify the effective interceptor, propagation, isolation, database/provider behavior, conflict/retry path, and committed/rolled-back outcomes when material.
 
 ## Persistence context and fetch shape are use-case decisions
 
@@ -52,7 +55,7 @@ Open-session-in-view, eager fetching, and broad cascades are implementation choi
 
 ## Retrieval anchors
 
-Use current first-party sources for the detected generation, especially Spring Framework AOP proxying and transaction references, Spring Data JPA transaction/entity-graph documentation, Spring Boot application-availability and graceful-shutdown guidance, Spring WebFlux concurrency/reactive documentation, and the matching Hibernate ORM user guide for persistence-context/fetch/equality behavior.
+Use current first-party sources for the detected generation, especially Spring Framework AOP proxying and transaction references, Spring Data JPA transaction/entity-graph documentation, Spring Boot application-availability and graceful-shutdown guidance, Spring WebFlux concurrency/reactive documentation, and the matching Hibernate ORM user guide for persistence-context/fetch/equality behavior. For concurrency-sensitive persistence work, also use the selected database's current transaction/isolation/locking documentation; Spring annotations do not replace database semantics.
 
 ## What not to preserve locally
 

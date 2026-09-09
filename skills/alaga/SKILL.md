@@ -54,6 +54,8 @@ Minimum means the least necessary mechanism that remains idiomatic and readable,
 
 Do not add indirection for hypothetical variation. A new abstraction needs a current second consumer/variant or an independently real production boundary such as external protocol, trust, persistence, volatile platform integration, or owned lifecycle/policy. Do not create production architecture solely for test convenience.
 
+When a mutation is authorized by mutable shared state—existence, uniqueness, balance/capacity, ownership, quota/count, expected version, or another predicate another actor can change—identify the invariant and its authoritative enforcement before writing the change. Do not let an unprotected read → decide → write sequence be the sole authority. Treat concurrency correctness as an invariant question, not a traffic threshold. Existing constraints, conditional mutation, version checks, serialized ownership, locking, or isolation count only when they cover the same invariant and all relevant writers; use expert implementation counsel when exact database/runtime semantics can change the mechanism.
+
 For a defect, correct the narrowest confirmed causal owner that covers affected paths. Treat an unplanned dependency/service/infrastructure component, public API/schema/storage/wire/compatibility change, material new abstraction, unrelated subsystem cleanup, parallel implementation, new test infrastructure, or destructive effect as scope expansion. If the accepted outcome genuinely needs it, surface the reason and required authority rather than silently enlarging the job.
 
 ### Proof policy
