@@ -29,7 +29,7 @@ Check direction early. Use progress events and concrete, risk-proportionate chec
 
 Keep native handles, ownership, evidence, and next checkpoints in working context. Reuse useful workers for related follow-ups, integration, and fixes. Retain idle sessions only while likely reuse justifies their cost. Before replacement, confirm the previous run stopped and inspect partial effects. Do not restart user-cancelled workers without renewed instruction. With one-shot or non-inspectable workers, use checkpointed assignments and disclose lost continuity or visibility. Read [worker controls](references/workers.md) only for host-specific gaps.
 
-Show this table after staffing, at meaningful updates, and at closure. Use brief cells and one row per relevant actual worker; omit it when none exist.
+Report worker identity, model/effort, status, and responsibility when staffing or material changes make them useful. Use concise prose or the table below, whichever is clearer; do not repeat unchanged status or require a table at closure. Omit worker reporting when no workers exist.
 
 | Subagent | Model + reasoning | Status | Responsibility / current focus |
 | --- | --- | --- | --- |
