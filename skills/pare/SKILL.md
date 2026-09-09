@@ -21,7 +21,7 @@ When control-flow/state-space/nesting/fan-out/lifecycle/complexity/test volume m
 
 ## Simplification ladder
 
-Understand the real flow, consumers, and contracts. Choose a reduction only when it lowers overall maintenance and comprehension burden while preserving required behavior. Retaining the current form is a valid outcome. Consider these options:
+For each material candidate, understand the real flow, consumers, and contracts. Choose a reduction only when it lowers overall maintenance and comprehension burden while preserving required behavior. Retaining the current form is a valid outcome. Prefer the earliest sound option in this ladder:
 
 1. **Eliminate** — the mechanism need not exist, or an existing element has no required behavior, contract, consumer, or owner.
 2. **Reuse** — current implementation/system capability → stdlib/framework/platform → installed dependency/tool.
