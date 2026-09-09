@@ -47,6 +47,8 @@ Outside `audit`, read [`references/finding-contract.md`](references/finding-cont
 - **Proof** — whether evidence can independently detect plausible caller-visible failure; and
 - **Bug hunt** — credible normal, negative, degraded, hostile, concurrency/state, recovery, compatibility, and resource-bound failure mechanisms that apply.
 
+For a mutation whose authorization depends on mutable shared state, construct the smallest credible competing interleaving and identify the invariant's current owner. Treat a read/decide/write shape, `@Transactional`, a single SQL/repository statement, or an affected-row check as evidence leads, not automatic findings or proof. Confirm whether current constraints, conditional writes/versioning, serialized ownership, locking/isolation, and retry/replay behavior protect the same invariant across all relevant writers before deciding there is a defect.
+
 For change reviews, retain findings with a credible candidate-caused or candidate-dependent mechanism. When the requested scope includes existing code, report its weaknesses without requiring an introducing change. Each material branch ends in supported findings or strengths, a justified clean claim, or a named evidence gap.
 
 In broad review, assess applicable quality dimensions without repeating the same observation:
@@ -58,7 +60,6 @@ In broad review, assess applicable quality dimensions without repeating the same
 - **Language and runtime design:** judge idioms of the actual stack. Do not prescribe compiler flags, branded types, classes, or frameworks without a concrete mistake they prevent. A generic return type must follow a relationship enforced by the implementation, such as a typed input/output mapping or validated runtime discriminator; a caller-selected type argument or unchecked cast alone does not establish that relationship. Check how the actual returned value satisfies the promised type. Do not demand runtime validation when sound static guarantees already establish it.
 - **Readability:** inspect control flow and naming at the hardest boundaries. Require reductions to preserve or improve readability. Removing formatting, collapsing statements, or compressing asynchronous control flow is not a simplification. Preserve useful whitespace, named intermediate values, explanatory comments, guard clauses, and explicit lifecycle steps when they make behavior easier to follow. Explicit local code can be better than another helper.
 - **Tests and operation:** ask which public outcomes, races, recovery paths, and real composition the tests prove. Do not reward test count or recommend deleting difficult behavioral proof merely to shrink the suite. Check configuration and startup wiring where individually correct units can still be assembled incorrectly.
-
 
 ## 3. Challenge and decide
 

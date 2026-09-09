@@ -38,6 +38,20 @@ After establishing the exact stack, use a local mechanism reference only when th
 
 These references are compact calibration distilled from earlier curated research, not hidden language/framework catalogues and not substitutes for current source truth. Load none merely because its ecosystem appears in the repository. Project contracts and exact-current first-party/runtime evidence override them; unfamiliar or version-sensitive behavior remains a bounded current-source question.
 
+## Preserve shared-state invariants under concurrency
+
+When correctness depends on mutable shared state, state the invariant, its authoritative owner, every relevant writer, and the smallest credible competing interleaving. A race exists because an invariant can be violated under overlap, not because traffic crossed a volume threshold.
+
+Inspect the enforcement already present before prescribing a mechanism. A database transaction can make its own changes commit or roll back together, but that alone does not establish the isolation needed for a read/decide/write invariant. A single statement is also not general proof: its predicate may depend on absence, counts, ranges, or other rows that another transaction can change. Constraints, conditional mutations, version/compare-and-set checks, serialized ownership, locks, and isolation levels count only when they protect the same invariant across every relevant path.
+
+Prefer the smallest sound mechanism at the authoritative owner. Use database-enforced constraints when they directly express the invariant; conditional mutation or optimistic versioning when the current row/version can safely decide the transition; and locking or stronger isolation when a multi-row/predicate invariant requires it. These are candidate mechanisms, not a hierarchy or universal recipe. Verify the exact database/provider semantics when isolation, predicate locking, conflict behavior, or ORM state can change the choice.
+
+Interpret execution evidence narrowly. A successful statement or affected-row count establishes that statement's outcome within its transaction, not that an enclosing transaction committed. A zero-row result may combine missing target, failed business predicate, stale version, or another condition unless the contract distinguishes them.
+
+Keep concurrency, retry, replay, and cross-system atomicity separate. When a serialization/deadlock conflict requires retry, rerun the decision from fresh authoritative state at the transaction boundary required by the database/framework rather than replaying an inner stale write. When the same logical request can arrive twice, design idempotency independently of the concurrency guard. A local database transaction cannot make an ordinary remote effect atomic; use durable intent/outbox, idempotent delivery, or an explicit compensation workflow when the accepted architecture requires it.
+
+Use proof that can expose the claimed failure. When correctness depends on database concurrency semantics, prefer the real engine with independent transactions and a controlled interleaving over mocks or sequential tests. Add durable proof only when it is the cheapest stable owner of a material invariant; do not create a concurrency test by ceremony.
+
 ## Apply the proportionality gate
 
 For each proposed abstraction, layer, dependency, queue, cache, interface, wrapper, pattern, or state object ask:
