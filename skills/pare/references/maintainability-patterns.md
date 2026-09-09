@@ -1,6 +1,6 @@
 # Maintainability patterns
 
-Use this when a candidate or audited subsystem shows a recurring maintainability signal that needs calibrated investigation. These patterns are **signals, never findings**. A recommendation still requires candidate-specific evidence of maintenance cost, ownership failure, invalid state, unnecessary mechanism, or a smaller credible form.
+Use this when a candidate or audited subsystem shows a recurring maintainability signal that needs calibrated investigation. These patterns are **signals, never findings**. A recommendation still requires candidate-specific evidence of maintenance cost, ownership failure, invalid state, unnecessary mechanism, or a clearer sufficient form.
 
 Repository instructions, accepted architecture/domain constraints, confirmed local craft, exact code behavior, and current platform facts outrank a generic heuristic. A local pattern is not immune from defect or complexity evidence, but do not present a textbook preference as a repository violation.
 
@@ -112,7 +112,7 @@ Repository instructions, accepted architecture/domain constraints, confirmed loc
 
 **Good finding:** wrapper mirrors every repository method unchanged; remove it and depend on the actual owner.
 
-**Bad finding:** label a provider adapter as middle man when it owns authentication, retries, error translation, compatibility, or isolation.
+**Bad finding:** label a provider adapter as middle man when it owns authentication, retries, error translation, compatibility, or isolation. A forwarding helper can also supply useful domain vocabulary or hide distracting detail; inspect what callers would need to understand after inlining it.
 
 **Evidence that upgrades it:** forwarding-only implementation, no independent contract, no boundary consequence, and safe direct ownership.
 
@@ -132,7 +132,7 @@ Repository instructions, accepted architecture/domain constraints, confirmed loc
 
 **Good finding:** interface + implementation + factory only rename one library call; use the library directly.
 
-**Bad finding:** reject a small public interface that hides substantial policy or gives high leverage to callers.
+**Bad finding:** reject a small public interface that hides substantial policy or gives high leverage to callers. A small named helper can improve comprehension without owning a separate lifecycle or having multiple consumers; compare that benefit with its navigation cost.
 
 **Evidence that upgrades it:** deletion preserves contracts while removing navigation, forwarding, test doubles, or configuration ceremony.
 
@@ -153,10 +153,11 @@ Before retaining a pattern-based finding, answer:
 ```text
 What exact maintenance or state cost exists?
 What owner or contract is misplaced, duplicated, or missing?
-What is the smallest credible form?
+What is the clearest sufficient form, and what concrete maintenance burden does it remove?
 What counterexample could make the current shape correct?
 What evidence rules that counterexample out?
-What proof would show the smaller form preserves behavior?
+What proof would show the proposed form preserves behavior?
+Would a longer form be easier to understand, or should the current form be retained?
 ```
 
 If those answers are weak, keep investigating or return no finding. Do not accumulate a smell inventory as if count or presence were a quality score.

@@ -8,7 +8,7 @@ Establish the requested inventory and relevant package/router surfaces. Distingu
 
 Apply the main skill's identity and behavior criteria to the requested set. Look for competing outcomes, taxonomy-driven splits, mis-triggered skills, copied callee workflows, and handoffs that add no independent result or authority boundary.
 
-Check representative end-to-end task paths, including loaded references and delegated work. A short entry point can conceal expensive coordination. Keep deliberate isolation, useful lightweight steering contracts, and independent safety rules when they protect the result.
+Check representative end-to-end task paths, including loaded references and delegated work. A short entry point can conceal expensive coordination. Check cumulative pressure from instructions such as “smallest,” “minimum,” and “concise”: together they may reward compressed code, omitted proof, or lost explanation. Verify that the readability, evidence, and scope safeguards actually load on the same execution path, including worker assignments; a safeguard in an unloaded reference does not counter that pressure. Keep deliberate isolation, useful lightweight steering contracts, and independent safety rules when they protect the result.
 
 Distinguish a wrong instruction from missing expertise, ignored/unavailable context, or a host/tool limitation. More prose cannot repair every failure. Examine newly exposed decisions after consolidation: preserve explicit constraints and authority, evidence-based conclusions, and legitimate local discretion; flag consequential guesswork.
 

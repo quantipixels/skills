@@ -1,11 +1,11 @@
 ---
 name: alaga
-description: Define a coding task's boundaries or deliver one supplied build job through implementation, proof, review, and handoff. Use scope-only for non-goals and expansion triggers without implementation; use job or test-first for authorized delivery. Exclude pure explanation, bare review, monitoring, and provider publication except where they support delivery.
+description: Define a coding task's boundaries or deliver one supplied build job through implementation, proof, review, and handoff. Use scope-only for non-goals and expansion triggers without implementation; deliver authorized work with proof appropriate to the changed contract. Exclude pure explanation, bare review, monitoring, and provider publication except where they support delivery.
 ---
 
 # Alága
 
-Choose the requested result before acting. Use `scope-only` when the user wants just the coding boundaries, protected behavior, or expansion triggers; map the job below and return the guard without starting delivery. For authorized delivery, use `test-first` only when the user requests it or a material behavior-bearing seam with an independent oracle makes a failing test capable of controlling implementation; otherwise use `job`.
+Choose the requested result before acting. Use `scope-only` when the user wants just the coding boundaries, protected behavior, or expansion triggers; map the job below and return the guard without starting delivery. For authorized delivery, choose proof within the delivery workflow. Use test-first implementation when the user requests it or a material behavior-bearing seam with an independent oracle makes a failing test capable of controlling implementation.
 
 A scope correction during already-authorized delivery updates its active boundaries and preserves that delivery authorization unless the user pauses or narrows it. Do not turn ordinary local choices inside the accepted scope into new approval gates.
 
@@ -43,7 +43,7 @@ Prepare the workspace without disturbing unrelated changes. Continue until the r
 
 ### Minimum sufficient mechanism
 
-Understand the affected flow and real owners, then take the first sound option:
+Minimum means the least necessary mechanism that remains idiomatic and readable, not the fewest lines, helpers, or files. Understand the affected flow and real owners, then take the first sound option:
 
 1. eliminate unnecessary mechanism or causal state;
 2. reuse an existing project capability;
@@ -60,7 +60,7 @@ For a defect, correct the narrowest confirmed causal owner that covers affected 
 
 Proof is required; a new test is not. Use the smallest evidence that can independently falsify the changed contract: existing affected tests, compiler/type guarantees, static analysis, builds/schema checks, focused runtime probes, integration checks, bug reproduction, browser/manual verification, or another stronger current proof surface.
 
-Apply [TDD](references/tdd.md) only when its admission gate is met. Glue, wiring, declarative configuration, trivial delegation, framework-native behavior, or similarly low-information changes do not earn a new test by ceremony.
+Apply [TDD](references/tdd.md) only when its admission gate is met. Glue, wiring, declarative configuration, trivial delegation, framework-native behavior, or similarly low-information changes do not earn a new test by ceremony. Wiring that binds identity, authority, or resource limits needs proof through the assembled path: show that the intended identity reaches the correct authority and that the configured limits govern the resulting operation. Constructor tests alone may miss incorrect combinations. Reuse sufficient existing integration or acceptance evidence before adding proof.
 
 Run focused proof while changing the relevant behavior, then job-level integration/acceptance proof. Use real-browser journey evidence only when literal user journeys changed and browser-dependent acceptance remains materially unproved by cheaper evidence.
 
