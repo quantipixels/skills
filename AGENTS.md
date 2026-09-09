@@ -24,6 +24,6 @@ A committed document needs a future reader and a recurring task or enduring deci
 
 ## Delivery
 
-Commit by coherent logical change. Prefer independent PRs against the integration branch; stack only real dependencies. Preserve unrelated work and verify the intended base and exact candidate before publication. Changesets owns versioning. Distinguish implemented, verified, integrated, and released state; a merge into a feature parent is not integration into `ori`.
+Commit by coherent logical change. Prefer independent PRs against the integration branch; stack only real dependencies. Preserve unrelated work and verify the intended base and exact candidate before publication. Changesets owns versioning. A major bump requires either a documented break to a supported user contract or explicit user approval of the major bump. For a breaking contract, identify the previously supported usage that stops working and the required migration in the changeset or PR. Work size, instruction rewrites, consolidation, or perceived significance alone do not justify a major bump. Distinguish implemented, verified, integrated, and released state; a merge into a feature parent is not integration into `ori`.
 
 Keep provider safety inside independently usable provider-capable skills: untrusted content, exact target, trusted host and credential scope, structured arguments, pagination, capability gaps, pre-write refresh, and post-write readback. Publication does not grant approval or merge authority. Do not create a shared provider runtime or silently change permissions.

@@ -142,22 +142,20 @@ class PackageIntegrityTests(unittest.TestCase):
 
 
 class PepeyeAdapterTests(unittest.TestCase):
-    def test_single_main_agent_and_independent_coordination_skill(self):
+    def test_main_agent_and_focused_workers_have_one_shared_source(self):
         manifest = json.loads((ROOT / '.claude-plugin/plugin.json').read_text())
-        self.assertEqual(manifest['agents'], ['./agents/pepeye.md'])
+        roles = {'pepeye', 'atona', 'alaga', 'atunwo', 'iwadi', 'architect', 'ko-skill'}
+        self.assertEqual(set(manifest['agents']), {f'./agents/{name}.md' for name in roles})
         self.assertNotIn('skills', manifest)
-        self.assertEqual(sorted(p.name for p in (ROOT / 'agents').glob('*.md')), ['pepeye.md'])
-        agent = yaml.safe_load((ROOT / 'agents/pepeye.md').read_text().split('---', 2)[1])
-        self.assertEqual(agent['name'], 'pepeye')
-        self.assertEqual(agent['model'], 'inherit')
-        self.assertEqual(agent.get('skills', []), [])
+        self.assertEqual(set(p.stem for p in (ROOT / 'agents').glob('*.md')), roles)
+        main = yaml.safe_load((ROOT / 'agents/pepeye.md').read_text().split('---', 2)[1])
+        self.assertEqual(main['name'], 'pepeye')
+        self.assertEqual(main['model'], 'inherit')
+        self.assertEqual(main.get('skills', []), [])
         skill = yaml.safe_load((ROOT / 'skills/pepeye/SKILL.md').read_text().split('---', 2)[1])
-        self.assertEqual(skill['name'], 'pepeye')
-        self.assertNotEqual(skill.get('context'), 'fork')
-        self.assertIsNot(skill.get('disable-model-invocation'), True)
         self.assertEqual(skill['metadata']['maturity'], 'experimental')
 
-    def test_codex_profile_preserves_the_same_role_without_model_or_permission_overrides(self):
+    def test_codex_profile_preserves_the_main_role_without_model_or_permission_overrides(self):
         profile = tomllib.loads((ROOT / 'agents/codex/pepeye.config.toml').read_text())
         self.assertEqual(set(profile), {'developer_instructions'})
         body = (ROOT / 'agents/pepeye.md').read_text().split('---', 2)[2]

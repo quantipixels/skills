@@ -31,7 +31,7 @@ A settled change can go straight to `alaga`; an unsettled initiative may use `ar
 | --- | --- |
 | Incoming report needs assessment | `se-triage` |
 | Failure needs a causal explanation | `root-cause`; use `alaga` when the requested next result is a fix |
-| Code or refactor needs independent review | `atunwo` |
+| Code or refactor needs independent review, or a codebase needs a quality assessment | `atunwo` |
 | System needs a read-only simplification audit | `pare` |
 | Compare trial variants and decide whether a measured gain merits keeping one | `optimize` (Experimental) |
 | Human wants to walk through a candidate | `hitl-review` |
@@ -42,6 +42,7 @@ A settled change can go straight to `alaga`; an unsettled initiative may use `ar
 | Standalone browser report or presentation deck | `html-artifact` or `slides` respectively |
 | Technical communication, prose editing, or requested pruning | `oro-ologbon` |
 | Author or revise an agent skill | `ko-skill` |
+| Inspect QP preferences or set up native workflow agents | `qp-setup` (Experimental) |
 
 Triage assesses a report; diagnosis explains a failure; delivery fixes it. Start with the unresolved question rather than sending every bug through all three. Likewise, a request to review code starts at `atunwo`, not at implementation.
 

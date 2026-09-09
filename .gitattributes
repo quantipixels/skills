@@ -1,0 +1,4 @@
+# Generated QP adapters and schema must match the generator byte for byte.
+/agents/*.md text eol=lf
+/agents/codex/pepeye.config.toml text eol=lf
+/skills/qp-setup/assets/setting.schema.json text eol=lf

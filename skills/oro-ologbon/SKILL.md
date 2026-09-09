@@ -10,8 +10,7 @@ Write prose a tired reader can understand on the first read. Own technical docum
 ## Choose the operation
 
 - **Author or review technical communication:** establish the reader/document job and use the writing guidance below.
-- **Edit supplied prose:** read [editing prose](references/editing-prose.md) for clarity, voice, filler, and agent-instruction preservation. This mode also accepts nontechnical prose; do not force a technical-document structure onto it.
-- **Prune:** when explicitly asked to shorten, remove repetition, or reduce instruction load, use the editing guidance and [prune prose](references/prune.md). Ordinary editing does not imply pruning.
+- **Edit supplied prose:** read [editing prose](references/editing-prose.md) for clarity, voice, filler, and agent-instruction preservation. This includes nontechnical prose; do not force a technical-document structure onto it. When explicitly asked to shorten, remove repetition, or reduce instruction load, also read [prune prose](references/prune.md) and apply that objective within editing. Ordinary editing does not imply pruning.
 
 Follow the requested language, locale, voice, and product copy rules. For editing/pruning, preserve the supplied structure and artifact decisions; an authoring guideline does not authorize redesigning them. Cleanup is not an automatic extra pass on unrelated tasks.
 

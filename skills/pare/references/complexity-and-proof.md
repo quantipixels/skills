@@ -41,9 +41,10 @@ Before recommending extraction/splitting, compare before/after:
 - number of owners/callers that must understand policy;
 - duplicated branches/policy;
 - navigation/indirection;
+- meaningful names, coherent steps, and how much detail a reader must hold in mind;
 - proof burden.
 
-If these do not fall, the change likely relocates complexity.
+Judge the overall comprehension and maintenance tradeoff; do not require every count to fall. A well-named helper can hide distracting detail and expose a coherent step without changing the number of decisions or states. Credit that benefit against navigation and caller burden. Reject extraction that merely relocates complexity without making the affected paths easier to understand or maintain.
 
 ## Proof portfolio
 
@@ -74,7 +75,7 @@ Essential complexity:
 Accidental complexity:
 State-space/ownership issue:
 Relocation risk:
-Smallest semantic reduction or keep reason:
+Clearest sufficient form or keep reason:
 Proof consequence:
 Surviving proof owner:
 Confidence/limits:

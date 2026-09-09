@@ -19,6 +19,12 @@
     "productivity"
   ],
   "agents": [
-    "./agents/pepeye.md"
+    "./agents/pepeye.md",
+    "./agents/atona.md",
+    "./agents/alaga.md",
+    "./agents/atunwo.md",
+    "./agents/iwadi.md",
+    "./agents/architect.md",
+    "./agents/ko-skill.md"
   ]
 }
