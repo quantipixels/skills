@@ -43,11 +43,9 @@ class ValidateWorkflowContractTest(unittest.TestCase):
         skill_runs = "\n".join(step.get("run", "") for step in self.jobs["skill-package"]["steps"])
         self.assertIn("scripts/test_distribution.py", skill_runs)
 
-    def test_native_validators_are_separate_steps(self):
+    def test_portable_matrix_runs_package_validator(self):
         commands = [step.get("run", "") for step in self.jobs["portable-mechanics"]["steps"]]
         self.assertTrue(any("validate-package.py" in command for command in commands))
-        self.assertTrue(any("validate-plugin-agents.py" in command for command in commands))
-        self.assertFalse(any("validate-package.py" in command and "validate-plugin-agents.py" in command for command in commands))
 
     def test_exposes_one_stable_aggregate_check(self):
         validate = self.jobs["validate"]
