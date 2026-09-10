@@ -38,13 +38,13 @@ curl -s -X POST "https://api.firecrawl.dev/v2/search" \
   -d '{"query":"web scraping tutorials","limit":3}'
 ```
 
-Use current docs/installed help for crawl, extraction schemas, browser actions, MCP, setup, and branch-specific options rather than copying those interfaces into QP. If Firecrawl is not already available and setup is authorized, apply `operate.md` and use current official setup documentation; do not rely on a cached install command here.
+Use current docs/installed help for crawl, extraction schemas, browser actions, MCP, and branch-specific options rather than copying those interfaces into QP. If Firecrawl is unavailable or needs installation/configuration/authentication, hand the selected readiness requirement to `qp-setup`; do not maintain a cached install procedure here.
 
 ## Readiness and current interface
 
 Treat authentication requirements, anonymous/keyless availability, free limits, endpoints, SDK/CLI syntax, supported formats, browser actions, crawl behavior, and quotas as volatile. Confirm them from current official Firecrawl documentation before use. Do not assume that a previously keyless path remains available.
 
-When an anonymous or keyless mode is currently supported, prefer it for bounded public-web retrieval that fits its documented limits. Do not create an account, request a key, store credentials, or switch to a paid path without the authority required by `operate.md`.
+When an anonymous or keyless mode is currently supported, prefer it for bounded public-web retrieval that fits its documented limits. Do not create an account, request a key, store credentials, or switch to a paid path without the setup authority required by `qp-setup`.
 
 ## Evidence contract
 
