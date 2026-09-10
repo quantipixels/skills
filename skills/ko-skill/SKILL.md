@@ -33,6 +33,7 @@ Keep each rule in one authoritative place per loading path unless repetition pro
 
 Read supporting guidance only when the change needs it:
 
+- Description/entrypoint/reference load, selection focus, no-op guidance, or context-pressure placement is material: [instruction economics](references/instruction-economics.md).
 - Adding a resource, changing its responsibility, or investigating a placement problem: [resource placement](references/resource-placement.md).
 - Adding, changing, or removing expert reference content: [reference quality](references/reference-quality.md).
 - Adding/changing executable capability: [script boundary](references/script-boundary.md).
