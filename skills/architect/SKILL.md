@@ -1,6 +1,6 @@
 ---
 name: architect
-description: Design or review the technical structure of a software system or consequential module at the smallest scale needed to resolve the architecture question. Use for system boundaries, module/interface/seam shape, data/state ownership, integrations, deployment, quality scenarios, trade-offs, migration/recovery, or architecture sufficiency; exclude initiative lifecycle planning, user-decision closure, implementation, workspace infrastructure, and code-review verdicts.
+description: Design, survey, or review the technical structure of a software system or consequential module at the smallest scale needed to resolve the architecture question. Use for architectural friction, system boundaries, module/interface/seam shape, data/state ownership, integrations, deployment, quality scenarios, trade-offs, migration/recovery, or architecture sufficiency; exclude initiative lifecycle planning, user-decision closure, implementation, workspace infrastructure, and code-review verdicts.
 ---
 
 # Architect
@@ -11,6 +11,7 @@ Delegate substantial analysis, research, and expert work to subagents, returning
 
 | Mode | Purpose |
 | --- | --- |
+| `survey` | find and rank evidence-backed architectural friction without designing the correction |
 | `design` | create or revise the technical structure |
 | `review` | judge one exact architecture/design candidate read-only |
 
@@ -25,6 +26,32 @@ Read only evidence capable of changing the architecture: current domain/project 
 Use `amose` and `iwadi` as needed.
 
 Resolve unknowns that can change the design against current project and authoritative sources.
+
+## Survey mode
+
+Use `survey` when the question is where architecture work is warranted rather than what the replacement design should be. If the caller already supplied one exact architecture question or candidate, skip the survey and work at that scale.
+
+Bound the search before scanning. Prefer the named subsystem, user pain point, failure area, or change envelope. When no area is supplied and repository history is available, inspect a bounded useful stretch of change history to identify repeatedly changing or tightly co-changing paths, then let those hot areas focus inspection. Widen only when the evidence is scattered or the requested scope requires it; do not equal-weight an entire repository by default.
+
+When module/interface/seam shape is material, read [module design](references/module-design.md) and look for friction such as:
+
+- callers repeating sequencing, branching, validation, recovery, mapping, or foreign-system knowledge that one owner could hide;
+- one conceptual operation requiring repeated navigation across several shallow modules or files;
+- forwarding layers whose interface costs nearly as much to understand as the behavior they hide;
+- state, policy, trust, lifecycle, compatibility, or failure invariants spread across several callers or owners;
+- internal or provider-specific details leaking through caller-facing interfaces;
+- one recurring change requiring shotgun edits across unrelated call sites; and
+- durable behavior that is difficult to prove through the current external interface without reaching into private choreography.
+
+Signals are not findings. Apply the deletion test and seek counterevidence: a small layer may still own a real trust/protocol/lifecycle/compatibility boundary, and co-change may reflect a legitimate cohesive slice rather than bad architecture. Distinguish architectural ownership/interface problems from ordinary cleanup (`pare`), defects/review findings (`atunwo`), or missing causal diagnosis (`root-cause`).
+
+Use `irinse` as needed for bounded structural, dependency, flow, history, or rule evidence. Tool output, churn metrics, fan-out, cycles, file size, test count, and complexity scores are leads only; trace the actual caller burden, invariant, or ownership failure before retaining a candidate.
+
+Rank only evidence-backed candidates. Prefer decision-changing factors such as recurrence/change pressure, caller knowledge, locality, leverage, failure/trust ownership, proof difficulty, blast radius, and reversibility. Do not manufacture a universal architecture score.
+
+For each retained candidate return the affected area, observed friction, likely misplaced responsibility or boundary, evidence, strongest material counterevidence, expected leverage/locality if deepened, and one of `Strong | Worth exploring | Speculative`. End with the top candidate and decisive reason when one stands out.
+
+**Stop at discovery.** Do not propose the final interface, module decomposition, migration plan, or implementation-ready contract in `survey`. Once the user or caller selects a candidate, re-enter `design` mode for that exact architecture question.
 
 ## Design the smallest sufficient structure
 
