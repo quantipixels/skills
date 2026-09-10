@@ -2,7 +2,7 @@
 
 Use only when a session or bounded multi-session postmortem depends on persisted local Codex or Claude Code history.
 
-The bundled adapter is a **read-only evidence indexer**, not an analytics engine. Its deterministic seam is: given local session stores plus optional explicit corpus filters and skill-signal focus, emit a privacy-preserving structural inventory that Àyẹ̀wò can use to choose and inspect the smallest relevant sample.
+The bundled adapter is a **read-only evidence indexer**, not a semantic analytics or verdict engine. Its deterministic seam is: given local session stores plus optional explicit corpus filters and skill-signal focus, emit a privacy-preserving structural inventory that Àyẹ̀wò can use to choose and inspect the smallest relevant sample.
 
 ## Boundary
 
@@ -13,19 +13,21 @@ The adapter may:
 - normalize session/root relationships only when host metadata or storage layout proves them;
 - preserve unresolved ancestry instead of manufacturing independent roots when a referenced parent is absent;
 - emit host/session/root evidence, cwd/project evidence, host version when present, observed time range, event/role counts, parse gaps, and source line references for conservative skill references;
+- emit structural tool activity when the host record exposes it: call/result counts, explicit structured failure flags, consecutive same-tool-call counts, tool names, and result-byte totals without tool arguments or result text;
 - filter the corpus by explicitly supplied host, project, session/root/ancestor ID, or time range;
 - focus emitted skill references on explicitly supplied skill names without removing sessions that have no matching signal; and
 - mark uncertain filter/root evidence explicitly instead of silently inventing certainty.
 
 It must not:
 
-- emit raw prompt, response, source-code, tool-output, credential, or pasted-content text in the index;
+- emit raw prompt, response, source-code, tool-input, tool-output, credential, or pasted-content text in the index;
+- infer that repeated tool calls are retries, waste, navigation failure, or a tooling defect without inspecting the task context;
 - infer skill eligibility, usefulness, missed opportunity, mis-triggering, availability, selection, loading, or routing from a textual/path reference alone;
 - infer the QP version active in a historical session when the record does not prove it;
 - count a fork/copy/subagent or unresolved child as an independent root merely because another JSONL file exists; or
-- turn the normalized index into a promotion, fold, removal, or skill-edit verdict.
+- turn the normalized index into a promotion, fold, removal, environment-change, or skill-edit verdict.
 
-Those judgments stay with [corpus analysis](corpus-analysis.md) and Kọ Skill.
+Those judgments stay with [agent session](agent-session.md), [corpus analysis](corpus-analysis.md), and Kọ Skill.
 
 ## Run the inventory
 
@@ -57,6 +59,18 @@ The default roots are current host conventions, not QP-owned state:
 
 Redirect output only when a durable local index is useful. Generated evidence stays local and out of Git by default.
 
+## Structural activity evidence
+
+`activity` is deliberately descriptive. It records only structure that can help Àyẹ̀wò choose where to inspect next:
+
+- `tool_calls` and `tool_results` — structurally identified tool-use/result events;
+- `tool_failures` — only failures explicitly marked by a structured `is_error` or failure status field;
+- `repeated_same_tool_calls` — consecutive calls carrying the same tool name, without claiming why they repeated;
+- `tool_result_bytes` — encoded size of structurally identified result records/blocks; and
+- `*_by_name` maps — the same counts/bytes grouped by observed tool name when the host exposes one.
+
+These counters can under-report when an upstream host uses a different event shape. A high count can represent legitimate iterative work; a low count does not prove efficiency. Treat them as locators for selective transcript/tool inspection, not performance metrics, retry detection, or a basis for changing tools by themselves.
+
 ## Skill-reference evidence
 
 The adapter deliberately distinguishes references from stronger semantic claims:
@@ -79,8 +93,8 @@ For Claude Code, a subagent storage path may directly prove its root-session ID;
 1. Inventory the full permitted local population first.
 2. Pin the corpus from the decision being made: host, project/repository, QP snapshot/version evidence, session relationships, or caller-supplied time range as relevant. Do not bake a repository inception date or rolling-window default into the analyser.
 3. Resolve or explicitly preserve uncertain root relationships before counting independent opportunities.
-4. Select representative and risk-weighted root sessions from the inventory.
-5. Read raw transcript lines only for selected records and only to reconstruct contract, owner selection, user corrections, proof, rework, recovery, or incremental value.
+4. Select representative and risk-weighted root sessions from the inventory, using structural activity only to focus inspection where it can answer the postmortem question.
+5. Read raw transcript lines only for selected records and only to reconstruct contract, owner selection, user corrections, proof, rework, recovery, tool/environment friction, or incremental value.
 6. Apply Experimental/stable-skill classifications in `corpus-analysis.md` only after that reconstruction.
 
 ## Schema drift and provenance

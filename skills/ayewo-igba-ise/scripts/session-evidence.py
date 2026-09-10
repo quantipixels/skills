@@ -12,6 +12,7 @@ SCHEMA = "qp.session-evidence/v1"
 HOSTS = ("codex", "claude")
 SKILL_KEYS = {"skill", "skill_name", "skillname", "selected_skill", "selectedskill"}
 SKILL_PATH = re.compile(r"(?:^|[/\\])skills(?:[/\\][^/\\]+)?[/\\]([a-z0-9-]+)[/\\]SKILL\.md", re.I)
+TOOL_FAILURE_STATES = {"error", "failed", "failure"}
 
 
 def args(argv=None):
@@ -138,6 +139,46 @@ def signals(o, line, names, patterns):
     return [(n, s, line) for n, s in sorted(best.items())]
 
 
+def tool_name(v: Any) -> str | None:
+    return v if isinstance(v, str) and v.strip() else None
+
+
+def explicit_failure(v: Any) -> bool:
+    if not isinstance(v, dict): return False
+    if v.get("is_error") is True: return True
+    status = v.get("status")
+    return isinstance(status, str) and status.lower() in TOOL_FAILURE_STATES
+
+
+def tool_events(host: str, o: dict, raw_bytes: int):
+    """Return structural tool activity without copying arguments or result content."""
+    events = []
+    if host == "codex" and kind(o).lower() == "response_item":
+        payload = o.get("payload")
+        if not isinstance(payload, dict): return events
+        item_type = str(payload.get("type", "")).lower()
+        if item_type == "function_call":
+            events.append(("call", tool_name(payload.get("name")), payload.get("call_id") or payload.get("id"), False, 0))
+        elif item_type == "function_call_output":
+            events.append(("result", None, payload.get("call_id") or payload.get("id"), explicit_failure(payload), raw_bytes))
+        return events
+
+    if host != "claude": return events
+    message = o.get("message")
+    if not isinstance(message, dict): return events
+    content = message.get("content")
+    if not isinstance(content, list): return events
+    for block in content:
+        if not isinstance(block, dict): continue
+        block_type = str(block.get("type", "")).lower()
+        if block_type == "tool_use":
+            events.append(("call", tool_name(block.get("name")), block.get("id"), False, 0))
+        elif block_type == "tool_result":
+            size = len(json.dumps(block, ensure_ascii=False).encode("utf-8"))
+            events.append(("result", None, block.get("tool_use_id"), explicit_failure(block), size))
+    return events
+
+
 def roots(a):
     selected = set(a.host or HOSTS); out = {}
     if "codex" in selected: out["codex"] = (a.codex_root or Path(os.environ.get("CODEX_HOME", "~/.codex"))).expanduser()
@@ -161,6 +202,8 @@ def shown(p):
 def parse(host, path, names):
     counts = Counter(); roles = Counter(); sig = {}; times = []; invalid = 0; total = 0
     sid = root_id = parent = cwd = version = None; relation = "root"; root_resolution = "RESOLVED"
+    calls = Counter(); results = Counter(); result_sizes = Counter(); call_names = {}; tool_calls = tool_results = tool_failures = repeated = result_bytes = 0
+    last_tool = None
     if host == "claude":
         if path.parent.name == "subagents": sid, root_id, relation = path.stem, path.parent.parent.name, "subagent"
         else: sid = root_id = path.stem
@@ -176,6 +219,21 @@ def parse(host, path, names):
             t = timestamp(o.get("timestamp") or o.get("time") or first(o.get("payload"), {"timestamp", "time", "created_at"}))
             if t: times.append(t)
             for n, strength, ln in signals(o, line, names, patterns): sig.setdefault((n, strength), set()).add(ln)
+            for event, name, call_id, failed, size in tool_events(host, o, len(raw.encode("utf-8"))):
+                if event == "call":
+                    tool_calls += 1
+                    label = name or "<unknown>"
+                    calls[label] += 1
+                    if call_id is not None: call_names[str(call_id)] = label
+                    if last_tool == label: repeated += 1
+                    last_tool = label
+                else:
+                    tool_results += 1
+                    result_bytes += size
+                    result_name = call_names.get(str(call_id), "<unknown>") if call_id is not None else "<unknown>"
+                    results[result_name] += 1
+                    result_sizes[result_name] += size
+                    if failed: tool_failures += 1
             if host == "codex" and k.lower() == "session_meta":
                 p = o.get("payload", o)
                 v = first(p, {"id", "session_id", "sessionid", "thread_id", "threadid"}); sid = sid or (v if isinstance(v, str) else None)
@@ -199,6 +257,11 @@ def parse(host, path, names):
             "ended_at": iso(max(times)) if times else None, "event_count": total, "invalid_json_lines": invalid,
             "event_types": dict(sorted(counts.items())), "roles": dict(sorted(roles.items())),
             "skill_signals": [{"skill": n, "strength": s, "lines": sorted(ls)} for (n, s), ls in sorted(sig.items())],
+            "activity": {"tool_calls": tool_calls, "tool_results": tool_results, "tool_failures": tool_failures,
+                         "repeated_same_tool_calls": repeated, "tool_result_bytes": result_bytes,
+                         "tool_calls_by_name": dict(sorted(calls.items())),
+                         "tool_results_by_name": dict(sorted(results.items())),
+                         "tool_result_bytes_by_name": dict(sorted(result_sizes.items()))},
             "filter_state": "MATCH", "filter_uncertainty": []}
 
 
@@ -271,7 +334,10 @@ def build(a):
     resolved_roots = {(s["host"], s["root_session_id"]) for s in sessions if s["root_session_id"] is not None}
     return {"schema": SCHEMA, "filters": {"hosts": sorted(rs), "since": iso(since), "until": iso(until), "projects": [str(p.expanduser()) for p in a.project], "session_ids": sorted(a.session), "skills": sorted(names)},
             "privacy": {"raw_transcript_content_emitted": False, "source_files_modified": False}, "roots": observed,
-            "summary": {"sessions": len(sessions), "resolved_root_sessions": len(resolved_roots), "unresolved_root_members": sum(s["root_session_id"] is None for s in sessions), "subagent_sessions": sum(s["relation"] == "subagent" for s in sessions), "invalid_json_lines": sum(s["invalid_json_lines"] for s in sessions)},
+            "summary": {"sessions": len(sessions), "resolved_root_sessions": len(resolved_roots), "unresolved_root_members": sum(s["root_session_id"] is None for s in sessions), "subagent_sessions": sum(s["relation"] == "subagent" for s in sessions), "invalid_json_lines": sum(s["invalid_json_lines"] for s in sessions),
+                        "tool_calls": sum(s["activity"]["tool_calls"] for s in sessions), "tool_results": sum(s["activity"]["tool_results"] for s in sessions),
+                        "tool_failures": sum(s["activity"]["tool_failures"] for s in sessions), "repeated_same_tool_calls": sum(s["activity"]["repeated_same_tool_calls"] for s in sessions),
+                        "tool_result_bytes": sum(s["activity"]["tool_result_bytes"] for s in sessions)},
             "sessions": sessions}
 
 
