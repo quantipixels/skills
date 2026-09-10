@@ -42,8 +42,8 @@ If Tailscale is already installed, `tailscale serve --help` confirms the install
 If Tailcat is already installed, prefer its embedded upstream documentation via `tailcat --readme` (and `tailcat --help` when needed) before consulting a newer upstream revision. Tailcat explicitly makes no CLI/API/wire-format stability promise, so do not freeze its sender/receiver syntax here.
 
 - If the transport tool is already installed, identify the installed version/build/provenance and use its own help/embedded documentation plus official documentation appropriate to that version. Where the official site is not versioned, reconcile current official docs with the installed CLI rather than assuming newer flags/features exist.
-- If the tool is absent and setup is authorized, use the latest official installation/setup documentation and current stable release. For an upstream with no stable releases, use its latest official upstream documentation/source and treat the interface as unstable.
-- Use `irinse` as needed.
+- If the tool is absent or its installation/configuration must change, use `qp-setup` with the selected transport and required readiness state. Do not duplicate setup instructions here.
+- Use `irinse` only when additional non-obvious tool-usage guidance is needed beyond this serving contract.
 
 ## Bound the resource
 
@@ -83,7 +83,7 @@ Tailcat transports TCP rather than serving files, so when the supplied resource 
 
 The access target for Tailcat is the complete receiver invocation that retrieves/opens the requested resource, together with a separately secured connection token where the current CLI requires one. Do not return only a token, sender command, port number, or setup steps.
 
-If Tailcat must be installed or changed, use `irinse`; never silently substitute a public tunnel.
+If Tailcat must be installed or its setup changed, use `qp-setup`; never silently substitute a public tunnel.
 
 ## Prove the access target
 
