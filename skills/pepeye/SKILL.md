@@ -13,7 +13,7 @@ Keep delegated work moving toward the user's accepted outcome. The main agent ow
 
 Delegate when independent work, focused context, or separate judgment justifies coordination. Work directly on small, localized tasks. Do not turn file count or a need to search into mandatory delegation. When delegation is selected, actually spawn workers; if the tools are unavailable, explain the limit and continue only with work that can be completed within the existing authority.
 
-Keep coordination proportional to the task. Once sufficient evidence exists, implement rather than extending discovery. Delegate only when its expected benefit exceeds coordination cost, and continue useful local work while workers run. Optional audits must not block a first working candidate. If the user flags delay, stop optional work and finish the smallest correct result with proportionate verification.
+Keep coordination proportional to its benefit. Continue useful local work while workers run; optional worker investigations must not block a first working candidate.
 
 Keep specialist methods with their owners. Use `alarina` for skill selection, `atona` for initiative plans, `alaga` for delivery, `atunwo` for review, `iwadi` for research, and the relevant specialist for other work. Coordination does not replace their acceptance or permission boundaries.
 
@@ -32,11 +32,13 @@ Keep the main session's selected model. Apply worker defaults through supported 
 
 Start workers from fresh context. Pass the bounded assignment and relevant evidence; inherit conversation history only for a material reason and when host rules allow it. Give each worker:
 
-- one outcome, scope, and stop condition;
+- one outcome, scope, deliverable, and stop condition;
 - relevant context, exact candidate or source paths, and required QP skills;
 - permitted tools/actions and exclusive write ownership where applicable;
 - acceptance checks and the evidence to return;
-- any user budget and the next useful checkpoint.
+- expected duration, any user time budget, and a first checkpoint—normally within two minutes for bounded work—followed by a reporting interval suited to the assignment.
+
+Require useful findings incrementally. Each checkpoint should report what is established, supporting evidence, blockers, and remaining work. Final results should also include checks, limitations, and changed files where applicable. A checkpoint is a progress check, not a universal completion deadline.
 
 Workers are leaves: they report a need for further delegation to the coordinator. State that boundary when supplying a specialist skill that normally delegates. For example, an `alaga` worker can implement and prove its change, while the coordinator arranges the independent `atunwo` review it needs.
 
@@ -48,7 +50,9 @@ Start independent assignments before waiting; sequence dependencies and conflict
 
 At launch, report each worker's model, effort, responsibility, and why delegation helps. Report meaningful findings, blockers, and completion without narrating every tool call. Distinguish requested settings from observed settings.
 
-Use progress events and bounded waits. Check direction early, supply missing context, and redirect drift. Silence alone does not prove failure. Reuse a worker for related follow-ups when its context helps. Before replacement, stop the previous run and inspect partial effects. Do not restart user-cancelled work without renewed instruction.
+Check workers at agreed checkpoints using progress events and bounded waits. A running status alone does not establish progress. Account for observable activity such as a pending build or tool call. If a checkpoint passes without useful evidence or a concrete explanation, request current findings. If the worker remains silent, interrupt and request existing findings without further investigation. Do not repeat waits or requests that produce no new evidence.
+
+Verify and integrate partial results while other workers continue. Stop further exploration once its assignment has sufficient evidence. Narrow or reassign only the missing work. Reuse a worker for related follow-ups when its context helps. Before replacement, stop the previous run and inspect partial effects. Do not restart user-cancelled work without renewed instruction.
 
 On failure, inspect the cause before retrying, narrowing, or reassigning. Fix missing context or tools before escalating models. Surface an unavailable required capability instead of claiming the intended worker ran.
 
