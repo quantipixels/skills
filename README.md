@@ -40,6 +40,8 @@ Common entrypoints are `atona` for planning, `alaga` for implementation, `atunwo
 
 Use [`pepeye`](skills/pepeye/SKILL.md) for optional subagent coordination. It uses native delegation tools and the existing specialist skills, without installing a main-agent identity, worker files, or host settings. Install it with `npx skills add quantipixels/skills --skill pepeye -g`, or use the package installation above. No separate Pepeye plugin or setup is required. Host support determines which worker model and reasoning controls are available.
 
+For optional Codex configuration, use [`qp-setup`](skills/qp-setup/SKILL.md). It offers general instructions, a Pepeye binding, main-session defaults, and Context Notes at user or repository scope. It previews changes, asks permission, and backs up existing files before editing. Install it with `npx skills add quantipixels/skills --skill qp-setup -g`; omit `-g` for a repository skill installation. Choose the configuration scope separately when running setup. Host setup currently supports Codex only.
+
 For explanations, use `salaye` for visual sketches and focused HTML, including relevant sections of larger artifacts. `oro-ologbon` combines technical authoring with prose editing and pruning; `alaga` supports scope-only requests that stop before implementation. Update former `fihanmi` invocations to `salaye`, `technical-writing` and `yo-slop` to `oro-ologbon`, and `scope-guard` to `alaga` scope-only mode, including references in project guidance. The standalone `handoff` skill is retired; request a session handoff directly.
 
 ## Project

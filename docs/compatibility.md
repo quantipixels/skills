@@ -10,6 +10,7 @@ Claims are scoped to the path shown. `CI_PROVED` means the current candidate CI 
 | Direct snapshot install/update/remove on macOS/Linux | round-trip and interruption/filesystem checks | `CI_PROVED` |
 | Native Codex manifest and shared `skills/` target | package validation only | `STRUCTURAL` |
 | Native Codex plugin install/update/remove and authenticated invocation | no host round-trip supplied | `NOT_RUN` |
+| Codex `qp-setup` user/repository configuration and activation | instruction and resource validation only; live setup not exercised | `NOT_RUN` |
 | Skill selection, Pepeye delegation and worker settings, premortem quality, review quality, agent-facing design, and measured optimization | model evaluation not run for this release | `NOT_RUN` |
 | Direct snapshot installer on Windows | POSIX symlink/locking path is not supported | `NOT_CLAIMED` |
 
