@@ -52,7 +52,7 @@ An improvement request is not automatically an experiment. `pare` judges structu
 Use these within the selected work rather than turning them into stages:
 
 - Meaning and evidence: `amose` for domain modelling, `iwadi` for substantial research, `irinse` for companion tools, `yoruba-glossary` for Yorùbá technical terms.
-- Work management: `alaga` for explicit coding scope steering, `akosile` for selected shared workspace storage.
+- Work management: `alaga` for explicit coding scope steering, `pepeye` for supervised native subagents, `akosile` for selected shared workspace storage.
 - Specific operations: `seda-sigidi` for an agent identity, `system-cleanup` for macOS cleanup, `pese` for explicitly requested private serving.
 
 Resolve names against the installed QP definitions and respect their activation and action permissions. For an inventory, list the installed QP skills, not every capability in the host. Report a missing skill rather than silently substituting another package's similarly named skill.
