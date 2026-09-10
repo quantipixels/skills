@@ -16,7 +16,7 @@ Route through QP skills from the current work state. Skip settled steps and stop
 | Resolve consequential choices | `arojinle`, which uses `amose` |
 | Shape an initiative, migration, or changing plan | `atona` |
 | Specify observable behavior | `seda-spec` |
-| Design software or module structure | `architect` |
+| Survey architectural friction, or design/review software or module structure | `architect` |
 | Split settled work into deliverable tickets | `seda-ticket` |
 | Implement a settled change or fix | `alaga` |
 | Define coding boundaries without implementation | `alaga` in scope-only mode |
