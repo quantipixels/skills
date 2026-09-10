@@ -17,7 +17,7 @@ Keep this a publication task. Do not add reviews, CI investigation, monitoring, 
 
 ## PR description
 
-Write for a reviewer without the conversation history. Lead with the problem and its impact, then the resolution and a short summary of the consequential changes. Identify what to review first: critical behavior, risks, and specific files or changed lines, with links when useful. Include meaningful alternatives actually considered and why they were not chosen; do not invent alternatives or reopen investigation to fill the description. End with checks run and material limitations.
+Write for a reviewer with no prior knowledge of the PR or product. Briefly explain the relevant product behavior and terms so they can understand the problem and why it matters. Lead with the problem and its impact, then the resolution and a short summary of the consequential changes. Identify what to review first: critical behavior, risks, and specific files or changed lines, with links when useful. Include meaningful alternatives actually considered and why they were not chosen; do not invent alternatives or reopen investigation to fill the description. End with checks run and material limitations.
 
 Keep detail proportional to the change. Use a few sentences for a simple PR and short sections when they help scanning. Omit empty sections, routine file inventories, and work-session narration. Follow the repository template and describe the final diff.
 
