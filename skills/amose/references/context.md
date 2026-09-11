@@ -1,56 +1,30 @@
-# Maintain project domain language
+# Maintain canonical domain language
 
-Use the project's existing domain-language record when one exists. Do not create a competing source of truth or rename an established convention merely to match this fallback.
+Use the project's existing domain-language source when one exists. Do not create a competing source of truth or rename an established convention merely to match a QP fallback.
 
-When no equivalent exists, use a visible root `CONTEXT.md` for one domain context. Create it lazily only after the first project-specific term is resolved and writing is authorized. Do not create it speculatively.
+The destination is owned by the project. Amọ̀ṣẹ́ owns the semantic delta, not a repository layout. If no durable destination is established, return the clarified model in the conversation and name the persistence gap only when future work actually needs a durable source.
 
-For genuinely separate domain contexts, use a root `CONTEXT-MAP.md` that links each context's `CONTEXT.md`, states its purpose, and records only confirmed relationships between contexts. Do not introduce multiple contexts merely to organize documentation. If the split itself depends on an unresolved consequential boundary decision, resolve that decision before writing the map.
+## Keep domain language narrow
 
-## `CONTEXT.md` is a glossary
+A domain-language source should contain the minimum material needed for different humans and agents to mean the same thing:
 
-Keep `CONTEXT.md` implementation-neutral and intentionally narrow. It contains project-domain language only:
+- canonical project-specific terms and avoided synonyms when ambiguity matters;
+- concise definitions of what concepts are;
+- conceptual identity and lifecycle distinctions;
+- bounded-context meaning and confirmed cross-context relationships;
+- ownership or semantic invariants when they are part of the domain model.
 
-- one canonical project-specific term;
-- a one- or two-sentence definition of what the concept **is**; and
-- alternatives to avoid when they can cause ambiguity.
+Do not absorb implementation procedure, architecture rationale, task history, generic learnings, delivery non-goals, ADR policy, research notes, or a running conversation summary merely because they are useful project knowledge. Those belong to their natural owners and destinations.
 
-Do not store implementation behavior, operating rules, architecture rationale, specifications, research notes, task history, scenarios, generic programming concepts, or a running summary of the conversation. Use scenarios to clarify meaning during reasoning; do not persist them merely because they were useful to the discussion.
+## Reconcile meaning, not storage
 
-A context file may start with one or two sentences identifying the bounded context and its purpose. Relationships between separate contexts belong in `CONTEXT-MAP.md`, not duplicated into each glossary.
+When current discussion conflicts with established language, surface the contradiction instead of choosing silently. Use the smallest concrete scenario that distinguishes the competing meanings and cross-check code, tests, configuration, or current behavior only when they can expose a semantic contradiction. Current implementation remains evidence of behavior, not automatic authority for domain intent.
 
-When no project format exists, use:
+After meaning is resolved and write authority exists, update the established domain-language source with the smallest semantic delta. Verify that the resulting definition:
 
-```markdown
-# <Context name>
+- states what the concept is rather than its implementation procedure;
+- does not introduce a competing canonical synonym;
+- preserves distinctions needed for identity, ownership, state, or policy; and
+- does not absorb specification, architecture, operational, or task detail.
 
-<One or two sentences defining the context and its purpose.>
-
-## Language
-
-**<Canonical term>**:
-<One or two sentence definition of what the concept is.>
-_Avoid_: <ambiguous alternatives, or none>
-```
-
-## Actively challenge the language
-
-When current discussion uses a term that conflicts with the established glossary, surface the contradiction instead of choosing silently. When a term is vague or overloaded, propose a precise canonical term only after the concepts are understood.
-
-Use the smallest concrete scenario that can distinguish the competing meanings. Cross-check relevant code, tests, configuration, or current behavior when they can reveal a contradiction, while preserving the distinction that implementation proves current behavior rather than domain intent.
-
-Example:
-
-```text
-CONTEXT.md defines “Cancellation” as cancelling an entire Order,
-but the proposed behavior discusses cancelling one line item.
-Are these the same domain action, or do we need a distinct term?
-```
-
-After a term is resolved and write authority exists, update the glossary immediately rather than batching accepted vocabulary until the end of the session. Re-read the written entry and verify:
-
-- the definition states what the concept is rather than its implementation procedure;
-- no competing canonical synonym was introduced;
-- avoided terms do not conflict with other current glossary entries; and
-- the file did not absorb specification, architecture, operational, or task detail.
-
-When a definition remains disputed, return the conflict instead of persisting confident-sounding lore.
+When meaning remains disputed, return the conflict rather than persisting confident-sounding lore.

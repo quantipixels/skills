@@ -1,52 +1,55 @@
 ---
 name: amose
-description: Establish, sharpen, or reconcile one project's exact-current domain model and exceptional durable project knowledge. Use when project-specific terms, conceptual boundaries, domain relationships, or invariants need to be defined, changed, split, merged, or clarified, or when qualifying durable learnings, exclusions, or decision records must be reconciled; exclude passive vocabulary lookup, material product/architecture decisions, delivery execution, and generic documentation.
+description: Establish, sharpen, or reconcile one project's canonical domain model. Use when project-specific terms, conceptual identities, domain/context boundaries, relationships, ownership, or invariants need to be defined, changed, split, merged, or clarified. Generic project knowledge and record custodianship do not drive selection; explicit legacy `.learnings`, `.nongoals`, or ADR maintenance remains supported as a compatibility path.
 ---
 
 # Amọ̀ṣẹ́
 
-Actively sharpen the project's domain model as concepts emerge and change.
+Own the project's domain meaning. Make its important concepts precise enough that planning, specifications, architecture, implementation, and review can use the same language without silently inventing different models.
 
 ## Clarify the model
 
-Read only evidence capable of settling the material meaning: the current domain-language source, governing decisions/policies, relevant code/tests/configuration/runtime behavior, and bounded history/provenance when it can resolve a conflict. Treat implementation and operations as evidence of current behavior, not automatic authority for domain intent.
+Read only evidence capable of settling material meaning: the current domain-language source, governing decisions/policies, relevant code/tests/configuration/runtime behavior, and bounded history when it can resolve a conflict. Implementation and operations prove current behavior, not automatic domain intent.
 
-When an ambiguous, overloaded, synonymous, or conflicting term can change scope, ownership, identity, state, policy, or behavior, do not silently choose a meaning. State the conflict, test it with the smallest concrete scenario that distinguishes the concepts, compare it with current domain language and relevant evidence, and propose canonical wording only when evidence or user/domain authority supports it.
+When an ambiguous, overloaded, synonymous, or conflicting term can change scope, ownership, identity, state, policy, or behavior:
 
-When the user deliberately establishes or changes clear domain meaning, test only the boundaries needed to make that change internally coherent; do not manufacture ambiguity merely to justify an interview.
+1. state the ambiguity or contradiction;
+2. use the smallest concrete scenario that distinguishes the competing concepts;
+3. compare it with current domain language and relevant evidence; and
+4. propose canonical wording only when evidence or domain authority supports it.
 
-Challenge the model as concepts crystallize. A useful clarification may establish or separate:
+When the user deliberately establishes or changes clear domain meaning, test only the boundaries needed to make the model coherent. Do not manufacture ambiguity to justify an interview.
+
+A useful model clarification may establish or separate:
 
 - canonical terms and avoided synonyms;
-- conceptual distinctions and identities;
-- domain/context boundaries;
-- semantic relationships or invariants; and
-- contradictions between stated meaning and current behavior.
+- conceptual identity and lifecycle distinctions;
+- bounded contexts and cross-context meaning;
+- relationships and ownership; and
+- semantic invariants or contradictions between stated meaning and current behavior.
 
-Return the resolved terms, relationships, invariants, distinguishing examples, and any conflicts or open decisions with their evidence.
+Use `arojinle` when the unresolved issue is a consequential choice rather than clarification of established meaning. Use `architect` when the missing result is technical structure. Do not turn current implementation shape into domain vocabulary merely because it exists.
 
 ## Reconcile canonical language
 
-Use the project's existing domain-language source or user-selected equivalent; do not create a competing source of truth. In repository work, read [context](references/context.md) when canonical language needs maintenance.
+When a domain-language source already exists, read [domain language](references/context.md) and update that source when the resolved model changed and write authority exists. Do not create a competing project-memory system or generic documentation store.
 
-When a term or context relationship is confirmed and write authority exists, reconcile the applicable language source immediately rather than batching accepted vocabulary for a retrospective. Re-read the final text and verify it does not absorb implementation details, temporary scenarios, task history, specifications, or architecture rationale.
+If no durable domain-language destination is established, return the model delta directly and name the persistence gap only when the result needs to outlive the current work. Let the project or caller choose the destination rather than inventing `CONTEXT.md`, `.learnings`, `.nongoals`, an ADR, or another repository convention.
 
-## Exceptional durable knowledge
+A domain-model change may cause another workflow to update specifications, architecture, documentation, tests, policy, or durable project records. Those artifacts remain owned by their natural workflow. Amọ̀ṣẹ́ supplies the clarified meaning; it does not become their default custodian.
 
-Domain clarification does not imply durable promotion. Ordinary implementation rationale, one-off discoveries, temporary decisions, and useful history stay in their normal plan/spec/PR/history surfaces.
+## Compatibility: explicit durable-record maintenance
 
-Admit new durable knowledge only when current evidence supports it, it is stable beyond the initiative, and future work needs it to avoid a consequential wrong action rather than mere rediscovery. Updating an existing stale authority is separate from admitting a new record; apply that source's maintenance or supersession rules.
+Existing direct Amọ̀ṣẹ́ requests to maintain one of these records remain supported for a minor release, but this branch does not drive automatic skill selection and is not part of the domain-model result:
 
-Use the project's existing destination or user-selected equivalent. For repository work, load only the applicable record contract:
+- explicit `.learnings` maintenance → read [learnings](references/learnings.md);
+- explicit `.nongoals` maintenance → read [non-goals](references/nongoals.md); or
+- explicit ADR qualification/lifecycle maintenance → read [ADRs](references/adrs.md).
 
-- [learnings](references/learnings.md) — stable, non-obvious recurring project knowledge whose loss risks consequential wrong action;
-- [nongoals](references/nongoals.md) — durable project-wide exclusions; and
-- [ADRs](references/adrs.md) — qualifying hard-to-reverse, surprising software/system decisions that resulted from a genuine trade-off.
-
-Prefer stronger maintained sources such as domain context, architecture, policy, configuration, code, tests, runbooks, or product/service documentation when they already own the truth. Do not create a second durable record merely because information is useful.
-
-When required reconciliation lacks a destination, evidence, or write authority, report the gap. For a selected `.qp` destination, use `akosile`.
+Use only the explicitly requested record type and its existing/user-selected destination. For a selected destination under `.qp`, use `akosile` for the storage mechanics rather than inventing another write path. Do not turn an ordinary domain clarification, implementation discovery, plan exclusion, or architecture choice into one of these records merely because this compatibility path exists. A future major version may retire or relocate this branch after a natural owner is proven.
 
 ## Return
 
-Return the resolved model delta and material conflicts/open decisions directly. When durable reconciliation was explicitly required, also report affected destination(s), verification/limitations, and `RECONCILED | BLOCKED`.
+Return the resolved terms, identities, relationships, ownership, invariants, distinguishing examples when needed, and any remaining semantic conflict or consequential decision with its evidence.
+
+When canonical domain language was updated, also report the destination and verification. For an explicit compatibility-path request, return that record's own required result plus the affected destination, verification/limitations, and `RECONCILED | BLOCKED`; do not pretend the record is part of the domain model.
