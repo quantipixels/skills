@@ -11,7 +11,9 @@ Establish inspection, setup/update, or removal and whether the target is user sc
 | User | `$CODEX_HOME/AGENTS.md` | `$CODEX_HOME/config.toml` |
 | Repository | `<repo>/AGENTS.md` | `<repo>/.codex/config.toml` |
 
-Resolve `CODEX_HOME` from the active environment, defaulting to `~/.codex`. Resolve the repository from the requested path or current Git root. Check existing `AGENTS.override.md` files that may supersede the selected instructions, and applicable nested instructions. Report an override rather than silently editing a file Codex will not load. Repository config depends on Codex trust rules; do not grant trust or change permissions during setup.
+Resolve `CODEX_HOME` from the active environment, defaulting to `~/.codex`. Resolve the repository from the requested path or current Git root.
+
+Check existing `AGENTS.override.md` files that may supersede the selected instructions, and applicable nested instructions. Report an override rather than silently editing a file Codex will not load. Repository config depends on Codex trust rules; do not grant trust or change permissions during setup.
 
 Read the selected files and relevant existing preferences. Offer the [general instructions](../assets/instructions.md), the optional Pepeye binding below, and the choices in [host options](host-options.md). Let the user select each independently. Do not copy personal biography, language preferences, paths, credentials, or unrelated settings from the configuring machine.
 
@@ -21,7 +23,12 @@ The optional Pepeye binding is: “Use `pepeye` when the user requests delegatio
 
 Prepare an exact diff for the selected paths and choices. Preserve existing instructions except for selected overlap cleanup, and preserve unrelated config, including comments and tables. Show current versus proposed settings, affected scope, and backup location. Obtain explicit permission before writing an unseen diff; reuse approval only while the proposed changes remain the same.
 
-Before changing or deleting any existing file, save a byte-for-byte backup with a unique name in `.qp-backups/` beside that file. Use a private directory and owner-only backup files where supported; never overwrite a previous backup. Resolve symlink targets and include them in the preview; refuse an unexpected symlink or non-file destination. Complete and verify all required backups before the first edit. Stop if a backup fails. Dry-run/inspection creates no files.
+Before changing or deleting any existing file, save a byte-for-byte backup with a unique name inside Codex's own data/config directory:
+
+- user scope → `$CODEX_HOME/backups/qp-setup/`;
+- repository scope → `<repo>/.codex/backups/qp-setup/`.
+
+Use private directories and owner-only backup files where supported; never overwrite a previous backup. Resolve symlink targets and include them in the preview; refuse an unexpected symlink or non-file destination. Complete and verify all required backups before the first edit. Stop if a backup fails. Dry-run/inspection creates no files.
 
 Manage selected QP instructions inside one block delimited by `<!-- qp-setup:start -->` and `<!-- qp-setup:end -->`. Reject missing, reversed, or duplicate markers. With no existing block, append it; preserve surrounding user text except for explicitly requested overlap cleanup. By default, if equivalent instructions already exist outside the block, report them and offer only missing guidance; do not duplicate or adopt the user's text. If an existing managed block was customized, show those differences and obtain approval before replacing it. Reapplying unchanged content is a no-op.
 

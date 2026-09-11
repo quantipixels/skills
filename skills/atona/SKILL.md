@@ -17,6 +17,8 @@ When project knowledge could change the approach, constraints, sequence, or proo
 
 Include the outcome and observable acceptance, the material decisions and assumptions, a useful delivery sequence, dependencies and risks that can change it, the current blocker, and the next action. Match detail to what a fresh contributor would otherwise have to invent. Omit empty sections and bookkeeping that has no consumer.
 
+When execution is tied to a concrete working directory, keep that workspace with the plan: its absolute path and `branch: <branch-name> [main|worktree]`; for a linked worktree also keep the absolute main-worktree path. Update this context when execution moves.
+
 Use `arojinle`, `amose`, `seda-spec`, `architect`, and `seda-ticket` as needed.
 
 When the initiative cannot yet be responsibly stated at full depth, read [progressive shaping](references/progressive-shaping.md). Resolve prerequisites without inventing future requirements or blocking independent work.
@@ -35,10 +37,12 @@ When the governing workflow requires named readiness states, coordinated multi-c
 
 ## Deliver
 
-Keep one-session plans in the conversation. Update the existing project source when persistence is needed; use `akosile` for a selected shared workspace.
+Persistence: existing project plan; otherwise `.qp/atona/`.
 
 Use `html-artifact` as needed, with [the initiative brief](references/human-view.md).
 
+Before closing work performed in a linked worktree, reconcile the relevant `.qp` state into the accepting workspace so no required initiative state remains stranded in the disposable candidate, then clean reconciled/disposable `.qp` state from the completed worktree while preserving anything not safely reconciled. Record the workspace disposition. Offer to remove the completed worktree; removal requires user approval and declining it does not block closure.
+
 Keep ordinary rationale in the plan and normal delivery history. Use [durable reconciliation](references/durable-reconciliation.md) only for a real governing-knowledge obligation. Required stale sources or missing authority remain blockers, not reasons to manufacture a reconciliation ledger.
 
-Return the current plan, any blocking choice or evidence gap, and the first useful action. Report completion only when the accepted outcome and its required proof are satisfied; keep implementation, integration, and release state distinct.
+Return the current plan, workspace when relevant, any blocking choice or evidence gap, and the first useful action. Report completion only when the accepted outcome and its required proof are satisfied; keep implementation, integration, and release state distinct.

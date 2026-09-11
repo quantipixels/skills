@@ -12,7 +12,9 @@ When a confirmed decision or material fact changes, update the affected plan mea
 
 For every material initiative, maintain one semantic plan using [the plan record template](../templates/plan-record.md) as a contract rather than a rigid outline.
 
-Keep it in current context when one-session use is sufficient. Persist only when continuity, recovery, independent review, or downstream consumption needs durable identity. Prefer an existing or user-selected destination; when that destination is repository-scoped `.qp` state, use `akosile` for storage mechanics.
+Keep it in current context when one-session use is sufficient. Persist only when continuity, recovery, independent review, or downstream consumption needs durable identity. Prefer an existing intentional project destination; otherwise use `.qp/atona/` in the current workspace.
+
+When execution is bound to a concrete working directory, persist its absolute path and branch as `<branch-name> [main|worktree]`. For a linked worktree, also persist the absolute main-worktree path. Treat that workspace and its `.qp` as the current initiative candidate; update the workspace fields when execution moves.
 
 Use `html-artifact` as needed with [the initiative brief](human-view.md). Update the plan before refreshing a maintained view; a stale view is not current evidence.
 
@@ -28,9 +30,9 @@ Track one status:
 | `Planned` | a current premortem supports readiness and delivery can start without inventing a material requirement |
 | `In Progress` | authorized delivery is active |
 | `Backlog` | intentionally inactive with an owner/re-entry trigger |
-| `Closed` | planning, delivery, proof, documentation, and any required durable reconciliation obligations are complete |
+| `Closed` | accepted outcome/proof are complete and required local candidate state has been reconciled |
 
-Atọ́nà alone sets plan status. Supporting results, tickets, provider state, projections, and workspace indexes are evidence only.
+Atọ́nà alone sets plan status. Supporting results, tickets, provider state, and projections are evidence only.
 
 Derive a compact delivery summary from current owner results: `Not required | Not started | Active | Blocked | Complete | Stale`.
 
@@ -113,6 +115,10 @@ After a material result changes plan meaning, update the semantic plan first. Re
 
 Before `Closed`, require the Decision Frontier to remain empty, no blocking plan gap, current accepting delivery/proof for every in-scope obligation, explicit residual deferrals/limits, and no unresolved durable-knowledge obligation required by the governing contract or owning result.
 
+When the initiative ran in a linked worktree, inspect that worktree's `.qp`, reconcile only the material state needed by the accepting workspace, then clean reconciled/disposable local state while preserving anything not safely reconciled. Do not mirror the directory wholesale. Record one workspace disposition: `reconciled`, `reconciled-retained`, or `reconciled-and-removed`.
+
+After local-state cleanup, offer to remove the completed linked worktree. Removal requires explicit user approval; declining removal does not block `Closed`. Approval to remove the worktree does not authorize force-deleting unrelated dirty or untracked project files; if Git reports unresolved state, surface it.
+
 Keep ordinary rationale in normal initiative artifacts. Read [durable knowledge reconciliation](durable-reconciliation.md) only when stable governing knowledge must survive beyond them or an existing durable authority is materially stale; the knowledge owner decides admission and reconciliation.
 
-Before user-visible handoff, align plan status, current gate, Decision Frontier, delivery summary, evidence/projection freshness, weakest material claim or blocker, remaining work, and next action. When a human view is required, consume HTML Artifact's current result against the initiative brief; a missing or stale view does not satisfy that deliverable. Use [suggested direction](suggested-direction.md) only when a separate build-direction handoff is actually useful.
+Before user-visible handoff, align plan status, workspace/disposition when relevant, current gate, Decision Frontier, delivery summary, evidence/projection freshness, weakest material claim or blocker, remaining work, and next action. When a human view is required, consume HTML Artifact's current result against the initiative brief; a missing or stale view does not satisfy that deliverable. Use [suggested direction](suggested-direction.md) only when a separate build-direction handoff is actually useful.

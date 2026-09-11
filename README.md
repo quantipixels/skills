@@ -44,6 +44,8 @@ Use [`irinse`](skills/irinse/SKILL.md) to discover, select, and use high-leverag
 
 Use [`qp-setup`](skills/qp-setup/SKILL.md) when a selected engineering/agent tool must be installed, configured, updated, verified, or removed, or for optional QP/Codex host configuration. Its Codex branch supports general instructions, a Pepeye binding, main-session defaults, and Context Notes at user or repository scope with preview, permission, and backups. Install the skill with `npx skills add quantipixels/skills --skill qp-setup -g`; omit `-g` for a repository skill installation. Choose configuration scope separately when running setup.
 
+Local QP working state lives under the current working tree's ignored `.qp/<owner-or-category>/`. A linked worktree and its `.qp` form one candidate; accepted work reconciles only relevant local state into the accepting workspace before cleanup. Generated files never fall back to the project root merely because no explicit destination was supplied.
+
 For explanation use `salaye`; for technical authoring or prose cleanup/pruning use `oro-ologbon`. Use the specialist skill that owns the requested result rather than running a default chain.
 
 ## Project

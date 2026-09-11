@@ -27,12 +27,7 @@ Current implementation or operating practice is evidence of existing behavior, n
 
 ## Place and retire the specification
 
-Use the existing or user-selected specification destination when one exists. Otherwise choose the smallest placement that preserves the specification for its real consumers:
-
-- keep it inline for one immediate bounded use and return a stable content digest/identity when needed downstream;
-- use the active host/project's normal durable document or knowledge surface when the specification must survive the current context;
-- when the selected destination is a repository-scoped `.qp` workspace, resolve a working record through `akosile` with `owner: seda-spec`, `record_type: behavior-spec`, and a stable behavior identity; or
-- use an external/provider destination only when explicitly selected and an authorized publication owner performs the write.
+Persistence: existing/selected specification destination; otherwise `.qp/seda-spec/` for local state.
 
 A working or transient record is not automatically durable authority. While planning, delivery, or review depends on the specification, retain its exact identity and current content. When the specification itself must remain normative after delivery, preserve it in its established durable destination; for change-specific specifications, preserve required history and mark supersession rather than silently deleting the contract.
 

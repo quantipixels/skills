@@ -57,7 +57,7 @@ The default roots are current host conventions, not QP-owned state:
 - Codex: `$CODEX_HOME` when set, otherwise `~/.codex`; full persisted rollouts are discovered below its session store. `history.jsonl` is deliberately not treated as a full session transcript.
 - Claude Code: `$CLAUDE_CONFIG_DIR` when set, otherwise `~/.claude`; transcripts are discovered below `projects/`.
 
-Redirect output only when a durable local index is useful. Generated evidence stays local and out of Git by default.
+Leave output on stdout for one-session use. When a durable local index is useful, use `.qp/ayewo-igba-ise/<stable-subject>/session-evidence.json`.
 
 ## Structural activity evidence
 

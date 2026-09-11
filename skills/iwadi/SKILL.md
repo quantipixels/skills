@@ -65,5 +65,5 @@ The current agent owns evidence selection, synthesis, durable report when warran
 5. Separate authoritative/normative statements from empirical observations and from synthesis/inference.
 6. Lead with the question and direct conclusion/verdict, then supporting evidence and limits without reproducing the discovery transcript.
 7. When evidence strength materially helps downstream judgment, state `Confidence: High | Medium | Low` separately from the conclusion and explain the controlling source-quality/directness/consistency/freshness/coverage/conflict limit. Do not invent numeric confidence without a meaningful model. State what evidence could materially overturn or narrow the conclusion when non-obvious.
-8. When the result deserves independent persistence, use the existing/user-selected durable research/knowledge destination. Use `akosile` for a selected shared workspace.
+8. Persistence: existing research/knowledge destination; otherwise `.qp/iwadi/`.
 9. Return concise sourced findings rather than a discovery transcript.

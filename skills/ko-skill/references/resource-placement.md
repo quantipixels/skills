@@ -28,11 +28,13 @@ Keep conversational identity in the agent entrypoint, task methods in skills, an
 
 Before selecting a file or setting, establish whether it controls the primary session or a worker, replaces or supplements native instructions, and propagates to children. Preserve existing instructions and permissions. Repeat a minimal bootstrap or role guard only when independently loaded host paths need it; avoid another shared runtime merely to remove those few lines. Verify package wiring separately from authenticated behavior.
 
-## Templates, data, and assets
+## Templates, data, outputs, and assets
 
 Keep a template when a stable recurring shape prevents costly omissions and no project/native scaffold already owns it. Remove arbitrary defaults, optional-empty sections, and duplicated procedure.
 
 Bundle data only when maintaining it supports the result, with an explicit freshness boundary. Reusable UI assets must provide useful shared behavior or representation, including applicable accessibility; their existence does not make every feature mandatory.
+
+If the skill itself produces files, name their natural destination in the owning skill. Do not duplicate repository-wide runtime/worktree policy here.
 
 Prefer existing project artifacts. Split resources only where callers can independently select the branches. If several tiny files always load together, they may belong together.
 

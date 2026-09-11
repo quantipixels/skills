@@ -38,6 +38,8 @@ Do not silently remove a previously supported explicit invocation or result in a
 
 For material pruning, inspect the semantic diff in both directions: what the candidate adds **and what the previous skill could do or protect that the candidate no longer says**. Record the disposition of meaningful losses in the PR/discussion; do not create a separate report file merely for this ledger.
 
+For a skill that produces files, make its own instructions name the natural destination for those files. Do not copy repository runtime/worktree policy into the skill merely to explain that destination.
+
 State the scope, completion evidence, and consequential exceptions. Supply useful expertise and examples, not just behavioral restrictions.
 
 Use `oro-ologbon` for prose editing or requested pruning as needed.
@@ -62,7 +64,7 @@ An unchanged resource does not trigger a fresh architectural review.
 
 Run applicable package checks and test the changed behavior where its correctness remains uncertain. Use fresh host sessions for changed behavioral claims. For material compression, composition, authority, or selection changes, compare the same realistic task, evidence, permissions, and host configuration before/after. Include the ordinary host as a baseline when the claim is incremental skill value; an adequate baseline is a valid finding. Keep evaluator expectations out of the tested agent's instructions so the harness does not supply the missing behavior.
 
-Check selection, outcome, and preserved boundaries on the actual loading/execution path, including references and handoffs. For material pruning, explicitly test at least one realistic scenario for each preserved compatibility/safety/authority/routing contract whose wording or location changed; structural brevity does not prove preservation. Record the exact candidate, host/version, observed model/settings, actions, and evidence limits. Word count or a skill name in an answer does not prove quality, cost, selection, or execution. Validation of a supplied change does not require searching for a better variant.
+Check selection, outcome, and preserved boundaries on the actual loading/execution path, including references and handoffs. For material pruning, explicitly test at least one realistic scenario for each preserved compatibility/safety/authority/routing contract whose wording or location changed; structural brevity does not prove preservation. When a changed skill produces files, verify its stated destination and that it does not invent an unrelated fallback. Record the exact candidate, host/version, observed model/settings, actions, and evidence limits. Word count or a skill name in an answer does not prove quality, cost, selection, or execution. Validation of a supplied change does not require searching for a better variant.
 
 Use `ayewo-igba-ise` as needed. Reuse existing evidence rather than reconstructing the same corpus.
 

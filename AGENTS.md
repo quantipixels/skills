@@ -18,7 +18,9 @@ When retiring old evaluations or documents, preserve unique current expectations
 
 ## State and documentation
 
-Use the conversation for temporary work and existing project sources for maintained knowledge. Shared `.qp` state is optional, not the default destination for every result. Keep generated state outside Git.
+Use the conversation for temporary reasoning and normal project sources for intentional maintained project knowledge. Local generated/project-support state belongs under the current worktree's ignored `.qp/`; use host/system temp for disposable work and never fall back to the project root/current working directory.
+
+Treat a linked worktree and its `.qp` as one isolated candidate. When that candidate is accepted into another workspace, reconcile only the relevant `.qp` files into the accepting workspace before cleanup.
 
 A committed document needs a future reader and a recurring task or enduring decision with no adequate existing home. Execution guidance belongs with the skill; proof belongs in tests and CI; change rationale, measurements, research comparisons, and review findings belong in the PR. Retire redundant dossiers rather than creating an archive by default.
 

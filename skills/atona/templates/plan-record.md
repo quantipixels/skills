@@ -16,6 +16,14 @@ status: Draft
 
 **Status:** <Draft | Planned | In Progress | Backlog | Closed>
 
+**Workspace:** <absolute path when execution is bound to a working directory>
+
+**Branch:** <branch-name> [main|worktree]
+
+**Main worktree:** <absolute path; linked worktree only>
+
+**Workspace disposition:** <reconciled | reconciled-retained | reconciled-and-removed; closure only>
+
 **Current gate:** <next material progression judgment/condition>
 
 **Decision frontier:** <EMPTY | OPEN | BLOCKED, with one-line reason>
@@ -63,4 +71,4 @@ status: Draft
 
 ## Material history
 
-- r1 — <only a material status/gate/scope/decision/evidence/ownership/closure change worth retaining>
+- r1 — <only a material status/gate/scope/decision/evidence/ownership/workspace/closure change worth retaining>

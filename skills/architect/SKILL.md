@@ -102,6 +102,4 @@ Use `html-artifact` as needed.
 
 ## Persistence
 
-Keep ordinary bounded architecture work in current context. Persist only when the caller/workflow needs durable identity, cross-session/owner handoff, recovery, or an implementation-readiness record. Prefer an existing/user-selected destination; repository workspace mechanics remain outside `architect` semantics.
-
-When persistence is required, use the compact [architecture record](templates/architecture-record.md). A persisted bounded design does not acquire an implementation-readiness status merely because it is durable; include readiness only when readiness itself is the result.
+Persist to the existing project destination; otherwise `.qp/architect/`. Use the compact [architecture record](templates/architecture-record.md) when persistence is needed.

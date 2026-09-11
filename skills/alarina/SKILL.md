@@ -35,7 +35,7 @@ Route to the nearest owner of the unresolved result. Skip settled work. QP has n
 | Author/edit/prune prose | `oro-ologbon` |
 | Create/improve/audit an agent skill | `ko-skill` |
 
-Supporting capabilities stay inside the owning work when needed: `amose` for canonical domain meaning, `iwadi` for substantial research, `irinse` for high-leverage tool choice/usage, `qp-setup` for tool or QP/Codex setup, `pepeye` for native subagents, `akosile` for selected shared-workspace mechanics, and `yoruba-glossary` for Yorùbá technical language. `seda-sigidi`, `system-cleanup`, `pese`, and `slides` route directly when their named result is requested.
+Supporting capabilities stay inside the owning work when needed: `amose` for canonical domain meaning, `iwadi` for substantial research, `irinse` for high-leverage tool choice/usage, `qp-setup` for tool or QP/Codex setup, `pepeye` for native subagents, and `yoruba-glossary` for Yorùbá technical language. `seda-sigidi`, `system-cleanup`, `pese`, and `slides` route directly when their named result is requested.
 
 Use adjacent-boundary cues only when they change selection: report validity → `se-triage`, cause → `root-cause`, fix → `alaga`; simplification → `pare`, measured comparison → `optimize`, experiential decision → `prototype`; tool choice/usage → `irinse`, readiness/setup → `qp-setup`; code judgment → `atunwo`, delivery → `alaga`, publication → `seda-pr`, PR readiness → `wo-pr`.
 
