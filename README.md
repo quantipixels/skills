@@ -24,7 +24,7 @@ bash scripts/install.sh --codex --dry-run
 bash scripts/install.sh --codex
 ```
 
-Use `--claude` instead, or both flags, for the direct skill-only path. Run `bash scripts/install.sh --help` for the supported options. Do not install QP through multiple managers at once.
+Use `--claude` instead, or both flags, for the direct skill-only path. Run `bash scripts/install.sh --help` for supported options. Do not install QP through multiple managers at once.
 
 Rerun the installer to update. Remove a direct installation with:
 
@@ -32,19 +32,19 @@ Rerun the installer to update. Remove a direct installation with:
 bash scripts/uninstall.sh
 ```
 
-The repository also includes a native Codex plugin manifest. See [compatibility](docs/compatibility.md) for the currently proved host paths.
+The repository also includes a native Codex plugin manifest. See [compatibility](docs/compatibility.md) for currently proved host paths.
 
 ## Use
 
-Common entrypoints are `atona` for planning, `alaga` for code delivery, `atunwo` for independent code review, `arojinle` for consequential choices, `amose` for domain modelling, and `html-artifact` for browser projections. Use [`alarina`](skills/alarina/SKILL.md) when you want the QP inventory or help choosing the next skill.
+Common entrypoints are `atona` for planning, `alaga` for code delivery, `atunwo` for independent code review, `arojinle` for consequential choices, `amose` for domain modelling, and `html-artifact` for browser projections. Use [`alarina`](skills/alarina/SKILL.md) for the installed QP inventory or help choosing the next owner.
 
-Use [`pepeye`](skills/pepeye/SKILL.md) for optional subagent coordination. It uses native delegation tools and the existing specialist skills, without installing a main-agent identity, worker files, or host settings. Install it with `npx skills add quantipixels/skills --skill pepeye -g`, or use the package installation above. No separate Pepeye plugin or setup is required. Host support determines which worker model and reasoning controls are available.
+Use [`pepeye`](skills/pepeye/SKILL.md) for optional native-subagent coordination. It composes existing specialist skills without installing a main-agent identity, worker files, or host settings. Install it with `npx skills add quantipixels/skills --skill pepeye -g`, or use the package installation above. No separate Pepeye plugin or setup is required.
 
 Use [`irinse`](skills/irinse/SKILL.md) to discover, select, and use high-leverage companion engineering tools whose useful interfaces or evidence semantics are easy to miss. Irinṣẹ is a small tool router and usage-knowledge home; it does not own installation or configuration.
 
-Use [`qp-setup`](skills/qp-setup/SKILL.md) when a selected engineering/agent tool must be installed, configured, updated, verified, or removed, or for optional QP/Codex host configuration. Its Codex branch still supports general instructions, a Pepeye binding, main-session defaults, and Context Notes at user or repository scope with preview, permission, and backups. Install the skill with `npx skills add quantipixels/skills --skill qp-setup -g`; omit `-g` for a repository skill installation. Choose the configuration scope separately when running setup.
+Use [`qp-setup`](skills/qp-setup/SKILL.md) when a selected engineering/agent tool must be installed, configured, updated, verified, or removed, or for optional QP/Codex host configuration. Its Codex branch supports general instructions, a Pepeye binding, main-session defaults, and Context Notes at user or repository scope with preview, permission, and backups. Install the skill with `npx skills add quantipixels/skills --skill qp-setup -g`; omit `-g` for a repository skill installation. Choose configuration scope separately when running setup.
 
-For explanations use `salaye`; for technical authoring or prose cleanup/pruning use `oro-ologbon`. Use `alaga` for accepted code delivery; standalone scope discussion belongs to the planning, specification, or decision owner for the unresolved question. Explicit legacy `alaga scope-only` remains compatibility-only for this minor release.
+For explanation use `salaye`; for technical authoring or prose cleanup/pruning use `oro-ologbon`. Use the specialist skill that owns the requested result rather than running a default chain.
 
 ## Project
 
