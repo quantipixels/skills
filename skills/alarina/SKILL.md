@@ -19,7 +19,6 @@ Route through QP skills from the current work state. Skip settled steps and stop
 | Survey architectural friction, or design/review software or module structure | `architect` |
 | Split settled work into deliverable tickets | `seda-ticket` |
 | Implement a settled change or fix | `alaga` |
-| Define coding boundaries without implementation | `alaga` in scope-only mode |
 | Commit, push, and open or update a PR/MR | `seda-pr` |
 | Watch or get an existing PR/MR ready | `wo-pr` |
 

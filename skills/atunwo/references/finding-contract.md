@@ -21,7 +21,7 @@ Severity is independent of correction effort:
 - **Medium:** material correctness, delivery, security, compatibility, or operability defect.
 - **Low:** bounded candidate-caused issue worth correcting.
 
-Reject generic style, out-of-scope debt, deterministic-tool noise, unsupported speculation, and findings without a concrete mechanism. Change-review findings need a candidate-caused or candidate-dependent mechanism; a scope that includes existing code permits findings about its existing weaknesses. In broad review, report material maintainability concerns with their location, mechanism, comprehension or change cost, and smallest correction; do not label them defects without a failure mechanism. Use `pare` on the same candidate boundary when deeper simplification analysis is needed.
+Reject generic style, out-of-scope debt, deterministic-tool noise, unsupported speculation, and findings without a concrete mechanism. `change` findings need a candidate-caused or candidate-dependent mechanism. `codebase` mode may report existing weaknesses without an introducing change; report maintainability concerns with their location, mechanism, comprehension/change cost, and smallest correction direction rather than labelling them defects without a failure mechanism. Use `pare` on the same boundary only when deeper simplification analysis is needed.
 
 When a candidate changes verification gates, stateful retries/cancellation, migrations/rollouts, or agent/provider operations, read [boundary failure examples](boundary-failures.md). Select by the changed behaviour and consequence, not file extension or line count.
 

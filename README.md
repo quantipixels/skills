@@ -36,7 +36,7 @@ The repository also includes a native Codex plugin manifest. See [compatibility]
 
 ## Use
 
-Common entrypoints are `atona` for planning, `alaga` for implementation, `atunwo` for review, `arojinle` for consequential choices, `amose` for domain modelling, and `html-artifact` for browser projections. Use [`alarina`](skills/alarina/SKILL.md) when you want the QP inventory or help choosing the next skill.
+Common entrypoints are `atona` for planning, `alaga` for code delivery, `atunwo` for independent code review, `arojinle` for consequential choices, `amose` for domain modelling, and `html-artifact` for browser projections. Use [`alarina`](skills/alarina/SKILL.md) when you want the QP inventory or help choosing the next skill.
 
 Use [`pepeye`](skills/pepeye/SKILL.md) for optional subagent coordination. It uses native delegation tools and the existing specialist skills, without installing a main-agent identity, worker files, or host settings. Install it with `npx skills add quantipixels/skills --skill pepeye -g`, or use the package installation above. No separate Pepeye plugin or setup is required. Host support determines which worker model and reasoning controls are available.
 
@@ -44,7 +44,7 @@ Use [`irinse`](skills/irinse/SKILL.md) to discover, select, and use high-leverag
 
 Use [`qp-setup`](skills/qp-setup/SKILL.md) when a selected engineering/agent tool must be installed, configured, updated, verified, or removed, or for optional QP/Codex host configuration. Its Codex branch still supports general instructions, a Pepeye binding, main-session defaults, and Context Notes at user or repository scope with preview, permission, and backups. Install the skill with `npx skills add quantipixels/skills --skill qp-setup -g`; omit `-g` for a repository skill installation. Choose the configuration scope separately when running setup.
 
-For explanations, use `salaye` for visual sketches and focused HTML, including relevant sections of larger artifacts. `oro-ologbon` combines technical authoring with prose editing and pruning; `alaga` supports scope-only requests that stop before implementation. Update former `fihanmi` invocations to `salaye`, `technical-writing` and `yo-slop` to `oro-ologbon`, and `scope-guard` to `alaga` scope-only mode, including references in project guidance. The standalone `handoff` skill is retired; request a session handoff directly.
+For explanations use `salaye`; for technical authoring or prose cleanup/pruning use `oro-ologbon`. Use `alaga` for accepted code delivery; standalone scope discussion belongs to the planning, specification, or decision owner for the unresolved question. Explicit legacy `alaga scope-only` remains compatibility-only for this minor release.
 
 ## Project
 
