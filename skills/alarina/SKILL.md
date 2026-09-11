@@ -1,59 +1,44 @@
 ---
 name: alarina
-description: Route a goal through QP skills using their entrypoints, useful combinations, and common work paths. Use for choosing a QP skill, finding the next step, understanding how QP skills fit together, or requesting the QP inventory.
+description: Route one unresolved goal to the QP skill that owns the needed result. Use for choosing a QP skill, finding the next useful owner, understanding common combinations, or requesting the installed QP inventory.
 ---
 
 # Alárinà
 
-Route through QP skills from the current work state. Skip settled steps and stop at the requested result.
+Route to the nearest owner of the unresolved result. Skip settled work. QP has no mandatory lifecycle; Alárinà does not perform another skill's method.
 
-## Idea to delivery
-
-| What is needed now | Use |
+| Needed result | Owner |
 | --- | --- |
-| Credible directions to explore | `ideate` |
-| Challenge a proposal or assumption | `ro-wo` |
-| Resolve consequential choices | `arojinle`, which uses `amose` |
-| Shape an initiative, migration, or changing plan | `atona` |
+| Explore credible directions | `ideate` |
+| Challenge a premise | `ro-wo` |
+| Resolve consequential choices | `arojinle` |
+| Shape/update an initiative plan | `atona` |
 | Specify observable behavior | `seda-spec` |
-| Survey architectural friction, or design/review software or module structure | `architect` |
-| Split settled work into deliverable tickets | `seda-ticket` |
-| Implement a settled change or fix | `alaga` |
-| Commit, push, and open or update a PR/MR | `seda-pr` |
-| Watch or get an existing PR/MR ready | `wo-pr` |
+| Survey architectural friction, or design/review software/module structure | `architect` |
+| Split settled work into tickets | `seda-ticket` |
+| Deliver accepted code | `alaga` |
+| Independently judge code | `atunwo` |
+| Publish a PR/MR | `seda-pr` |
+| Get an existing PR/MR ready | `wo-pr` |
+| Assess an incoming report | `se-triage` |
+| Diagnose an observed failure | `root-cause` |
+| Find simplification opportunities | `pare` |
+| Compare measured trial variants | `optimize` (Experimental) |
+| Postmortem completed/paused work | `ayewo-igba-ise` |
+| Walk through a candidate with a human | `hitl-review` |
+| Exercise changed browser journeys | `dogfood` |
+| Build a disposable decision instrument | `prototype` |
+| Recommend/review interface direction | `amoye-ui-ux` |
+| Define/review brand identity | `brand` |
+| Explain with focused prose/visuals | `salaye` |
+| Create a browser projection | `html-artifact` |
+| Author/edit/prune prose | `oro-ologbon` |
+| Create/improve/audit an agent skill | `ko-skill` |
 
-A settled change can go straight to `alaga`; an unsettled initiative may use `arojinle` and `atona` first. Add `seda-spec`, `architect`, or `seda-ticket` where those results are missing. `alaga` already includes implementation proof and independent review. Publication and ongoing PR work are separate entrypoints, not automatic tail steps.
+Supporting capabilities stay inside the owning work when needed: `amose` for canonical domain meaning, `iwadi` for substantial research, `irinse` for high-leverage tool choice/usage, `qp-setup` for tool or QP/Codex setup, `pepeye` for native subagents, `akosile` for selected shared-workspace mechanics, and `yoruba-glossary` for Yorùbá technical language. `seda-sigidi`, `system-cleanup`, `pese`, and `slides` route directly when their named result is requested.
 
-## Other starting points
+Use adjacent-boundary cues only when they change selection: report validity → `se-triage`, cause → `root-cause`, fix → `alaga`; simplification → `pare`, measured comparison → `optimize`, experiential decision → `prototype`; tool choice/usage → `irinse`, readiness/setup → `qp-setup`; code judgment → `atunwo`, delivery → `alaga`, publication → `seda-pr`, PR readiness → `wo-pr`.
 
-| Situation | QP route |
-| --- | --- |
-| Incoming report needs assessment | `se-triage` |
-| Failure needs a causal explanation | `root-cause`; use `alaga` when the requested next result is a fix |
-| Code or refactor needs independent review, or a codebase needs a quality assessment | `atunwo` |
-| System needs a read-only simplification audit | `pare` |
-| Compare trial variants and decide whether a measured gain merits keeping one | `optimize` (Experimental) |
-| Human wants to walk through a candidate | `hitl-review` |
-| A completed event or session needs a postmortem | `ayewo-igba-ise` |
-| Interface direction, identity, or journey verification | `amoye-ui-ux`, `brand`, or `dogfood` respectively |
-| A decision needs something concrete to try | `prototype` |
-| Explain with prose, diagrams, code-shape sketches, or focused HTML | `salaye` |
-| Standalone browser report or presentation deck | `html-artifact` or `slides` respectively |
-| Technical communication, prose editing, or requested pruning | `oro-ologbon` |
-| Author or revise an agent skill | `ko-skill` |
+Resolve names against installed QP definitions and respect each skill's activation and action permissions; routing to an owner does not grant mutation, publication, merge, deletion, or other authority. Report a missing QP skill rather than silently substituting another package's similarly named skill.
 
-Triage assesses a report; diagnosis explains a failure; delivery fixes it. Start with the unresolved question rather than sending every bug through all three. Likewise, a request to review code starts at `atunwo`, not at implementation.
-
-An improvement request is not automatically an experiment. `pare` judges structural simplification; `optimize` compares trial variants for a measured keep/revert/no-improvement decision; `prototype` settles a question through truthful experience. Validate a supplied skill change with `ko-skill`. An unknown implementation does not by itself require optimization: use `alaga` for a supplied improvement job unless comparative trials are needed to establish the requested result. Do not send these owners through each other as mandatory stages.
-
-## Supporting capabilities
-
-Use these within the selected work rather than turning them into stages:
-
-- Meaning and evidence: `amose` for domain modelling, `iwadi` for substantial research, `irinse` for discovering/selecting and using high-leverage companion tools, `yoruba-glossary` for Yorùbá technical terms.
-- Environment and work management: `qp-setup` for installing/configuring selected tools and optional QP/Codex host settings, `pepeye` for supervised native subagents, `akosile` for selected shared workspace storage.
-- Specific operations: `seda-sigidi` for an agent identity, `system-cleanup` for macOS cleanup, `pese` for explicitly requested private serving.
-
-Resolve names against the installed QP definitions and respect their activation and action permissions. For an inventory, list the installed QP skills, not every capability in the host. Report a missing skill rather than silently substituting another package's similarly named skill.
-
-For routing advice, give the starting skill and useful next steps. For requested work, use the selected skills; the route is not the deliverable.
+For an inventory, inspect installed QP definitions rather than treating this table as the catalogue. Return the starting owner and only useful next owners; when work is requested, invoke the owner rather than returning routing as the deliverable.
