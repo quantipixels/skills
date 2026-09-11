@@ -11,8 +11,9 @@ A workflow should name:
 - **stages** — semantic result owners, with conditions that make a stage necessary;
 - **dependencies** — only real ordering requirements;
 - **independence** — stages whose evidence must come from a separate context;
-- **recovery** — the nearest owner to revisit when later evidence invalidates earlier state; and
-- **completion** — the evidence that lets the lead stop.
+- **recovery** — the nearest owner to revisit when later evidence invalidates earlier state;
+- **completion** — the evidence that lets delivery progression stop; and
+- **closure** — the terminal retrospective plus disposition of any earned learning.
 
 Prefer a readable Markdown lane over a new workflow DSL. Add deterministic parsing/runtime machinery only when repeated real use proves that agents cannot reliably follow the declarative form.
 
@@ -52,6 +53,19 @@ Route invalidation to the nearest semantic owner:
 - publication state wrong or missing → `seda-pr` / `wo-pr` as appropriate.
 
 Do not restart the whole workflow when only one downstream dependency is stale.
+
+## Terminal retrospective
+
+Every completed, materially paused, abandoned, or disputed Pepeye workflow/autonomous run closes through `ayewo-igba-ise` after its current result state is fixed. The retrospective judges the bounded run; it does not mutate the surface it is reconstructing.
+
+After Àyẹ̀wò returns, harvest only durable improvements the evidence justifies:
+
+- route each accepted improvement to its natural semantic owner;
+- use `amose` `.learnings` maintenance only when the learning is stable, non-obvious, independently evidenced, likely to recur, consequential if forgotten, and not already represented by a stronger maintained source;
+- ordinary session history, rationale, one-off discoveries, and speculative advice remain with the postmortem/PR/plan; and
+- no qualifying durable learning is a valid outcome.
+
+A workflow is retrospectively closed only when the postmortem is complete and qualifying learnings are harvested or explicitly recorded as pending owner handoffs requiring separate authority.
 
 ## Workflow admission
 

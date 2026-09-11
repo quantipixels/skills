@@ -52,7 +52,7 @@ A workflow is an adaptive graph, not a ceremony:
 - run independent stages in parallel when their writes/evidence do not conflict;
 - preserve reviewer/decision independence when that independence is part of the requested evidence;
 - return to the nearest owning stage when new evidence invalidates a decision, plan, architecture, candidate, or proof;
-- stop once the workflow's accepted outcome and required evidence are satisfied.
+- stop delivery progression once the workflow's accepted outcome and required evidence are satisfied, then close the run through the retrospective contract below.
 
 The lead carries only cross-stage state that can change progression: accepted outcome, consequential decisions, current plan/spec/architecture identities, candidate identity, blockers, required evidence, authority, and unresolved branches. Do not preload every upstream transcript or reference.
 
@@ -90,6 +90,23 @@ Treat a worker worktree and its `.qp` as one isolated candidate. When accepted, 
 
 Finish required stages or explicitly account for their failure before concluding. Publication or merge remains separately authorized.
 
+## Close with postmortem and harvested learning
+
+Every Pepeye workflow or autonomous run ends with an `ayewo-igba-ise` postmortem after the run's delivery/result state is fixed. This applies to completed, materially paused, abandoned, or disputed runs. The retrospective is part of workflow closure, not a reason to reopen settled work by default.
+
+Pin the run boundary and let Àyẹ̀wò determine what actually worked, failed, cost recovery effort, or exposed structural friction. Do not mutate the judged surface while the retrospective is reconstructing it.
+
+Harvest only learning that the postmortem earns:
+
+- route accepted instruction/skill changes to `ko-skill`;
+- route architecture, runtime, tooling, product, or process improvements to their natural owner;
+- use explicit `amose` `.learnings` maintenance only for stable, non-obvious, independently evidenced project knowledge that passes its admission gate; and
+- keep ordinary rationale, one-off observations, session history, and speculative lessons in the postmortem/PR/plan rather than durable project memory.
+
+No durable learning is a valid result. When a learning is accepted for remediation and the workflow already has mutation authority for that owning surface, run the follow-on as a separate owned stage after the postmortem is fixed; otherwise return the owner handoff without silently granting new authority.
+
+Do not call an autonomous workflow fully closed until the postmortem is complete and each qualifying learning is either harvested by its natural owner or explicitly left as a pending authorized handoff.
+
 ## Durable programs
 
 Do not externalize orchestration state merely because a task is large or has several workers. Read [durable programs](references/durable-programs.md) only when correct continuation must survive the current lead/session, machine restart, or handoff to another coordinator.
@@ -98,4 +115,4 @@ Pepeye does not currently implement a scheduler, daemon, persistent worker regis
 
 ## Return
 
-Return the overall outcome, workflow/stages actually used, decisive integrated evidence, material branches or interventions, and remaining gaps. Distinguish delivered, reviewed, published, integrated, and released state.
+Return the overall outcome, workflow/stages actually used, decisive integrated evidence, material branches or interventions, postmortem result, harvested learnings/owner handoffs, and remaining gaps. Distinguish delivered, reviewed, published, integrated, released, and retrospectively closed state.

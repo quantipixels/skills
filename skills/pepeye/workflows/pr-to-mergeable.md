@@ -12,11 +12,14 @@
    - publication metadata/base/state issue → `seda-pr`.
 3. **`wo-pr` — re-evaluate only invalidated readiness evidence.**
 4. **`seda-pr` — update publication state when needed and authorized.**
+5. **`ayewo-igba-ise` — terminal retrospective.** After readiness/publication state is fixed, examine avoidable churn, review/CI recovery cost, repeated blockers, and which workflow/tool/skill improvement is actually earned.
 
 ## Recovery
 
 Keep the PR head/base identity current. An ancestor/base change that changes effective content invalidates dependent review/readiness evidence. Do not rerun unaffected proof merely because provider state changed.
 
-## Completion
+A postmortem recommendation does not itself grant permission to edit project policy, skill instructions, provider configuration, or merge state. Route any qualifying improvement to its natural owner as a separate follow-on.
 
-The PR/MR has no confirmed blocking readiness gap, required checks/review evidence are current for the exact candidate/base, and any remaining merge action is explicitly separated from readiness.
+## Completion and closure
+
+Delivery is complete when the PR/MR has no confirmed blocking readiness gap, required checks/review evidence are current for the exact candidate/base, and any remaining merge action is explicitly separated from readiness. The autonomous workflow closes only after `ayewo-igba-ise` completes and qualifying learning is harvested or explicitly handed off; no durable learning is a valid result.
