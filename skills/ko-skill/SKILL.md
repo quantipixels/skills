@@ -5,60 +5,60 @@ description: Create, improve, or validate an agent skill that reliably produces 
 
 # Kọ Skill
 
-Deliver a useful skill with clear scope, appropriate depth, and enough verification to trust the change. Authoring requires permission to edit; validation and audits remain read-only. Installation, activation, publication, and provider mutations need their own authority.
+Create, improve, or validate a skill so it reliably produces one useful result without unnecessary instruction load. Authoring requires edit permission; validation and audits remain read-only. Installation, activation, publication, and provider mutations require their own authority.
 
 Delegate substantial analysis, research, and expert work to subagents when it materially helps.
 
-## Define the job
+## Understand the result
 
-Establish the intended result, trigger, boundaries, and requested change from the candidate and applicable host/repository rules. Before prescribing more instructions, distinguish missing expertise or unclear guidance from ignored/unavailable instructions, insufficient tools, or an environment failure. No change is a valid result.
+Start from the user's request, current candidate, and applicable repository/host rules. Establish the intended result, realistic trigger, nearest exclusions, completion evidence, and requested change.
 
-For a new skill or a material identity change, require an independently useful outcome or steering contract, a reason an existing skill cannot absorb it coherently, and a realistic positive/adjacent-negative selection case. A separate name must make selection/use easier. Do not split by subject taxonomy, target a skill count, or remove a useful lightweight skill merely because the model knows the underlying task.
+If the user's desired result, boundaries, or consequential design choices remain materially ambiguous after using the available context, use `arojinle` to resolve them before authoring. Do not invoke it to reopen requirements the user has already settled.
 
-If a new identity is credible but its independent value remains unproved, keep the candidate Experimental rather than presenting it as stable. Use real-use evidence before promotion. Routine corrections do not reopen identity, architecture, or maturity.
+Before adding instructions, distinguish missing expertise or unclear guidance from unavailable/ignored instructions, missing tools, or an environment failure. No change is a valid result.
 
-## Shape the skill
+A new skill needs an independently useful result or steering contract, a reason an existing skill cannot absorb it coherently, and a realistic positive/adjacent-negative selection case. Keep an unproved new identity Experimental rather than manufacturing confidence.
 
-Establish the focal point: the one result or steering effect the skill owns and the recurring non-obvious decisions it improves. Keep instructions, references, tools, state, and reports only when they strengthen that result or protect a necessary boundary. Move adjacent-owner work out; leave routine mechanics to the model and native tools.
+For an explicitly scoped portfolio audit, read [portfolio audit](references/portfolio-audit.md). Keep the audit read-only unless edits are separately authorized.
 
-Compare competing identities at the same layer by outcome, decision surface, and completion evidence, not shared words. Merge or internalize a redundant identity only after preserving independently useful results and independently loaded safety boundaries. A skill, a workflow/orchestration contract, a runtime assignment, and a persistent agent identity are different layers; do not create separate identities merely because one can execute another.
+## Shape the smallest useful skill
 
-A focus, simplification, compression, merge, relocation, or prose cleanup must not silently erase useful behavior. When pruning or placement changes are material, read [instruction economics](references/instruction-economics.md), perform its semantic-loss audit, and preserve reliable loading paths for safety/authority, proof/evidence, routing, compatibility, recovery, and other consequential contracts. A shorter replacement is not evidence of semantic redundancy.
+Keep the entrypoint focused on what every invocation needs: the owned result, recurring non-obvious decisions, completion evidence, necessary authority/safety boundaries, and reliable conditions for selectively loaded depth.
 
-For a skill that produces files, make its own instructions name the natural destination for those files. Do not copy repository runtime/worktree policy into the skill merely to explain that destination.
+Leave routine mechanics to the model and native tools. Keep current project/environment facts in their authoritative sources instead of copying them into skill instructions. Use references for conditional expertise and scripts/tools only for bounded deterministic mechanics that earn their maintenance cost.
 
-State the scope, completion evidence, and consequential exceptions. Supply useful expertise and examples, not just behavioral restrictions.
+When simplifying, merging, relocating, or materially pruning guidance, read [instruction economics](references/instruction-economics.md). Preserve useful behavior and reliable loading paths; shorter text is not evidence of equivalent behavior.
 
-Use `oro-ologbon` for prose editing or requested pruning as needed.
+For a skill that produces files, name its natural destination in the skill itself. Do not copy repository runtime/worktree policy merely to explain that destination.
 
-Keep a simple entry point with selectively loaded depth. Use related skills by name where they fit the work; keep supporting skills independent of their callers. Do not repeat their instructions or explain ordinary execution mechanics the host/model already supplies reliably.
+Use `oro-ologbon` when prose itself needs cleanup.
 
-Keep each rule in one authoritative place per loading path unless repetition protects an independent boundary. Preserve deliberate overrides, useful named concepts, and constraints that would otherwise become consequential guesswork. Compare credible alternatives when they could change the choice; a score or disposition vocabulary is not required.
+Load deeper guidance only when the change needs it:
 
-Read supporting guidance only when the change needs it:
-
-- Description/entrypoint/reference load, selection focus, no-op guidance, context-pressure placement, material pruning, or frontier-model capability claims are material: [instruction economics](references/instruction-economics.md).
-- Adding a resource, changing its responsibility, or investigating a placement problem: [resource placement](references/resource-placement.md).
-- Adding, changing, or removing expert reference content: [reference quality](references/reference-quality.md).
-- Adding/changing executable capability: [script boundary](references/script-boundary.md).
-- Maintaining a researched body of knowledge: [knowledge catalogues](references/knowledge-catalogues.md).
-- Deciding Experimental maturity or disposition: [experimental disposition](references/experimental-disposition.md).
-- An explicitly scoped portfolio audit: [portfolio audit](references/portfolio-audit.md).
+- description/entrypoint/reference load, selection, context pressure, pruning, or frontier-model capability claims → [instruction economics](references/instruction-economics.md);
+- resource responsibility or placement → [resource placement](references/resource-placement.md);
+- expert reference content → [reference quality](references/reference-quality.md);
+- executable capability → [script boundary](references/script-boundary.md);
+- researched knowledge collections → [knowledge catalogues](references/knowledge-catalogues.md);
+- Experimental maturity/disposition → [experimental disposition](references/experimental-disposition.md);
+- portfolio-wide review → [portfolio audit](references/portfolio-audit.md).
 
 An unchanged resource does not trigger a fresh architectural review.
 
-## Check behavior
+## Verify what changed
 
-Run applicable package checks and test the changed behavior where its correctness remains uncertain. Use fresh host sessions for changed behavioral claims. For material compression, composition, authority, or selection changes, compare the same realistic task, evidence, permissions, and host configuration before/after. Include the ordinary frontier host/model without the skill as a baseline when the claim is incremental skill value or model-native capability; an adequate baseline is a valid finding. Keep evaluator expectations out of the tested agent's instructions so the harness does not supply the missing behavior.
+Run applicable package checks and test changed behavior where correctness remains uncertain. Use fresh host sessions for changed behavioral claims.
 
-Check selection, outcome, and preserved boundaries on the actual loading/execution path, including references and handoffs. For material pruning, explicitly test realistic scenarios for preserved compatibility/safety/authority/routing contracts whose wording or location changed. When a changed skill produces files, verify its stated destination and that it does not invent an unrelated fallback. Record the exact candidate, host/version, observed model/settings, actions, and evidence limits. Word count or a skill name in an answer does not prove quality, cost, selection, or execution. Validation of a supplied change does not require searching for a better variant.
+For material selection, compression, composition, or authority changes, compare realistic before/after tasks. When the claim depends on frontier-model native capability, include the ordinary host/model without the skill as a baseline; an adequate baseline is a valid finding. Keep evaluator expectations out of the tested agent's instructions.
 
-Use `ayewo-igba-ise` as needed. Reuse existing evidence rather than reconstructing the same corpus.
+Check the actual loading/execution path, including references and handoffs. For material pruning, verify preserved safety, authority, routing, compatibility, and evidence contracts whose wording or location changed. Reuse existing evidence and retest only what later changes invalidate.
 
-Retest only what later changes or unresolved findings invalidate. Keep temporary simulations temporary; retain regression cases only for justified recurring risk. Use `VERIFIED` only when required proof passes, `CHANGES_REQUIRED` for a demonstrated defect, and `INSUFFICIENT_EVIDENCE` for a material proof gap. Source checks do not prove installation or behavior on untested hosts/models.
+Use `ayewo-igba-ise` when a bounded prior run or corpus needs retrospective evidence before changing the skill.
+
+Use `VERIFIED` only when required proof passes, `CHANGES_REQUIRED` for a demonstrated defect, and `INSUFFICIENT_EVIDENCE` for a material proof gap. Structural brevity, word count, or a skill name appearing in output does not prove behavior.
 
 ## Deliver
 
-Reconcile affected metadata, links, routing, tests, and release surfaces without changing unrelated work. Keep one semantic contract across hosts and thin host-specific adapters. Reference other skills by exact frontmatter name.
+Reconcile affected metadata, links, routing, tests, and release surfaces without changing unrelated work. Keep one semantic contract across hosts and thin host-specific adapters.
 
-Return the change or no-change conclusion, meaningful verification, and remaining limitations. Include installation/publication state only when relevant. Reporting is not an instruction to create a file: use the PR/discussion and CI for change evidence, and apply the repository's documentation-admission policy before committing a separate document.
+Return the change or justified no-change result, verification, and remaining limitations. Keep rationale and proof in the PR/discussion and CI unless a separate durable document independently earns its place.

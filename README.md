@@ -1,18 +1,18 @@
 # QP Skills
 
-Portable agent skills for reasoning, engineering, design, and delivery. Each skill owns a focused result; use the owner directly, or use `pepeye` when several QP results need to be coordinated into one outcome.
+Portable agent skills for reasoning, engineering, design, and delivery. Each skill owns a focused result. Use that skill directly when the owner is clear; use `alarina` when it is not, and `pepeye` when several QP results need to be coordinated into one outcome.
 
 Browse the public docs at [quantipixels.com/skills](https://quantipixels.com/skills).
 
 ## Install
 
-The simplest global install is:
+Global install:
 
 ```bash
 npx skills add quantipixels/skills --global
 ```
 
-Install a named skill with `--skill <name>`.
+Install one skill with `--skill <name>`.
 
 ### Claude Code plugin
 
@@ -36,7 +36,7 @@ Use `--claude` instead, or both flags, for the direct skill-only path. See [comp
 
 ## Start
 
-If you know the result you need, invoke that skill directly. If you do not, start with Alárinà:
+If you know the skill you need, use it directly. Otherwise:
 
 ```text
 Use `alarina` to choose the right QP skill for this request:
@@ -44,30 +44,30 @@ Use `alarina` to choose the right QP skill for this request:
 [describe the outcome you need]
 ```
 
-Common entrypoints:
+A few common entrypoints:
 
 | Skill | Use when |
 | --- | --- |
-| `alarina` | The next QP owner is unclear |
-| `pepeye` | A bounded multi-stage outcome needs several QP result owners or native subagents |
-| `ro-wo` | A material premise needs testing before agreement or disagreement |
-| `arojinle` | A consequential choice needs to be resolved |
+| `pepeye` | Several QP results or subagents need coordination into one bounded outcome |
+| `arojinle` | A consequential choice or the user's real desired outcome needs to be resolved |
 | `atona` | Material work needs one current plan and route to an outcome |
-| `architect` | Software/module structure, ownership, seams, state, or architecture sufficiency needs design or review |
 | `alaga` | An accepted coding change or fix needs implementation and proportionate proof |
-| `atunwo` | A fixed code candidate, codebase snapshot, or refactor parity claim needs independent judgment |
-| `wo-pr` | An existing PR/MR needs to become reviewable and mergeable |
-| `seda-pr` | Requested work needs commit/push and PR/MR publication |
+| `atunwo` | A fixed code candidate or codebase snapshot needs independent judgment |
 | `iwadi` | A question needs substantial current research or exact-source grounding |
-| `ayewo-igba-ise` | Finished or materially paused work needs an evidence-backed postmortem |
-| `ko-skill` | A skill needs creation, revision, validation, or a bounded portfolio audit |
-| `oro-ologbon` | Technical communication or supplied prose needs clearer, tighter wording |
+| `ko-skill` | An agent skill needs creation, improvement, validation, or bounded portfolio review |
 
-Use `alarina` for the full installed inventory rather than treating this table as the catalogue.
+Use `alarina` for the complete installed inventory.
 
-## Global agent instructions
+## Recommended global instructions
 
-QP works without extra global instructions. Add only the defaults you want the agent to apply across projects.
+QP works without extra global instructions. Add this block only when you want these defaults across projects:
+
+```text
+Use relevant QP skills when they materially improve the result. Use `alarina` when the next owner is unclear; otherwise use the owning skill directly.
+Use `pepeye` when the user requests delegation or a bounded multi-stage outcome materially benefits from several QP result owners or subagents.
+Use `ro-wo` before agreeing or disagreeing with a material premise.
+Use `oro-ologbon` for technical communication and prose cleanup.
+```
 
 User-level instruction files:
 
@@ -76,31 +76,13 @@ User-level instruction files:
 
 For one repository, use its normal `AGENTS.md`, `CLAUDE.md`, or equivalent instruction surface instead.
 
-### QP routing
+For Codex, you can ask QP to apply the supported block safely:
 
 ```text
-Use relevant QP skills when they materially improve the result. Use `alarina` when the next owner is unclear; otherwise use the owning skill directly.
+Use `qp-setup` to configure my user-level QP instructions. Preview the exact diff first and preserve my existing instructions.
 ```
 
-### Workflow orchestration
-
-```text
-Use `pepeye` when the user requests delegation or a bounded multi-stage outcome materially benefits from several QP result owners or native subagents. Use specialist QP skills directly for their methods.
-```
-
-### Critical judgment
-
-```text
-Use `ro-wo` before agreeing or disagreeing with a material premise.
-```
-
-### Communication
-
-```text
-Use `oro-ologbon` for technical communication and prose cleanup.
-```
-
-For Codex, `qp-setup` can inspect, preview, back up, and apply approved QP instructions at user or repository scope instead of editing the instruction file blindly.
+`qp-setup` handles inspection, backup, preview, and approved user/repository-scope changes. You can remove any line from the recommended block if you do not want that default behavior.
 
 ## Update and uninstall
 
@@ -116,4 +98,4 @@ Do not install QP through multiple managers at once.
 
 ## Project
 
-[Compatibility](docs/compatibility.md) records what the package currently proves. Use [`AGENTS.md`](AGENTS.md) and `ko-skill` for contribution and skill-authoring guidance. Change rationale and proof belong in PRs and CI rather than turning the README into project architecture documentation.
+[Compatibility](docs/compatibility.md) records what the package currently proves. Use [`AGENTS.md`](AGENTS.md) and `ko-skill` for contribution and skill-authoring guidance. Change rationale and proof belong in PRs and CI.
