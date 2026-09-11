@@ -23,6 +23,21 @@ Establish the focal point: the one result or steering effect the skill owns and 
 
 Compare competing identities at the same layer by outcome, decision surface, and completion evidence, not shared words. Merge or internalize a redundant identity only after preserving independently useful results and independently loaded safety boundaries. A conversational agent, a coordination skill, and a worker are different roles, not three copies of one skill.
 
+### Preserve behavior before pruning
+
+A focus, simplification, compression, merge, relocation, or prose-cleanup change must not silently erase a useful contract. Before deleting or materially weakening existing guidance, classify every removed behavior-bearing rule as one of:
+
+- **redundant** — the same contract remains authoritative on every loading path that needs it;
+- **relocated** — the contract moved to a reliably loaded owner/reference and the caller still knows when to load it;
+- **compatibility-only** — normal selection no longer advertises it, but explicit legacy invocation/result remains supported; or
+- **retired** — the contract is intentionally removed with the required compatibility/versioning/migration treatment.
+
+Treat safety/authority boundaries, proof/evidence gates, routing/selection invariants, provider/candidate identity rules, recovery/operational safeguards, explicit result schemas that steer consequential action, and public/legacy invocation contracts as independently valuable until proven otherwise. Similar wording or a shorter replacement does not prove semantic redundancy.
+
+Do not silently remove a previously supported explicit invocation or result in a minor refocus. Preserve it as a compatibility path or make the breaking change deliberate and appropriately versioned. When moving detail behind a reference, preserve the entrypoint condition that reliably loads it.
+
+For material pruning, inspect the semantic diff in both directions: what the candidate adds **and what the previous skill could do or protect that the candidate no longer says**. Record the disposition of meaningful losses in the PR/discussion; do not create a separate report file merely for this ledger.
+
 State the scope, completion evidence, and consequential exceptions. Supply useful expertise and examples, not just behavioral restrictions.
 
 Use `oro-ologbon` for prose editing or requested pruning as needed.
@@ -33,7 +48,7 @@ Keep each rule in one authoritative place per loading path unless repetition pro
 
 Read supporting guidance only when the change needs it:
 
-- Description/entrypoint/reference load, selection focus, no-op guidance, or context-pressure placement is material: [instruction economics](references/instruction-economics.md).
+- Description/entrypoint/reference load, selection focus, no-op guidance, context-pressure placement, or material pruning is material: [instruction economics](references/instruction-economics.md).
 - Adding a resource, changing its responsibility, or investigating a placement problem: [resource placement](references/resource-placement.md).
 - Adding, changing, or removing expert reference content: [reference quality](references/reference-quality.md).
 - Adding/changing executable capability: [script boundary](references/script-boundary.md).
@@ -47,7 +62,7 @@ An unchanged resource does not trigger a fresh architectural review.
 
 Run applicable package checks and test the changed behavior where its correctness remains uncertain. Use fresh host sessions for changed behavioral claims. For material compression, composition, authority, or selection changes, compare the same realistic task, evidence, permissions, and host configuration before/after. Include the ordinary host as a baseline when the claim is incremental skill value; an adequate baseline is a valid finding. Keep evaluator expectations out of the tested agent's instructions so the harness does not supply the missing behavior.
 
-Check selection, outcome, and preserved boundaries on the actual loading/execution path, including references and handoffs. Record the exact candidate, host/version, observed model/settings, actions, and evidence limits. Word count or a skill name in an answer does not prove quality, cost, selection, or execution. Validation of a supplied change does not require searching for a better variant.
+Check selection, outcome, and preserved boundaries on the actual loading/execution path, including references and handoffs. For material pruning, explicitly test at least one realistic scenario for each preserved compatibility/safety/authority/routing contract whose wording or location changed; structural brevity does not prove preservation. Record the exact candidate, host/version, observed model/settings, actions, and evidence limits. Word count or a skill name in an answer does not prove quality, cost, selection, or execution. Validation of a supplied change does not require searching for a better variant.
 
 Use `ayewo-igba-ise` as needed. Reuse existing evidence rather than reconstructing the same corpus.
 

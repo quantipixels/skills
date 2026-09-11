@@ -29,12 +29,30 @@ Every instruction in the entrypoint should do at least one useful job:
 - change a recurring non-obvious decision;
 - establish an execution/completion gate;
 - provide expertise the model would otherwise guess poorly;
-- protect an authority, safety, evidence, or ownership boundary; or
+- protect an authority, safety, evidence, ownership, routing, compatibility, or recovery boundary; or
 - point reliably to selectively loaded depth.
 
 A sentence is a **no-op candidate** when removing it is unlikely to change selection, action, evidence, or a necessary boundary on the target hosts/models. Do not delete it by intuition alone when behavior matters: compare realistic tasks in the internal evaluation path. Conversely, do not retain prose merely because it sounds prudent.
 
 Prefer stating the positive target behavior. Keep explicit prohibitions when they protect a hard safety/authority boundary or when the positive form does not prevent a demonstrated failure.
+
+## Optimize semantic load, not contract count
+
+Compression is not successful merely because the entrypoint is shorter. Before pruning, compare the old and proposed semantic contracts and classify every meaningful loss as **redundant**, **relocated**, **compatibility-only**, or **retired**.
+
+A rule is not redundant merely because another sentence sounds similar. Verify that the replacement preserves the same trigger, authority, evidence requirement, exceptional case, and loading path. Pay particular attention to:
+
+- safety and mutation/publication authority;
+- proof/evidence admission and contamination rules;
+- routing/selection and missing-owner behavior;
+- provider, candidate, base, or source identity semantics;
+- recovery, retry, cancellation, liveness, and operational safeguards;
+- explicit legacy invocation/result compatibility; and
+- negative boundaries whose absence would cause consequential guesswork.
+
+When detail moves behind a reference, the entrypoint must still state a reliable load condition. When a public or explicit legacy behavior stops driving normal selection, preserve it as compatibility-only unless an intentional breaking change/versioning decision retires it.
+
+For a material refocus or pruning change, perform a **loss audit** as part of the diff review: ask what the old skill could do, protect, distinguish, or accept that the candidate no longer can. Record meaningful dispositions in the PR/discussion so reviewers can distinguish deliberate retirement from accidental deletion. This is change evidence, not a new documentation artifact.
 
 ## Place pressure where it is cheapest
 
