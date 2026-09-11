@@ -1,6 +1,6 @@
 # QP Skills
 
-Portable agent skills for reasoning, engineering, design, and delivery. Each skill owns a focused result. Use that skill directly when the owner is clear; use `alarina` when it is not, and `pepeye` when several QP results need to be coordinated into one outcome.
+Portable agent skills for reasoning, engineering, design, and delivery. Each skill owns a focused result. Use that skill directly when the owner is clear; use `alarina` when it is not, and `pepeye` when several results need coordinating into one outcome.
 
 Browse the public docs at [quantipixels.com/skills](https://quantipixels.com/skills).
 
@@ -48,7 +48,7 @@ A few common entrypoints:
 
 | Skill | Use when |
 | --- | --- |
-| `pepeye` | Several QP results or subagents need coordination into one bounded outcome |
+| `pepeye` | Delegation or a bounded multi-stage workflow needs coordination |
 | `arojinle` | A consequential choice or the user's real desired outcome needs to be resolved |
 | `atona` | Material work needs one current plan and route to an outcome |
 | `alaga` | An accepted coding change or fix needs implementation and proportionate proof |
@@ -64,7 +64,7 @@ QP works without extra global instructions. Add this block only when you want th
 
 ```text
 Use relevant QP skills when they materially improve the result. Use `alarina` when the next owner is unclear; otherwise use the owning skill directly.
-Use `pepeye` when the user requests delegation or a bounded multi-stage outcome materially benefits from several QP result owners or subagents.
+Use `pepeye` when delegation or a bounded multi-stage workflow would materially help.
 Use `ro-wo` before agreeing or disagreeing with a material premise.
 Use `oro-ologbon` for technical communication and prose cleanup.
 ```
@@ -76,13 +76,7 @@ User-level instruction files:
 
 For one repository, use its normal `AGENTS.md`, `CLAUDE.md`, or equivalent instruction surface instead.
 
-For Codex, you can ask QP to apply the supported block safely:
-
-```text
-Use `qp-setup` to configure my user-level QP instructions. Preview the exact diff first and preserve my existing instructions.
-```
-
-`qp-setup` handles inspection, backup, preview, and approved user/repository-scope changes. You can remove any line from the recommended block if you do not want that default behavior.
+Copy the block into the appropriate file, removing any line you do not want as a global default. For Codex-specific general instructions or Pepeye activation, `qp-setup` can inspect the existing configuration, preview the exact diff, back it up, and apply only approved changes.
 
 ## Update and uninstall
 
