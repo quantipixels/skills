@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Inventory a skill's context and resource footprint without judging its quality."""
+"""Inventory skill context/resource and portfolio routing footprint without judging quality."""
 from __future__ import annotations
 
 import argparse
@@ -16,7 +16,11 @@ SCHEMA = "qp.skill-doctor/v1"
 MARKDOWN_LINK = re.compile(r"\[[^\]]*\]\(([^)]+)\)")
 WORD = re.compile(r"\b[\w'-]+\b", re.UNICODE)
 REMOTE_SCHEMES = ("http://", "https://", "mailto:", "sandbox:", "data:")
-RESOURCE_DIRS = ("references", "scripts", "templates", "assets", "data", "agents")
+RESOURCE_DIRS = ("references", "scripts", "templates", "assets", "data", "agents", "workflows")
+ROUTING_STOPWORDS = {
+    "a", "an", "and", "as", "at", "be", "by", "for", "from", "in", "into", "is", "it", "of", "on", "or",
+    "the", "to", "use", "when", "with", "without", "one", "its", "their", "this", "that", "also", "only",
+}
 
 
 def parse_args(argv=None):
@@ -84,6 +88,14 @@ def related_skill_mentions(text: str, own: str, names: set[str]) -> list[str]:
     return found
 
 
+def routing_terms(description: str) -> set[str]:
+    return {
+        word.lower()
+        for word in WORD.findall(description)
+        if len(word) > 2 and word.lower() not in ROUTING_STOPWORDS
+    }
+
+
 def inspect_skill(repo: Path, skill_dir: Path, names: set[str]) -> dict:
     skill_file = skill_dir / "SKILL.md"
     if not skill_file.is_file():
@@ -108,7 +120,8 @@ def inspect_skill(repo: Path, skill_dir: Path, names: set[str]) -> dict:
                 entrypoint_refs.add(target)
 
     support_markdown = [p for p in markdown if p != skill_file]
-    unreferenced = [p for p in support_markdown if p.resolve(strict=False) not in {x.resolve(strict=False) for x in referenced}]
+    resolved_refs = {x.resolve(strict=False) for x in referenced}
+    unreferenced = [p for p in support_markdown if p.resolve(strict=False) not in resolved_refs]
     counts = Counter(resource_kind(p, skill_dir) for p in all_files if p != skill_file)
     scripts = [p.relative_to(skill_dir).as_posix() for p in all_files if p.parent.name == "scripts" and not p.name.startswith("test_")]
     tests = [p.relative_to(skill_dir).as_posix() for p in all_files if p.parent.name == "scripts" and p.name.startswith("test_")]
@@ -118,6 +131,7 @@ def inspect_skill(repo: Path, skill_dir: Path, names: set[str]) -> dict:
         "path": skill_dir.relative_to(repo).as_posix(),
         "maturity": (metadata.get("metadata") or {}).get("maturity") if isinstance(metadata.get("metadata"), dict) else None,
         "routing_pointer": stats(description),
+        "routing_terms": sorted(routing_terms(description)),
         "entrypoint": stats(body_without_frontmatter(text)),
         "supporting_markdown": {
             "files": len(support_markdown),
@@ -147,6 +161,31 @@ def selected_skill_dirs(repo: Path, supplied: list[str]) -> list[Path]:
     return out
 
 
+def portfolio_summary(skills: list[dict]) -> dict:
+    totals = {
+        key: sum(skill["routing_pointer"][key] for skill in skills)
+        for key in ("bytes", "characters", "words", "lines")
+    }
+    overlap = []
+    for index, left in enumerate(skills):
+        left_terms = set(left["routing_terms"])
+        for right in skills[index + 1 :]:
+            shared = sorted(left_terms & set(right["routing_terms"]))
+            if len(shared) < 2:
+                continue
+            overlap.append({
+                "skills": [left["name"], right["name"]],
+                "shared_terms": shared,
+                "shared_term_count": len(shared),
+            })
+    overlap.sort(key=lambda item: (-item["shared_term_count"], item["skills"]))
+    return {
+        "routing_pointer_total": totals,
+        "description_overlap_leads": overlap[:20],
+        "interpretation": "routing footprint and lexical overlap are structural leads only; they do not prove selection cost, collision, redundancy, or quality",
+    }
+
+
 def build(a) -> dict:
     repo = a.repo.expanduser().resolve()
     names = {p.name for p in skill_directories(repo) if (p / "SKILL.md").is_file()}
@@ -154,15 +193,26 @@ def build(a) -> dict:
     return {
         "schema": SCHEMA,
         "repo": str(repo),
-        "interpretation": "structural evidence only; counts and references are not quality, focus, or behavior verdicts",
+        "interpretation": "structural evidence only; counts and references are not quality, focus, cost, routing, redundancy, or behavior verdicts",
+        "portfolio": portfolio_summary(skills),
         "skills": skills,
     }
 
 
 def print_text(report: dict) -> None:
-    for i, skill in enumerate(report["skills"]):
-        if i:
-            print()
+    portfolio = report["portfolio"]
+    total = portfolio["routing_pointer_total"]
+    print(f"portfolio routing pointers: {total['words']} words / {total['characters']} chars across {len(report['skills'])} skills")
+    leads = portfolio["description_overlap_leads"]
+    if leads:
+        print("description overlap leads:")
+        for lead in leads:
+            print(f"  {lead['skills'][0]} <> {lead['skills'][1]}: {', '.join(lead['shared_terms'])}")
+    else:
+        print("description overlap leads: -")
+
+    for skill in report["skills"]:
+        print()
         print(skill["name"])
         print(f"  routing pointer: {skill['routing_pointer']['words']} words / {skill['routing_pointer']['characters']} chars")
         print(f"  entrypoint: {skill['entrypoint']['lines']} lines / {skill['entrypoint']['words']} words")
