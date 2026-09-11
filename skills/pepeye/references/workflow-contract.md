@@ -1,0 +1,58 @@
+# Workflow contract
+
+Use for authoring or adapting a Pepeye workflow lane. A workflow declares useful topology between independently owned QP results; it does not restate the methods inside those skills.
+
+## Keep a lane small
+
+A workflow should name:
+
+- **outcome** — the user-visible result the lane advances toward;
+- **entry** — when the lane is useful;
+- **stages** — semantic result owners, with conditions that make a stage necessary;
+- **dependencies** — only real ordering requirements;
+- **independence** — stages whose evidence must come from a separate context;
+- **recovery** — the nearest owner to revisit when later evidence invalidates earlier state; and
+- **completion** — the evidence that lets the lead stop.
+
+Prefer a readable Markdown lane over a new workflow DSL. Add deterministic parsing/runtime machinery only when repeated real use proves that agents cannot reliably follow the declarative form.
+
+## Stage rules
+
+Each stage names one primary QP skill. Supporting skills are optional and stay subordinate to that primary result. The workflow may decide *when* a stage is needed; the stage owner decides *how* to produce its result.
+
+Do not use the lane as a mandatory waterfall. Skip a stage when its result is already current and sufficient. Insert an omitted owner when a material unresolved result appears. Parallelize stages only when their evidence/writes are independent or safely isolated.
+
+A stage result returns to the workflow lead. The stage must not silently advance unrelated later stages unless its explicit assignment included that outcome.
+
+## State carried between stages
+
+Carry the smallest cross-stage capsule that can change progression:
+
+- accepted outcome and current non-goals;
+- consequential decisions and assumptions;
+- current plan/spec/architecture identities when they govern downstream work;
+- exact candidate/source identity;
+- unresolved blockers/branches;
+- authority and workspace boundaries; and
+- evidence/proof freshness.
+
+Prefer exact locators and summaries over replaying full upstream transcripts.
+
+## Failure and recovery
+
+Route invalidation to the nearest semantic owner:
+
+- missing/current external evidence → `iwadi`;
+- consequential choice reopened → `arojinle`;
+- delivery sequence/dependencies changed → `atona`;
+- technical structure invalidated → `architect`;
+- observable behavior/contract changed → `seda-spec`;
+- implementation defect or incomplete delivery → `alaga`;
+- review evidence stale because candidate/base changed → `atunwo`;
+- publication state wrong or missing → `seda-pr` / `wo-pr` as appropriate.
+
+Do not restart the whole workflow when only one downstream dependency is stale.
+
+## Workflow admission
+
+Create a named workflow only when the composition itself recurs or materially improves progression. A one-off sequence can remain an ad-hoc Pepeye workflow. Avoid workflow catalogues that merely enumerate every possible combination of skills.
