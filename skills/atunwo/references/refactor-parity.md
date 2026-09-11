@@ -1,16 +1,16 @@
-# Refactor parity audit
+# Refactor parity
 
-Read this reference only when `atunwo` selects `audit` scope for one planned, in-progress, or completed stateful refactor or rewrite. Use the candidate and authority boundary pinned by `SKILL.md`.
+Read this reference only when `atunwo` selects `parity` mode for one planned, in-progress, or completed stateful refactor or rewrite. Use the candidate and authority boundary pinned by `SKILL.md`.
 
 Treat a refactor as a behavioral parity exercise unless an authority explicitly accepts a behavior change. Compare complete processes, not matching names or shapes.
 
-Keep this audit and provider state read-only.
+Keep this review and provider state read-only.
 
 Read current specifications, domain language, accepted decisions, and relevant scenarios. Use `amose` as needed. Compare stated rules with baseline behavior rather than treating implementation as intent.
 
 Use `irinse` as needed. Check consequential tool findings against source and observable behavior.
 
-When independent baseline and candidate traces would materially improve the evidence join, the audit owner may request each bounded trace from a host-provided subagent. Give each trace the exact source identity, boundary, scenarios, and required provenance. The audit owner revalidates both identities, joins the ledger, resolves conflicts, and makes the parity recommendation.
+When independent baseline and candidate traces would materially improve the evidence join, the reviewer may request each bounded trace from a host-provided subagent. Give each trace the exact source identity, boundary, scenarios, and required provenance. The reviewer revalidates both identities, joins the ledger, resolves conflicts, and makes the parity recommendation.
 
 ## 1. Establish the contract and ledger
 
@@ -97,10 +97,10 @@ Include applicable positive, negative, boundary, replay, and failure cases. Asse
 
 Separate existing tests read, commands run, recommended tests, manual checks, and blockers. Compilation proves structural validity only. Keep proof attached to its exact revision, base, environment, and migration state.
 
-For planned work, the audit result contains the invariant ledger, required characterization tests, accepted changes, implementation guardrails, unresolved actions and owners, and a go or no-go recommendation.
+For planned work, the result contains the invariant ledger, required characterization tests, accepted changes, implementation guardrails, unresolved actions and owners, and a go or no-go recommendation.
 
-For completed work, the audit result contains a verdict, the old/current/required comparison, Lost and Unproved behavior first, retained improvements, and the smallest coherent correction and verification set.
+For completed work, the result contains a verdict, the old/current/required comparison, Lost and Unproved behavior first, retained improvements, and the smallest coherent correction and verification set.
 
-When an `atona` plan owns the wider work, its required audit result is the verified ledger, guardrails, and proof gaps. Do not create or update a parallel plan.
+When an `atona` plan owns the wider work, its required parity result is the verified ledger, guardrails, and proof gaps. Do not create or update a parallel plan.
 
 Recommend parity only when all core rows are Preserved, Improved, or accepted Intentional changes. Keep the recommendation conditional while material rows remain Ambiguous or Unproved. Recommend changes when required behavior is Lost. Map a parity recommendation to `RECOMMEND_ACCEPT`, lost required behavior to `RECOMMEND_CHANGES`, a required material choice to `DECISION_REQUIRED`, and a material Ambiguous or Unproved row to `INSUFFICIENT_EVIDENCE`.

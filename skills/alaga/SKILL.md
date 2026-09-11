@@ -1,49 +1,41 @@
 ---
 name: alaga
-description: Define a coding task's boundaries or deliver one supplied build job through implementation, proof, review, and handoff. Use scope-only for non-goals and expansion triggers without implementation; deliver authorized work with proof appropriate to the changed contract. Exclude pure explanation, bare review, monitoring, and provider publication except where they support delivery.
+description: Deliver one accepted coding change or fix through implementation, proportionate proof, independent review integration, and handoff. Use when the desired behavior and authority are sufficiently settled to change code; exclude planning, specification, bare review, monitoring, provider publication, and standalone scope documents from normal selection.
 ---
 
 # Alága
 
-Choose the requested result before acting. Use `scope-only` when the user wants just the coding boundaries, protected behavior, or expansion triggers; map the job below and return the guard without starting delivery. For authorized delivery, choose proof within the delivery workflow. Use test-first implementation when the user requests it or a material behavior-bearing seam with an independent oracle makes a failing test capable of controlling implementation.
+Deliver the accepted coding outcome. Own implementation and proof; use independent specialists for decisions or review that need separate judgment.
 
-A scope correction during already-authorized delivery updates its active boundaries and preserves that delivery authorization unless the user pauses or narrows it. Do not turn ordinary local choices inside the accepted scope into new approval gates.
+A scope correction during authorized delivery updates the active boundary without revoking delivery authority unless the user pauses or narrows it. Do not turn ordinary local choices inside the accepted scope into approval gates.
 
-Delegate substantial analysis, research, and expert work to subagents, returning concise findings and evidence links to keep the main context lean.
+Delegate substantial analysis, research, and expert work to subagents when it materially reduces context or enables independent work. Keep the accepted outcome and integration judgment in the main delivery context.
 
-## 1. Map the job
+## 1. Bound the job
 
 Pin only what can change delivery:
 
-- outcome and current/desired behavior;
-- scope and local non-goals/task exclusions;
-- expected change envelope and explicitly unchanged contracts;
+- desired/current behavior and accepted outcome;
+- scope, local non-goals, and explicitly unchanged contracts;
+- expected change envelope and expansion triggers;
 - acceptance and smallest sufficient proof;
 - governing specification/decision identities when present;
 - ordinary documentation required by the delivered contract; and
 - workspace and mutation authority.
 
-When project knowledge could change implementation or proof, reuse applicable evidence already supplied; otherwise search the existing knowledge and research destinations by affected concepts and components. Read plausible matches and check their authority and current applicability before applying a constraint or avoiding a past approach. Flag material conflicts; an empty search does not require documentation or knowledge maintenance.
+Use project behavior and accepted decisions to define boundaries, not arbitrary file, line, test, or dependency quotas. Expose changes to accepted interfaces, storage, compatibility, permissions, operational burden, or material risk/cost as expansion. New dependencies/infrastructure, public schema or wire changes, broad abstractions, parallel implementations, unrelated cleanup, new test infrastructure, or destructive effects need a current reason tied to the accepted outcome and the authority their effects require.
 
-Treat local non-goals as active negative implementation boundaries. Material growth outside the expected envelope is a signal to re-check understanding, causal ownership, or scope rather than preserve the first plan with workaround layers.
+When project knowledge could change implementation or proof, reuse applicable evidence already supplied; otherwise search existing project knowledge/research destinations by affected concepts/components, read plausible matches, and check authority/current applicability before applying a constraint or avoiding a past approach. Historical guidance is evidence, not automatic authority. Report material conflicts; an empty search does not require new documentation. Use `amose`, `architect`, `arojinle`, or `seda-spec` when their result is genuinely missing; do not replay settled work.
 
-Use project behavior and accepted decisions to define boundaries, not arbitrary file, line, test, or dependency quotas. Expose changes to accepted interfaces, storage, compatibility, permissions, operational burden, or material risk/cost as expansion; require a current reason for new dependencies, infrastructure, abstractions, unrelated cleanup, or test frameworks.
-
-Use `amose`, `architect`, and `arojinle` as needed. Make local implementation choices within the accepted scope and contracts; surface unresolved requirements rather than inventing them.
-
-When consequential stack-native behavior, ownership/lifecycle, compatibility, proportionality, or version-specific evidence is genuinely non-obvious, read [expert implementation counsel](references/expert-implementation-counsel.md). When the job materially changes a product interface, component system, design-token contract, responsive behavior, or rendered interaction, read [UI delivery](references/ui-delivery.md). For multi-candidate, blocked/handoff-prone, migration/security/recovery-sensitive, or externally destructive work, read [job report](references/job-report.md). Do not create parallel reporting when an active plan already owns that continuity.
+When consequential stack-native behavior, ownership/lifecycle, compatibility, proportionality, or version-specific behavior is non-obvious, read [expert implementation counsel](references/expert-implementation-counsel.md). For material product-interface work, read [UI delivery](references/ui-delivery.md). For multi-candidate, migration/security/recovery-sensitive, or handoff-prone delivery, read [job report](references/job-report.md).
 
 Repository/Git state never grants commit, history-rewrite, publication, provider-write, or destructive authority.
 
-For `scope-only`, return the desired result, protected behavior/areas, exclusions, sufficient evidence, and the event that requires reconsidering scope. Stop here: do not edit, implement, run delivery proof, commit, or publish from a guard-only request.
+## 2. Implement the minimum sufficient mechanism
 
-## 2. Deliver and prove
+Prepare the workspace without disturbing unrelated changes. Continue until the accepted outcome is proved, a material decision/authority gap blocks safe progress, or no safe independent work remains.
 
-Prepare the workspace without disturbing unrelated changes. Continue until the requested outcome is proved, a material decision/authority gap blocks safe progress, or no safe independent work remains.
-
-### Minimum sufficient mechanism
-
-Minimum means the least necessary mechanism that remains idiomatic and readable, not the fewest lines, helpers, or files. Understand the affected flow and real owners, then take the first sound option:
+Understand the affected flow and real owners before editing. Prefer the first sound option:
 
 1. eliminate unnecessary mechanism or causal state;
 2. reuse an existing project capability;
@@ -52,52 +44,52 @@ Minimum means the least necessary mechanism that remains idiomatic and readable,
 5. derive duplicated state or localize policy at its real owner; then
 6. add the minimum new mechanism still required.
 
-Do not add indirection for hypothetical variation. A new abstraction needs a current second consumer/variant or an independently real production boundary such as external protocol, trust, persistence, volatile platform integration, or owned lifecycle/policy. Do not create production architecture solely for test convenience.
+Minimum means the least necessary mechanism that stays idiomatic and readable, not the fewest lines/files. Do not add indirection for hypothetical variation. A new abstraction needs a current second consumer/variant or an independently real production boundary such as protocol, trust, persistence, volatile integration, or owned lifecycle/policy. Do not create production architecture solely for test convenience.
 
-When a mutation is authorized by mutable shared state—existence, uniqueness, balance/capacity, ownership, quota/count, expected version, or another predicate another actor can change—identify the invariant and its authoritative enforcement before writing the change. Do not let an unprotected read → decide → write sequence be the sole authority. Treat concurrency correctness as an invariant question, not a traffic threshold. Existing constraints, conditional mutation, version checks, serialized ownership, locking, or isolation count only when they cover the same invariant and all relevant writers; use expert implementation counsel when exact database/runtime semantics can change the mechanism.
+For a defect, correct the narrowest confirmed causal owner that covers the affected paths. Material growth outside the expected envelope is a reason to re-check the causal owner or scope rather than preserve the first implementation with workaround layers.
 
-For a defect, correct the narrowest confirmed causal owner that covers affected paths. Treat an unplanned dependency/service/infrastructure component, public API/schema/storage/wire/compatibility change, material new abstraction, unrelated subsystem cleanup, parallel implementation, new test infrastructure, or destructive effect as scope expansion. If the accepted outcome genuinely needs it, surface the reason and required authority rather than silently enlarging the job.
+### Shared-state mutations
 
-### Proof policy
+When a mutation is authorized by mutable shared state—existence, uniqueness, balance/capacity, ownership, quota/count, expected version, or another predicate another actor can change—identify the invariant and its authoritative enforcement before writing the change. A read → decide → write sequence must not be the sole authority when another actor can invalidate the read.
 
-Proof is required; a new test is not. Use the smallest evidence that can independently falsify the changed contract: existing affected tests, compiler/type guarantees, static analysis, builds/schema checks, focused runtime probes, integration checks, bug reproduction, browser/manual verification, or another stronger current proof surface.
+Treat concurrency correctness as an invariant question, not a traffic threshold. Existing constraints, conditional mutation, version checks, serialized ownership, locking, or isolation count only when they protect the same invariant across all relevant writers. Use expert implementation counsel when exact database/runtime semantics can change the mechanism.
 
-Apply [TDD](references/tdd.md) only when its admission gate is met. Glue, wiring, declarative configuration, trivial delegation, framework-native behavior, or similarly low-information changes do not earn a new test by ceremony. Wiring that binds identity, authority, or resource limits needs proof through the assembled path: show that the intended identity reaches the correct authority and that the configured limits govern the resulting operation. Constructor tests alone may miss incorrect combinations. Reuse sufficient existing integration or acceptance evidence before adding proof.
+## 3. Prove the changed contract
 
-Run focused proof while changing the relevant behavior, then job-level integration/acceptance proof. Use real-browser journey evidence only when literal user journeys changed and browser-dependent acceptance remains materially unproved by cheaper evidence.
+Proof is required; a new test is not. Use the smallest evidence that can independently falsify the changed behavior: existing affected tests, compiler/type guarantees, static analysis, builds/schema checks, focused runtime probes, integration checks, bug reproduction, browser/manual verification, or another stronger current proof surface.
 
-For a planned stateful refactor/rewrite that can change transitions, ordering, locking, retries, idempotency, ownership, or cross-entry behavior, require a current independent parity/contract result before relying on the rewrite plan.
+Apply [TDD](references/tdd.md) only when its admission gate is met. Glue, wiring, declarative configuration, trivial delegation, or framework-native behavior do not earn a test by ceremony. Wiring that binds identity, authority, or resource limits needs proof through the assembled path; constructor tests alone may miss incorrect combinations.
 
-## Exact candidate boundary
+Run focused proof while changing behavior, then job-level integration/acceptance proof. Use real-browser journey evidence only when literal user journeys changed and browser-dependent acceptance remains materially unproved by cheaper evidence. For a stateful refactor/rewrite that can change transitions, ordering, locking, retries, idempotency, ownership, or cross-entry behavior, require a current independent parity/contract result before relying on the rewrite plan.
 
-Before independent review, pin the exact candidate with the strongest native content identity available: commit, tree, snapshot, digest, or equivalent. For a PR/MR candidate, the current base is part of that identity; when the candidate is one stack layer, pin at least the head SHA plus the current base-ref SHA. A stable head with a changed base-ref SHA is a changed review candidate.
+Before independent review, include required ordinary documentation and pin the exact candidate with the strongest native content identity available: commit, tree, snapshot, digest, or equivalent. For a PR/MR candidate, the current base is part of that identity; when the candidate is one stack layer, pin at least the head SHA plus current base-ref SHA. A stable head with a changed base-ref SHA is a changed review candidate. If an ancestor changes the effective stacked base or conflict resolution changes the candidate content, refresh identity before relying on review evidence. Preserve proof that is independently unaffected by the base change; rerun only evidence whose falsification boundary moved. Ambient unrelated changes must not enter the candidate.
 
-Ambient unrelated changes must not enter the candidate. If the candidate/base changes, an ancestor changes the effective stacked base, or unresolved conflict state makes the content ambiguous, refresh the identity before relying on review evidence. Preserve proof that is independently unaffected by the base change; rerun only evidence whose falsification boundary moved. Leave ordinary Git/restack mechanics to native capability under the required mutation authority.
+Remove issues an independent reviewer should not need to discover: known scope drift, wrong causal owner, unnecessary files/abstractions/dependencies/state/compatibility paths, temporary scaffolding, low-value durable tests, and proof that cannot distinguish plausible wrong behavior.
 
-Before review, include required ordinary documentation. Do not promote task rationale, findings, or reversible implementation choices into durable project knowledge unless they independently qualify under the current durable-knowledge policy.
+## 4. Integrate independent review
 
-### Pre-review convergence
+Use `atunwo` for independent code review after implementation proof. Alága does not review its own candidate by relabelling the same reasoning as review.
 
-Remove issues you already know an independent reviewer should not need to discover: scope drift, wrong causal owner, unnecessary files/abstractions/dependencies/state/compatibility paths, temporary scaffolding, low-value durable tests, and proof that cannot distinguish plausible wrong behavior. This is a delivery self-check, not a retrospective or substitute for independent review.
+Treat each review finding as a hypothesis. Before correcting it:
 
-## 3. Review and converge
-
-Use `atunwo` for independent code review after implementation proof. Review each stable candidate at the smallest coherent boundary; use the relevant checks for non-code work.
-
-A review finding is a hypothesis, not automatic mutation authority. Before correcting it:
-
-- verify the failure/contract consequence;
-- confirm it is inside accepted scope and local non-goals;
+- verify the failure or contract consequence;
+- confirm it is inside accepted scope and non-goals;
 - prefer removing causal state/duplication over adding special-case machinery;
 - prefer an existing mechanism at the real owner; and
-- surface any genuine scope expansion instead of auto-building it.
+- surface genuine scope expansion instead of auto-building it.
 
-Apply corrections through the proof mechanism appropriate to the changed invariant, refresh the exact candidate, and rerun only evidence invalidated by the correction. Do not close with a blocking finding or material evidence gap.
+Apply justified corrections through the proof mechanism appropriate to the changed invariant, refresh candidate identity, and rerun only invalidated evidence. Do not close delivery with a blocking confirmed finding or material proof gap.
 
-Before closing, every touched file, new abstraction, dependency, compatibility path, and durable test should have a concise requested-contract or necessary-proof reason to exist. Passing tests and smaller line counts are evidence, not permission for unnecessary structure.
+Every touched file, new abstraction, dependency, compatibility path, and durable test should have a concise accepted-contract or necessary-proof reason to exist. Passing tests and smaller line counts are evidence, not permission for unnecessary structure. When a deliberate simplification has a known ceiling, keep the ceiling and observable revisit trigger at its natural owner rather than creating a parallel debt ledger.
 
-When a deliberate simplification has a known ceiling, record the ceiling and observable revisit trigger at its natural owner rather than creating a parallel debt ledger.
+## Compatibility: explicit `scope-only`
 
-## 4. Report
+For this minor release, an existing direct invocation that explicitly requests Alága `scope-only` remains supported. Return the desired result, protected behavior/areas, exclusions, sufficient evidence, and the event that requires reconsidering scope, then stop before editing, proof execution, commit, or publication.
 
-Return the job boundary, local exclusions, final change shape, delivered result, proof/review state, exact candidate identity, material scope decisions, blockers/residual limits, and next safe action. Publication remains a separate authority/outcome.
+Do not select this compatibility path for an ordinary request to plan, specify, or decide scope; route those unresolved outcomes to their natural owner. A future major version may retire the explicit compatibility mode after usage evidence supports doing so.
+
+## 5. Return the delivery result
+
+Return the accepted job boundary, final change shape, delivered behavior, proof and independent-review state, exact candidate identity, material scope decisions, blockers/residual limits, and next safe action.
+
+Publication remains a separate outcome handled by `seda-pr` when requested.
