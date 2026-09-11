@@ -27,7 +27,9 @@ When the question depends on subjective experience, require an attending human. 
 
 Choose the smallest medium and fidelity that can answer the question. Reuse existing project/runtime components, templates, fixtures, documents, process artifacts, or host-native preview capability when that improves truth without turning the prototype into accepted delivery work.
 
-Use a disposable or isolated location for file-based prototypes. Do not modify the accepted/production candidate unless separately authorized for a bounded prototype location. Avoid real customer data, production credentials, irreversible effects, external messages, or payments. Label simulated behavior clearly, but never simulate the dimension being decided.
+**Storage:** temp by default; `.qp/prototype/` when local persistence is needed.
+
+Do not modify the accepted/production candidate unless separately authorized for a bounded prototype location. Avoid real customer data, production credentials, irreversible effects, external messages, or payments. Label simulated behavior clearly, but never simulate the dimension being decided.
 
 Use an existing preview/server capability when one is needed; do not add a bundled server merely for this workflow.
 

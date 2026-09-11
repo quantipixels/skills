@@ -9,7 +9,7 @@ Turn supplied or owner-established meaning into a purpose-shaped browser read mo
 
 ## Projection contract
 
-Use the requested output path or the host's artifact surface. For a selected shared workspace, use `akosile`.
+**Output:** requested/host destination; otherwise `.qp/artifacts/<stable-subject>/index.html`. Use temp for disposable intermediates.
 
 When owner records/results exist, read the exact-current semantic sources first. Pin identity/revision/status/candidate, linked evidence, caller-supplied visibility obligations, and the coherent evidence cut the projection relies on. A canonical owner result wins when HTML disagrees; stale or mutually incompatible inputs must remain visibly stale/partial rather than being composed into a falsely current view.
 
@@ -83,7 +83,7 @@ For caller-supplied human-visibility obligations, maintain an internal coverage 
 
 ## Deliver
 
-Return the verified artifact locator. For a selected shared workspace, return the canonical path from `akosile` and any verified worktree alias.
+Return the verified artifact locator.
 
 Opening is host UX, not artifact semantics. Open only when the user asks or render proof requires it; reuse an existing preview/page/session when available. After rewrites, refresh/navigate that surface rather than invoking an opener repeatedly. If the only available opener would create another tab/window and opening is not required for proof, return the locator instead.
 

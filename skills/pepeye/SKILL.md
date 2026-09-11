@@ -43,7 +43,7 @@ Start workers from fresh context by default. Pass only what the assignment needs
 - one outcome, scope, deliverable, and stop condition;
 - relevant context plus exact candidate/source identities;
 - the specialist QP skill or method that owns the work when material;
-- permitted tools/actions and exclusive write ownership where applicable;
+- permitted tools/actions and the assigned workspace when applicable;
 - acceptance checks and evidence to return;
 - any explicit user time/resource budget that constrains the assignment; and
 - a checkpoint contract: the first meaningful checkpoint trigger, later mandatory checkpoint triggers, and what evidence must be reported.
@@ -104,6 +104,8 @@ Report delegation to the user only when it is material: role/responsibility, imp
 ## Integrate, don't vote
 
 Reconcile every required worker result against the accepted outcome and the owning specialist's evidence contract. Inspect decisive artifacts and resolve conflicts; worker completion, majority agreement, or a stronger model name is not acceptance evidence.
+
+Treat a worker worktree and its `.qp` as one isolated candidate. When that candidate is accepted, hand its workspace and relevant local state to the accepting workflow for reconciliation; Pepeye does not define the record semantics or mirror the directory.
 
 Keep authorship separate from consequential independent review. Verify and integrate useful partial results while other workers continue, and stop obsolete exploration once sufficient evidence exists.
 

@@ -22,6 +22,8 @@ If the request is “which tool should I use?” or the useful capability is sti
 
 Do not turn a repository-scoped request into a global change. Installation, persistent services, downloads, credential changes, trust changes, provider writes, and destructive removal require the authority appropriate to their actual effects.
 
+Keep rollback material with the setup target it belongs to. For host configuration, backups stay inside that host's own user- or repository-scoped data/config directory rather than generic QP state elsewhere.
+
 ## Finish
 
 Verify the resulting state from the real target environment rather than trusting an installer, edit, or command exit alone. Return the selected target, scope, setup action, resulting readiness/configuration state, changed files or system surfaces, verification, rollback/recovery path, and material limitations.

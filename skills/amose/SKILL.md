@@ -34,7 +34,7 @@ Use `arojinle` when the unresolved issue is a consequential choice rather than c
 
 When a domain-language source already exists, read [domain language](references/context.md) and update that source when the resolved model changed and write authority exists. Do not create a competing project-memory system or generic documentation store.
 
-If no durable domain-language destination is established, return the model delta directly and name the persistence gap only when the result needs to outlive the current work. Let the project or caller choose the destination rather than inventing `CONTEXT.md`, `.learnings`, `.nongoals`, an ADR, or another repository convention.
+If no durable domain-language destination is established, return the model delta directly and name the persistence gap only when the result needs to outlive the current work. Let the project or caller choose an intentional project destination rather than inventing `CONTEXT.md`, `.learnings`, `.nongoals`, an ADR, `.qp` record, or another repository convention.
 
 A domain-model change may cause another workflow to update specifications, architecture, documentation, tests, policy, or durable project records. Those artifacts remain owned by their natural workflow. Amọ̀ṣẹ́ supplies the clarified meaning; it does not become their default custodian.
 
@@ -46,7 +46,7 @@ Existing direct Amọ̀ṣẹ́ requests to maintain one of these records remain
 - explicit `.nongoals` maintenance → read [non-goals](references/nongoals.md); or
 - explicit ADR qualification/lifecycle maintenance → read [ADRs](references/adrs.md).
 
-Use only the explicitly requested record type and its existing/user-selected destination. For a selected destination under `.qp`, use `akosile` for the storage mechanics rather than inventing another write path. Do not turn an ordinary domain clarification, implementation discovery, plan exclusion, or architecture choice into one of these records merely because this compatibility path exists. A future major version may retire or relocate this branch after a natural owner is proven.
+Explicit legacy record maintenance uses the requested record's existing or selected project destination.
 
 ## Return
 

@@ -25,7 +25,7 @@ Choose one classification:
 
 Select `VERIFY` for the smallest distinguishing investigation, `REQUEST_INFORMATION` for decisive missing facts, `NO_BUG_ON_CURRENT_EVIDENCE` only with positive disproof and a reopen condition, or `HANDOFF_CONFIRMED` with observed/desired behavior, contracts, acceptance, exclusions, unknowns, and provenance.
 
-Use `root-cause` and `alaga` for requested follow-on work. Keep a durable triage record only when needed; use `akosile` for a selected shared workspace.
+Use `root-cause` and `alaga` for requested follow-on work. Triage record: existing project destination; otherwise `.qp/se-triage/`.
 
 ## Optional publication
 
