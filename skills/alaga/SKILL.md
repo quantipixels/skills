@@ -1,15 +1,15 @@
 ---
 name: alaga
-description: Deliver one accepted coding change or fix through implementation, proportionate proof, and handoff. Use when the desired behavior and authority are sufficiently settled to change code; exclude planning, specification, bare review, monitoring, provider publication, and standalone scope documents from normal selection.
+description: Deliver one accepted coding change or fix through implementation and proportionate proof. Use when the desired behavior and authority are sufficiently settled to change code; exclude planning, specification, bare review, monitoring, provider publication, and standalone scope documents from normal selection.
 ---
 
 # Alága
 
-Deliver the accepted coding outcome. Own implementation and proof, then return the exact delivered result to the caller or workflow lead. Independent review is a separate result; use it when the user, governing workflow/policy, or material residual uncertainty requires separate judgment.
+Deliver the accepted coding outcome. Own implementation and proof; use independent specialists when their judgment materially improves the result.
 
 A scope correction during authorized delivery updates the active boundary without revoking delivery authority unless the user pauses or narrows it. Do not turn ordinary local choices inside the accepted scope into approval gates.
 
-When Alága runs as one stage inside an outer workflow, complete the assigned delivery result and return control. Do not silently advance unrelated later stages merely because they are common in a delivery lifecycle.
+Delegate bounded analysis, research, implementation, or verification to subagents when it materially helps. Keep the accepted outcome and integration judgment in the current delivery context.
 
 ## 1. Bound the job
 
@@ -62,17 +62,15 @@ Apply [TDD](references/tdd.md) only when its admission gate is met. Glue, wiring
 
 Run focused proof while changing behavior, then job-level integration/acceptance proof. Use real-browser journey evidence only when literal user journeys changed and browser-dependent acceptance remains materially unproved by cheaper evidence. For a stateful refactor/rewrite that can change transitions, ordering, locking, retries, idempotency, ownership, or cross-entry behavior, require a current independent parity/contract result before relying on the rewrite plan.
 
-When independent review will follow, include required ordinary documentation and pin the exact candidate with the strongest native content identity available: commit, tree, snapshot, digest, or equivalent. For a PR/MR candidate, the current base is part of that identity; when the candidate is one stack layer, pin at least the head SHA plus current base-ref SHA. A stable head with a changed base-ref SHA is a changed review candidate. If an ancestor changes the effective stacked base or conflict resolution changes the candidate content, refresh identity before relying on review evidence. Preserve proof that is independently unaffected by the base change; rerun only evidence whose falsification boundary moved. Ambient unrelated changes must not enter the candidate.
+Before independent review, include required ordinary documentation and pin the exact candidate with the strongest native content identity available: commit, tree, snapshot, digest, or equivalent. For a PR/MR candidate, the current base is part of that identity; when the candidate is one stack layer, pin at least the head SHA plus current base-ref SHA. A stable head with a changed base-ref SHA is a changed review candidate. If an ancestor changes the effective stacked base or conflict resolution changes the candidate content, refresh identity before relying on review evidence. Preserve proof that is independently unaffected by the base change; rerun only evidence whose falsification boundary moved. Ambient unrelated changes must not enter the candidate.
 
-Remove issues a downstream reviewer or workflow should not need to discover: known scope drift, wrong causal owner, unnecessary files/abstractions/dependencies/state/compatibility paths, temporary scaffolding, low-value durable tests, and proof that cannot distinguish plausible wrong behavior.
+Remove issues an independent reviewer should not need to discover: known scope drift, wrong causal owner, unnecessary files/abstractions/dependencies/state/compatibility paths, temporary scaffolding, low-value durable tests, and proof that cannot distinguish plausible wrong behavior.
 
-## 4. Handle independent review when it is part of the job
+## 4. Integrate independent review when useful
 
-Use `atunwo` when the assignment, user, governing workflow/policy, or material residual uncertainty requires independent code judgment. Alága does not review its own candidate by relabelling the same reasoning as review.
+Use `atunwo` when independent code judgment is explicitly required or materially valuable for the candidate's consequence, uncertainty, or residual risk. Alága does not review its own candidate by relabelling the same reasoning as review.
 
-If review is outside the current assignment, return the candidate and proof to the caller/workflow lead instead of invoking it automatically.
-
-When a current review finding is returned to Alága, treat it as a hypothesis. Before correcting it:
+Treat each review finding as a hypothesis. Before correcting it:
 
 - verify the failure or contract consequence;
 - confirm it is inside accepted scope and non-goals;
@@ -92,6 +90,6 @@ Do not select this compatibility path for an ordinary request to plan, specify, 
 
 ## 5. Return the delivery result
 
-Return the accepted job boundary, final change shape, delivered behavior, proof state, exact candidate identity, independent-review state (`not requested`, `required/pending`, or current result when supplied), material scope decisions, blockers/residual limits, and next safe action.
+Return the accepted job boundary, final change shape, delivered behavior, proof and independent-review state when applicable, exact candidate identity, material scope decisions, blockers/residual limits, and next safe action.
 
 Publication remains a separate outcome handled by `seda-pr` when requested.

@@ -1,6 +1,6 @@
 # Workflow contract
 
-Use for authoring or adapting a Pepeye workflow lane. A workflow declares useful topology between independently owned QP results; it does not restate the methods inside those skills.
+Use for authoring or adapting a Pepeye workflow lane. A workflow declares useful topology between independently owned QP results; it does not restate or rewrite the methods inside those skills.
 
 ## Keep a lane small
 
@@ -17,13 +17,17 @@ A workflow should name:
 
 Prefer a readable Markdown lane over a new workflow DSL. Add deterministic parsing/runtime machinery only when repeated real use proves that agents cannot reliably follow the declarative form.
 
-## Stage rules
+## Dispatch stages through assignments
 
-Each stage names one primary QP skill. Supporting skills are optional and stay subordinate to that primary result. The workflow may decide *when* a stage is needed; the stage owner decides *how* to produce its result.
+Each stage names one primary QP skill. Supporting skills are optional and stay subordinate to that primary result. The workflow decides *what bounded result is needed now*; the selected skill decides *how to produce that result*.
+
+Put workflow-specific constraints in the dispatched assignment, not in the skill definition. The assignment may state the bounded outcome, current evidence/candidate, authority/workspace, required independence, evidence to return, and stop condition. Do not add instructions such as “when running inside Pepeye,” “return to the workflow,” or “do not advance to the next stage” to `alaga`, `atona`, `architect`, `atunwo`, or another specialist merely so one workflow can compose it.
+
+A specialist may delegate to subagents when useful under its own method. The active provider/host harness owns worker instantiation, nesting/capacity, model/effort mapping, and equivalent execution mechanics. The workflow should constrain authority, independence, candidate identity, and result boundaries when those matter; it should not reproduce provider harness mechanics inside specialist instructions.
 
 Do not use the lane as a mandatory waterfall. Skip a stage when its result is already current and sufficient. Insert an omitted owner when a material unresolved result appears. Parallelize stages only when their evidence/writes are independent or safely isolated.
 
-A stage result returns to the workflow lead. The stage must not silently advance unrelated later stages unless its explicit assignment included that outcome.
+The workflow lead receives the dispatched assignment's result and decides what semantic result is needed next. That return/continuation behavior is part of the orchestration layer, not a responsibility the specialist skill must encode.
 
 ## State carried between stages
 

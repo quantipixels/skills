@@ -7,6 +7,8 @@ description: Shape and maintain a useful initiative plan from the current goal, 
 
 Keep one current plan that makes the desired outcome, remaining choices, dependencies, and next action clear.
 
+Delegate bounded analysis, research, or specialist work to subagents when it materially helps. Keep the plan and planning judgment in the current context.
+
 ## Shape the plan
 
 Start from supplied decisions and current evidence. Do not replay discovery or ask the user for facts you can establish. Distinguish confirmed requirements from inference, and keep the scope and non-goals explicit.
@@ -35,8 +37,6 @@ Use the delivery owner's actual evidence. A task count, worker completion, provi
 
 When the governing workflow requires named readiness states, coordinated multi-candidate delivery, or a durable lifecycle record, use [managed initiatives](references/managed-initiative.md). That branch retains the formal planning, contract, delivery, and closure gates; an ordinary plan does not acquire them by being large or involving several skills.
 
-When Atọ́nà runs as a stage inside an outer workflow, return the current plan/result to that workflow owner. Planning does not silently advance implementation, review, publication, or retrospective stages.
-
 ## Deliver
 
 Persistence: existing project plan; otherwise `.qp/atona/`.
@@ -47,4 +47,4 @@ Before closing work performed in a linked worktree, reconcile the relevant `.qp`
 
 Keep ordinary rationale in the plan and normal delivery history. Use [durable reconciliation](references/durable-reconciliation.md) only for a real governing-knowledge obligation. Required stale sources or missing authority remain blockers, not reasons to manufacture a reconciliation ledger.
 
-Return the current plan, workspace when relevant, any blocking choice or evidence gap, and the first useful action. Report completion only when the accepted planning outcome and its required proof are satisfied; keep planning, implementation, integration, release, and workflow retrospective state distinct.
+Return the current plan, workspace when relevant, any blocking choice or evidence gap, and the first useful action. Report completion only when the accepted planning outcome and its required proof are satisfied; keep planning, implementation, integration, and release state distinct.
