@@ -7,7 +7,7 @@ description: Shape and maintain a useful initiative plan from the current goal, 
 
 Keep one current plan that makes the desired outcome, remaining choices, dependencies, and next action clear.
 
-Delegate bounded analysis, research, or specialist work to subagents when it materially helps. Keep the plan and planning judgment in the current context.
+Delegate substantial analysis, research, and expert work to subagents when it materially helps.
 
 ## Shape the plan
 

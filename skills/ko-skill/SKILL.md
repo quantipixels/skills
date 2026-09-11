@@ -7,7 +7,7 @@ description: Create, improve, or validate an agent skill that reliably produces 
 
 Deliver a useful skill with clear scope, appropriate depth, and enough verification to trust the change. Authoring requires permission to edit; validation and audits remain read-only. Installation, activation, publication, and provider mutations need their own authority.
 
-Delegate bounded analysis, research, or specialist work when it materially helps. Keep this skill responsible for its owned result and leave worker/model setup to the active host or provider harness.
+Delegate substantial analysis, research, and expert work to subagents when it materially helps.
 
 ## Define the job
 

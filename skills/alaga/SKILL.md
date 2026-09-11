@@ -5,11 +5,11 @@ description: Deliver one accepted coding change or fix through implementation an
 
 # Alága
 
-Deliver the accepted coding outcome. Own implementation and proof; use independent specialists when their judgment materially improves the result.
+Deliver the accepted coding outcome. Own implementation and proof.
 
 A scope correction during authorized delivery updates the active boundary without revoking delivery authority unless the user pauses or narrows it. Do not turn ordinary local choices inside the accepted scope into approval gates.
 
-Delegate bounded analysis, research, implementation, or verification to subagents when it materially helps. Keep the accepted outcome and integration judgment in the current delivery context.
+Delegate substantial analysis, research, and expert work to subagents when it materially helps.
 
 ## 1. Bound the job
 

@@ -7,7 +7,7 @@ description: Independently judge a fixed code candidate, bounded codebase snapsh
 
 Independently judge code from a fixed evidence boundary. Keep source and Git state read-only. Provider state stays read-only unless the user explicitly authorizes a specific review publication action; parity mode never publishes.
 
-Delegate substantial analysis or specialist investigation when it materially improves independent judgment. Do not delegate away the final review result.
+Delegate substantial analysis, research, and expert work to subagents when it materially helps. Do not delegate away the final review result.
 
 ## Choose one review mode
 
