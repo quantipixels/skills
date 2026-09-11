@@ -1,6 +1,6 @@
 # Codex host configuration
 
-Use for optional QP instructions and Codex settings at user or repository scope. This branch configures Codex; it does not install worker definitions or delegation runtime. `pepeye` owns delegation behavior and remains usable without host setup.
+Use for optional QP instructions and Codex settings at user or repository scope. This branch configures Codex; it does not install worker definitions or delegation runtime. `pepeye` owns delegation/workflow behavior and remains usable without host setup.
 
 ## Inspect the selected scope
 
@@ -17,7 +17,7 @@ Check existing `AGENTS.override.md` files that may supersede the selected instru
 
 Read the selected files and relevant existing preferences. Offer the [general instructions](../assets/instructions.md), the optional Pepeye binding below, and the choices in [host options](host-options.md). Let the user select each independently. Do not copy personal biography, language preferences, paths, credentials, or unrelated settings from the configuring machine.
 
-The optional Pepeye binding is: “Use `pepeye` when the user requests delegation or supervised workers materially help the task. Use specialist QP skills directly for their methods.” Confirm the skill is installed and discoverable before adding this binding. Setup does not install missing skills without authorization.
+The optional Pepeye binding is: “Use `pepeye` when the user requests delegation or a bounded multi-stage outcome materially benefits from several QP result owners or native subagents. Use specialist QP skills directly for their methods.” Confirm the skill is installed and discoverable before adding this binding. Setup does not install missing skills without authorization.
 
 ## Preview and apply
 
