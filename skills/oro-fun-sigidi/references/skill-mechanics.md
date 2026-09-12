@@ -42,23 +42,25 @@ Use the host/package's current invocation controls rather than copying volatile 
 
 A compatibility alias should not compete with its replacement. Narrow its description to explicit legacy-name use and keep the method at one owner.
 
-## Do not confuse a skill with an agent profile
+## Do not confuse a skill with an agent definition
 
-A skill owns a reusable semantic result/method. A provider agent profile owns a reusable **work posture** or execution default. A workflow owns progression between results. An assignment supplies the task-specific outcome, authority, candidate, and evidence boundary.
+A skill owns a reusable semantic result/method. A work posture describes how one bounded delegated assignment should be approached. A provider-native **agent definition** is an optional reusable host artifact that may supply that posture or another stable runtime delta. A workflow owns progression between results. An assignment supplies the task-specific outcome, authority, candidate, independence, evidence, and completion boundary.
 
 Good:
 
-- `reviewer` is a fresh read-only judgment posture; `atunwo` remains the semantic code-review method when that method is useful.
-- `writer` can edit a README, architecture document, or handoff without becoming a documentation skill.
-- one `implementer` profile can execute many different bounded changes rather than encoding one skill per worker type.
+- **Olùyẹ̀wò** is an independent-judgment work posture; `atunwo` remains the semantic code-review method when that method is useful.
+- **Akọ̀wé** can edit a README, architecture document, prompt, or handoff without becoming a documentation/writing skill.
+- one reusable **Olùṣe** definition can execute many bounded changes when such a definition actually adds value beyond native capability.
+- use a host's adequate native explorer for **Àṣàwárí** rather than adding a QP definition merely for symmetry.
 
 Bad:
 
-- create an `alaga-agent` profile that duplicates Alága's method;
-- hardcode `atunwo` into every reviewer profile;
+- create an `alaga-agent` definition that duplicates Alága's method;
+- hardcode `atunwo` into every independent reviewer definition;
+- create seven agent-definition files merely because Pepeye has seven work postures;
 - create a new skill merely because a provider benefits from a named worker posture.
 
-Before creating another public skill, ask whether the missing abstraction is actually a host profile, assignment variant, workflow branch, or runtime setting.
+Before creating another public skill, ask whether the missing abstraction is actually a work posture, agent definition, assignment variant, workflow branch, or runtime setting.
 
 ## Compose with skills by name
 
