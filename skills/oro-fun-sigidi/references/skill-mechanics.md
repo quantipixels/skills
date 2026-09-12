@@ -25,6 +25,24 @@ Use the host/package's current invocation controls rather than copying volatile 
 
 A compatibility alias should not compete with its replacement. Narrow its description to legacy/explicit-name use and keep the real method at one owner.
 
+## Compose with skills by name
+
+When another stable public skill owns the needed capability, reference that skill directly. Add prose only for a mode, variant, condition, or constraint that materially changes how it should be applied. Use generic owner language only when the correct skill genuinely depends on the finding or runtime situation.
+
+Good:
+
+- `qp-setup` for installation, configuration, authentication, integration, or readiness mutation.
+- `atunwo` in `parity` mode when the required judgment is implementation parity.
+- Send each confirmed blocker to its nearest semantic owner when the blocker could belong to different skills.
+
+Bad:
+
+- “the setup owner” when `qp-setup` is already the known owner.
+- “the review owner” when the intended skill is already `atunwo`.
+- Repeating another skill's method instead of naming the skill and the one useful variant it must apply.
+
+Do not make the next agent rediscover a capability identity that the instruction already knows.
+
 ## Description is a pointer
 
 The description decides whether the skill becomes reachable. It should state the owned result and distinct trigger branches, plus the nearest meaningful exclusions. Do not summarize the full procedure.
