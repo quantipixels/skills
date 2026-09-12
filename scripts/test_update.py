@@ -18,9 +18,9 @@ class UpdateTests(unittest.TestCase):
             (root / "owner.json").write_text(
                 json.dumps({"format": 1, "source": MOD.SOURCE}), encoding="utf-8"
             )
-            generation = root / "generations" / ("a" * 32)
-            generation.mkdir(parents=True)
-            (generation / "installation.json").write_text(
+            current = root / "current"
+            current.mkdir()
+            (current / "installation.json").write_text(
                 json.dumps(
                     {
                         "format": 1,
@@ -31,7 +31,6 @@ class UpdateTests(unittest.TestCase):
                 ),
                 encoding="utf-8",
             )
-            (root / "current").symlink_to(Path("generations") / ("a" * 32))
             found = MOD.direct_installation(root)
             self.assertEqual(found["manager"], "direct")
             self.assertEqual(found["skills"], ["alaga", "pepeye"])
