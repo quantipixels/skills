@@ -23,7 +23,7 @@ Load only the selected reference:
 
 For another named tool, use current official documentation and retain only recurring non-obvious usage guidance when it earns a place in Irinṣẹ.
 
-If the selected tool is missing or needs installation, configuration, authentication, integration, upgrade, removal, or other readiness mutation, use `qp-setup`. Irinṣẹ may state the required readiness state; it does not perform setup or maintain installation procedure.
+If the selected tool is missing or needs installation, configuration, authentication, integration, upgrade, removal, or another readiness mutation, hand that mutation to the setup skill. Irinṣẹ may state the required readiness state; it does not perform setup or maintain installation procedure.
 
 ## Use the selected tool
 
@@ -35,6 +35,6 @@ A tool can expose architecture, security, quality, impact, flow, or complexity s
 
 ## Return the evidence
 
-Return the bounded need/candidate, selected tool and why it adds value, tool/version or interface evidence when material, observations with provenance, configured rule/threshold/severity when relevant, coverage limits/errors, corroboration, freshness, and any readiness gap that belongs to `qp-setup`.
+Return the bounded need/candidate, selected tool and why it adds value, tool/version or interface evidence when material, observations with provenance, configured rule/threshold/severity when relevant, coverage limits/errors, corroboration, freshness, and any readiness gap that belongs to setup.
 
 If no companion tool materially improves the task, say so and continue with the ordinary project/host capability rather than forcing tool use.

@@ -1,19 +1,27 @@
 # QP Skills
 
-Focused expertise and methods for reasoning, engineering, design, and delivery. Use skills directly or combine them as needed. QP has no mandatory router or universal task lifecycle.
+Portable agent skills for reasoning, engineering, design, and delivery. Each skill owns a focused result. Use that skill directly when the owner is clear; use `alarina` when it is not, and `pepeye` when several results need coordinating into one outcome.
 
-Each skill lives in [`skills/<name>/SKILL.md`](skills) and loads its own supporting resources.
+Browse the public docs at [quantipixels.com/skills](https://quantipixels.com/skills).
 
 ## Install
 
-### Claude Code
+Global install:
+
+```bash
+npx skills add quantipixels/skills --global
+```
+
+Install one skill with `--skill <name>`.
+
+### Claude Code plugin
 
 ```bash
 claude plugin marketplace add quantipixels/skills
 claude plugin install qp-skills@qp-skills
 ```
 
-### Codex or skill-only installation
+### Direct snapshot install
 
 For macOS/Linux with Git and Python 3.10+:
 
@@ -24,30 +32,64 @@ bash scripts/install.sh --codex --dry-run
 bash scripts/install.sh --codex
 ```
 
-Use `--claude` instead, or both flags, for the direct skill-only path. Run `bash scripts/install.sh --help` for supported options. Do not install QP through multiple managers at once.
+Use `--claude` instead, or both flags, for the direct skill-only path. See [compatibility](docs/compatibility.md) for currently proved host paths.
 
-Rerun the installer to update. Remove a direct installation with:
+## Start
+
+If you know the skill you need, use it directly. Otherwise:
+
+```text
+Use `alarina` to choose the right skill for this request:
+
+[describe the outcome you need]
+```
+
+A few common entrypoints:
+
+| Skill | Use when |
+| --- | --- |
+| `pepeye` | Delegation or a bounded multi-stage workflow needs coordination |
+| `arojinle` | A consequential choice or the user's real desired outcome needs to be resolved |
+| `atona` | Material work needs one current plan and route to an outcome |
+| `alaga` | An accepted coding change or fix needs implementation and proportionate proof |
+| `atunwo` | A fixed code candidate or codebase snapshot needs independent judgment |
+| `iwadi` | A question needs substantial current research or exact-source grounding |
+| `ko-skill` | An agent skill needs creation, improvement, validation, or bounded portfolio review |
+
+Use `alarina` for the complete installed inventory.
+
+## Recommended global instructions
+
+The skills work without extra global instructions. Add this block only when you want these defaults across projects:
+
+```text
+Use relevant installed skills when they materially improve the result. Use `alarina` when the next owner is unclear; otherwise use the owning skill directly.
+Use `pepeye` when delegation or a bounded multi-stage workflow would materially help.
+Use `ro-wo` before agreeing or disagreeing with a material premise.
+Use `oro-ologbon` for technical communication and prose cleanup.
+```
+
+User-level instruction files:
+
+- **Codex:** `$CODEX_HOME/AGENTS.md` (defaults to `~/.codex/AGENTS.md`)
+- **Claude Code:** `~/.claude/CLAUDE.md`
+
+For one repository, use its normal `AGENTS.md`, `CLAUDE.md`, or equivalent instruction surface instead.
+
+Copy the block into the appropriate file, removing any line you do not want as a global default. For supported hosts, `qp-setup` can inspect the existing instruction surface, back it up, and install, update, or remove the shipped block while preserving unrelated instructions.
+
+## Update and uninstall
+
+Rerun the Skills CLI or your chosen installer to update.
+
+For a direct snapshot installation:
 
 ```bash
 bash scripts/uninstall.sh
 ```
 
-The repository also includes a native Codex plugin manifest. See [compatibility](docs/compatibility.md) for currently proved host paths.
-
-## Use
-
-Common entrypoints are `atona` for planning, `alaga` for code delivery, `atunwo` for independent code review, `arojinle` for consequential choices, `amose` for domain modelling, and `html-artifact` for browser projections. Use [`alarina`](skills/alarina/SKILL.md) for the installed QP inventory or help choosing the next owner.
-
-Use [`pepeye`](skills/pepeye/SKILL.md) for optional native-subagent coordination. It composes existing specialist skills without installing a main-agent identity, worker files, or host settings. Install it with `npx skills add quantipixels/skills --skill pepeye -g`, or use the package installation above. No separate Pepeye plugin or setup is required.
-
-Use [`irinse`](skills/irinse/SKILL.md) to discover, select, and use high-leverage companion engineering tools whose useful interfaces or evidence semantics are easy to miss. Irinṣẹ is a small tool router and usage-knowledge home; it does not own installation or configuration.
-
-Use [`qp-setup`](skills/qp-setup/SKILL.md) when a selected engineering/agent tool must be installed, configured, updated, verified, or removed, or for optional QP/Codex host configuration. Its Codex branch supports general instructions, a Pepeye binding, main-session defaults, and Context Notes at user or repository scope with preview, permission, and backups. Install the skill with `npx skills add quantipixels/skills --skill qp-setup -g`; omit `-g` for a repository skill installation. Choose configuration scope separately when running setup.
-
-Local QP working state lives under the current working tree's ignored `.qp/<owner-or-category>/`. A linked worktree and its `.qp` form one candidate; accepted work reconciles only relevant local state into the accepting workspace before cleanup. Generated files never fall back to the project root merely because no explicit destination was supplied.
-
-For explanation use `salaye`; for technical authoring or prose cleanup/pruning use `oro-ologbon`. Use the specialist skill that owns the requested result rather than running a default chain.
+Do not install the package through multiple managers at once.
 
 ## Project
 
-[Compatibility](docs/compatibility.md) records what the package currently proves. Use [`AGENTS.md`](AGENTS.md) and `ko-skill` for contribution and skill-authoring guidance. Change evidence belongs in PRs and CI rather than new repository reports.
+[Compatibility](docs/compatibility.md) records what the package currently proves. Use [`AGENTS.md`](AGENTS.md) and `ko-skill` for contribution and skill-authoring guidance. Change rationale and proof belong in PRs and CI.

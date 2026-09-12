@@ -1,6 +1,6 @@
 # Asset organization
 
-Use the project's existing asset layout, naming, storage, and approval convention. Do not impose a QP directory tree, manifest, filename formula, tag taxonomy, date scheme, file-size threshold, or archive policy.
+Use the project's existing asset layout, naming, storage, and approval convention. Do not impose a package-specific directory tree, manifest, filename formula, tag taxonomy, date scheme, file-size threshold, or archive policy.
 
 ## Inspect before organizing
 

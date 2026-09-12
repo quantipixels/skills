@@ -1,6 +1,6 @@
 # Brand asset approval
 
-Use for a brand-owned asset that is actually being considered for approval. Apply the current brand, project, and target-surface requirements; do not impose generic QP filename, size, dimension, color-ratio, or platform defaults.
+Use for a brand-owned asset that is actually being considered for approval. Apply the current brand, project, and target-surface requirements; do not impose generic filename, size, dimension, color-ratio, or platform defaults.
 
 Check only applicable areas:
 

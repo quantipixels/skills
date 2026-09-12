@@ -23,7 +23,7 @@ It must not:
 - emit raw prompt, response, source-code, tool-input, tool-output, credential, or pasted-content text in the index;
 - infer that repeated tool calls are retries, waste, navigation failure, or a tooling defect without inspecting the task context;
 - infer skill eligibility, usefulness, missed opportunity, mis-triggering, availability, selection, loading, or routing from a textual/path reference alone;
-- infer the QP version active in a historical session when the record does not prove it;
+- infer the installed skill-set version active in a historical session when the record does not prove it;
 - count a fork/copy/subagent or unresolved child as an independent root merely because another JSONL file exists; or
 - turn the normalized index into a promotion, fold, removal, environment-change, or skill-edit verdict.
 
@@ -33,7 +33,7 @@ Those judgments stay with [agent session](agent-session.md), [corpus analysis](c
 
 When persisted local history is the selected evidence source, **Àyẹ̀wò runs this adapter itself** through the active host's local shell/filesystem capability. The command below is an agent execution primitive, not a prerequisite for the user. Ask the user to run or export it only when the active host genuinely cannot access the local session stores and no equivalent local capability is available.
 
-From a QP checkout:
+From a repository checkout:
 
 ```bash
 python3 skills/ayewo-igba-ise/scripts/session-evidence.py
@@ -50,9 +50,9 @@ python3 skills/ayewo-igba-ise/scripts/session-evidence.py \
 
 `--since` and `--until` accept explicit ISO-8601 corpus bounds; omitting them means no date cutoff. `--session` accepts a session ID or any proved root/ancestor ID. `--skill` is repeatable and **focuses emitted skill-reference signals; it is not a session filter**. Sessions with no matching signal remain in the inventory so Àyẹ̀wò can still identify possible missed opportunities from sampled raw evidence.
 
-When `--skill` is omitted, the adapter discovers current QP skill names from the available `skills` tree. When running outside a full QP checkout, pass `--skills-root <path-to-qp-skills/skills>` for that auto-discovery path.
+When `--skill` is omitted, the adapter discovers current skill names from the available `skills` tree. When running outside a full repository checkout, pass `--skills-root <path-to-skills>` for that auto-discovery path.
 
-The default roots are current host conventions, not QP-owned state:
+The default roots are current host conventions, not package-owned state:
 
 - Codex: `$CODEX_HOME` when set, otherwise `~/.codex`; full persisted rollouts are discovered below its session store. `history.jsonl` is deliberately not treated as a full session transcript.
 - Claude Code: `$CLAUDE_CONFIG_DIR` when set, otherwise `~/.claude`; transcripts are discovered below `projects/`.
@@ -91,7 +91,7 @@ For Claude Code, a subagent storage path may directly prove its root-session ID;
 ## Corpus use
 
 1. Inventory the full permitted local population first.
-2. Pin the corpus from the decision being made: host, project/repository, QP snapshot/version evidence, session relationships, or caller-supplied time range as relevant. Do not bake a repository inception date or rolling-window default into the analyser.
+2. Pin the corpus from the decision being made: host, project/repository, skill snapshot/version evidence, session relationships, or caller-supplied time range as relevant. Do not bake a repository inception date or rolling-window default into the analyser.
 3. Resolve or explicitly preserve uncertain root relationships before counting independent opportunities.
 4. Select representative and risk-weighted root sessions from the inventory, using structural activity only to focus inspection where it can answer the postmortem question.
 5. Read raw transcript lines only for selected records and only to reconstruct contract, owner selection, user corrections, proof, rework, recovery, tool/environment friction, or incremental value.
@@ -101,7 +101,7 @@ For Claude Code, a subagent storage path may directly prove its root-session ID;
 
 Host session storage is upstream-owned and can change. The parser intentionally uses tolerant structural extraction and reports unreadable/invalid records instead of declaring absence.
 
-- **Codex evidence basis:** `openai/codex` at commit `773f0b081de689b0d54f2809e7b17bfdb4c9f341` exposes `CODEX_HOME`, persisted `history.jsonl` configuration, session storage, and rollout session metadata including identifiers, cwd, CLI version, originator, and parent-thread metadata. QP copies no upstream code; it adopts only the local evidence fields needed for this index. Refresh when those storage/metadata contracts change or a real corpus exposes parser gaps.
-- **Claude Code evidence basis:** official Claude Code "Manage sessions" documentation retrieved 2026-09-04 documents local JSONL transcripts under `~/.claude/projects/<project>/<session-id>.jsonl`, `CLAUDE_CONFIG_DIR`, and explicitly states that transcript entry format is internal and changes between versions. QP therefore treats field extraction as best-effort evidence, not a stable Claude transcript API. Refresh on host-path changes, material session-format changes, or observed parse gaps.
+- **Codex evidence basis:** `openai/codex` at commit `773f0b081de689b0d54f2809e7b17bfdb4c9f341` exposes `CODEX_HOME`, persisted `history.jsonl` configuration, session storage, and rollout session metadata including identifiers, cwd, CLI version, originator, and parent-thread metadata. The adapter copies no upstream code; it adopts only the local evidence fields needed for this index. Refresh when those storage/metadata contracts change or a real corpus exposes parser gaps.
+- **Claude Code evidence basis:** official Claude Code "Manage sessions" documentation retrieved 2026-09-04 documents local JSONL transcripts under `~/.claude/projects/<project>/<session-id>.jsonl`, `CLAUDE_CONFIG_DIR`, and explicitly states that transcript entry format is internal and changes between versions. Field extraction is therefore best-effort evidence, not a stable Claude transcript API. Refresh on host-path changes, material session-format changes, or observed parse gaps.
 
 Do not add hooks, receipts, or background telemetry merely to improve future evidence. First use the native historical records. Add instrumentation only when a concrete recurring decision remains materially unanswerable from those records.

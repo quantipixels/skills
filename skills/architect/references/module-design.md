@@ -63,7 +63,7 @@ Do not keep a forwarding layer merely because it provides “an abstraction.” 
 
 A seam is justified by a real reason to isolate or vary behavior, not by the existence of an interface keyword.
 
-Two production/test adapters are strong evidence of a useful seam, but QP does not require two adapters when one adapter already owns an independently real external, trust, protocol, compatibility, lifecycle, migration, or operational boundary.
+Two production/test adapters are strong evidence of a useful seam, but two adapters are not required when one adapter already owns an independently real external, trust, protocol, compatibility, lifecycle, migration, or operational boundary.
 
 Keep internal seams private when only the module implementation or its focused tests need them. Do not expose internal collaborators through the external interface merely to make mocking easier.
 

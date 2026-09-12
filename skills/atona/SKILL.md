@@ -7,7 +7,7 @@ description: Shape and maintain a useful initiative plan from the current goal, 
 
 Keep one current plan that makes the desired outcome, remaining choices, dependencies, and next action clear.
 
-Delegate substantial analysis, research, and expert work to subagents, returning concise findings and evidence links to keep the main context lean.
+Delegate substantial analysis, research, and expert work to subagents when it materially helps.
 
 ## Shape the plan
 
@@ -25,7 +25,9 @@ When the initiative cannot yet be responsibly stated at full depth, read [progre
 
 ## Challenge readiness
 
-Before presenting an initiative plan as ready to execute, run a [premortem](references/premortem.md) against the current plan. Reconcile material findings into the plan before declaring readiness; formal lifecycle work must pass this gate before `Planned`. Keep the analysis proportional and in the existing plan or conversation, not a separate report.
+For a consequential, uncertain, difficult-to-reverse, or materially coordinated plan, run a [premortem](references/premortem.md) before presenting it as execution-ready and reconcile material findings into the plan.
+
+When the formal managed lifecycle applies, a current premortem is always required before the initiative can enter `Planned`, regardless of whether the ordinary planning path would otherwise skip it. Keep the analysis proportional and in the existing plan or conversation, not a separate report.
 
 ## Keep it current
 
@@ -45,4 +47,4 @@ Before closing work performed in a linked worktree, reconcile the relevant `.qp`
 
 Keep ordinary rationale in the plan and normal delivery history. Use [durable reconciliation](references/durable-reconciliation.md) only for a real governing-knowledge obligation. Required stale sources or missing authority remain blockers, not reasons to manufacture a reconciliation ledger.
 
-Return the current plan, workspace when relevant, any blocking choice or evidence gap, and the first useful action. Report completion only when the accepted outcome and its required proof are satisfied; keep implementation, integration, and release state distinct.
+Return the current plan, workspace when relevant, any blocking choice or evidence gap, and the first useful action. Report completion only when the accepted planning outcome and its required proof are satisfied; keep planning, implementation, integration, and release state distinct.
