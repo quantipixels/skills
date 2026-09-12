@@ -35,28 +35,42 @@ class UpdateTests(unittest.TestCase):
             self.assertEqual(found["manager"], "direct")
             self.assertEqual(found["skills"], ["alaga", "pepeye"])
 
-    def test_skills_cli_detection_uses_source_not_name_guessing(self):
+    def write_skills_lock(self, path: Path):
+        path.write_text(
+            json.dumps(
+                {
+                    "version": 3,
+                    "skills": {
+                        "pepeye": {
+                            "source": MOD.SOURCE,
+                            "sourceType": "github",
+                            "sourceUrl": "https://github.com/quantipixels/skills.git",
+                        },
+                        "foreign": {
+                            "source": "elsewhere/skills",
+                            "sourceType": "github",
+                            "sourceUrl": "https://github.com/elsewhere/skills.git",
+                        },
+                    },
+                }
+            ),
+            encoding="utf-8",
+        )
+
+    def test_skills_cli_global_detection_uses_source_not_name_guessing(self):
         with tempfile.TemporaryDirectory() as temp:
             lock = Path(temp) / ".skill-lock.json"
-            lock.write_text(
-                json.dumps(
-                    {
-                        "version": 3,
-                        "skills": {
-                            "pepeye": {
-                                "source": MOD.SOURCE,
-                                "sourceUrl": "https://github.com/quantipixels/skills.git",
-                            },
-                            "foreign": {
-                                "source": "elsewhere/skills",
-                                "sourceUrl": "https://github.com/elsewhere/skills.git",
-                            },
-                        },
-                    }
-                ),
-                encoding="utf-8",
-            )
-            found = MOD.skills_cli_installation(lock)
+            self.write_skills_lock(lock)
+            found = MOD.skills_cli_global_installation(lock)
+            self.assertEqual(found["manager"], "skills-global")
+            self.assertEqual(found["skills"], ["pepeye"])
+
+    def test_skills_cli_project_detection_uses_local_lock(self):
+        with tempfile.TemporaryDirectory() as temp:
+            lock = Path(temp) / "skills-lock.json"
+            self.write_skills_lock(lock)
+            found = MOD.skills_cli_project_installation(lock)
+            self.assertEqual(found["manager"], "skills-project")
             self.assertEqual(found["skills"], ["pepeye"])
 
     def test_catalogue_delta_separates_new_and_deprecated(self):
@@ -81,6 +95,7 @@ class UpdateTests(unittest.TestCase):
         }
         found = MOD.claude_plugin_from_payload(payload)
         self.assertEqual(found["manager"], "claude-plugin")
+        self.assertEqual(found["scope"], "project")
 
 
 if __name__ == "__main__":
