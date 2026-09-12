@@ -58,7 +58,7 @@ Treat concurrency correctness as an invariant question, not a traffic threshold.
 
 Proof is required; a new test is not. Use the smallest evidence that can independently falsify the changed behavior: existing affected tests, compiler/type guarantees, static analysis, builds/schema checks, focused runtime probes, integration checks, bug reproduction, browser/manual verification, or another stronger current proof surface.
 
-Apply [TDD](references/tdd.md) only when its admission gate is met. Glue, wiring, declarative configuration, trivial delegation, or framework-native behavior do not earn a test by ceremony. Wiring that binds identity, authority, or resource limits needs proof through the assembled path; constructor tests alone may miss incorrect combinations.
+Apply [CRAB](references/crab.md) when a material behavior change benefits from a deliberate contract → reproduction → action → backstop loop. Tests are one possible control/backstop, not the lifecycle itself. Glue, wiring, declarative configuration, trivial delegation, or framework-native behavior do not earn a test by ceremony. Wiring that binds identity, authority, or resource limits needs proof through the assembled path; constructor tests alone may miss incorrect combinations.
 
 Run focused proof while changing behavior, then job-level integration/acceptance proof. Use real-browser journey evidence only when literal user journeys changed and browser-dependent acceptance remains materially unproved by cheaper evidence. For a stateful refactor/rewrite that can change transitions, ordering, locking, retries, idempotency, ownership, or cross-entry behavior, require a current independent parity/contract result before relying on the rewrite plan.
 
