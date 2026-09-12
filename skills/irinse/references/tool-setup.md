@@ -1,6 +1,6 @@
 # Tool setup
 
-Use when a selected engineering or agent tool, including installed skills, must be made ready, changed, or removed. The caller/user owns why it is wanted; this skill owns the setup operation and resulting readiness state.
+Use when a selected engineering or agent tool, installed skill, host instruction file, or native agent declaration must be made ready, changed, or removed. The caller/user owns why it is wanted; this skill owns the setup operation and resulting readiness state.
 
 ## Pin the requested state
 
@@ -10,6 +10,8 @@ Use when a selected engineering or agent tool, including installed skills, must 
 Use the installed tool's help and current official documentation to resolve volatile installation, upgrade, configuration, authentication, and platform details. Do not copy a long-lived command catalogue into this skill. Preserve an established tool choice and its usage-specific readiness requirement; do not re-run selection.
 
 Determine whether the tool is ready, needs setup, is missing, or is unsupported for the intended use. Command presence alone does not prove readiness. If it is already ready, say so and finish unless another requested action remains.
+
+For native agent declarations, resolve host format, discovery, and precedence; use `oro-fun-sigidi` for instruction text. Verify discovery and permission effects separately from file validity, and report runtime checks not performed. Setup does not authorize launching downstream work.
 
 ## Bound mutation and authority
 
@@ -32,7 +34,7 @@ Prefer the smallest reversible setup that satisfies the selected use. Reuse exis
 
 ## Reconcile installed skills
 
-For `https://github.com/quantipixels/skills`, use its `scripts/install.sh` for direct snapshots or `scripts/update.sh` for existing-manager updates. Check updates and run a non-mutating `--dry-run` without apply permission. Compare source/version and installed state to identify exact updates, local changes, deprecated names/paths, and recovery options before requesting approval; a summary count is insufficient. Skill authoring belongs to `oro-fun-sigidi`.
+For `https://github.com/quantipixels/skills`, follow its README for native Codex/Claude plugin or Skills CLI installation. Reuse the existing manager's supported update and removal commands. Compare source/version and installed state to identify exact updates, local changes, deprecated names/paths, and recovery options before applying changes; a summary count is insufficient. Skill authoring belongs to `oro-fun-sigidi`.
 
 Applying updates requires explicit permission for the proposed targets and changes. Deleting deprecated skills, including installer pruning, needs explicit permission covering those removals; update approval alone is insufficient. Verify deprecation from package evidence, preserve user modifications, and reuse existing approvals within their scope. Refresh the proposal if source or targets change.
 

@@ -19,4 +19,4 @@ Use `atunwo` when requested or independent judgment is materially useful and wit
 
 Finish when the behavior and necessary documentation are delivered and verified, or a specific gap prevents further progress. Report the change, decisive verification, and limitations. Use `seda-pr` for authorized commit/push/publication; delivery alone does not authorize it.
 
-An explicit `scope-only` request returns the outcome, boundaries, and sufficient proof without implementation.
+An explicit `scope-only` request returns the intended outcome, boundaries, relevant existing evidence and gaps, and the verification needed after implementation. Distinguish checks already performed from proposed checks; do not claim unbuilt behavior is verified. Make no implementation changes in this mode.

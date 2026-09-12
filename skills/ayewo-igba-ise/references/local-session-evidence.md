@@ -27,7 +27,7 @@ It must not:
 - count a fork/copy/subagent or unresolved child as an independent root merely because another JSONL file exists; or
 - turn the normalized index into a promotion, fold, removal, environment-change, or skill-edit verdict.
 
-Those judgments stay with [agent session](agent-session.md), [corpus analysis](corpus-analysis.md), and Kọ Skill.
+Historical reconstruction and evidence-backed improvement judgments stay with [agent session](agent-session.md) and [corpus analysis](corpus-analysis.md). Use `oro-fun-sigidi` to review or revise agent-facing instructions when that follow-on work is authorized.
 
 ## Run the inventory
 

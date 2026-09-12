@@ -45,13 +45,7 @@ Choose an operator-enforced budget before model execution. Suggested pilot limit
 
 Report per-case acceptance, material defects, unsupported claims, scope violations, extra stages/delegations, interventions, elapsed time, tokens, and cost including all workers/reviewers and failed attempts. Preserve blocked/error outcomes and unknown measurements. Safety-preserving blocking is not successful delivery of an unmet requirement. Do not pool synthetic records with live runs or infer statistical superiority from six cells.
 
-## Verify the tooling
-
-```bash
-python3 -m unittest discover -s evals/pepeye -p 'test_*.py' -v
-```
-
-These tests check input separation, snapshots, exact edits, rejection paths, and honest handling of missing evidence/cost. They are not model evaluations. No live pilot results ship with this kit.
+No live pilot results ship with this kit.
 
 ## Source
 

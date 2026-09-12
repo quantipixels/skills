@@ -36,6 +36,8 @@ When a domain-language source already exists, read [domain language](references/
 
 If no durable domain-language destination is established, return the model delta directly and name the persistence gap only when the result needs to outlive the current work. Let the project or caller choose an intentional project destination rather than inventing `CONTEXT.md`, `.learnings`, `.nongoals`, an ADR, `.qp` record, or another repository convention.
 
+This domain-clarification boundary does not prevent an authorized ADR-creation request from using the [ADR fallback](references/adrs.md) when no project convention exists. Domain clarification alone does not authorize creating an ADR.
+
 A domain-model change may cause another workflow to update specifications, architecture, documentation, tests, or policy. Those artifacts remain owned by their natural workflow. Amọ̀ṣẹ́ maintains the project's canonical domain records and supplies clarified meaning to the other owners.
 
 ## Maintain durable domain records

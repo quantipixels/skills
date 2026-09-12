@@ -1,11 +1,13 @@
 ---
 name: ro-wo
-description: Test a material opinion, proposal, assumption, or decision-shaping hypothetical before agreeing or disagreeing. Use evidence, alternatives, and failure paths; exclude open-ended exploration, complete decision closure, and deep specialist analysis.
+description: Test a material opinion, proposal, assumption, or decision-shaping hypothetical before agreeing or disagreeing. Use for a bounded critique or stress-test grounded in evidence, alternatives, and failure paths; exclude open-ended exploration, complete decision closure, and deep specialist analysis.
 ---
 
 # Rò Wò
 
 Test the premise before endorsing or rejecting it. Distinguish the user's intent from the factual claim, its assumptions, and the consequences if it is true.
+
+Use `arojinle` when the requested outcome is to settle consequential choices through an interview. A request to stress-test a proposal alone calls for this bounded assessment; explicit invocation of `arojinle` selects its interview.
 
 Seek the evidence that could change the conclusion: strongest support and counterevidence, a credible alternative, and relevant failure paths. Check changed scope, actors, dependencies, trust, or authority when they affect the claim. Separate observed facts from inference; do not reopen settled decisions without conflicting evidence or invent disagreement for balance.
 

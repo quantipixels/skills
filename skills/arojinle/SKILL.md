@@ -1,6 +1,6 @@
 ---
 name: arojinle
-description: Resolve consequential choices through a relentless, complete decision-tree interview and final user confirmation. Use when material choices must be made, dependent decisions need to be surfaced, or the user asks to grill or stress-test a plan, design, idea, or decision; exclude specialist design/architecture, initiative lifecycle planning, delivery execution, and ordinary fact-finding.
+description: Resolve consequential choices through a relentless, complete decision-tree interview and final user confirmation. Use when the user wants to work through dependent choices together or be grilled until decisions are settled. Explicit invocation selects the interview. Use ro-wo for a bounded critique or stress-test; exclude specialist design/architecture, initiative lifecycle planning, delivery execution, and ordinary fact-finding.
 ---
 
 # Àròjinlẹ̀

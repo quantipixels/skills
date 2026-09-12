@@ -28,7 +28,6 @@ From the repository root, with Python 3.11 or newer:
 
 ```bash
 python3 -B -m scripts.check_package
-python3 -B -m unittest discover -s tests -v
 ```
 
 The gate model assumes its input flags, method labels, and authorization/deferral references are supplied truthfully by the test operator. It checks normalized family, procedure, and failure-target labels for distinctness, but permits a shared authoritative oracle. This inexpensive label check cannot inspect model context, establish whether a method was actually performed, judge semantic method independence, authenticate a deferral decision, or prove a result locator contains valid evidence. Tests therefore claim only abstract state behavior. Unit fixtures may use the `model-run` tag to exercise that validation branch; their synthetic identities and test context remain fixtures, not observations of a live model. Manual and independent reviews must check the correspondence between the prose and that abstraction.

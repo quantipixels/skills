@@ -4,14 +4,13 @@ Source: https://github.com/Da7-Tech/SureForge
 
 Pinned commit: `dadf5110621739143063da5e4cbb33790d48c95d` (MIT; LICENSE retained).
 
-Imported: the complete evals/ directory and its test_gates.py and test_metrics.py tests. The skill itself and unrelated package/install machinery are not imported. The original eval README refers to some files in that full upstream repository; use the pinned source for those references.
+Imported: the evals/ directory. The accompanying Python tests were removed locally. The skill itself and unrelated package/install machinery are not imported. The original eval README refers to some files in that full upstream repository; use the pinned source for those references.
 
-Local adaptation: metrics.py imports ROOT and load_json from evals.support instead of scripts.check_package. support.py preserves those upstream definitions without importing the whole package validator. Trailing blank lines were normalized during import. Keep all other source behavior and test definitions intact.
+Local adaptation: metrics.py imports ROOT and load_json from evals.support instead of scripts.check_package. support.py preserves those upstream definitions without importing the whole package validator. Trailing blank lines were normalized during import. The local README omits the removed test command. Keep all other source behavior intact.
 
 From this directory, run:
 
 ```bash
-python3 -m unittest discover -s tests -p 'test_*.py' -v
 python3 -m evals.metrics --help
 ```
 

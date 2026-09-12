@@ -52,7 +52,7 @@ Reconcile an existing ADR whenever its decision changes. Preserve it as history.
 
 ## Fallback format
 
-Use this fallback only when the repository has no ADR convention.
+Use this fallback only when the repository has no ADR convention and creation of a qualifying ADR is authorized. That request covers the fallback location; no additional directory-choice confirmation is needed. Preserve established locations and history when maintaining existing ADRs.
 
 Store records in `docs/adr/` with names such as `YYYYMMDD-short-title.md`. Add time only when two independent decisions on the same date would otherwise collide. Create the directory only when the first qualifying ADR is authorized.
 

@@ -29,7 +29,9 @@ Before drilling into one attractive branch, surface the currently visible planni
 - known dependencies and blocked branches; and
 - in-scope territory whose actual question cannot yet be stated without guessing.
 
-Resolve enough breadth to know what can be worked now. Do not force the entire initiative into a complete future task tree.
+Resolve enough breadth to know what can be worked now. Keep a simple account of what is known, unresolved, ready to build, and blocked. Do not force the entire initiative into a complete future task tree.
+
+A slice may proceed under existing authority when its acceptance and dependencies are settled and unresolved later choices cannot invalidate it. Keep dependent work blocked. Slice readiness does not establish whole-initiative readiness; in the managed lifecycle, it does not satisfy the `Planned` gate for the whole initiative.
 
 ## Distinguish blocked from not yet specifiable
 
@@ -84,7 +86,7 @@ Do not retain historical copies of every prior map. The plan remains exact-curre
 
 ## Know when this branch is no longer needed
 
-Stop progressive shaping when the initiative can satisfy Atọ́nà's normal readiness work without inventing material requirements. When the managed initiative lifecycle applies, do not set `Planned` while material not-yet-specifiable territory remains that implementation could encounter inside the accepted scope. Otherwise, apply the same readiness bound without introducing lifecycle status.
+Stop progressive shaping when the initiative can satisfy Atọ́nà's normal readiness work without inventing material requirements. When the managed initiative lifecycle applies, do not set `Planned` while material not-yet-specifiable territory remains that implementation could encounter inside the accepted scope. Outside that lifecycle, this is the bound for completing whole-initiative shaping, not a prerequisite for building an independently ready slice.
 
 A deferred item may remain only when it is genuinely non-blocking and already has Atọ́nà's normal re-entry contract.
 

@@ -11,7 +11,7 @@ Delegate substantial analysis, research, and expert work to subagents, returning
 
 ## 1. Understand the work
 
-Use the context already supplied. Read a referenced source in full when it governs the work. Inspect the current project/system only when existing behavior, vocabulary, constraints, or accurate ticket boundaries require it. In software work that may include the codebase; it is not a universal prerequisite.
+Use the context already supplied. Read the governing requirements and dependencies applicable to the requested scope; expand when their meaning or coverage is uncertain. Inspect the current project/system only when existing behavior, vocabulary, constraints, or accurate ticket boundaries require it. In software work that may include the codebase; it is not a universal prerequisite.
 
 Do not invent a material requirement. Ask for confirmation when decomposition authority is absent or ambiguity could consequentially change accepted scope, outcome, sequencing, risk, or ownership. Resolve routine granularity and dependency choices with judgment from the supplied contract. A caller can supply an already confirmed breakdown.
 
@@ -72,6 +72,8 @@ The **Startable frontier** is every `Open` ticket currently derived as `STARTABL
 ## 3. Validate and return
 
 Check that every ticket is independently verifiable, dependencies are genuine and acyclic, external prerequisites are real, acceptance is observable, and the complete supplied scope/governing specification is covered without overlap. For every non-vertical ticket, verify that its exception is necessary, independently verifiable, and connected to a named integration/acceptance boundary.
+
+Distinguish a breakdown derived under existing authority from choices explicitly confirmed by the user; do not label inferred choices user-confirmed. Honor an explicit request to review the draft before finalizing it.
 
 When absent authority or consequential ambiguity requires confirmation, show the affected draft choices and ask whether their granularity and dependencies are correct. Iterate until confirmed.
 

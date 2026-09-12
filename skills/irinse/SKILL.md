@@ -9,7 +9,7 @@ Make useful companion tools discoverable, ready, and effective for the current e
 
 ## Route the need
 
-Identify the question the tool should answer, exact candidate, required evidence, acceptable fallback, and freshness boundary. Prefer direct source reading, project-native commands, and existing host capability when they already answer the question proportionately.
+Identify the question, relevant paths or sources, and evidence needed. Pin candidate identity when retaining or sharing evidence; transient lookups need only relevant freshness. Prefer direct source reading, project-native commands, and existing host capability when they already answer the question proportionately.
 
 Select the smallest useful tool. Do not recommend every available tool or route ordinary shell/search work through `irinse`. The point is to surface capabilities that materially improve the work and whose useful interface, limits, or evidence semantics are non-obvious.
 
@@ -25,11 +25,7 @@ For another named tool, use current official documentation and retain only recur
 
 ## Establish readiness
 
-Reuse the selected tool, target, scope, and existing authorization. Load only the relevant branch:
-
-- [Tool setup](references/tool-setup.md) for installation, configuration, authentication, integration, upgrade, repair, removal, or reconciliation of installed skills with an intended source version.
-- [Host instructions](references/host-instructions.md) for requested instruction-file setup or migration.
-- [Agent declarations](references/agent-declarations.md) for provider-native definitions and their discovery or configuration.
+Reuse the selected tool, target, scope, and existing authorization. Use [tool setup](references/tool-setup.md) for installation, configuration, authentication, integration, upgrade, repair, removal, installed-skill reconciliation, host instructions, or native agent declarations. Use `oro-fun-sigidi` for agent-facing instruction text.
 
 Prepare the concrete change within authorized scope, preserve unrelated settings and user content, refresh the target before mutation, and verify the resulting state in the actual environment. Repository scope does not imply global configuration or broader permissions. Installer success is not readiness proof. Report material limitations and a scoped recovery path.
 
@@ -43,6 +39,6 @@ A tool can expose architecture, security, quality, impact, flow, or complexity s
 
 ## Return the evidence
 
-Return the bounded need/candidate, selected tool and why it adds value, tool/version or interface evidence when material, observations with provenance, configured rule/threshold/severity when relevant, coverage limits/errors, corroboration, freshness, and any remaining readiness gap.
+Return the useful result and only the provenance, coverage limits, corroboration, or readiness gaps that affect its use. For setup, report the change, readiness, and recovery path; do not add an analysis report.
 
 If no companion tool materially improves the task, say so and continue with the ordinary project/host capability rather than forcing tool use.
