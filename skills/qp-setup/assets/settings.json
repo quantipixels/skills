@@ -1,0 +1,68 @@
+{
+  "providers": {
+    "codex": {
+      "actions": {
+        "read": {
+          "model": "gpt-5.6-luna",
+          "reasoning": "max"
+        },
+        "synthesis": {
+          "model": "gpt-5.6-terra",
+          "reasoning": "medium"
+        },
+        "code": {
+          "model": "gpt-5.6-sol",
+          "reasoning": "medium"
+        },
+        "plan": {
+          "model": "gpt-6-astra",
+          "reasoning": "medium"
+        },
+        "review": {
+          "model": "gpt-6-astra",
+          "reasoning": "medium"
+        },
+        "premortem": {
+          "model": "gpt-6-astra",
+          "reasoning": "high"
+        },
+        "exceptional": {
+          "model": "gpt-6-astra",
+          "reasoning": "xhigh"
+        }
+      }
+    },
+    "claude": {
+      "actions": {
+        "read": {
+          "model": "claude-sonnet-5",
+          "reasoning": "low"
+        },
+        "synthesis": {
+          "model": "claude-sonnet-5",
+          "reasoning": "medium"
+        },
+        "code": {
+          "model": "claude-opus-5",
+          "reasoning": "medium"
+        },
+        "plan": {
+          "model": "claude-fable-5-1",
+          "reasoning": "medium"
+        },
+        "review": {
+          "model": "claude-fable-5-1",
+          "reasoning": "medium"
+        },
+        "premortem": {
+          "model": "claude-fable-5-1",
+          "reasoning": "high"
+        },
+        "exceptional": {
+          "model": "claude-fable-5-1",
+          "reasoning": "xhigh"
+        }
+      }
+    }
+  }
+}

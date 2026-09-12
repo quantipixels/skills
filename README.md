@@ -62,6 +62,26 @@ Use `alarina` for the complete installed inventory.
 
 `ko-skill` remains a compatibility entrypoint for skill-writing requests and routes to `oro-fun-sigidi`. `oro-ologbon` remains a compatibility entrypoint and routes by audience.
 
+## Optional user instructions
+
+Skills work without a shared instruction block. Copy whichever lines below match how you want the assistant to work, or use all of them. Edit them to suit your workflow:
+
+```text
+Use `alarina` when the right skill is unclear.
+Use `pepeye` when several independent results or dependent stages need coordination; keep simple work local.
+Use `ro-wo` before accepting or rejecting a consequential premise or proposed approach.
+Use `oro-fun-sigidi` when writing or changing agent-facing instructions, skills, or prompts.
+Use `oro-fun-eniyan` when writing or refining human-facing technical prose.
+Use `root-cause` when a failure's causal mechanism is unresolved before implementing a fix.
+Use `atunwo` when an independent code review is requested or materially warranted by risk or uncertainty.
+```
+
+These lines guide skill use; they do not grant additional tool or publication permissions. `qp-setup` can help place only the lines you select in the appropriate instruction file.
+
+Pepeye's model and reasoning preferences live separately in `~/.qp/settings.json`, under `providers.codex.actions` and `providers.claude.actions`. On first use, if the file is missing, Pepeye calls `qp-setup` to create it from the shipped [configuration template](skills/qp-setup/assets/settings.json). Setup previews the settings and preserves your choices. Without a matching preference—or if setup is declined or unavailable—Pepeye chooses sufficient capability at reasonable cost. The JSON contains no free-form behavioral instructions.
+
+Setup copies only the active host's template section by default; choose “Both hosts” to configure Codex and Claude together. Adding another host later preserves existing action choices and unrelated settings.
+
 ## Update
 
 From a checkout:

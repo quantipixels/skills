@@ -1,99 +1,41 @@
-# Host instructions
+# Host instructions and Pepeye preferences
 
-Use when host instruction files need inspection, audit, installation, consolidation, update, or removal at user or repository scope.
+Use for an explicitly requested instruction-file change or Pepeye configuration setup. They are separate choices: instruction files steer behavior; Pepeye JSON selects models and reasoning.
 
-Host policy is durable user/project steering that materially changes normal model/host behavior. Keep it small and editable. Do not use it to advertise installed skills, duplicate skill descriptions, or restate mechanics the current model/harness already performs reliably.
+## Resolve the target
 
-## Resolve host, scope, and authority
+- Reuse the selected host and scope. Verify current locations and precedence from installed host/help or official documentation when needed.
+- Common instruction targets are Codex `$CODEX_HOME/AGENTS.md` (default `~/.codex/AGENTS.md`) and repository `AGENTS.md`; Claude Code `~/.claude/CLAUDE.md` and repository `CLAUDE.md`.
+- Repository setup does not authorize reading or changing global instruction files or `~/.qp/settings.json`. Continue within scope; ask for broader access only when it affects the requested result.
 
-Use the host and scope already selected. Current common instruction surfaces are:
+## Optional user instructions
 
-| Host | User scope | Repository scope |
-| --- | --- | --- |
-| Codex | `$CODEX_HOME/AGENTS.md` (default `~/.codex/AGENTS.md`) | `<repo>/AGENTS.md` |
-| Claude Code | `~/.claude/CLAUDE.md` | `<repo>/CLAUDE.md` |
+- Shared instructions are not an installation prerequisite. Point users to the [README's optional user instructions](https://github.com/quantipixels/skills#optional-user-instructions) for manual copy-and-edit.
+- When asked to apply them, offer relevant README lines individually, “All,” or “None”; allow custom wording. Include premise checking with `ro-wo` and the writing, diagnosis, or review choices when useful. Show the destination and exact proposed text. Reuse choices already made.
+- Use `oro-fun-sigidi` for requested custom instruction text. Preserve the user's wording where it already works; do not turn simple setup into a policy audit unless requested.
+- Add only accepted text. Keep model preferences in JSON and orchestration methods in Pepeye. Do not generate managed blocks or duplicate the skill catalogue.
+- Existing `qp-policy` or deprecated `managed-skills` blocks are user-editable content. Consolidate or remove them only within the requested migration; preserve unrelated instructions and later user edits.
 
-Resolve current precedence/file locations and available model/reasoning controls from the installed host/help or current official documentation when they differ. Inspect higher-precedence override/nested surfaces that would shadow the selected target.
+## Pepeye configuration
 
-A request to configure a repository does **not** imply permission to inspect the user's global instruction file. When a global audit could materially help, ask once for permission to read it. If declined, leave it untouched and continue with the authorized scope. Explicitly requesting a global instruction audit already authorizes inspection; mutation still requires the normal final confirmation.
+- Create `~/.qp/settings.json` when Pepeye hands off a missing configuration, or create/edit it when the user requests setup. Use the shipped [JSON template](../assets/settings.json) as the starting proposal. Carry forward the caller's task, host, preferences, and authority; after verification, return control so that task continues. Do not turn this handoff into a general host-instruction interview.
+- Detect the active host and propose only its template section: `providers.codex` or `providers.claude`. Offer “This host (recommended)” and “Both hosts” when the choice is unresolved; reuse an explicit host choice without asking again. Copy both sections only when selected. If host detection is inconclusive, ask which host to configure.
+- Merge the selected section into existing settings. Preserve unrelated root keys, the other host's settings, and customized action values; show conflicts rather than replacing them with template defaults. Adding support for another host later is a merge, not a full-file replacement. Selecting one host does not delete an existing section for the other.
+- Preview the concrete template-based settings under the entrypoint's authority rules; reuse approval already provided. Resolve the active host's supported models and reasoning controls before presenting active defaults. Preserve explicit preferences and let the user accept defaults, customize, or decline; an unavailable model label is not proof of host support. Never overwrite an existing file just because this handoff expected it to be absent.
+- Use `providers.codex.actions` and `providers.claude.actions`. Each maps actions to objects containing `model` and `reasoning` strings. Supported actions are `read`, `synthesis`, `code`, `plan`, `review`, `premortem`, and `exceptional`.
+- Read the matching action directly; missing actions use cost-aware selection. `host-default` leaves reasoning unset. Translate `reasoning` to the host's supported effort control without changing global runtime settings.
+- Initialize only accepted template settings or the user's selected preferences. Empty action maps are valid: missing choices let Pepeye select sufficient capability at reasonable cost. Keep inactive-host settings as editable preferences without claiming they were runtime-verified.
+- Do not create free-form `instructions` fields at any level. When migrating existing files, preview their removal; move only guidance the user explicitly wants to retain into their chosen instruction file or task request.
+- Explicit task choices override config; governing instructions and tool permissions still apply. Never interpret configuration as authority to delegate, publish, or access credentials.
 
-## Audit before proposing text
+- When migrating legacy `~/.qp/pepeye.json`, preserve user settings and convert host `preferences` maps to `actions`. Reconcile legacy `default`/`demanding` choices into the requested actions rather than dropping custom values. Merge into existing `~/.qp/settings.json` without overwriting unrelated keys; resolve collisions before writing. Back up both files and verify the merged result before removing the legacy file.
+- The template uses documented Claude Code slugs and supported effort levels from [model configuration](https://support.claude.com/en/articles/11940350-claude-code-model-configuration) and [effort controls](https://code.claude.com/docs/en/model-config#adjust-effort-level). Sonnet handles collection/synthesis, Opus coding, and Fable planning/judgment; these are cost-aware starting choices, not benchmark-proven optima. Verify availability for the user's host.
 
-Classify relevant existing guidance as:
+## Apply and verify
 
-- useful durable policy to preserve;
-- model/host-native behavior that no longer earns always-loaded context;
-- duplicated skill/router advertising;
-- stale or conflicting guidance;
-- project-specific policy at the wrong scope; or
-- a real missing preference that would materially change behavior.
-
-No change is a valid result. Existing user wording wins when it expresses the same policy adequately.
-
-## Recommended policy
-
-This policy is a starting point the user can edit directly as models, costs, and preferences change. Resolve concrete model names and supported reasoning levels from the active host.
-
-For a current Codex host exposing the GPT-6/GPT-5.6 family, start from:
-
-```text
-Use `pepeye` when delegation, parallel work, context isolation, independent judgment, or coordination of several results would materially improve the outcome. Keep small, sequential work local.
-
-Use `alarina` when the right skill or route is genuinely unclear. Use `ro-wo` before accepting or rejecting a consequential premise.
-
-For delegated work:
-- Never fork parent conversation context. Spawn workers from focused handoffs. A spawned worker may retain its own context across related subtasks when the host supports it and continuity materially helps.
-- Give each worker a bounded outcome, appropriate authority, required evidence, and clear completion condition. The primary agent owns integration and final judgment.
-- Use cheaper capability for high-volume reading/collection, stronger capability for synthesis/execution, and the highest justified capability for consequential planning/review/judgment. Preserve locators so decisive evidence can be reopened.
-- Consequential verification gets equal or greater judgment capability than the work it accepts. Escalate to the highest capability only when consequence, ambiguity, or unresolved difficulty warrants it.
-- Keep useful lead work moving while independent delegated work runs; wait only when the next step depends on a worker result.
-- Avoid duplicate work except deliberate independent review or competing hypotheses. Never run concurrent writers against the same mutable workspace.
-- Surface material findings, blockers, failures, and completed results; do not repeat unchanged status.
-- Escalate model, reasoning, evidence depth, or approach when the current worker is underpowered. Do not repeat the same failed configuration by default.
-
-Preferences:
-- Read / collect / explore / routine research → `gpt-5.6-luna`, max.
-- Research synthesis / writing → `gpt-5.6-terra`, medium; Luna for deterministic prose.
-- Code / diagnose / technical analysis / architecture → `gpt-5.6-sol`, medium; Terra for simple bounded work; raise effort for complexity/risk.
-- Plan → `gpt-6-astra`, medium.
-- Review / judge → `gpt-6-astra`, medium.
-- Premortem / difficult or high-risk review → `gpt-6-astra`, high.
-- Exceptional unresolved judgment → `gpt-6-astra`, xhigh.
-```
-
-For another host, preserve the policy and map the preferences to that host's **currently available** cost/capability tiers. Do not invent a cross-provider model equivalence. For Claude, current official guidance starts with Opus 5 for most workloads and uses Fable 5.1 for demanding reasoning/long-horizon work or when Opus at higher effort still falls short. On Fable 5.1, start at its default `high` effort and sweep `low`, `medium`, `xhigh`, and `max` against real evals because effort is the primary quality/latency/cost control. If the host cannot express a requested per-worker model/reasoning preference dynamically, report that limitation; use ordinary tool configuration only when the user wants a hard runtime setting.
-
-## Propose proportionally
-
-Show the smallest semantic diff and why it earns global/repository context. Do not replace unrelated personal policy while adding these preferences.
-
-If the user accepts package-managed policy text, place only that accepted text inside one block:
-
-```text
-<!-- qp-policy:start -->
-...
-<!-- qp-policy:end -->
-```
-
-The block is user-editable. Treat later user changes as authoritative preferences, not drift to overwrite. Older `<!-- managed-skills:start -->` / `<!-- managed-skills:end -->` content is a deprecated package-managed surface; audit it and migrate/remove it only when the replacement still earns a place.
-
-## Apply safely
-
-Before changing an existing instruction file, save a byte-for-byte backup in the host's own configuration/data area:
-
-- Codex user → `$CODEX_HOME/backups/skill-setup/`;
-- Codex repository → `<repo>/.codex/backups/skill-setup/`;
-- Claude Code user → `~/.claude/backups/skill-setup/`;
-- Claude Code repository → `<repo>/.claude/backups/skill-setup/`.
-
-Use a unique backup name and never overwrite an earlier backup. Dry-run/inspection creates no files.
-
-Refresh the target immediately before writing. If it changed after preview in a way that affects the proposal, reconcile and show the revised material diff before applying it.
-
-For removal, remove only package-managed blocks the evidence shows the package owns. Preserve surrounding content and later user edits. If removal leaves a file that setup created and the file is otherwise empty, deleting that empty file is part of the accepted removal.
-
-## Verify
-
-Read the resulting file back and confirm the intended policy is present/absent exactly once, user edits and unrelated instructions are preserved, applicable precedence points at the expected file, and no deprecated managed block remains unless deliberately retained.
-
-Return the host, scope, audit result, changed file when any, backup path, verification, resolved model/reasoning preferences when material, and any shadowing/runtime limitation.
+- Follow the entrypoint's authority rules. Preview the exact change, reuse existing approval, refresh before writing, and reconcile material changes since preview.
+- Back up existing instruction files under the host's configuration/data area; back up Pepeye JSON under `~/.qp/backups/pepeye/`. Use unique byte-for-byte backups. Inspection creates no files.
+- Preserve unrelated content and settings. Invalid JSON or unsupported fields need a reported correction, not a reset. Delete a user-owned file only when its removal is explicitly requested.
+- Read back the result. For instructions, check intended text and applicable precedence. For JSON, parse it and check changed preferences; report unavailable model/reasoning controls separately.
+- Verify that only selected host sections were added or changed, existing custom actions and unrelated settings survived, and no unselected template section was introduced.
+- Repair verification failures within accepted scope. Finish with the changed target, result, backup/recovery path, and material limitations.
