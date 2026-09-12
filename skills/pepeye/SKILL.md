@@ -84,6 +84,22 @@ Current workflow lanes include:
 
 These lanes are starting points, not mandatory lifecycle chains.
 
+## Keep the team observable
+
+When native subagents are active, keep a compact user-visible team snapshot from runtime facts. Report it after initial staffing and whenever a material staffing, assignment, model/reasoning, blocker, or progress state changes.
+
+Include for each active/recent worker:
+
+- a short worker label when several workers share a type;
+- **subagent type**;
+- **model + reasoning level** as actually exposed by the runtime;
+- the bounded **task/assignment**; and
+- concise **progress/state** such as queued, running, blocked, reviewing, done, cancelled, or the latest material milestone.
+
+Do not infer an effective model or reasoning level the host does not expose. Distinguish configured/adaptive values from observed runtime values when that difference matters; use `unknown` rather than guessing.
+
+This is observability, not a second orchestration database. Update the snapshot from normal staffing/check-in/completion events; do not poll workers merely to animate a dashboard or manufacture progress.
+
 ## Supervise proportionally
 
 Supervision exists to catch consequential misalignment, not to create a second workflow language.
@@ -116,7 +132,8 @@ Pin the run boundary and let Àyẹ̀wò determine what actually worked, failed,
 
 Harvest only learning that the postmortem earns:
 
-- route accepted instruction/skill changes to `ko-skill`;
+- route evidence-backed agent-facing instruction/skill remediation to `oro-fun-sigidi` when the current remediation scope authorizes that surface;
+- treat new public skill identities, material routing/ownership reassignments, promotion, folding, or removal as consequential remediations: apply them when current scope and evidence support them, otherwise leave a bounded owner handoff;
 - route architecture, runtime, tooling, product, or process improvements to their natural owner;
 - use explicit `amose` `.learnings` maintenance only for stable, non-obvious, independently evidenced project knowledge that passes its admission gate; and
 - keep ordinary rationale, one-off observations, session history, and speculative lessons in the postmortem/PR/plan rather than durable project memory.
@@ -133,4 +150,4 @@ Pepeye does not currently implement a scheduler, daemon, persistent worker regis
 
 ## Return
 
-Return the overall outcome, workflow/stages actually used, decisive integrated evidence, material branches or interventions, plan-review result when applicable, postmortem result, harvested learnings/owner handoffs, and remaining gaps. Distinguish planned, plan-reviewed, delivered, code-reviewed, published, integrated, released, and retrospectively closed state.
+Return the overall outcome, workflow/stages actually used, decisive integrated evidence, material branches or interventions, plan-review result when applicable, relevant final team state, postmortem result, harvested learnings/owner handoffs, and remaining gaps. Distinguish planned, plan-reviewed, delivered, code-reviewed, published, integrated, released, and retrospectively closed state.

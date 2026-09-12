@@ -7,7 +7,7 @@ import tempfile
 import unittest
 
 ROOT = Path(__file__).resolve().parents[2]
-SCRIPTS = ROOT / 'skills/ko-skill/scripts'
+SCRIPTS = ROOT / 'scripts/skills'
 
 
 class PackageIntegrityTests(unittest.TestCase):
