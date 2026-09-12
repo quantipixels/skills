@@ -10,7 +10,7 @@
 4. **`architect` / `seda-spec` — structure or behavior, conditionally.**
    - use `architect` when implementation would otherwise invent consequential technical structure or ownership;
    - use `seda-spec` when observable behavior/contract remains ambiguous.
-5. **Independent plan review — whenever a plan governs execution.** After all plan-affecting decisions are reflected in the fixed plan, review it in fresh read-only context before implementation. Route findings back to the nearest semantic owner, update the plan, and review the changed plan again before execution. If this route never needed an explicit plan, skip this stage rather than manufacturing one.
+5. **Independent plan review — whenever an explicit plan becomes material.** After all plan-affecting decisions are reflected in the fixed plan, review it in fresh read-only context before treating it as ready or using it to progress work. Route findings back to the nearest semantic owner, update the plan, and review materially changed plans again. If this route never needed an explicit plan, skip this stage rather than manufacturing one.
 6. **`alaga` — implementation and sufficient proof.** Deliver the accepted coding outcome and return the exact candidate/result to the workflow lead.
 7. **`atunwo` — independent code judgment, when required.** Use when the user/workflow requires review or risk/uncertainty makes independent evidence materially valuable.
 8. **`seda-pr` — publication, only when authorized.** Create/update the PR/MR; publication does not imply merge/release authority.
@@ -19,8 +19,8 @@
 ## Branches and recovery
 
 - New evidence invalidates the chosen direction → `arojinle` (or `iwadi` first if evidence is still missing).
-- Architecture/spec work changes sequencing, dependencies, proof, or ownership → refresh `atona` only where the plan changed, then return to plan review before implementation.
-- Plan review reopens sequencing/dependencies → `atona`; reopens architecture → `architect`; reopens observable behavior → `seda-spec`; exposes a consequential user choice → `arojinle`. Review the resulting fixed plan again before implementation.
+- Architecture/spec work changes sequencing, dependencies, proof, or ownership → refresh `atona` only where the plan changed, then return to plan review while the plan remains material.
+- Plan review reopens sequencing/dependencies → `atona`; reopens architecture → `architect`; reopens observable behavior → `seda-spec`; exposes a consequential user choice → `arojinle`. Review the resulting fixed plan again before treating it as ready.
 - Candidate/base changes after code review → refresh only affected `atunwo` evidence.
 - Code review confirms a defect → `alaga`, then re-review only invalidated findings/evidence.
 - Publication/CI exposes a concrete delivery defect → nearest causal owner, not a full workflow restart.
