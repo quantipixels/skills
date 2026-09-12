@@ -132,15 +132,15 @@ Pin the run boundary and let Àyẹ̀wò determine what actually worked, failed,
 
 Harvest only learning that the postmortem earns:
 
-- route accepted edits to existing agent-facing instructions/skills to `oro-fun-sigidi` when that remediation surface is authorized;
-- treat a proposed new public skill identity, material routing/ownership reassignment, promotion, fold, or removal as a human decision rather than an automatic harvest step;
+- route evidence-backed agent-facing instruction/skill remediation to `oro-fun-sigidi` when the current remediation scope authorizes that surface;
+- treat new public skill identities, material routing/ownership reassignments, promotion, folding, or removal as consequential remediations: apply them when current scope and evidence support them, otherwise leave a bounded owner handoff;
 - route architecture, runtime, tooling, product, or process improvements to their natural owner;
 - use explicit `amose` `.learnings` maintenance only for stable, non-obvious, independently evidenced project knowledge that passes its admission gate; and
 - keep ordinary rationale, one-off observations, session history, and speculative lessons in the postmortem/PR/plan rather than durable project memory.
 
 No durable learning is a valid result. When a learning is accepted for remediation and the run already has mutation authority for that owning surface, run the follow-on as a separate owned result after the postmortem is fixed; otherwise return the owner handoff without silently granting new authority.
 
-Do not call an autonomous workflow fully closed until the postmortem is complete and each qualifying learning is either harvested by its natural owner or explicitly left as a pending authorized handoff/human decision.
+Do not call an autonomous workflow fully closed until the postmortem is complete and each qualifying learning is either harvested by its natural owner or explicitly left as a pending authorized handoff.
 
 ## Durable programs
 
