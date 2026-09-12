@@ -54,9 +54,12 @@ A few common entrypoints:
 | `alaga` | An accepted coding change or fix needs implementation and proportionate proof |
 | `atunwo` | A fixed code candidate or codebase snapshot needs independent judgment |
 | `iwadi` | A question needs substantial current research or exact-source grounding |
-| `ko-skill` | An agent skill needs creation, improvement, validation, or bounded portfolio review |
+| `oro-fun-sigidi` | Agent-facing instructions, skills, prompts, routing, or workflow text needs writing/review |
+| `oro-fun-eniyan` | Human-facing technical prose needs writing, editing, or pruning |
 
 Use `alarina` for the complete installed inventory.
+
+`ko-skill` remains a compatibility entrypoint for skill-writing requests and routes to `oro-fun-sigidi`. `oro-ologbon` remains a compatibility entrypoint and routes by audience.
 
 ## Recommended global instructions
 
@@ -66,7 +69,7 @@ The skills work without extra global instructions. Add this block only when you 
 Use relevant installed skills when they materially improve the result. Use `alarina` when the next owner is unclear; otherwise use the owning skill directly.
 Use `pepeye` when delegation or a bounded multi-stage workflow would materially help.
 Use `ro-wo` before agreeing or disagreeing with a material premise.
-Use `oro-ologbon` for technical communication and prose cleanup.
+Use `oro-fun-sigidi` for agent-facing instructions and `oro-fun-eniyan` for human-facing technical prose.
 ```
 
 User-level instruction files:
@@ -92,4 +95,4 @@ Do not install the package through multiple managers at once.
 
 ## Project
 
-[Compatibility](docs/compatibility.md) records what the package currently proves. Use [`AGENTS.md`](AGENTS.md) and `ko-skill` for contribution and skill-authoring guidance. Change rationale and proof belong in PRs and CI.
+[Compatibility](docs/compatibility.md) records what the package currently proves. Use [`AGENTS.md`](AGENTS.md) and `oro-fun-sigidi` for contribution and agent-instruction guidance. Change rationale and proof belong in PRs and CI.

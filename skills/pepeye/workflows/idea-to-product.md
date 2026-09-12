@@ -24,7 +24,7 @@
 - Candidate/base changes after code review → refresh only affected `atunwo` evidence.
 - Code review confirms a defect → `alaga`, then re-review only invalidated findings/evidence.
 - Publication/CI exposes a concrete delivery defect → nearest causal owner, not a full workflow restart.
-- Postmortem earns a durable improvement → route it as a separate follow-on to `ko-skill`, explicit `amose` `.learnings`, or the natural project/runtime owner; do not rewrite the judged run while reconstructing it.
+- Postmortem earns an existing agent-instruction improvement → route it as a separately authorized follow-on to `oro-fun-sigidi`; new skill identity or material routing/ownership changes remain proposals until the user explicitly accepts them. Other durable improvements go to explicit `amose` `.learnings` or their natural project/runtime owner. Do not rewrite the judged run while reconstructing it.
 
 ## Completion and closure
 

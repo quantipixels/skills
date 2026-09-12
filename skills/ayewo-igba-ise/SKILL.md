@@ -54,11 +54,15 @@ For each proposed durable improvement, state:
 
 Prefer replacing, removing, moving, or clarifying existing guidance over appending another rule. Reject an instruction change when the current instruction already required the correct behavior, the evidence is model variance, the real fix belongs to the owning product/system/process, or the edit would only restate the same rule.
 
-A recommendation is the boundary of Àyẹ̀wò. Name the natural owner for an accepted follow-on—such as `ko-skill`, `alaga`, the setup owner, a project/runtime owner, or another relevant owner—and preserve enough evidence for that owner to act without reconstructing the postmortem.
+A recommendation is the boundary of Àyẹ̀wò. Name the natural owner for an accepted follow-on—such as `oro-fun-sigidi` for agent-facing instruction/skill text, `alaga`, the setup owner, a project/runtime owner, or another relevant owner—and preserve enough evidence for that owner to act without reconstructing the postmortem.
+
+A recommendation to create a new public skill, materially reassign routing/ownership, promote, fold, or remove a skill remains a human decision. Surface the proposal and evidence; do not convert the retrospective into an autonomous taxonomy change.
 
 ## Explicit remediation follow-on
 
 For compatibility with existing combined requests, when the user explicitly asks both for a postmortem and remediation and has granted the required mutation authority, complete and fix the postmortem result first. Then invoke the natural owning skill/workflow as a separate follow-on using the pinned findings and evidence. Do not mutate the judged surface while reconstructing or deciding the retrospective, and do not describe the follow-on mutation as part of Àyẹ̀wò's result.
+
+Existing agent-facing instructions may be revised through `oro-fun-sigidi` when that surface and mutation are already authorized. If the proposed remediation would create a new public skill identity or materially change skill ownership/routing and the user did not explicitly request that change, stop at the proposal for human acceptance.
 
 If remediation was not explicitly requested, stop at the recommendation and owner handoff.
 

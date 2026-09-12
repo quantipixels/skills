@@ -1,4 +1,4 @@
-Use `ko-skill` for skill authoring and verification. Use `oro-ologbon` for technical communication, prose editing, and requested pruning or remaining instruction noise.
+Use `oro-fun-sigidi` for agent-facing instructions and documents. Use `oro-fun-eniyan` for human-facing technical communication and prose. `ko-skill` and `oro-ologbon` are compatibility entrypoints, not separate authoring methods.
 
 This repository is a library of expertise, methods, and focused capabilities. Use related skills directly; keep their instructions in their own files.
 
@@ -6,7 +6,11 @@ This repository is a library of expertise, methods, and focused capabilities. Us
 
 Each skill lives at `skills/<name>/SKILL.md`. The directory and frontmatter name must agree. Supporting expertise, assets, and deterministic tools stay with their skill. Native discovery uses the directory; do not add another maintained discovery catalogue or generate `default_prompt` metadata. Use `metadata.maturity: experimental` for existing candidates; moving a skill does not promote it or change its invocation permissions.
 
-Keep the useful depth and minimise accidental mechanism. Do not remove a lightweight skill merely because a capable model understands its subject. Add a public identity only when it materially improves direct selection/use over an existing skill. Leave routine mechanics to native tools. Keep code for a bounded mechanical result or a safe installation entrypoint, with proof that can falsify it.
+Keep useful depth and minimise accidental mechanism. Do not remove a lightweight skill merely because a capable model understands its subject. Add a public identity only when it materially improves direct selection/use over an existing skill. Leave routine mechanics to native tools. Keep code for a bounded mechanical result or a safe installation entrypoint, with proof that can falsify it.
+
+Alárinà's route topology is intentional capability, not catalogue noise. Do not reduce it to description matching, flatten it into an exhaustive inventory, or delete route shapes merely to shorten the file. Before materially simplifying Alárinà, identify a concrete routing defect or redundancy and show how common paths, adjacent-owner boundaries, and dynamic installed-inventory lookup remain preserved. Without that evidence, preserve the topology.
+
+Repository-wide package validators and structural audit tools belong under `scripts/skills/`, not inside an authoring skill.
 
 ## Verify
 
