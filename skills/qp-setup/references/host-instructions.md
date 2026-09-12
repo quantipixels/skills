@@ -1,43 +1,74 @@
 # Host instructions
 
-Use when the shipped agent instruction block must be inspected, installed, updated, or removed at user or repository scope.
+Use when host instruction files need inspection, audit, installation, consolidation, update, or removal at user or repository scope.
 
-## Resolve the host and scope
+Host instructions are for durable user/project policy that materially changes normal model/host behavior. Do not use them to advertise installed skills, duplicate skill descriptions, or restate capabilities the current model/harness already performs reliably.
 
-Use the host and scope the user already selected. Current supported instruction surfaces are:
+## Resolve host, scope, and authority
+
+Use the host and scope already selected. Current common instruction surfaces are:
 
 | Host | User scope | Repository scope |
 | --- | --- | --- |
 | Codex | `$CODEX_HOME/AGENTS.md` (default `~/.codex/AGENTS.md`) | `<repo>/AGENTS.md` |
 | Claude Code | `~/.claude/CLAUDE.md` | `<repo>/CLAUDE.md` |
 
-When the installed host's current precedence or file locations differ, resolve them from the installed host/help or current official documentation rather than guessing. Do not change trust, permissions, or unrelated host settings as part of instruction setup.
+Resolve current precedence/file locations from the installed host/help or official documentation when they differ. Inspect higher-precedence override/nested surfaces that would shadow the selected target.
 
-Inspect the selected instruction file and any higher-precedence override/nested instruction surfaces that would shadow it. Report a shadowed target rather than silently editing a file the host will not load.
+A request to configure a repository does **not** imply permission to inspect the user's global instruction file. When a global audit could materially help, ask once for permission to read it. If declined, leave it untouched and continue with the authorized scope.
 
-The canonical shipped block lives at [instructions](../assets/instructions.md). Use the whole block unless the user explicitly asks for a subset.
+If the user explicitly requested a global instruction audit, that request already authorizes inspection; mutation still requires the normal final confirmation.
+
+## Audit before proposing text
+
+Read the selected instruction surface and classify relevant guidance as:
+
+- useful durable policy to preserve;
+- model/host-native behavior that no longer earns always-loaded context;
+- duplicated skill/router advertising;
+- stale or conflicting guidance;
+- project-specific policy at the wrong scope; or
+- a real missing preference that would materially change behavior.
+
+No new instruction is a valid result. There is **no canonical QP global instruction block** to install by default.
+
+When agent-experience setup requested this audit, evaluate only instruction changes that materially improve that setup or the user's durable cross-project policy. Do not turn the audit into a general rewrite of unrelated personal instructions.
+
+## Propose proportionally
+
+If the current file is already adequate, say so and make no change.
+
+When a change is useful, show the smallest semantic diff and why it earns global/repository context. Existing user wording wins when it expresses the same policy adequately.
+
+If the user accepts QP-managed policy text, place only that accepted text inside one block:
+
+```text
+<!-- qp-policy:start -->
+...
+<!-- qp-policy:end -->
+```
+
+Preserve all surrounding instructions. Do not adopt unrelated user text into the managed block merely because it overlaps.
+
+Older `<!-- managed-skills:start -->` / `<!-- managed-skills:end -->` content is a deprecated QP-managed surface. Audit it rather than silently carrying it forward. Offer removal or migration only when the resulting policy still earns a place, and obtain confirmation before changing it.
 
 ## Apply safely
 
-An explicit request to install, update, or remove the instruction block authorizes that bounded change at the selected scope. Ask only when existing/customized content creates a material choice the user has not already resolved.
-
 Before changing an existing instruction file, save a byte-for-byte backup in the host's own configuration/data area:
 
-- Codex user scope → `$CODEX_HOME/backups/skill-setup/`;
-- Codex repository scope → `<repo>/.codex/backups/skill-setup/`;
-- Claude Code user scope → `~/.claude/backups/skill-setup/`;
-- Claude Code repository scope → `<repo>/.claude/backups/skill-setup/`.
+- Codex user → `$CODEX_HOME/backups/skill-setup/`;
+- Codex repository → `<repo>/.codex/backups/skill-setup/`;
+- Claude Code user → `~/.claude/backups/skill-setup/`;
+- Claude Code repository → `<repo>/.claude/backups/skill-setup/`.
 
 Use a unique backup name and never overwrite an earlier backup. Dry-run/inspection creates no files.
 
-Manage the shipped content inside one block delimited by `<!-- managed-skills:start -->` and `<!-- managed-skills:end -->`. Preserve all surrounding instructions. If equivalent guidance already exists outside the block, do not duplicate it; keep the existing wording unless the user asked to consolidate or replace it.
+Refresh the target immediately before writing. If it changed after preview in a way that affects the proposal, reconcile and show the revised material diff before applying it.
 
-For install/update, refresh the target immediately before writing, apply only the intended managed block, and preserve unrelated content byte-for-byte where practical. If the file changed after inspection in a way that affects the proposed edit, reconcile the change before writing.
-
-For removal, remove only the managed block. Preserve surrounding content and later user edits. If removal leaves a file that this skill created and the file is otherwise empty, deleting that empty file is part of the requested removal.
+For removal, remove only QP-managed blocks the evidence shows QP owns. Preserve surrounding content and later user edits. If removal leaves a file that setup created and the file is otherwise empty, deleting that empty file is part of the accepted removal.
 
 ## Verify
 
-Read the resulting file back and confirm the intended block is present or absent exactly once, surrounding instructions are preserved, and the selected host/scope points at that file. A new host session may be required to load changed instructions.
+Read the resulting file back and confirm the intended managed policy is present/absent exactly once, unrelated instructions are preserved, applicable precedence points at the expected file, and no deprecated QP block remains unless deliberately retained.
 
-Return the host, scope, changed file, backup path when applicable, installed/removed block state, verification, and any shadowing or unsupported-host limitation.
+Return the host, scope, audit result, changed file when any, backup path, verification, and any shadowing/unsupported-host limitation.
