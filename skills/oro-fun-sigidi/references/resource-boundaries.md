@@ -28,25 +28,25 @@ Bundle data only when maintaining it materially supports the result. Give volati
 
 Keep one portable semantic contract and thin host-specific adapters. Do not duplicate the whole instruction set merely because hosts expose different metadata or invocation controls.
 
-Before editing host configuration, distinguish user-editable host policy from hard runtime configuration and user-owned configuration from package-managed text. Preserve unrelated settings and permissions.
+Before editing host configuration, distinguish primary-session instructions from agent definitions and user-owned configuration from package-owned assets. Preserve unrelated settings and permissions.
 
-## Keep worker shaping separate from host policy
+## Keep worker shaping separate from durable configuration
 
 For multi-agent integrations, keep these layers distinct:
 
-- **host harness** — spawn/join mechanics, concurrency, scheduling, lifecycle, native isolation, teams, and provider-specific invocation;
-- **host policy** — user-editable delegation/model/reasoning/context preferences;
-- **assignment** — this worker's outcome, context/candidate, instructions, capability request, authority, independence, evidence, and stop condition;
+- **host harness** — spawn/join mechanics, scheduling, Code Mode/team primitives, lifecycle, native isolation, and provider-specific invocation;
+- **assignment** — the worker specification for this task: outcome, context/candidate, instructions, capability request, execution boundary, authority, independence, evidence, and stop condition;
+- **agent definition** — optional provider-native reusable configuration only when a recurring persistent delta cannot be expressed adequately through native/per-spawn controls, the assignment, host defaults, or existing user configuration;
 - **skill** — reusable semantic method/expertise when one materially helps the result;
 - **workflow/router** — topology between independently owned results.
 
-Do not add a maintained role/posture layer or a second model/config registry between host policy and assignments. A provider-specific hard setting belongs in ordinary host/tool configuration only when dynamic controls cannot satisfy an actual requirement.
+Do not add a maintained role/posture layer between an assignment and the worker it needs. Derive the worker directly from the actual task.
+
+An agent definition should not hardcode semantic skill identities, task-specific instructions, or fixed workflow stages. Prefer adequate native/general agents and existing user definitions; add a package-managed definition only when it contributes durable value that dynamic worker shaping cannot.
 
 An assignment may name a skill when already selected; otherwise do not add generic “discover skills” instructions merely because skills exist.
 
-Treat model/reasoning/permission controls according to the provider's actual surface and precedence. Do not invent one portable precedence contract.
-
-When high-volume input would waste expensive capability, collate it with cheaper workers and preserve exact locators in the handoff. Stronger workers should independently reopen decisive material before consequential acceptance. Do not fork conversation history to avoid constructing the handoff.
+Treat model/effort/permission fields according to the provider's actual precedence. A definition-level value may be a pin rather than an overridable default. Do not invent one portable precedence contract.
 
 Do not reproduce native spawn, wait, join, polling, retry, or team mechanics in portable skill instructions. State the semantic/evidence requirement and let each host use its strongest native mechanism.
 
