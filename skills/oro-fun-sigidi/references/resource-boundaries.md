@@ -41,7 +41,7 @@ For multi-agent integrations, keep these layers distinct:
 - **skill** — reusable semantic method/expertise when one materially helps the result;
 - **workflow/router** — topology between independently owned results.
 
-An agent definition should not hardcode semantic skill identities or fixed workflow stages. A work posture does not imply an agent-definition file exists. Prefer adequate native agents or existing user definitions; add a QP definition only when it contributes durable value.
+An agent definition should not hardcode semantic skill identities or fixed workflow stages. A work posture does not imply an agent-definition file exists. Prefer adequate native agents or existing user definitions; add a package-managed definition only when it contributes durable value.
 
 An assignment may name a skill when already selected; otherwise do not add generic “discover skills” instructions merely because skills exist.
 
