@@ -1,35 +1,23 @@
 # Bug to verified fix
 
-**Outcome:** turn an incoming defect report into a causally correct fix with sufficient proof and only the review/publication steps the case requires.
+Use when a defect needs coordinated diagnosis, correction, and proof. Enter at the first unresolved result; a known correction can go directly to `alaga`.
 
-## Lane
+## Flow
 
-1. **`se-triage` — report validity, when uncertain.** Establish whether the report describes a credible current problem.
-2. **`root-cause` — causal mechanism.** Diagnose the smallest evidence-backed owner/mechanism before editing.
-3. **`arojinle` — only for a real material choice.** Skip when the causal correction is clear.
-4. **`alaga` — fix + proof.** Correct the causal owner and return the exact candidate/evidence.
-5. **`atunwo` — independent review, conditionally.** Use for consequential/high-uncertainty changes or when explicitly required.
-6. **`seda-pr` — publish, when authorized.**
-7. **`ayewo-igba-ise` — terminal retrospective.** Reconstruct the run after the fix/result state is fixed, including diagnosis quality, recovery cost, wasted work, and durable friction.
+1. `se-triage` — establish report validity when uncertain.
+2. `root-cause` — establish the causal mechanism when unresolved. Delegate large log/source collection separately when useful; preserve decisive locators for diagnosis.
+3. `arojinle` / `architect` — resolve a consequential behavior or structural choice only if diagnosis exposes one.
+4. `alaga` — implement the correction and prove the reported failure is resolved.
+5. `atunwo` — independently review when required or when consequence/uncertainty warrants it.
+6. `seda-pr` — publish when authorized.
 
-## Capability flow
+Diagnosis governs correction; independent review examines the fixed candidate. Parallelize independent evidence collection, not speculative fixes to the same owner.
 
-Do not pay the strongest worker to sift large logs, traces, or repository surfaces merely to find the relevant evidence.
+## Recovery and completion
 
-- Luna/Terra can reproduce, search, trace, and collate a large evidence surface with exact locators.
-- Sol normally owns causal diagnosis, technical synthesis, and the substantive fix.
-- Astra independently reviews the fixed candidate when the change is consequential or uncertainty remains material; it reopens decisive evidence rather than replaying all collection work.
+- Correction disproves diagnosis → `root-cause`.
+- Review confirms a candidate defect → `alaga`, then refresh affected review.
+- New scope requires a user decision → resolve it before dependent work.
+- Unrelated pre-existing failure → report separately; do not silently absorb it.
 
-Use the active host policy for exact model/reasoning preferences.
-
-## Recovery
-
-- Fix disproves diagnosis → `root-cause`.
-- Scope expands into a consequential product/architecture choice → `arojinle` / `architect` / `atona` as appropriate.
-- Review finds a candidate-caused defect → `alaga`, then refresh affected review.
-- Provider checks expose an unrelated pre-existing failure → report separately; do not absorb it into the fix without authority.
-- Postmortem earns a reusable project/skill/runtime learning → hand it to the natural owner as a separate follow-on; do not convert a one-off incident into a permanent rule without evidence.
-
-## Completion and closure
-
-Delivery is complete when the reported failure is no longer reproducible under the governing contract, the correction is evidenced, and requested review/publication state is complete. The autonomous workflow closes only after `ayewo-igba-ise` completes and qualifying learning is harvested or explicitly handed off; no durable learning is a valid result.
+Complete when the reported failure is resolved with causal evidence, relevant checks pass, and requested review/publication is complete. Report any remaining limitation against the exact candidate.

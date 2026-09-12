@@ -1,33 +1,55 @@
 ---
 name: qp-setup
-description: Install, configure, update, verify, or remove a selected engineering/agent tool, or inspect and manage host instruction policy at user or repository scope. Use after the target capability and scope are known; own setup mutation, verification, migration, and rollback, not tool selection, orchestration, usage expertise, or review.
+description: Inspect setup needs and install, configure, update, verify, or remove engineering/agent tools, host instruction policy, or provider-native agent declarations at user or repository scope. Use for a bare setup request or a selected target; own setup readiness, migration, and rollback, not general tool discovery, orchestration, usage expertise, or review.
 metadata:
   maturity: experimental
 ---
 
 # Setup
 
-Make the selected capability ready with the least necessary user interruption. Inspect the real environment first, form the smallest sensible proposal, then ask only at a genuine authority or material-choice boundary.
+Help the user get their agent CLI ready for work.
 
-An explicit request to install, configure, update, remove, or repair a named target authorizes inspection and preparation of that bounded setup. It does not authorize unseen mutation. Before the first write, show the material resulting change and obtain confirmation; a blank/default response must not apply it.
+- For a general setup request, inspect the tool `Codex`/`Claude-Code`/`detect the harness`, identify its configuration and recommend a practical path to using `pepeye` and relevant companion tools.
+- Use the references below for setup guidance and `irinse` when tool selection needs investigation. Recommend integrations for the user's work, not merely because they are available.
+- For a named target, focus on that setup. Reuse established preferences and approvals, choose routine details yourself, and carry the work through verification.
 
-When relevant existing configuration is present, audit it instead of restarting requirements discovery. Preserve useful existing choices. If several reasonable outcomes remain, present the concrete differences and a small set of options, then continue autonomously from the user's choice. Do not turn setup into a long interview.
+## Tone
 
-Ask separately only when the operation introduces a materially distinct effect the request did not already cover, such as credentials, trust/permissions, destructive unrelated state, persistent services, or inspection/mutation of user-global instructions.
+- Be warm, direct, and personable. Match the user's language and register; use natural contractions and light personality where they fit.
+- Lead with the useful finding or next action and its reason. Keep updates brief and concrete.
+- Avoid intake-form language, ceremonial status reports, generic offers to help, and long explanations of your process.
+
+## Questions and options
+
+- Ask only for a consequential preference, missing information you cannot inspect, or required authority. Resolve one decision at a time.
+- For an underspecified setup request, offer two or three useful outcome choices instead of handing back “tell me the tool/workflow.” Use known context to make them concrete; distinguish possible improvements from diagnosed problems.
+- Recommend the best-supported option first and explain why in one sentence. When evidence does not favor one, say so briefly rather than inventing a recommendation.
+- Label options by outcome; include scope and the material tradeoff. Tailor them to the actual situation, not an exhaustive tool or configuration catalogue.
+- Use an available interactive choice control when suitable; otherwise use a concise numbered list. Allow the user to steer in their own words.
+- Shared user instructions are optional. For requested setup, offer relevant README choices for routing, coordination, premise checking, writing, diagnosis, and review, individually, “All,” or “None,” with the destination; allow custom wording. Add only selected or already requested text. Keep behavioral instructions out of `settings.json`.
+- Do not ask “Which tool or host instructions?” as a generic opener. If there is too little context even for useful directions, ask one focused question that supplies meaningful examples.
+- Skip the menu when intent and the next action are clear. Do not manufacture alternatives just to ask a question.
+
+## Authority
+
+- Prepare the concrete change before requesting write confirmation. Show the material diff/effects, not merely a plan to investigate.
+- Reuse approval already given for that concrete change. A blank/default response is not consent; selecting a direction alone is not approval of unseen writes.
+- Ask separately for materially new effects outside the accepted scope, including credentials, trust/permissions, destructive unrelated changes, persistent services, or user-global instruction access.
 
 ## Choose the setup branch
 
 Reuse the target and scope already established.
 
 - **Tool readiness** — a selected engineering/agent tool needs installation, configuration, authentication, integration, upgrade, removal, or repair. Read [tool setup](references/tool-setup.md).
-- **Host policy** — host instruction files need inspection, audit, installation, update, consolidation, or removal, including user-editable delegation/model/reasoning preferences. Read [host instructions](references/host-instructions.md).
+- **Host policy** — host instruction files or `~/.qp/settings.json` need inspection, audit, installation, update, consolidation, or removal, including user-editable delegation/model/reasoning preferences. Read [host instructions](references/host-instructions.md).
+- **Agent declarations** — provider-native agent definitions need inspection, creation, configuration, migration, verification, or removal. Read [agent declarations](references/agent-declarations.md). These are host configuration, distinct from `AGENTS.md` policy and reusable skill methods.
 
-If the useful tool/capability is still undecided, use `irinse`; setup should not select a tool merely because it can install one.
+Keep straightforward setup recommendations here. When using `irinse`, pass the context already gathered so the user does not repeat it.
 
 Do not widen repository scope to user/global scope. Preserve unrelated files, settings, instructions, services, credentials, and project state.
 
 ## Finish
 
-Verify the resulting state from the real target environment rather than trusting an installer, edit, or command exit alone. Return the target, scope, setup action, resulting readiness/configuration state, changed surfaces, verification, rollback/recovery path, and material limitations.
-
-Setup success proves readiness/configuration only. It does not prove that a tool is valuable for a task, that a model selected or used a skill, or that downstream engineering evidence is correct.
+- Verify readiness in the actual target environment; an installer or edit succeeding is insufficient.
+- Lead with what is ready or still blocked. Briefly identify scope, changed surfaces, verification, and how to undo the change when applicable.
+- Report material limitations honestly. Setup readiness does not prove downstream tool value, skill use, or engineering correctness.
