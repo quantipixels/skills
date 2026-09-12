@@ -32,7 +32,7 @@ No change is a valid result. Existing user wording wins when it expresses the sa
 
 ## Recommended policy
 
-This policy is a starting point the user can edit directly as models, costs, and preferences change. Keep the behavioral contract stable; resolve concrete model names and supported reasoning levels from the active host.
+This policy is a starting point the user can edit directly as models, costs, and preferences change. Resolve concrete model names and supported reasoning levels from the active host.
 
 For a current Codex host exposing the GPT-6/GPT-5.6 family, start from:
 
@@ -42,18 +42,25 @@ Use `pepeye` when delegation, parallel work, context isolation, independent judg
 Use `alarina` when the right skill or route is genuinely unclear. Use `ro-wo` before accepting or rejecting a consequential premise.
 
 For delegated work:
-- Do not fork conversation context. Start workers fresh. When prior context matters, provide a concise handoff containing only the relevant outcome, constraints/decisions, decisive evidence with locators, exact candidate identity, unresolved questions, and requested result.
-- Give each worker a bounded outcome, appropriate authority, required evidence, and a clear completion condition. The primary agent owns integration and final judgment.
-- Funnel information by cost: use cheaper capability for high-volume reading, search, extraction, logs, and source collation; stronger capability for synthesis and execution; reserve the highest capability for planning, independent review, and consequential judgment. Preserve locators so decisive evidence can be reopened rather than trusted through compression alone.
-- Prefer `gpt-5.6-luna` at low/medium effort for bulk reading, collection, exploration, and routine research. Use `gpt-5.6-terra` at medium for normal research synthesis and writing; deterministic prose may drop to Luna. Use `gpt-5.6-sol` at medium for coding, diagnosis, technical synthesis, architecture development, and difficult research synthesis; raise effort when complexity or risk warrants it. Use `gpt-6-astra` at medium for material planning and ordinary consequential review/judgment; use high for plan premortems and difficult/high-risk review, and xhigh only for exceptional unresolved judgment.
-- Do not spend Sol/Astra context discovering which evidence matters when Luna/Terra can collate it first. A consequential reviewer/judge independently checks the decisive candidate and evidence, not every cheap collection step.
-- Generation gets sufficient capability; consequential verification gets equal or greater judgment capability. Route material plans, candidates, or decisions through Astra review when their acceptance materially affects the outcome, not after every delegated action.
+- Start workers fresh; never fork conversation context. When prior context matters, provide a concise handoff with the outcome, constraints/decisions, decisive evidence and locators, exact candidate identity, unresolved questions, and requested result.
+- Give each worker a bounded outcome, appropriate authority, required evidence, and clear completion condition. The primary agent owns integration and final judgment.
+- Use cheaper capability for high-volume reading/collection, stronger capability for synthesis/execution, and the highest capability for consequential planning/review/judgment. Preserve locators so decisive evidence can be reopened.
+- Consequential verification gets equal or greater judgment capability than the work it accepts. Review material plans, candidates, and decisions at acceptance boundaries, not after every delegated action.
 - Avoid duplicate work except deliberate independent review or competing hypotheses. Never run concurrent writers against the same mutable workspace.
 - Surface material findings, blockers, failures, and completed results; do not repeat unchanged status.
-- Escalate model, reasoning effort, evidence depth, or approach when the current worker is underpowered. Do not repeat the same failed configuration by default.
+- Escalate model, reasoning, evidence depth, or approach when the current worker is underpowered. Do not repeat the same failed configuration by default.
+
+Preferences:
+- Read / collect / explore / routine research: `gpt-5.6-luna`, medium; low when deterministic.
+- Research synthesis / writing: `gpt-5.6-terra`, medium; use Luna for deterministic prose.
+- Code / diagnose / technical analysis / architecture: `gpt-5.6-sol`, medium; use Terra for simple bounded work and raise effort for complexity or risk.
+- Plan: `gpt-6-astra`, medium.
+- Review / judge: `gpt-6-astra`, medium.
+- Plan premortem / difficult or high-risk review: `gpt-6-astra`, high.
+- Exceptional unresolved judgment: `gpt-6-astra`, xhigh.
 ```
 
-For another host, preserve the policy and map the model preferences to that host's **currently available** cost/capability tiers. Do not invent a cross-provider model equivalence. If the host cannot express a requested per-worker model/reasoning preference dynamically, report that limitation; use ordinary tool configuration only when the user wants a hard runtime setting.
+For another host, preserve the policy and map the preferences to that host's **currently available** cost/capability tiers. Do not invent a cross-provider model equivalence. If the host cannot express a requested per-worker model/reasoning preference dynamically, report that limitation; use ordinary tool configuration only when the user wants a hard runtime setting.
 
 ## Propose proportionally
 
