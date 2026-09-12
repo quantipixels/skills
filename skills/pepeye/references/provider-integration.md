@@ -18,9 +18,9 @@ Do not classify delegated work into a maintained role/posture taxonomy. Derive t
 
 The assignment is the worker specification. Keep task-specific scope, acceptance criteria, and workflow position out of durable provider configuration.
 
-## Never fork conversation context
+## Never fork parent conversation context
 
-Start delegated workers fresh. When upstream context matters, create a compact handoff instead of inheriting the conversation.
+Spawn delegated workers from focused handoffs rather than inheriting the parent conversation.
 
 A useful handoff carries only what the receiver needs:
 
@@ -31,7 +31,7 @@ A useful handoff carries only what the receiver needs:
 - material uncertainty or disagreement; and
 - the result the receiving worker must return.
 
-Do not copy transcripts merely to avoid deciding what matters.
+Do not copy transcripts merely to avoid deciding what matters. After spawn, a worker may retain its **own** context across related subtasks when the host supports it and continuity materially improves quality, latency, or cost.
 
 ## Funnel information before expensive judgment
 
@@ -40,11 +40,11 @@ Spend capability according to the work being done, not the amount of available c
 - **cheap/high-volume capability** — broad reading, search, extraction, logs, source collection, repository mapping;
 - **balanced capability** — structured synthesis, normal writing, comparison, routine transformations;
 - **strong workhorse capability** — coding, diagnosis, technical synthesis, architecture development, difficult research synthesis;
-- **highest judgment capability** — material planning, independent review, premortem, conflict resolution, consequential acceptance/integration decisions.
+- **highest justified judgment capability** — material planning, independent review, premortem, conflict resolution, consequential acceptance/integration decisions when their consequence or unresolved difficulty warrants it.
 
 Do not spend the highest-capability model discovering which evidence it needs when a cheaper worker can collate the surface first. Compression is not authority: preserve locators and let the receiving worker reopen decisive evidence/candidate material before judging it.
 
-Generation needs sufficient capability. **Consequential verification should receive equal or greater judgment capability than the work it accepts.** Apply that at material decision/integration boundaries, not after every cheap worker action.
+Generation needs sufficient capability. **Consequential verification should receive equal or greater judgment capability than the work it accepts.** Escalate to the highest available capability only when consequence, ambiguity, or unresolved difficulty justifies it.
 
 ## Current Codex starting preferences
 
@@ -52,15 +52,26 @@ When the active Codex host exposes these current models, use the user's host pol
 
 | Work | Starting point | Adaptation |
 | --- | --- | --- |
-| bulk read, collection, exploration, routine research | `gpt-5.6-luna` / medium | low for deterministic collection; Terra when real synthesis begins |
-| normal research synthesis, prose/writing | `gpt-5.6-terra` / medium | Luna low/medium for deterministic prose; Sol for difficult technical synthesis |
+| bulk read, collection, exploration, routine research | `gpt-5.6-luna` / max | move to Terra when real synthesis begins |
+| normal research synthesis, prose/writing | `gpt-5.6-terra` / medium | Luna for deterministic prose; Sol for difficult technical synthesis |
 | coding, diagnosis, technical analysis, architecture development | `gpt-5.6-sol` / medium | Terra for simple bounded work; raise Sol effort for complexity/risk |
 | material planning | `gpt-6-astra` / medium | keep context compact; do not spend Astra on bulk discovery first |
 | review/judgment | `gpt-6-astra` / medium | high for plan premortem or difficult/high-risk review; xhigh only for exceptional unresolved judgment |
 
 Astra is the quality ceiling, not the default worker. Sol should perform more substantive engineering work than Astra. Luna/Terra should absorb volume before expensive reasoning when that preserves correctness.
 
-These are editable preferences, not semantic ownership. Resolve actual model IDs/reasoning support from the current host and user policy. For another provider, map by current capability/cost properties rather than pretending the model families are equivalent.
+These are editable preferences, not semantic ownership. Resolve actual model IDs/reasoning support from the current host and user policy.
+
+## Current Claude starting guidance
+
+Do not translate the Codex preference list model-for-model.
+
+- Start with **Claude Opus 5** for most workloads.
+- Use **Claude Fable 5.1** for demanding reasoning and long-horizon agentic work, or when evaluations on Opus 5 at higher effort still fall short.
+- On Fable 5.1, start at its default `high` effort, then sweep `low`, `medium`, `xhigh`, and `max` against real evaluations. Effort is the primary quality/latency/cost control.
+- Keep Fable 5.1 conversation history append-only when the host/API exposes preserved thinking semantics; do not rewrite earlier turns to inject changing instructions.
+
+Provider-specific model selection is configuration policy, not portable semantic ownership.
 
 ## Use councils only when diversity earns the cost
 
@@ -80,7 +91,7 @@ Pepeye expresses topology, assignments, capability intent, and evidence boundari
 - teams/shared task machinery; and
 - supported model/reasoning/permission controls.
 
-Do not add portable instructions that poll workers, emulate joins, or reproduce provider scheduling. Tune when delegation, independence, capability, and judgment are useful; do not teach a capable harness how to run itself.
+When independent delegated work is running, keep useful lead work moving and wait only when the next step depends on a worker result. Do not add portable instructions that poll workers, emulate joins, or reproduce provider scheduling. Tune when delegation, independence, capability, and judgment are useful; do not teach a capable harness how to run itself.
 
 ## Keep skills dynamic
 
