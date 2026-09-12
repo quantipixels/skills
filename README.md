@@ -63,9 +63,11 @@ Use `alarina` for the complete installed inventory.
 
 ### Optional integrated agent experience
 
-`pepeye` works with the host's native agents without extra setup. It uses seven Yorùbá work postures when staffing delegated work: **Àṣàwárí**, **Olùtúpalẹ̀**, **Akọ̀wé**, **Olùṣe**, **Olùdánilójú**, **Olùwádìí**, and **Olùyẹ̀wò**.
+`pepeye` works with the host's native agents without extra setup. It shapes each delegated worker directly from the actual assignment: the required outcome and context, useful instructions, model/reasoning capability when supported, execution boundary, independence, evidence, stop condition, and semantic skill when one materially helps.
 
-These are staffing concepts, not seven required files. `qp-setup` audits the selected Codex/Claude environment and prefers adequate native agents or existing user definitions. It proposes a QP-managed agent definition only when that definition adds durable value beyond what already exists, then shows the exact change before asking for permission to apply it.
+There is no maintained QP agent-role/posture fleet. Pepeye may use concise Yorùbá names for workers in team/status output when a natural label helps readability, but the label is presentation only; it does not select behavior or imply an installed agent definition.
+
+`qp-setup` audits the selected Codex/Claude environment and existing user configuration. It proposes a persistent provider-native agent definition only when a recurring capability cannot be expressed adequately through native/per-spawn controls or the assignment itself, then shows the exact change before asking for permission to apply it.
 
 ### Host instructions
 

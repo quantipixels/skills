@@ -21,7 +21,7 @@ Reuse the target and scope already established.
 
 - **Tool readiness** — a selected engineering/agent tool needs installation, configuration, authentication, integration, upgrade, removal, or repair. Read [tool setup](references/tool-setup.md).
 - **Host instructions** — host instruction files need inspection, audit, installation, update, consolidation, or removal. Read [host instructions](references/host-instructions.md).
-- **Agent experience** — Codex and/or Claude Code may benefit from provider-native agent definitions beyond the host's adequate native/user capability. Read [agent experience](references/agent-experience.md).
+- **Agent experience** — Codex and/or Claude Code may need a provider-native agent definition when a recurring capability cannot be expressed adequately through native/per-spawn controls, the assignment, host defaults, or existing user configuration. Read [agent experience](references/agent-experience.md).
 
 If the useful tool/capability is still undecided, use `irinse`; setup should not select a tool merely because it can install one.
 

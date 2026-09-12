@@ -1,90 +1,69 @@
 # Provider integration
 
-Read when provider-native agents, reusable agent definitions, model/effort controls, isolation, or native multi-agent capability can materially improve a Pepeye run.
+Read when provider-native agents, per-spawn model/effort controls, isolation, reusable agent definitions, or other native multi-agent capability can materially improve a Pepeye run.
 
-## Separate the decisions
+## Let the assignment specify the worker
 
-Do not collapse these into one “agent” concept:
+Do not classify delegated work into a maintained agent-role or posture taxonomy before spawning it.
 
-1. **Topology** — what bounded results are needed and which can proceed independently.
-2. **Work posture** — how this worker should approach the bounded assignment.
-3. **Execution context** — native host agent, existing user definition, package-managed definition, or generic native subagent.
-4. **Capability** — the model + reasoning/effort appropriate to this assignment using controls the host actually exposes.
-5. **Execution boundary** — requested read/write authority, isolation, candidate identity, and independence.
-6. **Method** — a semantic skill when one is already selected or materially improves the result.
-
-The work posture is Pepeye's staffing vocabulary. It does not imply that a package-managed agent definition exists.
-
-## Use the Yorùbá work postures
-
-| Work posture | ASCII id | Use when |
-| --- | --- | --- |
-| **Àṣàwárí** | `asawari` | The useful result is a map, trace, location, dependency, or evidence picture before action |
-| **Olùtúpalẹ̀** | `olutupale` | The useful result is bounded analysis, comparison, architecture/technical judgment, or a consequential conclusion |
-| **Akọ̀wé** | `akowe` | The useful result is a prose-first artifact such as a README, documentation, specification, report, handoff, prompt, or agent-facing instruction |
-| **Olùṣe** | `oluse` | The useful result requires bounded source/configuration mutation |
-| **Olùdánilójú** | `oludaniloju` | A claim/candidate must be reproduced, tested, falsified, or evidenced |
-| **Olùwádìí** | `oluwadi` | Current external facts, primary sources, APIs, versions, or compatibility must be established |
-| **Olùyẹ̀wò** | `oluyewo` | A fixed candidate/plan/decision needs fresh independent judgment |
-
-A posture is not a permanent persona. The same semantic skill can run under different postures when the work changes, and a posture can execute with no special skill at all.
-
-## Prefer existing capability before package-managed definitions
-
-Choose the execution context in this order:
-
-1. a suitable **native host agent/capability**;
-2. a suitable **existing user agent definition**;
-3. a **package-managed agent definition** only when it adds durable reusable value the first two do not provide;
-4. a **generic native subagent** shaped through the assignment.
-
-Judge suitability by actual behavior/capability, not file/name matching. `Àṣàwárí` may be implemented by Codex's native explorer, Claude's native Explore agent, a user's custom definition, or a generic worker depending on the host and assignment.
-
-Do not install/use a package-managed definition merely for symmetry. Do not shadow a native agent to obtain a Yorùbá name. The Yorùbá posture is how Pepeye describes the worker's job; it is not proof of which provider primitive implements it.
-
-Package-managed definitions are additive. Existing user definitions remain user-owned. Setup may offer **keep**, **replace**, or **add separately** when a material overlap requires a choice; it must not merge package instructions into a user definition.
-
-## Mould the worker through the assignment
-
-The reusable execution context should stay small. Shape the actual worker on demand with the assignment capsule:
+For each useful delegation, derive the worker directly from the actual assignment:
 
 - **outcome** — the bounded result needed now;
-- **scope/candidate** — exact code, artifact, source, or question boundary;
-- **execution boundary** — requested read-only/write-capable/isolated behavior and mutation authority;
-- **independence** — whether fresh context/separate judgment is required;
-- **evidence** — what the worker must return to support integration;
-- **stop condition** — what makes this assignment complete; and
-- **method** — the selected semantic skill only when it materially helps.
+- **context/candidate** — exact code, artifact, source, or question boundary;
+- **instructions/constraints** — only what materially changes how this worker should approach the task;
+- **capability** — model/reasoning depth appropriate to this assignment when the host exposes a native control;
+- **execution boundary** — requested tools, read/write authority, isolation, workspace, and mutation/publication authority;
+- **independence** — whether fresh context or separate judgment is required;
+- **evidence** — what must be returned to support integration;
+- **stop condition** — what makes the assignment complete; and
+- **method** — a semantic skill when one is already selected or materially improves the result.
 
-This is what turns a general/native agent into the worker Pepeye needs for this particular job. Do not move task-specific scope, acceptance criteria, or workflow position into the reusable agent definition.
+The assignment is the worker specification. Keep task-specific scope, acceptance criteria, and workflow position out of reusable provider configuration.
+
+## Prefer dynamic native execution
+
+Use the strongest suitable execution context already available:
+
+1. a native/general host agent shaped through the assignment and current per-spawn controls;
+2. a suitable existing user agent definition when it already provides a useful persistent constraint;
+3. a package-managed provider-native agent definition only when a recurring capability cannot be expressed adequately through the first two.
+
+Judge suitability by behavior and capability, not name matching. Do not create a custom definition merely to obtain a stable role name or to mirror a conceptual worker type.
+
+## Keep persistent definitions exceptional
+
+A provider-native agent definition earns a file only when all are true:
+
+- the required behavior/runtime constraint is recurring and stable rather than task-specific;
+- the current host cannot express it adequately through normal per-spawn controls, assignment instructions, or existing configuration;
+- no suitable native or user-owned definition already provides it; and
+- persisting the definition materially improves reliability, enforcement, reuse, or cost over shaping each worker dynamically.
+
+Examples that may qualify depending on the host include a stable tool/permission envelope, required isolation mode, provider-specific environment/configuration, or an intentionally persistent model/effort pin.
+
+Exploration, analysis, writing, implementation, verification, research, and review do **not** by themselves justify reusable definitions. Pepeye can describe those approaches directly in the assignment when they matter.
+
+Treat provider model/effort/permission precedence as host-specific. A definition-level value may be a stronger pin than a spawn-time default. Do not promise dynamic override semantics the provider does not expose.
 
 ## Adapt capability to the assignment
 
-Capability is independent of work posture. A small README correction and a consequential architecture document can both use **Akọ̀wé** while deserving different model/reasoning capability; an ordinary review and a subtle concurrency review can both use **Olùyẹ̀wò** with different depth.
+Prefer the current/native model and reasoning defaults when they are sufficient. Increase or reduce capability only for the bounded work whose consequence, ambiguity, difficulty, latency, or cost warrants it.
 
-Use the current host's real model/effort controls and precedence. Do not encode provider model names or a fake cross-provider `efficient / balanced / strong` contract in Pepeye.
-
-Prefer the current/native default when it is sufficient. Increase or reduce capability only for the assignment that warrants it rather than upgrading the entire workflow.
-
-A definition-level model/effort value may be stronger than a default on some providers. Treat it according to the installed host's actual semantics; do not promise a spawn-time override that the provider will not honor.
+Do not encode provider model names or a fake cross-provider capability ladder in Pepeye. Request the useful property through the current host's actual controls and report observed runtime values when they matter.
 
 ## Use councils when diversity earns the cost
 
-A council is an orchestration pattern, not an agent definition.
+A council is temporary orchestration topology, not a permanent agent type or definition.
 
-Use multiple independent judgments when consequence, uncertainty, competing hypotheses, or model blind spots make diversity worth the extra cost. Prefer differentiated passes over duplicated identical ones, for example:
+Use multiple independent judgments when consequence, uncertainty, competing hypotheses, or model blind spots make diversity worth the extra cost. Prefer differentiated passes—for example broad/lightweight and deep/strong review, or independent analyses with different evidence boundaries—over duplicated identical workers.
 
-- a lighter broad **Olùyẹ̀wò** plus a stronger deep **Olùyẹ̀wò**;
-- two independent **Olùtúpalẹ̀** workers with different evidence/focus boundaries;
-- independent reviewers over the same fixed candidate where disagreement itself is useful evidence.
-
-Keep their contexts independent. Pepeye integrates the findings: agreement is evidence, disagreement is a question to resolve, and majority vote is not proof.
+Keep contexts independent. Pepeye integrates the findings: agreement is evidence, disagreement is a question to resolve, and majority vote is not proof.
 
 Do not create a council for routine work merely because parallel agents are available.
 
 ## Leave orchestration mechanics to the harness
 
-Pepeye expresses semantic topology and staffing intent, not a replacement provider runtime.
+Pepeye expresses semantic topology, assignments, and staffing intent, not a replacement provider runtime.
 
 Let the host own its native:
 
@@ -95,7 +74,7 @@ Let the host own its native:
 - worktree/session mechanics;
 - Code Mode or equivalent programmatic orchestration;
 - agent teams/shared task machinery; and
-- supported model/effort override mechanism.
+- supported model/effort/permission override mechanisms.
 
 Do not add instructions that poll workers, call provider tool names, manually emulate joins, or reproduce native scheduling simply because another host uses different mechanics.
 
@@ -103,14 +82,20 @@ Tune **when/how much** delegation, independence, capability, and judgment are us
 
 ## Keep skills dynamic
 
-Do not hardcode skill identifiers into agent definitions.
+Do not hardcode semantic skill identifiers into provider-native agent definitions.
 
 If Pepeye already knows the semantic owner and that method materially helps the assignment, name the skill in the assignment. Otherwise let the worker use ordinary installed capabilities without adding a generic “discover/use skills” instruction whose behavior is already native.
 
 An assignment remains valid when no skill is needed.
 
-## Treat definitions as optional enhancement
+## Use names for observability, not routing
 
-Missing package-managed definitions are not degraded mode when the host already provides adequate capability. Continue through native/user/generic agents without ceremony.
+When a user-visible team snapshot benefits from a worker name, prefer a concise natural Yorùbá label derived from the assignment when one is obvious—for example **Olùyẹ̀wò** for an independent review worker or **Olùwádìí** for a research worker. The label is presentation only: it does not select behavior, model, tools, permissions, or an agent definition.
 
-Only call out setup when a concrete missing configuration/definition materially limits the current work and `qp-setup` could improve it. Show that notice once per run; do not repeatedly advertise setup merely because no package-managed definition exists.
+Do not maintain a canonical name catalogue merely to support observability. Add a short task discriminator when several workers would otherwise have the same label.
+
+## Treat setup as a response to a concrete limitation
+
+Missing package-managed definitions are not degraded mode when the host can already perform the work well.
+
+Only call out `qp-setup` when a concrete persistent host/configuration limitation materially constrains the current work and setup could remove it. Show that notice once per run; do not advertise setup merely because no package-managed definition exists.

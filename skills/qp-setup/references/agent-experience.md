@@ -1,28 +1,38 @@
 # Agent experience
 
-Use when a Codex or Claude Code setup may benefit from reusable agent definitions for a more integrated Pepeye experience. Agent definitions are optional host-native artifacts; `pepeye` owns coordination and remains usable without them.
+Use when Codex or Claude Code setup may need a persistent provider-native agent definition because native/per-spawn controls are insufficient for a recurring capability. `pepeye` owns coordination and normally shapes workers dynamically from their assignments.
 
-## Keep the layers separate
+## Start from native capability
 
-The provider-neutral catalogue at [work postures](../assets/agent-experience/postures.json) names the staffing postures Pepeye may use:
+Inspect the selected host, version, scope, current native agents/subagent controls, model/effort/permission/isolation behavior, existing user/repository agent definitions, and relevant configuration from the installed host and current official documentation.
 
-- **Àṣàwárí** (`asawari`) — exploration and mapping;
-- **Olùtúpalẹ̀** (`olutupale`) — bounded analysis and consequential reasoning;
-- **Akọ̀wé** (`akowe`) — prose/instruction work;
-- **Olùṣe** (`oluse`) — bounded execution/mutation;
-- **Olùdánilójú** (`oludaniloju`) — reproduction, testing, and verification;
-- **Olùwádìí** (`oluwadi`) — current external/primary-source research;
-- **Olùyẹ̀wò** (`oluyewo`) — fresh independent judgment.
+Do not begin by inventing a reusable agent fleet. First determine whether the required worker can be expressed adequately through:
 
-A work posture is not an installed agent definition. It describes how a bounded assignment should work. The host may satisfy it with native capability, an existing user definition, a package-managed definition, or a generic subagent shaped by the assignment.
+1. a native/general host agent;
+2. task-specific assignment instructions/context;
+3. current per-spawn model/effort/tool/permission/isolation controls; or
+4. an existing user-owned definition/configuration.
 
-Semantic skills are separate. Do not preload or hardcode skill identities into agent definitions. An assignment may name an already-selected skill when that materially improves the work; otherwise leave ordinary skill selection to the model/host.
+If those are sufficient, recommend no new definition.
 
-## Inspect before proposing anything
+## Admit a persistent definition only when it earns a file
 
-Resolve the selected host(s), version, scope, native agents/subagent capability, existing user/repository agent definitions, current instruction/config surfaces, and the provider's actual model/effort/permission precedence from the installed host and current official documentation. Cached provider model IDs are not authoritative.
+A package-managed agent definition is justified only when all are true:
 
-Current definition locations are useful conventions, not contracts:
+- the needed behavior/runtime constraint is recurring and stable rather than task-specific;
+- the active host cannot express it adequately through normal per-spawn controls, assignment instructions, or existing configuration;
+- no suitable native/user-owned definition already provides it; and
+- persisting the definition materially improves reliability, enforcement, reuse, or cost.
+
+Examples that may qualify depending on the host include a stable tool/permission envelope, required isolation mode, provider-specific environment/configuration, or an intentionally persistent model/effort pin.
+
+Exploration, analysis, writing, implementation, verification, research, and review do **not** by themselves justify reusable definitions. Task-specific behavior belongs in the assignment.
+
+Semantic skills are separate. Do not preload or hardcode skill identities or workflow stages into agent definitions.
+
+## Inspect existing definitions before proposing change
+
+Current locations are useful conventions, not contracts:
 
 | Host | User scope | Repository scope |
 | --- | --- | --- |
@@ -31,48 +41,36 @@ Current definition locations are useful conventions, not contracts:
 
 Follow the installed host when its supported location/schema differs.
 
-Prefer execution capability in this order:
-
-1. a suitable **native host agent/capability**;
-2. a suitable **existing user agent definition**;
-3. a **package-managed agent definition** only when it adds durable value the first two do not provide;
-4. a **generic native subagent** shaped by the assignment when no reusable definition earns its cost.
-
-Do not install seven definitions merely because seven work postures exist. Do not shadow or replace a native agent just to give the posture a package-specific name.
-
-Existing user definitions remain user-owned. When one overlaps the desired posture, audit it and normally keep it. If a material difference creates a real choice, offer only reasonable options such as **keep existing**, **replace with the shown package-managed definition**, **add a separate non-conflicting package-managed definition**, or **leave unchanged**. Never merge package text into an existing user definition.
+Existing user definitions remain user-owned. When one already provides the needed persistent constraint, reuse it. If a material difference creates a real choice, offer only reasonable options such as **keep existing**, **replace with the shown package-managed definition**, **add a separate non-conflicting definition**, or **leave unchanged**. Never merge package text into an existing user definition.
 
 ## Run setup autonomously
 
-Use the environment and existing configuration as evidence. Do not begin with a Host → Scope → Model → Role questionnaire when those facts can be discovered.
+Use the environment and existing configuration as evidence. Do not begin with a Host → Scope → Model → Agent questionnaire when those facts can be discovered.
 
-Form the recommended smallest change yourself. If there is no material conflict, show one compact proposal and ask for final confirmation. If existing state creates several materially different valid outcomes, show the audit and choices together, obtain the user's selection, then continue.
+Form the smallest sensible recommendation yourself. If there is no material conflict, show one compact proposal and ask for final confirmation. If existing state creates several materially different valid outcomes, show the audit and choices together, obtain the user's selection, then continue.
 
-Preserve the root/main model and its startup defaults unless the user explicitly asked to change them. Agent-experience setup may report a material limitation caused by the current root configuration, but root-model tuning is a separate setup request.
+Preserve the root/main model and startup defaults unless the user explicitly asked to change them. Agent-experience setup may report a material limitation caused by current root configuration, but root-model tuning is a separate setup request.
 
 If auditing the user's **global instruction file** could improve the setup, ask permission once before reading it. Declining that audit does not block agent-definition setup.
 
-## Keep capability provider-native
+## Build definitions directly from the active host
 
-The work-posture catalogue deliberately contains no model, effort, provider model class, or sandbox field. Those are host/runtime concerns.
+When a definition passes the admission gate, construct the smallest provider-native definition from the active host's current schema and capability. Do not route the work through a provider-neutral role/posture catalogue or generic renderer merely to normalize different hosts.
 
-For each assignment, Pepeye may request lighter or stronger capability when the active host exposes a native override and the task's consequence, ambiguity, difficulty, latency, or cost warrants it. Setup should not invent one cross-provider precedence model.
+Include only persistent configuration that earned its place. Keep task-specific outcomes, evidence, acceptance criteria, semantic skills, and workflow position in the assignment.
 
-When rendering an agent definition, omit `model`/`effort` by default. Add a definition-level pin only when the user intentionally chose that persistent pin or current provider semantics make it a clearly desired reusable default; include the effect in the preview. A definition-level pin must not be described as dynamically overridable when the provider gives it stronger precedence.
-
-The catalogue's `execution_boundary` expresses intent (`read-only` or `write-capable`), not a portable sandbox guarantee. Translate it through the strongest current host mechanism available and report the effective boundary honestly.
+Treat model/effort/permission fields according to actual provider precedence. Omit persistent model/effort pins unless the user intentionally chose them or current host semantics make them clearly necessary. Do not describe a definition-level value as dynamically overridable when the provider gives it stronger precedence.
 
 ## Preview and apply
-
-Prepare only the selected package-managed definitions in a temporary directory with [render-agent-definitions.py](../scripts/render-agent-definitions.py). Its temporary settings file names only definitions that setup actually intends to install; absence means **do not render/install** that posture.
 
 Show a compact proposal containing:
 
 - host + scope;
 - native/existing capabilities being reused;
-- package-managed definitions to add or replace, and why each earns its place;
+- the concrete persistent limitation a new/replacement definition solves;
+- exact provider-native definition/configuration to add or replace;
 - any intentional model/effort pin;
-- requested execution boundary and the host mechanism used to approximate/enforce it;
+- requested permission/isolation behavior and the actual host mechanism providing it;
 - exact files changed;
 - backup location; and
 - any host capability limitation.
@@ -85,26 +83,26 @@ Apply these agent-experience changes? [y/N]
 
 A blank answer means **No**. If the proposal materially changes after preview, show the changed proposal and confirm again.
 
-Do not enable Code Mode, agent teams, scheduling, join/wait policy, retries, or another orchestration feature merely to install these definitions. Those remain harness capabilities Pepeye may use when already available and useful.
+Do not enable Code Mode, agent teams, scheduling, join/wait policy, retries, or another orchestration feature merely to install a definition. Those remain harness capabilities Pepeye may use when already available and useful.
 
 ## Ownership, update, and rollback
 
-Package-managed definitions contain the marker `qp-skills-agent-definition: v1`. Treat that marker plus exact path/content as ownership evidence, not permission to overwrite arbitrary user changes.
+When the host format permits a harmless comment/metadata marker, package-managed definitions may carry `qp-skills-agent-definition: v1` as ownership evidence. The marker is not permission to overwrite arbitrary user changes.
 
 Before replacing/removing a package-managed definition or other affected config, save a byte-for-byte backup under the host's own configuration area. Use unique names and never overwrite earlier backups. Refresh every destination immediately before writing; reconcile any material concurrent change before mutation.
 
-If a marked definition has materially diverged from the package-generated content, treat it as customized and present the difference rather than overwriting it automatically.
+If a marked definition has materially diverged from the generated/proposed content, treat it as customized and present the difference rather than overwriting it automatically.
 
 ## Verify and return
 
 Read changed definitions/config back and confirm:
 
-- every installed package-managed definition was actually selected and is discoverable by the host;
-- suitable native/user capability was reused rather than duplicated where applicable;
-- no semantic skill was hardcoded/preloaded;
-- intentional provider pins match the accepted preview and unpinned definitions remain unpinned;
-- requested execution boundaries are enforced only to the degree the host actually supports;
+- the persistent limitation identified in the proposal is actually addressed;
+- no unnecessary role/posture fleet or duplicate native capability was introduced;
+- no semantic skill or task-specific workflow instruction was hardcoded;
+- intentional provider pins match the accepted preview;
+- requested permission/isolation behavior is enforced only to the degree the host actually supports;
 - unrelated host configuration/definitions are unchanged; and
-- the ownership marker is present only on package-managed definitions.
+- any package ownership marker appears only on package-managed definitions.
 
-Return the host/scope, capabilities reused, definitions added/replaced/skipped, actual model/effort configuration when material, changed files, verification, backup/rollback path, and residual host limitations.
+Return the host/scope, capabilities reused, definition/configuration added/replaced/skipped, actual runtime configuration when material, changed files, verification, backup/rollback path, and residual host limitations.
