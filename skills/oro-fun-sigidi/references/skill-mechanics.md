@@ -39,6 +39,18 @@ Use references when a meaningful branch can be selected independently. Do not sp
 
 Keep workflow position out of reusable skill instructions. The workflow/assignment layer may constrain the invocation; the skill should remain independently correct.
 
+## Review a skill portfolio when asked
+
+For an explicitly requested portfolio review, compare public identities, owned results, routing collisions, compatibility aliases, cumulative always-loaded context, and representative end-to-end task paths. Structural counts and lexical overlap are leads, not quality or redundancy verdicts.
+
+Keep the review read-only unless edits are separately authorized. Distinguish a bad instruction from missing/ignored context, unavailable tooling, or model variance before recommending more prose.
+
+## Support lifecycle decisions without taking them over
+
+When the user is deciding whether to promote, narrow, fold, replace, or remove a skill, use real-use evidence where available: eligible opportunities, correct and incorrect selections, missed triggers, observed incremental value/cost, boundary failures, counterevidence, and coverage limits.
+
+Do not infer usage or value from repository shape, raw invocation count, or one successful example. A proved structural defect can justify recommending a change; missing historical evidence remains a gap. Present the evidence and recommendation, but do not enact a public identity or routing change unless that change is explicitly authorized.
+
 ## Routers
 
 A router earns its place by encoding useful topology or selection distinctions that individual descriptions do not. Do not gut route shapes merely because the installed inventory is discoverable. Dynamic inventory and route topology solve different problems.
