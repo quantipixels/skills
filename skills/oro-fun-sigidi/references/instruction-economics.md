@@ -1,64 +1,134 @@
 # Instruction economics
 
-Read when routing pointers, always-loaded instructions, disclosure, or pruning may change agent behaviour or context pressure.
+Read when the shape or wording of agent-facing text may change selection, attention, context pressure, completion, or behaviour.
 
-The objective is not minimum words. Spend context only where it changes selection, judgment, authority, execution, or completion.
+The goal is not minimum words. It is maximum behavioural leverage per unit of context.
 
-## Two loads
+## Use a small working vocabulary
+
+Use compact terms when they let one word carry a recurring distinction:
+
+- **pointer** — always-visible text that names deeper material and the condition for reaching it;
+- **branch** — a genuinely different case that requires different behaviour;
+- **hot path** — material every invocation needs;
+- **bound** — the observable condition that makes a step/result complete;
+- **no-op** — instruction that does not materially change useful behaviour from the model's default;
+- **cache** — copied environment/repository fact that is cheaper and fresher to inspect at use time;
+- **sediment** — stale guidance retained because adding felt safer than deleting.
+
+Prefer established terms with strong model priors. Coin a new term or abbreviation only when repeated use will repay its definition/decoding cost.
+
+## Spend the two loads deliberately
 
 Agent-facing systems spend two different budgets:
 
-- **context load** — text that is present whether or not it is useful now, such as skill descriptions and repository-level instructions;
+- **context load** — text present whether or not it is useful now, such as descriptions and repository-level instructions;
 - **human cognitive load** — things a person must remember to invoke or maintain because they are not automatically discoverable.
 
-A model-invoked skill trades some context load for discoverability. A human-only instruction trades model context for human memory. Choose deliberately; neither load should be driven to zero by default.
+Model-reachable material spends more context to reduce human memory. Human-only material does the reverse. Neither load should be driven to zero; spend each where it buys useful control.
 
-## Pointers must carry trigger information
+## Make pointers carry trigger information
 
-A pointer is useful only if the agent can tell when to follow it. A skill description, an instruction line naming another file, or a workflow branch all fail when the target is good but the selection condition is vague.
+A pointer succeeds only when the agent can tell when to follow it. A perfect reference behind a vague pointer is effectively hidden.
 
-Write distinct trigger branches, not synonym coverage. Preserve wording that changes routing; remove wording that only restates the target.
+A good pointer names the material/capability and the distinct branches that should reach it. Front-load the discriminative term when possible. Do not spend words on synonyms for the same branch.
 
-## Use progressive disclosure by branch
+Good:
 
-Keep universal rules where every invocation sees them. Move conditional expertise behind a pointer only when the root can reliably identify the condition that loads it.
+- `Database concurrency` — load when a change coordinates mutable shared state.
+- `qp-setup` for installation, configuration, authentication, integration, or readiness.
 
-Do not equate file size with load. Inspect the real path: a tiny entrypoint that always opens five references may cost and distract more than one cohesive file.
+Bad:
 
-## Apply the no-op test
+- `More guidance` — read when useful.
+- `the setup owner` when the exact skill is already known.
 
-A sentence is a deletion candidate when removing it is unlikely to change:
+## Use an information hierarchy
 
-- selection or disclosure;
-- a recurring non-obvious decision;
-- authority or safety;
-- evidence/completion semantics;
-- recovery/compatibility behaviour; or
-- useful domain expertise.
+Place material according to how immediately it is needed:
 
-Generic diligence, ordinary tool mechanics, cached repository facts, repeated summaries, and rationale with no behavioural consequence are common no-ops for capable models.
+1. **Hot-path instruction** — every invocation needs it to behave correctly.
+2. **Local reference** — useful expertise commonly consulted within the same invocation.
+3. **Conditional reference** — branch-specific depth behind a reliable pointer.
 
-Keep deliberate repetition when it protects different boundaries. A generation rule and an independent verification condition may sound similar while serving different failure modes.
+Progressive disclosure moves material down this hierarchy only when the load condition remains obvious. Do not hide universal authority, safety, evidence, or completion rules behind an optional reference merely to shorten the root.
 
-## Preserve semantics before compressing
+Co-locate a concept's definition, rules, caveats, and examples when they normally need to be considered together. Scattering one concept across several files forces reconstruction even when no text is duplicated.
 
-For material pruning, compare old and candidate contracts. Pay particular attention to:
+## Use leading words for semantic compression
 
-- public triggers and exclusions;
-- routing topology and adjacent-owner boundaries;
-- authority and provider effects;
-- evidence/proof admission;
-- candidate/source identity;
-- recovery, retry, cancellation, and liveness;
-- compatibility and legacy invocation; and
-- conditional references whose load path changed.
+A strong compact term can recruit useful model priors and replace repeated explanation. Prefer one stable term over repeatedly restating the same multi-clause idea.
 
-A rule is not redundant because another sentence uses similar words. Show that the replacement preserves the same behavioural boundary.
+Good:
 
-For frontier-capability claims, compare realistic tasks against the ordinary model/host without the guidance. A good no-skill baseline can justify deleting generic scaffolding; it does not prove specialised expertise or topology unnecessary.
+- `no-op` instead of repeatedly saying “an instruction the capable model already follows without this guidance”.
+- `cache` instead of repeatedly saying “a copied fact the agent can cheaply inspect from the repository”.
+- `bound` instead of repeatedly saying “the condition that tells the agent the work is complete”.
 
-## Stop when deletion creates guessing
+Bad:
 
-Shorter text is worse when the agent must reconstruct a consequential distinction that the previous instruction made explicit. Stop pruning when the next cut would make behaviour, authority, coverage, or recovery materially ambiguous.
+- inventing opaque acronyms merely to save characters;
+- replacing precise domain terminology with a shorter but weaker synonym;
+- using a fashionable metaphor whose behaviour is ambiguous.
 
-Record material retired/relocated semantics in the PR or review discussion; do not create a permanent dossier merely to justify a rewrite.
+A leading word must be stronger than the default behaviour it is trying to steer. “Be thorough” may be a no-op; a precise bound usually has more leverage.
+
+## Give material work a clear and demanding bound
+
+A bound has two useful properties:
+
+- **clarity** — the agent can distinguish done from not-done;
+- **demand** — reaching done requires enough of the intended work.
+
+Good:
+
+- Account for every changed public contract.
+- Finish when each material finding is resolved, rejected with evidence, or explicitly accepted.
+
+Bad:
+
+- Review carefully.
+- Continue until the implementation looks good.
+
+Sharpen a fuzzy bound before adding more workflow. Add extra sequencing or isolation only when the task actually suffers from premature completion.
+
+## Prefer positive steering
+
+State the behaviour you want. Negation can make the unwanted behaviour more salient and often carries less steering weight than a concrete positive target.
+
+Good: `Name the exact skill and its useful variant.`
+
+Weak: `Do not use vague owner language.`
+
+Keep prohibitions for hard boundaries or demonstrated failure modes; pair them with the positive target when useful.
+
+## Delete what no longer earns load
+
+Hunt these deliberately:
+
+- **no-op** — model already behaves this way without the instruction;
+- **cache** — environment/repository already answers it cheaply;
+- **duplication** — same meaning lives authoritatively in more than one place;
+- **sediment** — once-useful text no longer bears on the owned result;
+- **superseded mechanism** — a better abstraction, skill, tool, or runtime capability now owns it;
+- **exposition without consequence** — explanation that changes neither judgment nor execution.
+
+Remove the whole instruction when its meaning no longer earns load. Do not merely shorten a no-op.
+
+For a frontier-capability claim, compare realistic work with and without the guidance. A capable baseline can justify deleting generic scaffolding; it does not prove specialist expertise, topology, or a hard boundary unnecessary.
+
+## Evolve deliberately, not conservatively
+
+Before a material refactor, pin the current semantics so loss is visible. Then classify each meaningful behaviour as:
+
+- **retain** — still necessary and already well expressed;
+- **strengthen** — still necessary but under-specified;
+- **relocate** — still necessary but on the wrong information tier;
+- **replace** — a better abstraction/tool/skill now expresses it;
+- **retire** — it no longer earns behavioural value.
+
+The purpose is not to preserve the old contract. It is to distinguish deliberate evolution from accidental regression.
+
+Stop pruning when the next cut would force consequential guessing about behaviour, authority, evidence, coverage, or recovery. Otherwise keep cutting.
+
+Record only material retired/replaced semantics in the PR or review discussion; do not create a permanent dossier merely to justify simplification.
