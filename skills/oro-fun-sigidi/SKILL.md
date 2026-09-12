@@ -43,6 +43,8 @@ Make the agent able to answer:
 - **What evidence is enough?** State decisive proof or completion semantics where premature stopping would matter.
 - **What is conditional?** Point to deeper material only from a condition that reliably selects it.
 
+When a stable public skill already owns the capability, name its exact identifier rather than paraphrasing it as a role or “owner.” Add prose only for the mode, variant, condition, or constraint that materially changes how the skill should be used. Use generic owner language only when the correct owner is intentionally dynamic.
+
 Do not copy another skill's method merely to compose with it. Put cross-stage progression in the workflow/assignment layer and keep the owning method at its owner.
 
 For an existing agent-facing draft or a pruning request, read [editing agent text](references/editing-agent-text.md).
