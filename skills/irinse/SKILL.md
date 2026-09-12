@@ -1,11 +1,11 @@
 ---
 name: irinse
-description: Discover, select, and guide effective use of high-leverage companion engineering tools. Use when a coding workflow could benefit from tldr-code, ast-grep, Semgrep, IntelliJ MCP, Firecrawl, or another named tool whose value or interface is easy to miss; act as a small router to tool-specific usage guidance. Exclude installation/configuration, architecture, implementation, security, maintainability, and review verdicts.
+description: Select and use companion engineering tools; install, configure, repair, update, verify, or remove tools, host instructions, and native agent declarations. Use for non-obvious tool capability or environment readiness; exclude engineering verdicts and implementation.
 ---
 
 # Irinṣẹ́
 
-Make valuable companion tools discoverable and help the agent use the selected one well for the current engineering question.
+Make useful companion tools discoverable, ready, and effective for the current engineering question. For a setup-only request, enter the readiness branch directly.
 
 ## Route the need
 
@@ -23,7 +23,15 @@ Load only the selected reference:
 
 For another named tool, use current official documentation and retain only recurring non-obvious usage guidance when it earns a place in Irinṣẹ.
 
-If the selected tool is missing or needs installation, configuration, authentication, integration, upgrade, removal, or another readiness mutation, hand that mutation to the setup skill. Irinṣẹ may state the required readiness state; it does not perform setup or maintain installation procedure.
+## Establish readiness
+
+Reuse the selected tool, target, scope, and existing authorization. Load only the relevant branch:
+
+- [Tool setup](references/tool-setup.md) for installation, configuration, authentication, integration, upgrade, repair, or removal.
+- [Host instructions](references/host-instructions.md) for requested instruction-file setup or migration.
+- [Agent declarations](references/agent-declarations.md) for provider-native definitions and their discovery or configuration.
+
+Prepare the concrete change within authorized scope, preserve unrelated settings and user content, refresh the target before mutation, and verify the resulting state in the actual environment. Repository scope does not imply global configuration or broader permissions. Installer success is not readiness proof. Report material limitations and a scoped recovery path.
 
 ## Use the selected tool
 
@@ -35,6 +43,6 @@ A tool can expose architecture, security, quality, impact, flow, or complexity s
 
 ## Return the evidence
 
-Return the bounded need/candidate, selected tool and why it adds value, tool/version or interface evidence when material, observations with provenance, configured rule/threshold/severity when relevant, coverage limits/errors, corroboration, freshness, and any readiness gap that belongs to setup.
+Return the bounded need/candidate, selected tool and why it adds value, tool/version or interface evidence when material, observations with provenance, configured rule/threshold/severity when relevant, coverage limits/errors, corroboration, freshness, and any remaining readiness gap.
 
 If no companion tool materially improves the task, say so and continue with the ordinary project/host capability rather than forcing tool use.

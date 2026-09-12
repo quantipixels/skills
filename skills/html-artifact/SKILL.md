@@ -79,7 +79,7 @@ For a static projection, use at most one bounded render smoke when rendered read
 
 A substantial/public/long-lived document does not by itself earn deeper browser proof. A specialized renderer does not by itself earn deep proof either; test only the browser-dependent claims it introduces. After a proved defect, rerun only invalidated proof.
 
-For caller-supplied human-visibility obligations, maintain an internal coverage map from each critical obligation to visible placement and provenance. A deterministic verifier may be introduced only if recurring dogfood evidence shows agent/native checks cannot reliably enforce that mechanical seam.
+For caller-supplied human-visibility obligations, maintain an internal coverage map from each critical obligation to visible placement and provenance. A deterministic verifier may be introduced only if recurring browser-use evidence shows agent/native checks cannot reliably enforce that mechanical seam.
 
 ## Deliver
 

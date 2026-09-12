@@ -43,9 +43,11 @@ When module/interface/seam shape is material, read [module design](references/mo
 - one recurring change requiring shotgun edits across unrelated call sites; and
 - durable behavior that is difficult to prove through the current external interface without reaching into private choreography.
 
-Signals are not findings. Apply the deletion test and seek counterevidence: a small layer may still own a real trust/protocol/lifecycle/compatibility boundary, and co-change may reflect a legitimate cohesive slice rather than bad architecture. Distinguish architectural ownership/interface problems from ordinary cleanup (`pare`), defects/review findings (`atunwo`), or missing causal diagnosis (`root-cause`).
+Signals are not findings. Apply the deletion test and seek counterevidence: a small layer may still own a real trust/protocol/lifecycle/compatibility boundary, and co-change may reflect a legitimate cohesive slice rather than bad architecture. Distinguish architectural ownership/interface problems from simplification (`atunwo` with a simplification focus), defects/review findings (`atunwo`), or missing causal diagnosis (`root-cause`).
 
 Use `irinse` as needed for bounded structural, dependency, flow, history, or rule evidence. Tool output, churn metrics, fan-out, cycles, file size, test count, and complexity scores are leads only; trace the actual caller burden, invariant, or ownership failure before retaining a candidate.
+
+When code judgment belongs to `atunwo`, pass the exact boundary, governing contracts, structural observations, and unresolved claim. Let it select review depth; reuse its current evidence instead of commissioning a second assessment of the same question. Architecture proposals remain proposals until implementation and proof exist.
 
 Rank only evidence-backed candidates. Prefer decision-changing factors such as recurrence/change pressure, caller knowledge, locality, leverage, failure/trust ownership, proof difficulty, blast radius, and reversibility. Do not manufacture a universal architecture score.
 

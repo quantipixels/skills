@@ -1,6 +1,6 @@
 # QP Skills
 
-Portable agent skills for reasoning, engineering, design, and delivery. Each skill owns a focused result. Use that skill directly when the owner is clear; use `alarina` when it is not, and `pepeye` when several results need coordinating into one outcome.
+Portable agent skills for reasoning, engineering, design, and delivery. Each skill owns a focused result. Use that skill directly when the owner is clear; use `alarina` when it is not.
 
 Browse the public docs at [quantipixels.com/skills](https://quantipixels.com/skills).
 
@@ -48,19 +48,17 @@ Common entrypoints:
 
 | Skill | Use when |
 | --- | --- |
-| `pepeye` | Delegation or a bounded multi-stage workflow needs coordination |
 | `arojinle` | A consequential choice or the user's real desired outcome needs to be resolved |
 | `atona` | Material work needs one current plan and route to an outcome |
 | `alaga` | An accepted coding change or fix needs implementation and proportionate proof |
 | `atunwo` | A fixed code candidate or codebase snapshot needs independent judgment |
 | `iwadi` | A question needs substantial current research or exact-source grounding |
-| `qp-setup` | A selected tool, host integration, or shared instruction surface needs setup or repair |
+| `irinse` | A selected tool, host integration, or shared instruction surface needs setup or repair |
 | `oro-fun-sigidi` | Agent-facing instructions, skills, prompts, routing, or workflow text needs writing/review |
 | `oro-fun-eniyan` | Human-facing technical prose needs writing, editing, or pruning |
 
 Use `alarina` for the complete installed inventory.
 
-`ko-skill` remains a compatibility entrypoint for skill-writing requests and routes to `oro-fun-sigidi`. `oro-ologbon` remains a compatibility entrypoint and routes by audience.
 
 ## Optional user instructions
 
@@ -68,7 +66,6 @@ Skills work without a shared instruction block. Copy whichever lines below match
 
 ```text
 Use `alarina` when the right skill is unclear.
-Use `pepeye` when several independent results or dependent stages need coordination; keep simple work local.
 Use `ro-wo` before accepting or rejecting a consequential premise or proposed approach.
 Use `oro-fun-sigidi` when writing or changing agent-facing instructions, skills, or prompts.
 Use `oro-fun-eniyan` when writing or refining human-facing technical prose.
@@ -76,11 +73,7 @@ Use `root-cause` when a failure's causal mechanism is unresolved before implemen
 Use `atunwo` when an independent code review is requested or materially warranted by risk or uncertainty.
 ```
 
-These lines guide skill use; they do not grant additional tool or publication permissions. `qp-setup` can help place only the lines you select in the appropriate instruction file.
-
-Pepeye's model and reasoning preferences live separately in `~/.qp/settings.json`, under `providers.codex.actions` and `providers.claude.actions`. On first use, if the file is missing, Pepeye calls `qp-setup` to create it from the shipped [configuration template](skills/qp-setup/assets/settings.json). Setup previews the settings and preserves your choices. Without a matching preference—or if setup is declined or unavailable—Pepeye chooses sufficient capability at reasonable cost. The JSON contains no free-form behavioral instructions.
-
-Setup copies only the active host's template section by default; choose “Both hosts” to configure Codex and Claude together. Adding another host later preserves existing action choices and unrelated settings.
+These lines guide skill use; they do not grant additional tool or publication permissions. `irinse` can help place only the lines you select in the appropriate instruction file.
 
 ## Update
 

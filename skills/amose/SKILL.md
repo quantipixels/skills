@@ -1,6 +1,6 @@
 ---
 name: amose
-description: Establish, sharpen, or reconcile one project's canonical domain model. Use when project-specific terms, conceptual identities, domain/context boundaries, relationships, ownership, or invariants need to be defined, changed, split, merged, or clarified. Generic project knowledge and record custodianship do not drive selection; explicit legacy `.learnings`, `.nongoals`, or ADR maintenance remains supported as a compatibility path.
+description: Establish, sharpen, or reconcile one project's canonical domain model and its durable records. Use when project-specific terms, conceptual identities, domain/context boundaries, relationships, ownership, invariants, `.learnings`, `.nongoals`, or ADRs need to be defined, changed, or maintained.
 ---
 
 # Amọ̀ṣẹ́
@@ -36,20 +36,20 @@ When a domain-language source already exists, read [domain language](references/
 
 If no durable domain-language destination is established, return the model delta directly and name the persistence gap only when the result needs to outlive the current work. Let the project or caller choose an intentional project destination rather than inventing `CONTEXT.md`, `.learnings`, `.nongoals`, an ADR, `.qp` record, or another repository convention.
 
-A domain-model change may cause another workflow to update specifications, architecture, documentation, tests, policy, or durable project records. Those artifacts remain owned by their natural workflow. Amọ̀ṣẹ́ supplies the clarified meaning; it does not become their default custodian.
+A domain-model change may cause another workflow to update specifications, architecture, documentation, tests, or policy. Those artifacts remain owned by their natural workflow. Amọ̀ṣẹ́ maintains the project's canonical domain records and supplies clarified meaning to the other owners.
 
-## Compatibility: explicit durable-record maintenance
+## Maintain durable domain records
 
-Existing direct Amọ̀ṣẹ́ requests to maintain one of these records remain supported for a minor release, but this branch does not drive automatic skill selection and is not part of the domain-model result:
+Maintain the project's existing domain records when the request concerns their content or lifecycle:
 
-- explicit `.learnings` maintenance → read [learnings](references/learnings.md);
-- explicit `.nongoals` maintenance → read [non-goals](references/nongoals.md); or
-- explicit ADR qualification/lifecycle maintenance → read [ADRs](references/adrs.md).
+- `.learnings` → read [learnings](references/learnings.md);
+- `.nongoals` → read [non-goals](references/nongoals.md); or
+- ADR qualification or lifecycle → read [ADRs](references/adrs.md).
 
-Explicit legacy record maintenance uses the requested record's existing or selected project destination.
+Use the record's existing project destination. Preserve its format and authority boundary. A record change must reflect established domain meaning or an authorized project decision; do not turn task notes, temporary deferrals, or implementation history into durable domain records.
 
 ## Return
 
 Return the resolved terms, identities, relationships, ownership, invariants, distinguishing examples when needed, and any remaining semantic conflict or consequential decision with its evidence.
 
-When canonical domain language was updated, also report the destination and verification. For an explicit compatibility-path request, return that record's own required result plus the affected destination, verification/limitations, and `RECONCILED | BLOCKED`; do not pretend the record is part of the domain model.
+When canonical domain language or a durable domain record was updated, report the destination and verification.

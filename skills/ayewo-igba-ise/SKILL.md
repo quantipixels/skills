@@ -54,7 +54,7 @@ For each proposed durable improvement, state:
 
 Prefer replacing, removing, moving, or clarifying existing guidance over appending another rule. Reject an instruction change when the current instruction already required the correct behavior, the evidence is model variance, the real fix belongs to the owning product/system/process, or the edit would only restate the same rule.
 
-A recommendation is the boundary of Àyẹ̀wò. Name the natural owner for an accepted follow-on—such as `oro-fun-sigidi` for agent-facing instruction/skill text, `alaga`, `qp-setup`, a project/runtime owner, or another relevant owner—and preserve enough evidence for that owner to act without reconstructing the postmortem.
+A recommendation is the boundary of Àyẹ̀wò. Name the natural owner for an accepted follow-on—such as `oro-fun-sigidi` for agent-facing instruction/skill text, `alaga`, `irinse`, a project/runtime owner, or another relevant owner—and preserve enough evidence for that owner to act without reconstructing the postmortem.
 
 A new public skill identity, material routing/ownership reassignment, promotion, fold, or removal is a consequential remediation, not a forbidden one. Apply it when the requested remediation scope already covers that surface and the evidence supports the change; otherwise return the proposal and owner handoff rather than silently expanding authority.
 

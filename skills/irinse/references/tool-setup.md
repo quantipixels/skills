@@ -7,7 +7,7 @@ Use when a selected engineering or agent tool must be made ready, changed, or re
 - Infer the tool, intended use, target environment, and scope from the request and existing setup. Ask only for unresolved choices that change the result.
 - Inspect current readiness, required integration/authentication, and recovery options. Keep this working context; do not present it as an intake form.
 
-Use the installed tool's help and current official documentation to resolve volatile installation, upgrade, configuration, authentication, and platform details. Do not copy a long-lived command catalogue into this skill. When `irinse` supplied the tool choice, preserve that selection and any usage-specific readiness requirement; do not re-run tool selection.
+Use the installed tool's help and current official documentation to resolve volatile installation, upgrade, configuration, authentication, and platform details. Do not copy a long-lived command catalogue into this skill. Preserve an established tool choice and its usage-specific readiness requirement; do not re-run selection.
 
 Determine whether the tool is ready, needs setup, is missing, or is unsupported for the intended use. Command presence alone does not prove readiness. If it is already ready, say so and finish unless another requested action remains.
 

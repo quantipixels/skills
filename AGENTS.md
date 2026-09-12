@@ -1,4 +1,4 @@
-Use `oro-fun-sigidi` for agent-facing instructions and documents. Use `oro-fun-eniyan` for human-facing technical communication and prose. `ko-skill` and `oro-ologbon` are compatibility entrypoints, not separate authoring methods.
+Use `oro-fun-sigidi` for agent-facing instructions and documents. Use `oro-fun-eniyan` for human-facing technical communication and prose.
 
 This repository is a library of expertise, methods, and focused capabilities. Use related skills directly; keep their instructions in their own files.
 
@@ -21,14 +21,6 @@ Test the actual changed boundary. Keep a small suite for shipped mechanics: file
 Standing model-behavior datasets, judge rubrics, harnesses, and run artifacts belong in the separate internal eval repository, not this package. Until that repository is available, keep task-local evidence in the PR and report unrun evaluations honestly. Package CI must remain usable without private eval access or model credentials. Syntax and installation success are not authenticated runtime proof.
 
 When retiring old evaluations or documents, preserve unique current expectations at their real owner or in an appropriate test. Keep source attribution and licences. Experimental skills remain usable under their own gates; promotion needs proportional real-use evidence, not a raw invocation count.
-
-## State and documentation
-
-Use the conversation for temporary reasoning and normal project sources for intentional maintained project knowledge. Local generated/project-support state belongs under the current worktree's ignored `.qp/`; use host/system temp for disposable work and never fall back to the project root/current working directory.
-
-Treat a linked worktree and its `.qp` as one isolated candidate. When that candidate is accepted into another workspace, reconcile only the relevant `.qp` files into the accepting workspace before cleanup.
-
-A committed document needs a future reader and a recurring task or enduring decision with no adequate existing home. Execution guidance belongs with the skill; proof belongs in tests and CI; change rationale, measurements, research comparisons, and review findings belong in the PR. Retire redundant dossiers rather than creating an archive by default.
 
 ## Delivery
 

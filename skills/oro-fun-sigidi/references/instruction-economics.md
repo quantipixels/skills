@@ -36,7 +36,7 @@ A good pointer names the material/capability and the distinct branches that shou
 Good:
 
 - `Database concurrency` — load when a change coordinates mutable shared state.
-- `qp-setup` for installation, configuration, authentication, integration, or readiness.
+- `irinse` for installation, configuration, authentication, integration, or readiness.
 
 Bad:
 

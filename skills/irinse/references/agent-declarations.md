@@ -10,7 +10,7 @@ Use for provider-native agent definitions: reusable host configuration for an ag
 
 Resolve the exact host, declaration identity, scope, supported format, discovery location, precedence, and available controls from installed host/help or current official documentation. Do not assume hosts share a schema or that installed skills are registered agents. If native declarations are unsupported, explain the limitation and offer a supported configuration or assignment path.
 
-Use `oro-fun-sigidi` for declaration instructions. Keep semantic methods in skills, task-specific authority and evidence in assignments, model/reasoning choices in `~/.qp/settings.json`, and lifecycle mechanics in the harness. Preserve existing user definitions and unrelated settings.
+Use `oro-fun-sigidi` for declaration instructions. Keep semantic methods in skills, task-specific authority and evidence in assignments, and lifecycle mechanics in the harness. Preserve existing user definitions and unrelated settings.
 
 ## Preview and apply
 

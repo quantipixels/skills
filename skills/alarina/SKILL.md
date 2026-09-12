@@ -13,12 +13,12 @@ Use the skill the user named when it fits. Otherwise inspect installed skill def
 
 These are route shapes, not mandatory lifecycles. Enter at the first unresolved result and skip anything already current and sufficient.
 
-- **Idea → usable change** — `ideate` when credible directions still need generating → `arojinle` for consequential choices → `atona` when sequencing, dependencies, risk, or several owners need a plan → `architect` and/or `seda-spec` only when technical structure or observable behavior remains unresolved → `alaga` for delivery → `atunwo` when independent code judgment is warranted → `seda-pr` when publication is authorized.
+- **Idea → usable change** — `atona` in exploration mode when credible directions still need generating → `arojinle` for consequential choices → `atona` when sequencing, dependencies, risk, or several owners need a plan → `architect` and/or `seda-spec` only when technical structure or observable behavior remains unresolved → `alaga` for delivery → `atunwo` when independent code judgment is warranted → `seda-pr` when publication is authorized.
 - **Incoming defect → verified fix** — `se-triage` when report validity is uncertain → `root-cause` for the causal mechanism → `arojinle` only if a material correction choice remains → `alaga` for the fix → `atunwo` when independent judgment is warranted → `seda-pr` when publication is authorized.
 - **Existing PR/MR → mergeable** — `wo-pr` establishes concrete readiness gaps → each confirmed blocker goes to its semantic owner → `wo-pr` re-evaluates only invalidated readiness evidence. Readiness, publication, approval, and merge are distinct results.
-- **Codebase health → chosen improvement** — `architect` survey for ownership/seam friction; `pare` for unnecessary mechanism; `atunwo` for bounded engineering-quality judgment; `optimize` only when measured variants are genuinely being compared. A selected change then joins the delivery route at its first unresolved result.
-- **Writing → usable text** — `oro-fun-sigidi` when the primary reader is an agent and the text steers selection, decisions, authority, execution, or completion; `oro-fun-eniyan` when the primary reader is a person and the job is comprehension, action, or communication. Explicit legacy `ko-skill` or `oro-ologbon` requests remain compatibility paths, not competing owners.
-- **Missing evidence/tool capability** — `iwadi` for substantial current research; `irinse` for companion-tool choice and effective use; `qp-setup` for environment-based setup guidance, installation, configuration, authentication, integration, host policy, provider-native agent declarations, or readiness mutation.
+- **Codebase health → chosen improvement** — `architect` survey for ownership/seam friction; `atunwo` for light or deep engineering review, focused on simplification when unnecessary mechanism is the concern; `optimize` only when measured variants are genuinely being compared. A selected change then joins the delivery route at its first unresolved result.
+- **Writing → usable text** — `oro-fun-sigidi` when the primary reader is an agent and the text steers selection, decisions, authority, execution, or completion; `oro-fun-eniyan` when the primary reader is a person and the job is comprehension, action, or communication.
+- **Missing evidence/tool capability** — `iwadi` for substantial current research; `irinse` for companion-tool selection, effective use, and readiness, including tools, host policy, and native agent declarations.
 - **Completed or materially paused work → learning** — `ayewo-igba-ise` when the useful result is what happened, recovery cost, recurring friction, or which durable improvement the evidence earns.
 
 For named or long-tail capabilities outside these route shapes, inspect their installed descriptions instead of extending this map merely to list them.
@@ -27,9 +27,11 @@ For named or long-tail capabilities outside these route shapes, inspect their in
 
 At each boundary ask: **what unresolved result owns the next decision?** Do not route to implementation while a material product decision, plan, architecture, contract, diagnosis, or authority gap still controls safe delivery. Do not replay an upstream result that is already current and sufficient.
 
-When several independently owned results need coordination, use `pepeye` and give it the useful route shape. When one result is enough, invoke that owner directly.
+When several independently owned results need coordination, shape the assignments and use the host's native collaboration controls. When one result is enough, invoke that owner directly.
 
 Supporting capabilities stay subordinate to the current owner unless their output becomes an independently required result. Routing never grants edit, publication, merge, deletion, installation, or other authority.
+
+For `atunwo`, route the review subject, known evidence, and requested decision or focus. Light/deep selection belongs to `atunwo` unless the user specified depth; a refactor or simplification request does not create another review mode.
 
 ## Return
 

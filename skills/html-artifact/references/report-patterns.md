@@ -27,7 +27,7 @@ The table order sets precedence. Keep secondary readers and purposes in supporti
 
 Keep the brief internal and render only fields that help the reader. Return one direction, never rejected directions, design options, visual variants, or prototype behavior. Apply decorative treatment after information direction. Palette, typography, illustration, borders, and brand expression cannot determine the argument.
 
-Use industry only as an internal vocabulary cue. Show it only when supplied or useful to the reader. Never infer industry facts. Use `slides` for a requested slide deck.
+Use industry only as an internal vocabulary cue. Show it only when supplied or useful to the reader. Never infer industry facts. Use the installed presentation capability for a requested slide deck.
 
 ### Let `Purpose` set the reading order
 

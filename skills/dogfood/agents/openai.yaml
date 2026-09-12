@@ -1,3 +1,0 @@
-interface:
-  display_name: "Dogfood"
-  short_description: "Verify changed user journeys in a real browser"

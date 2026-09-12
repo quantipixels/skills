@@ -1,11 +1,15 @@
 ---
 name: atona
-description: Shape and maintain a useful initiative plan from the current goal, decisions, dependencies, and evidence. Use for material work that needs a coherent route to an outcome, including changed plans and coordinated delivery. Use formal lifecycle gates only when the initiative requires them.
+description: Explore credible directions or shape and maintain an initiative plan from current goals, decisions, dependencies, and evidence. Use for material work that needs a coherent route to an outcome, including changed plans and coordinated delivery. Use formal lifecycle gates only when the initiative requires them.
 ---
 
 # Atọ́nà
 
-Keep one current plan that makes the desired outcome, remaining choices, dependencies, and next action clear.
+Return credible possibilities when direction is open; keep one current plan when the requested result is a route to an outcome.
+
+## Explore directions
+
+When the user needs ideas, alternatives, or opportunities, read [ideation](references/ideation.md). Generate materially different mechanisms, challenge every candidate, and return credible survivors with trade-offs and evidence gaps. Do not turn exploration into selection or a delivery plan unless that result is requested. Enter planning with the decisions already settled.
 
 Delegate substantial analysis, research, and expert work to subagents when it materially helps.
 

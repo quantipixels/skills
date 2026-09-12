@@ -55,7 +55,7 @@ Stop when the target is confirmed, the budget is spent, useful hypotheses are ex
 
 ## Finalize the retained candidate
 
-Use `alaga` for retained software changes and `ko-skill` for retained skill changes. Reuse current proof rather than rebuilding the experiment or repeating completed review. A measured advantage cannot replace required acceptance or independent review. If finalization changes the measured candidate or its conditions, refresh the affected comparison before claiming the improvement.
+Use `alaga` for retained software changes and `oro-fun-sigidi` for retained skill changes. Reuse current proof rather than rebuilding the experiment or repeating completed review. A measured advantage cannot replace required acceptance or independent review. If finalization changes the measured candidate or its conditions, refresh the affected comparison before claiming the improvement.
 
 Return the baseline and final result, workload and conditions, meaningful comparisons, preserved constraints, exact retained candidate, verification limits, and stop reason. Distinguish unrun hypotheses from failed trials and a promising contender from an accepted result.
 

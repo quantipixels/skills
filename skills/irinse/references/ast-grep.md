@@ -16,6 +16,6 @@ Use current command help/documentation when the pattern needs an explicit langua
 
 Start with a narrow read-only search and inspect representative matches. A rewrite or rule change mutates the consuming project, so keep its authority and proof with that delivery workflow. Limit paths and review the complete diff; syntax matching does not prove semantic equivalence.
 
-If ast-grep is missing or needs installation, shell integration, project configuration, or upgrade before the selected use, hand that readiness requirement to `qp-setup` rather than embedding setup procedure here.
+If ast-grep is missing or needs installation, shell integration, project configuration, or upgrade before the selected use, use [tool setup](tool-setup.md) rather than embedding setup procedure here.
 
 Return the exact pattern or rule, language, paths, match count, exclusions, parse errors, candidate identity, and verification used after any rewrite.

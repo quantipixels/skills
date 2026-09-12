@@ -42,7 +42,7 @@ Do not rewrite terminal work units or owner results to make the amended contract
 
 After each materially shape-changing slice or before a material publication/review/handoff boundary, reconcile cumulative actual shape against the delivery-shape envelope. Counts may be useful telemetry in domains where they carry information, but counts are never the acceptance target. Material drift includes unexpected workstream/system/surface spread, repeated new proof owners, new dependencies/contracts, or handoff/review topology that has multiplied beyond its independent value.
 
-When drift is material, replan from the changed scope and constraints. Use `architect` or `pare` as needed.
+When drift is material, replan from the changed scope and constraints. Use `architect` for structural decisions or `atunwo` for a code assessment with a simplification focus. Supply the bounded candidate/system, intended delivery shape, observed drift, and current evidence; review depth belongs to `atunwo` unless explicitly set. Consume its findings, proof gaps, and retained contracts when replanning; recommendations alone do not authorize implementation or prove delivery complete.
 
 Derive `Complete` only when every in-scope delivery obligation has current accepting proof and plan-level integration has no blocking gap. Derive `Not required` only when the accepted plan contains no delivery work.
 

@@ -23,6 +23,8 @@ Record exact symptom, expected behavior, first known trigger, candidate/revision
 
 Reproduce safely when possible; otherwise pin one equivalent direct observation. Separate primary failure from secondary errors, retries, compensating behavior, and recovery noise.
 
+Use the smallest feedback loop that can distinguish the reported symptom from the intended behavior. A failing test, focused runtime probe, trace replay, browser check, benchmark, or direct observation can serve. Minimize the reproduction when it materially sharpens the diagnosis; do not delay a useful hypothesis merely because a runnable loop is unavailable.
+
 ## Competing mechanisms
 
 Write a small hypothesis table. For each hypothesis state trigger/mechanism, enabling conditions, propagation, evidence explained, one distinguishing observation, and the smallest safe probe.
@@ -56,4 +58,4 @@ Return one:
 
 Include failure identity, minimal mechanism/set, per-factor evidence and causal role, interactions/alternative sufficient paths when material, contributing/contextual/unresolved factors, propagation/containment, decisive evidence, falsified alternatives, affected boundary, confidence limits, and smallest useful next action.
 
-Preserve a needed durable diagnosis in the existing project destination. Use `akosile` for a selected shared workspace and `html-artifact` as needed.
+Preserve a needed durable diagnosis in the existing project destination. Use `html-artifact` as needed.
