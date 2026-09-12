@@ -20,7 +20,7 @@ Provider profiles own work posture and useful runtime defaults. They do not own 
 | --- | --- |
 | `explorer` | The useful result is a map, trace, location, dependency, or evidence picture before action |
 | `analyst` | The useful result is bounded reasoning, comparison, architecture/technical judgment, or a consequential conclusion |
-| `writer` | The useful result is a human-facing README, documentation, specification, report, or handoff |
+| `writer` | The useful result is a prose-first artifact such as a README, documentation, specification, report, handoff, prompt, or agent-facing instruction |
 | `implementer` | The useful result requires bounded source/configuration mutation |
 | `verifier` | A claim/candidate must be reproduced, tested, falsified, or evidenced |
 | `researcher` | Current external facts, primary sources, APIs, versions, or compatibility must be established |
@@ -37,7 +37,7 @@ Adjust the work that needs capability rather than upgrading the whole workflow.
 Examples:
 
 - a small README correction → `writer` with an efficient/standard setting;
-- a technically consequential architecture document → `writer` with stronger reasoning;
+- a technically consequential architecture document or agent contract → `writer` with stronger reasoning;
 - broad routine candidate review → ordinary `reviewer` default;
 - subtle concurrency/data-integrity review → stronger `reviewer` reasoning;
 - trivial repository mapping → lightweight `explorer`;
