@@ -1,6 +1,6 @@
 ---
 name: irinse
-description: Select and use companion engineering tools; install, configure, repair, update, verify, or remove tools, host instructions, and native agent declarations. Use for non-obvious tool capability or environment readiness; exclude engineering verdicts and implementation.
+description: Select and use companion engineering tools; install, update, reconcile, configure, verify, or remove tools, installed skills, host instructions, and native agent declarations. Use for non-obvious tool capability or environment readiness; exclude skill authoring, engineering verdicts, and implementation.
 ---
 
 # Irinṣẹ́
@@ -27,7 +27,7 @@ For another named tool, use current official documentation and retain only recur
 
 Reuse the selected tool, target, scope, and existing authorization. Load only the relevant branch:
 
-- [Tool setup](references/tool-setup.md) for installation, configuration, authentication, integration, upgrade, repair, or removal.
+- [Tool setup](references/tool-setup.md) for installation, configuration, authentication, integration, upgrade, repair, removal, or reconciliation of installed skills with an intended source version.
 - [Host instructions](references/host-instructions.md) for requested instruction-file setup or migration.
 - [Agent declarations](references/agent-declarations.md) for provider-native definitions and their discovery or configuration.
 
