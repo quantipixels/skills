@@ -1,6 +1,6 @@
 ---
 name: ko-skill
-description: Compatibility entrypoint for legacy requests explicitly naming `ko-skill`. Use `oro-fun-sigidi` for skill authoring, review, pruning, and other agent-facing instruction work.
+description: Compatibility entrypoint for legacy requests explicitly naming `ko-skill`. Delegates to `oro-fun-sigidi`.
 ---
 
 # Kọ Skill

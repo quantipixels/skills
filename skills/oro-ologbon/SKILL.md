@@ -1,6 +1,6 @@
 ---
 name: oro-ologbon
-description: Compatibility entrypoint for legacy requests explicitly naming `oro-ologbon`. Use `oro-fun-sigidi` when the reader is an agent and `oro-fun-eniyan` when the reader is human.
+description: Compatibility entrypoint for legacy requests explicitly naming `oro-ologbon`. Delegates by audience to `oro-fun-sigidi` or `oro-fun-eniyan`.
 ---
 
 # Ọ̀rọ̀ Ọlọ́gbọ́n
