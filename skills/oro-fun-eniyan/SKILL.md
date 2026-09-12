@@ -35,33 +35,31 @@ Use the **Diátaxis** distinction when a document needs a clear information mode
 
 Do not mix jobs merely to make one file feel complete. Split or link when the reader's purpose materially changes. Reports, specifications, PR descriptions, messages, and other technical artifacts need not be forced into Diátaxis when their native form is already clear.
 
-## Write to the reader
+## Apply Google developer-documentation style
 
-Use these developer-documentation constraints where they improve technical communication:
+Use Google developer-documentation guidance where it improves technical communication. Optimize for clear, concise, unambiguous prose that works for a global technical audience.
 
-- Address the reader as “you” when appropriate and use present tense.
-- Name the actor when responsibility matters; prefer active voice.
-- Write instructions as direct commands.
-- Put a condition before the instruction it guards.
+- Address the reader directly as “you” when appropriate.
+- Prefer present tense and active voice; name the actor when responsibility matters.
+- Write procedures as direct commands.
+- Put the condition before the instruction it guards.
 - Put the common case before exceptions.
+- Keep the subject and main verb easy to find; split long or overloaded sentences.
+- Prefer simple, primary-sense verbs and familiar constructions over indirect or inflated wording.
+- Keep modifiers next to what they modify; avoid long noun stacks when a clause is clearer.
+- Use one established term for one concept and keep capitalization/formatting consistent.
+- Repeat a noun or helper word when the redundancy removes ambiguity.
+- Prefer positive instructions where possible; use prohibitions when a hard constraint genuinely needs one.
 - Use descriptive link text, sentence-case headings, numbered lists for sequences, and bullets otherwise.
+- Keep list items parallel in structure.
 - Use exact code formatting for code/command identifiers and **bold** for UI elements when those forms apply.
-- Prefer the subject's established terminology over synonyms.
+- Avoid idioms, culture-specific metaphors, humor, and compressed shorthand when they reduce clarity or portability.
 
-## Keep instructions easy to execute
-
-Use these **ASD-STE100-derived** constraints when procedural precision matters:
-
-- Prefer one instruction per sentence and one main thought per sentence when multiple clauses obscure the action.
-- Split a sentence when its length or structure obscures the action or claim.
-- Put warnings and conditions before the step they constrain.
-- Use one word for one meaning and one action name consistently.
-- Keep small structural words when removing them makes the sentence ambiguous.
-- Write procedures as commands rather than passive narration.
+The subject's authoritative terminology wins over a generic style preference. Do not replace a precise technical term merely because a simpler word exists.
 
 ## Remove ambiguous syntax
 
-Use **Global English** as an ambiguity lens where two readings would matter:
+Use **Global English** as a secondary ambiguity lens only where two readings would matter:
 
 - Keep `only`, `not`, and similar modifiers next to what they modify.
 - Break long noun strings into clauses.
@@ -70,7 +68,8 @@ Use **Global English** as an ambiguity lens where two readings would matter:
 - Make `and`/`or` grouping explicit when two readings are possible.
 - Prefer periods to punctuation that hides clause boundaries.
 - Use one name for one thing across the document.
-- Prefer plain constructions over idioms, metaphors, Latin abbreviations, and compressed shorthand when they reduce clarity or portability.
+
+Do not duplicate Google-style rules merely to satisfy this lens; use it only for ambiguity the primary guidance does not already resolve.
 
 ## Applied technical writing
 
@@ -90,4 +89,4 @@ Human-facing cleanup is not an automatic extra pass on unrelated work.
 
 For authoring/editing, return complete usable prose first. For a review request, return findings. Mention only material meaning, evidence, authority, technical-familiarity, concept-adequacy, or voice questions that remain unresolved.
 
-This skill intentionally draws on Diátaxis, Google developer-documentation style, ASD-STE100, Global English, and the former Technical Writing/Yọ Slop contracts as reasoning anchors. Use the behavior-bearing subset that improves the current reader's job rather than imposing a full methodology.
+This skill intentionally draws on Diátaxis, the Google developer documentation style guide, Global English, and the former Technical Writing/Yọ Slop contracts as reasoning anchors. Use the behavior-bearing subset that improves the current reader's job rather than imposing a full methodology.
