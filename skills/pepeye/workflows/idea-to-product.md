@@ -10,17 +10,19 @@
 4. **`architect` / `seda-spec` — structure or behavior, conditionally.**
    - use `architect` when implementation would otherwise invent consequential technical structure or ownership;
    - use `seda-spec` when observable behavior/contract remains ambiguous.
-5. **`alaga` — implementation and sufficient proof.** Deliver the accepted coding outcome and return the exact candidate/result to the workflow lead.
-6. **`atunwo` — independent judgment, when required.** Use when the user/workflow requires review or risk/uncertainty makes independent evidence materially valuable.
-7. **`seda-pr` — publication, only when authorized.** Create/update the PR/MR; publication does not imply merge/release authority.
-8. **`ayewo-igba-ise` — terminal retrospective.** After the current product/result state is fixed, postmortem the workflow and harvest only evidence-backed reusable learning through its natural owner.
+5. **Independent plan review — whenever a plan governs execution.** After all plan-affecting decisions are reflected in the fixed plan, review it in fresh read-only context before implementation. Route findings back to the nearest semantic owner, update the plan, and review the changed plan again before execution. If this route never needed an explicit plan, skip this stage rather than manufacturing one.
+6. **`alaga` — implementation and sufficient proof.** Deliver the accepted coding outcome and return the exact candidate/result to the workflow lead.
+7. **`atunwo` — independent code judgment, when required.** Use when the user/workflow requires review or risk/uncertainty makes independent evidence materially valuable.
+8. **`seda-pr` — publication, only when authorized.** Create/update the PR/MR; publication does not imply merge/release authority.
+9. **`ayewo-igba-ise` — terminal retrospective.** After the current product/result state is fixed, postmortem the workflow and harvest only evidence-backed reusable learning through its natural owner.
 
 ## Branches and recovery
 
 - New evidence invalidates the chosen direction → `arojinle` (or `iwadi` first if evidence is still missing).
-- Architecture/spec changes invalidate delivery assumptions → refresh `atona` only where sequencing/proof changed, then return to `alaga`.
-- Candidate/base changes after review → refresh only affected `atunwo` evidence.
-- Review confirms a defect → `alaga`, then re-review only invalidated findings/evidence.
+- Architecture/spec work changes sequencing, dependencies, proof, or ownership → refresh `atona` only where the plan changed, then return to plan review before implementation.
+- Plan review reopens sequencing/dependencies → `atona`; reopens architecture → `architect`; reopens observable behavior → `seda-spec`; exposes a consequential user choice → `arojinle`. Review the resulting fixed plan again before implementation.
+- Candidate/base changes after code review → refresh only affected `atunwo` evidence.
+- Code review confirms a defect → `alaga`, then re-review only invalidated findings/evidence.
 - Publication/CI exposes a concrete delivery defect → nearest causal owner, not a full workflow restart.
 - Postmortem earns a durable improvement → route it as a separate follow-on to `ko-skill`, explicit `amose` `.learnings`, or the natural project/runtime owner; do not rewrite the judged run while reconstructing it.
 

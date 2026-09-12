@@ -10,7 +10,8 @@ A workflow should name:
 - **entry** — when the lane is useful;
 - **stages** — semantic result owners, with conditions that make a stage necessary;
 - **dependencies** — only real ordering requirements;
-- **independence** — stages whose evidence must come from a separate context;
+- **independence** — stages or judgments whose evidence must come from a separate context;
+- **plan review** — any explicit plan that governs downstream execution must be independently reviewed before execution;
 - **recovery** — the nearest owner to revisit when later evidence invalidates earlier state;
 - **completion** — the evidence that lets delivery progression stop; and
 - **closure** — the terminal retrospective plus disposition of any earned learning.
@@ -24,6 +25,20 @@ Each stage names one primary skill. Supporting skills are optional and stay subo
 Put workflow-specific constraints in the dispatched assignment, not in the skill definition. The assignment may state the bounded outcome, current evidence/candidate, authority/workspace, required independence, evidence to return, and stop condition. Do not add instructions such as “when running inside Pepeye,” “return to the workflow,” or “do not advance to the next stage” to `alaga`, `atona`, `architect`, `atunwo`, or another skill merely so one workflow can compose it.
 
 A selected skill may delegate to subagents when useful under its own method. The active provider/host harness owns worker instantiation, nesting/capacity, model/effort mapping, and equivalent execution mechanics. The workflow should constrain authority, independence, candidate identity, and result boundaries when those matter; it should not reproduce provider harness mechanics inside skill instructions.
+
+### Review plans before execution
+
+Plan review is a workflow assignment, not a second planning owner and not a special planner profile.
+
+Whenever an explicit plan becomes the governing input to downstream delegated or multi-stage execution, dispatch a fresh independent reviewer over that fixed plan before implementation. The rule applies regardless of who authored the plan: `atona`, the lead, the user, a persisted artifact, or another workflow.
+
+Pin the exact plan, accepted outcome, current constraints, consequential decisions, and decisive evidence. Keep review read-only where the host can enforce it. Challenge, as applicable, hidden assumptions, unresolved decisions, sequencing/dependencies, ownership, feasibility, architecture/contract gaps, proof strategy, stale evidence, failure handling, migration/rollback/recovery, and credible simpler routes.
+
+The reviewer returns findings, rejected concerns, proof gaps, and a bounded disposition. It does not rewrite the plan or advance the workflow. Route confirmed corrections to the nearest semantic owner; after the plan changes, review the changed plan again before execution.
+
+If the work is small enough to execute directly and no explicit plan exists, do not manufacture a plan or review stage merely to satisfy this rule.
+
+For implementation candidates, `atunwo` remains the independent code-judgment method. Plan review does not replace code review.
 
 Do not use the lane as a mandatory waterfall. Skip a stage when its result is already current and sufficient. Insert an omitted owner when a material unresolved result appears. Parallelize stages only when their evidence/writes are independent or safely isolated.
 
@@ -39,7 +54,7 @@ Carry the smallest cross-stage capsule that can change progression:
 - exact candidate/source identity;
 - unresolved blockers/branches;
 - authority and workspace boundaries; and
-- evidence/proof freshness.
+- evidence/proof/review freshness.
 
 Prefer exact locators and summaries over replaying full upstream transcripts.
 
