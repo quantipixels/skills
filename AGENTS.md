@@ -2,6 +2,8 @@ Use `oro-fun-sigidi` for agent-facing instructions and documents. Use `oro-fun-e
 
 This repository is a library of expertise, methods, and focused capabilities. Use related skills directly; keep their instructions in their own files.
 
+Delegate analysis, research, implementation, and review freely when workers can advance useful parts of the task. Delegation needs no separate user approval or formal overhead justification. Keep assignments bounded, preserve authority, and verify decisive evidence; use native host controls without forking session context.
+
 ## Package
 
 Each skill lives at `skills/<name>/SKILL.md`. The directory and frontmatter name must agree. Supporting expertise, assets, and deterministic tools stay with their skill. Native discovery uses the directory; do not add another maintained discovery catalogue or generate `default_prompt` metadata. Use `metadata.maturity: experimental` for existing candidates; moving a skill does not promote it or change its invocation permissions.

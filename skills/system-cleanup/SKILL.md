@@ -44,9 +44,9 @@ Use application-native cleanup for disposable Docker/Xcode/simulator or equivale
 
 Run one category at a time and recheck Data-volume free space after each large batch. APFS clones, shared assets, sparse images, and Trash can make logical estimates differ from physical recovery.
 
-### 4. Audit Git worktrees
+### 4. Audit selected Git worktrees
 
-For every worktree, establish whether it is dirty, has unique commits, is ahead of its upstream, or contains untracked files. Keep and report anything dirty, unique, or unpushed.
+Run this step only when worktrees or their generated output are selected as cleanup candidates. For every affected worktree, establish whether it is dirty, has unique commits, is ahead of its upstream, or contains untracked files. Keep and report anything dirty, unique, or unpushed.
 
 Present clean worktrees whose commits are fully merged and pushed as one confirmation batch. After approval, use Git's normal worktree removal and non-forcing branch deletion; never force-delete a branch merely for cleanup.
 

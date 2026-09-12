@@ -36,6 +36,8 @@ Use `--claude` instead, or both flags, for the direct skill-only path. See [comp
 
 ## Start
 
+For Codex to select relevant skills and carry work through completion, use the [copyable agent setup prompt](docs/codex-setup.md). It applies the [operating contract](docs/agent.md) within your chosen scope while preserving your model, reasoning, and existing settings.
+
 If you know the skill you need, use it directly. Otherwise:
 
 ```text

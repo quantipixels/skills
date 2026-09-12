@@ -130,7 +130,7 @@ Before delivery require every material obligation to be `present`, or expose the
 
 ## Keep living projections honest
 
-Run structural checks after every projection write. Apply the parent verification boundary: static information projections normally stop at structural proof plus at most one bounded render smoke when readability is materially uncertain; interactive projections prove only the material interaction claims they introduce.
+After the first complete projection write, run the full structural baseline below. After an incremental write, rerun only the structural and browser checks whose claims or evidence it invalidated. Before delivery, run a final coherence pass across the complete current projection and its declared source cut. Apply the parent verification boundary: static information projections normally stop at structural proof plus at most one bounded render smoke when readability is materially uncertain; interactive projections prove only the material interaction claims they introduce. Preserve real browser proof while its claim remains valid.
 
 Before delivery test:
 

@@ -31,7 +31,7 @@ Those judgments stay with [agent session](agent-session.md), [corpus analysis](c
 
 ## Run the inventory
 
-When persisted local history is the selected evidence source, **Àyẹ̀wò runs this adapter itself** through the active host's local shell/filesystem capability. The command below is an agent execution primitive, not a prerequisite for the user. Ask the user to run or export it only when the active host genuinely cannot access the local session stores and no equivalent local capability is available.
+Read known transcripts directly when they suffice. When inventory or relationship normalization is needed, run this adapter through the active host's local shell/filesystem capability; reuse a suitable existing inventory. Ask the user to run or export evidence only when local access and equivalent capabilities are unavailable.
 
 From a repository checkout:
 
@@ -49,6 +49,8 @@ python3 skills/ayewo-igba-ise/scripts/session-evidence.py \
 ```
 
 `--since` and `--until` accept explicit ISO-8601 corpus bounds; omitting them means no date cutoff. `--session` accepts a session ID or any proved root/ancestor ID. `--skill` is repeatable and **focuses emitted skill-reference signals; it is not a session filter**. Sessions with no matching signal remain in the inventory so Àyẹ̀wò can still identify possible missed opportunities from sampled raw evidence.
+
+Project, session, and time filters apply after parsing; they do not reduce scan work. Where the corpus is already located, pass `--codex-root` or `--claude-root` pointing to its containing directory. Report that boundary and preserve unresolved ancestry; broaden collection only when needed for the question or independent-root counts.
 
 When `--skill` is omitted, the adapter discovers current skill names from the available `skills` tree. When running outside a full repository checkout, pass `--skills-root <path-to-skills>` for that auto-discovery path.
 
@@ -90,8 +92,8 @@ For Claude Code, a subagent storage path may directly prove its root-session ID;
 
 ## Corpus use
 
-1. Inventory the full permitted local population first.
-2. Pin the corpus from the decision being made: host, project/repository, skill snapshot/version evidence, session relationships, or caller-supplied time range as relevant. Do not bake a repository inception date or rolling-window default into the analyser.
+1. Pin the corpus from the question: host, project/repository, skill snapshot/version evidence, session relationships, or caller-supplied time range. Do not assume a date cutoff.
+2. Inventory only that population when sampling or population claims require it; reuse known transcript locators for a fixed-session review.
 3. Resolve or explicitly preserve uncertain root relationships before counting independent opportunities.
 4. Select representative and risk-weighted root sessions from the inventory, using structural activity only to focus inspection where it can answer the postmortem question.
 5. Read raw transcript lines only for selected records and only to reconstruct contract, owner selection, user corrections, proof, rework, recovery, tool/environment friction, or incremental value.

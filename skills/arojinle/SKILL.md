@@ -5,7 +5,7 @@ description: Resolve consequential choices through a relentless, complete decisi
 
 # Àròjinlẹ̀
 
-Use `amose`.
+Use `amose` when unresolved project-specific meaning—terms, identities, boundaries, relationships, ownership, or invariants—can materially change the decision tree.
 
 Interview the user relentlessly until shared understanding is reached and no consequential branch remains silently assumed. Map it as a **decision tree**: every decision branches into the decisions that depend on it.
 

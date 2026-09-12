@@ -42,7 +42,7 @@ Keep the **current gate** explicit: the next material progression judgment the h
 
 Pin outcome, scope, constraints, assumptions, non-goals, evidence, risks, and open uncertainties. Read only current project/domain evidence that can materially change the plan.
 
-Use `amose`.
+Use `amose` when unresolved project-specific meaning—terms, identities, boundaries, relationships, ownership, or invariants—can materially change the plan.
 
 When the initiative is too uncertain to state responsibly at full depth, read [progressive shaping](progressive-shaping.md). Preserve known-but-not-yet-formulatable territory without inventing future requirements.
 

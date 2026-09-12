@@ -50,15 +50,15 @@ Do not optimize file length in isolation. A tiny root that always opens several 
 
 ## Skills are one packaging branch
 
-When the artifact is a skill, read [skill mechanics](references/skill-mechanics.md). Skill creation is not the default answer to an instruction problem; first ask whether the behaviour belongs in an existing skill, repository instructions, runtime policy, workflow, or another already-loaded surface.
+For skill creation or changes to identity, invocation, packaging, or ownership, read [skill mechanics](references/skill-mechanics.md). First consider whether the behaviour belongs in an existing skill or instruction surface.
 
-For references, scripts, templates, bundled data, or host adapters, read [resource boundaries](references/resource-boundaries.md).
+When adding, removing, or changing the responsibility of references, scripts, templates, bundled data, or host adapters, read [resource boundaries](references/resource-boundaries.md).
 
 ## Evolve existing agent text
 
-For an existing draft, refactor, or pruning request, read [editing agent text](references/editing-agent-text.md).
+For material behavioural revision, refactoring, or pruning, read [editing agent text](references/editing-agent-text.md). Handle local wording and pointer corrections directly.
 
-Pin the current behaviour graph so change is deliberate, then classify material semantics as **retain**, **strengthen**, **relocate**, **replace**, or **retire**. The old text is evidence, not authority. Delete no-ops, caches, duplication, sediment, and superseded behaviour when they no longer earn their load.
+For material changes, identify affected branches and classify their semantics as **retain**, **strengthen**, **relocate**, **replace**, or **retire**. The old text is evidence, not authority. Delete no-ops, caches, duplication, sediment, and superseded behaviour when they no longer earn their load.
 
 A loss audit exists to distinguish intentional evolution from accidental regression, not to preserve everything that existed before.
 

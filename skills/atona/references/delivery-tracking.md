@@ -30,7 +30,9 @@ For another delivery owner, record only what the plan needs to integrate its res
 
 Verify every supporting result against the current plan and relevant identity before using it. A mismatch makes only dependent plan conclusions stale; reopen affected phases, proof, readiness, or summaries as needed.
 
-When an amendment changes an accepted or completed contract, record one clause-scoped amendment map before resuming dependent delivery or claiming closure:
+When an amendment changes an accepted or completed contract, reconcile it before resuming dependent delivery or claiming closure. For a simple localized change with one clear dependency effect, a concise amendment note is sufficient: governing authority and revision, changed clause locator, affected result/proof, what becomes stale or remains current, and any required owner refresh or re-entry proof.
+
+Use a full clause-scoped amendment map when effects span multiple results or clauses, retained coverage is partial, or the reconciliation is otherwise complex:
 
 - governing amendment authority and revision;
 - each earlier owner result plus the affected decision, requirement, or clause locators;
