@@ -30,9 +30,9 @@ Classify relevant existing guidance as:
 
 No change is a valid result. Existing user wording wins when it expresses the same policy adequately.
 
-## Recommended QP policy
+## Recommended policy
 
-QP's recommended policy is a starting point the user can edit directly as models, costs, and preferences change. Keep the behavioral contract stable; resolve concrete model names and supported reasoning levels from the active host.
+This policy is a starting point the user can edit directly as models, costs, and preferences change. Keep the behavioral contract stable; resolve concrete model names and supported reasoning levels from the active host.
 
 For a current Codex host exposing the GPT-6/GPT-5.6 family, start from:
 
@@ -57,7 +57,7 @@ For another host, preserve the policy and map the model preferences to that host
 
 ## Propose proportionally
 
-Show the smallest semantic diff and why it earns global/repository context. Do not replace unrelated personal policy while adding QP preferences.
+Show the smallest semantic diff and why it earns global/repository context. Do not replace unrelated personal policy while adding these preferences.
 
 If the user accepts package-managed policy text, place only that accepted text inside one block:
 

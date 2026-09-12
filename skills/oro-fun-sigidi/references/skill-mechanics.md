@@ -57,7 +57,7 @@ Bad:
 
 - create an `alaga-agent` identity that duplicates Alága's method;
 - maintain explorer/writer/reviewer/posture catalogues only to classify work before spawning it;
-- create a second QP model registry that drifts from the host instruction policy;
+- create a second model registry that drifts from the host instruction policy;
 - fork conversation history into workers because producing a focused handoff requires judgment;
 - create a new skill merely because a provider benefits from a named worker.
 
