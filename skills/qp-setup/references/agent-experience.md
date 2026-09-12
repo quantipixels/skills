@@ -14,7 +14,7 @@ The provider-neutral catalogue at [work postures](../assets/agent-experience/pos
 - **Olùwádìí** (`oluwadi`) — current external/primary-source research;
 - **Olùyẹ̀wò** (`oluyewo`) — fresh independent judgment.
 
-A work posture is not an installed agent definition. It describes how a bounded assignment should work. The host may satisfy it with native capability, an existing user definition, a QP-managed definition, or a generic subagent shaped by the assignment.
+A work posture is not an installed agent definition. It describes how a bounded assignment should work. The host may satisfy it with native capability, an existing user definition, a package-managed definition, or a generic subagent shaped by the assignment.
 
 Semantic skills are separate. Do not preload or hardcode skill identities into agent definitions. An assignment may name an already-selected skill when that materially improves the work; otherwise leave ordinary skill selection to the model/host.
 
@@ -35,12 +35,12 @@ Prefer execution capability in this order:
 
 1. a suitable **native host agent/capability**;
 2. a suitable **existing user agent definition**;
-3. a **QP-managed agent definition** only when it adds durable value the first two do not provide;
+3. a **package-managed agent definition** only when it adds durable value the first two do not provide;
 4. a **generic native subagent** shaped by the assignment when no reusable definition earns its cost.
 
-Do not install seven definitions merely because seven work postures exist. Do not shadow or replace a native agent just to give the posture a QP name.
+Do not install seven definitions merely because seven work postures exist. Do not shadow or replace a native agent just to give the posture a package-specific name.
 
-Existing user definitions remain user-owned. When one overlaps the desired posture, audit it and normally keep it. If a material difference creates a real choice, offer only reasonable options such as **keep existing**, **replace with the shown QP definition**, **add a separate non-conflicting QP definition**, or **leave unchanged**. Never merge QP text into an existing user definition.
+Existing user definitions remain user-owned. When one overlaps the desired posture, audit it and normally keep it. If a material difference creates a real choice, offer only reasonable options such as **keep existing**, **replace with the shown package-managed definition**, **add a separate non-conflicting package-managed definition**, or **leave unchanged**. Never merge package text into an existing user definition.
 
 ## Run setup autonomously
 
@@ -64,13 +64,13 @@ The catalogue's `execution_boundary` expresses intent (`read-only` or `write-cap
 
 ## Preview and apply
 
-Prepare only the selected QP-managed definitions in a temporary directory with [render-agent-definitions.py](../scripts/render-agent-definitions.py). Its temporary settings file names only definitions that setup actually intends to install; absence means **do not render/install** that posture.
+Prepare only the selected package-managed definitions in a temporary directory with [render-agent-definitions.py](../scripts/render-agent-definitions.py). Its temporary settings file names only definitions that setup actually intends to install; absence means **do not render/install** that posture.
 
 Show a compact proposal containing:
 
 - host + scope;
 - native/existing capabilities being reused;
-- QP definitions to add or replace, and why each earns its place;
+- package-managed definitions to add or replace, and why each earns its place;
 - any intentional model/effort pin;
 - requested execution boundary and the host mechanism used to approximate/enforce it;
 - exact files changed;
@@ -89,22 +89,22 @@ Do not enable Code Mode, agent teams, scheduling, join/wait policy, retries, or 
 
 ## Ownership, update, and rollback
 
-QP-managed definitions contain the marker `qp-skills-agent-definition: v1`. Treat that marker plus exact path/content as ownership evidence, not permission to overwrite arbitrary user changes.
+Package-managed definitions contain the marker `qp-skills-agent-definition: v1`. Treat that marker plus exact path/content as ownership evidence, not permission to overwrite arbitrary user changes.
 
-Before replacing/removing a QP-managed definition or other affected config, save a byte-for-byte backup under the host's own configuration area. Use unique names and never overwrite earlier backups. Refresh every destination immediately before writing; reconcile any material concurrent change before mutation.
+Before replacing/removing a package-managed definition or other affected config, save a byte-for-byte backup under the host's own configuration area. Use unique names and never overwrite earlier backups. Refresh every destination immediately before writing; reconcile any material concurrent change before mutation.
 
-If a marked definition has materially diverged from the QP-generated content, treat it as customized and present the difference rather than overwriting it automatically.
+If a marked definition has materially diverged from the package-generated content, treat it as customized and present the difference rather than overwriting it automatically.
 
 ## Verify and return
 
 Read changed definitions/config back and confirm:
 
-- every installed QP definition was actually selected and is discoverable by the host;
+- every installed package-managed definition was actually selected and is discoverable by the host;
 - suitable native/user capability was reused rather than duplicated where applicable;
 - no semantic skill was hardcoded/preloaded;
 - intentional provider pins match the accepted preview and unpinned definitions remain unpinned;
 - requested execution boundaries are enforced only to the degree the host actually supports;
 - unrelated host configuration/definitions are unchanged; and
-- the QP ownership marker is present only on QP-managed definitions.
+- the ownership marker is present only on package-managed definitions.
 
 Return the host/scope, capabilities reused, definitions added/replaced/skipped, actual model/effort configuration when material, changed files, verification, backup/rollback path, and residual host limitations.
