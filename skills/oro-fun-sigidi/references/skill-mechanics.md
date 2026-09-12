@@ -51,7 +51,7 @@ Good:
 - **Olùyẹ̀wò** is an independent-judgment work posture; `atunwo` remains the semantic code-review method when that method is useful.
 - **Akọ̀wé** can edit a README, architecture document, prompt, or handoff without becoming a documentation/writing skill.
 - one reusable **Olùṣe** definition can execute many bounded changes when such a definition actually adds value beyond native capability.
-- use a host's adequate native explorer for **Àṣàwárí** rather than adding a QP definition merely for symmetry.
+- use a host's adequate native explorer for **Àṣàwárí** rather than adding a package-managed definition merely for symmetry.
 
 Bad:
 
