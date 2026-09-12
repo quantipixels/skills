@@ -10,7 +10,7 @@ The shipped postures are defined once in [roles](../assets/agent-experience/role
 
 - `explorer` — read-only investigation and mapping;
 - `analyst` — bounded deep reasoning and consequential technical judgment;
-- `writer` — human-facing technical artifacts;
+- `writer` — prose-first documentation, specification, handoff, prompt, or agent-instruction work;
 - `implementer` — bounded source/configuration mutation;
 - `verifier` — reproduction, testing, and falsification;
 - `researcher` — current external/primary-source evidence;
