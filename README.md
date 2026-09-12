@@ -21,7 +21,7 @@ claude plugin marketplace add quantipixels/skills
 claude plugin install qp-skills@qp-skills
 ```
 
-### Direct snapshot install
+### Direct snapshot
 
 For macOS/Linux with Git and Python 3.10+:
 
@@ -44,7 +44,7 @@ Use `alarina` to choose the right skill for this request:
 [describe the outcome you need]
 ```
 
-A few common entrypoints:
+Common entrypoints:
 
 | Skill | Use when |
 | --- | --- |
@@ -54,6 +54,7 @@ A few common entrypoints:
 | `alaga` | An accepted coding change or fix needs implementation and proportionate proof |
 | `atunwo` | A fixed code candidate or codebase snapshot needs independent judgment |
 | `iwadi` | A question needs substantial current research or exact-source grounding |
+| `qp-setup` | A selected tool, host integration, or shared instruction surface needs setup or repair |
 | `oro-fun-sigidi` | Agent-facing instructions, skills, prompts, routing, or workflow text needs writing/review |
 | `oro-fun-eniyan` | Human-facing technical prose needs writing, editing, or pruning |
 
@@ -61,37 +62,15 @@ Use `alarina` for the complete installed inventory.
 
 `ko-skill` remains a compatibility entrypoint for skill-writing requests and routes to `oro-fun-sigidi`. `oro-ologbon` remains a compatibility entrypoint and routes by audience.
 
-### Optional integrated agent experience
-
-`pepeye` works with the host's native agents without extra setup. It shapes each delegated worker directly from the actual assignment: the required outcome and context, useful instructions, model/reasoning capability when supported, execution boundary, independence, evidence, stop condition, and semantic skill when one materially helps.
-
-There is no maintained QP agent-role/posture fleet. Pepeye may use concise Yorùbá names for workers in team/status output when a natural label helps readability, but the label is presentation only; it does not select behavior or imply an installed agent definition.
-
-`qp-setup` audits the selected Codex/Claude environment and existing user configuration. It proposes a persistent provider-native agent definition only when a recurring capability cannot be expressed adequately through native/per-spawn controls or the assignment itself, then shows the exact change before asking for permission to apply it.
-
-### Host instructions
-
-QP does not install a default global instruction block. Skills should be discoverable and useful through their own descriptions and the host's normal capabilities.
-
-When useful, `qp-setup` can ask permission to audit the user's global `AGENTS.md` / `CLAUDE.md`. It preserves useful existing policy and proposes only durable changes that materially improve behavior; no change is a valid audit result.
-
 ## Update
 
-From a checkout, run:
+From a checkout:
 
 ```bash
 bash scripts/update.sh
 ```
 
-The updater detects the existing QP installation manager and delegates to it: the QP direct installer, the Skills CLI, or the Claude Code plugin manager. It does not create a second installation registry.
-
-For Skills CLI installations, current installed QP skills are updated in place. Deprecated installed skills are presented before removal. Use `--sync` if you also want the updater to offer currently missing QP skills for installation.
-
-For a dry run:
-
-```bash
-bash scripts/update.sh --dry-run
-```
+The updater detects the existing QP installation manager and delegates to it. Use `--dry-run` to preview. For selective Skills CLI installs, `--sync` also offers currently missing QP skills; removals and additions that change the installed catalogue require confirmation.
 
 ## Uninstall
 
