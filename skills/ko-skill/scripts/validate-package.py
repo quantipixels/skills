@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Validate deterministic QP skill-package structure and local resource integrity."""
+"""Validate deterministic skill-package structure and local resource integrity."""
 from __future__ import annotations
 
 import argparse
@@ -18,6 +18,9 @@ MARKDOWN_LINK = re.compile(r"\[[^\]]*\]\(([^)]+)\)")
 DIRECT_REFERENCE = re.compile(r"(?<![\w])@((?:\./|\.\./)[^\s`'\"<>]+)")
 SKILL_ROOT_RESOURCE = re.compile(r"<[A-Za-z0-9-]*skill-root>/((?:references|scripts|templates|assets|data)/[A-Za-z0-9._/@+-]+(?:/[A-Za-z0-9._@+-]+)*)")
 REMOTE_SCHEMES = ("http://", "https://", "mailto:", "sandbox:", "data:")
+# Reject suite branding in model-facing prose while allowing compatibility identifiers
+# such as `qp-setup` and the `.qp/` state directory.
+BRAND_PROSE = re.compile(r"(?i)(?<![.\w-])qp(?=$|[\s'\"/,:;.!?()])")
 
 
 @dataclass(frozen=True)
@@ -66,6 +69,19 @@ def contains_key(value: Any, key: str) -> bool:
     return False
 
 
+def branding_findings(repo: Path, markdown: Path) -> list[Finding]:
+    try:
+        text = markdown.read_text(encoding="utf-8")
+    except (OSError, UnicodeError) as error:
+        return [Finding("instruction.read", str(markdown.relative_to(repo)), str(error))]
+    relative = str(markdown.relative_to(repo))
+    return [
+        Finding("instruction.brand", relative, f"line {number}: package branding is not allowed in model-facing instructions")
+        for number, line in enumerate(text.splitlines(), start=1)
+        if BRAND_PROSE.search(line)
+    ]
+
+
 def validate_skill(repo: Path, skill_dir: Path) -> list[Finding]:
     findings: list[Finding] = []
     try:
@@ -91,6 +107,7 @@ def validate_skill(repo: Path, skill_dir: Path) -> list[Finding]:
 
     seen: set[tuple[Path, str]] = set()
     for markdown in sorted(skill_dir.rglob("*.md")):
+        findings.extend(branding_findings(repo, markdown))
         for raw in local_targets(markdown):
             key = (markdown, raw)
             if key in seen:
@@ -135,6 +152,11 @@ def validate_inventory(repo: Path, skills: list[Path]) -> list[Finding]:
     return findings
 
 
+def validate_repository_instructions(repo: Path) -> list[Finding]:
+    path = repo / "AGENTS.md"
+    return branding_findings(repo, path) if path.is_file() else []
+
+
 def validate_manifest(repo: Path, skills: list[Path]) -> list[Finding]:
     path = repo / ".claude-plugin" / "plugin.json"
     try:
@@ -148,9 +170,8 @@ def validate_manifest(repo: Path, skills: list[Path]) -> list[Finding]:
     return []
 
 
-
 def validate_codex_manifest(repo: Path) -> list[Finding]:
-    """Check QP's thin native adapter, not the host's complete manifest schema."""
+    """Check the thin native adapter, not the host's complete manifest schema."""
     path = repo / ".codex-plugin" / "plugin.json"
     relative = str(path.relative_to(repo))
     try:
@@ -182,6 +203,7 @@ def main() -> int:
         skills = inventory(repo)
         findings = [] if skills else [Finding("portfolio.empty", "skills", "no skills found")]
         findings.extend(validate_inventory(repo, skills))
+        findings.extend(validate_repository_instructions(repo))
         for skill in skills:
             findings.extend(validate_skill(repo, skill))
         findings.extend(validate_manifest(repo, skills))
@@ -190,11 +212,11 @@ def main() -> int:
     if args.format == "json":
         print(json.dumps(payload, indent=2, ensure_ascii=False))
     elif findings:
-        print(f"QP skill package: {len(findings)} finding(s)")
+        print(f"skill package: {len(findings)} finding(s)")
         for item in findings:
             print(f"- [{item.code}] {item.path}: {item.message}")
     else:
-        print(f"QP skill package: valid ({len(skills)} skills)")
+        print(f"skill package: valid ({len(skills)} skills)")
     return 1 if findings else 0
 
 

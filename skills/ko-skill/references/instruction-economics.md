@@ -48,7 +48,7 @@ Do not assume an instruction earns its place merely because older models needed 
 
 Hold task, evidence, permissions, tools, and host configuration constant enough to isolate the behavioral claim. Judge the owned outcome, domain decisions, authority/safety compliance, proof quality, unnecessary tool/subagent work, context pressure, premature stopping, and scope drift as applicable.
 
-An adequate no-skill baseline is evidence that generic diligence, planning, delegation, verification, or recovery prose may add no marginal value. It is not evidence that QP-specific expertise, workflow topology, project conventions, completion semantics, or authority boundaries are unnecessary.
+An adequate no-skill baseline is evidence that generic diligence, planning, delegation, verification, or recovery prose may add no marginal value. It is not evidence that skill-specific expertise, workflow topology, project conventions, completion semantics, or authority boundaries are unnecessary.
 
 When behavior differs materially across model families, prefer one portable semantic contract plus thin host/provider policy over copying whole skills into model-specific variants. Preserve model-specific instructions only when evidence shows the difference matters.
 

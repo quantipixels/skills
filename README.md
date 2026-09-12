@@ -39,7 +39,7 @@ Use `--claude` instead, or both flags, for the direct skill-only path. See [comp
 If you know the skill you need, use it directly. Otherwise:
 
 ```text
-Use `alarina` to choose the right QP skill for this request:
+Use `alarina` to choose the right skill for this request:
 
 [describe the outcome you need]
 ```
@@ -60,10 +60,10 @@ Use `alarina` for the complete installed inventory.
 
 ## Recommended global instructions
 
-QP works without extra global instructions. Add this block only when you want these defaults across projects:
+The skills work without extra global instructions. Add this block only when you want these defaults across projects:
 
 ```text
-Use relevant QP skills when they materially improve the result. Use `alarina` when the next owner is unclear; otherwise use the owning skill directly.
+Use relevant installed skills when they materially improve the result. Use `alarina` when the next owner is unclear; otherwise use the owning skill directly.
 Use `pepeye` when delegation or a bounded multi-stage workflow would materially help.
 Use `ro-wo` before agreeing or disagreeing with a material premise.
 Use `oro-ologbon` for technical communication and prose cleanup.
@@ -76,7 +76,7 @@ User-level instruction files:
 
 For one repository, use its normal `AGENTS.md`, `CLAUDE.md`, or equivalent instruction surface instead.
 
-Copy the block into the appropriate file, removing any line you do not want as a global default. For Codex-specific general instructions or Pepeye activation, `qp-setup` can inspect the existing configuration, preview the exact diff, back it up, and apply only approved changes.
+Copy the block into the appropriate file, removing any line you do not want as a global default. For supported hosts, `qp-setup` can inspect the existing instruction surface, back it up, and install, update, or remove the shipped block while preserving unrelated instructions.
 
 ## Update and uninstall
 
@@ -88,7 +88,7 @@ For a direct snapshot installation:
 bash scripts/uninstall.sh
 ```
 
-Do not install QP through multiple managers at once.
+Do not install the package through multiple managers at once.
 
 ## Project
 

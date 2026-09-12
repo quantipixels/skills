@@ -1,12 +1,12 @@
 # Tool setup
 
-Use when a selected engineering or agent tool must be made ready, changed, or removed. The caller/user owns why the tool is wanted; QP Setup owns the setup operation and resulting readiness state.
+Use when a selected engineering or agent tool must be made ready, changed, or removed. The caller/user owns why the tool is wanted; this skill owns the setup operation and resulting readiness state.
 
 ## Pin the requested state
 
 Establish the exact tool, target environment, current state, desired state, installation/configuration scope, required integration or authentication, supported fallback, and rollback/uninstall path.
 
-Use the installed tool's help and current official documentation to resolve volatile installation, upgrade, configuration, authentication, and platform details. Do not copy a long-lived command catalogue into QP Setup. When `irinse` supplied the tool choice, preserve that selection and any usage-specific readiness requirement; do not re-run tool selection.
+Use the installed tool's help and current official documentation to resolve volatile installation, upgrade, configuration, authentication, and platform details. Do not copy a long-lived command catalogue into this skill. When `irinse` supplied the tool choice, preserve that selection and any usage-specific readiness requirement; do not re-run tool selection.
 
 Classify the starting state as `Ready | Needs setup | Missing | Unsupported` for the intended use. Command presence alone does not prove readiness.
 

@@ -7,7 +7,7 @@ Use only when a Pepeye workflow must remain correct after the current lead/sessi
 Durable orchestration is justified when one or more of these are true and ordinary project artifacts are insufficient:
 
 - work spans sessions or coordinators and has several independently progressing tracks;
-- correct resumption depends on queue/frontier state that is not owned by an existing QP skill;
+- correct resumption depends on queue/frontier state that is not owned by an existing skill;
 - workers may finish after the initiating lead is gone and their results must be reconciled safely;
 - retries, ownership, integration order, or verification receipts must survive process/machine restart; or
 - a human intentionally checks in periodically while the program continues through many bounded units.
@@ -32,4 +32,4 @@ Do not duplicate semantic plans, architecture, specifications, reviews, or provi
 
 Start with conversation/native worker handles. Promote to a bounded workflow before adding durable state. Add a deterministic bookkeeping seam only after real failures show agent-managed state is insufficient.
 
-Pepeye currently defines this admission boundary but does not ship a scheduler, daemon, orchestration database, or coordinator runtime. A future runtime must earn each mechanism through demonstrated resumability/coordination failures and remain separate from QP skill semantics.
+Pepeye currently defines this admission boundary but does not ship a scheduler, daemon, orchestration database, or coordinator runtime. A future runtime must earn each mechanism through demonstrated resumability/coordination failures and remain separate from skill semantics.
