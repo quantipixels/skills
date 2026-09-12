@@ -36,7 +36,7 @@ Treat the assignment as the worker specification. Include only what the worker n
 - acceptance/proof to return; and
 - a semantic skill only when one is already selected or materially improves the result.
 
-Never fork conversation context into a worker. Start fresh. When prior context matters, send a concise handoff containing the outcome, accepted constraints/decisions, decisive evidence with locators, exact candidate identity, unresolved questions, and requested result. Do not copy transcripts merely to avoid deciding what matters.
+Never fork parent conversation context into a worker. Spawn from a concise handoff containing the outcome, accepted constraints/decisions, decisive evidence with locators, exact candidate identity, unresolved questions, and requested result. Do not copy transcripts merely to avoid deciding what matters. After spawn, a worker may retain its own context across related subtasks when the host supports it and continuity materially helps.
 
 When an assignment names a skill, that skill owns its method; do not restate it. A worker may use ordinary installed capabilities when useful. Do not add generic skill-discovery instructions that merely restate model-native behavior.
 
@@ -52,11 +52,11 @@ Prefer this flow when the work is large enough to benefit:
 
 1. cheap/high-volume workers read, search, extract, trace, or collect;
 2. a balanced/strong worker synthesizes or executes from a compact evidence handoff;
-3. the highest judgment capability reviews only when acceptance is consequential.
+3. the highest justified judgment capability reviews when acceptance is consequential.
 
 Compression does not become authority. Preserve source/code locators so the receiving worker can independently reopen decisive evidence and candidate material.
 
-Generation gets sufficient capability. Consequential verification should receive **equal or greater judgment capability** than the work it accepts. Apply that at material decision/integration boundaries, not after every cheap collection or mechanical action.
+Generation gets sufficient capability. Consequential verification should receive **equal or greater judgment capability** than the work it accepts. Escalate to the highest available capability only when consequence, ambiguity, or unresolved difficulty justifies it, rather than after every cheap collection or mechanical action.
 
 Read [provider integration](references/provider-integration.md) when model/reasoning selection, provider-native controls, or cost-aware staffing materially affects the run. User host policy supplies editable defaults; Pepeye adapts them to the assignment rather than treating them as fixed roles.
 
@@ -92,6 +92,7 @@ A workflow is an adaptive graph, not a ceremony:
 - skip stages whose result is already settled and current;
 - insert a stage when a material missing result appears;
 - run independent stages in parallel when their writes/evidence do not conflict;
+- keep useful lead work moving while independent delegated work runs; wait only when progression depends on a worker result;
 - funnel large evidence surfaces before expensive synthesis/judgment when useful;
 - review any material explicit plan before using it to progress work;
 - preserve reviewer/decision independence when that independence is part of the evidence;
