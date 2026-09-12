@@ -1,6 +1,6 @@
 # Explore directions
 
-Expand one grounded opportunity into a bounded, mechanism-diverse candidate set; challenge every candidate; and explain only the credible survivors. Do not choose for the user, turn an idea into requirements, or skip directly to delivery.
+Expand one grounded opportunity into a bounded, mechanism-diverse candidate set; challenge every candidate; and explain only the credible survivors. Return credible options to the workflow; distinguish exploration from confirmed decisions and requirements.
 
 ## Ground the opportunity
 
@@ -46,4 +46,4 @@ NO_CREDIBLE_DIRECTION when applicable
 Recommended next decision/action boundary
 ```
 
-Do not select, plan, persist, or visualize the survivors unless that separate result is requested or materially required downstream.
+For an exploration-only request, stop at these possibilities. For an end-to-end initiative, return them to Atọ́nà to resolve the direction under existing authority and continue shaping and delivery.

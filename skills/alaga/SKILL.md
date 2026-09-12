@@ -1,11 +1,13 @@
 ---
 name: alaga
-description: Implement an accepted coding change or fix and verify the requested behavior. Use for delivery once the outcome is sufficiently clear; exclude standalone planning, review, and publication.
+description: Build and verify an accepted coding change or fix. Use directly when the outcome is sufficiently clear, or within an atona initiative; exclude initiative coordination, standalone planning, review, and publication.
 ---
 
 # Alága
 
-Carry the accepted coding outcome through implementation and proportionate verification. Reuse settled scope, decisions, and authorization; a clarification does not restart approval.
+Be the builder: own implementation, proportionate verification, and corrections for the accepted coding outcome. Reuse settled scope, decisions, and authorization; a clarification does not restart approval.
+
+When working within an `atona` initiative, use the supplied outcome, acceptance, dependencies, workspace/candidate, and authority. Return the implemented result, candidate identity, verification evidence, and any blocker or scope change. Atọ́nà owns initiative sequencing and overall completion; Alága owns making the assigned change work, including integration behavior within its acceptance. Direct requests need no Atọ́nà plan.
 
 Understand the affected behavior and its real owner. Choose the smallest idiomatic change that satisfies the request, preserves unrelated work, and reduces unnecessary state or indirection. Fix the cause rather than accumulating workarounds. Surface consequential scope expansion before taking it on.
 

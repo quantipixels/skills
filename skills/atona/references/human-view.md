@@ -6,7 +6,7 @@ Supply the reader's decision, current concern, exact plan revision, and relevant
 
 For a local operational view, include the plan's current absolute workspace path, `branch: <branch-name> [main|worktree]`, linked main-worktree path when applicable, and closure disposition when set. Omit machine-specific absolute paths from portable/public views unless the caller explicitly wants them.
 
-The opening must expose the outcome, plan status, current gate and blocking condition, Decision Frontier, delivery summary, weakest material claim, next action, and material change since the previous useful view.
+The opening must expose the outcome, current progress and blocker, delivery evidence and limits, next action, and material change since the previous useful view. Include named plan status, current gate, and Decision Frontier only when the managed lifecycle applies.
 
 Identify the meaning whose omission could change that judgment: acceptance and scope/non-goals; consequential decisions, alternatives and assumptions; required behavior or architecture conditions; delivery dependencies and cumulative drift; proof limits/freshness; and risk, reversibility or recovery obligations. Supply owner-established uncertainty and counterevidence, not just positive conclusions.
 

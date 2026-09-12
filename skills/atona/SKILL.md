@@ -1,54 +1,60 @@
 ---
 name: atona
-description: Explore credible directions or shape and maintain an initiative plan from current goals, decisions, dependencies, and evidence. Use for material work that needs a coherent route to an outcome, including changed plans and coordinated delivery. Use formal lifecycle gates only when the initiative requires them.
+description: Carry an idea from exploration through a completed, verified build, maintaining the plan and coordinating the skills needed along the way. Use for an initiative spanning discovery, decisions, planning, and delivery, or to resume or replan one. Honor exploration-only and planning-only requests; use alaga directly for an already-settled coding change that needs no initiative coordination.
+metadata:
+  maturity: experimental
 ---
 
 # Atọ́nà
 
-Return credible possibilities when direction is open; keep one current plan when the requested result is a route to an outcome.
+Own progression from the idea to the requested outcome. Keep one current plan, invoke specialist skills for their results, and continue authorized work until the outcome is built and verified. A plan, ticket set, or specialist handoff is an intermediate result when the user requested a build.
 
-## Explore directions
+## Establish the destination and authority
 
-When the user needs ideas, alternatives, or opportunities, read [ideation](references/ideation.md). Generate materially different mechanisms, challenge every candidate, and return credible survivors with trade-offs and evidence gaps. Do not turn exploration into selection or a delivery plan unless that result is requested. Enter planning with the decisions already settled.
+Start at the earliest unresolved step using supplied decisions, existing work, and current evidence. Establish the intended outcome, observable acceptance, scope/non-goals, and requested stopping point. An exploration-only or planning-only request ends at that result; an end-to-end build request carries through delivery without another permission request at each stage. Publication, merge, deployment, and destructive cleanup require applicable authority from the session or governing policy.
 
-Delegate substantial analysis, research, and expert work to subagents when it materially helps.
+Resolve discoverable facts from relevant project knowledge before asking the user. Check source authority and current applicability; carry forward only evidence that changes the work. Surface consequential choices the existing intent cannot settle, using `arojinle` when they need a decision interview. Continue independent authorized work while a dependent choice is unresolved.
 
-## Shape the plan
+## Explore and settle direction
 
-Start from supplied decisions and current evidence. Do not replay discovery or ask the user for facts you can establish. Distinguish confirmed requirements from inference, and keep the scope and non-goals explicit.
+When credible directions still need generating, read [ideation](references/ideation.md). Use `iwadi` for material evidence gaps, `ro-wo` to challenge a consequential proposal, and `prototype` when a disposable experiment can settle the uncertainty. Preserve the distinction between a promising idea, a confirmed choice, and an accepted requirement.
 
-When project knowledge could change the approach, constraints, sequence, or proof, reuse applicable evidence already supplied; otherwise search the existing knowledge and research destinations by affected concepts and components. Read plausible matches, check their authority and current applicability, and carry forward only what changes this plan. Flag conflicts rather than treating historical guidance as current authority. An empty search does not itself require a new record or a repository-wide search.
+For a build request, carry the selected direction into shaping and delivery. If no credible direction survives, report why and the evidence or decision needed to proceed. Reuse a settled direction without repeating exploration.
 
-Include the outcome and observable acceptance, the material decisions and assumptions, a useful delivery sequence, dependencies and risks that can change it, the current blocker, and the next action. Match detail to what a fresh contributor would otherwise have to invent. Omit empty sections and bookkeeping that has no consumer.
+## Shape enough to build
 
-When execution is tied to a concrete working directory, keep that workspace with the plan: its absolute path and `branch: <branch-name> [main|worktree]`; for a linked worktree also keep the absolute main-worktree path. Update this context when execution moves.
+Keep the outcome and acceptance, confirmed decisions and material assumptions, delivery sequence, dependencies, risks, current blocker, and next action in one plan. Match detail to what a fresh contributor would otherwise have to invent; omit empty bookkeeping.
 
-Use `arojinle`, `amose`, `seda-spec`, `architect`, and `seda-ticket` as needed.
+Use `amose` when domain meaning is unresolved, `seda-spec` when behavior needs a normative contract, `architect` when technical structure needs settling, and `seda-ticket` when delivery needs decomposition. Consume their results without copying their methods or requiring every skill on every initiative.
 
-When the initiative cannot yet be responsibly stated at full depth, read [progressive shaping](references/progressive-shaping.md). Resolve prerequisites without inventing future requirements or blocking independent work.
+When later work cannot yet be stated responsibly, read [progressive shaping](references/progressive-shaping.md). Resolve prerequisites and build only slices whose acceptance, dependencies, and authority are sufficiently settled. Keep uncertain remaining scope visible; slice readiness does not prove whole-initiative readiness.
 
-## Challenge readiness
+For consequential, uncertain, difficult-to-reverse, or materially coordinated work, run a [premortem](references/premortem.md) and reconcile material findings before treating the affected plan as execution-ready.
 
-For a consequential, uncertain, difficult-to-reverse, or materially coordinated plan, run a [premortem](references/premortem.md) before presenting it as execution-ready and reconcile material findings into the plan.
+Use [managed initiatives](references/managed-initiative.md) only when the governing workflow requires named readiness states, coordinated multi-candidate delivery, or a durable lifecycle record. Its formal gates supplement this workflow; size alone does not require them.
 
-When the formal managed lifecycle applies, a current premortem is always required before the initiative can enter `Planned`, regardless of whether the ordinary planning path would otherwise skip it. Keep the analysis proportional and in the existing plan or conversation, not a separate report.
+## Coordinate delivery and establish completion
 
-## Keep it current
+Use `alaga` as the builder for each sufficiently settled coding outcome. Supply its acceptance, relevant dependencies, workspace/candidate, and existing authority. Alága owns implementation, verification, and corrections; Atọ́nà owns sequencing and whether the combined results complete the initiative. Consume the returned candidate, evidence, blockers, and scope changes, update the plan, and continue to the next dependency-ready slice.
 
-After a material decision, discovery, or delivery result, update the affected plan. Reopen only dependent choices and invalidate only proof that no longer applies. A partly superseded plan is not wholly current.
+Let Alága handle review and corrections for its coding change. Use `atunwo` for a separate judgment across the integrated candidate when warranted or requested; reuse applicable review evidence and return accepted coding corrections to `alaga`.
 
-Use the delivery owner's actual evidence. A task count, worker completion, provider status, or aggregate score does not prove the accepted outcome. Keep missing proof, blocked dependencies, changed scope, and residual limits visible. Planning advice does not authorize implementation or publication.
+When delivery has multiple work units or candidates, dependencies, owners, or a multi-session handoff, read [delivery tracking](references/delivery-tracking.md). Keep execution and proof details with their owners; Atọ́nà owns whether the combined results satisfy the initiative.
 
-When the governing workflow requires named readiness states, coordinated multi-candidate delivery, or a durable lifecycle record, use [managed initiatives](references/managed-initiative.md). That branch retains the formal planning, contract, delivery, and closure gates; an ordinary plan does not acquire them by being large or involving several skills.
+After a material decision, discovery, or delivery result, update the affected plan and reopen only dependent choices and proof. Resolve scope drift before continuing affected work. A partly superseded result is not wholly current.
 
-## Deliver
+Assess whether current delivery evidence covers initiative acceptance, including interactions between delivered slices and the real user journey when relevant. Reuse applicable proof. When integration behavior lacks proof or fails, give `alaga` the bounded integration outcome to verify and correct; consume that result before closing the initiative. Task counts, worker completion, isolated passing checks, and provider status do not establish that the build works as a whole. Keep missing proof and blockers visible and resolve them within scope.
 
-Persistence: existing project plan; otherwise `.qp/atona/`.
+Use `seda-pr` for authorized publication and `wo-pr` for requested PR/MR stewardship. Keep implementation, integration, and release state distinct; report an outstanding required stage as incomplete.
 
-Use `html-artifact` as needed, with [the initiative brief](references/human-view.md).
+## Preserve continuity and close
 
-Before closing work performed in a linked worktree, reconcile the relevant `.qp` state into the accepting workspace so no required initiative state remains stranded in the disposable candidate, then clean reconciled/disposable `.qp` state from the completed worktree while preserving anything not safely reconciled. Record the workspace disposition. Offer to remove the completed worktree; removal requires user approval and declining it does not block closure.
+Keep the plan in context for a short session. When continuity or downstream use needs persistence, update the existing project plan; otherwise use `.qp/atona/`. Record the absolute execution workspace and `branch: <branch-name> [main|worktree]`, plus the main-worktree path for a linked worktree. Update them when execution moves.
 
-Keep ordinary rationale in the plan and normal delivery history. Use [durable reconciliation](references/durable-reconciliation.md) only for a real governing-knowledge obligation. Required stale sources or missing authority remain blockers, not reasons to manufacture a reconciliation ledger.
+Use `html-artifact` with [the initiative brief](references/human-view.md) when a human view is useful. Update the plan before its projection. Keep ordinary rationale in the plan and delivery history; read [durable reconciliation](references/durable-reconciliation.md) only when required governing knowledge needs updating.
 
-Return the current plan, workspace when relevant, any blocking choice or evidence gap, and the first useful action. Report completion only when the accepted planning outcome and its required proof are satisfied; keep planning, implementation, integration, and release state distinct.
+Before closing a linked-worktree initiative, reconcile required `.qp` state into the accepting workspace, clean only reconciled/disposable state, and record the workspace disposition. Preserve unresolved state. Worktree removal requires user approval; retaining it does not block completion.
+
+Close only when the requested outcome has current accepting proof, required documentation and integration are complete, and no blocking in-scope obligation remains. For exploration-only or planning-only work, apply that bound to the requested artifact and state that delivery has not been performed.
+
+Return the outcome and its location, decisive verification, and material limits. If blocked, identify the exact remaining work, prerequisite or human decision, and next action; a recommendation is not completion. Continue authorized executable work instead of ending at a suggested next step.

@@ -1,6 +1,6 @@
 # Progressive shaping
 
-Use this branch only when a material `Draft` initiative is too large or uncertain for its whole planning surface to be stated responsibly at once.
+Use this branch only when a material initiative is too large or uncertain for its whole planning surface to be stated responsibly at once.
 
 The purpose is to expose the route progressively without inventing future requirements. This is a shaping method inside Atọ́nà, not another lifecycle, owner, ticket system, or replacement for the Decision Frontier Gate.
 

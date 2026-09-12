@@ -105,9 +105,9 @@ Treat coverage, counts, rubric scores, and checklists as evidence rather than re
 
 If the premortem or another required result is absent, stale, blocked, or not ready, keep the plan `Draft` and make that gap visible when it controls progression.
 
-## 5. Track delivery
+## 5. Carry delivery through completion
 
-When delivery coordination is material, read [delivery tracking](delivery-tracking.md). Consume active delivery owners' native results rather than copying their lifecycle/proof mechanics into Atọ́nà.
+When delivery is authorized, continue through the main skill’s build and verification loop. When coordination is material, read [delivery tracking](delivery-tracking.md). Consume active delivery owners' native results rather than copying their lifecycle/proof mechanics into Atọ́nà.
 
 After a material result changes plan meaning, update the semantic plan first. Recompute the current gate, weakest limiting claim/gap, stale dependencies, and the brief for any maintained view. Keep non-plan-affecting operational detail with its native owner.
 
