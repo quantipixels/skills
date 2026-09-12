@@ -63,31 +63,35 @@ Use `alarina` for the complete installed inventory.
 
 ### Optional integrated agent experience
 
-`pepeye` works with the host's native agents without extra setup. For Codex or Claude Code, `qp-setup` can optionally install provider-native `explorer`, `analyst`, `writer`, `implementer`, `verifier`, `researcher`, and `reviewer` profiles with setup-resolved model/effort defaults. The profiles describe work posture, not semantic skills; the host can still use stronger or lighter capability per assignment when supported. Without these profiles Pepeye continues in portable mode.
+`pepeye` works with the host's native agents without extra setup. It uses seven Yorùbá work postures when staffing delegated work: **Àṣàwárí**, **Olùtúpalẹ̀**, **Akọ̀wé**, **Olùṣe**, **Olùdánilójú**, **Olùwádìí**, and **Olùyẹ̀wò**.
 
-## Recommended global instructions
+These are staffing concepts, not seven required files. `qp-setup` audits the selected Codex/Claude environment and prefers adequate native agents or existing user definitions. It proposes a QP-managed agent definition only when that definition adds durable value beyond what already exists, then shows the exact change before asking for permission to apply it.
 
-The skills work without extra global instructions. Add this block only when you want these defaults across projects:
+### Host instructions
 
-```text
-Use relevant installed skills when they materially improve the result. Use `alarina` when the next owner is unclear; otherwise use the owning skill directly.
-Use `pepeye` when delegation or a bounded multi-stage workflow would materially help.
-Use `ro-wo` before agreeing or disagreeing with a material premise.
-Use `oro-fun-sigidi` for agent-facing instructions and `oro-fun-eniyan` for human-facing technical prose.
+QP does not install a default global instruction block. Skills should be discoverable and useful through their own descriptions and the host's normal capabilities.
+
+When useful, `qp-setup` can ask permission to audit the user's global `AGENTS.md` / `CLAUDE.md`. It preserves useful existing policy and proposes only durable changes that materially improve behavior; no change is a valid audit result.
+
+## Update
+
+From a checkout, run:
+
+```bash
+bash scripts/update.sh
 ```
 
-User-level instruction files:
+The updater detects the existing QP installation manager and delegates to it: the QP direct installer, the Skills CLI, or the Claude Code plugin manager. It does not create a second installation registry.
 
-- **Codex:** `$CODEX_HOME/AGENTS.md` (defaults to `~/.codex/AGENTS.md`)
-- **Claude Code:** `~/.claude/CLAUDE.md`
+For Skills CLI installations, current installed QP skills are updated in place. Deprecated installed skills are presented before removal. Use `--sync` if you also want the updater to offer currently missing QP skills for installation.
 
-For one repository, use its normal `AGENTS.md`, `CLAUDE.md`, or equivalent instruction surface instead.
+For a dry run:
 
-Copy the block into the appropriate file, removing any line you do not want as a global default. For supported hosts, `qp-setup` can inspect the existing instruction surface, back it up, and install, update, or remove the shipped block while preserving unrelated instructions.
+```bash
+bash scripts/update.sh --dry-run
+```
 
-## Update and uninstall
-
-Rerun the Skills CLI or your chosen installer to update.
+## Uninstall
 
 For a direct snapshot installation:
 

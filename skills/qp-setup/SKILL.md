@@ -1,29 +1,31 @@
 ---
 name: qp-setup
-description: Install, configure, update, verify, or remove a selected engineering/agent tool, manage shared agent instructions, or install provider-native agent profiles at user or repository scope. Use after the target capability and scope are known; own setup mutation, verification, and rollback, not tool selection, usage expertise, orchestration, or review.
+description: Install, configure, update, verify, or remove a selected engineering/agent tool, manage host instructions, or add provider-native agent definitions at user or repository scope. Use after the target capability and scope are known; own setup mutation, verification, migration, and rollback, not tool selection, usage expertise, orchestration, or review.
 metadata:
   maturity: experimental
 ---
 
 # Setup
 
-Make one selected capability ready at the requested scope, safely manage the shipped agent instruction block for a supported host, or configure the optional provider-native agent experience used by delegation workflows.
+Make the selected capability ready with the least necessary user interruption. Inspect the real environment first, form the smallest sensible proposal, then ask only at a genuine authority or material-choice boundary.
 
-Delegate substantial analysis, research, and expert work to subagents when it materially helps.
+An explicit request to install, configure, update, remove, or repair a named target authorizes inspection and preparation of that bounded setup. It does not authorize unseen mutation. Before the first write, show the material resulting change and obtain confirmation; a blank/default response must not apply it.
 
-An explicit request to install, configure, update, remove, or repair a named target authorizes the bounded setup mutation at the requested scope. Ask only when a material target, scope, or setup choice is missing, or when the operation introduces a separately consequential effect such as credentials, trust/permissions, persistent services, destructive unrelated state, or another external write not already implied by the request.
+When relevant existing configuration is present, audit it instead of restarting requirements discovery. Preserve useful existing choices. If several reasonable outcomes remain, present the concrete differences and a small set of options, then continue autonomously from the user's choice. Do not turn setup into a long interview.
+
+Ask separately only when the operation introduces a materially distinct effect the request did not already cover, such as credentials, trust/permissions, destructive unrelated state, persistent services, or inspection/mutation of user-global instructions.
 
 ## Choose the setup branch
 
 Reuse the target and scope already established.
 
 - **Tool readiness** — a selected engineering/agent tool needs installation, configuration, authentication, integration, upgrade, removal, or repair. Read [tool setup](references/tool-setup.md).
-- **Host instructions** — the shipped instruction block needs inspection, installation, update, or removal for a supported agent host. Read [host instructions](references/host-instructions.md).
-- **Agent experience** — Codex and/or Claude Code should get provider-native worker profiles with user-approved model/effort defaults for integrated delegation. Read [agent experience](references/agent-experience.md).
+- **Host instructions** — host instruction files need inspection, audit, installation, update, consolidation, or removal. Read [host instructions](references/host-instructions.md).
+- **Agent experience** — Codex and/or Claude Code may benefit from provider-native agent definitions beyond the host's adequate native/user capability. Read [agent experience](references/agent-experience.md).
 
-If the useful tool/capability is still undecided, use `irinse`; this skill should not select a tool merely because it can install one.
+If the useful tool/capability is still undecided, use `irinse`; setup should not select a tool merely because it can install one.
 
-Do not widen repository scope to user/global scope. Preserve unrelated files, settings, instructions, services, credentials, and project state.
+Do not widen repository scope to user/global scope. Preserve unrelated files, settings, instructions, agent definitions, services, credentials, and project state.
 
 ## Finish
 

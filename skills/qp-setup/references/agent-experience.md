@@ -1,117 +1,110 @@
 # Agent experience
 
-Use when the user wants provider-native worker profiles for a more integrated delegation experience. This branch installs/configures runtime posture; `pepeye` still owns coordination and remains usable without it.
+Use when a Codex or Claude Code setup may benefit from reusable agent definitions for a more integrated Pepeye experience. Agent definitions are optional host-native artifacts; `pepeye` owns coordination and remains usable without them.
 
 ## Keep the layers separate
 
-Provider profiles describe **work posture + runtime defaults**, not semantic expertise or workflow stages.
+The provider-neutral catalogue at [work postures](../assets/agent-experience/postures.json) names the staffing postures Pepeye may use:
 
-The shipped postures are defined once in [roles](../assets/agent-experience/roles.json):
+- **Àṣàwárí** (`asawari`) — exploration and mapping;
+- **Olùtúpalẹ̀** (`olutupale`) — bounded analysis and consequential reasoning;
+- **Akọ̀wé** (`akowe`) — prose/instruction work;
+- **Olùṣe** (`oluse`) — bounded execution/mutation;
+- **Olùdánilójú** (`oludaniloju`) — reproduction, testing, and verification;
+- **Olùwádìí** (`oluwadi`) — current external/primary-source research;
+- **Olùyẹ̀wò** (`oluyewo`) — fresh independent judgment.
 
-- `explorer` — read-only investigation and mapping;
-- `analyst` — bounded deep reasoning and consequential technical judgment;
-- `writer` — prose-first documentation, specification, handoff, prompt, or agent-instruction work;
-- `implementer` — bounded source/configuration mutation;
-- `verifier` — reproduction, testing, and falsification;
-- `researcher` — current external/primary-source evidence;
-- `reviewer` — fresh independent judgment of a fixed candidate.
+A work posture is not an installed agent definition. It describes how a bounded assignment should work. The host may satisfy it with native capability, an existing user definition, a QP-managed definition, or a generic subagent shaped by the assignment.
 
-Do not preload or hardcode semantic skills into these profiles. An assignment may name an already-selected skill when that materially improves the work; otherwise leave normal skill discovery/use to the host/model. Do not add generic “discover skills” boilerplate merely to restate model-native behavior.
+Semantic skills are separate. Do not preload or hardcode skill identities into agent definitions. An assignment may name an already-selected skill when that materially improves the work; otherwise leave ordinary skill selection to the model/host.
 
-Model and reasoning choices are **defaults**, not role identity. `pepeye` may request a different model/effort for a particular assignment when the host exposes that capability.
+## Inspect before proposing anything
 
-## Inspect the actual host
+Resolve the selected host(s), version, scope, native agents/subagent capability, existing user/repository agent definitions, current instruction/config surfaces, and the provider's actual model/effort/permission precedence from the installed host and current official documentation. Cached provider model IDs are not authoritative.
 
-Resolve the host(s), version, scope, current agent/profile support, model choices, effort/reasoning controls, and any existing files from the installed host and current official documentation. Cached model IDs are not authoritative.
-
-Current target conventions are:
+Current definition locations are useful conventions, not contracts:
 
 | Host | User scope | Repository scope |
 | --- | --- | --- |
 | Codex | `$CODEX_HOME/agents/` (default `~/.codex/agents/`) | `<repo>/.codex/agents/` |
 | Claude Code | `~/.claude/agents/` | `<repo>/.claude/agents/` |
 
-If the installed host uses a different supported location or schema, follow the host and report the difference instead of forcing the cached convention.
+Follow the installed host when its supported location/schema differs.
 
-Inspect all target role files before proposing a write. Also inspect only the host configuration needed to determine whether native subagents/profile selection are enabled and usable. Do not enable experimental team/runtime features merely because the host offers them.
+Prefer execution capability in this order:
 
-## Ask once, then show the real proposal
+1. a suitable **native host agent/capability**;
+2. a suitable **existing user agent definition**;
+3. a **QP-managed agent definition** only when it adds durable value the first two do not provide;
+4. a **generic native subagent** shaped by the assignment when no reusable definition earns its cost.
 
-Use the host's structured question UI when available. Prefer one compact setup interview over a serial chain of confirmations.
+Do not install seven definitions merely because seven work postures exist. Do not shadow or replace a native agent just to give the posture a QP name.
 
-Resolve these choices:
+Existing user definitions remain user-owned. When one overlaps the desired posture, audit it and normally keep it. If a material difference creates a real choice, offer only reasonable options such as **keep existing**, **replace with the shown QP definition**, **add a separate non-conflicting QP definition**, or **leave unchanged**. Never merge QP text into an existing user definition.
 
-1. **Host** — Codex, Claude Code, or both when both are available.
-2. **Scope** — current repository or user/global.
-3. **Optimization** — `Balanced` (default), `Efficient`, `Quality`, or `Custom`.
-4. **Role overrides** — ask only when `Custom` is selected or the detected host/account cannot satisfy the proposed mapping.
-5. **Main/root model** — preserve the existing setting by default. Treat changing it as a separate optional choice, not part of installing worker profiles.
+## Run setup autonomously
 
-Defaults inside the interview may be accepted normally. **The final mutation confirmation must default to No.**
+Use the environment and existing configuration as evidence. Do not begin with a Host → Scope → Model → Role questionnaire when those facts can be discovered.
 
-### Resolve presets from current capability
+Form the recommended smallest change yourself. If there is no material conflict, show one compact proposal and ask for final confirmation. If existing state creates several materially different valid outcomes, show the audit and choices together, obtain the user's selection, then continue.
 
-The role catalogue records a baseline model class (`efficient | balanced | strong`) and effort. Map those classes to concrete models actually available in the selected host/account and show the resolved mapping before applying it.
+Preserve the root/main model and its startup defaults unless the user explicitly asked to change them. Agent-experience setup may report a material limitation caused by the current root configuration, but root-model tuning is a separate setup request.
 
-- **Balanced** — use the catalogue baseline.
-- **Efficient** — move `strong → balanced` and `balanced → efficient`; keep already-efficient roles efficient. Reduce effort where the current task-independent default would otherwise be needlessly deep, but do not go below a host-supported level that makes the posture unreliable.
-- **Quality** — move `efficient → balanced` and `balanced → strong`; keep strong roles strong. Prefer deeper supported effort for `analyst`, `implementer`, and `reviewer`, with proportional defaults for the remaining roles.
-- **Custom** — use the user's per-role model/effort choices.
+If auditing the user's **global instruction file** could improve the setup, ask permission once before reading it. Declining that audit does not block agent-definition setup.
 
-If the available models do not form three meaningful classes, collapse classes rather than inventing distinctions. If support is uncertain, ask the smallest question needed to resolve it.
+## Keep capability provider-native
 
-These are startup defaults only. Do not encode “reviewer must always use the strongest model” or similar semantic rules into the profile.
+The work-posture catalogue deliberately contains no model, effort, provider model class, or sandbox field. Those are host/runtime concerns.
 
-## Preview before mutation
+For each assignment, Pepeye may request lighter or stronger capability when the active host exposes a native override and the task's consequence, ambiguity, difficulty, latency, or cost warrants it. Setup should not invent one cross-provider precedence model.
 
-Prepare the native profiles in a temporary directory with [render-agent-profiles.py](../scripts/render-agent-profiles.py). Feed it a temporary JSON mapping of role names to the resolved concrete `model` and `effort` values; do not create persistent package state merely to drive rendering.
+When rendering an agent definition, omit `model`/`effort` by default. Add a definition-level pin only when the user intentionally chose that persistent pin or current provider semantics make it a clearly desired reusable default; include the effect in the preview. A definition-level pin must not be described as dynamically overridable when the provider gives it stronger precedence.
 
-Show a compact preview that includes:
+The catalogue's `execution_boundary` expresses intent (`read-only` or `write-capable`), not a portable sandbox guarantee. Translate it through the strongest current host mechanism available and report the effective boundary honestly.
+
+## Preview and apply
+
+Prepare only the selected QP-managed definitions in a temporary directory with [render-agent-definitions.py](../scripts/render-agent-definitions.py). Its temporary settings file names only definitions that setup actually intends to install; absence means **do not render/install** that posture.
+
+Show a compact proposal containing:
 
 - host + scope;
-- every role with concrete model and effort;
-- read-only vs write-capable posture;
-- exact files to add/update;
-- any required host-config key that would change;
-- existing profile files that would be replaced; and
-- backup location.
+- native/existing capabilities being reused;
+- QP definitions to add or replace, and why each earns its place;
+- any intentional model/effort pin;
+- requested execution boundary and the host mechanism used to approximate/enforce it;
+- exact files changed;
+- backup location; and
+- any host capability limitation.
 
-Then ask one final confirmation equivalent to:
+Then ask one final mutation confirmation equivalent to:
 
 ```text
 Apply these agent-experience changes? [y/N]
 ```
 
-A blank answer means **No**. If the proposal changes after that preview, show the changed proposal and ask again.
+A blank answer means **No**. If the proposal materially changes after preview, show the changed proposal and confirm again.
 
-## Apply without taking over the harness
+Do not enable Code Mode, agent teams, scheduling, join/wait policy, retries, or another orchestration feature merely to install these definitions. Those remain harness capabilities Pepeye may use when already available and useful.
 
-Render/install only the selected profiles. Preserve unrelated profiles, instructions, permissions, providers, MCP configuration, and host settings.
+## Ownership, update, and rollback
 
-For Codex, merge only a currently supported setting that is genuinely required to make native subagents/profile selection usable. Do not configure Code Mode, join/wait behavior, scheduling, retry policy, or model-selection algorithms: those belong to the harness.
+QP-managed definitions contain the marker `qp-skills-agent-definition: v1`. Treat that marker plus exact path/content as ownership evidence, not permission to overwrite arbitrary user changes.
 
-For Claude Code, install native subagent definitions only. Do not preload semantic skills into `skills:` fields. Do not enable agent teams merely to make these profiles work; teams are a separate host capability that `pepeye` may use when already available and valuable.
+Before replacing/removing a QP-managed definition or other affected config, save a byte-for-byte backup under the host's own configuration area. Use unique names and never overwrite earlier backups. Refresh every destination immediately before writing; reconcile any material concurrent change before mutation.
 
-Before replacing an existing profile or config file, save a byte-for-byte backup under the host's own configuration area:
-
-- Codex user → `$CODEX_HOME/backups/skill-setup/agent-experience/`;
-- Codex repository → `<repo>/.codex/backups/skill-setup/agent-experience/`;
-- Claude user → `~/.claude/backups/skill-setup/agent-experience/`;
-- Claude repository → `<repo>/.claude/backups/skill-setup/agent-experience/`.
-
-Use unique backup names and never overwrite earlier backups. Dry-run/inspection creates no files.
-
-Refresh each destination immediately before writing. If it changed after preview in a way that affects the edit, reconcile and obtain confirmation for the revised proposal.
+If a marked definition has materially diverged from the QP-generated content, treat it as customized and present the difference rather than overwriting it automatically.
 
 ## Verify and return
 
-Read every installed profile back. Confirm:
+Read changed definitions/config back and confirm:
 
-- all seven selected role definitions are present exactly once;
-- model/effort values match the accepted preview;
-- read/write posture matches the role catalogue as far as the host can enforce it;
-- no semantic skill was preloaded or hardcoded into a profile;
-- unrelated host configuration is unchanged; and
-- the host can discover the profile location, noting when a new session is required.
+- every installed QP definition was actually selected and is discoverable by the host;
+- suitable native/user capability was reused rather than duplicated where applicable;
+- no semantic skill was hardcoded/preloaded;
+- intentional provider pins match the accepted preview and unpinned definitions remain unpinned;
+- requested execution boundaries are enforced only to the degree the host actually supports;
+- unrelated host configuration/definitions are unchanged; and
+- the QP ownership marker is present only on QP-managed definitions.
 
-Return the host/scope, installed roles, resolved model/effort defaults, changed files, verification, backup/rollback path, and any host capability limitation.
+Return the host/scope, capabilities reused, definitions added/replaced/skipped, actual model/effort configuration when material, changed files, verification, backup/rollback path, and residual host limitations.
