@@ -30,7 +30,7 @@ Read the selected instruction surface and classify relevant guidance as:
 - project-specific policy at the wrong scope; or
 - a real missing preference that would materially change behavior.
 
-No new instruction is a valid result. There is **no canonical QP global instruction block** to install by default.
+No new instruction is a valid result. There is **no canonical package global instruction block** to install by default.
 
 When agent-experience setup requested this audit, evaluate only instruction changes that materially improve that setup or the user's durable cross-project policy. Do not turn the audit into a general rewrite of unrelated personal instructions.
 
@@ -40,7 +40,7 @@ If the current file is already adequate, say so and make no change.
 
 When a change is useful, show the smallest semantic diff and why it earns global/repository context. Existing user wording wins when it expresses the same policy adequately.
 
-If the user accepts QP-managed policy text, place only that accepted text inside one block:
+If the user accepts package-managed policy text, place only that accepted text inside one block:
 
 ```text
 <!-- qp-policy:start -->
@@ -50,7 +50,7 @@ If the user accepts QP-managed policy text, place only that accepted text inside
 
 Preserve all surrounding instructions. Do not adopt unrelated user text into the managed block merely because it overlaps.
 
-Older `<!-- managed-skills:start -->` / `<!-- managed-skills:end -->` content is a deprecated QP-managed surface. Audit it rather than silently carrying it forward. Offer removal or migration only when the resulting policy still earns a place, and obtain confirmation before changing it.
+Older `<!-- managed-skills:start -->` / `<!-- managed-skills:end -->` content is a deprecated package-managed surface. Audit it rather than silently carrying it forward. Offer removal or migration only when the resulting policy still earns a place, and obtain confirmation before changing it.
 
 ## Apply safely
 
@@ -65,10 +65,10 @@ Use a unique backup name and never overwrite an earlier backup. Dry-run/inspecti
 
 Refresh the target immediately before writing. If it changed after preview in a way that affects the proposal, reconcile and show the revised material diff before applying it.
 
-For removal, remove only QP-managed blocks the evidence shows QP owns. Preserve surrounding content and later user edits. If removal leaves a file that setup created and the file is otherwise empty, deleting that empty file is part of the accepted removal.
+For removal, remove only package-managed blocks the evidence shows the package owns. Preserve surrounding content and later user edits. If removal leaves a file that setup created and the file is otherwise empty, deleting that empty file is part of the accepted removal.
 
 ## Verify
 
-Read the resulting file back and confirm the intended managed policy is present/absent exactly once, unrelated instructions are preserved, applicable precedence points at the expected file, and no deprecated QP block remains unless deliberately retained.
+Read the resulting file back and confirm the intended managed policy is present/absent exactly once, unrelated instructions are preserved, applicable precedence points at the expected file, and no deprecated managed block remains unless deliberately retained.
 
 Return the host, scope, audit result, changed file when any, backup path, verification, and any shadowing/unsupported-host limitation.
