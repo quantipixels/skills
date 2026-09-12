@@ -42,10 +42,11 @@ Use `pepeye` when delegation, parallel work, context isolation, independent judg
 Use `alarina` when the right skill or route is genuinely unclear. Use `ro-wo` before accepting or rejecting a consequential premise.
 
 For delegated work:
-- Start workers fresh; never fork conversation context. When prior context matters, provide a concise handoff with the outcome, constraints/decisions, decisive evidence and locators, exact candidate identity, unresolved questions, and requested result.
+- Never fork parent conversation context. Spawn workers from focused handoffs. A spawned worker may retain its own context across related subtasks when the host supports it and continuity materially helps.
 - Give each worker a bounded outcome, appropriate authority, required evidence, and clear completion condition. The primary agent owns integration and final judgment.
-- Use cheaper capability for high-volume reading/collection, stronger capability for synthesis/execution, and the highest capability for consequential planning/review/judgment. Preserve locators so decisive evidence can be reopened.
-- Consequential verification gets equal or greater judgment capability than the work it accepts. Review material plans, candidates, and decisions at acceptance boundaries, not after every delegated action.
+- Use cheaper capability for high-volume reading/collection, stronger capability for synthesis/execution, and the highest justified capability for consequential planning/review/judgment. Preserve locators so decisive evidence can be reopened.
+- Consequential verification gets equal or greater judgment capability than the work it accepts. Escalate to the highest capability only when consequence, ambiguity, or unresolved difficulty warrants it.
+- Keep useful lead work moving while independent delegated work runs; wait only when the next step depends on a worker result.
 - Avoid duplicate work except deliberate independent review or competing hypotheses. Never run concurrent writers against the same mutable workspace.
 - Surface material findings, blockers, failures, and completed results; do not repeat unchanged status.
 - Escalate model, reasoning, evidence depth, or approach when the current worker is underpowered. Do not repeat the same failed configuration by default.
@@ -60,7 +61,7 @@ Preferences:
 - Exceptional unresolved judgment → `gpt-6-astra`, xhigh.
 ```
 
-For another host, preserve the policy and map the preferences to that host's **currently available** cost/capability tiers. Do not invent a cross-provider model equivalence. If the host cannot express a requested per-worker model/reasoning preference dynamically, report that limitation; use ordinary tool configuration only when the user wants a hard runtime setting.
+For another host, preserve the policy and map the preferences to that host's **currently available** cost/capability tiers. Do not invent a cross-provider model equivalence. For Claude, current official guidance starts with Opus 5 for most workloads and uses Fable 5.1 for demanding reasoning/long-horizon work or when Opus at higher effort still falls short. On Fable 5.1, start at its default `high` effort and sweep `low`, `medium`, `xhigh`, and `max` against real evals because effort is the primary quality/latency/cost control. If the host cannot express a requested per-worker model/reasoning preference dynamically, report that limitation; use ordinary tool configuration only when the user wants a hard runtime setting.
 
 ## Propose proportionally
 
