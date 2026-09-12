@@ -106,11 +106,13 @@ Keep prohibitions for hard boundaries or demonstrated failure modes; pair them w
 
 Before adding agent instructions, separate a semantic gap from behaviour the current model or host harness already performs reliably.
 
-For multi-agent work, instructions should usually tune **when/how much** delegation, independence, evidence, or escalation is useful. Leave provider mechanics such as spawn syntax, parallel scheduling, joins, status transport, retries, Code Mode, agent teams, and per-spawn model controls to the harness.
+For multi-agent work, instructions should usually tune **when/how much** delegation, independence, evidence, capability, or escalation is useful. Leave provider mechanics such as spawn syntax, parallel scheduling, joins, status transport, retries, Code Mode, agent teams, and per-spawn model controls to the harness.
 
-Move durable runtime defaults such as model, effort, sandbox, or tool envelope into provider configuration/profile surfaces when those controls exist. Keep semantic methods in skills and task-specific authority/evidence in assignments.
+Move durable provider-specific runtime defaults into the host's own configuration or **agent-definition** surface only when those defaults add reusable value. Keep semantic methods in skills, work posture in the staffing/assignment layer, and task-specific authority/evidence in assignments.
 
 Do not add “discover relevant skills”, “parallelize independent work”, “wait for all workers”, or similar generic rules unless evidence shows the target host/model fails without them. A familiar-sounding instruction still has to beat the no-op baseline.
+
+Do not create a custom agent definition merely to rename a capable native agent. The definition must add a persistent behavioral/runtime delta that cannot be expressed more cheaply in the assignment or host defaults.
 
 ## Delete what no longer earns load
 
