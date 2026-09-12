@@ -25,9 +25,13 @@ def data_root() -> Path:
     return Path(value) / "qp-skills"
 
 
-def skills_lock_path() -> Path:
+def global_skills_lock_path() -> Path:
     state = os.environ.get("XDG_STATE_HOME")
     return Path(state) / "skills/.skill-lock.json" if state else Path.home() / ".agents/.skill-lock.json"
+
+
+def project_skills_lock_path(cwd: Path | None = None) -> Path:
+    return (cwd or Path.cwd()) / "skills-lock.json"
 
 
 def read_json(path: Path) -> object:
@@ -55,8 +59,7 @@ def direct_installation(root: Path | None = None) -> dict | None:
     return {"manager": "direct", "skills": sorted(set(skills)), "manifest": manifest}
 
 
-def skills_cli_installation(lock: Path | None = None) -> dict | None:
-    lock = lock or skills_lock_path()
+def skills_cli_from_lock(lock: Path, manager: str) -> dict | None:
     if not lock.is_file():
         return None
     try:
@@ -75,7 +78,15 @@ def skills_cli_installation(lock: Path | None = None) -> dict | None:
             names.append(name)
     if not names:
         return None
-    return {"manager": "skills-global", "skills": sorted(set(names)), "lock": str(lock)}
+    return {"manager": manager, "skills": sorted(set(names)), "lock": str(lock)}
+
+
+def skills_cli_global_installation(lock: Path | None = None) -> dict | None:
+    return skills_cli_from_lock(lock or global_skills_lock_path(), "skills-global")
+
+
+def skills_cli_project_installation(lock: Path | None = None) -> dict | None:
+    return skills_cli_from_lock(lock or project_skills_lock_path(), "skills-project")
 
 
 def _walk(value):
@@ -193,7 +204,8 @@ def update_skills_cli(
     if shutil.which("npx") is None:
         raise UpdateError("npx is required for the existing Skills CLI installation")
     installed = installation["skills"]
-    command(["npx", "--yes", "skills", "update", *installed, "--global", "-y"], dry_run, run)
+    scope = "--global" if installation["manager"] == "skills-global" else "--project"
+    command(["npx", "--yes", "skills", "update", *installed, scope, "-y"], dry_run, run)
     if available is None:
         print("Catalogue migration audit skipped: current remote catalogue could not be read.")
         return
@@ -202,7 +214,7 @@ def update_skills_cli(
         print("Deprecated QP skills still installed: " + ", ".join(deprecated))
         if confirm("Remove deprecated QP skills?", assume_yes):
             command(
-                ["npx", "--yes", "skills", "remove", "--global", *deprecated, "-y"],
+                ["npx", "--yes", "skills", "remove", scope, *deprecated, "-y"],
                 dry_run,
                 run,
             )
@@ -222,7 +234,7 @@ def update_skills_cli(
                         SOURCE,
                         "--skill",
                         name,
-                        "--global",
+                        scope,
                         "-y",
                     ],
                     dry_run,
@@ -248,7 +260,12 @@ def update_claude_plugin(
 
 def detect() -> list[dict]:
     found = []
-    for candidate in (direct_installation(), skills_cli_installation(), claude_plugin_installation()):
+    for candidate in (
+        direct_installation(),
+        skills_cli_project_installation(),
+        skills_cli_global_installation(),
+        claude_plugin_installation(),
+    ):
         if candidate:
             found.append(candidate)
     return found
@@ -281,10 +298,14 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser = argparse.ArgumentParser()
     parser.add_argument(
         "--manager",
-        choices=("direct", "skills-global", "claude-plugin"),
+        choices=("direct", "skills-project", "skills-global", "claude-plugin"),
         help="Use one detected manager when more than one exists.",
     )
-    parser.add_argument("--sync", action="store_true", help="Offer missing QP skills to Skills CLI installs.")
+    parser.add_argument(
+        "--sync",
+        action="store_true",
+        help="Offer QP skills missing from a selective Skills CLI installation.",
+    )
     parser.add_argument("--yes-migrations", action="store_true", help="Approve catalogue add/remove prompts.")
     parser.add_argument("--dry-run", action="store_true")
     return parser.parse_args(argv)
@@ -310,7 +331,7 @@ def main(argv: list[str] | None = None) -> int:
                 args.dry_run,
                 args.yes_migrations,
             )
-        elif installation["manager"] == "skills-global":
+        elif installation["manager"] in {"skills-project", "skills-global"}:
             update_skills_cli(
                 installation,
                 available,
