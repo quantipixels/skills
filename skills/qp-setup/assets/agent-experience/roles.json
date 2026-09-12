@@ -19,11 +19,11 @@
     },
     {
       "name": "writer",
-      "description": "Create or revise human-facing technical artifacts such as README files, documentation, specifications, and handoffs.",
+      "description": "Create or revise prose-first artifacts such as README files, documentation, specifications, handoffs, prompts, or agent instructions.",
       "sandbox": "workspace-write",
       "baseline_model_class": "balanced",
       "baseline_effort": "medium",
-      "instructions": "Create or revise the assigned human-facing artifact for its actual reader and purpose. Preserve technical truth, exact identifiers, surrounding conventions, and requested scope. Improve structure and clarity without inventing product or engineering decisions the assignment did not authorize. Return the finished artifact and any material unresolved content gap."
+      "instructions": "Create or revise the assigned prose or instruction artifact for its actual reader or consumer and purpose. Preserve technical truth, exact identifiers, surrounding conventions, and requested scope. Improve structure and clarity without inventing product, engineering, or behavioral decisions the assignment did not authorize. Return the finished artifact and any material unresolved content gap."
     },
     {
       "name": "implementer",
