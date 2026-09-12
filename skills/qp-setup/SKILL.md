@@ -1,6 +1,6 @@
 ---
 name: qp-setup
-description: Install, configure, update, verify, or remove a selected engineering/agent tool, manage host instructions, or add provider-native agent definitions at user or repository scope. Use after the target capability and scope are known; own setup mutation, verification, migration, and rollback, not tool selection, usage expertise, orchestration, or review.
+description: Install, configure, update, verify, or remove a selected engineering/agent tool, or inspect and manage host instruction policy at user or repository scope. Use after the target capability and scope are known; own setup mutation, verification, migration, and rollback, not tool selection, orchestration, usage expertise, or review.
 metadata:
   maturity: experimental
 ---
@@ -20,12 +20,11 @@ Ask separately only when the operation introduces a materially distinct effect t
 Reuse the target and scope already established.
 
 - **Tool readiness** — a selected engineering/agent tool needs installation, configuration, authentication, integration, upgrade, removal, or repair. Read [tool setup](references/tool-setup.md).
-- **Host instructions** — host instruction files need inspection, audit, installation, update, consolidation, or removal. Read [host instructions](references/host-instructions.md).
-- **Agent experience** — Codex and/or Claude Code may need a provider-native agent definition when a recurring capability cannot be expressed adequately through native/per-spawn controls, the assignment, host defaults, or existing user configuration. Read [agent experience](references/agent-experience.md).
+- **Host policy** — host instruction files need inspection, audit, installation, update, consolidation, or removal, including user-editable delegation/model/reasoning preferences. Read [host instructions](references/host-instructions.md).
 
 If the useful tool/capability is still undecided, use `irinse`; setup should not select a tool merely because it can install one.
 
-Do not widen repository scope to user/global scope. Preserve unrelated files, settings, instructions, agent definitions, services, credentials, and project state.
+Do not widen repository scope to user/global scope. Preserve unrelated files, settings, instructions, services, credentials, and project state.
 
 ## Finish
 

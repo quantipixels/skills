@@ -42,24 +42,26 @@ Use the host/package's current invocation controls rather than copying volatile 
 
 A compatibility alias should not compete with its replacement. Narrow its description to explicit legacy-name use and keep the method at one owner.
 
-## Do not confuse a skill with an agent definition
+## Do not confuse a skill with worker configuration
 
-A skill owns a reusable semantic result/method. An assignment specifies what a delegated worker must accomplish now, including its context, authority, evidence, independence, completion boundary, and any useful runtime constraints. A provider-native **agent definition** is an optional reusable host artifact only when a persistent behavior/runtime delta cannot be expressed adequately through the assignment or native host controls. A workflow owns progression between results.
+A skill owns a reusable semantic result/method. An assignment specifies what one delegated worker must accomplish now. Host policy carries durable user preferences such as delegation thresholds, model/reasoning choices, and context rules. The harness executes the worker. A workflow owns progression between results.
 
 Good:
 
-- use a native/general worker with a fresh read-only assignment for independent judgment; `atunwo` remains the semantic code-review method when that method is useful;
-- shape a generic worker for a README, architecture document, prompt, or handoff instead of creating a permanent writer agent type;
-- add a provider-native definition when a recurring tool, permission, isolation, or persistent model constraint genuinely requires one on that host.
+- use `atunwo` when independent code judgment is the needed method, while the assignment chooses the current reviewer capability;
+- use a fresh worker with a bounded writing assignment for a README or handoff rather than creating a permanent writer type;
+- use user-editable host policy to prefer Luna/Terra/Sol/Astra by work shape without turning those preferences into semantic skills;
+- collate large evidence surfaces cheaply, then give a stronger worker exact locators for consequential judgment.
 
 Bad:
 
-- create an `alaga-agent` definition that duplicates Alága's method;
-- hardcode `atunwo` into every reviewer-like definition;
+- create an `alaga-agent` identity that duplicates Alága's method;
 - maintain explorer/writer/reviewer/posture catalogues only to classify work before spawning it;
+- create a second QP model registry that drifts from the host instruction policy;
+- fork conversation history into workers because producing a focused handoff requires judgment;
 - create a new skill merely because a provider benefits from a named worker.
 
-Before creating another public skill or agent definition, ask whether the missing behavior can live more coherently in the assignment or an existing native host control.
+Before creating another public skill or runtime artifact, ask whether the missing behavior belongs more coherently in an assignment, host policy, existing semantic skill, workflow branch, or native host control.
 
 ## Compose with skills by name
 

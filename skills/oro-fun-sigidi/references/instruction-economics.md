@@ -106,13 +106,13 @@ Keep prohibitions for hard boundaries or demonstrated failure modes; pair them w
 
 Before adding agent instructions, separate a semantic gap from behaviour the current model or host harness already performs reliably.
 
-For multi-agent work, instructions should usually tune **when/how much** delegation, independence, evidence, capability, or escalation is useful. Leave provider mechanics such as spawn syntax, parallel scheduling, joins, status transport, retries, Code Mode, agent teams, and per-spawn model controls to the harness.
+For multi-agent work, instructions should tune **when/how much** delegation, independence, evidence, capability, or escalation is useful. Leave spawn syntax, concurrency, scheduling, joins, lifecycle, retries, Code Mode, teams, and equivalent mechanics to the harness.
 
-Shape delegated workers through the assignment whenever the host can express the needed behavior dynamically. Put durable provider-specific runtime defaults into host configuration or an **agent definition** only when a recurring requirement cannot be expressed adequately through native per-spawn controls, the assignment, or existing user configuration. Keep semantic methods in skills.
+Use host policy for durable user-editable delegation/model/reasoning preferences. Shape each worker through its assignment. Use ordinary host/tool configuration only for hard runtime settings the user actually needs. Do not create another model registry, worker taxonomy, or setup surface merely to mirror controls the host already exposes.
+
+When high-volume context would waste expensive capability, use cheaper workers to collate the surface and preserve exact locators. Give stronger workers compact evidence handoffs and let them reopen decisive material before consequential judgment. Do not fork conversation history as a context shortcut.
 
 Do not add “discover relevant skills”, “parallelize independent work”, “wait for all workers”, or similar generic rules unless evidence shows the target host/model fails without them. A familiar-sounding instruction still has to beat the no-op baseline.
-
-Do not create a custom agent definition or maintained role/posture taxonomy merely to name or classify a worker. The assignment should synthesize the worker from the actual task; a definition must add a persistent behavioral/runtime delta that cannot be expressed more cheaply through the assignment or host defaults.
 
 ## Delete what no longer earns load
 
