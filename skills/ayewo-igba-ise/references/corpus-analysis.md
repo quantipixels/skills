@@ -109,7 +109,7 @@ For Experimental evaluation, include opportunity evidence. Do not infer promotio
 
 When stable-skill improvement is in scope, return the stable-skill improvement packet for each skill whose contract/selection boundary is materially implicated. Preserve `NO_CHANGE` evidence when the current contract was adequate; do not report only problematic sessions. Complete authorized remediation and report its result and gaps in the same response.
 
-When the corpus spans projects, include one dossier for every normalized project in the population, not only sampled or problematic projects. Each dossier must state:
+When the corpus spans projects, give substantive project accounts for requested projects and those supporting findings or counterevidence. Keep unsampled or excluded projects in the coverage ledger with their limits; do not investigate them merely to fill a dossier. Each substantive account should cover the relevant:
 
 - aliases and evidence coverage;
 - outcomes and verified current state;

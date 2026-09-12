@@ -1,23 +1,11 @@
 # Suggested direction and handoff
 
-End each settled user-visible handoff with **What next**: recommendation, first step, owner/skill, and required authority. Align plan status, Decision Frontier Gate, and delivery summary with remaining work.
+Use when the user requested a plan or build recommendation, a real blocker requires a handoff, or work is intentionally inactive. When the build is authorized and executable, continue it rather than substituting this handoff for delivery.
 
-When the frontier is `OPEN`, the active Àròjinlẹ̀ question round is the handoff. Surface the whole currently answerable material question set with recommendations and wait for the user's decisions. Do not start the next action without its required authority.
+Return the recommended next action, its owner/skill, and any missing authority or prerequisite. Carry existing authorization forward. Align formal plan status, Decision Frontier, and delivery summary when those fields apply.
 
-## Status-specific handoff
-
-| Plan status | Use when | **What next** |
-| --- | --- | --- |
-| `Draft` | A decision, evidence item, or readiness gate is open. | If frontier `OPEN`, ask/continue the Àròjinlẹ̀ material frontier. If `BLOCKED`, name the prerequisite fact/evidence action. Otherwise name the next readiness gap. |
-| `Planned` | Decision frontier is `EMPTY`; planning is complete without material invention. | Say planning is complete and give/refresh the concise build direction only when its trigger applies; otherwise state current authority and recommended starting point. |
-| `In Progress` | Authorized delivery work is active and no material planning decision has reopened. | Name the next incomplete phase/candidate/gap; a new material decision moves the plan back to Draft first. |
-| `Closed` | No plan work remains, including a resolved amendment. | Name the next workstream or say planning is complete. |
-| `Backlog` | The plan is inactive inventory. | Name owner and reactivation trigger. |
-
-## Build guidance
-
-When the plan first becomes `Planned` and delivery is required, state delivery authority as `Confirmed` or `Required`. If authority is required, name the exact authority without starting delivery.
-
-Add/refresh **Suggested direction** when the plan becomes Planned, delivery authority changes, direction changes materially, or the user asks for build guidance. On other Planned handoffs, state only current authority and recommended starting point.
-
-Recommend the first plan-specific action from the current scope, proof, and gaps. Use `alarina` as needed. Advice does not authorize delivery.
+- **Decision needed:** use `arojinle` for the currently answerable consequential choices; name prerequisite evidence for blocked choices.
+- **Plan ready:** identify the first dependency-ready build action and whether delivery authority is already confirmed or still required.
+- **Delivery blocked:** state the incomplete outcome, exact blocker, and action needed to resume.
+- **Inactive:** name the owner and re-entry trigger.
+- **Complete:** report the accepted result and proof. Do not imply a completed plan is a completed build.

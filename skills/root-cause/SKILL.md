@@ -23,9 +23,11 @@ Record exact symptom, expected behavior, first known trigger, candidate/revision
 
 Reproduce safely when possible; otherwise pin one equivalent direct observation. Separate primary failure from secondary errors, retries, compensating behavior, and recovery noise.
 
+Use the smallest feedback loop that can distinguish the reported symptom from the intended behavior. A failing test, focused runtime probe, trace replay, browser check, benchmark, or direct observation can serve. Minimize the reproduction when it materially sharpens the diagnosis; do not delay a useful hypothesis merely because a runnable loop is unavailable.
+
 ## Competing mechanisms
 
-Write a small hypothesis table. For each hypothesis state trigger/mechanism, enabling conditions, propagation, evidence explained, one distinguishing observation, and the smallest safe probe.
+Maintain a small set of competing hypotheses. Capture the trigger/mechanism, enabling conditions, propagation, evidence explained, distinguishing observation, and smallest safe probe where each is material. Use a table when several live hypotheses benefit from side-by-side comparison; a short comparison is enough for a simple decisive probe.
 
 Read [probe commands](references/probe-commands.md) when bounded source/history/Git evidence can discriminate hypotheses. Prefer existing observations, tests, logs, traces, configuration, history, measurements, and reversible diagnostics that fit the domain.
 
@@ -54,6 +56,6 @@ Return one:
 - `EVIDENCE_BLOCKED` — named evidence/environment/authority/observability gap;
 - `NOT_REPRODUCED` — pinned failure not observed and no equivalent direct evidence.
 
-Include failure identity, minimal mechanism/set, per-factor evidence and causal role, interactions/alternative sufficient paths when material, contributing/contextual/unresolved factors, propagation/containment, decisive evidence, falsified alternatives, affected boundary, confidence limits, and smallest useful next action.
+Include the failure identity, minimal mechanism/set, decisive evidence, causal roles, and falsified alternatives. Add interactions or alternative sufficient paths, contributing/contextual/unresolved factors, propagation/containment, affected boundary, confidence limits, and the smallest useful next action when material. A simple diagnosis resolved by one decisive probe may be correspondingly concise, but must still make the causal inference and ruled-out alternative explicit.
 
-Preserve a needed durable diagnosis in the existing project destination. Use `akosile` for a selected shared workspace and `html-artifact` as needed.
+Preserve a needed durable diagnosis in the existing project destination. Use `html-artifact` as needed.

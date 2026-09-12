@@ -42,7 +42,7 @@ Keep the **current gate** explicit: the next material progression judgment the h
 
 Pin outcome, scope, constraints, assumptions, non-goals, evidence, risks, and open uncertainties. Read only current project/domain evidence that can materially change the plan.
 
-Use `amose`.
+Use `amose` when unresolved project-specific meaning—terms, identities, boundaries, relationships, ownership, or invariants—can materially change the plan.
 
 When the initiative is too uncertain to state responsibly at full depth, read [progressive shaping](progressive-shaping.md). Preserve known-but-not-yet-formulatable territory without inventing future requirements.
 
@@ -105,9 +105,9 @@ Treat coverage, counts, rubric scores, and checklists as evidence rather than re
 
 If the premortem or another required result is absent, stale, blocked, or not ready, keep the plan `Draft` and make that gap visible when it controls progression.
 
-## 5. Track delivery
+## 5. Carry delivery through completion
 
-When delivery coordination is material, read [delivery tracking](delivery-tracking.md). Consume active delivery owners' native results rather than copying their lifecycle/proof mechanics into Atọ́nà.
+When delivery is authorized, continue through the main skill’s build and verification loop. When coordination is material, read [delivery tracking](delivery-tracking.md). Consume active delivery owners' native results rather than copying their lifecycle/proof mechanics into Atọ́nà.
 
 After a material result changes plan meaning, update the semantic plan first. Recompute the current gate, weakest limiting claim/gap, stale dependencies, and the brief for any maintained view. Keep non-plan-affecting operational detail with its native owner.
 

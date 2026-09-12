@@ -5,15 +5,15 @@ description: Break a supplied plan, specification, issue, conversation, or work 
 
 # Ṣẹ̀dá Ticket
 
-Turn supplied work into a confirmed set of tickets that a fresh delivery owner can understand and complete without reconstructing parent narrative. Own decomposition, dependency/startability semantics, and terminal ticket disposition only; the caller owns grouping, storage, publication, execution, review progress, and reconciliation from owner results.
+Turn supplied work into a validated set of tickets that a fresh delivery owner can understand and complete without reconstructing parent narrative. Own decomposition, dependency/startability semantics, and terminal ticket disposition only; the caller owns grouping, storage, publication, execution, review progress, and reconciliation from owner results.
 
 Delegate substantial analysis, research, and expert work to subagents, returning concise findings and evidence links to keep the main context lean.
 
 ## 1. Understand the work
 
-Use the context already supplied. Read a referenced source in full when it governs the work. Inspect the current project/system only when existing behavior, vocabulary, constraints, or accurate ticket boundaries require it. In software work that may include the codebase; it is not a universal prerequisite.
+Use the context already supplied. Read the governing requirements and dependencies applicable to the requested scope; expand when their meaning or coverage is uncertain. Inspect the current project/system only when existing behavior, vocabulary, constraints, or accurate ticket boundaries require it. In software work that may include the codebase; it is not a universal prerequisite.
 
-Do not invent a material requirement. Ask for confirmation when decomposition authority is absent or the granularity/dependency structure is ambiguous. A caller can supply an already confirmed breakdown.
+Do not invent a material requirement. Ask for confirmation when decomposition authority is absent or ambiguity could consequentially change accepted scope, outcome, sequencing, risk, or ownership. Resolve routine granularity and dependency choices with judgment from the supplied contract. A caller can supply an already confirmed breakdown.
 
 Use `seda-spec` as needed. Preserve the governing contract’s identity and requirements when decomposing it.
 
@@ -69,10 +69,12 @@ Do not add `In Progress`, `In Review`, or runtime `Blocked` ticket states. Activ
 
 The **Startable frontier** is every `Open` ticket currently derived as `STARTABLE`.
 
-## 3. Confirm and return
+## 3. Validate and return
 
 Check that every ticket is independently verifiable, dependencies are genuine and acyclic, external prerequisites are real, acceptance is observable, and the complete supplied scope/governing specification is covered without overlap. For every non-vertical ticket, verify that its exception is necessary, independently verifiable, and connected to a named integration/acceptance boundary.
 
-When confirmation is required, show the draft and ask whether its granularity and dependencies are correct. Iterate until confirmed.
+Distinguish a breakdown derived under existing authority from choices explicitly confirmed by the user; do not label inferred choices user-confirmed. Honor an explicit request to review the draft before finalizing it.
 
-Return confirmed tickets in dependency order, blocked prerequisites first, with the startable frontier. Return tickets only; do not persist/publish them, operate Git/provider state, execute them, or decide execution/review progress.
+When absent authority or consequential ambiguity requires confirmation, show the affected draft choices and ask whether their granularity and dependencies are correct. Iterate until confirmed.
+
+Return the validated tickets in dependency order, blocked prerequisites first, with the startable frontier. Return tickets only; do not persist/publish them, operate Git/provider state, execute them, or decide execution/review progress.

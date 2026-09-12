@@ -1,11 +1,11 @@
 ---
 name: arojinle
-description: Resolve consequential choices through a relentless, complete decision-tree interview and final user confirmation. Use when material choices must be made, dependent decisions need to be surfaced, or the user asks to grill or stress-test a plan, design, idea, or decision; exclude specialist design/architecture, initiative lifecycle planning, delivery execution, and ordinary fact-finding.
+description: Resolve consequential choices through a relentless, complete decision-tree interview and final user confirmation. Use when the user wants to work through dependent choices together or be grilled until decisions are settled. Explicit invocation selects the interview. Use ro-wo for a bounded critique or stress-test; exclude specialist design/architecture, initiative lifecycle planning, delivery execution, and ordinary fact-finding.
 ---
 
 # Àròjinlẹ̀
 
-Use `amose`.
+Use `amose` when unresolved project-specific meaning—terms, identities, boundaries, relationships, ownership, or invariants—can materially change the decision tree.
 
 Interview the user relentlessly until shared understanding is reached and no consequential branch remains silently assumed. Map it as a **decision tree**: every decision branches into the decisions that depend on it.
 
@@ -32,7 +32,7 @@ Use other skills as needed to form or resolve frontier decisions; continue the s
 
 When a frontier choice has several credible alternatives and at least two independent criteria can materially change the recommendation, use a compact decision-specific rubric. Apply hard gates first; derive only the criteria that matter to this decision; show the decisive factor, strongest credible alternative, and material counterevidence. Do not manufacture scores for a trivial/already-determined choice or let an average hide a gate. The rubric supports the recommendation; the decision remains the user's.
 
-Use `ideate` and `prototype` as needed.
+Use `atona` in exploration mode and `prototype` as needed.
 
 The decisions remain the user's. Do not silently convert a recommendation, generated option, comparative grade, or prototype observation into confirmation.
 

@@ -73,13 +73,13 @@ Evidence: Embedded | Linked | Mixed
 
 ## Verification
 
-Structural proof is the baseline after every projection write: reread and check source/projection identities, required human-critical coverage, anchors/context, renderer/dependency identity, source mapping, semantic color mappings and non-color cues, contrast, runtime disclosure, and semantic fallback.
+After the first complete projection write, establish a full structural baseline: reread and check source/projection identities, required human-critical coverage, anchors/context, renderer/dependency identity, source mapping, semantic color mappings and non-color cues, contrast, runtime disclosure, and semantic fallback. After an incremental write, rerun the structural and browser checks whose claims or evidence it invalidated. Before delivery, run a final whole-artifact coherence check across the current source cut, opening/status, coverage, navigation, provenance, runtime disclosure, and fallback.
 
 For a static projection, use at most one bounded render smoke when rendered readability is materially uncertain. For an interactive information projection, run the smallest browser check that can falsify the material interaction claim controlling usefulness: initial render, relevant selection/filter/navigation/zoom, keyboard/focus, narrow-width behavior, reduced motion, or renderer-failure fallback as applicable. Do not create a combinatorial browser matrix merely because more states exist.
 
-A substantial/public/long-lived document does not by itself earn deeper browser proof. A specialized renderer does not by itself earn deep proof either; test only the browser-dependent claims it introduces. After a proved defect, rerun only invalidated proof.
+A substantial/public/long-lived document does not by itself earn deeper browser proof. A specialized renderer does not by itself earn deep proof either; test only the browser-dependent claims it introduces. Preserve real proof whose claim remains valid; after a proved defect or relevant rewrite, rerun the invalidated proof.
 
-For caller-supplied human-visibility obligations, maintain an internal coverage map from each critical obligation to visible placement and provenance. A deterministic verifier may be introduced only if recurring dogfood evidence shows agent/native checks cannot reliably enforce that mechanical seam.
+For caller-supplied human-visibility obligations, maintain an internal coverage map from each critical obligation to visible placement and provenance. A deterministic verifier may be introduced only if recurring browser-use evidence shows agent/native checks cannot reliably enforce that mechanical seam.
 
 ## Deliver
 

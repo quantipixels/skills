@@ -1,6 +1,6 @@
 # Codebase assessment
 
-Use only for `codebase` mode: a bounded existing-code snapshot needs an engineering-quality judgment rather than a candidate acceptance review.
+Use when the subject is a bounded existing-code snapshot. Match coverage to light or deep review; this scope needs engineering-quality judgment rather than a candidate acceptance verdict.
 
 Assess the actual system at its real scale, runtime, deployment model, trust boundaries, and change patterns. Prefer representative high-leverage boundaries and repeatedly costly seams over equal-weight whole-repository scanning. History, churn, complexity, fan-out, and tool output are leads; trace them to concrete caller burden, failure risk, proof difficulty, or maintenance cost before reporting a finding.
 
@@ -16,7 +16,7 @@ Inspect applicable dimensions without repeating the same observation:
 
 When mutable shared state controls authorization, identify the invariant and all relevant writers before alleging a race. When a generic abstraction promises a type/relationship, verify that the implementation actually enforces it rather than trusting a caller-selected generic or unchecked cast.
 
-For each material weakness, state location, mechanism, consequence/change cost, evidence, counterevidence, and smallest correction direction. Also report material strengths worth preserving. Use `pare` only when a deeper independent simplification result is needed and `architect` only when a consequential structural design question must be answered.
+For each material weakness, state location, mechanism, consequence/change cost, evidence, counterevidence, and smallest correction direction. Also report material strengths worth preserving. Use [simplification](simplification.md) when deeper analysis is needed and `architect` only for an unresolved consequential structural design question.
 
 Return a bounded assessment, not a codebase certification. Mark dimensions not materially inspected as unassessed. Use grades only when requested and explain the scale:
 

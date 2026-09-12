@@ -1,18 +1,35 @@
 # QP Skills
 
-Portable agent skills for reasoning, engineering, design, and delivery. Each skill owns a focused result. Use that skill directly when the owner is clear; use `alarina` when it is not, and `pepeye` when several results need coordinating into one outcome.
+Portable agent skills for reasoning, engineering, design, and delivery. Each skill owns a focused result. Use that skill directly when the owner is clear; use `alarina` when it is not.
 
 Browse the public docs at [quantipixels.com/skills](https://quantipixels.com/skills).
 
 ## Install
 
-Global install:
+Choose the native plugin for your host, or Skills CLI for editable skill copies. Use one installation method per host to avoid duplicate skills.
+
+### Codex plugin
 
 ```bash
-npx skills add quantipixels/skills --global
+codex plugin marketplace add quantipixels/skills
+codex plugin add qp-skills@qp-skills
 ```
 
-Install one skill with `--skill <name>`.
+Restart Codex, then use `$qp-skills:alarina` with your requested outcome. The plugin installs all QP skills. You control the model and reasoning.
+
+In the Codex app, add `quantipixels/skills` as a custom marketplace in Plugins, install `qp-skills`, and restart.
+
+### Skills CLI
+
+Install all skills for Codex in the current project:
+
+```bash
+npx skills add quantipixels/skills --agent codex --skill '*'
+```
+
+Add `--global` for a personal installation, or replace `'*'` with a skill name for a selective install. Alárinà's complete operating experience requires all QP skills; individual skills remain independently usable.
+
+For Claude Code, replace `--agent codex` with `--agent claude-code`. Skills CLI installs skills; use the Claude plugin to include Pepeye as a native agent.
 
 ### Claude Code plugin
 
@@ -21,67 +38,105 @@ claude plugin marketplace add quantipixels/skills
 claude plugin install qp-skills@qp-skills
 ```
 
-### Direct snapshot
-
-For macOS/Linux with Git and Python 3.10+:
+Restart Claude Code or run `/reload-plugins`. The plugin provides all QP skills and the `qp-skills:pepeye` agent, which preloads Alárinà. Use `/qp-skills:alarina` directly, ask Claude to delegate to `qp-skills:pepeye`, or start a session with:
 
 ```bash
-git clone https://github.com/quantipixels/skills.git
-cd skills
-bash scripts/install.sh --codex --dry-run
-bash scripts/install.sh --codex
+claude --agent qp-skills:pepeye
 ```
 
-Use `--claude` instead, or both flags, for the direct skill-only path. See [compatibility](docs/compatibility.md) for currently proved host paths.
+Model, reasoning, and permissions remain under your control. Claude discovers the shared `skills/` and `agents/` directories natively; no setup script or separate agent configuration is needed.
 
 ## Start
 
-If you know the skill you need, use it directly. Otherwise:
+### Work with Alárinà
+
+After installing all QP skills, paste this at the start of your Codex or Claude Code conversation:
 
 ```text
-Use `alarina` to choose the right skill for this request:
-
-[describe the outcome you need]
+Read and follow the installed `qp-skills:alarina` skill throughout this session.
 ```
+
+For Skills CLI installations, replace `qp-skills:alarina` with `alarina`. Then describe your work normally. Repeat the instruction in a new conversation; it does not change your saved configuration, model, or reasoning settings.
+
+This uses Alárinà's operating method without creating or maintaining a [Pepeye](agents/pepeye.md) agent configuration. The plugin bundles Pepeye's definition, but Codex does not automatically register bundled Markdown definitions as custom agents.
+
+### Use a skill directly
+
+If you know the skill you need, use it directly.
 
 Common entrypoints:
 
 | Skill | Use when |
 | --- | --- |
-| `pepeye` | Delegation or a bounded multi-stage workflow needs coordination |
 | `arojinle` | A consequential choice or the user's real desired outcome needs to be resolved |
 | `atona` | Material work needs one current plan and route to an outcome |
 | `alaga` | An accepted coding change or fix needs implementation and proportionate proof |
 | `atunwo` | A fixed code candidate or codebase snapshot needs independent judgment |
 | `iwadi` | A question needs substantial current research or exact-source grounding |
-| `qp-setup` | A selected tool, host integration, or shared instruction surface needs setup or repair |
+| `irinse` | A selected tool, host integration, or shared instruction surface needs setup or repair |
 | `oro-fun-sigidi` | Agent-facing instructions, skills, prompts, routing, or workflow text needs writing/review |
 | `oro-fun-eniyan` | Human-facing technical prose needs writing, editing, or pruning |
 
 Use `alarina` for the complete installed inventory.
 
-`ko-skill` remains a compatibility entrypoint for skill-writing requests and routes to `oro-fun-sigidi`. `oro-ologbon` remains a compatibility entrypoint and routes by audience.
+
+## Optional user instructions
+
+Skills work without a shared instruction block. Copy whichever lines below match how you want the assistant to work, or use all of them. Edit them to suit your workflow:
+
+```text
+Use `alarina` when the right skill is unclear.
+Use `ro-wo` before accepting or rejecting a consequential premise or proposed approach.
+Use `oro-fun-sigidi` when writing or changing agent-facing instructions, skills, or prompts.
+Use `oro-fun-eniyan` when writing or refining human-facing technical prose.
+Use `root-cause` when a failure's causal mechanism is unresolved before implementing a fix.
+Use `atunwo` when an independent code review is requested or materially warranted by risk or uncertainty.
+```
+
+These lines guide skill use; they do not grant additional tool or publication permissions. `irinse` can help place only the lines you select in the appropriate instruction file.
 
 ## Update
 
-From a checkout:
+For a Git-backed Codex plugin installation:
 
 ```bash
-bash scripts/update.sh
+codex plugin marketplace upgrade qp-skills
+codex plugin add qp-skills@qp-skills
 ```
 
-The updater detects the existing QP installation manager and delegates to it. Use `--dry-run` to preview. For selective Skills CLI installs, `--sync` also offers currently missing QP skills; removals and additions that change the installed catalogue require confirmation.
+Restart Codex afterward. For Skills CLI installations, use `npx skills update`. Reuse the installation manager that owns your skills.
+
+For Claude Code:
+
+```bash
+claude plugin marketplace update qp-skills
+claude plugin update qp-skills@qp-skills
+```
+
+Restart Claude Code or run `/reload-plugins` afterward.
+
+Claude plugin updates follow Git commits. The manifest intentionally omits `version`, so there is no version to synchronize with `package.json` releases.
 
 ## Uninstall
 
-For a direct snapshot installation:
+For the Codex plugin:
 
 ```bash
-bash scripts/uninstall.sh
+codex plugin remove qp-skills@qp-skills
+codex plugin marketplace remove qp-skills
 ```
 
-Do not install the package through multiple managers at once.
+For Claude Code:
+
+```bash
+claude plugin uninstall qp-skills@qp-skills
+claude plugin marketplace remove qp-skills
+```
+
+For Skills CLI, use `npx skills remove` and select the QP skills. Do not install the package through multiple managers at once.
+
+If migrating from the retired direct installer, preserve local edits and use its original uninstaller before switching managers.
 
 ## Project
 
-[Compatibility](docs/compatibility.md) records what the package currently proves. Use [`AGENTS.md`](AGENTS.md) and `oro-fun-sigidi` for contribution and agent-instruction guidance. Change rationale and proof belong in PRs and CI.
+Use [`AGENTS.md`](AGENTS.md) and `oro-fun-sigidi` for contribution and agent-instruction guidance. Change rationale and proof belong in PRs and CI.

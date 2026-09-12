@@ -27,7 +27,7 @@ The table order sets precedence. Keep secondary readers and purposes in supporti
 
 Keep the brief internal and render only fields that help the reader. Return one direction, never rejected directions, design options, visual variants, or prototype behavior. Apply decorative treatment after information direction. Palette, typography, illustration, borders, and brand expression cannot determine the argument.
 
-Use industry only as an internal vocabulary cue. Show it only when supplied or useful to the reader. Never infer industry facts. Use `slides` for a requested slide deck.
+Use industry only as an internal vocabulary cue. Show it only when supplied or useful to the reader. Never infer industry facts. Use the installed presentation capability for a requested slide deck.
 
 ### Let `Purpose` set the reading order
 
@@ -94,14 +94,20 @@ Keep the opening useful without a disclosure. When compatible, include a skip li
 
 The [base template](../assets/base.html) includes a back-to-top control after the reader-facing content. Keep its target on the opening landmark and preserve that document order when adding report content.
 
-Before delivery, run:
+While selecting or materially changing an unsettled information design, use these critiques:
 
 - **Purpose counterfactual:** changing purpose changes opening, order, or action layer.
 - **Family counterfactual:** changing family changes evidence obligations and support structure.
 - **Scenario:** the governing representation reveals the unique scenario without the title.
+- **Interchangeability:** removing title and subject nouns does not leave a composition suitable for an unrelated report.
+
+These critiques help choose a direction; they do not require redesign of an accepted layout. Repeat them only when changed purpose, family, scenario, content, or evidence unsettles that direction.
+
+Before delivery, always run these content and evidence checks:
+
+- **Contract and coverage:** required content and human-critical meaning remain present or visibly marked partial, stale, or missing.
 - **Entry resource:** composition respects resource authority, shape, and limits.
 - **Relationship:** each material visual encodes a supplied claim or relationship.
-- **Interchangeability:** removing title and subject nouns does not leave a composition suitable for an unrelated report.
 - **Gap:** missing required content appears as an input gap, not an invented section.
 - **Deletion:** each foreground section materially improves decision, action, understanding, verification, or trust.
 

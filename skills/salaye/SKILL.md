@@ -111,7 +111,7 @@ function revisionLabel(revision: number): string {
 }
 ```
 
-- For UI, layout, state comparisons, or concepts that need more visual freedom than Mermaid, create one focused HTML diagram or infographic using `html-artifact`; use `slides` for a short deck. Match the product's colors, typography, spacing, and components, use real labels and data, and make it readable on desktop and mobile. Open the verified result through the available host preview, reusing that surface after updates; return its working locator if preview is unavailable.
+- For UI, layout, state comparisons, or concepts that need more visual freedom than Mermaid, create one focused HTML diagram or infographic using `html-artifact`; use the installed presentation capability for a short deck. Match the product's colors, typography, spacing, and components, use real labels and data, and make it readable on desktop and mobile. Follow `html-artifact`'s opening policy: open only when the user asks or render proof requires it, reuse an existing preview surface after updates, and otherwise return the verified locator.
 
 ## Guidance
 

@@ -1,6 +1,6 @@
 # Failures and feedback
 
-Read exact failed-job logs and full unresolved feedback against the current candidate before acting. A red title, green bot badge, or resolved thread alone does not prove a defect, acceptance, or correction.
+Before acting on a failure or feedback item, inspect its exact job logs or complete discussion against the current candidate. Reuse previously read feedback while its content and applicability remain current. A red title, green bot badge, or resolved thread alone does not prove a defect, acceptance, or correction.
 
 - **Branch defect:** reproduce or directly trace the failure to the changed behavior. Use `alaga` for the correction.
 - **Likely flake:** require evidence of a transient failure and no candidate change to its mechanism. With correction authority, rerun once per candidate/job; resuming does not reset that allowance. Diagnose a repeat instead of retrying until green.
