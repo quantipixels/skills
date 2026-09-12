@@ -42,23 +42,24 @@ Use the host/package's current invocation controls rather than copying volatile 
 
 A compatibility alias should not compete with its replacement. Narrow its description to explicit legacy-name use and keep the method at one owner.
 
-## Do not confuse a skill with an agent profile
+## Do not confuse a skill with an agent definition
 
-A skill owns a reusable semantic result/method. A provider agent profile owns a reusable **work posture** or execution default. A workflow owns progression between results. An assignment supplies the task-specific outcome, authority, candidate, and evidence boundary.
+A skill owns a reusable semantic result/method. An assignment specifies what a delegated worker must accomplish now, including its context, authority, evidence, independence, completion boundary, and any useful runtime constraints. A provider-native **agent definition** is an optional reusable host artifact only when a persistent behavior/runtime delta cannot be expressed adequately through the assignment or native host controls. A workflow owns progression between results.
 
 Good:
 
-- `reviewer` is a fresh read-only judgment posture; `atunwo` remains the semantic code-review method when that method is useful.
-- `writer` can edit a README, architecture document, or handoff without becoming a documentation skill.
-- one `implementer` profile can execute many different bounded changes rather than encoding one skill per worker type.
+- use a native/general worker with a fresh read-only assignment for independent judgment; `atunwo` remains the semantic code-review method when that method is useful;
+- shape a generic worker for a README, architecture document, prompt, or handoff instead of creating a permanent writer agent type;
+- add a provider-native definition when a recurring tool, permission, isolation, or persistent model constraint genuinely requires one on that host.
 
 Bad:
 
-- create an `alaga-agent` profile that duplicates Alága's method;
-- hardcode `atunwo` into every reviewer profile;
-- create a new skill merely because a provider benefits from a named worker posture.
+- create an `alaga-agent` definition that duplicates Alága's method;
+- hardcode `atunwo` into every reviewer-like definition;
+- maintain explorer/writer/reviewer/posture catalogues only to classify work before spawning it;
+- create a new skill merely because a provider benefits from a named worker.
 
-Before creating another public skill, ask whether the missing abstraction is actually a host profile, assignment variant, workflow branch, or runtime setting.
+Before creating another public skill or agent definition, ask whether the missing behavior can live more coherently in the assignment or an existing native host control.
 
 ## Compose with skills by name
 

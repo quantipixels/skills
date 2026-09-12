@@ -14,6 +14,16 @@
 4. **`seda-pr` — update publication state when needed and authorized.**
 5. **`ayewo-igba-ise` — terminal retrospective.** After readiness/publication state is fixed, examine avoidable churn, review/CI recovery cost, repeated blockers, and which workflow/tool/skill improvement is actually earned.
 
+## Capability flow
+
+Separate high-volume readiness collection from expensive judgment.
+
+- Luna/Terra can collate diff shape, CI output, review threads, conflicts, and provider state into a compact blocker/evidence handoff.
+- Sol normally resolves substantive implementation, diagnosis, technical analysis, and architecture-development work.
+- Astra reviews/judges a consequential final candidate or disputed readiness conclusion from the compact handoff, reopening decisive diff/evidence as needed rather than rereading every provider artifact by default.
+
+Use the active host policy for exact model/reasoning preferences.
+
 ## Recovery
 
 Keep the PR head/base identity current. An ancestor/base change that changes effective content invalidates dependent review/readiness evidence. Do not rerun unaffected proof merely because provider state changed.

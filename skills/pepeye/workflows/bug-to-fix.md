@@ -12,6 +12,16 @@
 6. **`seda-pr` — publish, when authorized.**
 7. **`ayewo-igba-ise` — terminal retrospective.** Reconstruct the run after the fix/result state is fixed, including diagnosis quality, recovery cost, wasted work, and durable friction.
 
+## Capability flow
+
+Do not pay the strongest worker to sift large logs, traces, or repository surfaces merely to find the relevant evidence.
+
+- Luna/Terra can reproduce, search, trace, and collate a large evidence surface with exact locators.
+- Sol normally owns causal diagnosis, technical synthesis, and the substantive fix.
+- Astra independently reviews the fixed candidate when the change is consequential or uncertainty remains material; it reopens decisive evidence rather than replaying all collection work.
+
+Use the active host policy for exact model/reasoning preferences.
+
 ## Recovery
 
 - Fix disproves diagnosis → `root-cause`.

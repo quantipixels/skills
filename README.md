@@ -21,7 +21,7 @@ claude plugin marketplace add quantipixels/skills
 claude plugin install qp-skills@qp-skills
 ```
 
-### Direct snapshot install
+### Direct snapshot
 
 For macOS/Linux with Git and Python 3.10+:
 
@@ -44,7 +44,7 @@ Use `alarina` to choose the right skill for this request:
 [describe the outcome you need]
 ```
 
-A few common entrypoints:
+Common entrypoints:
 
 | Skill | Use when |
 | --- | --- |
@@ -54,6 +54,7 @@ A few common entrypoints:
 | `alaga` | An accepted coding change or fix needs implementation and proportionate proof |
 | `atunwo` | A fixed code candidate or codebase snapshot needs independent judgment |
 | `iwadi` | A question needs substantial current research or exact-source grounding |
+| `qp-setup` | A selected tool, host integration, or shared instruction surface needs setup or repair |
 | `oro-fun-sigidi` | Agent-facing instructions, skills, prompts, routing, or workflow text needs writing/review |
 | `oro-fun-eniyan` | Human-facing technical prose needs writing, editing, or pruning |
 
@@ -61,33 +62,17 @@ Use `alarina` for the complete installed inventory.
 
 `ko-skill` remains a compatibility entrypoint for skill-writing requests and routes to `oro-fun-sigidi`. `oro-ologbon` remains a compatibility entrypoint and routes by audience.
 
-### Optional integrated agent experience
+## Update
 
-`pepeye` works with the host's native agents without extra setup. For Codex or Claude Code, `qp-setup` can optionally install provider-native `explorer`, `analyst`, `writer`, `implementer`, `verifier`, `researcher`, and `reviewer` profiles with setup-resolved model/effort defaults. The profiles describe work posture, not semantic skills; the host can still use stronger or lighter capability per assignment when supported. Without these profiles Pepeye continues in portable mode.
+From a checkout:
 
-## Recommended global instructions
-
-The skills work without extra global instructions. Add this block only when you want these defaults across projects:
-
-```text
-Use relevant installed skills when they materially improve the result. Use `alarina` when the next owner is unclear; otherwise use the owning skill directly.
-Use `pepeye` when delegation or a bounded multi-stage workflow would materially help.
-Use `ro-wo` before agreeing or disagreeing with a material premise.
-Use `oro-fun-sigidi` for agent-facing instructions and `oro-fun-eniyan` for human-facing technical prose.
+```bash
+bash scripts/update.sh
 ```
 
-User-level instruction files:
+The updater detects the existing QP installation manager and delegates to it. Use `--dry-run` to preview. For selective Skills CLI installs, `--sync` also offers currently missing QP skills; removals and additions that change the installed catalogue require confirmation.
 
-- **Codex:** `$CODEX_HOME/AGENTS.md` (defaults to `~/.codex/AGENTS.md`)
-- **Claude Code:** `~/.claude/CLAUDE.md`
-
-For one repository, use its normal `AGENTS.md`, `CLAUDE.md`, or equivalent instruction surface instead.
-
-Copy the block into the appropriate file, removing any line you do not want as a global default. For supported hosts, `qp-setup` can inspect the existing instruction surface, back it up, and install, update, or remove the shipped block while preserving unrelated instructions.
-
-## Update and uninstall
-
-Rerun the Skills CLI or your chosen installer to update.
+## Uninstall
 
 For a direct snapshot installation:
 
