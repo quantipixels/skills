@@ -12,11 +12,11 @@ When the CLI is already available, confirm its installed interface with `tldr --
 tldr structure <path>
 ```
 
-Use the current upstream README/command help to select a more specific read-only command for the bounded question. Do not copy its broader command inventory into QP merely to avoid consulting the installed/current interface.
+Use the current upstream README/command help to select a more specific read-only command for the bounded question. Do not copy its broader command inventory into this reference merely to avoid consulting the installed/current interface.
 
 Treat every result as heuristic evidence. The analyzer does not provide complete type inference, method or interface resolution, dynamic dispatch, or complex type flow. Record language, version, analyzed paths, exclusions, parser errors, and omitted files. Corroborate consequential claims with source, tests, compiler, runtime, configuration, or history.
 
-Several useful modes have effects beyond a bounded read: `warm`, `doctor --install`, daemon lifecycle changes, semantic model downloads, and MCP configuration alter tool/runtime state and belong to `qp-setup` when selected. Source-changing operations such as `fix apply` remain mutations of the consuming engineering workflow and require its authority and proof. Do not trigger either class merely because tldr-code exposes it.
+Several useful modes have effects beyond a bounded read: `warm`, `doctor --install`, daemon lifecycle changes, semantic model downloads, and MCP configuration alter tool/runtime state and belong to the setup skill when selected. Source-changing operations such as `fix apply` remain mutations of the consuming engineering workflow and require its authority and proof. Do not trigger either class merely because tldr-code exposes it.
 
 Pin results to the exact project candidate and tool version. Invalidate them when relevant files, ignore rules, language configuration, caches, or the tool version changes.
 

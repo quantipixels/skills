@@ -1,6 +1,6 @@
 # Maintain canonical domain language
 
-Use the project's existing domain-language source when one exists. Do not create a competing source of truth or rename an established convention merely to match a QP fallback.
+Use the project's existing domain-language source when one exists. Do not create a competing source of truth or rename an established convention merely to match a generic fallback.
 
 The destination is owned by the project. Amọ̀ṣẹ́ owns the semantic delta, not a repository layout. If no durable destination is established, return the clarified model in the conversation and name the persistence gap only when future work actually needs a durable source.
 
