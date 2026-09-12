@@ -26,7 +26,7 @@ class PackageIntegrityTests(unittest.TestCase):
 
     def skill(self, name, text=None):
         path = self.repo / 'skills' / name / 'SKILL.md'
-        path.parent.mkdir(parents=True)
+        path.parent.mkdir(parents=True, exist_ok=True)
         path.write_text(text or f'---\nname: {name}\ndescription: Perform the example task.\n---\n\n# Example\n', encoding='utf-8')
         return path
 
