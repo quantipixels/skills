@@ -51,7 +51,7 @@ For delegated work:
 - Escalate model, reasoning, evidence depth, or approach when the current worker is underpowered. Do not repeat the same failed configuration by default.
 
 Preferences:
-- Read / collect / explore / routine research → `gpt-5.6-luna`, medium; low if deterministic.
+- Read / collect / explore / routine research → `gpt-5.6-luna`, max.
 - Research synthesis / writing → `gpt-5.6-terra`, medium; Luna for deterministic prose.
 - Code / diagnose / technical analysis / architecture → `gpt-5.6-sol`, medium; Terra for simple bounded work; raise effort for complexity/risk.
 - Plan → `gpt-6-astra`, medium.
