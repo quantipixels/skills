@@ -8,12 +8,12 @@ Do not collapse these into one “agent” concept:
 
 1. **Topology** — what bounded results are needed and which can proceed independently.
 2. **Work posture** — how this worker should approach the bounded assignment.
-3. **Execution context** — native host agent, existing user definition, QP-managed definition, or generic native subagent.
+3. **Execution context** — native host agent, existing user definition, package-managed definition, or generic native subagent.
 4. **Capability** — the model + reasoning/effort appropriate to this assignment using controls the host actually exposes.
 5. **Execution boundary** — requested read/write authority, isolation, candidate identity, and independence.
 6. **Method** — a semantic skill when one is already selected or materially improves the result.
 
-The work posture is Pepeye's staffing vocabulary. It does not imply that a QP agent definition exists.
+The work posture is Pepeye's staffing vocabulary. It does not imply that a package-managed agent definition exists.
 
 ## Use the Yorùbá work postures
 
@@ -29,20 +29,20 @@ The work posture is Pepeye's staffing vocabulary. It does not imply that a QP ag
 
 A posture is not a permanent persona. The same semantic skill can run under different postures when the work changes, and a posture can execute with no special skill at all.
 
-## Prefer existing capability before QP definitions
+## Prefer existing capability before package-managed definitions
 
 Choose the execution context in this order:
 
 1. a suitable **native host agent/capability**;
 2. a suitable **existing user agent definition**;
-3. a **QP-managed agent definition** only when it adds durable reusable value the first two do not provide;
+3. a **package-managed agent definition** only when it adds durable reusable value the first two do not provide;
 4. a **generic native subagent** shaped through the assignment.
 
 Judge suitability by actual behavior/capability, not file/name matching. `Àṣàwárí` may be implemented by Codex's native explorer, Claude's native Explore agent, a user's custom definition, or a generic worker depending on the host and assignment.
 
-Do not install/use a QP definition merely for symmetry. Do not shadow a native agent to obtain a Yorùbá name. The Yorùbá posture is how Pepeye describes the worker's job; it is not proof of which provider primitive implements it.
+Do not install/use a package-managed definition merely for symmetry. Do not shadow a native agent to obtain a Yorùbá name. The Yorùbá posture is how Pepeye describes the worker's job; it is not proof of which provider primitive implements it.
 
-QP definitions are additive. Existing user definitions remain user-owned. Setup may offer **keep**, **replace**, or **add separately** when a material overlap requires a choice; it must not merge QP instructions into a user definition.
+Package-managed definitions are additive. Existing user definitions remain user-owned. Setup may offer **keep**, **replace**, or **add separately** when a material overlap requires a choice; it must not merge package instructions into a user definition.
 
 ## Mould the worker through the assignment
 
@@ -111,6 +111,6 @@ An assignment remains valid when no skill is needed.
 
 ## Treat definitions as optional enhancement
 
-Missing QP definitions are not degraded mode when the host already provides adequate capability. Continue through native/user/generic agents without ceremony.
+Missing package-managed definitions are not degraded mode when the host already provides adequate capability. Continue through native/user/generic agents without ceremony.
 
-Only call out setup when a concrete missing configuration/definition materially limits the current work and `qp-setup` could improve it. Show that notice once per run; do not repeatedly advertise setup merely because no QP definition exists.
+Only call out setup when a concrete missing configuration/definition materially limits the current work and `qp-setup` could improve it. Show that notice once per run; do not repeatedly advertise setup merely because no package-managed definition exists.
