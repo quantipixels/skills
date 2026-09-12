@@ -51,13 +51,13 @@ For delegated work:
 - Escalate model, reasoning, evidence depth, or approach when the current worker is underpowered. Do not repeat the same failed configuration by default.
 
 Preferences:
-- Read / collect / explore / routine research: `gpt-5.6-luna`, medium; low when deterministic.
-- Research synthesis / writing: `gpt-5.6-terra`, medium; use Luna for deterministic prose.
-- Code / diagnose / technical analysis / architecture: `gpt-5.6-sol`, medium; use Terra for simple bounded work and raise effort for complexity or risk.
-- Plan: `gpt-6-astra`, medium.
-- Review / judge: `gpt-6-astra`, medium.
-- Plan premortem / difficult or high-risk review: `gpt-6-astra`, high.
-- Exceptional unresolved judgment: `gpt-6-astra`, xhigh.
+- Read / collect / explore / routine research → `gpt-5.6-luna`, medium; low if deterministic.
+- Research synthesis / writing → `gpt-5.6-terra`, medium; Luna for deterministic prose.
+- Code / diagnose / technical analysis / architecture → `gpt-5.6-sol`, medium; Terra for simple bounded work; raise effort for complexity/risk.
+- Plan → `gpt-6-astra`, medium.
+- Review / judge → `gpt-6-astra`, medium.
+- Premortem / difficult or high-risk review → `gpt-6-astra`, high.
+- Exceptional unresolved judgment → `gpt-6-astra`, xhigh.
 ```
 
 For another host, preserve the policy and map the preferences to that host's **currently available** cost/capability tiers. Do not invent a cross-provider model equivalence. If the host cannot express a requested per-worker model/reasoning preference dynamically, report that limitation; use ordinary tool configuration only when the user wants a hard runtime setting.
