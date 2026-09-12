@@ -1,13 +1,13 @@
 ---
 name: qp-setup
-description: Install, configure, update, verify, or remove a selected engineering or agent tool, or manage shared agent instructions at user or repository scope. Use after the target capability and scope are known; own setup mutation, verification, and rollback, not tool selection, usage expertise, orchestration, or review.
+description: Install, configure, update, verify, or remove a selected engineering/agent tool, manage shared agent instructions, or install provider-native agent profiles at user or repository scope. Use after the target capability and scope are known; own setup mutation, verification, and rollback, not tool selection, usage expertise, orchestration, or review.
 metadata:
   maturity: experimental
 ---
 
 # Setup
 
-Make one selected capability ready at the requested scope, or safely manage the shipped agent instruction block for a supported host.
+Make one selected capability ready at the requested scope, safely manage the shipped agent instruction block for a supported host, or configure the optional provider-native agent experience used by delegation workflows.
 
 Delegate substantial analysis, research, and expert work to subagents when it materially helps.
 
@@ -19,6 +19,7 @@ Reuse the target and scope already established.
 
 - **Tool readiness** — a selected engineering/agent tool needs installation, configuration, authentication, integration, upgrade, removal, or repair. Read [tool setup](references/tool-setup.md).
 - **Host instructions** — the shipped instruction block needs inspection, installation, update, or removal for a supported agent host. Read [host instructions](references/host-instructions.md).
+- **Agent experience** — Codex and/or Claude Code should get provider-native worker profiles with user-approved model/effort defaults for integrated delegation. Read [agent experience](references/agent-experience.md).
 
 If the useful tool/capability is still undecided, use `irinse`; this skill should not select a tool merely because it can install one.
 

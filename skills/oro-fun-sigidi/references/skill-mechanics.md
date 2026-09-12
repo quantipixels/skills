@@ -42,6 +42,24 @@ Use the host/package's current invocation controls rather than copying volatile 
 
 A compatibility alias should not compete with its replacement. Narrow its description to explicit legacy-name use and keep the method at one owner.
 
+## Do not confuse a skill with an agent profile
+
+A skill owns a reusable semantic result/method. A provider agent profile owns a reusable **work posture** or execution default. A workflow owns progression between results. An assignment supplies the task-specific outcome, authority, candidate, and evidence boundary.
+
+Good:
+
+- `reviewer` is a fresh read-only judgment posture; `atunwo` remains the semantic code-review method when that method is useful.
+- `writer` can edit a README, architecture document, or handoff without becoming a documentation skill.
+- one `implementer` profile can execute many different bounded changes rather than encoding one skill per worker type.
+
+Bad:
+
+- create an `alaga-agent` profile that duplicates Alága's method;
+- hardcode `atunwo` into every reviewer profile;
+- create a new skill merely because a provider benefits from a named worker posture.
+
+Before creating another public skill, ask whether the missing abstraction is actually a host profile, assignment variant, workflow branch, or runtime setting.
+
 ## Compose with skills by name
 
 When another stable public skill owns the needed capability, reference that skill directly. Add prose only for a mode, variant, condition, or constraint that materially changes how it should be applied. Use generic owner language only when the correct skill genuinely depends on the finding or runtime situation.

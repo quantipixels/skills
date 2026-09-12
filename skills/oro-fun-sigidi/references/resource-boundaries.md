@@ -12,7 +12,7 @@ Remove copied official documentation, cheap repository facts, stale version inve
 
 ## Deterministic code
 
-Keep bundled code only when it owns a bounded mechanical result and materially improves correctness, reuse, or safe invocation over native/project tooling. Validators, exact transforms, safe compare-and-swap mechanics, and stable install/bootstrap entrypoints can qualify.
+Keep bundled code only when it owns a bounded mechanical result and materially improves correctness, reuse, or safe invocation over native/project tooling. Validators, exact transforms, safe compare-and-swap mechanics, stable profile renderers, and safe installation/bootstrap entrypoints can qualify.
 
 Ordinary search/filter wrappers, Git/filesystem recipes, provider normalization solely for model consumption, and executable checklists usually do not. Interpretation, acceptance, routing, and authority remain with the responsible agent/skill.
 
@@ -29,6 +29,22 @@ Bundle data only when maintaining it materially supports the result. Give volati
 Keep one portable semantic contract and thin host-specific adapters. Do not duplicate the whole instruction set merely because hosts expose different metadata or invocation controls.
 
 Before editing host configuration, distinguish primary-session instructions from worker definitions and user-owned configuration from package-owned assets. Preserve unrelated settings and permissions.
+
+## Keep runtime posture separate from method
+
+For multi-agent integrations, keep these layers distinct:
+
+- **host harness** — spawn/join mechanics, scheduling, Code Mode/team primitives, lifecycle, native isolation, and provider-specific invocation;
+- **provider profile** — durable work posture plus useful runtime defaults such as model, effort, tool/mutation envelope, or sandbox;
+- **assignment** — this task's outcome, candidate, authority, independence, evidence, and stop condition;
+- **skill** — reusable semantic method/expertise when one materially helps the result;
+- **workflow/router** — topology between independently owned results.
+
+A provider profile should not hardcode semantic skill identities or workflow stages. An assignment may name a skill when already selected; otherwise do not add generic “discover skills” instructions merely because skills exist.
+
+Prefer profile defaults that the harness can override per assignment. A model/effort choice is configuration, not semantic ownership.
+
+Do not reproduce native spawn, wait, join, polling, retry, or team mechanics in portable skill instructions. State the semantic or evidence requirement and let each host use its strongest native mechanism.
 
 ## Decide by consequence
 

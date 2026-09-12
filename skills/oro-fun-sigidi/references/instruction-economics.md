@@ -102,6 +102,16 @@ Weak: `Do not use vague owner language.`
 
 Keep prohibitions for hard boundaries or demonstrated failure modes; pair them with the positive target when useful.
 
+## Respect harness-native capability
+
+Before adding agent instructions, separate a semantic gap from behaviour the current model or host harness already performs reliably.
+
+For multi-agent work, instructions should usually tune **when/how much** delegation, independence, evidence, or escalation is useful. Leave provider mechanics such as spawn syntax, parallel scheduling, joins, status transport, retries, Code Mode, agent teams, and per-spawn model controls to the harness.
+
+Move durable runtime defaults such as model, effort, sandbox, or tool envelope into provider configuration/profile surfaces when those controls exist. Keep semantic methods in skills and task-specific authority/evidence in assignments.
+
+Do not add “discover relevant skills”, “parallelize independent work”, “wait for all workers”, or similar generic rules unless evidence shows the target host/model fails without them. A familiar-sounding instruction still has to beat the no-op baseline.
+
 ## Delete what no longer earns load
 
 Hunt these deliberately:

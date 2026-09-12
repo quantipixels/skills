@@ -8,6 +8,8 @@ Each skill lives at `skills/<name>/SKILL.md`. The directory and frontmatter name
 
 Keep useful depth and minimise accidental mechanism. Do not remove a lightweight skill merely because a capable model understands its subject. Add a public identity only when it materially improves direct selection/use over an existing skill. Leave routine mechanics to native tools. Keep code for a bounded mechanical result or a safe installation entrypoint, with proof that can falsify it.
 
+For provider/multi-agent integrations, keep layers distinct: skills own semantic methods, workflows own progression, assignments own task-specific bounds/authority/evidence, provider profiles own durable work posture plus runtime defaults, and the host harness owns spawn/join/scheduling/Code Mode/team mechanics. Do not hardcode skill identities or workflow stages into provider profiles, and do not copy harness mechanics into portable skill instructions.
+
 Alárinà's route topology is intentional capability, not catalogue noise. Do not reduce it to description matching, flatten it into an exhaustive inventory, or delete route shapes merely to shorten the file. Before materially simplifying Alárinà, identify a concrete routing defect or redundancy and show how common paths, adjacent-owner boundaries, and dynamic installed-inventory lookup remain preserved. Without that evidence, preserve the topology.
 
 Repository-wide package validators and structural audit tools belong under `scripts/skills/`, not inside an authoring skill.

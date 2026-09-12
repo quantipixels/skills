@@ -61,6 +61,10 @@ Use `alarina` for the complete installed inventory.
 
 `ko-skill` remains a compatibility entrypoint for skill-writing requests and routes to `oro-fun-sigidi`. `oro-ologbon` remains a compatibility entrypoint and routes by audience.
 
+### Optional integrated agent experience
+
+`pepeye` works with the host's native agents without extra setup. For Codex or Claude Code, `qp-setup` can optionally install provider-native `explorer`, `analyst`, `writer`, `implementer`, `verifier`, `researcher`, and `reviewer` profiles with setup-resolved model/effort defaults. The profiles describe work posture, not semantic skills; the host can still use stronger or lighter capability per assignment when supported. Without these profiles Pepeye continues in portable mode.
+
 ## Recommended global instructions
 
 The skills work without extra global instructions. Add this block only when you want these defaults across projects:
