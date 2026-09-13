@@ -80,21 +80,6 @@ Common entrypoints:
 Use `alarina` for the complete installed inventory.
 
 
-## Optional user instructions
-
-Skills work without a shared instruction block. Copy whichever lines below match how you want the assistant to work, or use all of them. Edit them to suit your workflow:
-
-```text
-Use `alarina` when the right skill is unclear.
-Use `ro-wo` before accepting or rejecting a consequential premise or proposed approach.
-Use `oro-fun-sigidi` when writing or changing agent-facing instructions, skills, or prompts.
-Use `oro-fun-eniyan` when writing or refining human-facing technical prose.
-Use `root-cause` when a failure's causal mechanism is unresolved before implementing a fix.
-Use `atunwo` when an independent code review is requested or materially warranted by risk or uncertainty.
-```
-
-These lines guide skill use; they do not grant additional tool or publication permissions. `irinse` can help place only the lines you select in the appropriate instruction file.
-
 ## Update
 
 For a Git-backed Codex plugin installation:
