@@ -2,13 +2,61 @@ name: Release
 
 on:
   push:
+    branches:
+      - ori
     tags:
       - 'v*'
+  workflow_dispatch:
 
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
 jobs:
+  version:
+    if: github.ref == 'refs/heads/ori'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Read release version
+        id: package
+        run: node -p '"tag=v" + require("./package.json").version' >> "$GITHUB_OUTPUT"
+
+      - name: Create version pull request or tag release
+        id: changesets
+        uses: changesets/action@v1
+        with:
+          version: npm run version
+          publish: npx changeset tag
+          createGithubReleases: false
+          commit: "chore: version skills"
+          title: "chore: version skills"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # Tags pushed with GITHUB_TOKEN do not trigger another workflow run.
+      - name: Create release
+        if: steps.changesets.outputs.hasChangesets == 'false'
+        uses: softprops/action-gh-release@v3
+        with:
+          tag_name: ${{ steps.package.outputs.tag }}
+          generate_release_notes: true
+
   release:
+    if: startsWith(github.ref, 'refs/tags/v')
     runs-on: ubuntu-latest
     permissions:
       contents: write
