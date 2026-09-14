@@ -22,6 +22,7 @@ Load only the selected reference:
 - [mutation testing](references/mutation-testing.md) for bounded campaigns and outcome interpretation;
 - [native runtime checks](references/native-verification.md) for scoped fuzzing, sanitizer and race-detector evidence;
 - [database evidence](references/database-evidence.md) for real-engine fixtures, transaction context and generated SQL;
+- [build evidence](references/build-evidence.md) for resolved graphs, action outcomes, critical paths and incremental invalidation;
 - [CRAP measurements](references/crap-score.md) for compatible complexity and coverage inputs;
 - [IntelliJ MCP](references/intellij-mcp.md) for IDE-backed navigation, code insight, run configurations, and debugging; or
 - [Firecrawl](references/firecrawl.md) for agent-oriented search, scrape, crawl, or browser-backed web acquisition when ordinary fetch/search cannot reliably expose the needed evidence.

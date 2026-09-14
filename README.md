@@ -84,6 +84,7 @@ Common entrypoints:
 | `atona` | Material work needs one current plan and route to an outcome |
 | `alaga` | An accepted coding change or fix needs implementation and proportionate proof |
 | `atunwo` | A fixed code candidate or codebase snapshot needs independent judgment |
+| `architect` | Technical structure, interfaces or technology choices need survey, design or review |
 | `iwadi` | A question needs substantial current research or exact-source grounding |
 | `irinse` | A selected tool, host integration, or shared instruction surface needs setup or repair |
 | `yoruba-glossary` | Yorùbá language guidance, lessons, word formation, or glossary maintenance is needed |
