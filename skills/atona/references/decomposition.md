@@ -3,8 +3,6 @@
 
 Turn supplied work into a validated set of tickets that a fresh delivery owner can understand and complete without reconstructing parent narrative. Own decomposition, dependency/startability semantics, and terminal ticket disposition only; the caller owns grouping, storage, publication, execution, review progress, and reconciliation from owner results.
 
-Delegate substantial analysis, research, and expert work to subagents, returning concise findings and evidence links to keep the main context lean.
-
 ## 1. Understand the work
 
 Use the context already supplied. Read the governing requirements and dependencies applicable to the requested scope; expand when their meaning or coverage is uncertain. Inspect the current project/system only when existing behavior, vocabulary, constraints, or accurate ticket boundaries require it. In software work that may include the codebase; it is not a universal prerequisite.

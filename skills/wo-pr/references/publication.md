@@ -3,15 +3,11 @@
 
 Create or update the PR/MR for the requested work. A request to create a PR authorizes the scoped commit, push, and publication. Use the existing repository context to finish the job.
 
-For GitHub Enterprise or self-managed GitLab, reuse an exact-current trust confirmation for the normalized host or require it before first contact. Bind every provider operation to that host and repository, and isolate credentials and ambient selectors so they cannot redirect publication.
+Default to `gh` for GitHub and `glab` for GitLab; fall back to the provider API when needed. Use CLI help or current docs for syntax. Verify the target and any uncertain write before retrying.
 
-1. Reuse the known scope and repository context. If on the integration branch, create a feature branch; otherwise check for an existing PR. Confirm the scoped diff and preserve unrelated work, then proceed to commit and push. Use the established integration branch as the base unless a different base or stack parent is specified. Ask only when the target is ambiguous.
-2. Commit the requested changes and push normally. Create a branch if needed. Resolve conflicts within the authorized scope. Do not bypass hooks, rewrite history, or force-push without separate authorization.
-3. Reuse the branch's open PR or create one, ready by default unless draft was requested. Write a concise title and description of the final change and checks actually run. Preserve human content, templates, labels, and an existing PR's base and state unless a change is authorized. Do not publish an empty diff.
-4. Verify the published head matches the commit and the PR has the intended base and state. Return its URL and any material gap.
+1. Reuse the scope and branch's existing PR/MR. Create a feature branch if needed; use the established integration branch or specified stack parent as the base. Ask only when the target is ambiguous.
+2. Preserve unrelated work, commit coherent changes, and push normally. Resolve in-scope conflicts; history rewrites, force-pushes and hook bypass need separate authority.
+3. Create or update the PR/MR, ready by default unless draft was requested. Preserve human content, templates, base, and state unless their change is authorized. Do not publish an empty diff.
+4. Verify the published head, base and state. Return the URL and any material gap.
 
-## PR description
-
-Write for a reviewer with no prior knowledge of the PR or product. Briefly explain the relevant product behavior and terms so they can understand the problem and why it matters. Lead with the problem and its impact, then the resolution and a short summary of the consequential changes. Identify what to review first: critical behavior, risks, and specific files or changed lines, with links when useful. Include meaningful alternatives actually considered and why they were not chosen; do not invent alternatives or reopen investigation to fill the description. End with checks run and material limitations.
-
-Keep detail proportional to the change. Use a few sentences for a simple PR and short sections when they help scanning. Omit empty sections, routine file inventories, and work-session narration. Follow the repository template and describe the final diff.
+Use `oro` for a concise reviewer-facing description: problem, effect of the change, important review focus, checks run and material limitations. Follow the repository template; omit routine inventories and session narration.

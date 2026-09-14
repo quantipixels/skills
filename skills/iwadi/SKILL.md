@@ -48,13 +48,9 @@ A primary source is not automatically stronger merely because it is primary; a s
 
 Do not jump to source archaeology merely because source exists. Escalate only when the unresolved claim can materially change a decision/implementation/compatibility/proof, ordinary project/runtime/first-party research did not resolve it, controlling version/ref can be pinned, and exact source/tests are likely to discriminate the uncertainty. When earned, read [exact source grounding](references/exact-source-grounding.md).
 
-## Context isolation
+## Delegated evidence
 
-Delegate substantial analysis, research, and expert work to subagents, returning concise findings and evidence links to keep the main context lean.
-
-When delegation is useful, require a compact evidence packet: direct conclusion; exact source identities/locators; what each establishes; source/evidence class and fit; conflicts/surprises/caveats/coverage gaps; checks/freshness.
-
-The current agent owns evidence selection, synthesis, durable report when warranted, and task action consuming the findings. A delegated packet is evidence, not the report itself.
+When research is delegated, return a compact evidence packet: direct conclusion; exact source identities/locators; what each establishes; source/evidence class and fit; conflicts, caveats, and coverage gaps; checks and freshness. Ìwádìí still owns evidence selection, synthesis, and any durable report; a delegated packet is evidence, not the report itself.
 
 ## Research contract
 

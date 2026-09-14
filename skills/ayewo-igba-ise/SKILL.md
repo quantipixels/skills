@@ -54,31 +54,12 @@ For each proposed durable improvement, state:
 
 Prefer replacing, removing, moving, or clarifying existing guidance over appending another rule. Reject an instruction change when the current instruction already required the correct behavior, the evidence is model variance, the real fix belongs to the owning product/system/process, or the edit would only restate the same rule.
 
-A recommendation is the boundary of Àyẹ̀wò. Name the natural owner for an accepted follow-on—such as `oro` for agent-facing instruction/skill text, `alaga`, `irinse`, a project/runtime owner, or another relevant owner—and preserve enough evidence for that owner to act without reconstructing the postmortem.
+Stop at recommendations and an evidence-backed handoff to the natural owner unless remediation is also authorized. A new skill identity, routing change, promotion, fold or removal may be proposed; apply it only within the requested remediation scope.
 
-A new public skill identity, material routing/ownership reassignment, promotion, fold, or removal is a consequential remediation, not a forbidden one. Apply it when the requested remediation scope already covers that surface and the evidence supports the change; otherwise return the proposal and owner handoff rather than silently expanding authority.
-
-## Explicit remediation follow-on
-
-For compatibility with existing combined requests, when the user explicitly asks both for a postmortem and remediation and has granted the required mutation authority, complete and fix the postmortem result first. Then invoke the natural owning skill/workflow as a separate follow-on using the pinned findings and evidence. Do not mutate the judged surface while reconstructing or deciding the retrospective, and do not describe the follow-on mutation as part of Àyẹ̀wò's result.
-
-Existing agent-facing instructions/skills may be revised through `oro` when that remediation surface is authorized. If the proposed remediation would materially exceed the requested mutation scope, stop at the proposal and owner handoff.
-
-If remediation was not explicitly requested, stop at the recommendation and owner handoff.
+For authorized remediation, finish the postmortem before changing the judged surface. Then invoke the owning skill as a separate follow-on—such as `oro` for instructions, `alaga` for delivery, or `irinse` for setup—using the pinned findings and evidence. Keep the retrospective and implementation results distinct.
 
 ## Report
 
-Return:
-
-- executive verdict;
-- evidence/contract boundary;
-- timeline and first material divergence;
-- contributing/causal factors with confidence limits;
-- recovery and recovery cost;
-- what worked and what failed;
-- ranked structural frictions;
-- durable-change assessment and natural owner;
-- rejected lessons/recommendations; and
-- residual limits.
+Lead with the verdict and decisive causal evidence. Include the scope, material timeline/divergence, recovery cost, effective actions, ranked frictions, earned or rejected lessons and their owners, and remaining uncertainty as relevant; omit empty report categories.
 
 When a durable postmortem is required, use the existing or user-selected destination. Create a separate visual projection only when it materially improves comprehension of the supplied evidence.

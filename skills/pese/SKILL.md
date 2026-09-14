@@ -30,20 +30,7 @@ Separate authority is required for:
 
 ## Resolve tooling from current official evidence
 
-Do not hardcode an installation/setup manual or assume current CLI syntax, but retain the smallest entry surfaces needed to avoid rediscovering each selected transport from zero.
-
-Authoritative entry points:
-
-- Tailscale Serve: https://tailscale.com/docs/features/tailscale-serve
-- Tailcat upstream: https://github.com/tailscale/tailcat
-
-If Tailscale is already installed, `tailscale serve --help` confirms the installed interface and `tailscale serve status` is the representative read-only pre-state check. Resolve the exact route/target syntax from installed help and current Serve documentation before mutation.
-
-If Tailcat is already installed, prefer its embedded upstream documentation via `tailcat --readme` (and `tailcat --help` when needed) before consulting a newer upstream revision. Tailcat explicitly makes no CLI/API/wire-format stability promise, so do not freeze its sender/receiver syntax here.
-
-- If the transport tool is already installed, identify the installed version/build/provenance and use its own help/embedded documentation plus official documentation appropriate to that version. Where the official site is not versioned, reconcile current official docs with the installed CLI rather than assuming newer flags/features exist.
-- If the tool is absent or its installation/configuration must change, use `irinse` with the selected transport and required readiness state. Do not duplicate setup instructions here.
-- Use `irinse` only when additional non-obvious tool-usage guidance is needed beyond this serving contract.
+Resolve volatile syntax from the installed transport and current official documentation: [Tailscale Serve](https://tailscale.com/docs/features/tailscale-serve) or [Tailcat](https://github.com/tailscale/tailcat). For installed Tailcat, prefer its embedded documentation. If installation or configuration must change, use `irinse`; this skill does not own setup guidance.
 
 ## Bound the resource
 
@@ -79,7 +66,7 @@ Do not finish until the exact HTTPS URL for the requested resource is known and 
 
 Read [Tailcat fallback](references/tailcat.md). Use only when Tailscale Serve is unavailable/unsuitable, the reader can run a compatible Tailcat client, and the user accepts Tailcat's bearer-capability, relay-metadata, CLI-receiver, and upstream-stability limits.
 
-Tailcat transports TCP rather than serving files, so when the supplied resource is not already a suitable local web service, start the narrow task-owned loopback service needed to expose it and forward only that port. Resolve sender/receiver syntax from the installed Tailcat documentation or latest official upstream evidence as described above.
+Tailcat transports TCP rather than serving files. When needed, expose only a task-owned loopback service and forward that port.
 
 The access target for Tailcat is the complete receiver invocation that retrieves/opens the requested resource, together with a separately secured connection token where the current CLI requires one. Do not return only a token, sender command, port number, or setup steps.
 

@@ -3,8 +3,6 @@
 
 Turn supplied intent into one compact behavior specification that a fresh human or agent can use as an independent delivery and review oracle. Own normative behavior, scope, examples, acceptance, proof traceability, and specification readiness.
 
-Delegate substantial analysis, research, and expert work to subagents, returning concise findings and evidence links to keep the main context lean.
-
 Keep initiative lifecycle, consequential user-choice closure, specialist design, delivery decomposition, execution/proof, durable project knowledge, persistence mechanics, and external publication outside the specification result.
 
 ## Establish the contract boundary

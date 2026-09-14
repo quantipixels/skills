@@ -44,15 +44,15 @@ For living projections, preserve document identity and useful anchors. Foregroun
 
 ## Choose representation before renderer or delivery
 
-First identify the relationship and strongest faithful representation. Then choose a mature renderer/capability and the lightest sound delivery mode. Do not ask whether native HTML can technically draw the relationship before deciding what form would help the reader understand it best.
+Choose the faithful representation before the renderer, then use the lightest sound delivery mode.
 
-Use [visual reasoning](references/visual-reasoning.md) for representation shape and [representation capabilities](references/representation-capabilities.md) when a specialized grammar/renderer can materially improve information fidelity, perceptual clarity, interaction/navigation, correctness, accessibility, or implementation reliability. Named capability anchors are useful starting points, never an allowlist; when none fits, discover a current mature capability rather than degrading the representation to stay inside a cached set.
+The linked capabilities are starting points, not an allowlist. Discover a mature alternative when the supplied anchors cannot represent the meaning well.
 
 Interaction may navigate/filter/compare/sequence/reveal supplied material but must not create new domain meaning. Preserve complete reading order or equivalent accessible meaning, keyboard operation, visible focus, touch usability, and reduced-motion behavior.
 
 ## Standalone support
 
-Start standalone artifacts from the [base template](assets/base.html) by default. It includes the minimal header/main layout, foundation styles, an embedded copy of the [favicon](assets/favicon.png), inline SVG brand mark, icon-only theme and back-to-top controls with screen-reader labels. Keep back-to-top fixed at the bottom right and visible throughout scrolling, including at the top; do not gate it on scroll position. Copy the template as one HTML file; no companion brand images are needed. Preserve the embedded assets rather than recreating them. Replace the title and heading, set the document language and control labels, and build the supplied representation inside `main`. Use an existing host shell or user-supplied branding when present.
+Start standalone artifacts from the [base template](assets/base.html). Preserve its embedded branding and accessible controls, including the always-visible, bottom-right back-to-top button. Set the title, language and control labels; build the representation inside `main`. Use an existing host shell or supplied branding when present.
 
 Add the [report control](assets/report-control.html), [collection filter control](assets/collection-filter-control.html), or [carousel control](assets/carousel-control.html) only when that asset's own trigger applies; read only the selected asset before embedding it.
 
@@ -75,13 +75,13 @@ Evidence: Embedded | Linked | Mixed
 
 ## Verification
 
-After the first complete projection write, establish a full structural baseline: reread and check source/projection identities, required human-critical coverage, anchors/context, renderer/dependency identity, source mapping, semantic color mappings and non-color cues, contrast, runtime disclosure, and semantic fallback. After an incremental write, rerun the structural and browser checks whose claims or evidence it invalidated. Before delivery, run a final whole-artifact coherence check across the current source cut, opening/status, coverage, navigation, provenance, runtime disclosure, and fallback.
+Before delivery, check the current source/projection identity, human-critical coverage, opening/status, navigation, provenance, renderer/dependency identity, semantic color and non-color cues, contrast, runtime disclosure, and fallback. After changes, rerun only invalidated checks; reuse proof that remains current.
 
 Check that the view alone explains the supplied direction and current state to its intended reader. Repair opaque explanations; distinguish this assessment from observed reader comprehension or agreement.
 
 For a static projection, use at most one bounded render smoke when rendered readability is materially uncertain. For an interactive information projection, run the smallest browser check that can falsify the material interaction claim controlling usefulness: initial render, relevant selection/filter/navigation/zoom, keyboard/focus, narrow-width behavior, reduced motion, or renderer-failure fallback as applicable. Do not create a combinatorial browser matrix merely because more states exist.
 
-A substantial/public/long-lived document does not by itself earn deeper browser proof. A specialized renderer does not by itself earn deep proof either; test only the browser-dependent claims it introduces. Preserve real proof whose claim remains valid; after a proved defect or relevant rewrite, rerun the invalidated proof.
+Document size, lifespan or renderer choice alone does not justify deeper browser testing.
 
 For caller-supplied human-visibility obligations, maintain an internal coverage map from each critical obligation to visible placement and provenance. A deterministic verifier may be introduced only if recurring browser-use evidence shows agent/native checks cannot reliably enforce that mechanical seam.
 
@@ -89,6 +89,6 @@ For caller-supplied human-visibility obligations, maintain an internal coverage 
 
 Return the verified artifact locator.
 
-Opening is host UX, not artifact semantics. Open only when the user asks or render proof requires it; reuse an existing preview/page/session when available. After rewrites, refresh/navigate that surface rather than invoking an opener repeatedly. If the only available opener would create another tab/window and opening is not required for proof, return the locator instead.
+Open only when requested or needed for render proof; reuse and refresh the existing preview instead of opening repeated tabs.
 
 Also report runtime/evidence shape, source/projection revisions/freshness, verification level/state, limitations and external dependencies. Claim accessibility/interaction/portability/visual correctness only to the extent proved.

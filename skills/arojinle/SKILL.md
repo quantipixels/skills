@@ -11,14 +11,7 @@ Interview the user relentlessly until shared understanding is reached and no con
 
 Work the tree in **rounds**. The **frontier** is every decision whose prerequisites are already settled. Ask the whole answerable frontier in one round, then wait for the user's answers before starting the next.
 
-Present each round in the conversation using numbered question blocks, separated by horizontal rules:
-
-```markdown
-❓ **Q<n> - <topic>**
-<question, enough context to answer, and choices where useful>
-
-➡️ **Recommendation:** <answer and reason>
-```
+Present concise questions with stable question numbers, enough context to answer, useful options, and a recommendation with its reason.
 
 Each round reshapes the tree. Recompute the material frontier from confirmed answers before asking the next round; answers may create, remove, merge, split, or reframe dependent branches. Do not merely continue the previously imagined tree.
 
