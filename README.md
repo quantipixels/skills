@@ -70,7 +70,7 @@ Common entrypoints:
 | `atunwo` | A fixed code candidate or codebase snapshot needs independent judgment |
 | `iwadi` | A question needs substantial current research or exact-source grounding |
 | `irinse` | A selected tool, host integration, or shared instruction surface needs setup or repair |
-| `yoruba-glossary` | Yorùbá/English technical terms need choosing, correcting, or recording in a glossary |
+| `yoruba-glossary` | Yorùbá language guidance, lessons, word formation, or glossary maintenance is needed |
 | `oro` | Agent-facing instructions or human-facing technical prose needs writing, review, editing, or pruning |
 | `adanwo` | A bounded exploratory or measured experiment must settle uncertainty |
 | `alarina` | The starting owner or useful route is unclear, or delegated work needs coordination |
