@@ -1,6 +1,6 @@
 ---
 name: html-artifact
-description: Turn supplied material into a selective, traceable, accessible static or interactive browser information projection. Preserve source meaning, authority, evidence state, and retrieval paths; exclude originating analysis, slide decks, decision prototypes, production/application UI, deployments, and reusable libraries.
+description: Make supplied plans, evidence, comparisons and explanations understandable through expressive, accessible HTML. Support useful exploration of supplied models, review feedback and explicitly requested live updates; exclude originating domain analysis, decision prototypes, production UI, deployments and reusable libraries.
 ---
 
 # HTML Artifact
@@ -23,7 +23,8 @@ Load branch guidance only when applicable:
 - diff, commit/branch change, or pinned pull-request or merge-request evidence → [code-change review](references/code-change-review.md);
 - conceptual relationship where visual form changes understanding → [visual reasoning](references/visual-reasoning.md);
 - a mature renderer/tool could materially improve the chosen representation → [representation capabilities](references/representation-capabilities.md);
-- interactive relationship map, coordinated perspectives, or guided sequence → [interactive projections](references/interactive-projections.md);
+- coordinated views, model demonstrations, guided sequences or reader feedback → [interactive projections](references/interactive-projections.md);
+- a living report or requested real-time page → [living and live views](references/living-and-live.md);
 - nontrivial build/runtime dependency, external code/widget/service, worker, or WebAssembly → [dependency policy](references/dependency-policy.md).
 
 ## Compose for human judgment
@@ -34,7 +35,9 @@ For plans and decision views, show the problem, direction, rationale, settled/op
 
 Choose representation per material relationship or reader question, not per source heading. Several source sections may collapse into one useful traceability/comparison view; one source section may require several representations when it contains different relationships.
 
-Use `oro`'s visual-explanation branch for clearer representations within relevant sections. Apply its guidance beside the supported text/evidence; this is not a new artifact request.
+Use [browser visual reasoning](references/visual-reasoning.md) when relationships, change or mechanisms would be easier to inspect than to reconstruct from prose. Render the useful specimen or relationship beside its explanation; naming a possible diagram or linking its source does not deliver it.
+
+Choose one visual premise from the subject and reader's task. Let it shape composition, type, density and the central representation, not only an accent color. Follow supplied direction and project conventions first. A quiet operational view and an expressive explainer deserve equal craft; neither needs a prescribed palette, font pairing, hero or card grid. Reuse familiar controls without inheriting a previous page's entire silhouette.
 
 Keep semantic types distinct. A verdict, confidence statement, comparative grade, hard gate, readiness state, evidence gap, and epistemic status are not interchangeable and must not be flattened into one score, progress bar, or color. Qualitative judgment gets no false precision.
 
@@ -48,11 +51,13 @@ Choose the faithful representation before the renderer, then use the lightest so
 
 The linked capabilities are starting points, not an allowlist. Discover a mature alternative when the supplied anchors cannot represent the meaning well.
 
-Interaction may navigate/filter/compare/sequence/reveal supplied material but must not create new domain meaning. Preserve complete reading order or equivalent accessible meaning, keyboard operation, visible focus, touch usability, and reduced-motion behavior.
+Interaction may expose supplied relationships, calculate a supplied model or capture reader proposals. Keep observed evidence, illustrative/model-derived outcomes and unaccepted feedback distinct. Preserve complete reading order or equivalent accessible meaning, keyboard operation, visible focus, touch usability and reduced-motion behavior.
 
 ## Standalone support
 
-Start standalone artifacts from the [base template](assets/base.html). Preserve its embedded branding and accessible controls, including the always-visible, bottom-right back-to-top button. Set the title, language and control labels; build the representation inside `main`. Use an existing host shell or supplied branding when present.
+Use the [base template](assets/base.html) as reusable accessibility and control plumbing, not a required page layout. Adapt its structure and styling to the chosen representation while retaining useful navigation, theme and back-to-top behavior. Set the title, language and control labels.
+
+Use an easily available project logo and favicon when appropriate. Otherwise the supplied QP mark can stand alone; do not append “Skills” or invent a project identity. Reuse an existing favicon before deriving one from a legible mark. Skip unavailable assets rather than turning report creation into a branding search. Keep required local assets embedded or portable with the artifact.
 
 Add the [report control](assets/report-control.html), [collection filter control](assets/collection-filter-control.html), or [carousel control](assets/carousel-control.html) only when that asset's own trigger applies; read only the selected asset before embedding it.
 
@@ -78,6 +83,8 @@ Evidence: Embedded | Linked | Mixed
 Before delivery, check the current source/projection identity, human-critical coverage, opening/status, navigation, provenance, renderer/dependency identity, semantic color and non-color cues, contrast, runtime disclosure, and fallback. After changes, rerun only invalidated checks; reuse proof that remains current.
 
 Check that the view alone explains the supplied direction and current state to its intended reader. Repair opaque explanations; distinguish this assessment from observed reader comprehension or agreement.
+
+Check the promised utility: can the reader trace the relevant path, compare the alternatives, inspect the changed value or return an unambiguous response? A decorative diagram, inert control or polished prose substitute does not pass that claim. Conventional composition is fine when it fits; novelty alone is not proof.
 
 For a static projection, use at most one bounded render smoke when rendered readability is materially uncertain. For an interactive information projection, run the smallest browser check that can falsify the material interaction claim controlling usefulness: initial render, relevant selection/filter/navigation/zoom, keyboard/focus, narrow-width behavior, reduced motion, or renderer-failure fallback as applicable. Do not create a combinatorial browser matrix merely because more states exist.
 
