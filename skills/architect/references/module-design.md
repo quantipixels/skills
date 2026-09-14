@@ -144,5 +144,3 @@ Limits or unresolved architecture gaps:
 When an interface controls a security-sensitive effect, try plausible caller mistakes: omitted configuration, zero/negative limits, invalid enum values, swapped same-type arguments and conflicting configuration sources. Trace the actual default, precedence and error path to the protected effect. Does a rejected value stop the operation, or merely warn while continuing? Are required checks enforced at the owning boundary or dependent on every caller remembering them?
 
 Prefer a safe default and an interface that makes dangerous combinations hard to express when that fits the contract. Documentation alone does not prove enforcement; existing validation or types may already close the path. In review, use these as bounded hypotheses under atunwo's evidence standard, not automatic findings.
-
-Method informed by [Trail of Bits sharp-edges](https://github.com/trailofbits/skills/tree/ce9ae2e2dc2de7ea05f4a8a6e636ccf576f83c79/plugins/sharp-edges/skills/sharp-edges); fixed severity and mandatory API inventories are not adopted.

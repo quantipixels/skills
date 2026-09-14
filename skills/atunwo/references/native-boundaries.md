@@ -10,4 +10,4 @@ Trace exceptional cleanup as carefully as success: partial initialization, early
 
 For a supported risk, name a distinguishing input or schedule and the proof tool that can observe it. Use `irinse` for bounded fuzzing, sanitizer or race-detector evidence. A clean sampled run does not prove all unsafe preconditions. Optimizer-sensitive cryptographic timing or secret erasure needs specialist, target-specific evidence; do not certify it from source appearance.
 
-Sources: [Trail of Bits Rust review clusters](https://github.com/trailofbits/skills/tree/ce9ae2e2dc2de7ea05f4a8a6e636ccf576f83c79/plugins/rust-review/prompts/clusters), [Rustonomicon FFI](https://doc.rust-lang.org/nomicon/ffi.html). The upstream multi-pass finder roster and automatic pattern verdicts are not adopted.
+Language rules: [Rustonomicon FFI](https://doc.rust-lang.org/nomicon/ffi.html).

@@ -14,4 +14,4 @@ If either usable input is unavailable, report the missing input and the smallest
 
 Rank only within the stated scope and compatible provenance. Any threshold is an explicit project policy. A high score can motivate investigation; it does not establish a defect, weak assertions or a need for more tests. Do not extract methods solely to lower the score: preserve coherent responsibilities and review the actual complexity and proof gap.
 
-Sources: [original CRAP description](https://www.artima.com/weblogs/viewpost.jsp?thread=215899), [Google Testing Blog](https://testing.googleblog.com/2011/02/this-code-is-crap.html), [dotnet crap-score](https://github.com/dotnet/skills/tree/24f7cfbd42ad7bf52bcd67372816b982c38c64c6/plugins/dotnet-test/skills/crap-score). Automatic installation, fixed risk bands and metric-driven extraction are deliberately omitted.
+Formula and coverage definition: [original CRAP description](https://www.artima.com/weblogs/viewpost.jsp?thread=215899).
