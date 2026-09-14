@@ -9,7 +9,7 @@ Turn supplied or owner-established meaning into a purpose-shaped browser read mo
 
 ## Projection contract
 
-**Output:** requested/host destination; otherwise `.qp/artifacts/<stable-subject>/index.html`. Use temp for disposable intermediates.
+**Output:** reuse the existing artifact path or requested/host destination. For a new standalone HTML artifact, default to `.qp/artifacts/<datetime>-<slug>.html`. For related files, use `.qp/artifacts/<datetime>-<slug>/` with descriptive filenames. Keep a plan's HTML beside its Markdown source at the plan owner's destination. Set `<datetime>` once at creation using a filename-safe UTC timestamp such as `20260914T153000Z`; retain the same paths through updates. Create a new path only for a distinct artifact or requested snapshot. Use temp for disposable intermediates.
 
 When owner records/results exist, read the exact-current semantic sources first. Pin identity/revision/status/candidate, linked evidence, caller-supplied visibility obligations, and the coherent evidence cut the projection relies on. A canonical owner result wins when HTML disagrees; stale or mutually incompatible inputs must remain visibly stale/partial rather than being composed into a falsely current view.
 
