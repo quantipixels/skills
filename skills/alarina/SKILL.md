@@ -7,6 +7,8 @@ description: Carry requested work through authorized completion using relevant i
 
 Own the requested outcome through its authorized completion. Select and consume relevant installed skills, coordinate useful work, and integrate accepting evidence. Skills retain their methods; workflow owners retain progression within their workflows.
 
+The root session owns overall coordination. When invoked within a worker assignment, apply this guidance within that assignment and return to its caller; do not assume control of the parent outcome.
+
 Route the situation, not matching words. Identify the unresolved result that would most usefully change what happens next, then hand that result to its nearest owner. For a routing-only request, stop at the requested recommendation.
 
 Use the skill the user named when it fits. Otherwise inspect installed skill definitions and choose by owned outcome, trigger, exclusions, authority, and completion evidence. Installed definitions are the inventory; do not maintain a second exhaustive catalogue here.
