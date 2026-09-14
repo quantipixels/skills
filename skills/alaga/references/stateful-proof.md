@@ -2,6 +2,8 @@
 
 Use when a changed contract depends on committed state, concurrent operations or recovery and existing proof misses a plausible failure. Select only the relevant experiment below. An applicable installed project verification specialist supplies its actual API, persistence and assembled-journey proof. Alaga integrates that evidence, or exercises the required boundary directly when no specialist applies. This method selects distinguishing evidence, not another workflow. Atunwo may consult it read-only to assess proof.
 
+When uncertainty concerns valid command or state-machine sequences rather than a chosen concurrent interleaving, use the generated-sequence method in [property-based testing](property-based-testing.md). It establishes only the boundaries the subject actually exercises.
+
 ## Persistence and atomicity
 
 State the durable postcondition and the transaction that should own it. Exercise the public operation against the supported storage engine when its semantics matter. Commit through the application's real boundary, then read through a fresh transaction/context so an identity map or cached object cannot impersonate persisted data. Verify identity, important values and relationships after hydration. A test's automatic rollback can hide commit-time failures or callbacks; match the claimed behavior.
