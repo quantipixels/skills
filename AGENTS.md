@@ -24,6 +24,6 @@ Repository-wide package validators and structural audit tools belong under `scri
 
 Test the changed boundary with proportionate proof. Keep tests for shipped mechanics, meaningful rejection cases, and real regressions; remove duplicated proof, incidental snapshots, and tests of library-owned behavior. Do not add tests merely to defend prompt wording.
 
-Standing model-behavior evaluations belong in the separate internal eval repository. Until it is available, keep task-local evidence in the PR and report unrun evaluations. Package CI must work without private eval access or model credentials. Syntax, installation, and authenticated runtime success are distinct claims.
+Keep the user-authorized opt-in engineering comparisons in `evals/`, outside installable skills. Native hosts own model execution and isolation; the kit owns frozen tasks and executable evidence checks. Keep generated runs and private traces ignored or external, and distinguish fresh model runs, replays and mechanical validation. Package CI must work without private eval access or model credentials. Syntax, installation, and authenticated runtime success are distinct claims.
 
 Before retiring evaluations or documents, preserve unique current expectations at their real owner. Keep attribution and licences.

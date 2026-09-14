@@ -1,6 +1,6 @@
 ---
 name: architect
-description: Design, survey, or review the technical structure of a software system or consequential module at the smallest scale needed to resolve the architecture question. Use for architectural friction, system boundaries, module/interface/seam shape, data/state ownership, integrations, deployment, quality scenarios, trade-offs, migration/recovery, or architecture sufficiency; exclude initiative lifecycle planning, user-decision closure, implementation, workspace infrastructure, and code-review verdicts.
+description: Design, survey, or review the technical structure of a software system or consequential module at the smallest scale needed to resolve the architecture question. Use for architectural friction, technology/dependency fit, system boundaries, module/interface/seam shape, data/state ownership, integrations, deployment, quality scenarios, trade-offs, migration/recovery, or architecture sufficiency; exclude initiative lifecycle planning, user-decision closure, implementation, workspace infrastructure, and code-review verdicts.
 ---
 
 # Architect
@@ -26,6 +26,8 @@ Read only evidence capable of changing the architecture: current domain/project 
 Use `amose` and `iwadi` as needed.
 
 Resolve unknowns that can change the design against current project and authoritative sources.
+
+When reassessing established technology, dependencies, layout or build/test structure, read [architecture evolution](references/architecture-evolution.md). Revisit a choice when changed needs, recurring friction or a concrete new capability challenges its rationale; age or novelty alone is not a reason to migrate.
 
 ## Survey mode
 
@@ -69,6 +71,8 @@ Design from owned responsibilities and real boundaries inward. Specify only the 
 - critical invariants implementation must preserve.
 
 When module/interface/seam shape is material, read [module design](references/module-design.md). Prefer deep modules with small high-leverage interfaces and strong locality. Do not expose internal seams merely because implementation or tests use them.
+
+When correctness depends on multiple writers or overlapping transactions over shared mutable state, read [shared-state design](references/shared-state.md).
 
 When the requested system creates or materially changes agent tools, an assistant/automation surface, or agent-accessible product behaviour, read [agent-facing systems](references/agent-native-systems.md). Do not introduce an agent surface for unrelated work.
 

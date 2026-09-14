@@ -27,7 +27,7 @@ Install all skills for Codex in the current project:
 npx skills add quantipixels/skills --agent codex --skill '*'
 ```
 
-Add `--global` for a personal installation, or replace `'*'` with a skill name for a selective install. Alárinà's complete operating experience requires all QP skills; individual skills remain independently usable.
+Add `--global` for a personal installation, or replace `'*'` with a skill name for a selective install. Alárinà's complete operating experience requires all QP skills. Individual skills can be used without Alárinà; include any companion required by the selected branch. For initiative planning with `atona`, also install `html-artifact`.
 
 For Claude Code, replace `--agent codex` with `--agent claude-code`. Skills CLI installs skills; use the Claude plugin to include Alárinà as a native agent.
 
@@ -84,6 +84,7 @@ Common entrypoints:
 | `atona` | Material work needs one current plan and route to an outcome |
 | `alaga` | An accepted coding change or fix needs implementation and proportionate proof |
 | `atunwo` | A fixed code candidate or codebase snapshot needs independent judgment |
+| `architect` | Technical structure, interfaces or technology choices need survey, design or review |
 | `iwadi` | A question needs substantial current research or exact-source grounding |
 | `irinse` | A selected tool, host integration, or shared instruction surface needs setup or repair |
 | `yoruba-glossary` | Yorùbá language guidance, lessons, word formation, or glossary maintenance is needed |
@@ -92,6 +93,8 @@ Common entrypoints:
 | `alarina` | The starting owner or useful route is unclear, or delegated work needs coordination |
 
 Alárinà uses installed skill definitions as the dynamic inventory.
+
+See [a worked engineering example](docs/engineering-example.md) for how identity, recovery, architecture and tests fit together in a retry fix.
 
 ## Update
 
@@ -136,3 +139,5 @@ For Skills CLI, use `npx skills remove` and select the QP skills. Do not install
 ## Project
 
 Use [`AGENTS.md`](AGENTS.md) and `oro` for contribution and agent-instruction guidance. Change rationale and proof belong in PRs and CI.
+
+Use the opt-in [engineering evaluations](evals/README.md) to compare actual repairs with and without skill guidance. The kit checks executable contracts and regression detection; your native host runs the models.

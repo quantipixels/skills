@@ -1,10 +1,9 @@
-# Skill evaluations
+# Engineering evaluations
 
-Opt-in evaluation assets, maintained separately from installed skills. The owner explicitly requested these checked-in evals; generated runs and private traces remain in ignored `.qp/` or external temporary storage.
+Compare actual repairs with and without Alaga using the [engineering kit](engineering/README.md). It prepares fixed tasks and checks the resulting code with an independent oracle and the actor's own tests against the original defect. Model execution stays with your native agent host.
 
-- [Alárinà](alarina/README.md): three original cases, actor-input preparation, private rubrics, and evidence-aware grading. Use the native model host to execute prepared tasks.
-- [SureForge kit](vendor/sureforge/UPSTREAM.md): pinned upstream eval scenarios, fixtures, abstract gate model, metrics tooling, tests, and license. Reuse its evaluation structure for other skills; its specific gate rules are not universal requirements.
+The initial cases cover a lost-reply settlement with durable SQLite state and a small batching bug. They are development fixtures, not a measure of every skill or a substitute for real-project journeys. Correctness, regression detection, design judgment and resource use remain separate results.
 
-Define each skill's intended behavior before adapting an oracle. Keep actor inputs separate from grader criteria, freeze candidate/input hashes, preserve failed and blocked attempts, and record actual model/host/resource measurements. Mechanical tests, simulated decisions, and live task execution are different evidence classes.
+Keep generated studies and private traces in ignored `.qp/` or external evaluation storage. Package installation and CI need no model credentials or private services. Run generated code only in an appropriate evaluation environment; directory separation is not a sandbox.
 
-The tools make no model calls. Set and enforce a budget in the execution host before live runs; unknown costs remain unknown. No model credentials or private eval access are required for package CI.
+Earlier evaluation structure was informed by [SureForge](vendor/sureforge/UPSTREAM.md); its attribution and license remain. Its product-specific gate model and supplied-judgment evaluator are not part of this kit.

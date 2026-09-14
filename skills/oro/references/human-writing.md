@@ -82,5 +82,3 @@ Human-facing cleanup is not an automatic extra pass on unrelated work.
 ## Return
 
 For authoring/editing, return complete usable prose first. For a review request, return findings. Mention only material meaning, evidence, authority, technical-familiarity, concept-adequacy, or voice questions that remain unresolved.
-
-This skill intentionally draws on Diátaxis, the Google developer documentation style guide, Global English, and the former Technical Writing/Yọ Slop contracts as reasoning anchors. Use the behavior-bearing subset that improves the current reader's job rather than imposing a full methodology.
