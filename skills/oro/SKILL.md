@@ -1,8 +1,6 @@
 ---
 name: oro
 description: Write, review, edit, or prune text for agents or people. Use for skills, prompts, instructions, technical docs, explanations, reports, procedures, messages, or other prose; select the agent-facing or human-facing branch by the text's primary reader. Exclude factual investigation, translation, and code style.
-metadata:
-  maturity: experimental
 ---
 
 # Ọ̀rọ̀

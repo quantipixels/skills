@@ -2,8 +2,6 @@
 name: pese
 description: Serve one explicitly invoked local file, directory, or local web resource through private Tailscale Serve or an explicitly accepted encrypted Tailcat fallback, and return the exact access target. Use only when directly invoked to make that local resource temporarily reachable through a private transport. Exclude public/anonymous tunnels, permanent hosting, production serving, and artifact creation.
 disable-model-invocation: true
-metadata:
-  maturity: experimental
 ---
 
 # Pèsè
