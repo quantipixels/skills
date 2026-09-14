@@ -1,8 +1,6 @@
 ---
 name: yoruba-glossary
 description: Explain, teach, or apply Yorùbá spelling, tone marks, word formation, sentence composition, and technical terminology. Use for language lessons, corrections, proposed terms, or authorized glossary maintenance; ordinary reuse of settled terms needs no glossary workflow.
-metadata:
-  maturity: experimental
 ---
 
 # Yorùbá language and glossary
