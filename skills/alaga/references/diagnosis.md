@@ -37,6 +37,8 @@ A factor lacking discriminating support is contextual/contributing/unresolved, n
 
 ## Stop on evidence
 
+After confirming a root cause, use [variant analysis](variant-analysis.md) when the request or evidence warrants finding related instances. Keep the search bounded to that mechanism; confirmation alone does not require a repository-wide sweep.
+
 Continue only while another safe observation can materially update the causal model. Stop when remaining hypotheses cannot be distinguished, no safe probe can change the diagnosis, required environment/observability/authority is unavailable, or the failure cannot be reproduced and no equivalent direct evidence exists.
 
 Keep correction delivery outside diagnosis. When existing request or caller authority permits reversible diagnostic edits, a patch may be used only when it is the smallest safe discriminator, remains isolated from the accepted candidate, and is reverted or handed off explicitly after observation. It does not become the correction by implication.

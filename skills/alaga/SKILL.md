@@ -23,6 +23,8 @@ Discover commands, APIs, runtime mechanics, and conventions from the current pro
 
 Verify the changed contract with evidence that could detect a plausible failure. Prefer existing affected checks or a focused probe; add a test when it protects a material regression existing proof would miss. Exercise browser-dependent behavior when acceptance requires it. Remove temporary scaffolding and fix failures caused by the change; rerun only affected checks.
 
+For a useful invariant over an input domain, read [property-based testing](references/property-based-testing.md). For numeric conversions or scaled arithmetic, read [units and scaling](references/units-and-scaling.md). For a material persistence, concurrency or recovery gap, read [stateful proof](references/stateful-proof.md). Use an applicable installed project verification specialist for its actual API, persistence and assembled journeys, retaining integration of the changed-contract proof here. Otherwise exercise the required boundary directly; generated tests and tool metrics do not replace it.
+
 Use `atunwo` when requested or independent judgment is materially useful; respect a request to skip review. Supply the candidate, acceptance, proof and risks. Resolve warranted findings and refresh only affected evidence.
 
 Finish when the behavior and necessary documentation are delivered and verified, or a specific gap prevents further progress. Report the change, decisive verification, and limitations. Use `wo-pr` in publication mode for authorized commit/push/publication; delivery alone does not authorize it.

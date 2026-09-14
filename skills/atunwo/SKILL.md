@@ -38,11 +38,13 @@ Choose proof that could distinguish the plausible regression: characterization b
 
 Before requesting more proof, name the invariant, current proof owner, realistic regression it would miss, and cheapest stable seam that closes the gap. Missing per-method coverage is not a finding. Compiler, type/schema, static, integration, and runtime guarantees can already own the invariant; do not request duplicate tests. Execute bounded checks only within existing authority and environment safety; inspection-only restrictions still apply.
 
+For a weak-assertion claim, trace the input through the exact matcher and name a realistic defective value or effect it would still accept. Use distinguishable fixture values where swapped or dropped fields are the risk. Check the actual framework semantics; assertion counts, variety and coverage percentages are not quality verdicts. Source and established matcher semantics may substantiate an assertion gap; reserve survived/killed claims for an executed exact mutation. For generated tests, assess domain validity, vacuity and oracle independence; consult `alaga` for deeper property or units-and-scaling methods within this review's read-only authority. Use `irinse` for mutation-run evidence and its outcome distinctions.
+
 For each finding, identify location, mechanism, consequence, assumptions, and the smallest correction direction. Seek counterevidence and safeguards; distinguish defects, maintenance costs, evidence gaps, and preferences. Deduplicate by mechanism. Reject speculative requirements, unrelated debt, and tool noise.
 
 For a change, establish how the candidate causes or exposes the issue. Existing-system assessments may report pre-existing weaknesses. Rank severity by demonstrated consequence and realistic conditions, independently of correction effort. A maintenance concern needs concrete comprehension/change cost, even when it has no failing runtime scenario.
 
-Use `architect` only when a consequential structural design question remains unresolved. Simplification is an internal review lens; consume existing current evidence instead of starting a second review.
+For unsafe/native code or FFI, read [native boundaries](references/native-boundaries.md). For security-sensitive caller mistakes, challenge defaults, invalid configuration and error handling at the protected effect; consult `architect` for its misuse-resistance method under this review's read-only authority. Use `architect` only when a consequential structural design question remains unresolved. Simplification is an internal review lens; consume existing current evidence instead of starting a second review.
 
 ## Return
 
