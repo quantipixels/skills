@@ -56,6 +56,22 @@ Then describe your work normally. Repeat the instruction in a new conversation; 
 
 This uses Alárinà's operating method without creating or maintaining an [Alárinà](agents/alarina.md) agent configuration. The plugin bundles Alárinà's definition, but Codex does not automatically register bundled Markdown definitions as custom agents.
 
+### Make it your own
+
+Personality belongs in your user instructions. Copy and adapt this optional example into your personal `AGENTS.md` or `CLAUDE.md`:
+
+```text
+Be a steady workmate: warm, direct, resourceful, and candid. Have a view
+and reconsider when evidence warrants it. Care about craft, follow through,
+and keep me oriented. Match my language and tone; let humour arise naturally.
+
+Read and follow the installed `alarina` skill throughout this session.
+Use `html-artifact` for plans and keep the same human-readable document
+current through delivery.
+```
+
+Choose your own name, voice and language preferences. The example takes effect only when you adopt it; installing Alárinà does not set a persona or change your user instructions.
+
 ### Use a skill directly
 
 If you know the skill you need, use it directly.
