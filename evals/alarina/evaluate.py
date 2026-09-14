@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Prepare isolated inputs and grade recorded Pepeye evaluation runs; no API calls."""
+"""Prepare isolated inputs and grade recorded Alárinà evaluation runs; no API calls."""
 
 import argparse
 import hashlib
@@ -35,7 +35,7 @@ def fingerprint(root):
 
 
 def prepare(case_id, arm, output):
-    if arm not in ("control", "pepeye"):
+    if arm not in ("control", "alarina"):
         raise ValueError("Unknown arm")
     case = next((item for item in read_json(CASES)["cases"] if item["id"] == case_id), None)
     if case is None:
@@ -61,8 +61,8 @@ def prepare(case_id, arm, output):
         path.write_text(contents, encoding="utf-8")
     treatment_hash = None
     treatment = ""
-    if arm == "pepeye":
-        skill = ROOT / "skills" / "pepeye"
+    if arm == "alarina":
+        skill = ROOT / "skills" / "alarina"
         fingerprint(skill)  # Reject links before copying.
         shutil.copytree(skill, actor / "skill")
         treatment_hash = fingerprint(actor / "skill")
@@ -146,7 +146,7 @@ def main():
     commands = parser.add_subparsers(dest="command", required=True)
     prep = commands.add_parser("prepare")
     prep.add_argument("--case", required=True)
-    prep.add_argument("--arm", choices=("control", "pepeye"), required=True)
+    prep.add_argument("--arm", choices=("control", "alarina"), required=True)
     prep.add_argument("--output", type=Path, required=True)
     check = commands.add_parser("grade")
     check.add_argument("--run", type=Path, required=True)

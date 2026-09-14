@@ -4,9 +4,9 @@
 
 Consolidate the public portfolio into 14 core skills plus the optional `pese` and `system-cleanup` specialists. Retain complete methods behind conditional references while removing the retired entrypoint directories.
 
-- Replace `alarina` with `pepeye` and preserve its route topology, dynamic installed inventory, continuity, authority, evidence integration, and completion contract.
-- Fold human involvement and premise checking into Pepeye's coordination policy. Add a conditional Codex/Claude host-policy profile without installing host settings or creating a portable model registry.
+- Keep `alarina` as the operating entrypoint and preserve its route topology, dynamic installed inventory, continuity, authority, evidence integration, and completion contract.
+- Fold human involvement and premise checking into Alárinà's coordination policy. Add a conditional Codex/Claude host-policy profile without installing host settings or creating a portable model registry.
 - Add standalone issue-intake and diagnosis modes to `alaga`; behavior-contract and decomposition modes to `atona`; publication mode to `wo-pr`; and Yorùbá terminology maintenance to `amose`.
 - Consolidate agent/human writing and visual explanation into `oro` with distinct audience branches.
 - Consolidate experiential prototypes and measured comparisons into `adanwo` with distinct exploration and measured-experiment branches.
-- Update native Codex/Claude plugin instructions, the thin Claude Pepeye agent, active callers, and migration documentation. Explicit invocations and saved paths using removed names must move to the documented canonical route.
+- Update native Codex/Claude plugin instructions, the thin Claude Alárinà agent, active callers, and README usage guidance.

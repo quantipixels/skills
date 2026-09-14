@@ -1,6 +1,6 @@
-# Pepeye evaluation
+# Alárinà evaluation
 
-Evaluate whether Pepeye improves orchestration without adding unnecessary work. This opt-in kit contains synthetic fixtures, private grading criteria, input preparation, and result validation. It makes no model calls and is excluded from the installed skill. Python 3.11+ standard library only.
+Evaluate whether Alárinà improves orchestration without adding unnecessary work. This opt-in kit contains synthetic fixtures, private grading criteria, input preparation, and result validation. It makes no model calls and is excluded from the installed skill. Python 3.11+ standard library only.
 
 The owner explicitly requested this checked-in evaluation outside the skill. This is a bounded exception to the repository's default of keeping maintained evals in a separate internal repository. Generated inputs, traces, and results stay in ignored `.qp/` or host temporary storage; package CI needs neither credentials nor model access.
 
@@ -9,7 +9,7 @@ The owner explicitly requested this checked-in evaluation outside the skill. Thi
 From the repository root:
 
 ```bash
-python3 evals/pepeye/evaluate.py prepare --case P1 --arm pepeye --output .qp/pepeye-eval/p1-pepeye-1
+python3 evals/alarina/evaluate.py prepare --case P1 --arm alarina --output .qp/alarina-eval/p1-alarina-1
 ```
 
 This creates:
@@ -19,7 +19,7 @@ This creates:
 - `oracle.json`: private frozen grading criteria.
 - `judgments.template.json`: an explicitly unrun record, with unknown measurements left null.
 
-Give a fresh acting agent **only actor/** through an isolated host workspace and its prompt.md. Do not give the actor this README, cases.json, oracle.json, judgments, other runs, or author history. File separation alone is not access isolation: enforce it through the host, or classify the run as unisolated. Do not launch the actor from the package repository with access to its hidden oracles or inherited persona instructions that force Pepeye into the control.
+Give a fresh acting agent **only actor/** through an isolated host workspace and its prompt.md. Do not give the actor this README, cases.json, oracle.json, judgments, other runs, or author history. File separation alone is not access isolation: enforce it through the host, or classify the run as unisolated. Do not launch the actor from the package repository with access to its hidden oracles or inherited persona instructions that force Alárinà into the control.
 
 Use the native agent host for real execution and trace capture. Use a task-specific persona when delegating, such as “You are a software engineer assessing API compatibility” or “You are a database engineer reviewing migration safety.” Give each worker its actual target, authority, and evidence requirement. Personas are assignment text, not new persistent agent definitions. Keep common persona/tool policy identical between comparison arms.
 
@@ -30,16 +30,16 @@ Give a separate grader the task, original fixtures, final workspace/output, actu
 Copy judgments.template.json to a new judgments.json and fill it from that review. Use `record_kind: model-run` only for an actual model execution; supply exact model, reasoning, host, grader, and trace locator. Each check needs pass/fail/unverified and evidence for pass/fail. Preserve all failed attempts and resource costs. Missing measurements remain null.
 
 ```bash
-python3 evals/pepeye/evaluate.py grade --run .qp/pepeye-eval/p1-pepeye-1 --judgments .qp/pepeye-eval/p1-pepeye-1/judgments.json
+python3 evals/alarina/evaluate.py grade --run .qp/alarina-eval/p1-alarina-1 --judgments .qp/alarina-eval/p1-alarina-1/judgments.json
 ```
 
 Grading prints a JSON report. It enforces exact workspace bytes for P1 and completeness/evidence requirements for supplied judgments. It does not authenticate traces, billing, independent reviewers, or the truth of evidence strings. A synthetic-test record exercises the tooling and must never count as model-performance evidence.
 
 ## Matched pilot
 
-Use P1 (tiny edit), P2 (independent assessments), and P3 (stale evidence and source injection), once per `control` and `pepeye` arm: six actor runs. Keep exact model/settings, tools, semantic skills, host policy, fixtures, and worker preferences identical. Freeze the treatment hash before collection. Counterbalance order: P1 control/treatment, P2 treatment/control, P3 control/treatment. Do not tune against these development fixtures and call them held out.
+Use P1 (tiny edit), P2 (independent assessments), and P3 (stale evidence and source injection), once per `control` and `alarina` arm: six actor runs. Keep exact model/settings, tools, semantic skills, host policy, fixtures, and worker preferences identical. Freeze the treatment hash before collection. Counterbalance order: P1 control/treatment, P2 treatment/control, P3 control/treatment. Do not tune against these development fixtures and call them held out.
 
-Start with Astra at low reasoning for a cheap screening run. Record the actual exposed ID; replicate separately on Fable 5.1 when available rather than assuming transfer. The control omits only Pepeye; contamination by globally loaded Pepeye invalidates that comparison. Explicit treatment loading tests adherence, not automatic skill selection.
+Start with Astra at low reasoning for a cheap screening run. Record the actual exposed ID; replicate separately on Fable 5.1 when available rather than assuming transfer. The control omits only Alárinà; contamination by globally loaded Alárinà invalidates that comparison. Explicit treatment loading tests adherence, not automatic skill selection.
 
 Choose an operator-enforced budget before model execution. Suggested pilot limits: six actor runs, at most two worker calls per run, no automatic retries, 90 seconds per run, and one short grader pass per run. Stop rather than starting replacement attempts to hide failures. If token or dollar caps are available, enforce them through the host; a prompt limit is not enforcement. The preparation/grading CLI spends no model budget and does not enforce limits on a separately operated host.
 
@@ -49,4 +49,4 @@ No live pilot results ship with this kit.
 
 ## Source
 
-Original Pepeye cases and code, informed by the structure of [SureForge's evaluation kit](../vendor/sureforge/UPSTREAM.md), especially cases, study design, and run records. The separate vendor directory retains the upstream implementation and license. Its policy-specific gates and metrics arm names are not used as Pepeye requirements.
+Original Alárinà cases and code, informed by the structure of [SureForge's evaluation kit](../vendor/sureforge/UPSTREAM.md), especially cases, study design, and run records. The separate vendor directory retains the upstream implementation and license. Its policy-specific gates and metrics arm names are not used as Alárinà requirements.

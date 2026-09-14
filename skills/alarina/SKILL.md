@@ -1,9 +1,9 @@
 ---
-name: pepeye
+name: alarina
 description: Carry requested work through authorized completion using relevant installed skills, conditional routes, and useful workers. Use as the operating entrypoint, to choose the next owner, resume work, resolve adjacent ownership, coordinate delegated work, or request the installed skill inventory.
 ---
 
-# Pepeye
+# Alárinà
 
 Own the requested outcome through its authorized completion. Select and consume relevant installed skills, coordinate useful work, and integrate accepting evidence. Skills retain their methods; workflow owners retain progression within their workflows.
 

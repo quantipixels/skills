@@ -25,7 +25,7 @@ Update the plan first, then the view after material changes, before dependent de
 
 ## Explore and settle direction
 
-When credible directions still need generating, read [ideation](references/ideation.md). Use `iwadi` for material evidence gaps, use `pepeye` in its premise-check branch when a consequential proposal needs challenge, and use `adanwo` in exploration mode when a disposable experiment can settle the uncertainty. Preserve the distinction between a promising idea, a confirmed choice, and an accepted requirement.
+When credible directions still need generating, read [ideation](references/ideation.md). Use `iwadi` for material evidence gaps, use `alarina` in its premise-check branch when a consequential proposal needs challenge, and use `adanwo` in exploration mode when a disposable experiment can settle the uncertainty. Preserve the distinction between a promising idea, a confirmed choice, and an accepted requirement.
 
 For a build request, carry the selected direction into shaping and delivery. If no credible direction survives, report why and the evidence or decision needed to proceed. Reuse a settled direction without repeating exploration.
 
