@@ -110,7 +110,7 @@ For substantial artifacts embed a compact `application/json` context capsule bef
 
 After the first complete projection, prominently show material delta from the prior useful view: changed decisions, reopened/stale claims, new candidate/evidence, closed proof, new blockers, and changed next action. Reuse unchanged supporting material at lower visual weight rather than making the reader rediscover change by rereading the whole page.
 
-The owner updates semantic truth first. Regenerate after material semantic revisions when the projection is maintained. An older projection may remain available as visibly stale evidence; it is not a current handoff.
+The owner updates semantic truth first; refresh the living view after material revisions. Label older views stale. Keep planned, implemented, reviewed, tested, and live-verified results distinct through closure.
 
 ## Projection coverage proof
 

@@ -36,10 +36,12 @@ Use `atona` in exploration mode and `prototype` as needed.
 
 The decisions remain the user's. Do not silently convert a recommendation, generated option, comparative grade, or prototype observation into confirmation.
 
-## Visual support proportionality
+## Make shared understanding visible
 
-Use `html-artifact` as needed. Preserve hard gates, uncertainty, and counterevidence in visual comparisons.
+For a plan or proposed direction, use `html-artifact` from the first meaningful proposal. Reuse the initiative’s living view through its owner; otherwise maintain one for handoff. Keep questions in the conversation. Other bounded decisions use visual support as needed.
+
+After material changes, update the source decisions and view before dependent questions. Preserve alternatives, hard gates, uncertainty, and counterevidence. Present the consolidated view before final confirmation. If it is unavailable, report the gap and continue independent fact-finding.
 
 Before declaring the material frontier empty, challenge the current tree for consequential assumptions, missing branches, contradictory decisions, and dependencies that were never made explicit.
 
-Finish only when that challenge leaves no unresolved material branch and the user confirms shared understanding. Return confirmed decisions, material assumptions/evidence, decision-changing alternatives/criteria when they constrained the choice, explicit deferrals/re-entry conditions, and the next outcome boundary. Do not execute resulting delivery inside `arojinle`.
+Finish only when that challenge leaves no unresolved material branch, any required view is current, and the user confirms shared understanding. Return confirmed decisions, material assumptions/evidence, decision-changing alternatives/criteria when they constrained the choice, explicit deferrals/re-entry conditions, and the next outcome boundary. Pass the view’s locator and source revision to the next owner. Do not execute delivery inside `arojinle`.

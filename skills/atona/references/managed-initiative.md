@@ -16,7 +16,7 @@ Keep it in current context when one-session use is sufficient. Persist only when
 
 When execution is bound to a concrete working directory, persist its absolute path and branch as `<branch-name> [main|worktree]`. For a linked worktree, also persist the absolute main-worktree path. Treat that workspace and its `.qp` as the current initiative candidate; update the workspace fields when execution moves.
 
-Use `html-artifact` as needed with [the initiative brief](human-view.md). Update the plan before refreshing a maintained view; a stale view is not current evidence.
+Use `html-artifact` with [the initiative brief](human-view.md) for the required living view. Update the plan before the view; a stale view is not current evidence.
 
 When supplied context already settles the initiative, synthesize it directly rather than replaying discovery. Separate confirmed context from inference and capture only the problem/outcome, acceptance, confirmed decisions, scope/non-goals, material proof expectations, current progression gate, and evidence identities needed to plan responsibly.
 
@@ -109,7 +109,7 @@ If the premortem or another required result is absent, stale, blocked, or not re
 
 When delivery is authorized, continue through the main skill’s build and verification loop. When coordination is material, read [delivery tracking](delivery-tracking.md). Consume active delivery owners' native results rather than copying their lifecycle/proof mechanics into Atọ́nà.
 
-After a material result changes plan meaning, update the semantic plan first. Recompute the current gate, weakest limiting claim/gap, stale dependencies, and the brief for any maintained view. Keep non-plan-affecting operational detail with its native owner.
+After a material result changes plan meaning, update the semantic plan first. Recompute the current gate, weakest limiting claim/gap, and stale dependencies; refresh the living view with their effect on the direction and next action. Keep non-plan-affecting operational detail with its native owner.
 
 ## 6. Reconcile and close
 
@@ -121,4 +121,4 @@ After local-state cleanup, offer to remove the completed linked worktree. Remova
 
 Keep ordinary rationale in normal initiative artifacts. Read [durable knowledge reconciliation](durable-reconciliation.md) only when stable governing knowledge must survive beyond them or an existing durable authority is materially stale; the knowledge owner decides admission and reconciliation.
 
-Before user-visible handoff, align plan status, workspace/disposition when relevant, current gate, Decision Frontier, delivery summary, evidence/projection freshness, weakest material claim or blocker, remaining work, and next action. When a human view is required, consume HTML Artifact's current result against the initiative brief; a missing or stale view does not satisfy that deliverable. Use [suggested direction](suggested-direction.md) only when a separate build-direction handoff is actually useful.
+Before user-visible handoff or closure, align plan status, workspace/disposition when relevant, current gate, Decision Frontier, delivery summary, evidence/projection freshness, weakest material claim or blocker, remaining work, and next action. Consume `html-artifact`’s current result against the initiative brief; a missing, stale, or incomprehensible view does not satisfy that deliverable. Use [suggested direction](suggested-direction.md) only when a separate build-direction handoff is actually useful.

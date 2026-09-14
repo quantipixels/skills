@@ -36,6 +36,8 @@ status: Draft
 
 **Completion condition:** <checkable boundary>
 
+**Human view:** <stable HTML locator and represented plan revision; update this same view through completion>
+
 ## Outcome and acceptance
 
 <current problem or gap, affected actors when material, desired outcome, and observable acceptance>
@@ -47,7 +49,7 @@ status: Draft
 
 ## Decisions
 
-<confirmed decisions plus any currently open/blocked material decision set; keep decision-changing alternatives, evidence/limits, and revisit triggers when they constrain current/future work; omit empty tables/sections>
+<proposed/chosen direction and why; confirmed decisions plus any currently open/blocked material decision set; keep decision-changing alternatives, evidence/limits, and revisit triggers when they constrain current/future work; omit empty tables/sections>
 
 ## Amendment impact
 
