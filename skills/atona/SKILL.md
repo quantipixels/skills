@@ -1,6 +1,6 @@
 ---
 name: atona
-description: Carry an initiative through its requested outcome with a living, human-readable HTML plan, or directly create a behavior contract or delivery decomposition. Use for discovery, decisions, planning, coordinated delivery, contract-only, decomposition-only, or resumed work. Use alaga for settled coding changes needing no initiative coordination.
+description: Carry an initiative through its requested outcome with a living, human-readable HTML plan, or directly create a behavior contract or delivery decomposition. Use for discovery, decisions, planning, coordinated delivery, behavior contracts, delivery decomposition, or resumed work. Use alaga for settled coding changes needing no initiative coordination.
 metadata:
   maturity: experimental
 ---
@@ -9,7 +9,7 @@ metadata:
 
 Own progression from the idea to the requested outcome. Keep one current plan, invoke specialist skills for their results, and continue authorized work until the outcome is built and verified. A plan, ticket set, or specialist handoff is an intermediate result when the user requested a build.
 
-For an explicit **contract-only** request, read [behavior contract](references/behavior-contract.md), return its standalone result, and do not start an initiative or require a living plan. For an explicit **decomposition-only** request, read [delivery decomposition](references/decomposition.md), return its standalone result, and do not start an initiative or require a living plan. These branches remain usable by delivery and review callers.
+When the requested stopping point is a behavior contract—including behavior-contract mode or an ordinary request to write or refine a behavior specification—read [behavior contract](references/behavior-contract.md) and return that standalone result. When the requested stopping point is delivery decomposition, read [delivery decomposition](references/decomposition.md) and return that standalone result. Do not start an initiative or require a living HTML plan for either bounded result. These branches remain usable by delivery and review callers.
 
 ## Establish the destination and authority
 
@@ -25,7 +25,7 @@ Update the plan first, then the view after material changes, before dependent de
 
 ## Explore and settle direction
 
-When credible directions still need generating, read [ideation](references/ideation.md). Use `iwadi` for material evidence gaps, ask Pepeye for a bounded premise check when a consequential proposal needs challenge, and use `adanwo` in exploration mode when a disposable experiment can settle the uncertainty. Preserve the distinction between a promising idea, a confirmed choice, and an accepted requirement.
+When credible directions still need generating, read [ideation](references/ideation.md). Use `iwadi` for material evidence gaps, use `pepeye` in its premise-check branch when a consequential proposal needs challenge, and use `adanwo` in exploration mode when a disposable experiment can settle the uncertainty. Preserve the distinction between a promising idea, a confirmed choice, and an accepted requirement.
 
 For a build request, carry the selected direction into shaping and delivery. If no credible direction survives, report why and the evidence or decision needed to proceed. Reuse a settled direction without repeating exploration.
 

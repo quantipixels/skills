@@ -31,7 +31,7 @@ At each boundary ask: **what unresolved result owns the next decision?** Do not 
 
 ### Idea → usable change
 
-`atona` owns progression from exploration through the verified build, composing `arojinle` for consequential choices and maintaining the plan.
+`atona` owns progression from exploration through the verified build, using `arojinle` when the user requests an interview or dependent choices require decision-tree closure, and maintaining the plan.
 
 - Unresolved technical structure → `architect`.
 - Unresolved observable behavior → `atona` in behavior-contract mode.
@@ -47,7 +47,7 @@ Enter at the first unresolved result:
 
 - Uncertain report validity → `alaga` in issue-intake mode.
 - Causal mechanism → `alaga` in diagnosis mode.
-- Material correction choice, when still unresolved → `arojinle`.
+- Material correction choice, when still unresolved → ask one bounded choice directly; use `arojinle` when the user requests an interview or dependent choices require decision-tree closure.
 - Implementation and proof → `alaga`.
 - Independent judgment, when warranted → `atunwo`.
 - Authorized publication → `wo-pr` in publication mode.
