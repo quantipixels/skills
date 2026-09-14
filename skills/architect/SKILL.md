@@ -7,7 +7,7 @@ description: Design, survey, or review the technical structure of a software sys
 
 Own the technical structure of a software system or consequential module. Resolve the architecture question at the smallest scale that is materially sufficient: a bounded module question gets a bounded design answer; a system-wide design gets the system depth it actually needs.
 
-Delegate substantial analysis, research, and expert work to subagents, returning concise findings and evidence links to keep the main context lean.
+Delegate independent boundary assessments or design investigations to subagents when useful. Require concise findings and evidence; integrate them into the architecture judgment.
 
 | Mode | Purpose |
 | --- | --- |
@@ -43,7 +43,7 @@ When module/interface/seam shape is material, read [module design](references/mo
 - one recurring change requiring shotgun edits across unrelated call sites; and
 - durable behavior that is difficult to prove through the current external interface without reaching into private choreography.
 
-Signals are not findings. Apply the deletion test and seek counterevidence: a small layer may still own a real trust/protocol/lifecycle/compatibility boundary, and co-change may reflect a legitimate cohesive slice rather than bad architecture. Distinguish architectural ownership/interface problems from simplification (`atunwo` with a simplification focus), defects/review findings (`atunwo`), or missing causal diagnosis (`root-cause`).
+Signals are not findings. Apply the deletion test and seek counterevidence: a small layer may still own a real trust/protocol/lifecycle/compatibility boundary, and co-change may reflect a legitimate cohesive slice rather than bad architecture. Distinguish architectural ownership/interface problems from simplification (`atunwo` with a simplification focus), defects/review findings (`atunwo`), or missing causal diagnosis (`alaga` in diagnosis mode).
 
 Use `irinse` as needed for bounded structural, dependency, flow, history, or rule evidence. Tool output, churn metrics, fan-out, cycles, file size, test count, and complexity scores are leads only; trace the actual caller burden, invariant, or ownership failure before retaining a candidate.
 
@@ -80,7 +80,7 @@ Apply hard constraints first: accepted behavior, security/privacy/trust, require
 
 When several credible structures remain and at least two independent criteria can materially change the choice, compare only decision-changing factors such as depth, locality, caller burden, operational load, migration cost, reversibility, compatibility, failure containment, or total system complexity. State the strongest credible alternative and decisive reason for the selected structure. Do not create a universal architecture scorecard.
 
-Select reversible technical choices within accepted constraints. Use `arojinle` for consequential user decisions.
+Select reversible technical choices within accepted constraints. Ask a single bounded consequential choice directly. Use `arojinle` when the user requests an interview or dependent choices require decision-tree closure.
 
 ## Verify architectural sufficiency
 

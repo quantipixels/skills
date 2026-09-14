@@ -1,17 +1,16 @@
 ---
-"qp-skills": major
+"qp-skills": minor
 ---
 
-Consolidate skill ownership and remove retired public entrypoints. Direct invocations and installed paths for the removed skills stop working; update saved prompts and integrations before upgrading:
+Consolidate the public portfolio into 15 core skills plus the optional `pese` and `system-cleanup` specialists. Retain complete methods behind conditional references while removing the retired entrypoint directories.
 
-- `hitl-review` → `hitl`, now focused on active human collaboration throughout a request.
-- `qp-setup` → `irinse` for tool readiness, host instructions, and native agent declarations.
-- `ideate` → `atona` in exploration mode.
-- `pare` → `atunwo` with a simplification focus. Àtúnwò has two modes, light and deep, for changes or existing systems. Compare baseline/current/required behavior within normal review; change, codebase, parity, and simplification identify subjects or focuses rather than separate modes.
-- `ko-skill` → `oro-fun-sigidi`.
-- Remove `pepeye` and its bundled workflows. Use native host coordination and the relevant planning or delivery skills.
-- Remove `dogfood`, `seda-sigidi`, `slides`, `brand`, and `amoye-ui-ux`. Select an installed browser, instruction-authoring, presentation, or design capability suited to the requested result; these names have no compatibility aliases.
+- Keep `alarina` as the operating entrypoint and preserve its route topology, dynamic installed inventory, continuity, authority, evidence integration, and completion contract.
+- Fold human involvement and premise checking into Alárinà's coordination policy. Add a conditional Codex/Claude host-policy profile without installing host settings or creating a portable model registry.
+- Add standalone issue-intake and diagnosis modes to `alaga`; behavior-contract and decomposition modes to `atona`; publication mode to `wo-pr`. Retain `yoruba-glossary` as the standalone language-focused owner.
+- Consolidate agent/human writing and visual explanation into `oro` with distinct audience branches.
+- Consolidate experiential prototypes and measured comparisons into `adanwo` with distinct exploration and measured-experiment branches.
+- Update native Codex/Claude plugin instructions, the thin Claude Alárinà agent, active callers, and README usage guidance.
 
-Focus `alaga` on implementation and proportionate proof; discover project and runtime mechanics when needed instead of loading bundled mechanics. Update consumers to the consolidated owners. Preserve `ro-wo` and `amose` ownership of `.learnings`, `.nongoals`, and ADR maintenance.
+Simplify provider operations to `gh`/`glab` with API fallback, remove enterprise-specific setup guidance, and use native CI waiting with a ten-minute default refresh cadence in `wo-pr`.
 
-Make review handoffs carry the actual candidate, contract, evidence, and unresolved judgment. Keep light/deep selection with `atunwo`, preserve explicit scope and inspection-only restrictions, and consolidate finding/proof criteria into the owning review guidance instead of separate templates and pattern catalogues.
+Trim repeated PR workflow mechanics, rigid interview formatting, HTML template/check scheduling, and retrospective handoff prose while preserving their outcome and authority boundaries.

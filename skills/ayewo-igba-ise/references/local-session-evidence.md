@@ -27,7 +27,7 @@ It must not:
 - count a fork/copy/subagent or unresolved child as an independent root merely because another JSONL file exists; or
 - turn the normalized index into a promotion, fold, removal, environment-change, or skill-edit verdict.
 
-Historical reconstruction and evidence-backed improvement judgments stay with [agent session](agent-session.md) and [corpus analysis](corpus-analysis.md). Use `oro-fun-sigidi` to review or revise agent-facing instructions when that follow-on work is authorized.
+Historical reconstruction and evidence-backed improvement judgments stay with [agent session](agent-session.md) and [corpus analysis](corpus-analysis.md). Use `oro` to review or revise agent-facing instructions when that follow-on work is authorized.
 
 ## Run the inventory
 
@@ -45,7 +45,7 @@ No time boundary is assumed. Narrow the corpus only when the analysis question c
 python3 skills/ayewo-igba-ise/scripts/session-evidence.py \
   --host codex \
   --project /path/to/repository \
-  --skill root-cause
+  --skill alaga
 ```
 
 `--since` and `--until` accept explicit ISO-8601 corpus bounds; omitting them means no date cutoff. `--session` accepts a session ID or any proved root/ancestor ID. `--skill` is repeatable and **focuses emitted skill-reference signals; it is not a session filter**. Sessions with no matching signal remain in the inventory so Àyẹ̀wò can still identify possible missed opportunities from sampled raw evidence.

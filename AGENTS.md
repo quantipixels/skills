@@ -1,27 +1,29 @@
-Use `oro-fun-sigidi` for agent-facing instructions and documents. Use `oro-fun-eniyan` for human-facing technical communication and prose.
+Use `oro` for agent-facing instructions and human-facing prose, selecting the branch by the primary reader.
 
-This repository is a library of expertise, methods, and focused capabilities. Use related skills directly; keep their instructions in their own files.
+This repository is a library of expertise, methods, and focused capabilities. Use related skills directly; keep their methods with their owners.
 
-Delegate analysis, research, implementation, and review freely when workers can advance useful parts of the task. Delegation needs no separate user approval or formal overhead justification. Keep assignments bounded, preserve authority, and verify decisive evidence; use native host controls without forking session context.
+Delegate useful independent work freely under existing authority. Keep assignments bounded, verify returned evidence, and use native host controls without forking session context. Choosing workers needs no separate approval.
 
 ## Package
 
-Each skill lives at `skills/<name>/SKILL.md`. The directory and frontmatter name must agree. Supporting expertise, assets, and deterministic tools stay with their skill. Native discovery uses the directory; do not add another maintained discovery catalogue or generate `default_prompt` metadata. Use `metadata.maturity: experimental` for existing candidates; moving a skill does not promote it or change its invocation permissions.
+Each skill lives at `skills/<name>/SKILL.md`; directory and frontmatter names must agree. Keep supporting resources with their skill. Use native discovery, not a second catalogue or generated `default_prompt` metadata. Preserve existing invocation permissions and experimental maturity when moving skills.
 
-Keep useful depth and minimise accidental mechanism. Do not remove a lightweight skill merely because a capable model understands its subject. Add a public identity only when it materially improves direct selection/use over an existing skill. Leave routine mechanics to native tools. Keep code for a bounded mechanical result or a safe installation entrypoint, with proof that can falsify it.
+Skills must work when installed and invoked independently. Keep behavior-bearing guidance even when it also appears in `AGENTS.md`, Alárinà, or a caller that may not load. Where delegation helps, retain a concise local cue describing useful assignments and returned evidence. Assess simplification with only the skill and its declared dependencies available.
 
-For provider/multi-agent integrations, keep layers distinct: skills own semantic methods, workflows own progression, assignments own task-specific worker shaping/authority/evidence, host policy owns user-editable model/reasoning/delegation preferences, and the harness owns spawn/join/concurrency/lifecycle/Code Mode/team mechanics. Do not introduce maintained agent-role/posture fleets, a second model/config registry, conversation-context forking as a workflow shortcut, or portable instructions that reimplement harness mechanics. When large context would waste expensive capability, collate it through cheaper workers and preserve decisive locators for the stronger worker to verify.
+Preserve useful depth; remove routine mechanics and unnecessary machinery. A skill identity earns its place through materially better direct selection or use, not merely a different subject. Do not remove useful expertise just because a model knows the topic. Keep code for bounded mechanical results or safe installation, with proof that can detect a realistic failure.
 
-[Alárinà](skills/alarina/SKILL.md) is the operating entrypoint for this skill system: interpret the requested outcome, select relevant installed skills and conditional routes, coordinate useful work, integrate evidence, and carry authorized work through completion. Specialist skills retain their methods, and workflow skills retain progression within their workflows. [Pepeye](agents/pepeye.md) is the thin agent entrypoint that reads and applies Alárinà; keep the operating guidance in Alárinà rather than duplicating it in agent definitions. Model and reasoning choices remain with the user and host policy.
+Keep responsibilities distinct: skills own methods, workflows own progression, assignments own worker scope and evidence, host policy owns model, reasoning and delegation preferences, and the harness owns worker lifecycle. Avoid duplicate role fleets, model/config registries, and instructions that reimplement native controls. Use bounded workers to collate large evidence surfaces, preserving decisive source locators.
 
-Alárinà's route topology is intentional capability, not catalogue noise. Do not reduce it to description matching, flatten it into an exhaustive inventory, or delete route shapes merely to shorten the file. Before materially simplifying Alárinà, identify a concrete routing defect or redundancy and show how common paths, adjacent-owner boundaries, and dynamic installed-inventory lookup remain preserved. Without that evidence, preserve the topology.
+[Alárinà](skills/alarina/SKILL.md) selects relevant installed skills, coordinates work, and carries authorized outcomes through completion. Specialists retain their methods and workflows their progression. The [native Claude agent](agents/alarina.md) loads Alárinà; keep operating guidance and host policy in the skill.
 
-Repository-wide package validators and structural audit tools belong under `scripts/skills/`, not inside an authoring skill.
+Preserve Alárinà's route topology, adjacent-owner boundaries, and dynamic inventory lookup. Change them to fix a demonstrated routing defect or redundancy, not merely to shorten the file or replace routes with description matching.
+
+Repository-wide package validators and structural audit tools belong under `scripts/skills/`, not in an authoring skill.
 
 ## Verify
 
-Test the actual changed boundary. Keep a small suite for shipped mechanics: filesystem safety, package integrity, candidate identity, and browser-dependent behavior. Retain rejection cases and real regressions; remove duplicate checks, incidental configuration snapshots, and exhaustive permutations of library-owned behavior. Do not add tests merely to defend prompt wording.
+Test the changed boundary with proportionate proof. Keep tests for shipped mechanics, meaningful rejection cases, and real regressions; remove duplicated proof, incidental snapshots, and tests of library-owned behavior. Do not add tests merely to defend prompt wording.
 
-Standing model-behavior datasets, judge rubrics, harnesses, and run artifacts belong in the separate internal eval repository, not this package. Until that repository is available, keep task-local evidence in the PR and report unrun evaluations honestly. Package CI must remain usable without private eval access or model credentials. Syntax and installation success are not authenticated runtime proof.
+Standing model-behavior evaluations belong in the separate internal eval repository. Until it is available, keep task-local evidence in the PR and report unrun evaluations. Package CI must work without private eval access or model credentials. Syntax, installation, and authenticated runtime success are distinct claims.
 
-When retiring old evaluations or documents, preserve unique current expectations at their real owner or in an appropriate test. Keep source attribution and licences. Experimental skills remain usable under their own gates; promotion needs proportional real-use evidence, not a raw invocation count.
+Before retiring evaluations or documents, preserve unique current expectations at their real owner. Keep attribution and licences. Experimental promotion requires proportionate real-use evidence, not invocation counts; existing candidates retain `metadata.maturity: experimental` and their own gates.

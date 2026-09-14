@@ -4,27 +4,17 @@ Use when a selected engineering or agent tool, installed skill, host instruction
 
 ## Pin the requested state
 
-- Infer the tool, intended use, target environment, and scope from the request and existing setup. Ask only for unresolved choices that change the result.
-- Inspect current readiness, required integration/authentication, and recovery options. Keep this working context; do not present it as an intake form.
+- Infer the tool, intended use, target environment, scope, and current readiness. Ask only for an unresolved choice that changes the result; keep the rest as working context.
 
 Use the installed tool's help and current official documentation to resolve volatile installation, upgrade, configuration, authentication, and platform details. Do not copy a long-lived command catalogue into this skill. Preserve an established tool choice and its usage-specific readiness requirement; do not re-run selection.
 
 Determine whether the tool is ready, needs setup, is missing, or is unsupported for the intended use. Command presence alone does not prove readiness. If it is already ready, say so and finish unless another requested action remains.
 
-For native agent declarations, resolve host format, discovery, and precedence; use `oro-fun-sigidi` for instruction text. Verify discovery and permission effects separately from file validity, and report runtime checks not performed. Setup does not authorize launching downstream work.
+For native agent declarations, resolve host format, discovery, and precedence; use `oro` in its agent-facing branch for instruction text. Verify discovery and permission effects separately from file validity, and report runtime checks not performed. Setup does not authorize launching downstream work.
 
 ## Bound mutation and authority
 
-A request to use a tool does not automatically authorize:
-
-- global or privileged installation;
-- persistent services or startup changes;
-- downloads, caches, or model/rule packs with material cost;
-- credential creation, storage, or account changes;
-- repository configuration, CI, IDE/MCP, or editor integration;
-- trust/permission changes;
-- external disclosure or cloud-connected operation; or
-- destructive removal of unrelated state.
+A request to use a tool does not authorize broader installation, persistent or cloud-connected changes, credential/account/trust changes, repository or editor integration, material-cost downloads, or destructive removal of unrelated state.
 
 Follow the entrypoint's authority rules; reuse accepted scope and approvals. Never request secrets in chat; use the tool/platform's supported authentication mechanism and verify authenticated state without printing credential values.
 
@@ -34,16 +24,11 @@ Prefer the smallest reversible setup that satisfies the selected use. Reuse exis
 
 ## Reconcile installed skills
 
-For `https://github.com/quantipixels/skills`, follow its README for native Codex/Claude plugin or Skills CLI installation. Reuse the existing manager's supported update and removal commands. Compare source/version and installed state to identify exact updates, local changes, deprecated names/paths, and recovery options before applying changes; a summary count is insufficient. Skill authoring belongs to `oro-fun-sigidi`.
-
-Applying updates requires explicit permission for the proposed targets and changes. Deleting deprecated skills, including installer pruning, needs explicit permission covering those removals; update approval alone is insufficient. Verify deprecation from package evidence, preserve user modifications, and reuse existing approvals within their scope. Refresh the proposal if source or targets change.
-
-Verify installed content and host discovery after applying. Distinguish source, installed, active, and published state; check a fresh session when needed and report pending approvals or verification.
+Use the installed manager's supported update and removal path. Before changing installed skills, reconcile source/version, local changes, deprecated targets, and recovery options; preserve user modifications. Apply only authorized targets, and require removal authority for deprecated skills. Verify installed content and host discovery afterward, distinguishing source, installed, active, and published state. Skill authoring belongs to `oro` in its agent-facing branch.
 
 ## Apply and verify
 
-- Capture enough pre-state to support scoped rollback. Refresh the target before writing; reconcile changes that invalidate the accepted diff.
-- Apply the authorized change and read back the resulting configuration. Preserve unrelated files, settings, services, credentials, and project state.
+- Capture enough pre-state for scoped rollback, refresh the target before writing, and preserve unrelated state.
 
 After setup, upgrade, integration, removal, or rollback, verify the intended state from the real target environment. Use one proportionate readiness signal tied to the selected use: supported version/interface, configuration parse, authenticated status, service/extension state, project visibility, or a harmless bounded command as appropriate.
 

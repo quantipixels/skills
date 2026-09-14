@@ -23,22 +23,7 @@ Authoritative current entry points:
 - Firecrawl documentation: https://docs.firecrawl.dev/
 - agent-readable documentation index: https://docs.firecrawl.dev/llms.txt
 
-If the CLI is already available, confirm its installed interface with `firecrawl --help`. Representative bounded operations are:
-
-```sh
-firecrawl search "web scraping tutorials"
-firecrawl scrape https://example.com
-```
-
-When current official documentation confirms keyless public-web access, a one-off REST search can use the documented v2 endpoint without an `Authorization` header, for example:
-
-```sh
-curl -s -X POST "https://api.firecrawl.dev/v2/search" \
-  -H "Content-Type: application/json" \
-  -d '{"query":"web scraping tutorials","limit":3}'
-```
-
-Use current docs/installed help for crawl, extraction schemas, browser actions, MCP, and branch-specific options rather than copying those interfaces into this reference. If Firecrawl is unavailable or needs installation/configuration/authentication, hand the selected readiness requirement to the setup skill; do not maintain a cached install procedure here.
+Use current documentation or installed help for the needed interface, including crawl, extraction schemas, browser actions, MCP, and any keyless public-web path. If Firecrawl needs installation, configuration, or authentication, hand the selected readiness requirement to the setup skill; do not maintain a command tutorial here.
 
 ## Readiness and current interface
 

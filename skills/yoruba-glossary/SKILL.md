@@ -43,6 +43,6 @@ After any authorized write, read back the changed entry and verify the target's 
 
 ## Boundary
 
-Use `amose` and the relevant direct writing owner as needed.
+Use `amose` when project-specific domain meaning needs clarification, and `oro` when prose must also change.
 
 Return the settled term decisions, unresolved gaps, and any authorized glossary write/readback. Do not turn terminology work into a general translation, documentation, or project-knowledge lifecycle.

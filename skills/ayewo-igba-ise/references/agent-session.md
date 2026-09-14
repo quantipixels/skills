@@ -10,18 +10,7 @@ When repository history/reflog helps reconstruct the sequence, correlate only th
 
 ## Reconstruct the agent divergence
 
-1. Reconstruct contract revisions and the material timeline.
-2. Do not judge earlier conduct by a requirement introduced later.
-3. Pin the first material divergence between the then-current user contract and agent conduct.
-4. Verify consequential completion/mutation claims against the exact candidate/external state when available.
-
-Inspect three lenses when material:
-
-- judgment and user corrections;
-- tools/environment/context/authority actually available; and
-- second-order effects, counterevidence, avoided failures, and recovery cost.
-
-A current repository state is not historical session evidence.
+Apply the common reconstruction method to the instructions, evidence and capabilities available at each material action. Verify consequential completion/mutation claims against the corresponding candidate or external state when available; current repository state is not historical session evidence.
 
 ## Diagnose overengineering only from evidence
 

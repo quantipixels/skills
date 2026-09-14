@@ -1,6 +1,6 @@
 ---
 name: alarina
-description: Guide requested work through completion using relevant installed skills and conditional routes. Use as the operating entrypoint for skill-driven work, to choose the next owner, resume work, resolve adjacent ownership, or request the installed skill inventory.
+description: Carry requested work through authorized completion using relevant installed skills, conditional routes, and useful workers. Use as the operating entrypoint, to choose the next owner, resume work, resolve adjacent ownership, coordinate delegated work, or request the installed skill inventory.
 ---
 
 # Alárinà
@@ -31,40 +31,40 @@ At each boundary ask: **what unresolved result owns the next decision?** Do not 
 
 ### Idea → usable change
 
-`atona` owns progression from exploration through the verified build, composing `arojinle` for consequential choices and maintaining the plan.
+`atona` owns progression from exploration through the verified build, using `arojinle` when the user requests an interview or dependent choices require decision-tree closure, and maintaining the plan.
 
 - Unresolved technical structure → `architect`.
-- Unresolved observable behavior → `seda-spec`.
+- Unresolved observable behavior → `atona` in behavior-contract mode.
 - Implementation and verification → `alaga` as the builder.
 - Independent code judgment, when warranted → `atunwo`.
-- Authorized publication → `seda-pr`.
+- Authorized publication → `wo-pr` in publication mode.
 
-Use both `architect` and `seda-spec` when both results remain unresolved.
+Use both `architect` and `atona` in behavior-contract mode when both results remain unresolved.
 
 ### Incoming defect → verified fix
 
 Enter at the first unresolved result:
 
-- Uncertain report validity → `se-triage`.
-- Causal mechanism → `root-cause`.
-- Material correction choice, when still unresolved → `arojinle`.
+- Uncertain report validity → `alaga` in issue-intake mode.
+- Causal mechanism → `alaga` in diagnosis mode.
+- Material correction choice, when still unresolved → ask one bounded choice directly; use `arojinle` when the user requests an interview or dependent choices require decision-tree closure.
 - Implementation and proof → `alaga`.
 - Independent judgment, when warranted → `atunwo`.
-- Authorized publication → `seda-pr`.
+- Authorized publication → `wo-pr` in publication mode.
 
 ### Question → evidenced answer
 
 - Bounded explanation → the relevant installed subject specialist.
 - Substantial investigation → `iwadi`.
-- Consequential premise or proposed approach → `ro-wo`.
-- Observed failure with a missing causal mechanism → `root-cause`.
+- Consequential premise or proposed approach → apply the [premise check](references/coordination.md#premise-check).
+- Observed failure with a missing causal mechanism → `alaga` in diagnosis mode.
 
 Investigation-only work stops at its answer and evidence limits; it does not enter the fix or publication route.
 
 ### Performance concern → supported result
 
-- Unexplained observed slowdown → `root-cause`.
-- Comparative trials with a measured keep/revert decision → `optimize`.
+- Unexplained observed slowdown → `alaga` in diagnosis mode.
+- Comparative trials with a measured keep/revert decision → `adanwo` in measured-experiment mode.
 - Already-selected correction and verification → `alaga`.
 
 A live symptom or captured trace is evidence, not proof that optimization is the requested outcome. Discover the matching profiler/runtime specialist when it materially helps.
@@ -81,14 +81,14 @@ Readiness, publication, approval, and merge are distinct results.
 
 - Ownership or seam friction → `architect` survey.
 - Light or deep engineering review → `atunwo`, focused on simplification when unnecessary mechanism is the concern.
-- Measured comparison of variants → `optimize`.
+- Measured comparison of variants → `adanwo` in measured-experiment mode.
 
 A selected change then joins the delivery route at its first unresolved result.
 
 ### Writing → usable text
 
-- Agent-facing text steering selection, decisions, authority, execution, or completion → `oro-fun-sigidi`.
-- Human-facing text for comprehension, action, or communication → `oro-fun-eniyan`.
+- Agent-facing text steering selection, decisions, authority, execution, or completion → `oro` in its agent-facing branch.
+- Human-facing text for comprehension, action, or communication → `oro` in its human-facing branch.
 
 ### Missing evidence or tool capability
 
@@ -121,6 +121,8 @@ When called from a workflow, return the owned result and proof to that caller, w
 For `atunwo`, route the review subject, known evidence, and requested decision or focus. Light/deep selection belongs to `atunwo` unless the user specified depth; a refactor or simplification request does not create another review mode.
 
 ## Coordinate and integrate
+
+When delegated work can materially improve the outcome, read [coordination](references/coordination.md). When model, effort, worker lifecycle, or provider-native settings matter, also read [host policy](references/host-policy.md). These references shape assignments and evidence; they do not replace installed skill methods or native host mechanics.
 
 Delegate analysis, research, implementation, and review when workers can advance useful parts of the task, following governing host policy. Use native collaboration controls; model and reasoning choices remain with the user and their host policy.
 

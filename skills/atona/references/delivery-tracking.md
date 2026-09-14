@@ -4,7 +4,7 @@ Use this contract when the plan has material delivery coordination: multiple wor
 
 ## Decompose delivery when needed
 
-Use `seda-ticket` with the settled plan and governing specification.
+Use [delivery decomposition](decomposition.md) with the settled plan and governing behavior contract.
 
 When another delivery owner already has a stronger native work-unit/dependency model, consume that result instead of forcing parallel ticket semantics. Tickets are optional decomposition, not Atọ́nà's universal delivery representation.
 
