@@ -25,7 +25,7 @@ For another named tool, use current official documentation and retain only recur
 
 ## Establish readiness
 
-Reuse the selected tool, target, scope, and existing authorization. Use [tool setup](references/tool-setup.md) for installation, configuration, authentication, integration, upgrade, repair, removal, installed-skill reconciliation, host instructions, or native agent declarations. Use `oro-fun-sigidi` for agent-facing instruction text.
+Reuse the selected tool, target, scope, and existing authorization. Use [tool setup](references/tool-setup.md) for installation, configuration, authentication, integration, upgrade, repair, removal, installed-skill reconciliation, host instructions, or native agent declarations. Use `oro` in its agent-facing branch for instruction text.
 
 Prepare the concrete change within authorized scope, preserve unrelated settings and user content, refresh the target before mutation, and verify the resulting state in the actual environment. Repository scope does not imply global configuration or broader permissions. Installer success is not readiness proof. Report material limitations and a scoped recovery path.
 

@@ -34,7 +34,7 @@ Build the smallest evidence-backed sequence needed to explain the outcome. Separ
 
 Do not judge an earlier action by a requirement introduced later. Current state does not prove historical state. Temporal order, correlation, or a later successful recovery is not causal proof by itself.
 
-Use `root-cause` when a missing causal diagnosis materially changes the postmortem. Otherwise proceed with the evidence and its uncertainty.
+Use `alaga` in diagnosis mode when a missing causal diagnosis materially changes the postmortem. Otherwise proceed with the evidence and its uncertainty.
 
 ## Distinguish incident from structural friction
 
@@ -54,7 +54,7 @@ For each proposed durable improvement, state:
 
 Prefer replacing, removing, moving, or clarifying existing guidance over appending another rule. Reject an instruction change when the current instruction already required the correct behavior, the evidence is model variance, the real fix belongs to the owning product/system/process, or the edit would only restate the same rule.
 
-A recommendation is the boundary of Àyẹ̀wò. Name the natural owner for an accepted follow-on—such as `oro-fun-sigidi` for agent-facing instruction/skill text, `alaga`, `irinse`, a project/runtime owner, or another relevant owner—and preserve enough evidence for that owner to act without reconstructing the postmortem.
+A recommendation is the boundary of Àyẹ̀wò. Name the natural owner for an accepted follow-on—such as `oro` for agent-facing instruction/skill text, `alaga`, `irinse`, a project/runtime owner, or another relevant owner—and preserve enough evidence for that owner to act without reconstructing the postmortem.
 
 A new public skill identity, material routing/ownership reassignment, promotion, fold, or removal is a consequential remediation, not a forbidden one. Apply it when the requested remediation scope already covers that surface and the evidence supports the change; otherwise return the proposal and owner handoff rather than silently expanding authority.
 
@@ -62,7 +62,7 @@ A new public skill identity, material routing/ownership reassignment, promotion,
 
 For compatibility with existing combined requests, when the user explicitly asks both for a postmortem and remediation and has granted the required mutation authority, complete and fix the postmortem result first. Then invoke the natural owning skill/workflow as a separate follow-on using the pinned findings and evidence. Do not mutate the judged surface while reconstructing or deciding the retrospective, and do not describe the follow-on mutation as part of Àyẹ̀wò's result.
 
-Existing agent-facing instructions/skills may be revised through `oro-fun-sigidi` when that remediation surface is authorized. If the proposed remediation would materially exceed the requested mutation scope, stop at the proposal and owner handoff.
+Existing agent-facing instructions/skills may be revised through `oro` when that remediation surface is authorized. If the proposed remediation would materially exceed the requested mutation scope, stop at the proposal and owner handoff.
 
 If remediation was not explicitly requested, stop at the recommendation and owner handoff.
 

@@ -30,11 +30,11 @@ Load branch guidance only when applicable:
 
 Establish required coverage before minimizing representation. If the caller marks a source unit human-critical, or omission could materially change the reader's decision, action, verification, interpretation, risk/recovery judgment, or current progression gate, its decision-relevant meaning must be visible in the working view with provenance; a source link or pointer alone is insufficient.
 
-For plans and decision views, show the problem, direction, rationale, settled/open choices, progress, and next action without assuming prior project or chat context. Use `oro-fun-eniyan` for reader calibration; return missing source meaning to its owner.
+For plans and decision views, show the problem, direction, rationale, settled/open choices, progress, and next action without assuming prior project or chat context. Use `oro` in its human-facing branch for reader calibration; return missing source meaning to its owner.
 
 Choose representation per material relationship or reader question, not per source heading. Several source sections may collapse into one useful traceability/comparison view; one source section may require several representations when it contains different relationships.
 
-Use `salaye` for clearer visual representations within relevant sections. Apply its guidance in place beside the supported text/evidence; this is not a new artifact request.
+Use `oro`'s visual-explanation branch for clearer representations within relevant sections. Apply its guidance beside the supported text/evidence; this is not a new artifact request.
 
 Keep semantic types distinct. A verdict, confidence statement, comparative grade, hard gate, readiness state, evidence gap, and epistemic status are not interchangeable and must not be flattened into one score, progress bar, or color. Qualitative judgment gets no false precision.
 

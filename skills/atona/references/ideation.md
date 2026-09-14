@@ -30,7 +30,7 @@ Reject duplicates, weak variants, off-strategy ideas, and candidates whose expec
 
 Rank survivors only when the criteria make them genuinely comparable. Otherwise group them by trade-off or decision type. Explain why each survived, what evidence it still needs, and the material decision it would create. Novelty is not a benefit by itself.
 
-Use `ro-wo` as needed.
+Ask Pepeye for its bounded premise check as needed.
 
 ## Return decision-ready possibilities
 

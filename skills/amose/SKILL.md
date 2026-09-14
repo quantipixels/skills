@@ -28,7 +28,9 @@ A useful model clarification may establish or separate:
 - relationships and ownership; and
 - semantic invariants or contradictions between stated meaning and current behavior.
 
-Use `arojinle` when the unresolved issue is a consequential choice rather than clarification of established meaning. Use `architect` when the missing result is technical structure. Do not turn current implementation shape into domain vocabulary merely because it exists.
+For an actual Yorùbá/English technical-term addition or correction, read [Yorùbá technical terminology](references/yoruba-terminology.md). Reusing an established term does not require this branch; a durable glossary write still needs an identified target and write authority.
+
+Ask a single bounded consequential choice directly. Use `arojinle` when the user requests an interview or dependent choices require decision-tree closure. Use `architect` when the missing result is technical structure. Do not turn current implementation shape into domain vocabulary merely because it exists.
 
 ## Reconcile canonical language
 

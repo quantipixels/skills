@@ -59,7 +59,7 @@ SPECIALIST_RESULT
 → independently useful design/domain/technical/normative result the plan cannot responsibly invent.
 
 MATERIAL_USER_DECISION
-→ consequential choice that changes accepted outcome, scope, policy, experience, risk, cost, compatibility, or trade-off; resolve through `arojinle`.
+→ consequential choice that changes accepted outcome, scope, policy, experience, risk, cost, compatibility, or trade-off; ask a single bounded choice directly, or use `arojinle` when the user requests an interview or dependent choices require decision-tree closure.
 ```
 
 Maintain one Decision Frontier state:
@@ -70,7 +70,7 @@ OPEN    — at least one material user decision is answerable now.
 BLOCKED — material user decisions remain but prerequisite evidence/results are missing.
 ```
 
-When `OPEN`, use `arojinle` on the answerable decision frontier. When `BLOCKED`, resolve the missing prerequisites. Do not reopen settled decisions.
+When `OPEN`, ask one bounded independent choice directly or use `arojinle` for an interview-shaped frontier. When `BLOCKED`, resolve the missing prerequisites. Do not reopen settled decisions.
 
 Use other skills when they improve the plan; keep routine composition out of its lifecycle stages.
 
@@ -80,10 +80,10 @@ Before setting `Planned`, ask whether a fresh delivery/review owner would otherw
 
 Use these seams when they are actually required:
 
-- **Normative behavior / operating rules** — require current `seda-spec: SPEC_READY` when material behavior needs an implementation-independent contract for delivery/review, unless an established domain authority already owns the equivalent contract.
+- **Normative behavior / operating rules** — require a current [behavior contract](behavior-contract.md) with `SPEC_READY` when material behavior needs an implementation-independent contract for delivery/review, unless an established domain authority already owns the equivalent contract.
 - **Software/system architecture** — require current `architect: IMPLEMENTATION_READY` when delivery would otherwise have to invent material system boundaries, ownership, topology, migration/recovery, compatibility, or another architecture-level decision.
-- **Consequential user choice** — keep the Decision Frontier open/blocked and resolve through `arojinle`; do not bury the decision inside another specialist result.
-- **Delivery decomposition** — use `seda-ticket` as needed.
+- **Consequential user choice** — keep the Decision Frontier open/blocked; ask one bounded choice directly or use `arojinle` for an interview-shaped frontier. Do not bury the decision inside another specialist result.
+- **Delivery decomposition** — use [delivery decomposition](decomposition.md) as needed.
 
 Retain the identities and readiness of required specialist results, not their procedures.
 

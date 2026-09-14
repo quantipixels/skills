@@ -11,7 +11,7 @@ Use the installed tool's help and current official documentation to resolve vola
 
 Determine whether the tool is ready, needs setup, is missing, or is unsupported for the intended use. Command presence alone does not prove readiness. If it is already ready, say so and finish unless another requested action remains.
 
-For native agent declarations, resolve host format, discovery, and precedence; use `oro-fun-sigidi` for instruction text. Verify discovery and permission effects separately from file validity, and report runtime checks not performed. Setup does not authorize launching downstream work.
+For native agent declarations, resolve host format, discovery, and precedence; use `oro` in its agent-facing branch for instruction text. Verify discovery and permission effects separately from file validity, and report runtime checks not performed. Setup does not authorize launching downstream work.
 
 ## Bound mutation and authority
 
@@ -34,9 +34,9 @@ Prefer the smallest reversible setup that satisfies the selected use. Reuse exis
 
 ## Reconcile installed skills
 
-For `https://github.com/quantipixels/skills`, follow its README for native Codex/Claude plugin or Skills CLI installation. Reuse the existing manager's supported update and removal commands. Compare source/version and installed state to identify exact updates, local changes, deprecated names/paths, and recovery options before applying changes; a summary count is insufficient. Skill authoring belongs to `oro-fun-sigidi`.
+For `https://github.com/quantipixels/skills`, follow its README for native Codex/Claude plugin or Skills CLI installation. Reuse the existing manager's supported update and removal commands. Compare source/version and installed state to identify exact updates, local changes, deprecated names/paths, and recovery options before applying changes; a summary count is insufficient. Skill authoring belongs to `oro` in its agent-facing branch.
 
-Applying updates requires explicit permission for the proposed targets and changes. Deleting deprecated skills, including installer pruning, needs explicit permission covering those removals; update approval alone is insufficient. Verify deprecation from package evidence, preserve user modifications, and reuse existing approvals within their scope. Refresh the proposal if source or targets change.
+Applying updates requires permission for the proposed targets and changes. Reuse an existing approval while those targets and changes remain exact-current; ask again only when scope changed or authority was never granted. Deleting deprecated skills, including installer pruning, needs permission covering those removals; update approval alone is insufficient. Verify deprecation from package evidence, preserve user modifications, and refresh the proposal if source or targets change.
 
 Verify installed content and host discovery after applying. Distinguish source, installed, active, and published state; check a fresh session when needed and report pending approvals or verification.
 

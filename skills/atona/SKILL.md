@@ -1,6 +1,6 @@
 ---
 name: atona
-description: Carry an initiative through its requested outcome with a living, human-readable HTML plan. Use for discovery, decisions, planning, coordinated delivery, or resuming that work. Honor exploration-only and planning-only requests; use alaga for settled coding changes needing no initiative coordination.
+description: Carry an initiative through its requested outcome with a living, human-readable HTML plan, or directly create a behavior contract or delivery decomposition. Use for discovery, decisions, planning, coordinated delivery, contract-only, decomposition-only, or resumed work. Use alaga for settled coding changes needing no initiative coordination.
 metadata:
   maturity: experimental
 ---
@@ -8,6 +8,8 @@ metadata:
 # Atọ́nà
 
 Own progression from the idea to the requested outcome. Keep one current plan, invoke specialist skills for their results, and continue authorized work until the outcome is built and verified. A plan, ticket set, or specialist handoff is an intermediate result when the user requested a build.
+
+For an explicit **contract-only** request, read [behavior contract](references/behavior-contract.md), return its standalone result, and do not start an initiative or require a living plan. For an explicit **decomposition-only** request, read [delivery decomposition](references/decomposition.md), return its standalone result, and do not start an initiative or require a living plan. These branches remain usable by delivery and review callers.
 
 ## Establish the destination and authority
 
@@ -23,7 +25,7 @@ Update the plan first, then the view after material changes, before dependent de
 
 ## Explore and settle direction
 
-When credible directions still need generating, read [ideation](references/ideation.md). Use `iwadi` for material evidence gaps, `ro-wo` to challenge a consequential proposal, and `prototype` when a disposable experiment can settle the uncertainty. Preserve the distinction between a promising idea, a confirmed choice, and an accepted requirement.
+When credible directions still need generating, read [ideation](references/ideation.md). Use `iwadi` for material evidence gaps, ask Pepeye for a bounded premise check when a consequential proposal needs challenge, and use `adanwo` in exploration mode when a disposable experiment can settle the uncertainty. Preserve the distinction between a promising idea, a confirmed choice, and an accepted requirement.
 
 For a build request, carry the selected direction into shaping and delivery. If no credible direction survives, report why and the evidence or decision needed to proceed. Reuse a settled direction without repeating exploration.
 
@@ -31,7 +33,7 @@ For a build request, carry the selected direction into shaping and delivery. If 
 
 Keep the outcome and acceptance, confirmed decisions and material assumptions, delivery sequence, dependencies, risks, current blocker, and next action in one plan. Match detail to what a fresh contributor would otherwise have to invent; omit empty bookkeeping.
 
-Use `amose` when domain meaning is unresolved, `seda-spec` when behavior needs a normative contract, `architect` when technical structure needs settling, and `seda-ticket` when delivery needs decomposition. Consume their results without copying their methods or requiring every skill on every initiative.
+Use `amose` when domain meaning is unresolved, [behavior contract](references/behavior-contract.md) when behavior needs a normative contract, `architect` when technical structure needs settling, and [delivery decomposition](references/decomposition.md) when delivery needs decomposition. Consume their results without requiring every branch on every initiative.
 
 When later work cannot yet be stated responsibly, read [progressive shaping](references/progressive-shaping.md). Resolve prerequisites and build only slices whose acceptance, dependencies, and authority are sufficiently settled. Keep uncertain remaining scope visible; slice readiness does not prove whole-initiative readiness.
 
@@ -51,7 +53,7 @@ After a material decision, discovery, or delivery result, update the affected pl
 
 Assess whether current delivery evidence covers initiative acceptance, including interactions between delivered slices and the real user journey when relevant. Reuse applicable proof. When integration behavior lacks proof or fails, give `alaga` the bounded integration outcome to verify and correct; consume that result before closing the initiative. Task counts, worker completion, isolated passing checks, and provider status do not establish that the build works as a whole. Keep missing proof and blockers visible and resolve them within scope.
 
-Use `seda-pr` for authorized publication and `wo-pr` for requested PR/MR stewardship. Keep implementation, integration, and release state distinct; report an outstanding required stage as incomplete.
+Use `wo-pr` in publication mode for authorized publication and its stewardship mode for requested PR/MR readiness work. Keep implementation, integration, and release state distinct; report an outstanding required stage as incomplete.
 
 ## Preserve continuity and close
 

@@ -2,7 +2,7 @@
 
 Use when an HTML Artifact needs shaped visual reasoning beyond ordinary prose/table composition.
 
-Use `salaye`.
+Use `oro`'s visual-explanation branch.
 
 HTML Artifact adds only the browser-projection concerns below.
 
