@@ -7,6 +7,8 @@ description: Design, survey, or review the technical structure of a software sys
 
 Own the technical structure of a software system or consequential module. Resolve the architecture question at the smallest scale that is materially sufficient: a bounded module question gets a bounded design answer; a system-wide design gets the system depth it actually needs.
 
+Delegate independent boundary assessments or design investigations to subagents when useful. Require concise findings and evidence; integrate them into the architecture judgment.
+
 | Mode | Purpose |
 | --- | --- |
 | `survey` | find and rank evidence-backed architectural friction without designing the correction |

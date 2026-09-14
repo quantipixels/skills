@@ -50,7 +50,7 @@ Do not jump to source archaeology merely because source exists. Escalate only wh
 
 ## Delegated evidence
 
-When research is delegated, return a compact evidence packet: direct conclusion; exact source identities/locators; what each establishes; source/evidence class and fit; conflicts, caveats, and coverage gaps; checks and freshness. Ìwádìí still owns evidence selection, synthesis, and any durable report; a delegated packet is evidence, not the report itself.
+Delegate independent source collection or bounded investigation to subagents when useful. Require a compact evidence packet: direct conclusion; exact source identities/locators; what each establishes; source/evidence class and fit; conflicts, caveats, and coverage gaps; checks and freshness. Ìwádìí still owns evidence selection, synthesis, and any durable report; a delegated packet is evidence, not the report itself.
 
 ## Research contract
 
