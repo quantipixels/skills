@@ -6,7 +6,7 @@ Delegate useful independent work freely under existing authority. Keep assignmen
 
 ## Package
 
-Each skill lives at `skills/<name>/SKILL.md`; directory and frontmatter names must agree. Keep supporting resources with their skill. Use native discovery, not a second catalogue or generated `default_prompt` metadata. Preserve existing invocation permissions and experimental maturity when moving skills.
+Each skill lives at `skills/<name>/SKILL.md`; directory and frontmatter names must agree. Keep supporting resources with their skill. Use native discovery, not a second catalogue or generated `default_prompt` metadata. Preserve existing invocation permissions when moving skills.
 
 Skills must work when installed and invoked independently. Keep behavior-bearing guidance even when it also appears in `AGENTS.md`, Alárinà, or a caller that may not load. Where delegation helps, retain a concise local cue describing useful assignments and returned evidence. Assess simplification with only the skill and its declared dependencies available.
 
@@ -26,4 +26,4 @@ Test the changed boundary with proportionate proof. Keep tests for shipped mecha
 
 Standing model-behavior evaluations belong in the separate internal eval repository. Until it is available, keep task-local evidence in the PR and report unrun evaluations. Package CI must work without private eval access or model credentials. Syntax, installation, and authenticated runtime success are distinct claims.
 
-Before retiring evaluations or documents, preserve unique current expectations at their real owner. Keep attribution and licences. Experimental promotion requires proportionate real-use evidence, not invocation counts; existing candidates retain `metadata.maturity: experimental` and their own gates.
+Before retiring evaluations or documents, preserve unique current expectations at their real owner. Keep attribution and licences.

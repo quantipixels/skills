@@ -1,8 +1,6 @@
 ---
 name: adanwo
 description: Run a bounded experiment to settle a consequential uncertainty. Use exploration mode for a disposable experience or interaction, or measured-experiment mode for baseline/candidate comparison and a keep/revert decision. Exclude routine validation, diagnosis alone, and accepted delivery.
-metadata:
-  maturity: experimental
 ---
 
 # Àdánwò

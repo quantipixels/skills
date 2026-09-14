@@ -1,8 +1,6 @@
 ---
 name: atona
 description: Carry an initiative through its requested outcome with a living, human-readable HTML plan, or directly create a behavior contract or delivery decomposition. Use for discovery, decisions, planning, coordinated delivery, behavior contracts, delivery decomposition, or resumed work. Use alaga for settled coding changes needing no initiative coordination.
-metadata:
-  maturity: experimental
 ---
 
 # Atọ́nà
