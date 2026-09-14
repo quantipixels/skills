@@ -139,3 +139,5 @@ For Skills CLI, use `npx skills remove` and select the QP skills. Do not install
 ## Project
 
 Use [`AGENTS.md`](AGENTS.md) and `oro` for contribution and agent-instruction guidance. Change rationale and proof belong in PRs and CI.
+
+Use the opt-in [engineering evaluations](evals/README.md) to compare actual repairs with and without skill guidance. The kit checks executable contracts and regression detection; your native host runs the models.
