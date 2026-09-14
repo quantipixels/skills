@@ -12,7 +12,7 @@ For atomic multi-write behavior, introduce a controlled failure after an earlier
 
 ## Concurrency, retry and cancellation
 
-When Kotlin coroutine scheduling controls the result, read [Kotlin coroutine proof](kotlin-coroutines.md). Name the forbidden outcome and the ordering that could cause it. Coordinate the relevant operations with a barrier or controllable dependency where feasible; sleeps alone do not establish the intended interleaving. Observe final state and external effects, and retain the order needed to reproduce a failure. A few schedules prove those cases, not all concurrency correctness. A model checker is justified only when a consequential state-space question remains beyond such probes.
+Name the forbidden outcome and the ordering that could cause it. Coordinate the relevant operations with a barrier or controllable dependency where feasible; sleeps alone do not establish the intended interleaving. Observe final state and external effects, and retain the order needed to reproduce a failure. A few schedules prove those cases, not all concurrency correctness. A model checker is justified only when a consequential state-space question remains beyond such probes.
 
 For ambiguous completion, allow the effect to occur and then withhold or fail its acknowledgement at a controlled test boundary. Retry the same logical operation and verify its identity and allowed effect count. This differs from failing before the effect. Keep the invariant's business meaning and provider guarantees explicit; do not impose exactly-once semantics universally.
 
