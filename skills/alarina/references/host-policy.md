@@ -13,7 +13,7 @@ User and host settings own model and effort choices. Choose the lowest supported
 | Bounded worker | `gpt-5.6-terra` | Sonnet 5 (`claude-sonnet-5`) | bounded implementation or investigation with local proof | Terra 3 |
 | Small evidence worker | `gpt-5.6-luna` | Haiku 4.5 (`claude-haiku-4-5-20251001`) | extraction, small reads, deterministic work, easy-to-check evidence | Luna 0.5; Haiku 1 |
 
-These are role counterparts selected by the user, not benchmark equivalence or API prices. Do not invent unprovided Claude weights. Luna fan-out is encouraged for useful independent bounded evidence and deterministic tasks, within actual concurrency and task authority; no approval is needed to choose a useful roster. Haiku does not inherit Luna's fan-out preference or effort exception.
+These are role counterparts selected by the user, not benchmark equivalence or API prices. Do not invent unprovided Claude weights. Luna usage is encouraged for useful independent bounded evidence and deterministic tasks, within actual concurrency and task authority; no approval is needed to choose a useful roster. Haiku does not inherit Luna's usage preference or effort exception.
 
 Reasoning ceilings:
 
