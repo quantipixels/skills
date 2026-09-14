@@ -1,5 +1,11 @@
+---
+name: yoruba-glossary
+description: Decide additions or corrections to Yorùbá/English technical terminology and maintain an explicitly authorized glossary artifact. Use for actual term changes or glossary maintenance, not ordinary reuse of established terms.
+metadata:
+  maturity: experimental
+---
 
-# Yorùbá technical terminology
+# Yorùbá technical glossary
 
 Own one narrow outcome: settle an actual Yorùbá/English technical-term change and, when separately authorized, reconcile that confirmed term into the selected glossary artifact.
 
@@ -37,6 +43,6 @@ After any authorized write, read back the changed entry and verify the target's 
 
 ## Boundary
 
-Use the relevant writing branch in `oro` when prose must also change.
+Use `amose` when project-specific domain meaning needs clarification, and `oro` when prose must also change.
 
 Return the settled term decisions, unresolved gaps, and any authorized glossary write/readback. Do not turn terminology work into a general translation, documentation, or project-knowledge lifecycle.
