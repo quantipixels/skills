@@ -17,13 +17,9 @@ Resolve discoverable facts from relevant project knowledge before asking the use
 
 ## Keep the human in the plan
 
-Use `html-artifact` with [the initiative brief](references/human-view.md) for every plan, including exploration-only and planning-only work. Create and present the living view with the first proposed direction, before delivery; show uncertainty rather than waiting for a finished plan. Scale its detail to the work, not whether it exists. The agent's plan and the human's understanding are both required results.
+Use `html-artifact` with [the initiative brief](references/human-view.md) for every plan, including exploration-only and planning-only work. Present the first proposed direction before delivery so the user can judge alignment. Maintain the same view through decisions, implementation, review, and completion; share its locator and source revision with contributors.
 
-Maintain one document through decisions, implementation, review, and completion. Give `arojinle` and other contributors its identity and current source revision; consume their results into it rather than commissioning parallel summaries. Keep it understandable to a reader with no prior project or chat context.
-
-Update the plan first, then refresh the view after material decisions, scope changes, delivery/review results, blockers, or verification changes, before asking for dependent decisions or handing off affected delivery. Foreground what changed and its effect on direction, progress, and next action. Chat updates supplement the document; routine tool activity does not require an update.
-
-Presenting the view does not create new approval rounds: honor existing authority and any requested review-before-build boundary. A missing or stale view is a deliverable gap, not permission to claim planning complete. If `html-artifact` or delivery of its result is unavailable, report that gap and continue independent authorized work without treating a chat summary as the required view.
+Update the plan first, then the view after material changes, before dependent decisions or delivery handoffs. Chat updates supplement this record. Honor existing authority and requested review boundaries without adding approval rounds. If the view is unavailable, report the deliverable gap and continue independent discovery and planning.
 
 ## Explore and settle direction
 

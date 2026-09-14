@@ -30,7 +30,7 @@ Load branch guidance only when applicable:
 
 Establish required coverage before minimizing representation. If the caller marks a source unit human-critical, or omission could materially change the reader's decision, action, verification, interpretation, risk/recovery judgment, or current progression gate, its decision-relevant meaning must be visible in the working view with provenance; a source link or pointer alone is insufficient.
 
-For plans and decision views, make the direction understandable to a reader with no prior project or chat context: what problem is being addressed, what is proposed, why, which choices are settled or open, and what happens next. Explain project terms and consequences at that reader's level. Use `oro-fun-eniyan` when reader calibration or explanation needs work. Source accuracy and attractive layout alone do not establish understanding; return missing rationale or meaning to the owner rather than inventing it.
+For plans and decision views, show the problem, direction, rationale, settled/open choices, progress, and next action without assuming prior project or chat context. Use `oro-fun-eniyan` for reader calibration; return missing source meaning to its owner.
 
 Choose representation per material relationship or reader question, not per source heading. Several source sections may collapse into one useful traceability/comparison view; one source section may require several representations when it contains different relationships.
 
@@ -40,7 +40,7 @@ Keep semantic types distinct. A verdict, confidence statement, comparative grade
 
 Use semantic color in every diagram and data view, including Mermaid, to reflect source-established roles, intent, categories, states, or magnitude. Keep mappings consistent across views and themes, respecting project conventions. Choose categorical, sequential, or diverging palettes to suit the data. Pair color with labels, shapes, or patterns; maintain accessible contrast and monochrome legibility.
 
-For living projections, preserve document identity and useful anchors across updates. After the first complete view, foreground material semantic delta: what changed, why it matters, reopened/stale claims, completed work, or what now limits progression. Preserve enough context to understand the direction without earlier revisions. Recompute the reader job/information direction after material stage changes rather than accumulating every earlier stage at equal weight. The workflow owner supplies updates through completion; the artifact does not imply autonomous monitoring.
+For living projections, preserve document identity and useful anchors. Foreground material change and its consequences while retaining enough context for a new reader. Recompute the reader job after stage changes; [source composition](references/source-composition.md) governs source freshness and updates.
 
 ## Choose representation before renderer or delivery
 
@@ -77,7 +77,7 @@ Evidence: Embedded | Linked | Mixed
 
 After the first complete projection write, establish a full structural baseline: reread and check source/projection identities, required human-critical coverage, anchors/context, renderer/dependency identity, source mapping, semantic color mappings and non-color cues, contrast, runtime disclosure, and semantic fallback. After an incremental write, rerun the structural and browser checks whose claims or evidence it invalidated. Before delivery, run a final whole-artifact coherence check across the current source cut, opening/status, coverage, navigation, provenance, runtime disclosure, and fallback.
 
-For a plan or decision view, check comprehension separately from source coverage: can the intended reader reconstruct the problem, direction, rationale, unresolved choices, actual progress, and next action from the view alone? Repair missing explanations and opaque representations. A screenshot or rendered file proves neither human comprehension nor agreement; do not claim reader validation that was not performed.
+Check that the view alone explains the supplied direction and current state to its intended reader. Repair opaque explanations; distinguish this assessment from observed reader comprehension or agreement.
 
 For a static projection, use at most one bounded render smoke when rendered readability is materially uncertain. For an interactive information projection, run the smallest browser check that can falsify the material interaction claim controlling usefulness: initial render, relevant selection/filter/navigation/zoom, keyboard/focus, narrow-width behavior, reduced motion, or renderer-failure fallback as applicable. Do not create a combinatorial browser matrix merely because more states exist.
 

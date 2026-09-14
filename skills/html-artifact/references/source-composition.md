@@ -110,7 +110,7 @@ For substantial artifacts embed a compact `application/json` context capsule bef
 
 After the first complete projection, prominently show material delta from the prior useful view: changed decisions, reopened/stale claims, new candidate/evidence, closed proof, new blockers, and changed next action. Reuse unchanged supporting material at lower visual weight rather than making the reader rediscover change by rereading the whole page.
 
-The owner updates semantic truth first. Refresh the same living document after material semantic revisions, preserving identity and useful anchors. Carry forward the problem, rationale, and decision context needed by a new reader; a change log alone is insufficient. An older projection may remain available as visibly stale evidence; it is not a current handoff. Keep planned, implemented, reviewed, tested, and live-verified results distinct through closure.
+The owner updates semantic truth first; refresh the living view after material revisions. Label older views stale. Keep planned, implemented, reviewed, tested, and live-verified results distinct through closure.
 
 ## Projection coverage proof
 
@@ -135,7 +135,6 @@ After the first complete projection write, run the full structural baseline belo
 Before delivery test:
 
 - **critical closure:** no human-critical obligation is pointer-only or silently omitted;
-- **comprehension:** a new reader can reconstruct the direction, rationale, decisions, and current action from the view without prior chat context;
 - **coherence:** composed sources form a declared current cut, or stale/partial dependencies are visible;
 - **agent entry:** current state, weakest limiting claim, and next action are available without reading full HTML when applicable;
 - **retrieval:** requested detail is obtainable through a canonical source path;

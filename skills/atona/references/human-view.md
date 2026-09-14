@@ -1,10 +1,8 @@
 # Living initiative brief
 
-Use `html-artifact` for the required living plan view, from the first proposed direction through completion. Reuse the same document and stable locator; retain its identity and source revision in the current plan so resumed work updates it.
+Supply `html-artifact` with the reader’s current decision or concern, the plan revision, relevant candidate/evidence identities, and the existing view’s locator. Use one viewpoint unless another reader has a distinct decision.
 
-Supply the reader's decision, current concern, exact plan revision, and relevant owner-result/candidate/evidence identities. Use one viewpoint unless another reader's distinct decision requires a separate view.
-
-Supply enough context for a person with no prior project or conversation knowledge to understand the problem, who it affects, desired outcome, proposed approach, why it is preferred, and what will change. Explain unfamiliar project terms before relying on them. The human must be able to judge alignment and consequences, not merely inspect agent statuses.
+Establish the problem, affected people, intended outcome, proposed approach, rationale, and unfamiliar project terms for a reader with no prior project or chat context.
 
 For a local operational view, include the plan's current absolute workspace path, `branch: <branch-name> [main|worktree]`, linked main-worktree path when applicable, and closure disposition when set. Omit machine-specific absolute paths from portable/public views unless the caller explicitly wants them.
 
@@ -22,4 +20,4 @@ Outcome / acceptance → decision / contract → architecture / owner → delive
 
 Pass owner-established gaps in either direction: accepted obligations without implementation/proof, mechanisms without an accepted basis, or evidence that no longer proves a current claim. Do not infer those gaps from diagram structure.
 
-Preserve the plan's progression judgment and visibility requirements in the view. A Markdown dump, unexplained skill-name map, attractive dashboard, or source link alone does not establish comprehension. Check that the reader can explain what is proposed, why, what remains undecided, what has actually happened, and what comes next from the view itself.
+Preserve the plan’s progression judgment and visibility requirements; `html-artifact` owns presentation and comprehension checks.
