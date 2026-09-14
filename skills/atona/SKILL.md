@@ -1,6 +1,6 @@
 ---
 name: atona
-description: Carry an idea from exploration through a completed, verified build, maintaining the plan and coordinating the skills needed along the way. Use for an initiative spanning discovery, decisions, planning, and delivery, or to resume or replan one. Honor exploration-only and planning-only requests; use alaga directly for an already-settled coding change that needs no initiative coordination.
+description: Carry an initiative through its requested outcome with a living, human-readable HTML plan. Use for discovery, decisions, planning, coordinated delivery, or resuming that work. Honor exploration-only and planning-only requests; use alaga for settled coding changes needing no initiative coordination.
 metadata:
   maturity: experimental
 ---
@@ -14,6 +14,16 @@ Own progression from the idea to the requested outcome. Keep one current plan, i
 Start at the earliest unresolved step using supplied decisions, existing work, and current evidence. Establish the intended outcome, observable acceptance, scope/non-goals, and requested stopping point. An exploration-only or planning-only request ends at that result; an end-to-end build request carries through delivery without another permission request at each stage. Publication, merge, deployment, and destructive cleanup require applicable authority from the session or governing policy.
 
 Resolve discoverable facts from relevant project knowledge before asking the user. Check source authority and current applicability; carry forward only evidence that changes the work. Surface consequential choices the existing intent cannot settle, using `arojinle` when they need a decision interview. Continue independent authorized work while a dependent choice is unresolved.
+
+## Keep the human in the plan
+
+Use `html-artifact` with [the initiative brief](references/human-view.md) for every plan, including exploration-only and planning-only work. Create and present the living view with the first proposed direction, before delivery; show uncertainty rather than waiting for a finished plan. Scale its detail to the work, not whether it exists. The agent's plan and the human's understanding are both required results.
+
+Maintain one document through decisions, implementation, review, and completion. Give `arojinle` and other contributors its identity and current source revision; consume their results into it rather than commissioning parallel summaries. Keep it understandable to a reader with no prior project or chat context.
+
+Update the plan first, then refresh the view after material decisions, scope changes, delivery/review results, blockers, or verification changes, before asking for dependent decisions or handing off affected delivery. Foreground what changed and its effect on direction, progress, and next action. Chat updates supplement the document; routine tool activity does not require an update.
+
+Presenting the view does not create new approval rounds: honor existing authority and any requested review-before-build boundary. A missing or stale view is a deliverable gap, not permission to claim planning complete. If `html-artifact` or delivery of its result is unavailable, report that gap and continue independent authorized work without treating a chat summary as the required view.
 
 ## Explore and settle direction
 
@@ -51,10 +61,10 @@ Use `seda-pr` for authorized publication and `wo-pr` for requested PR/MR steward
 
 Keep the plan in context for a short session. When continuity or downstream use needs persistence, update the existing project plan; otherwise use `.qp/atona/`. Record the absolute execution workspace and `branch: <branch-name> [main|worktree]`, plus the main-worktree path for a linked worktree. Update them when execution moves.
 
-Use `html-artifact` with [the initiative brief](references/human-view.md) when a human view is useful. Update the plan before its projection. Keep ordinary rationale in the plan and delivery history; read [durable reconciliation](references/durable-reconciliation.md) only when required governing knowledge needs updating.
+Keep ordinary rationale in the plan and living view; read [durable reconciliation](references/durable-reconciliation.md) only when required governing knowledge needs updating.
 
 Before closing a linked-worktree initiative, reconcile required `.qp` state into the accepting workspace, clean only reconciled/disposable state, and record the workspace disposition. Preserve unresolved state. Worktree removal requires user approval; retaining it does not block completion.
 
-Close only when the requested outcome has current accepting proof, required documentation and integration are complete, and no blocking in-scope obligation remains. For exploration-only or planning-only work, apply that bound to the requested artifact and state that delivery has not been performed.
+Close only when the requested outcome has current accepting proof, required documentation and integration are complete, the living view explains the delivered outcome and remaining limits, and no blocking in-scope obligation remains. For exploration-only or planning-only work, apply that bound to the requested artifacts and state that delivery has not been performed.
 
-Return the outcome and its location, decisive verification, and material limits. If blocked, identify the exact remaining work, prerequisite or human decision, and next action; a recommendation is not completion. Continue authorized executable work instead of ending at a suggested next step.
+Return the living view's locator, outcome, decisive verification, and material limits. If blocked, identify the exact remaining work, prerequisite or human decision, and next action; a recommendation is not completion. Continue authorized executable work instead of ending at a suggested next step.
