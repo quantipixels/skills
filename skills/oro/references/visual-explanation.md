@@ -1,83 +1,36 @@
-
 # Visual explanation
 
-Make the current topic clear through a small, focused visual. Start with the representation and keep supporting prose brief. Use the form that best exposes the relationship the reader needs to understand.
+Lead with the smallest faithful specimen, then explain its decisive consequence. Use supplied evidence; distinguish observed implementation, proposed design and illustrative examples.
 
-- Describe logic with pseudocode:
+| Reader question | Useful form |
+| --- | --- |
+| How does the algorithm decide? | Pseudocode with decisive branches and failure paths. |
+| Who calls whom? | A call tree for nested calls; a sequence diagram for cross-component ordering. |
+| Where do state and UI responsibilities live? | A component tree with relevant state and module boundaries. |
+| Where does this behavior belong? | A shallow file/responsibility map with source paths. |
+| What contract do callers use? | Types or signatures showing relevant inputs, outputs and errors. |
+| What changes? | A structural diff with enough unchanged context to preserve ownership and order. |
+| Which states and transitions are allowed? | A state diagram with consequential guards and outcomes. |
 
-```text
-on(publish)
-  if draft is invalid
-    return validation errors
-  save revision
-  queue notification
-```
+Select forms by the question, not a quota. Prefer the host's rendered form when it improves readability; short code specimens remain useful. Prose alone is sufficient for a simple fact.
 
-- Show nested execution and ordering with a call tree:
+## Preserve execution semantics
 
-```text
-publishDraft
-  validateDraft
-  saveRevision
-  queueNotification
-```
+Distinguish synchronous calls, queued work, callbacks, transactions and external effects when they control understanding. A call tree is not evidence of one stack, atomicity or runtime order. Mark asynchronous handoffs explicitly; use a sequence view when ordering is the point. Label proposed or inferred edges and unresolved dispatch. Retain relevant source paths or symbols without turning the view into a repository inventory.
 
-- Sketch UI composition with a component tree. Include relevant source paths, state, and module boundaries:
+For example, a supplied payment flow may need these separate observations:
 
-```text
-<DraftPage> (src/pages/draft.tsx)
-  useDraftState()
-  <DraftToolbar> (src/components)
-    <PublishButton />
-```
+| Boundary | Observation |
+| --- | --- |
+| Provider | Payment accepted. |
+| Local transaction | Recording the receipt failed. |
+| Retry | Must follow the supplied provider identity and reconciliation contract. |
 
-- Map file responsibilities or a broad refactor with a shallow annotated tree:
+This explains why a failure response does not establish that payment never happened. It is an illustrative model, not proof about a particular system.
 
-```text
-src/
-├── commands/       # accepts publishing actions
-├── drafts/         # owns draft state and validation
-└── notifications/  # delivers revision updates
-```
+## Show the change in its own shape
 
-- Use Mermaid for interactions, data flow, or state transitions:
-
-```mermaid
-sequenceDiagram
-    participant Editor
-    participant API
-    participant Store
-    Editor->>API: publish draft
-    API->>Store: save revision
-    Store-->>API: revision id
-    API-->>Editor: published revision
-```
-
-- When the surrounding shape already exists, show the change as a diff in that same form.
-
-Component change:
-
-```diff
- <DraftPage>
-   useDraftState()
-   <DraftToolbar>
-+    <PublishButton />
-   <DraftBody />
-```
-
-File responsibility change:
-
-```diff
- src/
- ├── commands/
- ├── drafts/
--└── notifications.ts
-+└── notifications/
-+    ├── queue.ts
-+    └── worker.ts
-```
-
-Call-order change:
+A conceptual diff shows a behavioral or structural delta; label it **Conceptual change**, not an exact source patch:
 
 ```diff
  publishDraft
@@ -88,31 +41,10 @@ Call-order change:
 +  queueNotification
 ```
 
-State or control-flow change:
+Show the complete block when most is new, omitted context would hide ownership or order, or the reader needs a copyable target. Exact source diffs retain their real paths and lines; sketches must not fabricate them. Keep before/after views comparable in scale, detail and labels.
 
-```diff
- on(publish)
-+  if draft is invalid
-+    return validation errors
-   save revision
--  send notification
-+  queue notification
-```
+## Deliver for the reader
 
-- Show the complete block when it is mostly new, omitted context would obscure ownership or order, or the reader needs a copyable target:
+Place the specimen beside the short explanation, consequence or evidence it supports. Keep only the relevant calls, files, props, states, boundaries and alternatives. Rendering cannot supply missing requirements or conclusions.
 
-```ts
-function revisionLabel(revision: number): string {
-  return `Revision ${revision}`;
-}
-```
-
-- For UI, layout, state comparisons, or concepts that need more visual freedom than Mermaid, create one focused HTML diagram or infographic using `html-artifact`; use the installed presentation capability for a short deck. Match the product's colors, typography, spacing, and components, use real labels and data, and make it readable on desktop and mobile. Follow `html-artifact`'s opening policy: open only when the user asks or render proof requires it, reuse an existing preview surface after updates, and otherwise return the verified locator.
-
-## Guidance
-
-Place each visual beside the brief explanation or evidence it supports. Include only the calls, files, props, states, boundaries, and alternatives relevant to the current question.
-
-Choose one or several representations as useful; do not force every form into the answer. A short prose answer is sufficient when a visual would add no clarity.
-
-Keep the representation faithful to supplied material. Distinguish proposed or illustrative shapes from observed implementation; preserve uncertainty and do not invent relationships or decisions. Keep before/after views comparable in scale, detail, and labels.
+For portable HTML, use `html-artifact`; for a presentation, use the installed presentation capability. Preserve the user's requested format, including living HTML plans. Reuse the existing document and preview where appropriate. Open only when requested or needed for render proof, following the delivery owner's policy.

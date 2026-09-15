@@ -38,6 +38,8 @@ Keep stable system context separate from change-specific claims. Do not attach d
 
 Use a guided sequence only when deliberate reading order materially improves comprehension. Scale every view to the conceptual breadth of the change; a small candidate should remain a compact reviewer aid. When an interactive relationship map or coordinated walkthrough earns its complexity, read [interactive projections](interactive-projections.md). Do not force a fixed number or taxonomy of views.
 
+Label a source-owned structural or behavioral sketch **Conceptual change** and preserve its observed/proposed status. Keep it beside the exact patch when both are useful; sketch symbols and ordering are not literal source hunks or line mappings.
+
 Use the change shape to select the view:
 
 - use a native semantic code block for a small change that needs no specialized interaction;

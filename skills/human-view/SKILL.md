@@ -21,7 +21,7 @@ When running in Codex on a new or materially recomposed surface, read [Codex def
 
 ## Give the subject a form
 
-Choose what leads before building a shell: a decision, a comparison, a mechanism, a specimen or a change. Let it shape hierarchy, type, density and space together. A quiet operational view and an expressive explainer deserve equal craft.
+Choose what leads before building a shell: a decision, comparison, mechanism, specimen or change. For a technical decision, lead with the supplied interface, state transition or execution path; place its decisive consequence beside it before extended narrative. Use `oro` for code-shape and visual explanations. Let the subject shape hierarchy, type, density and space; a quiet operational view and an expressive explainer deserve equal craft.
 
 If the first composition is an interchangeable hero-and-cards page or decorative dashboard, consider a structurally different arrangement before polishing. A color, font or radius swap alone does not solve that problem. Use familiar controls and repeated layouts where comparison or operation benefits from consistency. Preserve explicit aesthetics and accepted design; neither novelty nor austerity is a universal cure.
 
