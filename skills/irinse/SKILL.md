@@ -23,7 +23,7 @@ Load only the tool-specific guidance needed for the selected capability:
 - [property-test runners](references/property-test-runners.md) for engine/test discovery and reproducible generated cases;
 - [mutation testing](references/mutation-testing.md) for bounded campaigns and outcome interpretation;
 - [native runtime checks](references/native-verification.md) for scoped fuzzing, sanitizer and race-detector evidence;
-- [runtime evidence](references/runtime-evidence.md) for profiling or trace capture, format-specific reduction, and symbol attribution;
+- [runtime evidence](references/runtime-evidence.md) for resource-cost measurement, profiling or trace capture, format-specific reduction, and symbol attribution;
 - [database evidence](references/database-evidence.md) for real-engine fixtures, transaction context and generated SQL;
 - [build evidence](references/build-evidence.md) for resolved graphs, action outcomes, critical paths and incremental invalidation;
 - [CRAP measurements](references/crap-score.md) for compatible complexity and coverage inputs;
