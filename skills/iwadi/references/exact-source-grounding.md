@@ -22,6 +22,8 @@ Trace from the relevant API, symbol, behavior, error, configuration key, or test
 4. owning first-party specs/reference/release notes/examples; then
 5. current upstream head only when it is the relevant target.
 
+Use `irinse` when source retrieval or symbol resolution cannot establish the controlling path with ordinary search. Keep the pinned upstream version and acquisition authority; a tool's map, index or name match does not establish which implementation governs the claim. Ìwádìí retains the conclusion and its uncertainty.
+
 Delegate bounded source exploration when it would materially pollute the active context; return only evidence needed for the conclusion.
 
 ## Preserve provenance

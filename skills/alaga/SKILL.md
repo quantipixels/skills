@@ -7,6 +7,8 @@ description: Assess an issue, diagnose a failure, recover an active incident, or
 
 Own the requested intake, diagnosis, recovery or coding result and its proportionate proof. Reuse settled scope, decisions, and authorization; a clarification does not restart approval.
 
+Use `irinse` across modes for a material source-navigation, tool-evidence or readiness gap. Apply the returned evidence and its limits within the selected mode's authority and stopping point; ordinary project reads and checks stay direct.
+
 Enter the requested mode directly:
 
 - **Issue intake** — validate, reproduce, classify, or choose the next step for a report without implementation. Read [issue intake](references/issue-intake.md) and stop at its result.
@@ -26,7 +28,7 @@ Understand the affected behavior and its real owner. Choose the smallest idiomat
 
 Reconsider established choices when recurring friction or a concrete new capability changes their fit. Use `architect` for a consequential design choice; report wider opportunities without silently expanding delivery. Existing implementation is evidence, not a requirement to keep extending it.
 
-Discover commands, APIs, runtime mechanics, and conventions from the current project and authoritative documentation when needed. Use [diagnosis](references/diagnosis.md) for an unresolved causal mechanism, `architect` for unresolved technical structure, and `irinse` for a material tool or setup gap.
+Discover commands, APIs, runtime mechanics, and conventions from the current project and authoritative documentation when needed. Use [diagnosis](references/diagnosis.md) for an unresolved causal mechanism and `architect` for unresolved technical structure.
 
 For an accepted improvement to an existing test suite, read [test-suite improvement](references/test-suite-improvement.md). Keep independent proof judgment with `atunwo` and non-obvious measurement or tool execution with `irinse`; Alága owns the resulting test changes and verification.
 

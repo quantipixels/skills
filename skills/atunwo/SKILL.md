@@ -26,6 +26,8 @@ For GitHub/GitLab reviews, default to `gh`/`glab`; fall back to the provider API
 
 Distinguish source inspection, executed proof, and live acceptance. Tools and previous findings are leads, not verdicts. Repeating implementation rationale is not independent validation. Proof contaminated by concurrent operations on shared mutable state must be rerun only where affected.
 
+Use `irinse` when symbol/caller resolution, structural searches or incomplete tool output leave a material review claim unresolved. Preserve this review's read-only and execution restrictions. Unresolved identities or uncovered paths remain evidence gaps; tool use does not by itself substantiate a finding or acceptance.
+
 ## Assess and substantiate
 
 Consider contract compliance, engineering quality, proof, and credible failure paths separately. Passing tests does not establish maintainability; a style preference does not establish a defect. Read [boundary failures](references/boundary-failures.md) when state, concurrency, retries, migration, recovery, verification gates, or provider boundaries are material.
