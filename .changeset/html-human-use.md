@@ -1,0 +1,5 @@
+---
+"qp-skills": minor
+---
+
+Extract human-view as a default presentation method for understandable, inspectable visual content. Replace the proposed model-specific design skills, simplify duplicated HTML guidance, and keep construction, source fidelity and living behavior with HTML Artifact. Explicit design direction and specialist owners retain precedence.

@@ -53,7 +53,7 @@ Use enough detail for the reader's current decision or action. Keep critical mea
 
 Build the opening, hierarchy, and governing representation from the direction brief. Choose the representation from the highest-priority foreground relationship or result. Identify its message and relationship before choosing a chart, timeline, matrix, diagram, card system, or another form.
 
-Do not default to a dashboard, hero metrics, or uniform card grid. Use a dashboard scan layer only when the reader must monitor simultaneous measures and exceptions. Use cards for independently scanned peer units, not generic section containers. Decorative variation is not a report direction.
+Use a dashboard scan layer when the reader must monitor simultaneous measures and exceptions; cards suit independently scanned peer units.
 
 Keep supplied designs, screens, diagrams, prototypes, demos, interface specimens, and other visual evidence primary when safe. Do not reduce them to filenames or prose. Report composition does not authorize creating or iterating a prototype; treat supplied prototype-like material only as source evidence for the report.
 
@@ -61,13 +61,7 @@ Keep the opening useful without a disclosure. When compatible, include a skip li
 
 Keep navigation unobtrusive and preserve useful landmarks when adapting the base controls.
 
-While selecting or materially changing an unsettled information design, use these critiques:
-
-- **Purpose counterfactual:** changing purpose changes opening, order, or action layer.
-- **Scenario:** the governing representation reveals the unique scenario without the title.
-- **Interchangeability:** removing title and subject nouns does not leave a composition suitable for an unrelated report.
-
-These critiques help choose a direction; they do not require redesign of an accepted layout. Repeat them only when changed purpose, scenario, content, or evidence unsettles that direction.
+Use `human-view` to resolve an unsettled composition. Preserve an accepted layout unless changed purpose, content or evidence makes it unsuitable.
 
 Before delivery, always run these content and evidence checks:
 
