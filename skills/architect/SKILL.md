@@ -23,7 +23,7 @@ Pin only what can change the technical design: subject/candidate, problem or des
 
 Across modes, use `irinse` when structural, resolved dependency, flow, history, rule, runtime, database or build evidence materially controls the architecture decision and needs specialist acquisition or interpretation. Return to the actual interface, invariant or ownership question; a tool result is not an architecture verdict.
 
-Read only evidence capable of changing the architecture: current domain/project knowledge, code/tests/configuration when implementation exists, runtime/deployment/operations evidence, governing decisions, and bounded history/provenance where it explains current structure. Observed implementation proves current structure or behavior, not automatic architectural intent.
+Read only evidence capable of changing the architecture: current domain/project knowledge, code/tests/configuration when implementation exists, runtime/deployment/operations evidence, governing decisions, and bounded history/provenance where it explains current structure. Retrieve relevant past decisions and lessons selectively and verify their applicability; no full archive read is required. Observed implementation proves current structure or behavior, not automatic architectural intent.
 
 Use `amose` and `iwadi` as needed.
 

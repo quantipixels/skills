@@ -54,7 +54,7 @@ For each proposed durable improvement, state:
 - expected benefit and risk; and
 - proof needed after the change.
 
-Prefer replacing, removing, moving, or clarifying existing guidance over appending another rule. Reject an instruction change when the current instruction already required the correct behavior, the evidence is model variance, the real fix belongs to the owning product/system/process, or the edit would only restate the same rule.
+For a recurring mechanical failure, prefer an enforceable type, constraint, API or check over another reminder; verify that it rejects the failure. Judgment-dependent lessons remain prose. Retire redundant guidance only when enforcement covers its full scope. Recommend the smallest owned correction; no automatic CI gate or tool is required. Reject instruction changes that merely restate an existing rule, treat model variance as a new requirement, or substitute prose for a product/system fix.
 
 Stop at recommendations and an evidence-backed handoff to the natural owner unless remediation is also authorized. A new skill identity, routing change, promotion, fold or removal may be proposed; apply it only within the requested remediation scope.
 
