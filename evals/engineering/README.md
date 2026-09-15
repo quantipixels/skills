@@ -2,6 +2,10 @@
 
 This standard-library kit prepares bounded control/QP-guidance comparisons without making model or network calls. It contains no provider registry, credentials, SDK, or agent framework.
 
+The `fixtures/reuse` task is an additional standalone coding screen for finding existing behavior under different terminology, preserving public domain values, and integrating API/admin/worker consumers. Copy it to a disposable actor directory and give the actor its task plus the selected guidance. Keep `oracle.py` outside that directory. After the attempt, run `python3 evals/engineering/oracle.py <actor-directory> reuse`; inspect the returned diff separately for justified reuse and unnecessary machinery. The oracle checks persistence/reopen, legacy values, worker eligibility, admin interoperability and rejection behavior. It does not prove implementation simplicity or complete consumer discovery.
+
+This additive-feature screen is deliberately outside the paired repair profiles: its original lacks the requested API actions, so returned feature tests may raise an expected runtime error rather than the assertion failure required by the repair checker. Preserve that distinction instead of labelling execution errors as successful regression proof. Screening observations are in `observations/`; they are not controlled evidence of guidance superiority.
+
 The default `historical` profile retains the completed eight-run Astra screening study shape: settlement retry/legacy-data compatibility and partial-batch preservation, each with control/current-Alága arms and two repetitions. The existing batching cells remain the ordinary implementation reference where an extra engineering method is not warranted.
 
 Prepare all eight frozen cells from the repository root:

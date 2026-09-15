@@ -362,7 +362,67 @@ def profile():
     }, probe
 
 
-if case == "settlement":
+def reuse(mode):
+    from api import dispatch
+    from collections_service import Collections
+    from store import Store
+    from worker import run
+    from admin import set_collection_hold
+
+    with tempfile.TemporaryDirectory() as temporary:
+        path = Path(temporary) / "accounts.db"
+        db = sqlite3.connect(path)
+        db.executescript("CREATE TABLE accounts (id TEXT PRIMARY KEY, state TEXT NOT NULL, cents INTEGER NOT NULL, suspended INTEGER NOT NULL DEFAULT 0); INSERT INTO accounts VALUES ('legacy','O',3700,1); INSERT INTO accounts VALUES ('closed','C',1900,0);")
+        db.close()
+        store = Store(path)
+        try:
+            service = Collections(store)
+            store.add("new", 1234)
+            if mode == "rejection":
+                for action, key, error in (("pause", "missing", KeyError), ("resume", "missing", KeyError), ("pause", "closed", ValueError), ("resume", "closed", ValueError)):
+                    try:
+                        dispatch(service, action, key)
+                    except error:
+                        pass
+                    else:
+                        raise AssertionError((action, key, "should reject"))
+                assert store.get("closed")["state"] == "C"
+                return
+            key = "legacy" if mode == "legacy" else "new"
+            before = dispatch(service, "show", key)
+            dispatch(service, "pause", key)
+            dispatch(service, "pause", key)
+            store.close()
+            store = Store(path)
+            service = Collections(store)
+            assert dispatch(service, "show", key) == before
+            effects = []
+            class Provider:
+                def collect(self, account, cents): effects.append((account, cents))
+            run(store, Provider())
+            assert not any(account == key for account, _ in effects), effects
+            assert not any(account == "closed" for account, _ in effects), effects
+            if mode == "admin":
+                set_collection_hold(service, key, False)
+            else:
+                dispatch(service, "resume", key)
+                dispatch(service, "resume", key)
+            effects.clear()
+            run(store, Provider())
+            assert (key, before["cents"]) in effects, effects
+            assert dispatch(service, "show", key) == before
+            if mode == "admin":
+                set_collection_hold(service, key, True)
+                dispatch(service, "resume", key)
+                assert any(row["id"] == key for row in store.eligible())
+        finally:
+            store.close()
+
+
+if case == "reuse":
+    for name in ("pause-resume", "legacy", "admin", "rejection"):
+        check(name, lambda name=name: reuse(name))
+elif case == "settlement":
     for name in ("retry", "completed_mismatch", "uncertain_mismatch", "distinct", "legacy"):
         check(name, lambda name=name: settlement(name))
 elif case == "batching":
