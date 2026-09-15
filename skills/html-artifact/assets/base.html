@@ -5,9 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Artifact title</title>
   <link rel="icon" type="image/png" sizes="32x32" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABmJLR0QA/wD/AP+gvaeTAAADTklEQVRYhe2VT2gcZRjGf+83M21JtmJKy0bZP98kG6TSbbVRsHip9qIHoVSoIB56ETx4sKEgQqE9tmD1LBS04EGFaKCK1EO9WUFiIImtmF1mFirYxFPAEHdn5vXQWdymm9lNmuLBPDB8M9/3Ps/3vO/3Z2Ab2+iBfD4/mM/nBx8WT7p1WmuHgXeBk8DjaffvIvK5MeZivV5f3CrefQZKpdLzIjIlInuBZWAmHToM7AaWVPV4o9H4YSt4pvOjWCyOGmO+FpEhVT0L5MMwPBqG4dEoivLAOWCPiFwtl8v+g/K6lfALa636vv92Rsw71lq11n72oDzoWAJr7aPAIhCEYbgfSNbRMtbaX4Gy67r7oigym+HVarVlALdQKOxxXfdDVS2IiAdMZ4gAJMaY6SRJxqIoOpImsSFeq9X6ylp7O4qi067neYUkSV4XERdARB7JEAFAVQtpO55yEJFiH7zdafyLqhp5nnfJBEEwm8vlhhzHeSYNMtkykCTJYwDGmEXXdZfSvuE+DLhpeziXyw0FQTB7zzG01v4CPOE4zlP1en2+m4jv+4dUdQYQY8wr6eRXAXUc52AP3rSq3mo0GtV2/z3Zish5wInj+MtSqTSSmnrN9/2TAKOjoxVVnaT7BSZ98BzuHsl/SWtVrLUfAKeBFRH5VlVfTc1NqurLwABwAziypgI/As9l8UTkUhAEZzrnu2+9wzCcAN5S1ZW2CED6/peIvAl816UC13rx1k4O4HYRIgzDj6y1V1T1mDFmf5rlTRG5HgTBqrX2/GZ43ThdDaRiq8A36dM3NsrreeQeNv5zA+suQQ8kAHEcK9y9Ccm+hrfWgIhMqepIHMc3AFzXvSIiU5vSyhqcO1A46BjnWW/F+3SsVvt7I8ILlcrO1kDrjTiJf6rO355dLy5zDzjGTCh6uTnQnLtZLR7XPvaMgpk7VD7RHGzOK3rZMWYiKz6zAgtPD+9rRt4FRE6lZuui8kmsXN+16k23q7JQqexc3dUaF4djonoKGAES0I93OK33xmb+WNqUgTZuVUvjscgZQU8AOzrSXU5VOn/hTUEmgfefnG383Eu7LwNtzB3w82Lilwy8gDCmKnsBRPRPhd9E+T5OnGvV+eDORnS38f/GPz6FrN7CzMXlAAAAAElFTkSuQmCC">
-  <!-- Copy this template as one file. The favicon and Quantipixels logo are
-       embedded. Set the language, title, heading, and control labels for
-       the artifact; add supplied content inside main. -->
+  <!-- Reuse these controls and foundations; adapt the composition to the task.
+       Replace the embedded QP mark/favicon with readily available project assets
+       when appropriate. Set language, title and control labels. -->
   <script>
   (() => {
     const media = window.matchMedia("(prefers-color-scheme: dark)");
@@ -252,7 +252,7 @@ overflow, reduced-motion, and print plumbing without choosing an aesthetic.
     .artifact-shell { max-inline-size: 72rem; margin-inline: auto; }
     .artifact-header { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
     .artifact-brand { display: block; flex-shrink: 0; padding: 0.5rem 0.75rem; border-radius: 0.25rem; background: #111; color: #fff; }
-    .artifact-brand > svg { display: block; inline-size: 155px; }
+    .artifact-brand > svg { display: block; inline-size: 48px; }
     main { margin-block-start: 2rem; }
     @media print {
       html[data-theme], :root { color-scheme: light; }
@@ -266,9 +266,9 @@ overflow, reduced-motion, and print plumbing without choosing an aesthetic.
   <a class="skip-link" href="#artifact-content">Skip to content</a>
   <div class="artifact-shell">
     <header class="artifact-header" id="artifact-top" data-back-to-top-target tabindex="-1">
-      <!-- Brand mark copied from the live https://quantipixels.com/skills header. -->
-      <div class="artifact-brand" role="img" aria-label="Quanti Pixels Skills">
-        <svg class="brand-logo" viewBox="0 0 310 132" width="155" height="66" aria-hidden="true" focusable="false">
+      <!-- QP mark only; project branding may replace this. -->
+      <div class="artifact-brand" role="img" aria-label="Quanti Pixels">
+        <svg class="brand-logo" viewBox="0 0 160 132" width="48" height="40" aria-hidden="true" focusable="false">
         <g fill="none" stroke-width="9" stroke-linecap="round" stroke-linejoin="round">
           <g stroke="#ffffff">
             <circle cx="45" cy="42" r="27"/>
@@ -280,7 +280,6 @@ overflow, reduced-motion, and print plumbing without choosing an aesthetic.
           <circle class="brand__gaze-dot" cx="115" cy="65" r="6.5" fill="#ffffff" stroke="none"/>
           <path stroke="#d52e1e" d="M41 108Q80 134 119 108"/>
         </g>
-        <text x="178" y="78" fill="#ffffff" font-family="Arial, Helvetica, sans-serif" font-size="48" font-weight="700" letter-spacing="-1.5">skills</text>
       </svg>
       </div>
 <button

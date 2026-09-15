@@ -1,12 +1,12 @@
 # Interactive projections
 
-Read this file only when an HTML view needs an interactive relationship map, coordinated perspectives, or a guided sequence. This branch can support a report, plan, code change, comparison, architecture view, or any other lane when interaction materially improves the supplied reader outcome.
+Read when coordinated views, a guided sequence, a supplied-model demonstration or reader feedback improves an HTML artifact's usefulness.
 
 Use [visual reasoning](visual-reasoning.md) to decide whether a visual form is warranted and which supplied relationship should govern it. This reference owns the interaction contract only after that choice is made.
 
 ## Earn the interaction
 
-Start with the smallest static representation that preserves the relationship. Add interaction only when it reduces real orientation or navigation cost, such as switching between distinct perspectives, following a non-obvious sequence, inspecting dense connected evidence, or moving between an overview and exact detail.
+Start with a faithful static representation. Add interaction when it helps the reader inspect relationships, understand a supplied model or express a precise response: compare perspectives, follow a sequence, inspect connected evidence, vary a model input or annotate a proposed change.
 
 Do not force a graph, fixed view taxonomy, zoom, search, or tour into every artifact. A small input should remain compact. Multiple views must answer different questions without repeating the same explanation.
 
@@ -46,8 +46,24 @@ When applicable:
 
 Prefer source attachments in the detail layer rather than crowding the governing representation. Embed or use relative local visual assets when they are required evidence; do not hotlink them into an otherwise local artifact.
 
+## Demonstrate a supplied model
+
+Use controls when changing a parameter or stepping through a sequence reveals a mechanism the reader needs to understand. Pin the owner's rules, input domain, units, assumptions and expected examples. Show which result changed and why; preserve the baseline and provide reset. A model output is a calculated illustration, not a measurement or proof of the real system. Return missing model semantics to its owner; use `adanwo` when the task is to discover or evaluate new behavior rather than explain supplied behavior.
+
+## Return the reader's response
+
+When useful, let the reader annotate a specific section, select among supplied alternatives or adjust proposed values. Export a readable response with artifact identity/revision, stable targets and the proposed changes; make copy/download success or failure visible beside the control. Provide selectable text if clipboard access is unavailable.
+
+Keep preview, proposal and accepted state distinct. Local selection, copying or an “approve” label does not update the canonical plan or grant implementation authority. The owning workflow receives and reconciles the response, including stale revision conflicts. Do not send content to a service or silently persist sensitive notes merely to support feedback.
+
+## Small interaction details
+
+Make controls respond immediately. Put feedback at the affected scope: changed count beside the filter, empty state within the result, copy result beside its button. Keep critical caveats and required actions persistent rather than in temporary toasts. Preserve focus and nearby context through updates.
+
+Use motion to explain a state transition or spatial relationship when useful, not as a reading prerequisite. Reversible interactions should retarget from their current state; repeated actions must not queue decorative animation. CSS transitions usually suffice for a simple state change. Keep hover enhancements optional, touch/keyboard operation complete and reduced-motion results immediate and understandable.
+
 ## Verify the exact model and runtime
 
 Structural proof checks unique identities, valid relationship endpoints, valid guided-step targets, source attachments, escaped inline data, declared dependency identity, and absence of unrequested runtime hosts.
 
-Browser proof is required when the interaction controls the artifact's usefulness. Check initial rendering, view switching, direction markers, selection/detail synchronization, tour navigation, search/filter behavior, zoom/pan/fit when present, keyboard/focus, narrow-width overflow, reduced motion, console/page errors, and the dependency-failure fallback. Report the view as unverified when required browser proof cannot run.
+Browser proof is required when interaction controls usefulness. Exercise only the introduced claims: for example paired highlighting, filtering/reset, a known model case, exported target/revision, rapid reversal, or selection/detail synchronization. Include relevant keyboard/touch, narrow-width and failure behavior. Report the interaction as unverified when required browser proof cannot run; do not run an unrelated interaction matrix.

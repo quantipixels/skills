@@ -6,26 +6,19 @@ Follow the artifact language's punctuation conventions. Do not impose an English
 
 ## Select the report contract
 
-Before implementation, derive one internal direction brief in this order:
+Choose the reader's job before composing. Preserve an explicitly required format or schema; otherwise keep this brief internal and compact:
 
 | Field | Decision rule |
 | --- | --- |
-| Format | Preserve a named form, governed schema, contract deliverable, required template, or explicit selection. Its identity and order override later fields |
-| `Purpose` | Preserve the supplied reader outcome, such as decide, approve, act, correct, monitor, verify, learn, compare, or retain a record. Otherwise infer one exact outcome |
-| Family | Select the recognized evidence and accountability contract from the claims and proof required, not from the subject area |
-| Primary reader and use | Identify who acts, their authority, and what they do after reading |
-| Unique scenario | Identify what changes emphasis within the family, such as urgency, lifecycle stage, severity, disputed evidence, confidentiality, candidate count, or decision deadline |
-| Entry resource and context | Record source authority, shape, completeness, provenance, confidence, freshness, limits, and gaps |
-| Governing question and relationship | State what the report must answer and the dominant supplied evidence relationship |
-| Artifact thesis | State the one source-supported sentence the opening and central representation must prove or explain |
-| Information direction | Choose one opening, reading order, central representation, evidence hierarchy, and navigation rule |
-| Density | Choose `Executive`, `Working`, or `Archival` |
-| Compression | State what must stay exact, may be summarized or aggregated, should remain linked, and must be excluded |
-| Rationale | State why the direction fits this report |
+| Reader and purpose | Who needs to understand, decide or act, and what do they need from this view? |
+| Governing question | What source-supported conclusion or relationship should the opening explain? |
+| Evidence and limits | What is current, authoritative, uncertain, human-critical or required by the report's contract? |
+| Composition | What reading order, central representation, visual premise and density serve this question? |
+| Detail | What stays exact and visible, what supports the argument, and what can remain linked? |
 
-The table order sets precedence. Keep secondary readers and purposes in supporting layers. Do not create a hybrid for multiple purposes. Ask only when unresolved ambiguity would change the family or reader outcome. Otherwise choose the best-supported contract.
+Keep secondary purposes in supporting layers. Ask only when ambiguity would materially change the reader outcome or source meaning.
 
-Keep the brief internal and render only fields that help the reader. Return one direction, never rejected directions, design options, visual variants, or prototype behavior. Apply decorative treatment after information direction. Palette, typography, illustration, borders, and brand expression cannot determine the argument.
+Return one finished report by default. An explicitly requested comparison may present supplied visual variants or exploration results; use `adanwo` when creating a decision prototype is the actual task. Design representation and visual expression together while keeping the argument source-owned.
 
 Use industry only as an internal vocabulary cue. Show it only when supplied or useful to the reader. Never infer industry facts. Use the installed presentation capability for a requested slide deck.
 
@@ -43,23 +36,9 @@ The following cues are not an enum. Use the supplied reader outcome when it is m
 | Compare or select | Choice, candidates, common criteria, and supplied disposition | Comparable evidence, meaningful differences, trade-offs, risks, and criteria sensitivity |
 | Retain a record | What occurred or changed, when, and current consequence | Sequence, state change, provenance, superseded conclusions, and follow-up |
 
-### Let family set required content
+### Preserve the report's obligations
 
-These are conventional content and evidence contracts, not fixed page templates. Preserve binding local or institutional rules. Omit unsupported optional material and mark unsupported required material as an input gap.
-
-| Family | Required content and evidence | Direction cue |
-| --- | --- | --- |
-| Governed disclosure | Required items in prescribed identity and order, plus source and assurance records | Mirror the schema; add navigation and a scan layer without reordering protected obligations |
-| Audit or assurance | Objective or criteria, scope, method, findings, evidence, conclusion, limits, responsible views, and supported correction | Make traceability and exceptions the organizing relationship |
-| Evaluation, research, or experiment | Question, intended use, context, method, scope, findings, confidence, limits, gaps, conclusion, and supported implications | Organize around questions and findings rather than work chronology |
-| Business case | Case for change, objectives, counterfactual, options, value, feasibility, affordability, risk, delivery, monitoring, and evaluation | Show the case-to-delivery argument and why the preferred course is credible |
-| Incident report or postmortem | Impact, factual sequence, response, recovery, contributing causes, evidence, lessons, and owned actions | Lead with impact and supported state or causal change; temporal order alone does not prove cause |
-| Status or delivery report | Evidence cutoff, trajectory, milestones, dependencies, risks, decisions, owners, and next actions | Emphasize exceptions, movement, blockers, and decisions needed now |
-| Performance or analytical report | Definitions, targets, actuals, trends, variance, drivers, anomalies, uncertainty, and actions | Lead with the supported quantitative relationship, not a grid of headline numbers |
-| Technical or decision assessment | Question or current state, conceptual model, constraints, evidence, alternatives, trade-offs, risks, decision or priorities, and proof | Make the governing technical relationship or before-and-after consequence central |
-| Product or experience definition | User need, context, outcomes, requirements or states, non-goals, evidence, risks, and success evidence | Organize by the user journey, state model, or requirements |
-| Candidate or vendor assessment | Candidate identities, common criteria, normalized evidence, differences, trade-offs, risks, and supplied disposition | Keep candidates comparable and expose criteria sensitivity without manufacturing a recommendation |
-| Case study or outcome record | Context, challenge, intervention, outcome, evidence, limits, and lessons | Organize by change and supporting evidence; sequence alone does not prove cause |
+A governed disclosure retains its prescribed items and order. Assurance needs criteria-to-evidence traceability and exceptions; an experiment needs method and limits; an incident needs impact and supported causal findings; a business case needs alternatives, cost, feasibility and risk. Use the actual contract, not a mandatory family taxonomy. Mark missing required evidence as a gap, and omit unsupported optional sections.
 
 ### Let the entry resource choose the representation
 
@@ -72,7 +51,7 @@ These are conventional content and evidence contracts, not fixed page templates.
 - Screenshots, designs, diagrams, and other visual evidence stay primary when safe to embed.
 - Findings, decisions, or narrative evidence support a supplied argument, hierarchy, or before-and-after relationship.
 
-Use scenario to decide what dominates. Urgency can move action ahead of background. Disputed cause can make provenance and competing evidence dominate. Early lifecycle can make uncertainty and prerequisites dominate. Sparse context can require a constrained explanation or input gap.
+Use the actual situation to decide what dominates. Urgency can move action ahead of background. Disputed cause can make provenance and competing evidence dominate. Early lifecycle can make uncertainty and prerequisites dominate. Sparse context can require a constrained explanation or input gap.
 
 ## Shape the record
 
@@ -92,16 +71,15 @@ Keep supplied designs, screens, diagrams, prototypes, demos, interface specimens
 
 Keep the opening useful without a disclosure. When compatible, include a skip link, title and status, local navigation, governing representation, supporting evidence, limits, resource disclosure, and revision state. Omit empty sections. Link conclusions and recommendations to evidence or source identifiers.
 
-The [base template](../assets/base.html) includes a back-to-top control after the reader-facing content. Keep its target on the opening landmark and preserve that document order when adding report content.
+Keep navigation unobtrusive and preserve useful landmarks when adapting the base controls.
 
 While selecting or materially changing an unsettled information design, use these critiques:
 
 - **Purpose counterfactual:** changing purpose changes opening, order, or action layer.
-- **Family counterfactual:** changing family changes evidence obligations and support structure.
 - **Scenario:** the governing representation reveals the unique scenario without the title.
 - **Interchangeability:** removing title and subject nouns does not leave a composition suitable for an unrelated report.
 
-These critiques help choose a direction; they do not require redesign of an accepted layout. Repeat them only when changed purpose, family, scenario, content, or evidence unsettles that direction.
+These critiques help choose a direction; they do not require redesign of an accepted layout. Repeat them only when changed purpose, scenario, content, or evidence unsettles that direction.
 
 Before delivery, always run these content and evidence checks:
 

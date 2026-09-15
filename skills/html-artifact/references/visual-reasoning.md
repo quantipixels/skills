@@ -2,9 +2,26 @@
 
 Use when an HTML Artifact needs shaped visual reasoning beyond ordinary prose/table composition.
 
-Use `oro`'s visual-explanation branch.
+Use browser-native composition to expose the relationship, not a text diagram wrapped in a styled container. `oro` owns clear explanations; this reference owns their HTML representation.
 
-HTML Artifact adds only the browser-projection concerns below.
+## Make the relationship inspectable
+
+These are techniques, not required sections or a component quota. Choose what answers the reader's actual question.
+
+| Reader needs to… | Useful representation and behavior |
+| --- | --- |
+| Follow a mechanism or failure | A labelled flow, sequence or state view with the decisive branch and nearby explanation; select a step to inspect its evidence without losing the path. |
+| Compare implementations or languages | Aligned code/specimen pairs with corresponding spans and notes highlighted together. State the preserved semantics and meaningful differences, not just syntax. |
+| Judge a choice | Comparable alternatives beside the concrete schema, API exchange, screen or diagram they change. Keep the current choice distinguishable from a preview. |
+| Understand scale, distribution or change | A chart with units, denominator, baseline and the important contrast. Keep exact values available; use aligned tables when lookup is the job. |
+| Learn an unfamiliar concept | A small labelled example linking a term to its mechanism and consequence. A supplied model may support bounded controls, visible outcomes and reset; disclose its assumptions and limits. |
+| Review ongoing work | Changes, deviations, their consequences and decisions needing attention, with execution detail available separately. Use source-established significance, not guessed priority. |
+
+Use semantic HTML and CSS grid/flex for aligned specimens, lanes and simple stages; use SVG when paths, spatial relationships or exact marks carry meaning. A `div` is a layout container, not a substitute for a button, table, heading or labelled figure. Use mature chart/diagram capabilities when they improve fidelity or avoid fragile bespoke code.
+
+Keep corresponding entities stable across views: identity, color role, scale and labels. Linked highlighting preserves context; filtering removes it, so name the effect and expose a reset and result state. Support focus or explicit selection as well as hover. Put essential explanation beside the figure or in a persistent detail region, not only in a tooltip.
+
+Reserve space for changing values and feedback so controls and reading position remain stable. Use tabular numerals for aligned numeric comparisons. Give chart selections readable values and non-color cues; never make color recognition or pointer precision the only way to inspect the evidence.
 
 ## Coverage and composition
 
@@ -44,7 +61,7 @@ Do not infer semantic orphan status from page topology alone; consume the owning
 
 Use a chart/plot when the governing relationship is quantitative and a visual pattern matters more than exact lookup. Use a graph/network view when connected structure is too dense for a small tree or Mermaid diagram. Use a table when aligned lookup/comparison remains clearer.
 
-For large or interactive structures, preserve a complete accessible reading alternative or equivalent semantic fallback. Interaction may reveal, filter, navigate, compare, select, or sequence supplied meaning but must not create new domain meaning.
+For large or interactive structures, preserve a complete accessible reading alternative or equivalent semantic fallback. Model-derived demonstrations and reader proposals follow [interactive projections](interactive-projections.md); they do not become observed evidence.
 
 ## Candidate comparison in the browser
 

@@ -12,6 +12,8 @@ Determine whether the tool is ready, needs setup, is missing, or is unsupported 
 
 For native agent declarations, resolve host format, discovery, and precedence; use `oro` in its agent-facing branch for instruction text. Verify discovery and permission effects separately from file validity, and report runtime checks not performed. Setup does not authorize launching downstream work.
 
+Distinguish requested model, effort and sandbox settings from observed runtime behavior. Prefer supported host metadata; investigate only fields needed to establish the selected capability. A read-only prompt or unchanged files do not prove enforced isolation. If host-enforced isolation or read-only access is required but unavailable or unverified, stop the dependent work. Otherwise proceed only within existing authority, state the limitation, and use scoped before/after checks when non-mutation is part of acceptance; those checks are not a sandbox guarantee.
+
 ## Bound mutation and authority
 
 A request to use a tool does not authorize broader installation, persistent or cloud-connected changes, credential/account/trust changes, repository or editor integration, material-cost downloads, or destructive removal of unrelated state.
