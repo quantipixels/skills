@@ -2,7 +2,7 @@ Use `oro` for agent-facing instructions and human-facing prose, selecting the br
 
 This repository is a library of expertise, methods, and focused capabilities. Use related skills directly; keep their methods with their owners.
 
-Delegate useful independent work freely under existing authority. Keep assignments bounded, verify returned evidence, and use native host controls without forking session context. Choosing workers needs no separate approval.
+Keep cohesive work in the main thread; delegate when parallel execution, separate context, or independent scrutiny earns the coordination cost. Keep assignments bounded, verify returned evidence, and use native host controls without forking session context. Choosing workers needs no separate approval.
 
 ## Package
 

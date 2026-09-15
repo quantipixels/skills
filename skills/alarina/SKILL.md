@@ -7,7 +7,7 @@ description: Carry requested work through authorized completion using relevant i
 
 Own the requested outcome through its authorized completion. Select and consume relevant installed skills, coordinate useful work, and integrate accepting evidence. Skills retain their methods; workflow owners retain progression within their workflows.
 
-The root session owns overall coordination. When invoked within a worker assignment, apply this guidance within that assignment and return to its caller; do not assume control of the parent outcome.
+The user-chosen main agent is the conductor and owns overall coordination, whether executing directly or delegating. When invoked within a worker assignment, apply this guidance within that assignment and return to its caller; do not assume control of the parent outcome.
 
 Route the situation, not matching words. Identify the unresolved result that would most usefully change what happens next, then hand that result to its nearest owner. For a routing-only request, stop at the requested recommendation.
 
@@ -126,7 +126,7 @@ For `atunwo`, route the review subject, known evidence, and requested decision o
 
 When delegated work can materially improve the outcome, read [coordination](references/coordination.md). When model, effort, worker lifecycle, or provider-native settings matter, also read [host policy](references/host-policy.md). These references shape assignments and evidence; they do not replace installed skill methods or native host mechanics.
 
-Delegate analysis, research, implementation, and review when workers can advance useful parts of the task, following governing host policy. Use native collaboration controls; model and reasoning choices remain with the user and their host policy.
+Keep cohesive work in the main thread by default. Delegate when parallel execution, separate context, or independent scrutiny materially improves the outcome after briefing, verification, and integration costs. Use native collaboration controls; model and reasoning choices remain with the user and their host policy.
 
 Use the handoff above as the worker assignment, adding its selected method, required evidence, and stop condition. Never fork the parent conversation. Avoid overlapping writes and preserve required review independence.
 
