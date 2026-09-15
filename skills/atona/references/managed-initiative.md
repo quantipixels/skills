@@ -12,7 +12,7 @@ When a confirmed decision or material fact changes, update the affected plan mea
 
 For every material initiative, maintain one semantic plan using [the plan record template](../templates/plan-record.md) as a contract rather than a rigid outline.
 
-Keep it in current context when one-session use is sufficient. Persist only when continuity, recovery, independent review, or downstream consumption needs durable identity. Prefer an existing intentional project destination; otherwise use `.qp/atona/` in the current workspace.
+Keep it in current context when one-session use is sufficient. Persist only when continuity, recovery, independent review, or downstream consumption needs durable identity. Follow the main skill's continuity convention: reuse the existing destination, or create `.qp/atona/<datetime>-<slug>/plan.md` with `plan.html` beside it. Keep the creation timestamp and paths stable through updates.
 
 When execution is bound to a concrete working directory, persist its absolute path and branch as `<branch-name> [main|worktree]`. For a linked worktree, also persist the absolute main-worktree path. Treat that workspace and its `.qp` as the current initiative candidate; update the workspace fields when execution moves.
 

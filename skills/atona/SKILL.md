@@ -61,7 +61,7 @@ Use `wo-pr` in publication mode for authorized publication and its stewardship m
 
 ## Preserve continuity and close
 
-Keep the plan in context for a short session. When continuity or downstream use needs persistence, update the existing project plan; otherwise use `.qp/atona/`. Record the absolute execution workspace and `branch: <branch-name> [main|worktree]`, plus the main-worktree path for a linked worktree. Update them when execution moves.
+Keep the plan in context for a short session. When continuity or downstream use needs persistence, update the existing project plan; for a new plan without a project destination, use `.qp/atona/<datetime>-<slug>/plan.md` and keep its living view beside it as `plan.html`. Set the filename-safe UTC timestamp once at creation (for example, `20260914T153000Z`) and reuse the paths throughout delivery; do not rename existing records to adopt this convention. Record the absolute execution workspace and `branch: <branch-name> [main|worktree]`, plus the main-worktree path for a linked worktree. Update them when execution moves.
 
 Keep ordinary rationale in the plan and living view; read [durable reconciliation](references/durable-reconciliation.md) only when required governing knowledge needs updating.
 
