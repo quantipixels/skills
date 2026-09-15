@@ -6,6 +6,8 @@ Use for an established choice whose fit is in question. Keep Architect's survey/
 
 Identify the responsibility, original rationale when known, current constraints and what changed: user needs, operating scale, repeated workarounds, a maintenance/support problem, or a newly available language, framework or tool capability. Separate a binding product or compatibility requirement from an incidental implementation choice. Missing rationale is uncertainty, not proof the choice was wrong.
 
+When an unexplained workaround controls the decision, follow its symbol or policy through introduction, substantive diffs and renames; Git's pickaxe can locate a changed phrase when file history is misleading. Read the relevant PR discussion, linked incident or decision and edge-case proof. Distinguish directly stated rationale from supported inference and unknown intent. Stop when the live constraint is resolved; a test's shape or a copied pattern alone does not establish why the design was chosen.
+
 Trace one representative development change through the affected boundary and, when behavior is externally observable, one user journey. Find where callers reconstruct policy, maintainers cross unrelated owners, feedback arrives late, or agents lose the authoritative source. Use observed cost or failure and material counterevidence; a preferred pattern or tidier directory tree is not a finding.
 
 ## Keep three outcomes distinct

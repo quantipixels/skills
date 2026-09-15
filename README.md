@@ -97,6 +97,8 @@ Alárinà uses installed skill definitions as the dynamic inventory.
 
 See [a worked engineering example](docs/engineering-example.md) for how identity, recovery, architecture and tests fit together in a retry fix.
 
+Use the [engineering playbooks](docs/engineering-playbooks.md) for concrete requests and expected evidence when verifying a project, investigating performance, changing populated data, debugging, refactoring or resolving review feedback.
+
 ## Update
 
 For a Git-backed Codex plugin installation:

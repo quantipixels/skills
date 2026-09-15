@@ -37,6 +37,8 @@ When later work cannot yet be stated responsibly, read [progressive shaping](ref
 
 For consequential, uncertain, difficult-to-reverse, or materially coordinated work, run a [premortem](references/premortem.md) and reconcile material findings before treating the affected plan as execution-ready.
 
+When a consequential rollout needs operational acceptance or data recovery, read [rollout readiness](references/rollout-readiness.md). Keep its checks and stop conditions in the current plan or runbook; delivery and live execution retain their existing owners and authority.
+
 Use [managed initiatives](references/managed-initiative.md) only when the governing workflow requires named readiness states, coordinated multi-candidate delivery, or a durable lifecycle record. Its formal gates supplement this workflow; size alone does not require them.
 
 ## Coordinate delivery and establish completion
