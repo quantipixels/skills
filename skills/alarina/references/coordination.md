@@ -4,7 +4,7 @@ Read when several owners or delegated workers can materially advance the request
 
 ## Shape useful assignments
 
-Treat the current root session as conductor; do not create another manager. Delegate independent analysis, research, implementation, review, and bounded evidence work when it improves capability, speed, context use, or independence. Adding a useful worker within existing task authority needs no separate permission and grants no new authority. Choose the smallest useful set; low worker cost does not justify arbitrary headcount, overlapping work, or repeated results.
+The main agent conducts and may execute the whole task directly. Preserve accumulated understanding for coupled work. Delegate bounded work when parallel execution, separate context, or independent scrutiny earns its briefing, verification, and integration cost. While workers run, advance independent work when available; keeping the conductor idle is not a goal. Adding a useful worker within existing task authority needs no separate permission and grants no new authority. Choose the smallest useful set; low worker cost does not justify arbitrary headcount, overlapping work, or repeated results.
 
 Give each worker a compact contract:
 
