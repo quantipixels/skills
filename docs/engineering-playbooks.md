@@ -1,6 +1,12 @@
 # Engineering playbooks
 
-Start with the result you need. These examples use QP's existing owners and the host's native skill invocation; they do not introduce commands or a required sequence. A settled coding change can go directly to `alaga` with its existing tests.
+Start with the result you need. With `alarina` active, describe the work normally: “Find and fix this defect,” “Explain this profile,” or “Make this service repeatably verifiable.” Alárinà selects and loads the applicable playbook, invokes the existing owners, and carries the work to your requested stopping point.
+
+You can steer it explicitly: “Use alarina's Data change playbook; planning only,” or “Use the Bug fix playbook to verify this existing repair.” Playbook names select routes inside Alárinà; they are not separately installed skills or new slash commands. The host still controls how Alárinà itself is loaded. See the [session setup](../README.md) if you want its operating method throughout a session.
+
+The supported paths are Feature delivery, Investigation, Bug fix, Performance improvement, Data change, Project verification, Architecture evolution and PR readiness. Feature delivery and PR readiness use their existing workflow owners. The other compositions live with [Alárinà](../skills/alarina/SKILL.md); specialist methods stay with their skills.
+
+Existing plans, accepted decisions and current proof carry forward. A settled coding change can go directly to `alaga` with its existing tests; selecting a playbook does not require another plan, agent or review. The examples below also work as direct specialist requests.
 
 ## Make the project repeatably verifiable
 

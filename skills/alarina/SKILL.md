@@ -1,6 +1,6 @@
 ---
 name: alarina
-description: Carry requested work through authorized completion using relevant installed skills, conditional routes, and useful workers. Use as the operating entrypoint, to choose the next owner, resume work, resolve adjacent ownership, coordinate delegated work, or request the installed skill inventory.
+description: Carry requested work through authorized completion with engineering playbooks, relevant installed skills and useful workers. Use as the operating entrypoint, for a named playbook, to compose or resume work across owners, resolve the next route, or request the installed skill inventory. A settled single-owner task can use its specialist directly.
 ---
 
 # Alárinà
@@ -21,94 +21,60 @@ Resolve discoverable facts before asking the user. Ask when an unresolved prefer
 
 ### Resuming work
 
-For resumed work, locate the current owner's artifact and actual workspace/candidate. Reconcile completed and pending results, preserve applicable decisions and proof, and route the first unresolved result. Prior reports guide retrieval; check decisive claims against the current artifact before relying on them. Reopen only what changed evidence invalidates. A side question does not silently replace the active outcome or grant its implementation authority. Incorporate steering into the active work; replace the objective when the user changes or cancels it.
+For resumed work, locate the current owner's artifact and actual workspace/candidate, including the selected playbook when recorded. Reconcile completed and pending results, preserve applicable decisions and proof, and route the first unresolved result. Prior reports guide retrieval; check decisive claims against the current artifact before relying on them. Reopen only what changed evidence invalidates. A side question does not silently replace the active outcome or grant its implementation authority. Incorporate steering into the active work; replace the objective when the user changes or cancels it.
 
 When continuity needs persistence, use the current owner's artifact and location. Preserve accepted decisions, actual workspace/candidate, decisive evidence locators, unresolved work, and next action rather than maintaining a second record.
 
-## Choose the route
+## Select a playbook
 
-These are route shapes, not mandatory lifecycles. Enter at the first unresolved result and skip anything already current and sufficient.
+A playbook composes owned results into a usable path from the current state to the requested outcome. Select by intent, unresolved decisions, evidence and stopping point. The user may describe the work normally or name a playbook; no separate command or mode is required once Alárinà is active.
 
-At each boundary ask: **what unresolved result owns the next decision?** Do not route to implementation while a material product decision, plan, architecture, contract, diagnosis, or authority gap still controls safe delivery. Do not replay an upstream result that is already current and sufficient.
+Use the paths below when composition matters. Open the matched file before using its route; a row naming a skill uses that owner's existing workflow. An explicitly named playbook is loaded even when only one step remains; adapt its entry and stopping point to the request. Otherwise, when one known owner and mode already suffice, invoke that skill directly without constructing a playbook or plan.
 
-### Idea → usable change
+| Playbook | Select when | Load or invoke |
+| --- | --- | --- |
+| Feature delivery | An idea or changed behavior needs decisions, structure, implementation or integrated proof. | `atona` for initiative progression; `alaga` directly for a settled coding outcome. |
+| Investigation | The result is an explanation, diagnosis or recommendation, including runtime or trace forensics. | [Investigation](playbooks/investigation.md) |
+| Bug fix | A reported defect needs a supported cause and verified repair, or a supplied repair needs checking. | [Bug fix](playbooks/bug-fix.md) |
+| Performance improvement | A measured concern needs bounded comparative work toward an improvement. | [Performance improvement](playbooks/performance.md) |
+| Data change | A migration, backfill or rollout must preserve existing meaning through intermediate states. | [Data change](playbooks/data-change.md) |
+| Project verification | Repeated work needs a usable verification capability, or its recipes need maintenance. | [Project verification](playbooks/project-verification.md) |
+| Architecture evolution | Design, dependency or codebase friction needs assessment, a chosen improvement or behavior-preserving delivery. | [Architecture evolution](playbooks/architecture-evolution.md) |
+| PR readiness | An existing PR/MR needs status or work toward mergeability. | `wo-pr`; route confirmed blockers to their owners and return for current readiness. Observation-only requests stay read-only. |
 
-`atona` owns progression from exploration through the verified build, using `arojinle` when the user requests an interview or dependent choices require decision-tree closure, and maintaining the plan.
+### Run the selected path
 
-- Unresolved technical structure → `architect`.
-- Unresolved observable behavior → `atona` in behavior-contract mode.
-- Implementation and verification → `alaga` as the builder.
-- Independent code judgment, when warranted → `atunwo`.
-- Authorized publication → `wo-pr` in publication mode.
+State the chosen path and requested finish briefly when it changes how the work will proceed. Use the current plan or task list to track unresolved outcomes, their owners and accepting evidence; do not copy every playbook step into a second checklist. A short direct result needs no separate tracking artifact.
 
-Use both `architect` and `atona` in behavior-contract mode when both results remain unresolved.
+At each boundary ask: **what unresolved result owns the next decision?** Enter there. Reuse current decisions, candidates and proof; record a bypass only when its reason affects the user's understanding or acceptance. A called skill retains its method and an existing workflow retains progression. `atona` owns an initiative's plan, sequencing and combined acceptance; Alárinà does not run a competing lifecycle.
 
-### Incoming defect → verified fix
+Give the next owner the actual result and remaining gap. Consume its returned evidence before advancing; a proposed test, handoff or worker completion is not acceptance. Continue through authorized dependent work, rerouting when a finding changes the next required result. Reopen only affected decisions and proof. A new plan, review, experiment or worker must resolve a real gap.
 
-Enter at the first unresolved result:
+Keep the selected path, stopping point and next unresolved result in the existing owner record when continuity needs them. Finish at the requested evidence-backed result. Investigation and planning do not become delivery; implementation does not become publication, merge or deployment without existing authority.
 
-- Uncertain report validity → `alaga` in issue-intake mode.
-- Causal mechanism → `alaga` in diagnosis mode.
-- Material correction choice, when still unresolved → ask one bounded choice directly; use `arojinle` when the user requests an interview or dependent choices require decision-tree closure.
-- Implementation and proof → `alaga`.
-- Independent judgment, when warranted → `atunwo`.
-- Authorized publication → `wo-pr` in publication mode.
+### Direct and supporting routes
 
-### Question → evidenced answer
+An explicit specialist request stays with that specialist when it fits. These routes also supply a missing result inside a playbook:
 
-- Bounded explanation → the relevant installed subject specialist.
-- Substantial investigation → `iwadi`.
-- Consequential premise or proposed approach → apply the [premise check](references/coordination.md#premise-check).
-- Observed failure with a missing causal mechanism → `alaga` in diagnosis mode.
-
-Investigation-only work stops at its answer and evidence limits; it does not enter the fix or publication route.
-
-### Performance concern → supported result
-
-- Unexplained observed slowdown → `alaga` in diagnosis mode.
-- Comparative trials with a measured keep/revert decision → `adanwo` in measured-experiment mode.
-- Already-selected correction and verification → `alaga`.
-
-A live symptom or captured trace is evidence, not proof that optimization is the requested outcome. Discover the matching profiler/runtime specialist when it materially helps.
-
-### Existing PR/MR → mergeable
-
-- Establish concrete readiness gaps → `wo-pr`.
-- Resolve each confirmed blocker → its semantic owner.
-- Re-evaluate invalidated readiness evidence → `wo-pr`.
-
-Readiness, publication, approval, and merge are distinct results.
-
-### Codebase health → chosen improvement
-
-- Ownership or seam friction → `architect` survey.
-- Light or deep engineering review → `atunwo`, focused on simplification when unnecessary mechanism is the concern.
-- Measured comparison of variants → `adanwo` in measured-experiment mode.
-
-A selected change then joins the delivery route at its first unresolved result.
-
-### Writing → usable text
-
+- Bounded explanation → the relevant installed subject specialist; substantial research → `iwadi`.
+- Consequential premise → the [premise check](references/coordination.md#premise-check).
+- Dependent choices or a requested decision interview → `arojinle`; one consequential choice may be asked directly.
+- Unresolved technical structure → `architect`; unresolved observable behavior → `atona` in behavior-contract mode. Use both when both results remain open.
+- Independent code judgment → `atunwo`; measured keep/revert comparison → `adanwo` in measured-experiment mode.
+- Authorized publication → `wo-pr` in publication mode. Readiness, publication, approval and merge remain distinct.
 - Agent-facing text steering selection, decisions, authority, execution, or completion → `oro` in its agent-facing branch.
 - Human-facing text for comprehension, action, or communication → `oro` in its human-facing branch.
-
-### Missing evidence or tool capability
-
-- Substantial current research → `iwadi`.
 - Companion-tool selection, effective use, or readiness → `irinse`, including tools, host policy, and native agent declarations.
-
-### Completed or materially paused work → learning
-
 - Establish what happened, recovery cost, recurring friction, or which durable improvement the evidence earns → `ayewo-igba-ise`.
 - Apply an established lesson and correction → the owner of the affected code, instructions, or project knowledge.
 
 Retain non-obvious reasoning when losing it would cause recurrence or substantial rediscovery; routine completion does not require a new learning artifact.
 
-### When no route fits
+### When no playbook fits
 
-For named or long-tail capabilities outside these route shapes, inspect their installed descriptions instead of extending this map merely to list them.
+Inspect installed owners for the missing result and compose the smallest adequate path. Use `atona` when an initiative needs shaping and progression across results; a bounded result goes directly to its owner. Combine playbooks only at a real dependency boundary in that same plan. Unfamiliarity alone does not require a plan, and an improvised path does not require a new permanent playbook.
 
-When no route fits, identify the missing result and inspect installed owners before inventing a flow. Use `atona` when an initiative needs progression across several results. A bounded result goes directly to its owner; unfamiliarity alone does not require a plan. If no installed skill adds useful guidance, use the ordinary host/project capability and retain the requested bound. Report a required missing capability rather than claiming to invoke an unavailable skill.
+Project instructions and an applicable project-local playbook can refine the path within existing authority. Resolve their actual source and applicability; do not load a second exhaustive catalogue. If no installed skill adds value, use ordinary host/project capabilities. Report a required missing capability rather than claiming to invoke it. Selection inside this skill does not configure the host to load Alárinà automatically.
 
 ## Hand off
 
