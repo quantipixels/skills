@@ -10,7 +10,7 @@ Check prerequisites only for the selected worker and required capabilities; do n
 
 | Typical assignment | Codex | Claude | Typical boundary | Relative user weight |
 | --- | --- | --- | --- | --- |
-| Conductor | `gpt-6-astra` | Fable 5.1 (`claude-fable-5-1`) | scope, architecture, consequential decisions, acceptance, communication | Astra 8 |
+| Exceptional specialist | `gpt-6-astra` | Fable 5.1 (`claude-fable-5-1`) | bounded investigation or independent judgment beyond the other workers' demonstrated capability | Astra 8 |
 | Substantial worker | `gpt-5.6-sol` | Opus 5 (`claude-opus-5`) | integration, difficult debugging, sustained judgment | Sol 5 |
 | Bounded worker | `gpt-5.6-terra` | Sonnet 5 (`claude-sonnet-5`) | bounded implementation or investigation with local proof | Terra 3 |
 | Small evidence worker | `gpt-5.6-luna` | Haiku 4.5 (`claude-haiku-4-5-20251001`) | extraction, small reads, deterministic work, easy-to-check evidence | Luna 0.5; Haiku 1 |
