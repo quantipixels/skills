@@ -290,7 +290,7 @@ def skill_names(a):
     if root is None:
         for parent in Path(__file__).resolve().parents:
             if (parent / "skills").is_dir(): root = parent / "skills"; break
-    if root and root.expanduser().is_dir(): out.update(p.parent.name for p in root.expanduser().glob("*/*/SKILL.md"))
+    if root and root.expanduser().is_dir(): out.update(p.parent.name for p in root.expanduser().glob("*/SKILL.md"))
     return out
 
 
