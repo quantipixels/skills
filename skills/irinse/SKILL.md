@@ -1,6 +1,6 @@
 ---
 name: irinse
-description: Select and use companion engineering tools; install, update, reconcile, configure, verify, or remove tools, installed skills, host instructions, and native agent declarations. Use for non-obvious tool capability or environment readiness; exclude skill authoring, engineering verdicts, and implementation.
+description: Select and use companion engineering tools; install, update, reconcile, configure, verify, or remove tools, installed skills, host instructions, and native agent declarations. Use for non-obvious tool capability, difficult code/document retrieval, or environment readiness; exclude routine reads, skill authoring, engineering verdicts, and implementation.
 ---
 
 # Irinṣẹ́
@@ -13,10 +13,12 @@ Identify the question, relevant paths or sources, and evidence needed. Pin candi
 
 Select the smallest useful tool. Do not recommend every available tool or route ordinary shell/search work through `irinse`. The point is to surface capabilities that materially improve the work and whose useful interface, limits, or evidence semantics are non-obvious.
 
-Load only the selected reference:
+For noisy, truncated, incomplete or structurally ambiguous code/document searches, use [source retrieval](references/source-retrieval.md) to choose the useful representation and establish what the results cover. Tool availability is an observed capability, not a consequence of having a reference here.
+
+Load only the tool-specific guidance needed for the selected capability:
 
 - [tldr-code](references/tldr-code.md) for compact structural, flow, impact, quality, security, or contract leads;
-- [ast-grep](references/ast-grep.md) for syntax-aware search or structural rewriting;
+- [ast-grep](references/ast-grep.md) for syntax-aware search, query debugging or structural rewriting;
 - [Semgrep](references/semgrep.md) for repeatable bug, security, or architecture rules;
 - [property-test runners](references/property-test-runners.md) for engine/test discovery and reproducible generated cases;
 - [mutation testing](references/mutation-testing.md) for bounded campaigns and outcome interpretation;
