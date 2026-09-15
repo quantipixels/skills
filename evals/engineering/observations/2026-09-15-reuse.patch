@@ -1,0 +1,98 @@
+--- a/api.py
++++ b/api.py
+@@ -1,6 +1,10 @@
+ from states import AccountState, LABELS
+ 
+ def dispatch(service, action, key):
++    if action == "pause":
++        return service.hold(key)
++    if action == "resume":
++        return service.release(key)
+     if action == "show":
+         row = service.store.get(key)
+         return {"id": key, "status": LABELS[AccountState(row["state"])], "cents": row["cents"]}
+--- /dev/null
++++ b/test_pause_resume.py
+@@ -0,0 +1,82 @@
++import sqlite3
++import tempfile
++import unittest
++from pathlib import Path
++from unittest.mock import Mock
++
++from admin import set_collection_hold
++from api import dispatch
++from collections_service import Collections
++from store import Store
++from worker import run
++
++
++class PauseResumeTest(unittest.TestCase):
++    def setUp(self):
++        self.root = tempfile.TemporaryDirectory()
++        self.addCleanup(self.root.cleanup)
++        self.path = Path(self.root.name) / "db"
++
++    def open_store(self):
++        store = Store(self.path)
++        self.addCleanup(store.close)
++        return store
++
++    def test_pause_resume_controls_worker_and_preserves_public_account(self):
++        store = self.open_store()
++        store.add("a", 1250)
++        service = Collections(store)
++        expected = {"id": "a", "status": "Open", "cents": 1250}
++        provider = Mock()
++        run(store, provider)
++        provider.collect.assert_called_once_with("a", 1250)
++
++        for _ in range(2):
++            self.assertIsNone(dispatch(service, "pause", "a"))
++        self.assertEqual(expected, dispatch(service, "show", "a"))
++        provider.reset_mock()
++        run(store, provider)
++        provider.collect.assert_not_called()
++
++        # A new connection must see the stored hold and unchanged balance.
++        reopened = self.open_store()
++        service = Collections(reopened)
++        self.assertEqual([], reopened.eligible())
++        self.assertEqual(expected, dispatch(service, "show", "a"))
++        for _ in range(2):
++            self.assertIsNone(dispatch(service, "resume", "a"))
++        self.assertEqual(expected, dispatch(service, "show", "a"))
++        run(reopened, provider)
++        provider.collect.assert_called_once_with("a", 1250)
++
++    def test_legacy_records_and_admin_share_collection_hold(self):
++        with sqlite3.connect(self.path) as db:
++            db.executescript(Path(__file__).with_name("legacy.sql").read_text())
++        store = self.open_store()
++        service = Collections(store)
++        closed_before = dict(store.get("closed"))
++        self.assertEqual([], store.eligible())
++        self.assertEqual({"id": "legacy", "status": "Open", "cents": 3700},
++                         dispatch(service, "show", "legacy"))
++        dispatch(service, "resume", "legacy")
++        self.assertEqual(["legacy"], [row["id"] for row in store.eligible()])
++        set_collection_hold(service, "legacy", True)
++        self.assertEqual([], store.eligible())
++        dispatch(service, "resume", "legacy")
++        dispatch(service, "pause", "legacy")
++        set_collection_hold(service, "legacy", False)
++        provider = Mock()
++        run(store, provider)
++        provider.collect.assert_called_once_with("legacy", 3700)
++
++        for action in ("pause", "resume"):
++            with self.subTest(action=action):
++                with self.assertRaisesRegex(ValueError, "closed account"):
++                    dispatch(service, action, "closed")
++                self.assertEqual(closed_before, dict(store.get("closed")))
++                with self.assertRaises(KeyError):
++                    dispatch(service, action, "missing")
++        self.assertEqual({"id": "closed", "status": "Closed", "cents": 1900},
++                         dispatch(service, "show", "closed"))
++        with self.assertRaisesRegex(ValueError, "unknown action"):
++            dispatch(service, "unknown", "legacy")

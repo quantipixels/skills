@@ -10,7 +10,7 @@ Each skill lives at `skills/<name>/SKILL.md`; directory and frontmatter names mu
 
 Skills must work when installed and invoked independently. Keep behavior-bearing guidance even when it also appears in `AGENTS.md`, Alárinà, or a caller that may not load. Where delegation helps, retain a concise local cue describing useful assignments and returned evidence. Assess simplification with only the skill and its declared dependencies available.
 
-Preserve useful depth; remove routine mechanics and unnecessary machinery. A skill identity earns its place through materially better direct selection or use, not merely a different subject. Do not remove useful expertise just because a model knows the topic. Keep code for bounded mechanical results or safe installation, with proof that can detect a realistic failure.
+Use established engineering principles to compress repeated explanations, retaining local exceptions, authority and proof boundaries. Avoid acronym lists and speculative abstractions. Preserve useful depth; remove routine mechanics and unnecessary machinery. A skill identity earns its place through materially better direct selection or use, not merely a different subject. Do not remove useful expertise just because a model knows the topic. Keep code for bounded mechanical results or safe installation, with proof that can detect a realistic failure.
 
 Keep responsibilities distinct: skills own methods, workflows own progression, assignments own worker scope and evidence, host policy owns model, reasoning and delegation preferences, and the harness owns worker lifecycle. Avoid duplicate role fleets, model/config registries, and instructions that reimplement native controls. Use bounded workers to collate large evidence surfaces, preserving decisive source locators.
 
@@ -30,8 +30,10 @@ Before retiring evaluations or documents, preserve unique current expectations a
 
 ## Active experiment: professional stance
 
-2026-09-15: `human-view` and `html-artifact` open with a short task-specific professional stance. Hypothesis: this improves compositional commitment and care without extra procedure. It does not replace user personality, alter authority or prove expertise. Keep the trial to these two skills.
+2026-09-15: `human-view` and `html-artifact` open with a short task-specific professional stance. Hypothesis: this improves compositional commitment and care without extra procedure. It does not replace user personality, alter authority or prove expertise. These two skills formed the initial trial; record explicitly authorized extensions below.
 
 At the next review of these skills, compare the same brief and model with and without only the stance paragraphs, keeping the Codex reference and other instructions constant. Judge reader-task clarity, visual specificity, fidelity, usability and unnecessary work from actual artifacts. Record the outcome here; revise or remove the stance if it adds no value or causes overreach. Current result: unmeasured; package checks are not evidence of benefit.
 
 First use, 2026-09-15: the user described the session report as looking good. This is favorable feedback on one artifact, not evidence that the stance caused the improvement; the matched comparison remains outstanding.
+
+2026-09-15: at the user's request, Alága also trials a senior-engineer stance grounded in inspected code, real consumers and evidence. Two fresh coding screens passed their functional acceptance checks; neither isolates the stance from the accompanying instruction changes. See `evals/engineering/observations/2026-09-15-existing-code.md`. Keep the stance outcome-focused; it grants no authority and does not justify blanket investigations or checks.

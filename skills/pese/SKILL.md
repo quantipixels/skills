@@ -6,25 +6,11 @@ disable-model-invocation: true
 
 # Pèsè
 
-Given an eligible local resource, make it temporarily reachable through the narrowest private transport available and return the exact thing the user must open or run. Do not stop at transport recommendation, readiness, or setup guidance when the resource can be served safely now.
+Apply least privilege to temporary private access: serve only the eligible resource and return its exact usable target. Setup or transport advice alone is not completion.
 
 The local resource remains authoritative.
 
-Direct invocation authorizes:
-
-- task-scoped staging;
-- an ephemeral local listener when the selected transport needs one; and
-- one narrow temporary private route using already-ready tooling.
-
-Separate authority is required for:
-
-- installation;
-- persistent startup/configuration;
-- saved credentials/keys;
-- DNS publication;
-- public exposure;
-- broad served roots; and
-- unrelated mutation.
+Direct invocation authorizes task-scoped staging, an ephemeral local listener if needed, and one narrow temporary private route using ready tooling. Installation, persistent startup/configuration, saved credentials/keys, DNS publication, public exposure, broad served roots and unrelated mutation require separate authority.
 
 ## Resolve tooling from current official evidence
 

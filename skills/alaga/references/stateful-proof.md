@@ -16,11 +16,15 @@ Name the forbidden outcome and the ordering that could cause it. Coordinate the 
 
 For ambiguous completion, allow the effect to occur and then withhold or fail its acknowledgement at a controlled test boundary. Retry the same logical operation and verify its identity and allowed effect count. This differs from failing before the effect. Keep the invariant's business meaning and provider guarantees explicit; do not impose exactly-once semantics universally.
 
+When process-loss recovery is claimed, stop an isolated worker after the effect but before its durable acknowledgement, then restart against the same durable state and external substitute. Check reconciliation, identity and permitted effect count from outside the worker. An exception that runs cleanup is not evidence of abrupt process loss; preserve the failpoint and distinguish which failure model was exercised.
+
 For cancellation, reach the blocked or active phase before requesting cancellation, then observe worker completion, cleanup and any prohibited late effects within a justified bound. Forwarding a token or timing out the caller does not prove the worker stopped. Irreversible work may require reconciliation rather than rollback.
 
 ## Migration and recovery
 
-Choose the starting schema/data and intermediate state that could expose the suspected failure. Apply the real migration path; test old/new reader or writer coexistence only within the supported rollout contract. Where restartability matters, interrupt at the relevant progress boundary and resume, checking both data invariants and completion. An empty-database migration pass does not prove upgrade safety, and a valid final schema does not prove the intervening states.
+For supported coexistence, use expand–migrate–contract: add the compatible form, migrate consumers, then retire the old form. Verify the real migration from representative populated and intermediate states; test restart at the relevant progress boundary and verify data invariants and completion. An empty-database or final-schema pass does not prove upgrade safety. An enforced stopped-system rollout need not use parallel forms.
+
+Select the supported old/new combinations that could break the changed contract, including generated clients when consumed. Preserve representative persisted and wire values, enum meanings, absent-field behavior and rounding where relevant. Exercise an old writer during transition when supported, then verify the new reader and any promised rollback reader. Regenerating a client successfully proves generation, not that an existing deployed client can consume the new response.
 
 When a transform can alter existing values, audit the mapping against authorized representative populated data, not only clean fixtures. Inspect each mapping branch with exact read-only queries or equivalent evidence: grouped legacy/new pairs, nulls, orphaned references, unmapped values and partial-completion markers as applicable. State the expected invariant and explain discrepancies. Use a stable snapshot, transaction, watermark or recorded time window when available; otherwise account explicitly for legitimate concurrent writes before comparing counts. This method does not grant access to live data or permission to mutate it.
 

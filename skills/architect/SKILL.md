@@ -23,7 +23,7 @@ Pin only what can change the technical design: subject/candidate, problem or des
 
 Across modes, use `irinse` when structural, resolved dependency, flow, history, rule, runtime, database or build evidence materially controls the architecture decision and needs specialist acquisition or interpretation. Return to the actual interface, invariant or ownership question; a tool result is not an architecture verdict.
 
-Read only evidence capable of changing the architecture: current domain/project knowledge, code/tests/configuration when implementation exists, runtime/deployment/operations evidence, governing decisions, and bounded history/provenance where it explains current structure. Observed implementation proves current structure or behavior, not automatic architectural intent.
+Read only evidence capable of changing the architecture: current domain/project knowledge, code/tests/configuration when implementation exists, runtime/deployment/operations evidence, governing decisions, and bounded history/provenance where it explains current structure. Retrieve relevant past decisions and lessons selectively and verify their applicability; no full archive read is required. Observed implementation proves current structure or behavior, not automatic architectural intent.
 
 Use `amose` and `iwadi` as needed.
 
@@ -72,13 +72,13 @@ Design from owned responsibilities and real boundaries inward. Specify only the 
 - compatibility, migration, rollback, recovery, or deletion when material; and
 - critical invariants implementation must preserve.
 
-When module/interface/seam shape is material, read [module design](references/module-design.md). Prefer deep modules with small high-leverage interfaces and strong locality. Do not expose internal seams merely because implementation or tests use them.
+When module/interface/seam shape is material, read [module design](references/module-design.md). Prefer deep modules: small interfaces that hide substantial owned complexity and reduce caller burden. Use CUPID—composable, focused on one coherent purpose, predictable, idiomatic and domain-based—as a design lens, not a scorecard. Preserve locality; do not expose internal seams merely for implementation or tests.
 
 When correctness depends on multiple writers or overlapping transactions over shared mutable state, read [shared-state design](references/shared-state.md).
 
 When the requested system creates or materially changes agent tools, an assistant/automation surface, or agent-accessible product behaviour, read [agent-facing systems](references/agent-native-systems.md). Do not introduce an agent surface for unrelated work.
 
-Every architectural element must pay for itself with a material driver or independently real boundary. Prefer the smaller direct structure only when removing a service, queue, datastore, cache, module, interface, adapter, abstraction, or deployment unit loses no required responsibility and does not push required complexity, policy, state, trust, lifecycle, compatibility, or failure knowledge into callers or another worse owner.
+Apply YAGNI and KISS to the whole system: every element needs a material driver or real boundary. Remove layers only when required responsibilities survive without increasing caller burden or displacing complexity into a worse owner; fewer components alone is not simplification.
 
 ### Compare alternatives only when the design is genuinely open
 

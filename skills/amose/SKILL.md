@@ -5,7 +5,7 @@ description: Establish, sharpen, or reconcile one project's canonical domain mod
 
 # Amọ̀ṣẹ́
 
-Own the project's domain meaning. Make its important concepts precise enough that planning, specifications, architecture, implementation, and review can use the same language without silently inventing different models.
+Own the project's domain meaning and ubiquitous language across planning, specifications, architecture, implementation and review. Preserve bounded-context distinctions; shared wording must not conceal different models.
 
 ## Clarify the model
 

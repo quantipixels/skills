@@ -30,9 +30,11 @@ Use `irinse` when a material review claim depends on symbol/caller resolution, s
 
 ## Assess and substantiate
 
-Consider contract compliance, engineering quality, proof, and credible failure paths separately. Passing tests does not establish maintainability; a style preference does not establish a defect. Read [boundary failures](references/boundary-failures.md) when state, concurrency, retries, migration, recovery, verification gates, or provider boundaries are material.
+Consider contract compliance, engineering quality, proof, and credible failure paths separately. Passing tests does not establish maintainability; a style preference does not establish a defect. Read [boundary failures](references/boundary-failures.md) when framework enforcement, authorization, state, concurrency, retries, migration, recovery, verification gates, or provider boundaries are material.
 
 For changed behavior, compare baseline, current, and required outcomes as part of normal review. Historical implementation is evidence, not automatic intent; preserve required behavior without restoring historical defects. Account for accepted differences and trace consequences to real consumers rather than inferring preservation from matching names or code shape.
+
+For a new implementation or domain representation, check the relevant existing owner and comparable consumer usage independently. Substantiate avoidable duplication or convention drift with the existing path and its concrete consequence. For added enum/status values, inspect applicable transitions, persisted/wire representations and consumer handling; matching local style or passing compilation does not prove integration. Do not demand reuse across different semantics or reject an intentional, justified departure merely for inconsistency.
 
 When behavior preservation is uncertain, compare the material inputs/defaults, identity, admission rules, state transitions, outputs/wire types, side effects, errors, ordering, retries, concurrency, and recovery. Cover cross-entry-point sequences when several writers share state. Mark relevant behavior as preserved, intentionally changed, lost, disputed, or unproved, with exact source/proof provenance. Use a compact comparison only when it clarifies the judgment; no mandatory ledger. A corrected requirement or changed revision invalidates dependent conclusions.
 

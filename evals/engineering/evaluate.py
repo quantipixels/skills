@@ -41,10 +41,21 @@ PLAYBOOK_CELLS = (
     ("profile-alaga-r1", "profile", "alaga", 1),
 )
 
+EXISTING_CODE_CELLS = (
+    ("settlement-control-r1", "settlement", "control", 1),
+    ("reuse-alaga-r1", "reuse", "alaga", 1),
+    ("settlement-alaga-r1", "settlement", "alaga", 1),
+    ("reuse-control-r1", "reuse", "control", 1),
+)
+
 PROFILES = {
     "historical": {
         "cells": HISTORICAL_CELLS,
         "question": "Does explicitly supplied current Alaga improve these repairs over the same host without optional QP guidance?",
+    },
+    "existing-code": {
+        "cells": EXISTING_CODE_CELLS,
+        "question": "Does current Alaga improve settlement repair and reuse of existing collection behavior over the same host without optional QP guidance?",
     },
     "playbooks": {
         "cells": PLAYBOOK_CELLS,
@@ -56,6 +67,11 @@ CASES = {
     "settlement": {
         "editable": ("settlement.py",), "allow_tests": True, "mode": "repair",
         "guidance": ("alaga",),
+    },
+    "reuse": {
+        "editable": ("api.py", "admin.py", "collections_service.py", "maintenance.py", "states.py", "store.py", "worker.py"),
+        "allow_tests": True, "preserve_baseline_tests": True, "mode": "feature",
+        "guidance": ("alaga",), "feature_oracle": "reuse-actions",
     },
     "batching": {
         "editable": ("batching.py",), "allow_tests": True, "mode": "repair",
@@ -211,11 +227,13 @@ def prepare(args):
             editable = ", ".join(f"workspace/{name}" for name in case_definition["editable"])
             if case_definition["allow_tests"]:
                 editable += ", root workspace/test_*.py files"
+            test_constraint = "Preserve existing test files; add new root test_*.py files.\n" if case_definition.get("preserve_baseline_tests") else ""
             prompt = (
                 "You are a software engineer responsible for this bounded task.\n"
                 f"Work only in workspace/. You may change {editable}, and workspace/RESULT.md. "
                 "Do not use network, Git, workers, or files outside actor/. Do not install dependencies.\n"
                 + treatment
+                + test_constraint
                 + "Read TASK.md, complete the task, run any requested checks, and write RESULT.md.\n"
             )
         (actor / "PROMPT.md").write_text(prompt, encoding="utf-8")
@@ -227,6 +245,7 @@ def prepare(args):
         for name, value in file_hashes(workspace).items():
             is_editable_test = (
                 case_definition["allow_tests"]
+                and not case_definition.get("preserve_baseline_tests")
                 and Path(name).parent == Path(".")
                 and Path(name).name.startswith("test_")
                 and Path(name).suffix == ".py"
@@ -374,12 +393,29 @@ def classify_oracle(result):
         items = json.loads(result["stdout"])
     except (json.JSONDecodeError, TypeError):
         return "error"
-    states = {item.get("status") for item in items}
+    if not isinstance(items, list) or not items or any(
+        not isinstance(item, dict) or item.get("status") not in {"pass", "fail", "error"}
+        for item in items
+    ):
+        return "error"
+    states = {item["status"] for item in items}
     if "error" in states:
         return "error"
     if result["exit_code"] == 0 and states == {"pass"}:
         return "passed"
-    return "failed"
+    if result["exit_code"] != 0 and "fail" in states:
+        return "failed"
+    return "error"
+
+
+def proves_missing_actions(result):
+    if result["status"] != "failed":
+        return False
+    items = json.loads(result["stdout"])
+    return items == [
+        {"check": action, "status": "fail", "detail": f"AssertionError: missing API action: {action}"}
+        for action in ("pause", "resume")
+    ]
 
 
 def validate_record(record, manifest):
@@ -555,6 +591,42 @@ def check_cell(study, manifest, spec, timeout):
                 shutil.copy2(candidate_source, baseline / production)
         baseline_tests = subprocess_result([sys.executable, "-m", "unittest", "discover", "-v"], baseline, timeout)
         baseline_tests["status"] = classify_tests(baseline_tests)
+    feature_results = {}
+    if case_definition["mode"] == "feature":
+        # Returned tests may error against an API that does not exist yet. Keep
+        # that diagnostic, but obtain independent missing-behavior proof.
+        for label, source, oracle_case in (
+            ("acceptance_against_original", run / "private" / "original", spec["case"]),
+            ("feature_acceptance", workspace, case_definition["feature_oracle"]),
+            ("feature_acceptance_against_original", run / "private" / "original", case_definition["feature_oracle"]),
+        ):
+            with tempfile.TemporaryDirectory() as temporary:
+                target = Path(temporary)
+                copy_without_cache(source, target)
+                result = subprocess_result(
+                    [sys.executable, str(run / "private" / "oracle.py"), str(target), oracle_case],
+                    target, timeout,
+                )
+                result["status"] = classify_oracle(result)
+                result["oracle_case"] = oracle_case
+                feature_results[label] = result
+        statuses = (tests["status"], oracle["status"], baseline_tests["status"],
+                    feature_results["feature_acceptance"]["status"],
+                    feature_results["feature_acceptance_against_original"]["status"])
+        if "timeout" in statuses:
+            status = "timeout"
+        elif "error" in statuses:
+            status = "error"
+        elif (tests["status"] == oracle["status"] == baseline_tests["status"] == "passed"
+              and feature_results["feature_acceptance"]["status"] == "passed"
+              and proves_missing_actions(feature_results["feature_acceptance_against_original"])):
+            status = "passed"
+        else:
+            status = "failed"
+        return {**base, "status": status, "record_kind": kind, "submitted_sha256": submitted_sha256,
+                "checked_sha256": checked_sha256, "record": record, "returned_tests": tests,
+                "acceptance": oracle, "tests_against_original": regression,
+                "baseline_tests": baseline_tests, **feature_results}
     statuses = (tests["status"], oracle["status"], regression["status"], baseline_tests["status"])
     if "timeout" in statuses:
         status = "timeout"

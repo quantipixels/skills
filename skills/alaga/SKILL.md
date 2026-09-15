@@ -5,7 +5,7 @@ description: Assess an issue, diagnose a failure, recover an active incident, or
 
 # Alága
 
-Own the requested intake, diagnosis, recovery or coding result and its proportionate proof. Reuse settled scope, decisions, and authorization; a clarification does not restart approval.
+Work as a senior engineer accountable for the requested result in this codebase. Ground decisions in inspected implementation, actual consumers and executed evidence; distinguish what is known, inferred and unverified. Reuse settled scope, decisions, and authorization; a clarification does not restart approval.
 
 Use `irinse` across modes when source navigation, tool-evidence semantics or readiness materially affects the result. Apply the returned evidence and its limits within the selected mode's authority and stopping point; ordinary project reads and checks stay direct.
 
@@ -24,7 +24,15 @@ For verification of a supplied repair, use the [existing repair comparison](refe
 
 Within an `atona` initiative, reuse its assignment and return the candidate, proof, and any blocker or scope change. Atọ́nà owns initiative progression; Alága owns the assigned change and its integration. Direct requests need no Atọ́nà plan.
 
-Understand the affected behavior and its real owner. Choose the smallest idiomatic change that satisfies the request, preserves required existing data and unrelated work, and reduces unnecessary state or indirection. Check existing language, framework and provider guarantees before adding custom state or coordination; verify their limits against the contract. Fix the cause rather than accumulating workarounds. Surface consequential scope expansion before taking it on.
+Before choosing the implementation, trace the existing related behavior from entry points through its authoritative owner, shared mechanisms and affected consumers to its proof. Find nearby implementations by behavior and domain vocabulary, not just the proposed name. Establish what already satisfies the request, what can be extended, and the actual gap. Reuse current investigation. Search relevant existing decisions, incidents or lessons when they can change the approach; verify current applicability. Keep discovery scoped to the change, with useful source pointers rather than a repository inventory or full knowledge-store read.
+
+Apply DRY to shared knowledge, not incidental code similarity: extend the existing owner when semantics fit; justify a separate implementation by correctness, ownership, compatibility or maintenance needs. Apply YAGNI to custom state and coordination; check existing language, framework and provider guarantees first. Make the smallest idiomatic causal fix, preserving data and unrelated work; surface consequential scope expansion. For a consequential deliberate limit, state its ceiling and observable revisit condition near its owner. Preserve calibration where physical or environmental variation requires it; do not add speculative configuration.
+
+Use a rerunnable codemod, query or script when it materially improves transformation consistency or verification; prefer existing tooling. Check it on a representative case and make replay safe or its preconditions explicit. Retain it only when future use or verification earns maintenance; ordinary edits need no tool artifact.
+
+For new or changed domain values, types or states, inspect how comparable concepts are defined and actually used by callers and users. Follow the authoritative project's naming, representation and lifecycle conventions. For enums or statuses, trace applicable transitions, persistence/wire values, defaults, unknown-value handling and consumer mappings; a new declaration is not the whole change. Distinguish internal identifiers from user-facing labels and preserve compatibility. If existing patterns conflict, resolve the relevant owner and intended behavior rather than copy an arbitrary example or silently invent a convention.
+
+For a change spanning consumers, persisted data, framework-managed behavior, authorization or external effects, read [integration obligations](references/integration-obligations.md). Resolve the applicable obligations before editing and reconcile them against the final candidate; ordinary local changes need no separate assessment.
 
 Reconsider established choices when recurring friction or a concrete new capability changes their fit. Use `architect` for a consequential design choice; report wider opportunities without silently expanding delivery. Existing implementation is evidence, not a requirement to keep extending it.
 
@@ -32,7 +40,7 @@ Discover commands, APIs, runtime mechanics, and conventions from the current pro
 
 For an accepted improvement to an existing test suite, read [test-suite improvement](references/test-suite-improvement.md). Keep independent proof judgment with `atunwo` and non-obvious measurement or tool execution with `irinse`; Alága owns the resulting test changes and verification.
 
-Verify the changed contract with evidence that could detect a plausible failure. Prefer existing affected checks or a focused probe; add a test when it protects a material regression existing proof would miss. Exercise browser-dependent behavior when acceptance requires it. Remove temporary scaffolding and fix failures caused by the change; rerun only affected checks.
+Verify the changed contract with evidence that could detect a plausible failure. Prefer existing affected checks or a focused probe; add a test when it protects a material regression existing proof would miss. Confirm that the intended checks actually executed against the candidate: zero selected tests, skips, stale results and successful submission are not passing proof. Establish relevant pre-existing failures when they affect attribution; never weaken acceptance to make the result green. Exercise browser-dependent behavior when acceptance requires it. Inspect the final diff for unintended changes and incomplete consumer updates; remove temporary scaffolding and fix failures caused by the change. Rerun only affected checks.
 
 When the change affects dependency resolution, generated outputs or incremental builds, verify the resolved inputs and relevant invalidation path; a passing warm build can hide stale output. Use `irinse` for non-obvious build evidence capture and interpretation, retaining implementation and acceptance here.
 

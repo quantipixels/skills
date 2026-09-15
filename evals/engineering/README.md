@@ -2,6 +2,24 @@
 
 This standard-library kit prepares bounded control/QP-guidance comparisons without making model or network calls. It contains no provider registry, credentials, SDK, or agent framework.
 
+For framework invocation, mixed-version compatibility, abrupt recovery, authorization across callers, measured resource cost and architecture alternatives, use the [project-backed scenario protocols](scenarios/README.md). These require prepared real project environments and independent acceptance probes; they are not executable harness profiles or completed model trials.
+
+The opt-in `existing-code` profile pairs the two existing-code coding trials: settlement repair and collection API reuse. It prepares four cells, one control and one current-Alága arm per case, with opposite arm order across cases. Historical screening observations in `observations/` remain separate from newly prepared studies; preparing a profile does not create model-performance evidence.
+
+The `reuse` task asks actors to find existing behavior under different terminology, preserve public domain values, and integrate API/admin/worker consumers. Its oracle checks persistence/reopen, legacy values, worker eligibility, admin interoperability, and rejection behavior. Inspect returned diffs separately for justified reuse and unnecessary machinery: functional acceptance does not prove implementation simplicity or complete consumer discovery.
+
+Prepare this comparison explicitly:
+
+```bash
+python3 evals/engineering/evaluate.py prepare \
+  --profile existing-code \
+  --output .qp/alaga-engineering/existing-code-1 \
+  --host native-host --model exact-model-id --reasoning medium \
+  --max-seconds 600 --max-tool-calls 12
+```
+
+Use `--profile existing-code --case reuse` for just the additive-feature pair. Existing reuse test files are protected; actors may add focused root `test_*.py` files and edit the named production files. The feature gate requires nonzero passing candidate tests, passing full acceptance, and preserved baseline tests. A separate frozen `reuse-actions` probe must pass on the candidate and specifically assert both missing API actions on the original. Only `ValueError("unknown action")` from dispatch on a valid account becomes that explicit missing-behavior assertion; imports, setup failures, other runtime errors, and unrelated assertions cannot supply the proof. Full acceptance and returned tests also run against the original, where their expected runtime errors remain reported as `error` diagnostics. They are never relabelled as assertion failures or used as feature acceptance proof. The repair gate remains unchanged.
+
 The default `historical` profile retains the completed eight-run Astra screening study shape: settlement retry/legacy-data compatibility and partial-batch preservation, each with control/current-Alága arms and two repetitions. The existing batching cells remain the ordinary implementation reference where an extra engineering method is not warranted.
 
 Prepare all eight frozen cells from the repository root:
@@ -33,7 +51,7 @@ The three playbook cases exercise different evidence boundaries:
 
 Guidance arms freeze the relevant installed guidance inside the actor directory: Alága plus Ọ̀rọ̀ for `verification`, Alága for `migration`, and Alága plus Irinṣẹ for `profile`. Control arms receive the same task and host settings without optional QP guidance.
 
-Each run contains `actor/` and `private/`. Give the acting model only `actor/` and prefer a host-enforced isolated sandbox. If the host provides assignment-only separation, record `isolated_host_sandbox: false`; filesystem separation in this kit is not a security boundary. Keep the same host configuration and common instructions in both arms; only the guidance arm receives the case's frozen QP guidance. Each generated prompt names its editable source or evidence artifact. Repair cases also allow root `workspace/test_*.py` files; every case allows `workspace/RESULT.md`. The actor must not see the private original or oracle.
+Each run contains `actor/` and `private/`. Give the acting model only `actor/` and prefer a host-enforced isolated sandbox. If the host provides assignment-only separation, record `isolated_host_sandbox: false`; filesystem separation in this kit is not a security boundary. Keep the same host configuration and common instructions in both arms; only the guidance arm receives the case's frozen QP guidance. Each generated prompt names its editable source or evidence artifact. Executable cases also allow root `workspace/test_*.py` files; every case allows `workspace/RESULT.md`. The actor must not see the private original or oracle.
 
 Enforce the manifest's per-run time/tool-call budget in the native model host and disable automatic retries. The `check --timeout` value only bounds each local test/oracle subprocess; it does not enforce the actor's declared model-run budget.
 
@@ -60,4 +78,4 @@ A cell with neither `record.json` nor `RESULT.md` is unrun. If only one exists, 
 
 The summary always includes every cell selected in the frozen manifest. The historical default therefore retains all eight cells. Summaries keep model runs, replays, and mechanical validations separate and list assignment-only and unknown-isolation cells as limitations. Those cells do not support a clean-room or causal claim. A summary does not select an arm from pass counts. Give the actual artifacts and available traces to an independent reviewer, hiding arm labels where feasible and disclosing any leakage, to assess correctness, unsupported causal claims, unnecessary machinery, explanation quality, interventions, and resource cost before making a comparative judgment. Unknown measurements remain unknown.
 
-The historical fixtures and oracle retain the original study’s Python/SQLite provider contract, existing-data requirement, task text, defective implementations, baseline tests, and functional acceptance cases. The playbook fixtures are new evaluation inputs and have no claimed model results. This kit does not reproduce historical attempts as fresh trials or authenticate trace/model/billing claims.
+The historical fixtures and oracle retain the original study’s Python/SQLite provider contract, existing-data requirement, task text, defective implementations, baseline tests, and functional acceptance cases. The playbook fixtures are new evaluation inputs and have no claimed model results. The existing-code profile reuses the settlement and reuse fixtures without turning archived screens into fresh trials. This kit does not reproduce historical attempts as fresh trials or authenticate trace/model/billing claims.

@@ -1,6 +1,6 @@
 # Boundary failures worth challenging
 
-Read when a candidate changes a verification gate, stateful retry/cancellation, migration or rollout, or an agent/provider operation. Use the applicable examples to form and challenge failure hypotheses. They are neither a mandatory reviewer roster nor findings by themselves; retain the main skill's evidence, scope, and finding contract. Check exact platform behaviour at use time; these are failure mechanisms, not a cached API reference.
+Read when a candidate changes framework enforcement, authorization, a verification gate, stateful retry/cancellation, migration or rollout, or an agent/provider operation. Use the applicable examples to form and challenge failure hypotheses. They are neither a mandatory reviewer roster nor findings by themselves; retain the main skill's evidence, scope, and finding contract. Check exact platform behaviour at use time; these are failure mechanisms, not a cached API reference.
 
 ## A guard can pass while the guarded behaviour fails
 
@@ -9,6 +9,8 @@ Trace what a success signal actually proves. Did the command exercise the intend
 For example, a shell pipeline may report a successful log-writing command while an earlier validation command failed. Check the actual shell's failure semantics and the enclosing gate before reporting a defect; a working failure-propagation setting or explicit aggregate result may already close the path. A deliberately advisory check is not automatically a blocking gate.
 
 Challenge the guard itself with a plausible failing input or existing negative evidence when read-only review permits it. Never weaken the gate to make the check green. Distinguish absent evidence from evidence of failure, and an intentional skip from a verified pass. Diff size does not reduce the consequence of a false-success mechanism.
+
+For framework enforcement, distinguish proof through the registered public path from direct calls that bypass interception or lifecycle behavior. For access changes, challenge the affected actor/tenant/resource boundary and whether rejection prevents disclosure and side effects across relevant alternate paths. A successful authorized request or an annotation alone leaves these claims open; form a concrete failure hypothesis before requesting additional proof.
 
 ## A retry or cancellation changes ownership of an effect
 

@@ -11,7 +11,7 @@ Make useful companion tools discoverable, ready, and effective for the current e
 
 Identify the question, relevant paths or sources, and evidence needed. Pin candidate identity when retaining or sharing evidence; transient lookups need only relevant freshness. Prefer direct source reading, project-native commands, and existing host capability when they already answer the question proportionately.
 
-Select the smallest useful tool. Do not recommend every available tool or route ordinary shell/search work through `irinse`. The point is to surface capabilities that materially improve the work and whose useful interface, limits, or evidence semantics are non-obvious.
+Select the smallest adequate capability; keep routine shell/search work direct. Use Irinṣẹ where tool interfaces, limits or evidence semantics need specialist guidance.
 
 Use [source retrieval](references/source-retrieval.md) when source format, syntax, symbol identity or search coverage controls the answer, or ordinary retrieval is noisy or incomplete. Choose the representation from the question; a failed text search is not a prerequisite. Tool availability is an observed capability, not a consequence of having a reference here.
 
@@ -23,7 +23,7 @@ Load only the tool-specific guidance needed for the selected capability:
 - [property-test runners](references/property-test-runners.md) for engine/test discovery and reproducible generated cases;
 - [mutation testing](references/mutation-testing.md) for bounded campaigns and outcome interpretation;
 - [native runtime checks](references/native-verification.md) for scoped fuzzing, sanitizer and race-detector evidence;
-- [runtime evidence](references/runtime-evidence.md) for profiling or trace capture, format-specific reduction, and symbol attribution;
+- [runtime evidence](references/runtime-evidence.md) for resource-cost measurement, profiling or trace capture, format-specific reduction, and symbol attribution;
 - [database evidence](references/database-evidence.md) for real-engine fixtures, transaction context and generated SQL;
 - [build evidence](references/build-evidence.md) for resolved graphs, action outcomes, critical paths and incremental invalidation;
 - [CRAP measurements](references/crap-score.md) for compatible complexity and coverage inputs;

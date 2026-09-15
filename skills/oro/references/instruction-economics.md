@@ -16,7 +16,7 @@ Use compact terms when they let one word carry a recurring distinction:
 - **cache** — copied environment/repository fact that is cheaper and fresher to inspect at use time;
 - **sediment** — stale guidance retained because adding felt safer than deleting.
 
-Prefer established terms with strong model priors. Coin a new term or abbreviation only when repeated use will repay its definition/decoding cost.
+Prefer established terms with strong model priors. Apply the engineering-principle guidance in [agent-facing writing](agent-writing.md); an acronym saves context only when it preserves the intended decision. Coin a new term only when repeated use repays its decoding cost.
 
 ## Spend the two loads deliberately
 

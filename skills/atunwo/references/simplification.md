@@ -12,7 +12,7 @@ Understand the actual flow, consumers, contracts, and proof before proposing red
 4. Localize policy and state with their real owner.
 5. Simplify the remaining control flow and interfaces without moving complexity into callers.
 
-Reduce reasoning burden, not formatting. Preserve useful names, intermediate values, comments, guard clauses, and explicit cleanup. More lines can be clearer. A helper earns its place through a coherent named operation; general-purpose abstraction needs real variation or a meaningful boundary. File size and scores alone justify neither extraction nor deletion.
+Use Beck’s simple-design rules: preserve passing behavioral proof, reveal intent, remove duplicated knowledge, then unnecessary elements. Apply KISS to reasoning burden, not line count. Preserve useful names, intermediate values, comments, guards and cleanup. Generalization needs real variation or a meaningful boundary; scores alone justify neither extraction nor deletion.
 
 Use complexity, churn, fan-out, invalid states, and lifecycle transitions as leads, not findings. Before proposing extraction, compare policy ownership, caller knowledge, navigation, meaningful decisions, and proof burden across the whole affected path. Reject relocated complexity; a clearer named operation can still help when state or branch counts remain unchanged. Prefer representations that exclude invalid combinations when they preserve timing and lifecycle contracts.
 
