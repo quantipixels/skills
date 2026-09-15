@@ -6,6 +6,8 @@ This pack exercises Alárinà's playbook selection and composition in a native a
 
 [Expanded selection observations](observations/2026-09-15-coverage.md) compare two frozen source revisions across C08's eleven requests. Both produced adequate proposed proof and authority boundaries; the explicit new routes did not establish an end-to-end advantage in this sample.
 
+[Direct-owner observations](observations/2026-09-15-direct-owners.md) compare C09 without Alárinà. Both revisions proposed adequate substantive evidence; extra companion attribution did not demonstrate an advantage. The same audit found and repaired a session-discovery defect with an executed regression.
+
 The cases distinguish two dimensions:
 
 - **Selection probe**: the actor returns the route it would take and stops before doing the work. This isolates selection, ownership, authority, and stopping decisions.
@@ -27,6 +29,7 @@ The smoke recipe below uses frozen definitions supplied directly. Native discove
 | C06 | Executed outcome | Supplied candidate | migration fixture; named Data change plan |
 | C07 | Selection probe | Supplied candidate | no applicable playbook |
 | C08 | Selection probe | Supplied candidate | four new compositions, five existing routes and an editorial control |
+| C09 | Selection probe | Supplied candidate | independently invoked owners, evidence acquisition, partial coverage and a routine-work control |
 
 ## Run with native workers
 
@@ -39,3 +42,5 @@ For example, C01 can use a copy of `evals/engineering/fixtures/verification/`; C
 For a quick supplied-candidate sample, run C01, C03, C05, and C07. Together they cover multi-owner composition, deliberate single-owner execution, a read-only PR stop, and a justified no-playbook route. Evaluate each run against the matching section of the reviewer file. A proposed plan does not pass an implementation case, and mentioning a skill or playbook name does not pass any case by itself.
 
 C08 can compare frozen source revisions with the same model, effort, request order and host capabilities. Keep its reviewer criteria private. It measures proposed routing and authority decisions; it does not establish runtime execution, native discovery or an end-to-end benefit. An adequate adapted route in the earlier revision is valid even when it lacks the new playbook name.
+
+C09 tests direct invocation without loading Alárinà. Freeze the full skill directory and expose only the case and those definitions to a fresh actor. Keep model, effort, request order and supplied capabilities matched across revisions. Judge the proposed acquisition, owning decision, uncertainty and authority rather than whether a particular companion skill is named. A correct native operation is valid. This remains a selection probe; real acquisition and instruction effectiveness need executed outcomes.

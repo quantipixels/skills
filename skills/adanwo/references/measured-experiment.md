@@ -13,6 +13,8 @@ Set a finite resource budget covering trials and confirmation before starting. U
 
 Prefer an existing benchmark, profiler, runtime probe, or evaluation surface; record the baseline before changing the target. If required measurement, host access, or credentials are unavailable, report the gap rather than simulate a result.
 
+Use `irinse` when profiler/trace, build, database or other measurement capture and reduction needs specialist guidance. Require the provenance and limits that affect comparability; Àdánwò retains the workload, hypothesis, constraints and keep/revert decision. Adequate native measurements need no extra route.
+
 The metric must represent the requested outcome. Correctness, security, required behaviour, compatibility, and resource limits are hard constraints: an aggregate score cannot compensate for violating them.
 
 ### Trust the baseline

@@ -21,6 +21,8 @@ Do not turn every design question into a full implementation-ready architecture 
 
 Pin only what can change the technical design: subject/candidate, problem or desired outcome, scope/non-goals, material constraints/drivers, current relevant structure, and evidence limits.
 
+Across modes, use `irinse` when structural, resolved dependency, flow, history, rule, runtime, database or build evidence materially controls the architecture decision and needs specialist acquisition or interpretation. Return to the actual interface, invariant or ownership question; a tool result is not an architecture verdict.
+
 Read only evidence capable of changing the architecture: current domain/project knowledge, code/tests/configuration when implementation exists, runtime/deployment/operations evidence, governing decisions, and bounded history/provenance where it explains current structure. Observed implementation proves current structure or behavior, not automatic architectural intent.
 
 Use `amose` and `iwadi` as needed.
@@ -47,7 +49,7 @@ When module/interface/seam shape is material, read [module design](references/mo
 
 Signals are not findings. Apply the deletion test and seek counterevidence: a small layer may still own a real trust/protocol/lifecycle/compatibility boundary, and co-change may reflect a legitimate cohesive slice rather than bad architecture. Distinguish architectural ownership/interface problems from simplification (`atunwo` with a simplification focus), defects/review findings (`atunwo`), or missing causal diagnosis (`alaga` in diagnosis mode).
 
-Use `irinse` as needed for bounded structural, dependency, flow, history, or rule evidence. Tool output, churn metrics, fan-out, cycles, file size, test count, and complexity scores are leads only; trace the actual caller burden, invariant, or ownership failure before retaining a candidate.
+Tool output, churn metrics, fan-out, cycles, file size, test count, and complexity scores are leads only; trace the actual caller burden, invariant, or ownership failure before retaining a candidate.
 
 When code judgment belongs to `atunwo`, pass the exact boundary, governing contracts, structural observations, and unresolved claim. Let it select review depth; reuse its current evidence instead of commissioning a second assessment of the same question. Architecture proposals remain proposals until implementation and proof exist.
 

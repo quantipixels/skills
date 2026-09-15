@@ -1,6 +1,6 @@
 ---
 name: irinse
-description: Select and use companion engineering tools; install, update, reconcile, configure, verify, or remove tools, installed skills, host instructions, and native agent declarations. Use for non-obvious tool capability or environment readiness; exclude skill authoring, engineering verdicts, and implementation.
+description: Select and use companion engineering tools; install, update, reconcile, configure, verify, or remove tools, installed skills, host instructions, and native agent declarations. Use for non-obvious capability selection, source retrieval or measurement semantics, and environment readiness; exclude routine reads, skill authoring, engineering verdicts, and implementation.
 ---
 
 # Irinṣẹ́
@@ -13,10 +13,12 @@ Identify the question, relevant paths or sources, and evidence needed. Pin candi
 
 Select the smallest useful tool. Do not recommend every available tool or route ordinary shell/search work through `irinse`. The point is to surface capabilities that materially improve the work and whose useful interface, limits, or evidence semantics are non-obvious.
 
-Load only the selected reference:
+Use [source retrieval](references/source-retrieval.md) when source format, syntax, symbol identity or search coverage controls the answer, or ordinary retrieval is noisy or incomplete. Choose the representation from the question; a failed text search is not a prerequisite. Tool availability is an observed capability, not a consequence of having a reference here.
+
+Load only the tool-specific guidance needed for the selected capability:
 
 - [tldr-code](references/tldr-code.md) for compact structural, flow, impact, quality, security, or contract leads;
-- [ast-grep](references/ast-grep.md) for syntax-aware search or structural rewriting;
+- [ast-grep](references/ast-grep.md) for syntax-aware search, query debugging or structural rewriting;
 - [Semgrep](references/semgrep.md) for repeatable bug, security, or architecture rules;
 - [property-test runners](references/property-test-runners.md) for engine/test discovery and reproducible generated cases;
 - [mutation testing](references/mutation-testing.md) for bounded campaigns and outcome interpretation;
@@ -26,7 +28,7 @@ Load only the selected reference:
 - [build evidence](references/build-evidence.md) for resolved graphs, action outcomes, critical paths and incremental invalidation;
 - [CRAP measurements](references/crap-score.md) for compatible complexity and coverage inputs;
 - [IntelliJ MCP](references/intellij-mcp.md) for IDE-backed navigation, code insight, run configurations, and debugging; or
-- [Firecrawl](references/firecrawl.md) for agent-oriented search, scrape, crawl, or browser-backed web acquisition when ordinary fetch/search cannot reliably expose the needed evidence.
+- [Firecrawl](references/firecrawl.md) for agent-oriented search, scrape, crawl, or browser-backed web acquisition when the required rendering or collection coverage warrants it.
 
 For another named tool, use current official documentation and retain only recurring non-obvious usage guidance when it earns a place in Irinṣẹ.
 

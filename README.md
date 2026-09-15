@@ -1,6 +1,6 @@
 # QP Skills
 
-Portable agent skills for reasoning, engineering, design, and delivery. Each skill owns a focused result. Use that skill directly when the owner is clear; use `alarina` when it is not.
+Portable agent skills for reasoning, engineering, design, and delivery. Each skill owns a focused result. Use `alarina` to coordinate the work, or invoke a specialist directly for a focused result.
 
 Browse the public docs at [quantipixels.com/skills](https://quantipixels.com/skills).
 
@@ -44,33 +44,23 @@ Model, reasoning, and permissions remain under your control. Claude discovers th
 
 ## Start
 
-### Work with Alárinà
+### Give the agent a working brief
 
-After installing all QP skills, paste this at the start of your Codex or Claude Code conversation:
-
-```text
-Read and follow the installed `alarina` skill throughout this session.
-```
-
-Then describe your work normally. Repeat the instruction in a new conversation; it does not change your saved configuration, model, or reasoning settings.
-
-This uses Alárinà's operating method without creating or maintaining an [Alárinà](agents/alarina.md) agent configuration. The plugin bundles Alárinà's definition, but Codex does not automatically register bundled Markdown definitions as custom agents.
-
-### Make it your own
-
-Personality belongs in your user instructions. Copy and adapt this optional example into your personal `AGENTS.md` or `CLAUDE.md`:
+After installing the skills, copy this block into your personal or project `AGENTS.md` / `CLAUDE.md`, or paste it into a conversation for that session. Merge it with existing instructions. Keep, adapt or omit the final paragraph to fit your preferred personality; it is yours to choose.
 
 ```text
-Be a steady workmate: warm, direct, resourceful, and candid. Have a view
-and reconsider when evidence warrants it. Care about craft, follow through,
-and keep me oriented. Match my language and tone; let humour arise naturally.
+Use the installed `alarina` skill as the governing working method for carrying my requests through authorized completion. Load it, then select and apply relevant installed skills and playbooks as the work evolves. Read their instructions and applicable references; use their methods, not just their names. Keep settled work direct and preserve accepted decisions when resuming.
 
-Read and follow the installed `alarina` skill throughout this session.
-Use `html-artifact` for plans and keep the same human-readable document
-current through delivery.
+Choose available tools by the evidence the task needs. Use `irinse` when source structure, measurement semantics, effective use or readiness needs guidance; do not wait for a poor result before choosing a suitable capability. Keep routine work direct and report material capability or coverage gaps.
+
+When work needs planning, use `atona` to guide it and `html-artifact` for the human-readable plan. Keep the same document current through delivery, showing the direction, decisions, progress, evidence and remaining choices clearly enough for someone new to the work to follow. Keep me involved when my judgment is needed and carry on with work already authorized.
+
+Be a steady workmate: warm, direct, resourceful and candid. Have a view and reconsider when evidence warrants it. Care about craft, follow through and keep me oriented. Match my language and tone; let humour arise naturally.
 ```
 
-Choose your own name, voice and language preferences. The example takes effect only when you adopt it; installing Alárinà does not set a persona or change your user instructions.
+Then describe your work normally. Saved instructions apply when your host loads that file; a conversation paste applies to that session. This brief does not install tools, change permissions, select a model or create a worker. Personality stays in user-owned instructions, not in the skills.
+
+The plugin bundles an [Alárinà agent definition](agents/alarina.md), but using its skill as a working method does not require creating a separate agent configuration. Codex does not automatically register bundled Markdown definitions as custom agents.
 
 ### Use a skill directly
 
@@ -86,7 +76,7 @@ Common entrypoints:
 | `atunwo` | A fixed code candidate or codebase snapshot needs independent judgment |
 | `architect` | Technical structure, interfaces or technology choices need survey, design or review |
 | `iwadi` | A question needs substantial current research or exact-source grounding |
-| `irinse` | A selected tool, host integration, or shared instruction surface needs setup or repair |
+| `irinse` | Tool selection, difficult source retrieval, effective use, or environment readiness needs guidance |
 | `yoruba-glossary` | Yorùbá language guidance, lessons, word formation, or glossary maintenance is needed |
 | `oro` | Agent-facing instructions or human-facing technical prose needs writing, review, editing, or pruning |
 | `adanwo` | A bounded exploratory or measured experiment must settle uncertainty |

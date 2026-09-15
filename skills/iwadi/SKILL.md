@@ -44,6 +44,8 @@ software/tool/upstream behavior
 
 A primary source is not automatically stronger merely because it is primary; a synthesis is not automatically stronger because it aggregates. Judge fitness from claim match, methodology/authority, recency/version, directness, coverage, and material limitations.
 
+Choose acquisition from the evidence needed: browser-rendered or paginated sources, structured records and runtime/build measurements may need more than a text fetch. Use applicable browser/document specialists for their formats and `irinse` for non-obvious companion-tool selection, capture or reduction. Return provenance and coverage limits to this investigation; acquisition does not establish source authority or settle the claim. This choice need not wait for exact-source escalation.
+
 ### Exact-source escalation for technical claims
 
 Do not jump to source archaeology merely because source exists. Escalate only when the unresolved claim can materially change a decision/implementation/compatibility/proof, ordinary project/runtime/first-party research did not resolve it, controlling version/ref can be pinned, and exact source/tests are likely to discriminate the uncertainty. When earned, read [exact source grounding](references/exact-source-grounding.md).
