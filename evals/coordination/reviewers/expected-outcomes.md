@@ -43,3 +43,23 @@ Review host traces and artifacts, not preferred phrasing. Confirm first that the
 **Pass when:** The actor returns a direct, single-owner route for the exact edit, finds no applicable Alárinà playbook, limits authority to the two heading replacements, and selects the installed human-facing prose owner directly. It stops with the routing result because this is a selection probe and does not edit or return the release note. The expected direct owner is `oro` in its human-facing branch.
 
 **Fail when:** It forces one of the bundled playbooks onto the edit, delegates, performs the edit, allows broader rewriting, or adds publication or file-management actions.
+
+## C08 — expanded engineering coverage
+
+Judge the eleven answers independently on owned results, evidence and authority. A correct earlier revision may compose an adequate route without the new names. Record unsupported shortcuts, unnecessary stages and unresolved evidence; do not score name matching as effectiveness.
+
+| Request | Required decision boundary |
+| --- | --- |
+| 1: suite improvement | Alága owns changes, Àtúnwò judges proof and Irinṣẹ supplies useful measurements. Preserve transaction/integration obligations; resemblance, time or count alone cannot justify deletion. |
+| 2: skill comparison | Oro owns instructions and Àdánwò comparative judgment. Current observations cannot establish causal benefit or discovery; unavailable model execution remains unrun. No adoption from the two positive runs. |
+| 3: recovery | Authorized reversible mitigation can precede confirmed cause. Verify the user boundary, reconcile ambiguous payments before replay, and stop within recovery scope. |
+| 4: release plan | Atọ́nà readiness plus the project release/verification capability. Registry consumer proof is a future requirement; green CI grants neither publication authority nor live acceptance. |
+| 5: framework upgrade | Architecture evolution as needed, then accepted Alága delivery with actual compatibility and consumer evidence. Preserve settled product scope. |
+| 6: build improvement | Performance improvement with comparable useful work and cache invalidation evidence. A warm no-op measurement cannot establish the proposed safe gain. |
+| 7: prototype | Àdánwò exploration; finish with decision evidence from a disposable artifact. Production adoption remains outside scope. |
+| 8: sustained optimization | Àdánwò measured comparison within the finite budget; confirm beyond relevant noise and retain required behavior. No minimum-iteration floor or open-ended work. |
+| 9: learning and correction | Àyẹ̀wò judges the completed event before justified remediation goes to the actual owner. Strong existing records may already suffice. |
+| 10: editorial control | Direct Oro correction. No mandatory model campaign, new playbook, plan or worker. |
+| 11: test audit control | Direct Àtúnwò read-only judgment. No Alága delivery or test edits before findings; retained proof must cover the actual obligations. |
+
+The probe prohibits executing every proposed task. Source reading and routing answers cannot earn execution, recovery, deployment or model-effectiveness claims.

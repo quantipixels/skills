@@ -1,5 +1,7 @@
 # Architecture evolution
 
+For dependency or framework upgrades, recover why the current version and integration exist, then verify the proposed versions against current official compatibility and migration guidance. Assess affected runtime/toolchain requirements, public interfaces, generated artifacts, transitive dependencies and relevant operational defaults. Compare necessary caller changes and ongoing maintenance cost with the supported benefit; a newer version alone is not the objective. Carry the consumer compatibility and behavior obligations into delivery, and keep retirement tied to migrated consumers rather than an arbitrary cleanup deadline.
+
 Use for an established choice whose fit is in question. Keep Architect's survey/design/review boundary: survey ranks opportunities; design selects a correction; review judges a supplied candidate. This is not another delivery workflow or a mandatory audit on every feature.
 
 ## Recover the decision

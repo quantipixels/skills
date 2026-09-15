@@ -24,6 +24,7 @@ The smoke recipe below uses frozen definitions supplied directly. Native discove
 | C05 | Selection probe | Supplied candidate | pull-request status versus merge authority |
 | C06 | Executed outcome | Supplied candidate | migration fixture; named Data change plan |
 | C07 | Selection probe | Supplied candidate | no applicable playbook |
+| C08 | Selection probe | Supplied candidate | four new compositions, five existing routes and an editorial control |
 
 ## Run with native workers
 
@@ -34,3 +35,5 @@ Record the exact model, reasoning setting, candidate and inventory hashes, host 
 For example, C01 can use a copy of `evals/engineering/fixtures/verification/`; C02 can use `profile/`; C03 can use `batching/`; and C04 and C06 can each use a separate copy of `migration/`. Let the native host manage worker lifecycle and isolation when workers are useful. One agent may apply several owners' methods without delegation. If workers are used in an execution case, give them the same disposable checkout through the host's normal workspace controls and retain their returned evidence in the trace.
 
 For a quick supplied-candidate sample, run C01, C03, C05, and C07. Together they cover multi-owner composition, deliberate single-owner execution, a read-only PR stop, and a justified no-playbook route. Evaluate each run against the matching section of the reviewer file. A proposed plan does not pass an implementation case, and mentioning a skill or playbook name does not pass any case by itself.
+
+C08 can compare frozen source revisions with the same model, effort, request order and host capabilities. Keep its reviewer criteria private. It measures proposed routing and authority decisions; it does not establish runtime execution, native discovery or an end-to-end benefit. An adequate adapted route in the earlier revision is valid even when it lacks the new playbook name.

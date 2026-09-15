@@ -4,7 +4,7 @@ Start with the result you need. With `alarina` active, describe the work normall
 
 You can steer it explicitly: “Use alarina's Data change playbook; planning only,” or “Use the Bug fix playbook to verify this existing repair.” Playbook names select routes inside Alárinà; they are not separately installed skills or new slash commands. The host still controls how Alárinà itself is loaded. See the [session setup](../README.md) if you want its operating method throughout a session.
 
-The supported paths are Feature delivery, Investigation, Bug fix, Performance improvement, Data change, Project verification, Architecture evolution and PR readiness. Feature delivery and PR readiness use their existing workflow owners. The other compositions live with [Alárinà](../skills/alarina/SKILL.md); specialist methods stay with their skills.
+The twelve supported paths are Feature delivery, Investigation, Bug fix, Performance improvement, Data change, Project verification, Test-suite improvement, Skill evaluation and improvement, Architecture evolution, Incident recovery, Release and rollout, and PR readiness. Feature delivery and PR readiness use their existing workflow owners. The other compositions live with [Alárinà](../skills/alarina/SKILL.md); specialist methods stay with their skills.
 
 Existing plans, accepted decisions and current proof carry forward. A settled coding change can go directly to `alaga` with its existing tests; selecting a playbook does not require another plan, agent or review. The examples below also work as direct specialist requests.
 
@@ -24,6 +24,8 @@ Owners: [Alága](../skills/alaga/SKILL.md), [Oro](../skills/oro/SKILL.md), [Irin
 
 ## Explain a slowdown, then test a worthwhile improvement
 
+Build and CI optimization use this same path. For example: “Reduce this build's waiting time while preserving its required checks and outputs.” Compare the relevant clean and incremental workloads, include cache conditions, and verify that a real input change invalidates the affected output. A warm no-op build is insufficient evidence.
+
 > Use alaga to diagnose this CPU profile and thread dump. Use irinse for capture interpretation if needed. Return the supported mechanism and evidence limits; stop before changing code.
 
 A profile shows where sampled time was spent. A heap capture can show what retains an object; a thread dump can show a blocked wait. These observations narrow an investigation. Neither a hot function nor an improved second capture alone proves the cause. Useful output identifies the capture, relevant path, source attribution and any missing discriminator.
@@ -33,6 +35,22 @@ A profile shows where sampled time was spent. A heap capture can show what retai
 Let the cost suggest the experiment. Repeated fixed network overhead may justify batching; repeated identical work may justify caching with an invalidation rule. Batching can improve throughput while worsening the latency someone waits for. A useful result compares the same representative workload, rejects broken candidates and reports a supported improvement or an honest inconclusive result.
 
 Owners: [Alága](../skills/alaga/SKILL.md), [Irinṣẹ](../skills/irinse/SKILL.md), [Àdánwò](../skills/adanwo/SKILL.md).
+
+For sustained optimization, give Alárinà a target and budget: “Improve this pipeline within the available experiment budget, retaining only confirmed gains.” The same Performance improvement path records attempted hypotheses, confirms promising changes and stops at the target, budget or exhausted useful options.
+
+## Improve an expensive or unreliable test suite
+
+> Use alarina to reduce the maintenance and runtime cost of this suite while preserving its required behavior checks.
+
+The Test-suite improvement playbook establishes what actually runs, where time or flakiness comes from, and which current proof protects each affected obligation. `atunwo` assesses suspected weakness or duplication, `irinse` supplies useful measurements, and `alaga` applies justified changes. Mutation testing is useful when an executed behavioral change can settle a specific proof question; it is not required for every cleanup.
+
+For example, several tests may repeat the same receipt assertion while one slower integration test protects recovery after a lost reply. Similar names or higher runtime do not make that integration test redundant. Return the retained obligations, concrete changes and evidence of lower cost or better defect detection.
+
+## Settle a choice with a disposable prototype
+
+> Use alarina to help decide whether this API should expose a synchronous result or a job handle. Build only the smallest useful experiment; do not implement the product change.
+
+This goes to `adanwo` in exploration mode. The result is an inspectable API exchange, interaction or other disposable artifact that settles the named uncertainty. Return its evidence to the deciding owner; a promising prototype does not itself authorize production adoption.
 
 ## Prepare a safe data change
 
@@ -47,6 +65,22 @@ The plan should contain executable preflight and post-change checks with expecte
 Return the current human-readable plan and unresolved decisions. Commands in a planning result have not been executed, and planning does not authorize a live rollout.
 
 Owners: [Atọ́nà](../skills/atona/SKILL.md), [Alága](../skills/alaga/SKILL.md), [Architect](../skills/architect/SKILL.md) when sequencing or recovery design remains open.
+
+## Recover an active disruption
+
+> Use alarina to restore this affected service within the approved runbook. Verify the user journey and report any remaining data or backlog consequences.
+
+Incident recovery uses `alaga`'s recovery method and the project's operational capability. Capture decisive evidence, choose a bounded intervention with a known stop condition, and verify the affected outcome. Reversible mitigation may be justified before the causal explanation is complete. A healthy process alone does not establish that users can complete their work or that delayed effects are safe.
+
+Recovery, permanent repair and a later postmortem are separate results. Continue only the outcomes included in the request; uncertainty about an external effect calls for reconciliation before replay.
+
+## Release an accepted candidate
+
+> Use alarina's Release and rollout playbook to prepare this package release. Planning only; include consumer compatibility and how we will verify the published version.
+
+Atọ́nà incorporates rollout readiness into the current plan. The project's release capability executes publication or deployment when authorized, and its verification capability checks the actual released candidate. A package consumer should resolve and use the intended published version; a service check should reach the deployed user boundary. Preserve actual effects when a release partially succeeds and recovery must be chosen.
+
+PR status remains PR readiness. A data migration inside a release uses the existing Data change method within the same plan.
 
 ## Resolve a difficult failure without guessing
 
@@ -65,6 +99,8 @@ Use exact baseline and repaired candidates with comparable inputs and reset stat
 Owner: [Alága](../skills/alaga/SKILL.md); [Àtúnwò](../skills/atunwo/SKILL.md) supplies independent judgment when requested or useful.
 
 ## Improve a design while preserving its contract
+
+Dependency and framework upgrades use Architecture evolution. For example: “Assess and carry out this accepted framework upgrade.” Recover the current integration's purpose, check official compatibility and migration requirements, account for affected consumers and transitive dependencies, and verify the migrated behavior. The useful result is a supported improvement with known migration and maintenance costs.
 
 > Use architect to assess this workaround. Recover the constraint it serves and determine whether it still applies. Do not implement a replacement yet.
 
@@ -92,6 +128,10 @@ Search with the project's actual vocabulary and the condition being considered. 
 
 Owners: [Wò PR](../skills/wo-pr/SKILL.md), [Amọ̀ṣẹ](../skills/amose/SKILL.md), [Ìwádìí](../skills/iwadi/SKILL.md).
 
+For “Explain why this session went wrong and apply the justified correction,” Alárinà first uses `ayewo-igba-ise` to establish the event and earned lesson, then routes the authorized correction to `alaga`, `oro` or `amose`. Reuse proof and maintained knowledge that already own the lesson. A retrospective-only request stops at its findings.
+
 ## Check whether a method helps
 
-Use the [opt-in engineering evaluations](../evals/README.md) for bounded comparisons. Preserve failed and blocked attempts and compare actual results, unnecessary mechanisms, human intervention and total work. Package validation proves structure; it does not establish that instructions improve engineering outcomes.
+> Use alarina to compare this proposed skill change with the current instructions on representative tasks. Return the evidence before adopting it.
+
+Skill evaluation and improvement connects `oro`'s instruction work to `adanwo`'s bounded comparisons, with `irinse` handling necessary host readiness. Use the [opt-in engineering evaluations](../evals/README.md) when their cases fit. Preserve failed and blocked attempts and compare actual results, unnecessary mechanisms, human intervention and total work. A directly supplied skill bypasses discovery; a routing answer does not establish execution. Package validation proves structure; it does not establish that instructions improve engineering outcomes.

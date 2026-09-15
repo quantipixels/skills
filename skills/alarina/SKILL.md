@@ -36,10 +36,14 @@ Use the paths below when composition matters. Open the matched file before using
 | Feature delivery | An idea or changed behavior needs decisions, structure, implementation or integrated proof. | `atona` for initiative progression; `alaga` directly for a settled coding outcome. |
 | Investigation | The result is an explanation, diagnosis or recommendation, including runtime or trace forensics. | [Investigation](playbooks/investigation.md) |
 | Bug fix | A reported defect needs a supported cause and verified repair, or a supplied repair needs checking. | [Bug fix](playbooks/bug-fix.md) |
-| Performance improvement | A measured concern needs bounded comparative work toward an improvement. | [Performance improvement](playbooks/performance.md) |
+| Performance improvement | Runtime, build or CI cost needs bounded comparison, including sustained optimization toward a target. | [Performance improvement](playbooks/performance.md) |
 | Data change | A migration, backfill or rollout must preserve existing meaning through intermediate states. | [Data change](playbooks/data-change.md) |
 | Project verification | Repeated work needs a usable verification capability, or its recipes need maintenance. | [Project verification](playbooks/project-verification.md) |
-| Architecture evolution | Design, dependency or codebase friction needs assessment, a chosen improvement or behavior-preserving delivery. | [Architecture evolution](playbooks/architecture-evolution.md) |
+| Test-suite improvement | Existing tests need better defect detection, lower cost or less maintenance while preserving required proof. | [Test-suite improvement](playbooks/test-suite-improvement.md) |
+| Skill evaluation and improvement | A skill or instruction change needs comparative evidence before retention. | [Skill evaluation and improvement](playbooks/skill-evaluation.md) |
+| Architecture evolution | Design or codebase friction, dependency upgrades or framework migrations need assessment or verified delivery. | [Architecture evolution](playbooks/architecture-evolution.md) |
+| Incident recovery | An active disruption needs mitigation and verified recovery. Diagnosis-only remains Investigation. | [Incident recovery](playbooks/incident-recovery.md) |
+| Release and rollout | An accepted candidate needs release planning, publication, deployment or live acceptance. | [Release and rollout](playbooks/release-rollout.md) |
 | PR readiness | An existing PR/MR needs status or work toward mergeability. | `wo-pr`; route confirmed blockers to their owners and return for current readiness. Observation-only requests stay read-only. |
 
 ### Run the selected path
@@ -60,13 +64,13 @@ An explicit specialist request stays with that specialist when it fits. These ro
 - Consequential premise → the [premise check](references/coordination.md#premise-check).
 - Dependent choices or a requested decision interview → `arojinle`; one consequential choice may be asked directly.
 - Unresolved technical structure → `architect`; unresolved observable behavior → `atona` in behavior-contract mode. Use both when both results remain open.
-- Independent code judgment → `atunwo`; measured keep/revert comparison → `adanwo` in measured-experiment mode.
+- Independent code judgment → `atunwo`; measured keep/revert comparison → `adanwo` in measured-experiment mode. A disposable prototype to settle an interaction, API or technical choice → `adanwo` in exploration mode, returning evidence to the deciding owner before delivery.
 - Authorized publication → `wo-pr` in publication mode. Readiness, publication, approval and merge remain distinct.
 - Agent-facing text steering selection, decisions, authority, execution, or completion → `oro` in its agent-facing branch.
 - Human-facing text for comprehension, action, or communication → `oro` in its human-facing branch.
 - Companion-tool selection, effective use, or readiness → `irinse`, including tools, host policy, and native agent declarations.
-- Establish what happened, recovery cost, recurring friction, or which durable improvement the evidence earns → `ayewo-igba-ise`.
-- Apply an established lesson and correction → the owner of the affected code, instructions, or project knowledge.
+- Establish what happened, recovery cost, recurring friction, or which durable improvement the evidence earns → `ayewo-igba-ise`. When remediation is also requested, finish that judgment, then carry the justified correction through its owner and affected proof.
+- Apply an established lesson → `alaga` for code, `oro` for instructions, or `amose` for qualifying durable project knowledge. Reuse stronger existing records; a completed task does not require a new lesson or postmortem.
 
 Retain non-obvious reasoning when losing it would cause recurrence or substantial rediscovery; routine completion does not require a new learning artifact.
 
