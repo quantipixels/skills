@@ -8,18 +8,20 @@ import math
 import os
 from pathlib import Path
 import re
+import signal
 import shutil
 import subprocess
 import sys
 import tempfile
+import time
 
 
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[1]
 FIXTURES = HERE / "fixtures"
 ORACLE = HERE / "oracle.py"
-SKILL = ROOT / "skills" / "alaga"
-CELLS = (
+SKILLS = ROOT / "skills"
+HISTORICAL_CELLS = (
     ("settlement-control-r1", "settlement", "control", 1),
     ("settlement-alaga-r1", "settlement", "alaga", 1),
     ("batching-alaga-r1", "batching", "alaga", 1),
@@ -29,6 +31,62 @@ CELLS = (
     ("batching-control-r2", "batching", "control", 2),
     ("batching-alaga-r2", "batching", "alaga", 2),
 )
+
+PLAYBOOK_CELLS = (
+    ("verification-control-r1", "verification", "control", 1),
+    ("migration-alaga-r1", "migration", "alaga", 1),
+    ("profile-control-r1", "profile", "control", 1),
+    ("verification-alaga-r1", "verification", "alaga", 1),
+    ("migration-control-r1", "migration", "control", 1),
+    ("profile-alaga-r1", "profile", "alaga", 1),
+)
+
+PROFILES = {
+    "historical": {
+        "cells": HISTORICAL_CELLS,
+        "question": "Does explicitly supplied current Alaga improve these repairs over the same host without optional QP guidance?",
+    },
+    "playbooks": {
+        "cells": PLAYBOOK_CELLS,
+        "question": "Does relevant current QP guidance improve these verification, migration, and runtime-evidence tasks over the same host without optional QP guidance?",
+    },
+}
+
+CASES = {
+    "settlement": {
+        "editable": ("settlement.py",), "allow_tests": True, "mode": "repair",
+        "guidance": ("alaga",),
+    },
+    "batching": {
+        "editable": ("batching.py",), "allow_tests": True, "mode": "repair",
+        "guidance": ("alaga",),
+    },
+    "verification": {
+        "editable": ("verify_project.py",), "allow_tests": True, "mode": "repair",
+        "guidance": ("alaga", "oro"),
+    },
+    "migration": {
+        "editable": ("migration.py",), "allow_tests": True, "mode": "repair",
+        "guidance": ("alaga",),
+    },
+    "profile": {
+        "editable": ("diagnosis.json",), "allow_tests": False, "mode": "artifact",
+        "guidance": ("alaga", "irinse"),
+    },
+}
+
+
+def profile_cells(profile, selected_cases=None):
+    if profile not in PROFILES:
+        raise ValueError(f"unknown profile: {profile}")
+    available = {case for _, case, _, _ in PROFILES[profile]["cells"]}
+    selected = list(selected_cases or sorted(available))
+    if len(selected) != len(set(selected)):
+        raise ValueError("selected cases must be unique")
+    unknown = set(selected) - available
+    if unknown:
+        raise ValueError(f"cases are not in {profile} profile: {', '.join(sorted(unknown))}")
+    return tuple(cell for cell in PROFILES[profile]["cells"] if cell[1] in selected), selected
 
 
 def read_json(path):
@@ -87,18 +145,23 @@ def tree_hash(root):
 
 
 def validate_manifest(manifest):
+    profile = manifest.get("profile", "historical")
+    selected_cases = manifest.get("selected_cases")
+    if selected_cases is not None and not isinstance(selected_cases, list):
+        raise ValueError("manifest selected_cases must be a list")
+    expected_cells, selected_cases = profile_cells(profile, selected_cases)
     runs = manifest.get("runs")
-    if not isinstance(runs, list) or len(runs) != len(CELLS):
-        raise ValueError("manifest must contain the fixed eight cells")
-    expected = [(cell, case, arm, repetition) for cell, case, arm, repetition in CELLS]
+    if not isinstance(runs, list) or len(runs) != len(expected_cells):
+        raise ValueError("manifest must contain every selected profile cell")
+    expected = [(cell, case, arm, repetition) for cell, case, arm, repetition in expected_cells]
     actual = [(item.get("id"), item.get("case"), item.get("arm"), item.get("repetition")) for item in runs]
-    if actual != expected or len({item[0] for item in actual}) != len(CELLS):
-        raise ValueError("manifest cells differ from the fixed comparison")
+    if actual != expected or len({item[0] for item in actual}) != len(expected_cells):
+        raise ValueError("manifest cells differ from the selected profile")
     budget = manifest.get("budget", {})
     require_positive("budget max_seconds_per_run", budget.get("max_seconds_per_run"))
     require_positive("budget max_tool_calls_per_run", budget.get("max_tool_calls_per_run"))
-    if budget.get("runs") != 8 or budget.get("automatic_retries") != 0:
-        raise ValueError("manifest budget must retain eight runs and zero automatic retries")
+    if budget.get("runs") != len(expected_cells) or budget.get("automatic_retries") != 0:
+        raise ValueError("manifest budget must match selected runs and retain zero automatic retries")
 
 
 def prepare(args):
@@ -107,17 +170,22 @@ def prepare(args):
     for field in ("host", "model", "reasoning"):
         if not isinstance(getattr(args, field), str) or not getattr(args, field).strip():
             raise ValueError(f"{field} must be explicit and nonempty")
+    profile = getattr(args, "profile", "historical")
+    cells, selected_cases = profile_cells(profile, getattr(args, "case", None))
+    if not cells:
+        raise ValueError("at least one case must be selected")
     output = args.output.absolute()
     if output.exists() or output.is_symlink():
         raise ValueError("study directory already exists; previous studies are never overwritten")
     output.mkdir(parents=True)
     runs = []
-    for cell_id, case, arm, repetition in CELLS:
+    for cell_id, case, arm, repetition in cells:
+        case_definition = CASES[case]
         run = output / "runs" / cell_id
         actor = run / "actor"
         workspace = actor / "workspace"
         private = run / "private"
-        shutil.copytree(FIXTURES / case, workspace)
+        copy_without_cache(FIXTURES / case, workspace)
         (workspace / "TASK.md").replace(actor / "TASK.md")
         private.mkdir(parents=True)
         shutil.copytree(workspace, private / "original")
@@ -125,22 +193,46 @@ def prepare(args):
         shutil.copy2(ORACLE, private / "oracle.py")
         treatment = ""
         if arm == "alaga":
-            shutil.copytree(SKILL, actor / "guidance" / "alaga")
-            treatment = "Read guidance/alaga/SKILL.md and any directly relevant bundled references before working.\n"
-        prompt = (
-            "You are a software engineer responsible for this bounded repair.\n"
-            "Work only in workspace/. You may change the task's production source, test_*.py files, "
-            "and RESULT.md. Do not use network, Git, workers, or files outside actor/. Do not install dependencies.\n"
-            + treatment
-            + "Read TASK.md, implement the repair, run its tests, and write RESULT.md.\n"
-        )
+            for skill in case_definition["guidance"]:
+                copy_without_cache(SKILLS / skill, actor / "guidance" / skill)
+            if profile == "historical":
+                treatment = "Read guidance/alaga/SKILL.md and any directly relevant bundled references before working.\n"
+            else:
+                treatment = "Read each guidance/*/SKILL.md and any directly relevant bundled references before working.\n"
+        if profile == "historical":
+            prompt = (
+                "You are a software engineer responsible for this bounded repair.\n"
+                "Work only in workspace/. You may change the task's production source, test_*.py files, "
+                "and RESULT.md. Do not use network, Git, workers, or files outside actor/. Do not install dependencies.\n"
+                + treatment
+                + "Read TASK.md, implement the repair, run its tests, and write RESULT.md.\n"
+            )
+        else:
+            editable = ", ".join(f"workspace/{name}" for name in case_definition["editable"])
+            if case_definition["allow_tests"]:
+                editable += ", root workspace/test_*.py files"
+            prompt = (
+                "You are a software engineer responsible for this bounded task.\n"
+                f"Work only in workspace/. You may change {editable}, and workspace/RESULT.md. "
+                "Do not use network, Git, workers, or files outside actor/. Do not install dependencies.\n"
+                + treatment
+                + "Read TASK.md, complete the task, run any requested checks, and write RESULT.md.\n"
+            )
         (actor / "PROMPT.md").write_text(prompt, encoding="utf-8")
         protected = {
             "TASK.md": digest(actor / "TASK.md"),
             "PROMPT.md": digest(actor / "PROMPT.md"),
         }
-        if case == "settlement":
-            protected["workspace/provider.py"] = digest(workspace / "provider.py")
+        editable_paths = set(case_definition["editable"])
+        for name, value in file_hashes(workspace).items():
+            is_editable_test = (
+                case_definition["allow_tests"]
+                and Path(name).parent == Path(".")
+                and Path(name).name.startswith("test_")
+                and Path(name).suffix == ".py"
+            )
+            if name not in editable_paths and not is_editable_test:
+                protected[f"workspace/{name}"] = value
         for name, value in file_hashes(actor / "guidance").items() if (actor / "guidance").exists() else ():
             protected[f"guidance/{name}"] = value
         private_hashes = file_hashes(private)
@@ -164,14 +256,16 @@ def prepare(args):
             "private_hashes": private_hashes,
         })
     manifest = {
-        "version": 1,
-        "question": "Does explicitly supplied current Alaga improve these repairs over the same host without optional QP guidance?",
+        "version": 2,
+        "profile": profile,
+        "selected_cases": selected_cases,
+        "question": PROFILES[profile]["question"],
         "source_revision": git_source(),
         "checker_sha256": digest(Path(__file__)),
         "host": args.host,
         "model": args.model,
         "reasoning": args.reasoning,
-        "budget": {"max_seconds_per_run": args.max_seconds, "max_tool_calls_per_run": args.max_tool_calls, "runs": 8, "automatic_retries": 0},
+        "budget": {"max_seconds_per_run": args.max_seconds, "max_tool_calls_per_run": args.max_tool_calls, "runs": len(cells), "automatic_retries": 0},
         "execution": "external native model host; this CLI makes no model calls",
         "sandbox": "Prefer a host-enforced isolated actor sandbox; disclose assignment-only execution as isolated_host_sandbox=false.",
         "runs": runs,
@@ -180,18 +274,74 @@ def prepare(args):
     return {"study": str(output), "runs": [item["id"] for item in runs], "status": "prepared-not-run"}
 
 
+def stop_process_group(process, grace=0.5):
+    if os.name != "posix":
+        if process.poll() is None:
+            process.terminate()
+            try:
+                process.wait(timeout=grace)
+            except subprocess.TimeoutExpired:
+                process.kill()
+                process.wait(timeout=grace)
+        return
+    try:
+        os.killpg(process.pid, signal.SIGTERM)
+    except ProcessLookupError:
+        return
+    deadline = time.monotonic() + grace
+    while time.monotonic() < deadline:
+        try:
+            os.killpg(process.pid, 0)
+        except ProcessLookupError:
+            return
+        time.sleep(0.01)
+    try:
+        os.killpg(process.pid, signal.SIGKILL)
+    except ProcessLookupError:
+        pass
+
+
 def subprocess_result(command, cwd, timeout):
     env = os.environ.copy()
     env["PYTHONDONTWRITEBYTECODE"] = "1"
     try:
-        result = subprocess.run(command, cwd=cwd, text=True, capture_output=True, timeout=timeout, env=env)
+        process = subprocess.Popen(
+            command,
+            cwd=cwd,
+            text=True,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            env=env,
+            start_new_session=os.name == "posix",
+        )
+        try:
+            stdout, stderr = process.communicate(timeout=timeout)
+        except subprocess.TimeoutExpired:
+            stop_process_group(process)
+            try:
+                stdout, stderr = process.communicate(timeout=1)
+            except subprocess.TimeoutExpired:
+                stdout, stderr = "", "process pipes remained open after termination"
+            return {
+                "status": "timeout",
+                "exit_code": None,
+                "stdout": stdout,
+                "stderr": stderr,
+            }
+        finally:
+            stop_process_group(process)
     except subprocess.TimeoutExpired as error:
         stdout = error.stdout.decode(errors="replace") if isinstance(error.stdout, bytes) else error.stdout or ""
         stderr = error.stderr.decode(errors="replace") if isinstance(error.stderr, bytes) else error.stderr or ""
         return {"status": "timeout", "exit_code": None, "stdout": stdout, "stderr": stderr}
     except OSError as error:
         return {"status": "error", "exit_code": None, "stdout": "", "stderr": f"{type(error).__name__}: {error}"}
-    return {"status": "completed", "exit_code": result.returncode, "stdout": result.stdout, "stderr": result.stderr}
+    return {
+        "status": "completed",
+        "exit_code": process.returncode,
+        "stdout": stdout,
+        "stderr": stderr,
+    }
 
 
 def classify_tests(result):
@@ -283,8 +433,8 @@ def check_cell(study, manifest, spec, timeout):
         path = run / "private" / relative
         if not path.is_file() or path.is_symlink() or digest(path) != expected:
             changed.append(f"private/{relative}")
-    allowed = {"RESULT.md"}
-    allowed.add("settlement.py" if spec["case"] == "settlement" else "batching.py")
+    case_definition = CASES[spec["case"]]
+    allowed = {"RESULT.md", *case_definition["editable"]}
     unexpected = []
     expected_guidance = {name for name in spec["protected_hashes"] if name.startswith("guidance/")}
     for path in actor.rglob("*"):
@@ -299,8 +449,14 @@ def check_cell(study, manifest, spec, timeout):
             relative = path.relative_to(workspace).as_posix()
             if not path.is_symlink() and is_cache_file(relative):
                 continue
-            provider_allowed = spec["case"] == "settlement" and relative == "provider.py"
-            if relative not in allowed and not (path.parent == workspace and path.name.startswith("test_") and path.suffix == ".py") and not provider_allowed:
+            editable_test = (
+                case_definition["allow_tests"]
+                and path.parent == workspace
+                and path.name.startswith("test_")
+                and path.suffix == ".py"
+            )
+            protected_workspace_file = f"workspace/{relative}" in spec["protected_hashes"]
+            if relative not in allowed and not editable_test and not protected_workspace_file:
                 unexpected.append(relative)
     if changed or unexpected or symlinks:
         return {**base, "status": "invalid", "record_kind": None, "checked_sha256": tree_hash(run), "tampered": changed, "unexpected_files": sorted(set(unexpected)), "symlinks": symlinks}
@@ -338,13 +494,49 @@ def check_cell(study, manifest, spec, timeout):
     with tempfile.TemporaryDirectory() as temporary:
         candidate = Path(temporary) / "candidate"
         copy_without_cache(workspace, candidate)
-        tests = subprocess_result([sys.executable, "-m", "unittest", "discover", "-v"], candidate, timeout)
-        tests["status"] = classify_tests(tests)
+        oracle = subprocess_result([sys.executable, str(run / "private" / "oracle.py"), str(candidate), spec["case"]], candidate, timeout)
+        oracle["status"] = classify_oracle(oracle)
+    if case_definition["mode"] == "artifact":
+        with tempfile.TemporaryDirectory() as temporary:
+            original = Path(temporary)
+            copy_without_cache(run / "private" / "original", original)
+            original_oracle = subprocess_result(
+                [sys.executable, str(run / "private" / "oracle.py"), str(original), spec["case"]],
+                original,
+                timeout,
+            )
+            original_oracle["status"] = classify_oracle(original_oracle)
+        statuses = (oracle["status"], original_oracle["status"])
+        if "timeout" in statuses:
+            status = "timeout"
+        elif "error" in statuses:
+            status = "error"
+        elif oracle["status"] == "passed" and original_oracle["status"] == "failed":
+            status = "passed"
+        else:
+            status = "failed"
+        not_applicable = {
+            "status": "not-applicable",
+            "reason": "This case evaluates a returned evidence artifact rather than executable repair tests.",
+        }
+        return {
+            **base,
+            "status": status,
+            "record_kind": kind,
+            "submitted_sha256": submitted_sha256,
+            "checked_sha256": checked_sha256,
+            "record": record,
+            "returned_tests": not_applicable,
+            "acceptance": oracle,
+            "tests_against_original": not_applicable,
+            "baseline_tests": not_applicable,
+            "acceptance_against_original": original_oracle,
+        }
     with tempfile.TemporaryDirectory() as temporary:
         candidate = Path(temporary) / "candidate"
         copy_without_cache(workspace, candidate)
-        oracle = subprocess_result([sys.executable, str(run / "private" / "oracle.py"), str(candidate), spec["case"]], candidate, timeout)
-        oracle["status"] = classify_oracle(oracle)
+        tests = subprocess_result([sys.executable, "-m", "unittest", "discover", "-v"], candidate, timeout)
+        tests["status"] = classify_tests(tests)
     with tempfile.TemporaryDirectory() as temporary:
         original = Path(temporary)
         copy_without_cache(run / "private" / "original", original)
@@ -357,10 +549,10 @@ def check_cell(study, manifest, spec, timeout):
     with tempfile.TemporaryDirectory() as temporary:
         baseline = Path(temporary)
         copy_without_cache(run / "private" / "original", baseline)
-        production = "settlement.py" if spec["case"] == "settlement" else "batching.py"
-        candidate_source = workspace / production
-        if candidate_source.is_file():
-            shutil.copy2(candidate_source, baseline / production)
+        for production in case_definition["editable"]:
+            candidate_source = workspace / production
+            if candidate_source.is_file():
+                shutil.copy2(candidate_source, baseline / production)
         baseline_tests = subprocess_result([sys.executable, "-m", "unittest", "discover", "-v"], baseline, timeout)
         baseline_tests["status"] = classify_tests(baseline_tests)
     statuses = (tests["status"], oracle["status"], regression["status"], baseline_tests["status"])
@@ -430,7 +622,13 @@ def summary(args):
         or type(item.get("record", {}).get("isolated_host_sandbox")) is not bool
     ]
     report = {
-        "version": 1, "question": manifest["question"], "configuration": {key: manifest[key] for key in ("host", "model", "reasoning", "budget")},
+        "version": 2,
+        "question": manifest["question"],
+        "configuration": {
+            **{key: manifest[key] for key in ("host", "model", "reasoning", "budget")},
+            "profile": manifest.get("profile", "historical"),
+            "selected_cases": manifest.get("selected_cases", ["batching", "settlement"]),
+        },
         "cells": cells, "record_kinds_present": kinds,
         "isolation_limitations": {
             "unisolated_model_runs": unisolated,
@@ -447,13 +645,20 @@ def summary(args):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     commands = parser.add_subparsers(dest="command", required=True)
-    prep = commands.add_parser("prepare", help="freeze all eight comparison cells")
+    prep = commands.add_parser("prepare", help="freeze the selected comparison profile")
     prep.add_argument("--output", type=Path, required=True)
     prep.add_argument("--host", required=True)
     prep.add_argument("--model", required=True)
     prep.add_argument("--reasoning", required=True)
     prep.add_argument("--max-seconds", type=float, required=True)
     prep.add_argument("--max-tool-calls", type=int, required=True)
+    prep.add_argument("--profile", choices=sorted(PROFILES), default="historical")
+    prep.add_argument(
+        "--case",
+        action="append",
+        choices=sorted(CASES),
+        help="select one or more cases from the profile; repeat the option",
+    )
     verify = commands.add_parser("check", help="run mechanical checks on every expected cell")
     verify.add_argument("--study", type=Path, required=True)
     verify.add_argument("--output", type=Path, required=True)

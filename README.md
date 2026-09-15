@@ -90,12 +90,14 @@ Common entrypoints:
 | `yoruba-glossary` | Yorùbá language guidance, lessons, word formation, or glossary maintenance is needed |
 | `oro` | Agent-facing instructions or human-facing technical prose needs writing, review, editing, or pruning |
 | `adanwo` | A bounded exploratory or measured experiment must settle uncertainty |
-| `alarina` | The starting owner or useful route is unclear, or delegated work needs coordination |
+| `alarina` | Select or use an engineering playbook, compose or resume work across owners, or find the starting owner |
 | `human-view` | Supplied content needs a clear default visual presentation without a full design engagement |
 
 Alárinà uses installed skill definitions as the dynamic inventory.
 
 See [a worked engineering example](docs/engineering-example.md) for how identity, recovery, architecture and tests fit together in a retry fix.
+
+With `alarina` active, describe the engineering outcome or name a playbook; it selects the path and coordinates the relevant skills. The [engineering playbooks guide](docs/engineering-playbooks.md) shows supported paths, direct invocation examples and expected evidence. Settled single-owner work can still use its specialist directly.
 
 ## Update
 

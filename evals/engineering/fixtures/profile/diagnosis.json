@@ -1,0 +1,31 @@
+{
+  "capture_id": "reports-cpu-2026-09-14T120000Z",
+  "format": "qp-sampled-stacks-v1",
+  "sample_count": 100,
+  "capture_conditions": {
+    "candidate": "report-service@4f2a6c1",
+    "command": "GET /reports/monthly?account=sample",
+    "duration_ms": 2000,
+    "interval_ms": 20
+  },
+  "reduced_path": [
+    {"symbol": "cache.load_snapshot", "file": "app/cache.py", "line": 41, "inclusive_samples": 65},
+    {"symbol": "json.loads", "file": "python/json/__init__.py", "line": 346, "inclusive_samples": 65}
+  ],
+  "source_attribution": {
+    "symbol": "cache.load_snapshot",
+    "file": "app/cache.py",
+    "line": 41,
+    "inclusive_samples": 65
+  },
+  "causal_assessment": {
+    "status": "CONFIRMED_ROOT_CAUSE",
+    "confirmed_root_cause": "repeated_snapshot_parse",
+    "live_hypotheses": []
+  },
+  "next_probe": {
+    "scope": "none",
+    "metrics": [],
+    "distinguishes": []
+  }
+}

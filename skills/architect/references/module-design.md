@@ -139,6 +139,18 @@ Decisive trade-off / strongest alternative:
 Limits or unresolved architecture gaps:
 ```
 
+## Represent the invariant where it is needed
+
+When contradictory fields or repeated partial operations create caller burden, try a representation that constructs valid states directly:
+
+| Current burden | Candidate representation | Limit |
+| --- | --- | --- |
+| `completed` flag and optional completion time can disagree | A completed variant carries its required timestamp; other variants carry their own data. | Preserve real lifecycle and wire compatibility; names alone do not enforce transitions. |
+| Repeatedly take the first element after asserting a sequence is nonempty | Construct a nonempty sequence from a first element and a remainder at the boundary requiring it. | A total operation such as summation can still accept an ordinary empty sequence. |
+| Same-type identifiers are repeatedly swapped at a consequential boundary | Use the language's distinct domain representation where it prevents that mistake. | Do not wrap every primitive or spread conversion burden into unrelated callers. |
+
+Choose the native idiom and state which invalid operation becomes impossible or which repeated check disappears. Keep runtime validation for untrusted inputs and constraints the representation cannot enforce. More type precision is not useful without a protected operation or clearer contract.
+
 ## Misuse resistance at trust boundaries
 
 When an interface controls a security-sensitive effect, try plausible caller mistakes: omitted configuration, zero/negative limits, invalid enum values, swapped same-type arguments and conflicting configuration sources. Trace the actual default, precedence and error path to the protected effect. Does a rejected value stop the operation, or merely warn while continuing? Are required checks enforced at the owning boundary or dependent on every caller remembering them?

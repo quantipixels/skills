@@ -41,6 +41,19 @@ When a model or person scores the results, read [judged outcomes](judged-outcome
 
 Locate the cost or uncertainty when a cheaper observation would change which candidate is worth trying. Rank plausible changes by expected benefit, risk, and experiment cost; try the smallest discriminating change first.
 
+Use a measured cost signature to generate hypotheses; the table suggests candidates, not prescriptions. Evidence that work is slow is separate from evidence that it is safe to remove, defer or share.
+
+| Observed signature | Candidate hypothesis | Constraint to preserve or measure |
+| --- | --- | --- |
+| Work completes but no required consumer or effect uses it | Eliminate the work | Prove absence of required outputs, effects and compatibility obligations |
+| Cost grows mainly with input or retained-data size | Partition, prune or bound the processed set | Preserve result coverage and include filtering, coordination and missed-case cost |
+| The same effective input triggers the same expensive result repeatedly | Cache or reuse the result | Define identity, invalidation, freshness, consistency and memory bounds |
+| A repeated scan or lookup dominates the critical path | Add a lookup structure or move justified work off that path | Include maintenance, storage, queueing and failure cost |
+| Fixed overhead repeats for many small operations | Batch compatible operations | Preserve latency bounds, isolation, ordering and partial-failure behavior |
+| Variable waiting dominates while spare capacity exists | Try bounded hedging or replication | Control duplicate effects, cancellation, load and correlated failures |
+| Results are computed eagerly but often unused | Make evaluation lazy | Preserve observable ordering, error timing and resource lifetime |
+| Required work need not complete within the user's wait | Schedule it outside the response path | Preserve durable completion, retries, visibility and consistency; count shifted cost |
+
 Within granted mutation authority, use native/project tools for reversible trials isolated from unrelated work and each other's measurement state. Do not require a complete delivery/review cycle for every discarded trial. Apply enough invariant checks to reject invalid candidates before timing or scoring them; required acceptance proof still governs adoption.
 
 Record each trial's candidate, hypothesis, workload, invariant result, measurement, comparison, and disposition. Use this evidence to keep a contender, revert an owned trial, or leave the result inconclusive. These conclusions grant no new mutation authority. Restore only owned changes; never overwrite unrelated work. Keep the original candidate when no tested variant qualifies.

@@ -1,0 +1,5 @@
+Repair migration.py and leave focused regression tests. Version 1 databases identify accounts by sparse integer IDs and store those IDs in project_members. Version 2 stores the stable account login in project_members while retaining the accounts and projects tables. Migration must derive every new membership from the populated legacy relationship, preserve each project/login/role mapping exactly, set `PRAGMA user_version = 2`, and be safe to run again on an already migrated database. Reject unsupported schema versions with ValueError and do not silently rebuild them.
+
+Use the supplied legacy.sql as the representative populated upgrade snapshot. Its insertion order and numeric IDs intentionally differ from lexical login order. Apply the real migration path; an empty-database pass is insufficient. Keep the public `migrate(path)` API and the existing Python standard-library setup. Leave legacy.sql unchanged. Explain the mapping invariant, proof, and limitations in RESULT.md.
+
+Run tests with: python3 -m unittest discover -v

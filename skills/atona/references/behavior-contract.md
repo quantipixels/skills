@@ -42,6 +42,8 @@ Write only the material contract:
 
 Give each material behavior a stable short identity when downstream delivery, proof, review, or later revisions need traceability. Keep examples normative only when the specification labels them as such. Do not require user-story phrasing, exhaustive scenario taxonomies, or implementation structure when a shorter observable contract is unambiguous.
 
+When a flow is ambiguous, walk one concrete actor from its actual entry point through material branches to success, rejection, cancellation or recovery. Compare each step with the specified behavior and shared handling already provided by the project. For example, a timed-out request may leave a completed remote effect: what can the caller safely retry, and what result should it observe? Name that specific unresolved decision and its consequence; do not add generic edge-case questions or turn a plausible default into an accepted requirement.
+
 A specification defines what must be true. It does not choose modules, teams, dependencies, algorithms, schemas, deployment topology, ticket boundaries, proof mechanics, or delivery order unless one of those is itself a confirmed externally observable constraint.
 
 ## Resolve material gaps

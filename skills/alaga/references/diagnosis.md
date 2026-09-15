@@ -23,7 +23,7 @@ Use the smallest feedback loop that can distinguish the reported symptom from th
 
 Maintain a small set of competing hypotheses. Capture the trigger/mechanism, enabling conditions, propagation, evidence explained, distinguishing observation, and smallest safe probe where each is material. Use a table when several live hypotheses benefit from side-by-side comparison; a short comparison is enough for a simple decisive probe.
 
-Read [probe discipline](diagnosis-probes.md) when bounded source/history/Git evidence can discriminate hypotheses. Prefer existing observations, tests, logs, traces, configuration, history, measurements, and reversible diagnostics that fit the domain.
+Read [probe discipline](diagnosis-probes.md) for bounded history/repair comparisons, cross-component failures or order-dependent tests. Prefer existing observations, tests, logs, traces, configuration, history, measurements, and reversible diagnostics that fit the domain. Use `irinse` for non-obvious profile or trace reduction and symbol attribution; causal judgment remains here.
 
 Choose each next observation or intervention for its ability to distinguish the live hypotheses, not because a preferred debugging ritual exists. Control material confounders where practical. Vary one factor at a time only when that probe can actually discriminate the mechanism; when interactions or coupled conditions are plausible, design the observation/probe to expose those interactions rather than pretending the factors are independent.
 
