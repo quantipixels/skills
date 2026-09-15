@@ -12,11 +12,15 @@ Use comparable current implementations to recover the intended convention. If th
 
 For framework-managed transactions, validation, authorization, retries, serialization or callbacks, confirm the actual version, configuration, registration and invocation path. An annotation or API name does not establish that interception or enforcement runs. Inspect the effective boundary and use a focused integration probe when source/configuration cannot settle a consequential uncertainty. Preserve existing authorization and tenant checks across new entry points.
 
+When relying on a caller or dependency to establish a precondition, locate its enforcement on the relevant paths. A validating-sounding name is not evidence. Reuse an existing guarantee; leave an unsupported assumption explicit rather than silently accepting it or adding duplicate validation.
+
 ## Preserve operation during change
 
 Establish the supported deployment and data contract before assuming empty storage, synchronized upgrades or a stopped system. Where applicable, account for existing records, old clients or writers, partial migration and restart. Separate reversible code rollback from irreversible data or external effects. Use `architect` for a consequential unresolved design choice and [stateful proof](stateful-proof.md) when persistence or recovery needs distinguishing evidence.
 
 Follow a material external effect through failure, timeout, retry and cancellation. Locate ownership of identity, atomicity and resource cleanup; do not assume failure means nothing happened. Reuse existing operational signals so the affected failure can be recognized and reconciled without disclosing sensitive data. Add instrumentation only for a concrete missing diagnostic, not a new observability stack.
+
+When several layers handle failure, check their combined behavior: retries can multiply attempts, translated exceptions can bypass recovery, and a fallback can repeat a completed effect. Verify the actual error and retry contracts across the interacting layers.
 
 When the change alters work volume, buffering, parallelism or resource lifetime, check the material consequence against the supported workload and environment. A small functional fixture can miss unbounded memory, connection use or work amplification. Use an existing limit, bounded workload probe or measured evidence when needed; no universal benchmark or live-load test is required.
 
