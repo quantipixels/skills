@@ -14,6 +14,10 @@ For framework-managed transactions, validation, authorization, retries, serializ
 
 When relying on a caller or dependency to establish a precondition, locate its enforcement on the relevant paths. A validating-sounding name is not evidence. Reuse an existing guarantee; leave an unsupported assumption explicit rather than silently accepting it or adding duplicate validation.
 
+When enforcement is the disputed behavior, drive the framework-managed entry point with a valid control and an input that must be rejected or rolled back. Inspect persisted and external effects, not only the response. A direct method call or a mocked interceptor leaves registration, proxying and lifecycle behavior unproved. Use the project’s actual runner and supported configuration; keep framework-specific commands in project guidance.
+
+For a changed access boundary, identify the actor, tenant, resource and permitted operation. Exercise the relevant alternate entry point with another tenant’s resource or insufficient authority, checking both disclosure and mutation. Establish whether a job intentionally uses service authority or must retain the initiating user’s scope; do not impose identical credentials on different trust boundaries.
+
 ## Preserve operation during change
 
 Establish the supported deployment and data contract before assuming empty storage, synchronized upgrades or a stopped system. Where applicable, account for existing records, old clients or writers, partial migration and restart. Separate reversible code rollback from irreversible data or external effects. Use `architect` for a consequential unresolved design choice and [stateful proof](stateful-proof.md) when persistence or recovery needs distinguishing evidence.

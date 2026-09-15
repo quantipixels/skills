@@ -31,6 +31,8 @@ Record a small useful set of journeys: entry point, prerequisite, drive command 
 
 Prefer the real public path over internal setters or verification-only endpoints. An isolated external substitute may be appropriate; state the boundary it leaves unproved. Confirm what a dry-run actually omits before relying on it to prevent effects.
 
+For recurring integration risks, retain the project-specific commands and observations for the applicable framework invocation, supported old/new consumer or data combination, denied access, or interruption/restart journey. Reuse Alaga’s proof methods; this capability supplies the real build, fixtures and driver rather than copying the general method. Record resource-cost recipes only when a concrete workload and bounded measurement are available.
+
 ## Prove the instructions
 
 Within existing runtime and effect authority, have `alaga` follow the authored instructions in an appropriate test environment through startup/readiness, one representative journey, effect inspection and cleanup. Check that evidence remains available afterwards and owned resources are released, including after a failed attempt. Correct the instructions or harness from observed failures and rerun the affected path. Missing runtime access or effect authority leaves an unexecuted recipe with a named verification gap; an authoring request does not itself authorize live effects.

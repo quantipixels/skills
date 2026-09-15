@@ -30,7 +30,7 @@ Use `irinse` when a material review claim depends on symbol/caller resolution, s
 
 ## Assess and substantiate
 
-Consider contract compliance, engineering quality, proof, and credible failure paths separately. Passing tests does not establish maintainability; a style preference does not establish a defect. Read [boundary failures](references/boundary-failures.md) when state, concurrency, retries, migration, recovery, verification gates, or provider boundaries are material.
+Consider contract compliance, engineering quality, proof, and credible failure paths separately. Passing tests does not establish maintainability; a style preference does not establish a defect. Read [boundary failures](references/boundary-failures.md) when framework enforcement, authorization, state, concurrency, retries, migration, recovery, verification gates, or provider boundaries are material.
 
 For changed behavior, compare baseline, current, and required outcomes as part of normal review. Historical implementation is evidence, not automatic intent; preserve required behavior without restoring historical defects. Account for accepted differences and trace consequences to real consumers rather than inferring preservation from matching names or code shape.
 

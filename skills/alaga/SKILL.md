@@ -30,7 +30,7 @@ Prefer extending the existing owner when the semantics fit. Add a separate imple
 
 For new or changed domain values, types or states, inspect how comparable concepts are defined and actually used by callers and users. Follow the authoritative project's naming, representation and lifecycle conventions. For enums or statuses, trace applicable transitions, persistence/wire values, defaults, unknown-value handling and consumer mappings; a new declaration is not the whole change. Distinguish internal identifiers from user-facing labels and preserve compatibility. If existing patterns conflict, resolve the relevant owner and intended behavior rather than copy an arbitrary example or silently invent a convention.
 
-For a change spanning consumers, persisted data, framework-managed behavior or external effects, read [integration obligations](references/integration-obligations.md). Resolve the applicable obligations before editing and reconcile them against the final candidate; ordinary local changes need no separate assessment.
+For a change spanning consumers, persisted data, framework-managed behavior, authorization or external effects, read [integration obligations](references/integration-obligations.md). Resolve the applicable obligations before editing and reconcile them against the final candidate; ordinary local changes need no separate assessment.
 
 Reconsider established choices when recurring friction or a concrete new capability changes their fit. Use `architect` for a consequential design choice; report wider opportunities without silently expanding delivery. Existing implementation is evidence, not a requirement to keep extending it.
 
