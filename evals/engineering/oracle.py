@@ -319,23 +319,35 @@ def profile():
     assert diagnosis.get("capture_id") == capture["capture_id"]
     assert diagnosis.get("format") == capture["format"]
     assert diagnosis.get("sample_count") == total
-    assert diagnosis.get("capture_conditions") == {
+    expected_conditions = {
         "candidate": capture["candidate"],
         "command": capture["command"],
         "duration_ms": capture["duration_ms"],
         "interval_ms": capture["interval_ms"],
     }
+    conditions = diagnosis.get("capture_conditions", {})
+    assert isinstance(conditions, dict), conditions
+    for field, expected in expected_conditions.items():
+        assert conditions.get(field) == expected, (field, conditions.get(field), expected)
     reduced = {
         (item.get("symbol"), item.get("file"), item.get("line")): item.get("inclusive_samples")
         for item in diagnosis.get("reduced_path", [])
     }
     assert reduced.get(hottest_application) == hottest_samples, reduced
     assert reduced.get(hottest_descendant) == descendants[hottest_descendant], reduced
-    attribution = diagnosis.get("source_attribution")
-    assert attribution == {
+    attribution = diagnosis.get("source_attribution", {})
+    assert isinstance(attribution, dict), attribution
+    # The fixture permits a flat frame or an enriched application_entry object.
+    primary_frame = attribution.get("application_entry", attribution)
+    assert isinstance(primary_frame, dict), primary_frame
+    expected_frame = {
         **frames[hottest_application],
         "inclusive_samples": hottest_samples,
-    }, attribution
+    }
+    for field, expected in expected_frame.items():
+        assert primary_frame.get(field) == expected, (field, primary_frame.get(field), expected)
+        if "application_entry" in attribution and field in attribution:
+            assert attribution[field] == expected, (field, attribution[field], expected)
     assessment = diagnosis.get("causal_assessment", {})
     assert assessment.get("status") == "DIAGNOSED_BUT_UNPROVED", assessment
     assert assessment.get("confirmed_root_cause") is None, assessment

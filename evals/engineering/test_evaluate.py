@@ -399,6 +399,36 @@ class PlaybookEvaluationTest(unittest.TestCase):
         self.assertEqual("passed", passed["acceptance"]["status"])
         self.assertEqual("failed", passed["acceptance_against_original"]["status"])
 
+        value["capture_conditions"]["artifact_kind"] = "controlled_synthetic_sampled_stack_fixture"
+        value["source_attribution"] = {
+            "application_entry": value["source_attribution"],
+            "observation": "An inclusive hotspot does not establish parse frequency.",
+        }
+        diagnosis.write_text(json.dumps(value, indent=2) + "\n")
+        enriched = self.result(self.check(study, "enriched-profile.json"), "profile-control-r1")
+        self.assertEqual("passed", enriched["status"])
+
+        frame = value["source_attribution"]["application_entry"]
+        correct_line = frame["line"]
+        frame["line"] = correct_line + 1
+        diagnosis.write_text(json.dumps(value, indent=2) + "\n")
+        wrong_source = self.result(self.check(study, "wrong-source.json"), "profile-control-r1")
+        self.assertEqual("failed", wrong_source["status"])
+        frame["line"] = correct_line
+
+        value["source_attribution"]["line"] = correct_line + 1
+        diagnosis.write_text(json.dumps(value, indent=2) + "\n")
+        conflicting = self.result(self.check(study, "conflicting-source.json"), "profile-control-r1")
+        self.assertEqual("failed", conflicting["status"])
+        del value["source_attribution"]["line"]
+
+        correct_duration = value["capture_conditions"]["duration_ms"]
+        value["capture_conditions"]["duration_ms"] = correct_duration + 1
+        diagnosis.write_text(json.dumps(value, indent=2) + "\n")
+        wrong_conditions = self.result(self.check(study, "wrong-conditions.json"), "profile-control-r1")
+        self.assertEqual("failed", wrong_conditions["status"])
+        value["capture_conditions"]["duration_ms"] = correct_duration
+
         value["sample_count"] = 99
         diagnosis.write_text(json.dumps(value, indent=2) + "\n")
         wrong_count = self.result(self.check(study, "wrong-count.json"), "profile-control-r1")
