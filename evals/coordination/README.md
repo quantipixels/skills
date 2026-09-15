@@ -4,6 +4,8 @@ This pack exercises Alárinà's playbook selection and composition in a native a
 
 [First smoke observations](observations/2026-09-15.md) record four adapted supplied-candidate runs and an evaluation defect they exposed. They do not establish native discovery or measured improvement over control.
 
+[Expanded selection observations](observations/2026-09-15-coverage.md) compare two frozen source revisions across C08's eleven requests. Both produced adequate proposed proof and authority boundaries; the explicit new routes did not establish an end-to-end advantage in this sample.
+
 The cases distinguish two dimensions:
 
 - **Selection probe**: the actor returns the route it would take and stops before doing the work. This isolates selection, ownership, authority, and stopping decisions.
