@@ -419,7 +419,34 @@ def reuse(mode):
             store.close()
 
 
-if case == "reuse":
+def reuse_action(action):
+    """Assert the specific missing API behavior without masking setup errors."""
+    from api import dispatch
+    from collections_service import Collections
+    from store import Store
+
+    with tempfile.TemporaryDirectory() as temporary:
+        store = Store(Path(temporary) / "accounts.db")
+        try:
+            store.add("account", 1234)
+            service = Collections(store)
+            if action == "resume":
+                service.hold("account")
+            try:
+                dispatch(service, action, "account")
+            except ValueError as error:
+                if str(error) != "unknown action":
+                    raise
+                raise AssertionError(f"missing API action: {action}") from error
+            assert bool(store.get("account")["suspended"]) == (action == "pause")
+        finally:
+            store.close()
+
+
+if case == "reuse-actions":
+    for action in ("pause", "resume"):
+        check(action, lambda action=action: reuse_action(action))
+elif case == "reuse":
     for name in ("pause-resume", "legacy", "admin", "rejection"):
         check(name, lambda name=name: reuse(name))
 elif case == "settlement":
