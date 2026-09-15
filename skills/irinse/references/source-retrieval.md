@@ -1,6 +1,6 @@
 # Source retrieval
 
-Use when ordinary reading/search is noisy, incomplete or mismatched to the question. Retrieve the smallest coherent source that can answer it; reducing output must preserve the governing contract and decisive exceptions.
+Choose retrieval by the question's required source format, syntax, symbol identity and coverage, including before the first search. Also use this guidance to recover noisy or incomplete results. Retrieve the smallest coherent source that can answer the question; reducing output must preserve the governing contract and decisive exceptions.
 
 | Question | Useful capability |
 | --- | --- |

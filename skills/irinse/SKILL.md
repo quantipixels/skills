@@ -1,6 +1,6 @@
 ---
 name: irinse
-description: Select and use companion engineering tools; install, update, reconcile, configure, verify, or remove tools, installed skills, host instructions, and native agent declarations. Use for non-obvious tool capability, difficult code/document retrieval, or environment readiness; exclude routine reads, skill authoring, engineering verdicts, and implementation.
+description: Select and use companion engineering tools; install, update, reconcile, configure, verify, or remove tools, installed skills, host instructions, and native agent declarations. Use for non-obvious capability selection, source retrieval or measurement semantics, and environment readiness; exclude routine reads, skill authoring, engineering verdicts, and implementation.
 ---
 
 # Irinṣẹ́
@@ -13,7 +13,7 @@ Identify the question, relevant paths or sources, and evidence needed. Pin candi
 
 Select the smallest useful tool. Do not recommend every available tool or route ordinary shell/search work through `irinse`. The point is to surface capabilities that materially improve the work and whose useful interface, limits, or evidence semantics are non-obvious.
 
-For noisy, truncated, incomplete or structurally ambiguous code/document searches, use [source retrieval](references/source-retrieval.md) to choose the useful representation and establish what the results cover. Tool availability is an observed capability, not a consequence of having a reference here.
+Use [source retrieval](references/source-retrieval.md) when source format, syntax, symbol identity or search coverage controls the answer, or ordinary retrieval is noisy or incomplete. Choose the representation from the question; a failed text search is not a prerequisite. Tool availability is an observed capability, not a consequence of having a reference here.
 
 Load only the tool-specific guidance needed for the selected capability:
 
@@ -28,7 +28,7 @@ Load only the tool-specific guidance needed for the selected capability:
 - [build evidence](references/build-evidence.md) for resolved graphs, action outcomes, critical paths and incremental invalidation;
 - [CRAP measurements](references/crap-score.md) for compatible complexity and coverage inputs;
 - [IntelliJ MCP](references/intellij-mcp.md) for IDE-backed navigation, code insight, run configurations, and debugging; or
-- [Firecrawl](references/firecrawl.md) for agent-oriented search, scrape, crawl, or browser-backed web acquisition when ordinary fetch/search cannot reliably expose the needed evidence.
+- [Firecrawl](references/firecrawl.md) for agent-oriented search, scrape, crawl, or browser-backed web acquisition when the required rendering or collection coverage warrants it.
 
 For another named tool, use current official documentation and retain only recurring non-obvious usage guidance when it earns a place in Irinṣẹ.
 

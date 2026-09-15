@@ -60,6 +60,8 @@ A loss audit exists to distinguish intentional evolution from accidental regress
 
 Check the boundary that actually changed. Use realistic before/after tasks when wording could materially change selection, authority, completion, routing, or execution. Do not build ceremony or a prompt harness for an editorial change whose behavioural boundary is unchanged.
 
+Use `adanwo` in measured-experiment mode when retaining a consequential instruction change depends on a controlled comparison. It owns comparable trials and their limits; Ọ̀rọ̀ retains authorship and finalization. Routine editorial checks stay here.
+
 Syntax, shorter text, passing package checks, or one plausible model output does not prove an instruction is better.
 
 Return the authored/revised text or review findings first, followed only by material behaviour, authority, evidence, or scope questions that remain unresolved.

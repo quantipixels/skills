@@ -21,7 +21,7 @@ Finding facts is your job, never the user's. Resolve bounded facts directly. Whi
 
 Delegate substantial analysis, research, and expert work to subagents, returning concise findings and evidence links to keep the main context lean.
 
-Use other skills as needed to form or resolve frontier decisions; continue the same interview.
+Use relevant specialists to form frontier decisions: `iwadi` for substantive prerequisite research and `irinse` when source acquisition or tool readiness needs specialist guidance. Continue the same interview; incomplete evidence does not settle a dependent prerequisite.
 
 When a frontier choice has several credible alternatives and at least two independent criteria can materially change the recommendation, use a compact decision-specific rubric. Apply hard gates first; derive only the criteria that matter to this decision; show the decisive factor, strongest credible alternative, and material counterevidence. Do not manufacture scores for a trivial/already-determined choice or let an average hide a gate. The rubric supports the recommendation; the decision remains the user's.
 

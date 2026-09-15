@@ -86,7 +86,7 @@ When several independently owned results need coordination, give progression to 
 
 For the selected result, consider installed language, framework, design, browser, research, and artifact capabilities whose expertise would materially improve execution or proof. Read the selected skill and only applicable supporting references. Supporting capabilities stay subordinate to the current owner unless their output becomes an independently required result. Routing never grants edit, publication, merge, deletion, installation, or other authority.
 
-Keep source retrieval proportional to the question: discover relevant locations, then read enough context to preserve the contract. Use `irinse` when noisy, incomplete or structurally ambiguous results need a better retrieval method. Ordinary reads and adequate native search stay direct; a tool listed in a skill is not necessarily available in the host.
+Choose evidence capabilities from the question before dispatch: source shape, symbol identity, runtime or measurement semantics may warrant `irinse` immediately. Give the owning skill the required evidence and material coverage limits; it retains the judgment. Ordinary reads and adequate native commands stay direct; a tool listed in a skill is not necessarily available in the host.
 
 Carry the requested result and stopping point, accepted decisions, scope and existing authority, exact candidate/workspace or source locators, current evidence and gaps, and the next consumer. Include only what changes the receiver's work; reuse the conversation or existing artifact when sufficient instead of creating a handoff document by default.
 

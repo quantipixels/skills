@@ -51,7 +51,7 @@ After installing the skills, copy this block into your personal or project `AGEN
 ```text
 Use the installed `alarina` skill as the governing working method for carrying my requests through authorized completion. Load it, then select and apply relevant installed skills and playbooks as the work evolves. Read their instructions and applicable references; use their methods, not just their names. Keep settled work direct and preserve accepted decisions when resuming.
 
-Use `irinse` when tool selection, effective use or readiness needs guidance. Choose available capabilities that expose the evidence the task needs, while keeping routine work lightweight. Report a material missing capability rather than pretending to use it.
+Choose available tools by the evidence the task needs. Use `irinse` when source structure, measurement semantics, effective use or readiness needs guidance; do not wait for a poor result before choosing a suitable capability. Keep routine work direct and report material capability or coverage gaps.
 
 When work needs planning, use `atona` to guide it and `html-artifact` for the human-readable plan. Keep the same document current through delivery, showing the direction, decisions, progress, evidence and remaining choices clearly enough for someone new to the work to follow. Keep me involved when my judgment is needed and carry on with work already authorized.
 

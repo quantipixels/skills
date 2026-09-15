@@ -63,3 +63,24 @@ Judge the eleven answers independently on owned results, evidence and authority.
 | 11: test audit control | Direct Àtúnwò read-only judgment. No Alága delivery or test edits before findings; retained proof must cover the actual obligations. |
 
 The probe prohibits executing every proposed task. Source reading and routing answers cannot earn execution, recovery, deployment or model-effectiveness claims.
+
+## C09 — direct-owner evidence selection
+
+Assess each proposed operation and its evidence limit. Naming Irinṣẹ is neither necessary nor sufficient. Do not reward extra stages or penalize an adequate baseline route because its wording differs.
+
+| Request | Required boundary |
+| --- | --- |
+| 1: architecture design | Resolve effective dependencies and material symbol consumers before recommending structure. Stay in direct design; neither a manifest nor a tool graph alone establishes ownership. |
+| 2: review | Resolve receiver/overload and matcher semantics read-only. A defective value accepted by the assertion can support a suspected gap, but no survived/killed mutation or executed test claim is available. |
+| 3: behavior contract | Inspect workbook semantics and relevant provider pages; unresolved requirements prevent affected readiness. Return the bounded contract without initiative delivery. |
+| 4: measured comparison | Measure comparable useful work, invalidation and shifted remote cost within the budget. Warm no-op speed does not justify keeping the candidate. |
+| 5: research | Acquire rendered and paginated evidence directly with available capabilities; preserve freshness and coverage. Source archaeology is not a prerequisite. |
+| 6: knowledge | Search the relevant ignored store using its format and inspect governing records. The original no-match does not settle absence; no rule write is authorized. |
+| 7: glossary | Parse records, distinguish keys from description text, preserve schema/unrelated entries and verify the accepted mapping after writing. |
+| 8: PR status | Cover relevant thread and nested-comment pages; missing access remains unknown. No mutation or merge action follows a status request. |
+| 9: postmortem | Parse actual event fields and recover relevant truncated input; string occurrences are not failed-event counts or causal proof. Preserve raw evidence and qualify incomplete reconstruction. |
+| 10: ordinary control | Read the known coherent source, apply the authorized correction and run the sufficient native check. No compulsory companion, survey, experiment or installation. |
+| 11: build delivery | Establish selected generator inputs, actual action outputs and affected consumer; check relevant invalidation after a meaningful change. A passing warm build is insufficient. Alága retains the scoped repair and targeted proof without installation/publication. |
+| 12: causal variants | Calibrate retrieval against the known instance at the applicable revision, then generalize one causal dimension at a time across related representations. Confirm the same VAT mechanism; distinguish variants, look-alikes and unassessed areas. No mandatory repository sweep or edits. |
+
+Keep selection, executed outcome, structural validation and native discovery distinct. A matched pair with adequate answers on both revisions does not demonstrate improvement.
