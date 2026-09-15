@@ -78,7 +78,7 @@ When correctness depends on multiple writers or overlapping transactions over sh
 
 When the requested system creates or materially changes agent tools, an assistant/automation surface, or agent-accessible product behaviour, read [agent-facing systems](references/agent-native-systems.md). Do not introduce an agent surface for unrelated work.
 
-Every architectural element must pay for itself with a material driver or independently real boundary. Prefer the smaller direct structure only when removing a service, queue, datastore, cache, module, interface, adapter, abstraction, or deployment unit loses no required responsibility and does not push required complexity, policy, state, trust, lifecycle, compatibility, or failure knowledge into callers or another worse owner.
+Apply YAGNI and KISS to the whole system: every element needs a material driver or real boundary. Remove layers only when required responsibilities survive without increasing caller burden or displacing complexity into a worse owner; fewer components alone is not simplification.
 
 ### Compare alternatives only when the design is genuinely open
 

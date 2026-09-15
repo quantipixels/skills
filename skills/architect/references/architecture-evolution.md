@@ -28,7 +28,7 @@ Include keeping the current choice. Before adding a dependency, service, state s
 
 Inspect the ecosystem's resolved dependency/build graph when it controls the choice, distinguishing direct/transitive and build/test/runtime use. Manifests alone can miss resolution, generated configuration and task-specific inputs. Check locking and reproducibility where the proposed benefit depends on them.
 
-A replacement must explain both what owned work disappears and what new work arrives: integration, transitive dependencies, licensing/support, deployment, configuration, debugging, upgrades and exit cost. A library can reduce maintenance; fewer application lines alone do not establish that. Do not reject a suitable unfamiliar technology, or adopt one merely because it is newer.
+Compare total cost of ownership: work removed versus integration, transitive dependencies, licensing/support, operations, debugging, upgrades and exit cost. Fewer application lines or greater familiarity do not establish the better choice; novelty alone is not a benefit.
 
 When alternatives remain credible, compare them on the same representative requirement: extend the current owner, simplify its structure, or use an existing dependency. Trace caller changes, failure ownership and the proof each requires. Use a bounded spike only for a decision-changing uncertainty; reject an option from established evidence without building it. Have `adanwo` settle a disputed empirical claim and `pare` assess a bounded simplification candidate when those outcomes are needed. State the condition under which keeping the current design wins.
 

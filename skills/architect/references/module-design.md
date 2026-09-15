@@ -19,7 +19,7 @@ Depth is not an implementation-lines/interface-lines score. A large implementati
 
 ## Prefer deep modules
 
-A deep module exposes a small stable interface while hiding material behavior, policy, state, lifecycle, failure semantics, integration quirks, or coordination.
+Apply information hiding: a deep module exposes a small stable interface while owning the policy, state, lifecycle, failures and integration details callers should not reconstruct.
 
 Good:
 
@@ -99,14 +99,7 @@ Dependency category does not mechanically require a port/interface. The interfac
 
 ## Deepen shallow clusters
 
-When callers repeat sequencing, branching, validation, mapping, recovery, or foreign-state knowledge:
-
-1. identify the repeated responsibility or invariant;
-2. identify the owner that has enough knowledge to hide it;
-3. place the seam where callers can ask for an outcome rather than implementation steps;
-4. design the smallest interface that preserves required variation and failure semantics;
-5. keep internal dependencies/seams private unless callers genuinely depend on them; and
-6. verify that removing the proposed module would either lose a required responsibility or redistribute its hidden complexity/knowledge to callers or another worse owner.
+Apply DRY to shared knowledge, not merely similar code. Give the repeated responsibility or invariant to the owner able to enforce it. Expose the outcome through a small interface preserving required variation and failures; keep internal seams private. Apply the deletion test to verify that the module owns necessary complexity rather than forwarding it.
 
 Do not equate a module with a directory/package convention. Filesystem structure may help enforce or reveal a design, but it does not define depth.
 
@@ -141,7 +134,7 @@ Limits or unresolved architecture gaps:
 
 ## Represent the invariant where it is needed
 
-When contradictory fields or repeated partial operations create caller burden, try a representation that constructs valid states directly:
+Make invalid states unrepresentable where that removes caller burden:
 
 | Current burden | Candidate representation | Limit |
 | --- | --- | --- |
@@ -155,4 +148,4 @@ Choose the native idiom and state which invalid operation becomes impossible or 
 
 When an interface controls a security-sensitive effect, try plausible caller mistakes: omitted configuration, zero/negative limits, invalid enum values, swapped same-type arguments and conflicting configuration sources. Trace the actual default, precedence and error path to the protected effect. Does a rejected value stop the operation, or merely warn while continuing? Are required checks enforced at the owning boundary or dependent on every caller remembering them?
 
-Prefer a safe default and an interface that makes dangerous combinations hard to express when that fits the contract. Documentation alone does not prove enforcement; existing validation or types may already close the path. In review, use these as bounded hypotheses under atunwo's evidence standard, not automatic findings.
+Prefer secure defaults and fail-closed enforcement at the owning boundary, consistent with the contract. Documentation is not enforcement; existing validation or types may already close the path. In review, use these as bounded hypotheses under atunwo's evidence standard, not automatic findings.

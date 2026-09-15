@@ -12,11 +12,11 @@ Use comparable current implementations to recover the intended convention. If th
 
 For framework-managed transactions, validation, authorization, retries, serialization or callbacks, confirm the actual version, configuration, registration and invocation path. An annotation or API name does not establish that interception or enforcement runs. Inspect the effective boundary and use a focused integration probe when source/configuration cannot settle a consequential uncertainty. Preserve existing authorization and tenant checks across new entry points.
 
-When relying on a caller or dependency to establish a precondition, locate its enforcement on the relevant paths. A validating-sounding name is not evidence. Reuse an existing guarantee; leave an unsupported assumption explicit rather than silently accepting it or adding duplicate validation.
+Apply design by contract: locate enforcement of relied-on preconditions and reuse established guarantees. A validating-sounding name is not proof; keep unsupported assumptions explicit.
 
 When enforcement is the disputed behavior, drive the framework-managed entry point with a valid control and an input that must be rejected or rolled back. Inspect persisted and external effects, not only the response. A direct method call or a mocked interceptor leaves registration, proxying and lifecycle behavior unproved. Use the project’s actual runner and supported configuration; keep framework-specific commands in project guidance.
 
-For a changed access boundary, identify the actor, tenant, resource and permitted operation. Exercise the relevant alternate entry point with another tenant’s resource or insufficient authority, checking both disclosure and mutation. Establish whether a job intentionally uses service authority or must retain the initiating user’s scope; do not impose identical credentials on different trust boundaries.
+Verify least privilege and complete mediation across affected entry points: actor, tenant, resource and operation. Test cross-tenant or insufficient-authority attempts for disclosure and mutation. Distinguish a job’s service authority from delegated user scope.
 
 ## Preserve operation during change
 
@@ -24,9 +24,9 @@ Establish the supported deployment and data contract before assuming empty stora
 
 Follow a material external effect through failure, timeout, retry and cancellation. Locate ownership of identity, atomicity and resource cleanup; do not assume failure means nothing happened. Reuse existing operational signals so the affected failure can be recognized and reconciled without disclosing sensitive data. Add instrumentation only for a concrete missing diagnostic, not a new observability stack.
 
-When several layers handle failure, check their combined behavior: retries can multiply attempts, translated exceptions can bypass recovery, and a fallback can repeat a completed effect. Verify the actual error and retry contracts across the interacting layers.
+Check composed failure semantics: retry amplification, exception translation that bypasses recovery, and fallbacks that repeat completed effects.
 
-When the change alters work volume, buffering, parallelism or resource lifetime, check the material consequence against the supported workload and environment. A small functional fixture can miss unbounded memory, connection use or work amplification. Use an existing limit, bounded workload probe or measured evidence when needed; no universal benchmark or live-load test is required.
+For changed volume, buffering, parallelism or resource lifetime, verify bounded resource use against the supported workload. Small functional fixtures can miss memory, connection or work amplification. Reuse an applicable limit or bounded measurement; no blanket benchmark is required.
 
 ## Close the change
 
