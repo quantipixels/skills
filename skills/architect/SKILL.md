@@ -72,7 +72,7 @@ Design from owned responsibilities and real boundaries inward. Specify only the 
 - compatibility, migration, rollback, recovery, or deletion when material; and
 - critical invariants implementation must preserve.
 
-When module/interface/seam shape is material, read [module design](references/module-design.md). Prefer deep modules with small high-leverage interfaces and strong locality. Do not expose internal seams merely because implementation or tests use them.
+When module/interface/seam shape is material, read [module design](references/module-design.md). Prefer deep modules: small interfaces that hide substantial owned complexity and reduce caller burden. Use CUPID—composable, focused on one coherent purpose, predictable, idiomatic and domain-based—as a design lens, not a scorecard. Preserve locality; do not expose internal seams merely for implementation or tests.
 
 When correctness depends on multiple writers or overlapping transactions over shared mutable state, read [shared-state design](references/shared-state.md).
 

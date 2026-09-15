@@ -19,7 +19,7 @@ Depth is not an implementation-lines/interface-lines score. A large implementati
 
 ## Prefer deep modules
 
-Apply information hiding: a deep module exposes a small stable interface while owning the policy, state, lifecycle, failures and integration details callers should not reconstruct.
+Apply information hiding and tell-don’t-ask: a deep module owns policy, state, lifecycle, failures and integration details behind a small stable interface. Callers request outcomes rather than reconstruct policy. Preserve legitimate queries; depth is reduced caller burden, not fewer public methods.
 
 Good:
 
@@ -65,13 +65,13 @@ A seam is justified by a real reason to isolate or vary behavior, not by the exi
 
 Two production/test adapters are strong evidence of a useful seam, but two adapters are not required when one adapter already owns an independently real external, trust, protocol, compatibility, lifecycle, migration, or operational boundary.
 
-Keep internal seams private when only the module implementation or its focused tests need them. Do not expose internal collaborators through the external interface merely to make mocking easier.
+Keep internal seams private. Apply the Liskov substitution principle (LSP) to adapters and test doubles: preserve caller preconditions, guarantees, errors and effects. A matching signature or passing mock test does not establish equivalence at an unexercised boundary.
 
 ## The interface is the durable behavior surface
 
 Callers and durable behavioral tests should normally cross the same external interface. If proving behavior requires reaching past that interface into private choreography, first challenge the module shape or the proof strategy.
 
-Internal implementation tests may use internal seams when they protect a distinct stable invariant, but they do not justify widening the public interface.
+Use command/query separation (CQS) to make observation and mutation distinguishable; preserve atomic read-modify-write and useful command results. CQS does not require CQRS infrastructure. Internal tests may protect stable invariants without widening the public interface.
 
 When a deepened interface completely and more stably owns a contract previously tested through several shallow modules, reassess the old tests. Remove them only when the new proof fully subsumes their material signal; do not delete a uniquely protective invariant merely because a higher-level test exists.
 
@@ -81,7 +81,7 @@ Classify dependencies only when the category changes seam or testing design.
 
 ### In-process
 
-Pure computation or in-memory collaboration with no independently real boundary. Prefer direct composition inside the deep module; no external adapter is required merely for testing.
+Use a functional core and imperative shell where separating deterministic decisions from effects improves proof and cohesion. Keep both inside the deep module when appropriate; no new layer or adapter is required merely for testing. Pure-core tests do not establish shell integration.
 
 ### Local-substitutable
 
@@ -101,7 +101,7 @@ Dependency category does not mechanically require a port/interface. The interfac
 
 Apply DRY to shared knowledge, not merely similar code. Give the repeated responsibility or invariant to the owner able to enforce it. Expose the outcome through a small interface preserving required variation and failures; keep internal seams private. Apply the deletion test to verify that the module owns necessary complexity rather than forwarding it.
 
-Do not equate a module with a directory/package convention. Filesystem structure may help enforce or reveal a design, but it does not define depth.
+Favor high cohesion, low coupling and locality of reasoning: keep related policy and lifecycle knowledge with their owner. Directory conventions can reveal or enforce boundaries; they do not define module depth.
 
 ## Explore alternative interfaces proportionately
 
@@ -134,7 +134,7 @@ Limits or unresolved architecture gaps:
 
 ## Represent the invariant where it is needed
 
-Make invalid states unrepresentable where that removes caller burden:
+Parse, don’t validate: convert raw input into a representation that retains established invariants. Make invalid states unrepresentable where that removes caller burden:
 
 | Current burden | Candidate representation | Limit |
 | --- | --- | --- |
@@ -142,7 +142,7 @@ Make invalid states unrepresentable where that removes caller burden:
 | Repeatedly take the first element after asserting a sequence is nonempty | Construct a nonempty sequence from a first element and a remainder at the boundary requiring it. | A total operation such as summation can still accept an ordinary empty sequence. |
 | Same-type identifiers are repeatedly swapped at a consequential boundary | Use the language's distinct domain representation where it prevents that mistake. | Do not wrap every primitive or spread conversion burden into unrelated callers. |
 
-Choose the native idiom and state which invalid operation becomes impossible or which repeated check disappears. Keep runtime validation for untrusted inputs and constraints the representation cannot enforce. More type precision is not useful without a protected operation or clearer contract.
+Choose the native idiom and name the invalid operation or repeated check eliminated. Keep validation for untrusted input, mutable-state constraints and guarantees the representation cannot enforce; a parsed value does not freeze permissions, balances or concurrent state.
 
 ## Misuse resistance at trust boundaries
 

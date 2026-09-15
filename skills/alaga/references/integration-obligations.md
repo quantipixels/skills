@@ -26,7 +26,7 @@ Follow a material external effect through failure, timeout, retry and cancellati
 
 Check composed failure semantics: retry amplification, exception translation that bypasses recovery, and fallbacks that repeat completed effects.
 
-For changed volume, buffering, parallelism or resource lifetime, verify bounded resource use against the supported workload. Small functional fixtures can miss memory, connection or work amplification. Reuse an applicable limit or bounded measurement; no blanket benchmark is required.
+For changes to workload, buffering, concurrency or resource lifetime, use backpressure and bounded concurrency where downstream capacity requires them; define overload behavior. Measure relevant memory, connection and work amplification against the supported workload. Reuse existing limits; no blanket benchmark is required.
 
 ## Close the change
 

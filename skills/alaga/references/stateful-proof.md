@@ -22,7 +22,7 @@ For cancellation, reach the blocked or active phase before requesting cancellati
 
 ## Migration and recovery
 
-Choose the starting schema/data and intermediate state that could expose the suspected failure. Apply the real migration path; test old/new reader or writer coexistence only within the supported rollout contract. Where restartability matters, interrupt at the relevant progress boundary and resume, checking both data invariants and completion. An empty-database migration pass does not prove upgrade safety, and a valid final schema does not prove the intervening states.
+For supported coexistence, use expand–migrate–contract: add the compatible form, migrate consumers, then retire the old form. Verify the real migration from representative populated and intermediate states; test restart at the relevant progress boundary and verify data invariants and completion. An empty-database or final-schema pass does not prove upgrade safety. An enforced stopped-system rollout need not use parallel forms.
 
 Select the supported old/new combinations that could break the changed contract, including generated clients when consumed. Preserve representative persisted and wire values, enum meanings, absent-field behavior and rounding where relevant. Exercise an old writer during transition when supported, then verify the new reader and any promised rollback reader. Regenerating a client successfully proves generation, not that an existing deployed client can consume the new response.
 
