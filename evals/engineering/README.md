@@ -2,6 +2,8 @@
 
 This standard-library kit prepares bounded control/QP-guidance comparisons without making model or network calls. It contains no provider registry, credentials, SDK, or agent framework.
 
+For framework invocation, mixed-version compatibility, abrupt recovery, authorization across callers, measured resource cost and architecture alternatives, use the [project-backed scenario protocols](scenarios/README.md). These require prepared real project environments and independent acceptance probes; they are not executable harness profiles or completed model trials.
+
 The opt-in `existing-code` profile pairs the two existing-code coding trials: settlement repair and collection API reuse. It prepares four cells, one control and one current-Alága arm per case, with opposite arm order across cases. Historical screening observations in `observations/` remain separate from newly prepared studies; preparing a profile does not create model-performance evidence.
 
 The `reuse` task asks actors to find existing behavior under different terminology, preserve public domain values, and integrate API/admin/worker consumers. Its oracle checks persistence/reopen, legacy values, worker eligibility, admin interoperability, and rejection behavior. Inspect returned diffs separately for justified reuse and unnecessary machinery: functional acceptance does not prove implementation simplicity or complete consumer discovery.
