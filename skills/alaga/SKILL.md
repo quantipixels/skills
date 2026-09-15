@@ -1,21 +1,24 @@
 ---
 name: alaga
-description: Assess an issue, diagnose an observed failure, or build and verify an accepted coding change. Use issue-intake or diagnosis mode without forcing delivery; use delivery mode directly when the correction is clear or within an atona initiative. Exclude initiative coordination, standalone planning, independent review, and publication.
+description: Assess an issue, diagnose a failure, recover an active incident, or build and verify an accepted coding change. Use intake, diagnosis or recovery at their requested stopping point; use delivery directly for an accepted coding outcome. Exclude initiative coordination, standalone planning, independent review, and publication.
 ---
 
 # Alága
 
-Be the builder: own implementation, proportionate verification, and corrections for the accepted coding outcome. Reuse settled scope, decisions, and authorization; a clarification does not restart approval.
+Own the requested intake, diagnosis, recovery or coding result and its proportionate proof. Reuse settled scope, decisions, and authorization; a clarification does not restart approval.
 
 Enter the requested mode directly:
 
 - **Issue intake** — validate, reproduce, classify, or choose the next step for a report without implementation. Read [issue intake](references/issue-intake.md) and stop at its result.
 - **Diagnosis** — establish the smallest supported causal mechanism for an observed failure. Read [diagnosis](references/diagnosis.md) and stop at its result unless correction delivery was also requested.
+- **Incident recovery** — mitigate an active disruption and verify the affected user boundary within current operational authority. Read [incident recovery](references/incident-recovery.md) and stop at the requested recovery result; permanent repair and retrospective retain their own scope.
 - **Delivery** — implement and verify the accepted coding outcome through the workflow below.
 
-Issue intake and diagnosis are independently usable and do not authorize delivery.
+Issue intake, diagnosis and incident recovery are independently usable and do not authorize delivery.
 
 For verification of a supplied repair, use the [existing repair comparison](references/diagnosis-probes.md#existing-repair-comparison) and stop at the requested evidence unless correction was also authorized.
+
+## Deliver an accepted coding change
 
 Within an `atona` initiative, reuse its assignment and return the candidate, proof, and any blocker or scope change. Atọ́nà owns initiative progression; Alága owns the assigned change and its integration. Direct requests need no Atọ́nà plan.
 
@@ -24,6 +27,8 @@ Understand the affected behavior and its real owner. Choose the smallest idiomat
 Reconsider established choices when recurring friction or a concrete new capability changes their fit. Use `architect` for a consequential design choice; report wider opportunities without silently expanding delivery. Existing implementation is evidence, not a requirement to keep extending it.
 
 Discover commands, APIs, runtime mechanics, and conventions from the current project and authoritative documentation when needed. Use [diagnosis](references/diagnosis.md) for an unresolved causal mechanism, `architect` for unresolved technical structure, and `irinse` for a material tool or setup gap.
+
+For an accepted improvement to an existing test suite, read [test-suite improvement](references/test-suite-improvement.md). Keep independent proof judgment with `atunwo` and non-obvious measurement or tool execution with `irinse`; Alága owns the resulting test changes and verification.
 
 Verify the changed contract with evidence that could detect a plausible failure. Prefer existing affected checks or a focused probe; add a test when it protects a material regression existing proof would miss. Exercise browser-dependent behavior when acceptance requires it. Remove temporary scaffolding and fix failures caused by the change; rerun only affected checks.
 

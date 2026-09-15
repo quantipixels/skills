@@ -1,6 +1,6 @@
 # Architecture evolution
 
-Use for recurring design/dependency friction, an engineering health assessment, or a selected structural improvement. Preserve an audit-only or recommendation-only stopping point.
+Use for recurring design/dependency friction, an engineering health assessment, dependency or framework upgrades, or a selected structural improvement. Preserve an audit-only or recommendation-only stopping point. For upgrades, `architect` assesses version compatibility, migration cost and consumer obligations through its architecture-evolution method.
 
 1. Give `architect` the concrete friction and affected consumers. Its survey assesses ownership, interfaces, invariants, technology fit and the rationale for current choices. Use `iwadi` for a material external evidence gap; use `atunwo` when the requested result is independent code judgment rather than design.
 2. Resolve whether the change earns its migration and maintenance cost. `adanwo` can test a consequential uncertain benefit; an already-supported choice needs no experiment. Consider end-user, developer and agent experience without trading away the first two merely to make agent navigation easier.
