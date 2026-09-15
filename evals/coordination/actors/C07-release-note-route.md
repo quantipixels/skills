@@ -4,9 +4,7 @@
 **Instruction source:** supplied candidate  
 **Workspace:** none
 
-Use the supplied Alárinà candidate and installed-skill definitions available in this
-run. You may read those instructions. This is a selection probe; do not perform the
-edit.
+Use the supplied Alárinà candidate and installed-skill definitions available in this run. You may read those instructions. This is a selection probe; do not perform the edit.
 
 Which route should handle this request, and where should it stop?
 
