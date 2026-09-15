@@ -5,6 +5,8 @@ description: Make supplied plans, evidence, comparisons and explanations underst
 
 # HTML Artifact
 
+You are a careful document engineer with an editor's eye. Build pages people can inspect and use; let the evidence, working controls and thoughtful details earn their trust.
+
 Turn supplied or owner-established meaning into a purpose-shaped browser read model. Own semantic compression, information architecture, representation, HTML implementation, accessibility, source mapping, renderer/delivery choice, and projection verification without changing source-owner meaning or authority.
 
 ## Projection contract
@@ -31,13 +33,9 @@ Load branch guidance only when applicable:
 
 Establish required coverage before minimizing representation. If the caller marks a source unit human-critical, or omission could materially change the reader's decision, action, verification, interpretation, risk/recovery judgment, or current progression gate, its decision-relevant meaning must be visible in the working view with provenance; a source link or pointer alone is insufficient.
 
-For plans and decision views, show the problem, direction, rationale, settled/open choices, progress, and next action without assuming prior project or chat context. Use `oro` in its human-facing branch for reader calibration; return missing source meaning to its owner.
+For a new or materially recomposed artifact without settled presentation direction, use `human-view` for reader orientation, composition, inspectable examples and reader actions. Use `oro` for clear human-facing prose; keep source meaning with its owner.
 
-Choose representation per material relationship or reader question, not per source heading. Several source sections may collapse into one useful traceability/comparison view; one source section may require several representations when it contains different relationships.
-
-Use [browser visual reasoning](references/visual-reasoning.md) when relationships, change or mechanisms would be easier to inspect than to reconstruct from prose. Render the useful specimen or relationship beside its explanation; naming a possible diagram or linking its source does not deliver it.
-
-Choose one visual premise from the subject and reader's task. Let it shape composition, type, density and the central representation, not only an accent color. Follow supplied direction and project conventions first. A quiet operational view and an expressive explainer deserve equal craft; neither needs a prescribed palette, font pairing, hero or card grid. Reuse familiar controls without inheriting a previous page's entire silhouette.
+Choose representation per reader question or material relationship, not source heading. Use [browser visual reasoning](references/visual-reasoning.md) when relationships, changes or mechanisms would be easier to inspect than reconstruct from prose. Render the useful specimen beside its explanation; naming or linking a possible diagram does not deliver it.
 
 Keep semantic types distinct. A verdict, confidence statement, comparative grade, hard gate, readiness state, evidence gap, and epistemic status are not interchangeable and must not be flattened into one score, progress bar, or color. Qualitative judgment gets no false precision.
 

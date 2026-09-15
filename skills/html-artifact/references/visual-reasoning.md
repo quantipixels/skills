@@ -6,16 +6,7 @@ Use browser-native composition to expose the relationship, not a text diagram wr
 
 ## Make the relationship inspectable
 
-These are techniques, not required sections or a component quota. Choose what answers the reader's actual question.
-
-| Reader needs to… | Useful representation and behavior |
-| --- | --- |
-| Follow a mechanism or failure | A labelled flow, sequence or state view with the decisive branch and nearby explanation; select a step to inspect its evidence without losing the path. |
-| Compare implementations or languages | Aligned code/specimen pairs with corresponding spans and notes highlighted together. State the preserved semantics and meaningful differences, not just syntax. |
-| Judge a choice | Comparable alternatives beside the concrete schema, API exchange, screen or diagram they change. Keep the current choice distinguishable from a preview. |
-| Understand scale, distribution or change | A chart with units, denominator, baseline and the important contrast. Keep exact values available; use aligned tables when lookup is the job. |
-| Learn an unfamiliar concept | A small labelled example linking a term to its mechanism and consequence. A supplied model may support bounded controls, visible outcomes and reset; disclose its assumptions and limits. |
-| Review ongoing work | Changes, deviations, their consequences and decisions needing attention, with execution detail available separately. Use source-established significance, not guessed priority. |
+Use the selected reader task and representation from `human-view` or the supplied design. The browser should expose the relationship directly: label decisive branches, align corresponding code or specimen spans, preserve common scales and units in quantitative comparisons, and keep essential explanation beside the view.
 
 Use semantic HTML and CSS grid/flex for aligned specimens, lanes and simple stages; use SVG when paths, spatial relationships or exact marks carry meaning. A `div` is a layout container, not a substitute for a button, table, heading or labelled figure. Use mature chart/diagram capabilities when they improve fidelity or avoid fragile bespoke code.
 

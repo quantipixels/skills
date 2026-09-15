@@ -91,6 +91,7 @@ Common entrypoints:
 | `oro` | Agent-facing instructions or human-facing technical prose needs writing, review, editing, or pruning |
 | `adanwo` | A bounded exploratory or measured experiment must settle uncertainty |
 | `alarina` | The starting owner or useful route is unclear, or delegated work needs coordination |
+| `human-view` | Supplied content needs a clear default visual presentation without a full design engagement |
 
 Alárinà uses installed skill definitions as the dynamic inventory.
 

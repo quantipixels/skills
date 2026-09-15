@@ -6,17 +6,7 @@ Follow the artifact language's punctuation conventions. Do not impose an English
 
 ## Select the report contract
 
-Choose the reader's job before composing. Preserve an explicitly required format or schema; otherwise keep this brief internal and compact:
-
-| Field | Decision rule |
-| --- | --- |
-| Reader and purpose | Who needs to understand, decide or act, and what do they need from this view? |
-| Governing question | What source-supported conclusion or relationship should the opening explain? |
-| Evidence and limits | What is current, authoritative, uncertain, human-critical or required by the report's contract? |
-| Composition | What reading order, central representation, visual premise and density serve this question? |
-| Detail | What stays exact and visible, what supports the argument, and what can remain linked? |
-
-Keep secondary purposes in supporting layers. Ask only when ambiguity would materially change the reader outcome or source meaning.
+Use the reader, governing question, evidence limits and visibility obligations established by source composition. Preserve required formats; otherwise let the reader's job determine the opening, representation and detail. Keep this reasoning internal unless a consequential choice needs the user.
 
 Return one finished report by default. An explicitly requested comparison may present supplied visual variants or exploration results; use `adanwo` when creating a decision prototype is the actual task. Design representation and visual expression together while keeping the argument source-owned.
 
@@ -57,15 +47,13 @@ Use the actual situation to decide what dominates. Urgency can move action ahead
 
 Render a `snapshot` by default with generation time or evidence cutoff. Render a `living` report only when the owning task expects material updates. Pin the owner record and revision. Keep section, candidate, evidence, and source anchors stable. Show last-updated time, cutoff, and supplied evidence status. Record conclusion or disposition changes without retaining every wording revision in the working view.
 
-Select one density profile and default to `Working`. `Executive` keeps a concise decision layer, material exceptions, and actions while preserving coverage through links or disclosures. `Working` adds enough context and evidence to act. `Archival` retains complete reader-required records behind the same scan layer; it does not automatically embed native archives. Density changes presentation, not source coverage.
-
-Before composing, reconcile every explicit question, deliverable, supplied conclusion, decision, recommendation, limitation, and in-scope subject unit through source composition. Every material unit needs coverage, placement, fidelity, and source. An overview, metric, card, visual, or aggregate does not replace complete coverage; complete coverage can remain source-only when the retrieval path is reliable.
+Use enough detail for the reader's current decision or action. Keep critical meaning visible and supporting evidence retrievable under source composition; greater density does not require embedding raw archives.
 
 ## Build the visual argument
 
 Build the opening, hierarchy, and governing representation from the direction brief. Choose the representation from the highest-priority foreground relationship or result. Identify its message and relationship before choosing a chart, timeline, matrix, diagram, card system, or another form.
 
-Do not default to a dashboard, hero metrics, or uniform card grid. Use a dashboard scan layer only when the reader must monitor simultaneous measures and exceptions. Use cards for independently scanned peer units, not generic section containers. Decorative variation is not a report direction.
+Use a dashboard scan layer when the reader must monitor simultaneous measures and exceptions; cards suit independently scanned peer units.
 
 Keep supplied designs, screens, diagrams, prototypes, demos, interface specimens, and other visual evidence primary when safe. Do not reduce them to filenames or prose. Report composition does not authorize creating or iterating a prototype; treat supplied prototype-like material only as source evidence for the report.
 
@@ -73,13 +61,7 @@ Keep the opening useful without a disclosure. When compatible, include a skip li
 
 Keep navigation unobtrusive and preserve useful landmarks when adapting the base controls.
 
-While selecting or materially changing an unsettled information design, use these critiques:
-
-- **Purpose counterfactual:** changing purpose changes opening, order, or action layer.
-- **Scenario:** the governing representation reveals the unique scenario without the title.
-- **Interchangeability:** removing title and subject nouns does not leave a composition suitable for an unrelated report.
-
-These critiques help choose a direction; they do not require redesign of an accepted layout. Repeat them only when changed purpose, scenario, content, or evidence unsettles that direction.
+Use `human-view` to resolve an unsettled composition. Preserve an accepted layout unless changed purpose, content or evidence makes it unsuitable.
 
 Before delivery, always run these content and evidence checks:
 
@@ -109,12 +91,4 @@ After a material living update, reconcile title, version, context capsule, summa
 
 Give each supplied candidate a before-and-after view at a comparable scale and visual grammar. Label changed and unchanged elements. Connect them to supplied evidence, risk, and disposition. A code diff alone is insufficient.
 
-Render one supplied disposition:
-
-- `Build now`
-- `Later`, after a named prerequisite
-- `Deferred`, after a named trigger
-- `Rejected` under current premises
-- `Needs evidence` before decision
-
-Do not fill a missing disposition. Mark it as an input gap. For each supplied disposition, present reason, dependencies or blockers, re-entry condition, next action, owner, and change evidence when available. Preserve its meaning and surface inconsistencies instead of resolving them.
+Preserve the owner's disposition and vocabulary, including its reason, blockers, re-entry condition, next action and evidence when supplied. Mark a missing required disposition as an input gap; surface inconsistencies instead of resolving them.
