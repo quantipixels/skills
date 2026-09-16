@@ -45,7 +45,7 @@ Use the actual situation to decide what dominates. Urgency can move action ahead
 
 ## Shape the record
 
-Render a `snapshot` by default with generation time or evidence cutoff. Render a `living` report only when the owning task expects material updates. Pin the owner record and revision. Keep section, candidate, evidence, and source anchors stable. Show last-updated time, cutoff, and supplied evidence status. Record conclusion or disposition changes without retaining every wording revision in the working view.
+Render a `snapshot` by default with generation time or evidence cutoff. Render a `living` report only when the owning task expects material updates. Pin the owner result and revision; an HTML initiative plan needs no equivalent Markdown owner record. Keep section, candidate, evidence, and source anchors stable. Show last-updated time, cutoff, and supplied evidence status. Record conclusion or disposition changes without retaining every wording revision in the working view.
 
 Use enough detail for the reader's current decision or action. Keep critical meaning visible and supporting evidence retrievable under source composition; greater density does not require embedding raw archives.
 

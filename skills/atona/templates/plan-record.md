@@ -10,6 +10,8 @@ status: Draft
 
 # <Initiative>
 
+This template specifies content for the one living HTML plan. It is not a required Markdown output or companion. Keep the plan's identity, locator and revision in that HTML and update it through completion.
+
 ## Resume
 
 **Outcome:** <what must become true>
@@ -36,7 +38,7 @@ status: Draft
 
 **Completion condition:** <checkable boundary>
 
-**Human view:** <stable HTML locator and represented plan revision; update this same view through completion>
+**Plan:** <stable HTML locator and current revision; update this same plan through completion>
 
 ## Outcome and acceptance
 

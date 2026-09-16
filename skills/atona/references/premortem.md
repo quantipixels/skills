@@ -16,7 +16,7 @@ For each material scenario, establish the causal path, the assumption or depende
 
 Choose the smallest adequate response: remove the exposure, revise the approach or sequence, resolve an uncertainty, add a necessary proof or recovery step, or retain a justified residual risk. Give a material mitigation an owner and a checkable completion condition; give a retained operational risk an observable re-entry or stop trigger where applicable.
 
-Update the owning plan and affected requirements, dependencies, acceptance, or proof obligations. Ask a single bounded material user choice directly. Use `arojinle` when the user requests an interview or dependent choices require decision-tree closure, and use the relevant specialist for missing evidence. Do not silently enlarge scope, change accepted requirements, or acquire execution authority through a mitigation.
+Update the owning plan and affected requirements, dependencies, acceptance, or proof obligations. Ask a single already-understood bounded material choice directly. Use `arojinle` for unsettled desire, success, consequential trade-offs, latent dependent choices or a requested interview, and use the relevant specialist for missing evidence. Reuse accepted decisions. Do not silently enlarge scope, change accepted requirements, or acquire execution authority through a mitigation.
 
 For example, a rename-and-backfill plan can fail while old application instances still write the old field. A credible response might change the rollout sequence and specify compatibility evidence before removing the old representation. It is not enough to append “migration risk: medium”; nor should the planner prescribe an extra compatibility layer when an existing rollout constraint already eliminates the failure.
 

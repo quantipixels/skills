@@ -1,9 +1,11 @@
 ---
 name: arojinle
-description: Resolve consequential choices through a relentless, complete decision-tree interview and final user confirmation. Use when the user wants to work through dependent choices together or be grilled until decisions are settled. Explicit invocation selects the interview. Use Alárinà's premise check for a bounded critique or stress-test; exclude specialist design/architecture, initiative lifecycle planning, delivery execution, and ordinary fact-finding.
+description: Establish the desired outcome and resolve consequential choices through a complete decision-tree interview and final user confirmation. Use when purpose, beneficiary, success or trade-offs remain unsettled, a proposed solution hides the need, latent dependent choices need discovery, or the user requests an interview. Reuse complete briefs and accepted decisions. Use Alárinà's premise check for a bounded critique; exclude specialist design, initiative progression, delivery, and ordinary fact-finding.
 ---
 
 # Àròjinlẹ̀
+
+An articulated mechanism is not necessarily an established desire. Clarify the need, beneficiary, observable success and consequential trade-offs only where they remain unsettled. Reuse complete briefs and accepted constraints; do not manufacture alternatives or re-interview settled choices. A single already-understood bounded choice can remain with its caller.
 
 Use `amose` when unresolved project-specific meaning—terms, identities, boundaries, relationships, ownership, or invariants—can materially change the decision tree.
 
@@ -33,8 +35,8 @@ The decisions remain the user's. Do not silently convert a recommendation, gener
 
 For a plan or proposed direction, use `html-artifact` from the first meaningful proposal. Reuse the initiative’s living view through its owner; otherwise maintain one for handoff. Keep questions in the conversation. Other bounded decisions use visual support as needed.
 
-After material changes, update the source decisions and view before dependent questions. Preserve alternatives, hard gates, uncertainty, and counterevidence. Present the consolidated view before final confirmation. If it is unavailable, report the gap and continue independent fact-finding.
+After material changes, update the decisions and their presentation in the same HTML plan before dependent questions; do not create an equivalent Markdown companion. Preserve alternatives, hard gates, uncertainty, and counterevidence. Present the consolidated view before final confirmation. If it is unavailable, report the gap and continue independent fact-finding.
 
 Before declaring the material frontier empty, challenge the current tree for consequential assumptions, missing branches, contradictory decisions, and dependencies that were never made explicit.
 
-Finish only when that challenge leaves no unresolved material branch, any required view is current, and the user confirms shared understanding. Return confirmed decisions, material assumptions/evidence, decision-changing alternatives/criteria when they constrained the choice, explicit deferrals/re-entry conditions, and the next outcome boundary. Pass the view’s locator and source revision to the next owner. Do not execute delivery inside `arojinle`.
+Finish only when that challenge leaves no unresolved material branch, any required view is current, and the user confirms shared understanding. Return confirmed decisions, material assumptions/evidence, decision-changing alternatives/criteria when they constrained the choice, explicit deferrals/re-entry conditions, and the next outcome boundary to the same caller. Pass the plan’s HTML locator and revision. Return newly exposed domain, factual or technical gaps without starting a competing workflow. Do not execute delivery inside `arojinle`.

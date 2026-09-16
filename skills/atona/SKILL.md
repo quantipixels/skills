@@ -15,13 +15,13 @@ When the requested stopping point is a behavior contract—including behavior-co
 
 Start at the earliest unresolved step using supplied decisions, existing work, and current evidence. Establish the intended outcome, observable acceptance, scope/non-goals, and requested stopping point. An exploration-only or planning-only request ends at that result; an end-to-end build request carries through delivery without another permission request at each stage. Publication, merge, deployment, and destructive cleanup require applicable authority from the session or governing policy.
 
-Resolve discoverable facts from relevant project knowledge before asking the user. Check source authority and current applicability; carry forward only evidence that changes the work. Surface consequential choices the existing intent cannot settle, using `arojinle` when they need a decision interview. Continue independent authorized work while a dependent choice is unresolved.
+Resolve discoverable facts from relevant project knowledge before asking the user. Check source authority and current applicability; carry forward only evidence that changes the work. Use `arojinle` when purpose, beneficiary, success, consequential trade-offs or latent choices remain unsettled, including a proposed mechanism whose underlying need is unclear. Ask a single already-understood bounded choice directly; reuse complete briefs and accepted decisions. Continue independent authorized work while a dependent choice is unresolved.
 
 ## Keep the human in the plan
 
-Use `html-artifact` with [the initiative brief](references/human-view.md) for every plan, including exploration-only and planning-only work. Present the first proposed direction before delivery so the user can judge alignment. Maintain the same view through decisions, implementation, review, and completion; share its locator and source revision with contributors.
+Use `html-artifact` with [the initiative brief](references/human-view.md) for every plan, including exploration-only and planning-only work. The HTML is the one current plan: do not create or maintain an equivalent Markdown companion. Present the first proposed direction before delivery so the user can judge alignment. Maintain the same HTML through decisions, implementation, review, and completion; share its locator and revision with contributors.
 
-Update the plan first, then the view after material changes, before dependent decisions or delivery handoffs. Chat updates supplement this record. Honor existing authority and requested review boundaries without adding approval rounds. If the view is unavailable, report the deliverable gap and continue independent discovery and planning.
+Update meaning and presentation in that plan after material changes, before dependent decisions or delivery handoffs. Chat updates supplement this record. Honor existing authority and requested review boundaries without adding approval rounds. If the HTML is unavailable, report the deliverable gap and continue independent discovery and planning. Independent domain, architecture, research and evidence records keep their own useful formats; they are not duplicate plans.
 
 ## Explore and settle direction
 
@@ -33,7 +33,7 @@ For a build request, carry the selected direction into shaping and delivery. If 
 
 Keep the outcome and acceptance, confirmed decisions and material assumptions, delivery sequence, dependencies, risks, current blocker, and next action in one plan. Match detail to what a fresh contributor would otherwise have to invent; omit empty bookkeeping.
 
-Use `amose` when domain meaning is unresolved, [behavior contract](references/behavior-contract.md) when behavior needs a normative contract, `architect` when technical structure needs settling, and [delivery decomposition](references/decomposition.md) when delivery needs decomposition. Consume their results without requiring every branch on every initiative.
+Use `amose` when material domain identity, lifecycle, policy, ownership or invariants lack established meaning or applicability, [behavior contract](references/behavior-contract.md) when behavior needs a normative contract, `architect` when structure or a consequential mechanism's fitness for confirmed purpose/domain/quality drivers needs establishing, and [delivery decomposition](references/decomposition.md) when delivery needs decomposition. Reuse settled domain and sound design evidence. Consume each result and controlling gap in this same plan without requiring every branch or a new worker on every initiative.
 
 When later work cannot yet be stated responsibly, read [progressive shaping](references/progressive-shaping.md). Resolve prerequisites and build only slices whose acceptance, dependencies, and authority are sufficiently settled. Keep uncertain remaining scope visible; slice readiness does not prove whole-initiative readiness.
 
@@ -63,7 +63,7 @@ Use `wo-pr` in publication mode for authorized publication and its stewardship m
 
 Keep the plan in context for a short session. When continuity or downstream use needs persistence, update the existing project plan; otherwise use `.qp/atona/`. Record the absolute execution workspace and `branch: <branch-name> [main|worktree]`, plus the main-worktree path for a linked worktree. Update them when execution moves.
 
-Keep ordinary rationale in the plan and living view; read [durable reconciliation](references/durable-reconciliation.md) only when required governing knowledge needs updating.
+Keep ordinary rationale in the HTML plan; read [durable reconciliation](references/durable-reconciliation.md) only when required governing knowledge needs updating.
 
 Before closing a linked-worktree initiative, reconcile required `.qp` state into the accepting workspace, clean only reconciled/disposable state, and record the workspace disposition. Preserve unresolved state. Worktree removal requires user approval; retaining it does not block completion.
 

@@ -15,6 +15,8 @@ Turn supplied or owner-established meaning into a purpose-shaped browser read mo
 
 When owner records/results exist, read the exact-current semantic sources first. Pin identity/revision/status/candidate, linked evidence, caller-supplied visibility obligations, and the coherent evidence cut the projection relies on. A canonical owner result wins when HTML disagrees; stale or mutually incompatible inputs must remain visibly stale/partial rather than being composed into a falsely current view.
 
+Source grounding does not require manufacturing a Markdown duplicate. When Atọ́nà maintains its plan in HTML, preserve its meaning, identity and revision in that same file; the owner supplies decisions and HTML Artifact supplies presentation. Keep independent evidence and specialist records in their existing formats. Do not invent decisions to fill the page.
+
 For substantial/evidence-heavy/living/reused/owner-record input, read [source composition](references/source-composition.md). Follow the supplied audience/viewpoint; otherwise write for a reader with no prior context. Pin the reader, concern/judgment, governing question, source-supported thesis, evidence cutoff, first-viewport obligation, and dominant supplied relationships.
 
 Request only missing structure that can change truth/usefulness. Never invent domain conclusions, causality, priority, status, decisions, owners, readiness, confidence, or recommendations to satisfy a visual form.

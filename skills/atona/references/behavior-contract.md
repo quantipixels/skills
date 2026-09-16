@@ -48,7 +48,7 @@ A specification defines what must be true. It does not choose modules, teams, de
 
 ## Resolve material gaps
 
-Separate confirmed behavior from inference. Use `amose`, `iwadi`, `arojinle`, and `architect` as needed.
+Separate confirmed behavior from inference. Route domain identity, lifecycle, policy or rule-applicability gaps to `amose`; substantive external facts to `iwadi`; unsettled desire, success, trade-offs or latent choices to `arojinle`; and structure or technical-fitness gaps to `architect`. Reuse current accepted results and return newly exposed controlling gaps to the same caller rather than starting a competing initiative.
 
 Do not fill a gap with a plausible requirement. If a material behavior cannot be specified without invention, keep the gap visible and return `SPEC_NOT_READY`.
 

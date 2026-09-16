@@ -1,6 +1,6 @@
 ---
 name: architect
-description: Design, survey, or review the technical structure of a software system or consequential module at the smallest scale needed to resolve the architecture question. Use for architectural friction, technology/dependency fit, system boundaries, module/interface/seam shape, data/state ownership, integrations, deployment, quality scenarios, trade-offs, migration/recovery, or architecture sufficiency; exclude initiative lifecycle planning, user-decision closure, implementation, workspace infrastructure, and code-review verdicts.
+description: Design, survey, or review technical structure at the smallest sufficient scale. Use when structure is unsettled or a consequential mechanism's fit for confirmed purpose, domain and quality drivers is unestablished, including architectural friction, dependency fit, boundaries, interfaces, state ownership, integrations, deployment or migration. Reuse sound current design evidence; exclude initiative progression, user-decision closure, implementation, workspace infrastructure, and code-review verdicts.
 ---
 
 # Architect
@@ -21,11 +21,13 @@ Do not turn every design question into a full implementation-ready architecture 
 
 Pin only what can change the technical design: subject/candidate, problem or desired outcome, scope/non-goals, material constraints/drivers, current relevant structure, and evidence limits.
 
+An existing design does not establish fitness, but sufficient current fitness evidence earns a skip. Assess the consequential mechanism against confirmed purpose, domain and quality drivers; review does not automatically authorize redesign.
+
 Across modes, use `irinse` when structural, resolved dependency, flow, history, rule, runtime, database or build evidence materially controls the architecture decision and needs specialist acquisition or interpretation. Return to the actual interface, invariant or ownership question; a tool result is not an architecture verdict.
 
 Read only evidence capable of changing the architecture: current domain/project knowledge, code/tests/configuration when implementation exists, runtime/deployment/operations evidence, governing decisions, and bounded history/provenance where it explains current structure. Retrieve relevant past decisions and lessons selectively and verify their applicability; no full archive read is required. Observed implementation proves current structure or behavior, not automatic architectural intent.
 
-Use `amose` and `iwadi` as needed.
+Use `amose` for material domain meaning or rule applicability, `iwadi` for substantive external facts, and `arojinle` when purpose, success or consequential trade-offs remain unsettled. Return a controlling nontechnical gap to the same caller rather than silently deciding it in the design.
 
 Resolve unknowns that can change the design against current project and authoritative sources.
 
@@ -86,7 +88,7 @@ Apply hard constraints first: accepted behavior, security/privacy/trust, require
 
 When several credible structures remain and at least two independent criteria can materially change the choice, compare only decision-changing factors such as depth, locality, caller burden, operational load, migration cost, reversibility, compatibility, failure containment, or total system complexity. State the strongest credible alternative and decisive reason for the selected structure. Do not create a universal architecture scorecard.
 
-Select reversible technical choices within accepted constraints. Ask a single bounded consequential choice directly. Use `arojinle` when the user requests an interview or dependent choices require decision-tree closure.
+Select reversible technical choices within accepted constraints. Ask a single already-understood bounded consequential choice directly. Use `arojinle` when desire, consequential trade-offs or latent dependent choices remain unsettled, or an interview is requested. Reuse accepted choices rather than reopening them merely because architecture is active.
 
 ## Verify architectural sufficiency
 

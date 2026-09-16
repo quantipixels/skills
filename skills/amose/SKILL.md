@@ -1,11 +1,13 @@
 ---
 name: amose
-description: Establish, sharpen, or reconcile one project's canonical domain model and its durable records. Use when project-specific terms, conceptual identities, domain/context boundaries, relationships, ownership, invariants, `.learnings`, `.nongoals`, or ADRs need to be defined, changed, or maintained.
+description: Establish, sharpen, or reconcile one project's domain model and durable records. Use when material terms, identities, state/lifecycle, policy, boundaries, relationships, ownership or invariants are defined, changed, interpreted or relied on without established applicability, or when `.learnings`, `.nongoals`, or ADRs need maintenance. Reuse settled applicable meaning; familiar wording alone is not domain consistency.
 ---
 
 # Amọ̀ṣẹ́
 
 Own the project's domain meaning and ubiquitous language across planning, specifications, architecture, implementation and review. Preserve bounded-context distinctions; shared wording must not conceal different models.
+
+Check material rules' applicability even when their words are familiar. Reuse current settled meaning; do not treat stale records as immutable intent or invent business rules to reconcile a conflict.
 
 ## Clarify the model
 
@@ -30,7 +32,7 @@ A useful model clarification may establish or separate:
 
 Use `yoruba-glossary` for Yorùbá/English technical terminology and glossary maintenance; Amọ̀ṣẹ́ retains project-specific domain meaning.
 
-Ask a single bounded consequential choice directly. Use `arojinle` when the user requests an interview or dependent choices require decision-tree closure. Use `architect` when the missing result is technical structure. Do not turn current implementation shape into domain vocabulary merely because it exists.
+Ask a single already-understood bounded consequential choice directly. Use `arojinle` when purpose, success, consequential trade-offs or latent dependent choices remain unsettled, or an interview is requested. Use `architect` for unresolved structure or consequential technical fitness. Do not turn current implementation shape into domain vocabulary merely because it exists.
 
 ## Reconcile canonical language
 
@@ -55,5 +57,7 @@ Use the record's existing project destination. Preserve its format and authority
 ## Return
 
 Return the resolved terms, identities, relationships, ownership, invariants, distinguishing examples when needed, and any remaining semantic conflict or consequential decision with its evidence.
+
+Return newly exposed desire, fact or technical gaps to the same caller with their controlling evidence. The caller integrates the result and reopens only affected work; a domain clarification does not start another initiative.
 
 When canonical domain language or a durable domain record was updated, report the destination and verification.
