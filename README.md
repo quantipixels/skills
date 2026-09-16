@@ -135,4 +135,12 @@ For Skills CLI, use `npx skills remove` and select the QP skills. Do not install
 
 Use [`AGENTS.md`](AGENTS.md) and `oro` for contribution and agent-instruction guidance. Change rationale and proof belong in PRs and CI.
 
+To verify a checkout through both native plugin managers without changing your normal host configuration, run:
+
+```bash
+python3 scripts/plugins/verify_native_install.py
+```
+
+The verifier uses temporary Codex and Claude configuration directories, installs the local checkout, checks the reported component inventory, and compares representative installed files with their sources. Pass `--host codex` or `--host claude` to exercise one manager. A successful run proves manager discovery and installed-content agreement; start a fresh host session to verify runtime skill invocation.
+
 Use the opt-in [engineering evaluations](evals/README.md) to compare actual repairs with and without skill guidance. The kit checks executable contracts and regression detection; your native host runs the models.
