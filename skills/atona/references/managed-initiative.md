@@ -1,124 +1,48 @@
 # Managed initiative lifecycle
 
-Use this branch only when the governing workflow needs named readiness states, coordinated multi-candidate delivery, or a maintained lifecycle record. Ordinary plans use the main skill directly. These gates preserve formal consumers; they are not mandatory stages of every task.
+Use this opt-in overlay only when a governing workflow needs named readiness states, coordinated multi-candidate delivery, or a durable lifecycle record. Ordinary plans use the main Atọ́nà workflow. Atọ́nà alone owns plan status and current progression; supporting results are evidence.
 
-# Atọ́nà
+Maintain one exact-current semantic plan using the [plan record](../templates/plan-record.md) as a contract, not a rigid outline. Persist it only for continuity, recovery, independent review, or downstream consumption, preferring an established destination and otherwise `.qp/atona/`. Record the current execution workspace and branch form; for a linked worktree also record its main-worktree path. Update semantic truth before the required living view.
 
-Turn unclear intent into one exact-current initiative plan. Own plan meaning, decision coverage, lifecycle sufficiency, delivery integration, current progression gate, and closure; do not absorb specialist design, consequential user decisions, delivery execution, persistence mechanics, or generic routing.
-
-When a confirmed decision or material fact changes, update the affected plan meaning, stale only dependent conclusions/proof, and reopen only lifecycle work whose readiness changed. Never present a partly superseded plan as wholly current.
-
-## 1. Establish the plan
-
-For every material initiative, maintain one semantic plan using [the plan record template](../templates/plan-record.md) as a contract rather than a rigid outline.
-
-Keep it in current context when one-session use is sufficient. Persist only when continuity, recovery, independent review, or downstream consumption needs durable identity. Prefer an existing intentional project destination; otherwise use `.qp/atona/` in the current workspace.
-
-When execution is bound to a concrete working directory, persist its absolute path and branch as `<branch-name> [main|worktree]`. For a linked worktree, also persist the absolute main-worktree path. Treat that workspace and its `.qp` as the current initiative candidate; update the workspace fields when execution moves.
-
-Use `html-artifact` with [the initiative brief](human-view.md) for the required living view. Update the plan before the view; a stale view is not current evidence.
-
-When supplied context already settles the initiative, synthesize it directly rather than replaying discovery. Separate confirmed context from inference and capture only the problem/outcome, acceptance, confirmed decisions, scope/non-goals, material proof expectations, current progression gate, and evidence identities needed to plan responsibly.
-
-## 2. Maintain lifecycle state
-
-Track one status:
+## State and gates
 
 | Status | Meaning |
 | --- | --- |
-| `Draft` | planning/readiness has a material open gap |
-| `Planned` | a current premortem supports readiness and delivery can start without inventing a material requirement |
+| `Draft` | planning or readiness has a material gap |
+| `Planned` | a current premortem supports readiness without invented material requirements |
 | `In Progress` | authorized delivery is active |
-| `Backlog` | intentionally inactive with an owner/re-entry trigger |
-| `Closed` | accepted outcome/proof are complete and required local candidate state has been reconciled |
+| `Backlog` | intentionally inactive with an owner and re-entry trigger |
+| `Closed` | accepted outcome and proof are complete and required candidate state is reconciled |
 
-Atọ́nà alone sets plan status. Supporting results, tickets, provider state, and projections are evidence only.
+Derive delivery separately as `Not required | Not started | Active | Blocked | Complete | Stale`. Keep the current gate and weakest material gap explicit; counts and aggregate scores cannot satisfy a missing mandatory condition.
 
-Derive a compact delivery summary from current owner results: `Not required | Not started | Active | Blocked | Complete | Stale`.
+Classify uncertainty by its actual owner:
 
-Keep the **current gate** explicit: the next material progression judgment the human/initiative must satisfy. Do not turn the initiative into a health score. A required gate condition cannot be averaged away by otherwise strong evidence.
+- `FACT` — discoverable evidence; resolve without asking the user.
+- `PLAN_LOCAL` — reversible planning detail within accepted authority.
+- `SPECIALIST_RESULT` — independently useful result the plan cannot responsibly invent.
+- `MATERIAL_USER_DECISION` — consequential choice affecting outcome, scope, policy, experience, risk, cost, compatibility, or trade-off.
 
-## 3. Shape through the Decision Frontier
+Maintain one Decision Frontier: `EMPTY` when no unresolved material user choice blocks readiness, `OPEN` when one is answerable, or `BLOCKED` when prerequisite evidence is missing. Ask one bounded choice directly or use `arojinle` for dependent choices. Progressive shaping may track not-yet-formulatable territory, but it does not add another Decision Frontier state.
 
-Pin outcome, scope, constraints, assumptions, non-goals, evidence, risks, and open uncertainties. Read only current project/domain evidence that can materially change the plan.
+## Readiness
 
-Use `amose` when unresolved project-specific meaning—terms, identities, boundaries, relationships, ownership, or invariants—can materially change the plan.
+Use the main workflow's owner seams only when needed: a current `SPEC_READY` behavior contract for material normative behavior, `architect: IMPLEMENTATION_READY` for architecture delivery would otherwise invent, consequential user-choice closure, and delivery decomposition/startability for materially coordinated work. Retain identities and readiness, not copied procedures.
 
-When the initiative is too uncertain to state responsibly at full depth, read [progressive shaping](progressive-shaping.md). Preserve known-but-not-yet-formulatable territory without inventing future requirements.
+Before `Planned`, require:
 
-Classify material uncertainty by who must resolve it:
+- a current premortem with material threats resolved or retained within the responsible authority;
+- an `EMPTY` Decision Frontier and no in-scope territory delivery could encounter but the plan cannot yet state responsibly;
+- every required specialist result to be current, accepting and exact enough to rely on;
+- observable acceptance and a credible proof seam for each delivery obligation; and
+- resolved dependency, recovery, documentation, operational and delivery-shape gaps, or a valid out-of-scope re-entry condition.
 
-```text
-FACT
-→ discoverable evidence; resolve without asking the user.
+Keep the plan `Draft` when a controlling result is absent, stale, blocked, or not ready. Delivery authority still comes from the request or governing policy; `Planned` does not grant it.
 
-PLAN_LOCAL
-→ reversible planning detail within accepted authority.
+## Delivery and closure
 
-SPECIALIST_RESULT
-→ independently useful design/domain/technical/normative result the plan cannot responsibly invent.
+Run authorized delivery through the main workflow and [delivery tracking](delivery-tracking.md) when coordination is material. After a material result, update plan meaning, stale only dependent conclusions and proof, recompute the gate, and refresh the living view. Work-in-progress limits follow actual integration and verification capacity, never a headcount quota.
 
-MATERIAL_USER_DECISION
-→ consequential choice that changes accepted outcome, scope, policy, experience, risk, cost, compatibility, or trade-off; ask a single bounded choice directly, or use `arojinle` when the user requests an interview or dependent choices require decision-tree closure.
-```
+Before `Closed`, require the Decision Frontier to remain empty, no blocking plan gap, current accepting proof for every in-scope obligation, explicit residual limits, and completion of any required durable-knowledge obligation. For linked worktrees, reconcile only needed `.qp` state into the accepting workspace and record `reconciled`, `reconciled-retained`, or `reconciled-and-removed`; preserve unresolved state. Worktree removal requires user approval and declining it does not block closure.
 
-Maintain one Decision Frontier state:
-
-```text
-EMPTY   — no unresolved material user decision blocks readiness.
-OPEN    — at least one material user decision is answerable now.
-BLOCKED — material user decisions remain but prerequisite evidence/results are missing.
-```
-
-When `OPEN`, ask one bounded independent choice directly or use `arojinle` for an interview-shaped frontier. When `BLOCKED`, resolve the missing prerequisites. Do not reopen settled decisions.
-
-Use other skills when they improve the plan; keep routine composition out of its lifecycle stages.
-
-## 4. Resolve required results and prove readiness
-
-Before setting `Planned`, ask whether a fresh delivery/review owner would otherwise have to invent a material behavior/rule, technical architecture, consequential user decision, or delivery decomposition.
-
-Use these seams when they are actually required:
-
-- **Normative behavior / operating rules** — require a current [behavior contract](behavior-contract.md) with `SPEC_READY` when material behavior needs an implementation-independent contract for delivery/review, unless an established domain authority already owns the equivalent contract.
-- **Software/system architecture** — require current `architect: IMPLEMENTATION_READY` when delivery would otherwise have to invent material system boundaries, ownership, topology, migration/recovery, compatibility, or another architecture-level decision.
-- **Consequential user choice** — keep the Decision Frontier open/blocked; ask one bounded choice directly or use `arojinle` for an interview-shaped frontier. Do not bury the decision inside another specialist result.
-- **Delivery decomposition** — use [delivery decomposition](decomposition.md) as needed.
-
-Retain the identities and readiness of required specialist results, not their procedures.
-
-When delivery coordination or decomposition can affect planning readiness, read [delivery tracking](delivery-tracking.md) before declaring `Planned`; loading it does not authorize delivery.
-
-Run the [plan premortem](premortem.md) against this candidate plan, or verify that an existing premortem still applies. Reconcile its material findings before assessing the gate.
-
-Set `Planned` only when all are true:
-
-- the premortem is current, its material readiness threats are resolved, and any residual risk is justified within accepted constraints and the responsible decision-maker's authority;
-- the Decision Frontier is `EMPTY`, with no silently assumed material user choice;
-- no in-scope material territory remains that delivery could encounter but the plan cannot state responsibly;
-- every required independent/normative result is present, accepting, current, and exact enough for the plan to rely on;
-- every material delivery obligation has observable acceptance and a credible proof/evidence seam;
-- required delivery decomposition/startability is established when the initiative needs it; and
-- blocking dependency, changeover/recovery, documentation, operational, and delivery-shape gaps are resolved or explicitly outside scope with a valid re-entry condition.
-
-Treat coverage, counts, rubric scores, and checklists as evidence rather than readiness by themselves. When several viable planning choices remain, compare only the criteria that can change the decision and apply hard gates first; do not let an aggregate score obscure a decisive constraint.
-
-If the premortem or another required result is absent, stale, blocked, or not ready, keep the plan `Draft` and make that gap visible when it controls progression.
-
-## 5. Carry delivery through completion
-
-When delivery is authorized, continue through the main skill’s build and verification loop. When coordination is material, read [delivery tracking](delivery-tracking.md). Consume active delivery owners' native results rather than copying their lifecycle/proof mechanics into Atọ́nà.
-
-After a material result changes plan meaning, update the semantic plan first. Recompute the current gate, weakest limiting claim/gap, and stale dependencies; refresh the living view with their effect on the direction and next action. Keep non-plan-affecting operational detail with its native owner.
-
-## 6. Reconcile and close
-
-Before `Closed`, require the Decision Frontier to remain empty, no blocking plan gap, current accepting delivery/proof for every in-scope obligation, explicit residual deferrals/limits, and no unresolved durable-knowledge obligation required by the governing contract or owning result.
-
-When the initiative ran in a linked worktree, inspect that worktree's `.qp`, reconcile only the material state needed by the accepting workspace, then clean reconciled/disposable local state while preserving anything not safely reconciled. Do not mirror the directory wholesale. Record one workspace disposition: `reconciled`, `reconciled-retained`, or `reconciled-and-removed`.
-
-After local-state cleanup, offer to remove the completed linked worktree. Removal requires explicit user approval; declining removal does not block `Closed`. Approval to remove the worktree does not authorize force-deleting unrelated dirty or untracked project files; if Git reports unresolved state, surface it.
-
-Keep ordinary rationale in normal initiative artifacts. Read [durable knowledge reconciliation](durable-reconciliation.md) only when stable governing knowledge must survive beyond them or an existing durable authority is materially stale; the knowledge owner decides admission and reconciliation.
-
-Before user-visible handoff or closure, align plan status, workspace/disposition when relevant, current gate, Decision Frontier, delivery summary, evidence/projection freshness, weakest material claim or blocker, remaining work, and next action. Consume `html-artifact`’s current result against the initiative brief; a missing, stale, or incomprehensible view does not satisfy that deliverable. Use [suggested direction](suggested-direction.md) only when a separate build-direction handoff is actually useful.
+Align the final status, workspace/disposition, gate, frontier, delivery summary, freshness, blocker, remaining work, next action, and living view. When blocked or intentionally inactive, name the owner and exact re-entry trigger; otherwise continue authorized executable work.

@@ -1,64 +1,25 @@
-
 # Behavior contract
 
-Turn supplied intent into one compact behavior specification that a fresh human or agent can use as an independent delivery and review oracle. Own normative behavior, scope, examples, acceptance, proof traceability, and specification readiness.
+Turn supplied intent into a compact, implementation-independent specification that a fresh delivery or review owner can use as an oracle. Own normative behavior, scope, examples, acceptance, proof traceability and readiness; exclude initiative lifecycle, architecture, decomposition, execution and publication.
 
-Delegate independent contract extraction or edge-case investigation to subagents when useful. Integrate their findings and source evidence into one consistent specification.
+Pin the authoritative inputs and identities, actors, current gap, desired observable outcome, material freshness/compatibility boundary, confirmed authority, inferences and unresolved questions. Use settled context directly. Inspect code, tests, schemas, history or other project evidence only where they clarify established behavior, vocabulary or proof seams. Current implementation is evidence of existing behavior, not authority for desired behavior.
 
-Keep initiative lifecycle, consequential user-choice closure, specialist design, delivery decomposition, execution/proof, durable project knowledge, persistence mechanics, and external publication outside the specification result.
+Persist at an established specification destination, otherwise `.qp/atona/contracts/`; existing `.qp/seda-spec/` records remain valid migration inputs. A transient record is not automatically durable authority. Preserve a normative contract or required change history at its established destination and mark supersession rather than silently deleting it.
 
-## Establish the contract boundary
+Specify only material:
 
-Pin:
+- problem, actors, outcome, scope and non-goals;
+- triggers, preconditions, observable results and externally meaningful state transitions;
+- applicable normal, failure, misuse, recovery, compatibility and changeover scenarios;
+- invariants, boundaries and concrete examples needed to remove ambiguity;
+- acceptance plus the highest stable evidence seam for each material behavior; and
+- source identities, assumptions, unresolved questions and evidence limits.
 
-- the supplied conversation, issue, plan, policy, procedure, existing specification, or other inputs and their identities when available;
-- intended actors and use;
-- current behavior/rule or gap and desired observable outcome;
-- freshness, version, compatibility, or changeover boundaries when material; and
-- confirmed authority, inferences, and unresolved material questions.
+Give material behaviors stable short identities when downstream traceability needs them. Label whether examples are normative. Walk a concrete actor through ambiguous flows, including retry and recovery effects, but do not invent a requirement or prescribe modules, algorithms, schemas, ticket boundaries, tests or delivery order unless externally observable constraints require them.
 
-Use settled context directly. Do not replay discovery or start an interview merely because the source is conversational. Inspect the current work context only enough to use established vocabulary, behavior, governing decisions, interfaces, and proof/evidence seams accurately. In repository work this may include code, tests, ADRs, schemas, configuration, and history; none is required merely because behavior-contract mode is active.
+Separate confirmed behavior from inference; use `amose`, `iwadi`, `arojinle` or `architect` only for the missing result they own. Return:
 
-Current implementation or operating practice is evidence of existing behavior, not automatic authority for desired behavior. Do not turn implementation detail into a requirement unless the supplied or confirmed contract requires it.
+- `SPEC_READY` when every in-scope material behavior is observable, consistent, traceable to current authority and mapped to a credible evidence seam; or
+- `SPEC_NOT_READY` with each blocking ambiguity, conflict, missing authority or evidence gap and its owner.
 
-## Place and retire the specification
-
-Persistence: existing/selected specification destination; otherwise `.qp/atona/contracts/` for local state. Existing `.qp/seda-spec/` records remain valid migration inputs.
-
-A working or transient record is not automatically durable authority. While planning, delivery, or review depends on the specification, retain its exact identity and current content. When the specification itself must remain normative after delivery, preserve it in its established durable destination; for change-specific specifications, preserve required history and mark supersession rather than silently deleting the contract.
-
-## Specify observable behavior
-
-Write only the material contract:
-
-- problem/gap, actors, outcome, scope, and non-goals;
-- triggers and preconditions;
-- observable results and externally meaningful state transitions;
-- applicable normal, failure, misuse, recovery, compatibility, and changeover scenarios;
-- invariants and boundary conditions;
-- concrete examples where rules remain ambiguous without them;
-- acceptance conditions and the highest stable proof/evidence seam for each material behavior; and
-- unresolved questions, assumptions, evidence limits, and source identities.
-
-Give each material behavior a stable short identity when downstream delivery, proof, review, or later revisions need traceability. Keep examples normative only when the specification labels them as such. Do not require user-story phrasing, exhaustive scenario taxonomies, or implementation structure when a shorter observable contract is unambiguous.
-
-When a flow is ambiguous, walk one concrete actor from its actual entry point through material branches to success, rejection, cancellation or recovery. Compare each step with the specified behavior and shared handling already provided by the project. For example, a timed-out request may leave a completed remote effect: what can the caller safely retry, and what result should it observe? Name that specific unresolved decision and its consequence; do not add generic edge-case questions or turn a plausible default into an accepted requirement.
-
-A specification defines what must be true. It does not choose modules, teams, dependencies, algorithms, schemas, deployment topology, ticket boundaries, proof mechanics, or delivery order unless one of those is itself a confirmed externally observable constraint.
-
-## Resolve material gaps
-
-Separate confirmed behavior from inference. Use `amose`, `iwadi`, `arojinle`, and `architect` as needed.
-
-Do not fill a gap with a plausible requirement. If a material behavior cannot be specified without invention, keep the gap visible and return `SPEC_NOT_READY`.
-
-## Judge readiness
-
-Return one result:
-
-- `SPEC_READY` — every in-scope material behavior is observable, internally consistent, traceable to current authority, and mapped to a credible proof/evidence seam; no unresolved material decision or evidence gap remains.
-- `SPEC_NOT_READY` — name each blocking ambiguity, conflict, missing authority, or evidence gap and the owner/evidence needed to resolve it.
-
-Tests are one possible evidence type against the specification, not a universal source from which desired expectations are reverse-engineered. A ready specification grants no specialist-design, delivery, publication, or unrelated persistence authority. Write only to a destination covered by the request/caller authority.
-
-Return the specification, result, exact source identities, destination/persistence shape, current or superseded state, unresolved limits, and the next owner when one is required. When downstream work depends on it, also return its stable identity, revision, or content digest.
+Tests may prove the specification but do not define desired behavior automatically. Readiness grants no design, delivery, publication or unrelated persistence authority. Return the specification, result, exact source identities, destination/state, limits and next owner; include a stable identity, revision or digest when downstream work depends on it.

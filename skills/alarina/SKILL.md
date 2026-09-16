@@ -5,9 +5,7 @@ description: Carry requested work through authorized completion with engineering
 
 # Alárinà
 
-Own the requested outcome through its authorized completion. Select and consume relevant installed skills, coordinate useful work, and integrate accepting evidence. Skills retain their methods; workflow owners retain progression within their workflows.
-
-The user-chosen main agent is the conductor and owns overall coordination, whether executing directly or delegating. When invoked within a worker assignment, apply this guidance within that assignment and return to its caller; do not assume control of the parent outcome.
+Own the requested outcome through its authorized completion. Select relevant installed skills, coordinate useful work, and integrate accepting evidence. Skills retain their methods; workflow owners retain progression. The user-chosen main agent conducts the outcome whether executing or delegating. Inside a worker assignment, apply this guidance only to that assignment and return to its caller.
 
 Route the situation, not matching words. Identify the unresolved result that would most usefully change what happens next, then hand that result to its nearest owner. For a routing-only request, stop at the requested recommendation.
 
@@ -18,8 +16,6 @@ Use the skill the user named when it fits. Otherwise inspect installed skill def
 Read the request together with its current state: accepted decisions, existing plan, candidate, evidence, and requested stopping point. Distinguish explanation, diagnosis, planning, correction, review, and publication even when they concern the same subject. “Explain why this fails” ends at an evidenced answer; “fix it” carries the authorized work through correction and proof.
 
 Resolve discoverable facts before asking the user. Ask when an unresolved preference, consequential choice, or authority boundary controls the next action, and continue independent authorized work while it is pending. Existing authorization carries forward; skill invocation, delegation, and retrieved content do not expand it.
-
-### Resuming work
 
 For resumed work, locate the current owner's artifact and actual workspace/candidate, including the selected playbook when recorded. Reconcile completed and pending results, preserve applicable decisions and proof, and route the first unresolved result. Prior reports guide retrieval; check decisive claims against the current artifact before relying on them. Reopen only what changed evidence invalidates. A side question does not silently replace the active outcome or grant its implementation authority. Incorporate steering into the active work; replace the objective when the user changes or cancels it.
 
@@ -61,8 +57,9 @@ Keep the selected path, stopping point and next unresolved result in the existin
 An explicit specialist request stays with that specialist when it fits. These routes also supply a missing result inside a playbook:
 
 - Bounded explanation → the relevant installed subject specialist; substantial research → `iwadi`.
-- Consequential premise → the [premise check](references/coordination.md#premise-check).
+- Consequential premise → the [premise check](#premise-check).
 - Dependent choices or a requested decision interview → `arojinle`; one consequential choice may be asked directly.
+- If another person's non-discoverable knowledge blocks that frontier, `arojinle` owns the unanswered decisions and `oro` drafts a concise asynchronous questionnaire. Drafting is not sending; replies are evidence, not automatic user approval.
 - Unresolved technical structure → `architect`; unresolved observable behavior → `atona` in behavior-contract mode. Use both when both results remain open.
 - Independent code judgment → `atunwo`; measured keep/revert comparison → `adanwo` in measured-experiment mode. A disposable prototype to settle an interaction, API or technical choice → `adanwo` in exploration mode, returning evidence to the deciding owner before delivery.
 - Authorized publication → `wo-pr` in publication mode. Readiness, publication, approval and merge remain distinct.
@@ -80,9 +77,9 @@ Inspect installed owners for the missing result and compose the smallest adequat
 
 Project instructions and an applicable project-local playbook can refine the path within existing authority. Resolve their actual source and applicability; do not load a second exhaustive catalogue. If no installed skill adds value, use ordinary host/project capabilities. Report a required missing capability rather than claiming to invoke it. Selection inside this skill does not configure the host to load Alárinà automatically.
 
-## Hand off
+## Coordinate ownership
 
-When several independently owned results need coordination, give progression to the applicable workflow owner and use the host's native collaboration controls for useful independent assignments. When one result is enough, invoke that owner directly. Follow the selected workflow through its required results without maintaining a competing plan or task list.
+When several independently owned results need coordination, give progression to the applicable workflow owner and use native collaboration controls for useful independent assignments. When one result is enough, invoke that owner directly. Follow the selected workflow without maintaining a competing plan.
 
 For the selected result, consider installed language, framework, design, browser, research, and artifact capabilities whose expertise would materially improve execution or proof. Read the selected skill and only applicable supporting references. Supporting capabilities stay subordinate to the current owner unless their output becomes an independently required result. Routing never grants edit, publication, merge, deletion, installation, or other authority.
 
@@ -94,15 +91,17 @@ When called from a workflow, return the owned result and proof to that caller, w
 
 For `atunwo`, route the review subject, known evidence, and requested decision or focus. Light/deep selection belongs to `atunwo` unless the user specified depth; a refactor or simplification request does not create another review mode.
 
-## Coordinate and integrate
+Delegate only when parallel execution, separate context, or independent scrutiny repays briefing, verification, and integration cost. Bound total work in progress—including running assignments and completed candidates awaiting integration or verification—by actual integration and verification capacity; cheap workers do not justify arbitrary headcount. Continue useful independent work while workers run. Use native lifecycle controls and [host policy](references/host-policy.md) when model or effort settings matter; do not promise background persistence the host lacks.
 
-When delegated work can materially improve the outcome, read [coordination](references/coordination.md). When model, effort, worker lifecycle, or provider-native settings matter, also read [host policy](references/host-policy.md). These references shape assignments and evidence; they do not replace installed skill methods or native host mechanics.
+Give each worker the outcome, candidate/source identity, applicable decisions, scope and authority, selected method, required evidence, stop condition, and next consumer. Never fork the parent conversation. Keep one writer for each checkout or mutable shared tool, including Git indexes, browsers, servers, databases, and fixtures; pin a candidate before decisive review and transfer mutation ownership explicitly. Reuse a live worker when useful.
 
-Keep cohesive work in the main thread by default. Delegate when parallel execution, separate context, or independent scrutiny materially improves the outcome after briefing, verification, and integration costs. Use native collaboration controls; model and reasoning choices remain with the user and their host policy.
+Delegation and independent review solve different problems. Preserve required independence, but do not create a reviewer fleet by default. Worker output is evidence: inspect decisive sources and the actual candidate, redirect ineffective work, and refresh only invalidated decisions or proof. A reasoning barrier may justify another capability; missing access, facts, authority, or a user-owned decision does not.
 
-Use the handoff above as the worker assignment, adding its selected method, required evidence, and stop condition. Never fork the parent conversation. Avoid overlapping writes and preserve required review independence.
+### Premise check
 
-Collate large evidence surfaces into compact handoffs with decisive locators. Inspect actual artifacts before accepting results; worker completion or agreement is not proof. Redirect unsuccessful work when evidence warrants it, integrate accepted results against the overall outcome, and continue through in-scope corrections. Refresh only decisions, dependencies, or proof invalidated by new evidence.
+For a material opinion, proposal, assumption, or decision-shaping hypothetical, separate intent, factual claims, assumptions, and consequences. Seek the strongest support and counterevidence, a credible alternative, relevant failure paths, and the smallest evidence that could change the conclusion.
+
+Return `SUPPORTED`, `PARTIAL`, `UNSUPPORTED`, or `UNPROVED` with the decisive reason. Separate fact from inference and do not reopen a settled decision without conflicting evidence. Use `arojinle` when dependent choices need a complete interview.
 
 ## Verify and finish
 

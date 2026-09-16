@@ -6,97 +6,31 @@ disable-model-invocation: true
 
 # Pèsè
 
-Apply least privilege to temporary private access: serve only the eligible resource and return its exact usable target. Setup or transport advice alone is not completion.
+Apply least privilege to temporary private access. Direct invocation authorizes task-scoped staging, an ephemeral local listener when needed, and one narrow temporary private route with ready tooling. Installation, persistent configuration/startup, stored credentials, DNS publication, public exposure, broad roots and unrelated mutation need separate authority.
 
-The local resource remains authoritative.
+Resolve volatile syntax from the installed transport and current official Tailscale Serve or Tailcat documentation; use `irinse` for setup changes.
 
-Direct invocation authorizes task-scoped staging, an ephemeral local listener if needed, and one narrow temporary private route using ready tooling. Installation, persistent startup/configuration, saved credentials/keys, DNS publication, public exposure, broad served roots and unrelated mutation require separate authority.
+## Bound and serve
 
-## Resolve tooling from current official evidence
+Pin the exact file, directory or running local web resource, companion assets, intended reader/access mode and expiry. Reject repository/home/credential roots, traversal, unresolved symlinks and boundaries containing unrelated secrets. Review companions as a narrow allowlist and stage them only when the transport cannot preserve that boundary.
 
-Resolve volatile syntax from the installed transport and current official documentation: [Tailscale Serve](https://tailscale.com/docs/features/tailscale-serve) or [Tailcat](https://github.com/tailscale/tailcat). For installed Tailcat, prefer its embedded documentation. If installation or configuration must change, use `irinse`; this skill does not own setup guidance.
+Prefer Tailscale Serve when usable and the reader has tailnet access. Serve the resource directly where the installed client supports it, otherwise expose only a task-owned loopback service. Never use Funnel. Preserve unrelated Serve/Services state: capture enough pre-state for scoped rollback, add one non-conflicting route, and determine exact removal before mutation.
 
-## Bound the resource
+Use [Tailcat fallback](references/tailcat.md) only when Serve is unsuitable, the reader can run a compatible client, and the user accepts its bearer-capability, relay-metadata, CLI-receiver and stability limits. Tailcat forwards TCP, so expose only a task-owned loopback service. Never substitute a public tunnel.
 
-Pin:
+## Acceptance and revocation
 
-- exact file, directory, or already-running local web resource;
-- required companion assets;
-- intended reader/access mode; and
-- expiry condition.
+Success requires:
 
-Reject:
+- the exact resource is reachable through the returned HTTPS URL or complete receiver invocation;
+- content outside the allowlist, including resolved symlink escapes, is unreachable;
+- no public or unintended listener/route is enabled; and
+- pre-existing transport configuration differs only by the task-owned route.
 
-- repository/home/credential directories;
-- traversal targets;
-- unresolved symlinks; or
-- boundaries containing unrelated secrets.
+Route readiness and receiver prerequisites are distinct. When receiver-side execution is unavailable, prove the live route and containment, return the exact usable target, and state the remaining prerequisite.
 
-When companions are required, expose only a reviewed allowlist; stage them narrowly when the chosen transport cannot preserve that boundary directly.
+On failure or expiry, revoke remote access before stopping only task-owned listeners/staging and deleting ephemeral secrets. Verify unrelated pre-state and that the target no longer works. Report any residual route, process or secret with its recovery action.
 
-## Serve it
+Return `AVAILABLE` with the exact direct HTTPS resource URL for Serve, or complete Tailcat receiver invocation plus separately secured token-delivery requirement; then transport, boundary, reader prerequisite, expiry, proof, limitations and cleanup. Return `CAPABILITY_GAP` with the unmet transport, reader, authority, privacy or access requirement.
 
-### Tailscale Serve — preferred
-
-Use when Tailscale is already usable on the host and the intended reader can access its tailnet. Follow the installed-version/current official Serve documentation to choose the smallest supported target form.
-
-Serve a file/directory directly when supported by that installed client/platform and the accepted boundary. For an existing local web resource, or when direct file serving is unavailable, expose only the required task-owned loopback service. Never use Funnel for this outcome.
-
-Preserve unrelated Serve/Services state. Capture only enough applicable pre-state to prove scoped rollback, add one non-conflicting route/endpoint, and determine its exact scoped removal before mutation. Tailnet policy remains the access-control boundary unless current policy proves something narrower.
-
-Do not finish until the exact HTTPS URL for the requested resource is known and verified. Return that URL, not merely the Serve mount root, status output, or setup instructions.
-
-### Tailcat — fallback
-
-Read [Tailcat fallback](references/tailcat.md). Use only when Tailscale Serve is unavailable/unsuitable, the reader can run a compatible Tailcat client, and the user accepts Tailcat's bearer-capability, relay-metadata, CLI-receiver, and upstream-stability limits.
-
-Tailcat transports TCP rather than serving files. When needed, expose only a task-owned loopback service and forward that port.
-
-The access target for Tailcat is the complete receiver invocation that retrieves/opens the requested resource, together with a separately secured connection token where the current CLI requires one. Do not return only a token, sender command, port number, or setup steps.
-
-If Tailcat must be installed or its setup changed, use `irinse`; never silently substitute a public tunnel.
-
-## Prove the access target
-
-Before reporting success, prove:
-
-- the exact requested resource is reachable through the returned URL or receiver invocation;
-- content outside the accepted boundary is not reachable;
-- no public or unintended listener/route was enabled; and
-- pre-existing transport configuration remains unchanged except for the task-owned route.
-
-Receiver-side execution by the human is not required to call the route ready when it cannot be performed from the current environment. Pèsè succeeds when the serving route itself is live, containment is proved, and the exact usable access target has been produced. State any remaining reader prerequisite explicitly.
-
-## Revoke cleanly
-
-On failure or expiry:
-
-1. Revoke remote access first.
-2. Stop/delete only task-owned local listeners, staging, and ephemeral secret material.
-3. Verify unrelated transport state matches the captured pre-state.
-
-If cleanup is incomplete, report the exact residual route/process/secret and recovery action; never claim cleanup succeeded.
-
-## Return
-
-Return one:
-
-- `AVAILABLE` — the private serving route is live, bounded, verified, and the exact access target is returned; or
-- `CAPABILITY_GAP` — a named transport, reader, authority, privacy, or access-mode requirement prevents serving the resource.
-
-Lead with the exact access target:
-
-- **Tailscale Serve:** direct HTTPS URL for the supplied resource.
-- **Tailcat:** complete receiver invocation plus the separately secured token-delivery requirement.
-
-Then include:
-
-- transport;
-- access boundary;
-- reader prerequisite if any;
-- expiry;
-- verification;
-- limitations; and
-- cleanup/revocation.
-
-Never place a live Tailcat token in durable records, logs, screenshots, Git, or broad chat/issue channels.
+Never place a live Tailcat token in durable records, logs, screenshots, Git or broad channels.

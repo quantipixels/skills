@@ -14,8 +14,6 @@ status: Draft
 
 **Outcome:** <what must become true>
 
-**Status:** <Draft | Planned | In Progress | Backlog | Closed>
-
 **Workspace:** <absolute path when execution is bound to a working directory>
 
 **Branch:** <branch-name> [main|worktree]
@@ -40,7 +38,7 @@ status: Draft
 
 ## Outcome and acceptance
 
-<current problem or gap, affected actors when material, desired outcome, and observable acceptance>
+<problem/gap, affected actors, desired outcome, observable acceptance>
 
 ## Scope and non-goals
 
@@ -53,15 +51,15 @@ status: Draft
 
 ## Amendment impact
 
-<only when a material amendment changes accepted/completed owner results: governing authority/revision; affected earlier results/clauses; superseded/stale versus retained clauses; candidate/proof freshness; required owner refresh/re-entry proof; omit otherwise>
+<only for a material amendment: authority/revision, affected clauses/results, stale versus retained coverage, proof freshness and required re-entry; omit otherwise>
 
 ## Premortem
 
-<current plan/revision examined; credible material failure scenarios, evidence or counterevidence, dispositions and resulting plan changes; residual risk authority and any necessary owner, warning/re-entry trigger, and recovery condition; readiness conclusion or a missing/stale analysis blocker. Keep this with existing risks when that is their natural home; do not duplicate a register.>
+<plan revision, material failure paths, evidence/counterevidence, dispositions, plan changes, residual-risk owner/triggers/recovery, and readiness conclusion; omit duplicate registers>
 
 ## Delivery and proof
 
-<governing contract/spec identity/readiness when present; current gate evidence; phases/dependencies/blockers only when real; current proof/closure obligations; when coordination is material, include expected delivery-shape envelope, material cumulative drift, and replan/review trigger without turning counts into quotas>
+<contract identity/readiness, gate evidence, real dependencies/blockers, proof/closure obligations, and when coordinated, delivery-shape envelope, material drift and replan trigger>
 
 ## Linked evidence
 
