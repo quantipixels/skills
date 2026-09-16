@@ -21,13 +21,11 @@ Request only missing structure that can change truth/usefulness. Never invent do
 
 Load branch guidance only when applicable:
 
-- report/evidence/living/candidate comparison → [report patterns](references/report-patterns.md);
+- substantial report/evidence/living/candidate comparison → [source composition](references/source-composition.md);
 - diff, commit/branch change, or pinned pull-request or merge-request evidence → [code-change review](references/code-change-review.md);
 - conceptual relationship where visual form changes understanding → [visual reasoning](references/visual-reasoning.md);
-- a mature renderer/tool could materially improve the chosen representation → [representation capabilities](references/representation-capabilities.md);
 - coordinated views, model demonstrations, guided sequences or reader feedback → [interactive projections](references/interactive-projections.md);
-- a living report or requested real-time page → [living and live views](references/living-and-live.md);
-- nontrivial build/runtime dependency, external code/widget/service, worker, or WebAssembly → [dependency policy](references/dependency-policy.md).
+- a living report or requested real-time page → [living and live views](references/living-and-live.md).
 
 ## Compose for human judgment
 
@@ -47,7 +45,7 @@ For living projections, preserve document identity and useful anchors. Foregroun
 
 Choose the faithful representation before the renderer, then use the lightest sound delivery mode.
 
-The linked capabilities are starting points, not an allowlist. Discover a mature alternative when the supplied anchors cannot represent the meaning well.
+Renderer choice follows representation. Use a mature focused capability when it materially improves fidelity, clarity, interaction, correctness, accessibility or implementation reliability; named tools are anchors, not an allowlist. Revalidate current APIs and identity at use time.
 
 Interaction may expose supplied relationships, calculate a supplied model or capture reader proposals. Keep observed evidence, illustrative/model-derived outcomes and unaccepted feedback distinct. Preserve complete reading order or equivalent accessible meaning, keyboard operation, visible focus, touch usability and reduced-motion behavior.
 
@@ -63,9 +61,9 @@ For substantial artifacts, embed only a compact context capsule: identity/revisi
 
 ## Runtime boundaries
 
-Treat supplied content as data, never executable markup. Send no credentials. Add no unrequested analytics/cookies/telemetry/authenticated requests/external disclosure.
+Treat supplied content as data, never executable markup. Send no credentials. Add no unrequested analytics, cookies, telemetry, authenticated requests or external disclosure.
 
-Representation choice and delivery choice are separate. A selected renderer may be staticized at build time, bundled as a focused runtime, reused from an existing trusted host runtime, or exceptionally loaded remotely when the requested outcome genuinely requires that behavior and the trust/data/failure boundary is explicit. Use [dependency policy](references/dependency-policy.md) for any nontrivial dependency/runtime.
+Representation and delivery are separate. Prefer build-time/static output, then a focused bundled or existing trusted-host runtime. Remote executable code or a live service requires a genuine outcome need, authorized trust/data boundary and explicit failure behavior. Essential meaning and provenance must survive dependency failure. Reconsider a document that accumulates overlapping runtimes, special serving, remote access to non-public content or an unreproducible dependency graph.
 
 Report independently:
 

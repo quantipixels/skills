@@ -7,7 +7,7 @@ description: Carry an initiative through its requested outcome with a living, hu
 
 Own progression from the idea to the requested outcome. Keep one current plan, invoke specialist skills for their results, and continue authorized work until the outcome is built and verified. A plan, ticket set, or specialist handoff is an intermediate result when the user requested a build.
 
-For every mode, obtain planning inputs through native readers or applicable document specialists. Use `irinse` only when choosing or interpreting an acquisition capability needs specialist guidance, and `iwadi` for substantive unresolved research. Missing or partially retrieved requirements remain readiness gaps; a source summary does not confirm a requirement.
+Obtain planning inputs through native readers or applicable specialists. Use `irinse` for a non-obvious acquisition capability and `iwadi` for substantive research. Missing or partial requirements remain readiness gaps; a summary does not confirm them.
 
 When the requested stopping point is a behavior contract—including behavior-contract mode or an ordinary request to write or refine a behavior specification—read [behavior contract](references/behavior-contract.md) and return that standalone result. When the requested stopping point is delivery decomposition, read [delivery decomposition](references/decomposition.md) and return that standalone result. Do not start an initiative or require a living HTML plan for either bounded result. These branches remain usable by delivery and review callers.
 
@@ -21,7 +21,7 @@ Resolve discoverable facts from relevant project knowledge before asking the use
 
 Use `html-artifact` with [the initiative brief](references/human-view.md) for every plan, including exploration-only and planning-only work. Present the first proposed direction before delivery so the user can judge alignment. Maintain the same view through decisions, implementation, review, and completion; share its locator and source revision with contributors.
 
-Update the plan first, then the view after material changes, before dependent decisions or delivery handoffs. Chat updates supplement this record. Honor existing authority and requested review boundaries without adding approval rounds. If the view is unavailable, report the deliverable gap and continue independent discovery and planning.
+Update the plan first, then the view after material changes and before dependent decisions or handoffs. Chat supplements the record. Honor existing authority without adding approval rounds. If the view is unavailable, report the gap and continue independent discovery and planning.
 
 ## Explore and settle direction
 
@@ -45,7 +45,7 @@ Use [managed initiatives](references/managed-initiative.md) only when the govern
 
 ## Coordinate delivery and establish completion
 
-For useful independent work, delegate through native host controls with the current plan/candidate, scope, authority, required evidence and stop condition. Keep one writer per mutable workspace or shared tool, and inspect decisive returned evidence before integrating it.
+For useful independent work, delegate through native host controls with the current plan/candidate, scope, authority, required evidence and stop condition. Keep one writer per mutable workspace or shared tool, limit work in progress to what current integration and verification capacity can absorb, and inspect decisive returned evidence before integrating it.
 
 Use `alaga` as the builder for each sufficiently settled coding outcome. Supply its acceptance, relevant dependencies, workspace/candidate, and existing authority. Alága owns implementation, verification, and corrections; Atọ́nà owns sequencing and whether the combined results complete the initiative. Consume the returned candidate, evidence, blockers, and scope changes, update the plan, and continue to the next dependency-ready slice.
 
@@ -63,10 +63,10 @@ Use `wo-pr` in publication mode for authorized publication and its stewardship m
 
 Keep the plan in context for a short session. When continuity or downstream use needs persistence, update the existing project plan; otherwise use `.qp/atona/`. Record the absolute execution workspace and `branch: <branch-name> [main|worktree]`, plus the main-worktree path for a linked worktree. Update them when execution moves.
 
-Keep ordinary rationale in the plan and living view; read [durable reconciliation](references/durable-reconciliation.md) only when required governing knowledge needs updating.
+Keep ordinary rationale in the plan and living view. When stable governing knowledge must change, give the obligation, owner, destination, result and blocker to `amose`; it decides durable admission. A stale required governing record blocks only the affected closure obligation, while absence of a promotion obligation does not block closure. The normative specification remains the contract owner.
 
 Before closing a linked-worktree initiative, reconcile required `.qp` state into the accepting workspace, clean only reconciled/disposable state, and record the workspace disposition. Preserve unresolved state. Worktree removal requires user approval; retaining it does not block completion.
 
 Close only when the requested outcome has current accepting proof, required documentation and integration are complete, the living view explains the delivered outcome and remaining limits, and no blocking in-scope obligation remains. For exploration-only or planning-only work, apply that bound to the requested artifacts and state that delivery has not been performed.
 
-Return the living view's locator, outcome, decisive verification, and material limits. If blocked, identify the exact remaining work, prerequisite or human decision, and next action; a recommendation is not completion. Continue authorized executable work instead of ending at a suggested next step.
+Return the living view's locator, outcome, decisive verification, and material limits. A separate handoff is appropriate only for a requested recommendation, a true blocker, or intentionally inactive work; name its owner, missing authority or prerequisite, and re-entry trigger. Otherwise continue authorized executable work. Plan completion remains distinct from build completion.

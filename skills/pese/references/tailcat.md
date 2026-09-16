@@ -1,41 +1,11 @@
 # Tailcat fallback
 
-Load only when Tailscale Serve is unavailable/unsuitable and the intended reader can run Tailcat.
+Use only when Tailscale Serve is unsuitable and the intended reader can run Tailcat. Resolve the installed interface from embedded help and current official upstream documentation; Tailcat promises no stable CLI, API, wire format or public relay. Use `irinse` for authorized installation/upgrade and verify package identity.
 
-## Resolve the actual Tailcat interface
+Tailcat supplies an end-to-end encrypted userspace WireGuard tunnel, not the normal Tailscale control plane or a file server. Public relays are best-effort and can observe connection metadata. Forward only the task-owned loopback port. Use a fresh ephemeral server identity; never add saved server keys, stable DNS tokens, all-port forwarding, exit-node behavior or auth-free SSH for an ordinary share.
 
-Authoritative upstream: https://github.com/tailscale/tailcat
+Treat the connection token as a bearer secret unless the exact current server/client path proves identity-bound authorization. When identity binding matters, verify that the receiver presents the allowlisted key; otherwise return `CAPABILITY_GAP` rather than removing the restriction.
 
-Tailcat has no stability promise for its CLI, API, wire format, or public relay service. Do not treat this reference as a versioned command manual.
+Return the complete receiver invocation that reaches the exact resource path/port, plus a separate secure token-delivery requirement. Tailcat normally provides no browser-ready HTTPS URL; a browser-only requirement the current interface cannot meet is a capability gap. A token, sender command or port alone is not a target.
 
-For an installed Tailcat, use its embedded documentation and on-demand help to resolve the needed interface; installed behavior outranks newer examples. If it is absent and installation is authorized, use current official upstream documentation at execution time.
-
-Use `irinse` when installation or upgrade is required. An unrelated executable/package named `tailcat` is not sufficient identity.
-
-## Security and stability boundary
-
-Tailcat provides a userspace WireGuard tunnel without the normal Tailscale control plane/system routing. Public Tailcat DERP relays are best-effort and may be rate-limited or changed. Payload is encrypted end-to-end, while relay operators can observe connection metadata; report only privacy guarantees supported by current official evidence.
-
-Tailcat forwards TCP rather than serving files/directories. Pèsè therefore exposes only the task-owned loopback port needed for the requested resource.
-
-For an ordinary temporary share, use a fresh ephemeral server identity according to the current installed/upstream interface. Do not create or reuse saved server keys, stable DNS tokens, `all`-port forwarding, exit-node behavior, or auth-free SSH for this outcome. A reusable server identity changes a one-run access capability into durable authority.
-
-Treat the returned connection token as a bearer secret unless current verified server/client configuration proves identity-bound authorization. Keep live tokens out of Git, durable records, logs, screenshots, and broad channels.
-
-## Return the usable receiver target
-
-Derive the receiver syntax from the actual installed Tailcat documentation or latest official upstream documentation. The result handed to the user must be a complete receiver invocation that addresses the requested resource through the exposed port/path, not merely the connection token or sender invocation.
-
-Tailcat does not normally produce a browser-ready HTTPS URL. If the user requires a normal browser link and the current official Tailcat interface cannot provide one, return `CAPABILITY_GAP` rather than presenting the token as a URL.
-
-Tokens are case-sensitive; do not assume a browser can use a token hostname unless current official evidence explicitly proves that access mode.
-
-## Client identity
-
-Do not hardcode assumptions about which client modes reuse saved client identities. When identity-bound access matters, verify the installed/current implementation and prove that the exact receiver path presents the allowlisted client key before enabling server-side allowlisting.
-
-If the chosen receiver path cannot present the required identity, return `CAPABILITY_GAP`; do not silently remove the restriction or invent an unproved bridge.
-
-## Revocation
-
-Revoke the capability by stopping the Tailcat sender before deleting temporary token/staging material, then verify the returned access target no longer reaches the resource. Remove persistent keys only when their creation was separately authorized; ordinary Pèsè runs should not create them. Relay-map caches are not server private keys and are not ordinary cleanup targets.
+Revoke by stopping the sender first, then delete task-owned token/staging material and verify the target fails. Remove persistent keys only when their creation was separately authorized.
