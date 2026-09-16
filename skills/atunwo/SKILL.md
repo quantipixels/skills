@@ -12,9 +12,9 @@ Judge the requested boundary independently. Keep source/Git state read-only; rev
 - light — inspect the bounded change or representative system boundary, immediate consumers and proof; follow concrete concerns far enough to substantiate or dismiss them.
 - deep — when requested or when credible state, migration, cross-component or broad-change risk requires it, trace material producers/consumers, shared-state writers, failure/recovery and proof across the agreed boundary.
 
-Depth changes coverage, not evidence standards. Respect explicit time/light bounds; otherwise deepen only affected paths and report why. A change, system or refactor is the subject, with any defects/tests/simplification focus.
+Depth changes coverage, not evidence standards. Respect explicit time/light bounds; otherwise deepen only affected paths and report why. A change, system or refactor is the subject, with any defects/tests/simplification focus. An explicit parity-only request also keeps provider state read-only.
 
-For an existing system, inspect representative high-leverage boundaries at real scale. Report strengths and unassessed dimensions as well as weaknesses; history, complexity and fan-out are leads until tied to caller burden, failure, proof or maintenance cost. Inspect every writer before alleging a mutable-authorization race, and verify that a generic promise is enforced. Use qualitative A | B | C | D/F grades only when requested, without decimal averages; no acceptance verdict is needed.
+For an existing system, read [codebase assessment](references/codebase-assessment.md). Inspect representative high-leverage boundaries at real scale. Report strengths and unassessed dimensions as well as weaknesses; history, complexity and fan-out are leads until tied to caller burden, failure, proof or maintenance cost. Inspect every writer before alleging a mutable-authorization race, and verify that a generic promise is enforced. Use qualitative A | B | C | D/F grades only when requested, without decimal averages; no acceptance verdict is needed.
 
 Read [simplification](references/simplification.md) for unnecessary complexity. Simplification-only work remains inspection-only with no test/build execution or provider mutation.
 

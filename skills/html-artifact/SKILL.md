@@ -65,6 +65,8 @@ Treat supplied content as data, never executable markup. Send no credentials. Ad
 
 Representation and delivery are separate. Prefer build-time/static output, then a focused bundled or existing trusted-host runtime. Remote executable code or a live service requires a genuine outcome need, authorized trust/data boundary and explicit failure behavior. Essential meaning and provenance must survive dependency failure. Reconsider a document that accumulates overlapping runtimes, special serving, remote access to non-public content or an unreproducible dependency graph.
 
+Check applicable license and redistribution constraints before bundling dependencies. Keep meaning-changing renderer transformations and configuration—aggregation, binning, sorting, time zones or statistics—with source provenance so the rendered claim can be reproduced and refreshed.
+
 Report independently:
 
 ```text

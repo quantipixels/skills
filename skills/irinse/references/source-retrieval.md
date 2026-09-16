@@ -13,6 +13,8 @@ Choose the representation required by the question and retrieve the smallest coh
 
 These are alternatives, not an escalation ladder. For large sources, locate the region then read coherent context. Use format-aware parsers for structured records and rendered inspection when layout carries meaning. Split reads that would truncate.
 
+For an unfamiliar implementation, an available tldr-code outline can locate the relevant functions before full reads; entry-point context and impact queries can narrow a caller investigation. Scope the path, disambiguate common names by file and bound traversal depth using the installed help. Open the decisive source afterward. For repeated syntactic variants, start with an ast-grep pattern calibrated on the known instance; use IDE/LSP resolution when overload or receiver identity controls the claim. A literal or prose question still belongs with native text search. These entry points do not require installing a tool, starting a daemon or running a repository-wide dashboard.
+
 Calibrate structural/rule queries against a known positive and legitimate nearby negative. A failed query, parser/index error, unsupported language, excluded path or truncated result is not evidence of absence. Semgrep suppression is not a fix; cloud/registry effects retain their normal authority.
 
 For an authorized rewrite, preview exact matches and diff, then return semantic proof to the consuming owner. Syntax success does not prove behavior preservation. Source-changing fixes, tool installation, model downloads, daemon lifecycle and MCP configuration are mutations; verify tldr-code project confinement before preferring its MCP surface.
