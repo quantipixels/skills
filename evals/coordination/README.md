@@ -17,6 +17,8 @@ The cases distinguish two dimensions:
 
 The smoke recipe below uses frozen definitions supplied directly. Native discovery is untested unless an evaluator runs and records that separate mode.
 
+The revision-8 cases and C04/C06 continuity amendments are unrun protocols, not new model-performance evidence. C06 requires a first plan and a follow-up update to the same HTML; preserve output inventories and both revisions for review. C12–C14 use hidden reviewer expectations and need no new runner or model-dependent package CI. Before any model campaign, record its finite authorized trial count, resource ceiling, reset window and stop conditions. No campaign is authorized by adding these cases.
+
 ## Cases
 
 | Case | Observation | Primary source | Work surface |
@@ -30,6 +32,9 @@ The smoke recipe below uses frozen definitions supplied directly. Native discove
 | C07 | Selection probe | Supplied candidate | no applicable playbook |
 | C08 | Selection probe | Supplied candidate | four new compositions, five existing routes and an editorial control |
 | C09 | Selection probe | Supplied candidate | independently invoked owners, evidence acquisition, partial coverage and a routine-work control |
+| C12 | Selection probe | Supplied candidate | desire, domain applicability and technical fitness with settled controls |
+| C13 | Selection probe | Supplied candidate | selective TDD, proof retention and component-design controls |
+| C14 | Selection probe; optional native replication | Supplied candidate | Codex profile admission, native settings and authority limits |
 
 ## Run with native workers
 
