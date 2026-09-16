@@ -35,7 +35,7 @@ For any named tool, use its current official documentation; references describe 
 
 Reuse the selected tool, target, scope, and existing authorization. Use [tool setup](references/tool-setup.md) for installation, configuration, authentication, integration, upgrade, repair, removal, installed-skill reconciliation, host instructions, or native agent declarations. Use `oro` in its agent-facing branch for instruction text.
 
-Prepare the concrete change within authorized scope, preserve unrelated settings and user content, refresh the target before mutation, and verify the resulting state in the actual environment. Repository scope does not imply global configuration or broader permissions. Installer success is not readiness proof. Report material limitations and a scoped recovery path.
+Use scoped change control: prepare the authorized change, preserve unrelated settings/content, refresh before mutation and verify resulting state in the actual environment. Repository authority does not extend to global configuration or broader permissions. Installer success is not readiness; report material limits and scoped recovery.
 
 ## Use the selected tool
 

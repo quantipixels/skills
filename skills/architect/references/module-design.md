@@ -4,9 +4,11 @@ Use when module, interface, seam, adapter or dependency shape controls the archi
 
 ## Deepen around owned knowledge
 
-Apply information hiding: a deep module offers a small stable interface while owning substantial policy, state, lifecycle, failures and integration detail. Depth is reduced caller knowledge, not an implementation/interface line ratio or fewer public methods. Apply DRY to duplicated knowledge and YAGNI to speculative variation.
+Apply information hiding: keep policy, state, lifecycle, failures and integration detail behind a small stable interface. Judge depth by reduced caller knowledge, not line ratios or method counts. Apply DRY to knowledge and YAGNI to speculative variation.
 
-Use the deletion test. A layer is shallow when removing it loses no required responsibility and moves no complexity or policy. Keep a small module or single-adapter seam when it owns a real trust, authorization, protocol, compatibility, lifecycle, migration or operational boundary. Directory conventions may expose or enforce boundaries; they do not create depth.
+Apply the deletion test: remove a layer only if no required responsibility is lost and no complexity or policy is displaced. Preserve small modules/single-adapter seams owning trust, authorization, protocol, compatibility, lifecycle, migration or operations. Directory conventions can expose or enforce boundaries, not create depth.
+
+Apply the single responsibility principle to reasons for change: identify whose needs drive each policy, group concerns that change for the same reason, and separate independently changing responsibilities. Treat change ownership as boundary evidence, not a rule to split every operation into a class.
 
 Place seams only where isolation or variation has a real owner. Two production/test adapters are sufficient evidence, not a requirement. Keep internal seams private. Apply Liskov substitution to adapters and test doubles: preserve caller preconditions, guarantees, errors and effects; a matching signature does not establish fidelity.
 

@@ -45,7 +45,7 @@ Use [managed initiatives](references/managed-initiative.md) only when the govern
 
 ## Coordinate delivery and establish completion
 
-For useful independent work, delegate through native host controls with the current plan/candidate, scope, authority, required evidence and stop condition. Keep one writer per mutable workspace or shared tool, limit work in progress to what current integration and verification capacity can absorb, and inspect decisive returned evidence before integrating it.
+Delegate useful independent work through native controls with plan/candidate, scope, authority, proof and stop condition. Enforce single-writer ownership per mutable workspace/shared tool. Limit aggregate WIP—running assignments and candidates awaiting integration/verification—to integration/verification capacity; inspect decisive evidence before integration.
 
 Use `alaga` as the builder for each sufficiently settled coding outcome. Supply its acceptance, relevant dependencies, workspace/candidate, and existing authority. Alága owns implementation, verification, and corrections; Atọ́nà owns sequencing and whether the combined results complete the initiative. Consume the returned candidate, evidence, blockers, and scope changes, update the plan, and continue to the next dependency-ready slice.
 
@@ -53,7 +53,7 @@ Let Alága handle review and corrections for its coding change. Use `atunwo` for
 
 When delivery has multiple work units or candidates, dependencies, owners, or a multi-session handoff, read [delivery tracking](references/delivery-tracking.md). Keep execution and proof details with their owners; Atọ́nà owns whether the combined results satisfy the initiative.
 
-After a material decision, discovery, or delivery result, update the affected plan and reopen only dependent choices and proof. Resolve scope drift before continuing affected work. A partly superseded result is not wholly current.
+Apply dependency-based invalidation after material decisions, discoveries or delivery: update the plan, reopen affected choices/proof, and replan dependants whose premise changed. Resolve scope drift before resuming them; partly superseded results are not wholly current.
 
 Assess whether current delivery evidence covers initiative acceptance, including interactions between delivered slices and the real user journey when relevant. Reuse applicable proof. When integration behavior lacks proof or fails, give `alaga` the bounded integration outcome to verify and correct; consume that result before closing the initiative. Task counts, worker completion, isolated passing checks, and provider status do not establish that the build works as a whole. Keep missing proof and blockers visible and resolve them within scope.
 

@@ -91,9 +91,11 @@ When called from a workflow, return the owned result and proof to that caller, w
 
 For `atunwo`, route the review subject, known evidence, and requested decision or focus. Light/deep selection belongs to `atunwo` unless the user specified depth; a refactor or simplification request does not create another review mode.
 
-Delegate only when parallel execution, separate context, or independent scrutiny repays briefing, verification, and integration cost. Bound total work in progress—including running assignments and completed candidates awaiting integration or verification—by actual integration and verification capacity; cheap workers do not justify arbitrary headcount. Continue useful independent work while workers run. Use native lifecycle controls and [host policy](references/host-policy.md) when model or effort settings matter; do not promise background persistence the host lacks.
+Delegate when parallelism, separate context or independent scrutiny repays coordination cost. Limit aggregate WIP to integration and verification capacity: count running assignments and completed candidates awaiting integration/verification; worker price does not set capacity. Continue useful independent work. Use native lifecycle controls and [host policy](references/host-policy.md) for model/effort settings; do not promise unsupported background persistence.
 
 Give each worker the outcome, candidate/source identity, applicable decisions, scope and authority, selected method, required evidence, stop condition, and next consumer. Never fork the parent conversation. Keep one writer for each checkout or mutable shared tool, including Git indexes, browsers, servers, databases, and fixtures; pin a candidate before decisive review and transfer mutation ownership explicitly. Reuse a live worker when useful.
+
+When source or measurement semantics warrant `irinse`, include the selected capability, known readiness and coverage limits in the brief; the worker confirms its own tool access. Return conclusions with decisive source/artifact locators, verification and gaps, leaving large intermediate output at its source.
 
 Delegation and independent review solve different problems. Preserve required independence, but do not create a reviewer fleet by default. Worker output is evidence: inspect decisive sources and the actual candidate, redirect ineffective work, and refresh only invalidated decisions or proof. A reasoning barrier may justify another capability; missing access, facts, authority, or a user-owned decision does not.
 

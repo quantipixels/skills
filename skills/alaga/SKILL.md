@@ -20,9 +20,9 @@ The first three stop at their requested result and do not authorize delivery. Fo
 
 Within an `atona` initiative, reuse its assignment and return candidate, proof and blockers; `atona` owns progression. Direct requests need no initiative plan.
 
-Trace behavior from entry points through its canonical owner, shared mechanisms, consumers and proof. Search by domain behavior, reuse applicable decisions and establish the actual gap. Apply DRY to shared knowledge and YAGNI to custom state: extend the owner when semantics fit and verify native guarantees before inventing coordination. Make the smallest idiomatic causal fix, preserve unrelated work and surface consequential scope expansion. Record a deliberate limit's ceiling/revisit condition near its owner; preserve real calibration.
+Apply DRY to domain knowledge: trace entry points, canonical owner, shared mechanisms, consumers and proof; reuse applicable decisions and extend the owner only when semantics fit. Apply YAGNI to custom state/coordination after checking native guarantees. Make the smallest idiomatic causal fix, preserve unrelated work and surface consequential scope expansion. Keep a deliberate limit's ceiling, calibration and revisit condition near its owner.
 
-When test-first delivery is explicitly requested, choose one stable behavioral seam and independent expected outcome, observe the intended red for the correct reason, implement minimum green, then refactor while preserving affected proof. Reuse an accepted seam without renewed approval. Do not impose this loop on ordinary delivery or substitute it for persistence, integration or user-journey evidence.
+When explicitly requested, use TDD at a stable behavioral seam with an independent oracle: observe behavioral red, implement minimum green, then refactor while preserving affected proof. Reuse an accepted seam without renewed approval. Import errors and zero selected tests are not behavioral red. TDD does not replace persistence, integration or user-journey proof and is not mandatory for ordinary delivery.
 
 For domain values/types/states, follow the authoritative project's naming, representation and lifecycle. Trace enum/status transitions, persisted/wire values, defaults, unknown handling and consumer mappings; distinguish identifiers from labels. Resolve conflicting patterns at their owner rather than copying one.
 
