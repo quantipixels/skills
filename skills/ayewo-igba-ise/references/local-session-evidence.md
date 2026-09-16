@@ -1,109 +1,27 @@
 # Local coding-agent session evidence
 
-Use only when a session or bounded multi-session postmortem depends on persisted local Codex or Claude Code history.
+Use when a session/corpus postmortem depends on persisted local Codex or Claude Code history.
 
-The bundled adapter is a **read-only evidence indexer**, not a semantic analytics or verdict engine. Its deterministic seam is: given local session stores plus optional explicit corpus filters and skill-signal focus, emit a privacy-preserving structural inventory that Àyẹ̀wò can use to choose and inspect the smallest relevant sample.
+The bundled read-only adapter inventories and normalizes structural evidence so Àyẹ̀wò can select the smallest relevant sample. It may discover current session roots; preserve proved root relationships and unresolved ancestry; emit host/session/root/project/version/time/event/tool counts, parse gaps and conservative skill-reference line locators; and filter by explicit host, project, session/root/ancestor or time range.
 
-## Boundary
+It must never emit raw prompts, responses, source, tool arguments/results, credentials or pasted content. Structural counts are locators, not proof of retries, waste, selection, loading, usefulness or failure cause. A fork/subagent/unresolved child is not an independent root without evidence.
 
-The adapter may:
+Read a known transcript directly when it suffices. Use the adapter for inventory/relationship normalization and consult its current --help for invocation and options. Project/session/time filters apply after parsing. The repeatable --skill option focuses emitted reference signals; it does not filter sessions. Omitting time bounds means no cutoff. Explicit --codex-root, --claude-root or --skills-root can supply already located stores.
 
-- discover current local Codex and Claude Code session roots;
-- inventory JSONL session files without modifying them;
-- normalize session/root relationships only when host metadata or storage layout proves them;
-- preserve unresolved ancestry instead of manufacturing independent roots when a referenced parent is absent;
-- emit host/session/root evidence, cwd/project evidence, host version when present, observed time range, event/role counts, parse gaps, and source line references for conservative skill references;
-- emit structural tool activity when the host record exposes it: call/result counts, explicit structured failure flags, consecutive same-tool-call counts, tool names, and result-byte totals without tool arguments or result text;
-- filter the corpus by explicitly supplied host, project, session/root/ancestor ID, or time range;
-- focus emitted skill references on explicitly supplied skill names without removing sessions that have no matching signal; and
-- mark uncertain filter/root evidence explicitly instead of silently inventing certainty.
+Default roots follow current host conventions: CODEX_HOME or ~/.codex for Codex session storage, and CLAUDE_CONFIG_DIR or ~/.claude/projects for Claude Code. history.jsonl is not treated as a full Codex transcript. Durable indexes, when useful, belong under .qp/ayewo-igba-ise/<stable-subject>/session-evidence.json.
 
-It must not:
+## Evidence semantics
 
-- emit raw prompt, response, source-code, tool-input, tool-output, credential, or pasted-content text in the index;
-- infer that repeated tool calls are retries, waste, navigation failure, or a tooling defect without inspecting the task context;
-- infer skill eligibility, usefulness, missed opportunity, mis-triggering, availability, selection, loading, or routing from a textual/path reference alone;
-- infer the installed skill-set version active in a historical session when the record does not prove it;
-- count a fork/copy/subagent or unresolved child as an independent root merely because another JSONL file exists; or
-- turn the normalized index into a promotion, fold, removal, environment-change, or skill-edit verdict.
+Activity records structurally identified call/result counts, explicit error flags, consecutive same-tool calls and result byte sizes by observed name. These may under-report schema variants and never establish efficiency or waste.
 
-Historical reconstruction and evidence-backed improvement judgments stay with [agent session](agent-session.md) and [corpus analysis](corpus-analysis.md). Use `oro` to review or revise agent-facing instructions when that follow-on work is authorized.
+Skill references distinguish explicit user invocation from user mentions, structured fields and SKILL.md paths. Only explicit invocation is high-confidence invocation evidence; none proves eligibility, loading, availability or value.
 
-## Run the inventory
+Codex parent metadata is followed only through indexed records; absent parents leave root identity unresolved. A Claude subagent path may prove its root relationship, subject to version-sensitive schema.
 
-Read known transcripts directly when they suffice. When inventory or relationship normalization is needed, run this adapter through the active host's local shell/filesystem capability; reuse a suitable existing inventory. Ask the user to run or export evidence only when local access and equivalent capabilities are unavailable.
+Use the index to select root sessions, then inspect only evidence needed to reconstruct contract, owner selection, correction/rework, proof, recovery or tool/environment friction. Semantic classifications remain in [agent session](agent-session.md) and [corpus analysis](corpus-analysis.md).
 
-From a repository checkout:
+## Provenance and drift
 
-```bash
-python3 skills/ayewo-igba-ise/scripts/session-evidence.py
-```
+The current Codex basis is openai/codex commit 773f0b081de689b0d54f2809e7b17bfdb4c9f341 for session paths and metadata. The Claude basis is its official Manage sessions documentation, which declares transcript entries internal and version-sensitive. The parser reports invalid/unreadable records rather than inferring absence. Refresh this guidance when host paths/schema change or a real corpus exposes gaps.
 
-No time boundary is assumed. Narrow the corpus only when the analysis question calls for it:
-
-```bash
-python3 skills/ayewo-igba-ise/scripts/session-evidence.py \
-  --host codex \
-  --project /path/to/repository \
-  --skill alaga
-```
-
-`--since` and `--until` accept explicit ISO-8601 corpus bounds; omitting them means no date cutoff. `--session` accepts a session ID or any proved root/ancestor ID. `--skill` is repeatable and **focuses emitted skill-reference signals; it is not a session filter**. Sessions with no matching signal remain in the inventory so Àyẹ̀wò can still identify possible missed opportunities from sampled raw evidence.
-
-Project, session, and time filters apply after parsing; they do not reduce scan work. Where the corpus is already located, pass `--codex-root` or `--claude-root` pointing to its containing directory. Report that boundary and preserve unresolved ancestry; broaden collection only when needed for the question or independent-root counts.
-
-When `--skill` is omitted, the adapter discovers current skill names from the available `skills` tree. When running outside a full repository checkout, pass `--skills-root <path-to-skills>` for that auto-discovery path.
-
-The default roots are current host conventions, not package-owned state:
-
-- Codex: `$CODEX_HOME` when set, otherwise `~/.codex`; full persisted rollouts are discovered below its session store. `history.jsonl` is deliberately not treated as a full session transcript.
-- Claude Code: `$CLAUDE_CONFIG_DIR` when set, otherwise `~/.claude`; transcripts are discovered below `projects/`.
-
-Leave output on stdout for one-session use. When a durable local index is useful, use `.qp/ayewo-igba-ise/<stable-subject>/session-evidence.json`.
-
-## Structural activity evidence
-
-`activity` is deliberately descriptive. It records only structure that can help Àyẹ̀wò choose where to inspect next:
-
-- `tool_calls` and `tool_results` — structurally identified tool-use/result events;
-- `tool_failures` — only failures explicitly marked by a structured `is_error` or failure status field;
-- `repeated_same_tool_calls` — consecutive calls carrying the same tool name, without claiming why they repeated;
-- `tool_result_bytes` — encoded size of structurally identified result records/blocks; and
-- `*_by_name` maps — the same counts/bytes grouped by observed tool name when the host exposes one.
-
-These counters can under-report when an upstream host uses a different event shape. A high count can represent legitimate iterative work; a low count does not prove efficiency. Treat them as locators for selective transcript/tool inspection, not performance metrics, retry detection, or a basis for changing tools by themselves.
-
-## Skill-reference evidence
-
-The adapter deliberately distinguishes references from stronger semantic claims:
-
-- `EXPLICIT_INVOKE` — direct user input uses an explicit host-style `/<skill>` or `$<skill>` invocation form;
-- `USER_SKILL_REFERENCE` — direct user input names the skill, including wording that may request, discuss, or prohibit it;
-- `STRUCTURED_SKILL_REFERENCE` — a top-level event/payload field names the skill, without assuming that field proves routing semantics; and
-- `SKILL_PATH_REFERENCE` — the persisted record contains a path to that skill's `SKILL.md`, without assuming that the host loaded it.
-
-Only `EXPLICIT_INVOKE` is a high-confidence invocation observation. The other signals are locators for selective inspection. A reference does not prove selection, loading, routing, availability, eligibility, or value.
-
-## Root-session evidence
-
-For Codex, parent-thread metadata is followed only through records present in the indexed corpus. If a referenced parent is absent, `root_session_id` remains unresolved and the known ancestor ID is retained. Such a member must not increase the independent-root denominator until Àyẹ̀wò can prove independence from additional evidence.
-
-For Claude Code, a subagent storage path may directly prove its root-session ID; retain that relationship while treating the event schema as version-sensitive.
-
-## Corpus use
-
-1. Pin the corpus from the question: host, project/repository, skill snapshot/version evidence, session relationships, or caller-supplied time range. Do not assume a date cutoff.
-2. Inventory only that population when sampling or population claims require it; reuse known transcript locators for a fixed-session review.
-3. Resolve or explicitly preserve uncertain root relationships before counting independent opportunities.
-4. Select representative and risk-weighted root sessions from the inventory, using structural activity only to focus inspection where it can answer the postmortem question.
-5. Read raw transcript lines only for selected records and only to reconstruct contract, owner selection, user corrections, proof, rework, recovery, tool/environment friction, or incremental value.
-6. Apply Experimental/stable-skill classifications in `corpus-analysis.md` only after that reconstruction.
-
-## Schema drift and provenance
-
-Host session storage is upstream-owned and can change. The parser intentionally uses tolerant structural extraction and reports unreadable/invalid records instead of declaring absence.
-
-- **Codex evidence basis:** `openai/codex` at commit `773f0b081de689b0d54f2809e7b17bfdb4c9f341` exposes `CODEX_HOME`, persisted `history.jsonl` configuration, session storage, and rollout session metadata including identifiers, cwd, CLI version, originator, and parent-thread metadata. The adapter copies no upstream code; it adopts only the local evidence fields needed for this index. Refresh when those storage/metadata contracts change or a real corpus exposes parser gaps.
-- **Claude Code evidence basis:** official Claude Code "Manage sessions" documentation retrieved 2026-09-04 documents local JSONL transcripts under `~/.claude/projects/<project>/<session-id>.jsonl`, `CLAUDE_CONFIG_DIR`, and explicitly states that transcript entry format is internal and changes between versions. Field extraction is therefore best-effort evidence, not a stable Claude transcript API. Refresh on host-path changes, material session-format changes, or observed parse gaps.
-
-Do not add hooks, receipts, or background telemetry merely to improve future evidence. First use the native historical records. Add instrumentation only when a concrete recurring decision remains materially unanswerable from those records.
+Do not add hooks, receipts or background telemetry by default; use native records first.

@@ -1,57 +1,30 @@
-
 # Diagnosis
 
-Find the smallest causal mechanism or sufficient causal set that explains the observed failure and downstream symptoms. Diagnosis stays separate from triage/review/correction delivery.
+Find the smallest causal mechanism or sufficient causal set that explains the observed failure. Diagnosis stays separate from intake, review and correction.
 
-Delegate substantial analysis, research, and expert work to subagents, returning concise findings and evidence links to keep the main context lean.
+Pin the symptom, expected behavior, candidate/event, environment, reproducibility, existing evidence and probe authority. Separate the primary failure from retries, secondary errors and recovery noise. Use a safe reproduction or equivalent direct observation; lack of a runnable loop does not block a useful hypothesis.
 
-A useful model may be:
+Maintain only live competing mechanisms. For each, name the trigger, enabling conditions, propagation, explained evidence and the smallest observation that could distinguish it. Use existing tests, logs, traces, configuration, history and reversible probes; read [probe discipline](diagnosis-probes.md) for history/repair comparisons, cross-component failures or order-dependent tests. Use `irinse` for non-obvious capture or attribution while retaining causal judgment here.
 
-```text
-trigger + enabling conditions + propagation + missing containment/detection → observed failure
-```
+A confirmed explanation needs:
 
-## Pin the failure
+- explanatory sufficiency for the failure and material symptoms;
+- discriminating support for each claimed factor; and
+- honest conditionality where interactions or alternative sufficient paths exist.
 
-Record exact symptom, expected behavior, first known trigger, candidate/revision or event identity, environment/context, reproducibility, evidence, scope, and read/probe authority. A report, stack trace, correlation, changed artifact, or temporal order is evidence, not a cause.
+Temporal order and correlation are not causes. Classify a factor as necessary for this path, contributing, enabling, interacting or unresolved. Isolated diagnostic edits remain probes, not accepted fixes, and must be reverted or explicitly handed off.
 
-Reproduce safely when possible; otherwise pin one equivalent direct observation. Separate primary failure from secondary errors, retries, compensating behavior, and recovery noise.
+## Variants of a confirmed cause
 
-Use the smallest feedback loop that can distinguish the reported symptom from the intended behavior. A failing test, focused runtime probe, trace replay, browser check, benchmark, or direct observation can serve. Minimize the reproduction when it materially sharpens the diagnosis; do not delay a useful hypothesis merely because a runnable loop is unavailable.
-
-## Competing mechanisms
-
-Maintain a small set of competing hypotheses. Capture the trigger/mechanism, enabling conditions, propagation, evidence explained, distinguishing observation, and smallest safe probe where each is material. Use a table when several live hypotheses benefit from side-by-side comparison; a short comparison is enough for a simple decisive probe.
-
-Read [probe discipline](diagnosis-probes.md) for bounded history/repair comparisons, cross-component failures or order-dependent tests. Prefer existing observations, tests, logs, traces, configuration, history, measurements, and reversible diagnostics that fit the domain. Use `irinse` for non-obvious profile or trace reduction and symbol attribution; causal judgment remains here.
-
-Choose each next observation or intervention for its ability to distinguish the live hypotheses, not because a preferred debugging ritual exists. Control material confounders where practical. Vary one factor at a time only when that probe can actually discriminate the mechanism; when interactions or coupled conditions are plausible, design the observation/probe to expose those interactions rather than pretending the factors are independent.
-
-For a proposed causal explanation establish:
-
-1. **Explanatory sufficiency** — the proposed mechanism/set explains or reproduces the observed failure and material downstream symptoms without an unresolved causal gap.
-2. **Factor support** — each claimed causal factor has discriminating evidence showing its contribution in the relevant context. When feasible, removing/controlling a factor should change the outcome or a predicted mediator as expected.
-3. **Conditionality and alternatives** — do not label a factor globally necessary when another sufficient pathway, interaction, or context can produce the same failure. State whether the factor is necessary for this observed pathway, contributing, enabling, interacting, or unresolved.
-
-A factor lacking discriminating support is contextual/contributing/unresolved, not a confirmed root cause merely because it occurred before the failure.
-
-## Stop on evidence
-
-After confirming a root cause, use [variant analysis](variant-analysis.md) when the request or evidence warrants finding related instances. Keep the search bounded to that mechanism; confirmation alone does not require a repository-wide sweep.
-
-Continue only while another safe observation can materially update the causal model. Stop when remaining hypotheses cannot be distinguished, no safe probe can change the diagnosis, required environment/observability/authority is unavailable, or the failure cannot be reproduced and no equivalent direct evidence exists.
-
-Keep correction delivery outside diagnosis. When existing request or caller authority permits reversible diagnostic edits, a patch may be used only when it is the smallest safe discriminator, remains isolated from the accepted candidate, and is reverted or handed off explicitly after observation. It does not become the correction by implication.
+When related instances are in scope, calibrate a text, structural, symbol or flow search against the known failing instance or correct revision. Generalize one dimension at a time and compare trigger, enabling conditions, effect and containment. Separate confirmed variants, look-alikes, unresolved candidates and unassessed areas. A bounded negative search does not prove repository-wide absence, and variant discovery does not authorize correction.
 
 ## Result
 
-Return one:
+Stop when another safe observation cannot materially update the model. Return one:
 
-- `CONFIRMED_ROOT_CAUSE` — minimal causal mechanism/set and discriminating evidence are sufficient for the observed failure/path;
-- `DIAGNOSED_BUT_UNPROVED` — best explanation has a material causal/evidence gap;
-- `EVIDENCE_BLOCKED` — named evidence/environment/authority/observability gap;
-- `NOT_REPRODUCED` — pinned failure not observed and no equivalent direct evidence.
+- CONFIRMED_ROOT_CAUSE — sufficient mechanism and discriminating evidence;
+- DIAGNOSED_BUT_UNPROVED — best explanation retains a material gap;
+- EVIDENCE_BLOCKED — named environment, observability or authority gap; or
+- NOT_REPRODUCED — neither the failure nor equivalent evidence was observed.
 
-Include the failure identity, minimal mechanism/set, decisive evidence, causal roles, and falsified alternatives. Add interactions or alternative sufficient paths, contributing/contextual/unresolved factors, propagation/containment, affected boundary, confidence limits, and the smallest useful next action when material. A simple diagnosis resolved by one decisive probe may be correspondingly concise, but must still make the causal inference and ruled-out alternative explicit.
-
-Preserve a needed durable diagnosis in the existing project destination. Use `html-artifact` as needed.
+Include the failure identity, mechanism, decisive evidence, falsified alternatives, causal roles and material limits. Preserve a durable diagnosis only when needed.

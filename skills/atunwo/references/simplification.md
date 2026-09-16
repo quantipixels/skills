@@ -12,9 +12,9 @@ Understand the actual flow, consumers, contracts, and proof before proposing red
 4. Localize policy and state with their real owner.
 5. Simplify the remaining control flow and interfaces without moving complexity into callers.
 
-Use Beck’s simple-design rules: preserve passing behavioral proof, reveal intent, remove duplicated knowledge, then unnecessary elements. Apply KISS to reasoning burden, not line count. Preserve useful names, intermediate values, comments, guards and cleanup. Generalization needs real variation or a meaningful boundary; scores alone justify neither extraction nor deletion.
+Use Beck's simple-design order: preserve behavior, reveal intent, remove duplicated knowledge, then unnecessary elements. Apply KISS to reasoning burden, not line count. Preserve useful names, intermediates, comments, guards and cleanup. Generalization needs real variation or a meaningful boundary; scores justify neither extraction nor deletion.
 
-Use complexity, churn, fan-out, invalid states, and lifecycle transitions as leads, not findings. Before proposing extraction, compare policy ownership, caller knowledge, navigation, meaningful decisions, and proof burden across the whole affected path. Reject relocated complexity; a clearer named operation can still help when state or branch counts remain unchanged. Prefer representations that exclude invalid combinations when they preserve timing and lifecycle contracts.
+Use complexity, churn, fan-out, invalid states and lifecycle transitions as leads. Before proposing extraction, compare policy ownership, caller knowledge, navigation and proof across the affected path. Reject relocated complexity; a named operation may still lower reasoning cost without reducing branches. Prefer representations that exclude invalid combinations while preserving timing and lifecycle contracts.
 
 ## Match the scope
 
@@ -28,4 +28,4 @@ For a proposed test merge, deletion, or move to a stronger proof owner, name the
 
 ## Return actionable findings
 
-For each material opportunity, give its location, current maintenance cost, proposed sufficient form, why it lowers total burden, counterevidence, retained contracts, risk, and future verification or proof owner. Rank by impact, risk, effort, and dependencies; identify implementation slices without executing them. State blocked deletion claims and a justified retain result where appropriate. Use `architect` only for an unresolved structural design question.
+For each material opportunity, give its location, maintenance cost, sufficient form, total-burden reduction, counterevidence, retained contracts, risk and future proof owner. Rank by impact, risk, effort and dependencies. State blocked deletions and justified retains. Implementation stays with its owner; use `architect` only for an unresolved structural design question.

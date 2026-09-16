@@ -1,12 +1,10 @@
 # Boundary failures worth challenging
 
-Read when a candidate changes framework enforcement, authorization, a verification gate, stateful retry/cancellation, migration or rollout, or an agent/provider operation. Use the applicable examples to form and challenge failure hypotheses. They are neither a mandatory reviewer roster nor findings by themselves; retain the main skill's evidence, scope, and finding contract. Check exact platform behaviour at use time; these are failure mechanisms, not a cached API reference.
+Read when a candidate changes framework enforcement, authorization, a verification gate, stateful retry/cancellation, migration/rollout or an agent/provider operation. These are hypotheses, not findings; retain the main skill's evidence and read-only contract. Check platform behavior at use time.
 
 ## A guard can pass while the guarded behaviour fails
 
 Trace what a success signal actually proves. Did the command exercise the intended candidate and inputs, propagate a failing child command, collect every required result, and reject missing evidence? A renamed check, skipped job, stale cache, empty test selection, or successful submission receipt can leave the claimed outcome untested.
-
-For example, a shell pipeline may report a successful log-writing command while an earlier validation command failed. Check the actual shell's failure semantics and the enclosing gate before reporting a defect; a working failure-propagation setting or explicit aggregate result may already close the path. A deliberately advisory check is not automatically a blocking gate.
 
 Challenge the guard itself with a plausible failing input or existing negative evidence when read-only review permits it. Never weaken the gate to make the check green. Distinguish absent evidence from evidence of failure, and an intentional skip from a verified pass. Diff size does not reduce the consequence of a false-success mechanism.
 
@@ -16,7 +14,7 @@ For framework enforcement, distinguish proof through the registered public path 
 
 Follow one logical operation through timeout, retry, late completion, duplicate delivery, and cancellation where those states apply. Locate the owner of idempotency, ordering, transaction boundaries, and cleanup rather than assuming each caller can implement its own safeguard.
 
-For example, a timeout after an external write may mean the write completed but its receipt was lost. An unconditional retry can duplicate the effect. Trace any existing idempotency key, readback, or provider guarantee that prevents that result. Likewise, cancelling a waiting caller does not establish that an already-started worker stopped or its side effects were reversed.
+Trace idempotency, ordering, transaction boundaries and cleanup. A lost receipt can hide a completed effect; cancellation of a caller does not prove the worker or its effects stopped.
 
 Do not request a new concurrency test merely because async syntax appears. Name the concrete state transition current proof could miss and its cheapest stable proof owner.
 
@@ -34,4 +32,4 @@ Bind the intended repository, tenant, object, revision, and actor before tracing
 
 Check whether pre-write refresh protects against stale intent, structured arguments preserve the selected target, and readback establishes the requested effect. A job ID establishes acceptance, not completion. Missing pagination can hide a conflicting object or unresolved review. Do not infer a provider write from local success, or external disclosure permission from a request for independent review.
 
-When judging whether proof actually exposes one of these mechanisms, consult `alaga` for its stateful-proof method within this review's read-only authority. It does not authorize fault injection during review.
+Consult `alaga` stateful proof or integration obligations when deeper failure evidence is needed. Review authority does not permit fault injection.

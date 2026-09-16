@@ -24,10 +24,4 @@ Prefer the existing runner. Before a manual mutation, establish exclusive owners
 
 Preserve the runner's raw status alongside interpretation. For a consequential survivor, identify an input or sequence exposing the changed public result or effect. Pattern-based triage supplies leads, never automatic equivalence. Generated code and logging are not automatically irrelevant to a contract. Return fixes to alaga; when strengthening tests, rerun the same mutant and restore the passing baseline. No score gate is implied.
 
-## Maven / PIT and Kotlin
-
-The official Maven entry point is `mvn test-compile org.pitest:pitest-maven:mutationCoverage`; prefer the repository wrapper and existing configuration. Verify selected-version options before use. Bound `targetClasses` and `targetTests`; class globs must account for intended nested classes. Request XML explicitly when machine-readable evidence is needed. Discover JUnit/TestNG integration rather than assuming Jupiter. Multi-module coverage and aggregation have restrictions; verify that the selected module really sees the covering tests.
-
-Kotlin/JVM bytecode can be mutated, but source mapping and generated methods require care. PIT's built-in Kotlin filter is not comprehensive language support and is independent of the JUnit 5 plugin. The old open-source Kotlin plugin is archived; verify current official support, compatibility and licensing if setup is requested. Do not transplant Gradle configuration into Maven or silently exclude all generated methods. No dependency addition is required to consult this reference.
-
-Sources: [PIT Maven](https://pitest.org/quickstart/maven/), [PIT FAQ](https://pitest.org/faq/), [archived Kotlin plugin](https://github.com/pitest/pitest-kotlin).
+Use the repository wrapper/configuration and current runner documentation. Verify actual test discovery, target/module coverage, generated-bytecode/source mapping and language-plugin compatibility. Historical plugin support is not a current capability claim; no dependency addition follows from this reference.
