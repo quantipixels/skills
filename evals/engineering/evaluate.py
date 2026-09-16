@@ -314,21 +314,28 @@ def stop_process_group(process, grace=0.5):
                 process.wait(timeout=grace)
         return
     try:
-        os.killpg(process.pid, signal.SIGTERM)
-    except ProcessLookupError:
-        return
-    deadline = time.monotonic() + grace
-    while time.monotonic() < deadline:
-        process.poll()
         try:
-            os.killpg(process.pid, 0)
+            os.killpg(process.pid, signal.SIGTERM)
         except ProcessLookupError:
             return
-        time.sleep(0.01)
-    try:
-        os.killpg(process.pid, signal.SIGKILL)
-    except ProcessLookupError:
-        pass
+        deadline = time.monotonic() + grace
+        while time.monotonic() < deadline:
+            process.poll()
+            try:
+                os.killpg(process.pid, 0)
+            except ProcessLookupError:
+                return
+            except PermissionError:
+                # macOS can transiently reject a zombie-only group probe.
+                # Keep waiting/reaping; this is not proof that cleanup finished.
+                pass
+            time.sleep(0.01)
+        try:
+            os.killpg(process.pid, signal.SIGKILL)
+        except ProcessLookupError:
+            pass
+    finally:
+        process.wait(timeout=grace)
 
 
 def subprocess_result(command, cwd, timeout):
@@ -359,7 +366,11 @@ def subprocess_result(command, cwd, timeout):
                 "stderr": stderr,
             }
         finally:
-            stop_process_group(process)
+            try:
+                stop_process_group(process)
+            finally:
+                process.stdout.close()
+                process.stderr.close()
     except subprocess.TimeoutExpired as error:
         stdout = error.stdout.decode(errors="replace") if isinstance(error.stdout, bytes) else error.stdout or ""
         stderr = error.stderr.decode(errors="replace") if isinstance(error.stderr, bytes) else error.stderr or ""

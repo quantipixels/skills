@@ -8,6 +8,7 @@ import shutil
 import tempfile
 import time
 import unittest
+from unittest.mock import patch
 
 
 MODULE = Path(__file__).with_name("evaluate.py")
@@ -184,6 +185,27 @@ class EngineeringEvaluationTest(unittest.TestCase):
         result = self.result(self.check())
         self.assertEqual("error", result["status"])
         self.assertEqual("error", result["returned_tests"]["status"])
+
+    @unittest.skipUnless(os.name == "posix", "native process-group assertion")
+    def test_timeout_reaps_leader_and_closes_owned_pipes(self):
+        processes = []
+        original_popen = evaluate.subprocess.Popen
+
+        def capture(*args, **kwargs):
+            process = original_popen(*args, **kwargs)
+            processes.append(process)
+            return process
+
+        with patch.object(evaluate.subprocess, "Popen", side_effect=capture):
+            result = evaluate.subprocess_result(
+                [evaluate.sys.executable, "-c",
+                 "import signal,time; signal.signal(signal.SIGTERM, signal.SIG_IGN); time.sleep(30)"],
+                Path(self.case_temp.name), timeout=0.2,
+            )
+        self.assertEqual("timeout", result["status"], result)
+        self.assertIsNotNone(processes[0].returncode)
+        self.assertTrue(processes[0].stdout.closed)
+        self.assertTrue(processes[0].stderr.closed)
 
     @unittest.skipUnless(os.name == "posix", "native process-group assertion")
     def test_timeout_cleans_descendant_process_group(self):
