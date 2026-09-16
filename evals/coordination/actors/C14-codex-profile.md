@@ -1,7 +1,9 @@
 # C14 — native profile admission and limits
 
-**Observation:** selection probe; separately authorized native replication  
-**Instruction source:** supplied candidate  
+**Observation:** selection probe; separately authorized native replication
+
+**Instruction source:** supplied candidate
+
 **Workspace:** none for the probe
 
 Use the supplied `codex-orchestra` and relevant caller definitions. Treat each record as a separate hypothetical condition. Propose the outcome and evidence limit; do not launch workers or change settings in this probe.

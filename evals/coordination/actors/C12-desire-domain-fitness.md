@@ -1,7 +1,9 @@
 # C12 — desire, domain applicability and technical fitness
 
-**Observation:** selection probe  
-**Instruction source:** supplied candidate  
+**Observation:** selection probe
+
+**Instruction source:** supplied candidate
+
 **Workspace:** none; no implementation or provider actions
 
 Use the supplied QP definitions. For each independent request, state the first unresolved result, what evidence or answer would settle it, what can proceed, and where the result returns. Do not execute the proposed work or create workers.

@@ -1,7 +1,9 @@
 # C13 — selective TDD and component judgment
 
-**Observation:** selection probe  
-**Instruction source:** supplied candidate  
+**Observation:** selection probe
+
+**Instruction source:** supplied candidate
+
 **Workspace:** none; no implementation, test execution or workers
 
 For each independent case, describe the bounded next action and accepting evidence. Do not claim to have executed it.
