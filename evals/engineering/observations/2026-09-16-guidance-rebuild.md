@@ -35,3 +35,11 @@ The baseline C09/C10 probe's 20 answers and candidate C11 updater probe's eight 
 The living HTML plan rendered successfully; the theme toggle, local anchor integrity and 390px page overflow check passed. A deep link to a skill initially left that target's own details closed; the local HTML now opens the target as well as ancestor disclosures, and a browser recheck passed. This does not establish observed reader comprehension or a full accessibility audit.
 
 No live installation, real update, JVM integration or valid comparative resource measurement has been performed. Publication is separate from these verification claims.
+
+## Codified-language follow-up
+
+The user subsequently authorized applying the EVHACS PR source analysis: replace general exposition with established concepts plus local application, material exceptions and proof. Eight files changed across Oro, Alaga, Architect, Alarina, Atona, Adanwo, Amose and Irinse. Oro now distinguishes established concepts from locally defined operation/result contracts; no shared glossary, new skill or status vocabulary was introduced.
+
+Source review preserved canonical-owner semantic fit, explicitly requested TDD with behavioral red and retained integration proof, information hiding and real small boundaries, aggregate running/awaiting-verification WIP, dependency invalidation, domain authority, controlled-comparison constraints and environment readiness. Local review corrected wording that could imply frozen domain meaning, numerical module-depth measurement or an ambiguous acceptance queue.
+
+Against `3966f48`, all 19 skill frontmatter blocks and existing invocation files are unchanged; all ten playbooks remain byte-identical, relative Markdown links resolve, and `git diff --check` passes. Packaged Markdown is now 37,402 words, a net reduction of 79 in this follow-up. This is an editorial preservation check, not a new behavior-equivalence or performance result. The earlier 34-test harness verification remains applicable to unchanged harness code; it does not test this prose. Native independent-review dispatch and reuse both failed at the host thread limit, so this follow-up has local source review only; the earlier independent acceptance remains scoped to `7ef5672`.

@@ -15,11 +15,9 @@ Prefer an existing benchmark, profiler, runtime probe, or evaluation surface; re
 
 Use `irinse` when profiler/trace, build, database or other measurement capture and reduction needs specialist guidance. Require the provenance and limits that affect comparability; Àdánwò retains the workload, hypothesis, constraints and keep/revert decision. Adequate native measurements need no extra route.
 
-The metric must represent the requested outcome. Correctness, security, required behaviour, compatibility, and resource limits are hard constraints: an aggregate score cannot compensate for violating them.
+Require construct validity: measure the requested outcome. Correctness, security, required behaviour, compatibility and resource limits remain hard constraints; aggregate scores cannot offset violations.
 
-Use representative inputs and pin the candidate, data, dependency/runtime versions, host configuration, and permissions that materially affect the result. Check that the harness exercises the target and propagates failed or missing results. Choose the useful improvement threshold and comparison method before seeing candidate measurements.
-
-Freeze the workload, acceptance constraints, and comparison method. When a necessary change affects comparability, record it and re-establish the affected baseline; do not remove difficult cases or tune the judge to favour a candidate.
+Use a controlled comparison: pin representative inputs, candidate, data, dependency/runtime versions, host configuration and permissions. Verify that the harness exercises the target and propagates failed/missing results. Freeze workload, acceptance, improvement threshold and comparison method before candidate measurements. Record changes that affect comparability and re-establish the affected baseline; do not drop difficult cases or tune the judge to favour a candidate.
 
 Separate setup, warmup, steady-state work, and end-to-end cost when they change the decision. Choose the relevant statistic: throughput for a throughput goal, tail latency for a latency obligation, or successful completion for an agent task. Averages do not replace a required tail bound. Include costs shifted into tools, workers, retries, and correction work; unavailable telemetry is unknown, not zero. Instruction length alone is not an observed saving.
 

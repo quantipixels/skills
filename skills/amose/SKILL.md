@@ -11,22 +11,11 @@ Own the project's domain meaning and ubiquitous language across planning, specif
 
 Read only evidence capable of settling material meaning: the current domain-language source, governing decisions/policies, relevant code/tests/configuration/runtime behavior, and bounded history when it can resolve a conflict. Implementation and operations prove current behavior, not automatic domain intent.
 
-When an ambiguous, overloaded, synonymous, or conflicting term can change scope, ownership, identity, state, policy, or behavior:
-
-1. state the ambiguity or contradiction;
-2. use the smallest concrete scenario that distinguishes the competing concepts;
-3. compare it with current domain language and relevant evidence; and
-4. propose canonical wording only when evidence or domain authority supports it.
+Resolve consequential ambiguity, overloading, synonyms or contradictions through a distinguishing domain example: state the competing meanings, compare their behavior with current language/evidence, and propose canonical wording only with evidence or domain authority.
 
 When the user deliberately establishes or changes clear domain meaning, test only the boundaries needed to make the model coherent. Do not manufacture ambiguity to justify an interview.
 
-A useful model clarification may establish or separate:
-
-- canonical terms and avoided synonyms;
-- conceptual identity and lifecycle distinctions;
-- bounded contexts and cross-context meaning;
-- relationships and ownership; and
-- semantic invariants or contradictions between stated meaning and current behavior.
+Clarify canonical terms/avoided synonyms, identity/lifecycle, bounded contexts and cross-context meaning, relationships/ownership, and semantic invariants where material. Surface contradictions between stated meaning and current behavior.
 
 Use `yoruba-glossary` for Yorùbá/English technical terminology and glossary maintenance; Amọ̀ṣẹ́ retains project-specific domain meaning.
 

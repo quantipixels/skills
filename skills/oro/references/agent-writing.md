@@ -6,7 +6,9 @@ Write for an agent reader. Optimize reliable selection, judgment, execution and 
 
 Make trigger/exclusions, owned result, genuine branches, authority/side effects, observable completion bound, recovery semantics and conditional pointers clear. Name the exact public skill when it owns a capability; add only the variant or constraint that changes its use. Workflows own cross-result progression, assignments own current worker scope/evidence, and skills keep their methods.
 
-Spend context on recurring non-obvious decisions, expertise, authority/safety/evidence/routing boundaries and demanding bounds. Use established principles such as DRY, YAGNI, separation of concerns or design by contract to compress repeated explanation while preserving task-specific exceptions. Prefer positive target behavior; keep prohibitions for hard boundaries or observed failures.
+Spend context on recurring non-obvious decisions, expertise, demanding bounds and authority/safety/evidence/routing/recovery boundaries. Replace general exposition with an established concept plus its local application, material exceptions and proof. Prefer positive target behavior; keep prohibitions for hard boundaries or observed failures.
+
+Use codified language only when it carries the intended method: DRY concerns knowledge, for example, not merely similar text. Define local modes and result states by their effects, authority and completion conditions before reusing their names. A label cannot replace those conditions. Keep the necessary meaning with each independently invoked skill; avoid acronym catalogues and mandatory shared glossaries.
 
 Keep every-invocation material in the hot path and branch-specific depth behind a pointer whose wording identifies the load condition. Co-locate rules and caveats that must be considered together. Never hide universal authority, safety, evidence or completion rules merely to shorten a root.
 
