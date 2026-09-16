@@ -4,11 +4,9 @@ Use when a meaningful contract constrains many inputs, or when diagnosing an exi
 
 ## Choose the property
 
-Name the promised behavior, valid domain and a plausible defect the property could expose. Useful shapes include conservation or ordering invariants, normalization idempotence, encode/decode round-trips, metamorphic relations, and comparison with an independent oracle. Prefer example tests when no useful property exists; do not reshape a public API solely to accommodate a generator.
+Name the promised behavior, valid domain and a plausible defect the property could expose. Useful shapes include conservation/ordering invariants, idempotence, round-trips, metamorphic relations and comparison with an independent oracle. Prefer examples when no useful property exists; do not reshape a public API for a generator.
 
 A legitimate round-trip tests two operations and is not inherently tautological. It can still miss paired errors: supplement with independent known values or a format constraint when that is the risk. For lossy transforms compare the specified canonical form or error bound. An oracle may use a simpler model, published vectors or independent implementation; copying the production formula preserves its mistakes. There is no universal ranking of property types.
-
-For example, sorting needs ordered output and preservation of the input multiset; checking length alone misses substituted values. Idempotence alone permits a constant function. Select complementary constraints only where each detects a material failure.
 
 ## Generate informative cases
 
@@ -22,10 +20,8 @@ Use generated command sequences when uncertainty concerns valid transitions acro
 
 Shrink the command sequence and its arguments while preserving prerequisites needed to reach the failure; a shorter but invalid sequence is not an explanation. Retain the minimized sequence as a reproducible program. Sequence exploration varies operation order and data, but does not by itself control concurrent scheduling, model-check all interleavings, or prove persistence. Those claims require the actual concurrency or storage boundary described in [stateful proof](stateful-proof.md).
 
-Method: Hypothesis [stateful testing](https://hypothesis.readthedocs.io/en/latest/stateful.html).
-
 ## Interpret a failure
 
 Retain original input, minimized counterexample, seed, framework/version and observed failure. Shrinking should preserve domain constraints and the failing mechanism; the smallest value under the shrinker's ordering is not necessarily the root cause. Reproduce the counterexample, then distinguish implementation defect, wrong property, invalid generator, ambiguous requirement and environment/flakiness. Fix the actual cause; retain a deterministic regression example when useful alongside the property.
 
-Use the project's existing framework. For non-obvious runner/discovery setup, use `irinse` for property-test runner guidance. Adding a dependency remains subject to the task's scope. Pure-function properties do not establish persistence behavior or assembled journeys.
+Use the project's runner and `irinse` for non-obvious engine/discovery semantics. Confirm the engine actually executes the property; tool selection does not supply the oracle. Adding a dependency retains its normal authority. Pure-function properties do not establish persistence or assembled journeys.

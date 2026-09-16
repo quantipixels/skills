@@ -1,20 +1,20 @@
 # Source retrieval
 
-Choose retrieval by the question's required source format, syntax, symbol identity and coverage, including before the first search. Also use this guidance to recover noisy or incomplete results. Retrieve the smallest coherent source that can answer the question; reducing output must preserve the governing contract and decisive exceptions.
+Choose the representation required by the question and retrieve the smallest coherent source that preserves its governing contract.
 
-| Question | Useful capability |
-| --- | --- |
-| Where is a path, literal, identifier spelling or prose passage? | Native file/text search or `rg`; scope paths before requesting matching content. |
-| What does this known document or implementation actually require? | Read the relevant complete section, function or short file. `cat`, `sed` and native readers are appropriate; keyword hits alone can omit governing instructions. |
-| Which code has this syntactic shape despite layout differences? | [ast-grep](ast-grep.md) for pattern construction and interpretation. |
-| Which declaration, overload or implementation does this reference identify? | Available IDE/LSP symbol navigation; use [IntelliJ MCP](intellij-mcp.md) for that integration. Text and AST matches are candidates, not resolved symbol identities. |
-| How is unfamiliar code organised or connected? | An available outline/repository map or [tldr-code](tldr-code.md), followed by the relevant source. A selected map can omit important code. |
-| Does this repeatable bug or security rule match? | [Semgrep](semgrep.md) with an appropriate scoped rule; findings still need engineering judgment. |
+| Question | Capability | Non-obvious limit |
+| --- | --- | --- |
+| Path, literal, identifier or prose | Native search such as rg | Ignored, hidden, binary and unsearched paths limit negative evidence. |
+| Exact document or implementation contract | Complete relevant section/function/file | A keyword hit can omit governing exceptions. |
+| Syntactic shape | [ast-grep](https://ast-grep.github.io/guide/pattern-syntax.html) | AST shape does not resolve receiver type, overload or runtime dispatch. |
+| Declaration, overload or implementation identity | Available IDE/LSP; [IntelliJ MCP](https://www.jetbrains.com/help/idea/mcp-server.html) when exposed | Confirm actual MCP schemas, project scope and index freshness; unresolved names remain ambiguous. |
+| Repository map or flow lead | Available outline or [tldr-code](https://github.com/parcadei/tldr-code) | Maps are heuristic/selective and do not provide complete type, dispatch or flow inference. |
+| Repeatable bug/security/architecture rule | [Semgrep](https://semgrep.dev/docs/) | Confirm engine/language/dataflow and path coverage; findings remain leads. |
 
-These are alternatives, not an escalation checklist. Use the available capability that answers the question with the least total discovery, setup and reading cost. A missing optional tool does not block an adequate native fallback; keep any resulting evidence limit explicit.
+These are alternatives, not an escalation ladder. For large sources, locate the region then read coherent context. Use format-aware parsers for structured records and rendered inspection when layout carries meaning. Split reads that would truncate.
 
-For large files, find the relevant region before reading its coherent context. For structured data, query fields through a format-aware parser rather than treating text matches as records. For rendered documents, use format-aware extraction or inspection when layout carries meaning. Split independent reads when their combined output would truncate; after truncation, retrieve the missing relevant portion instead of repeating the same dump. Reuse still-current source already read.
+Calibrate structural/rule queries against a known positive and legitimate nearby negative. A failed query, parser/index error, unsupported language, excluded path or truncated result is not evidence of absence. Semgrep suppression is not a fix; cloud/registry effects retain their normal authority.
 
-Before concluding that something is absent, check the actual searched paths, ignore rules, language/parser support, index freshness and result limits as applicable. `rg` normally excludes ignored, hidden and binary files; expand only the relevant scope. A failed query, unsupported parser or truncated response is not a clean negative result.
+For an authorized rewrite, preview exact matches and diff, then return semantic proof to the consuming owner. Syntax success does not prove behavior preservation. Source-changing fixes, tool installation, model downloads, daemon lifecycle and MCP configuration are mutations; verify tldr-code project confinement before preferring its MCP surface.
 
-Keep decisive path/symbol locators and the surrounding source needed to verify the finding. Refresh affected locations after edits. Summaries and search matches guide inspection; they do not replace the source or prove runtime behaviour.
+Keep decisive path/symbol locators and surrounding source. Refresh affected locations after edits. Current official docs own volatile interfaces and rule syntax; summaries, maps and matches guide inspection but do not replace source or prove runtime behavior.

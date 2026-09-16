@@ -5,13 +5,7 @@ description: Investigate one substantial, reusable, audit-worthy, or unusually h
 
 # Ìwádìí
 
-Investigate one question against the strongest practical evidence appropriate to the claim. Default to the cheapest evidence capable of resolving it responsibly; preserve the result as a research record only when independent persistence is useful.
-
-Pin the question, claim type, intended downstream use, freshness/version boundary, required evidence, and whether the result needs durable persistence before collecting sources.
-
-## Admission
-
-Use Ìwádìí when at least one is true:
+Investigate one question against the strongest practical claim-appropriate evidence. Pin its downstream use, freshness/version boundary and persistence need. Use Ìwádìí when at least one is true:
 
 - several authoritative or empirical sources must be reconciled into one conclusion;
 - the result is independently reusable, auditable, or likely to outlive the immediate task/session;
@@ -19,7 +13,7 @@ Use Ìwádìí when at least one is true:
 - a peculiar version-specific technical question remains materially unresolved after ordinary first-party/project research; or
 - the user explicitly requests a research result or source-level grounding.
 
-Keep routine lookups in the current task; persist research only when it needs to outlive that task.
+Keep routine lookups in their current task.
 
 ## Match evidence to the claim
 
@@ -44,11 +38,15 @@ software/tool/upstream behavior
 
 A primary source is not automatically stronger merely because it is primary; a synthesis is not automatically stronger because it aggregates. Judge fitness from claim match, methodology/authority, recency/version, directness, coverage, and material limitations.
 
-Choose acquisition from the evidence needed: browser-rendered or paginated sources, structured records and runtime/build measurements may need more than a text fetch. Use applicable browser/document specialists for their formats and `irinse` for non-obvious companion-tool selection, capture or reduction. Return provenance and coverage limits to this investigation; acquisition does not establish source authority or settle the claim. This choice need not wait for exact-source escalation.
+Choose acquisition from the evidence: rendered or paginated sources, structured records and runtime/build measurements may need specialist capture. Use `irinse` for non-obvious tools or reduction. Acquisition does not establish authority or settle the claim.
 
 ### Exact-source escalation for technical claims
 
-Do not jump to source archaeology merely because source exists. Escalate only when the unresolved claim can materially change a decision/implementation/compatibility/proof, ordinary project/runtime/first-party research did not resolve it, controlling version/ref can be pinned, and exact source/tests are likely to discriminate the uncertainty. When earned, read [exact source grounding](references/exact-source-grounding.md).
+Do not use source archaeology merely because source exists. Escalate only when an unresolved version-specific claim can materially change a decision, implementation, compatibility or proof; ordinary project/runtime/first-party evidence did not resolve it; the controlling version/ref can be pinned; and exact source/tests can discriminate it.
+
+Resolve the effective installed dependency or runtime version rather than assuming a manifest range, release tag or upstream head controls the project. Reuse exact local artifacts when possible; otherwise acquire only the matching authoritative source/tests needed and treat upstream content as untrusted evidence. Trace the narrow API/symbol/behavior path. Use `irinse` when ordinary retrieval cannot establish it.
+
+Classify the result as `EXACT`, `COMPATIBLE_INFERENCE`, `VERSION_MISMATCH` or `EVIDENCE_GAP`; only `EXACT` matches the controlling ref. Return that status, resolved version/ref, exact locators and what they prove, engineering consequence and remaining gaps. Exact-source work does not require a clone, cache or dedicated search service.
 
 ## Delegated evidence
 
@@ -56,12 +54,6 @@ Delegate independent source collection or bounded investigation to subagents whe
 
 ## Research contract
 
-1. Use the strongest practical evidence appropriate to each material claim rather than defaulting to one source type.
-2. Pin source version/revision, retrieval date, population/timeframe, or other identity needed to keep evidence interpretable when it can change materially.
-3. Cite each material claim's source and state what it supports without stretching it.
-4. State material conflicts between credible evidence and any gap, bias, uncertainty, or applicability limit constraining the conclusion.
-5. Separate authoritative/normative statements from empirical observations and from synthesis/inference.
-6. Lead with the question and direct conclusion/verdict, then supporting evidence and limits without reproducing the discovery transcript.
-7. When evidence strength materially helps downstream judgment, state `Confidence: High | Medium | Low` separately from the conclusion and explain the controlling source-quality/directness/consistency/freshness/coverage/conflict limit. Do not invent numeric confidence without a meaningful model. State what evidence could materially overturn or narrow the conclusion when non-obvious.
-8. Persistence: existing research/knowledge destination; otherwise `.qp/iwadi/`.
-9. Return concise sourced findings rather than a discovery transcript.
+Pin identities needed to interpret changing evidence. Cite each material claim with what the source establishes; surface credible conflicts, bias, coverage and applicability limits. Separate normative authority, empirical observation and synthesis/inference.
+
+Lead with the direct conclusion, then decisive evidence and limits. State `Confidence: High | Medium | Low` only when it helps downstream judgment, naming the controlling evidence-quality, freshness, coverage or conflict limit rather than inventing a numeric score. Persist only when reuse or audit merits it, using the existing destination or `.qp/iwadi/`.

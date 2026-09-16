@@ -34,13 +34,13 @@ Ask a single bounded consequential choice directly. Use `arojinle` when the user
 
 ## Reconcile canonical language
 
-When a domain-language source already exists, read [domain language](references/context.md) and update that source when the resolved model changed and write authority exists. Do not create a competing project-memory system or generic documentation store.
+Update the project's existing domain-language source when resolved meaning changed and write authority exists. Keep definitions to canonical terms and avoided synonyms, identity/lifecycle/context distinctions, relationships, ownership and semantic invariants. A definition states what a concept is rather than its implementation procedure, preserves material distinctions, and excludes specification, architecture, operations, task history and generic notes. Surface disputed meaning instead of persisting confident lore.
 
-If no durable domain-language destination is established, return the model delta directly and name the persistence gap only when the result needs to outlive the current work. Let the project or caller choose an intentional project destination rather than inventing `CONTEXT.md`, `.learnings`, `.nongoals`, an ADR, `.qp` record, or another repository convention.
+If no destination is established, return the model delta and name the persistence gap only when it must outlive the work. Let the project choose a destination rather than inventing `CONTEXT.md`, `.learnings`, `.nongoals`, an ADR or `.qp` record.
 
-This domain-clarification boundary does not prevent an authorized ADR-creation request from using the [ADR fallback](references/adrs.md) when no project convention exists. Domain clarification alone does not authorize creating an ADR.
+An authorized ADR request may use the [ADR fallback](references/adrs.md) when no convention exists; domain clarification alone does not authorize an ADR.
 
-A domain-model change may cause another workflow to update specifications, architecture, documentation, tests, or policy. Those artifacts remain owned by their natural workflow. Amọ̀ṣẹ́ maintains the project's canonical domain records and supplies clarified meaning to the other owners.
+A domain-model change may require specifications, architecture, documentation, tests or policy updates. Those artifacts remain with their natural owners; Amọ̀ṣẹ́ supplies the clarified meaning.
 
 ## Maintain durable domain records
 

@@ -1,12 +1,12 @@
 # Diagnosis probe discipline
 
-Use only when a bounded observation can discriminate explicit competing hypotheses. Prefer read-only evidence; do not mutate production merely to create a test.
+Use only when a bounded observation can discriminate live hypotheses. Choose the tightest available feedback loop: failing test, focused runtime probe, trace replay, browser journey, benchmark or direct observation. Prefer read-only evidence; do not mutate production merely to create a test.
 
 Historical/source evidence is useful only when a predicted difference can support or falsify a mechanism. Correlation, temporal order, changed files, and nearby commits are not causation by themselves.
 
-For a recurring, reopened or otherwise nontrivial bug, a targeted tracker and forge search can expose work absent from source history. When existing read access is available, query a few variants of the symptom, stable error text and affected area. Inspect an open matching repair before duplicating it; inspect a merged attempt and its discussion for the intended mechanism and conditions. A failed earlier approach constrains the present hypothesis only after comparing those conditions with the current code and environment. Return the links and the specific causal update; do not turn this probe into a global sweep or a ticket-writing task.
+For a recurring or reopened bug, a targeted tracker/forge search may expose repair history absent from source. Compare any prior attempt's conditions with current code and return only the specific causal update.
 
-When the failure is safely and reliably executable and repository history plausibly contains a good→bad transition, Git's native bisect can be useful in an isolated environment permitted by the workspace contract. Pin the reproduction behavior and environmental assumptions, avoid real external effects/credentials, and clean up isolated state afterwards. Do not bisect nondeterministic failures, irreproducible historical environments, or probes with consequential external effects.
+Use native bisect only for a reliable safe reproducer and plausible good-to-bad history in permitted isolation. Pin environmental assumptions and clean up owned state; the first bad revision narrows cause but does not establish it.
 
 ## Cross-component boundary probe
 
@@ -22,8 +22,8 @@ If preceding tests are implicated, remove subsets of predecessors and rerun the 
 
 When an open pull request or exact commit plausibly repairs the symptom, pin its baseline and patched revisions and compare the artifact before authoring a competing change. Use the same discriminating path, inputs, dependencies, configuration, data basis and permitted environment for both; reset mutable state between runs. Establish that the baseline exhibits the broken state, then check on the patched candidate both that the broken state is absent and that the expected behavior is present. If either half cannot be observed under comparable conditions, return `inconclusive`; if both exhibit the symptom, return `insufficient fix`; otherwise report the bounded before/after evidence.
 
-For an explicit verify-only request, make no edits to the repair, no competing patch and no publication. Verification supplies evidence about the pinned artifact; it does not authorize correction. Use existing project isolation without overwriting unrelated work, and keep all runtime effects within the already authorized test boundary.
+For verify-only work, make no repair edits, competing patch or publication. Verification does not authorize correction.
 
 Record the hypothesis, predicted discriminator, observation and causal update, adding conditions or coverage limits when material.
 
-A probe is not progress unless its result can change the causal model. Prefer the smallest safe observation that maximally separates remaining hypotheses; reporting shape does not substitute for discriminating causal evidence.
+A probe is useful only when it can change the causal model. After a reduced reproduction guides a repair, replay the original scenario whenever reduction removed integration conditions. Tag and revert disposable probes; reporting shape does not substitute for causal evidence.
