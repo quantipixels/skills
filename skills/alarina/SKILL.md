@@ -95,6 +95,8 @@ Delegate when parallelism, separate context or independent scrutiny repays coord
 
 Give each worker the outcome, candidate/source identity, applicable decisions, scope and authority, selected method, required evidence, stop condition, and next consumer. Never fork the parent conversation. Keep one writer for each checkout or mutable shared tool, including Git indexes, browsers, servers, databases, and fixtures; pin a candidate before decisive review and transfer mutation ownership explicitly. Reuse a live worker when useful.
 
+When source or measurement semantics warrant `irinse`, include the selected capability, known readiness and coverage limits in the brief; the worker confirms its own tool access. Return conclusions with decisive source/artifact locators, verification and gaps, leaving large intermediate output at its source.
+
 Delegation and independent review solve different problems. Preserve required independence, but do not create a reviewer fleet by default. Worker output is evidence: inspect decisive sources and the actual candidate, redirect ineffective work, and refresh only invalidated decisions or proof. A reasoning barrier may justify another capability; missing access, facts, authority, or a user-owned decision does not.
 
 ### Premise check

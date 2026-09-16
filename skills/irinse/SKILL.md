@@ -13,7 +13,7 @@ Identify the question, relevant paths or sources, and evidence needed. Pin candi
 
 Select the smallest adequate capability; keep routine shell/search work direct. Use Irinṣẹ where tool interfaces, limits or evidence semantics need specialist guidance.
 
-Use [source retrieval](references/source-retrieval.md) when source format, syntax, symbol identity or search coverage controls the answer, or ordinary retrieval is noisy or incomplete. Choose the representation from the question; a failed text search is not a prerequisite. Tool availability is an observed capability, not a consequence of having a reference here.
+Use [source retrieval](references/source-retrieval.md) as soon as source format, syntax, symbol identity or search coverage controls the answer, or ordinary retrieval is noisy or incomplete. Choose the representation from the question; a failed text search is not a prerequisite. QP packages usage guidance, not the referenced tool binaries or live MCP connections. Check the selected capability's availability and use an adequate native fallback when absent.
 
 Load focused guidance only when its evidence semantics matter:
 

@@ -6,6 +6,8 @@ Use when module, interface, seam, adapter or dependency shape controls the archi
 
 Apply information hiding: keep policy, state, lifecycle, failures and integration detail behind a small stable interface. Judge depth by reduced caller knowledge, not line ratios or method counts. Apply DRY to knowledge and YAGNI to speculative variation.
 
+Apply the single responsibility principle to reasons for change: identify whose needs drive each policy, group concerns that change for the same reason, and separate independently changing responsibilities. Treat change ownership as boundary evidence, not a rule to split every operation into a class.
+
 Apply the deletion test: remove a layer only if no required responsibility is lost and no complexity or policy is displaced. Preserve small modules/single-adapter seams owning trust, authorization, protocol, compatibility, lifecycle, migration or operations. Directory conventions can expose or enforce boundaries, not create depth.
 
 Place seams only where isolation or variation has a real owner. Two production/test adapters are sufficient evidence, not a requirement. Keep internal seams private. Apply Liskov substitution to adapters and test doubles: preserve caller preconditions, guarantees, errors and effects; a matching signature does not establish fidelity.
