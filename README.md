@@ -91,6 +91,8 @@ With `alarina` active, describe the engineering outcome or name a playbook; it s
 
 ## Update
 
+Explicitly invoke `qp-update` to identify the active installation and update QP through its existing manager. It preserves installation scope and local changes, and distinguishes installed updates from a session that still needs reloading. It does not run automatically.
+
 For a Git-backed Codex plugin installation:
 
 ```bash
