@@ -2,6 +2,8 @@
 
 This standard-library kit prepares bounded control/QP-guidance comparisons without making model or network calls. It contains no provider registry, credentials, SDK, or agent framework.
 
+Use `prepare --guidance-root /path/to/frozen/skills` to compare source revisions with the same tasks, prompts, fixtures and oracles. Prepare a separate study per revision with matching host settings; the chosen directory must contain the case's required skill packages. Each guidance arm freezes and protects their copied content. `source_revision` identifies the harness checkout, `guidance_source` records the input location, and each run's protected hashes identify the actual guidance. A path or Git label alone does not attest its contents. Keep controls and incomplete cells visible, and distinguish decision probes from executed tasks.
+
 For framework invocation, mixed-version compatibility, abrupt recovery, authorization across callers, measured resource cost and architecture alternatives, use the [project-backed scenario protocols](scenarios/README.md). These require prepared real project environments and independent acceptance probes; they are not executable harness profiles or completed model trials.
 
 The opt-in `existing-code` profile pairs the two existing-code coding trials: settlement repair and collection API reuse. It prepares four cells, one control and one current-Alága arm per case, with opposite arm order across cases. Historical screening observations in `observations/` remain separate from newly prepared studies; preparing a profile does not create model-performance evidence.

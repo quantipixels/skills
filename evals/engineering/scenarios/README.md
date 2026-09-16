@@ -11,7 +11,7 @@ Select one relevant case. Before an actor run, the evaluator supplies a disposab
 | [Interruption and recovery](interruption-recovery.md) | Process death between a durable external effect and local completion | `alaga` |
 | [Authorization across entry points](authorization-entry-points.md) | Identity and tenant enforcement through multiple real callers | `alaga`, `atunwo` |
 | [Measured resource cost](resource-cost.md) | Executed workloads and resource measurements, rather than stack interpretation alone | `alaga`, `irinse` |
-| [Architecture alternatives](architecture-alternatives.md) | Comparable working alternatives and the cost of changing an existing design | `architect`, `pare`, `adanwo` |
+| [Architecture alternatives](architecture-alternatives.md) | Comparable working alternatives and the cost of changing an existing design | `architect`, `atunwo`, `adanwo` |
 
 Give the actor its selected brief and project only. Keep evaluator acceptance probes and original snapshots outside actor access using native isolation where available. Freeze common host instructions, project, budget and acceptance before paired control/guidance runs; guidance is the sole deliberate difference. A single run can screen a candidate but cannot establish guidance superiority. The table lists candidate guidance, not a new routing workflow or required skill roster for ordinary delivery.
 

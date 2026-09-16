@@ -30,6 +30,8 @@ The smoke recipe below uses frozen definitions supplied directly. Native discove
 | C07 | Selection probe | Supplied candidate | no applicable playbook |
 | C08 | Selection probe | Supplied candidate | four new compositions, five existing routes and an editorial control |
 | C09 | Selection probe | Supplied candidate | independently invoked owners, evidence acquisition, partial coverage and a routine-work control |
+| C10 | Selection probe | Supplied candidate | compression-sensitive engineering, authority, recovery and aggregate work-in-progress boundaries |
+| C11 | Selection probe | Supplied candidate | explicit updater invocation, installation ownership, scope and uncertain effects |
 
 ## Run with native workers
 

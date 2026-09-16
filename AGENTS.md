@@ -28,12 +28,4 @@ Keep the user-authorized opt-in engineering comparisons in `evals/`, outside ins
 
 Before retiring evaluations or documents, preserve unique current expectations at their real owner. Keep attribution and licences.
 
-## Active experiment: professional stance
-
-2026-09-15: `human-view` and `html-artifact` open with a short task-specific professional stance. Hypothesis: this improves compositional commitment and care without extra procedure. It does not replace user personality, alter authority or prove expertise. These two skills formed the initial trial; record explicitly authorized extensions below.
-
-At the next review of these skills, compare the same brief and model with and without only the stance paragraphs, keeping the Codex reference and other instructions constant. Judge reader-task clarity, visual specificity, fidelity, usability and unnecessary work from actual artifacts. Record the outcome here; revise or remove the stance if it adds no value or causes overreach. Current result: unmeasured; package checks are not evidence of benefit.
-
-First use, 2026-09-15: the user described the session report as looking good. This is favorable feedback on one artifact, not evidence that the stance caused the improvement; the matched comparison remains outstanding.
-
-2026-09-15: at the user's request, Alága also trials a senior-engineer stance grounded in inspected code, real consumers and evidence. Two fresh coding screens passed their functional acceptance checks; neither isolates the stance from the accompanying instruction changes. See `evals/engineering/observations/2026-09-15-existing-code.md`. Keep the stance outcome-focused; it grants no authority and does not justify blanket investigations or checks.
+Human View is an established presentation capability. Keep personality in user-owned instructions; evaluate substantive behavior changes against the relevant outcome rather than maintaining a separate stance experiment here.

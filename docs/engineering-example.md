@@ -20,6 +20,8 @@ The decision is whether the existing settlement ID can serve as that key. Check 
 
 The third approach is not inherently wrong. It must buy a needed guarantee that justifies the responsibility it adds. Fewer application lines are also not automatically better: work may merely have moved into configuration or operations.
 
+The useful module boundary lets a caller request `settle(settlement_id)` while the settlement owner handles stable identity, durable completion and provider recovery. Hiding only the HTTP call leaves each caller rebuilding that policy. Judge the boundary by the obligations it removes from callers and the guarantees it actually owns; callers still need to supply a valid settlement and handle the documented unresolved outcome.
+
 ## Prove the boundary that could fail
 
 A test that throws before the provider transfers anything does not reproduce the lost-reply failure. The important sequence is:
@@ -32,6 +34,8 @@ A test that throws before the provider transfers anything does not reproduce the
 This is **fault injection**: introduce the particular failure at a controlled test boundary so the test can distinguish safe recovery from duplicate work. Keep it in an authorized test environment.
 
 Also start from a database containing a settlement completed by the old implementation. Upgrade, retry it, and verify that the old completion still prevents another transfer. A clean-database pass cannot answer that question. Test changed intent under the same identity when the contract requires rejection.
+
+Success is observable: one provider transfer, one compatible durable completion after reopen, and rejection of changed intent. If test-first delivery was requested, make the lost-reply or upgrade case fail for that behavioral reason before changing production code; a broken fixture import does not establish the defect. Retain the original integration path when a smaller reproduction omits the persistence or restart condition.
 
 In QP's retained local exercise, both initial designs passed the fresh-database acceptance checks. The additional upgrade probe exposed a duplicate transfer in the design that ignored existing completion records. That is evidence about those fixtures and outputs, not proof that a particular prompt sentence caused the design or that adding a table is always wrong. The exercise and its limitations are summarized in [PR #152](https://github.com/quantipixels/skills/pull/152).
 

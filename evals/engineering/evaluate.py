@@ -190,6 +190,12 @@ def prepare(args):
     cells, selected_cases = profile_cells(profile, getattr(args, "case", None))
     if not cells:
         raise ValueError("at least one case must be selected")
+    guidance_root = getattr(args, "guidance_root", None) or SKILLS
+    guidance_root = guidance_root.resolve()
+    for skill in {skill for case in selected_cases for skill in CASES[case]["guidance"]}:
+        if not (guidance_root / skill / "SKILL.md").is_file():
+            raise ValueError(f"missing guidance skill: {skill}")
+        file_hashes(guidance_root / skill)
     output = args.output.absolute()
     if output.exists() or output.is_symlink():
         raise ValueError("study directory already exists; previous studies are never overwritten")
@@ -210,7 +216,7 @@ def prepare(args):
         treatment = ""
         if arm == "alaga":
             for skill in case_definition["guidance"]:
-                copy_without_cache(SKILLS / skill, actor / "guidance" / skill)
+                copy_without_cache(guidance_root / skill, actor / "guidance" / skill)
             if profile == "historical":
                 treatment = "Read guidance/alaga/SKILL.md and any directly relevant bundled references before working.\n"
             else:
@@ -280,6 +286,7 @@ def prepare(args):
         "selected_cases": selected_cases,
         "question": PROFILES[profile]["question"],
         "source_revision": git_source(),
+        "guidance_source": str(guidance_root),
         "checker_sha256": digest(Path(__file__)),
         "host": args.host,
         "model": args.model,
@@ -294,6 +301,9 @@ def prepare(args):
 
 
 def stop_process_group(process, grace=0.5):
+    # Reap an exited leader before probing its group (macOS can report EPERM
+    # for a zombie-only group). Descendants still require group cleanup.
+    process.poll()
     if os.name != "posix":
         if process.poll() is None:
             process.terminate()
@@ -309,6 +319,7 @@ def stop_process_group(process, grace=0.5):
         return
     deadline = time.monotonic() + grace
     while time.monotonic() < deadline:
+        process.poll()
         try:
             os.killpg(process.pid, 0)
         except ProcessLookupError:
@@ -725,6 +736,7 @@ def main():
     prep.add_argument("--max-seconds", type=float, required=True)
     prep.add_argument("--max-tool-calls", type=int, required=True)
     prep.add_argument("--profile", choices=sorted(PROFILES), default="historical")
+    prep.add_argument("--guidance-root", type=Path, help="Frozen skills directory; changes guidance only, not tasks or acceptance oracles")
     prep.add_argument(
         "--case",
         action="append",

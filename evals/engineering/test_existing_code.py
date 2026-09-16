@@ -94,6 +94,41 @@ class ExistingCodeEvaluationTest(unittest.TestCase):
         self.assertIn("workspace/test_accounts.py", spec["protected_hashes"])
         self.assertIn("workspace/legacy.sql", spec["protected_hashes"])
 
+    def test_frozen_guidance_changes_only_treatment_and_is_protected(self):
+        self.prepare(["reuse"])
+        frozen = self.root / "frozen"
+        shutil.copytree(evaluate.SKILLS / "alaga", frozen / "alaga")
+        (frozen / "alaga" / "SKILL.md").write_text("Frozen comparison guidance\n")
+        other = self.root / "other"
+        evaluate.prepare(argparse.Namespace(
+            output=other, host="test", model="test", reasoning="medium",
+            max_seconds=20, max_tool_calls=8, profile="existing-code", case=["reuse"],
+            guidance_root=frozen,
+        ))
+        manifest = evaluate.read_json(other / "manifest.json")
+        for before, after in zip(self.manifest["runs"], manifest["runs"]):
+            self.assertEqual(before["private_hashes"], after["private_hashes"])
+            self.assertEqual(
+                {k: v for k, v in before["protected_hashes"].items() if not k.startswith("guidance/")},
+                {k: v for k, v in after["protected_hashes"].items() if not k.startswith("guidance/")},
+            )
+        spec = next(r for r in manifest["runs"] if r["arm"] == "alaga")
+        guidance = other / spec["path"] / "actor/guidance/alaga/SKILL.md"
+        self.assertEqual("Frozen comparison guidance\n", guidance.read_text())
+        self.assertEqual(evaluate.digest(guidance), spec["protected_hashes"]["guidance/alaga/SKILL.md"])
+        guidance.write_text("Tampered guidance\n")
+        result = evaluate.check_cell(other, manifest, spec, timeout=2)
+        self.assertEqual("invalid", result["status"], result)
+
+    def test_missing_frozen_skill_rejected_before_creating_study(self):
+        with self.assertRaisesRegex(ValueError, "missing guidance skill: alaga"):
+            evaluate.prepare(argparse.Namespace(
+                output=self.study, host="test", model="test", reasoning="medium",
+                max_seconds=20, max_tool_calls=8, profile="existing-code", case=["reuse"],
+                guidance_root=self.root / "missing",
+            ))
+        self.assertFalse(self.study.exists())
+
     def test_valid_feature_passes_with_original_runtime_errors_preserved(self):
         self.prepare(["reuse"])
         self.candidate()
