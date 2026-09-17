@@ -34,7 +34,15 @@ Use a rerunnable codemod, query or script when it materially improves transforma
 
 For new or changed domain values, types or states, inspect how comparable concepts are defined and actually used by callers and users. Before adding one, trace an analogous value across the same boundary—declaration, converter/mapper/serializer or registration, persistence/wire/configuration, consumers and proof—and reuse the established mechanism when its semantics fit. Follow the authoritative project's naming, representation and lifecycle conventions. For enums or statuses, trace applicable transitions, persistence/wire values, defaults, unknown-value handling and consumer mappings; a new declaration is not the whole change. Distinguish internal identifiers from user-facing labels and preserve compatibility. If existing patterns conflict, resolve the relevant owner and intended behavior rather than copy an arbitrary example or silently invent a convention.
 
-For example, a bad Java change adds an enum with local `valueOf`, switches and an ad-hoc mapper while peer values at that boundary use the project's converter/adapter. A good change extends the established converter or registration seam and preserves aliases, unknown values and persisted/wire behavior; it diverges only for a concrete semantic difference.
+Use a good/bad code sketch to make the boundary concrete:
+
+```text
+Bad:  parse(value) = local switch over the values known today
+Good: parse(value) = existingBoundary.read(value)
+      existingBoundary.register(newValue, aliases, unknownPolicy)
+```
+
+The good form extends the established converter or registration seam and preserves its aliases, unknown-value handling and persisted or wire behavior. Diverge only when the new value crosses a boundary with materially different semantics; in that case, show the difference in the good/bad sketch instead of copying an abstraction that does not fit.
 
 For a change spanning consumers, persisted data, framework-managed behavior, authorization or external effects, read [integration obligations](references/integration-obligations.md). Resolve the applicable obligations before editing and reconcile them against the final candidate; ordinary local changes need no separate assessment.
 
