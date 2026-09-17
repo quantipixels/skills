@@ -19,15 +19,15 @@ Each round reshapes the tree. Recompute the material frontier from confirmed ans
 
 Do not ask a question whose answer depends on another still-open question in the same round.
 
-Finding facts is your job, never the user's. Resolve bounded facts directly. While subagents investigate a prerequisite, ask independent frontier questions now; only questions depending on that evidence wait.
+Finding facts is your job, never the user's. Resolve bounded facts directly. While bounded independent work investigates a prerequisite, ask independent frontier questions now; only questions depending on that evidence wait. When genuinely non-discoverable third-party input controls a material frontier, name the missing input and continue independent questions. If collecting it is in scope, return answerable questions directly or use `oro` when available and materially helpful for recipient-facing drafting. Drafting does not authorize sending or turn replies into approval.
 
-Delegate substantial analysis, research, and expert work to subagents, returning concise findings and evidence links to keep the main context lean.
+Delegate bounded analysis, research, or expert work only when separate expertise or context materially repays coordination cost; return concise findings and evidence links.
 
-Use relevant specialists to form frontier decisions: `iwadi` for substantive prerequisite research and `irinse` when source acquisition or tool readiness needs specialist guidance. Continue the same interview; incomplete evidence does not settle a dependent prerequisite.
+Use `iwadi` for substantive prerequisite research and the applicable project or host capability for source acquisition. Continue the same interview; incomplete evidence does not settle a dependent prerequisite.
 
 When a frontier choice has several credible alternatives and at least two independent criteria can materially change the recommendation, use a compact decision-specific rubric. Apply hard gates first; derive only the criteria that matter to this decision; show the decisive factor, strongest credible alternative, and material counterevidence. Do not manufacture scores for a trivial/already-determined choice or let an average hide a gate. The rubric supports the recommendation; the decision remains the user's.
 
-Use `atona` in exploration mode and `adanwo` in exploration mode as needed.
+Use `atona` in exploration mode when initiative exploration or direction shaping is the needed result. Use `adanwo` in exploration mode when a disposable experiment can settle a concrete choice.
 
 The decisions remain the user's. Do not silently convert a recommendation, generated option, comparative grade, or prototype observation into confirmation.
 

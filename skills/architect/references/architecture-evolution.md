@@ -30,11 +30,11 @@ Inspect the ecosystem's resolved dependency/build graph when it controls the cho
 
 Compare total cost of ownership: work removed versus integration, transitive dependencies, licensing/support, operations, debugging, upgrades and exit cost. Fewer application lines or greater familiarity do not establish the better choice; novelty alone is not a benefit.
 
-When alternatives remain credible, compare them on the same representative requirement: extend the current owner, simplify its structure, or use an existing dependency. Trace caller changes, failure ownership and the proof each requires. Use a bounded spike only for a decision-changing uncertainty; reject an option from established evidence without building it. Have `adanwo` settle a disputed empirical claim and `pare` assess a bounded simplification candidate when those outcomes are needed. State the condition under which keeping the current design wins.
+When alternatives remain credible, compare them on the same representative requirement: extend the current owner, simplify its structure, or use an existing dependency. Trace caller changes, failure ownership and the proof each requires. Use a bounded spike only for a decision-changing uncertainty; reject an option from established evidence without building it. Have `adanwo` settle a disputed empirical claim and `atunwo` assess a bounded simplification candidate when those outcomes are needed. State the condition under which keeping the current design wins.
 
 For API changes, inspect a realistic consumer: sequencing, identity, errors, pagination or generated-client behavior as applicable. Distinguish source, wire and semantic compatibility. For repository layout, trace where the representative change and its proof belong; prefer locality and explicit dependency direction over a universal folder convention.
 
-For build/test improvements, locate the delayed feedback before choosing a tool or rewrite. Compare equivalent useful work; distinguish clean, incremental and no-change builds, and executed tests from cached results. Use `irinse` for non-obvious tool evidence and `adanwo` when a comparative performance claim controls the choice. Removing required proof is not a speed improvement.
+For build/test improvements, locate the delayed feedback before choosing a tool or rewrite. Compare equivalent useful work; distinguish clean, incremental and no-change builds, and executed tests from cached results. Resolve non-obvious command or evidence semantics from the project and host documentation, and use `adanwo` when a comparative performance claim controls the choice. Removing required proof is not a speed improvement.
 
 ## Make the decision checkable
 

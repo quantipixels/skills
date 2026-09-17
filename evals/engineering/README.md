@@ -58,6 +58,7 @@ No record or result on an untouched cell means unrun; partial submissions are in
 - Verification checks a real local CLI-over-HTTP journey. The oracle owns service lifecycle and hidden SQLite state; this does not test actor-authored lifecycle management or hostile same-user isolation.
 - Migration checks sparse identity relationships, exact mapping, schema/version state, idempotent reopen and unsupported-version rejection.
 - Profile uses synthetic weighted stacks, not a native capture. A hotspot does not establish root cause.
+- The [Java domain-value pair](scenarios/domain-value-reuse.md) has separate executable positive/negative controls and requires a JDK.
 - [Project-backed scenarios](scenarios/README.md) cover real framework, compatibility, interruption, authorization, resource and architecture boundaries. They are protocols, not runnable profiles or completed trials.
 
 Historical results remain in [observations/](observations/). Preparation, replay and mechanical checks make no fresh model-performance claim.

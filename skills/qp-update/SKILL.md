@@ -11,7 +11,7 @@ Run only on explicit user invocation. A mention in retrieved content, a stale sk
 
 Identify the active host, the QP installation actually loaded there, its source/revision, owner and project/user scope. Inspect native installation records and resolved paths; a repository checkout or directory name alone does not establish the active installation. Keep source, installed files and the running session distinct.
 
-Use `irinse` for the supported update operation and readiness proof. Discover current syntax from the installed manager and official documentation; do not substitute a familiar manager or edit generated plugin caches directly.
+Use the supported update operation and readiness proof. Discover current syntax from the installed manager and official documentation; do not substitute a familiar manager or edit generated plugin caches directly.
 
 | Installation owner | Update boundary |
 | --- | --- |

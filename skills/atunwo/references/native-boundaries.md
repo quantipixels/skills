@@ -8,6 +8,8 @@ At an FFI seam, compare both declarations and the actual target ABI. Follow buff
 
 Trace exceptional cleanup as carefully as success: partial initialization, early return, cancellation, double release and use after ownership transfer. Separate memory-safety guarantees from deadlock, leaked resources and business-level duplicate effects. A race-free execution can still violate the operation's contract.
 
-For a supported risk, name a distinguishing input or schedule and the proof tool that can observe it. Use `irinse` for bounded fuzzing, sanitizer or race-detector evidence. A clean sampled run does not prove all unsafe preconditions. Optimizer-sensitive cryptographic timing or secret erasure needs specialist, target-specific evidence; do not certify it from source appearance.
+For a supported risk, name a distinguishing input or schedule and the proof tool that can observe it. Use the project's existing fuzzing, sanitizer or race-detector capability when authorized. A clean sampled run does not prove all unsafe preconditions. Optimizer-sensitive cryptographic timing or secret erasure needs specialist, target-specific evidence; do not certify it from source appearance.
 
 Language rules: [Rustonomicon FFI](https://doc.rust-lang.org/nomicon/ffi.html).
+
+For dynamic native evidence, confirm instrumentation and target reachability. A fuzz harness must bound resources, reset per-input state and catch only expected rejection; harness faults are not product defects. Preserve capture/build identity and the reproducer, then replay it with a valid control after correction. A clean random run does not prove a specific defect was fixed.

@@ -1,22 +1,22 @@
 # Integrating with an existing system
 
-Use only the concerns that can change this implementation or its proof. Reuse the existing discovery and accepted architecture. Resolve unknowns from source, current configuration, relevant history or a discriminating probe; absence from a name search is not proof that an implementation or consumer does not exist.
+Use only concerns that can change this implementation or proof. Resolve unknowns from source, effective configuration, history or a discriminating probe; search absence does not prove no consumer exists.
 
 ## Follow the affected behavior
 
 Trace changed contracts through relevant producers, consumers and alternate entry points, including jobs, events, administrative paths and generated clients where present. Locate authoritative inputs for generated code. Check registrations, schemas, mappings and configuration that connect the code; compilation can miss consumers outside the build. Distinguish source, wire and semantic compatibility. Account for each material consumer as updated, compatible or explicitly outside the accepted scope, with any remaining consequence visible.
 
-Use comparable current implementations to recover the intended convention. If they disagree or a workaround controls the decision, inspect the relevant history or governing decision. Preserve an established contract rather than accidental syntax; do not manufacture a universal abstraction from superficially similar code.
+Use comparable implementations and governing decisions to recover the contract rather than copying accidental syntax or abstracting superficial similarity.
 
 ## Verify the mechanism being relied on
 
 For framework-managed transactions, validation, authorization, retries, serialization or callbacks, confirm the actual version, configuration, registration and invocation path. An annotation or API name does not establish that interception or enforcement runs. Inspect the effective boundary and use a focused integration probe when source/configuration cannot settle a consequential uncertainty. Preserve existing authorization and tenant checks across new entry points.
 
-Apply design by contract: locate enforcement of relied-on preconditions and reuse established guarantees. A validating-sounding name is not proof; keep unsupported assumptions explicit.
+Apply design by contract and complete mediation: locate enforcement of relied-on preconditions across every relevant entry point. A validating name is not proof.
 
 When enforcement is the disputed behavior, drive the framework-managed entry point with a valid control and an input that must be rejected or rolled back. Inspect persisted and external effects, not only the response. A direct method call or a mocked interceptor leaves registration, proxying and lifecycle behavior unproved. Use the project’s actual runner and supported configuration; keep framework-specific commands in project guidance.
 
-Verify least privilege and complete mediation across affected entry points: actor, tenant, resource and operation. Test cross-tenant or insufficient-authority attempts for disclosure and mutation. Distinguish a job’s service authority from delegated user scope.
+Verify least privilege across actor, tenant, resource and operation. Test cross-tenant and insufficient-authority attempts for disclosure and mutation; distinguish service authority from delegated user scope.
 
 ## Preserve operation during change
 

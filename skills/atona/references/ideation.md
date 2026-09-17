@@ -4,7 +4,7 @@ Expand one grounded opportunity into a bounded, mechanism-diverse candidate set;
 
 ## Ground the opportunity
 
-Pin the problem or opportunity, intended beneficiaries, current relevant reality, constraints, known non-goals, evidence boundary, time horizon, and what would make a direction useful. Ground the suggestions in current facts; use `iwadi` and `irinse` as needed.
+Pin the problem or opportunity, intended beneficiaries, current relevant reality, constraints, known non-goals, evidence boundary, time horizon, and what would make a direction useful. Ground the suggestions in current facts; use `iwadi` and the relevant native evidence capability as needed.
 
 ## Generate materially different mechanisms
 

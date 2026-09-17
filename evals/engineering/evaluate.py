@@ -87,7 +87,7 @@ CASES = {
     },
     "profile": {
         "editable": ("diagnosis.json",), "allow_tests": False, "mode": "artifact",
-        "guidance": ("alaga", "irinse"),
+        "guidance": ("alaga",),
     },
 }
 

@@ -13,7 +13,7 @@ Set a finite resource budget covering trials and confirmation before starting. U
 
 Prefer an existing benchmark, profiler, runtime probe, or evaluation surface; record the baseline before changing the target. If required measurement, host access, or credentials are unavailable, report the gap rather than simulate a result.
 
-Use `irinse` when profiler/trace, build, database or other measurement capture and reduction needs specialist guidance. Require the provenance and limits that affect comparability; Àdánwò retains the workload, hypothesis, constraints and keep/revert decision. Adequate native measurements need no extra route.
+Use the project's or host's existing capability when profiler/trace, build, database or other measurement capture and reduction needs specialist guidance. Require the provenance and limits that affect comparability; Àdánwò retains the workload, hypothesis, constraints and keep/revert decision. Adequate native measurements need no extra route.
 
 The metric must represent the requested outcome. Correctness, security, required behaviour, compatibility, and resource limits are hard constraints: an aggregate score cannot compensate for violating them.
 
@@ -41,7 +41,7 @@ When a model or person scores the results, read [judged outcomes](judged-outcome
 
 When comparing agent instructions, skill selection or model behavior on tasks, read [agent evaluation](agent-evaluation.md).
 
-For build or CI improvements, measure the required clean and incremental paths with explicit cache state. Preserve the selected checks and produced artifacts. Exercise a relevant source, dependency or configuration change to show that cached or generated outputs invalidate correctly; a warm no-op build alone cannot establish a safe speedup. Keep executor capacity and job selection comparable, and include deferred or remote work in the cost boundary.
+For build or CI improvements, measure the required clean and incremental paths with explicit cache state. Preserve the selected checks and produced artifacts. Exercise a relevant source, dependency or configuration change to show that cached or generated outputs invalidate correctly; a warm no-op build alone cannot establish a safe speedup. Distinguish fresh execution from cached proof and use the dependency critical path rather than adding parallel task durations. Keep executor capacity and job selection comparable, and include deferred or remote work in the cost boundary.
 
 ## Try only discriminating changes
 

@@ -26,4 +26,4 @@ For an explicit verify-only request, make no edits to the repair, no competing p
 
 Record the hypothesis, predicted discriminator, observation and causal update, adding conditions or coverage limits when material.
 
-A probe is not progress unless its result can change the causal model. Prefer the smallest safe observation that maximally separates remaining hypotheses; reporting shape does not substitute for discriminating causal evidence.
+A probe is useful only when it can change the causal model. After a reduced reproduction guides a repair, replay the original scenario whenever reduction removed integration conditions. Tag and revert disposable probes; reporting shape does not substitute for causal evidence.

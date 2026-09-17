@@ -30,7 +30,7 @@ Use native DOM/SVG/Canvas for a small bounded view. Use a focused renderer such 
 
 The dependency belongs to the interactive capability, not to the report, code-review, plan, or other lane that first used it. Keep the data contract and artifact styling lane-owned so another lane can reuse the renderer without inheriting PR-specific views, names, colors, or content.
 
-Use the current official API and an exact compatible package identity. If the dependency must be installed, configured, or upgraded, use `irinse`. For standalone output, bundle the required runtime; do not depend on a CDN merely for convenience. Apply [dependency policy](dependency-policy.md) and preserve a semantic static fallback when the renderer fails.
+Use the current official API and an exact compatible package identity. If the dependency must be installed, configured, or upgraded, use its supported project/host path. For standalone output, bundle the required runtime; do not depend on a CDN merely for convenience. Apply [dependency policy](dependency-policy.md) and preserve a semantic static fallback when the renderer fails.
 
 ## Make interaction comprehensible
 

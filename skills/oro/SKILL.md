@@ -14,7 +14,7 @@ Choose one primary branch:
 
 Use both branches only when the artifact has distinct agent and human surfaces. Do not apply one audience's optimization to the other by default.
 
-When authoring or maintaining a project-local skill for exercising a real application, read [project verification capabilities](references/project-verification.md). Own the usable instructions; `alaga` owns any harness implementation and executed proof, and `irinse` resolves non-obvious tool readiness.
+When authoring or maintaining a project-local skill for exercising a real application, read [project verification capabilities](references/project-verification.md). Own the usable instructions; `alaga` owns any harness implementation and executed proof, and the project or host owns non-obvious capability readiness.
 
 For a bounded explanation, establish the supplied topic, evidence, intended reader, and question; explain from those sources without originating missing analysis. Requests such as “show me” or “make this clearer” re-express the current material directly; reuse its evidence and update an existing artifact when appropriate. Reopen investigation only for a material source gap. Use the human-facing branch for prose. When a visual would materially clarify relationships, ordering, state, comparison, or structure, also read [visual explanation](references/visual-explanation.md). Use `html-artifact` when the requested result is a portable visual information artifact; Ọ̀rọ̀ supplies writing and representation guidance, while HTML Artifact owns construction and verification.
 

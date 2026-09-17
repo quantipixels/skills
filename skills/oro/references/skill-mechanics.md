@@ -61,7 +61,7 @@ Bad:
 
 Before creating another public skill or agent definition, ask whether the missing behavior can live more coherently in the assignment or an existing native host control.
 
-Use `irinse` for installing, configuring, migrating, or verifying provider-native agent declarations. This skill owns their instruction text; setup owns host readiness and mutation.
+Use the provider's supported interface for installing, configuring, migrating, or verifying provider-native agent declarations. This skill owns their instruction text; the provider/host owns readiness and mutation.
 
 ## Compose with skills by name
 
@@ -69,13 +69,11 @@ When another stable public skill owns the needed capability, reference that skil
 
 Good:
 
-- `irinse` for installation, configuration, authentication, integration, or readiness.
 - `atunwo` with a behavior-preservation focus when a refactor must retain required behavior; choose light or deep review by the necessary coverage.
 - Send each confirmed blocker to its nearest semantic owner when the blocker could belong to different skills.
 
 Bad:
 
-- “the setup owner” when `irinse` is already the known owner.
 - “the review owner” when the intended skill is already `atunwo`.
 - Repeating another skill's method instead of naming the skill and the one useful variant it must apply.
 

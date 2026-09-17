@@ -2,7 +2,7 @@
 
 Use when recurring work needs a reliable way to exercise one project's actual product, or an existing verification skill has drifted. Reuse the project's working commands, tests and harness before proposing another capability. A one-off probe does not require a skill.
 
-Own the instructions that make this capability independently usable. Use `alaga` for harness code and runtime proof, `irinse` for a material tool/readiness gap, and the existing project verification specialist when one already owns these journeys. Creating guidance does not authorize product repairs, installation, deployment or publication.
+Own the instructions that make this capability independently usable. Use `alaga` for harness code and runtime proof, the project or host for a material capability/readiness gap, and the existing project verification specialist when one already owns these journeys. Creating guidance does not authorize product repairs, installation, deployment or publication.
 
 ## Ground the capability
 

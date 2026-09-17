@@ -4,7 +4,7 @@ Read when several owners or delegated workers can materially advance the request
 
 ## Shape useful assignments
 
-The main agent conducts and may execute the whole task directly. Preserve accumulated understanding for coupled work. Delegate bounded work when parallel execution, separate context, or independent scrutiny earns its briefing, verification, and integration cost. While workers run, advance independent work when available; keeping the conductor idle is not a goal. Adding a useful worker within existing task authority needs no separate permission and grants no new authority. Choose the smallest useful set; low worker cost does not justify arbitrary headcount, overlapping work, or repeated results.
+The main agent conducts and may execute the whole task directly. Preserve accumulated understanding for coupled work. Delegate bounded work when parallel execution, separate context, or independent scrutiny earns its briefing, verification, and integration cost. Bound total work in progress—including running assignments and completed candidates awaiting integration or verification—by actual integration and verification capacity. While workers run, advance independent work when available; cheap workers do not justify arbitrary headcount, overlapping work, or repeated results. Adding a useful worker within existing task authority needs no separate permission and grants no new authority.
 
 Skill activation and worker creation are separate choices. Retain actual user/host constraints and these portable safeguards.
 
@@ -15,6 +15,8 @@ Give each worker a compact contract:
 - selected skill or method when already known;
 - required evidence and stop condition; and
 - where the result returns.
+
+For a tool-dependent assignment, pass the selected capability and known limits. The worker establishes its own relevant access and reports any gap; parent credentials or access do not transfer by implication. Routine direct work stays direct.
 
 Use the host's native controls for spawning, scheduling, event delivery, and resumption. Do not fork conversation context as a workflow shortcut. A worker may inspect installed skills when selection is part of its assignment; avoid generic rediscovery instructions otherwise.
 
