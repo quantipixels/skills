@@ -32,6 +32,8 @@ The revision-8 cases and C04/C06 continuity amendments are unrun protocols, not 
 | C07 | Selection probe | Supplied candidate | no applicable playbook |
 | C08 | Selection probe | Supplied candidate | four new compositions, five existing routes and an editorial control |
 | C09 | Selection probe | Supplied candidate | independently invoked owners, evidence acquisition, partial coverage and a routine-work control |
+| C10 | Selection probe | Supplied candidate | compression-sensitive engineering, authority, recovery and aggregate work-in-progress boundaries |
+| C11 | Selection probe | Supplied candidate | explicit updater ownership, provenance, uncertain completion and session reload boundaries |
 | C12 | Selection probe | Supplied candidate | desire, domain applicability and technical fitness with settled controls |
 | C13 | Selection probe | Supplied candidate | selective TDD, proof retention and component-design controls |
 | C14 | Selection probe; optional native replication | Supplied candidate | Codex profile admission, native settings and authority limits |
