@@ -69,6 +69,6 @@ For a useful invariant over an input domain, read [property-based testing](refer
 
 Use `atunwo` when requested or independent judgment is materially useful; respect a request to skip review. Supply the candidate, acceptance, proof and risks. Resolve warranted findings and refresh only affected evidence.
 
-Finish when the behavior and necessary documentation are delivered and verified, or a specific gap prevents further progress. Report the change, decisive verification, and limitations. Use `wo-pr` in publication mode for authorized commit/push/publication; delivery alone does not authorize it.
+Finish when the behavior and necessary documentation are delivered and verified, or a specific gap prevents further progress. Report the change, decisive verification, and limitations. Use `seda-pr` in publication mode for authorized commit/push/publication; delivery alone does not authorize it.
 
 An explicit `scope-only` request returns the intended outcome, boundaries, relevant existing evidence and gaps, and the verification needed after implementation. Distinguish checks already performed from proposed checks; do not claim unbuilt behavior is verified. Make no implementation changes in this mode.

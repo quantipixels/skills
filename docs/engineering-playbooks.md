@@ -118,7 +118,7 @@ Owners: [Architect](../skills/architect/SKILL.md), [Alága](../skills/alaga/SKIL
 
 ## Finish review and retrieve useful lessons
 
-> Use wo-pr to resolve the PR's feedback. Investigate comments sharing an invariant together, then correct confirmed in-scope defects.
+> Use seda-pr to resolve the PR's feedback. Investigate comments sharing an invariant together, then correct confirmed in-scope defects.
 
 A shared premise may invalidate several comments, or reveal one correction spanning several changed sites. Keep each discussion's disposition and evidence. Reviewer agreement does not establish correctness, and grouping does not turn unrelated cleanup into required work. PR readiness remains distinct from approval, merge and deployment.
 
@@ -126,7 +126,7 @@ A shared premise may invalidate several comments, or reveal one correction spann
 
 Search with the project's actual vocabulary and the condition being considered. Return the lesson's effect on this task, not an archive summary. No match is a valid result. `amose` maintains durable governing knowledge; `iwadi` owns independently useful research. Existing code, tests or decisions may already preserve the lesson, so completion does not automatically require a new entry.
 
-Owners: [Wò PR](../skills/wo-pr/SKILL.md), [Amọ̀ṣẹ](../skills/amose/SKILL.md), [Ìwádìí](../skills/iwadi/SKILL.md).
+Owners: [Seda PR](../skills/seda-pr/SKILL.md), [Amọ̀ṣẹ](../skills/amose/SKILL.md), [Ìwádìí](../skills/iwadi/SKILL.md).
 
 For “Explain why this session went wrong and apply the justified correction,” Alárinà first uses `ayewo-igba-ise` to establish the event and earned lesson, then routes the authorized correction to `alaga`, `oro` or `amose`. Reuse proof and maintained knowledge that already own the lesson. A retrospective-only request stops at its findings.
 

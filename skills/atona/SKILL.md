@@ -61,7 +61,7 @@ After a material decision, discovery, or delivery result, update the affected pl
 
 Assess whether current delivery evidence covers initiative acceptance, including interactions between delivered slices and the real user journey when relevant. Reuse applicable proof. When integration behavior lacks proof or fails, give `alaga` the bounded integration outcome to verify and correct; consume that result before closing the initiative. Task counts, worker completion, isolated passing checks, and provider status do not establish that the build works as a whole. Keep missing proof and blockers visible and resolve them within scope.
 
-Use `wo-pr` in publication mode for authorized publication and its stewardship mode for requested PR/MR readiness work. Keep implementation, integration, and release state distinct; report an outstanding required stage as incomplete.
+Use `seda-pr` in publication mode for authorized publication and its stewardship mode for requested PR/MR readiness work. Keep implementation, integration, and release state distinct; report an outstanding required stage as incomplete.
 
 ## Preserve continuity and close
 

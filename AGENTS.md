@@ -32,7 +32,7 @@ Before retiring evaluations or documents, preserve unique current expectations a
 
 ## Active experiment: professional stance
 
-2026-09-15: `human-view` and `html-artifact` open with a short task-specific professional stance. Hypothesis: this improves compositional commitment and care without extra procedure. It does not replace user personality, alter authority or prove expertise. These two skills formed the initial trial; record explicitly authorized extensions below.
+2026-09-15: the presentation method now owned by `fihanmi`, plus `html-artifact`, opens with a short task-specific professional stance. Hypothesis: this improves compositional commitment and care without extra procedure. It does not replace user personality, alter authority or prove expertise.
 
 At the next review of these skills, compare the same brief and model with and without only the stance paragraphs, keeping the Codex reference and other instructions constant. Judge reader-task clarity, visual specificity, fidelity, usability and unnecessary work from actual artifacts. Record the outcome here; revise or remove the stance if it adds no value or causes overreach. Current result: unmeasured; package checks are not evidence of benefit.
 

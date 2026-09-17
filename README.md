@@ -85,9 +85,14 @@ Common entrypoints:
 | `adanwo` | A bounded exploratory or measured experiment must settle uncertainty |
 | `alarina` | Select or use an engineering playbook, compose or resume work across owners, or find the starting owner |
 | `codex-orchestra` | Apply the bounded Codex delegation profile under an Astra main agent when useful or requested |
-| `human-view` | Supplied content needs a clear default visual presentation without a full design engagement |
+| `fihanmi` | Supplied material needs a compact visual explanation or useful default presentation |
+| `seda-pr` | A PR/MR needs a reviewer-facing description, creation, publication, or babysitting toward a human merge decision |
 
 Alárinà uses installed skill definitions as the dynamic inventory.
+
+`fihanmi` owns shared presentation and the visual-explanation method used by `oro`, `html-artifact`, and reviewer-facing PR work.
+
+Use `seda-pr` in description mode to draft or improve a PR body without committing or pushing; publication and babysitting use the same skill. Its [reviewer brief](skills/seda-pr/references/reviewer-brief.md) leads with purpose, caveats and a change-shaped outline, supported by actual evidence and recovery limits. `seda-pr` replaces `wo-pr` without an alias; update explicit references and selective installations to the new name.
 
 Atọ́nà maintains one living HTML plan, including decisions, evidence, progress and next action. It does not create an equivalent Markdown plan; independent specifications, architecture records and source evidence keep their useful existing formats.
 
