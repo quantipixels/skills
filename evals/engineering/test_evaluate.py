@@ -63,6 +63,24 @@ class EngineeringEvaluationTest(unittest.TestCase):
         self.assertEqual(8, len(report["results"]))
         self.assertEqual({"unrun"}, {item["status"] for item in report["results"]})
 
+    def test_cli_requires_explicit_profile_before_creating_study(self):
+        output = Path(self.case_temp.name) / "explicit-study"
+        command = [evaluate.sys.executable, str(MODULE), "prepare",
+                   "--output", str(output), "--host", "test-host",
+                   "--model", "test-model", "--reasoning", "low",
+                   "--max-seconds", "10", "--max-tool-calls", "4"]
+        rejected = evaluate.subprocess.run(command, capture_output=True, text=True, timeout=10)
+        self.assertEqual(2, rejected.returncode)
+        self.assertIn("--profile", rejected.stderr)
+        self.assertFalse(output.exists())
+        accepted = evaluate.subprocess.run(
+            [*command, "--profile", "existing-code", "--case", "reuse"],
+            capture_output=True, text=True, timeout=10)
+        self.assertEqual(0, accepted.returncode, accepted.stderr)
+        manifest = json.loads((output / "manifest.json").read_text())
+        self.assertEqual(["reuse"], manifest["selected_cases"])
+        self.assertEqual(2, len(manifest["runs"]))
+
     def test_guidance_root_is_validated_before_study_output_and_frozen_in_pairs(self):
         missing = Path(self.case_temp.name) / "missing-guidance"
         output = Path(self.case_temp.name) / "rejected-study"

@@ -829,7 +829,8 @@ def main():
     prep.add_argument("--reasoning", required=True)
     prep.add_argument("--max-seconds", type=float, required=True)
     prep.add_argument("--max-tool-calls", type=int, required=True)
-    prep.add_argument("--profile", choices=sorted(PROFILES), default="historical")
+    prep.add_argument("--profile", choices=sorted(PROFILES), required=True,
+                      help="explicit comparison scope; simple prompt checks use the native host directly")
     prep.add_argument(
         "--guidance-root",
         type=Path,
