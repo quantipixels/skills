@@ -23,7 +23,7 @@ Pin only what can change the technical design: subject/candidate, problem or des
 
 An existing design does not establish fitness, but sufficient current fitness evidence earns a skip. Assess the consequential mechanism against confirmed purpose, domain and quality drivers; review does not automatically authorize redesign.
 
-Across modes, use the project's and host's capabilities when structural, resolved dependency, flow, history, rule, runtime, database or build evidence materially controls the architecture decision and needs specialist acquisition or interpretation. Return to the actual interface, invariant or ownership question; a tool result is not an architecture verdict.
+When symbol or caller identity controls the design, resolve the relevant declaration, overload and consumers; a spelling match or repository map is not sufficient. Check path coverage, parser support, index freshness and result limits before treating search absence as evidence. Return to the actual interface, invariant or ownership question; a tool result is not an architecture verdict.
 
 Read only evidence capable of changing the architecture: current domain/project knowledge, code/tests/configuration when implementation exists, runtime/deployment/operations evidence, governing decisions, and bounded history/provenance where it explains current structure. Retrieve relevant past decisions and lessons selectively and verify their applicability; no full archive read is required. Observed implementation proves current structure or behavior, not automatic architectural intent.
 

@@ -39,4 +39,6 @@ Classify source-match status as:
 
 Never present the latter three as exact source truth.
 
+This classifies the source match, not the strength or truth of the conclusion drawn from it.
+
 Return the conclusion, resolved version/ref, source-match status, compact source locators with what they prove, engineering consequence, and remaining evidence gaps. Do not dump repository excerpts or the discovery transcript into the caller's context.

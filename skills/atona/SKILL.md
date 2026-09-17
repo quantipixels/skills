@@ -49,7 +49,7 @@ Use [managed initiatives](references/managed-initiative.md) only when the govern
 
 ## Coordinate delivery and establish completion
 
-For useful independent work, delegate through native host controls with the current plan/candidate, scope, authority, required evidence and stop condition. Keep one writer per mutable workspace or shared tool, and inspect decisive returned evidence before integrating it.
+For useful independent work, delegate through native host controls with the current plan/candidate, scope, authority, required evidence and stop condition. Keep one writer per mutable workspace or shared tool, and inspect decisive returned evidence before integrating it. Bound running assignments and completed candidates awaiting integration or verification by the capacity to integrate and verify them.
 
 Use `alaga` as the builder for each sufficiently settled coding outcome. Supply its acceptance, relevant dependencies, workspace/candidate, and existing authority. Alága owns implementation, verification, and corrections; Atọ́nà owns sequencing and whether the combined results complete the initiative. Consume the returned candidate, evidence, blockers, and scope changes, update the plan, and continue to the next dependency-ready slice.
 

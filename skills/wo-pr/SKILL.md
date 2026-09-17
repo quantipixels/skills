@@ -30,7 +30,7 @@ Use `atunwo` when a change or contested finding needs independent judgment. Supp
 
 ## Wait for CI and review
 
-Use native CLI watch/wait commands where available. Default to **10 minutes (600 seconds) between refreshes**, unless the user specifies otherwise: `gh pr checks <PR> --watch --interval 600`. For GitLab, use `glab ci status --wait --branch <target-branch>` in the target project; configure an interval only when the installed command supports it. Run the native wait through supported asynchronous execution.
+Use supported asynchronous provider waiting. Default to **10 minutes (600 seconds) between refreshes**, unless the user specifies otherwise; configure an interval only when the selected interface supports it.
 
 CI completion does not establish review completion. For reviews or a missing configurable watcher, use the host's supported scheduling/wait mechanism to recheck after ten minutes. Ten minutes is a refresh interval, not a completion timeout. If the host cannot sustain monitoring, report that limit; do not build a watcher or claim background work persists.
 

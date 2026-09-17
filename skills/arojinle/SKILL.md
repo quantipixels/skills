@@ -19,7 +19,7 @@ Each round reshapes the tree. Recompute the material frontier from confirmed ans
 
 Do not ask a question whose answer depends on another still-open question in the same round.
 
-Finding facts is your job, never the user's. Resolve bounded facts directly. While bounded independent work investigates a prerequisite, ask independent frontier questions now; only questions depending on that evidence wait. Keep a material frontier blocked only on a named, genuinely non-discoverable third-party input. If collecting that input is in scope, `oro` may draft concise answerable questions; drafting does not authorize sending or turn replies into approval.
+Finding facts is your job, never the user's. Resolve bounded facts directly. While bounded independent work investigates a prerequisite, ask independent frontier questions now; only questions depending on that evidence wait. When genuinely non-discoverable third-party input controls a material frontier, name the missing input and continue independent questions. If collecting it is in scope, return answerable questions directly or use `oro` when available and materially helpful for recipient-facing drafting. Drafting does not authorize sending or turn replies into approval.
 
 Delegate bounded analysis, research, or expert work only when separate expertise or context materially repays coordination cost; return concise findings and evidence links.
 

@@ -23,7 +23,11 @@ Use the smallest feedback loop that can distinguish the reported symptom from th
 
 Maintain a small set of competing hypotheses. Capture the trigger/mechanism, enabling conditions, propagation, evidence explained, distinguishing observation, and smallest safe probe where each is material. Use a table when several live hypotheses benefit from side-by-side comparison; a short comparison is enough for a simple decisive probe.
 
-Read [probe discipline](diagnosis-probes.md) for bounded history/repair comparisons, cross-component failures or order-dependent tests. Prefer existing observations, tests, logs, traces, configuration, history, measurements, and reversible diagnostics that fit the domain. Resolve non-obvious profile or trace reduction and symbol attribution from the project and host; causal judgment remains here.
+Read [probe discipline](diagnosis-probes.md) for bounded history/repair comparisons, cross-component failures or order-dependent tests. Prefer existing observations, tests, logs, traces, configuration, history, measurements, and reversible diagnostics that fit the domain.
+
+For runtime artifacts, pin capture conditions, useful work, cache state and symbol availability. CPU attribution needs the relevant caller path and inclusive versus self cost; retained memory needs a retaining path rather than allocation volume; a stall needs the wait chain and awaited owner. Correlate event identifiers and intervals. Missing symbols limit attribution, and a hotspot or paired trace alone does not prove cause.
+
+For query behavior, inspect generated statements, round trips, result cardinality/order and the relevant plan at representative scale. Fewer queries do not establish improvement if results or resource use worsen. A plan-analysis command may execute its statement; keep the probe within existing data and mutation authority.
 
 Choose each next observation or intervention for its ability to distinguish the live hypotheses, not because a preferred debugging ritual exists. Control material confounders where practical. Vary one factor at a time only when that probe can actually discriminate the mechanism; when interactions or coupled conditions are plausible, design the observation/probe to expose those interactions rather than pretending the factors are independent.
 
