@@ -11,6 +11,23 @@ their accepted source cut and the outstanding behavioral evidence described belo
 
 ## Executed verification and remaining gates
 
+Subsequent eval cleanup makes native-host prompt checks the default entrypoint and
+requires an explicit profile for the optional engineering comparison CLI. Duplicate
+setup and judgment prose is consolidated into the eval entrypoint, harness guide and
+Adanwo's existing method. Retain all executable oracles, regression tests, fixtures,
+coordination cases, project-backed protocols, historical observations and attribution:
+none was shown to be subsumed by response-only smoke tests. The updated mechanical
+engineering suite passed 41 tests, including rejection of an omitted profile before
+output creation and successful preparation of an explicitly selected two-cell pair.
+
+The user-requested simple suite at `782f3e12` exercised all 19 skills and 23 classifier
+prompts with Luna/low. Fifteen direct responses met their scoped criteria; four needed
+attention (dependent interview questions, review confidence, an unsupported postmortem
+claim and unnecessary status-investigation permission). Broad owner selections were
+acceptable, with four mode/stopping-point caveats. Initial wrong-source runs were
+rejected; corrected source-pinned runs reused contexts. This is limited smoke evidence,
+not an isolated matched comparison or disposition of the pending release gates below.
+
 Follow-up instruction review: the user requested source review without evaluation runs.
 Alaga's example now demonstrates inspecting a comparable enum field and converter before
 choosing a mapping; it does not prescribe a converter abstraction. The same review corrected
