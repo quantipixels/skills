@@ -1,8 +1,6 @@
 ---
 name: qp-update
 description: Update an existing QP skills installation only when the user explicitly invokes qp-update. Identify the active host, installation owner and scope, then use its supported update path. Exclude automatic maintenance, first installation and manager migration.
-disable-model-invocation: true
-user-invocable: true
 ---
 
 # QP Update
