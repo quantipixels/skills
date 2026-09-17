@@ -1,5 +1,9 @@
 # Project-backed engineering scenarios
 
+The [domain-value reuse pair](domain-value-reuse.md) adds self-contained Java fixtures and
+executable private oracle controls (JDK required). It uses this same opt-in evaluation surface;
+mechanical controls do not imply completed actor runs or a model-effectiveness result.
+
 These opt-in protocols extend the executable Python screens into boundaries that need an actual project, runtime or workload. They are authored scenarios, not runnable `evaluate.py` profiles, completed tests or model results. No application dependencies are bundled or installed.
 
 Select one relevant case. Before an actor run, the evaluator supplies a disposable project snapshot, resolves the preparation requirements in [acceptance](acceptance.md), and freezes a project-specific brief with exact entry points, permitted edits, observable contract, tool readiness and time budget. If the environment cannot support the case, record it as blocked before assigning it; do not substitute a mock and report the real boundary as tested.

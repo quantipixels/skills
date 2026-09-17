@@ -21,6 +21,10 @@ The revision-8 cases and C04/C06 continuity amendments are unrun protocols, not 
 
 ## Cases
 
+[C15](actors/C15-adoption-boundaries.md) contains seven independently run Revision 8
+compression cases, with [private outcomes](reviewers/C15-adoption-outcomes.md). These remain
+unrun until an authorized matched campaign executes them; source checks are separate evidence.
+
 | Case | Observation | Primary source | Work surface |
 | --- | --- | --- | --- |
 | C01 | Executed outcome | Supplied candidate | verification fixture; multi-owner engineering |

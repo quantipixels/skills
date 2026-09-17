@@ -12,8 +12,10 @@ PROBES = {
         eq("paused", DeliveryBoundary.write(paused));
         eq(paused, DeliveryBoundary.read("paused"));
         eq(paused, DeliveryBoundary.read("HOLD"));
-        DeliveryBoundary.values.alias("operator-pause", paused);
-        eq(paused, DeliveryBoundary.read("operator-pause"));
+        String runtimeAlias = "probe-" + java.util.UUID.randomUUID();
+        DeliveryBoundary.values.alias(runtimeAlias, paused);
+        eq(paused, DeliveryBoundary.read(runtimeAlias));
+        eq(paused, DeliveryBoundary.read(runtimeAlias.toUpperCase(java.util.Locale.ROOT)));
         eq(DeliveryState.QUEUED, DeliveryBoundary.read("pending"));
         eq("queued", DeliveryBoundary.write(DeliveryState.QUEUED));
         eq(DeliveryState.ACTIVE, DeliveryBoundary.read("ACTIVE"));
@@ -132,7 +134,7 @@ class DomainValueOracleTest(unittest.TestCase):
     def test_ad_hoc_parser_rejects_dynamic_alias(self):
         candidate = POSITIVE_GOOD.replace("return values.read(token);", '''
             return switch (token.toLowerCase(java.util.Locale.ROOT)) {
-                case "paused", "hold" -> DeliveryState.PAUSED;
+                case "paused", "hold", "operator-pause" -> DeliveryState.PAUSED;
                 case "pending", "queued" -> DeliveryState.QUEUED;
                 case "active" -> DeliveryState.ACTIVE;
                 default -> DeliveryState.UNKNOWN;

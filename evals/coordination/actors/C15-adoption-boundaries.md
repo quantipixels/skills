@@ -18,8 +18,8 @@ invent tool output or perform a permanent repair.
 
 A Java service changed a payment operation protected by framework transaction and access
 interceptors. Its author directly instantiated the service and called its method in a unit
-test. The test passed. The only other caller is a registered message consumer using a different
-principal. The release has no integration evidence yet. Assess whether this proves the changed
+test. The test passed. The only other caller is a registered message consumer using a principal
+that policy explicitly denies permission to initiate payments. The release has no integration evidence yet. Assess whether this proves the changed
 contract and identify the smallest useful remaining checks; do not invent executed results.
 
 ## 3. Issue intake
