@@ -13,13 +13,15 @@ When the requested stopping point is a behavior contract—including behavior-co
 
 ## Establish the destination and authority
 
-Start at the earliest unresolved step using supplied decisions, existing work, and current evidence. Establish the intended outcome, observable acceptance, scope/non-goals, and requested stopping point. An exploration-only or planning-only request ends at that result; an end-to-end build request carries through delivery without another permission request at each stage. Publication, merge, deployment, and destructive cleanup require applicable authority from the session or governing policy.
+Start at the earliest unresolved step using supplied decisions, existing work, and current evidence. Establish the problem, affected people, intended outcome, observable acceptance, scope/non-goals, and requested stopping point. An exploration-only or planning-only request ends at that result; an end-to-end build request carries through delivery without another permission request at each stage. Publication, merge, deployment, and destructive cleanup require applicable authority from the session or governing policy.
 
 Resolve discoverable facts from relevant project knowledge before asking the user. Check source authority and current applicability; carry forward only evidence that changes the work. Use `arojinle` when purpose, beneficiary, success, consequential trade-offs or latent choices remain unsettled, including a proposed mechanism whose underlying need is unclear. Ask a single already-understood bounded choice directly; reuse complete briefs and accepted decisions. Continue independent authorized work while a dependent choice is unresolved.
 
 ## Keep the human in the plan
 
-Use `html-artifact` with [the initiative brief](references/human-view.md) for every plan, including exploration-only and planning-only work. The HTML is the one current plan: do not create or maintain an equivalent Markdown companion. Present the first proposed direction before delivery so the user can judge alignment. Maintain the same HTML through decisions, implementation, review, and completion; share its locator and revision with contributors.
+Use `html-artifact` for every plan, including exploration-only and planning-only work. The HTML is the one current plan: do not create or maintain an equivalent Markdown companion. Present the first proposed direction before delivery so the user can judge alignment. Maintain the same HTML through decisions, implementation, review, and completion; share its locator and revision with contributors.
+
+Supply the reader's current decision or concern, plan identity/revision, relevant candidate/evidence identities, and plan obligations whose omission would change a decision or progression judgment. Atọ́nà owns that meaning and its completeness; `html-artifact` owns construction and presentation verification, using its existing presentation guidance. Accept the artifact only when those obligations and their material limits are visible and current.
 
 Update meaning and presentation in that plan after material changes, before dependent decisions or delivery handoffs. Chat updates supplement this record. Honor existing authority and requested review boundaries without adding approval rounds. If the HTML is unavailable, report the deliverable gap and continue independent discovery and planning. Independent domain, architecture, research and evidence records keep their own useful formats; they are not duplicate plans.
 
@@ -32,6 +34,8 @@ For a build request, carry the selected direction into shaping and delivery. If 
 ## Shape enough to build
 
 Keep the outcome and acceptance, confirmed decisions and material assumptions, delivery sequence, dependencies, risks, current blocker, and next action in one plan. Match detail to what a fresh contributor would otherwise have to invent; omit empty bookkeeping.
+
+Retain decision-changing alternatives, rationale, uncertainty and counterevidence, and distinguish proposed, confirmed, deferred and superseded choices. When traceability matters, connect acceptance through decisions/contracts and architecture/owners to delivery candidates and proof. Expose missing implementation/proof, mechanisms without an accepted basis, stale evidence, and material cumulative drift. Keep planned, implemented, reviewed, tested and live-verified results distinct; include recovery obligations where material.
 
 Use `amose` when material domain identity, lifecycle, policy, ownership or invariants lack established meaning or applicability, [behavior contract](references/behavior-contract.md) when behavior needs a normative contract, `architect` when structure or a consequential mechanism's fitness for confirmed purpose/domain/quality drivers needs establishing, and [delivery decomposition](references/decomposition.md) when delivery needs decomposition. Reuse settled domain and sound design evidence. Consume each result and controlling gap in this same plan without requiring every branch or a new worker on every initiative.
 
@@ -61,7 +65,7 @@ Use `wo-pr` in publication mode for authorized publication and its stewardship m
 
 ## Preserve continuity and close
 
-Keep the plan in context for a short session. When continuity or downstream use needs persistence, update the existing project plan; otherwise use `.qp/atona/`. Record the absolute execution workspace and `branch: <branch-name> [main|worktree]`, plus the main-worktree path for a linked worktree. Update them when execution moves.
+Keep the plan in context for a short session. When continuity or downstream use needs persistence, update the existing project plan; otherwise use `.qp/atona/`. Record the absolute execution workspace and `branch: <branch-name> [main|worktree]`, plus the main-worktree path for a linked worktree. Update them when execution moves. Include this workspace context and any closure disposition in local operational plans; omit machine-specific absolute paths from portable/public artifacts unless explicitly requested.
 
 Keep ordinary rationale in the HTML plan; read [durable reconciliation](references/durable-reconciliation.md) only when required governing knowledge needs updating.
 
