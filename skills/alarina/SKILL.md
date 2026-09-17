@@ -97,7 +97,7 @@ For `atunwo`, route the review subject, known evidence, and requested decision o
 
 ## Coordinate and integrate
 
-When delegated work can materially improve the outcome, read [coordination](references/coordination.md). When model, effort, worker lifecycle, or provider-native settings matter, also read [host policy](references/host-policy.md); the installed `codex-orchestra` owns the applicable Codex profile. Its absence does not disable standalone skills or authorize installation. These references shape assignments and evidence; they do not replace installed skill methods or native host mechanics.
+When delegated work can materially improve the outcome, read [coordination](references/coordination.md). When model, effort, worker lifecycle, or provider-native settings matter, also read [host policy](references/host-policy.md). These references shape assignments and evidence; they do not replace installed skill methods or native host mechanics.
 
 Keep cohesive work in the main thread by default. Delegate when parallel execution, separate context, or independent scrutiny materially improves the outcome after briefing, verification, and integration costs. Use native collaboration controls; model and reasoning choices remain with the user and their host policy.
 
