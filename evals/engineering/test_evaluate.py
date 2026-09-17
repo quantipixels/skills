@@ -90,6 +90,34 @@ class EngineeringEvaluationTest(unittest.TestCase):
         spec = next(item for item in manifest["runs"] if item["id"] == "settlement-alaga-r1")
         self.assertEqual(spec["protected_hashes"]["guidance/alaga/SKILL.md"], evaluate.digest(guidance))
 
+        altered = Path(self.case_temp.name) / "altered-skills"
+        shutil.copytree(evaluate.SKILLS, altered)
+        (altered / "alaga" / "SKILL.md").write_text((altered / "alaga" / "SKILL.md").read_text() + "\n# paired treatment alteration\n")
+        altered_study = Path(self.case_temp.name) / "altered-study"
+        evaluate.prepare(argparse.Namespace(
+            output=altered_study, guidance_root=altered, host="test-host", model="test-model",
+            reasoning="medium", max_seconds=10, max_tool_calls=4,
+        ))
+        altered_manifest = json.loads((altered_study / "manifest.json").read_text())
+        original_control = next(item for item in manifest["runs"] if item["id"] == "settlement-control-r1")
+        altered_control = next(item for item in altered_manifest["runs"] if item["id"] == "settlement-control-r1")
+        original_treatment = next(item for item in manifest["runs"] if item["id"] == "settlement-alaga-r1")
+        altered_treatment = next(item for item in altered_manifest["runs"] if item["id"] == "settlement-alaga-r1")
+        self.assertEqual(original_control["protected_hashes"]["TASK.md"], altered_control["protected_hashes"]["TASK.md"])
+        self.assertEqual(original_control["private_hashes"], altered_control["private_hashes"])
+        self.assertNotEqual(original_treatment["protected_hashes"]["guidance/alaga/SKILL.md"], altered_treatment["protected_hashes"]["guidance/alaga/SKILL.md"])
+
+        incomplete = Path(self.case_temp.name) / "incomplete-skills"
+        shutil.copytree(evaluate.SKILLS, incomplete)
+        (incomplete / "alaga" / "SKILL.md").unlink()
+        rejected = Path(self.case_temp.name) / "missing-skill-study"
+        with self.assertRaisesRegex(ValueError, "missing guidance skill: alaga"):
+            evaluate.prepare(argparse.Namespace(
+                output=rejected, guidance_root=incomplete, host="test-host", model="test-model",
+                reasoning="medium", max_seconds=10, max_tool_calls=4,
+            ))
+        self.assertFalse(rejected.exists())
+
     def test_cleanup_failures_are_reported_and_owned_pipes_close(self):
         with patch.object(evaluate, "stop_process_group", side_effect=evaluate.ProcessCleanupError("test cleanup failure")):
             result = evaluate.subprocess_result(
@@ -97,6 +125,26 @@ class EngineeringEvaluationTest(unittest.TestCase):
             )
         self.assertEqual("cleanup-error", result["status"])
         self.assertIn("test cleanup failure", result["stderr"])
+
+    @unittest.skipUnless(os.name == "posix", "native process-group assertion")
+    def test_permission_probe_needs_positive_group_membership_evidence(self):
+        class ExitedProcess:
+            pid = 417
+
+            @staticmethod
+            def poll():
+                return 0
+
+        with patch.object(evaluate.os, "killpg", side_effect=PermissionError("probe")), \
+                patch.object(evaluate, "_process_group_members", return_value={902}):
+            self.assertTrue(evaluate._group_exists(ExitedProcess()))
+        with patch.object(evaluate.os, "killpg", side_effect=PermissionError("probe")), \
+                patch.object(evaluate, "_process_group_members", return_value=set()):
+            self.assertFalse(evaluate._group_exists(ExitedProcess()))
+        with patch.object(evaluate.os, "killpg", side_effect=PermissionError("probe")), \
+                patch.object(evaluate, "_process_group_members", side_effect=evaluate.ProcessCleanupError("unreadable")):
+            with self.assertRaises(evaluate.ProcessCleanupError):
+                evaluate._group_exists(ExitedProcess())
 
     def test_partial_completion_preserves_record_and_missing_provenance(self):
         run = self.run_path()

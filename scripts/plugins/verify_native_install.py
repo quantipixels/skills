@@ -20,6 +20,13 @@ PACKAGE_NAME = "qp-skills"
 MARKETPLACE_NAME = "qp-skills"
 PACKAGE_SELECTOR = f"{PACKAGE_NAME}@{MARKETPLACE_NAME}"
 DEFAULT_TIMEOUT = 30.0
+PACKAGE_INPUTS = (
+    ".codex-plugin/plugin.json",
+    ".claude-plugin/plugin.json",
+    ".claude-plugin/marketplace.json",
+    "skills",
+    "agents",
+)
 
 
 class NativeVerificationError(RuntimeError):
@@ -32,10 +39,32 @@ def _group_exists(process):
     except ProcessLookupError:
         return False
     except PermissionError as error:
-        # macOS can report EPERM while an owned group is transitioning through
-        # leader exit. Keep the bounded signal/reap path active.
-        return process.poll() is None
+        members = _process_group_members(process.pid)
+        if members is None:
+            raise NativeVerificationError(f"cannot inspect command process group: {error}") from error
+        return bool(members)
     return True
+
+
+def _process_group_members(pgid):
+    try:
+        result = subprocess.run(
+            ["ps", "-axo", "pid=,pgid="],
+            text=True,
+            capture_output=True,
+            check=False,
+            timeout=0.25,
+        )
+    except (OSError, subprocess.TimeoutExpired) as error:
+        raise NativeVerificationError(f"cannot enumerate command process group {pgid}: {error}") from error
+    if result.returncode != 0:
+        raise NativeVerificationError(f"cannot enumerate command process group {pgid}: ps exited {result.returncode}")
+    members = set()
+    for line in result.stdout.splitlines():
+        fields = line.split()
+        if len(fields) == 2 and fields[1].isdigit() and int(fields[1]) == pgid and fields[0].isdigit():
+            members.add(int(fields[0]))
+    return members
 
 
 def _stop_process_group(process, grace=0.5):
@@ -205,14 +234,22 @@ def _source_identity():
         "root": str(ROOT),
         "revision": revision.stdout.strip() if revision and revision.returncode == 0 else None,
         "working_tree_clean": status is not None and status.returncode == 0 and not status.stdout.strip(),
-        "tree_sha256": _tree_digest(ROOT),
+        "package_inputs": list(PACKAGE_INPUTS),
+        "package_tree_sha256": _tree_digest(ROOT),
     }
 
 
 def _tree_digest(root):
     entries = []
-    for path in sorted(root.rglob("*")):
-        if path.is_symlink() or not path.is_file() or ".git" in path.parts or "__pycache__" in path.parts or ".pytest_cache" in path.parts:
+    paths = []
+    for relative in PACKAGE_INPUTS:
+        path = root / relative
+        if path.is_file():
+            paths.append(path)
+        elif path.is_dir():
+            paths.extend(candidate for candidate in path.rglob("*") if candidate.is_file())
+    for path in sorted(paths):
+        if path.is_symlink() or "__pycache__" in path.parts or ".pytest_cache" in path.parts:
             continue
         entries.append((path.relative_to(root).as_posix(), _sha256(path)))
     return hashlib.sha256(json.dumps(entries, separators=(",", ":")).encode()).hexdigest()

@@ -322,11 +322,33 @@ def _group_exists(process):
     except ProcessLookupError:
         return False
     except PermissionError as error:
-        # macOS can report EPERM while an owned group is transitioning through
-        # leader exit. Keep the bounded signal/reap path active; once the
-        # leader is reaped, the group is treated as gone for this probe.
-        return process.poll() is None
+        members = _process_group_members(process.pid)
+        if members is None:
+            raise ProcessCleanupError(f"cannot inspect process group {process.pid}: {error}") from error
+        return bool(members)
     return True
+
+
+def _process_group_members(pgid):
+    """Return positive process-group membership evidence for an EPERM probe."""
+    try:
+        result = subprocess.run(
+            ["ps", "-axo", "pid=,pgid="],
+            text=True,
+            capture_output=True,
+            check=False,
+            timeout=0.25,
+        )
+    except (OSError, subprocess.TimeoutExpired) as error:
+        raise ProcessCleanupError(f"cannot enumerate process group {pgid}: {error}") from error
+    if result.returncode != 0:
+        raise ProcessCleanupError(f"cannot enumerate process group {pgid}: ps exited {result.returncode}")
+    members = set()
+    for line in result.stdout.splitlines():
+        fields = line.split()
+        if len(fields) == 2 and fields[1].isdigit() and int(fields[1]) == pgid and fields[0].isdigit():
+            members.add(int(fields[0]))
+    return members
 
 
 def stop_process_group(process, grace=0.5):

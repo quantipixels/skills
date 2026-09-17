@@ -1,6 +1,7 @@
 import importlib.util
 from pathlib import Path
 import shutil
+from unittest.mock import patch
 import tempfile
 import unittest
 
@@ -15,6 +16,8 @@ class NativeInstallVerifierTest(unittest.TestCase):
     def test_bad_command_and_timeout_are_truthful(self):
         with self.assertRaisesRegex(verify.NativeVerificationError, "could not start"):
             verify.run(["qp-command-that-does-not-exist"], {})
+        with self.assertRaisesRegex(verify.NativeVerificationError, r"command failed \(3\)"):
+            verify.run(["python3", "-c", "import sys; sys.exit(3)"], {})
         with self.assertRaisesRegex(verify.NativeVerificationError, "timed out"):
             verify.run(["python3", "-c", "import time; time.sleep(30)"], {}, timeout=0.05)
 
@@ -33,6 +36,16 @@ class NativeInstallVerifierTest(unittest.TestCase):
             verify.require_enabled_plugin(
                 [{"pluginId": verify.PACKAGE_SELECTOR, "enabled": False}], "fake listing"
             )
+        with self.assertRaisesRegex(verify.NativeVerificationError, "exactly one"):
+            verify.require_enabled_plugin([], "missing listing")
+        with self.assertRaisesRegex(verify.NativeVerificationError, "exactly one"):
+            verify.require_enabled_plugin(
+                [
+                    {"pluginId": verify.PACKAGE_SELECTOR, "enabled": True},
+                    {"pluginId": verify.PACKAGE_SELECTOR, "enabled": True},
+                ],
+                "duplicate listing",
+            )
         with tempfile.TemporaryDirectory() as temporary:
             installed = Path(temporary)
             for relative in (".codex-plugin/plugin.json", "skills/alarina/SKILL.md"):
@@ -42,6 +55,28 @@ class NativeInstallVerifierTest(unittest.TestCase):
             (installed / "skills/alarina/SKILL.md").write_text("tampered\n")
             with self.assertRaisesRegex(verify.NativeVerificationError, "differs from source"):
                 verify.sample_files(installed, ".codex-plugin/plugin.json")
+
+        with tempfile.TemporaryDirectory() as temporary:
+            installed = Path(temporary)
+            (installed / "skills" / "alarina").mkdir(parents=True)
+            with self.assertRaisesRegex(verify.NativeVerificationError, "skill inventory differs"):
+                verify.validate_installed_inventory(installed, "codex")
+
+    def test_permission_probe_does_not_treat_unreadable_group_as_gone(self):
+        class ExitedProcess:
+            pid = 512
+
+            @staticmethod
+            def poll():
+                return 0
+
+        with patch.object(verify.os, "killpg", side_effect=PermissionError("probe")), \
+                patch.object(verify, "_process_group_members", return_value={903}):
+            self.assertTrue(verify._group_exists(ExitedProcess()))
+        with patch.object(verify.os, "killpg", side_effect=PermissionError("probe")), \
+                patch.object(verify, "_process_group_members", side_effect=verify.NativeVerificationError("unreadable")):
+            with self.assertRaises(verify.NativeVerificationError):
+                verify._group_exists(ExitedProcess())
 
 
 if __name__ == "__main__":
