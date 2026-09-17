@@ -22,6 +22,14 @@ semantic owners; existing dedicated capability interfaces are not generic recomm
 
 ## All 91 compression paths
 
+The 91-path inventory is the GitHub three-dot comparison. Its actual merge base is
+`3f04bcf57e8d4f05659517f59b7c5e73ff37dae6`; `f3d2c60f` is the later original-plan baseline,
+not that merge base. A direct two-endpoint comparison additionally shows `README.md`,
+`.changeset/add-explicit-qp-update.md`, `skills/qp-update/SKILL.md` and
+`skills/qp-update/agents/openai.yaml`. Those are the intervening #162 updater addition:
+retain the current updater, invocation restrictions and changeset; do not interpret donor
+absence as an approved deletion. The 91-path map below matches the provider diff exactly.
+
 These are destinations, not claims of completed model verification. “Keep current” declines the
 donor rewrite. The named retirement and caller decoupling can touch a current file without adopting
 its rejected compression. Unselected owner-local cleanup is declined for this recovery.
@@ -129,4 +137,3 @@ The Java reuse pair has executable positive and negative controls in the existin
 surface. Native manager installation/content evidence remains separate from fresh-session skill
 discovery and invocation. Donors can be retired once replacement PRs exist and this mapping is
 verified, with explicit pending proof carried on the replacements; their branches remain intact.
-
