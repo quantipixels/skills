@@ -1,5 +1,94 @@
 # Changelog
 
+## 4.2.0
+
+### Minor Changes
+
+- [#162](https://github.com/quantipixels/skills/pull/162) [`f3d2c60`](https://github.com/quantipixels/skills/commit/f3d2c60f9ea40b71f1496acbf88595fc35a05a9a) Thanks [@mosobande](https://github.com/mosobande)! - Add the explicitly invoked `qp-update` skill for owner-aware updates through the active installation manager.
+
+- [#148](https://github.com/quantipixels/skills/pull/148) [`b462f40`](https://github.com/quantipixels/skills/commit/b462f40511b1e343f6d3d1b5fa042ba6b64e99f1) Thanks [@mosobande](https://github.com/mosobande)! - Clarify root and worker scope, evidence-based escalation and review, and skill-induced pauses. Keep personality user-owned with an optional README example; preserve Luna's 0.5 weight and existing reasoning ceilings.
+
+  Remove repository-managed skill maturity metadata; readiness remains an evidence judgment rather than a frontmatter label.
+
+- [#152](https://github.com/quantipixels/skills/pull/152) [`f8f10e3`](https://github.com/quantipixels/skills/commit/f8f10e345578b87c933d9206374d522a06241010) Thanks [@mosobande](https://github.com/mosobande)! - Add conditional engineering methods for property testing, confirmed-cause variant searches, numeric reasoning, stateful proof, native boundaries, database and build evidence under existing owners. Strengthen assertion and misuse calibration without adding workflows or mandatory gates.
+
+  Add bounded reassessment of architecture, technology, dependencies and development feedback. Preserve end-user and developer outcomes when improving agent experience, and prefer verified existing guarantees over unnecessary custom state.
+
+  Recover focused shared-state invariant reasoning, add generated action-sequence guidance to property testing, and provide a human-facing retry/upgrade example. Clarify selective installation without adding a new workflow or public skill.
+
+- [#154](https://github.com/quantipixels/skills/pull/154) [`87a0be9`](https://github.com/quantipixels/skills/commit/87a0be9dcf6c322d824de0ac50bf12b191b7cdaf) Thanks [@mosobande](https://github.com/mosobande)! - Keep cohesive work in the main thread and require delegation to earn its coordination cost. The main agent retains responsibility whether executing directly or delegating.
+
+- [#154](https://github.com/quantipixels/skills/pull/154) [`87a0be9`](https://github.com/quantipixels/skills/commit/87a0be9dcf6c322d824de0ac50bf12b191b7cdaf) Thanks [@mosobande](https://github.com/mosobande)! - Keep Astra and Fable in the worker catalogue without assigning the main agent.
+
+- [#141](https://github.com/quantipixels/skills/pull/141) [`d53e95d`](https://github.com/quantipixels/skills/commit/d53e95d534aa89de80d65a2f747b93eb213277a2) Thanks [@mosobande](https://github.com/mosobande)! - Consolidate the public portfolio into 15 core skills plus the optional `pese` and `system-cleanup` specialists. Retain complete methods behind conditional references while removing the retired entrypoint directories.
+
+  - Keep `alarina` as the operating entrypoint and preserve its route topology, dynamic installed inventory, continuity, authority, evidence integration, and completion contract.
+  - Fold human involvement and premise checking into Alárinà's coordination policy. Add a conditional Codex/Claude host-policy profile without installing host settings or creating a portable model registry.
+  - Add standalone issue-intake and diagnosis modes to `alaga`; behavior-contract and decomposition modes to `atona`; publication mode to `wo-pr`. Retain `yoruba-glossary` as the standalone language-focused owner.
+  - Consolidate agent/human writing and visual explanation into `oro` with distinct audience branches.
+  - Consolidate experiential prototypes and measured comparisons into `adanwo` with distinct exploration and measured-experiment branches.
+  - Update native Codex/Claude plugin instructions, the thin Claude Alárinà agent, active callers, and README usage guidance.
+
+  Remove enterprise-specific setup guidance and preserve asynchronous CI waiting with a ten-minute default refresh cadence in `wo-pr`.
+
+  Trim repeated PR workflow mechanics, rigid interview formatting, HTML template/check scheduling, and retrospective handoff prose while preserving their outcome and authority boundaries.
+
+- [#160](https://github.com/quantipixels/skills/pull/160) [`3f04bcf`](https://github.com/quantipixels/skills/commit/3f04bcf57e8d4f05659517f59b7c5e73ff37dae6) Thanks [@mosobande](https://github.com/mosobande)! - Strengthen framework, compatibility, recovery, authorization and resource-cost proof within existing engineering owners; make architecture alternatives comparable on a real requirement. Add opt-in evaluation scenarios without treating unexecuted recipes as runtime evidence.
+
+- [#158](https://github.com/quantipixels/skills/pull/158) [`ea88a6a`](https://github.com/quantipixels/skills/commit/ea88a6aa8b53b270118bb5dbee14c2703da947e2) Thanks [@mosobande](https://github.com/mosobande)! - Add first-party playbooks for test-suite improvement, skill evaluation, incident recovery, and release/rollout. Strengthen existing routes for dependency upgrades, build and CI optimization, decision prototypes, sustained optimization, and applying lessons from completed work.
+
+- [#157](https://github.com/quantipixels/skills/pull/157) [`20131ae`](https://github.com/quantipixels/skills/commit/20131aec532234e5be27e36a98e18b691e2710ec) Thanks [@mosobande](https://github.com/mosobande)! - Add practical engineering methods for project verification, runtime investigation, data-change safety and focused diagnosis. Make Alárinà's engineering playbooks directly selectable and usable from ordinary requests, with owner-based progression, task examples and opt-in evaluations. Improve existing modeling, review, learning and refactoring guidance.
+
+- [#160](https://github.com/quantipixels/skills/pull/160) [`3f04bcf`](https://github.com/quantipixels/skills/commit/3f04bcf57e8d4f05659517f59b7c5e73ff37dae6) Thanks [@mosobande](https://github.com/mosobande)! - Use focused engineering principles for module design, compatibility, resource bounds and simplification. Preserve deep modules, information hiding and caller leverage as core Architect guidance; retain concrete evidence and exception boundaries.
+
+- [#153](https://github.com/quantipixels/skills/pull/153) [`9acb747`](https://github.com/quantipixels/skills/commit/9acb747dc5be648c051394b2e0afe567816dd0ea) Thanks [@mosobande](https://github.com/mosobande)! - Improve HTML artifact composition, concrete visual reasoning, reader feedback and optional live-update guidance. Simplify report selection and use the QP logo without the Skills label.
+
+- [#171](https://github.com/quantipixels/skills/pull/171) [`aaf90b0`](https://github.com/quantipixels/skills/commit/aaf90b070e8ae282c00ab92837a7f4a5e18439dc) Thanks [@mosobande](https://github.com/mosobande)! - Introduce `fihanmi` as the shared presentation owner, consolidating the existing presentation method with compact code-shaped explanations. Route `oro` and `html-artifact` to it and remove the superseded presentation skill identity.
+
+- [#155](https://github.com/quantipixels/skills/pull/155) [`9ef5510`](https://github.com/quantipixels/skills/commit/9ef5510165e966a23d1c7eebc7fc81291891a2f6) Thanks [@mosobande](https://github.com/mosobande)! - Extract human-view as a default presentation method for understandable, inspectable visual content. Replace the proposed model-specific design skills, simplify duplicated HTML guidance, and keep construction, source fidelity and living behavior with HTML Artifact. Explicit design direction and specialist owners retain precedence.
+
+  Add a conditional Codex first-draft correction reference and a tracked two-skill professional-stance experiment.
+
+  Remove nonessential upstream attribution links from the guidance and release notes.
+
+- [#169](https://github.com/quantipixels/skills/pull/169) [`823a616`](https://github.com/quantipixels/skills/commit/823a6162b0cfb187568d82506f5b15d790dc56a2) Thanks [@mosobande](https://github.com/mosobande)! - Recover the accepted guidance baseline: expose `codex-orchestra` as a public worker-coordination skill, preserve purpose/domain/fitness routing, single living HTML plans, and selective test-first delivery, and retire duplicated Atọ́nà presentation guidance. Tighten coordination capacity and worker-local evidence boundaries, retain original-failure replay and domain-value seam checks, and reconcile the selected owner-scoped guidance compressions.
+
+  Remove the retired companion-capability skill and its live routes, product/tool catalogue guidance, and unreleased claims for capabilities that no longer ship. Semantic owners retain their evidence obligations; capability visibility and setup remain provider/host concerns. The package identity remains `qp-skills`.
+
+- [#156](https://github.com/quantipixels/skills/pull/156) [`b909092`](https://github.com/quantipixels/skills/commit/b909092b3c73965187fc24fe515a11d89765a089) Thanks [@mosobande](https://github.com/mosobande)! - Compare delivered visual composition against the supplied reference or accepted direction using existing render evidence.
+
+- [#160](https://github.com/quantipixels/skills/pull/160) [`3f04bcf`](https://github.com/quantipixels/skills/commit/3f04bcf57e8d4f05659517f59b7c5e73ff37dae6) Thanks [@mosobande](https://github.com/mosobande)! - Strengthen independent state ownership, reproducible transformations, structural prevention of recurring failures, selective lesson retrieval and explicit limits within existing engineering owners. Reuse current knowledge-maintenance methods without adding a catalogue or mandatory workflow.
+
+- [#160](https://github.com/quantipixels/skills/pull/160) [`3f04bcf`](https://github.com/quantipixels/skills/commit/3f04bcf57e8d4f05659517f59b7c5e73ff37dae6) Thanks [@mosobande](https://github.com/mosobande)! - Make delivery trace related implementations before choosing reuse, extension or a separate owner. Ground domain values and states in existing consumer conventions, with an independent review check for duplication and incomplete integration.
+
+  Strengthen delivery integration guidance for runtime wiring, compatibility, operational consequences and actual test execution. Trial a senior-engineer stance and add a reusable existing-code screening fixture with independent acceptance checks.
+
+- [#171](https://github.com/quantipixels/skills/pull/171) [`aaf90b0`](https://github.com/quantipixels/skills/commit/aaf90b070e8ae282c00ab92837a7f4a5e18439dc) Thanks [@mosobande](https://github.com/mosobande)! - Rename `wo-pr` to `seda-pr` as the single PR/MR lifecycle owner, from description and creation through publication and babysitting. Use `seda-pr` in existing instructions and selective installations; the former entrypoint is removed, not aliased.
+
+  Adapt HumanLayer visual-pr's purpose-first, caveats-early, change-shaped outline without rigid quotas or mandatory description sidecars. Keep QP's domain language, actual evidence, recovery assessment and authority boundaries; share one publication path and retain focused failure/stack guidance.
+
+- [#153](https://github.com/quantipixels/skills/pull/153) [`9acb747`](https://github.com/quantipixels/skills/commit/9acb747dc5be648c051394b2e0afe567816dd0ea) Thanks [@mosobande](https://github.com/mosobande)! - Separate delegation from independent review, surface worker judgment calls, and scope prerequisite checks to selected capabilities. Distinguish requested worker settings from observed runtime and isolation evidence without adding fixed roles or reasoning defaults.
+
+- [#159](https://github.com/quantipixels/skills/pull/159) [`6cf9a30`](https://github.com/quantipixels/skills/commit/6cf9a3019c33af3b9e45a18015f305d8a303a044) Thanks [@mosobande](https://github.com/mosobande)! - Preserve structured-record and provider coverage boundaries, fix automatic skill discovery in session evidence, and consolidate README onboarding into one copyable user instruction set.
+
+- [#153](https://github.com/quantipixels/skills/pull/153) [`9acb747`](https://github.com/quantipixels/skills/commit/9acb747dc5be648c051394b2e0afe567816dd0ea) Thanks [@mosobande](https://github.com/mosobande)! - Keep standalone Atọ́nà delegation bounded, with exclusive shared-resource writers and evidence-based integration. Preserve existing specialist ownership and conditional delivery routes.
+
+- [#160](https://github.com/quantipixels/skills/pull/160) [`3f04bcf`](https://github.com/quantipixels/skills/commit/3f04bcf57e8d4f05659517f59b7c5e73ff37dae6) Thanks [@mosobande](https://github.com/mosobande)! - Improve specimen-led technical explanations and conceptual change views; compress repeated guidance with applicable engineering principles while preserving ownership and evidence boundaries.
+
+- [#147](https://github.com/quantipixels/skills/pull/147) [`0b7814e`](https://github.com/quantipixels/skills/commit/0b7814e2378878af66c4b3b9327dc7df1f4c8a53) Thanks [@mosobande](https://github.com/mosobande)! - Expand `yoruba-glossary` with sourced orthography/tone, word-formation and sentence guidance, plus an independent teach mode. Preserve explicit glossary-write authority and distinguish proposed terminology from established usage.
+
+### Patch Changes
+
+- [#141](https://github.com/quantipixels/skills/pull/141) [`d53e95d`](https://github.com/quantipixels/skills/commit/d53e95d534aa89de80d65a2f747b93eb213277a2) Thanks [@mosobande](https://github.com/mosobande)! - Sharpen Alárinà's routing by requested result and current work state. Distinguish investigation, diagnosis, performance experiments, and settled corrections; resume from applicable evidence; discover useful supporting skills; and carry scope, authority, evidence, and the next consumer into handoffs. Preserve existing route shapes and workflow ownership.
+
+  Validation: package validation and diff whitespace checks pass. Source-level walkthroughs cover investigation-only failure analysis, a diagnosed correction, comparative performance work, resumed initiatives, workflow-owned implementation returns, and an established instruction correction. These inspect routing boundaries; authenticated model-behavior evaluation remains unrun.
+
+- [#145](https://github.com/quantipixels/skills/pull/145) [`f544e98`](https://github.com/quantipixels/skills/commit/f544e9895a4c8626cd6d518a04e44d205527d21d) Thanks [@mosobande](https://github.com/mosobande)! - Require living `html-artifact` views for Atọ́nà plans and Àròjinlẹ̀ plan interviews, from the first proposed direction through completion. Keep rationale, decisions, progress, and evidence understandable without prior context.
+
+- [#141](https://github.com/quantipixels/skills/pull/141) [`d53e95d`](https://github.com/quantipixels/skills/commit/d53e95d534aa89de80d65a2f747b93eb213277a2) Thanks [@mosobande](https://github.com/mosobande)! - Scope domain-model consultation, authoring references, planning gates, diagnostic records, session inventories, artifact checks, and cleanup steps to the work that needs them. Preserve material authority and evidence requirements while avoiding repeated approvals, checks, and reporting for bounded tasks. Explicitly permit useful delegation in repository policy.
+
+- [#168](https://github.com/quantipixels/skills/pull/168) [`f60a0a2`](https://github.com/quantipixels/skills/commit/f60a0a270965a97ecf2b18fffe74354e85ef54ae) Thanks [@mosobande](https://github.com/mosobande)! - Harden bounded engineering evaluation provenance and subprocess cleanup, and add a disposable native installation verifier for the `qp-skills` package.
+
 ## 4.1.0
 
 ### Minor Changes
