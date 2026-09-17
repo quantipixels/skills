@@ -35,7 +35,7 @@ Load branch guidance only when applicable:
 
 Establish required coverage before minimizing representation. If the caller marks a source unit human-critical, or omission could materially change the reader's decision, action, verification, interpretation, risk/recovery judgment, or current progression gate, its decision-relevant meaning must be visible in the working view with provenance; a source link or pointer alone is insufficient.
 
-For a new or materially recomposed artifact without settled presentation direction, use `human-view` for reader orientation, composition, inspectable examples and reader actions. Use `oro` for clear human-facing prose; keep source meaning with its owner.
+For a new or materially recomposed artifact without settled presentation direction, use `fihanmi` for reader orientation, composition, inspectable examples and reader actions. Use `oro` for clear human-facing prose; keep source meaning with its owner.
 
 Choose representation per reader question or material relationship, not source heading. Use [browser visual reasoning](references/visual-reasoning.md) when relationships, changes or mechanisms would be easier to inspect than reconstruct from prose. Render the useful specimen beside its explanation; naming or linking a possible diagram does not deliver it.
 
