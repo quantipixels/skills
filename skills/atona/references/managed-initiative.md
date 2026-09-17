@@ -16,7 +16,7 @@ Keep it in current context when one-session use is sufficient. Persist only when
 
 When execution is bound to a concrete working directory, persist its absolute path and branch as `<branch-name> [main|worktree]`. For a linked worktree, also persist the absolute main-worktree path. Treat that workspace and its `.qp` as the current initiative candidate; update the workspace fields when execution moves.
 
-Use `html-artifact` with [the initiative brief](human-view.md) to keep meaning and presentation current in that same HTML. Share one locator and revision; do not create or synchronize an equivalent Markdown plan.
+Follow the main skill's [plan handoff contract](../SKILL.md#keep-the-human-in-the-plan) with `html-artifact`. Keep meaning and presentation current in that same HTML and share one locator and revision; do not create or synchronize an equivalent Markdown plan.
 
 When supplied context already settles the initiative, synthesize it directly rather than replaying discovery. Separate confirmed context from inference and capture only the problem/outcome, acceptance, confirmed decisions, scope/non-goals, material proof expectations, current progression gate, and evidence identities needed to plan responsibly.
 
@@ -121,4 +121,4 @@ After local-state cleanup, offer to remove the completed linked worktree. Remova
 
 Keep ordinary rationale in normal initiative artifacts. Read [durable knowledge reconciliation](durable-reconciliation.md) only when stable governing knowledge must survive beyond them or an existing durable authority is materially stale; the knowledge owner decides admission and reconciliation.
 
-Before user-visible handoff or closure, align plan status, workspace/disposition when relevant, current gate, Decision Frontier, delivery summary, evidence/projection freshness, weakest material claim or blocker, remaining work, and next action. Consume `html-artifact`’s current result against the initiative brief; a missing, stale, or incomprehensible view does not satisfy that deliverable. Use [suggested direction](suggested-direction.md) only when a separate build-direction handoff is actually useful.
+Before user-visible handoff or closure, align plan status, workspace/disposition when relevant, current gate, Decision Frontier, delivery summary, evidence/projection freshness, weakest material claim or blocker, remaining work, and next action. Apply the main skill's plan handoff contract to `html-artifact`’s current result; a missing, stale, or incomprehensible view does not satisfy that deliverable. Use [suggested direction](suggested-direction.md) only when a separate build-direction handoff is actually useful.
