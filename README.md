@@ -85,9 +85,14 @@ Common entrypoints:
 | `adanwo` | A bounded exploratory or measured experiment must settle uncertainty |
 | `alarina` | Select or use an engineering playbook, compose or resume work across owners, or find the starting owner |
 | `codex-orchestra` | Apply the bounded Codex delegation profile under an Astra main agent when useful or requested |
-| `human-view` | Supplied content needs a clear default visual presentation without a full design engagement |
+| `fihanmi` | Supplied material needs a compact visual explanation or useful default presentation |
+| `wo-pr` | A PR/MR needs a reviewer-facing description, publication, or stewardship toward a human merge decision |
 
 Alárinà uses installed skill definitions as the dynamic inventory.
+
+`fihanmi` replaces `human-view` and owns the visual-explanation method formerly under `oro`. The old name and reference paths forward to the new owner without duplicating its method. For selective installations, install `fihanmi`; existing copies need updating before they gain this behavior.
+
+Use `wo-pr` in description mode to draft or improve a PR body without committing or pushing. Publication uses the same [reviewer brief](skills/wo-pr/references/reviewer-brief.md): domain meaning, the consequential change, actual evidence, merge risk and recovery, and the important review focus.
 
 Atọ́nà maintains one living HTML plan, including decisions, evidence, progress and next action. It does not create an equivalent Markdown plan; independent specifications, architecture records and source evidence keep their useful existing formats.
 
