@@ -127,6 +127,17 @@ class EngineeringEvaluationTest(unittest.TestCase):
         self.assertIn("test cleanup failure", result["stderr"])
 
     @unittest.skipUnless(os.name == "posix", "native process-group assertion")
+    def test_process_membership_rejects_empty_or_malformed_observation(self):
+        for output in ("", "not process records\n", "17\n", "17 42 extra\n"):
+            result = evaluate.subprocess.CompletedProcess([], 0, output, "")
+            with self.subTest(output=output), patch.object(evaluate.subprocess, "run", return_value=result):
+                with self.assertRaises(evaluate.ProcessCleanupError):
+                    evaluate._process_group_members(42)
+        result = evaluate.subprocess.CompletedProcess([], 0, "17 42\n18 43\n", "")
+        with patch.object(evaluate.subprocess, "run", return_value=result):
+            self.assertEqual({17}, evaluate._process_group_members(42))
+            self.assertEqual(set(), evaluate._process_group_members(99))
+
     def test_permission_probe_needs_positive_group_membership_evidence(self):
         class ExitedProcess:
             pid = 417

@@ -62,6 +62,17 @@ class NativeInstallVerifierTest(unittest.TestCase):
             with self.assertRaisesRegex(verify.NativeVerificationError, "skill inventory differs"):
                 verify.validate_installed_inventory(installed, "codex")
 
+    def test_process_membership_requires_parseable_observation(self):
+        for output in ("", "bad records\n", "17 42 extra\n"):
+            result = verify.subprocess.CompletedProcess([], 0, output, "")
+            with self.subTest(output=output), patch.object(verify.subprocess, "run", return_value=result):
+                with self.assertRaises(verify.NativeVerificationError):
+                    verify._process_group_members(42)
+        result = verify.subprocess.CompletedProcess([], 0, "17 42\n18 43\n", "")
+        with patch.object(verify.subprocess, "run", return_value=result):
+            self.assertEqual({17}, verify._process_group_members(42))
+            self.assertEqual(set(), verify._process_group_members(99))
+
     def test_permission_probe_does_not_treat_unreadable_group_as_gone(self):
         class ExitedProcess:
             pid = 512

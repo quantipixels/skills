@@ -60,9 +60,14 @@ def _process_group_members(pgid):
     if result.returncode != 0:
         raise NativeVerificationError(f"cannot enumerate command process group {pgid}: ps exited {result.returncode}")
     members = set()
-    for line in result.stdout.splitlines():
+    lines = result.stdout.splitlines()
+    if not lines:
+        raise NativeVerificationError("process-group enumeration returned no process records")
+    for line in lines:
         fields = line.split()
-        if len(fields) == 2 and fields[1].isdigit() and int(fields[1]) == pgid and fields[0].isdigit():
+        if len(fields) != 2 or not all(field.isdigit() for field in fields):
+            raise NativeVerificationError("process-group enumeration returned a malformed process record")
+        if int(fields[1]) == pgid:
             members.add(int(fields[0]))
     return members
 
