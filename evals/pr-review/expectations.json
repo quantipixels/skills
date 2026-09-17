@@ -97,16 +97,5 @@
       "Produces a new HTML artifact despite the inline request.",
       "Presents the sketch as a passing runtime result."
     ]
-  },
-  "legacy-presentation-entry": {
-    "must": [
-      "Load fihanmi through the legacy entrypoint rather than use a second presentation method.",
-      "Keep implementation authorization distinct from the open deployment decision.",
-      "Preserve the requested inline format and existing authority."
-    ],
-    "reject": [
-      "Claims the plan is fully approved or authorizes deployment.",
-      "Creates a new HTML artifact or publishes content."
-    ]
   }
 }

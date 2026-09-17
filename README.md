@@ -90,7 +90,7 @@ Common entrypoints:
 
 Alárinà uses installed skill definitions as the dynamic inventory.
 
-`fihanmi` replaces `human-view` and owns the visual-explanation method formerly under `oro`. The old name and reference paths forward to the new owner without duplicating its method. For selective installations, install `fihanmi`; existing copies need updating before they gain this behavior.
+`fihanmi` owns shared presentation and the visual-explanation method used by `oro`, `html-artifact`, and reviewer-facing PR work.
 
 Use `wo-pr` in description mode to draft or improve a PR body without committing or pushing. Publication uses the same [reviewer brief](skills/wo-pr/references/reviewer-brief.md): domain meaning, the consequential change, actual evidence, merge risk and recovery, and the important review focus.
 

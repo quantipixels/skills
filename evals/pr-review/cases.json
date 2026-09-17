@@ -1,9 +1,7 @@
 [
   {
     "id": "tiny-docs",
-    "skills": [
-      "wo-pr"
-    ],
+    "skills": ["wo-pr"],
     "prompt": "Draft a PR body for the supplied candidate. Do not publish it.",
     "context": {
       "candidate": "synthetic docs-head against docs-base",
@@ -13,11 +11,7 @@
   },
   {
     "id": "domain-language",
-    "skills": [
-      "wo-pr",
-      "amose",
-      "fihanmi"
-    ],
+    "skills": ["wo-pr", "amose", "fihanmi"],
     "prompt": "Draft a reviewer-facing description of this payment change.",
     "context": {
       "candidate": "synthetic payments-head against payments-base",
@@ -29,10 +23,7 @@
   },
   {
     "id": "ui-missing-capture",
-    "skills": [
-      "wo-pr",
-      "fihanmi"
-    ],
+    "skills": ["wo-pr", "fihanmi"],
     "prompt": "Write the PR body. Show evidence that the changed UI works.",
     "context": {
       "candidate": "synthetic ui-head against ui-base",
@@ -43,9 +34,7 @@
   },
   {
     "id": "lossy-migration",
-    "skills": [
-      "wo-pr"
-    ],
+    "skills": ["wo-pr"],
     "prompt": "Draft the PR body and assess merge risk. The migration has a down method.",
     "context": {
       "candidate": "synthetic migration-head against migration-base",
@@ -56,9 +45,7 @@
   },
   {
     "id": "two-way-with-proof",
-    "skills": [
-      "wo-pr"
-    ],
+    "skills": ["wo-pr"],
     "prompt": "Prepare a concise review brief with the recovery assessment.",
     "context": {
       "candidate": "synthetic reader-head against reader-base",
@@ -69,9 +56,7 @@
   },
   {
     "id": "stale-proof-and-human-body",
-    "skills": [
-      "wo-pr"
-    ],
+    "skills": ["wo-pr"],
     "prompt": "Draft an improved version of this PR body while preserving the author’s context. Do not update the provider.",
     "context": {
       "candidate": "synthetic head-B against base-A",
@@ -83,9 +68,7 @@
   },
   {
     "id": "read-only-watch",
-    "skills": [
-      "wo-pr"
-    ],
+    "skills": ["wo-pr"],
     "prompt": "Check this PR’s status only. Do not change anything, including its body.",
     "context": {
       "candidate": "synthetic watch-head against watch-base",
@@ -96,26 +79,12 @@
   },
   {
     "id": "show-me-native-markdown",
-    "skills": [
-      "fihanmi"
-    ],
+    "skills": ["fihanmi"],
     "prompt": "Show me this change for a GitLab MR. Keep it inline, not in an HTML report.",
     "context": {
       "source_owned_change": "Before: saveDraft validates and writes the draft, then calls the notification provider directly. After: saveDraft validates and writes the draft and an outbox message in the same local transaction; a separate worker sends the notification asynchronously.",
       "coverage": "This is a supplied conceptual explanation, not exact code or execution proof.",
       "terms": "Use draft, outbox message, notification provider and notification worker. The provider call is outside the local transaction."
-    }
-  },
-  {
-    "id": "legacy-presentation-entry",
-    "skills": [
-      "human-view",
-      "fihanmi"
-    ],
-    "prompt": "Use human-view to make this clearer: the supplied plan is ready for implementation, but the deployment decision remains open.",
-    "context": {
-      "constraints": "Use prose or a small inline representation. Do not publish anything or create a browser artifact.",
-      "source": "Implementation is authorized; deployment is not authorized. No new domain analysis is requested."
     }
   }
 ]
