@@ -11,6 +11,15 @@ their accepted source cut and the outstanding behavioral evidence described belo
 
 ## Executed verification and remaining gates
 
+Follow-up instruction review: the user requested source review without evaluation runs.
+Alaga's example now demonstrates inspecting a comparable enum field and converter before
+choosing a mapping; it does not prescribe a converter abstraction. The same review corrected
+contradictory Oro examples, restored incident authority/identity and cross-tenant rejection
+cues lost in compression, retained model-specific design calibration, and clarified HTML
+renderer selection and review ownership. No evaluation or installation runs accompanied
+these instruction corrections. The execution results below belong to the earlier candidate;
+its package digest does not identify the corrected instruction tree.
+
 The combined candidate passed 40 engineering tests, 5 native verifier tests and one
 session-evidence test. The strengthened private Java oracle passed its five controls
 again at `7ea555c`; independent Luna review closed its runtime-alias and C15 authority

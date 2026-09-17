@@ -56,11 +56,11 @@ A diff is evidence, not the complete review. Keep supplied behavioral context, f
 
 ## Use a specialized renderer only when it earns the dependency
 
-For syntax-aware, multi-file, annotated, selectable, virtualized, or interaction-heavy code views, use an exact compatible renderer already available in the project or host. Prefer native HTML/CSS for a small static diff and reuse an equivalent renderer when the containing application already owns one.
+For syntax-aware, multi-file, annotated, selectable, virtualized, or interaction-heavy code views, reuse a suitable renderer already available in the project or host, or select one under the [dependency policy](dependency-policy.md). Prefer native HTML/CSS for a small static diff.
 
 The renderer belongs to exact source-change inspection, not to the PR/code-review lane. Revalidate its current package identity, API, browser support, license and delivery boundary at implementation time. Render every returned file from a supplied patch; label intentional partial views and identify omitted coverage. Patch metadata is partial unless authorized full old/new contents hydrate it. Derive cache keys from the pinned candidate and change them whenever source contents, filename, language or revision changes.
 
-The renderer does not fetch provider candidates, decide review completeness, perform review, or publish comments. Keep the review boundary and exact source identity with this skill. If the renderer cannot be readied, render a native semantic diff.
+The renderer does not fetch provider candidates, decide review completeness, perform review, or publish comments. Keep presentation and exact source identity here; the supplied findings and verdict remain with the review owner. If the renderer cannot be readied, render a native semantic diff.
 
 Do not load executable code from a CDN or send code to a live service. Prefer pre-rendered or server-rendered readable markup where the actual build supports it. Otherwise retain semantic candidate/context/summary content, a readable exact-code fallback for required changed lines, and a link to the complete pinned patch when JavaScript or highlighting fails.
 

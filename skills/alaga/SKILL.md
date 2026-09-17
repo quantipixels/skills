@@ -34,36 +34,20 @@ Use a rerunnable codemod, query or script when it materially improves transforma
 
 For new or changed domain values, types or states, inspect how comparable concepts are defined and actually used by callers and users. Before adding one, trace an analogous value across the same boundary—declaration, converter/mapper/serializer or registration, persistence/wire/configuration, consumers and proof—and reuse the established mechanism when its semantics fit. Follow the authoritative project's naming, representation and lifecycle conventions. For enums or statuses, trace applicable transitions, persistence/wire values, defaults, unknown-value handling and consumer mappings; a new declaration is not the whole change. Distinguish internal identifiers from user-facing labels and preserve compatibility. If existing patterns conflict, resolve the relevant owner and intended behavior rather than copy an arbitrary example or silently invent a convention.
 
-For a Java/JPA example, assume the codebase already persists coded enums through an established `@Converter` pattern:
+Before choosing how to persist a new Java enum field, inspect a comparable entity field and its mapping:
 
 ```java
-// Bad: this field bypasses the codebase's established converter contract.
-enum OrderStatus { PENDING, FULFILLED }
+// Bad: immediately choose a mapping without inspecting existing entities.
+@Enumerated(EnumType.STRING)
+private OrderStatus status;
 
-@Entity
-final class Order {
-    @Enumerated(EnumType.STRING)
-    private OrderStatus status;
-}
-
-// Good: the enum, entity field and converter follow the existing persistence seam.
-enum OrderStatus implements DatabaseValue {
-    PENDING("pending"), FULFILLED("fulfilled");
-    // Existing DatabaseValue members and unknown-value policy omitted.
-}
-
-@Converter(autoApply = true)
-final class OrderStatusConverter extends DatabaseValueConverter<OrderStatus> {
-    OrderStatusConverter() { super(OrderStatus.class); }
-}
-
-@Entity
-final class Order {
-    private OrderStatus status;
-}
+// Good: inspect a comparable enum field and its @Converter first.
+// If the codebase uses explicit @Convert mappings, follow that pattern.
+@Convert(converter = OrderStatusConverter.class)
+private OrderStatus status;
 ```
 
-Treat the names as a sketch, not new abstractions to introduce. First establish how peer entity fields and their `@Converter` implementations actually work in the codebase, including whether conversion is automatic or field-annotated, then extend that pattern with its null, alias, unknown-value and persisted-value behavior. Diverge only when the new field has materially different semantics.
+The lesson is to discover the established pattern before implementing; neither annotation is inherently preferred. Reuse or extend the existing pattern when its semantics fit, preserving its stored values and null/unknown handling. A different contract can justify a different implementation.
 
 For a change spanning consumers, persisted data, framework-managed behavior, authorization or external effects, read [integration obligations](references/integration-obligations.md). Resolve the applicable obligations before editing and reconcile them against the final candidate; ordinary local changes need no separate assessment.
 

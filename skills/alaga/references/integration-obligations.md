@@ -16,7 +16,7 @@ Apply design by contract and complete mediation: locate enforcement of relied-on
 
 When enforcement is the disputed behavior, drive the framework-managed entry point with a valid control and an input that must be rejected or rolled back. Inspect persisted and external effects, not only the response. A direct method call or a mocked interceptor leaves registration, proxying and lifecycle behavior unproved. Use the project’s actual runner and supported configuration; keep framework-specific commands in project guidance.
 
-Verify least privilege across actor, tenant, resource and operation. Test insufficient authority for disclosure and mutation; distinguish service authority from delegated user scope.
+Verify least privilege across actor, tenant, resource and operation. Test cross-tenant and insufficient-authority attempts for disclosure and mutation; distinguish service authority from delegated user scope.
 
 ## Preserve operation during change
 

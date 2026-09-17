@@ -8,3 +8,5 @@ Use before the first layout or material recomposition in Codex. These are correc
 - Spend effort on real content, imagery and feedback before hover effects or reveal motion.
 
 Do not manufacture a sacrificial first build, randomize styling, ban fonts, impose layout quotas or force novelty. Compare with the supplied or accepted direction using existing render evidence and correct specific hierarchy, density or convention departures. A checklist cannot establish visual quality.
+
+Reassess these tendencies against actual outputs when the model or host changes; historical observations do not establish current behavior.

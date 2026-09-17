@@ -69,13 +69,11 @@ When another stable public skill owns the needed capability, reference that skil
 
 Good:
 
-- The provider or host for installation, configuration, authentication, integration, or readiness.
 - `atunwo` with a behavior-preservation focus when a refactor must retain required behavior; choose light or deep review by the necessary coverage.
 - Send each confirmed blocker to its nearest semantic owner when the blocker could belong to different skills.
 
 Bad:
 
-- “the provider or host” for setup that is outside the instruction owner.
 - “the review owner” when the intended skill is already `atunwo`.
 - Repeating another skill's method instead of naming the skill and the one useful variant it must apply.
 
