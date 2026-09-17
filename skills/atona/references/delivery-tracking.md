@@ -48,4 +48,4 @@ When drift is material, replan from the changed scope and constraints. Use `arch
 
 Derive `Complete` only when every in-scope delivery obligation has current accepting proof and plan-level integration has no blocking gap. Derive `Not required` only when the accepted plan contains no delivery work.
 
-When software delivery uses PR/MR stewardship, treat `wo-pr`'s `PROVIDER_READY` as provider evidence only. Integrated handoff readiness still requires the relevant delivery owner's accepting result plus the current provider receipt; either becoming stale or failing invalidates only the dependent integrated conclusion.
+When software delivery uses PR/MR stewardship, treat `seda-pr`'s `PROVIDER_READY` as provider evidence only. Integrated handoff readiness still requires the relevant delivery owner's accepting result plus the current provider receipt; either becoming stale or failing invalidates only the dependent integrated conclusion.

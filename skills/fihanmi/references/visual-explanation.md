@@ -56,4 +56,4 @@ For portable HTML, use `html-artifact`; for a presentation, use the installed pr
 
 Use fenced text or a supported diagram in Markdown surfaces; provide readable text when a renderer is unavailable. Keep labels and changed states understandable without color. For published briefs, use evidence locations the reviewer can access; a workstation or sandbox path is not a hosted attachment. Keep sensitive data out of public artifacts.
 
-Representation choices are informed by [HumanLayer's `show-me`](https://github.com/humanlayer/skills/blob/main/plugins/show-me/skills/show-me/SKILL.md): small code-shaped explanations, changes shown in their own shape, and visuals beside the point they clarify.
+Representation choices are informed by [HumanLayer's show-me reference bundled with visual-pr](https://github.com/humanlayer/skills/blob/ca7c8088db69e315a8b2deea43820270457f8f3c/plugins/visual-pr/skills/visual-pr/references/show-me.md): small code-shaped explanations, changes shown in their own shape, and visuals beside the point they clarify.

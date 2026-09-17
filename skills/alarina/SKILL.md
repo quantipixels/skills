@@ -44,7 +44,7 @@ Use the paths below when composition matters. Open the matched file before using
 | Architecture evolution | Design or codebase friction, dependency upgrades or framework migrations need assessment or verified delivery. | [Architecture evolution](playbooks/architecture-evolution.md) |
 | Incident recovery | An active disruption needs mitigation and verified recovery. Diagnosis-only remains Investigation. | [Incident recovery](playbooks/incident-recovery.md) |
 | Release and rollout | An accepted candidate needs release planning, publication, deployment or live acceptance. | [Release and rollout](playbooks/release-rollout.md) |
-| PR readiness | An existing PR/MR needs status or work toward mergeability. | `wo-pr`; route confirmed blockers to their owners and return for current readiness. Observation-only requests stay read-only. |
+| PR readiness | An existing PR/MR needs status or work toward mergeability. | `seda-pr`; route confirmed blockers to their owners and return for current readiness. Observation-only requests stay read-only. |
 
 ### Run the selected path
 
@@ -66,7 +66,7 @@ An explicit specialist request stays with that specialist when it fits. These ro
 - Material domain identity, lifecycle, policy, ownership or invariants whose applicability is unsettled → `amose`, even when the vocabulary is familiar. Reuse current applicable domain evidence.
 - Unresolved technical structure or unestablished fitness of a consequential mechanism for the confirmed purpose/domain/quality drivers → `architect`; unresolved observable behavior → `atona` in behavior-contract mode. Use both when both results remain open; reuse sufficient current design evidence without automatic redesign.
 - Independent code judgment → `atunwo`; measured keep/revert comparison → `adanwo` in measured-experiment mode. A disposable prototype to settle an interaction, API or technical choice → `adanwo` in exploration mode, returning evidence to the deciding owner before delivery.
-- Authorized publication → `wo-pr` in publication mode. Readiness, publication, approval and merge remain distinct.
+- Authorized publication → `seda-pr` in publication mode. Readiness, publication, approval and merge remain distinct.
 - Agent-facing text steering selection, decisions, authority, execution, or completion → `oro` in its agent-facing branch.
 - Human-facing text for comprehension, action, or communication → `oro` in its human-facing branch.
 - Capability readiness → the applicable project or host owner; preserve evidence and authority boundaries in the semantic owner.

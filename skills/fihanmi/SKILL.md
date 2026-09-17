@@ -17,7 +17,7 @@ Reuse the current topic and evidence; do not restart research or create a new ar
 
 For logic, structure, ordering, state or a change, read [visual explanation](references/visual-explanation.md). A short paragraph can be enough. Otherwise select the code specimen, conceptual diff, tree, diagram or comparison that answers the actual question; do not fill a gallery of every form.
 
-Keep PR/MR briefs useful in the provider's native Markdown. Place the consequential change, evidence and qualification together; keep blockers visible rather than hiding them in disclosure or an external HTML report. `wo-pr` owns the brief, risk assessment and publication; `atunwo` owns independent review. Use `html-artifact` only when a browser artifact is requested or materially needed, not as the default for a PR body.
+Keep PR/MR briefs useful in the provider's native Markdown. Place the consequential change, evidence and qualification together; keep blockers visible rather than hiding them in disclosure or an external HTML report. `seda-pr` owns the brief, risk assessment and publication; `atunwo` owns independent review. Use `html-artifact` only when a browser artifact is requested or materially needed, not as the default for a PR body.
 
 ## Orient before elaborating
 

@@ -97,5 +97,19 @@
       "Produces a new HTML artifact despite the inline request.",
       "Presents the sketch as a passing runtime result."
     ]
+  },
+  "new-contract-outline": {
+    "must": [
+      "Explain the operator need before the implementation and make retained external objects visible as a caveat.",
+      "Show the new endpoint contract as a complete conceptual shape, then enough of the asynchronous path to explain it; no file inventory.",
+      "Keep local transaction and external storage effects distinct and preserve the supplied status vocabulary.",
+      "State that checks have not run and rollback does not remove completed objects.",
+      "Return native Markdown only, without creating a PR, a description sidecar or an HTML artifact."
+    ],
+    "reject": [
+      "Fabricates an old endpoint contract, source locations or passing proof.",
+      "Requires a hosted PR or .humanlayer task directory merely to draft the supplied change.",
+      "Expands the outline into unrelated diagrams or hides the recovery limitation."
+    ]
   }
 }

@@ -86,13 +86,13 @@ Common entrypoints:
 | `alarina` | Select or use an engineering playbook, compose or resume work across owners, or find the starting owner |
 | `codex-orchestra` | Apply the bounded Codex delegation profile under an Astra main agent when useful or requested |
 | `fihanmi` | Supplied material needs a compact visual explanation or useful default presentation |
-| `wo-pr` | A PR/MR needs a reviewer-facing description, publication, or stewardship toward a human merge decision |
+| `seda-pr` | A PR/MR needs a reviewer-facing description, creation, publication, or babysitting toward a human merge decision |
 
 Alárinà uses installed skill definitions as the dynamic inventory.
 
 `fihanmi` owns shared presentation and the visual-explanation method used by `oro`, `html-artifact`, and reviewer-facing PR work.
 
-Use `wo-pr` in description mode to draft or improve a PR body without committing or pushing. Publication uses the same [reviewer brief](skills/wo-pr/references/reviewer-brief.md): domain meaning, the consequential change, actual evidence, merge risk and recovery, and the important review focus.
+Use `seda-pr` in description mode to draft or improve a PR body without committing or pushing; publication and babysitting use the same skill. Its [reviewer brief](skills/seda-pr/references/reviewer-brief.md) leads with purpose, caveats and a change-shaped outline, supported by actual evidence and recovery limits. `seda-pr` replaces `wo-pr` without an alias; update explicit references and selective installations to the new name.
 
 Atọ́nà maintains one living HTML plan, including decisions, evidence, progress and next action. It does not create an equivalent Markdown plan; independent specifications, architecture records and source evidence keep their useful existing formats.
 

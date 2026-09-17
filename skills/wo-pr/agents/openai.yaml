@@ -1,5 +1,0 @@
-interface:
-  display_name: "Wò PR"
-  short_description: "Publish or ready PRs and MRs"
-policy:
-  allow_implicit_invocation: true
