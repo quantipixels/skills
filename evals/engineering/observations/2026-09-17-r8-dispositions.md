@@ -4,6 +4,34 @@ Source cut: `ori` `5fd8d75b` (includes #166 and #167). This is a disposition rec
 not a second implementation plan. The user authorized two focused recovery PRs and donor
 retirement after retained items have destinations; merges and release publication are not implied.
 
+Published destinations: [PR 1 / #168](https://github.com/quantipixels/skills/pull/168)
+and [PR 2 / #169](https://github.com/quantipixels/skills/pull/169). PR 2 is stacked on
+PR 1. [Release #144](https://github.com/quantipixels/skills/pull/144) remains gated on
+their accepted source cut and the outstanding behavioral evidence described below.
+
+## Executed verification and remaining gates
+
+The combined candidate passed 40 engineering tests, 5 native verifier tests and one
+session-evidence test. The strengthened private Java oracle passed its five controls
+again at `7ea555c`; independent Luna review closed its runtime-alias and C15 authority
+findings. The 19 skill identities, entrypoint links, both package manifests and
+whitespace checks passed. These checks establish the tested mechanical boundaries,
+not model performance.
+
+Disposable installations using Codex 0.154.0 and Claude 2.1.263 both matched the
+candidate inventory: 19 skills and one agent. Package input digest:
+`5d9f1eecc0e2c2878823c1325109426c28d79c3ca14f31a7553b20c2a72e121f`.
+Each host also matched three sampled source files; this is not full-file equality
+or fresh-session discovery/invocation evidence. Temporary host configurations were removed.
+
+The seven C15 compression cases and two domain-value cases are prepared for matched
+baseline/candidate runs. The proposed 18 Luna/high runs (180 seconds and 12 tool calls
+each, no retries) await resource authorization. No model campaign ran and no quality,
+latency or cost improvement is claimed. PR 1 must land, PR 2 must be refreshed against
+current ori, and these behavioral cases must be dispositioned before PR 2 is merge-ready.
+Fresh-session native discovery/invocation and regeneration of the release plan from
+the final accepted source cut remain release gates.
+
 The user's execution amendment removes tool recommendation from this repository. It supersedes
 Revision 8's mutually inconsistent tool-selection, provider recommendation and startup-hint proposals.
 No replacement catalogue, hook or public setup skill is adopted. Evidence semantics remain with
