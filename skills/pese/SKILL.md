@@ -14,7 +14,7 @@ Direct invocation authorizes task-scoped staging, an ephemeral local listener if
 
 ## Resolve tooling from current official evidence
 
-Resolve volatile syntax from the installed transport and current official documentation: [Tailscale Serve](https://tailscale.com/docs/features/tailscale-serve) or [Tailcat](https://github.com/tailscale/tailcat). For installed Tailcat, prefer its embedded documentation. If installation or configuration must change, use `irinse`; this skill does not own setup guidance.
+Resolve volatile syntax from the installed transport and current official documentation: [Tailscale Serve](https://tailscale.com/docs/features/tailscale-serve) or [Tailcat](https://github.com/tailscale/tailcat). For installed Tailcat, prefer its embedded documentation. If installation or configuration must change, use the installed transport's supported interface; this skill does not own setup guidance.
 
 ## Bound the resource
 
@@ -54,7 +54,7 @@ Tailcat transports TCP rather than serving files. When needed, expose only a tas
 
 The access target for Tailcat is the complete receiver invocation that retrieves/opens the requested resource, together with a separately secured connection token where the current CLI requires one. Do not return only a token, sender command, port number, or setup steps.
 
-If Tailcat must be installed or its setup changed, use `irinse`; never silently substitute a public tunnel.
+If Tailcat must be installed or its setup changed, use its supported installation/configuration path; never silently substitute a public tunnel.
 
 ## Prove the access target
 

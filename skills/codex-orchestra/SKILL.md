@@ -14,7 +14,7 @@ Honor a no-subagent instruction by doing permitted work directly and exposing an
 
 Apply this profile only under Codex with an Astra root. If either condition is unmet or unknown, return that profile gap to the caller without switching the root; unrelated work can continue under actual user/host rules. Do not edit configuration, custom-agent definitions, permissions, or installation state. No external-CLI workaround, provider proxy, daemon, or settings schema is part of this skill.
 
-Check only capabilities needed by the selected assignment. Native definitions may pin settings: do not assume requested spawn fields override them. Use a compatible native/general worker when its effective settings can be established; use `irinse` for a consequential capability or precedence uncertainty. If model/control certainty is inadequate, do not launch that worker. Continue permitted root work or return the affected gap. After an observed mismatch, suspend that path and investigate rather than repeating it.
+Check only capabilities needed by the selected assignment. Native definitions may pin settings: do not assume requested spawn fields override them. Use a compatible native/general worker when its effective settings can be established; investigate any consequential capability or precedence uncertainty through the host. If model/control certainty is inadequate, do not launch that worker. Continue permitted root work or return the affected gap. After an observed mismatch, suspend that path and investigate rather than repeating it.
 
 ## Choose useful capacity
 

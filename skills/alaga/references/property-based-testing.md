@@ -28,4 +28,4 @@ Method: Hypothesis [stateful testing](https://hypothesis.readthedocs.io/en/lates
 
 Retain original input, minimized counterexample, seed, framework/version and observed failure. Shrinking should preserve domain constraints and the failing mechanism; the smallest value under the shrinker's ordering is not necessarily the root cause. Reproduce the counterexample, then distinguish implementation defect, wrong property, invalid generator, ambiguous requirement and environment/flakiness. Fix the actual cause; retain a deterministic regression example when useful alongside the property.
 
-Use the project's existing framework. For non-obvious runner/discovery setup, use `irinse` for property-test runner guidance. Adding a dependency remains subject to the task's scope. Pure-function properties do not establish persistence behavior or assembled journeys.
+Use the project's existing framework. Resolve non-obvious runner/discovery setup from project guidance and the installed framework. Adding a dependency remains subject to the task's scope. Pure-function properties do not establish persistence behavior or assembled journeys.

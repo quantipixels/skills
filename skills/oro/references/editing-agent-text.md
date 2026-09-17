@@ -43,7 +43,7 @@ Do not keep topology, compatibility, or safeguards merely because they existed b
 Good:
 
 - Retire a compatibility note after the compatibility window genuinely ends.
-- Replace repeated setup prose with `irinse` plus the one relevant mode/constraint.
+- Replace repeated setup prose with the project's or host's supported setup path plus the one relevant mode/constraint.
 - Keep a routing boundary that prevents a real adjacent-owner collision.
 
 Bad:

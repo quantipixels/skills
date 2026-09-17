@@ -69,7 +69,7 @@ An explicit specialist request stays with that specialist when it fits. These ro
 - Authorized publication → `wo-pr` in publication mode. Readiness, publication, approval and merge remain distinct.
 - Agent-facing text steering selection, decisions, authority, execution, or completion → `oro` in its agent-facing branch.
 - Human-facing text for comprehension, action, or communication → `oro` in its human-facing branch.
-- Companion-tool selection, effective use, or readiness → `irinse`, including tools, host policy, and native agent declarations.
+- Capability readiness → the applicable project or host owner; preserve evidence and authority boundaries in the semantic owner.
 - Establish what happened, recovery cost, recurring friction, or which durable improvement the evidence earns → `ayewo-igba-ise`. When remediation is also requested, finish that judgment, then carry the justified correction through its owner and affected proof.
 - Apply an established lesson → `alaga` for code, `oro` for instructions, or `amose` for qualifying durable project knowledge. Reuse stronger existing records; a completed task does not require a new lesson or postmortem.
 
@@ -87,7 +87,7 @@ When several independently owned results need coordination, give progression to 
 
 For the selected result, consider installed language, framework, design, browser, research, and artifact capabilities whose expertise would materially improve execution or proof. Read the selected skill and only applicable supporting references. Supporting capabilities stay subordinate to the current owner unless their output becomes an independently required result. Routing never grants edit, publication, merge, deletion, installation, or other authority.
 
-Choose evidence capabilities from the question before dispatch: source shape, symbol identity, runtime or measurement semantics may warrant `irinse` immediately. Give the owning skill the required evidence and material coverage limits; it retains the judgment. Ordinary reads and adequate native commands stay direct; a tool listed in a skill is not necessarily available in the host.
+Choose evidence capabilities from the question before dispatch: source shape, symbol identity, runtime or measurement semantics may require a project or host capability. Give the owning skill the required evidence and material coverage limits; it retains the judgment. Ordinary reads and adequate native commands stay direct.
 
 Carry the requested result and stopping point, accepted decisions, scope and existing authority, exact candidate/workspace or source locators, current evidence and gaps, and the next consumer. Include only what changes the receiver's work; reuse the conversation or existing artifact when sufficient instead of creating a handoff document by default.
 

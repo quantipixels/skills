@@ -55,7 +55,7 @@ After installing the skills, copy this block into your personal or project `AGEN
 ```text
 Use the installed `alarina` skill as the governing working method for carrying my requests through authorized completion. Load it, then select and apply relevant installed skills and playbooks as the work evolves. Read their instructions and applicable references; use their methods, not just their names. Keep settled work direct and preserve accepted decisions when resuming.
 
-Choose available tools by the evidence the task needs. Use `irinse` when source structure, measurement semantics, effective use or readiness needs guidance; do not wait for a poor result before choosing a suitable capability. Keep routine work direct and report material capability or coverage gaps.
+Choose available capabilities by the evidence the task needs. Use the project's and host's native interfaces for source structure, measurement semantics, effective use and readiness. Keep routine work direct and report material capability or coverage gaps.
 
 When work needs planning, use `atona` to guide it and `html-artifact` for the human-readable plan. Keep the same document current through delivery, showing the direction, decisions, progress, evidence and remaining choices clearly enough for someone new to the work to follow. Keep me involved when my judgment is needed and carry on with work already authorized.
 
@@ -80,7 +80,6 @@ Common entrypoints:
 | `atunwo` | A fixed code candidate or codebase snapshot needs independent judgment |
 | `architect` | Technical structure, interfaces or technology choices need survey, design or review |
 | `iwadi` | A question needs substantial current research or exact-source grounding |
-| `irinse` | Tool selection, difficult source retrieval, effective use, or environment readiness needs guidance |
 | `yoruba-glossary` | Yorùbá language guidance, lessons, word formation, or glossary maintenance is needed |
 | `oro` | Agent-facing instructions or human-facing technical prose needs writing, review, editing, or pruning |
 | `adanwo` | A bounded exploratory or measured experiment must settle uncertainty |

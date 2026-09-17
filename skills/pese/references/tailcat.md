@@ -10,7 +10,7 @@ Tailcat has no stability promise for its CLI, API, wire format, or public relay 
 
 For an installed Tailcat, use its embedded documentation and on-demand help to resolve the needed interface; installed behavior outranks newer examples. If it is absent and installation is authorized, use current official upstream documentation at execution time.
 
-Use `irinse` when installation or upgrade is required. An unrelated executable/package named `tailcat` is not sufficient identity.
+Use the supported installation or upgrade path when required. An unrelated executable/package named `tailcat` is not sufficient identity.
 
 ## Security and stability boundary
 

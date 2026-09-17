@@ -359,10 +359,10 @@ class PlaybookEvaluationTest(unittest.TestCase):
             set(manifest["selected_cases"]),
         )
         self.assertTrue((study / "runs" / "verification-alaga-r1" / "actor" / "guidance" / "oro" / "SKILL.md").is_file())
-        self.assertTrue((study / "runs" / "profile-alaga-r1" / "actor" / "guidance" / "irinse" / "SKILL.md").is_file())
+        self.assertTrue((study / "runs" / "profile-alaga-r1" / "actor" / "guidance" / "alaga" / "SKILL.md").is_file())
         profile_spec = next(item for item in manifest["runs"] if item["id"] == "profile-alaga-r1")
         self.assertIn("workspace/capture.json", profile_spec["protected_hashes"])
-        self.assertIn("guidance/irinse/SKILL.md", profile_spec["protected_hashes"])
+        self.assertIn("guidance/alaga/SKILL.md", profile_spec["protected_hashes"])
 
         selected = self.prepare("profile")
         selected_manifest = json.loads((selected / "manifest.json").read_text())

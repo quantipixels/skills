@@ -54,45 +54,13 @@ Keep file and line order meaningful in the DOM. Do not rely on color alone to di
 
 A diff is evidence, not the complete review. Keep supplied behavioral context, findings, tests, risks, limits, and disposition visible at the resolution needed for the reader's task. Do not infer a verdict from the shape or size of the change.
 
-## Use Pierre Diffs when it earns the dependency
+## Use a specialized renderer only when it earns the dependency
 
-[`@pierre/diffs`](https://diffs.com/docs) is the selected specialized renderer for syntax-aware, multi-file, annotated, selectable, virtualized, or otherwise interaction-heavy code views. Prefer native HTML/CSS for a small static diff and reuse an equivalent renderer when the existing host application already owns one.
+For syntax-aware, multi-file, annotated, selectable, virtualized, or interaction-heavy code views, use an exact compatible renderer already available in the project or host. Prefer native HTML/CSS for a small static diff and reuse an equivalent renderer when the containing application already owns one.
 
-The renderer belongs to exact source-change inspection, not to the PR/code-review lane. Apply the same boundary when another report, plan, assessment, or supplied artifact needs that capability.
+The renderer belongs to exact source-change inspection, not to the PR/code-review lane. Revalidate its current package identity, API, browser support, license and delivery boundary at implementation time. Render every returned file from a supplied patch; label intentional partial views and identify omitted coverage. Patch metadata is partial unless authorized full old/new contents hydrate it. Derive cache keys from the pinned candidate and change them whenever source contents, filename, language or revision changes.
 
-Use current official documentation and the installed package API. Revalidate package identity, version, exports, options, browser support, and license at implementation time.
-
-The representative vanilla entry point is:
-
-```ts
-import { FileDiff, parsePatchFiles } from "@pierre/diffs";
-
-const patches = parsePatchFiles(patchText, candidateCacheKey);
-const files = patches.flatMap((patch) => patch.files);
-const container = document.querySelector<HTMLElement>("#diff")!;
-
-container.replaceChildren();
-if (files.length === 0) {
-  container.dataset.diffState = "empty";
-  container.textContent = "No renderable file diffs were found.";
-} else {
-  for (const fileDiff of files) {
-    const fileContainer = document.createElement("section");
-    container.append(fileContainer);
-
-    const view = new FileDiff({
-      theme: { dark: "pierre-dark", light: "pierre-light" },
-    });
-    view.render({ fileDiff, containerWrapper: fileContainer });
-  }
-}
-```
-
-Use `parsePatchFiles` for a supplied unified patch and render every returned file. If the view intentionally renders only one file, label it `Partial` and identify the omitted coverage. Patch metadata is partial unless authorized full old/new contents hydrate it. Use `parseDiffFromFile` when exact file contents are available; pass `null` for the missing side of an added or deleted file. Derive cache keys from the pinned candidate and change them whenever source contents, filename, language, or revision changes.
-
-Pierre renders code; it does not fetch a pull request or merge request, decide completeness, perform review, or publish comments. Do not use its experimental editing, merge-resolution, or worker surfaces for a read-only review view unless the requested outcome requires that distinct behavior and it is separately justified and proved.
-
-Do not assume network access at artifact runtime. For a standalone artifact, use a compatible installed package or use `irinse` to ready it at generation time, then bundle the required runtime resources into the output. Do not vendor the package into this skill only to make the optional branch available. If Pierre cannot be readied, render a native semantic diff instead.
+The renderer does not fetch provider candidates, decide review completeness, perform review, or publish comments. Keep the review boundary and exact source identity with this skill. If the renderer cannot be readied, render a native semantic diff. Do not assume network access at artifact runtime or load executable code from a CDN; preserve a readable exact-code fallback and the complete pinned patch link when highlighting or JavaScript fails.
 
 Do not load executable code from a CDN or send code to a live service. Prefer pre-rendered or server-rendered readable markup where the actual build supports it. Otherwise retain semantic candidate/context/summary content, a readable exact-code fallback for required changed lines, and a link to the complete pinned patch when JavaScript or highlighting fails.
 
@@ -109,4 +77,4 @@ Always run structural proof against the exact candidate:
 - confirm the bundled dependency identity and absence of unrequested runtime hosts; and
 - confirm the fallback preserves the candidate identity, essential change meaning, and retrieval path.
 
-Pierre does not by itself promote a document-shaped review view into browser acceptance. Apply the parent HTML Artifact verification contract: use at most a bounded render smoke when renderer/readability uncertainty materially threatens the document result; use targeted or deep browser proof only when rendered interaction itself is part of the accepted result or a specific runtime/browser-dependent claim remains material. Test only the smallest Pierre behavior needed to falsify that claim.
+A renderer does not by itself promote a document-shaped review view into browser acceptance. Apply the parent HTML Artifact verification contract: use at most a bounded render smoke when renderer/readability uncertainty materially threatens the document result; use targeted or deep browser proof only when rendered interaction itself is part of the accepted result or a specific runtime/browser-dependent claim remains material. Test only the smallest renderer behavior needed to falsify that claim.

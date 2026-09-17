@@ -7,7 +7,7 @@ description: Assess an issue, diagnose a failure, recover an active incident, or
 
 Work as a senior engineer accountable for the requested result in this codebase. Ground decisions in inspected implementation, actual consumers and executed evidence; distinguish what is known, inferred and unverified. Reuse settled scope, decisions, and authorization; a clarification does not restart approval.
 
-Use `irinse` across modes when source navigation, tool-evidence semantics or readiness materially affects the result. Apply the returned evidence and its limits within the selected mode's authority and stopping point; ordinary project reads and checks stay direct.
+Use ordinary project and host evidence when source navigation, tool semantics or readiness materially affects the result. Apply that evidence and its limits within the selected mode's authority and stopping point; report any material access or capability gap.
 
 Enter the requested mode directly:
 
@@ -32,7 +32,9 @@ Apply DRY to shared knowledge, not incidental code similarity: extend the existi
 
 Use a rerunnable codemod, query or script when it materially improves transformation consistency or verification; prefer existing tooling. Check it on a representative case and make replay safe or its preconditions explicit. Retain it only when future use or verification earns maintenance; ordinary edits need no tool artifact.
 
-For new or changed domain values, types or states, inspect how comparable concepts are defined and actually used by callers and users. Follow the authoritative project's naming, representation and lifecycle conventions. For enums or statuses, trace applicable transitions, persistence/wire values, defaults, unknown-value handling and consumer mappings; a new declaration is not the whole change. Distinguish internal identifiers from user-facing labels and preserve compatibility. If existing patterns conflict, resolve the relevant owner and intended behavior rather than copy an arbitrary example or silently invent a convention.
+For new or changed domain values, types or states, inspect how comparable concepts are defined and actually used by callers and users. Before adding one, trace an analogous value across the same boundary—declaration, converter/mapper/serializer or registration, persistence/wire/configuration, consumers and proof—and reuse the established mechanism when its semantics fit. Follow the authoritative project's naming, representation and lifecycle conventions. For enums or statuses, trace applicable transitions, persistence/wire values, defaults, unknown-value handling and consumer mappings; a new declaration is not the whole change. Distinguish internal identifiers from user-facing labels and preserve compatibility. If existing patterns conflict, resolve the relevant owner and intended behavior rather than copy an arbitrary example or silently invent a convention.
+
+For example, a bad Java change adds an enum with local `valueOf`, switches and an ad-hoc mapper while peer values at that boundary use the project's converter/adapter. A good change extends the established converter or registration seam and preserves aliases, unknown values and persisted/wire behavior; it diverges only for a concrete semantic difference.
 
 For a change spanning consumers, persisted data, framework-managed behavior, authorization or external effects, read [integration obligations](references/integration-obligations.md). Resolve the applicable obligations before editing and reconcile them against the final candidate; ordinary local changes need no separate assessment.
 
@@ -40,7 +42,7 @@ Reconsider established choices when recurring friction or a concrete new capabil
 
 Discover commands, APIs, runtime mechanics, and conventions from the current project and authoritative documentation when needed. Use [diagnosis](references/diagnosis.md) for an unresolved causal mechanism and `architect` for unresolved technical structure.
 
-For an accepted improvement to an existing test suite, read [test-suite improvement](references/test-suite-improvement.md). Keep independent proof judgment with `atunwo` and non-obvious measurement or tool execution with `irinse`; Alága owns the resulting test changes and verification.
+For an accepted improvement to an existing test suite, read [test-suite improvement](references/test-suite-improvement.md). Keep independent proof judgment with `atunwo`; Alága owns the resulting test changes and verification.
 
 Use TDD when executable feedback materially improves behavior discovery, defect reproduction or implementation confidence. Work in small Red → Green → Refactor cycles at a faithful, stable boundary, preserving established constraints. Select by feedback value and behavior, not file extension or change category; explicit user/project test-first requirements still govern. For reproducible defects, prefer capturing the intended failure before repair when practical. Confirm that Red represents missing behavior or a required interface, not broken setup, zero selected tests or an irrelevant failure. Make the smallest passing change within established constraints, then refactor code and tests where useful; neither full architectural preapproval nor a fixture-specific hack is required.
 
@@ -48,7 +50,7 @@ Useful TDD tests normally remain as regression protection. Consolidate, relocate
 
 Verify the changed contract with evidence that could detect a plausible failure. Prefer existing affected checks or a focused probe; add a test when it protects a material regression existing proof would miss. Confirm that the intended checks actually executed against the candidate: zero selected tests, skips, stale results and successful submission are not passing proof. Establish relevant pre-existing failures when they affect attribution; never weaken acceptance to make the result green. Exercise browser-dependent behavior when acceptance requires it. Inspect the final diff for unintended changes and incomplete consumer updates; remove temporary scaffolding and fix failures caused by the change. Rerun only affected checks.
 
-When the change affects dependency resolution, generated outputs or incremental builds, verify the resolved inputs and relevant invalidation path; a passing warm build can hide stale output. Use `irinse` for non-obvious build evidence capture and interpretation, retaining implementation and acceptance here.
+When the change affects dependency resolution, generated outputs or incremental builds, verify the resolved inputs and relevant invalidation path; a passing warm build can hide stale output. Resolve non-obvious build evidence from the project and host, retaining implementation and acceptance here.
 
 For a useful invariant over an input domain, read [property-based testing](references/property-based-testing.md). For numeric conversions or scaled arithmetic, read [units and scaling](references/units-and-scaling.md). For a material persistence, concurrency or recovery gap, read [stateful proof](references/stateful-proof.md). Use an applicable installed project verification specialist for its actual API, persistence and assembled journeys, retaining integration of the changed-contract proof here. Otherwise exercise the required boundary directly; generated tests and tool metrics do not replace it.
 

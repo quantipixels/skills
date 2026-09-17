@@ -41,6 +41,6 @@ Idempotency handles repeated operations. **Isolation** concerns overlapping oper
 
 When many action orders matter, **stateful property testing** generates sequences against a small independent model of the promised behavior. It can search for a failing order and shrink it to a shorter explanation. Generated sequential actions do not establish correctness under concurrent execution.
 
-Within QP, `architect` owns a consequential identity or shared-state design, `alaga` implements and proves the changed behavior, `atunwo` judges the candidate and its evidence independently, and `irinse` resolves a non-obvious tool requirement. Use only the owners needed for the actual question.
+Within QP, `architect` owns a consequential identity or shared-state design, `alaga` implements and proves the changed behavior, and `atunwo` judges the candidate and its evidence independently. Use only the owners needed for the actual question.
 
 Sources: [AWS on idempotent APIs](https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/), [PostgreSQL isolation](https://www.postgresql.org/docs/current/transaction-iso.html), and [Hypothesis stateful testing](https://hypothesis.readthedocs.io/en/latest/stateful.html). The stated provider contract is an assumption of this example; verify a real provider's contract before applying it.

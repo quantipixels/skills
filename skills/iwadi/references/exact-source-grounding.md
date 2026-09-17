@@ -22,7 +22,7 @@ Trace from the relevant API, symbol, behavior, error, configuration key, or test
 4. owning first-party specs/reference/release notes/examples; then
 5. current upstream head only when it is the relevant target.
 
-Use `irinse` when source retrieval or symbol resolution cannot establish the controlling path with ordinary search. Keep the pinned upstream version and acquisition authority; a tool's map, index or name match does not establish which implementation governs the claim. Ìwádìí retains the conclusion and its uncertainty.
+When ordinary search cannot establish the controlling path, use the applicable repository, provider or package capability while keeping the pinned upstream version and acquisition authority. A tool's map, index or name match does not establish which implementation governs the claim. Ìwádìí retains the conclusion and its uncertainty.
 
 Delegate bounded source exploration when it would materially pollute the active context; return only evidence needed for the conclusion.
 
@@ -30,7 +30,7 @@ Delegate bounded source exploration when it would materially pollute the active 
 
 Every material claim must identify the owning project and exact source identity, preferably repository/ref/commit plus path and symbol/line range. State what each item proves.
 
-Classify confidence as:
+Classify source-match status as:
 
 - `EXACT` — evidence matches the controlling version/ref;
 - `COMPATIBLE_INFERENCE` — exact source is unavailable but compatible first-party evidence supports a bounded conclusion;
@@ -39,4 +39,4 @@ Classify confidence as:
 
 Never present the latter three as exact source truth.
 
-Return the conclusion, resolved version/ref, confidence, compact source locators with what they prove, engineering consequence, and remaining evidence gaps. Do not dump repository excerpts or the discovery transcript into the caller's context.
+Return the conclusion, resolved version/ref, source-match status, compact source locators with what they prove, engineering consequence, and remaining evidence gaps. Do not dump repository excerpts or the discovery transcript into the caller's context.
