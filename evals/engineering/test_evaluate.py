@@ -1,4 +1,5 @@
 import argparse
+import hashlib
 import importlib.util
 import json
 import math
@@ -8,6 +9,7 @@ import shutil
 import tempfile
 import time
 import unittest
+from unittest.mock import patch
 
 
 MODULE = Path(__file__).with_name("evaluate.py")
@@ -60,6 +62,41 @@ class EngineeringEvaluationTest(unittest.TestCase):
         report = self.check()
         self.assertEqual(8, len(report["results"]))
         self.assertEqual({"unrun"}, {item["status"] for item in report["results"]})
+
+    def test_guidance_root_is_validated_before_study_output_and_frozen_in_pairs(self):
+        missing = Path(self.case_temp.name) / "missing-guidance"
+        output = Path(self.case_temp.name) / "rejected-study"
+        with self.assertRaisesRegex(ValueError, "guidance root"):
+            evaluate.prepare(argparse.Namespace(
+                output=output, guidance_root=missing, host="test-host", model="test-model",
+                reasoning="medium", max_seconds=10, max_tool_calls=4,
+            ))
+        self.assertFalse(output.exists())
+
+        frozen = Path(self.case_temp.name) / "frozen-skills"
+        shutil.copytree(evaluate.SKILLS, frozen)
+        prepared = Path(self.case_temp.name) / "frozen-study"
+        evaluate.prepare(argparse.Namespace(
+            output=prepared, guidance_root=frozen, host="test-host", model="test-model",
+            reasoning="medium", max_seconds=10, max_tool_calls=4,
+        ))
+        manifest = json.loads((prepared / "manifest.json").read_text())
+        self.assertEqual(str(frozen.resolve()), manifest["guidance_source"])
+        self.assertIn("alaga", manifest["guidance_hashes"])
+        guidance = prepared / "runs" / "settlement-alaga-r1" / "actor" / "guidance" / "alaga" / "SKILL.md"
+        self.assertEqual(manifest["guidance_hashes"]["alaga"], hashlib.sha256(
+            json.dumps(evaluate.file_hashes(frozen / "alaga"), sort_keys=True, separators=(",", ":")).encode()
+        ).hexdigest())
+        spec = next(item for item in manifest["runs"] if item["id"] == "settlement-alaga-r1")
+        self.assertEqual(spec["protected_hashes"]["guidance/alaga/SKILL.md"], evaluate.digest(guidance))
+
+    def test_cleanup_failures_are_reported_and_owned_pipes_close(self):
+        with patch.object(evaluate, "stop_process_group", side_effect=evaluate.ProcessCleanupError("test cleanup failure")):
+            result = evaluate.subprocess_result(
+                [evaluate.sys.executable, "-c", "print('ok')"], Path(self.case_temp.name), timeout=2
+            )
+        self.assertEqual("cleanup-error", result["status"])
+        self.assertIn("test cleanup failure", result["stderr"])
 
     def test_partial_completion_preserves_record_and_missing_provenance(self):
         run = self.run_path()

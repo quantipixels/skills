@@ -190,6 +190,23 @@ def prepare(args):
     cells, selected_cases = profile_cells(profile, getattr(args, "case", None))
     if not cells:
         raise ValueError("at least one case must be selected")
+    guidance_root = getattr(args, "guidance_root", None) or SKILLS
+    guidance_root = Path(guidance_root).expanduser()
+    if not guidance_root.is_dir() or guidance_root.is_symlink():
+        raise ValueError(f"guidance root is not a directory: {guidance_root}")
+    guidance_root = guidance_root.resolve()
+    required_guidance = sorted({skill for case in selected_cases for skill in CASES[case]["guidance"]})
+    guidance_hashes = {}
+    for skill in required_guidance:
+        skill_root = guidance_root / skill
+        if skill_root.is_symlink() or not (skill_root / "SKILL.md").is_file():
+            raise ValueError(f"missing guidance skill: {skill}")
+        hashes = file_hashes(skill_root)
+        if not hashes:
+            raise ValueError(f"guidance skill is empty: {skill}")
+        guidance_hashes[skill] = hashlib.sha256(
+            json.dumps(hashes, sort_keys=True, separators=(",", ":")).encode()
+        ).hexdigest()
     output = args.output.absolute()
     if output.exists() or output.is_symlink():
         raise ValueError("study directory already exists; previous studies are never overwritten")
@@ -210,7 +227,7 @@ def prepare(args):
         treatment = ""
         if arm == "alaga":
             for skill in case_definition["guidance"]:
-                copy_without_cache(SKILLS / skill, actor / "guidance" / skill)
+                copy_without_cache(guidance_root / skill, actor / "guidance" / skill)
             if profile == "historical":
                 treatment = "Read guidance/alaga/SKILL.md and any directly relevant bundled references before working.\n"
             else:
@@ -280,6 +297,8 @@ def prepare(args):
         "selected_cases": selected_cases,
         "question": PROFILES[profile]["question"],
         "source_revision": git_source(),
+        "guidance_source": str(guidance_root),
+        "guidance_hashes": guidance_hashes,
         "checker_sha256": digest(Path(__file__)),
         "host": args.host,
         "model": args.model,
@@ -293,7 +312,25 @@ def prepare(args):
     return {"study": str(output), "runs": [item["id"] for item in runs], "status": "prepared-not-run"}
 
 
+class ProcessCleanupError(RuntimeError):
+    """The checker could not prove that an owned process group was reaped."""
+
+
+def _group_exists(process):
+    try:
+        os.killpg(process.pid, 0)
+    except ProcessLookupError:
+        return False
+    except PermissionError as error:
+        # macOS can report EPERM while an owned group is transitioning through
+        # leader exit. Keep the bounded signal/reap path active; once the
+        # leader is reaped, the group is treated as gone for this probe.
+        return process.poll() is None
+    return True
+
+
 def stop_process_group(process, grace=0.5):
+    """Terminate and reap the owned process group, or raise a truthful failure."""
     if os.name != "posix":
         if process.poll() is None:
             process.terminate()
@@ -301,23 +338,48 @@ def stop_process_group(process, grace=0.5):
                 process.wait(timeout=grace)
             except subprocess.TimeoutExpired:
                 process.kill()
-                process.wait(timeout=grace)
+                try:
+                    process.wait(timeout=grace)
+                except subprocess.TimeoutExpired as error:
+                    raise ProcessCleanupError("child process did not terminate") from error
         return
+
+    process.poll()
     try:
         os.killpg(process.pid, signal.SIGTERM)
     except ProcessLookupError:
-        return
-    deadline = time.monotonic() + grace
-    while time.monotonic() < deadline:
-        try:
-            os.killpg(process.pid, 0)
-        except ProcessLookupError:
-            return
-        time.sleep(0.01)
-    try:
-        os.killpg(process.pid, signal.SIGKILL)
-    except ProcessLookupError:
         pass
+    except PermissionError as error:
+        raise ProcessCleanupError(f"cannot terminate process group {process.pid}: {error}") from error
+    deadline = time.monotonic() + grace
+    while _group_exists(process):
+        process.poll()
+        if time.monotonic() >= deadline:
+            break
+        time.sleep(0.01)
+    if _group_exists(process):
+        try:
+            os.killpg(process.pid, signal.SIGKILL)
+        except ProcessLookupError:
+            pass
+        except PermissionError as error:
+            raise ProcessCleanupError(f"cannot kill process group {process.pid}: {error}") from error
+        kill_deadline = time.monotonic() + grace
+        while _group_exists(process) and time.monotonic() < kill_deadline:
+            process.poll()
+            time.sleep(0.01)
+        if _group_exists(process):
+            raise ProcessCleanupError(f"process group {process.pid} remained after SIGKILL")
+    try:
+        process.wait(timeout=grace)
+    except subprocess.TimeoutExpired as error:
+        raise ProcessCleanupError(f"process leader {process.pid} was not reaped") from error
+
+
+def _captured(value):
+    if isinstance(value, bytes):
+        return value.decode(errors="replace")
+    return value or ""
 
 
 def subprocess_result(command, cwd, timeout):
@@ -333,34 +395,44 @@ def subprocess_result(command, cwd, timeout):
             env=env,
             start_new_session=os.name == "posix",
         )
-        try:
-            stdout, stderr = process.communicate(timeout=timeout)
-        except subprocess.TimeoutExpired:
-            stop_process_group(process)
-            try:
-                stdout, stderr = process.communicate(timeout=1)
-            except subprocess.TimeoutExpired:
-                stdout, stderr = "", "process pipes remained open after termination"
-            return {
-                "status": "timeout",
-                "exit_code": None,
-                "stdout": stdout,
-                "stderr": stderr,
-            }
-        finally:
-            stop_process_group(process)
-    except subprocess.TimeoutExpired as error:
-        stdout = error.stdout.decode(errors="replace") if isinstance(error.stdout, bytes) else error.stdout or ""
-        stderr = error.stderr.decode(errors="replace") if isinstance(error.stderr, bytes) else error.stderr or ""
-        return {"status": "timeout", "exit_code": None, "stdout": stdout, "stderr": stderr}
     except OSError as error:
         return {"status": "error", "exit_code": None, "stdout": "", "stderr": f"{type(error).__name__}: {error}"}
-    return {
-        "status": "completed",
-        "exit_code": process.returncode,
-        "stdout": stdout,
-        "stderr": stderr,
-    }
+
+    stdout = stderr = ""
+    timed_out = False
+    cleanup_error = None
+    try:
+        try:
+            stdout, stderr = process.communicate(timeout=timeout)
+        except subprocess.TimeoutExpired as error:
+            timed_out = True
+            stdout, stderr = _captured(error.stdout), _captured(error.stderr)
+        try:
+            stop_process_group(process)
+        except ProcessCleanupError as error:
+            cleanup_error = str(error)
+            try:
+                process.kill()
+                process.wait(timeout=1)
+            except (OSError, subprocess.TimeoutExpired) as fallback_error:
+                cleanup_error = f"{cleanup_error}; fallback reap failed: {fallback_error}"
+        if timed_out:
+            try:
+                tail_out, tail_err = process.communicate(timeout=1)
+                stdout = _captured(tail_out) or stdout
+                stderr = _captured(tail_err) or stderr
+            except subprocess.TimeoutExpired as error:
+                cleanup_error = cleanup_error or f"process pipes remained open after termination: {error}"
+    finally:
+        if process.stdout is not None:
+            process.stdout.close()
+        if process.stderr is not None:
+            process.stderr.close()
+    if cleanup_error:
+        return {"status": "cleanup-error", "exit_code": process.returncode, "stdout": stdout, "stderr": f"{stderr}\n{cleanup_error}".strip()}
+    if timed_out:
+        return {"status": "timeout", "exit_code": None, "stdout": stdout, "stderr": stderr}
+    return {"status": "completed", "exit_code": process.returncode, "stdout": stdout, "stderr": stderr}
 
 
 def classify_tests(result):
@@ -543,7 +615,9 @@ def check_cell(study, manifest, spec, timeout):
             )
             original_oracle["status"] = classify_oracle(original_oracle)
         statuses = (oracle["status"], original_oracle["status"])
-        if "timeout" in statuses:
+        if "cleanup-error" in statuses:
+            status = "cleanup-error"
+        elif "timeout" in statuses:
             status = "timeout"
         elif "error" in statuses:
             status = "error"
@@ -613,7 +687,9 @@ def check_cell(study, manifest, spec, timeout):
         statuses = (tests["status"], oracle["status"], baseline_tests["status"],
                     feature_results["feature_acceptance"]["status"],
                     feature_results["feature_acceptance_against_original"]["status"])
-        if "timeout" in statuses:
+        if "cleanup-error" in statuses:
+            status = "cleanup-error"
+        elif "timeout" in statuses:
             status = "timeout"
         elif "error" in statuses:
             status = "error"
@@ -628,7 +704,9 @@ def check_cell(study, manifest, spec, timeout):
                 "acceptance": oracle, "tests_against_original": regression,
                 "baseline_tests": baseline_tests, **feature_results}
     statuses = (tests["status"], oracle["status"], regression["status"], baseline_tests["status"])
-    if "timeout" in statuses:
+    if "cleanup-error" in statuses:
+        status = "cleanup-error"
+    elif "timeout" in statuses:
         status = "timeout"
     elif "error" in statuses:
         status = "error"
@@ -725,6 +803,11 @@ def main():
     prep.add_argument("--max-seconds", type=float, required=True)
     prep.add_argument("--max-tool-calls", type=int, required=True)
     prep.add_argument("--profile", choices=sorted(PROFILES), default="historical")
+    prep.add_argument(
+        "--guidance-root",
+        type=Path,
+        help="frozen skills directory; validate and copy required guidance before creating the study",
+    )
     prep.add_argument(
         "--case",
         action="append",

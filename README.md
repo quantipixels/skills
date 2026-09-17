@@ -143,3 +143,5 @@ For Skills CLI, use `npx skills remove` and select the QP skills. Do not install
 Use [`AGENTS.md`](AGENTS.md) and `oro` for contribution and agent-instruction guidance. Change rationale and proof belong in PRs and CI.
 
 Use the opt-in [engineering evaluations](evals/README.md) to compare actual repairs with and without skill guidance. The kit checks executable contracts and regression detection; your native host runs the models.
+
+To verify a checkout through disposable native manager state, run `python3 scripts/plugins/verify_native_install.py`. Use `--host codex` or `--host claude` to select one manager. The check reports the `qp-skills` package identity, observed skill/agent scope, source revision, and hashes for a small sample of installed files; it does not prove fresh-session invocation.
