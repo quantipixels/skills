@@ -4,7 +4,7 @@ Use when the user requested a plan or build recommendation, a real blocker requi
 
 Return the recommended next action, its owner/skill, and any missing authority or prerequisite. Carry existing authorization forward. Align formal plan status, Decision Frontier, and delivery summary when those fields apply.
 
-- **Decision needed:** ask a single bounded choice directly, or use `arojinle` when the user requests an interview or dependent choices require a decision tree; name prerequisite evidence for blocked choices.
+- **Decision needed:** ask a single already-understood bounded choice directly, or use `arojinle` for unsettled desire, success, consequential trade-offs, latent dependent choices or a requested interview; name prerequisite evidence for blocked choices.
 - **Plan ready:** identify the first dependency-ready build action and whether delivery authority is already confirmed or still required.
 - **Delivery blocked:** state the incomplete outcome, exact blocker, and action needed to resume.
 - **Inactive:** name the owner and re-entry trigger.

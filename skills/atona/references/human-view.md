@@ -1,6 +1,6 @@
 # Living initiative brief
 
-Supply `html-artifact` with the reader’s current decision or concern, the plan revision, relevant candidate/evidence identities, and the existing view’s locator. Use one viewpoint unless another reader has a distinct decision.
+Supply `html-artifact` with the reader’s current decision or concern, the HTML plan's locator and revision, and relevant candidate/evidence identities. Maintain that same HTML as the plan; no equivalent Markdown source or separate source/view synchronization is required. Use one viewpoint unless another reader has a distinct decision.
 
 Establish the problem, affected people, intended outcome, proposed approach, rationale, and unfamiliar project terms for a reader with no prior project or chat context.
 

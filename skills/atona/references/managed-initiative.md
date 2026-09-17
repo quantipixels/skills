@@ -10,13 +10,13 @@ When a confirmed decision or material fact changes, update the affected plan mea
 
 ## 1. Establish the plan
 
-For every material initiative, maintain one semantic plan using [the plan record template](../templates/plan-record.md) as a contract rather than a rigid outline.
+For every material initiative, maintain one HTML plan using [the plan record template](../templates/plan-record.md) as content guidance rather than a generated Markdown sidecar or rigid outline.
 
 Keep it in current context when one-session use is sufficient. Persist only when continuity, recovery, independent review, or downstream consumption needs durable identity. Prefer an existing intentional project destination; otherwise use `.qp/atona/` in the current workspace.
 
 When execution is bound to a concrete working directory, persist its absolute path and branch as `<branch-name> [main|worktree]`. For a linked worktree, also persist the absolute main-worktree path. Treat that workspace and its `.qp` as the current initiative candidate; update the workspace fields when execution moves.
 
-Use `html-artifact` with [the initiative brief](human-view.md) for the required living view. Update the plan before the view; a stale view is not current evidence.
+Use `html-artifact` with [the initiative brief](human-view.md) to keep meaning and presentation current in that same HTML. Share one locator and revision; do not create or synchronize an equivalent Markdown plan.
 
 When supplied context already settles the initiative, synthesize it directly rather than replaying discovery. Separate confirmed context from inference and capture only the problem/outcome, acceptance, confirmed decisions, scope/non-goals, material proof expectations, current progression gate, and evidence identities needed to plan responsibly.
 
@@ -42,7 +42,7 @@ Keep the **current gate** explicit: the next material progression judgment the h
 
 Pin outcome, scope, constraints, assumptions, non-goals, evidence, risks, and open uncertainties. Read only current project/domain evidence that can materially change the plan.
 
-Use `amose` when unresolved project-specific meaning—terms, identities, boundaries, relationships, ownership, or invariants—can materially change the plan.
+Use `amose` when material project-specific meaning or applicability—terms, identities, state/lifecycle, policy, boundaries, relationships, ownership, or invariants—is unestablished. Familiar words do not settle applicability; current accepted domain evidence can.
 
 When the initiative is too uncertain to state responsibly at full depth, read [progressive shaping](progressive-shaping.md). Preserve known-but-not-yet-formulatable territory without inventing future requirements.
 
@@ -59,7 +59,7 @@ SPECIALIST_RESULT
 → independently useful design/domain/technical/normative result the plan cannot responsibly invent.
 
 MATERIAL_USER_DECISION
-→ consequential choice that changes accepted outcome, scope, policy, experience, risk, cost, compatibility, or trade-off; ask a single bounded choice directly, or use `arojinle` when the user requests an interview or dependent choices require decision-tree closure.
+→ consequential choice that changes accepted outcome, scope, policy, experience, risk, cost, compatibility, or trade-off; ask a single already-understood bounded choice directly. Use `arojinle` for unsettled purpose, beneficiary, success, consequential trade-offs, latent dependent choices, or a requested interview.
 ```
 
 Maintain one Decision Frontier state:
@@ -70,7 +70,7 @@ OPEN    — at least one material user decision is answerable now.
 BLOCKED — material user decisions remain but prerequisite evidence/results are missing.
 ```
 
-When `OPEN`, ask one bounded independent choice directly or use `arojinle` for an interview-shaped frontier. When `BLOCKED`, resolve the missing prerequisites. Do not reopen settled decisions.
+When `OPEN`, ask one already-understood bounded choice directly or use `arojinle` to establish desire and close consequential branches. When `BLOCKED`, resolve the missing prerequisites. Do not reopen settled decisions or manufacture questions for a complete brief.
 
 Use other skills when they improve the plan; keep routine composition out of its lifecycle stages.
 
@@ -81,8 +81,8 @@ Before setting `Planned`, ask whether a fresh delivery/review owner would otherw
 Use these seams when they are actually required:
 
 - **Normative behavior / operating rules** — require a current [behavior contract](behavior-contract.md) with `SPEC_READY` when material behavior needs an implementation-independent contract for delivery/review, unless an established domain authority already owns the equivalent contract.
-- **Software/system architecture** — require current `architect: IMPLEMENTATION_READY` when delivery would otherwise have to invent material system boundaries, ownership, topology, migration/recovery, compatibility, or another architecture-level decision.
-- **Consequential user choice** — keep the Decision Frontier open/blocked; ask one bounded choice directly or use `arojinle` for an interview-shaped frontier. Do not bury the decision inside another specialist result.
+- **Software/system architecture** — require current `architect: IMPLEMENTATION_READY` when delivery would otherwise have to invent material system boundaries, ownership, topology, migration/recovery, compatibility, or another architecture-level decision. Establish consequential mechanism fitness for confirmed purpose/domain/quality drivers; reuse sound current evidence without automatic redesign.
+- **Consequential user choice** — keep the Decision Frontier open/blocked; ask one already-understood bounded choice directly or use `arojinle` for unsettled desire, trade-offs or latent dependent choices. Do not bury the decision inside another specialist result.
 - **Delivery decomposition** — use [delivery decomposition](decomposition.md) as needed.
 
 Retain the identities and readiness of required specialist results, not their procedures.
@@ -109,7 +109,7 @@ If the premortem or another required result is absent, stale, blocked, or not re
 
 When delivery is authorized, continue through the main skill’s build and verification loop. When coordination is material, read [delivery tracking](delivery-tracking.md). Consume active delivery owners' native results rather than copying their lifecycle/proof mechanics into Atọ́nà.
 
-After a material result changes plan meaning, update the semantic plan first. Recompute the current gate, weakest limiting claim/gap, and stale dependencies; refresh the living view with their effect on the direction and next action. Keep non-plan-affecting operational detail with its native owner.
+After a material result changes plan meaning, update the same HTML plan. Recompute the current gate, weakest limiting claim/gap, and stale dependencies; show their effect on the direction and next action. Keep non-plan-affecting operational detail with its native owner.
 
 ## 6. Reconcile and close
 

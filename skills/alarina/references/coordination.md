@@ -6,6 +6,8 @@ Read when several owners or delegated workers can materially advance the request
 
 The main agent conducts and may execute the whole task directly. Preserve accumulated understanding for coupled work. Delegate bounded work when parallel execution, separate context, or independent scrutiny earns its briefing, verification, and integration cost. While workers run, advance independent work when available; keeping the conductor idle is not a goal. Adding a useful worker within existing task authority needs no separate permission and grants no new authority. Choose the smallest useful set; low worker cost does not justify arbitrary headcount, overlapping work, or repeated results.
 
+Skill activation and worker creation are separate choices. Retain actual user/host constraints and these portable safeguards.
+
 Give each worker a compact contract:
 
 - outcome and current candidate or source identity;

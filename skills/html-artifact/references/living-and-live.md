@@ -2,7 +2,7 @@
 
 Use when an artifact is maintained through work or receives updates while open. These are different contracts:
 
-- **Living report:** the owner updates its meaning at material milestones; the HTML reflects that revision. Reopening or refreshing may be needed.
+- **Living report:** the owner updates its meaning at material milestones; the HTML reflects that revision. For an HTML initiative plan, update the same file without an equivalent Markdown companion. Reopening or refreshing may be needed.
 - **Live preview:** the development host refreshes the rendered page when its file changes. This proves neither source freshness nor ongoing agent execution.
 - **Live data view:** an active service delivers new source data to an open page. Name the producer, update mechanism and freshness bound.
 

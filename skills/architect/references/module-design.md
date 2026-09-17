@@ -103,6 +103,17 @@ Apply DRY to shared knowledge, not merely similar code. Give the repeated respon
 
 Favor high cohesion, low coupling and locality of reasoning: keep related policy and lifecycle knowledge with their owner. Directory conventions can reveal or enforce boundaries; they do not define module depth.
 
+## Component and policy boundaries
+
+Use component principles as diagnostic lenses at the affected boundary. Name the concrete ownership, dependency or change-cost consequence; an acronym alone is not a finding or a reason to add an interface.
+
+- **Change cohesion:** the single responsibility principle (SRP) and common closure principle (CCP) group responsibility by its real reason for change. Repeated co-change warrants investigation; one shared commit does not prove components should merge.
+- **Consumer cohesion:** the common reuse principle (CRP) challenges dependencies that make consumers take unrelated capability. Inspect actual use without manufacturing release partitions.
+- **Dependency cycles:** the acyclic dependencies principle (ADP) directs attention to cycles in the relevant component/dependency graph and their change cost. Runtime callbacks or collaboration alone do not prove a packaging cycle.
+- **Stability and policy:** the stable dependencies principle (SDP), stable abstractions principle (SAP), and dependency inversion principle (DIP) help assess dependency impact and separation of policy from replaceable details. Infrequent edits do not establish sound dependency direction; appropriate abstraction does not mean abstracting every class.
+- **Domain-visible structure:** make business/use-case ownership discoverable where it helps real consumers. A cohesive framework-native layout can be sound; do not force renaming or a universal directory convention.
+- **Deferred details:** defer replaceable choices only while their uncertainty can safely remain open. Investigate storage, performance, trust and deployment constraints early when they can invalidate the direction.
+
 ## Explore alternative interfaces proportionately
 
 When several materially different interface/seam designs remain credible and the choice has consequential architecture cost, compare genuinely different shapes. Consider:

@@ -4,7 +4,7 @@ Read this for a substantial, evidence-heavy, living, reused, or owner-record inp
 
 ## Treat HTML as a read model
 
-An artifact is a purpose-shaped read model over supplied sources, not their archive or semantic source of truth. Canonical records/results remain normalized with their owners; HTML may intentionally repeat concise decision-relevant meaning when colocation materially improves human understanding.
+An artifact presents supplied or owner-established meaning, not an archive or a license to originate domain truth. Independent records/results remain with their owners; HTML may repeat concise decision-relevant meaning when colocation materially improves understanding. Atọ́nà's HTML plan already holds its owner-established plan meaning: update that file without manufacturing an equivalent Markdown source. Source grounding and presentation responsibility do not require two copies of the plan.
 
 `html-artifact` may group, deduplicate, order, summarize, aggregate, select representative evidence, assign placement, and choose representation. It may not create a domain conclusion, causal claim, decision, priority, owner, status, readiness, confidence, or recommendation absent from the source owner/caller.
 
@@ -110,7 +110,7 @@ For substantial artifacts embed a compact `application/json` context capsule bef
 
 After the first complete projection, prominently show material delta from the prior useful view: changed decisions, reopened/stale claims, new candidate/evidence, closed proof, new blockers, and changed next action. Reuse unchanged supporting material at lower visual weight rather than making the reader rediscover change by rereading the whole page.
 
-The owner updates semantic truth first; refresh the living view after material revisions. Label older views stale. Keep planned, implemented, reviewed, tested, and live-verified results distinct through closure.
+The owner establishes changed meaning; reflect it after material revisions. For Atọ́nà's HTML plan, update meaning and presentation in the same file and revision. Label older views stale. Keep planned, implemented, reviewed, tested, and live-verified results distinct through closure.
 
 ## Projection coverage proof
 

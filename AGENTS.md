@@ -14,6 +14,8 @@ Use established engineering principles to compress repeated explanations, retain
 
 Keep responsibilities distinct: skills own methods, workflows own progression, assignments own worker scope and evidence, host policy owns model, reasoning and delegation preferences, and the harness owns worker lifecycle. Avoid duplicate role fleets, model/config registries, and instructions that reimplement native controls. Use bounded workers to collate large evidence surfaces, preserving decisive source locators.
 
+An Atọ́nà HTML plan is one maintained artifact, without an equivalent Markdown companion. Templates guide content; independent domain, architecture, research and evidence records are not duplicate plans.
+
 [Alárinà](skills/alarina/SKILL.md) selects relevant installed skills, coordinates work, and carries authorized outcomes through completion. Specialists retain their methods and workflows their progression. The [native Claude agent](agents/alarina.md) loads Alárinà; keep operating guidance and host policy in the skill.
 
 Preserve Alárinà's route topology, adjacent-owner boundaries, and dynamic inventory lookup. Change them to fix a demonstrated routing defect or redundancy, not merely to shorten the file or replace routes with description matching.

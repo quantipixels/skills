@@ -62,8 +62,9 @@ An explicit specialist request stays with that specialist when it fits. These ro
 
 - Bounded explanation → the relevant installed subject specialist; substantial research → `iwadi`.
 - Consequential premise → the [premise check](references/coordination.md#premise-check).
-- Dependent choices or a requested decision interview → `arojinle`; one consequential choice may be asked directly.
-- Unresolved technical structure → `architect`; unresolved observable behavior → `atona` in behavior-contract mode. Use both when both results remain open.
+- Unsettled purpose, beneficiary, success or consequential trade-offs, a solution-shaped request hiding the need, latent dependent choices, or a requested interview → `arojinle`. Ask a single already-understood bounded choice directly; reuse a complete brief without manufacturing a decision tree.
+- Material domain identity, lifecycle, policy, ownership or invariants whose applicability is unsettled → `amose`, even when the vocabulary is familiar. Reuse current applicable domain evidence.
+- Unresolved technical structure or unestablished fitness of a consequential mechanism for the confirmed purpose/domain/quality drivers → `architect`; unresolved observable behavior → `atona` in behavior-contract mode. Use both when both results remain open; reuse sufficient current design evidence without automatic redesign.
 - Independent code judgment → `atunwo`; measured keep/revert comparison → `adanwo` in measured-experiment mode. A disposable prototype to settle an interaction, API or technical choice → `adanwo` in exploration mode, returning evidence to the deciding owner before delivery.
 - Authorized publication → `wo-pr` in publication mode. Readiness, publication, approval and merge remain distinct.
 - Agent-facing text steering selection, decisions, authority, execution, or completion → `oro` in its agent-facing branch.
