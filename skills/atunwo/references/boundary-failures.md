@@ -1,6 +1,6 @@
 # Boundary failures worth challenging
 
-Read when a candidate changes framework enforcement, authorization, a verification gate, stateful retry/cancellation, migration or rollout, or an agent/provider operation. Use the applicable examples to form and challenge failure hypotheses. They are neither a mandatory reviewer roster nor findings by themselves; retain the main skill's evidence, scope, and finding contract. Check exact platform behaviour at use time; these are failure mechanisms, not a cached API reference.
+Read when the reviewed code involves framework enforcement, authorization, generic type guarantees, a verification gate, stateful retry/cancellation, migration or rollout, or an agent/provider operation. Use the applicable examples to form and challenge failure hypotheses. They are neither a mandatory reviewer roster nor findings by themselves; retain the main skill's evidence, scope, and finding contract. Check exact platform behaviour at use time; these are failure mechanisms, not a cached API reference.
 
 ## A guard can pass while the guarded behaviour fails
 
@@ -11,6 +11,12 @@ For example, a shell pipeline may report a successful log-writing command while 
 Challenge the guard itself with a plausible failing input or existing negative evidence when read-only review permits it. Never weaken the gate to make the check green. Distinguish absent evidence from evidence of failure, and an intentional skip from a verified pass. Diff size does not reduce the consequence of a false-success mechanism.
 
 For framework enforcement, distinguish proof through the registered public path from direct calls that bypass interception or lifecycle behavior. For access changes, challenge the affected actor/tenant/resource boundary and whether rejection prevents disclosure and side effects across relevant alternate paths. A successful authorized request or an annotation alone leaves these claims open; form a concrete failure hypothesis before requesting additional proof.
+
+When mutable shared state controls authorization, identify the invariant and all relevant writers before alleging a race.
+
+## A generic signature can promise more than it enforces
+
+When a generic abstraction promises a type or relationship, verify that the implementation actually enforces it rather than trusting a caller-selected generic or unchecked cast. Trace how the value is constructed and consumed; account for constraints that already make the relationship sound.
 
 ## A retry or cancellation changes ownership of an effect
 
@@ -26,7 +32,7 @@ When schema, backfill, or changeover behaviour changes, examine the actual deplo
 
 A final schema that works with the final application does not establish a safe rolling rollout. Conversely, an enforced stop-the-world changeover may remove a coexistence requirement. Verify the governing contract before prescribing expand/contract steps, extra storage, or another compatibility layer. Database-specific transactional or DDL assumptions need evidence for each supported engine they affect.
 
-For populated-data transforms or unexplained schema-artifact changes, consult `alaga` for its data-audit method within this review's read-only boundary. Judge existing mapping and recovery evidence before requesting more proof; a planned audit is not an observed result.
+For populated-data transforms or unexplained schema-artifact changes, consult `alaga` for its integration obligations and stateful-proof guidance within this review's read-only boundary. Judge existing mapping and recovery evidence before requesting more proof; a planned audit is not an observed result.
 
 ## An agent/provider operation can succeed against the wrong boundary
 
