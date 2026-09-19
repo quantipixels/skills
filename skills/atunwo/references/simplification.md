@@ -18,7 +18,7 @@ Use complexity, churn, fan-out, invalid states and lifecycle transitions as lead
 
 ## Match the scope
 
-For a system, sample relevant boundaries in light review or cover the agreed inventory in deep review: source, entry points, build, tests, dependencies, configuration, tooling, and generated/runtime behavior. Classify material removal candidates as `retain | delete-safe | blocked`. Search absence is not deletion proof: account for dynamic/framework/generated reachability, external consumers, configuration/data, history, migration, and proof owners. Preserve public, security, integrity, concurrency, recovery, adapter, runtime, interaction, and accessibility contracts without a stronger complete owner.
+For a system, sample relevant boundaries in light review or cover the agreed inventory in deep review: source, entry points, build, tests, dependencies, configuration, tooling, and generated/runtime behavior. Classify material removal candidates as `retain | delete-safe | blocked`. Search absence is not deletion proof: account for dynamic/framework/generated reachability, external consumers, configuration/data, history, migration, and proof owners. Remove an implementation only when its obligation is obsolete or another implementation fulfills it; remove proof only when its obligation is obsolete or retained evidence covers it at least as strongly.
 
 For a change, inspect scope drift, speculative abstractions, parallel implementations, compatibility paths, unnecessary dependencies, duplicated policy/state, and production seams introduced only for shallow tests. Dead code is not automatically a blocking defect. Preserve justified deliberate limits and their observable revisit triggers.
 
@@ -28,4 +28,4 @@ For a proposed test merge, deletion, or move to a stronger proof owner, name the
 
 ## Return actionable findings
 
-For each material opportunity, give its location, maintenance cost, sufficient form, total-burden reduction, counterevidence, retained contracts, risk and future proof owner. Rank by impact, risk, effort and dependencies. State blocked deletions and justified retains. Implementation stays with its owner; use `architect` only for an unresolved structural design question.
+For each material opportunity, identify its location, concrete maintenance burden, proposed improvement, retained behavior and supporting evidence. Include counterevidence, risks, dependencies and future proof ownership when they affect the recommendation. Prioritize by expected benefit and risk; state blocked deletions and justified retains. Implementation stays with its owner; use `architect` only for an unresolved structural design question.
