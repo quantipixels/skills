@@ -35,6 +35,8 @@ For a build request, carry the selected direction into shaping and delivery. If 
 
 Keep the outcome and acceptance, confirmed decisions and material assumptions, delivery sequence, dependencies, risks, current blocker, and next action in one plan. Match detail to what a fresh contributor would otherwise have to invent; omit empty bookkeeping.
 
+Before implementation, identify the checks required to establish acceptance and any explicitly deferred verification. Preserve governing project checks and the user's division of work. New findings become required work only when they affect acceptance, invalidate existing evidence, or reveal an applicable mandatory obligation; keep other recommendations as follow-up rather than silently expanding delivery.
+
 Retain decision-changing alternatives, rationale, uncertainty and counterevidence, and distinguish proposed, confirmed, deferred and superseded choices. When traceability matters, connect acceptance through decisions/contracts and architecture/owners to delivery candidates and proof. Expose missing implementation/proof, mechanisms without an accepted basis, stale evidence, and material cumulative drift. Keep planned, implemented, reviewed, tested and live-verified results distinct; include recovery obligations where material.
 
 Use `amose` when material domain identity, lifecycle, policy, ownership or invariants lack established meaning or applicability, [behavior contract](references/behavior-contract.md) when behavior needs a normative contract, `architect` when structure or a consequential mechanism's fitness for confirmed purpose/domain/quality drivers needs establishing, and [delivery decomposition](references/decomposition.md) when delivery needs decomposition. Reuse settled domain and sound design evidence. Consume each result and controlling gap in this same plan without requiring every branch or a new worker on every initiative.
@@ -59,7 +61,11 @@ When delivery has multiple work units or candidates, dependencies, owners, or a 
 
 After a material decision, discovery, or delivery result, update the affected plan and reopen only dependent choices and proof. Resolve scope drift before continuing affected work. A partly superseded result is not wholly current.
 
+Keep progress updates concrete: distinguish implementation complete from verification complete, name the running check and the question it settles, and state the actual blocker or remaining required work. Report a material scope change promptly. Avoid repeated reassurance, invented completion estimates, or waiting for a polished report before communicating a result.
+
 Assess whether current delivery evidence covers initiative acceptance, including interactions between delivered slices and the real user journey when relevant. Reuse applicable proof. When integration behavior lacks proof or fails, give `alaga` the bounded integration outcome to verify and correct; consume that result before closing the initiative. Task counts, worker completion, isolated passing checks, and provider status do not establish that the build works as a whole. Keep missing proof and blockers visible and resolve them within scope.
+
+Choose the smallest sufficient check for each remaining acceptance gap. After a correction, rerun affected checks; broaden only when a concrete failure, changed assumption, invalidated evidence or governing requirement warrants it. Explain that reason and the smallest added check before expanding verification. Hypothetical adjacent risks do not by themselves require another test campaign.
 
 Use `seda-pr` in publication mode for authorized publication and its stewardship mode for requested PR/MR readiness work. Keep implementation, integration, and release state distinct; report an outstanding required stage as incomplete.
 
@@ -72,5 +78,7 @@ Keep ordinary rationale in the HTML plan; read [durable reconciliation](referenc
 Before closing a linked-worktree initiative, reconcile required `.qp` state into the accepting workspace, clean only reconciled/disposable state, and record the workspace disposition. Preserve unresolved state. Worktree removal requires user approval; retaining it does not block completion.
 
 Close only when the requested outcome has current accepting proof, required documentation and integration are complete, the living view explains the delivered outcome and remaining limits, and no blocking in-scope obligation remains. For exploration-only or planning-only work, apply that bound to the requested artifacts and state that delivery has not been performed.
+
+Once these conditions hold, update the existing plan and hand over promptly. Make delta updates and recheck only artifact claims or presentation affected by them. Optional cleanup, broader review and visual polish belong in follow-up; they must not keep accepted delivery open. Link decisive evidence instead of copying raw logs or rebuilding the report.
 
 Return the living view's locator, outcome, decisive verification, and material limits. If blocked, identify the exact remaining work, prerequisite or human decision, and next action; a recommendation is not completion. Continue authorized executable work instead of ending at a suggested next step.
