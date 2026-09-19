@@ -1,5 +1,11 @@
 # Changelog
 
+## 4.2.1
+
+### Patch Changes
+
+- [#173](https://github.com/quantipixels/skills/pull/173) [`7c4cd54`](https://github.com/quantipixels/skills/commit/7c4cd54e122354ab6743e372f59faa279e703ab5) Thanks [@mosobande](https://github.com/mosobande)! - Bound Atọ́nà verification to acceptance and required checks, make progress updates concrete, and hand over promptly once delivery has sufficient evidence.
+
 ## 4.2.0
 
 ### Minor Changes
