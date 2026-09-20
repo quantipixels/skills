@@ -1,6 +1,6 @@
 ---
 name: pese
-description: Serve one explicitly invoked local file, directory, or local web resource through private Tailscale Serve or an explicitly accepted encrypted Tailcat fallback, and return the exact access target. Use only when directly invoked to make that local resource temporarily reachable through a private transport. Exclude public/anonymous tunnels, permanent hosting, production serving, and artifact creation.
+description: Serve one explicitly invoked local file, directory, or local web resource through private Tailscale Serve or an explicitly accepted encrypted Tailcat fallback, and return the exact access target. Use only when directly invoked to make that local resource temporarily reachable through a private transport. Deny unintended access and require HTTP privacy controls. Exclude public/anonymous tunnels, permanent hosting, production serving, and artifact creation.
 ---
 
 # Pèsè
@@ -33,15 +33,21 @@ Reject:
 
 When companions are required, expose only a reviewed allowlist; stage them narrowly when the chosen transport cannot preserve that boundary directly.
 
+## Protect private access
+
+Before enabling either transport, read [private access and crawler controls](references/private-access.md). Establish the effective audience and deny clients outside the accepted boundary regardless of their user agent. Robots directives are advisory, not access control; an authorized reader can still automate downloads.
+
+Apply the HTTP controls through the task-owned serving layer without changing the authoritative resource or unrelated routes. If ready tooling cannot meet the required audience, containment or HTTP protections, return `CAPABILITY_GAP` without enabling the route; do not silently weaken privacy.
+
 ## Serve it
 
 ### Tailscale Serve — preferred
 
 Use when Tailscale is already usable on the host and the intended reader can access its tailnet. Follow the installed-version/current official Serve documentation to choose the smallest supported target form.
 
-Serve a file/directory directly when supported by that installed client/platform and the accepted boundary. For an existing local web resource, or when direct file serving is unavailable, expose only the required task-owned loopback service. Never use Funnel for this outcome.
+Serve a file/directory directly when supported by that installed client/platform, the accepted boundary and required HTTP controls. For an existing local web resource, or when direct file serving is unavailable, expose only the required task-owned loopback service. Never use Funnel for this outcome.
 
-Preserve unrelated Serve/Services state. Capture only enough applicable pre-state to prove scoped rollback, add one non-conflicting route/endpoint, and determine its exact scoped removal before mutation. Tailnet policy remains the access-control boundary unless current policy proves something narrower.
+Preserve unrelated Serve/Services state. Capture only enough applicable pre-state to prove scoped rollback, add one non-conflicting route/endpoint, and determine its exact scoped removal before mutation. Verify the effective tailnet policy and any application gate against the intended reader scope; Serve alone does not establish named-reader-only access.
 
 Do not finish until the exact HTTPS URL for the requested resource is known and verified. Return that URL, not merely the Serve mount root, status output, or setup instructions.
 
@@ -49,7 +55,7 @@ Do not finish until the exact HTTPS URL for the requested resource is known and 
 
 Read [Tailcat fallback](references/tailcat.md). Use only when Tailscale Serve is unavailable/unsuitable, the reader can run a compatible Tailcat client, and the user accepts Tailcat's bearer-capability, relay-metadata, CLI-receiver, and upstream-stability limits.
 
-Tailcat transports TCP rather than serving files. When needed, expose only a task-owned loopback service and forward that port.
+For an HTTP resource, forward only the task-owned loopback service with the same HTTP protections; encryption does not replace its access boundary.
 
 The access target for Tailcat is the complete receiver invocation that retrieves/opens the requested resource, together with a separately secured connection token where the current CLI requires one. Do not return only a token, sender command, port number, or setup steps.
 
@@ -61,10 +67,11 @@ Before reporting success, prove:
 
 - the exact requested resource is reachable through the returned URL or receiver invocation;
 - content outside the accepted boundary is not reachable;
+- the effective access control excludes unintended clients and applicable HTTP privacy controls cover the resource and required assets;
 - no public or unintended listener/route was enabled; and
 - pre-existing transport configuration remains unchanged except for the task-owned route.
 
-Receiver-side execution by the human is not required to call the route ready when it cannot be performed from the current environment. Pèsè succeeds when the serving route itself is live, containment is proved, and the exact usable access target has been produced. State any remaining reader prerequisite explicitly.
+Receiver-side execution by the human is not required to call the route ready when it cannot be performed from the current environment. Pèsè succeeds when the serving route itself is live, containment is proved, and the exact usable access target has been produced. State any remaining reader prerequisite explicitly. Distinguish inspected access policy from executed denial tests; unavailable negative-test clients do not justify claiming they were tested. An unproved required access boundary remains `CAPABILITY_GAP`.
 
 ## Revoke cleanly
 
@@ -91,7 +98,8 @@ Lead with the exact access target:
 Then include:
 
 - transport;
-- access boundary;
+- effective audience and access boundary;
+- enforced access restrictions versus advisory crawler controls;
 - reader prerequisite if any;
 - expiry;
 - verification;
