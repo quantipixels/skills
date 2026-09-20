@@ -14,8 +14,9 @@ Select a case to investigate a consequential regression or misdirection. This is
 | Are critical judgments and returned artifacts faithful? | [C15](actors/C15-adoption-boundaries.md) | Recovery, framework invocation, retained guards, source versus active guidance, accepted layout and write authority. |
 | Does documentation reconciliation avoid changing the wrong truth? | [C16](actors/C16-documentation-maintenance.md) | Audit/sync, current/history, missing/sufficient proof, generated sources and no-impact controls. |
 | Is a proposed private operation actually within the requested boundary? | [C17](actors/C17-private-serving.md) | Audience/identity, spoofable filtering, disclosure, expiry and a legitimate positive path. Operational claims need executed proof. |
+| Can a growing plan shed optional work without losing real obligations? | [C18](actors/C18-scope-growth.md) | Unchanged sufficient proof versus a compatibility regression hidden by green UI checks. |
 
-Keep [common outcomes](reviewers/expected-outcomes.md), [C15 outcomes](reviewers/C15-adoption-outcomes.md), [C16 outcomes](reviewers/C16-documentation-outcomes.md) and [C17 outcomes](reviewers/C17-private-serving-outcomes.md) hidden from actors. Evaluate the selected behavior, not skill-name matching or a prescribed procession through companions. An explicitly requested entrypoint still matters for source identity and authority.
+Keep [common outcomes](reviewers/expected-outcomes.md), [C15 outcomes](reviewers/C15-adoption-outcomes.md), [C16 outcomes](reviewers/C16-documentation-outcomes.md), [C17 outcomes](reviewers/C17-private-serving-outcomes.md) and [C18 outcomes](reviewers/C18-scope-growth-outcomes.md) hidden from actors. Evaluate the selected behavior, not skill-name matching or a prescribed procession through companions. An explicitly requested entrypoint still matters for source identity and authority.
 
 ## Run one selected boundary
 
@@ -26,6 +27,8 @@ Record whether the condition is routed, direct, supplied-instruction or native d
 C01 can use `evals/engineering/fixtures/verification/`; C02 uses `profile/`; C03 uses `batching/`; C04 and C06 use separate copies of `migration/`. A response proposal does not establish real actions or defect rejection. Use a representative project when it provides better proof. No case authorizes live production cleanup, public exposure, installation, publication or merge.
 
 Useful contrasts stay available: C08.1/11 distinguish improvement from read-only assessment; C08.10 and C09.10 guard against ceremony; C12 retains settled-input controls; C16.A/B distinguish audit and sync, while L/N distinguish uncovered and sufficient proof. C08.3 and C15.1 remain separate: one is initial mitigation routing, the other is a post-mitigation closure judgment. The PR [evidence pack](../pr-review/README.md) retains distinct standalone truthfulness and proportionality controls.
+
+For scope-growth changes, use C18.1/2 as the focused judgment contrast. Reuse C03 for executed ordinary delivery, C02 for the read-only boundary, C06 for explicitly requested planning, and C15.4 for retained guards rather than duplicating those tasks. Select only the additional control needed by the claim. C18's reviewer notes define a bounded matched comparison; no fresh runs or improvement are implied by retaining the cases.
 
 ## Focused retirements
 
