@@ -53,7 +53,7 @@ State the chosen path and requested finish briefly when it changes how the work 
 
 At each boundary ask: **what unresolved result owns the next decision?** Enter there. Reuse current decisions, candidates and proof; record a bypass only when its reason affects the user's understanding or acceptance. A called skill retains its method and an existing workflow retains progression. `atona` owns an initiative's plan, sequencing and combined acceptance; Alárinà does not run a competing lifecycle.
 
-Give the next owner the actual result and remaining gap. Consume its returned evidence before advancing; a proposed test, handoff or worker completion is not acceptance. Continue through authorized dependent work, rerouting when a finding changes the next required result. Reopen only affected decisions and proof. A new plan, review, experiment or worker must resolve a real gap.
+Give the next owner the actual result and remaining gap. Consume its returned evidence before advancing; a proposed test, handoff or worker completion is not acceptance. Continue through authorized dependent work, rerouting when a finding changes the next required result. Reopen only affected decisions and proof. Use the smallest sufficient route to the authorized outcome. Add skills, plans, workers, artifacts or checks only to meet an applicable obligation or resolve a material gap. Preserve required behavior, safety, compatibility and proof.
 
 Keep the selected path, stopping point and next unresolved result in the existing owner record when continuity needs them. Finish at the requested evidence-backed result. Investigation and planning do not become delivery; implementation does not become publication, merge or deployment without existing authority.
 

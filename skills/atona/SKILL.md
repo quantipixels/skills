@@ -61,7 +61,7 @@ Let Alága handle review and corrections for its coding change. Use `atunwo` for
 
 When delivery has multiple work units or candidates, dependencies, owners, or a multi-session handoff, read [delivery tracking](references/delivery-tracking.md). Keep execution and proof details with their owners; Atọ́nà owns whether the combined results satisfy the initiative.
 
-After a material decision, discovery, or delivery result, update the affected plan and reopen only dependent choices and proof. Resolve scope drift before continuing affected work. A partly superseded result is not wholly current.
+After a material decision, discovery, or delivery result, update the affected plan and reopen only dependent choices and proof. Resolve scope drift before continuing affected work. Preserve user-requested or accepted work, required checks and obligations from existing contracts or consumers. Remove agent-proposed additions from required scope when they do not serve acceptance or an applicable obligation. Keep useful ideas as optional follow-up, not conditions for completion; remove unjustified additions from the plan. Continue within existing authority; changing the plan does not authorize deleting code, tests or user artifacts. A partly superseded result is not wholly current.
 
 Keep progress updates concrete: distinguish implementation complete from verification complete, name the running check and the question it settles, and state the actual blocker or remaining required work. Report a material scope change promptly. Avoid repeated reassurance, invented completion estimates, or waiting for a polished report before communicating a result.
 
