@@ -1,0 +1,35 @@
+name: Package checks
+
+on:
+  pull_request:
+  push:
+    branches: [ori]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - run: python -m pip install -r requirements-dev.txt
+      - name: Validate active package contracts
+        run: python scripts/skills/check_package.py
+      - name: Package rejection controls
+        run: python -m unittest discover -s tests -v
+      - name: Session evidence regression
+        run: python -m unittest discover -s scripts/skills -p 'test_*.py' -v
+      - name: Native installer mechanics (not authenticated installation)
+        run: python -m unittest discover -s scripts/plugins -p 'test_*.py' -v
+      - name: Engineering checker and oracle controls (no model calls)
+        run: python -m unittest discover -s evals/engineering -p 'test_*.py' -v
