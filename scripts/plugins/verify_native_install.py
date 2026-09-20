@@ -270,6 +270,8 @@ def _inventory_scope(root):
 
 def validate_installed_inventory(installed_root, host):
     source = _inventory_scope(ROOT)
+    if not source["skill_names"]:
+        raise NativeVerificationError("source inventory is empty or unavailable")
     installed = _inventory_scope(installed_root)
     if installed["skill_names"] != source["skill_names"]:
         raise NativeVerificationError(f"{host} installed skill inventory differs from source")
@@ -281,6 +283,15 @@ def validate_installed_inventory(installed_root, host):
 def sample_files(installed_root, manifest_path):
     """Compare a small explicit source sample and return its observed hashes."""
     relative_paths = [manifest_path, "skills/alarina/SKILL.md"]
+    # A fresh SKILL.md with stale/missing references is still a stale updater.
+    updater = Path("skills/qp-update")
+    if not (ROOT / updater / "SKILL.md").is_file():
+        raise NativeVerificationError("source inventory is missing qp-update/SKILL.md")
+    source_files = sorted(path.relative_to(ROOT).as_posix() for path in (ROOT / updater).rglob("*") if path.is_file())
+    installed_files = sorted(path.relative_to(installed_root).as_posix() for path in (installed_root / updater).rglob("*") if path.is_file())
+    if source_files != installed_files:
+        raise NativeVerificationError("installed updater file inventory differs from source")
+    relative_paths.extend(source_files)
     if (ROOT / "agents/alarina.md").is_file() and (installed_root / "agents/alarina.md").is_file():
         relative_paths.append("agents/alarina.md")
     samples = []
@@ -321,6 +332,48 @@ def _result(host, version, installed_root, manifest_path, extra=None):
     }
     if extra:
         result.update(extra)
+    return result
+
+
+def verify_upgrade_snapshot(before_root, installed_root, host):
+    """Read-only A/B evidence; caller supplies a saved pre-update plugin copy.
+
+    This comparison cannot establish that a manager performed the transition,
+    that its registration/scope was preserved, or that a session reloaded.
+    """
+    if host not in {"codex", "claude"}:
+        raise NativeVerificationError("snapshot comparison requires one native host")
+    before_root = _path_value(str(before_root), "before snapshot")
+    installed_root = _path_value(str(installed_root), "installed snapshot")
+    if before_root in {installed_root, ROOT.resolve()}:
+        raise NativeVerificationError("before snapshot must be separate from source and installed roots")
+    manifest_path = f".{host}-plugin/plugin.json"
+    for root, label in ((ROOT, "source"), (before_root, "before snapshot"), (installed_root, "installed snapshot")):
+        manifest = require_mapping(load_json((root / manifest_path).read_text(), label), label)
+        if manifest.get("name") != PACKAGE_NAME:
+            raise NativeVerificationError(f"{label} has a different plugin identity")
+    before = _inventory_scope(before_root)
+    if not before["skill_names"]:
+        raise NativeVerificationError("before snapshot inventory is empty or unavailable")
+    result = _result(host, "", installed_root, manifest_path)
+    installed_digest = _tree_digest(installed_root)
+    if installed_digest != result["source"]["package_tree_sha256"]:
+        raise NativeVerificationError("installed package content differs from source")
+    current_names = set(result["installed_scope"]["skill_names"])
+    previous_names = set(before["skill_names"])
+    result.update({
+        "version": None,
+        "evidence": "snapshot-comparison",
+        "before_root": str(before_root),
+        "before_scope": before,
+        "before_tree_sha256": _tree_digest(before_root),
+        "installed_path": str(installed_root),
+        "installed_tree_sha256": installed_digest,
+        "added_skills": sorted(current_names - previous_names),
+        "retired_skills": sorted(previous_names - current_names),
+        "manager_transition": "not_observed",
+        "session_activation": "not_observed",
+    })
     return result
 
 
@@ -384,12 +437,19 @@ def verify_claude():
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--host", choices=("all", "codex", "claude"), default="all")
+    parser.add_argument("--before-root", help="Saved pre-update native plugin copy; comparison only")
+    parser.add_argument("--installed-root", help="Post-update native plugin root; comparison only")
     args = parser.parse_args(argv)
+    comparing = args.before_root is not None or args.installed_root is not None
+    if comparing and (not args.before_root or not args.installed_root or args.host == "all"):
+        parser.error("snapshot comparison requires --before-root, --installed-root and one --host")
     try:
         results = []
-        if args.host in ("all", "codex"):
+        if comparing:
+            results.append(verify_upgrade_snapshot(args.before_root, args.installed_root, args.host))
+        elif args.host in ("all", "codex"):
             results.append(verify_codex())
-        if args.host in ("all", "claude"):
+        if not comparing and args.host in ("all", "claude"):
             results.append(verify_claude())
     except (NativeVerificationError, OSError, ValueError) as error:
         print(json.dumps({"success": False, "error": str(error)}, indent=2))
