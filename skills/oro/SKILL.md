@@ -18,4 +18,6 @@ When authoring or maintaining a project-local skill for exercising a real applic
 
 For a bounded explanation, establish the supplied topic, evidence, intended reader, and question; explain from those sources without originating missing analysis. Requests such as “show me” or “make this clearer” re-express the current material directly; reuse its evidence and update an existing artifact when appropriate. Reopen investigation only for a material source gap. Use the human-facing branch for prose. When a visual would materially clarify relationships, ordering, state, comparison, or structure, use `fihanmi`. Use `html-artifact` when the requested result is a portable visual information artifact; Ọ̀rọ̀ supplies writing, Fihanmi supplies presentation, and HTML Artifact owns construction and verification.
 
+Cross-document drift and reconciliation belong to `akowe`; author the requested text here and return it to that caller. Wording-only work stays here.
+
 Return complete usable text first for authoring or editing, and findings first for review. Surface only material gaps in meaning, evidence, authority, audience, or scope.
