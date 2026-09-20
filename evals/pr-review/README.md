@@ -1,11 +1,11 @@
-# PR review brief checks
+# PR evidence and reviewer-experience checks
 
-Use the existing [native-host prompt check method](../README.md#simple-prompt-checks). These cases freeze the new description, evidence, recovery and presentation boundaries; they add no runner or required model dependency.
+Use the [focused evaluation method](../README.md#run-only-the-relevant-boundary). Select a case for a specific truthfulness, recovery, authority or presentation risk; there is no default full-pack run or model dependency in package CI.
 
-Give the actor only its selected entry from `cases.json`, the exact candidate skills and applicable references. All case data is synthetic; supplied test results are fixture evidence, not tests executed by this repository. Candidate labels are not real Git revisions and local paths are not attachments. Keep `expectations.json` separate for assessment.
+Give the actor only the selected entry from `cases.json`, the exact candidate skills and applicable references. Keep `expectations.json` separate. All case data is synthetic: supplied test results are fixture evidence, candidate labels are not real revisions, and local filenames are not attachments.
 
-Choose cases by the changed boundary. The read-only case is the nearest authority negative control; the small documentation and genuinely reversible cases check against over-processing. Add existing coordination cases when evaluating routing rather than the brief itself.
+Retain both adverse cases and proportionality controls. `tiny-docs` catches manufactured work; `two-way-with-proof` checks against overstating risk. Stale proof, missing capture and lossy migration exercise distinct evidence failures. `read-only-watch` adds a misleading body and unavailable waiting capability; coordination C05 separately tests routed status-only admission. One mode does not prove the other. Select either only when its distinction matters.
 
-Record candidate revision or file hashes, files actually read, model/effort, fresh versus reused context, response and assessment in the existing task record. For comparison claims, run the same packet against both instruction candidates under matched conditions. A response-only exercise cannot prove provider mutations, image capture, runtime behavior or review speed; those claims require corresponding executed or observed evidence.
+Record source identity, actual loading, model/effort, fresh versus reused context, response and assessment in the existing task record. Comparative claims require matched conditions. A response-only exercise cannot establish provider mutation, image capture, runtime correctness or faster human review; use the corresponding observations for those claims.
 
-Initial status: cases authored; fresh native-host runs and matched before/after comparisons have not been executed. JSON/schema checks are not behavioral passes.
+These are authored expectations, not completed actor runs. JSON validity is not behavioral acceptance. Real PRs can refine the examples, but changing a packet or rubric requires a new evidence cut rather than carrying over old verdicts.

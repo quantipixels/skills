@@ -2,6 +2,6 @@
 "qp-skills": minor
 ---
 
-Add model-free package validation and native explicit-invocation metadata for qp-update and pese without folding public skills or removing their working capabilities. Use a small CLI smoke check instead of a broad package unit suite, and run engineering checker tests only when its code or fixtures change.
+Add model-free package validation and native explicit-invocation metadata for qp-update and pese without folding public skills or removing their working capabilities. Use a direct CLI smoke check and run engineering checker tests only when its code or fixtures change.
 
-Retire routine editorial and updater model probes; keep consequential judgment, safety and coding comparisons opt-in. Use the existing evaluator summary rather than adding a report wrapper. No model-performance improvement or installed-host success is claimed.
+Keep model evaluations focused on consequential regressions, misdirection and useful controls, not per-skill certification. Retire low-signal routing/tool-selection quizzes, consolidate the duplicated cache question with separate direct/routed conditions, align private rubrics, and repair stale evaluation guidance. Preserve PR truthfulness, privacy, populated-data, recovery and proportionality cases, plus independent oracles, integrity checks and historical provenance. No model-performance improvement or installed-host success is claimed.
