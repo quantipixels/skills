@@ -105,7 +105,11 @@ With `alarina` active, describe the engineering outcome or name a playbook; it s
 
 ## Update
 
-Explicitly invoke `qp-update` to identify the active installation and update QP through its existing manager. It preserves installation scope and local changes, and distinguishes installed updates from a session that still needs reloading. It does not run automatically.
+Explicitly invoke `qp-update` to update the existing QP installation through its current manager. It first reads the current update procedure from your established source and permitted update channel, then continues the same request. Pins, scope, host placement and local changes are preserved; no separate updater installation or new manager is required. QP does not invoke this workflow automatically or change your host's auto-update settings.
+
+A native plugin update includes ordinary additions, retirements and replacements inside the bundle. A selective Skills CLI installation keeps its selection; additional skills or removal of separate copies need applicable authorization. `qp-update` reports membership changes, protected local copies, and installation evidence separately from session activation. See the [lifecycle guidance](skills/qp-update/references/lifecycle.md).
+
+An older installed updater needs one supported manager upgrade to acquire this bootstrap. Reading fresh instructions does not itself update installed files or replace instructions already in the conversation.
 
 For a Git-backed Codex plugin installation:
 
@@ -114,7 +118,9 @@ codex plugin marketplace upgrade qp-skills
 codex plugin add qp-skills@qp-skills
 ```
 
-Restart Codex afterward. For Skills CLI installations, use `npx skills update`. Reuse the installation manager that owns your skills.
+Use the installed client's supported activation path; restart Codex if the plugin update is not active and no usable reload is available.
+
+For Skills CLI, use its supported named-skill update for the installed QP selection in the existing project/global scope. Inspect host-placement and source-wide side effects before running it: an unqualified `npx skills update` may include unrelated skills. Updating installed names does not subscribe to future repository skills; noninteractive updates can leave retired copies behind. `qp-update` reconciles those outcomes without silently expanding the selection or deleting local changes.
 
 For Claude Code:
 
@@ -123,7 +129,7 @@ claude plugin marketplace update qp-skills
 claude plugin update qp-skills@qp-skills
 ```
 
-Restart Claude Code or run `/reload-plugins` afterward.
+Check whether the update is already active. Otherwise run `/reload-plugins` in the current Claude Code session where supported, or restart. Respect any reload warning; updating from another terminal does not reload an existing conversation. For local skill copies, use the host's supported automatic discovery first, then its reload/restart fallback. The updater explicitly rereads changed instructions and references rather than treating a file update as a context refresh.
 
 Claude plugin updates follow Git commits. The manifest intentionally omits `version`, so there is no version to synchronize with `package.json` releases.
 
@@ -151,4 +157,4 @@ Use [`AGENTS.md`](AGENTS.md) and `oro` for contribution and agent-instruction gu
 
 Use [simple prompt checks](evals/README.md) for scoped skill and classifier behavior. Opt into engineering comparisons when actual coding outcomes or an improvement claim need stronger evidence; native hosts run the models.
 
-To verify a checkout through disposable native manager state, run `python3 scripts/plugins/verify_native_install.py`. Use `--host codex` or `--host claude` to select one manager. The check reports the `qp-skills` package identity, observed skill/agent scope, source revision, and hashes for a small sample of installed files; it does not prove fresh-session invocation.
+To verify a checkout through disposable native manager state, run `python3 scripts/plugins/verify_native_install.py`. Use `--host codex` or `--host claude` to select one manager. The check reports the `qp-skills` package identity, observed skill/agent scope, source revision, and hashes for sampled files including every updater resource; it does not prove fresh-session invocation. For upgrade evidence, the same verifier supports a read-only comparison of saved before/after native plugin roots. See [native upgrade verification](scripts/plugins/README.md); snapshot agreement alone does not prove a manager transition, scope preservation or session activation.
