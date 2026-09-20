@@ -50,13 +50,3 @@ Check the exact returned route, not only the local origin or a configuration dec
 For HTTP, inspect actual headers for the requested resource and a representative non-HTML asset when present, robots location/scope when configured, traversal and directory-listing rejection, and absence of an unintended direct listener. Check applicable error or redirect behavior without enumerating an unrelated site. Record exact scope and limits, not a blanket claim that all bots are blocked.
 
 Determine scoped revocation before enabling access. Use an enforceable expiry when a timed cutoff is required; otherwise state the actual lifetime and stop command without promising unattended cleanup. On failure or expiry revoke the route first, then clean task-owned resources and verify unrelated state. Previously public content, downloaded copies and third-party caches are separate recovery limits.
-
-## Authoritative sources
-
-Resolve installed-version behavior at execution time. These sources establish the control distinctions, not a frozen transport command recipe:
-
-- [Tailscale Serve: access rules, identity headers and backend boundary](https://tailscale.com/docs/features/tailscale-serve).
-- [RFC 9309: robots rules are not authorization and live at the origin root](https://www.rfc-editor.org/rfc/rfc9309.html).
-- [Google: X-Robots-Tag, non-HTML resources and robots interactions](https://developers.google.com/search/docs/crawling-indexing/robots-meta-tag).
-- [RFC 9111: no-store semantics and limits](https://www.rfc-editor.org/rfc/rfc9111.html#section-5.2.2.5).
-- [W3C Referrer Policy: no-referrer](https://www.w3.org/TR/referrer-policy/#referrer-policy-no-referrer).

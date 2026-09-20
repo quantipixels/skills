@@ -13,7 +13,7 @@ Direct invocation authorizes task-scoped staging, an ephemeral local listener if
 
 ## Resolve tooling from current official evidence
 
-Resolve volatile syntax from the installed transport and current official documentation: [Tailscale Serve](https://tailscale.com/docs/features/tailscale-serve) or [Tailcat](https://github.com/tailscale/tailcat). For installed Tailcat, prefer its embedded documentation. If installation or configuration must change, use the installed transport's supported interface; this skill does not own setup guidance.
+Resolve volatile syntax from the installed transport and current official documentation for Tailscale Serve or Tailcat. For installed Tailcat, prefer its embedded documentation. If installation or configuration must change, use the installed transport's supported interface; this skill does not own setup guidance.
 
 ## Bound the resource
 
