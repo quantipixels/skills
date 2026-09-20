@@ -1,8 +1,8 @@
 # C16: Documentation maintenance
 
-Run each request in a fresh session with the frozen candidate inventory, following the parent pack's native-host recipe. For selection/response probes, give the actor the request and source snapshot below; ask for the route, specific proposed corrections and remaining proof, then stop before writes. Do not give it the reviewer file.
+Select one request and supply only its source snapshot and any explicitly reused setup. A/B/K/O share the contributor layout; copy the applicable facts, not another case's request or answer. Follow the parent pack's fresh-session and frozen-candidate recipe. For response probes, ask for the proposed correction and remaining proof, then stop before writes. Keep reviewer expectations outside actor inputs.
 
-For an executed replication, materialize the supplied paths in a disposable checkout before the session, provide any explicitly available tools, and let the actor perform the requested operation. Record actual changes and commands separately from a response-only probe. Missing source is unavailable, not a license to invent it. No case grants remote publication. Each request below is independent; do not carry another case's decisions or model output forward.
+For an executed replication, materialize the supplied paths in a disposable checkout and provide the explicitly available tools. Inspect actual changes and commands separately from a response-only answer. Missing source is unavailable, not permission to invent it. No case grants remote publication. Stable letters are retained; J's standalone owner-selection questions are retired.
 
 ## A. Read-only audit of nested instructions
 
@@ -96,16 +96,6 @@ Source snapshot:
 - `docs/payments/` does not exist at the target revision.
 - `docs/billing/` and unrelated documentation exist; neither is established as an alias or successor.
 - No broader audit was requested.
-
-## J. Adjacent-owner controls
-
-Run each request independently, exposing the same frozen inventory:
-
-1. “Rewrite this README paragraph in clearer English without checking or changing its facts: ‘The program receives a file. It prints the number of lines.’”
-2. “Create an architecture overview for this service from the supplied established component map; use our existing docs/architecture.md destination. Do not redesign the service.”
-3. “Record the already-approved supersession of ADR 004 by ADR 011, preserving the historical rationale and our existing ADR format.”
-
-For J2/J3, provide a concrete component map or the two actual ADRs before an executed replication. Without them, only route selection is testable; do not count a fabricated document as an executed outcome.
 
 ## K. Direct delivery without a documentation request
 

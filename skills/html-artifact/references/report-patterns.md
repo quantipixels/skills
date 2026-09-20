@@ -61,7 +61,7 @@ Keep the opening useful without a disclosure. When compatible, include a skip li
 
 Keep navigation unobtrusive and preserve useful landmarks when adapting the base controls.
 
-Use `human-view` to resolve an unsettled composition. Preserve an accepted layout unless changed purpose, content or evidence makes it unsuitable.
+Use `fihanmi` to resolve an unsettled composition. Preserve an accepted layout unless changed purpose, content or evidence makes it unsuitable.
 
 Before delivery, always run these content and evidence checks:
 

@@ -1,9 +1,6 @@
-# C15 — selected Revision 8 compression boundaries
+# C15 — critical judgment and artifact guards
 
-Run each numbered request in a fresh supplied-candidate session with its owning skill and
-relevant references frozen. Preserve identical task, project state, model/effort and host
-conditions across baseline/candidate. Do not reveal reviewer expectations or other outputs.
-Cases 1–5 are judgment probes; 6–7 produce disposable artifacts. No external actions are authorized.
+Select one numbered request and supply only that request and its necessary source setup to a fresh session with the owning skill and relevant references frozen. For a comparison, keep task, project state, model/effort and host conditions matched. Keep reviewer expectations and other actors' outputs hidden. Cases 1–5 are judgment probes; 6–7 produce disposable artifacts. No external actions are authorized. The IDs originated in Revision 8; they do not require a new release campaign or imply completed runs.
 
 ## 1. Incident recovery
 
