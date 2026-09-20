@@ -1,11 +1,11 @@
 ---
 name: architect
-description: Design, survey, or review technical structure at the smallest sufficient scale. Use when structure is unsettled or a consequential mechanism's fit for confirmed purpose, domain and quality drivers is unestablished, including architectural friction, dependency fit, boundaries, interfaces, state ownership, integrations, deployment or migration. Reuse sound current design evidence; exclude initiative progression, user-decision closure, implementation, workspace infrastructure, and code-review verdicts.
+description: Design, survey, review, or document technical structure at the smallest sufficient scale. Use for ARCHITECTURE.md creation, maintenance or drift checks, or when structure is unsettled or a consequential mechanism's fit for confirmed purpose, domain and quality drivers is unestablished, including architectural friction, dependency fit, boundaries, interfaces, state ownership, integrations, deployment or migration. Reuse sound current design evidence; exclude initiative progression, user-decision closure, implementation, workspace infrastructure, and code-review verdicts.
 ---
 
 # Architect
 
-Own the technical structure of a software system or consequential module. Resolve the architecture question at the smallest scale that is materially sufficient: a bounded module question gets a bounded design answer; a system-wide design gets the system depth it actually needs.
+Own the technical structure of a software system or consequential module and its canonical architecture overview. Resolve the architecture question at the smallest scale that is materially sufficient: a bounded module question gets a bounded design answer; a system-wide design gets the system depth it actually needs.
 
 Delegate independent boundary assessments or design investigations to subagents when useful. Require concise findings and evidence; integrate them into the architecture judgment.
 
@@ -14,12 +14,15 @@ Delegate independent boundary assessments or design investigations to subagents 
 | `survey` | find and rank evidence-backed architectural friction without designing the correction |
 | `design` | create or revise the technical structure |
 | `review` | judge one exact architecture/design candidate read-only |
+| `document` | create or refresh the canonical architecture overview from established evidence |
 
 Do not turn every design question into a full implementation-ready architecture packet. Use an implementation-readiness result only when the caller explicitly needs a gate, delivery would otherwise have to invent a material technical requirement, or the architecture spans enough consequential concerns that readiness itself is the useful result.
 
 ## Understand the architecture question
 
-Pin only what can change the technical design: subject/candidate, problem or desired outcome, scope/non-goals, material constraints/drivers, current relevant structure, and evidence limits.
+Pin only what can change the architecture result: subject/candidate, problem or desired outcome, scope/non-goals, material constraints/drivers, current relevant structure, and evidence limits.
+
+Read relevant sections of the project's `ARCHITECTURE.md` or established equivalent as an orientation map, not proof; verify material claims against current evidence.
 
 An existing design does not establish fitness, but sufficient current fitness evidence earns a skip. Assess the consequential mechanism against confirmed purpose, domain and quality drivers; review does not automatically authorize redesign.
 
@@ -110,6 +113,18 @@ In `review`, pin the exact architecture/design candidate and stay read-only. Jud
 
 Use `html-artifact` as needed.
 
+## Maintain ARCHITECTURE.md
+
+With write authority, use `document` to create or refresh the project's canonical architecture overview from established evidence, without redesigning the system. Reuse its existing location and format, including scoped module documents. When creation is requested or authorized architecture work needs a durable overview and none exists, use repository-root `ARCHITECTURE.md`; do not create a competing copy just to enforce that name.
+
+The overview should let a new contributor locate and safely change the system: major components and their source paths, responsibilities and dependency direction, key runtime/data flows, and the boundaries and invariants that constrain change. Include state ownership, integrations, trust and deployment only where material. Explain non-obvious rationale; link README/setup, domain records and ADRs rather than duplicating them. `amose` retains domain meaning and ADR lifecycle.
+
+Ground the current-state map in code/tests/configuration and relevant runtime evidence. Distinguish observed implementation, accepted but unimplemented design, proposals and unknowns. For a greenfield system, label the overview as planned. A stale document does not authorize changing code to match it.
+
+Reconcile affected sections when authorized work changes the documented structure; preserve unaffected content. Survey/review-only requests report missing documentation or drift without creating or editing the overview. Routine changes with no architectural impact need no document churn.
+
+Before returning, verify affected structural claims and source links at the reviewed revision. Report the document path, updated scope and unresolved drift or evidence gaps; writing the file alone is not completion.
+
 ## Persistence
 
-Persist to the existing project destination; otherwise `.qp/architect/`. Use the compact [architecture record](templates/architecture-record.md) when persistence is needed.
+Keep the canonical overview at the destination above. Persist question-specific architecture work to the existing project destination; otherwise `.qp/architect/`, using the compact [architecture record](templates/architecture-record.md) when needed. Link the overview rather than maintaining competing system descriptions.
