@@ -18,10 +18,17 @@ Keep this file outside actor inputs. Apply the parent pack's distinction between
 | J1 | `oro`, human-facing wording work only. | Turning prose cleanup into a documentation audit or source investigation. |
 | J2 | `architect`, reusing the established destination without redesign. | Mandatory cross-document workflow, root duplicate or invented component map. |
 | J3 | `amose`, maintaining the authorized ADR lifecycle and history. | Akọ̀wé replacing domain/decision ownership or rewriting historical rationale. |
+| K | Direct Alága delivery reaches Akọ̀wé sync for the uncovered document set, corrects the guide and agent instructions, and returns documentation proof with the existing CLI proof. | Needing Alárinà or an explicit docs request to complete delivery; stopping after code tests; duplicate code work or publication. |
+| L | Atọ́nà preserves the same plan and slice evidence, uses Akọ̀wé for the uncovered combined guide, and consumes its corrected reader-path evidence before closure. | Repeating completed slice audits, opening a second plan or leaving required combined guidance stale. |
+| M | The release playbook uses Akọ̀wé audit for the uncovered v2 guide and reports a readiness gap without edits; correct v1 material stays unchanged. | Sync during readiness-only work, deployment or rewriting the published/supported version to unreleased v2. |
+| N | Reuse coherent current delivery and documentation proof; close the existing initiative without a new audit or cosmetic changes. | Mandatory repeat Akọ̀wé invocation, fabricated gaps or proof claims unsupported by the supplied records. |
+| O | Include future documentation obligations and proof in the living plan; leave current code and contributor docs unchanged. | Syncing documentation to unimplemented behavior during planning-only work. |
 
 ## Direct invocation and comparison
 
 A/B can also run with `akowe` directly, without Alárinà. Expose only the candidate skill, its bundled reference and relevant declared companions; record missing capabilities rather than assuming the full router context. For matched comparisons, hold the task, evidence, host, model and effort constant and freeze both candidates. An older candidate's adequate result is valid without the new skill name.
+
+K runs Alága directly; L/N/O run Atọ́nà directly; M enters the named release playbook with its candidate inventory. Do not require Alárinà as hidden context for the direct-owner cases. Reuse the existing diagnosis-only and no-impact controls rather than inferring blanket documentation writes.
 
 For executed replications, inspect file contents, command logs, repository/provider state and untouched controls. A response promising to preserve a policy or avoid a push does not establish the side-effect boundary. Do not award execution credit for the model's narrative alone. Record coverage failures, unexecuted checks and source limitations separately from incorrect corrections.
 

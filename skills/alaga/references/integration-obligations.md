@@ -30,6 +30,4 @@ For changes to workload, buffering, concurrency or resource lifetime, use backpr
 
 ## Close the change
 
-Documentation is an affected consumer when the change alters a documented contract, setup path or operational instruction. Use `akowe` in `sync` for material documentation consequences across a set; a local factual edit needs no separate workflow. Return its corrections, checks and unresolved conflicts with the delivery evidence.
-
 Reconcile implementation and executed proof with the discovered obligations. Check negative and preservation cases that could expose the changed failure mechanism, not every imaginable edge case. Report unresolved consumer, deployment or runtime claims plainly. Passing a narrow test is evidence for that boundary, not permission to claim the whole journey works.
