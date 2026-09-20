@@ -4,8 +4,6 @@ Load only when Tailscale Serve is unavailable/unsuitable and the intended reader
 
 ## Resolve the actual Tailcat interface
 
-Authoritative upstream: https://github.com/tailscale/tailcat
-
 Tailcat has no stability promise for its CLI, API, wire format, or public relay service. Do not treat this reference as a versioned command manual.
 
 For an installed Tailcat, use its embedded documentation and on-demand help to resolve the needed interface; installed behavior outranks newer examples. If it is absent and installation is authorized, use current official upstream documentation at execution time.
