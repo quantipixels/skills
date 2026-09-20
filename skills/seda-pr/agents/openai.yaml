@@ -1,5 +1,0 @@
-interface:
-  display_name: "Seda PR"
-  short_description: "Create, describe, publish and babysit PRs and MRs"
-policy:
-  allow_implicit_invocation: true

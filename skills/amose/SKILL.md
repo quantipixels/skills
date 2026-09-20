@@ -1,63 +1,20 @@
 ---
 name: amose
-description: Establish, sharpen, or reconcile one project's domain model and durable records. Use when material terms, identities, state/lifecycle, policy, boundaries, relationships, ownership or invariants are defined, changed, interpreted or relied on without established applicability, or when `.learnings`, `.nongoals`, or ADRs need maintenance. Reuse settled applicable meaning; familiar wording alone is not domain consistency.
+description: "Establish or reconcile project domain language, identity, lifecycle, policy and invariants, including existing ADRs, learnings and non-goals."
 ---
 
 # Amọ̀ṣẹ́
 
-Own the project's domain meaning and ubiquitous language across planning, specifications, architecture, implementation and review. Preserve bounded-context distinctions; shared wording must not conceal different models.
+Own project-specific meaning, not technical structure or a generic memory system. Shared words can conceal distinct bounded-context models. Code proves behavior, not necessarily intended policy.
 
-Check material rules' applicability even when their words are familiar. Reuse current settled meaning; do not treat stale records as immutable intent or invent business rules to reconcile a conflict.
+Read governing domain sources, applicable decisions and the smallest relevant implementation, tests or history. Verify applicability before reusing a familiar rule. When meaning changes behavior or ownership, state the ambiguity and use a concrete distinguishing scenario. Ask only for meaning/authority that evidence cannot settle; do not manufacture an interview around a clear decision.
 
-## Clarify the model
+Establish the terms, conceptual identity, lifecycle/transitions, relationships, bounded contexts, owners and material invariants needed by the work. Distinguish internal identifiers, wire/storage values and user-visible labels. Synonyms are not automatically interchangeable domain values.
 
-Read only evidence capable of settling material meaning: the current domain-language source, governing decisions/policies, relevant code/tests/configuration/runtime behavior, and bounded history when it can resolve a conflict. Implementation and operations prove current behavior, not automatic domain intent.
+Use [atona](../atona/SKILL.md) for unsettled outcomes and consequential choices, [architect](../architect/SKILL.md) for technical shape and [yoruba-glossary](../yoruba-glossary/SKILL.md) for language-wide terminology. Return clarified meaning to the same caller.
 
-When an ambiguous, overloaded, synonymous, or conflicting term can change scope, ownership, identity, state, policy, or behavior:
+Maintain the established canonical destination when authorized. Do not invent another context file, knowledge database or plan. Without a durable destination return the model delta and name the persistence gap only when it matters. Discussion and term acceptance do not authorize arbitrary writes.
 
-1. state the ambiguity or contradiction;
-2. use the smallest concrete scenario that distinguishes the competing concepts;
-3. compare it with current domain language and relevant evidence; and
-4. propose canonical wording only when evidence or domain authority supports it.
+For existing `.learnings`, retain reusable evidenced knowledge and applicability, not session history. For `.nongoals`, distinguish deliberate exclusions from deferrals and preserve re-entry conditions. For ADR work follow the project convention; record decision, context, alternatives, consequences, status and supersession. Use a simple `docs/adr/` destination only when ADR creation is authorized and no convention exists. Changed needs can invalidate old decisions.
 
-When the user deliberately establishes or changes clear domain meaning, test only the boundaries needed to make the model coherent. Do not manufacture ambiguity to justify an interview.
-
-A useful model clarification may establish or separate:
-
-- canonical terms and avoided synonyms;
-- conceptual identity and lifecycle distinctions;
-- bounded contexts and cross-context meaning;
-- relationships and ownership; and
-- semantic invariants or contradictions between stated meaning and current behavior.
-
-Use `yoruba-glossary` for Yorùbá/English technical terminology and glossary maintenance; Amọ̀ṣẹ́ retains project-specific domain meaning.
-
-Ask a single already-understood bounded consequential choice directly. Use `arojinle` when purpose, success, consequential trade-offs or latent dependent choices remain unsettled, or an interview is requested. Use `architect` for unresolved structure or consequential technical fitness. Do not turn current implementation shape into domain vocabulary merely because it exists.
-
-## Reconcile canonical language
-
-When a domain-language source already exists, read [domain language](references/context.md) and update that source when the resolved model changed and write authority exists. Do not create a competing project-memory system or generic documentation store.
-
-If no durable domain-language destination is established, return the model delta directly and name the persistence gap only when the result needs to outlive the current work. Let the project or caller choose an intentional project destination rather than inventing `CONTEXT.md`, `.learnings`, `.nongoals`, an ADR, `.qp` record, or another repository convention.
-
-This domain-clarification boundary does not prevent an authorized ADR-creation request from using the [ADR fallback](references/adrs.md) when no project convention exists. Domain clarification alone does not authorize creating an ADR.
-
-A domain-model change may cause another workflow to update specifications, architecture, documentation, tests, or policy. Those artifacts remain owned by their natural workflow. Amọ̀ṣẹ́ maintains the project's canonical domain records and supplies clarified meaning to the other owners.
-
-## Maintain durable domain records
-
-Maintain the project's existing domain records when the request concerns their content or lifecycle:
-
-- `.learnings` → read [learnings](references/learnings.md);
-- `.nongoals` → read [non-goals](references/nongoals.md); or
-- ADR qualification or lifecycle → read [ADRs](references/adrs.md).
-
-Use the record's existing project destination. Preserve its format and authority boundary. A record change must reflect established domain meaning or an authorized project decision; do not turn task notes, temporary deferrals, or implementation history into durable domain records.
-
-## Return
-
-Return the resolved terms, identities, relationships, ownership, invariants, distinguishing examples when needed, and any remaining semantic conflict or consequential decision with its evidence.
-
-Return newly exposed desire, fact or technical gaps to the same caller with their controlling evidence. The caller integrates the result and reopens only affected work; a domain clarification does not start another initiative.
-
-When canonical domain language or a durable domain record was updated, report the destination and verification.
+Architecture, types, schemas and constraints may enforce an invariant; interpretation stays here. Return meaning, source/authority, resolved contradictions, outstanding decisions and actual durable writes. Hand implementation and proof to their owners.
