@@ -58,7 +58,7 @@ Use a measured cost signature to generate hypotheses; the table suggests candida
 | Fixed overhead repeats for many small operations | Batch compatible operations | Preserve latency bounds, isolation, ordering and partial-failure behavior |
 | Variable waiting dominates while spare capacity exists | Try bounded hedging or replication | Control duplicate effects, cancellation, load and correlated failures |
 | Results are computed eagerly but often unused | Make evaluation lazy | Preserve observable ordering, error timing and resource lifetime |
-| Required work need not complete within the user's wait | Schedule it outside the response path | Preserve durable completion, retries, visibility and consistency; count shifted cost |
+| Required work need not complete within the user's wait | Schedule it outside the response path | Preserve durable completion, retries, visibility, consistency; count shifted cost |
 
 Within granted mutation authority, use native/project tools for reversible trials isolated from unrelated work and each other's measurement state. Do not require a complete delivery/review cycle for every discarded trial. Apply enough invariant checks to reject invalid candidates before timing or scoring them; required acceptance proof still governs adoption.
 
@@ -72,4 +72,4 @@ Use `alaga` for retained software changes and `oro` in its agent-facing branch f
 
 Return the baseline and final result, workload and conditions, meaningful comparisons, preserved constraints, exact retained candidate, verification limits, and stop reason. Distinguish unrun hypotheses from failed trials and a promising contender from an accepted result.
 
-Keep the experiment record in the conversation or existing destination; persist only for needed resumption, review, or reuse. Omit unused fields; no universal schema, permanent benchmark catalogue, or standing prompt-wording tests are required. Publish only when requested, using `wo-pr` in publication mode. A measured winner is not automatically approved, integrated, or released.
+Keep the experiment record in the conversation or existing destination; persist only for needed resumption, review, or reuse. Omit unused fields; no universal schema, permanent benchmark catalogue, or standing prompt-wording tests are required. Publish only when requested, using [seda-pr](../../seda-pr/SKILL.md) in publication mode. A measured winner is not automatically approved, integrated, or released.
