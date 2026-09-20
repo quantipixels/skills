@@ -12,24 +12,18 @@ permissions:
 jobs:
   package:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 5
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - uses: actions/setup-java@v4
-        with:
-          distribution: temurin
-          java-version: '17'
       - run: python -m pip install -r requirements-dev.txt
-      - name: Validate active package contracts
+      - name: Run the package validator
         run: python scripts/skills/check_package.py
-      - name: Package rejection controls
-        run: python -m unittest discover -s tests -v
-      - name: Session evidence regression
-        run: python -m unittest discover -s scripts/skills -p 'test_*.py' -v
-      - name: Native installer mechanics (not authenticated installation)
-        run: python -m unittest discover -s scripts/plugins -p 'test_*.py' -v
-      - name: Engineering checker and oracle controls (no model calls)
-        run: python -m unittest discover -s evals/engineering -p 'test_*.py' -v
+      - name: Smoke the real CLI on disposable valid and invalid packages
+        run: python tests/smoke_package.py
+      - name: Exercise the session script on a disposable transcript
+        run: python scripts/skills/test_session_evidence.py
+      - name: Installer identity and process-cleanup safeguards
+        run: python scripts/plugins/test_verify_native_install.py

@@ -2,6 +2,6 @@
 "qp-skills": minor
 ---
 
-Preserve all public skills and their supporting capabilities while adding model-free package checks and native manual-invocation declarations for qp-update and pese. Recover the session-evidence adapter, HTML assets, playbooks and existing evaluation safeguards removed by the rejected rebuild.
+Add model-free package validation and native explicit-invocation metadata for qp-update and pese without folding public skills or removing their working capabilities. Use a small CLI smoke check instead of a broad package unit suite, and run engineering checker tests only when its code or fixtures change.
 
-Add an optional readable engineering-evidence report using the existing completeness and freshness validation. Keep evaluation preparation, oracles and historical evidence unchanged; no model-performance or review-speed improvement is claimed.
+Retire routine editorial and updater model probes; keep consequential judgment, safety and coding comparisons opt-in. Use the existing evaluator summary rather than adding a report wrapper. No model-performance improvement or installed-host success is claimed.

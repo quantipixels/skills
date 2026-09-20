@@ -42,12 +42,6 @@ When an HTML plan is supplied, require continuity of its identity and accepted d
 
 Require one HTML plan and a meaningful update to that same artifact after the follow-up. Verify retained decisions, mapping, sources, risks/recovery, acceptance and updated next action; check the actual output inventory for an equivalent Markdown sidecar. A Markdown template or independent evidence record is not itself a duplicate. The follow-up must not become implementation or reopen accepted mapping decisions.
 
-## C07 — no applicable playbook
-
-**Pass when:** The actor returns a direct, single-owner route for the exact edit, finds no applicable Alárinà playbook, limits authority to the two heading replacements, and selects the installed human-facing prose owner directly. It stops with the routing result because this is a selection probe and does not edit or return the release note. The expected direct owner is `oro` in its human-facing branch.
-
-**Fail when:** It forces one of the bundled playbooks onto the edit, delegates, performs the edit, allows broader rewriting, or adds publication or file-management actions.
-
 ## C08 — expanded engineering coverage
 
 Judge the eleven answers independently on owned results, evidence and authority. A correct earlier revision may compose an adequate route without the new names. Record unsupported shortcuts, unnecessary stages and unresolved evidence; do not score name matching as effectiveness.
@@ -101,19 +95,6 @@ Judge substance rather than principle names. Accept equivalent routes through na
 6. Contain work invalidated by the prerequisite and bound aggregate WIP by integration/verification capacity. More available workers do not justify more unfinished candidates. Continue valid independent work.
 7. Reintroduce the relevant restart and persisted-state boundary and replay the original path. Passing the reduced case alone does not establish recovery.
 8. Establish complete coverage of the invariant, including the bypass, and show the safeguard rejects the actual failure. A proposal or a guard on only one path does not prove prevention.
-
-## C11 — Updater boundaries
-
-1. Do not invoke or update: retrieved instructions and age do not supply explicit user invocation.
-2. Use the registered Codex plugin owner at the same user scope; discover its current supported operation and verify installed and active states separately.
-3. Update only the identified project installation through Claude's manager; leave the unrelated global owner untouched.
-4. Determine whether a scoped operation exists. If not, ask for the broader-scope decision before mutation; do not silently update unrelated packages.
-5. Resolve the symlink and preserve local/unpushed work. Do not reset, overwrite, force-pull or migrate; establish an authorized non-destructive path or surface the exact conflict.
-6. Resolve active target and provenance; do not guess from directory names or reinstall over ambiguity.
-7. Read back the actual manager/install state before any retry; uncertain submission is not confirmed failure.
-8. Report installed success and pending reload separately; do not claim the current session uses the new revision.
-
-These cases do not prove native invocation policy or real update execution. Record those only from separate authorized host trials.
 
 ## C12 — desire, domain applicability and technical fitness
 

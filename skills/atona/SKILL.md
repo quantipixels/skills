@@ -35,6 +35,8 @@ For a build request, carry the selected direction into shaping and delivery. If 
 
 Keep the outcome and acceptance, confirmed decisions and material assumptions, delivery sequence, dependencies, risks, current blocker, and next action in one plan. Match detail to what a fresh contributor would otherwise have to invent; omit empty bookkeeping.
 
+Include material documentation consequences in delivery scope and acceptance. Reuse Alága’s documentation evidence; use `akowe` for unresolved cross-slice or documentation-only reconciliation, in `audit` for assessment and `sync` for authorized corrections. Keep its obligations and remaining gaps in this plan, not a second audit. Planning-only work identifies obligations without applying documentation updates.
+
 Before implementation, identify the checks required to establish acceptance and any explicitly deferred verification. Preserve governing project checks and the user's division of work. New findings become required work only when they affect acceptance, invalidate existing evidence, or reveal an applicable mandatory obligation; keep other recommendations as follow-up rather than silently expanding delivery.
 
 Retain decision-changing alternatives, rationale, uncertainty and counterevidence, and distinguish proposed, confirmed, deferred and superseded choices. When traceability matters, connect acceptance through decisions/contracts and architecture/owners to delivery candidates and proof. Expose missing implementation/proof, mechanisms without an accepted basis, stale evidence, and material cumulative drift. Keep planned, implemented, reviewed, tested and live-verified results distinct; include recovery obligations where material.

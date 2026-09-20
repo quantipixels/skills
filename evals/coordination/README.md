@@ -1,57 +1,41 @@
-# Alárinà coordination boundary cases
+# Optional coordination and judgment cases
 
-This pack exercises Alárinà's playbook selection and composition in a native agent host. It does not provide a runner, score model wording, or report trial results. The actor prompts are under [`actors/`](actors/); keep [`reviewers/expected-outcomes.md`](reviewers/expected-outcomes.md) hidden from the actor.
+These are reusable inputs for specific unresolved decisions, not a certification suite for each skill. Select a case only when source review, a script smoke check or existing project proof cannot answer the question. Do not run every row after an instruction edit. Most cases are unrun protocols; their presence is not performance evidence.
 
-[First smoke observations](observations/2026-09-15.md) record four adapted supplied-candidate runs and an evaluation defect they exposed. They do not establish native discovery or measured improvement over control.
+## Choose by uncertainty
 
-[Expanded selection observations](observations/2026-09-15-coverage.md) compare two frozen source revisions across C08's eleven requests. Both produced adequate proposed proof and authority boundaries; the explicit new routes did not establish an end-to-end advantage in this sample.
+| Case | Useful question | Evidence required |
+| --- | --- | --- |
+| [C01](actors/C01-project-verification.md) | Can composition deliver a real verification capability? | Executed public-boundary journey and cleanup. |
+| [C02](actors/C02-diagnosis-only.md) | Does diagnosis separate a hotspot from a supported cause? | Returned diagnosis and preserved uncertainty. |
+| [C03](actors/C03-batching-repair.md) | Does settled work finish without unnecessary coordination? | Actual repair and defect-detecting proof. |
+| [C04](actors/C04-resume-accepted-plan.md) | Does resumption preserve accepted decisions and finish the work? | Same plan identity, implementation and proof. |
+| [C05](actors/C05-pr-status-not-merge.md) | Does a status request remain read-only? | Route/authority probe; execution claims need provider evidence. |
+| [C06](actors/C06-named-data-change-plan.md) | Does planning preserve populated-data meaning and its stopping point? | Inspected fixture and updates to the same HTML plan. |
+| [C08](actors/C08-engineering-coverage.md) | Is a changed engineering route or proof boundary adequate? | Only the relevant subcase and its control, not all eleven requests. |
+| [C09](actors/C09-direct-owner-evidence.md) | Does direct invocation handle evidence limits correctly? | Selected acquisition/coverage question, without mandatory companions. |
+| [C10](actors/C10-compression-boundaries.md) | Has a material instruction reduction lost a live boundary? | Selected mechanism, recovery or authority case. |
+| [C12](actors/C12-desire-domain-fitness.md) | Can the agent distinguish intent, domain meaning and technical fitness? | Judgment against supplied facts and settled controls. |
+| [C13](actors/C13-engineering-guidance.md) | Does guidance improve proof retention or component judgment? | Selected realistic failure and counterexample. |
+| [C14](actors/C14-codex-profile.md) | Does a changed delegation policy respect actual host limits? | Targeted admission probe; native settings need real host evidence. |
+| [C15](actors/C15-adoption-boundaries.md) | Does a specific change preserve an important judgment or artifact contract? | Select one boundary; do not rerun a historical revision campaign. |
+| [C16](actors/C16-documentation-maintenance.md) | Does source reconciliation preserve policy, history and cross-slice meaning? | Select a conflicting-source or completion-boundary case, not routine copy edits. |
+| [C17](actors/C17-private-serving.md) | Does a material privacy change confuse authentication, encryption or crawler controls? | Select the relevant denial/disclosure/expiry case. A response probe does not establish a private live route. |
 
-[Direct-owner observations](observations/2026-09-15-direct-owners.md) compare C09 without Alárinà. Both revisions proposed adequate substantive evidence; extra companion attribution did not demonstrate an advantage. The same audit found and repaired a session-discovery defect with an executed regression.
+Keep [expected outcomes](reviewers/expected-outcomes.md) hidden from actors. C15, C16 and C17 have separate [C15 outcomes](reviewers/C15-adoption-outcomes.md), [C16 outcomes](reviewers/C16-documentation-outcomes.md) and [C17 outcomes](reviewers/C17-private-serving-outcomes.md). A correct alternative route may pass; names and phrasing are not the result.
 
-The cases distinguish two dimensions:
+## Run only the selected boundary
 
-- **Selection probe**: the actor returns the route it would take and stops before doing the work. This isolates selection, ownership, authority, and stopping decisions.
-- **Executed outcome**: the actor works in a disposable checkout. Review the resulting files, commands, worker records, and host trace rather than a proposed route alone.
-- **Supplied candidate**: the primary controlled mode. Freeze the candidate `skills/alarina/` package and actual installed skill definitions outside the actor prompt, expose that frozen inventory through the host, and require the actor to use the supplied Alárinà candidate. Do not reconstruct or paste a catalogue into a case prompt.
-- **Native discovery**: an optional separate replication mode. Install the same candidate and let the host discover its normal inventory. Record it as native discovery rather than evidence from the supplied-candidate condition.
+State what outcome would change the decision and set a finite authorized budget. For comparisons, hold the task, candidate inventory, model/effort and material host conditions constant. Freeze the exact source and applicable references, keep expected outcomes outside actor inputs, and use fresh disposable workspaces/sessions where needed. Record real isolation rather than claiming a directory is a sandbox.
 
-The smoke recipe below uses frozen definitions supplied directly. Native discovery is untested unless an evaluator runs and records that separate mode.
+A supplied-instruction probe and a native-discovery trial are different conditions. A route proposal does not establish actual actions, runtime guarantees or improvement. Preserve commands, artifacts, wrong-source attempts, missing evidence and intervention cost. Do not silently retry until a case passes. Native workers are optional; one agent can apply several methods.
 
-The revision-8 cases and C04/C06 continuity amendments are unrun protocols, not new model-performance evidence. C06 requires a first plan and a follow-up update to the same HTML; preserve output inventories and both revisions for review. C12–C14 use hidden reviewer expectations and need no new runner or model-dependent package CI. Before any model campaign, record its finite authorized trial count, resource ceiling, reset window and stop conditions. No campaign is authorized by adding these cases.
+C01 can use `evals/engineering/fixtures/verification/`; C02 uses `profile/`; C03 uses `batching/`; C04 and C06 use separate copies of `migration/`. Reuse a current project when it supplies better evidence. Publication, merge, real installs and destructive operations remain outside these cases' authority.
 
-## Cases
+## Retired routine probes and historical evidence
 
-[C15](actors/C15-adoption-boundaries.md) contains seven independently run Revision 8
-compression cases, with [private outcomes](reviewers/C15-adoption-outcomes.md). These remain
-unrun until an authorized matched campaign executes them; source checks are separate evidence.
+The standalone C07 heading-edit route and C11 updater questionnaire are retired. Routine editorial work has an existing control in C08. Routine updater, system-cleanup and serving work uses source/native-policy review and authorized scoped operational proof, not a standing model campaign. `system-cleanup` has no dedicated case to remove. C17 remains an optional safety probe for concrete audience, disclosure and expiry uncertainties; do not run its pack merely because Pèsè changed.
 
-| Case | Observation | Primary source | Work surface |
-| --- | --- | --- | --- |
-| C01 | Executed outcome | Supplied candidate | verification fixture; multi-owner engineering |
-| C02 | Executed outcome | Supplied candidate | profile fixture; diagnosis only |
-| C03 | Executed outcome | Supplied candidate | batching fixture; settled direct repair |
-| C04 | Executed outcome | Supplied candidate | migration fixture; resume accepted plan |
-| C05 | Selection probe | Supplied candidate | pull-request status versus merge authority |
-| C06 | Executed outcome | Supplied candidate | migration fixture; named Data change plan |
-| C07 | Selection probe | Supplied candidate | no applicable playbook |
-| C08 | Selection probe | Supplied candidate | four new compositions, five existing routes and an editorial control |
-| C09 | Selection probe | Supplied candidate | independently invoked owners, evidence acquisition, partial coverage and a routine-work control |
-| C10 | Selection probe | Supplied candidate | compression-sensitive engineering, authority, recovery and aggregate work-in-progress boundaries |
-| C11 | Selection probe | Supplied candidate | explicit updater ownership, provenance, uncertain completion and session reload boundaries |
-| C12 | Selection probe | Supplied candidate | desire, domain applicability and technical fitness with settled controls |
-| C13 | Selection probe | Supplied candidate | selective TDD, proof retention and component-design controls |
-| C14 | Selection probe; optional native replication | Supplied candidate | Codex profile admission, native settings and authority limits |
+The retired source remains at [revision 2345ddf](https://github.com/quantipixels/skills/tree/2345ddfd839dd8001e0b559dcdae209c1d414f6a/evals/coordination). Preserve historical IDs rather than renumbering surviving evidence.
 
-## Run with native workers
-
-Use a fresh disposable directory and a fresh host session for each case. Before the run, copy the candidate `skills/alarina/` package and the actual repo definitions of installed skills into private evaluation input, then freeze their hashes. Expose those files using the native host's supplied-instruction and skill-inventory controls. Give the actor its case prompt and only the named work surface. The actor must be able to read the supplied candidate; do not rely on an older host-provided Alárinà. Keep the frozen inputs and expected outcomes outside the editable workspace.
-
-Record the exact model, reasoning setting, candidate and inventory hashes, host isolation, worker assignments when any, tool calls, changed files, checks, and final response. Disable automatic retries. Do not reveal the reviewer file until the run ends. A native-discovery replication uses a separate run ID and records the discovered inventory instead of being treated as the supplied-candidate run.
-
-For example, C01 can use a copy of `evals/engineering/fixtures/verification/`; C02 can use `profile/`; C03 can use `batching/`; and C04 and C06 can each use a separate copy of `migration/`. Let the native host manage worker lifecycle and isolation when workers are useful. One agent may apply several owners' methods without delegation. If workers are used in an execution case, give them the same disposable checkout through the host's normal workspace controls and retain their returned evidence in the trace.
-
-For a quick supplied-candidate sample, run C01, C03, C05, and C07. Together they cover multi-owner composition, deliberate single-owner execution, a read-only PR stop, and a justified no-playbook route. Evaluate each run against the matching section of the reviewer file. A proposed plan does not pass an implementation case, and mentioning a skill or playbook name does not pass any case by itself.
-
-C08 can compare frozen source revisions with the same model, effort, request order and host capabilities. Keep its reviewer criteria private. It measures proposed routing and authority decisions; it does not establish runtime execution, native discovery or an end-to-end benefit. An adequate adapted route in the earlier revision is valid even when it lacks the new playbook name.
-
-C09 tests direct invocation without loading Alárinà. Freeze the full skill directory and expose only the case and those definitions to a fresh actor. Keep model, effort, request order and supplied capabilities matched across revisions. Judge the proposed acquisition, owning decision, uncertainty and authority rather than whether a particular companion skill is named. A correct native operation is valid. This remains a selection probe; real acquisition and instruction effectiveness need executed outcomes.
+[First observations](observations/2026-09-15.md), [coverage observations](observations/2026-09-15-coverage.md), and [direct-owner observations](observations/2026-09-15-direct-owners.md) remain historical. Several comparisons found adequate answers in both candidates; they do not establish a measured advantage or current host invocation. Their original mentions of retired cases are not live run instructions.
