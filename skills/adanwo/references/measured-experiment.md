@@ -72,4 +72,4 @@ Use `alaga` for retained software changes and `oro` in its agent-facing branch f
 
 Return the baseline and final result, workload and conditions, meaningful comparisons, preserved constraints, exact retained candidate, verification limits, and stop reason. Distinguish unrun hypotheses from failed trials and a promising contender from an accepted result.
 
-Keep the experiment record in the conversation or existing destination; persist only for needed resumption, review, or reuse. Omit unused fields; no universal schema, permanent benchmark catalogue, or standing prompt-wording tests are required. Publish only when requested, using [seda-pr](../../seda-pr/SKILL.md) in publication mode. A measured winner is not automatically approved, integrated, or released.
+Keep the experiment record in the conversation or existing destination; persist only for needed resumption, review, or reuse. Omit unused fields; no universal schema, permanent benchmark catalogue, or standing prompt-wording tests are required. Publish only when requested, using `seda-pr` in publication mode. A measured winner is not automatically approved, integrated, or released.
