@@ -82,6 +82,7 @@ Common entrypoints:
 | `iwadi` | A question needs substantial current research or exact-source grounding |
 | `yoruba-glossary` | Yorùbá language guidance, lessons, word formation, or glossary maintenance is needed |
 | `oro` | Agent-facing instructions or human-facing technical prose needs writing, review, editing, or pruning |
+| `akowe` | A documentation set needs a read-only audit or verified synchronization with implementation and accepted decisions |
 | `adanwo` | A bounded exploratory or measured experiment must settle uncertainty |
 | `alarina` | Select or use an engineering playbook, compose or resume work across owners, or find the starting owner |
 | `codex-orchestra` | Apply the bounded Codex delegation profile under an Astra main agent when useful or requested |
@@ -89,6 +90,8 @@ Common entrypoints:
 | `seda-pr` | A PR/MR needs a reviewer-facing description, creation, publication, or babysitting toward a human merge decision |
 
 Alárinà uses installed skill definitions as the dynamic inventory.
+
+Use [Akọ̀wé (`akowe`)](skills/akowe/SKILL.md) to audit or synchronize a scoped documentation set. For example: “Use akowe to audit the docs affected by this change; do not edit” or “Use akowe to sync the current setup guides with this branch; do not commit or push.” It checks relevant nested docs, examples and agent guidance without rewriting historical decisions or treating code regressions as new policy. Architecture stays with `architect`, domain meaning and ADR lifecycle with `amose`, and writing with `oro`. Selective installations need the companions required by the affected documents; no new host configuration is required.
 
 `fihanmi` owns shared presentation and the visual-explanation method used by `oro`, `html-artifact`, and reviewer-facing PR work.
 

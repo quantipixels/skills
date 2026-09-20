@@ -25,6 +25,8 @@ The revision-8 cases and C04/C06 continuity amendments are unrun protocols, not 
 compression cases, with [private outcomes](reviewers/C15-adoption-outcomes.md). These remain
 unrun until an authorized matched campaign executes them; source checks are separate evidence.
 
+[C16](actors/C16-documentation-maintenance.md) adds documentation-maintenance and adjacent-owner cases, with [private outcomes](reviewers/C16-documentation-outcomes.md). Run each independently using the same native-host recipe. These are unrun protocols, not model-performance evidence.
+
 | Case | Observation | Primary source | Work surface |
 | --- | --- | --- | --- |
 | C01 | Executed outcome | Supplied candidate | verification fixture; multi-owner engineering |

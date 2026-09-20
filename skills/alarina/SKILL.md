@@ -44,6 +44,7 @@ Use the paths below when composition matters. Open the matched file before using
 | Architecture evolution | Design or codebase friction, dependency upgrades or framework migrations need assessment or verified delivery. | [Architecture evolution](playbooks/architecture-evolution.md) |
 | Incident recovery | An active disruption needs mitigation and verified recovery. Diagnosis-only remains Investigation. | [Incident recovery](playbooks/incident-recovery.md) |
 | Release and rollout | An accepted candidate needs release planning, publication, deployment or live acceptance. | [Release and rollout](playbooks/release-rollout.md) |
+| Documentation maintenance | A documentation set needs drift detection, reconciliation or verified updates. | `akowe` in `audit` or `sync`; a focused architecture, domain or wording-only request stays with its specialist. |
 | PR readiness | An existing PR/MR needs status or work toward mergeability. | `seda-pr`; route confirmed blockers to their owners and return for current readiness. Observation-only requests stay read-only. |
 
 ### Run the selected path
