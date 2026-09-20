@@ -33,6 +33,10 @@ def unique_mapping(loader: UniqueLoader, node: yaml.MappingNode, deep: bool = Fa
 
 UniqueLoader.add_constructor(yaml.resolver.BaseResolver.DEFAULT_MAPPING_TAG, unique_mapping)
 MARKDOWN = MarkdownIt("commonmark")
+HISTORICAL_DIRECTORIES = (
+    Path("evals/coordination/observations"),
+    Path("evals/engineering/observations"),
+)
 
 
 def mapping(text: str) -> dict:
@@ -90,7 +94,13 @@ def check(root: Path) -> list[str]:
             if type(disabled) is not bool:
                 raise ValueError("disable-model-invocation must be boolean")
             meta_path = path.parent / "agents/openai.yaml"
-            meta = mapping(meta_path.read_text(encoding="utf-8")) if meta_path.exists() else {}
+            meta = {}
+            if meta_path.exists() or meta_path.is_symlink():
+                if not meta_path.resolve().is_relative_to(root):
+                    raise ValueError("host metadata escapes package")
+                if not meta_path.is_file():
+                    raise ValueError("host metadata is not a readable file")
+                meta = mapping(meta_path.read_text(encoding="utf-8"))
             policy = meta.get("policy", {})
             if not isinstance(policy, dict):
                 raise ValueError("policy must be a mapping")
@@ -106,7 +116,8 @@ def check(root: Path) -> list[str]:
     for folder in ("skills", "agents", "docs", "evals"):
         # Historical records cite their original source cuts; they are not live routes.
         documents.extend(path for path in sorted((root / folder).rglob("*.md"))
-                         if "observations" not in path.relative_to(root).parts)
+                         if not any(path.relative_to(root).is_relative_to(archive)
+                                    for archive in HISTORICAL_DIRECTORIES))
     for path in documents:
         if not path.is_file():
             continue

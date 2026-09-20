@@ -53,11 +53,18 @@ def render(summary: dict[str, Any]) -> str:
     details = []
     for cell in cells:
         checks = []
-        for key in ("returned_tests", "acceptance", "baseline_tests", "tests_against_original",
+        for key in ("returned_tests", "acceptance", "acceptance_against_original",
+                    "baseline_tests", "tests_against_original",
                     "feature_acceptance", "feature_acceptance_against_original"):
             result = cell.get(key)
             if isinstance(result, dict) and result.get("status") is not None:
                 checks.append(f"{key}={text(result['status'])}")
+        # Integrity failures can occur before any executable check is run.
+        if cell.get("detail"):
+            checks.append(f"detail={text(cell['detail'])}")
+        for key in ("missing", "tampered", "unexpected_files", "symlinks"):
+            if cell.get(key):
+                checks.append(f"{key}=" + ", ".join(text(value) for value in cell[key]))
         if checks:
             details.append(f"{text(cell['id'])}: " + "; ".join(checks))
     if details:
