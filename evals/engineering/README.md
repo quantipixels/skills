@@ -62,3 +62,19 @@ No record or result on an untouched cell means unrun; partial submissions are in
 - [Project-backed scenarios](scenarios/README.md) cover real framework, compatibility, interruption, authorization, resource and architecture boundaries. They are protocols, not runnable profiles or completed trials.
 
 Historical results remain in [observations/](observations/). Preparation, replay and mechanical checks make no fresh model-performance claim.
+
+## Read the current results
+
+For a compact human-readable view after `check`, use:
+
+```bash
+python3 evals/engineering/report.py \
+  --study .qp/alaga-engineering/reuse-1 \
+  --checks .qp/alaga-engineering/reuse-1-checks.json
+```
+
+This view calls the existing summary validator before displaying each cell, evidence kind, available time/tool counts and decisive check statuses. It refuses changed inputs, missing cells and stale checked artifacts. It preserves unknown measurements, unrun cases, replay status and isolation limits; it does not select a winner or average failures away.
+
+The command reads the study and writes only a disposable temporary summary. It launches no model, re-executes no candidate and changes no acceptance contract. Exit `0` means a current report was displayed, not that actors passed; exit `2` means the report could not be validated/displayed. Use the unchanged JSON summary for machine consumers.
+
+This is a reporting pilot, not a replacement evaluation framework. Preparation, independent oracles, provenance records and their rejection tests remain in place. Keep or remove the view according to its usefulness in actual reviews; no reduction in review time is claimed from its mechanical tests.
