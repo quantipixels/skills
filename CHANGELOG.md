@@ -1,5 +1,29 @@
 # Changelog
 
+## 4.3.0
+
+### Minor Changes
+
+- [#177](https://github.com/quantipixels/skills/pull/177) [`a968e6e`](https://github.com/quantipixels/skills/commit/a968e6ed0dec3791995727c71740c77247612080) Thanks [@mosobande](https://github.com/mosobande)! - Add Akọ̀wé (`akowe`) for scoped documentation audits and synchronization. Reconcile cross-document drift while preserving architecture and domain ownership, historical intent, generated sources, and read-only boundaries; connect discovery and delivery without automatic publication or pruning.
+
+- [#180](https://github.com/quantipixels/skills/pull/180) [`9757ea1`](https://github.com/quantipixels/skills/commit/9757ea1578a47fdf965ffef5372af7fcf8d75455) Thanks [@mosobande](https://github.com/mosobande)! - Make qp-update refresh its procedure once from the established source before updating through the existing manager. Reconcile bundle and selective skill lifecycles without redundant approvals, preserve local changes and tracking policy, and distinguish installed content from session activation. Extend native-install verification to check the full updater resources and compare saved before/after plugin snapshots without claiming manager execution or reload evidence.
+
+- [#175](https://github.com/quantipixels/skills/pull/175) [`eb7a6ae`](https://github.com/quantipixels/skills/commit/eb7a6ae1585887b7f3db8d2c31386db2d76f6fdd) Thanks [@mosobande](https://github.com/mosobande)! - Add model-free package validation and native explicit-invocation metadata for qp-update and pese without folding public skills or removing their working capabilities. Use a direct CLI smoke check and run engineering checker tests only when its code or fixtures change.
+
+  Keep model evaluations focused on consequential regressions, misdirection and useful controls, not per-skill certification. Retire low-signal routing/tool-selection quizzes, consolidate the duplicated cache question with separate direct/routed conditions, align private rubrics, and repair stale evaluation guidance. Preserve PR truthfulness, privacy, populated-data, recovery and proportionality cases, plus independent oracles, integrity checks and historical provenance. No model-performance improvement or installed-host success is claimed.
+
+### Patch Changes
+
+- [#176](https://github.com/quantipixels/skills/pull/176) [`7b73083`](https://github.com/quantipixels/skills/commit/7b730832f02798bf718fd0bee97c34ca21718ba5) Thanks [@mosobande](https://github.com/mosobande)! - Give `architect` explicit ownership of `ARCHITECTURE.md` creation, maintenance and drift checks. Add a documentation mode that preserves existing project destinations, separates current structure from planned changes, and keeps survey/review-only requests read-only for the overview.
+
+- [#178](https://github.com/quantipixels/skills/pull/178) [`2345ddf`](https://github.com/quantipixels/skills/commit/2345ddfd839dd8001e0b559dcdae209c1d414f6a) Thanks [@mosobande](https://github.com/mosobande)! - Harden Pèsè's private-resource contract: verify the intended audience, deny unintended clients independently of crawler identity, and require scoped HTTP no-index, no-store and no-referrer controls. Preserve unrelated routes, distinguish advisory robots rules from access control, and fail closed when required protections cannot be established.
+
+- [#179](https://github.com/quantipixels/skills/pull/179) [`03917f1`](https://github.com/quantipixels/skills/commit/03917f162c1466675912c786afac6b8d4056b80b) Thanks [@mosobande](https://github.com/mosobande)! - Tighten Alárinà's whole-route proportionality rule and Atọ́nà's recovery from agent-proposed plan growth. Preserve user-requested work, existing contracts, required checks and deletion authority without adding a scope-guard skill or workflow.
+
+  Add a focused optional judgment contrast for dropping unsupported work versus retaining a compatibility obligation, reusing existing execution and authority controls. No model-performance improvement or installed-host success is claimed.
+
+- [#173](https://github.com/quantipixels/skills/pull/173) [`7c4cd54`](https://github.com/quantipixels/skills/commit/7c4cd54e122354ab6743e372f59faa279e703ab5) Thanks [@mosobande](https://github.com/mosobande)! - Bound Atọ́nà verification to acceptance and required checks, make progress updates concrete, and hand over promptly once delivery has sufficient evidence.
+
 ## 4.2.0
 
 ### Minor Changes
