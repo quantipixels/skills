@@ -1,0 +1,57 @@
+{
+  "kind": "replay",
+  "profile": "existing-code",
+  "checker_sha256": "510fc8f60d14372a51e3d322532286b917f452e9492a9012022c29573c5ad9ff",
+  "source_revision": "ee50f9e0fcab190619631da152e81a3cfc7bc9bd",
+  "model": "not-recorded",
+  "reasoning": "not-recorded",
+  "fresh_model_runs": 0,
+  "limitations": [
+    "Prior subagent candidates replayed against current checker and frozen guidance; no new actor run.",
+    "No executed control arm; no comparative improvement claim.",
+    "Original additive-feature errors remain errors, with separate expected missing-action proof."
+  ],
+  "results": [
+    {
+      "id": "settlement-control-r1",
+      "status": "unrun",
+      "record_kind": null,
+      "candidate_hash": "6dd2ae5fedaf7693b96ca1aed6dece2decdfbd47c6c8bd9d792d12b7ebd74a61",
+      "checks": {}
+    },
+    {
+      "id": "reuse-alaga-r1",
+      "status": "passed",
+      "record_kind": "replay",
+      "candidate_hash": "5f8d3d256181edada3fa4c2cfc5a3319d895f0a2f1bce5c52996befde18fe884",
+      "checks": {
+        "returned_tests": "passed",
+        "acceptance": "passed",
+        "tests_against_original": "error",
+        "baseline_tests": "passed",
+        "acceptance_against_original": "error",
+        "feature_acceptance": "passed",
+        "feature_acceptance_against_original": "failed"
+      }
+    },
+    {
+      "id": "settlement-alaga-r1",
+      "status": "passed",
+      "record_kind": "replay",
+      "candidate_hash": "88ca3fd8f4c41bc8c62976bb92291f4fbf4ae5ab4f53a35c4108b3478bb58dda",
+      "checks": {
+        "returned_tests": "passed",
+        "acceptance": "passed",
+        "tests_against_original": "failed",
+        "baseline_tests": "passed"
+      }
+    },
+    {
+      "id": "reuse-control-r1",
+      "status": "unrun",
+      "record_kind": null,
+      "candidate_hash": "cc69e1a7275fea4bb312afd935e45a1b64001e7114bf59cbc24ab031943f2506",
+      "checks": {}
+    }
+  ]
+}

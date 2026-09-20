@@ -1,5 +1,3 @@
 interface:
   display_name: "QP Update"
-  short_description: "Update QP through the current installation owner"
-policy:
-  allow_implicit_invocation: false
+  short_description: "Update QP through its existing installation owner"

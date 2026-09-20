@@ -1,32 +1,21 @@
 ---
 name: oro
-description: "Write, edit or review agent instructions and human technical prose for their actual reader. Excludes factual investigation and code formatting."
+description: Write, review, edit, or prune text for agents or people. Use for skills, prompts, instructions, technical docs, explanations, reports, procedures, messages, or other prose; select the agent-facing or human-facing branch by the text's primary reader. Exclude factual investigation, translation, and code style.
 ---
 
 # Ọ̀rọ̀
 
-Return usable writing for its reader. Preserve source facts, exact identifiers, scope, authority and the artifact's contract. Use [iwadi](../iwadi/SKILL.md) for a material factual gap, not to restart settled analysis.
+Own usable writing for its actual reader. Preserve facts, decisions, authority, exact identifiers, and the artifact's native contract.
 
-## Agent-facing instructions
+Choose one primary branch:
 
-Make trigger, owned result, exclusions, consequential branches, authority, stop condition and conditional depth clear. Keep expertise that changes non-obvious decisions, examples that discriminate mistakes, and independently necessary boundaries. Assume routine mechanics are known; do not script every tool call.
+- **Agent-facing** — text steers an agent's selection, judgment, authority, execution, or completion. Read [agent-facing writing](references/agent-writing.md). For a mixed artifact, this branch owns executable or behavior-shaping instructions.
+- **Human-facing** — text primarily helps a person understand, decide, or act. Read [human-facing writing](references/human-writing.md). For a mixed artifact, this branch owns narrative, explanation, and reader flow.
 
-Before adding a reminder ask whether the obligation belongs in an existing API/type/check, native host control, canonical domain source or genuine skill judgment. Enforce mechanics when adequate; preserve semantics and remove covered reminders only after equivalence is demonstrated. A smaller file is not automatically cheaper if it causes repeated discovery or reference reads.
+Use both branches only when the artifact has distinct agent and human surfaces. Do not apply one audience's optimization to the other by default.
 
-Keep the hot path cohesive and branch depth behind precise load conditions. Name and link the actual public owner when composing; do not copy its method into callers. Missing companions remain discoverable gaps. Root instructions cannot substitute for boundaries needed by independent installations.
+When authoring or maintaining a project-local skill for exercising a real application, read [project verification capabilities](references/project-verification.md). Own the usable instructions; `alaga` owns any harness implementation and executed proof, and the project or host owns non-obvious capability readiness.
 
-For public identity or resource changes inspect active references and host metadata, explain migration and preserve attribution. Keep adapters thin. Do not create a second skill catalogue, universal runtime, model registry or word-count gate.
+For a bounded explanation, establish the supplied topic, evidence, intended reader, and question; explain from those sources without originating missing analysis. Requests such as “show me” or “make this clearer” re-express the current material directly; reuse its evidence and update an existing artifact when appropriate. Reopen investigation only for a material source gap. Use the human-facing branch for prose. When a visual would materially clarify relationships, ordering, state, comparison, or structure, use `fihanmi`. Use `html-artifact` when the requested result is a portable visual information artifact; Ọ̀rọ̀ supplies writing, Fihanmi supplies presentation, and HTML Artifact owns construction and verification.
 
-## Human-facing prose
-
-Write for the reader's technical familiarity and immediate task: learn, act, look up, compare or decide. Preserve useful vocabulary and explain unfamiliar prerequisites. Prefer active voice, concrete verbs, conditions before guarded actions and explicit actors. Keep one term for one concept. Useful repetition can remove ambiguity.
-
-Lead with the result, put material qualifications beside it, and remove decorative headings, boilerplate and vague praise. Match the user's voice and native artifact form. Do not flatten technical distinctions or rewrite facts merely to sound simpler.
-
-Use [fihanmi](../fihanmi/SKILL.md) when relationships or evidence need a visual view, including HTML. Re-express supplied analysis rather than inventing conclusions.
-
-## Complete and verify
-
-For a material revision identify retained, changed, relocated and retired behavior; old text is evidence, not sacred. Review affected branches and authority. Validate package/reference mechanics separately. Use a realistic smoke case for meaningful behavioral uncertainty and [adanwo](../adanwo/SKILL.md) when a comparative claim needs it; editorial corrections need no campaign.
-
-Return complete text first for authoring/editing, findings first for review, then material source or scope gaps. Shorter wording and a plausible response do not demonstrate improvement.
+Return complete usable text first for authoring or editing, and findings first for review. Surface only material gaps in meaning, evidence, authority, audience, or scope.

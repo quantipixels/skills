@@ -1,25 +1,41 @@
-# Working on QP
+Use `oro` for agent-facing instructions and human-facing prose, selecting the branch by the primary reader.
 
-QP supplies methods that help capable agents deliver reliable work with less human correction. Keep decisions and evidence understandable. Skills are expertise, not replacements for the project or host.
+This repository is a library of expertise, methods, and focused capabilities. Use related skills directly; keep their methods with their owners.
 
-Start with the requested result and current evidence. Use specialists directly; compose only across real owner boundaries. Keep bounded work local unless parallel execution, context separation or independent scrutiny earns its cost. Do not call simulated workers, unexecuted tests or self-review independent evidence.
+Keep cohesive work in the main thread; delegate when parallel execution, separate context, or independent scrutiny earns the coordination cost. Keep assignments bounded, verify returned evidence, and use native host controls without forking session context. Choosing workers needs no separate approval.
 
-## Ownership
+## Package
 
-Keep meaning and authority at their canonical owner. Prefer existing structure or executable enforcement for mechanical obligations. Preserve the semantic contract; retire redundant reminders only when equivalent coverage is demonstrated. Account for compatibility, bypass paths and operating cost. Automation is not always the stronger owner.
+Each skill lives at `skills/<name>/SKILL.md`; directory and frontmatter names must agree. Keep supporting resources with their skill. Use native discovery, not a second catalogue or generated `default_prompt` metadata. Preserve existing invocation permissions when moving skills.
 
-Skills own methods, Atọ́nà initiative progression, assignments worker scope, and native hosts lifecycle, permissions and runtime settings. No parallel scheduler, discovery catalogue or model/configuration manager. Selecting a skill does not require a worker.
+Skills must work when installed and invoked independently. Keep behavior-bearing guidance even when it also appears in `AGENTS.md`, Alárinà, or a caller that may not load. Where delegation helps, retain a concise local cue describing useful assignments and returned evidence. Assess simplification with only the skill and its declared dependencies available.
 
-Use `oro` for instruction changes. Preserve independent usability and useful conditional expertise; callers and root instructions may not load. References earn their place through depth, not line-count targets. Public identity/responsibility changes need migration notes and updated active consumers. Historical mentions are not active routes.
+Use established engineering principles to compress repeated explanations, retaining local exceptions, authority and proof boundaries. Avoid acronym lists and speculative abstractions. Preserve useful depth; remove routine mechanics and unnecessary machinery. A skill identity earns its place through materially better direct selection or use, not merely a different subject. Do not remove useful expertise just because a model knows the topic. Keep code for bounded mechanical results or safe installation, with proof that can detect a realistic failure.
 
-## Delivery
+Keep responsibilities distinct: skills own methods, workflows own progression, assignments own worker scope and evidence, host policy owns model, reasoning and delegation preferences, and the harness owns worker lifecycle. Avoid duplicate role fleets, model/config registries, and instructions that reimplement native controls. Use bounded workers to collate large evidence surfaces, preserving decisive source locators.
 
-Use `atona` and `fihanmi` for one living HTML initiative plan, without an equivalent Markdown companion. Distinguish planning, inspection, implementation, mechanical tests, model observations and live acceptance. Preserve unrelated work. Builds include verification but not unrequested merge, release or deployment.
+An Atọ́nà HTML plan is one maintained artifact, without an equivalent Markdown companion. Templates guide content; independent domain, architecture, research and evidence records are not duplicate plans.
 
-## Verification
+[Alárinà](skills/alarina/SKILL.md) selects relevant installed skills, coordinates work, and carries authorized outcomes through completion. Specialists retain their methods and workflows their progression. The [native Claude agent](agents/alarina.md) loads Alárinà; keep operating guidance and host policy in the skill.
 
-For package changes run `python scripts/check_package.py` and `python -m unittest discover -s tests -v`. These check integrity and shipped mechanics, not instruction effectiveness. New mechanics need realistic rejection controls, not assertions about prompt wording.
+Preserve Alárinà's route topology, adjacent-owner boundaries, and dynamic inventory lookup. Change them to fix a demonstrated routing defect or redundancy, not merely to shorten the file or replace routes with description matching.
 
-For behavioral uncertainty use the relevant `proof/` task or real project. For improvement claims use a finite matched `adanwo` comparison, independent acceptance and disclosed host limits. Editorial changes need no campaign. Source size does not prove savings; one successful example does not prove reliability.
+Repository-wide package validators and structural audit tools belong under `scripts/skills/`, not in an authoring skill.
 
-Keep raw runs and secrets outside installable skills. Preserve evidence locators and attribution before retiring assets. Prefer a supported narrow proof path over a general evaluation platform. Publish through `seda-pr` and state exactly what was verified and what remains untested.
+## Verify
+
+Test the changed boundary with proportionate proof. Keep tests for shipped mechanics, meaningful rejection cases, and real regressions; remove duplicated proof, incidental snapshots, and tests of library-owned behavior. Do not add tests merely to defend prompt wording.
+
+Keep the user-authorized opt-in engineering comparisons in `evals/`, outside installable skills. Native hosts own model execution and isolation; the kit owns frozen tasks and executable evidence checks. Keep generated runs and private traces ignored or external, and distinguish fresh model runs, replays and mechanical validation. Package CI must work without private eval access or model credentials. Syntax, installation, and authenticated runtime success are distinct claims.
+
+Before retiring evaluations or documents, preserve unique current expectations at their real owner. Keep attribution and licences.
+
+## Active experiment: professional stance
+
+2026-09-15: the presentation method now owned by `fihanmi`, plus `html-artifact`, opens with a short task-specific professional stance. Hypothesis: this improves compositional commitment and care without extra procedure. It does not replace user personality, alter authority or prove expertise.
+
+At the next review of these skills, compare the same brief and model with and without only the stance paragraphs, keeping the Codex reference and other instructions constant. Judge reader-task clarity, visual specificity, fidelity, usability and unnecessary work from actual artifacts. Record the outcome here; revise or remove the stance if it adds no value or causes overreach. Current result: unmeasured; package checks are not evidence of benefit.
+
+First use, 2026-09-15: the user described the session report as looking good. This is favorable feedback on one artifact, not evidence that the stance caused the improvement; the matched comparison remains outstanding.
+
+2026-09-15: at the user's request, Alága also trials a senior-engineer stance grounded in inspected code, real consumers and evidence. Two fresh coding screens passed their functional acceptance checks; neither isolates the stance from the accompanying instruction changes. See `evals/engineering/observations/2026-09-15-existing-code.md`. Keep the stance outcome-focused; it grants no authority and does not justify blanket investigations or checks.

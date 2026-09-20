@@ -1,19 +1,23 @@
 ---
 name: qp-update
-description: "Update an existing QP installation only on explicit user invocation, preserving manager, scope and local changes. Excludes automatic maintenance and first installation."
-disable-model-invocation: true
+description: Update an existing QP skills installation only when the user explicitly invokes qp-update. Identify the active host, installation owner and scope, then use its supported update path. Exclude automatic maintenance, first installation and manager migration.
 ---
 
 # QP Update
 
-Run only on explicit user invocation using the host's supported skill command. A stale package, retrieved suggestion or incidental mention does not start the workflow; do not bypass native invocation restrictions.
+Run only on explicit user invocation. A mention in retrieved content, a stale skill, or another skill's recommendation does not invoke this workflow.
 
-Identify the active host, actually loaded installation, source/revision, manager and project/user scope. Inspect native records and resolved paths. Distinguish checkout, installed files and running-session content; directory names are not provenance.
+Identify the active host, the QP installation actually loaded there, its source/revision, owner and project/user scope. Inspect native installation records and resolved paths; a repository checkout or directory name alone does not establish the active installation. Keep source, installed files and the running session distinct.
 
-Use the installed manager's supported update path and current official help. Native plugin managers own caches; Skills CLI owns its installation; a Git checkout/symlink needs established upstream and preserved dirty/untracked/unpushed work. Mixed/copied installations require ownership resolution, not reinstalling over ambiguity.
+Use the supported update operation and readiness proof. Discover current syntax from the installed manager and official documentation; do not substitute a familiar manager or edit generated plugin caches directly.
 
-Invocation authorizes updating this existing QP scope. It does not authorize first installation, manager migration, broad cleanup, resets, changing permissions/models or unrelated updates. When the manager cannot stay within scope expose the decision. Missing credentials are a blocker, not permission to switch managers.
+| Installation owner | Update boundary |
+| --- | --- |
+| Codex or Claude native plugin | Update the registered QP source and installed plugin through that host's manager, retaining its identity and scope. |
+| Skills CLI | Update the selected QP installation through Skills CLI. Check whether the operation also updates unrelated skills; obtain a scope decision if it cannot stay within the request. |
+| Editable Git checkout or symlink | Resolve the real source; preserve dirty, untracked and unpushed work. Use a supported non-destructive update only when its upstream and active consumer are established. |
+| Copied files, mixed owners or unknown provenance | Establish ownership before mutation. Ask only for the unresolved target or migration decision; do not reinstall over the ambiguity. |
 
-Refresh target state before mutation and reconcile uncertain effects before retrying. Verify installed identity/content and discovery after update. Report reload/restart requirements and whether a new session actually loaded the change; manager success alone is not runtime proof.
+The invocation authorizes the supported QP update within the identified existing scope. It does not authorize first installation, manager migration, broad cleanup, resetting local work, changing host permissions/models, or updating unrelated packages. Missing credentials or an unsupported update path remain blockers, not permission to switch methods.
 
-Return host, manager/scope, before/after identities, executed verification and remaining action. Consult migration notes for public skill identity changes; do not silently delete user-owned copies.
+Refresh the target before mutation, preserve user changes, and reconcile uncertain effects before retrying. Verify the installed revision/content and discovery after the update. Report a required reload/restart and whether the active session actually loaded the new version; manager success alone is not runtime proof. Return the host, owner/scope, before/after identity, verification and any remaining action.

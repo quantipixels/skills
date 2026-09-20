@@ -1,78 +1,151 @@
 # QP Skills
 
-Engineering methods for capable coding agents: reliable changes, fewer human corrections, and decisions and evidence people can inspect.
+Portable agent skills for reasoning, engineering, design, and delivery. Each skill owns a focused result. Use `alarina` to coordinate the work, or invoke a specialist directly for a focused result.
 
-Start with the outcome, not an agent fleet. Use **alaga** for an accepted change, **atunwo** for independent review, or **atona** for an initiative and its decisions. **alarina** is optional cross-skill coordination. The host owns discovery, workers, permissions and model settings.
+Browse the public docs at [quantipixels.com/skills](https://quantipixels.com/skills).
 
 ## Install
 
-Use one installation manager per host. Native plugins include the complete linked skill package and the optional Alárinà agent.
+Choose the native plugin for your host, or Skills CLI for editable skill copies. Use one installation method per host to avoid duplicate skills.
 
-### Codex
+### Codex plugin
 
 ```bash
 codex plugin marketplace add quantipixels/skills
 codex plugin add qp-skills@qp-skills
 ```
 
-Restart Codex. Alternatively add `quantipixels/skills` through the app's custom marketplace interface.
+Restart Codex, then ask it to use `alarina` with your requested outcome. The plugin installs all QP skills. You control the model and reasoning.
 
-### Claude Code
+For useful native delegation under an Astra main agent, `codex-orchestra` supplies the QP Codex profile: bounded Luna workers, a separately warranted Astra specialist, and at most two live children. Root-only work remains normal. The profile requests supported settings; it does not configure the host or prove model enforcement or savings. Direct invocation can also conclude that no worker is useful.
+
+In the Codex app, add `quantipixels/skills` as a custom marketplace in Plugins, install `qp-skills`, and restart.
+
+### Skills CLI
+
+Install all skills for Codex in the current project:
+
+```bash
+npx skills add quantipixels/skills --agent codex --skill '*'
+```
+
+Add `--global` for a personal installation, or replace `'*'` with a skill name for a selective install. Alárinà's complete operating experience requires all QP skills. Individual skills can be used without Alárinà; include any companion required by the selected branch. For initiative planning with `atona`, also install `html-artifact`.
+
+For Claude Code, replace `--agent codex` with `--agent claude-code`. Skills CLI installs skills; use the Claude plugin to include Alárinà as a native agent.
+
+### Claude Code plugin
 
 ```bash
 claude plugin marketplace add quantipixels/skills
 claude plugin install qp-skills@qp-skills
 ```
 
-Reload plugins or restart. Claude's plugin namespace applies to slash commands.
+Restart Claude Code or run `/reload-plugins`. The plugin provides all QP skills and the Alárinà agent. Ask Claude to use `alarina` for your requested outcome.
 
-### Editable skill copies
+Model, reasoning, and permissions remain under your control. Claude discovers the shared `skills/` and `agents/` directories natively; no setup script or separate agent configuration is needed.
 
-```bash
-npx skills add quantipixels/skills --agent codex --skill '*'
-```
+`codex-orchestra` is Codex-only guidance even though the shared bundle contains its files. Its description is not technical package isolation. Claude uses its native controls and your preferences; QP supplies no Claude model-counterpart policy. Selectively installed specialists remain usable without the Codex profile and never install it implicitly.
 
-Use `--agent claude-code` for Claude and `--global` for a personal installation. Selective installations must include the linked companions needed by the chosen branch; links do not install dependencies. Source/reference checks are not proof of native discovery or invocation.
+## Start
 
-## Work directly
+### Give the agent a working brief
 
-| Requested result | Useful owner |
-| --- | --- |
-| Diagnose, recover or implement and verify a change | `alaga` |
-| Independent correctness or simplification judgment | `atunwo` |
-| Intent, decision interview, plan or initiative delivery | `atona` |
-| Structure and evolution; domain meaning; research | `architect`, `amose`, `iwadi` |
-| Prototype/comparison; evidence-backed postmortem | `adanwo`, `ayewo-igba-ise` |
-| Clear writing; human view including HTML; PR/MR work | `oro`, `fihanmi`, `seda-pr` |
-| Optional composition and Codex execution profile | `alarina`, `codex-orchestra` |
-| Explicit maintenance/access or focused utility | `qp-update`, `pese`, `system-cleanup`, `yoruba-glossary` |
-
-A working brief for personal or project instructions:
+After installing the skills, copy this block into your personal or project `AGENTS.md` / `CLAUDE.md`, or paste it into a conversation for that session. Merge it with existing instructions. Keep, adapt or omit the final paragraph to fit your preferred personality; it is yours to choose.
 
 ```text
-Use relevant QP methods directly. Keep settled work direct and preserve accepted decisions when resuming. Use atona for initiatives and fihanmi for one current HTML plan. Show what changed, decisive evidence and remaining limits. Do not expand authority or claim unexecuted work.
+Use the installed `alarina` skill as the governing working method for carrying my requests through authorized completion. Load it, then select and apply relevant installed skills and playbooks as the work evolves. Read their instructions and applicable references; use their methods, not just their names. Keep settled work direct and preserve accepted decisions when resuming.
+
+Choose available capabilities by the evidence the task needs. Use the project's and host's native interfaces for source structure, measurement semantics, effective use and readiness. Keep routine work direct and report material capability or coverage gaps.
+
+When work needs planning, use `atona` to guide it and `html-artifact` for the human-readable plan. Keep the same document current through delivery, showing the direction, decisions, progress, evidence and remaining choices clearly enough for someone new to the work to follow. Keep me involved when my judgment is needed and carry on with work already authorized.
+
+Be a steady workmate: warm, direct, resourceful and candid. Have a view and reconsider when evidence warrants it. Care about craft, follow through and keep me oriented. Match my language and tone; let humour arise naturally.
 ```
 
-Personality and model preferences remain yours. The Codex-only Orchestra profile is optional policy guidance, not a configured concurrency limit, enforced model allowlist or proven saving. It does not apply to Claude or change host configuration.
+Then describe your work normally. Saved instructions apply when your host loads that file; a conversation paste applies to that session. This brief does not install tools, change permissions, select a model or create a worker. Personality stays in user-owned instructions, not in the skills.
 
-## Explicit-only operations
+The plugin bundles an [Alárinà agent definition](agents/alarina.md), but using its skill as a working method does not require creating a separate agent configuration. Codex does not automatically register bundled Markdown definitions as custom agents.
 
-Invoke `$qp-update` or `$pese` explicitly in Codex. In Claude invoke the installed plugin command, for example `/qp-skills:qp-update`. Natural-language mentions alone are not the supported trigger for these manual-only skills. They carry both hosts' invocation metadata and preserve scoped authority in their methods.
+### Use a skill directly
 
-[Native controls and compatibility limits](docs/migration.md#host-behavior) explain what is declared versus what still requires runtime verification. QP does not automatically update itself, install managers or expose resources.
+If you know the skill you need, use it directly.
 
-## Contribute and verify
+Common entrypoints:
+
+| Skill | Use when |
+| --- | --- |
+| `arojinle` | A consequential choice or the user's real desired outcome needs to be resolved |
+| `atona` | Material work needs one current plan and route to an outcome |
+| `alaga` | An accepted coding change or fix needs implementation and proportionate proof |
+| `atunwo` | A fixed code candidate or codebase snapshot needs independent judgment |
+| `architect` | Technical structure, interfaces or technology choices need survey, design or review |
+| `iwadi` | A question needs substantial current research or exact-source grounding |
+| `yoruba-glossary` | Yorùbá language guidance, lessons, word formation, or glossary maintenance is needed |
+| `oro` | Agent-facing instructions or human-facing technical prose needs writing, review, editing, or pruning |
+| `adanwo` | A bounded exploratory or measured experiment must settle uncertainty |
+| `alarina` | Select or use an engineering playbook, compose or resume work across owners, or find the starting owner |
+| `codex-orchestra` | Apply the bounded Codex delegation profile under an Astra main agent when useful or requested |
+| `fihanmi` | Supplied material needs a compact visual explanation or useful default presentation |
+| `seda-pr` | A PR/MR needs a reviewer-facing description, creation, publication, or babysitting toward a human merge decision |
+
+Alárinà uses installed skill definitions as the dynamic inventory.
+
+`fihanmi` owns shared presentation and the visual-explanation method used by `oro`, `html-artifact`, and reviewer-facing PR work.
+
+Use `seda-pr` in description mode to draft or improve a PR body without committing or pushing; publication and babysitting use the same skill. Its [reviewer brief](skills/seda-pr/references/reviewer-brief.md) leads with purpose, caveats and a change-shaped outline, supported by actual evidence and recovery limits. `seda-pr` replaces `wo-pr` without an alias; update explicit references and selective installations to the new name.
+
+Atọ́nà maintains one living HTML plan, including decisions, evidence, progress and next action. It does not create an equivalent Markdown plan; independent specifications, architecture records and source evidence keep their useful existing formats.
+
+See [a worked engineering example](docs/engineering-example.md) for how identity, recovery, architecture and tests fit together in a retry fix.
+
+With `alarina` active, describe the engineering outcome or name a playbook; it selects the path and coordinates the relevant skills. The [engineering playbooks guide](docs/engineering-playbooks.md) shows supported paths, direct invocation examples and expected evidence. Settled single-owner work can still use its specialist directly.
+
+## Update
+
+Explicitly invoke `qp-update` to identify the active installation and update QP through its existing manager. It preserves installation scope and local changes, and distinguishes installed updates from a session that still needs reloading. It does not run automatically.
+
+For a Git-backed Codex plugin installation:
 
 ```bash
-python -m pip install -r requirements-dev.txt
-python scripts/check_package.py
-python -m unittest discover -s tests -v
-python -m unittest discover -s scripts/plugins -p 'test_*.py' -v
-python -m unittest discover -s proof -p 'test_*.py' -v
+codex plugin marketplace upgrade qp-skills
+codex plugin add qp-skills@qp-skills
 ```
 
-The last command needs a JDK for the Java acceptance controls. CI runs these model-free checks. `scripts/plugins/verify_native_install.py` remains an opt-in native-manager check; it does not establish fresh-session invocation.
+Restart Codex afterward. For Skills CLI installations, use `npx skills update`. Reuse the installation manager that owns your skills.
 
-[Proof](proof/README.md) separates package mechanics, behavioral acceptance and improvement claims. It keeps independent oracles and selected task boundaries without a general campaign runner. No model credentials are needed for package CI.
+For Claude Code:
 
-See [migration and design decisions](docs/migration.md), the [living rebuild record](docs/rebuild.html), and [evidence provenance](docs/evidence.md). The pre-rebuild repository is retained in Git history as experimental evidence, not an immutable specification. This is a breaking rebuild; it is not a claim of measured model improvement.
+```bash
+claude plugin marketplace update qp-skills
+claude plugin update qp-skills@qp-skills
+```
+
+Restart Claude Code or run `/reload-plugins` afterward.
+
+Claude plugin updates follow Git commits. The manifest intentionally omits `version`, so there is no version to synchronize with `package.json` releases.
+
+## Uninstall
+
+For the Codex plugin:
+
+```bash
+codex plugin remove qp-skills@qp-skills
+codex plugin marketplace remove qp-skills
+```
+
+For Claude Code:
+
+```bash
+claude plugin uninstall qp-skills@qp-skills
+claude plugin marketplace remove qp-skills
+```
+
+For Skills CLI, use `npx skills remove` and select the QP skills. Do not install the package through multiple managers at once.
+
+## Project
+
+Use [`AGENTS.md`](AGENTS.md) and `oro` for contribution and agent-instruction guidance. Change rationale and proof belong in PRs and CI.
+
+Use [simple prompt checks](evals/README.md) for scoped skill and classifier behavior. Opt into engineering comparisons when actual coding outcomes or an improvement claim need stronger evidence; native hosts run the models.
+
+To verify a checkout through disposable native manager state, run `python3 scripts/plugins/verify_native_install.py`. Use `--host codex` or `--host claude` to select one manager. The check reports the `qp-skills` package identity, observed skill/agent scope, source revision, and hashes for a small sample of installed files; it does not prove fresh-session invocation.
