@@ -33,7 +33,3 @@ Before consolidating or removing content, establish what each passage uniquely t
 A missing implementation file does not establish that the underlying problem disappeared. Age is a reason to inspect, not a deletion rule. Missing repository corroboration does not invalidate operational knowledge. Preserve plausible but unverified claims with their limits rather than deleting them to obtain a clean report.
 
 For an authorized removal, identify the specific surviving coverage or evidence that the obligation no longer applies. Use version history rather than inventing an archive store; do not delete without the necessary authority. Do not replace a canonical domain or architecture record with a generic documentation summary.
-
-## Sources
-
-Synthesized in original wording from pstack's [document-release workflow](https://github.com/no-session/pstack/blob/9a24d1408a10a5d0df624ffc128230424e405b82/document-release/SKILL.md.tmpl), Compound Engineering's [refresh classification](https://github.com/EveryInc/compound-engineering-plugin/blob/6be0932b91dc369508da19e6e2bc753b4c038830/skills/ce-compound-refresh/references/classify.md) and [investigation boundaries](https://github.com/EveryInc/compound-engineering-plugin/blob/6be0932b91dc369508da19e6e2bc753b4c038830/skills/ce-compound-refresh/references/investigate.md), and QP's existing owner boundaries. These sources inform the method; their publication, storage, deletion and host policies are not imported.
