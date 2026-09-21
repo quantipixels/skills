@@ -13,7 +13,19 @@ Interview the user relentlessly until shared understanding is reached and no con
 
 Work the tree in **rounds**. The **frontier** is every decision whose prerequisites are already settled. Ask the whole answerable frontier in one round, then wait for the user's answers before starting the next.
 
-Present concise questions with stable question numbers, enough context to answer, useful options, and a recommendation with its reason.
+Use this question card, rendered as Markdown rather than showing the template fence. Keep question numbers stable across rounds; label choices when that makes answers unambiguous.
+
+```text
+❓ **Q1** — **<question title>**: <question and choices, as needed>
+
+💡 <brief context, evidence, trade-off or example, only when it makes the decision clearer>
+
+➡️ <recommended answer and why>
+```
+
+Omit unnecessary context and do not manufacture options to fill the card. When evidence cannot support a recommendation, name the unresolved prerequisite rather than inventing one.
+
+Present interview rounds in ordinary conversation by default. Use a harness-native questioning tool only when the user requests it or a higher-priority instruction requires it, not merely because it is available. When that tool cannot faithfully show the question, context, choices and recommendation, keep the missing explanation visible in the conversation. This presentation preference does not bypass mandatory permission, approval, authentication or safety controls.
 
 Each round reshapes the tree. Recompute the material frontier from confirmed answers before asking the next round; answers may create, remove, merge, split, or reframe dependent branches. Do not merely continue the previously imagined tree.
 

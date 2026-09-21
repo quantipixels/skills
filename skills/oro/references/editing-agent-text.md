@@ -13,6 +13,7 @@ Identify the current:
 - actions/prohibitions;
 - authority and side effects;
 - bounds/evidence conditions;
+- useful or user-requested output formats and how the reader answers;
 - recovery/retry semantics; and
 - pointers to deeper material.
 
@@ -31,7 +32,7 @@ Prefer this order:
 5. replace superseded mechanism with the current abstraction/skill/tool;
 6. move branch-specific expertise behind a reliable pointer;
 7. compress repeated explanations with a strong established term;
-8. remove examples that neither replace prose nor prevent a plausible wrong action;
+8. remove examples only when they neither clarify expected output, reduce reader effort, replace prose nor prevent a plausible wrong action;
 9. replace long constructions with direct, precise language.
 
 Keep deliberate repetition only when the repeated text protects a different trigger, authority boundary, recovery condition, or independent verification step.
@@ -87,6 +88,7 @@ Ask:
 5. Does each moved reference retain a strong pointer?
 6. Were compatibility or recovery semantics deliberately retained/replaced/retired?
 7. Did the change actually remove no-op/cache/sediment rather than just shorten sentences?
+8. Can the reader still recognise, compare and answer the output as intended, with useful templates and examples retained or deliberately replaced?
 
 For meaningful behaviour changes, use realistic before/after tasks. For ordinary editorial cleanup, do not invent an evaluation harness.
 
