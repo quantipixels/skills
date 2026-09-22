@@ -23,10 +23,6 @@ Use this question card, rendered as Markdown rather than showing the template fe
 ➡️ <recommended answer and why>
 ```
 
-Omit unnecessary context and do not manufacture options to fill the card. When evidence cannot support a recommendation, name the unresolved prerequisite rather than inventing one.
-
-Present interview rounds in ordinary conversation by default. Use a harness-native questioning tool only when the user requests it or a higher-priority instruction requires it, not merely because it is available. When that tool cannot faithfully show the question, context, choices and recommendation, keep the missing explanation visible in the conversation. This presentation preference does not bypass mandatory permission, approval, authentication or safety controls.
-
 Each round reshapes the tree. Recompute the material frontier from confirmed answers before asking the next round; answers may create, remove, merge, split, or reframe dependent branches. Do not merely continue the previously imagined tree.
 
 Do not ask a question whose answer depends on another still-open question in the same round.
