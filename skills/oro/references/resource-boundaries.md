@@ -20,7 +20,7 @@ Code that ships must have falsifiable tests for its mechanical contract. Do not 
 
 ## Templates and data
 
-Keep a template when a stable recurring shape prevents meaningful omissions and no existing project/native scaffold owns it. Remove arbitrary defaults and optional-empty ceremony.
+Keep a template when a stable recurring shape prevents meaningful omissions or makes the result easier to understand, compare, answer or verify. Reuse an existing project/native scaffold only when it preserves the needed information and the user's requested format and interaction surface; availability alone does not make it a replacement. Remove arbitrary defaults and optional-empty ceremony.
 
 Bundle data only when maintaining it materially supports the result. Give volatile data a freshness boundary; do not turn a convenience snapshot into an authority source.
 
