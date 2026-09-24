@@ -2,7 +2,7 @@
 
 Use when recurring work needs a reliable way to exercise one project's actual product, or an existing verification skill has drifted. Reuse the project's working commands, tests and harness before proposing another capability. A one-off probe does not require a skill.
 
-Own the instructions that make this capability independently usable. Use `alaga` for harness code and runtime proof, the project or host for a material capability/readiness gap, and the existing project verification specialist when one already owns these journeys. Creating guidance does not authorize product repairs, installation, deployment or publication.
+Own harness implementation and runtime proof. Reuse an existing project verification specialist when one owns these journeys; use `oro` to author reusable instructions from the verified commands and evidence. The project or host owns material readiness gaps. Creating guidance does not authorize product repairs, installation, deployment or publication.
 
 ## Ground the capability
 
@@ -35,7 +35,7 @@ For recurring integration risks, retain the project-specific commands and observ
 
 ## Prove the instructions
 
-Within existing runtime and effect authority, have `alaga` follow the authored instructions in an appropriate test environment through startup/readiness, one representative journey, effect inspection and cleanup. Check that evidence remains available afterwards and owned resources are released, including after a failed attempt. Correct the instructions or harness from observed failures and rerun the affected path. Missing runtime access or effect authority leaves an unexecuted recipe with a named verification gap; an authoring request does not itself authorize live effects.
+Within existing runtime and effect authority, follow the authored instructions in an appropriate test environment through startup/readiness, one representative journey, effect inspection and cleanup. Check that evidence remains available afterwards and owned resources are released, including after a failed attempt. Correct the instructions or harness from observed failures and rerun the affected path. Missing runtime access or effect authority leaves an unexecuted recipe with a named verification gap; an authoring request does not itself authorize live effects.
 
 Return the usable capability, exact candidate and executed coverage. An unexecuted recipe is unverified; one passing journey establishes only that journey and the exercised harness lifecycle.
 

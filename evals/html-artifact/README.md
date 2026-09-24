@@ -1,6 +1,6 @@
 # Focused artifact and resource-authoring comparisons
 
-These are unexecuted model-evaluation cases, not package tests. Use the existing oro instruction-evaluation method only when a behavioural improvement claim needs it. Freeze baseline/candidate, task and model conditions. Judge results, not skill mentions or mandatory visual style.
+These are unexecuted model-evaluation cases, not package tests. Use the [shared comparison method](../README.md#controlled-comparisons) when a behavioural improvement claim needs it. Judge results, not skill mentions or mandatory visual style.
 
 | Request | Assessment question |
 | --- | --- |

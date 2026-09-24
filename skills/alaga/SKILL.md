@@ -22,4 +22,6 @@ For verification of a supplied repair, use the [existing repair comparison](refe
 
 For a measured engineering improvement or keep/revert decision, read [measured comparison](references/measured-comparison.md). A comparison-only request does not authorize adoption.
 
+For establishing or maintaining a reusable way to exercise the real application, read [project verification](references/project-verification.md). Reuse existing commands and keep authored recipes grounded in executed evidence.
+
 For delivery, read [deliver an accepted coding change](references/delivery.md). Its scope-only variant returns boundaries and proposed proof without implementation.

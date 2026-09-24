@@ -151,6 +151,15 @@ For Skills CLI, use `npx skills remove` and select the QP skills. Do not install
 
 Use [`AGENTS.md`](AGENTS.md) and `oro` for contribution and agent-instruction guidance. Change rationale and proof belong in PRs and CI.
 
-Use [simple prompt checks](evals/README.md) for scoped skill and classifier behavior. Opt into engineering comparisons when actual coding outcomes or an improvement claim need stronger evidence; native hosts run the models.
+### Repository boundaries
+
+| Location | Responsibility |
+| --- | --- |
+| `skills/<name>/` | Independently installable capability and its supporting resources. Methods stay with their owner; Alárinà's playbooks coordinate work between owners. |
+| `agents/`, `.codex-plugin/`, `.claude-plugin/` | Thin native host entrypoints and package declarations. Discover skills through the host. |
+| `scripts/`, `tests/` | Executable package and host mechanics, with checks for meaningful failures. Skill-specific mechanics stay beside their consuming skill. |
+| `evals/` | Optional behavioral cases, comparison method and historical observations. The engineering harness serves coding tasks that need executable oracles. |
+
+Keep installed skills independent of this checkout's evaluation files. Use the [shared evaluation method](evals/README.md) only when a concrete behavior or comparative claim needs it; native hosts run the models. Case packs contain their unique inputs and expectations, without repeating the shared method or becoming mandatory CI campaigns.
 
 To verify a checkout through disposable native manager state, run `python3 scripts/plugins/verify_native_install.py`. Use `--host codex` or `--host claude` to select one manager. The check reports the `qp-skills` package identity, observed skill/agent scope, source revision, and hashes for sampled files including every updater resource; it does not prove fresh-session invocation. For upgrade evidence, the same verifier supports a read-only comparison of saved before/after native plugin roots. See [native upgrade verification](scripts/plugins/README.md); snapshot agreement alone does not prove a manager transition, scope preservation or session activation.

@@ -1,11 +1,11 @@
 ---
 name: oro
-description: Create, edit, review or simplify skills and other agent-facing instructions, including SKILL.md files, prompts and references. Also write, review and prune human-facing prose. Select the branch by the primary reader. Exclude factual investigation, translation and code style.
+description: Write, review or simplify agent and human communication. Use for skill authoring and maintenance, SKILL.md files, prompts, instructions, technical docs and prose. Exclude factual investigation, evaluation execution, harness implementation, translation and code style.
 ---
 
 # Ọ̀rọ̀
 
-Own usable writing for its actual reader. Preserve facts, decisions, authority, exact identifiers, and the artifact's native contract.
+Own agent and human communication, including skill authoring and maintenance. Preserve facts, decisions, authority, exact identifiers, and the artifact's native contract. Evaluation design, harness implementation and operational verification belong to the project or workflow requesting the text.
 
 Choose one primary branch:
 
@@ -14,31 +14,23 @@ Choose one primary branch:
 
 Use both branches only when the artifact has distinct agent and human surfaces. Do not apply one audience's optimization to the other by default.
 
-## Choose the useful reusable form
+## Skills and reusable instructions
 
 When creating or materially improving a skill, consider prose, worked examples, counterexamples, semantic templates, ready-made assets and deterministic operations. Read [resource boundaries](references/resource-boundaries.md) when that choice changes repeated effort, correctness or maintenance. A model's ability to generate something is not evidence that regeneration is better than reuse.
 
-Use examples for judgment, templates for recurring information contracts, assets for reliable mechanics and code for bounded mechanical results with falsifiable tests. Prefer adequate native/project tools. Keep resources with their consuming skill; alaga owns substantial implementation and runtime proof. Authoring alone grants no installation, execution or publication authority.
+Keep resources with their consuming skill. Prefer existing project or native capabilities; `alaga` owns substantial implementation and runtime proof. Authoring alone grants no installation, execution or publication authority.
 
-## Use templates and examples deliberately
+## Preserve useful structure
 
 Use a template when stable structure makes information easier to understand, compare, answer or verify. Distinguish required structure from illustrative scaffolding; preserve the user's requested format and interaction surface. Adapt optional fields to the task rather than adding filler or invented facts.
 
-Use the smallest concrete example that clarifies expected behaviour or output. Add a good/bad pair when the contrast exposes a plausible mistake, and state the decisive difference. Neither templates nor examples are mandatory decoration, but model capability or brevity alone does not make them redundant.
-
-Good: retain `question → useful context/example → recommendation and why` when it helps the reader answer.
-
-Bad: replace that structure with “ask clear questions” while claiming the same communication contract.
-
-For reusable documents/visuals, separate fixed semantic obligations and behaviour from the free canvas: layout, typography, palette, rhythm and artistic expression. A styled specimen demonstrates a possibility, not mandatory house style. Exercise reusable mechanics with contrasting content; one attractive result is not proof of general utility.
-
-Keep shared writing principles here and task-specific templates with their owning skill. Treat changing a useful or user-requested format as a behavioural change, not incidental cleanup.
+Use concrete examples when they clarify a plausible mistake. For example, replacing `question → useful context/example → recommendation and why` with “ask clear questions” loses an interaction contract. Keep task-specific templates with their owning skill; preserve required meaning while leaving visual style open. Changing a useful or user-requested format is a behavioral change.
 
 ## Apply the selected branch
 
-When authoring or maintaining a project-local skill for exercising a real application, read [project verification capabilities](references/project-verification.md). Own the usable instructions; `alaga` owns any harness implementation and executed proof, and the project or host owns non-obvious capability readiness.
+For a project-local verification skill, write from the project's verified commands, prerequisites, observable results and cleanup contract. `alaga` owns harness implementation and executed proof. Mark unexecuted recipes as unverified.
 
-For a bounded explanation, establish the supplied topic, evidence, intended reader, and question; explain from those sources without originating missing analysis. Requests such as “show me” or “make this clearer” re-express the current material directly; reuse its evidence and update an existing artifact when appropriate. Reopen investigation only for a material source gap. Use the human-facing branch for prose. When a visual would materially clarify relationships, ordering, state, comparison, or structure, use `fihanmi`. Use `html-artifact` when the requested result is a portable visual information artifact; Ọ̀rọ̀ supplies writing, Fihanmi supplies presentation, and HTML Artifact owns construction and verification.
+For explanations, establish the reader's question and use supplied evidence. Reopen investigation only for a material source gap. Use `fihanmi` when visual presentation would materially clarify the content; use `html-artifact` to construct a requested portable HTML artifact. Ọ̀rọ̀ supplies the writing.
 
 Cross-document drift and reconciliation belong to `akowe`; author the requested text here and return it to that caller. Wording-only work stays here.
 
