@@ -4,7 +4,7 @@ Start with the result you need. With `alarina` active, describe the work normall
 
 You can steer it explicitly: “Use alarina's Data change playbook; planning only,” or “Use the Bug fix playbook to verify this existing repair.” Playbook names select routes inside Alárinà; they are not separately installed skills or new slash commands. The host still controls how Alárinà itself is loaded. See the [session setup](../README.md) if you want its operating method throughout a session.
 
-The twelve supported paths are Feature delivery, Investigation, Bug fix, Performance improvement, Data change, Project verification, Test-suite improvement, Skill evaluation and improvement, Architecture evolution, Incident recovery, Release and rollout, and PR readiness. Feature delivery and PR readiness use their existing workflow owners. The other compositions live with [Alárinà](../skills/alarina/SKILL.md); specialist methods stay with their skills.
+Use [Alárinà's current playbook table](../skills/alarina/SKILL.md#select-a-playbook) for the supported paths, including Documentation maintenance. The examples below illustrate those routes; specialist methods stay with their skills.
 
 Existing plans, accepted decisions and current proof carry forward. A settled coding change can go directly to `alaga` with its existing tests; selecting a playbook does not require another plan, agent or review. The examples below also work as direct specialist requests.
 

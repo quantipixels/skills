@@ -1,6 +1,6 @@
 ---
 name: amose
-description: Establish, sharpen, or reconcile one project's domain model and durable records. Use when material terms, identities, state/lifecycle, policy, boundaries, relationships, ownership or invariants are defined, changed, interpreted or relied on without established applicability, or when `.learnings`, `.nongoals`, or ADRs need maintenance. Reuse settled applicable meaning; familiar wording alone is not domain consistency.
+description: Establish or reconcile a project's domain model and durable records. Use for unsettled terms, identities, lifecycles, policy, boundaries, ownership or invariant applicability, and maintenance of `.learnings`, `.nongoals` or ADRs.
 ---
 
 # Amọ̀ṣẹ́

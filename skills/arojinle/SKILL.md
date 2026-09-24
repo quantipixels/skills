@@ -1,6 +1,6 @@
 ---
 name: arojinle
-description: Establish the desired outcome and resolve consequential choices through a complete decision-tree interview and final user confirmation. Use when purpose, beneficiary, success or trade-offs remain unsettled, a proposed solution hides the need, latent dependent choices need discovery, or the user requests an interview. Reuse complete briefs and accepted decisions. Use Alárinà's premise check for a bounded critique; exclude specialist design, initiative progression, delivery, and ordinary fact-finding.
+description: Establish the desired outcome and resolve consequential choices through a user interview. Use for unsettled purpose, beneficiaries, success, trade-offs or dependent decisions. Exclude specialist design, initiative progression, delivery and ordinary fact-finding.
 ---
 
 # Àròjinlẹ̀

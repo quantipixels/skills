@@ -97,7 +97,7 @@ For Claude Code, a subagent storage path may directly prove its root-session ID;
 3. Resolve or explicitly preserve uncertain root relationships before counting independent opportunities.
 4. Select representative and risk-weighted root sessions from the inventory, using structural activity only to focus inspection where it can answer the postmortem question.
 5. Read raw transcript lines only for selected records and only to reconstruct contract, owner selection, user corrections, proof, rework, recovery, tool/environment friction, or incremental value.
-6. Apply Experimental/stable-skill classifications in `corpus-analysis.md` only after that reconstruction.
+6. Apply opportunity/use and instruction-failure classifications in `corpus-analysis.md` only after that reconstruction.
 
 ## Schema drift and provenance
 

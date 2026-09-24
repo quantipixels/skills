@@ -3,7 +3,7 @@
 
 Find the smallest causal mechanism or sufficient causal set that explains the observed failure and downstream symptoms. Diagnosis stays separate from triage/review/correction delivery.
 
-Delegate substantial analysis, research, and expert work to subagents, returning concise findings and evidence links to keep the main context lean.
+Delegate when parallel work, separate context or independent scrutiny earns its briefing and integration cost. Otherwise work directly. Require concise findings and evidence links, and preserve any required review independence.
 
 A useful model may be:
 

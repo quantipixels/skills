@@ -1,26 +1,8 @@
 # Managed initiative lifecycle
 
-Use this branch only when the governing workflow needs named readiness states, coordinated multi-candidate delivery, or a maintained lifecycle record. Ordinary plans use the main skill directly. These gates preserve formal consumers; they are not mandatory stages of every task.
+Use only when the governing workflow requires named readiness states, coordinated multi-candidate delivery or a maintained lifecycle record. Apply [initiative progression](initiative.md) for the shared plan, HTML handoff, delivery and workspace rules. These formal gates supplement that method.
 
-# Atọ́nà
-
-Turn unclear intent into one exact-current initiative plan. Own plan meaning, decision coverage, lifecycle sufficiency, delivery integration, current progression gate, and closure; do not absorb specialist design, consequential user decisions, delivery execution, persistence mechanics, or generic routing.
-
-When a confirmed decision or material fact changes, update the affected plan meaning, stale only dependent conclusions/proof, and reopen only lifecycle work whose readiness changed. Never present a partly superseded plan as wholly current.
-
-## 1. Establish the plan
-
-For every material initiative, maintain one HTML plan using [the plan record template](../templates/plan-record.md) as content guidance rather than a generated Markdown sidecar or rigid outline.
-
-Keep it in current context when one-session use is sufficient. Persist only when continuity, recovery, independent review, or downstream consumption needs durable identity. Prefer an existing intentional project destination; otherwise use `.qp/atona/` in the current workspace.
-
-When execution is bound to a concrete working directory, persist its absolute path and branch as `<branch-name> [main|worktree]`. For a linked worktree, also persist the absolute main-worktree path. Treat that workspace and its `.qp` as the current initiative candidate; update the workspace fields when execution moves.
-
-Follow the main skill's [plan handoff contract](../SKILL.md#keep-the-human-in-the-plan) with `html-artifact`. Keep meaning and presentation current in that same HTML and share one locator and revision; do not create or synchronize an equivalent Markdown plan.
-
-When supplied context already settles the initiative, synthesize it directly rather than replaying discovery. Separate confirmed context from inference and capture only the problem/outcome, acceptance, confirmed decisions, scope/non-goals, material proof expectations, current progression gate, and evidence identities needed to plan responsibly.
-
-## 2. Maintain lifecycle state
+## Maintain lifecycle state
 
 Track one status:
 
@@ -38,7 +20,7 @@ Derive a compact delivery summary from current owner results: `Not required | No
 
 Keep the **current gate** explicit: the next material progression judgment the human/initiative must satisfy. Do not turn the initiative into a health score. A required gate condition cannot be averaged away by otherwise strong evidence.
 
-## 3. Shape through the Decision Frontier
+## Shape through the Decision Frontier
 
 Pin outcome, scope, constraints, assumptions, non-goals, evidence, risks, and open uncertainties. Read only current project/domain evidence that can materially change the plan.
 
@@ -74,7 +56,7 @@ When `OPEN`, ask one already-understood bounded choice directly or use `arojinle
 
 Use other skills when they improve the plan; keep routine composition out of its lifecycle stages.
 
-## 4. Resolve required results and prove readiness
+## Resolve required results and prove readiness
 
 Before setting `Planned`, ask whether a fresh delivery/review owner would otherwise have to invent a material behavior/rule, technical architecture, consequential user decision, or delivery decomposition.
 
@@ -105,20 +87,8 @@ Treat coverage, counts, rubric scores, and checklists as evidence rather than re
 
 If the premortem or another required result is absent, stale, blocked, or not ready, keep the plan `Draft` and make that gap visible when it controls progression.
 
-## 5. Carry delivery through completion
+## Close the formal record
 
-When delivery is authorized, continue through the main skill’s build and verification loop. When coordination is material, read [delivery tracking](delivery-tracking.md). Consume active delivery owners' native results rather than copying their lifecycle/proof mechanics into Atọ́nà.
+Before `Closed`, require an empty Decision Frontier, no blocking plan gap, current accepting proof for every in-scope obligation, explicit residual deferrals and no required durable-knowledge gap. Apply the shared initiative's workspace reconciliation and removal authority. Record `reconciled`, `reconciled-retained` or `reconciled-and-removed` when a linked workspace was involved.
 
-After a material result changes plan meaning, update the same HTML plan. Recompute the current gate, weakest limiting claim/gap, and stale dependencies; show their effect on the direction and next action. Keep non-plan-affecting operational detail with its native owner.
-
-## 6. Reconcile and close
-
-Before `Closed`, require the Decision Frontier to remain empty, no blocking plan gap, current accepting delivery/proof for every in-scope obligation, explicit residual deferrals/limits, and no unresolved durable-knowledge obligation required by the governing contract or owning result.
-
-When the initiative ran in a linked worktree, inspect that worktree's `.qp`, reconcile only the material state needed by the accepting workspace, then clean reconciled/disposable local state while preserving anything not safely reconciled. Do not mirror the directory wholesale. Record one workspace disposition: `reconciled`, `reconciled-retained`, or `reconciled-and-removed`.
-
-After local-state cleanup, offer to remove the completed linked worktree. Removal requires explicit user approval; declining removal does not block `Closed`. Approval to remove the worktree does not authorize force-deleting unrelated dirty or untracked project files; if Git reports unresolved state, surface it.
-
-Keep ordinary rationale in normal initiative artifacts. Read [durable knowledge reconciliation](durable-reconciliation.md) only when stable governing knowledge must survive beyond them or an existing durable authority is materially stale; the knowledge owner decides admission and reconciliation.
-
-Before user-visible handoff or closure, align plan status, workspace/disposition when relevant, current gate, Decision Frontier, delivery summary, evidence/projection freshness, weakest material claim or blocker, remaining work, and next action. Apply the main skill's plan handoff contract to `html-artifact`’s current result; a missing, stale, or incomprehensible view does not satisfy that deliverable. Use [suggested direction](suggested-direction.md) only when a separate build-direction handoff is actually useful.
+Align status, current gate, Decision Frontier, delivery summary, evidence freshness, workspace disposition, remaining limits and next action in the same HTML plan. A missing or stale view does not satisfy its handoff contract.

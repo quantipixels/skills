@@ -17,7 +17,6 @@ codex plugin add qp-skills@qp-skills
 
 Restart Codex, then ask it to use `alarina` with your requested outcome. The plugin installs all QP skills. You control the model and reasoning.
 
-For useful native delegation under an Astra main agent, `codex-orchestra` supplies the QP Codex profile: bounded Luna workers, a separately warranted Astra specialist, and at most two live children. Root-only work remains normal. The profile requests supported settings; it does not configure the host or prove model enforcement or savings. Direct invocation can also conclude that no worker is useful.
 
 In the Codex app, add `quantipixels/skills` as a custom marketplace in Plugins, install `qp-skills`, and restart.
 
@@ -44,7 +43,6 @@ Restart Claude Code or run `/reload-plugins`. The plugin provides all QP skills 
 
 Model, reasoning, and permissions remain under your control. Claude discovers the shared `skills/` and `agents/` directories natively; no setup script or separate agent configuration is needed.
 
-`codex-orchestra` is Codex-only guidance even though the shared bundle contains its files. Its description is not technical package isolation. Claude uses its native controls and your preferences; QP supplies no Claude model-counterpart policy. Selectively installed specialists remain usable without the Codex profile and never install it implicitly.
 
 ## Start
 
@@ -85,7 +83,6 @@ Common entrypoints:
 | `akowe` | A documentation set needs a read-only audit or verified synchronization with implementation and accepted decisions |
 | `adanwo` | Disposable prototypes help the user discover, compare and refine a direction |
 | `alarina` | Select or use an engineering playbook, compose or resume work across owners, or find the starting owner |
-| `codex-orchestra` | Apply the bounded Codex delegation profile under an Astra main agent when useful or requested |
 | `fihanmi` | Supplied material needs a compact visual explanation or useful default presentation |
 | `seda-pr` | A PR/MR needs a reviewer-facing description, creation, publication, or babysitting toward a human merge decision |
 

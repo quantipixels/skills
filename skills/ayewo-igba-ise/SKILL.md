@@ -1,13 +1,13 @@
 ---
 name: ayewo-igba-ise
-description: Produce an evidence-backed postmortem for one completed, abandoned, or disputed work event, incident, rollout, session, or bounded corpus. Use when the user asks what happened, why work failed or became wasteful, what recovery cost, what patterns repeat, or which durable improvements the evidence justifies. Àyẹ̀wò does not own remediation; an explicitly requested remediation may follow through the natural owner after the postmortem is fixed.
+description: Produce an evidence-backed postmortem of an event, incident, session or bounded corpus. Explain outcomes, recovery cost, recurring patterns and justified improvements. Remediation requires an explicit request and its owning skill.
 ---
 
 # Àyẹ̀wò Ìgbà Iṣẹ́
 
 Turn one finished or materially paused event into a postmortem: what happened, what mattered, what recovery cost, what worked, what failed, and which durable changes are justified.
 
-Delegate substantial analysis, research, and expert work to subagents, returning concise findings and evidence links to keep the main context lean.
+Delegate when parallel work, separate context or independent scrutiny earns its briefing and integration cost. Otherwise work directly. Require concise findings and evidence links, and preserve any required review independence.
 
 Do not invent a new rule for every mistake. Prefer no change over a speculative lesson. Investigate successful reusable mechanisms as well as failures when that can reduce repeated effort; artistic variation may be a strength to preserve.
 

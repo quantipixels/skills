@@ -102,9 +102,7 @@ When delegated work can materially improve the outcome, read [coordination](refe
 
 Keep cohesive work in the main thread by default. Delegate when parallel execution, separate context, or independent scrutiny materially improves the outcome after briefing, verification, and integration costs. Use native collaboration controls; model and reasoning choices remain with the user and their host policy.
 
-Use the handoff above as the worker assignment, adding its selected method, required evidence, and stop condition. Never fork the parent conversation. Avoid overlapping writes and preserve required review independence.
-
-Collate large evidence surfaces into compact handoffs with decisive locators. Inspect actual artifacts before accepting results; worker completion or agreement is not proof. Redirect unsuccessful work when evidence warrants it, integrate accepted results against the overall outcome, and continue through in-scope corrections. Refresh only decisions, dependencies, or proof invalidated by new evidence.
+Preserve required review independence and accept results only from inspected evidence. The coordination reference owns assignment details, write ownership and integration mechanics.
 
 ## Verify and finish
 
