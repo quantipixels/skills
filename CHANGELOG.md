@@ -1,5 +1,33 @@
 # Changelog
 
+## 5.0.0
+
+### Major Changes
+
+- [#184](https://github.com/quantipixels/skills/pull/184) [`54b1741`](https://github.com/quantipixels/skills/commit/54b17412c2b0ccc0ec9e52ccbaf2ac2c4a664bf3) Thanks [@mosobande](https://github.com/mosobande)! - Retire codex-orchestra and its fixed model profile; model and worker preferences remain with users and hosts. Remove its active C14 evaluation case while preserving the historical ID.
+
+  Focus adanwo on disposable prototypes, iwadi on sourced research and html-artifact on usable browser documents. Move measured engineering comparisons to alaga and instruction evaluations to oro. Simplify mode loading, repair stale skill routes and remove redundant reference material.
+
+  Strengthen atona's discovery triggers, progressive shaping and testable ideation; connect unresolved experiential choices to adanwo without restarting settled delivery work. Public skill removal and retired reference paths require consumers to update explicit invocations and links.
+
+### Minor Changes
+
+- [#185](https://github.com/quantipixels/skills/pull/185) [`eb007fa`](https://github.com/quantipixels/skills/commit/eb007fac56899135431b335e7fc0b148837e2de9) Thanks [@mosobande](https://github.com/mosobande)! - Tie instruction evaluations to observed failures or concrete behavioral risks and a decision their result can change. Prefer executable acceptance, separate false passes from false failures when validating model judges, and distinguish targeted failure discovery from prevalence estimates.
+
+  Focus Ọ̀rọ̀ on agent and human communication and skill maintenance. Consolidate repository evaluation guidance in `evals/README.md` and move application verification mechanics to Alága; update callers to the owning method.
+
+  Add a bounded discovery-output comparison with a settled-work control. Preserve unique existing case coverage and historical evidence; no routine model campaign or new evaluator infrastructure is required.
+
+  Remove superseded evaluation reports and replay artifacts from the active tree, preserving their immutable Git locations. Keep current decision evidence and independently useful cases and executable checks.
+
+- [#183](https://github.com/quantipixels/skills/pull/183) [`6fe68eb`](https://github.com/quantipixels/skills/commit/6fe68ebba09d9f4c77a60c8acdc5f50e8d1f6bef) Thanks [@mosobande](https://github.com/mosobande)! - Add an expressive HTML Artifact toolkit with semantic contracts, conditional Tailwind/Mermaid authoring, transient reusable controls, structural diagnostics and bounded browser checks. Preserve private/offline delivery and artistic freedom. Extend Oro's reusable-resource judgment and Ayewo's artifact-history learning without automatic reader-state persistence.
+
+  Use Tailwind across shipped assets with CDN loading by default and conditional Mermaid. Reuse adequate native/host/library interaction capabilities before adding custom mechanics; keep reader state transient.
+
+### Patch Changes
+
+- [#181](https://github.com/quantipixels/skills/pull/181) [`4e491ea`](https://github.com/quantipixels/skills/commit/4e491ea24d7067e4f3ffab2348f017e6e14ff0e9) Thanks [@mosobande](https://github.com/mosobande)! - Restore Àròjinlẹ̀'s structured question cards and preserve useful templates, examples, and requested interaction formats in Ọ̀rọ̀.
+
 ## 4.3.0
 
 ### Minor Changes
