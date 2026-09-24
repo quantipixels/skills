@@ -19,11 +19,17 @@ class Document(HTMLParser):
         self.styles: list[str] = []
         self.titles: list[str] = []
         self.capture = None
+        self.in_head = False
+        self.svg_depth = 0
 
     def handle_starttag(self, tag, attrs):
         values = dict(attrs)
         self.tags.append((tag, values, self.getpos()[0]))
-        if tag in {'script', 'style', 'title'}:
+        if tag == 'head':
+            self.in_head = True
+        elif tag == 'svg':
+            self.svg_depth += 1
+        if tag in {'script', 'style'} or (tag == 'title' and self.in_head and not self.svg_depth):
             self.capture = (tag, values, self.getpos()[0], [])
 
     def handle_startendtag(self, tag, attrs):
@@ -35,6 +41,10 @@ class Document(HTMLParser):
             self.capture[3].append(data)
 
     def handle_endtag(self, tag):
+        if tag == 'head':
+            self.in_head = False
+        elif tag == 'svg':
+            self.svg_depth = max(0, self.svg_depth - 1)
         if not self.capture or tag != self.capture[0]:
             return
         kind, attrs, line, pieces = self.capture
