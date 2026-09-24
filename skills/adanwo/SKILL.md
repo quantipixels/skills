@@ -1,6 +1,6 @@
 ---
 name: adanwo
-description: Build disposable prototypes to discover and refine what the user wants through direct experience. Use for a single prototype or multiple directions narrowed through feedback, elimination and consolidation. Exclude measured optimization, routine validation and production delivery.
+description: Build disposable prototypes when the user needs to see, try or compare an idea before deciding. Use for visual alternatives, uncertain interactions or state behavior, and refining preferences through elimination and consolidation. Exclude measured optimization, routine validation and production delivery.
 ---
 
 # Àdánwò
@@ -20,6 +20,10 @@ Keep prototypes in temporary storage by default, or `.qp/adanwo/` when persisten
 Build the requested number of variants, or choose a useful range proportionate to the uncertainty and effort. Ten variants can be appropriate; ten cosmetic variations rarely clarify ten different possibilities. Give variants stable labels and explain the meaningful idea each explores. Keep them comparable on the current question and at enough fidelity for useful reactions.
 
 A single prototype is sufficient when it can resolve the uncertainty. Use relevant design or implementation skills for craft while keeping this work disposable.
+
+Match the experiment to its surroundings. For interface variants, use representative content, density and surrounding navigation in an isolated preview; an empty standalone screen can conceal the real design problem. Keep variant comparison easy without requiring a particular layout or saved URL state. Stub effects outside the question and avoid real mutations.
+
+For behavior or state exploration, expose the relevant state in the user's vocabulary and show what each action changed. Allow free exploration and, when useful, a short guided difficult case starting from a resettable baseline. Check that the demonstrated transitions actually follow the candidate rules; a broken demo must not decide against a sound idea. Make the artifact straightforward to open or run.
 
 ## Narrow and combine with the user
 

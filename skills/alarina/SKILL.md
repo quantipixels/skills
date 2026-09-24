@@ -63,6 +63,7 @@ An explicit specialist request stays with that specialist when it fits. These ro
 
 - Bounded explanation → the relevant installed subject specialist; substantial research → `iwadi`.
 - Consequential premise → the [premise check](references/coordination.md#premise-check).
+- An ambitious idea with no clear starting point, no satisfactory direction, or dependent unknowns → `atona` for exploration and progressive shaping. It uses `arojinle` for unsettled human choices and `adanwo` for questions requiring experience; do not turn the uncertainty straight into implementation tickets.
 - Unsettled purpose, beneficiary, success or consequential trade-offs, a solution-shaped request hiding the need, latent dependent choices, or a requested interview → `arojinle`. Ask a single already-understood bounded choice directly; reuse a complete brief without manufacturing a decision tree.
 - Material domain identity, lifecycle, policy, ownership or invariants whose applicability is unsettled → `amose`, even when the vocabulary is familiar. Reuse current applicable domain evidence.
 - Unresolved technical structure or unestablished fitness of a consequential mechanism for the confirmed purpose/domain/quality drivers → `architect`; unresolved observable behavior → `atona` in behavior-contract mode. Use both when both results remain open; reuse sufficient current design evidence without automatic redesign.

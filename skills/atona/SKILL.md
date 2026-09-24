@@ -1,6 +1,6 @@
 ---
 name: atona
-description: Carry an initiative through its requested outcome with a living, human-readable HTML plan, or directly create a behavior contract or delivery decomposition. Use for discovery, decisions, planning, coordinated delivery, behavior contracts, delivery decomposition, or resumed work. Use alaga for settled coding changes needing no initiative coordination.
+description: Turn an ambitious or unclear idea into a workable direction and carry the initiative through its requested outcome. Use when the user does not know where to start, needs alternative directions, faces dependent unknowns, or needs planning, coordinated delivery, a behavior contract or decomposition. Settled coding changes belong to alaga.
 ---
 
 # Atọ́nà
@@ -11,4 +11,4 @@ For every mode, obtain planning inputs through native readers or applicable docu
 
 When the requested stopping point is a behavior contract—including behavior-contract mode or an ordinary request to write or refine a behavior specification—read [behavior contract](references/behavior-contract.md) and return that standalone result. When the requested stopping point is delivery decomposition, read [delivery decomposition](references/decomposition.md) and return that standalone result. Do not start an initiative or require a living HTML plan for either bounded result. These branches remain usable by delivery and review callers.
 
-For exploration, planning or delivery of an initiative, read [initiative progression](references/initiative.md). It owns the living HTML plan, delivery integration, continuity and closure. Bounded contract and decomposition requests stop at their own results.
+For exploration, planning or delivery of an initiative, read [initiative progression](references/initiative.md). It owns the living HTML plan, delivery integration, continuity and closure. When no useful direction is apparent, its ideation and progressive-shaping branches develop alternatives and choose what to learn next. Bounded contract and decomposition requests stop at their own results.

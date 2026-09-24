@@ -16,7 +16,7 @@ Update meaning and presentation in that plan after material changes, before depe
 
 ## Explore and settle direction
 
-When credible directions still need generating, read [ideation](ideation.md). Use `iwadi` for material evidence gaps, use `alarina` in its premise-check branch when a consequential proposal needs challenge, and use `adanwo` when a disposable prototype can clarify the uncertainty. Preserve the distinction between a promising idea, a confirmed choice, and an accepted requirement.
+When no direction is apparent, existing options are unsatisfying or alternative mechanisms need exploring, read [ideation](ideation.md). Use `iwadi` for material evidence gaps, use `alarina` in its premise-check branch when a consequential proposal needs challenge, and use `adanwo` when a disposable prototype can clarify the uncertainty. Preserve the distinction between a promising idea, a confirmed choice, and an accepted requirement.
 
 For a build request, carry the selected direction into shaping and delivery. If no credible direction survives, report why and the evidence or decision needed to proceed. Reuse a settled direction without repeating exploration.
 
@@ -32,7 +32,7 @@ Retain decision-changing alternatives, rationale, uncertainty and counterevidenc
 
 Use `amose` when material domain identity, lifecycle, policy, ownership or invariants lack established meaning or applicability, [behavior contract](behavior-contract.md) when behavior needs a normative contract, `architect` when structure or a consequential mechanism's fitness for confirmed purpose/domain/quality drivers needs establishing, and [delivery decomposition](decomposition.md) when delivery needs decomposition. Reuse settled domain and sound design evidence. Consume each result and controlling gap in this same plan without requiring every branch or a new worker on every initiative.
 
-When later work cannot yet be stated responsibly, read [progressive shaping](progressive-shaping.md). Resolve prerequisites and build only slices whose acceptance, dependencies, and authority are sufficiently settled. Keep uncertain remaining scope visible; slice readiness does not prove whole-initiative readiness.
+When the route to the outcome is unclear or later work cannot yet be stated responsibly, read [progressive shaping](progressive-shaping.md). Choose the next evidence-producing question before guessing a backlog. Resolve prerequisites and build only slices whose acceptance, dependencies, and authority are sufficiently settled. Keep uncertain remaining scope visible; slice readiness does not prove whole-initiative readiness.
 
 For consequential, uncertain, difficult-to-reverse, or materially coordinated work, run a [premortem](premortem.md) and reconcile material findings before treating the affected plan as execution-ready.
 

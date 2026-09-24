@@ -1,6 +1,6 @@
 ---
 name: arojinle
-description: Establish the desired outcome and resolve consequential choices through a user interview. Use for unsettled purpose, beneficiaries, success, trade-offs or dependent decisions. Exclude specialist design, initiative progression, delivery and ordinary fact-finding.
+description: Help the user work out what they want and resolve consequential choices through an interview. Use for unsettled purpose, beneficiaries, success, trade-offs or dependent decisions. Use adanwo when choices need direct experience and atona when an initiative needs possible directions. Exclude delivery and ordinary fact-finding.
 ---
 
 # Àròjinlẹ̀
@@ -24,6 +24,8 @@ Use this question card, rendered as Markdown rather than showing the template fe
 ```
 
 Each round reshapes the tree. Recompute the material frontier from confirmed answers before asking the next round; answers may create, remove, merge, split, or reframe dependent branches. Do not merely continue the previously imagined tree.
+
+When the user cannot judge abstract alternatives, make the choice concrete with a small example or use `adanwo` for direct experience, then resume from their reactions. Repeated questioning cannot supply experience they do not yet have. Keep proposed interpretations tentative until confirmed.
 
 Do not ask a question whose answer depends on another still-open question in the same round.
 
