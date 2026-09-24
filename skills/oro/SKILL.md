@@ -14,6 +14,12 @@ Choose one primary branch:
 
 Use both branches only when the artifact has distinct agent and human surfaces. Do not apply one audience's optimization to the other by default.
 
+## Choose the useful reusable form
+
+When creating or materially improving a skill, consider prose, worked examples, counterexamples, semantic templates, ready-made assets and deterministic operations. Read [resource boundaries](references/resource-boundaries.md) when that choice changes repeated effort, correctness or maintenance. A model's ability to generate something is not evidence that regeneration is better than reuse.
+
+Use examples for judgment, templates for recurring information contracts, assets for reliable mechanics and code for bounded mechanical results with falsifiable tests. Prefer adequate native/project tools. Keep resources with their consuming skill; alaga owns substantial implementation and runtime proof. Authoring alone grants no installation, execution or publication authority.
+
 ## Use templates and examples deliberately
 
 Use a template when stable structure makes information easier to understand, compare, answer or verify. Distinguish required structure from illustrative scaffolding; preserve the user's requested format and interaction surface. Adapt optional fields to the task rather than adding filler or invented facts.
@@ -23,6 +29,8 @@ Use the smallest concrete example that clarifies expected behaviour or output. A
 Good: retain `question → useful context/example → recommendation and why` when it helps the reader answer.
 
 Bad: replace that structure with “ask clear questions” while claiming the same communication contract.
+
+For reusable documents/visuals, separate fixed semantic obligations and behaviour from the free canvas: layout, typography, palette, rhythm and artistic expression. A styled specimen demonstrates a possibility, not mandatory house style. Exercise reusable mechanics with contrasting content; one attractive result is not proof of general utility.
 
 Keep shared writing principles here and task-specific templates with their owning skill. Treat changing a useful or user-requested format as a behavioural change, not incidental cleanup.
 

@@ -1,94 +1,37 @@
-# Report Patterns
+# Report patterns
 
-Read this file only when supplied material must become a report, including an evidence report, living report, or candidate comparison. Read [source composition](source-composition.md) first for substantial, reused, living, or owner-record inputs. It owns source normalization, coverage, placement, fidelity, source mapping, and agent-context rules.
+Use for supplied report/evidence/comparison material. For substantial or living input read [source composition](source-composition.md): it owns coverage, authority, source cuts and fidelity. The [semantic contracts](../templates/contracts.md) offer reusable reader jobs, not required page designs.
 
-Follow the artifact language's punctuation conventions. Do not impose an English punctuation rule on another language.
+## Lead with the reader's judgment
 
-## Select the report contract
+Preserve governed schemas and requested formats. Otherwise open with the useful decision, finding, change or next action and its consequential qualification. A comparison needs comparable evidence; assurance needs claim-to-proof links; an incident needs impact and supported causes; an experiment needs method and limits. Omit empty categories rather than inventing content.
 
-Use the reader, governing question, evidence limits and visibility obligations established by source composition. Preserve required formats; otherwise let the reader's job determine the opening, representation and detail. Keep this reasoning internal unless a consequential choice needs the user.
+Use source shape deliberately: time-ordered records support sequence but not automatic causality; quantities support aligned lookup or plots; connected processes support diagrams; before/after evidence supports paired views. Screenshots, specimens and existing visual evidence remain primary when safe to show. Do not reduce them to filenames or add a graph solely for ornament.
 
-Return one finished report by default. An explicitly requested comparison may present supplied visual variants or exploration results; use `adanwo` when creating a decision prototype is the actual task. Design representation and visual expression together while keeping the argument source-owned.
+Return one finished report by default. Creating or evaluating a new decision prototype belongs to adanwo; rendering a supplied prototype does not grant that authority. Use the artifact's language and punctuation naturally. Do not infer industry facts or require business-report styling.
 
-Use industry only as an internal vocabulary cue. Show it only when supplied or useful to the reader. Never infer industry facts. Use the installed presentation capability for a requested slide deck.
+## Keep a coherent current record
 
-### Let `Purpose` set the reading order
+Default to a snapshot with generation time or evidence cutoff. A living report requires owner-maintained revisions, stable anchors and a delta-first account of material changes. It does not imply live data, autosave or saved reader choices. No equivalent Markdown copy is required for an Atọ́nà HTML plan.
 
-The following cues are not an enum. Use the supplied reader outcome when it is more specific.
+Keep critical meaning visible and supporting depth retrievable. Never hide blockers, stale evidence or limits behind a polished summary. When a revision changes, reconcile title/capsule, summary, relevant detail, dispositions, source register and next action together. Do not retain every old wording in the working view; history stays at its real owner.
 
-| Reader outcome | Open with | Give visual priority to |
-| --- | --- | --- |
-| Decide or approve | The decision, deadline, and material exceptions | Trade-offs, consequences, confidence, reversibility, and evidence |
-| Act or correct | Current state, required action, blockers, and ownership | Dependencies, sequence, responsibility, risk, and recovery |
-| Monitor | Current trajectory and material change since the cutoff | Target versus actual, trend, variance, thresholds, and anomalies |
-| Verify or assure | Objective or criteria, scope, and conclusion or disposition | Criteria-to-evidence traceability, exceptions, confidence, limits, and correction |
-| Learn or understand | Governing question and minimum necessary context | Causes, relationships, mechanisms, findings, uncertainty, and implications |
-| Compare or select | Choice, candidates, common criteria, and supplied disposition | Comparable evidence, meaningful differences, trade-offs, risks, and criteria sensitivity |
-| Retain a record | What occurred or changed, when, and current consequence | Sequence, state change, provenance, superseded conclusions, and follow-up |
+## Presentation and controls
 
-### Preserve the report's obligations
+Use fihanmi for unsettled composition; preserve accepted design when it still serves the task. Keep required comparisons visible together. Cards suit independent peers, not an implied process. Preserve expressive typography, space, colour and illustration when they support meaning.
 
-A governed disclosure retains its prescribed items and order. Assurance needs criteria-to-evidence traceability and exceptions; an experiment needs method and limits; an incident needs impact and supported causal findings; a business case needs alternatives, cost, feasibility and risk. Use the actual contract, not a mandatory family taxonomy. Mark missing required evidence as a gap, and omit unsupported optional sections.
+Keep wide semantic tables in a data-table-wrap container with a keyboard-focusable, labelled overflow region. Match the minimum width to actual columns; do not turn cells into unlabeled cards. Use data-long-text/data-log for bounded code or log reading rather than one enormous preformatted archive.
 
-### Let the entry resource choose the representation
+Use [collection filtering](../assets/collection-filter-control.html) when category selection or optional text search reduces scanning. Categories and memberships come from the source. The asset combines category and literal text matching, shows count/no-match and offers reset. It does not infer new categories, build arbitrary predicates, sort, paginate or save URL/browser state.
 
-- A governed schema or template establishes structure.
-- A time-ordered log supports sequence or state change. Use causal flow only when the source establishes causality.
-- A dataset or metric series supports trend, variance, distribution, or correlation.
-- Criteria and evidence support traceability or exception views.
-- Candidate sets support matrices, paired views, or common-scale comparison.
-- A system, lifecycle, journey, or state model supports structural or transition views.
-- Screenshots, designs, diagrams, and other visual evidence stay primary when safe to embed.
-- Findings, decisions, or narrative evidence support a supplied argument, hierarchy, or before-and-after relationship.
+Use [report control](../assets/report-control.html) to reveal explicit fragment targets inside disclosures and expand required data-print-expand details for printing. Retain stable source/evidence IDs. Do not expand large raw logs when a readable index and canonical source already preserve the required coverage.
 
-Use the actual situation to decide what dominates. Urgency can move action ahead of background. Disputed cause can make provenance and competing evidence dominate. Early lifecycle can make uncertainty and prerequisites dominate. Sparse context can require a constrained explanation or input gap.
+## Evidence and candidate views
 
-## Shape the record
+Summarise supplied log outcomes, time range and meaningful warnings without copying a raw archive. Keep reader-required excerpts grouped by a relevant boundary and preserve exact order/text. An accepted companion bundle may hold large evidence; retain its index, scope, size, cutoff, relative locator and material conclusions visibly in the report.
 
-Render a `snapshot` by default with generation time or evidence cutoff. Render a `living` report only when the owning task expects material updates. Pin the owner result and revision; an HTML initiative plan needs no equivalent Markdown owner record. Keep section, candidate, evidence, and source anchors stable. Show last-updated time, cutoff, and supplied evidence status. Record conclusion or disposition changes without retaining every wording revision in the working view.
+Use the same grammar and scale for before/after candidates. Label changed and unchanged elements; preserve owner-established disposition, rationale, risks, blockers, re-entry conditions and uncertainty. A raw code diff alone may not explain the material consequence. Missing disposition is an input gap, not a presentation choice to invent.
 
-Use enough detail for the reader's current decision or action. Keep critical meaning visible and supporting evidence retrievable under source composition; greater density does not require embedding raw archives.
+## Finish on the actual result
 
-## Build the visual argument
-
-Build the opening, hierarchy, and governing representation from the direction brief. Choose the representation from the highest-priority foreground relationship or result. Identify its message and relationship before choosing a chart, timeline, matrix, diagram, card system, or another form.
-
-Use a dashboard scan layer when the reader must monitor simultaneous measures and exceptions; cards suit independently scanned peer units.
-
-Keep supplied designs, screens, diagrams, prototypes, demos, interface specimens, and other visual evidence primary when safe. Do not reduce them to filenames or prose. Report composition does not authorize creating or iterating a prototype; treat supplied prototype-like material only as source evidence for the report.
-
-Keep the opening useful without a disclosure. When compatible, include a skip link, title and status, local navigation, governing representation, supporting evidence, limits, resource disclosure, and revision state. Omit empty sections. Link conclusions and recommendations to evidence or source identifiers.
-
-Keep navigation unobtrusive and preserve useful landmarks when adapting the base controls.
-
-Use `fihanmi` to resolve an unsettled composition. Preserve an accepted layout unless changed purpose, content or evidence makes it unsuitable.
-
-Before delivery, always run these content and evidence checks:
-
-- **Contract and coverage:** required content and human-critical meaning remain present or visibly marked partial, stale, or missing.
-- **Entry resource:** composition respects resource authority, shape, and limits.
-- **Relationship:** each material visual encodes a supplied claim or relationship.
-- **Gap:** missing required content appears as an input gap, not an invented section.
-- **Deletion:** each foreground section materially improves decision, action, understanding, verification, or trust.
-
-## Handle logs and evidence
-
-Summarize a log's outcome, time range, entry count, warnings, errors, and last known state when supplied. Keep critical transitions visible beside the affected result. Keep the exact log source-only or archived unless exact inline inspection is required.
-
-When reader-required log excerpts remain in HTML, group them by a supplied boundary such as phase, date, source, or severity. Preserve exact order, timestamps, and text. Do not use one `<pre>`, table cell, or undifferentiated accordion for the full record.
-
-Use an accepted companion evidence bundle when exact evidence is important but too large, repetitive, shared, or context-polluting. Keep an index, summary, critical entries, format, size, cutoff, durability, and stable relative link in HTML. Do not silently omit or rewrite evidence.
-
-Give sources, evidence groups, and retained entries stable identifiers. Mark required print disclosures with `data-print-expand` and embed [report control](../assets/report-control.html). It reveals fragment targets and restores disclosure state after print. Do not print-expand a large raw log when an indexed native source provides coverage.
-
-Use `data-report-section`, `data-table-wrap`, `data-long-text`, and `data-log` for their named foundation behavior. Keep a wide semantic table inside `data-table-wrap`. Give a scrollable wrapper `tabindex="0"` plus an accessible label or description. Tune `--artifact-table-min-inline-size` and the foundation's container query to the actual columns. Do not stack cells into cards or duplicate header text as presentation data.
-
-When one supplied categorical filter materially reduces scanning, embed [collection filter](../assets/collection-filter-control.html). Keep its value tokens, labels, and category membership source-owned. The control owns only the visible subset and result state. It does not own search, compound predicates, sorting, pagination, or URL state.
-
-After a material living update, reconcile title, version, context capsule, summary, navigation, affected detail, recommendations, dispositions, source register, limits, and revision note. Never let new detail silently contradict an earlier headline or status.
-
-## Present candidate decisions
-
-Give each supplied candidate a before-and-after view at a comparable scale and visual grammar. Label changed and unchanged elements. Connect them to supplied evidence, risk, and disposition. A code diff alone is insufficient.
-
-Preserve the owner's disposition and vocabulary, including its reason, blockers, re-entry condition, next action and evidence when supplied. Mark a missing required disposition as an input gap; surface inconsistencies instead of resolving them.
+Check contract coverage, source identity, critical qualifications, relationship fidelity, retrieval and the reader's ability to act or compare. Each foreground element should earn its attention. Check only introduced browser-dependent claims under the main skill's verification contract. Writing a file or counting evidence does not establish that the report serves its reader.

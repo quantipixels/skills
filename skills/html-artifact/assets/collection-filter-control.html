@@ -1,158 +1,79 @@
-<!--
-Reusable single-select collection filtering for HTML Artifact output.
-
-Start from assets/base.html, which includes the foundation styles. Keep the controls hidden in source so
-all items remain visible when JavaScript is unavailable. Give each control one
-exact data-filter-value token. Give each item a comma-separated list of exact
-tokens in data-filter-values. The all token, templates, labels, and visible
-control text are artifact-owned translatable data. Keep {count}, {total}, and
-{label} exact inside the result template and {label} exact inside the zero
-template.
-
-This control owns presentation state only. It does not infer categories,
-predicates, search terms, sort order, pagination, or URL state. Use a separate
-control instance for each independently filtered collection.
--->
-
-<style>
-  [data-filter-controls] {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--collection-filter-gap, 0.75rem);
-  }
-
-  [data-filter-control] {
-    max-inline-size: 100%;
-    min-block-size: var(--collection-filter-min-block-size, 2.75rem);
-    padding-block: var(--collection-filter-padding-block, 0.5rem);
-    padding-inline: var(--collection-filter-padding-inline, 0.75rem);
-    white-space: normal;
-  }
-
-  [data-filter-control][aria-pressed="true"] {
-    font-weight: 700;
-    text-decoration: underline;
-    text-underline-offset: 0.2em;
-  }
-
-  @media print {
-    [data-filter-controls],
-    [data-filter-status],
-    [data-filter-zero] {
-      display: none !important;
-    }
-
-    [data-filter-item][hidden] {
-      display: revert !important;
-    }
-  }
-</style>
-
-<section
-  data-collection-filter
-  data-filter-all-value="all"
+<!-- Tailwind asset: start from base.html; restyle utilities, preserve data hooks.
+     Category filter with optional text search/reset. Existing data-filter-* token
+     contract is retained. Closest-root ownership isolates nested collections.
+     Controls stay hidden on invalid input. No-JS/print shows the full population.
+     Labels/templates are artifact data; state is transient. -->
+<section class="space-y-3" data-collection-filter data-filter-all-value="all"
   data-filter-result-template="Showing {count} of {total} items for {label}."
-  data-filter-zero-template="No items match {label}."
-  aria-label="[Describe this filterable collection]"
->
-  <div data-filter-controls role="group" aria-label="[Describe these filter controls]" hidden>
-    <button type="button" data-filter-control data-filter-value="all" aria-pressed="true">All</button>
-    <!-- Add one button per supplied filter value. -->
+  data-filter-zero-template="No items match {label}." aria-label="Example findings">
+  <div class="flex flex-wrap items-center gap-3" data-filter-controls role="group" aria-label="Filter findings" hidden>
+    <button class="min-h-11 cursor-pointer rounded-md border px-3 py-2 disabled:cursor-default disabled:opacity-50 aria-pressed:font-semibold aria-pressed:underline underline-offset-4" type="button" data-filter-control data-filter-value="all" aria-pressed="true">All</button>
+    <button class="min-h-11 cursor-pointer rounded-md border px-3 py-2 disabled:cursor-default disabled:opacity-50 aria-pressed:font-semibold aria-pressed:underline underline-offset-4" type="button" data-filter-control data-filter-value="required" aria-pressed="false">Required</button>
+    <button class="min-h-11 cursor-pointer rounded-md border px-3 py-2 disabled:cursor-default disabled:opacity-50 aria-pressed:font-semibold aria-pressed:underline underline-offset-4" type="button" data-filter-control data-filter-value="optional" aria-pressed="false">Optional</button>
+    <label class="inline-flex min-w-0 max-w-full flex-wrap items-center gap-2">Search <input class="min-h-11 min-w-0 max-w-full rounded-md border px-3 py-2" type="search" data-filter-search autocomplete="off"></label>
+    <button class="inline-flex min-h-11 cursor-pointer items-center gap-2 rounded-md border px-3 py-2 disabled:cursor-default disabled:opacity-50" type="button" data-filter-reset><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 11a9 9 0 1 1 2.6 6.4M3 17v-6h6"/></svg>Reset</button>
   </div>
-
-  <p data-filter-status role="status" aria-atomic="true"></p>
-  <p data-filter-zero hidden></p>
-
+  <p class="text-sm tabular-nums" data-filter-status role="status" aria-atomic="true"></p>
+  <p class="text-sm" data-filter-zero hidden></p>
   <div data-filter-items>
-    <!--
-    <article data-filter-item data-filter-values="example,secondary">
-      Add one supplied collection item here.
-    </article>
-    -->
+    <!-- Add real data-filter-item elements with declared comma-separated data-filter-values. -->
   </div>
 </section>
-
 <script>
-  (() => {
-    const format = (template, values) => Object.entries(values).reduce(
-      (text, [key, value]) => text.replaceAll(`{${key}}`, () => String(value)),
-      template,
-    );
-
-    const tokens = (value) => value
-      .split(",")
-      .map((token) => token.trim())
-      .filter(Boolean);
-
-    document.querySelectorAll("[data-collection-filter]").forEach((filter) => {
-      const owned = (selector) => Array.from(filter.querySelectorAll(selector))
-        .filter((element) => element.closest("[data-collection-filter]") === filter);
-
-      const controls = owned("[data-filter-controls]")[0];
-      const status = owned("[data-filter-status]")[0];
-      const zero = owned("[data-filter-zero]")[0];
-      const items = owned("[data-filter-item]");
-      if (!controls || !status || !zero || !items.length) return;
-
-      controls.hidden = true;
-      const buttons = Array.from(controls.querySelectorAll("button[data-filter-control][data-filter-value]"))
-        .filter((button) => button.closest("[data-collection-filter]") === filter);
-      const allValue = filter.dataset.filterAllValue;
-      const resultTemplate = filter.dataset.filterResultTemplate;
-      const zeroTemplate = filter.dataset.filterZeroTemplate;
-      const values = buttons.map((button) => button.dataset.filterValue).filter(Boolean);
-      const itemValues = items.map((item) => tokens(item.dataset.filterValues || ""));
-      const pressed = buttons.filter((button) => button.getAttribute("aria-pressed") === "true");
-      const valid = buttons.length > 1
-        && allValue
-        && resultTemplate
-        && zeroTemplate
-        && ["{count}", "{total}", "{label}"].every((token) => resultTemplate.includes(token))
-        && zeroTemplate.includes("{label}")
-        && values.length === buttons.length
-        && new Set(values).size === values.length
-        && values.every((value) => value === value.trim() && !value.includes(","))
-        && values.includes(allValue)
-        && buttons.every((button) => button.textContent.trim())
-        && pressed.length <= 1
-        && itemValues.every((itemTokens) => itemTokens.length
-          && itemTokens.every((token) => token !== allValue && values.includes(token)));
-      if (!valid) return;
-
-      const apply = (value, announce) => {
-        const active = buttons.find((button) => button.dataset.filterValue === value)
-          || buttons.find((button) => button.dataset.filterValue === allValue);
-        if (!active) return;
-
-        const activeValue = active.dataset.filterValue;
-        const label = active.textContent.trim();
-        let count = 0;
-
-        buttons.forEach((button) => {
-          button.setAttribute("aria-pressed", String(button === active));
-        });
-
-        items.forEach((item) => {
-          const matches = activeValue === allValue
-            || tokens(item.dataset.filterValues).includes(activeValue);
-          item.hidden = !matches;
-          if (matches) count += 1;
-        });
-
-        const message = format(resultTemplate, { count, total: items.length, label });
-        status.textContent = announce ? message : "";
-        zero.textContent = format(zeroTemplate, { count, total: items.length, label });
-        zero.hidden = count !== 0;
-      };
-
-      buttons.forEach((button) => {
-        button.addEventListener("click", () => apply(button.dataset.filterValue, true));
+(($) => {
+  if (!$) return;
+  const tokens = value => value.split(',').map(token => token.trim()).filter(Boolean);
+  const format = (template, values) => template.replace(/\{(count|total|label)\}/g, (_, key) => String(values[key]));
+  $('[data-collection-filter]').each((_, filter) => {
+    const $filter = $(filter);
+    if ($filter.attr('data-filter-ready')) return;
+    const owned = selector => $filter.find(selector).filter((_, el) => $(el).closest('[data-collection-filter]')[0] === filter).toArray();
+    const controls = owned('[data-filter-controls]')[0];
+    const status = owned('[data-filter-status]')[0];
+    const zero = owned('[data-filter-zero]')[0];
+    const items = owned('[data-filter-item]');
+    const buttons = owned('button[data-filter-control][data-filter-value]');
+    const search = owned('[data-filter-search]')[0];
+    const reset = owned('[data-filter-reset]')[0];
+    const all = $filter.attr('data-filter-all-value');
+    const result = $filter.attr('data-filter-result-template');
+    const empty = $filter.attr('data-filter-zero-template');
+    const values = buttons.map(button => $(button).attr('data-filter-value'));
+    const pressed = buttons.filter(button => $(button).attr('aria-pressed') === 'true');
+    if (!controls || !status || !zero || !items.length || !all || !result || !empty ||
+        buttons.length < 2 || new Set(values).size !== values.length || !values.includes(all) ||
+        values.some(value => !value || value.includes(',') || value !== value.trim()) ||
+        buttons.some(button => !$(button).text().trim()) || pressed.length > 1 ||
+        !['{count}', '{total}', '{label}'].every(token => result.includes(token)) || !empty.includes('{label}') ||
+        items.some(item => !tokens($(item).attr('data-filter-values') || '').length ||
+          tokens($(item).attr('data-filter-values') || '').some(token => token === all || !values.includes(token)))) return;
+    let active = $(pressed[0]).attr('data-filter-value') || all;
+    $(search).val('');
+    const apply = () => {
+      const searchText = String($(search).val() || '').trim();
+      const query = searchText.toLocaleLowerCase();
+      const button = buttons.find(button => $(button).attr('data-filter-value') === active);
+      let count = 0;
+      buttons.forEach(candidate => $(candidate).attr('aria-pressed', String(candidate === button)));
+      items.forEach(item => {
+        const visible = (active === all || tokens($(item).attr('data-filter-values')).includes(active)) &&
+          (!query || $(item).text().toLocaleLowerCase().includes(query));
+        if (!visible && (item === document.activeElement || $.contains(item, document.activeElement)))
+          (search || button).focus({preventScroll: true});
+        $(item).prop('hidden', !visible);
+        if (visible) count++;
       });
-
-      const initial = pressed[0]?.dataset.filterValue || allValue;
-      apply(initial, false);
-      controls.hidden = false;
-      filter.dataset.filterReady = "true";
-    });
-  })();
+      const label = $(button).text().trim() + (query ? ` / ${searchText}` : '');
+      const data = {count, total: items.length, label};
+      $(status).text(format(result, data));
+      $(zero).text(format(empty, data)).prop('hidden', count !== 0);
+    };
+    buttons.forEach(button => $(button).on('click', () => { active = $(button).attr('data-filter-value'); apply(); }));
+    $(search).on('input', apply);
+    $(reset).on('click', () => { active = all; $(search).val(''); apply(); });
+    apply();
+    $(controls).prop('hidden', false);
+    $filter.attr('data-filter-ready', 'true');
+  });
+})(window.jQuery);
 </script>
