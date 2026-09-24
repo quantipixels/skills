@@ -51,6 +51,16 @@
       [data-table-wrap] { container-type: normal; overflow: visible !important; }
       [data-table-wrap] > table { min-inline-size: 0 !important; }
     }
+    /* Override the hidden fallback so printed controls reveal complete content. */
+    @layer base {
+      @media print {
+        [data-view-controls], [data-view-status],
+        [data-filter-controls], [data-filter-status], [data-filter-zero],
+        [data-carousel-controls], [data-carousel-live] { display: none !important; }
+        [data-view-panel][hidden], [data-filter-item][hidden],
+        [data-carousel-item][hidden] { display: revert !important; }
+      }
+    }
   </style>
   <style type="text/tailwindcss">
     @custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));

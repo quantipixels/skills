@@ -3,15 +3,6 @@
      Supply stable item IDs. All slides remain readable without JS and in print.
      Selection is transient: explicit deep links are read, never written by controls.
      Compact/labeled/overlay compositions remain styling choices. -->
-<style>
-  /* Same layer as Preflight: specificity preserves complete print content. */
-  @layer base {
-    @media print {
-      [data-carousel-controls], [data-carousel-live] { display: none !important; }
-      [data-carousel-item][hidden] { display: block !important; }
-    }
-  }
-</style>
 <section class="relative space-y-3" data-carousel tabindex="0" aria-label="Example visual collection"
   data-carousel-role-description="carousel" data-carousel-item-role-description="slide"
   data-carousel-previous-label="Previous item" data-carousel-next-label="Next item"

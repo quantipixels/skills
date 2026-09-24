@@ -3,15 +3,6 @@
      contract is retained. Closest-root ownership isolates nested collections.
      Controls stay hidden on invalid input. No-JS/print shows the full population.
      Labels/templates are artifact data; state is transient. -->
-<style>
-  /* Same layer as Preflight: specificity preserves complete print content. */
-  @layer base {
-    @media print {
-      [data-filter-controls], [data-filter-status], [data-filter-zero] { display: none !important; }
-      [data-filter-item][hidden] { display: revert !important; }
-    }
-  }
-</style>
 <section class="space-y-3" data-collection-filter data-filter-all-value="all"
   data-filter-result-template="Showing {count} of {total} items for {label}."
   data-filter-zero-template="No items match {label}." aria-label="Example findings">
