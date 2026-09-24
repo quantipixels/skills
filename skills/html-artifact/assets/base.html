@@ -116,8 +116,8 @@
     const apply = dark => {
       root.dataset.theme = dark ? 'dark' : 'light';
       button.querySelector('[data-theme-label]').textContent = dark ? 'Use light theme' : 'Use dark theme';
-      button.querySelector('[data-theme-icon="sun"]').hidden = !dark;
-      button.querySelector('[data-theme-icon="moon"]').hidden = dark;
+      button.querySelector('[data-theme-icon="sun"]').toggleAttribute('hidden', !dark);
+      button.querySelector('[data-theme-icon="moon"]').toggleAttribute('hidden', dark);
     };
     apply(media.matches);
     button.hidden = false;
