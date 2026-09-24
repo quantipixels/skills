@@ -21,7 +21,7 @@ For substantial, evidence-heavy or living material, read [source composition](re
 
 Use `fihanmi` when composition, hierarchy or visual explanation is unsettled; reuse an accepted presentation direction. Use `oro` for substantial prose authoring or rewriting. Write incidental headings, captions and faithful short summaries directly. Keep domain meaning with its owner.
 
-Use the [visual toolbox](references/visual-toolbox.md) to select by relationship. Flow, ordering, branching and state need visible relationships, not merely adjacent cards. Cards remain useful for independently scanned peers. Neither card avoidance nor novelty is an aesthetic requirement.
+Use the [visual toolbox](references/visual-toolbox.md) to select by relationship. Its examples are a starting set: add a criterion or choose a different representation when the reader's task and supplied evidence warrant it. Flow, ordering, branching and state need visible relationships, not merely adjacent cards. Cards remain useful for independently scanned peers. Neither card avoidance nor novelty is an aesthetic requirement.
 
 For a recurring document job, consult the matching entry in [semantic contracts](templates/contracts.md). Its required meaning and behaviour are fixed; layout, typography, palette, rhythm, illustration and composition remain open. Reuse a recipe or control when it removes meaningful work. Do not read or embed the whole toolkit on every invocation.
 

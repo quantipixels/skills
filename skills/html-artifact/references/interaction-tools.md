@@ -19,7 +19,7 @@ Tailwind Plus **Elements** is a separate plain-HTML JavaScript component library
 
 Choose one owner per control. Verify the actual API, maintenance, accessibility behaviour, licence and browser target at selection. Reuse an existing dependency when adequate; otherwise pin the selected package and follow the artifact delivery policy. Preserve useful styling freedom. Library adoption should remove hard custom work, not add a parallel implementation behind another wrapper.
 
-For standalone documents, [optional CDN links](optional-cdn-links.md) holds exact ready-to-copy URLs for jQuery, Alpine and Plot. Copy the selected entry only; Mermaid already has a conditional renderer asset. The base does not load these optional libraries.
+For standalone documents, [optional CDN links](optional-cdn-links.md) holds exact ready-to-copy URLs for jQuery, Alpine, Plot and D3. Copy the selected entry only; Mermaid already has a conditional renderer asset. The base does not load these optional libraries.
 
 For Alpine, use ordinary in-memory `x-data` state, declarative events and bindings; persistence plugins are not part of the default. Treat directive expressions as authored code, never interpolated source data. Use text binding rather than raw HTML injection. Its standard build evaluates expressions; use its supported CSP build when the host policy requires it, not a weakened host policy.
 

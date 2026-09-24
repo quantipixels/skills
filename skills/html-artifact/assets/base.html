@@ -82,6 +82,7 @@
 <div class="artifact-shell mx-auto max-w-6xl">
   <header class="artifact-header flex flex-wrap items-center justify-between gap-4" id="artifact-top" tabindex="-1">
     <div class="artifact-brand block rounded bg-neutral-950 px-3 py-2" role="img" aria-label="Quanti Pixels">
+      <!-- Inline copy of brand.svg keeps the default artifact self-contained. -->
       <svg viewBox="0 0 160 132" width="48" height="40" aria-hidden="true" focusable="false">
         <g fill="none" stroke-width="9" stroke-linecap="round" stroke-linejoin="round">
           <g stroke="#fff"><circle cx="45" cy="42" r="27"/><circle cx="115" cy="42" r="27"/>
@@ -91,17 +92,21 @@
         </g>
       </svg>
     </div>
-    <button type="button" class="min-h-11 cursor-pointer rounded-md border px-3 py-2" data-theme-toggle hidden>Change theme</button>
+    <button type="button" class="inline-flex min-h-11 cursor-pointer items-center gap-2 rounded-md border px-3 py-2" data-theme-toggle hidden>
+      <svg data-theme-icon="sun" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"/></svg>
+      <svg data-theme-icon="moon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" hidden><path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5 8.5 8.5 0 1 0 20.5 14.2Z"/></svg>
+      <span data-theme-label>Change theme</span>
+    </button>
   </header>
   <main id="artifact-content" class="mt-8" tabindex="-1">
     <h1 class="text-3xl font-semibold tracking-tight sm:text-4xl">Artifact title</h1>
     <!-- Compose supplied content here; copy only useful control assets. -->
   </main>
   <p class="mt-4 text-sm" data-runtime-status role="status"></p>
-  <footer class="mt-8 border-t pt-4"><small>Single HTML; source data is static. Reader choices are not saved.
+  <footer class="mt-8 border-t pt-4"><small>Built with <a class="underline underline-offset-2" href="https://github.com/quantipixels/skills">QP Skills</a>. Single HTML; source data is static. Reader choices are not saved.
     <span data-delivery-disclosure>Confirm the selected delivery and dependency boundary.</span></small></footer>
 </div>
-<a class="fixed right-4 bottom-4 rounded-full border bg-[Canvas] px-4 py-3 text-[CanvasText]" data-back-to-top href="#artifact-top">Back to top</a>
+<a class="fixed right-4 bottom-4 inline-flex min-h-11 items-center gap-2 rounded-full border bg-[Canvas] px-4 py-3 text-[CanvasText]" data-back-to-top href="#artifact-top"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 14 6-6 6 6M12 8v12"/></svg><span>Back to top</span></a>
 <script>
   (() => {
     const root = document.documentElement;
@@ -110,7 +115,9 @@
     let followsSystem = true;
     const apply = dark => {
       root.dataset.theme = dark ? 'dark' : 'light';
-      button.textContent = dark ? 'Use light theme' : 'Use dark theme';
+      button.querySelector('[data-theme-label]').textContent = dark ? 'Use light theme' : 'Use dark theme';
+      button.querySelector('[data-theme-icon="sun"]').hidden = !dark;
+      button.querySelector('[data-theme-icon="moon"]').hidden = dark;
     };
     apply(media.matches);
     button.hidden = false;

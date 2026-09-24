@@ -29,6 +29,17 @@ Use inside the module that builds an actual chart. The CDN ESM endpoint may load
 </script>
 ```
 
+## D3 — 7.9.0
+
+Use for a supplied data relationship needing bespoke marks, layout or interaction beyond Plot. The CDN ESM endpoint may load transitive modules; the exact D3 version does not pin every transitive URL.
+
+```html
+<script type="module">
+  import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7.9.0/+esm";
+  // Build the view from supplied data and insert it into the document.
+</script>
+```
+
 ## Mermaid — 12.0.0
 
 For actual diagrams, copy [renderer-control.html](../assets/renderer-control.html). It already contains the conditional CDN import and the source/explanation fallback. Do not add a second Mermaid tag.

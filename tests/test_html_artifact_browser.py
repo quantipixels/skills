@@ -148,6 +148,8 @@ class BrowserTests(unittest.TestCase):
     def test_carousel_input_keys_bounds_literal_label(self):
         self.load(carousel())
         expect(self.page.locator('[data-carousel-live]')).to_have_text('A $&. Item 1 of 3.')
+        expect(self.page.locator('[data-carousel-previous] svg')).to_be_visible()
+        expect(self.page.locator('[data-carousel-next] svg')).to_be_visible()
         self.page.locator('input').focus()
         self.page.keyboard.press('ArrowRight')
         expect(self.page.locator('#slide-a')).to_be_visible()
@@ -215,7 +217,16 @@ class BrowserTests(unittest.TestCase):
         self.page.set_viewport_size({'width':390, 'height':844})
         self.page.emulate_media(reduced_motion='reduce')
         self.assertLessEqual(self.page.evaluate('document.documentElement.scrollWidth'), 390)
+        expect(self.page.locator('.artifact-brand svg')).to_be_visible()
+        expect(self.page.get_by_role('link', name='QP Skills')).to_have_attribute('href', 'https://github.com/quantipixels/skills')
+        expect(self.page.locator('[data-theme-icon="moon"]')).to_be_visible()
+        expect(self.page.locator('[data-theme-icon="sun"]')).to_be_hidden()
+        expect(self.page.locator('[data-back-to-top] svg')).to_be_visible()
+        expect(self.page.locator('[data-view-previous] svg')).to_be_visible()
+        expect(self.page.locator('[data-filter-reset] svg')).to_be_visible()
         self.page.get_by_role('button', name='Use dark theme').click()
+        expect(self.page.locator('[data-theme-icon="sun"]')).to_be_visible()
+        expect(self.page.locator('[data-theme-icon="moon"]')).to_be_hidden()
         self.assert_no_writes()
 
     def test_portable_diagrams_make_no_network_requests(self):
