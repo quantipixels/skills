@@ -59,7 +59,7 @@ Choose only useful controls:
 - existing [carousel](assets/carousel-control.html) for a genuinely sequential visual collection;
 - [report control](assets/report-control.html) for deep-link disclosure reveal and complete printing.
 
-Each asset's comment defines its input and fallback. Copy the actual resource, preserve its behaviour contract, then style it freely. Use native `details`, buttons, forms, `output`, `dialog` or popover when adequate. Before writing extra interaction machinery, use [interaction tools](references/interaction-tools.md): prefer a compatible existing component or focused library when it owns the difficult behaviour. Keep custom JavaScript to the missing artifact-specific glue; a dependency merely shortening DOM syntax is not a widget implementation.
+Each asset's comment defines its input and fallback. Copy the actual resource, preserve its behaviour contract, then style it freely. Use native `details`, buttons, forms, `output`, `dialog` or popover when adequate. Before writing extra interaction machinery, use [interaction tools](references/interaction-tools.md): prefer a compatible existing component or focused library when it owns the difficult behaviour. Keep custom JavaScript to the missing artifact-specific glue. For standalone HTML, copy only needed entries from [optional CDN links](references/optional-cdn-links.md) and remove unused entries before delivery.
 
 ## Interaction is ephemeral by default
 
