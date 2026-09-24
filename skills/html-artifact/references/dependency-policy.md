@@ -1,92 +1,39 @@
-# External dependency policy
+# Dependency and delivery policy
 
-Read after a nontrivial renderer/build/runtime dependency, worker, WebAssembly component, widget, remote executable, or live service has been selected or is under serious consideration.
+Use when a renderer, build tool or runtime dependency is selected. Representation comes first: choose the capability that makes the relationship faithful, readable and reliable. Delivery cost must not silently force a weaker representation.
 
-This policy governs delivery, trust, reproducibility and failure behavior. It must not bias representation selection toward native HTML when a mature capability provides materially better information fidelity, perceptual clarity, interaction, correctness, accessibility, or implementation reliability.
+## Authoring is not delivery
 
-## Representation and delivery are separate
+Tailwind utilities are the default ordinary composition vocabulary. The pinned browser integration is a development path, not a production deployment prescription. Mermaid is conditional. Supporting these tools does not authorise remote access to private content.
 
-Choose the reader job and representation first. Use [representation capabilities](representation-capabilities.md) when a mature renderer/tool can improve that form. Then choose the lightest sound delivery:
+| Delivery | Suitable path | Boundary |
+| --- | --- | --- |
+| Connected, non-sensitive development document | Base loads Tailwind 4.3.3; optional renderer loads Mermaid 12.0.0 only for diagrams. | Disclose runtime/network dependence and preserve meaningful fallback. Not self-contained. |
+| Portable, private or offline document | Compile Tailwind locally and inline CSS; render SVG locally or bundle a focused runtime. Native CSS/SVG is valid when tooling is unavailable. | No runtime network dependency. Never upload private material to a conversion service. |
+| Existing trusted host | Reuse installed styling/rendering capabilities. | No duplicate framework or assumed storage permission. |
 
-```text
-build-time/staticized output
-→ focused bundled runtime
-→ existing trusted host-application runtime
-→ remote executable runtime only when the outcome genuinely needs it
-→ live service only when the supplied outcome itself is live
-```
+The base defaults to portable. Select connected delivery deliberately during authoring, not as an automatic fallback from a failed local build. A public-looking filename does not establish non-sensitive content. Private code review retains its stricter no-remote-executable boundary.
 
-Native HTML/CSS/JS remains an excellent implementation when it is also the strongest credible representation mechanism. It is not a preference that overrides a materially stronger specialized grammar/renderer.
+Mermaid 12 requires ES2024-capable browsers, including Safari 17.4+, and Node 22.12+ for package tooling. Its ELK default changes layout from Mermaid 11. Use the supported top-level layout setting when choosing a different layout; do not rely on removed defaultRenderer settings. Static SVG avoids a viewer-side Mermaid compatibility requirement. Version pins do not prove rendering works.
 
-Inside an existing application, reuse a suitable capability already owned by that runtime when it serves the same representational job. No renderer allowlist is maintained; named anchors are non-exclusive expert entry points.
+## Portable Tailwind path
 
-Bind a dependency to the capability it provides, not to the lane that first selected it. A renderer chosen for a diff, chart, graph, diagram, map, or another representation may support any HTML Artifact lane when the same capability and admission boundary apply.
+Use the project's supported compiler where present. For an authorised new tool installation follow the official CLI path; do not install globally or invent a build framework for one document. A v4 input imports tailwindcss and declares the actual artifact source; run the selected CLI once, then embed emitted CSS in an ordinary style element. Preserve licence notices, remove browser-runtime loading and test the final file offline. Uncompiled type=text/tailwindcss directives are not browser CSS.
 
-## Admission boundary
+Primary references: [CLI](https://tailwindcss.com/docs/installation/tailwind-cli), [Play CDN](https://tailwindcss.com/docs/installation/play-cdn), [themes](https://tailwindcss.com/docs/theme), [Mermaid 12 release](https://github.com/mermaid-js/mermaid/releases/tag/mermaid%4012.0.0). Match APIs and browser targets to the selected release. Pins live at integrations, not in an ecosystem catalogue.
 
-For each nontrivial dependency establish:
+## Admission and fallback
 
-- representation/capability gain over the strongest credible simpler form;
-- compatibility with the actual file/HTTP/runtime environment;
-- exact or reproducible identity appropriate to delivery;
-- proportionate build/runtime and maintenance cost;
-- accessible output or equivalent accessible meaning;
-- explicit failure/fallback behavior;
-- data/credential/telemetry boundary; and
-- licensing/usage constraints when they can affect delivery or redistribution.
+Establish exact/reproducible identity, capability gain, compatible file/HTTP environment, licence, cost, accessible meaning, data exposure and failure behaviour. Remote executable code can inspect the document; CDN popularity does not remove this trust boundary. No credentials, telemetry, unrequested data transmission or persistence. Pinning one ESM entry does not integrity-pin all transitive modules; use a locally bundled output when that stronger guarantee matters.
 
-Treat security, privacy/data disclosure, required accessibility, authority, and accepted compatibility boundaries as gates. Do not average a gate failure against visual or implementation benefits.
+Staticize when runtime adds no reader value. Bundle runtime for useful exploration/selection; use remote runtime only inside the declared connected profile or another explicitly authorised outcome. A live service requires a live-data request and a producer; a static file is not self-updating.
 
-## Staticize when runtime adds no reader value
+Enhancement failure preserves base meaning. Core renderer failure retains conclusions, source, units and a readable alternative. Service failure is unavailable/stale, not empty success. Do not rebuild an entire renderer as its fallback.
 
-A generation-time dependency may produce static SVG/HTML/CSS/PNG or another durable representation and disappear before delivery. Prefer staticization when the renderer materially improves the representation but runtime interaction does not improve the reader's job.
+## Transformations and disclosure
 
-Use a bundled runtime when zoom, selection, filtering, brushing, coordinated perspectives, virtualization, live layout, or another browser behavior materially improves comprehension/navigation. Runtime is not a failure state when it is part of the representation's value.
+Preserve aggregation, binning, filters, time zones, normalisation and meaningful layout configuration. A changed transformation invalidates dependent faithfulness proof.
 
-## Remote runtime and live services
+Report delivery shape (Single HTML or Companion bundle), runtime code (None, Embedded, Bundled or Remote), runtime data (Static or Live service) and evidence (Embedded, Linked or Mixed) independently, plus identities and proof limits. Single HTML may still depend on the network.
 
-Availability from a CDN does not justify remote execution. Remote executable code requires an explicit reason self-contained/build-time/bundled delivery is unsuitable plus a clear trust/data/failure boundary. A live service requires the supplied outcome itself to be live; HTML Artifact must not turn static source material into a service-backed application on its own.
-
-If the task has crossed into building or operating an application/service, keep that responsibility with the applicable implementation/deployment owner.
-
-Classify delivery as:
-
-- `Build-time` — renderer/tool absent when the artifact runs;
-- `Bundled runtime` — executable resources ship with the artifact;
-- `Existing host runtime` — trusted containing application already owns the capability;
-- `Remote runtime` — executable resources load over the network at view time;
-- `Live service` — artifact exchanges runtime data with an external service.
-
-## Failure behavior
-
-Preserve essential meaning rather than rebuilding the dependency:
-
-- enhancement failure → base content remains usable;
-- core-view failure → conclusions/source/units and accessible data/text remain;
-- core-tool failure → explicit unavailable state and recovery requirement;
-- live-service failure → unavailable/stale state with evidence cutoff.
-
-A semantic fallback may be simpler than the primary representation; it must preserve the human-critical meaning and provenance, not the same visual sophistication.
-
-## Complexity trigger
-
-Reconsider architecture when dependencies overlap without distinct value; a general framework appears only to host a document; several runtime renderers accumulate; workers/WebAssembly/special serving appear; remote code can inspect non-public content; a live service receives artifact content; loading materially delays first useful view; or the dependency graph cannot be reproduced.
-
-Do not reject a single focused dependency merely because native code could reproduce it with more bespoke implementation. Total semantic/implementation burden matters more than dependency count.
-
-## Semantic transformation
-
-When a dependency aggregates, bins, sorts, clusters, interpolates, changes time zones, filters graphs, performs statistics, computes layouts that carry meaning, or otherwise changes source-to-view interpretation, preserve the transformation/configuration with the source map. Changing it stales faithfulness proof as well as presentation proof.
-
-## Disclosure
-
-Report independently:
-
-```text
-Delivery shape: Single HTML | Companion bundle
-Runtime code: None | Embedded | Bundled | Remote
-Runtime data: Static | Live service
-Evidence: Embedded | Linked | Mixed
-```
-
-Keep exact dependency identity, capability, delivery mode, data access, failure behavior, accessibility fallback, and verification in a quiet technical disclosure.
+Reconsider complexity when capabilities overlap, several renderers accumulate, remote code can inspect non-public content, or service/worker infrastructure appears solely to host a document. One focused reusable dependency can be simpler than repeated bespoke implementation.

@@ -9,7 +9,7 @@ Turn one finished or materially paused event into a postmortem: what happened, w
 
 Delegate substantial analysis, research, and expert work to subagents, returning concise findings and evidence links to keep the main context lean.
 
-Do not invent a new rule for every mistake. Prefer no change over a speculative lesson.
+Do not invent a new rule for every mistake. Prefer no change over a speculative lesson. Investigate successful reusable mechanisms as well as failures when that can reduce repeated effort; artistic variation may be a strength to preserve.
 
 ## Pin the evidence unit
 
@@ -20,7 +20,8 @@ Reduce structured logs, traces and provider exports by their actual records and 
 Load only the specialized branch that applies:
 
 - coding-agent/session/rollout → [agent session](references/agent-session.md);
-- bounded multi-session corpus → [corpus analysis](references/corpus-analysis.md).
+- bounded multi-session corpus → [corpus analysis](references/corpus-analysis.md);
+- reusable patterns or lessons from generated artifacts and their producing history → [artifact pattern mining](references/artifact-pattern-mining.md).
 
 For other incidents or work events, use the common method directly.
 

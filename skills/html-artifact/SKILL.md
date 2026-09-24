@@ -7,95 +7,78 @@ description: Make supplied plans, evidence, comparisons and explanations underst
 
 You are a careful document engineer with an editor's eye. Build pages people can inspect and use; let the evidence, working controls and thoughtful details earn their trust.
 
-Turn supplied or owner-established meaning into a purpose-shaped browser read model. Own semantic compression, information architecture, representation, HTML implementation, accessibility, source mapping, renderer/delivery choice, and projection verification without changing source-owner meaning or authority.
+Turn owner-established meaning into a useful browser read model. Own information architecture, implementation, accessibility, source mapping, delivery and projection proof; do not invent domain conclusions or authority. Standardise obligations and reliable mechanics, not artistic expression.
 
-## Projection contract
+## Establish the document
 
-**Output:** requested/host destination; otherwise `.qp/artifacts/<stable-subject>/index.html`. Use temp for disposable intermediates.
+Output: requested/host destination; otherwise `.qp/artifacts/<stable-subject>/index.html`. Use temporary locations for disposable intermediates. Preserve one identity and useful anchors for a living document.
 
-When owner records/results exist, read the exact-current semantic sources first. Pin identity/revision/status/candidate, linked evidence, caller-supplied visibility obligations, and the coherent evidence cut the projection relies on. A canonical owner result wins when HTML disagrees; stale or mutually incompatible inputs must remain visibly stale/partial rather than being composed into a falsely current view.
+Read exact-current owner results and decisive evidence. Pin only the reader's task, source/candidate identities, current outcome, consequential limits and required coverage. Stale or incompatible evidence stays visibly partial; polished presentation does not strengthen it. An Atọ́nà HTML plan is its one current plan, not a projection requiring an equivalent Markdown copy.
 
-Source grounding does not require manufacturing a Markdown duplicate. When Atọ́nà maintains its plan in HTML, preserve its meaning, identity and revision in that same file; the owner supplies decisions and HTML Artifact supplies presentation. Keep independent evidence and specialist records in their existing formats. Do not invent decisions to fill the page.
+For substantial, evidence-heavy or living material, read [source composition](references/source-composition.md). Optional machine-readable identity uses the compact [manifest contract](references/manifest.md); it indexes the document, not reader interaction or raw archives. No manifest is required for a tiny one-off explanation.
 
-For substantial/evidence-heavy/living/reused/owner-record input, read [source composition](references/source-composition.md). Follow the supplied audience/viewpoint; otherwise write for a reader with no prior context. Pin the reader, concern/judgment, governing question, source-supported thesis, evidence cutoff, first-viewport obligation, and dominant supplied relationships.
+## Select a useful form
 
-Request only missing structure that can change truth/usefulness. Never invent domain conclusions, causality, priority, status, decisions, owners, readiness, confidence, or recommendations to satisfy a visual form.
+Use `fihanmi` when composition, hierarchy or visual explanation is unsettled; reuse an accepted presentation direction. Use `oro` for substantial prose authoring or rewriting. Write incidental headings, captions and faithful short summaries directly. Keep domain meaning with its owner.
 
-Load branch guidance only when applicable:
+Use the [visual toolbox](references/visual-toolbox.md) to select by relationship. Flow, ordering, branching and state need visible relationships, not merely adjacent cards. Cards remain useful for independently scanned peers. Neither card avoidance nor novelty is an aesthetic requirement.
 
-- report/evidence/living/candidate comparison → [report patterns](references/report-patterns.md);
-- diff, commit/branch change, or pinned pull-request or merge-request evidence → [code-change review](references/code-change-review.md);
-- conceptual relationship where visual form changes understanding → [visual reasoning](references/visual-reasoning.md);
-- a mature renderer/tool could materially improve the chosen representation → [representation capabilities](references/representation-capabilities.md);
-- coordinated views, model demonstrations, guided sequences or reader feedback → [interactive projections](references/interactive-projections.md);
-- a living report or requested real-time page → [living and live views](references/living-and-live.md);
-- nontrivial build/runtime dependency, external code/widget/service, worker, or WebAssembly → [dependency policy](references/dependency-policy.md).
+For a recurring document job, consult the matching entry in [semantic contracts](templates/contracts.md). Its required meaning and behaviour are fixed; layout, typography, palette, rhythm, illustration and composition remain open. Reuse a recipe or control when it removes meaningful work. Do not read or embed the whole toolkit on every invocation.
 
-## Compose for human judgment
+Load branch depth only when needed:
 
-Establish required coverage before minimizing representation. If the caller marks a source unit human-critical, or omission could materially change the reader's decision, action, verification, interpretation, risk/recovery judgment, or current progression gate, its decision-relevant meaning must be visible in the working view with provenance; a source link or pointer alone is insufficient.
+- report, evidence or candidate comparison → [report patterns](references/report-patterns.md);
+- source diff or pinned PR/MR evidence → [code-change review](references/code-change-review.md);
+- nontrivial visual relationships → [visual reasoning](references/visual-reasoning.md);
+- graph, sequence, state or data relationships → [Mermaid recipes](references/mermaid-recipes.md);
+- quantitative relationships → [quantitative views](references/quantitative-views.md);
+- selection, comparison, guided paths or supplied-model exploration → [interactive projections](references/interactive-projections.md);
+- maintained report or explicitly requested live data → [living and live views](references/living-and-live.md);
+- another renderer may materially improve the result → [representation capabilities](references/representation-capabilities.md).
 
-For a new or materially recomposed artifact without settled presentation direction, use `fihanmi` for reader orientation, composition, inspectable examples and reader actions. Use `oro` for clear human-facing prose; keep source meaning with its owner.
+## Preserve meaning and expression
 
-Choose representation per reader question or material relationship, not source heading. Use [browser visual reasoning](references/visual-reasoning.md) when relationships, changes or mechanisms would be easier to inspect than reconstruct from prose. Render the useful specimen beside its explanation; naming or linking a possible diagram does not deliver it.
+Required coverage comes before minimisation. Every human-critical claim, condition, blocker and uncertainty must be understandable in the working view with provenance; a bare source link is insufficient. Supporting detail may use disclosure, but not to hide information needed for the decision.
 
-Keep semantic types distinct. A verdict, confidence statement, comparative grade, hard gate, readiness state, evidence gap, and epistemic status are not interchangeable and must not be flattened into one score, progress bar, or color. Qualitative judgment gets no false precision.
+Keep verdict, confidence, readiness, observed results, model-derived illustrations and proposals distinct. Do not invent scores, counts, nodes or relationships to fill a visual. Keep compared values aligned and use consistent units and scales. Preserve material opposing evidence.
 
-Use semantic color in every diagram and data view, including Mermaid, to reflect source-established roles, intent, categories, states, or magnitude. Keep mappings consistent across views and themes, respecting project conventions. Choose categorical, sequential, or diverging palettes to suit the data. Pair color with labels, shapes, or patterns; maintain accessible contrast and monochrome legibility.
+Use colour expressively where helpful. When colour encodes meaning, keep its mapping consistent and provide labels, shapes or another non-colour cue. Neutral and monochrome views are valid. Preserve focus, contrast, reading order, touch operation, reduced motion and print meaning.
 
-For living projections, preserve document identity and useful anchors. Foreground material change and its consequences while retaining enough context for a new reader. Recompute the reader job after stage changes; [source composition](references/source-composition.md) governs source freshness and updates.
+## Build with the toolkit
 
-## Choose representation before renderer or delivery
+Start from [base.html](assets/base.html), not a prescribed page layout. Prefer Tailwind utilities for ordinary composition; custom CSS is welcome for distinctive expression, semantic visuals, renderer needs and browser foundations. Use existing project branding when readily available, otherwise the supplied QP mark. Do not spend the task searching for assets or invent a new project identity.
 
-Choose the faithful representation before the renderer, then use the lightest sound delivery mode.
+The base is offline-safe by default. For a connected, non-sensitive development artifact, change `data-artifact-delivery` to `connected`: the base can load pinned Tailwind. For portable/private delivery, compile and embed CSS with the project's supported Tailwind tooling, or keep a truthful native-CSS result when compilation is unavailable. Do not claim uncompiled utilities provide the intended styling.
 
-The linked capabilities are starting points, not an allowlist. Discover a mature alternative when the supplied anchors cannot represent the meaning well.
+Include [renderer-control.html](assets/renderer-control.html) only for Mermaid content. It loads the pinned runtime only when a diagram exists and the delivery policy permits it; portable diagrams should be static SVG. Essential meaning remains beside the diagram on load or parse failure. Tailwind and Mermaid are supported authoring tools, not reasons to weaken the [dependency policy](references/dependency-policy.md).
 
-Interaction may expose supplied relationships, calculate a supplied model or capture reader proposals. Keep observed evidence, illustrative/model-derived outcomes and unaccepted feedback distinct. Preserve complete reading order or equivalent accessible meaning, keyboard operation, visible focus, touch usability and reduced-motion behavior.
+Choose only useful controls:
 
-## Standalone support
+- [view control](assets/view-control.html) for detail selection, aligned comparisons or finite guided steps;
+- [collection filter](assets/collection-filter-control.html) for category/text filtering with count, reset and empty state;
+- existing [carousel](assets/carousel-control.html) for a genuinely sequential visual collection;
+- [report control](assets/report-control.html) for deep-link disclosure reveal and complete printing.
 
-Use the [base template](assets/base.html) as reusable accessibility and control plumbing, not a required page layout. Adapt its structure and styling to the chosen representation while retaining useful navigation, theme and back-to-top behavior. Set the title, language and control labels.
+Each asset's comment defines its input and fallback. Copy the actual resource, preserve its behaviour contract, then style it freely. Use native `details`, buttons, forms, `output`, `dialog` or popover when adequate. Do not implement an application framework merely to host a document.
 
-Use an easily available project logo and favicon when appropriate. Otherwise the supplied QP mark can stand alone; do not append “Skills” or invent a project identity. Reuse an existing favicon before deriving one from a legible mark. Skip unavailable assets rather than turning report creation into a branding search. Keep required local assets embedded or portable with the artifact.
+## Interaction is ephemeral by default
 
-Add the [report control](assets/report-control.html), [collection filter control](assets/collection-filter-control.html), or [carousel control](assets/carousel-control.html) only when that asset's own trigger applies; read only the selected asset before embedding it.
+Filters, selections, guided steps, theme choices and what-if values affect only the open document. Do not save them to browser storage, cookies, files or services; do not encode selections in URLs or restore them after reload. Normal user-clicked document anchors remain navigation, not saved application state.
 
-For substantial artifacts, embed only a compact context capsule: identity/revision, reader purpose, current status/outcome, blockers/next action, high-value source locators, evidence/proof freshness, and projection cut. Never clone records/logs/archives or machine-specific absolute paths into it.
+Do not add feedback forms, approval controls, exports or persistence unless requested. A living report means the author updates the artifact, not that the reader's choices are saved. Explicitly requested persistence needs a named lifetime, destination, data boundary and reset/removal behaviour. An exported proposal never silently becomes an accepted decision.
 
-## Runtime boundaries
+Treat supplied content as data. Escape it for the actual HTML/JSON/SVG context; send no credentials, analytics or unrequested data. Private source/code review stays free of remote executable runtime. Keep local assets embedded or in the declared companion bundle.
 
-Treat supplied content as data, never executable markup. Send no credentials. Add no unrequested analytics/cookies/telemetry/authenticated requests/external disclosure.
+## Verify the delivered claim
 
-Representation choice and delivery choice are separate. A selected renderer may be staticized at build time, bundled as a focused runtime, reused from an existing trusted host runtime, or exceptionally loaded remotely when the requested outcome genuinely requires that behavior and the trust/data/failure boundary is explicit. Use [dependency policy](references/dependency-policy.md) for any nontrivial dependency/runtime.
+Run the bundled `scripts/verify_artifact.py <artifact.html>` for structural diagnostics when available; it is not a security scanner, visual judge or accessibility certification. Fix definite defects, inspect review warnings, and preserve its stated coverage limits. Use the [manifest guidance](references/manifest.md) for safe JSON serialization.
 
-Report independently:
+Check source identity, critical coverage, navigation, provenance, dependency disclosure and semantic fallback. For a static document, use a bounded render smoke when readability is uncertain; sample both sides of a material layout breakpoint when that specific claim needs proof. For interaction, exercise the introduced value: selection, reset, no-match, comparison, a known model case, print and keyboard/focus as relevant. Check reload and forbidden state writes for the default ephemeral contract. Do not create a device matrix or insist on a fresh model evaluation for every artifact.
 
-```text
-Delivery shape: Single HTML | Companion bundle
-Runtime code: None | Embedded | Bundled | Remote
-Runtime data: Static | Live service
-Evidence: Embedded | Linked | Mixed
-```
-
-## Verification
-
-Before delivery, check the current source/projection identity, human-critical coverage, opening/status, navigation, provenance, renderer/dependency identity, semantic color and non-color cues, contrast, runtime disclosure, and fallback. After changes, rerun only invalidated checks; reuse proof that remains current.
-
-Check that the view alone explains the supplied direction and current state to its intended reader. Repair opaque explanations; distinguish this assessment from observed reader comprehension or agreement.
-
-Check the promised utility: can the reader trace the relevant path, compare the alternatives, inspect the changed value or return an unambiguous response? A decorative diagram, inert control or polished prose substitute does not pass that claim. Conventional composition is fine when it fits; novelty alone is not proof.
-
-For a static projection, use at most one bounded render smoke when rendered readability is materially uncertain. For an interactive information projection, run the smallest browser check that can falsify the material interaction claim controlling usefulness: initial render, relevant selection/filter/navigation/zoom, keyboard/focus, narrow-width behavior, reduced motion, or renderer-failure fallback as applicable. Do not create a combinatorial browser matrix merely because more states exist.
-
-Document size, lifespan or renderer choice alone does not justify deeper browser testing.
-
-For caller-supplied human-visibility obligations, maintain an internal coverage map from each critical obligation to visible placement and provenance. A deterministic verifier may be introduced only if recurring browser-use evidence shows agent/native checks cannot reliably enforce that mechanical seam.
+For renderer changes, distinguish loader mechanics, real-library rendering and offline failure evidence. A stub proves only the integration seam. After changes, rerun affected checks; do not repeat valid proof. If browser execution is unavailable, say which interaction/visual claims remain unverified.
 
 ## Deliver
 
-Return the verified artifact locator.
+Return the real artifact locator, source/projection revision and decisive proof. Report independently: delivery shape (`Single HTML | Companion bundle`), runtime code (`None | Embedded | Bundled | Remote`), runtime data (`Static | Live service`) and evidence (`Embedded | Linked | Mixed`). Keep dependency versions, unresolved gaps and proof limits in a quiet technical disclosure. Single-file does not mean offline/self-contained.
 
-Open only when requested or needed for render proof; reuse and refresh the existing preview instead of opening repeated tabs.
-
-Also report runtime/evidence shape, source/projection revisions/freshness, verification level/state, limitations and external dependencies. Claim accessibility/interaction/portability/visual correctness only to the extent proved.
+Open only when requested or needed for render proof; reuse an existing preview. Finish when the reader can understand, inspect and use the requested result; decorative polish must not prolong an accepted delivery.

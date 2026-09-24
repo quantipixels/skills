@@ -1,55 +1,60 @@
 # Resource boundaries
 
-Read when agent-facing guidance needs references, scripts, templates, bundled data, or host adapters.
+Read when guidance could benefit from references, examples, scripts, templates, bundled data, worked artifacts or host adapters. Compare useful forms before assuming another paragraph is the answer.
 
-Prefer the least burdensome resource that preserves the capability. Fewer files is not the objective; clear responsibility and justified load are.
+Prefer the least burdensome resource that preserves the capability. Fewer files is not the objective; clear responsibility, reliable invocation and total repeated effort are. A capable model's ability to regenerate something neither earns nor rejects reuse.
 
-## References
+## Choose by the result
 
-A reference earns its place when it improves a recurring non-obvious decision and has a reliable load condition. Keep examples, counterexamples, exceptions, and named conceptual/retrieval anchors when they sharpen judgment.
+| Recurring need | Useful form | Required boundary |
+| --- | --- | --- |
+| Non-obvious decision | Prose/reference | Trigger, distinction, exceptions and stopping condition. |
+| Easy-to-misapply rule | Worked example or contrast pair | Decisive difference; example facts are not requirements. |
+| Repeatedly omitted meaning | Semantic template | Fixed slots/relationships, optional parts and free canvas. |
+| Repeated browser/document mechanics | Reusable asset or runnable specimen | Inputs, behaviour, fallback, adaptation surface and tests. |
+| Mechanical transformation/check | Small program or native command | Output/error/authority contract and rejection tests. |
+| Environment already answers cheaply | Direct inspection/native tool | No cache or wrapper without an additional useful result. |
 
-Remove copied official documentation, cheap repository facts, stale version inventories, task history, and material that cannot change behaviour. Split by independently selectable branches, not line count.
+Code guarantees its bounded operation, not semantic truth or design quality. Interpretation, acceptance and authority remain with the owning skill.
 
-## Deterministic code
+## References and examples
 
-Keep bundled code only when it owns a bounded mechanical result and materially improves correctness, reuse, or safe invocation over native/project tooling. Validators, exact transforms, safe compare-and-swap mechanics, and safe installation/bootstrap entrypoints can qualify.
+Keep recurring expertise behind reliable load conditions. Examples, counterexamples, exceptions and retrieval anchors can sharpen judgment. Remove copied official docs, stale inventories, cheap environment facts and irrelevant history. Split by selectable branches, not line count.
 
-Ordinary search/filter wrappers, Git/filesystem recipes, provider normalization solely for model consumption, executable checklists, and renderers for artifacts a capable agent can produce directly usually do not. Interpretation, acceptance, routing, and authority remain with the responsible agent/skill.
+A runnable specimen is useful when the reader needs to exercise a mechanism. Label illustrative data and unproved results. Examples do not replace a missing normative contract; resemblance is not acceptance.
 
-Code that ships must have falsifiable tests for its mechanical contract. Do not add state, locks, retries, schemas, daemons, or another runtime without a demonstrated need.
+## Templates and worked artifacts
 
-## Templates and data
+Standardise the job, not the look. Define trigger, required meaning/relationships, optional parts, behaviour, fallback, proof and free canvas. Preserve established formats and useful human interaction surfaces; a generic native scaffold is not automatically a faithful replacement.
 
-Keep a template when a stable recurring shape prevents meaningful omissions or makes the result easier to understand, compare, answer or verify. Reuse an existing project/native scaffold only when it preserves the needed information and the user's requested format and interaction surface; availability alone does not make it a replacement. Remove arbitrary defaults and optional-empty ceremony.
+A styled example can show expressive possibility without becoming mandatory house style. Do not turn recurring colours or cards into policy without relevant user/design authority. Leave a template unused when another form serves better. Interactive assets default to transient state; persistence, URL-state writing, response capture and exports require explicit scope.
 
-Bundle data only when maintaining it materially supports the result. Give volatile data a freshness boundary; do not turn a convenience snapshot into an authority source.
+## Deterministic code and reusable mechanics
 
-## Host adapters
+Ship code when a bounded operation materially improves correctness or repeated effort over native/project capabilities: serialization, structural checks, safe transforms, renderer integration, accessible controls and installation entrypoints can qualify. Own the operation, not an agent's judgment checklist.
 
-Keep one portable semantic contract and thin host-specific adapters. Do not duplicate the whole instruction set merely because hosts expose different metadata or invocation controls.
+Avoid redundant search/Git wrappers, provider normalization solely for model consumption and frameworks for one simple document. A tested focused control/renderer can still beat repeated bespoke generation. Compare authoring, adaptation, dependency and maintenance costs; neither line count nor resource count is a verdict.
 
-Before editing host configuration, distinguish primary-session instructions from agent definitions and user-owned configuration from package-owned assets. Preserve unrelated settings and permissions.
+Shipped code needs falsifiable tests of its contract and failure behaviour. Do not test a dependency's entire API or call a mock integration test real-library proof. Add state, locks, schemas, services or retries only for the actual operation. Delegate substantial implementation/proof to alaga; writing a skill does not grant installation or execution authority.
 
-## Keep worker shaping separate from durable configuration
+Good: a keyboard-operable comparison selector with no-JS/print content and no storage; its behaviour is reusable and its styling open.
 
-For multi-agent integrations, keep these layers distinct:
+Good: a verifier rejects a missing fragment target without claiming accessibility or factual correctness.
 
-- **host harness** — spawn/join mechanics, scheduling, Code Mode/team primitives, lifecycle, native isolation, and provider-specific invocation;
-- **assignment** — the worker specification for this task: outcome, context/candidate, instructions, capability request, execution boundary, authority, independence, evidence, and stop condition;
-- **agent definition** — optional provider-native reusable configuration only when a recurring persistent delta cannot be expressed adequately through native/per-spawn controls, the assignment, host defaults, or existing user configuration;
-- **skill** — reusable semantic method/expertise when one materially helps the result;
-- **workflow/router** — topology between independently owned results.
+Bad: a generator requires every report to contain six cards and a score.
 
-Do not add a maintained role/posture layer between an assignment and the worker it needs. Derive the worker directly from the actual task.
+Bad: deleting a working serializer example because the model knows JSON while leaving an ambiguous instruction to escape everything.
 
-An agent definition should not hardcode semantic skill identities, task-specific instructions, or fixed workflow stages. Prefer adequate native/general agents and existing user definitions; add a package-managed definition only when it contributes durable value that dynamic worker shaping cannot.
+## Qualify, locate and maintain
 
-An assignment may name a skill when already selected; otherwise do not add generic “discover skills” instructions merely because skills exist.
+Identify the job, existing alternative, useful delta, owner, load condition, maintenance cost and proof. An obvious bounded mechanical contract or severe failure can justify reuse without a corpus. Claims of repetition or saved time need evidence: ayewo-igba-ise owns history; adanwo owns uncertain comparative benefit.
 
-Treat model/effort/permission fields according to the provider's actual precedence. A definition-level value may be a pin rather than an overridable default. Do not invent one portable precedence contract.
+Keep resources with the consuming skill; repository-wide validators follow repository tooling conventions. A selectively installed skill retains or declares its resources. A pointer into an absent developer checkout is not a working dependency. Bundle volatile data only when its maintenance/freshness boundary earns the cost.
 
-Do not reproduce native spawn, wait, join, polling, retry, or team mechanics in portable skill instructions. State the semantic/evidence requirement and let each host use its strongest native mechanism.
+## Host and worker boundaries
 
-## Decide by consequence
+Keep one portable semantic contract and thin host adapters. Preserve user configuration, permissions and unrelated settings. Do not reproduce native spawn/join, scheduling, polling, retry or team machinery in skill text.
 
-Ask what this resource uniquely improves and what fails if it disappears. Keep resources that protect real expertise, safe mechanics, or independently selectable branches. Remove resources that mostly mirror information the agent can inspect cheaply at use time.
+The harness owns lifecycle and native controls; assignments own task scope/context, authority, independence, evidence and stopping condition; skills own reusable methods; workflow owners own progression. A durable agent definition earns its place only through a persistent delta unavailable through assignment/native controls. Do not add role taxonomies or hardcode skills merely to name a worker. Respect real provider model/effort/permission precedence rather than inventing one portable rule.
+
+Ask what fails or must be repeatedly rebuilt without the resource. Keep demonstrated utility, expertise and safe mechanics; remove ornamental templates, cheap caches and duplicate capability. Preserve unique behaviour and useful artistic freedom when consolidating. Resource use itself is not the goal.
