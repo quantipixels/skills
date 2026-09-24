@@ -4,9 +4,12 @@
      Selection is transient: explicit deep links are read, never written by controls.
      Compact/labeled/overlay compositions remain styling choices. -->
 <style>
-  @media print {
-    [data-carousel-controls], [data-carousel-live] { display: none !important; }
-    [data-carousel-item][hidden] { display: block !important; }
+  /* Same layer as Preflight: specificity preserves complete print content. */
+  @layer base {
+    @media print {
+      [data-carousel-controls], [data-carousel-live] { display: none !important; }
+      [data-carousel-item][hidden] { display: block !important; }
+    }
   }
 </style>
 <section class="relative space-y-3" data-carousel tabindex="0" aria-label="Example visual collection"

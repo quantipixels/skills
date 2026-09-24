@@ -4,9 +4,12 @@
      Controls stay hidden on invalid input. No-JS/print shows the full population.
      Labels/templates are artifact data; state is transient. -->
 <style>
-  @media print {
-    [data-filter-controls], [data-filter-status], [data-filter-zero] { display: none !important; }
-    [data-filter-item][hidden] { display: revert !important; }
+  /* Same layer as Preflight: specificity preserves complete print content. */
+  @layer base {
+    @media print {
+      [data-filter-controls], [data-filter-status], [data-filter-zero] { display: none !important; }
+      [data-filter-item][hidden] { display: revert !important; }
+    }
   }
 </style>
 <section class="space-y-3" data-collection-filter data-filter-all-value="all"

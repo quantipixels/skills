@@ -4,9 +4,12 @@
      All content remains readable without JS and in print. No storage, URL writes,
      exports or approval semantics. Repeated inclusion is safe. -->
 <style>
-  @media print {
-    [data-view-controls], [data-view-status] { display: none !important; }
-    [data-view-panel][hidden] { display: block !important; }
+  /* Same layer as Preflight: specificity preserves complete print content. */
+  @layer base {
+    @media print {
+      [data-view-controls], [data-view-status] { display: none !important; }
+      [data-view-panel][hidden] { display: block !important; }
+    }
   }
 </style>
 <section class="space-y-3" data-artifact-view data-view-position-template="{current} of {total}: {label}" aria-label="Example walkthrough">
