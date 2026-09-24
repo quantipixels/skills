@@ -1,6 +1,6 @@
 ---
 name: oro
-description: Write, review, edit, or prune text for agents or people. Use for skills, prompts, instructions, technical docs, explanations, reports, procedures, messages, or other prose; select the agent-facing or human-facing branch by the text's primary reader. Exclude factual investigation, translation, and code style.
+description: Create, edit, review or simplify skills and other agent-facing instructions, including SKILL.md files, prompts and references. Also write, review and prune human-facing prose. Select the branch by the primary reader. Exclude factual investigation, translation and code style.
 ---
 
 # Ọ̀rọ̀

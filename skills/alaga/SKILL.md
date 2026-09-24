@@ -20,6 +20,8 @@ Issue intake, diagnosis and incident recovery are independently usable and do no
 
 For verification of a supplied repair, use the [existing repair comparison](references/diagnosis-probes.md#existing-repair-comparison) and stop at the requested evidence unless correction was also authorized.
 
+For a measured engineering improvement or keep/revert decision, read [measured comparison](references/measured-comparison.md). A comparison-only request does not authorize adoption.
+
 ## Deliver an accepted coding change
 
 Within an `atona` initiative, reuse its assignment and return the candidate, proof, and any blocker or scope change. Atọ́nà owns initiative progression; Alága owns the assigned change and its integration. Direct requests need no Atọ́nà plan.

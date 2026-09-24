@@ -30,11 +30,11 @@ Build and CI optimization use this same path. For example: “Reduce this build'
 
 A profile shows where sampled time was spent. A heap capture can show what retains an object; a thread dump can show a blocked wait. These observations narrow an investigation. Neither a hot function nor an improved second capture alone proves the cause. Useful output identifies the capture, relevant path, source attribution and any missing discriminator.
 
-> Use adanwo to compare a bounded improvement to the measured bottleneck. Preserve the existing correctness and response-time obligations.
+> Use alaga to compare a bounded improvement to the measured bottleneck. Preserve the existing correctness and response-time obligations.
 
 Let the cost suggest the experiment. Repeated fixed network overhead may justify batching; repeated identical work may justify caching with an invalidation rule. Batching can improve throughput while worsening the latency someone waits for. A useful result compares the same representative workload, rejects broken candidates and reports a supported improvement or an honest inconclusive result.
 
-Owners: [Alága](../skills/alaga/SKILL.md), [Àdánwò](../skills/adanwo/SKILL.md), and the relevant project measurement capability.
+Owner: [Alága](../skills/alaga/SKILL.md), using the relevant project measurement capability.
 
 For sustained optimization, give Alárinà a target and budget: “Improve this pipeline within the available experiment budget, retaining only confirmed gains.” The same Performance improvement path records attempted hypotheses, confirms promising changes and stops at the target, budget or exhausted useful options.
 
@@ -50,7 +50,7 @@ For example, several tests may repeat the same receipt assertion while one slowe
 
 > Use alarina to help decide whether this API should expose a synchronous result or a job handle. Build only the smallest useful experiment; do not implement the product change.
 
-This goes to `adanwo` in exploration mode. The result is an inspectable API exchange, interaction or other disposable artifact that settles the named uncertainty. Return its evidence to the deciding owner; a promising prototype does not itself authorize production adoption.
+This goes to `adanwo`. The result is an inspectable API exchange, interaction or other disposable artifact that settles the named uncertainty. Return its evidence to the deciding owner; a promising prototype does not itself authorize production adoption.
 
 ## Prepare a safe data change
 
@@ -134,4 +134,4 @@ For “Explain why this session went wrong and apply the justified correction,�
 
 > Use alarina to compare this proposed skill change with the current instructions on representative tasks. Return the evidence before adopting it.
 
-Skill evaluation and improvement connects `oro`'s instruction work to `adanwo`'s bounded comparisons, with host readiness resolved through the active environment. Use the [opt-in engineering evaluations](../evals/README.md) when their cases fit. Preserve failed and blocked attempts and compare actual results, unnecessary mechanisms, human intervention and total work. A directly supplied skill bypasses discovery; a routing answer does not establish execution. Package validation proves structure; it does not establish that instructions improve engineering outcomes.
+Skill evaluation and improvement uses `oro`'s instruction authoring and bounded evaluation method, with host readiness resolved through the active environment. Use the [opt-in engineering evaluations](../evals/README.md) when their cases fit. Preserve failed and blocked attempts and compare actual results, unnecessary mechanisms, human intervention and total work. A directly supplied skill bypasses discovery; a routing answer does not establish execution. Package validation proves structure; it does not establish that instructions improve engineering outcomes.

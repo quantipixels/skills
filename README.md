@@ -83,7 +83,7 @@ Common entrypoints:
 | `yoruba-glossary` | Yorùbá language guidance, lessons, word formation, or glossary maintenance is needed |
 | `oro` | Agent-facing instructions or human-facing technical prose needs writing, review, editing, or pruning |
 | `akowe` | A documentation set needs a read-only audit or verified synchronization with implementation and accepted decisions |
-| `adanwo` | A bounded exploratory or measured experiment must settle uncertainty |
+| `adanwo` | Disposable prototypes help the user discover, compare and refine a direction |
 | `alarina` | Select or use an engineering playbook, compose or resume work across owners, or find the starting owner |
 | `codex-orchestra` | Apply the bounded Codex delegation profile under an Astra main agent when useful or requested |
 | `fihanmi` | Supplied material needs a compact visual explanation or useful default presentation |

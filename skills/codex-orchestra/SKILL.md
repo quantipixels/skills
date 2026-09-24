@@ -39,4 +39,4 @@ Choose review separately from execution. The parent can independently review wor
 
 Distinguish requested settings, resolved host metadata and observed behavior. Preserve available native identities/traces and report what is unavailable; names alone do not prove model or effort enforcement. Do not claim native discovery, unattended resumption, permission isolation or cost savings from instruction/package checks.
 
-Return accepted results and remaining gaps to the same caller. Functional acceptance and economic benefit are separate: use `adanwo` only for an authorized finite comparison with attributable parent/child processing, failures and rework. Concurrency, nominal model weights, or one successful task do not establish savings.
+Return accepted results and remaining gaps to the same caller. Functional acceptance and economic benefit are separate: use `oro` only for an authorized finite comparison with attributable parent/child processing, failures and rework. Concurrency, nominal model weights, or one successful task do not establish savings.
