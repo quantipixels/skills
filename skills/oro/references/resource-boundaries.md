@@ -49,7 +49,7 @@ Bad: deleting a working serializer example because the model knows JSON while le
 
 ## Qualify, locate and maintain
 
-Identify the job, existing alternative, useful delta, owner, load condition, maintenance cost and proof. An obvious bounded mechanical contract or severe failure can justify reuse without a corpus. Claims of repetition or saved time need evidence: ayewo-igba-ise owns history; `alaga` measures engineering improvements, and Ọ̀rọ̀'s instruction-evaluation method compares agent guidance.
+Identify the job, existing alternative, useful delta, owner, load condition, maintenance cost and proof. An obvious bounded mechanical contract or severe failure can justify reuse without a corpus. Claims of repetition or saved time need evidence: `ayewo-igba-ise` owns history; `alaga` measures engineering improvements. The requesting project or workflow assesses comparative claims about guidance; Ọ̀rọ̀ authors the candidate.
 
 Keep resources with the consuming skill; repository-wide validators follow repository tooling conventions. A selectively installed skill retains or declares its resources. A pointer into an absent developer checkout is not a working dependency. Bundle volatile data only when its maintenance/freshness boundary earns the cost.
 

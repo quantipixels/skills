@@ -22,7 +22,7 @@ python3 evals/engineering/evaluate.py prepare \
 
 Use `--guidance-root` to supply an exact skills directory. Required guidance is validated, hashed and copied before study creation; the manifest identifies protected inputs and permitted edits. Give actors only their `actor/` directory, keeping `private/` and judging criteria inaccessible through host isolation where available. Record assignment-only separation honestly; these directories are not a sandbox.
 
-Use `oro`'s instruction-evaluation method for experimental controls and outcome judgment. Enforce the declared actor budget in the native host with no automatic retries. The checker's `--timeout` bounds each local subprocess, not model execution.
+Use the [shared comparison method](../README.md#controlled-comparisons) for experimental controls and outcome judgment. Enforce the declared actor budget in the native host with no automatic retries. The checker's `--timeout` bounds each local subprocess, not model execution.
 
 ## Record and check
 
@@ -61,4 +61,4 @@ No record or result on an untouched cell means unrun; partial submissions are in
 - The [Java domain-value pair](scenarios/domain-value-reuse.md) has separate executable positive/negative controls and requires a JDK.
 - [Project-backed scenarios](scenarios/README.md) cover real framework, compatibility, interruption, authorization, resource and architecture boundaries. They are protocols, not runnable profiles or completed trials.
 
-Historical results remain in [observations/](observations/). Preparation, replay and mechanical checks make no fresh model-performance claim.
+Superseded reports, replay patches and original attribution remain in [Git history](https://github.com/quantipixels/skills/tree/54b17412c2b0ccc0ec9e52ccbaf2ac2c4a664bf3/evals/engineering/observations). Current fixtures and executable rejection tests remain here. Preparation, replay and mechanical checks make no fresh model-performance claim.
