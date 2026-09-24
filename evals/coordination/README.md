@@ -20,7 +20,7 @@ Keep [common outcomes](reviewers/expected-outcomes.md), [C15 outcomes](reviewers
 
 ## Run one selected boundary
 
-Supply only the selected request and its necessary setup. Do not give an actor the whole omnibus file, private rubric or other attempts. Use fresh disposable sessions/workspaces where needed; freeze source, task and criteria before comparison. Set a finite authorized budget and preserve failed, blocked and invalid attempts. Directory separation is not host isolation, and workers are optional.
+Use the [shared comparison method](../README.md#controlled-comparisons). Supply only the selected request and necessary setup, keeping reviewer files private.
 
 Record whether the condition is routed, direct, supplied-instruction or native discovery. Compare like with like. C09.4 supports a separately labelled routed condition so the duplicate cache prompt need not be maintained in C08; a direct success does not establish routing. For the routed condition, remove the direct-skill label rather than telling the router which owner to select.
 
@@ -45,6 +45,8 @@ Stable IDs are not renumbered, and historical results remain tied to their origi
 
 No whole pack is removed merely because it is small, synthetic, unrun or utility-related. C17 remains available for actual audience, disclosure or expiry uncertainty, without a routine model-eval requirement. Settlement, batching, migration, independent oracles and their integrity tests remain unchanged.
 
-Historical [initial observations](observations/2026-09-15.md), [coverage](observations/2026-09-15-coverage.md) and [direct-owner observations](observations/2026-09-15-direct-owners.md) retain source identities and limitations. The [pre-cleanup source](https://github.com/quantipixels/skills/tree/7ff48c0b2ca929ebcd8545eb9092ec67c4917f2f/evals) preserves retired prompts. Do not relabel old results as evidence for edited tasks or rubrics. C15's release-origin naming does not require another Revision 8 campaign.
+Superseded [September 15 observations](https://github.com/quantipixels/skills/tree/54b17412c2b0ccc0ec9e52ccbaf2ac2c4a664bf3/evals/coordination/observations) remain in Git history with their source identities and limitations. The [pre-cleanup source](https://github.com/quantipixels/skills/tree/7ff48c0b2ca929ebcd8545eb9092ec67c4917f2f/evals) preserves retired prompts. These are not evidence for current tasks or rubrics; C15's release-origin naming does not require another Revision 8 campaign.
 
 C14 (Codex profile admission) was retired with `codex-orchestra` on 2026-09-24. Its ID is reserved; earlier observations retain their original candidate and meaning.
+
+[C19 observations](observations/2026-09-24-discovery.md) record three completed artifacts and one interrupted run. They do not establish a candidate advantage.
