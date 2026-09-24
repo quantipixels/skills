@@ -96,9 +96,8 @@ Use `seda-pr` in description mode to draft or improve a PR body without committi
 
 Atọ́nà maintains one living HTML plan, including decisions, evidence, progress and next action. It does not create an equivalent Markdown plan; independent specifications, architecture records and source evidence keep their useful existing formats.
 
-See [a worked engineering example](docs/engineering-example.md) for how identity, recovery, architecture and tests fit together in a retry fix.
 
-With `alarina` active, describe the engineering outcome or name a playbook; it selects the path and coordinates the relevant skills. The [engineering playbooks guide](docs/engineering-playbooks.md) shows supported paths, direct invocation examples and expected evidence. Settled single-owner work can still use its specialist directly.
+With `alarina` active, describe the engineering outcome or name a playbook; it selects the path and coordinates the relevant skills.
 
 ## Update
 
