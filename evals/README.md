@@ -4,6 +4,8 @@ Use evaluations to expose consequential regressions and misdirection, not to cer
 
 ## Retain useful cases
 
+Before maintaining or running a case, be able to name the failure it detects, the decision its result changes, and why a cheaper check is insufficient. Record these in the existing case or run notes where not obvious; no new registry or mandatory metadata schema is needed. Separate observed failures, synthetic probes and never-run expectations.
+
 Keep a case when it captures a relevant failure mechanism, important contract or useful control, has a clear way to judge the result, and repays its maintenance. Small, synthetic or unrun cases can be useful; none is evidence of success until executed. A simple control can detect unnecessary work just as a difficult case can detect missing work.
 
 Consolidate duplicated setup and genuinely overlapping questions. Retire obsolete obligations, intentionally unsupported coverage and low-signal quizzes that only repeat the requested owner or tool. For a claimed replacement, identify the surviving check and its scope; sharing a topic does not make a routing probe, direct invocation and executed outcome equivalent. Keep actor inputs and private expectations aligned, preserve stable case IDs, and reconcile live references. There is no target case count or deletion percentage.
@@ -15,6 +17,10 @@ Start with the actual change and the bad decision or regression it could cause. 
 Select one relevant task and its necessary contrast: authorized versus unauthorized action, adequate versus missing evidence, or work versus justified inaction. Do not run a whole omnibus file merely because it contains that task. Supply only the selected request and necessary setup, not neighboring requests, answers or reviewer criteria. Keep distinctions between direct invocation, routed work and native discovery explicit; do not quietly substitute one for another.
 
 Freeze the candidate and assessment criteria before the run. Use safe disposable inputs and the native host's real isolation/lifecycle controls. Record the source, invocation condition, actual outcome, interventions and material limits in the existing task record. A claim that guidance improves results needs a finite matched comparison owned by `oro`; a plausible answer, source check or replay is not a fresh model result. Judge consequences and artifacts, not skill-name mentions, tool-call choreography or preferred phrasing.
+
+Use actual corrections and successful controls to select cases before inventing more categories. Review the relevant input, actions and results when final-output inspection cannot locate the failure. Targeted or diversity-based samples help discover failures; representative sampling is needed to estimate prevalence. Keep related examples out of both calibration and held-out assessment. Use code for mechanically decidable acceptance and Ọ̀rọ̀'s judge-validation guidance only when interpretation requires it.
+
+End a comparison with the concrete keep/change/reject/inconclusive decision it supports. If both candidates meet acceptance, report no demonstrated advantage rather than inventing a winner from wording or length. Retire a case when its obligation is obsolete; otherwise distinguish justified dormant coverage from a routine gate nobody needs to run.
 
 `qp-update`, `system-cleanup`, `pese` and similar utilities have no standing model-eval requirement. Native checks can establish mechanical behavior; a targeted model probe may establish whether the agent chooses or declines an operation appropriately. Never test by mutating the user's real installation, home directory or serving configuration. Effective permissions, privacy and cleanup need operational evidence, not promised actions.
 

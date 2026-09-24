@@ -14,6 +14,7 @@ Select a case to investigate a consequential regression or misdirection. This is
 | Does documentation reconciliation avoid changing the wrong truth? | [C16](actors/C16-documentation-maintenance.md) | Audit/sync, current/history, missing/sufficient proof, generated sources and no-impact controls. |
 | Is a proposed private operation actually within the requested boundary? | [C17](actors/C17-private-serving.md) | Audience/identity, spoofable filtering, disclosure, expiry and a legitimate positive path. Operational claims need executed proof. |
 | Can a growing plan shed optional work without losing real obligations? | [C18](actors/C18-scope-growth.md) | Unchanged sufficient proof versus a compatibility regression hidden by green UI checks. |
+| Does discovery produce useful learning without reopening settled work? | [C19](actors/C19-discovery-outcomes.md) | A concrete discovery brief versus an accepted-spec decomposition; [private acceptance](reviewers/C19-discovery-outcomes.md). Supplied-guidance outputs do not establish native discovery. |
 
 Keep [common outcomes](reviewers/expected-outcomes.md), [C15 outcomes](reviewers/C15-adoption-outcomes.md), [C16 outcomes](reviewers/C16-documentation-outcomes.md), [C17 outcomes](reviewers/C17-private-serving-outcomes.md) and [C18 outcomes](reviewers/C18-scope-growth-outcomes.md) hidden from actors. Evaluate the selected behavior, not skill-name matching or a prescribed procession through companions. An explicitly requested entrypoint still matters for source identity and authority.
 
