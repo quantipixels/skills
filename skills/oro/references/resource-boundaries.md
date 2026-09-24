@@ -31,6 +31,8 @@ A styled example can show expressive possibility without becoming mandatory hous
 
 ## Deterministic code and reusable mechanics
 
+Before building a reusable mechanism, inspect adequate native, project and maintained-library implementations. Reuse the one that already owns the difficult behaviour when its API, licence, data boundary and delivery fit. Keep the skill's asset as a thin styling/data adapter where sufficient. A custom implementation earns its place through a missing contract, not familiarity; a new dependency earns its place through capability, not shorter selector syntax.
+
 Ship code when a bounded operation materially improves correctness or repeated effort over native/project capabilities: serialization, structural checks, safe transforms, renderer integration, accessible controls and installation entrypoints can qualify. Own the operation, not an agent's judgment checklist.
 
 Avoid redundant search/Git wrappers, provider normalization solely for model consumption and frameworks for one simple document. A tested focused control/renderer can still beat repeated bespoke generation. Compare authoring, adaptation, dependency and maintenance costs; neither line count nor resource count is a verdict.

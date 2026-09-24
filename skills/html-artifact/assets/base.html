@@ -1,12 +1,13 @@
 <!doctype html>
-<html lang="en" data-artifact-delivery="portable">
+<html lang="en" data-artifact-delivery="connected">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Artifact title</title>
   <!-- Replace title/content. This is a foundation, not a page design.
-       Portable: embed compiled CSS when using Tailwind utilities.
-       Connected non-sensitive development: select data-artifact-delivery="connected".
+       Tailwind powers ordinary asset styling. Keep the connected default or reuse
+       the host's styling runtime. Select portable only for a no-runtime-network
+       requirement, and embed compiled Tailwind CSS in that case.
        Reuse available project branding/favicon; the QP mark is the fallback. -->
   <style>
     @layer base {
@@ -14,17 +15,11 @@
       :root { color-scheme: light dark; }
       html[data-theme="light"] { color-scheme: light; }
       html[data-theme="dark"] { color-scheme: dark; }
-      body { margin: 0; padding: clamp(1rem, 4vw, 3rem); padding-block-end: 5rem;
-        background: Canvas; color: CanvasText; font: 1rem/1.55 system-ui, sans-serif;
+      /* Minimal reading fallback; composition lives in Tailwind classes. */
+      body { margin: 0; background: Canvas; color: CanvasText; font: 1rem/1.55 system-ui, sans-serif;
         overflow-wrap: anywhere; }
       img, svg, video, canvas { max-inline-size: 100%; block-size: auto; }
       button, input, select, textarea { font: inherit; }
-      button { min-block-size: 2.75rem; cursor: pointer; }
-      button:disabled { cursor: default; }
-      .artifact-shell { max-inline-size: 72rem; margin-inline: auto; }
-      .artifact-header { display: flex; justify-content: space-between; align-items: center; gap: 1rem; }
-      .artifact-brand { display: block; background: #111; padding: .5rem .75rem; border-radius: .25rem; }
-      main { margin-block-start: 2rem; }
       [id] { scroll-margin-block-start: 1.5rem; }
       table { border-collapse: collapse; inline-size: 100%; }
       th, td { text-align: start; vertical-align: top; padding: .6rem; overflow-wrap: anywhere; }
@@ -42,8 +37,6 @@
     [data-table-wrap] { container-type: inline-size; }
     [data-long-text] { white-space: pre-wrap; overflow-wrap: anywhere; }
     [data-log] { max-block-size: 32rem; overflow: auto; white-space: pre-wrap; }
-    [data-back-to-top] { position: fixed; inset: auto 1rem 1rem auto; padding: .65rem .9rem;
-      border: 1px solid currentColor; background: Canvas; color: CanvasText; border-radius: 999px; }
     .print-only { display: none; }
     @container (max-width: 40rem) { [data-table-wrap] > table { min-inline-size: var(--artifact-table-min-inline-size, 36rem); } }
     @media (prefers-reduced-motion: reduce) {
@@ -58,6 +51,9 @@
       [data-table-wrap] { container-type: normal; overflow: visible !important; }
       [data-table-wrap] > table { min-inline-size: 0 !important; }
     }
+  </style>
+  <style type="text/tailwindcss">
+    @custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
   </style>
   <script>
     (() => {
@@ -81,11 +77,11 @@
     })();
   </script>
 </head>
-<body>
+<body class="p-4 pb-20 sm:p-8 sm:pb-20">
 <a class="skip-link" href="#artifact-content">Skip to content</a>
-<div class="artifact-shell">
-  <header class="artifact-header" id="artifact-top" tabindex="-1">
-    <div class="artifact-brand" role="img" aria-label="Quanti Pixels">
+<div class="artifact-shell mx-auto max-w-6xl">
+  <header class="artifact-header flex flex-wrap items-center justify-between gap-4" id="artifact-top" tabindex="-1">
+    <div class="artifact-brand block rounded bg-neutral-950 px-3 py-2" role="img" aria-label="Quanti Pixels">
       <svg viewBox="0 0 160 132" width="48" height="40" aria-hidden="true" focusable="false">
         <g fill="none" stroke-width="9" stroke-linecap="round" stroke-linejoin="round">
           <g stroke="#fff"><circle cx="45" cy="42" r="27"/><circle cx="115" cy="42" r="27"/>
@@ -95,17 +91,17 @@
         </g>
       </svg>
     </div>
-    <button type="button" data-theme-toggle hidden>Change theme</button>
+    <button type="button" class="min-h-11 cursor-pointer rounded-md border px-3 py-2" data-theme-toggle hidden>Change theme</button>
   </header>
-  <main id="artifact-content" tabindex="-1">
-    <h1>Artifact title</h1>
+  <main id="artifact-content" class="mt-8" tabindex="-1">
+    <h1 class="text-3xl font-semibold tracking-tight sm:text-4xl">Artifact title</h1>
     <!-- Compose supplied content here; copy only useful control assets. -->
   </main>
-  <p data-runtime-status role="status"></p>
-  <footer><small>Single HTML; source data is static. Reader choices are not saved.
+  <p class="mt-4 text-sm" data-runtime-status role="status"></p>
+  <footer class="mt-8 border-t pt-4"><small>Single HTML; source data is static. Reader choices are not saved.
     <span data-delivery-disclosure>Confirm the selected delivery and dependency boundary.</span></small></footer>
 </div>
-<a data-back-to-top href="#artifact-top">Back to top</a>
+<a class="fixed right-4 bottom-4 rounded-full border bg-[Canvas] px-4 py-3 text-[CanvasText]" data-back-to-top href="#artifact-top">Back to top</a>
 <script>
   (() => {
     const root = document.documentElement;
@@ -121,8 +117,10 @@
     button.addEventListener('click', () => { followsSystem = false; apply(root.dataset.theme !== 'dark'); });
     media.addEventListener('change', event => { if (followsSystem) apply(event.matches); });
     document.querySelector('[data-delivery-disclosure]').textContent = root.dataset.artifactDelivery === 'connected'
-      ? 'Connected development delivery; remote styling runtime requires network access.'
-      : 'Portable base; declare any added dependencies and verify offline delivery.';
+      ? 'Runtime: Tailwind CSS 4.3.3 (CDN); list other selected dependencies here.'
+      : root.dataset.artifactDelivery === 'host'
+        ? 'Styling: supplied by the containing application.'
+        : 'Styling: embedded CSS; no remote runtime selected.';
     document.querySelector('[data-back-to-top]').addEventListener('click', () => {
       requestAnimationFrame(() => document.getElementById('artifact-top').focus({preventScroll: true}));
     });

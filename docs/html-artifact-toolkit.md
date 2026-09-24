@@ -4,7 +4,7 @@ This change standardises reusable meaning and reliable mechanics, not page appea
 
 ## What ships
 
-- Tailwind-first authoring with an offline-safe base and an explicit connected-development switch.
+- Tailwind-backed base and assets with pinned CDN loading by default; explicit embedded/host alternatives.
 - Conditional, strict-mode Mermaid integration; flowchart, sequence, state and ER specimens; optional quantitative Plot guidance.
 - One view selector for details, comparisons and finite steps; category plus text filtering; a carousel that no longer writes URL state.
 - Five semantic document contracts, an optional compact manifest with safe JSON serialization, and a read-only structural checker.
@@ -14,9 +14,11 @@ Existing report-control, source composition, code-change review and living/live 
 
 ## Use the base
 
-Copy `skills/html-artifact/assets/base.html` and replace illustrative content/metadata. Its portable mode makes no Tailwind network request. With a local Tailwind v4 compiler, import Tailwind, point source detection at the artifact and inline the generated CSS. Custom CSS is welcome for expression and semantic visualisations. Do not claim uncompiled utilities work.
+Copy `skills/html-artifact/assets/base.html` and replace illustrative content/metadata. It loads pinned `@tailwindcss/browser@4.3.3` by default. Base and control assets use Tailwind for layout, spacing, responsive behaviour, selected/disabled states and typography. Plain CSS retains print population, focus, reduced-motion and semantic fallback guarantees. The renderer uses `@apply` on its stable generated-output wrapper. The theme control drives Tailwind's `dark:` variant.
 
-For non-sensitive, connected development output, set the root `data-artifact-delivery="connected"`. The base loads pinned `@tailwindcss/browser@4.3.3`. This is not a production-CDN recommendation; private/offline outputs remain compiled/embedded or native CSS.
+Use `data-artifact-delivery="host"` with an existing application runtime. Select `portable` only for a no-runtime-network requirement and embed compiled Tailwind CSS, including asset classes and `type="text/tailwindcss"` directives. Do not maintain a second bespoke styling vocabulary. A deployed application should use its normal production build.
+
+For added behaviour, use `references/interaction-tools.md`: native browser capabilities first when sufficient, existing compatible widgets where available, or a focused library for a real gap. Tailwind Plus Elements is separate licensed software; Headless UI fits existing React/Vue hosts. Alpine is a lightweight optional reactive layer. jQuery is useful when already present or required by a selected plugin, not an automatic replacement for a component implementation. No extra JS library is loaded by the base.
 
 For Mermaid, put source in a labelled figure with `pre.mermaid`, a sibling `div[data-diagram-output]`, `p[data-diagram-status]` and an explanatory caption. Include `assets/renderer-control.html` after the figures. It loads Mermaid 12.0.0 only in connected mode and only when diagrams exist. Render before hiding a diagram in a panel. Portable output should embed locally rendered SVG; retained source is a truthful fallback, not a claim that a finished diagram exists.
 
@@ -47,3 +49,7 @@ The checker rejects definite structural defects and emits review warnings for am
 One view control replaces separate detail/stepper/compare implementations. Native inputs plus a domain-owned function replace a generic model engine. Plot is a conditional recipe rather than another default runtime. Report behaviour remains a small optional asset. No rigid house palette/layout, unconditional manifest, global artifact generator, new skill identity or local-history telemetry is introduced.
 
 Primary references: [Tailwind Play CDN](https://tailwindcss.com/docs/installation/play-cdn), [Tailwind CLI](https://tailwindcss.com/docs/installation/tailwind-cli), [Mermaid usage](https://mermaid.js.org/config/usage.html), [Mermaid 12 release](https://github.com/mermaid-js/mermaid/releases/tag/mermaid%4012.0.0).
+
+## Follow-up proof
+
+The default-profile regression checks that an unchanged base attempts Tailwind, not an implicit portable path. Real-package checks exercise asset layout, selected/disabled state, theme variants, RTL overlay controls and complete printing with Tailwind active. The existing suite continues to cover dependency failure, transient interaction, nested controls and reload. Restricted local DOM evidence and full CI file/renderer evidence remain distinct.

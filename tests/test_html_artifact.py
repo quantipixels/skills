@@ -56,6 +56,10 @@ class StructuralTests(unittest.TestCase):
         self.assertIn('portable-remote', self.codes(document('<script src="https://example.org/code.js"></script>')))
         self.assertIn('portable-remote', self.codes(document('<link rel="stylesheet" href="//example.org/a.css">')))
 
+    def test_unspecified_delivery_does_not_assert_offline(self):
+        html = document('<script src="https://example.org/tool.js"></script>').replace(' data-artifact-delivery="portable"', '')
+        self.assertTrue(verifier.inspect_html(html)['ok'])
+
     def test_data_image_is_embedded(self):
         self.assertTrue(verifier.inspect_html(document('<img alt="dot" src="data:image/png;base64,AA==">'))['ok'])
 

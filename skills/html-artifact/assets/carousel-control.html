@@ -1,34 +1,28 @@
-<!-- Style-neutral visual carousel; preserve/translate existing data-carousel-* labels.
+<!-- Tailwind asset: start from base.html; restyle utilities, preserve data hooks.
+     Style-neutral visual carousel; preserve/translate existing data-carousel-* labels.
      Supply stable item IDs. All slides remain readable without JS and in print.
      Selection is transient: explicit deep links are read, never written by controls.
      Compact/labeled/overlay compositions remain styling choices. -->
 <style>
-  [data-carousel] { position: relative; }
-  [data-carousel-item][hidden] { display: none !important; }
-  [data-carousel-controls] { display: flex; align-items: center; gap: .75rem; }
-  [data-carousel-position] { font-variant-numeric: tabular-nums; }
-  [dir="rtl"] [data-carousel-direction-glyph] { display: inline-block; transform: scaleX(-1); }
-  [data-carousel-controls][data-carousel-composition="overlay"] { position: absolute; inset: 0; justify-content: space-between; pointer-events: none; }
-  [data-carousel-controls][data-carousel-composition="overlay"] button { pointer-events: auto; }
   @media print {
     [data-carousel-controls], [data-carousel-live] { display: none !important; }
     [data-carousel-item][hidden] { display: block !important; }
   }
 </style>
-<section data-carousel tabindex="0" aria-label="Example visual collection"
+<section class="relative space-y-3" data-carousel tabindex="0" aria-label="Example visual collection"
   data-carousel-role-description="carousel" data-carousel-item-role-description="slide"
   data-carousel-previous-label="Previous item" data-carousel-next-label="Next item"
   data-carousel-position-template="{current} of {total}"
   data-carousel-item-label-template="Item {current}"
   data-carousel-announcement-template="{label}. Item {current} of {total}.">
-  <p data-carousel-live data-visually-hidden aria-live="polite" aria-atomic="true"></p>
+  <p data-carousel-live class="sr-only" data-visually-hidden aria-live="polite" aria-atomic="true"></p>
   <div data-carousel-track>
     <!-- Supply figures with id, data-carousel-item, role=group and aria-label. -->
   </div>
-  <div data-carousel-controls data-carousel-composition="compact" hidden>
-    <button type="button" data-carousel-previous><span data-carousel-direction-glyph aria-hidden="true">&lt;</span><span data-carousel-previous-text data-visually-hidden></span></button>
-    <output data-carousel-position aria-live="off"></output>
-    <button type="button" data-carousel-next><span data-carousel-direction-glyph aria-hidden="true">&gt;</span><span data-carousel-next-text data-visually-hidden></span></button>
+  <div class="flex items-center gap-3 data-[carousel-composition=overlay]:absolute data-[carousel-composition=overlay]:inset-0 data-[carousel-composition=overlay]:justify-between data-[carousel-composition=overlay]:pointer-events-none" data-carousel-controls data-carousel-composition="compact" hidden>
+    <button class="min-h-11 cursor-pointer rounded-md border px-3 py-2 disabled:cursor-default disabled:opacity-50 pointer-events-auto" type="button" data-carousel-previous><span class="inline-block rtl:-scale-x-100" data-carousel-direction-glyph aria-hidden="true">&lt;</span><span data-carousel-previous-text class="sr-only" data-visually-hidden></span></button>
+    <output class="tabular-nums" data-carousel-position aria-live="off"></output>
+    <button class="min-h-11 cursor-pointer rounded-md border px-3 py-2 disabled:cursor-default disabled:opacity-50 pointer-events-auto" type="button" data-carousel-next><span class="inline-block rtl:-scale-x-100" data-carousel-direction-glyph aria-hidden="true">&gt;</span><span data-carousel-next-text class="sr-only" data-visually-hidden></span></button>
   </div>
 </section>
 <script>

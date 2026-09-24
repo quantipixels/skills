@@ -4,7 +4,7 @@ Use for a substantial or maintained artifact when stable identity and source-cut
 
 ```html
 <script type="application/json" id="qp-artifact-manifest">
-{"schemaVersion":1,"artifactId":"retry-review","revision":"1","sourceCut":[{"id":"candidate","revision":"abc123"}],"delivery":"portable","interactionState":"transient","dependencies":[]}
+{"schemaVersion":1,"artifactId":"retry-review","revision":"1","sourceCut":[{"id":"candidate","revision":"abc123"}],"delivery":"connected","interactionState":"transient","dependencies":[]}
 </script>
 ```
 

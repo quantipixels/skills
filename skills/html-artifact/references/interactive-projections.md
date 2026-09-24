@@ -10,7 +10,7 @@ Use when interaction makes a supplied relationship easier to inspect, a known mo
 - Narrow: category/text filtering provides a count, empty state and reset.
 - Explore: labelled native inputs drive the owner's known model with units, baseline and a tested example.
 
-Use existing view/filter/carousel/report assets or native HTML before inventing a widget. A disclosure is not a tab; selection buttons need not pretend to be ARIA tabs. Add complex keyboard semantics only for the actual widget. Keep artistic composition independent from reliable mechanics.
+Reuse native HTML, an adequate host component or the existing view/filter/carousel/report assets before inventing a widget. For additional behaviour, consult [interaction tools](interaction-tools.md) and use a suitable maintained implementation rather than recreating its hard parts. Tailwind styles states; it does not supply their JavaScript behaviour. A disclosure is not a tab; selection buttons need not pretend to be ARIA tabs. Add complex keyboard semantics only for the actual widget. Keep artistic composition independent from reliable mechanics.
 
 ## No saved reader state by default
 

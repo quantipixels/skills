@@ -1,25 +1,23 @@
-<!-- Selection/detail, comparison or finite guided sequence. Replace illustrative
+<!-- Tailwind asset: start from base.html; restyle utilities, preserve data hooks.
+     Selection/detail, comparison or finite guided sequence. Replace illustrative
      content/IDs; style freely. One button per panel; previous/next/reset optional.
      All content remains readable without JS and in print. No storage, URL writes,
      exports or approval semantics. Repeated inclusion is safe. -->
 <style>
-  [data-view-controls] { display: flex; flex-wrap: wrap; gap: .5rem; }
-  [data-view-target][aria-pressed="true"] { font-weight: bold; text-decoration: underline; }
-  [data-view-panel][hidden] { display: none !important; }
   @media print {
     [data-view-controls], [data-view-status] { display: none !important; }
     [data-view-panel][hidden] { display: block !important; }
   }
 </style>
-<section data-artifact-view data-view-position-template="{current} of {total}: {label}" aria-label="Example walkthrough">
-  <div data-view-controls hidden>
-    <button type="button" data-view-target="view-before">Before</button>
-    <button type="button" data-view-target="view-after">After</button>
-    <button type="button" data-view-previous>Previous</button>
-    <button type="button" data-view-next>Next</button>
-    <button type="button" data-view-reset>Reset</button>
+<section class="space-y-3" data-artifact-view data-view-position-template="{current} of {total}: {label}" aria-label="Example walkthrough">
+  <div class="flex flex-wrap items-center gap-2" data-view-controls hidden>
+    <button class="min-h-11 cursor-pointer rounded-md border px-3 py-2 disabled:cursor-default disabled:opacity-50 aria-pressed:font-semibold aria-pressed:underline underline-offset-4" type="button" data-view-target="view-before">Before</button>
+    <button class="min-h-11 cursor-pointer rounded-md border px-3 py-2 disabled:cursor-default disabled:opacity-50 aria-pressed:font-semibold aria-pressed:underline underline-offset-4" type="button" data-view-target="view-after">After</button>
+    <button class="min-h-11 cursor-pointer rounded-md border px-3 py-2 disabled:cursor-default disabled:opacity-50" type="button" data-view-previous>Previous</button>
+    <button class="min-h-11 cursor-pointer rounded-md border px-3 py-2 disabled:cursor-default disabled:opacity-50" type="button" data-view-next>Next</button>
+    <button class="min-h-11 cursor-pointer rounded-md border px-3 py-2 disabled:cursor-default disabled:opacity-50" type="button" data-view-reset>Reset</button>
   </div>
-  <p data-view-status role="status" aria-atomic="true"></p>
+  <p class="text-sm tabular-nums" data-view-status role="status" aria-atomic="true"></p>
   <section id="view-before" data-view-panel tabindex="-1"><h3>Before</h3><p>Replace with the supplied baseline.</p></section>
   <section id="view-after" data-view-panel tabindex="-1"><h3>After</h3><p>Replace with the supplied comparison.</p></section>
 </section>

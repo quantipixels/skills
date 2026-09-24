@@ -102,7 +102,7 @@ def inspect_html(text: str, require_manifest: bool = False) -> dict:
             if target not in ids:
                 emit('ERROR', 'missing-target', f'Target {target!r} is not present.', line)
 
-    profile = roots[0].get('data-artifact-delivery', 'portable') if roots else 'portable'
+    profile = roots[0].get('data-artifact-delivery', 'connected') if roots else 'connected'
     if profile not in {'portable', 'connected', 'host'}:
         emit('ERROR', 'delivery', f'Unknown delivery profile: {profile!r}.')
     manifests = [(attrs, body, line) for attrs, body, line in doc.scripts if attrs.get('id') == 'qp-artifact-manifest']

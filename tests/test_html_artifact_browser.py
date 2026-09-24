@@ -90,10 +90,11 @@ class BrowserTests(unittest.TestCase):
         self.context.close()
         self.tmp.cleanup()
 
-    def load(self, content='', connected=False, fragment=''):
-        text = BASE.replace('<h1>Artifact title</h1>', '<h1>Control fixture</h1>').replace('</main>', content + '</main>')
-        if connected:
-            text = text.replace('data-artifact-delivery="portable"', 'data-artifact-delivery="connected"')
+    def load(self, content='', connected=None, fragment=''):
+        text = BASE.replace('>Artifact title</h1>', '>Control fixture</h1>').replace('</main>', content + '</main>')
+        if connected is not None:
+            profile = 'connected' if connected else 'portable'
+            text = re.sub(r'data-artifact-delivery="[^"]+"', f'data-artifact-delivery="{profile}"', text, count=1)
         self.document = text
         path = Path(self.tmp.name) / 'test.html'
         path.write_text(text)
@@ -106,6 +107,18 @@ class BrowserTests(unittest.TestCase):
     def assert_no_writes(self):
         self.assertEqual(self.page.evaluate('window.__effects'), [])
         self.assertEqual(self.errors, [])
+
+    def test_authored_base_loads_tailwind_only_by_default(self):
+        self.load()
+        expect(self.page.locator('[data-runtime-status]')).to_contain_text('unavailable')
+        self.assertTrue(any('@tailwindcss/browser@4.3.3/' in url for url in self.requests))
+        self.assertFalse(any('mermaid' in url or 'alpinejs' in url or 'jquery' in url for url in self.requests))
+        self.assert_no_writes()
+
+    def test_explicit_portable_base_has_no_runtime_requests(self):
+        self.load(connected=False)
+        self.assertFalse(any(url.startswith('http') for url in self.requests))
+        self.assert_no_writes()
 
     def test_view_keyboard_reset(self):
         self.load(asset('view-control.html'))
@@ -206,7 +219,7 @@ class BrowserTests(unittest.TestCase):
         self.assert_no_writes()
 
     def test_portable_diagrams_make_no_network_requests(self):
-        self.load(diagram('flowchart LR\nA-->B', 'graph') + asset('renderer-control.html'))
+        self.load(diagram('flowchart LR\nA-->B', 'graph') + asset('renderer-control.html'), connected=False)
         expect(self.page.locator('[data-diagram-status]')).to_contain_text('Portable view')
         expect(self.page.locator('pre.mermaid')).to_be_visible()
         self.assertFalse(any(url.startswith('http') for url in self.requests))
@@ -267,9 +280,40 @@ class BrowserTests(unittest.TestCase):
         self.context.route('https://cdn.jsdelivr.net/**', serve)
         recipes = re.findall(r'```mermaid\n(.*?)\n```', (ROOT/'skills/html-artifact/references/mermaid-recipes.md').read_text(), re.S)
         self.assertEqual(len(recipes), 4)
-        self.load('<p id="utility-proof" class="p-6 text-3xl">Utilities</p>' + ''.join(diagram(source, f'graph-{i}') for i,source in enumerate(recipes)) + asset('renderer-control.html'), connected=True)
+        self.load('<p id="utility-proof" class="p-6 text-3xl bg-white dark:bg-black">Utilities</p>' +
+                  asset('view-control.html') + filters() + carousel() +
+                  ''.join(diagram(source, f'graph-{i}') for i,source in enumerate(recipes)) +
+                  asset('renderer-control.html'))
         expect(self.page.locator('[data-diagram-output] svg')).to_have_count(4, timeout=30000)
         expect(self.page.locator('#utility-proof')).to_have_css('padding-top', '24px', timeout=30000)
+        # Exercise shipped assets, rather than only an isolated utility paragraph.
+        expect(self.page.locator('body')).to_have_css('padding-top', '32px')
+        expect(self.page.locator('.artifact-header')).to_have_css('display', 'flex')
+        expect(self.page.locator('[data-view-controls]')).to_have_css('gap', '8px')
+        expect(self.page.locator('[data-filter-controls]')).to_have_css('gap', '12px')
+        expect(self.page.locator('[data-view-target="view-before"]')).to_have_css('font-weight', '600')
+        self.page.locator('[data-view-target="view-after"]').click()
+        expect(self.page.locator('[data-view-target="view-after"]')).to_have_css('font-weight', '600')
+        expect(self.page.locator('[data-view-next]')).to_have_css('opacity', '0.5')
+        expect(self.page.locator('[data-view-next]')).to_have_css('min-height', '44px')
+        expect(self.page.locator('#graph-0 [data-diagram-output]')).to_have_css('padding-top', '16px')
+        expect(self.page.locator('#graph-0 [data-diagram-output]')).to_have_css('background-color', 'rgb(255, 255, 255)')
+        self.page.get_by_role('button', name='Use dark theme').click()
+        expect(self.page.locator('#utility-proof')).to_have_css('background-color', 'rgb(0, 0, 0)')
+        self.page.locator('[data-carousel-controls]').evaluate("el => el.dataset.carouselComposition = 'overlay'")
+        self.page.locator('[data-carousel]').evaluate("el => el.dir = 'rtl'")
+        expect(self.page.locator('[data-carousel-controls]')).to_have_css('position', 'absolute')
+        expect(self.page.locator('[data-carousel-controls]')).to_have_css('pointer-events', 'none')
+        expect(self.page.locator('[data-carousel-next]')).to_have_css('pointer-events', 'auto')
+        expect(self.page.locator('[data-carousel-next] [data-carousel-direction-glyph]')).to_have_css('scale', '-1 1')
+        self.page.get_by_role('button', name='Required', exact=True).click()
+        self.page.emulate_media(media='print')
+        expect(self.page.locator('[data-view-panel]:visible')).to_have_count(2)
+        expect(self.page.locator('[data-filter-item]:visible')).to_have_count(3)
+        expect(self.page.locator('[data-carousel-item]:visible')).to_have_count(3)
+        self.page.emulate_media(media='screen')
+        self.page.set_viewport_size({'width':390, 'height':844})
+        expect(self.page.locator('body')).to_have_css('padding-top', '16px')
         self.assert_no_writes()
 
 

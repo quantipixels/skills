@@ -4,9 +4,13 @@
      Render while layout is visible; do not first hide diagrams in inactive panels.
      Mermaid 12 needs modern ES2024 browsers (Safari 17.4+); static SVG avoids that
      viewer requirement. Strict output is not a sanitizer for arbitrary input HTML. -->
-<style>
-  [data-diagram-output]:not(:empty) { background: #fff; color: #111; padding: 1rem; overflow: auto; }
-  [data-diagram-output] svg { max-inline-size: 100%; block-size: auto; }
+<!-- Renderer-generated markup uses Tailwind @apply at the stable wrapper.
+     Compile this block too when explicitly delivering embedded CSS. -->
+<style type="text/tailwindcss">
+  @layer components {
+    [data-diagram-output]:not(:empty) { @apply overflow-auto bg-white p-4 text-slate-950; }
+    [data-diagram-output] svg { @apply h-auto max-w-full; }
+  }
 </style>
 <script type="module">
 const diagrams = [...document.querySelectorAll('figure pre.mermaid')];

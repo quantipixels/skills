@@ -46,9 +46,9 @@ Use colour expressively where helpful. When colour encodes meaning, keep its map
 
 ## Build with the toolkit
 
-Start from [base.html](assets/base.html), not a prescribed page layout. Prefer Tailwind utilities for ordinary composition; custom CSS is welcome for distinctive expression, semantic visuals, renderer needs and browser foundations. Use existing project branding when readily available, otherwise the supplied QP mark. Do not spend the task searching for assets or invent a new project identity.
+Start from [base.html](assets/base.html), not a prescribed page layout. Use Tailwind utilities for ordinary composition and reusable asset styling; custom CSS is welcome for distinctive expression, semantic visuals, renderer needs and browser foundations. Use existing project branding when readily available, otherwise the supplied QP mark. Do not spend the task searching for assets or invent a new project identity.
 
-The base is offline-safe by default. For a connected, non-sensitive development artifact, change `data-artifact-delivery` to `connected`: the base can load pinned Tailwind. For portable/private delivery, compile and embed CSS with the project's supported Tailwind tooling, or keep a truthful native-CSS result when compilation is unavailable. Do not claim uncompiled utilities provide the intended styling.
+The base loads pinned Tailwind from CDN. Reuse the containing application's Tailwind runtime in host mode. Use `portable` only for an explicit no-runtime-network constraint; compile and embed the same Tailwind utilities instead of maintaining a parallel styling system. Keep utility classes complete in source and style existing `aria-*`/`data-*` state rather than duplicating it in JavaScript. The base maps Tailwind's `dark:` variant to its theme control.
 
 Include [renderer-control.html](assets/renderer-control.html) only for Mermaid content. It loads the pinned runtime only when a diagram exists and the delivery policy permits it; portable diagrams should be static SVG. Essential meaning remains beside the diagram on load or parse failure. Tailwind and Mermaid are supported authoring tools, not reasons to weaken the [dependency policy](references/dependency-policy.md).
 
@@ -59,7 +59,7 @@ Choose only useful controls:
 - existing [carousel](assets/carousel-control.html) for a genuinely sequential visual collection;
 - [report control](assets/report-control.html) for deep-link disclosure reveal and complete printing.
 
-Each asset's comment defines its input and fallback. Copy the actual resource, preserve its behaviour contract, then style it freely. Use native `details`, buttons, forms, `output`, `dialog` or popover when adequate. Do not implement an application framework merely to host a document.
+Each asset's comment defines its input and fallback. Copy the actual resource, preserve its behaviour contract, then style it freely. Use native `details`, buttons, forms, `output`, `dialog` or popover when adequate. Before writing extra interaction machinery, use [interaction tools](references/interaction-tools.md): prefer a compatible existing component or focused library when it owns the difficult behaviour. Keep custom JavaScript to the missing artifact-specific glue; a dependency merely shortening DOM syntax is not a widget implementation.
 
 ## Interaction is ephemeral by default
 
@@ -79,6 +79,6 @@ For renderer changes, distinguish loader mechanics, real-library rendering and o
 
 ## Deliver
 
-Return the real artifact locator, source/projection revision and decisive proof. Report independently: delivery shape (`Single HTML | Companion bundle`), runtime code (`None | Embedded | Bundled | Remote`), runtime data (`Static | Live service`) and evidence (`Embedded | Linked | Mixed`). Keep dependency versions, unresolved gaps and proof limits in a quiet technical disclosure. Single-file does not mean offline/self-contained.
+Return the real artifact locator, source/projection revision and decisive proof. Report independently: delivery shape (`Single HTML | Companion bundle`), runtime code (`None | Embedded | Bundled | Remote`), runtime data (`Static | Live service`) and evidence (`Embedded | Linked | Mixed`). Keep dependency versions, unresolved gaps and proof limits in a quiet technical disclosure.
 
 Open only when requested or needed for render proof; reuse an existing preview. Finish when the reader can understand, inspect and use the requested result; decorative polish must not prolong an accepted delivery.

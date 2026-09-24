@@ -2,21 +2,21 @@
 
 Use when a renderer, build tool or runtime dependency is selected. Representation comes first: choose the capability that makes the relationship faithful, readable and reliable. Delivery cost must not silently force a weaker representation.
 
-## Authoring is not delivery
+## Select the delivery
 
-Tailwind utilities are the default ordinary composition vocabulary. The pinned browser integration is a development path, not a production deployment prescription. Mermaid is conditional. Supporting these tools does not authorise remote access to private content.
+Tailwind is the styling foundation for the base and control assets. Default standalone documents use the pinned CDN integration; Mermaid remains conditional. These established integrations need no fresh library-selection exercise on each invocation. Reuse an existing compatible host runtime instead of loading a second copy.
 
-| Delivery | Suitable path | Boundary |
+| Delivery | Path | Boundary |
 | --- | --- | --- |
-| Connected, non-sensitive development document | Base loads Tailwind 4.3.3; optional renderer loads Mermaid 12.0.0 only for diagrams. | Disclose runtime/network dependence and preserve meaningful fallback. Not self-contained. |
-| Portable, private or offline document | Compile Tailwind locally and inline CSS; render SVG locally or bundle a focused runtime. Native CSS/SVG is valid when tooling is unavailable. | No runtime network dependency. Never upload private material to a conversion service. |
-| Existing trusted host | Reuse installed styling/rendering capabilities. | No duplicate framework or assumed storage permission. |
+| Standalone document (default) | Base loads pinned Tailwind; selected diagrams load pinned Mermaid. | Disclose dependencies and retain meaningful failure content. |
+| Explicit no-runtime-network constraint | Compile and embed Tailwind CSS; render SVG locally or bundle the needed runtime. | Include asset classes and Tailwind directive blocks in compilation. No uploading private data to a conversion service. |
+| Existing trusted host | Use its styling and appropriate interaction components. | Avoid duplicate runtimes and competing ownership of the same DOM. |
 
-The base defaults to portable. Select connected delivery deliberately during authoring, not as an automatic fallback from a failed local build. A public-looking filename does not establish non-sensitive content. Private code review retains its stricter no-remote-executable boundary.
+The base uses `connected`; `portable` and `host` select the two alternatives. Confidential source/code-review restrictions still govern remote execution. External code can inspect the document; a CDN does not remove that trust boundary. Tailwind's browser compiler is a document/prototyping convenience, not a substitute for a deployed application's production build.
 
 Mermaid 12 requires ES2024-capable browsers, including Safari 17.4+, and Node 22.12+ for package tooling. Its ELK default changes layout from Mermaid 11. Use the supported top-level layout setting when choosing a different layout; do not rely on removed defaultRenderer settings. Static SVG avoids a viewer-side Mermaid compatibility requirement. Version pins do not prove rendering works.
 
-## Portable Tailwind path
+## When embedded CSS is required
 
 Use the project's supported compiler where present. For an authorised new tool installation follow the official CLI path; do not install globally or invent a build framework for one document. A v4 input imports tailwindcss and declares the actual artifact source; run the selected CLI once, then embed emitted CSS in an ordinary style element. Preserve licence notices, remove browser-runtime loading and test the final file offline. Uncompiled type=text/tailwindcss directives are not browser CSS.
 
@@ -26,7 +26,7 @@ Primary references: [CLI](https://tailwindcss.com/docs/installation/tailwind-cli
 
 Establish exact/reproducible identity, capability gain, compatible file/HTTP environment, licence, cost, accessible meaning, data exposure and failure behaviour. Remote executable code can inspect the document; CDN popularity does not remove this trust boundary. No credentials, telemetry, unrequested data transmission or persistence. Pinning one ESM entry does not integrity-pin all transitive modules; use a locally bundled output when that stronger guarantee matters.
 
-Staticize when runtime adds no reader value. Bundle runtime for useful exploration/selection; use remote runtime only inside the declared connected profile or another explicitly authorised outcome. A live service requires a live-data request and a producer; a static file is not self-updating.
+Use the selected delivery consistently. A no-network requirement changes dependency packaging, not the representation or utility vocabulary. A live service still requires a live-data request and a producer; document controls do not justify one.
 
 Enhancement failure preserves base meaning. Core renderer failure retains conclusions, source, units and a readable alternative. Service failure is unavailable/stale, not empty success. Do not rebuild an entire renderer as its fallback.
 
@@ -34,6 +34,6 @@ Enhancement failure preserves base meaning. Core renderer failure retains conclu
 
 Preserve aggregation, binning, filters, time zones, normalisation and meaningful layout configuration. A changed transformation invalidates dependent faithfulness proof.
 
-Report delivery shape (Single HTML or Companion bundle), runtime code (None, Embedded, Bundled or Remote), runtime data (Static or Live service) and evidence (Embedded, Linked or Mixed) independently, plus identities and proof limits. Single HTML may still depend on the network.
+Report delivery shape (Single HTML or Companion bundle), runtime code (None, Embedded, Bundled or Remote), runtime data (Static or Live service) and evidence (Embedded, Linked or Mixed) independently, plus identities and proof limits.
 
 Reconsider complexity when capabilities overlap, several renderers accumulate, remote code can inspect non-public content, or service/worker infrastructure appears solely to host a document. One focused reusable dependency can be simpler than repeated bespoke implementation.
