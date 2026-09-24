@@ -22,9 +22,11 @@ Call a pattern repeated only when the same material mechanism appears in at leas
 
 Normalize corpus counts to the pinned unit and report the numerator, denominator, and exclusions when they matter. Use counts and elapsed time only when the record supports them.
 
-### Experimental opportunity evidence
+Preserve maturity labels when they appear in historical evidence; they do not define current analysis branches.
 
-When the corpus is being used to evaluate Experimental skills, Àyẹ̀wò owns reconstruction of historical opportunity and use. Separate opportunity from invocation.
+### Opportunity and use evidence
+
+When the corpus is being used to evaluate opportunities to use skills, Àyẹ̀wò owns reconstruction of historical opportunity and use. Separate opportunity from invocation.
 
 For each root session and experiment in scope, classify only when evidence supports it:
 
@@ -35,7 +37,7 @@ For each root session and experiment in scope, classify only when evidence suppo
 - `UNAVAILABLE` — the result was needed but the skill was not installed/active/discoverable or a named capability blocked it; or
 - `UNCERTAIN` — evidence cannot responsibly establish opportunity or availability.
 
-For `ELIGIBLE_SELECTED`, record what materially changed because the experiment ran, its incremental cost, and whether it preserved the stable owner's lifecycle/result/authority. For `ELIGIBLE_MISSED`, identify the observed consequence only when the record supports it—for example duplicated specialist work, weaker evidence, rework, or a later correction. Do not invent counterfactual time/token savings.
+For `ELIGIBLE_SELECTED`, record what materially changed because the skill was used, its incremental cost, and whether it preserved the owning skill's lifecycle/result/authority. For `ELIGIBLE_MISSED`, identify the observed consequence only when the record supports it—for example duplicated specialist work, weaker evidence, rework, or a later correction. Do not invent counterfactual time/token savings.
 
 Raw invocation count is never the denominator. A rare experiment may be healthy with very few uses if it was selected in the few genuinely eligible sessions. Conversely, frequent invocation can be negative evidence when it is repeatedly mis-triggered or adds no independent value.
 
@@ -44,7 +46,7 @@ Do not manufacture experiment invocations during real user work to improve sampl
 Return compact opportunity evidence:
 
 ```text
-Experimental use evidence
+Skill use evidence
 
 Skill:
 Corpus/population:
@@ -63,9 +65,9 @@ Coverage/evidence gaps:
 
 Counts alone do not justify changing the portfolio.
 
-### Stable-skill improvement evidence
+### Instruction-failure and improvement evidence
 
-When real-use history is being used to improve an already-stable skill, Àyẹ̀wò owns reconstruction and returns a compact packet rather than drafting the skill change itself.
+When real-use history is being used to improve an existing skill, Àyẹ̀wò owns reconstruction and returns a compact packet rather than drafting the skill change itself.
 
 For every material repeated failure mechanism, distinguish the smallest cause supported by the historical record:
 
@@ -82,7 +84,7 @@ Do not convert `CLEAR_RULE_VIOLATED`, `TOOL_OR_ENVIRONMENT_GAP`, or ordinary mod
 For an authoring decision, return the historical evidence:
 
 ```text
-Stable skill improvement evidence
+Instruction improvement evidence
 
 Skill:
 Corpus/population:
@@ -105,9 +107,9 @@ The packet is evidence, not an edit instruction or verdict.
 
 Return the executive verdict, population and unit definitions, inventory and sampling ledger, repeated-pattern matrix with independent supporting records and counterevidence, representative causal chains, ranked frictions, effective recoveries, recommendation assessment, rejected recommendations, and residual limits.
 
-For Experimental evaluation, include opportunity evidence. Do not infer promotion or removal from invocation counts.
+For opportunity/use analysis, include opportunity evidence. Do not infer promotion or removal from invocation counts.
 
-When stable-skill improvement is in scope, return the stable-skill improvement packet for each skill whose contract/selection boundary is materially implicated. Preserve `NO_CHANGE` evidence when the current contract was adequate; do not report only problematic sessions. Complete authorized remediation and report its result and gaps in the same response.
+When instruction improvement is in scope, return the instruction improvement packet for each skill whose contract/selection boundary is materially implicated. Preserve `NO_CHANGE` evidence when the current contract was adequate; do not report only problematic sessions. Complete authorized remediation and report its result and gaps in the same response.
 
 When the corpus spans projects, give substantive project accounts for requested projects and those supporting findings or counterevidence. Keep unsampled or excluded projects in the coverage ledger with their limits; do not investigate them merely to fill a dossier. Each substantive account should cover the relevant:
 

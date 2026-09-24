@@ -1,6 +1,6 @@
 # Progressive shaping
 
-Use this branch only when a material initiative is too large or uncertain for its whole planning surface to be stated responsibly at once.
+Use when the desired outcome is recognizable but the route is unclear, or a material initiative cannot yet be planned responsibly as a whole. Session size alone does not decide whether shaping is needed.
 
 The purpose is to expose the route progressively without inventing future requirements. This is a shaping method inside Atọ́nà, not another lifecycle, owner, or ticket system. When the managed initiative lifecycle applies, it does not replace the Decision Frontier Gate.
 
@@ -32,6 +32,21 @@ Before drilling into one attractive branch, surface the currently visible planni
 Resolve enough breadth to know what can be worked now. Keep a simple account of what is known, unresolved, ready to build, and blocked. Do not force the entire initiative into a complete future task tree.
 
 A slice may proceed under existing authority when its acceptance and dependencies are settled and unresolved later choices cannot invalidate it. Keep dependent work blocked. Slice readiness does not establish whole-initiative readiness; in the managed lifecycle, it does not satisfy the `Planned` gate for the whole initiative.
+
+## Make the next learning step actionable
+
+In the existing plan, give each consequential open question a descriptive name, the decision it affects, its actual prerequisites, the evidence or human response needed, and its next owner. Keep this compact; create separate records only when their detail or independent work needs them. Link by meaningful names and retain the deciding evidence at its existing source. Resume from the current overview and open relevant detail on demand.
+
+Choose from questions whose prerequisites are satisfied. Prefer a bounded step that could eliminate a major uncertainty, distinguish credible directions or unlock several dependent questions, relative to its cost and reversibility. Do not default to the easiest implementation task or invent numerical information-gain scores. State what different results would change before starting.
+
+- Missing facts → investigate directly or use `iwadi` when substantial research is needed.
+- Preferences that experience could reveal → use `adanwo`, with the user supplying the reactions.
+- Consequential choices → ask the answerable question or use `arojinle` for dependent decisions.
+- Access, a sample or another practical prerequisite → name the smallest enabling action and its authority. Do authorized work directly; give the human precise steps only for what requires them. Completion provides evidence or access, not a product decision.
+
+Record the answer, its basis and which questions it unlocks, changes or rules out. A rejected or cancelled question does not automatically satisfy its dependants. Avoid a second tracker or runtime status system; when an authorized tracker already owns the work, reuse its identities and dependency links. Concurrent work needs explicit ownership before mutation, without a session quota or mandatory worker.
+
+If every visible question is blocked, work on the controlling prerequisite. If none can yet be stated, use contrasting concrete examples or a cheap prototype to make the uncertainty expressible. If the destination itself is unclear, return to purpose and beneficiary. Never substitute the agent's preference for missing human input.
 
 ## Distinguish blocked from not yet specifiable
 

@@ -63,10 +63,11 @@ An explicit specialist request stays with that specialist when it fits. These ro
 
 - Bounded explanation → the relevant installed subject specialist; substantial research → `iwadi`.
 - Consequential premise → the [premise check](references/coordination.md#premise-check).
+- An ambitious idea with no clear starting point, no satisfactory direction, or dependent unknowns → `atona` for exploration and progressive shaping. It uses `arojinle` for unsettled human choices and `adanwo` for questions requiring experience; do not turn the uncertainty straight into implementation tickets.
 - Unsettled purpose, beneficiary, success or consequential trade-offs, a solution-shaped request hiding the need, latent dependent choices, or a requested interview → `arojinle`. Ask a single already-understood bounded choice directly; reuse a complete brief without manufacturing a decision tree.
 - Material domain identity, lifecycle, policy, ownership or invariants whose applicability is unsettled → `amose`, even when the vocabulary is familiar. Reuse current applicable domain evidence.
 - Unresolved technical structure or unestablished fitness of a consequential mechanism for the confirmed purpose/domain/quality drivers → `architect`; unresolved observable behavior → `atona` in behavior-contract mode. Use both when both results remain open; reuse sufficient current design evidence without automatic redesign.
-- Independent code judgment → `atunwo`; measured keep/revert comparison → `adanwo` in measured-experiment mode. A disposable prototype to settle an interaction, API or technical choice → `adanwo` in exploration mode, returning evidence to the deciding owner before delivery.
+- Independent code judgment → `atunwo`; measured engineering comparison → `alaga`; instruction/model evaluation → `oro`. A disposable prototype to settle an interaction, API or technical choice → `adanwo`, returning evidence to the deciding owner before delivery.
 - Authorized publication → `seda-pr` in publication mode. Readiness, publication, approval and merge remain distinct.
 - Agent-facing text steering selection, decisions, authority, execution, or completion → `oro` in its agent-facing branch.
 - Human-facing text for comprehension, action, or communication → `oro` in its human-facing branch.
@@ -102,9 +103,7 @@ When delegated work can materially improve the outcome, read [coordination](refe
 
 Keep cohesive work in the main thread by default. Delegate when parallel execution, separate context, or independent scrutiny materially improves the outcome after briefing, verification, and integration costs. Use native collaboration controls; model and reasoning choices remain with the user and their host policy.
 
-Use the handoff above as the worker assignment, adding its selected method, required evidence, and stop condition. Never fork the parent conversation. Avoid overlapping writes and preserve required review independence.
-
-Collate large evidence surfaces into compact handoffs with decisive locators. Inspect actual artifacts before accepting results; worker completion or agreement is not proof. Redirect unsuccessful work when evidence warrants it, integrate accepted results against the overall outcome, and continue through in-scope corrections. Refresh only decisions, dependencies, or proof invalidated by new evidence.
+Preserve required review independence and accept results only from inspected evidence. The coordination reference owns assignment details, write ownership and integration mechanics.
 
 ## Verify and finish
 

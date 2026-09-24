@@ -1,24 +1,8 @@
 # Skill mechanics
 
-Read only when the agent-facing artifact is a skill.
+Read after agent-writing when the artifact is a skill. Its common authority, composition and conditional-loading rules still apply. A public identity, compatibility break or retirement must be within the requested scope.
 
 A skill is a packaging and invocation choice around a useful behavioural contract. Do not start from taxonomy. Start from the result a user or another skill needs.
-
-## Let scope and consequence set the authority boundary
-
-Do not manufacture a human-approval gate merely because a change affects a skill. Use the mutation authority already granted by the request and repository rules.
-
-A local rewrite, pointer fix, resource move, or clearly redundant instruction can usually proceed inside an authorized skill-improvement task. A new public identity, material ownership/routing reassignment, compatibility break, or removal is more consequential; make it when that change is within scope and supported by evidence, otherwise surface it as the unresolved decision.
-
-Good:
-
-- User asks to simplify a skill portfolio; fold a proved redundant alias when compatibility/versioning rules allow it.
-- User asks to improve one skill's wording; fix its description and references without reopening the whole taxonomy.
-
-Bad:
-
-- Treat every structural change as requiring an extra approval ceremony.
-- Retire a public skill while performing an unrelated prose cleanup.
 
 ## Decide whether a separate skill earns a public identity
 
@@ -63,22 +47,6 @@ Before creating another public skill or agent definition, ask whether the missin
 
 Use the provider's supported interface for installing, configuring, migrating, or verifying provider-native agent declarations. This skill owns their instruction text; the provider/host owns readiness and mutation.
 
-## Compose with skills by name
-
-When another stable public skill owns the needed capability, reference that skill directly. Add prose only for a mode, variant, condition, or constraint that materially changes how it should be applied. Use generic owner language only when the correct skill genuinely depends on the finding or runtime situation.
-
-Good:
-
-- `atunwo` with a behavior-preservation focus when a refactor must retain required behavior; choose light or deep review by the necessary coverage.
-- Send each confirmed blocker to its nearest semantic owner when the blocker could belong to different skills.
-
-Bad:
-
-- “the review owner” when the intended skill is already `atunwo`.
-- Repeating another skill's method instead of naming the skill and the one useful variant it must apply.
-
-Do not make the next agent rediscover a capability identity that the instruction already knows.
-
 ## Treat the description as a pointer
 
 The description decides whether the skill becomes reachable. State the owned result and genuinely distinct trigger branches, plus the nearest meaningful exclusions. Do not summarize the procedure or pad one branch with synonyms.
@@ -92,14 +60,6 @@ Bad:
 > Review, inspect, examine, check, assess, analyze, evaluate, or look over code for quality.
 
 If two skills attract the same realistic request, resolve the ownership/result distinction before adding more trigger vocabulary.
-
-## Keep the hot path small, not empty
-
-Keep in `SKILL.md` what every invocation needs: focal result, recurring non-obvious decisions, authority/evidence boundaries, completion semantics, and reliable pointers to conditional depth.
-
-Move branch-specific expertise behind a pointer. Do not split by line count. A short root that always forces many references may be worse than a cohesive root.
-
-Keep workflow position out of reusable skill instructions. A workflow/assignment may constrain the invocation; the skill should remain independently correct.
 
 ## Routers encode topology, not inventory
 

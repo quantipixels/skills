@@ -1,6 +1,6 @@
 ---
 name: architect
-description: Design, survey, review, or document technical structure at the smallest sufficient scale. Use for ARCHITECTURE.md creation, maintenance or drift checks, or when structure is unsettled or a consequential mechanism's fit for confirmed purpose, domain and quality drivers is unestablished, including architectural friction, dependency fit, boundaries, interfaces, state ownership, integrations, deployment or migration. Reuse sound current design evidence; exclude initiative progression, user-decision closure, implementation, workspace infrastructure, and code-review verdicts.
+description: Design, survey, review or document technical structure, including ARCHITECTURE.md and a consequential mechanism's fitness for confirmed purpose and domain. Exclude implementation, initiative progression and code-review verdicts.
 ---
 
 # Architect
@@ -11,10 +11,10 @@ Delegate independent boundary assessments or design investigations to subagents 
 
 | Mode | Purpose |
 | --- | --- |
-| `survey` | find and rank evidence-backed architectural friction without designing the correction |
+| `survey` | read [survey](references/survey.md); stop at ranked friction without designing corrections |
 | `design` | create or revise the technical structure |
 | `review` | judge one exact architecture/design candidate read-only |
-| `document` | create or refresh the canonical architecture overview from established evidence |
+| `document` | read [document](references/document.md); update the canonical overview from established evidence |
 
 Do not turn every design question into a full implementation-ready architecture packet. Use an implementation-readiness result only when the caller explicitly needs a gate, delivery would otherwise have to invent a material technical requirement, or the architecture spans enough consequential concerns that readiness itself is the useful result.
 
@@ -35,34 +35,6 @@ Use `amose` for material domain meaning or rule applicability, `iwadi` for subst
 Resolve unknowns that can change the design against current project and authoritative sources.
 
 When reassessing established technology, dependencies, layout or build/test structure, read [architecture evolution](references/architecture-evolution.md). Revisit a choice when changed needs, recurring friction or a concrete new capability challenges its rationale; age or novelty alone is not a reason to migrate.
-
-## Survey mode
-
-Use `survey` when the question is where architecture work is warranted rather than what the replacement design should be. If the caller already supplied one exact architecture question or candidate, skip the survey and work at that scale.
-
-Bound the search before scanning. Prefer the named subsystem, user pain point, failure area, or change envelope. When no area is supplied and repository history is available, inspect a bounded useful stretch of change history to identify repeatedly changing or tightly co-changing paths, then let those hot areas focus inspection. Widen only when the evidence is scattered or the requested scope requires it; do not equal-weight an entire repository by default.
-
-When module/interface/seam shape is material, read [module design](references/module-design.md) and look for friction such as:
-
-- callers repeating sequencing, branching, validation, recovery, mapping, or foreign-system knowledge that one owner could hide;
-- one conceptual operation requiring repeated navigation across several shallow modules or files;
-- forwarding layers whose interface costs nearly as much to understand as the behavior they hide;
-- state, policy, trust, lifecycle, compatibility, or failure invariants spread across several callers or owners;
-- internal or provider-specific details leaking through caller-facing interfaces;
-- one recurring change requiring shotgun edits across unrelated call sites; and
-- durable behavior that is difficult to prove through the current external interface without reaching into private choreography.
-
-Signals are not findings. Apply the deletion test and seek counterevidence: a small layer may still own a real trust/protocol/lifecycle/compatibility boundary, and co-change may reflect a legitimate cohesive slice rather than bad architecture. Distinguish architectural ownership/interface problems from simplification (`atunwo` with a simplification focus), defects/review findings (`atunwo`), or missing causal diagnosis (`alaga` in diagnosis mode).
-
-Tool output, churn metrics, fan-out, cycles, file size, test count, and complexity scores are leads only; trace the actual caller burden, invariant, or ownership failure before retaining a candidate.
-
-When code judgment belongs to `atunwo`, pass the exact boundary, governing contracts, structural observations, and unresolved claim. Let it select review depth; reuse its current evidence instead of commissioning a second assessment of the same question. Architecture proposals remain proposals until implementation and proof exist.
-
-Rank only evidence-backed candidates. Prefer decision-changing factors such as recurrence/change pressure, caller knowledge, locality, leverage, failure/trust ownership, proof difficulty, blast radius, and reversibility. Do not manufacture a universal architecture score.
-
-For each retained candidate return the affected area, observed friction, likely misplaced responsibility or boundary, evidence, strongest material counterevidence, expected leverage/locality if deepened, and one of `Strong | Worth exploring | Speculative`. End with the top candidate and decisive reason when one stands out.
-
-**Stop at discovery.** Do not propose the final interface, module decomposition, migration plan, or implementation-ready contract in `survey`. Once the user or caller selects a candidate, re-enter `design` mode for that exact architecture question.
 
 ## Design the smallest sufficient structure
 
@@ -113,18 +85,6 @@ In `review`, pin the exact architecture/design candidate and stay read-only. Jud
 
 Use `html-artifact` as needed.
 
-## Maintain ARCHITECTURE.md
-
-With write authority, use `document` to create or refresh the project's canonical architecture overview from established evidence, without redesigning the system. Reuse its existing location and format, including scoped module documents. When creation is requested or authorized architecture work needs a durable overview and none exists, use repository-root `ARCHITECTURE.md`; do not create a competing copy just to enforce that name.
-
-The overview should let a new contributor locate and safely change the system: major components and their source paths, responsibilities and dependency direction, key runtime/data flows, and the boundaries and invariants that constrain change. Include state ownership, integrations, trust and deployment only where material. Explain non-obvious rationale; link README/setup, domain records and ADRs rather than duplicating them. `amose` retains domain meaning and ADR lifecycle.
-
-Ground the current-state map in code/tests/configuration and relevant runtime evidence. Distinguish observed implementation, accepted but unimplemented design, proposals and unknowns. For a greenfield system, label the overview as planned. A stale document does not authorize changing code to match it.
-
-Reconcile affected sections when authorized work changes the documented structure; preserve unaffected content. Survey/review-only requests report missing documentation or drift without creating or editing the overview. Routine changes with no architectural impact need no document churn.
-
-Before returning, verify affected structural claims and source links at the reviewed revision. Report the document path, updated scope and unresolved drift or evidence gaps; writing the file alone is not completion.
-
 ## Persistence
 
-Keep the canonical overview at the destination above. Persist question-specific architecture work to the existing project destination; otherwise `.qp/architect/`, using the compact [architecture record](templates/architecture-record.md) when needed. Link the overview rather than maintaining competing system descriptions.
+Keep the canonical overview at its existing location, otherwise repository-root `ARCHITECTURE.md`. Persist question-specific architecture work to the existing project destination; otherwise `.qp/architect/`, using the compact [architecture record](templates/architecture-record.md) when needed. Link the overview rather than maintaining competing system descriptions.

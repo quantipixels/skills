@@ -1,6 +1,6 @@
 ---
 name: arojinle
-description: Establish the desired outcome and resolve consequential choices through a complete decision-tree interview and final user confirmation. Use when purpose, beneficiary, success or trade-offs remain unsettled, a proposed solution hides the need, latent dependent choices need discovery, or the user requests an interview. Reuse complete briefs and accepted decisions. Use Alárinà's premise check for a bounded critique; exclude specialist design, initiative progression, delivery, and ordinary fact-finding.
+description: Help the user work out what they want and resolve consequential choices through an interview. Use for unsettled purpose, beneficiaries, success, trade-offs or dependent decisions. Use adanwo when choices need direct experience and atona when an initiative needs possible directions. Exclude delivery and ordinary fact-finding.
 ---
 
 # Àròjinlẹ̀
@@ -25,6 +25,8 @@ Use this question card, rendered as Markdown rather than showing the template fe
 
 Each round reshapes the tree. Recompute the material frontier from confirmed answers before asking the next round; answers may create, remove, merge, split, or reframe dependent branches. Do not merely continue the previously imagined tree.
 
+When the user cannot judge abstract alternatives, make the choice concrete with a small example or use `adanwo` for direct experience, then resume from their reactions. Repeated questioning cannot supply experience they do not yet have. Keep proposed interpretations tentative until confirmed.
+
 Do not ask a question whose answer depends on another still-open question in the same round.
 
 Finding facts is your job, never the user's. Resolve bounded facts directly. While bounded independent work investigates a prerequisite, ask independent frontier questions now; only questions depending on that evidence wait. When genuinely non-discoverable third-party input controls a material frontier, name the missing input and continue independent questions. If collecting it is in scope, return answerable questions directly or use `oro` when available and materially helpful for recipient-facing drafting. Drafting does not authorize sending or turn replies into approval.
@@ -35,7 +37,7 @@ Use `iwadi` for substantive prerequisite research and the applicable project or 
 
 When a frontier choice has several credible alternatives and at least two independent criteria can materially change the recommendation, use a compact decision-specific rubric. Apply hard gates first; derive only the criteria that matter to this decision; show the decisive factor, strongest credible alternative, and material counterevidence. Do not manufacture scores for a trivial/already-determined choice or let an average hide a gate. The rubric supports the recommendation; the decision remains the user's.
 
-Use `atona` in exploration mode when initiative exploration or direction shaping is the needed result. Use `adanwo` in exploration mode when a disposable experiment can settle a concrete choice.
+Use `atona` in exploration mode when initiative exploration or direction shaping is the needed result. Use `adanwo` when a disposable prototype can clarify a concrete choice.
 
 The decisions remain the user's. Do not silently convert a recommendation, generated option, comparative grade, or prototype observation into confirmation.
 

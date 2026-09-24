@@ -18,7 +18,7 @@ For request 4 only, a routing comparison may instead enter through Alárinà wit
 
 ## 4. Build-cache comparison
 
-**`adanwo`, measured experiment:** Decide whether to keep a build-cache change. The candidate has a faster warm no-op build; clean builds, changed-source/generator-input invalidation and remote work were not measured. Required checks and artifacts must remain. Native build tracing is available. Trial edits and bounded local runs are authorized; new dependencies and publication are not.
+**`alaga`, measured experiment:** Decide whether to keep a build-cache change. The candidate has a faster warm no-op build; clean builds, changed-source/generator-input invalidation and remote work were not measured. Required checks and artifacts must remain. Native build tracing is available. Trial edits and bounded local runs are authorized; new dependencies and publication are not.
 
 ## 6. Prior-rule reconciliation
 

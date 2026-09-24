@@ -17,7 +17,6 @@ codex plugin add qp-skills@qp-skills
 
 Restart Codex, then ask it to use `alarina` with your requested outcome. The plugin installs all QP skills. You control the model and reasoning.
 
-For useful native delegation under an Astra main agent, `codex-orchestra` supplies the QP Codex profile: bounded Luna workers, a separately warranted Astra specialist, and at most two live children. Root-only work remains normal. The profile requests supported settings; it does not configure the host or prove model enforcement or savings. Direct invocation can also conclude that no worker is useful.
 
 In the Codex app, add `quantipixels/skills` as a custom marketplace in Plugins, install `qp-skills`, and restart.
 
@@ -44,7 +43,6 @@ Restart Claude Code or run `/reload-plugins`. The plugin provides all QP skills 
 
 Model, reasoning, and permissions remain under your control. Claude discovers the shared `skills/` and `agents/` directories natively; no setup script or separate agent configuration is needed.
 
-`codex-orchestra` is Codex-only guidance even though the shared bundle contains its files. Its description is not technical package isolation. Claude uses its native controls and your preferences; QP supplies no Claude model-counterpart policy. Selectively installed specialists remain usable without the Codex profile and never install it implicitly.
 
 ## Start
 
@@ -83,9 +81,8 @@ Common entrypoints:
 | `yoruba-glossary` | Yorùbá language guidance, lessons, word formation, or glossary maintenance is needed |
 | `oro` | Agent-facing instructions or human-facing technical prose needs writing, review, editing, or pruning |
 | `akowe` | A documentation set needs a read-only audit or verified synchronization with implementation and accepted decisions |
-| `adanwo` | A bounded exploratory or measured experiment must settle uncertainty |
+| `adanwo` | Disposable prototypes help the user discover, compare and refine a direction |
 | `alarina` | Select or use an engineering playbook, compose or resume work across owners, or find the starting owner |
-| `codex-orchestra` | Apply the bounded Codex delegation profile under an Astra main agent when useful or requested |
 | `fihanmi` | Supplied material needs a compact visual explanation or useful default presentation |
 | `seda-pr` | A PR/MR needs a reviewer-facing description, creation, publication, or babysitting toward a human merge decision |
 
@@ -99,9 +96,8 @@ Use `seda-pr` in description mode to draft or improve a PR body without committi
 
 Atọ́nà maintains one living HTML plan, including decisions, evidence, progress and next action. It does not create an equivalent Markdown plan; independent specifications, architecture records and source evidence keep their useful existing formats.
 
-See [a worked engineering example](docs/engineering-example.md) for how identity, recovery, architecture and tests fit together in a retry fix.
 
-With `alarina` active, describe the engineering outcome or name a playbook; it selects the path and coordinates the relevant skills. The [engineering playbooks guide](docs/engineering-playbooks.md) shows supported paths, direct invocation examples and expected evidence. Settled single-owner work can still use its specialist directly.
+With `alarina` active, describe the engineering outcome or name a playbook; it selects the path and coordinates the relevant skills.
 
 ## Update
 
