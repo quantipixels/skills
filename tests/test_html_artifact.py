@@ -31,6 +31,14 @@ class StructuralTests(unittest.TestCase):
     def test_small_document_needs_no_manifest(self):
         self.assertTrue(verifier.inspect_html(document('<h1>Small</h1>'))['ok'])
 
+    def test_svg_accessible_title_is_not_document_title(self):
+        body = '<svg role="img" aria-labelledby="diagram-title"><title id="diagram-title">Retry diagram</title><path d="M0 0L1 1"/></svg>'
+        self.assertTrue(verifier.inspect_html(document(body))['ok'])
+
+    def test_svg_title_cannot_replace_missing_document_title(self):
+        html = document('<svg><title>Diagram</title></svg>').replace('<title>Review</title>', '')
+        self.assertIn('title', self.codes(html))
+
     def test_duplicate_id_rejected(self):
         self.assertIn('duplicate-id', self.codes(document('<p id="x"></p><p id="x"></p>')))
 
