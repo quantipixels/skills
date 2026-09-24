@@ -11,7 +11,7 @@ Read when an artifact needs behaviour beyond its existing controls. Tailwind sup
 | Several linked transient values and reactive DOM bindings | Alpine when no suitable host runtime exists | A home-grown reactive/event-binding framework. Load once, only when selected. |
 | Complex widget: combobox, data grid, drag/drop or virtualisation | A maintained component designed for that behaviour and compatible with the delivery | Keyboard, focus, scrolling and interaction machinery merely to avoid a dependency. |
 | React/Vue host already using Headless UI | Reuse its appropriate headless component | A second framework or a duplicate widget owner. |
-| Existing code or a selected plugin needs jQuery | Reuse the host copy, or load the optional pinned CDN build | A second copy of jQuery; jQuery core alone is not a complete accessible widget. |
+| Existing artifact control needs DOM selection/events | Base jQuery runtime | Repeated raw DOM plumbing; jQuery core alone is not a complete accessible widget. |
 
 Tailwind Plus **Elements** is a separate plain-HTML JavaScript component library, not part of Tailwind CSS. Use only with appropriate licence and redistribution rights; do not bundle customer-only code into the public QP package. Headless UI targets React/Vue; do not add either framework just for an ordinary HTML document. These are selection anchors, not an exhaustive allowlist.
 
@@ -19,7 +19,7 @@ Tailwind Plus **Elements** is a separate plain-HTML JavaScript component library
 
 Choose one owner per control. Verify the actual API, maintenance, accessibility behaviour, licence and browser target at selection. Reuse an existing dependency when adequate; otherwise pin the selected package and follow the artifact delivery policy. Preserve useful styling freedom. Library adoption should remove hard custom work, not add a parallel implementation behind another wrapper.
 
-For standalone documents, [optional CDN links](optional-cdn-links.md) holds exact ready-to-copy URLs for jQuery, Alpine, Plot and D3. Copy the selected entry only; Mermaid already has a conditional renderer asset. The base does not load these optional libraries.
+The base loads jQuery 4.0.0 before its controls. For standalone documents, [optional CDN links](optional-cdn-links.md) holds exact ready-to-copy URLs for Alpine, Plot and D3. Copy the selected entry only; Mermaid already has a conditional renderer asset.
 
 For Alpine, use ordinary in-memory `x-data` state, declarative events and bindings; persistence plugins are not part of the default. Treat directive expressions as authored code, never interpolated source data. Use text binding rather than raw HTML injection. Its standard build evaluates expressions; use its supported CSP build when the host policy requires it, not a weakened host policy.
 

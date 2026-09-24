@@ -12,4 +12,4 @@ These are unexecuted model-evaluation cases, not package tests. Use the existing
 | A skill repeatedly regenerates a control with a documented keyboard/print defect. | Does Oro consider a tested reusable asset instead of another prose reminder? |
 | Two copied outputs, one corrected root session and one contrasting successful root. | Does Ayewo avoid counting copies as independent uses and return Keep Variable? |
 
-Use synthetic or redacted input. No private history collection, automatic promotion or new model infrastructure is required. Shipped mechanical tests are `tests/test_html_artifact*.py`.
+Use synthetic or redacted input. No private history collection, automatic promotion or new model infrastructure is required. These cases have not been run.

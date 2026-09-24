@@ -25,59 +25,61 @@
   <section id="view-after" data-view-panel tabindex="-1"><h3>After</h3><p>Replace with the supplied comparison.</p></section>
 </section>
 <script>
-(() => {
-  document.querySelectorAll('[data-artifact-view]').forEach(view => {
-    if (view.dataset.viewReady) return;
-    const owned = selector => [...view.querySelectorAll(selector)].filter(el => el.closest('[data-artifact-view]') === view);
+(($) => {
+  if (!$) return;
+  $('[data-artifact-view]').each((_, view) => {
+    const $view = $(view);
+    if ($view.attr('data-view-ready')) return;
+    const owned = selector => $view.find(selector).filter((_, el) => $(el).closest('[data-artifact-view]')[0] === view).toArray();
     const panels = owned('[data-view-panel]');
     const buttons = owned('button[data-view-target]');
     const controls = owned('[data-view-controls]')[0];
     const status = owned('[data-view-status]')[0];
-    const template = view.dataset.viewPositionTemplate;
-    const ids = panels.map(panel => panel.id);
+    const template = $view.attr('data-view-position-template');
+    const ids = panels.map(panel => $(panel).attr('id'));
     if (!controls || !status || !template || !panels.length || buttons.length !== panels.length ||
         !['{current}', '{total}', '{label}'].every(token => template.includes(token)) ||
         ids.some(id => !id) || new Set(ids).size !== ids.length ||
-        buttons.some(button => !ids.includes(button.dataset.viewTarget) || !button.textContent.trim()) ||
-        new Set(buttons.map(button => button.dataset.viewTarget)).size !== ids.length) return;
+        buttons.some(button => !ids.includes($(button).attr('data-view-target')) || !$(button).text().trim()) ||
+        new Set(buttons.map(button => $(button).attr('data-view-target'))).size !== ids.length) return;
     const previous = owned('[data-view-previous]')[0];
     const next = owned('[data-view-next]')[0];
     const reset = owned('[data-view-reset]')[0];
-    const initial = Math.max(0, ids.indexOf(view.dataset.viewInitial));
+    const initial = Math.max(0, ids.indexOf($view.attr('data-view-initial')));
     let index = initial;
     const select = value => {
       index = Math.max(0, Math.min(value, panels.length - 1));
-      const targetButton = buttons.find(button => button.dataset.viewTarget === ids[index]);
-      const focusWillHide = panels.some((panel, i) => i !== index && panel.contains(document.activeElement));
-      panels.forEach((panel, i) => { panel.hidden = i !== index; });
+      const targetButton = buttons.find(button => $(button).attr('data-view-target') === ids[index]);
+      const focusedPanel = $(document.activeElement).closest('[data-view-panel]')[0];
+      const focusWillHide = panels.includes(focusedPanel) && panels[index] !== focusedPanel;
+      panels.forEach((panel, i) => { $(panel).prop('hidden', i !== index); });
       buttons.forEach(button => {
-        button.setAttribute('aria-controls', button.dataset.viewTarget);
-        button.setAttribute('aria-pressed', String(button === targetButton));
+        $(button).attr({'aria-controls': $(button).attr('data-view-target'), 'aria-pressed': String(button === targetButton)});
       });
-      if (previous) previous.disabled = index === 0;
-      if (next) next.disabled = index === panels.length - 1;
-      const values = {current: index + 1, total: panels.length, label: targetButton.textContent.trim()};
-      status.textContent = template.replace(/\{(current|total|label)\}/g, (_, key) => String(values[key]));
+      if (previous) $(previous).prop('disabled', index === 0);
+      if (next) $(next).prop('disabled', index === panels.length - 1);
+      const values = {current: index + 1, total: panels.length, label: $(targetButton).text().trim()};
+      $(status).text(template.replace(/\{(current|total|label)\}/g, (_, key) => String(values[key])));
       if (focusWillHide) targetButton.focus({preventScroll: true});
     };
-    buttons.forEach(button => button.addEventListener('click', () => select(ids.indexOf(button.dataset.viewTarget))));
-    previous?.addEventListener('click', () => select(index - 1));
-    next?.addEventListener('click', () => select(index + 1));
-    reset?.addEventListener('click', () => select(initial));
+    buttons.forEach(button => $(button).on('click', () => select(ids.indexOf($(button).attr('data-view-target')))));
+    $(previous).on('click', () => select(index - 1));
+    $(next).on('click', () => select(index + 1));
+    $(reset).on('click', () => select(initial));
     const revealHash = () => {
       let target;
-      try { target = document.getElementById(decodeURIComponent(location.hash.slice(1))); } catch { return; }
-      const panel = target?.closest('[data-view-panel]');
+      try { target = $('#' + $.escapeSelector(decodeURIComponent(location.hash.slice(1))))[0]; } catch { return; }
+      const panel = $(target).closest('[data-view-panel]')[0];
       if (panel && panels.includes(panel)) {
         select(panels.indexOf(panel));
         requestAnimationFrame(() => target.scrollIntoView({block: 'start'}));
       }
     };
     select(initial);
-    controls.hidden = false;
-    view.dataset.viewReady = 'true';
-    window.addEventListener('hashchange', revealHash);
+    $(controls).prop('hidden', false);
+    $view.attr('data-view-ready', 'true');
+    $(window).on('hashchange', revealHash);
     revealHash();
   });
-})();
+})(window.jQuery);
 </script>

@@ -55,6 +55,7 @@
   <style type="text/tailwindcss">
     @custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
   </style>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@4.0.0/dist/jquery.min.js"></script>
   <script>
     (() => {
       const root = document.documentElement;
@@ -108,30 +109,31 @@
 </div>
 <a class="fixed right-4 bottom-4 inline-flex min-h-11 items-center gap-2 rounded-full border bg-[Canvas] px-4 py-3 text-[CanvasText]" data-back-to-top href="#artifact-top"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 14 6-6 6 6M12 8v12"/></svg><span>Back to top</span></a>
 <script>
-  (() => {
-    const root = document.documentElement;
-    const button = document.querySelector('[data-theme-toggle]');
+  (($) => {
+    if (!$) return;
+    const root = $('html');
+    const button = $('[data-theme-toggle]');
     const media = matchMedia('(prefers-color-scheme: dark)');
     let followsSystem = true;
     const apply = dark => {
-      root.dataset.theme = dark ? 'dark' : 'light';
-      button.querySelector('[data-theme-label]').textContent = dark ? 'Use light theme' : 'Use dark theme';
-      button.querySelector('[data-theme-icon="sun"]').toggleAttribute('hidden', !dark);
-      button.querySelector('[data-theme-icon="moon"]').toggleAttribute('hidden', dark);
+      root.attr('data-theme', dark ? 'dark' : 'light');
+      button.find('[data-theme-label]').text(dark ? 'Use light theme' : 'Use dark theme');
+      button.find('[data-theme-icon="sun"]').attr('hidden', dark ? null : '');
+      button.find('[data-theme-icon="moon"]').attr('hidden', dark ? '' : null);
     };
     apply(media.matches);
-    button.hidden = false;
-    button.addEventListener('click', () => { followsSystem = false; apply(root.dataset.theme !== 'dark'); });
+    button.prop('hidden', false);
+    button.on('click', () => { followsSystem = false; apply(root.attr('data-theme') !== 'dark'); });
     media.addEventListener('change', event => { if (followsSystem) apply(event.matches); });
-    document.querySelector('[data-delivery-disclosure]').textContent = root.dataset.artifactDelivery === 'connected'
-      ? 'Runtime: Tailwind CSS 4.3.3 (CDN); list other selected dependencies here.'
-      : root.dataset.artifactDelivery === 'host'
+    $('[data-delivery-disclosure]').text(root.attr('data-artifact-delivery') === 'connected'
+      ? 'Runtime: Tailwind CSS 4.3.3 and jQuery 4.0.0 (CDN); list other selected dependencies here.'
+      : root.attr('data-artifact-delivery') === 'host'
         ? 'Styling: supplied by the containing application.'
-        : 'Styling: embedded CSS; no remote runtime selected.';
-    document.querySelector('[data-back-to-top]').addEventListener('click', () => {
-      requestAnimationFrame(() => document.getElementById('artifact-top').focus({preventScroll: true}));
+        : 'Styling: embedded CSS; no remote runtime selected.');
+    $('[data-back-to-top]').on('click', () => {
+      requestAnimationFrame(() => $('#artifact-top').trigger('focus'));
     });
-  })();
+  })(window.jQuery);
 </script>
 </body>
 </html>

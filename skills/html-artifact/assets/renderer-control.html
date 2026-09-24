@@ -13,16 +13,18 @@
   }
 </style>
 <script type="module">
-const diagrams = [...document.querySelectorAll('figure pre.mermaid')];
-if (diagrams.length && !document.documentElement.dataset.mermaidStarted) {
-  document.documentElement.dataset.mermaidStarted = 'true';
+const $ = window.jQuery;
+if ($) {
+const diagrams = $('figure pre.mermaid').toArray();
+if (diagrams.length && !$('html').attr('data-mermaid-started')) {
+  $('html').attr('data-mermaid-started', 'true');
   const entries = diagrams.map(source => ({
     source,
-    output: source.closest('figure').querySelector('[data-diagram-output]'),
-    status: source.closest('figure').querySelector('[data-diagram-status]')
+    output: $(source).closest('figure').find('[data-diagram-output]')[0],
+    status: $(source).closest('figure').find('[data-diagram-status]')[0]
   })).filter(entry => entry.output && entry.status);
-  const notify = message => entries.forEach(entry => { entry.status.textContent = message; });
-  if (document.documentElement.dataset.artifactDelivery !== 'connected') {
+  const notify = message => entries.forEach(entry => { $(entry.status).text(message); });
+  if ($('html').attr('data-artifact-delivery') !== 'connected') {
     notify('Portable view: source and explanation retained. Embed rendered SVG for a finished diagram.');
   } else {
     notify('Rendering diagram; source and explanation remain available.');
@@ -33,22 +35,23 @@ if (diagrams.length && !document.documentElement.dataset.mermaidStarted) {
       await document.fonts.ready;
       for (const [index, entry] of entries.entries()) {
         try {
-          const text = entry.source.textContent;
+          const text = $(entry.source).text();
           if (/%%\s*\{|^\s*---/.test(text)) throw new Error('Embedded configuration is not accepted');
           let id = `qp-diagram-${index}`;
-          while (document.getElementById(id)) id += '-next';
+          while ($('#' + $.escapeSelector(id)).length) id += '-next';
           const {svg} = await mermaid.render(id, text);
           // This is strict-mode renderer output, not untrusted source markup.
-          entry.output.innerHTML = svg;
-          entry.source.hidden = true;
-          entry.status.textContent = 'Diagram rendered.';
+          $(entry.output).html(svg);
+          $(entry.source).prop('hidden', true);
+          $(entry.status).text('Diagram rendered.');
         } catch {
-          entry.status.textContent = 'Diagram unavailable; use the retained source and explanation.';
+          $(entry.status).text('Diagram unavailable; use the retained source and explanation.');
         }
       }
     } catch {
       notify('Diagram runtime unavailable; source and explanation remain readable.');
     }
   }
+}
 }
 </script>

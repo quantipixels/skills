@@ -4,12 +4,12 @@ Use when a renderer, build tool or runtime dependency is selected. Representatio
 
 ## Select the delivery
 
-Tailwind is the styling foundation for the base and control assets. Default standalone documents use the pinned CDN integration; Mermaid remains conditional. These established integrations need no fresh library-selection exercise on each invocation. Reuse an existing compatible host runtime instead of loading a second copy.
+Tailwind is the styling foundation and jQuery owns DOM work in the base and control assets. Default standalone documents link pinned jQuery and load pinned Tailwind from CDN; Mermaid remains conditional. These established integrations need no fresh library-selection exercise on each invocation. Reuse existing compatible host runtimes instead of loading a second copy.
 
 | Delivery | Path | Boundary |
 | --- | --- | --- |
-| Standalone document (default) | Base loads pinned Tailwind; selected diagrams load pinned Mermaid. | Disclose dependencies and retain meaningful failure content. |
-| Explicit no-runtime-network constraint | Compile and embed Tailwind CSS; render SVG locally or bundle the needed runtime. | Include asset classes and Tailwind directive blocks in compilation. No uploading private data to a conversion service. |
+| Standalone document (default) | Base links pinned jQuery and loads pinned Tailwind; selected diagrams load pinned Mermaid. | Disclose dependencies and retain meaningful failure content. |
+| Explicit no-runtime-network constraint | Remove CDN tags; embed jQuery and compiled Tailwind CSS; render SVG locally or bundle the needed runtime. | Include asset classes and Tailwind directive blocks in compilation. No uploading private data to a conversion service. |
 | Existing trusted host | Use its styling and appropriate interaction components. | Avoid duplicate runtimes and competing ownership of the same DOM. |
 
 The base uses `connected`; `portable` and `host` select the two alternatives. Confidential source/code-review restrictions still govern remote execution. External code can inspect the document; a CDN does not remove that trust boundary. Tailwind's browser compiler is a document/prototyping convenience, not a substitute for a deployed application's production build.

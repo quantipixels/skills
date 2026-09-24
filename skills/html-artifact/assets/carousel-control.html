@@ -29,50 +29,53 @@
   </div>
 </section>
 <script>
-(() => {
+(($) => {
+  if (!$) return;
   const format = (template, values) => template.replace(/\{(current|total|label)\}/g, (_, key) => String(values[key]));
-  document.querySelectorAll('[data-carousel]').forEach(carousel => {
-    if (carousel.dataset.carouselReady) return;
-    const owned = selector => [...carousel.querySelectorAll(selector)].filter(el => el.closest('[data-carousel]') === carousel);
+  $('[data-carousel]').each((_, carousel) => {
+    const $carousel = $(carousel);
+    if ($carousel.attr('data-carousel-ready')) return;
+    const owned = selector => $carousel.find(selector).filter((_, el) => $(el).closest('[data-carousel]')[0] === carousel).toArray();
     const items = owned('[data-carousel-item]');
     const controls = owned('[data-carousel-controls]')[0];
     const previous = owned('[data-carousel-previous]')[0];
     const next = owned('[data-carousel-next]')[0];
     const position = owned('[data-carousel-position]')[0];
     const live = owned('[data-carousel-live]')[0];
-    const beforeLabel = previous?.querySelector('[data-carousel-previous-text]');
-    const afterLabel = next?.querySelector('[data-carousel-next-text]');
+    const beforeLabel = $(previous).find('[data-carousel-previous-text]')[0];
+    const afterLabel = $(next).find('[data-carousel-next-text]')[0];
     const strings = {
-      role: carousel.dataset.carouselRoleDescription, itemRole: carousel.dataset.carouselItemRoleDescription,
-      previous: carousel.dataset.carouselPreviousLabel, next: carousel.dataset.carouselNextLabel,
-      position: carousel.dataset.carouselPositionTemplate, item: carousel.dataset.carouselItemLabelTemplate,
-      announcement: carousel.dataset.carouselAnnouncementTemplate
+      role: $carousel.attr('data-carousel-role-description'), itemRole: $carousel.attr('data-carousel-item-role-description'),
+      previous: $carousel.attr('data-carousel-previous-label'), next: $carousel.attr('data-carousel-next-label'),
+      position: $carousel.attr('data-carousel-position-template'), item: $carousel.attr('data-carousel-item-label-template'),
+      announcement: $carousel.attr('data-carousel-announcement-template')
     };
     if (!items.length || !controls || !previous || !next || !position || !live || !beforeLabel || !afterLabel ||
-        Object.values(strings).some(value => !value) || items.some(item => !item.id) ||
-        new Set(items.map(item => item.id)).size !== items.length) return;
-    carousel.setAttribute('aria-roledescription', strings.role);
-    beforeLabel.textContent = strings.previous;
-    afterLabel.textContent = strings.next;
-    items.forEach(item => item.setAttribute('aria-roledescription', strings.itemRole));
+        Object.values(strings).some(value => !value) || items.some(item => !$(item).attr('id')) ||
+        new Set(items.map(item => $(item).attr('id'))).size !== items.length) return;
+    $carousel.attr('aria-roledescription', strings.role);
+    $(beforeLabel).text(strings.previous);
+    $(afterLabel).text(strings.next);
+    items.forEach(item => $(item).attr('aria-roledescription', strings.itemRole));
     let current = 0;
     const select = index => {
       current = Math.max(0, Math.min(index, items.length - 1));
-      const moveFocus = items.some((item, i) => i !== current && item.contains(document.activeElement));
-      items.forEach((item, i) => { item.hidden = i !== current; });
-      previous.disabled = current === 0;
-      next.disabled = current === items.length - 1;
+      const focusedItem = $(document.activeElement).closest('[data-carousel-item]')[0];
+      const moveFocus = items.includes(focusedItem) && items[current] !== focusedItem;
+      items.forEach((item, i) => { $(item).prop('hidden', i !== current); });
+      $(previous).prop('disabled', current === 0);
+      $(next).prop('disabled', current === items.length - 1);
       const values = {current: current + 1, total: items.length};
-      position.textContent = format(strings.position, values);
-      live.textContent = format(strings.announcement, {...values, label: items[current].getAttribute('aria-label') || format(strings.item, values)});
+      $(position).text(format(strings.position, values));
+      $(live).text(format(strings.announcement, {...values, label: $(items[current]).attr('aria-label') || format(strings.item, values)}));
       if (moveFocus) carousel.focus({preventScroll: true});
     };
-    previous.addEventListener('click', () => select(current - 1));
-    next.addEventListener('click', () => select(current + 1));
-    carousel.addEventListener('keydown', event => {
-      if (event.defaultPrevented || event.target.closest('[data-carousel]') !== carousel ||
-          event.target.closest('a,button,input,select,textarea,summary,[contenteditable],[role="slider"]')) return;
-      const rtl = getComputedStyle(carousel).direction === 'rtl';
+    $(previous).on('click', () => select(current - 1));
+    $(next).on('click', () => select(current + 1));
+    $carousel.on('keydown', event => {
+      if (event.isDefaultPrevented() || $(event.target).closest('[data-carousel]')[0] !== carousel ||
+          $(event.target).closest('a,button,input,select,textarea,summary,[contenteditable],[role="slider"]').length) return;
+      const rtl = $carousel.css('direction') === 'rtl';
       if (event.key === 'ArrowLeft') select(current + (rtl ? 1 : -1));
       else if (event.key === 'ArrowRight') select(current + (rtl ? -1 : 1));
       else if (event.key === 'Home') select(0);
@@ -82,18 +85,18 @@
     });
     const reveal = () => {
       let target;
-      try { target = document.getElementById(decodeURIComponent(location.hash.slice(1))); } catch { return; }
-      const item = target?.closest('[data-carousel-item]');
+      try { target = $('#' + $.escapeSelector(decodeURIComponent(location.hash.slice(1))))[0]; } catch { return; }
+      const item = $(target).closest('[data-carousel-item]')[0];
       if (item && items.includes(item)) {
         select(items.indexOf(item));
         requestAnimationFrame(() => target.scrollIntoView({block: 'start'}));
       }
     };
     select(0);
-    controls.hidden = items.length < 2;
-    carousel.dataset.carouselReady = 'true';
-    window.addEventListener('hashchange', reveal);
+    $(controls).prop('hidden', items.length < 2);
+    $carousel.attr('data-carousel-ready', 'true');
+    $(window).on('hashchange', reveal);
     reveal();
   });
-})();
+})(window.jQuery);
 </script>

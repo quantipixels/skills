@@ -8,7 +8,8 @@ fallback when JavaScript is unavailable.
 -->
 
 <script>
-  (() => {
+  (($) => {
+    if (!$) return;
     const openedForPrint = new Set();
 
     const hashId = () => {
@@ -21,41 +22,30 @@ fallback when JavaScript is unavailable.
 
     const revealTarget = () => {
       const id = hashId();
-      const target = id ? document.getElementById(id) : null;
+      const target = id ? $('#' + $.escapeSelector(id))[0] : null;
       if (!target) return;
 
-      const disclosures = [];
-      let ancestor = target.parentElement;
-      while (ancestor) {
-        if (ancestor.matches("details:not([open])")) disclosures.push(ancestor);
-        ancestor = ancestor.parentElement;
-      }
-      disclosures.reverse().forEach((disclosure) => { disclosure.open = true; });
+      $(target).parents("details:not([open])").get().reverse().forEach(disclosure => $(disclosure).prop('open', true));
       requestAnimationFrame(() => target.scrollIntoView({ block: "start" }));
     };
 
     const expandForPrint = () => {
-      document.querySelectorAll("details[data-print-expand]:not([open])").forEach((disclosure) => {
+      $("details[data-print-expand]:not([open])").each((_, disclosure) => {
         openedForPrint.add(disclosure);
-        disclosure.open = true;
+        $(disclosure).prop('open', true);
       });
     };
 
     const restoreAfterPrint = () => {
       openedForPrint.forEach((disclosure) => {
-        if (disclosure.isConnected) disclosure.open = false;
+        if ($(disclosure).closest('html').length) $(disclosure).prop('open', false);
       });
       openedForPrint.clear();
     };
 
-    window.addEventListener("hashchange", revealTarget);
-    window.addEventListener("beforeprint", expandForPrint);
-    window.addEventListener("afterprint", restoreAfterPrint);
-
-    if (document.readyState === "loading") {
-      document.addEventListener("DOMContentLoaded", revealTarget, { once: true });
-    } else {
-      revealTarget();
-    }
-  })();
+    $(window).on("hashchange", revealTarget);
+    $(window).on("beforeprint", expandForPrint);
+    $(window).on("afterprint", restoreAfterPrint);
+    $(revealTarget);
+  })(window.jQuery);
 </script>

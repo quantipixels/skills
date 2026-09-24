@@ -29,12 +29,14 @@
   </div>
 </section>
 <script>
-(() => {
+(($) => {
+  if (!$) return;
   const tokens = value => value.split(',').map(token => token.trim()).filter(Boolean);
   const format = (template, values) => template.replace(/\{(count|total|label)\}/g, (_, key) => String(values[key]));
-  document.querySelectorAll('[data-collection-filter]').forEach(filter => {
-    if (filter.dataset.filterReady) return;
-    const owned = selector => [...filter.querySelectorAll(selector)].filter(el => el.closest('[data-collection-filter]') === filter);
+  $('[data-collection-filter]').each((_, filter) => {
+    const $filter = $(filter);
+    if ($filter.attr('data-filter-ready')) return;
+    const owned = selector => $filter.find(selector).filter((_, el) => $(el).closest('[data-collection-filter]')[0] === filter).toArray();
     const controls = owned('[data-filter-controls]')[0];
     const status = owned('[data-filter-status]')[0];
     const zero = owned('[data-filter-zero]')[0];
@@ -42,44 +44,45 @@
     const buttons = owned('button[data-filter-control][data-filter-value]');
     const search = owned('[data-filter-search]')[0];
     const reset = owned('[data-filter-reset]')[0];
-    const all = filter.dataset.filterAllValue;
-    const result = filter.dataset.filterResultTemplate;
-    const empty = filter.dataset.filterZeroTemplate;
-    const values = buttons.map(button => button.dataset.filterValue);
-    const pressed = buttons.filter(button => button.getAttribute('aria-pressed') === 'true');
+    const all = $filter.attr('data-filter-all-value');
+    const result = $filter.attr('data-filter-result-template');
+    const empty = $filter.attr('data-filter-zero-template');
+    const values = buttons.map(button => $(button).attr('data-filter-value'));
+    const pressed = buttons.filter(button => $(button).attr('aria-pressed') === 'true');
     if (!controls || !status || !zero || !items.length || !all || !result || !empty ||
         buttons.length < 2 || new Set(values).size !== values.length || !values.includes(all) ||
         values.some(value => !value || value.includes(',') || value !== value.trim()) ||
-        buttons.some(button => !button.textContent.trim()) || pressed.length > 1 ||
+        buttons.some(button => !$(button).text().trim()) || pressed.length > 1 ||
         !['{count}', '{total}', '{label}'].every(token => result.includes(token)) || !empty.includes('{label}') ||
-        items.some(item => !tokens(item.dataset.filterValues || '').length ||
-          tokens(item.dataset.filterValues || '').some(token => token === all || !values.includes(token)))) return;
-    let active = pressed[0]?.dataset.filterValue || all;
-    if (search) search.value = '';
+        items.some(item => !tokens($(item).attr('data-filter-values') || '').length ||
+          tokens($(item).attr('data-filter-values') || '').some(token => token === all || !values.includes(token)))) return;
+    let active = $(pressed[0]).attr('data-filter-value') || all;
+    $(search).val('');
     const apply = () => {
-      const query = search?.value.trim().toLocaleLowerCase() || '';
-      const button = buttons.find(button => button.dataset.filterValue === active);
+      const searchText = String($(search).val() || '').trim();
+      const query = searchText.toLocaleLowerCase();
+      const button = buttons.find(button => $(button).attr('data-filter-value') === active);
       let count = 0;
-      buttons.forEach(candidate => candidate.setAttribute('aria-pressed', String(candidate === button)));
+      buttons.forEach(candidate => $(candidate).attr('aria-pressed', String(candidate === button)));
       items.forEach(item => {
-        const visible = (active === all || tokens(item.dataset.filterValues).includes(active)) &&
-          (!query || item.textContent.toLocaleLowerCase().includes(query));
-        if (!visible && item.contains(document.activeElement)) (search || button).focus({preventScroll: true});
-        item.hidden = !visible;
+        const visible = (active === all || tokens($(item).attr('data-filter-values')).includes(active)) &&
+          (!query || $(item).text().toLocaleLowerCase().includes(query));
+        if (!visible && (item === document.activeElement || $.contains(item, document.activeElement)))
+          (search || button).focus({preventScroll: true});
+        $(item).prop('hidden', !visible);
         if (visible) count++;
       });
-      const label = button.textContent.trim() + (query ? ` / ${search.value.trim()}` : '');
+      const label = $(button).text().trim() + (query ? ` / ${searchText}` : '');
       const data = {count, total: items.length, label};
-      status.textContent = format(result, data);
-      zero.textContent = format(empty, data);
-      zero.hidden = count !== 0;
+      $(status).text(format(result, data));
+      $(zero).text(format(empty, data)).prop('hidden', count !== 0);
     };
-    buttons.forEach(button => button.addEventListener('click', () => { active = button.dataset.filterValue; apply(); }));
-    search?.addEventListener('input', apply);
-    reset?.addEventListener('click', () => { active = all; if (search) search.value = ''; apply(); });
+    buttons.forEach(button => $(button).on('click', () => { active = $(button).attr('data-filter-value'); apply(); }));
+    $(search).on('input', apply);
+    $(reset).on('click', () => { active = all; $(search).val(''); apply(); });
     apply();
-    controls.hidden = false;
-    filter.dataset.filterReady = 'true';
+    $(controls).prop('hidden', false);
+    $filter.attr('data-filter-ready', 'true');
   });
-})();
+})(window.jQuery);
 </script>

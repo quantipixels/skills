@@ -1,14 +1,6 @@
 # Optional CDN links for standalone HTML
 
-Copy only the entry an artifact uses into its HTML; remove unused entries before delivery. These are ready-to-use static-site URLs, not default dependencies. The versions below were current on 2026-09-24. Recheck a version when updating an integration, and keep the delivered URL exact rather than using `@latest`.
-
-## jQuery — 4.0.0
-
-Use when existing artifact code or a selected plugin requires jQuery. Load it before that code. jQuery supplies DOM/event helpers, not an accessible widget by itself.
-
-```html
-<script src="https://cdn.jsdelivr.net/npm/jquery@4.0.0/dist/jquery.min.js"></script>
-```
+Copy only the entry an artifact uses into its HTML; remove unused entries before delivery. These are ready-to-use static-site URLs, not default dependencies. The versions below were current on 2026-09-24. Recheck a version when updating an integration, and keep the delivered URL exact rather than using `@latest`. The base already links jQuery 4.0.0.
 
 ## Alpine — 3.17.4
 
