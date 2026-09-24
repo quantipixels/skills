@@ -4,7 +4,7 @@ Use when a renderer, build tool or runtime dependency is selected. Representatio
 
 ## Select the delivery
 
-Tailwind is the styling foundation and jQuery owns DOM work in the base and control assets. Default standalone documents link pinned jQuery and load pinned Tailwind from CDN; Mermaid remains conditional. These established integrations need no fresh library-selection exercise on each invocation. Reuse existing compatible host runtimes instead of loading a second copy.
+Tailwind is the styling foundation; the base and shipped controls use jQuery for DOM work that needs JavaScript. Default standalone documents link pinned jQuery and load pinned Tailwind from CDN; Mermaid remains conditional. These established integrations need no fresh library-selection exercise on each invocation. Reuse existing compatible host runtimes instead of loading a second copy.
 
 | Delivery | Path | Boundary |
 | --- | --- | --- |

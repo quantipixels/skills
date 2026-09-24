@@ -1,6 +1,6 @@
 # Reuse interaction capabilities
 
-Read when an artifact needs behaviour beyond its existing controls. Tailwind supplies styling; `aria-*`, `data-*`, `open:`, `disabled:`, `dark:` and responsive variants express state without JavaScript style choreography. Keep complete utility strings in the source so both browser and build-time compilers can discover them.
+Read when an artifact needs behaviour beyond its existing controls. Use Tailwind for layout, theme and visual states, including `aria-*`, `data-*`, `open:`, `disabled:` and responsive variants. Keep complete utility strings in source so browser and build-time compilers can discover them. JavaScript changes underlying state or content only when native HTML cannot provide the behaviour.
 
 ## Pick the smallest adequate owner
 
@@ -11,13 +11,13 @@ Read when an artifact needs behaviour beyond its existing controls. Tailwind sup
 | Several linked transient values and reactive DOM bindings | Alpine when no suitable host runtime exists | A home-grown reactive/event-binding framework. Load once, only when selected. |
 | Complex widget: combobox, data grid, drag/drop or virtualisation | A maintained component designed for that behaviour and compatible with the delivery | Keyboard, focus, scrolling and interaction machinery merely to avoid a dependency. |
 | React/Vue host already using Headless UI | Reuse its appropriate headless component | A second framework or a duplicate widget owner. |
-| Existing artifact control needs DOM selection/events | Base jQuery runtime | Repeated raw DOM plumbing; jQuery core alone is not a complete accessible widget. |
+| Artifact-specific DOM selection, events or updates | Existing jQuery runtime when available | Repeated raw DOM plumbing; jQuery core alone is not a complete accessible widget. |
 
 Tailwind Plus **Elements** is a separate plain-HTML JavaScript component library, not part of Tailwind CSS. Use only with appropriate licence and redistribution rights; do not bundle customer-only code into the public QP package. Headless UI targets React/Vue; do not add either framework just for an ordinary HTML document. These are selection anchors, not an exhaustive allowlist.
 
 ## Keep the integration small
 
-Choose one owner per control. Verify the actual API, maintenance, accessibility behaviour, licence and browser target at selection. Reuse an existing dependency when adequate; otherwise pin the selected package and follow the artifact delivery policy. Preserve useful styling freedom. Library adoption should remove hard custom work, not add a parallel implementation behind another wrapper.
+Choose one owner per control. Verify the actual API, maintenance, accessibility behaviour, licence and browser target at selection. Reuse an existing dependency when adequate; otherwise pin the selected package and follow the artifact delivery policy. Use plain JavaScript for calculations and the small integration a selected control or library leaves. Do not build a parallel widget behind a library wrapper.
 
 The base loads jQuery 4.0.0 before its controls. For standalone documents, [optional CDN links](optional-cdn-links.md) holds exact ready-to-copy URLs for Alpine, Plot and D3. Copy the selected entry only; Mermaid already has a conditional renderer asset.
 

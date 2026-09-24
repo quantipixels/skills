@@ -23,7 +23,7 @@ Use `fihanmi` when composition, hierarchy or visual explanation is unsettled; re
 
 Use the [visual toolbox](references/visual-toolbox.md) to select by relationship. Its examples are a starting set: add a criterion or choose a different representation when the reader's task and supplied evidence warrant it. Flow, ordering, branching and state need visible relationships, not merely adjacent cards. Cards remain useful for independently scanned peers. Neither card avoidance nor novelty is an aesthetic requirement.
 
-For a recurring document job, consult the matching entry in [semantic contracts](templates/contracts.md). Its required meaning and behaviour are fixed; layout, typography, palette, rhythm, illustration and composition remain open. Reuse a recipe or control when it removes meaningful work. Do not read or embed the whole toolkit on every invocation.
+For a recurring document job, consult the matching [semantic contract](templates/contracts.md). Choose the toolkit recipe or control that fits the reader's task; open only the resources needed for that artifact. The contract fixes meaning and behaviour, not appearance.
 
 Load branch depth only when needed:
 
@@ -46,11 +46,11 @@ Use colour expressively where helpful. When colour encodes meaning, keep its map
 
 ## Build with the toolkit
 
-Start from [base.html](assets/base.html), not a prescribed page layout. Compose layout, spacing, type, responsive behaviour and simple interaction states with Tailwind utilities directly on the elements. Reuse complete class strings for repeated elements; use custom CSS for distinctive expression, semantic visuals, renderer output, print and browser fallbacks that utilities cannot express cleanly. Avoid a second layer of CSS selectors that merely restates utility classes. Use existing project branding when readily available, otherwise the supplied QP mark. Do not spend the task searching for assets or invent a new project identity.
+Start from [base.html](assets/base.html) as a foundation, not a page layout. Use Tailwind for layout, typography, theme, responsive behaviour and visual states. Keep complete utility classes in source; use custom CSS where utilities cannot express a distinctive visual, generated renderer output, print rule or browser fallback cleanly. Reuse available project branding, otherwise the supplied QP mark.
 
-The base links pinned jQuery 4.0.0 and loads pinned Tailwind from CDN. Use jQuery for the DOM selection, scoped event handling and text/attribute/visibility updates an interaction actually needs; keep calculations in plain JavaScript. Let native elements own their built-in behaviour and let Tailwind variants style `aria-*`/`data-*`, `open`, disabled and responsive states instead of toggling presentation classes in JavaScript. Reuse the containing application's compatible runtimes in host mode. For an explicit no-runtime-network constraint, remove the CDN tags, embed jQuery and compile/embed the same Tailwind utilities. Keep utility classes complete in source. The base maps Tailwind's `dark:` variant to its theme control.
+Let native elements handle built-in interaction and Tailwind variants style their state. Add JavaScript only for behaviour the document needs: use jQuery when DOM selection, events or updates are required, and plain JavaScript for calculations. Change semantic attributes or content, then let Tailwind reflect that state; avoid presentation-class choreography. The base supplies pinned Tailwind and jQuery for connected standalone HTML. For host or no-runtime-network delivery, follow the [dependency policy](references/dependency-policy.md).
 
-Include [renderer-control.html](assets/renderer-control.html) only for Mermaid content. It loads the pinned runtime only when a diagram exists and the delivery policy permits it; portable diagrams should be static SVG. Essential meaning remains beside the diagram on load or parse failure. Tailwind and Mermaid are supported authoring tools, not reasons to weaken the [dependency policy](references/dependency-policy.md).
+Include [renderer-control.html](assets/renderer-control.html) for Mermaid content when its runtime is permitted; use static SVG for portable diagrams. Keep essential meaning available if rendering fails.
 
 Choose only useful controls:
 
@@ -59,7 +59,7 @@ Choose only useful controls:
 - existing [carousel](assets/carousel-control.html) for a genuinely sequential visual collection;
 - [report control](assets/report-control.html) for deep-link disclosure reveal and complete printing.
 
-Each asset's comment defines its input and fallback. Copy the actual resource, preserve its behaviour contract, then style it freely. Use native `details`, buttons, forms, `output`, `dialog` or popover when adequate. Before writing extra interaction machinery, use [interaction tools](references/interaction-tools.md): prefer a compatible existing component or focused library when it owns the difficult behaviour. Keep custom JavaScript to the missing artifact-specific glue. For standalone HTML, copy only needed entries from [optional CDN links](references/optional-cdn-links.md) and remove unused entries before delivery.
+Each asset's comment defines its input and fallback. Copy the selected resource and preserve its behaviour contract while styling it freely. For behaviour beyond these controls, use [interaction tools](references/interaction-tools.md) to choose a native element, compatible component or focused library. Use raw scripting for the artifact-specific gap they leave. Add only selected [optional CDN links](references/optional-cdn-links.md) to standalone HTML.
 
 ## Interaction is ephemeral by default
 
