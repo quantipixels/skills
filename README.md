@@ -59,7 +59,20 @@ Skills CLI installs skills only. Use the Claude Code plugin if you also want Al�
 
 ## Migrate from old skills
 
-If you installed the earlier standalone QP skills, follow the [migration guide](skills/alarina/references/qp-update/migration.md). It covers both plugin and Skills CLI replacements, scoped cleanup of retired copies, updating old command references, and optional Codex/Claude agent preferences or shell launch shortcuts. Install and verify Alárinà before removing the old entries.
+Paste this into your AI assistant:
+
+```text
+Migrate my old QP skills to the single Alárinà entrypoint for the provider and scope I use.
+Inspect the actual manager, installed paths and modified copies. Follow the current
+quantipixels/skills migration guide at skills/alarina/references/qp-update/migration.md.
+Install the plugin or Alárinà skill and verify it in a fresh session before removing
+only retired QP copies you confirmed I own. Update old invocations in my agent
+instructions and pin the Codex skill or Claude agent; set a launch shortcut if I
+have a preferred provider. Preserve unrelated skills, local changes, models,
+permissions and authentication. Complete the migration and report exact remaining work.
+```
+
+The [migration guide](skills/alarina/references/qp-update/migration.md) has the provider commands, cleanup steps and configuration examples. Install and verify Alárinà before removing old entries.
 
 ## Use the skills
 
