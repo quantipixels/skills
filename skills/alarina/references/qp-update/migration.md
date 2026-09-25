@@ -61,7 +61,7 @@ Use the old request's intended result to select its replacement. One old skill c
 | `adanwo` | `adanwo` |
 | `akowe` | `akowe-audit` or `akowe-sync` |
 | `alaga` | `alaga-intake`, `alaga-diagnose`, `alaga-recover`, `alaga-deliver`, `alaga-compare` or `alaga-verify-project` |
-| `amose` | `amose`, `amose-adrs`, `amose-learnings` or `amose-nongoals` |
+| `amose` | `amose`, `amose-context`, `amose-adrs` or `amose-nongoals` |
 | `architect` | `architect-survey`, `architect-design`, `architect-review` or `architect-document` |
 | `arojinle` | `arojinle` |
 | `atona` | `atona-direction`, `seda-spec`, `seda-tickets` or `atona` |
@@ -79,6 +79,8 @@ Use the old request's intended result to select its replacement. One old skill c
 | `yoruba-glossary` | `yoruba-language`, `yoruba-teach` or `yoruba-glossary` |
 
 A previous standalone `alarina` becomes the same Alárinà entrypoint with the provider's new invocation prefix. The installed [command menu](../../SKILL.md#commands) gives the current purpose and boundary for each command.
+
+For saved calls to the former internal `amose-learnings` command, use `amose-context` when the result is canonical domain language or reconciliation of existing knowledge. Keep an established `.learnings` destination for independently useful non-domain entries; the new command does not imply a bulk file rename.
 
 ## 4. Pin your preferred entry
 

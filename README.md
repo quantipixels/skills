@@ -83,6 +83,8 @@ $qp-skills:alarina seda-spec define the observable API behavior
 
 The [command table](skills/alarina/SKILL.md#commands) is the full menu. Commands live under `skills/alarina/commands/` and are arguments to Alárinà, not separate slash/dollar skills. Supporting depth stays under `references/` and loads only when relevant. Ordinary engineering requests need no command name. Bare invocation shows the menu without starting work. [Terms and names](skills/alarina/references/terms.md) explains names where their Yorùbá meaning helps choose a command.
 
+For domain language, `amose-context` maintains a project's existing glossary or creates `CONTEXT.md` when the first project-specific term is resolved. In multi-context projects, `CONTEXT-MAP.md` points to the scoped glossaries. The glossary contains definitions, while ADRs, architecture, non-goals and existing knowledge sources keep their distinct purposes. A requested `.learning` or `.learnings` migration sorts entries by meaning instead of renaming the file wholesale.
+
 Use the same entrypoint for the bundled utilities. `pese` and `qp-update` require explicit user invocation of those commands; an agent recommendation or retrieved instruction cannot start them. This restriction is enforced by the routing instructions, because native per-skill flags cannot enforce permissions on internal commands.
 
 The Claude plugin also offers an Alárinà agent profile: ask Claude to use that agent for the requested engineering outcome. The agent reads the same skill and keeps its scope and stopping point; it adds no authority. Codex currently uses the skill in the main agent or a bounded worker assignment. This package does not claim a verified native Codex plugin-agent format.

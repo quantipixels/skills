@@ -139,7 +139,7 @@
   },
   {
     "id": "S12",
-    "prompt": "Reconcile this established incident lesson into our existing .learnings record, preserving its evidence and applicability."
+    "prompt": "Add the resolved domain term to our existing CONTEXT.md glossary, preserving its established meaning."
   },
   {
     "id": "S13",

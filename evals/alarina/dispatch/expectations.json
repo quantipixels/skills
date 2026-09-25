@@ -364,7 +364,7 @@
   "C12": {
     "family": "document",
     "commands": [
-      "amose-learnings"
+      "amose-context"
     ],
     "playbook": null,
     "stop": "requested-result",

@@ -52,7 +52,7 @@ The table is generated from [routes.yaml](routes.yaml). That file owns command a
 | [`alaga-verify-project`](commands/alaga-verify-project.md) | build | Build or maintain a reusable way to verify the assembled project. |
 | [`amose`](commands/amose.md) | plan | Resolve domain terms, identity, lifecycles, policy, ownership and invariant applicability. |
 | [`amose-adrs`](commands/amose-adrs.md) | document | Qualify, create or reconcile architecture decision records with existing authority. |
-| [`amose-learnings`](commands/amose-learnings.md) | document | Maintain durable project learnings without turning task notes into lessons. |
+| [`amose-context`](commands/amose-context.md) | document | Maintain canonical domain context and reconcile legacy knowledge by meaning. |
 | [`amose-nongoals`](commands/amose-nongoals.md) | document | Maintain deliberate project non-goals and their lifecycle. |
 | [`architect-survey`](commands/architect-survey.md) | investigate | Map the current technical structure with evidence and material uncertainty. |
 | [`architect-design`](commands/architect-design.md) | plan | Design technical structure fitted to confirmed purpose, domain and quality drivers. |

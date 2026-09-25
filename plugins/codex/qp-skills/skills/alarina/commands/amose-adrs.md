@@ -56,7 +56,7 @@ Reconcile an existing ADR whenever its decision changes. Preserve it as history.
 
 Use this fallback only when the repository has no ADR convention and creation of a qualifying ADR is authorized. That request covers the fallback location; no additional directory-choice confirmation is needed. Preserve established locations and history when maintaining existing ADRs.
 
-Store records in `docs/adr/` with names such as `YYYYMMDD-short-title.md`. Add time only when two independent decisions on the same date would otherwise collide. Create the directory only when the first qualifying ADR is authorized.
+Store records in `docs/adr/` with sequential names such as `0001-short-title.md`. Increment the highest existing number. Create the directory only when the first qualifying ADR is authorized. If an existing repository convention uses dates or another scheme, preserve that convention instead.
 
 The minimum complete record is:
 

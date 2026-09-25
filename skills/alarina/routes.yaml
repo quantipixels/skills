@@ -129,10 +129,10 @@ commands:
   implicit: true
   former_skill: amose
   former_mode: adrs
-- id: amose-learnings
+- id: amose-context
   family: document
-  description: Maintain durable project learnings without turning task notes into lessons.
-  reference: commands/amose-learnings.md
+  description: Maintain canonical domain context and reconcile legacy knowledge by meaning.
+  reference: commands/amose-context.md
   implicit: true
   former_skill: amose
   former_mode: learnings

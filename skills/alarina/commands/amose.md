@@ -31,9 +31,9 @@ Ask a single already-understood bounded consequential choice directly. Use [aroj
 
 ## Reconcile canonical language
 
-When a domain-language source already exists, read [domain language](../references/amose/context.md) and update that source when the resolved model changed and write authority exists. Do not create a competing project-memory system or generic documentation store.
+Read [domain language](../references/amose/context.md) when meaning changes. Update the established source when one exists. Otherwise create a root `CONTEXT.md` lazily when the first project-specific term is resolved and write authority exists. Use [context maintenance](amose-context.md) for placement, multi-context mapping, or migration. Do not create a generic project-memory store.
 
-If no durable domain-language destination is established, return the model delta directly and name the persistence gap only when the result needs to outlive the current work. Let the project or caller choose an intentional project destination rather than inventing `CONTEXT.md`, `.learnings`, `.nongoals`, an ADR, `.qp` record, or another repository convention.
+If writing is outside the request's authority, return the resolved model delta and its intended destination. A discussion that has not resolved a project-specific term creates no glossary.
 
 This domain-clarification boundary does not prevent an authorized ADR-creation request from using the [ADR fallback](amose-adrs.md) when no project convention exists. Domain clarification alone does not authorize creating an ADR.
 
@@ -41,7 +41,7 @@ A domain-model change may cause another workflow to update specifications, archi
 
 ## Record workflows
 
-For record lifecycle work, select [ADRs](amose-adrs.md), [learnings](amose-learnings.md), or [non-goals](amose-nongoals.md). A model clarification alone does not authorize those writes.
+For record lifecycle work, select [context](amose-context.md), [ADRs](amose-adrs.md), or [non-goals](amose-nongoals.md) by the information's meaning. A model clarification alone does not authorize an ADR or non-goal.
 
 ## Return
 
