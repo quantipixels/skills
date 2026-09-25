@@ -23,6 +23,8 @@ Make the agent able to answer:
 - **Bound** — what observable condition means the work is done, and how demanding must it be?
 - **Pointers** — what deeper material is conditional, and what exact condition should load it?
 
+Distinguish required results and authority boundaries from conditional requirements, adaptable defaults, and illustrative examples. State the condition for a requirement and the reason a consequential constraint still applies; inherited wording alone is not its justification. Where method substitution is permitted, preserve the applicable meaning, authority, compatibility, fallback and proof contract, then refresh evidence affected by the substitution. Routine choices within granted authority need no new approval.
+
 When another stable public skill owns a capability, name its exact identifier. Add only the mode, variant, condition, or constraint that changes how it should be applied. Use generic owner language only when the correct skill is intentionally dynamic.
 
 Do not copy another skill's method merely to compose with it. Put cross-stage progression in the workflow/assignment layer and leave the method with its owning skill.
@@ -53,13 +55,15 @@ When adding, removing, or changing the responsibility of references, scripts, te
 
 For material behavioural revision, refactoring, or pruning, read [editing agent text](../references/oro/editing-agent-text.md). Handle local wording and pointer corrections directly.
 
-For material changes, identify affected branches and classify their semantics as **retain**, **strengthen**, **relocate**, **replace**, or **retire**. The old text is evidence, not authority. Delete no-ops, caches, duplication, sediment, and superseded behaviour when they no longer earn their load.
+For material changes, trace the governed path from entrypoint and command through applicable references, contracts, templates or tools to its workflow consumer and handoff. Identify affected branches and classify their semantics as **retain**, **strengthen**, **relocate**, **replace**, or **retire**. The old text is evidence, not authority. Delete no-ops, caches, duplication, sediment, and superseded behaviour when they no longer earn their load.
 
 A loss audit exists to distinguish intentional evolution from accidental regression, not to preserve everything that existed before.
 
 ## Verify proportionally
 
 Check the boundary that actually changed. Use realistic before/after tasks when wording could materially change selection, authority, completion, routing, or execution. Do not build ceremony or a prompt harness for an editorial change whose behavioural boundary is unchanged.
+
+Match completion to the requested result and accepting evidence. Distinguish structural validity, execution, installation, discovery and user-visible success; missing proof needed for a required outcome leaves that outcome incomplete, even when disclosed. Carry the candidate identity, decisive evidence, material limits and unresolved obligations into the handoff without imposing a report schema.
 
 Use supplied behavioral evidence to revise instructions. When retention depends on a controlled comparison, return the exact candidate and unresolved claim to the requesting project or workflow. Editorial checks establish instruction quality, not runtime improvement.
 

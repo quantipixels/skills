@@ -1,20 +1,20 @@
-<!-- Tailwind asset: start from base.html; restyle utilities, preserve data hooks.
+<!-- Basecoat asset: start from base.html; preserve data hooks.
      Category filter with optional text search/reset. Existing data-filter-* token
      contract is retained. Closest-root ownership isolates nested collections.
      Controls stay hidden on invalid input. No-JS/print shows the full population.
      Labels/templates are artifact data; state is transient. -->
-<section class="space-y-3" data-collection-filter data-filter-all-value="all"
-  data-filter-result-template="Showing {count} of {total} items for {label}."
-  data-filter-zero-template="No items match {label}." aria-label="Example findings">
-  <div class="flex flex-wrap items-center gap-3" data-filter-controls role="group" aria-label="Filter findings" hidden>
-    <button class="min-h-11 cursor-pointer rounded-md border px-3 py-2 disabled:cursor-default disabled:opacity-50 aria-pressed:font-semibold aria-pressed:underline underline-offset-4" type="button" data-filter-control data-filter-value="all" aria-pressed="true">All</button>
-    <button class="min-h-11 cursor-pointer rounded-md border px-3 py-2 disabled:cursor-default disabled:opacity-50 aria-pressed:font-semibold aria-pressed:underline underline-offset-4" type="button" data-filter-control data-filter-value="required" aria-pressed="false">Required</button>
-    <button class="min-h-11 cursor-pointer rounded-md border px-3 py-2 disabled:cursor-default disabled:opacity-50 aria-pressed:font-semibold aria-pressed:underline underline-offset-4" type="button" data-filter-control data-filter-value="optional" aria-pressed="false">Optional</button>
-    <label class="inline-flex min-w-0 max-w-full flex-wrap items-center gap-2">Search <input class="min-h-11 min-w-0 max-w-full rounded-md border px-3 py-2" type="search" data-filter-search autocomplete="off"></label>
-    <button class="inline-flex min-h-11 cursor-pointer items-center gap-2 rounded-md border px-3 py-2 disabled:cursor-default disabled:opacity-50" type="button" data-filter-reset><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 11a9 9 0 1 1 2.6 6.4M3 17v-6h6"/></svg>Reset</button>
+<section data-collection-filter data-filter-all-value="all"
+ data-filter-result-template="Showing {count} of {total} items for {label}."
+ data-filter-zero-template="No items match {label}." aria-label="Example findings">
+  <div data-filter-controls role="group" aria-label="Filter findings" hidden>
+    <button class="btn" data-variant="outline" type="button" data-filter-control data-filter-value="all" aria-pressed="true">All</button>
+    <button class="btn" data-variant="outline" type="button" data-filter-control data-filter-value="required" aria-pressed="false">Required</button>
+    <button class="btn" data-variant="outline" type="button" data-filter-control data-filter-value="optional" aria-pressed="false">Optional</button>
+    <label>Search <input class="input" type="search" data-filter-search autocomplete="off"></label>
+    <button class="btn" data-variant="outline" type="button" data-filter-reset><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 11a9 9 0 1 1 2.6 6.4M3 17v-6h6"/></svg>Reset</button>
   </div>
-  <p class="text-sm tabular-nums" data-filter-status role="status" aria-atomic="true"></p>
-  <p class="text-sm" data-filter-zero hidden></p>
+  <p data-filter-status role="status" aria-atomic="true"></p>
+  <p data-filter-zero hidden></p>
   <div data-filter-items>
     <!-- Add real data-filter-item elements with declared comma-separated data-filter-values. -->
   </div>

@@ -11,6 +11,7 @@ Identify the current:
 - trigger and exclusions;
 - branches and skip conditions;
 - actions/prohibitions;
+- instruction force: required outcome or boundary, conditional requirement, adaptable default, or illustrative example;
 - authority and side effects;
 - bounds/evidence conditions;
 - useful or user-requested output formats and how the reader answers;
@@ -18,6 +19,8 @@ Identify the current:
 - pointers to deeper material.
 
 Then decide what each material part should become: **retain**, **strengthen**, **relocate**, **replace**, or **retire**.
+
+Trace the instruction through its entrypoint, applicable reference or contract, template/tool, workflow consumer and final handoff. Identify the present basis for consequential constraints. A template may illustrate a method but cannot silently make its example fields or construction choices mandatory. Where method substitution is permitted, establish why the alternative fits and which meaning, authority, compatibility, fallback and proof it must preserve. Refresh evidence invalidated by the change.
 
 A wording-only edit should not silently change those semantics. A refactor may change them when the requested scope and evidence justify it.
 
@@ -89,6 +92,8 @@ Ask:
 6. Were compatibility or recovery semantics deliberately retained/replaced/retired?
 7. Did the change actually remove no-op/cache/sediment rather than just shorten sentences?
 8. Can the reader still recognise, compare and answer the output as intended, with useful templates and examples retained or deliberately replaced?
+9. Can the reader distinguish binding and conditional rules from defaults and examples, and tell when an alternative preserves the contract?
+10. Does the completion claim match the requested result and its accepting evidence, with required missing proof left open?
 
 For meaningful behaviour changes, use realistic before/after tasks. For ordinary editorial cleanup, do not invent an evaluation harness.
 

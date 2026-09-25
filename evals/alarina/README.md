@@ -25,7 +25,7 @@ Run the explicit controls separately because they test deterministic entry rathe
 
 Use [dispatch actors](dispatch/cases.json) without the private [expectations](dispatch/expectations.json). Start with Alárinà supplied or natively selected and stop after the required playbook/owner checkpoint. The harness must retain successful read results for the exact bundled files; filename mentions and attempted reads are insufficient.
 
-The privacy-preserving session adapter may record qualified invocation and reference-path signals, but it deliberately does not copy tool arguments or result content. Use a disposable evaluation harness trace for successful-read assertions. The dispatch corpus covers all 38 focused commands, named playbook composition, bare entry, advice, resumption, agent scope, unknown commands, qualified prefixes and explicit-only utility boundaries. The updater and private-serving methods are bundled; they cannot be inferred from ordinary task context.
+The privacy-preserving session adapter may record qualified invocation and reference-path signals, but it deliberately does not copy tool arguments or result content. Use a disposable evaluation harness trace for successful-read assertions. The dispatch corpus covers the focused commands, named playbook composition, bare entry, advice, resumption, agent scope, unknown commands, qualified prefixes and explicit-only utility boundaries; the corpus check verifies coverage against the current command inventory. The updater and private-serving methods are bundled; they cannot be inferred from ordinary task context.
 
 ## Outcome lane
 

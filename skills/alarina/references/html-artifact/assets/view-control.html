@@ -1,17 +1,17 @@
-<!-- Tailwind asset: start from base.html; restyle utilities, preserve data hooks.
+<!-- Basecoat asset: start from base.html; preserve data hooks.
      Selection/detail, comparison or finite guided sequence. Replace illustrative
      content/IDs; style freely. One button per panel; previous/next/reset optional.
      All content remains readable without JS and in print. No storage, URL writes,
      exports or approval semantics. Repeated inclusion is safe. -->
-<section class="space-y-3" data-artifact-view data-view-position-template="{current} of {total}: {label}" aria-label="Example walkthrough">
-  <div class="flex flex-wrap items-center gap-2" data-view-controls hidden>
-    <button class="min-h-11 cursor-pointer rounded-md border px-3 py-2 disabled:cursor-default disabled:opacity-50 aria-pressed:font-semibold aria-pressed:underline underline-offset-4" type="button" data-view-target="view-before">Before</button>
-    <button class="min-h-11 cursor-pointer rounded-md border px-3 py-2 disabled:cursor-default disabled:opacity-50 aria-pressed:font-semibold aria-pressed:underline underline-offset-4" type="button" data-view-target="view-after">After</button>
-    <button class="inline-flex min-h-11 cursor-pointer items-center gap-2 rounded-md border px-3 py-2 disabled:cursor-default disabled:opacity-50" type="button" data-view-previous><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m15 18-6-6 6-6"/></svg>Previous</button>
-    <button class="inline-flex min-h-11 cursor-pointer items-center gap-2 rounded-md border px-3 py-2 disabled:cursor-default disabled:opacity-50" type="button" data-view-next>Next<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m9 18 6-6-6-6"/></svg></button>
-    <button class="inline-flex min-h-11 cursor-pointer items-center gap-2 rounded-md border px-3 py-2 disabled:cursor-default disabled:opacity-50" type="button" data-view-reset><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 11a9 9 0 1 1 2.6 6.4M3 17v-6h6"/></svg>Reset</button>
+<section data-artifact-view data-view-position-template="{current} of {total}: {label}" aria-label="Example walkthrough">
+  <div data-view-controls hidden>
+    <button class="btn" data-variant="outline" type="button" data-view-target="view-before">Before</button>
+    <button class="btn" data-variant="outline" type="button" data-view-target="view-after">After</button>
+    <button class="btn" data-variant="outline" type="button" data-view-previous><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m15 18-6-6 6-6"/></svg>Previous</button>
+    <button class="btn" data-variant="outline" type="button" data-view-next>Next<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m9 18 6-6-6-6"/></svg></button>
+    <button class="btn" data-variant="outline" type="button" data-view-reset><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 11a9 9 0 1 1 2.6 6.4M3 17v-6h6"/></svg>Reset</button>
   </div>
-  <p class="text-sm tabular-nums" data-view-status role="status" aria-atomic="true"></p>
+  <p data-view-status role="status" aria-atomic="true"></p>
   <section id="view-before" data-view-panel tabindex="-1"><h3>Before</h3><p>Replace with the supplied baseline.</p></section>
   <section id="view-after" data-view-panel tabindex="-1"><h3>After</h3><p>Replace with the supplied comparison.</p></section>
 </section>

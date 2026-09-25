@@ -5,18 +5,18 @@ subject: <stable initiative subject>
 title: <initiative title>
 updated_at: <offset-aware timestamp>
 revision: 1
-status: Draft
+status: Draft # managed initiative only; omit otherwise
 ---
 
 # <Initiative>
 
-This template specifies content for the one living HTML plan. It is not a required Markdown output or companion. Keep the plan's identity, locator and revision in that HTML and update it through completion.
+This template suggests content for the one living HTML plan. It is not a required Markdown output or companion. Keep the plan's identity, locator and revision in that HTML and update it through completion. Include the formal status, gate, Decision Frontier and delivery summary only when [managed initiatives](../managed-initiative.md) applies; outside that lifecycle, describe actual progress and open decisions in ordinary terms. Omit fields and sections that do not apply.
 
 ## Resume
 
 **Outcome:** <what must become true>
 
-**Status:** <Draft | Planned | In Progress | Backlog | Closed>
+**Status (managed only):** <Draft | Planned | In Progress | Backlog | Closed>
 
 **Workspace:** <absolute path when execution is bound to a working directory>
 
@@ -26,11 +26,11 @@ This template specifies content for the one living HTML plan. It is not a requir
 
 **Workspace disposition:** <reconciled | reconciled-retained | reconciled-and-removed; closure only>
 
-**Current gate:** <next material progression judgment/condition>
+**Current gate (managed only):** <next material progression judgment/condition>
 
-**Decision frontier:** <EMPTY | OPEN | BLOCKED, with one-line reason>
+**Decision frontier (managed only):** <EMPTY | OPEN | BLOCKED, with one-line reason>
 
-**Delivery:** <Not required | Not started | Active | Blocked | Complete | Stale>
+**Delivery (managed only):** <Not required | Not started | Active | Blocked | Complete | Stale>
 
 **Blocker / weakest material gap:** <current limiting claim/gap or none>
 
@@ -59,7 +59,7 @@ This template specifies content for the one living HTML plan. It is not a requir
 
 ## Premortem
 
-<current plan/revision examined; credible material failure scenarios, evidence or counterevidence, dispositions and resulting plan changes; residual risk authority and any necessary owner, warning/re-entry trigger, and recovery condition; readiness conclusion or a missing/stale analysis blocker. Keep this with existing risks when that is their natural home; do not duplicate a register.>
+<include when the premortem condition in atona.md applies: current plan/revision examined; credible material failure scenarios, evidence or counterevidence, dispositions and resulting plan changes; residual risk authority and any necessary owner, warning/re-entry trigger, and recovery condition; readiness conclusion or a missing/stale analysis blocker. Keep this with existing risks when that is their natural home; do not duplicate a register.>
 
 ## Delivery and proof
 

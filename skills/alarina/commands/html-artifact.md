@@ -14,7 +14,7 @@ For a maintained document, keep its identity and useful anchors, reconcile summa
 
 ## Build only useful mechanics
 
-Start from [base.html](../references/html-artifact/assets/base.html), adapting its layout and illustrative content. Use Tailwind for styling and state variants, native HTML for built-in behavior, the existing jQuery runtime for needed DOM work, and plain JavaScript for calculations. Reuse project branding or the supplied QP mark. For host, offline or additional dependency choices, read [dependency policy](../references/html-artifact/dependency-policy.md).
+Use [base.html](../references/html-artifact/assets/base.html) as a starting point when its shell helps; adapt its layout and illustrative content. Native HTML, CSS and plain JavaScript can suffice for a simple document. The base and shipped controls use Basecoat's standalone CSS for components and jQuery for their existing behavior. Reuse project branding or the supplied QP mark when applicable. For runtime, offline, host or additional dependency choices, read [dependency policy](../references/html-artifact/dependency-policy.md). A different construction path must preserve the applicable meaning, accessibility, privacy, fallback and delivery contract.
 
 Reuse a shipped control when its contract fits; each asset's comment defines its inputs and fallback:
 
@@ -48,4 +48,4 @@ Check source identity, critical coverage, provenance, navigation and fallback. R
 
 Write to the requested destination, otherwise `.qp/artifacts/<stable-subject>/index.html`. Return the real locator and decisive verification, noting unresolved limits. Disclose whether delivery is one HTML file or a companion bundle, runtime code is embedded/bundled/remote, data is static/live and evidence is embedded/linked. Keep dependency details in a quiet technical disclosure.
 
-Open only when requested or needed for render proof; reuse an existing preview. Finish when the reader can understand, inspect and use the requested result.
+Open only when requested or needed for render proof; reuse an existing preview. Finish when the reader can understand, inspect and use the requested result with accepting proof for its actual delivery and interactions. A disclosed limit does not complete a missing required check or required content; resolve that gap or report the artifact as incomplete.

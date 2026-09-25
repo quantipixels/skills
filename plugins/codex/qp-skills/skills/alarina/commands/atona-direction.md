@@ -34,7 +34,7 @@ Reject duplicates, contradictions of hard constraints and candidates whose plaus
 
 Rank survivors only when the criteria make them genuinely comparable. Otherwise group them by trade-off or decision type. Explain why each survived, what evidence it still needs, and the material decision it would create. Novelty is not a benefit by itself.
 
-Ask Alárinà for its bounded premise check as needed.
+Use the [premise check](../references/coordination.md#premise-check) when a consequential candidate rests on a claim or assumption that needs challenge before selection.
 
 ## Return decision-ready possibilities
 

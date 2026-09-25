@@ -5,7 +5,7 @@
   "support_state": "verified",
   "source": {
     "inputs": 136,
-    "sha256": "5ad403f58b560bcf5d13c8c1347d400de8608a5af0137735bd08991a4fca49c1"
+    "sha256": "a41933fb9c5770c15997584a4d2c0ee9c2941192d4239839de420c52072db44d"
   },
   "route_digest": "13b1e509508c4929b790a4dbb5ab832007480db746e3beaf46a6eeddd0b26f43",
   "qualified_invocation": "/qp-skills:alarina",
@@ -221,10 +221,10 @@
     },
     {
       "path": "skills/alarina/commands/atona-direction.md",
-      "sha256": "fec8aaa7bdd1e0903277746bf0f5aa51f47982d6dd678a79f1010b9563d82c55",
+      "sha256": "83c0d06dc4bc469b2cfae98212b70c6803dc7e53c2132751ffb4ca948ea0a41b",
       "mode": "0o644",
       "source": "skills/alarina/commands/atona-direction.md",
-      "source_sha256": "fec8aaa7bdd1e0903277746bf0f5aa51f47982d6dd678a79f1010b9563d82c55"
+      "source_sha256": "83c0d06dc4bc469b2cfae98212b70c6803dc7e53c2132751ffb4ca948ea0a41b"
     },
     {
       "path": "skills/alarina/commands/atona.md",
@@ -256,10 +256,10 @@
     },
     {
       "path": "skills/alarina/commands/html-artifact.md",
-      "sha256": "76156bcf09a0a759e7ad66936c293ffad0dd5a97d9627863dc113c77b0b2de75",
+      "sha256": "54ba86118b285c83e3571f00891cad474d2f03a42a8f8bb83e86943ef10ced5b",
       "mode": "0o644",
       "source": "skills/alarina/commands/html-artifact.md",
-      "source_sha256": "76156bcf09a0a759e7ad66936c293ffad0dd5a97d9627863dc113c77b0b2de75"
+      "source_sha256": "54ba86118b285c83e3571f00891cad474d2f03a42a8f8bb83e86943ef10ced5b"
     },
     {
       "path": "skills/alarina/commands/iwadi.md",
@@ -277,10 +277,10 @@
     },
     {
       "path": "skills/alarina/commands/oro-sigidi.md",
-      "sha256": "1cf4a9c1e9ee03d49ce61d250f1f5a2cbdbb4e1a860efeeb4664abc64420a124",
+      "sha256": "da9c32838dba9cf4e321743723ebed83d67d2149db9227fdfed842e8c0365dc6",
       "mode": "0o644",
       "source": "skills/alarina/commands/oro-sigidi.md",
-      "source_sha256": "1cf4a9c1e9ee03d49ce61d250f1f5a2cbdbb4e1a860efeeb4664abc64420a124"
+      "source_sha256": "da9c32838dba9cf4e321743723ebed83d67d2149db9227fdfed842e8c0365dc6"
     },
     {
       "path": "skills/alarina/commands/pese.md",
@@ -641,10 +641,10 @@
     },
     {
       "path": "skills/alarina/references/atona/premortem.md",
-      "sha256": "cc933319ab9c6203a9c7b80dc9113e855ad612198591a0337c75020c33c81513",
+      "sha256": "4c7d573e1ffbaa250392eb19459581d9aea5ff3d9c200a11bf4fe636ff12abf3",
       "mode": "0o644",
       "source": "skills/alarina/references/atona/premortem.md",
-      "source_sha256": "cc933319ab9c6203a9c7b80dc9113e855ad612198591a0337c75020c33c81513"
+      "source_sha256": "4c7d573e1ffbaa250392eb19459581d9aea5ff3d9c200a11bf4fe636ff12abf3"
     },
     {
       "path": "skills/alarina/references/atona/progressive-shaping.md",
@@ -669,10 +669,10 @@
     },
     {
       "path": "skills/alarina/references/atona/templates/plan-record.md",
-      "sha256": "47b1002c7c4e54a4c6d5e72f1cf62572c84e7d973c298c0cceaeddc27960f5cf",
+      "sha256": "7929418b53cd299413affc4be87318be4d1a8da9a58726a68cc868ca1e7fa002",
       "mode": "0o644",
       "source": "skills/alarina/references/atona/templates/plan-record.md",
-      "source_sha256": "47b1002c7c4e54a4c6d5e72f1cf62572c84e7d973c298c0cceaeddc27960f5cf"
+      "source_sha256": "7929418b53cd299413affc4be87318be4d1a8da9a58726a68cc868ca1e7fa002"
     },
     {
       "path": "skills/alarina/references/atunwo/boundary-failures.md",
@@ -767,10 +767,10 @@
     },
     {
       "path": "skills/alarina/references/html-artifact/assets/base.html",
-      "sha256": "715a16e04345144d47821bb702e471710a7f96129ece9937c3186e0a3c08d960",
+      "sha256": "dd7078b5451bee39e5d0ef7a8b19e6847aefdd8d4c8bd0b364039ae57c8bca98",
       "mode": "0o644",
       "source": "skills/alarina/references/html-artifact/assets/base.html",
-      "source_sha256": "715a16e04345144d47821bb702e471710a7f96129ece9937c3186e0a3c08d960"
+      "source_sha256": "dd7078b5451bee39e5d0ef7a8b19e6847aefdd8d4c8bd0b364039ae57c8bca98"
     },
     {
       "path": "skills/alarina/references/html-artifact/assets/brand.svg",
@@ -781,17 +781,17 @@
     },
     {
       "path": "skills/alarina/references/html-artifact/assets/carousel-control.html",
-      "sha256": "7fe66c2c03d125597a6ec79ca516972285e1bf728045545ccf07c4d5976ad20d",
+      "sha256": "a1d20d6825da2576de33886f37d8f15f39d09622fbed114ce7278d96fe6e4b36",
       "mode": "0o644",
       "source": "skills/alarina/references/html-artifact/assets/carousel-control.html",
-      "source_sha256": "7fe66c2c03d125597a6ec79ca516972285e1bf728045545ccf07c4d5976ad20d"
+      "source_sha256": "a1d20d6825da2576de33886f37d8f15f39d09622fbed114ce7278d96fe6e4b36"
     },
     {
       "path": "skills/alarina/references/html-artifact/assets/collection-filter-control.html",
-      "sha256": "4f68bbcdf69305bd8f4c188dd1a1e68e7648d8d71d94363db17f82d4102e9c2c",
+      "sha256": "244899c53a575627d65ff90a08a13f1bbbfadf63ab677081ee3c7d106a212bba",
       "mode": "0o644",
       "source": "skills/alarina/references/html-artifact/assets/collection-filter-control.html",
-      "source_sha256": "4f68bbcdf69305bd8f4c188dd1a1e68e7648d8d71d94363db17f82d4102e9c2c"
+      "source_sha256": "244899c53a575627d65ff90a08a13f1bbbfadf63ab677081ee3c7d106a212bba"
     },
     {
       "path": "skills/alarina/references/html-artifact/assets/favicon.png",
@@ -802,10 +802,10 @@
     },
     {
       "path": "skills/alarina/references/html-artifact/assets/renderer-control.html",
-      "sha256": "74d0bc57b2d91fcb1dde8595d11fb5c9fa8878b526f31678506575b7cd259890",
+      "sha256": "cf01ec7c2b5261daa9c677cfabe25a2e50988fdc9b2cc756e541a459f6143e79",
       "mode": "0o644",
       "source": "skills/alarina/references/html-artifact/assets/renderer-control.html",
-      "source_sha256": "74d0bc57b2d91fcb1dde8595d11fb5c9fa8878b526f31678506575b7cd259890"
+      "source_sha256": "cf01ec7c2b5261daa9c677cfabe25a2e50988fdc9b2cc756e541a459f6143e79"
     },
     {
       "path": "skills/alarina/references/html-artifact/assets/report-control.html",
@@ -816,10 +816,10 @@
     },
     {
       "path": "skills/alarina/references/html-artifact/assets/view-control.html",
-      "sha256": "58db6499a685cd78b079b7b80f8246d22db04a6d6ea913ea27a97f690d97d8b3",
+      "sha256": "5402a817f1f8e60a3a85cacd97f3f68ed7d6b0715e23a24cbe74e1f5b52f508d",
       "mode": "0o644",
       "source": "skills/alarina/references/html-artifact/assets/view-control.html",
-      "source_sha256": "58db6499a685cd78b079b7b80f8246d22db04a6d6ea913ea27a97f690d97d8b3"
+      "source_sha256": "5402a817f1f8e60a3a85cacd97f3f68ed7d6b0715e23a24cbe74e1f5b52f508d"
     },
     {
       "path": "skills/alarina/references/html-artifact/code-change-review.md",
@@ -830,10 +830,10 @@
     },
     {
       "path": "skills/alarina/references/html-artifact/dependency-policy.md",
-      "sha256": "9a6743659f0552994c715bb5313c2aca283f6d1eea4dd4c619786c50fa46a078",
+      "sha256": "201442a3b05bfd2bb29466994b5af00fe4a67eadf735678fe8ebebbe50a38634",
       "mode": "0o644",
       "source": "skills/alarina/references/html-artifact/dependency-policy.md",
-      "source_sha256": "9a6743659f0552994c715bb5313c2aca283f6d1eea4dd4c619786c50fa46a078"
+      "source_sha256": "201442a3b05bfd2bb29466994b5af00fe4a67eadf735678fe8ebebbe50a38634"
     },
     {
       "path": "skills/alarina/references/html-artifact/living-and-live.md",
@@ -858,10 +858,10 @@
     },
     {
       "path": "skills/alarina/references/oro/editing-agent-text.md",
-      "sha256": "ac7a8e233dc10af78f69982f7c42b70ecd8959da04d1fe0067ac76d655346120",
+      "sha256": "3935b0a9bd3e93f65bba714910fa35f2a7d4ff03765fdea918ec6080631e52cd",
       "mode": "0o644",
       "source": "skills/alarina/references/oro/editing-agent-text.md",
-      "source_sha256": "ac7a8e233dc10af78f69982f7c42b70ecd8959da04d1fe0067ac76d655346120"
+      "source_sha256": "3935b0a9bd3e93f65bba714910fa35f2a7d4ff03765fdea918ec6080631e52cd"
     },
     {
       "path": "skills/alarina/references/oro/editing-human-prose.md",

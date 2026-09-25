@@ -1,6 +1,6 @@
 # Plan premortem
 
-Run before declaring an initiative ready for execution, including before the managed lifecycle enters `Planned`. Reuse a completed premortem only while its plan, assumptions, dependencies, and evidence remain applicable. This is a challenge to the proposed plan, not a postmortem of events that happened.
+Run when [initiative progression](../../commands/atona.md) calls for a premortem: consequential, uncertain, difficult-to-reverse or materially coordinated work, and always before the managed lifecycle enters `Planned`. Reuse a completed premortem only while its plan, assumptions, dependencies, and evidence remain applicable. This is a challenge to the proposed plan, not a postmortem of events that happened.
 
 ## Assume the outcome failed
 
