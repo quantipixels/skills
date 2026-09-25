@@ -4,7 +4,7 @@ One engineering entrypoint for planning, research, implementation, review, writi
 
 Use **Alárinà (`alarina`)** for software-project work. Its engineering methods, playbooks, references and tools live inside one canonical skill. Codex and Claude plugins adapt that same source to their native invocation and discovery rules.
 
-[Public docs](https://quantipixels.com/skills) · [Install](#install) · [Use the skills](#use-the-skills) · [Update](#update) · [Uninstall](#uninstall)
+[Public docs](https://quantipixels.com/skills) · [Install](#install) · [Migrate from old skills](#migrate-from-old-skills) · [Use the skills](#use-the-skills) · [Update](#update) · [Uninstall](#uninstall)
 
 For contributors, [ARCHITECTURE.md](ARCHITECTURE.md) maps the canonical skill, generated provider packages, and documentation owners.
 
@@ -57,6 +57,10 @@ npx skills add quantipixels/skills --agent codex --skill alarina
 
 Skills CLI installs skills only. Use the Claude Code plugin if you also want Alárinà as a native agent.
 
+## Migrate from old skills
+
+If you installed the earlier standalone QP skills, follow the [migration guide](skills/alarina/references/qp-update/migration.md). It covers both plugin and Skills CLI replacements, scoped cleanup of retired copies, updating old command references, and optional Codex/Claude agent preferences or shell launch shortcuts. Install and verify Alárinà before removing the old entries.
+
 ## Use the skills
 
 Describe the result naturally, or name a focused command after Alárinà:
@@ -91,7 +95,7 @@ Restart the host if the update is not active, or use its supported reload in the
 
 For guided updates, explicitly invoke `alarina qp-update` using your host's displayed prefix. It identifies the existing manager and scope, reads the current source procedure, and distinguishes installed files from active-session instructions. Avoid an unqualified `npx skills update` if you only intend to update QP, because it may include unrelated skills.
 
-Earlier releases exposed the methods and utilities as standalone skills. Those entrypoints are retired. Replace old invocations with an Alárinà request. For old selective installations, install Alárinà first, then remove only the retired QP skill copies through the same manager and scope; preserve local modifications and unrelated skills. Restart the host after migration.
+Earlier releases exposed the methods and utilities as standalone skills. Those entrypoints are retired. Use the [migration guide](skills/alarina/references/qp-update/migration.md) to replace their invocations and remove only confirmed QP copies after verifying Alárinà. Restart the host after migration.
 
 An old `qp-update` installation may stop because its procedure path moved. Use the manager commands above or load the documented replacement at `skills/alarina/commands/qp-update.md` from the trusted target revision; do not treat a missing file as permission to overwrite the installation.
 
