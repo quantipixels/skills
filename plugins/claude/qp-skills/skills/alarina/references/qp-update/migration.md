@@ -15,7 +15,7 @@ codex plugin list
 claude plugin list
 ```
 
-The retired standalone QP IDs are `adanwo`, `akowe`, `alaga`, `amose`, `architect`, `arojinle`, `atona`, `atunwo`, `ayewo-igba-ise`, `fihanmi`, `html-artifact`, `iwadi`, `oro`, `pese`, `qp-update`, `seda-pr`, `system-cleanup` and `yoruba-glossary`. A prior standalone `alarina` may also exist. Do not remove a same-named skill from another source, a modified local copy or an unrelated plugin merely because its name appears here. Review the manager's inventory and any local changes first.
+The retired standalone QP IDs are `adanwo`, `akowe`, `alaga`, `amose`, `architect`, `arojinle`, `atona`, `atunwo`, `ayewo-igba-ise`, `codex-orchestra`, `fihanmi`, `html-artifact`, `iwadi`, `oro`, `pese`, `qp-update`, `seda-pr`, `system-cleanup` and `yoruba-glossary`. A prior standalone `alarina` may also exist. Do not remove a same-named skill from another source, a modified local copy or an unrelated plugin merely because its name appears here. Review the manager's inventory and any local changes first.
 
 ## 2. Install and verify the replacement
 
@@ -30,6 +30,8 @@ claude plugin install qp-skills@qp-skills
 ```
 
 Run only the pair for your host. If the QP plugin is already installed, follow its manager's update operation in [the lifecycle guide](lifecycle.md) instead of creating a second registration. Verify the manager lists `qp-skills@qp-skills`, then start a new session and try `$qp-skills:alarina` in Codex or `/qp-skills:alarina` in Claude Code. The Claude package also supplies the `qp-skills:alarina` agent. A successful install is not proof that the previous conversation has reloaded the new instructions.
+
+Older tagged packages did not declare a plugin version; a manager may describe one as `local` or `unknown`. Identify it by its registered marketplace, source and installed inventory, not a presumed `4.2.0` version string. If an update fails or is interrupted, inspect the manager's current registration and installed path before retrying its supported update command. An old Claude cache directory may remain after a successful update or uninstall; its presence does not mean the old plugin is enabled. Do not delete manager cache files by hand to decide which version is active.
 
 If you want **a skill without a plugin**, use [Skills CLI](https://github.com/vercel-labs/skills) for the same host and scope as the old installation. For example:
 
@@ -51,6 +53,32 @@ npx skills remove alaga atona iwadi --global
 These are examples for copies you actually own and found; use your observed names and scope, and run only one scope's command for each set of copies. If another host still needs an old entry, use `--agent` to narrow the removal and verify what its shared canonical skill directory still exposes. Do not use `--all` or `--skill '*'`. If the old files came from a manual copy or symlink, identify the target and owner before removing that exact entry. Preserve modified or ambiguous files and report them as remaining migration work. Remove a prior standalone `alarina` too when the verified plugin now supplies the one you intend to use.
 
 Replace old explicit calls such as `$alaga`, `/atona` or `$seda-pr` with the provider-qualified Alárinà entry followed by the command: `$qp-skills:alarina alaga-deliver`, `/qp-skills:alarina atona`, or `$qp-skills:alarina seda-pr`. For a Skills CLI installation, use `$alarina` or `/alarina` instead of the plugin-qualified prefix. Check your `AGENTS.md`, `CLAUDE.md`, shell functions and saved prompts for old names or paths; preserve other project instructions.
+
+Use the old request's intended result to select its replacement. One old skill can have several new commands:
+
+| Old skill | Alárinà command or entry |
+| --- | --- |
+| `adanwo` | `adanwo` |
+| `akowe` | `akowe-audit` or `akowe-sync` |
+| `alaga` | `alaga-intake`, `alaga-diagnose`, `alaga-recover`, `alaga-deliver`, `alaga-compare` or `alaga-verify-project` |
+| `amose` | `amose`, `amose-adrs`, `amose-learnings` or `amose-nongoals` |
+| `architect` | `architect-survey`, `architect-design`, `architect-review` or `architect-document` |
+| `arojinle` | `arojinle` |
+| `atona` | `atona-direction`, `seda-spec`, `seda-tickets` or `atona` |
+| `atunwo` | `atunwo` |
+| `ayewo-igba-ise` | `ayewo-igba-ise` |
+| `codex-orchestra` | Alárinà's coordination method; describe the delegation result and host constraints in the request |
+| `fihanmi` | `fihanmi` |
+| `html-artifact` | `html-artifact` |
+| `iwadi` | `iwadi` for a defined research question; `sawari` for exploration or a repository dive |
+| `oro` | `oro-sigidi` for agent-facing text; `oro-eniyan` for human-facing prose |
+| `pese` | `pese`, only on direct user invocation |
+| `qp-update` | `qp-update`, only on direct user invocation |
+| `seda-pr` | `seda-pr-description`, `seda-pr` or `wo-pr` according to the requested PR result |
+| `system-cleanup` | `system-cleanup` |
+| `yoruba-glossary` | `yoruba-language`, `yoruba-teach` or `yoruba-glossary` |
+
+A previous standalone `alarina` becomes the same Alárinà entrypoint with the provider's new invocation prefix. The installed [command menu](../../SKILL.md#commands) gives the current purpose and boundary for each command.
 
 ## 4. Pin your preferred entry
 

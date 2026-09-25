@@ -13,3 +13,5 @@ The accepting post-update inventory contains:
 - unchanged unrelated user-managed skills and plugins.
 
 Also verify same-version refresh behavior, uninstall ownership, interrupted/failed transition recovery, package digests and activation separately from installed files. The verifier must never use the active user home for these cases.
+
+[Published-tag checks](2026-09-25-tagged-upgrade.md) exercise the actual `v4.2.0` source in disposable Codex, Claude and Skills CLI installations. The [constructed local fixture](2026-09-25-local-native.md) covers additional package-fidelity and unrelated-plugin checks. Read the limits in each record before treating an installed cache as active-session proof.
