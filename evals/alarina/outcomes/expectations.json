@@ -1,0 +1,6 @@
+{
+  "O01": {"commands": ["oro-eniyan"], "acceptance": ["explains infinite-retry trigger and job-level budget", "states unchanged success path", "includes actual tests", "makes no performance or publication claim"]},
+  "O02": {"commands": ["seda-spec"], "acceptance": ["covers duplicate, existing, invalid and empty rows", "preserves atomic import", "includes row-number errors and acceptance examples", "no invented architecture, tickets or implementation"]},
+  "O03": {"commands": ["seda-tickets"], "acceptance": ["bounded packages cover middleware, queue metadata and structured logs", "dependencies are explicit", "compatibility and accepting tests remain visible", "does not publish tickets or implement"]},
+  "O04": {"commands": ["alaga-deliver"], "acceptance": ["actual isolated source and tests exist", "0 maps to base and positive attempts double", "cap and negative-attempt cases pass", "retains base and cap parameters", "no project mutation, dependency installation or publication"]}
+}

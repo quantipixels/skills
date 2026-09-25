@@ -1,0 +1,304 @@
+{
+  "T01": {
+    "selected": true,
+    "family": "investigate",
+    "stop": "diagnosis"
+  },
+  "T02": {
+    "selected": true,
+    "family": "investigate",
+    "stop": "recommendation"
+  },
+  "T03": {
+    "selected": true,
+    "family": "plan",
+    "stop": "direction"
+  },
+  "T04": {
+    "selected": true,
+    "family": "plan",
+    "stop": "plan"
+  },
+  "T05": {
+    "selected": true,
+    "family": "build",
+    "stop": "verification"
+  },
+  "T06": {
+    "selected": true,
+    "family": "build",
+    "stop": "verification"
+  },
+  "T07": {
+    "selected": true,
+    "family": "review",
+    "stop": "decision"
+  },
+  "T08": {
+    "selected": true,
+    "family": "review",
+    "stop": "status"
+  },
+  "T09": {
+    "selected": true,
+    "family": "document",
+    "stop": "sync"
+  },
+  "T10": {
+    "selected": true,
+    "family": "document",
+    "stop": "explanation"
+  },
+  "T11": {
+    "selected": true,
+    "family": "ship",
+    "stop": "publication"
+  },
+  "T12": {
+    "selected": true,
+    "family": "ship",
+    "stop": "acceptance"
+  },
+  "T13": {
+    "selected": true,
+    "family": "investigate",
+    "stop": "recovery"
+  },
+  "T14": {
+    "selected": true,
+    "family": "build",
+    "stop": "verification"
+  },
+  "T15": {
+    "selected": true,
+    "family": "build",
+    "stop": "publication"
+  },
+  "N01": {
+    "selected": false,
+    "class": "casual-fact"
+  },
+  "N02": {
+    "selected": true,
+    "family": "utility",
+    "stop": "lesson"
+  },
+  "N03": {
+    "selected": true,
+    "family": "utility",
+    "stop": "cleanup"
+  },
+  "N04": {
+    "selected": false,
+    "class": "serving-utility"
+  },
+  "N05": {
+    "selected": false,
+    "class": "design-only"
+  },
+  "N06": {
+    "selected": true,
+    "family": "document",
+    "stop": "usable-text"
+  },
+  "E01": {
+    "selected": true,
+    "condition": "explicit",
+    "family": "route"
+  },
+  "E02": {
+    "selected": true,
+    "condition": "explicit",
+    "family": "route"
+  },
+  "S01": {
+    "selected": true,
+    "family": "plan",
+    "condition": "semantic-dispatch"
+  },
+  "S02": {
+    "selected": true,
+    "family": "review",
+    "condition": "semantic-dispatch"
+  },
+  "S03": {
+    "selected": true,
+    "family": "document",
+    "condition": "semantic-dispatch"
+  },
+  "S04": {
+    "selected": true,
+    "family": "investigate",
+    "condition": "semantic-dispatch"
+  },
+  "S05": {
+    "selected": true,
+    "family": "investigate",
+    "condition": "semantic-dispatch"
+  },
+  "S06": {
+    "selected": true,
+    "family": "build",
+    "condition": "semantic-dispatch"
+  },
+  "S07": {
+    "selected": true,
+    "family": "build",
+    "condition": "semantic-dispatch"
+  },
+  "S08": {
+    "selected": true,
+    "family": "investigate",
+    "condition": "semantic-dispatch"
+  },
+  "S09": {
+    "selected": true,
+    "family": "build",
+    "condition": "semantic-dispatch"
+  },
+  "S10": {
+    "selected": true,
+    "family": "plan",
+    "condition": "semantic-dispatch"
+  },
+  "S11": {
+    "selected": true,
+    "family": "document",
+    "condition": "semantic-dispatch"
+  },
+  "S12": {
+    "selected": true,
+    "family": "document",
+    "condition": "semantic-dispatch"
+  },
+  "S13": {
+    "selected": true,
+    "family": "document",
+    "condition": "semantic-dispatch"
+  },
+  "S14": {
+    "selected": true,
+    "family": "investigate",
+    "condition": "semantic-dispatch"
+  },
+  "S15": {
+    "selected": true,
+    "family": "plan",
+    "condition": "semantic-dispatch"
+  },
+  "S16": {
+    "selected": true,
+    "family": "review",
+    "condition": "semantic-dispatch"
+  },
+  "S17": {
+    "selected": true,
+    "family": "document",
+    "condition": "semantic-dispatch"
+  },
+  "S18": {
+    "selected": true,
+    "family": "plan",
+    "condition": "semantic-dispatch"
+  },
+  "S19": {
+    "selected": true,
+    "family": "plan",
+    "condition": "semantic-dispatch"
+  },
+  "S20": {
+    "selected": true,
+    "family": "plan",
+    "condition": "semantic-dispatch"
+  },
+  "S21": {
+    "selected": true,
+    "family": "plan",
+    "condition": "semantic-dispatch"
+  },
+  "S22": {
+    "selected": true,
+    "family": "plan",
+    "condition": "semantic-dispatch"
+  },
+  "S23": {
+    "selected": true,
+    "family": "review",
+    "condition": "semantic-dispatch"
+  },
+  "S24": {
+    "selected": true,
+    "family": "investigate",
+    "condition": "semantic-dispatch"
+  },
+  "S25": {
+    "selected": true,
+    "family": "investigate",
+    "condition": "semantic-dispatch"
+  },
+  "S26": {
+    "selected": true,
+    "family": "document",
+    "condition": "semantic-dispatch"
+  },
+  "S27": {
+    "selected": true,
+    "family": "document",
+    "condition": "semantic-dispatch"
+  },
+  "S28": {
+    "selected": true,
+    "family": "document",
+    "condition": "semantic-dispatch"
+  },
+  "S29": {
+    "selected": true,
+    "family": "ship",
+    "condition": "semantic-dispatch"
+  },
+  "S30": {
+    "selected": true,
+    "family": "ship",
+    "condition": "semantic-dispatch"
+  },
+  "S31": {
+    "selected": true,
+    "family": "document",
+    "condition": "semantic-dispatch"
+  },
+  "S32": {
+    "selected": true,
+    "family": "document",
+    "condition": "semantic-dispatch"
+  },
+  "S33": {
+    "selected": true,
+    "family": "utility",
+    "condition": "explicit-command"
+  },
+  "S34": {
+    "selected": true,
+    "family": "utility",
+    "condition": "explicit-command"
+  },
+  "S35": {
+    "selected": true,
+    "family": "utility",
+    "condition": "semantic-dispatch"
+  },
+  "S36": {
+    "selected": true,
+    "family": "utility",
+    "condition": "semantic-dispatch"
+  },
+  "S37": {
+    "selected": true,
+    "family": "utility",
+    "condition": "semantic-dispatch"
+  },
+  "S38": {
+    "selected": true,
+    "family": "utility",
+    "condition": "semantic-dispatch"
+  }
+}

@@ -1,0 +1,918 @@
+version: 2
+entry:
+  name: alarina
+  default_family: route
+families:
+  route:
+    alias: route
+    description: Choose or explain the smallest useful engineering path.
+    examples:
+    - Which workflow should handle this?
+    - Help me work out the next engineering step.
+  investigate:
+    alias: investigate
+    description: Establish an explanation, diagnosis, comparison, recovery state, or retrospective.
+    examples:
+    - Find why this endpoint became slow.
+    - Explain what caused this failure without fixing it.
+  plan:
+    alias: plan
+    description: Resolve an unsettled outcome, domain, architecture, migration, or delivery sequence.
+    examples:
+    - Plan the tenant-key migration.
+    - Work out the architecture before implementation.
+  build:
+    alias: build
+    description: Implement and verify an accepted feature, fix, refactor, test, or migration.
+    examples:
+    - Fix the intermittent billing test.
+    - Implement the accepted API change and verify it.
+  review:
+    alias: review
+    description: Judge code, structure, evidence, or readiness without exceeding the requested stop.
+    examples:
+    - Review this branch for regressions.
+    - Tell me whether this PR is ready without merging it.
+  document:
+    alias: document
+    description: Explain technical material or reconcile durable documentation with current truth.
+    examples:
+    - Update the architecture overview for this change.
+    - Explain this mechanism so another engineer can act on it.
+  ship:
+    alias: ship
+    description: Prepare or carry an accepted candidate through an authorized PR, release, or rollout stop.
+    examples:
+    - Prepare and publish the PR.
+    - Release this package and verify the published version.
+  utility:
+    alias: utility
+    description: Use a requested operational or language utility within its invocation boundary.
+    examples:
+    - Reclaim safe build-cache space on this Mac.
+    - Explain these Yoruba tone marks.
+commands:
+- id: adanwo
+  family: plan
+  description: Build disposable prototypes to compare uncertain interactions or technical choices.
+  reference: commands/adanwo.md
+  implicit: true
+  former_skill: adanwo
+  former_mode: prototype
+- id: akowe-audit
+  family: review
+  description: Audit documentation drift against implementation and accepted decisions without edits.
+  reference: commands/akowe-audit.md
+  implicit: true
+  former_skill: akowe
+  former_mode: audit
+- id: akowe-sync
+  family: document
+  description: Reconcile and verify an authorized documentation set.
+  reference: commands/akowe-sync.md
+  implicit: true
+  former_skill: akowe
+  former_mode: sync
+- id: alaga-intake
+  family: investigate
+  description: Assess a reported issue and establish actionable scope and evidence.
+  reference: commands/alaga-intake.md
+  implicit: true
+  former_skill: alaga
+  former_mode: issue-intake
+- id: alaga-diagnose
+  family: investigate
+  description: Establish a supported failure cause without silently implementing a fix.
+  reference: commands/alaga-diagnose.md
+  implicit: true
+  former_skill: alaga
+  former_mode: diagnosis
+- id: alaga-recover
+  family: build
+  description: Mitigate an active incident and verify recovery within existing authority.
+  reference: commands/alaga-recover.md
+  implicit: true
+  former_skill: alaga
+  former_mode: incident-recovery
+- id: alaga-deliver
+  family: build
+  description: Implement an accepted engineering change and verify its behavior.
+  reference: commands/alaga-deliver.md
+  implicit: true
+  former_skill: alaga
+  former_mode: delivery
+- id: alaga-compare
+  family: investigate
+  description: Measure candidate versus baseline and return a justified keep-or-revert decision.
+  reference: commands/alaga-compare.md
+  implicit: true
+  former_skill: alaga
+  former_mode: measured-comparison
+- id: alaga-verify-project
+  family: build
+  description: Build or maintain a reusable way to verify the assembled project.
+  reference: commands/alaga-verify-project.md
+  implicit: true
+  former_skill: alaga
+  former_mode: project-verification
+- id: amose
+  family: plan
+  description: Resolve domain terms, identity, lifecycles, policy, ownership and invariant applicability.
+  reference: commands/amose.md
+  implicit: true
+  former_skill: amose
+  former_mode: domain-model
+- id: amose-adrs
+  family: document
+  description: Qualify, create or reconcile architecture decision records with existing authority.
+  reference: commands/amose-adrs.md
+  implicit: true
+  former_skill: amose
+  former_mode: adrs
+- id: amose-learnings
+  family: document
+  description: Maintain durable project learnings without turning task notes into lessons.
+  reference: commands/amose-learnings.md
+  implicit: true
+  former_skill: amose
+  former_mode: learnings
+- id: amose-nongoals
+  family: document
+  description: Maintain deliberate project non-goals and their lifecycle.
+  reference: commands/amose-nongoals.md
+  implicit: true
+  former_skill: amose
+  former_mode: nongoals
+- id: architect-survey
+  family: investigate
+  description: Map the current technical structure with evidence and material uncertainty.
+  reference: commands/architect-survey.md
+  implicit: true
+  former_skill: architect
+  former_mode: survey
+- id: architect-design
+  family: plan
+  description: Design technical structure fitted to confirmed purpose, domain and quality drivers.
+  reference: commands/architect-design.md
+  implicit: true
+  former_skill: architect
+  former_mode: design
+- id: architect-review
+  family: review
+  description: Judge architecture and consequential mechanism fitness without implementation.
+  reference: commands/architect-review.md
+  implicit: true
+  former_skill: architect
+  former_mode: review
+- id: architect-document
+  family: document
+  description: Document technical structure and maintain ARCHITECTURE.md.
+  reference: commands/architect-document.md
+  implicit: true
+  former_skill: architect
+  former_mode: document
+- id: arojinle
+  family: plan
+  description: Resolve purpose, success and consequential dependent choices through an interview.
+  reference: commands/arojinle.md
+  implicit: true
+  former_skill: arojinle
+  former_mode: interview
+- id: atona-direction
+  family: plan
+  description: Explore alternatives and shape an unclear idea into a workable direction.
+  reference: commands/atona-direction.md
+  implicit: true
+  former_skill: atona
+  former_mode: direction
+- id: seda-spec
+  family: plan
+  description: Define an observable behavior contract and acceptance examples without starting delivery.
+  reference: commands/seda-spec.md
+  implicit: true
+  former_skill: atona
+  former_mode: behavior-contract
+- id: seda-tickets
+  family: plan
+  description: Decompose an accepted direction or specification into bounded work packages.
+  reference: commands/seda-tickets.md
+  implicit: true
+  former_skill: atona
+  former_mode: decomposition
+- id: atona
+  family: plan
+  description: Carry an initiative through its requested outcome using one living plan.
+  reference: commands/atona.md
+  implicit: true
+  former_skill: atona
+  former_mode: initiative
+- id: atunwo
+  family: review
+  description: Review code changes or an existing system at suitable light or deep depth.
+  reference: commands/atunwo.md
+  implicit: true
+  former_skill: atunwo
+  former_mode: review
+- id: ayewo-igba-ise
+  family: investigate
+  description: Reconstruct events or sessions and justify improvements from postmortem evidence.
+  reference: commands/ayewo-igba-ise.md
+  implicit: true
+  former_skill: ayewo-igba-ise
+  former_mode: postmortem
+- id: iwadi
+  family: investigate
+  description: Answer defined research questions with reliable evidence and source references.
+  reference: commands/iwadi.md
+  implicit: true
+  former_skill: iwadi
+  former_mode: research
+- id: sawari
+  family: investigate
+  description: Explore unfamiliar technical areas and repositories to map behavior, possibilities and unknowns.
+  reference: commands/sawari.md
+  implicit: true
+  former_skill: iwadi
+  former_mode: exploration
+- id: oro-sigidi
+  family: document
+  description: Write or revise agent instructions, prompts and skills while preserving behavior and authority.
+  reference: commands/oro-sigidi.md
+  implicit: true
+  former_skill: oro
+  former_mode: agent-facing
+- id: oro-eniyan
+  family: document
+  description: Write or simplify human-facing prose for understanding and action.
+  reference: commands/oro-eniyan.md
+  implicit: true
+  former_skill: oro
+  former_mode: human-facing
+- id: seda-pr-description
+  family: document
+  description: Draft a reviewer-ready PR or MR description from the actual change and evidence.
+  reference: commands/seda-pr-description.md
+  implicit: true
+  former_skill: seda-pr
+  former_mode: description
+- id: seda-pr
+  family: ship
+  description: Commit, push and publish the authorized PR or MR; stop at verified publication.
+  reference: commands/seda-pr.md
+  implicit: true
+  former_skill: seda-pr
+  former_mode: publication
+- id: wo-pr
+  family: ship
+  description: Inspect PR status or manage CI and feedback within the requested read-only or corrective scope.
+  reference: commands/wo-pr.md
+  implicit: true
+  former_skill: seda-pr
+  former_mode: stewardship
+- id: fihanmi
+  family: document
+  description: Present supplied material so it is easy to understand, inspect and act on.
+  reference: commands/fihanmi.md
+  implicit: true
+  former_skill: fihanmi
+  former_mode: presentation
+- id: html-artifact
+  family: document
+  description: Build a portable accessible HTML explanation, plan or comparison from supplied material.
+  reference: commands/html-artifact.md
+  implicit: true
+  former_skill: html-artifact
+  former_mode: artifact
+- id: pese
+  family: utility
+  description: On explicit command invocation, serve a bounded local resource through private transport.
+  reference: commands/pese.md
+  implicit: false
+  former_skill: pese
+  former_mode: private-serving
+- id: qp-update
+  family: utility
+  description: On explicit command invocation, update the existing QP installation through its current manager.
+  reference: commands/qp-update.md
+  implicit: false
+  former_skill: qp-update
+  former_mode: update
+- id: system-cleanup
+  family: utility
+  description: Audit macOS storage and reclaim authorized regenerable data or verify chosen offloads.
+  reference: commands/system-cleanup.md
+  implicit: true
+  former_skill: system-cleanup
+  former_mode: cleanup
+- id: yoruba-language
+  family: utility
+  description: Explain or correct Yoruba spelling, tone marks, grammar and wording.
+  reference: commands/yoruba-language.md
+  implicit: true
+  former_skill: yoruba-glossary
+  former_mode: language
+- id: yoruba-teach
+  family: utility
+  description: Teach Yoruba through focused lessons, marked examples, practice and feedback.
+  reference: commands/yoruba-teach.md
+  implicit: true
+  former_skill: yoruba-glossary
+  former_mode: teach
+- id: yoruba-glossary
+  family: utility
+  description: Choose technical Yoruba terms and maintain an explicitly authorized glossary.
+  reference: commands/yoruba-glossary.md
+  implicit: true
+  former_skill: yoruba-glossary
+  former_mode: terminology
+routes:
+- id: feature-delivery
+  families:
+  - plan
+  - build
+  select_when: An idea or changed behavior needs decisions, structure, implementation, or integrated proof.
+  outcomes:
+  - workable direction
+  - accepted implementation
+  - integrated delivery evidence
+  stopping_points:
+  - direction
+  - behavior-contract
+  - plan
+  - decomposition
+  - implementation
+  - verification
+  playbook: playbooks/feature-delivery.md
+  owners:
+  - command: atona-direction
+    required: true
+  - command: atona
+    required: true
+  - command: seda-spec
+    required: true
+  - command: seda-tickets
+    required: true
+  - command: alaga-deliver
+    required: true
+  support:
+  - arojinle
+  - adanwo
+  - iwadi
+  - sawari
+  - architect-design
+  - amose
+  - atunwo
+  - seda-pr
+  - html-artifact
+  implicit: true
+  authority:
+    edit: when_requested
+    publish: explicit_only
+    merge: never
+    deploy: explicit_only
+    destructive: explicit_only
+  neighbours:
+  - architecture-evolution
+  - bug-fix
+  - data-change
+- id: investigation
+  families:
+  - investigate
+  select_when: The requested result is an evidenced answer, explanation, diagnosis, or recommendation.
+  outcomes:
+  - supported explanation
+  - causal diagnosis
+  - evidence-backed recommendation
+  stopping_points:
+  - answer
+  - intake
+  - diagnosis
+  - recommendation
+  playbook: playbooks/investigation.md
+  owners:
+  - command: iwadi
+    required: true
+  - command: sawari
+    required: true
+  - command: alaga-intake
+    required: true
+  - command: alaga-diagnose
+    required: true
+  support:
+  - architect-design
+  - amose
+  implicit: true
+  authority:
+    edit: never
+    publish: never
+    merge: never
+    deploy: never
+    destructive: never
+  neighbours:
+  - bug-fix
+  - performance-improvement
+  - incident-recovery
+- id: bug-fix
+  families:
+  - investigate
+  - build
+  select_when: A reported defect needs a supported cause and verified repair, or a supplied repair needs comparison.
+  outcomes:
+  - validated report
+  - supported cause
+  - verified repair
+  stopping_points:
+  - intake
+  - diagnosis
+  - comparison
+  - repair
+  - verification
+  playbook: playbooks/bug-fix.md
+  owners:
+  - command: alaga-intake
+    required: true
+  - command: alaga-diagnose
+    required: true
+  - command: alaga-deliver
+    required: true
+  - command: alaga-compare
+    required: true
+  support:
+  - architect-design
+  - atona
+  - arojinle
+  - atunwo
+  - seda-pr
+  implicit: true
+  authority:
+    edit: when_requested
+    publish: explicit_only
+    merge: never
+    deploy: never
+    destructive: explicit_only
+  neighbours:
+  - investigation
+  - incident-recovery
+  - test-suite-improvement
+- id: performance-improvement
+  families:
+  - investigate
+  - build
+  select_when: Runtime, build, or CI cost needs diagnosis, bounded comparison, or improvement toward a target.
+  outcomes:
+  - supported performance diagnosis
+  - measured keep-or-revert decision
+  - verified improvement
+  stopping_points:
+  - diagnosis
+  - comparison
+  - recommendation
+  - implementation
+  - verification
+  playbook: playbooks/performance.md
+  owners:
+  - command: alaga-diagnose
+    required: true
+  - command: alaga-compare
+    required: true
+  - command: alaga-deliver
+    required: true
+  support:
+  - architect-design
+  - atona
+  - atunwo
+  implicit: true
+  authority:
+    edit: when_requested
+    publish: explicit_only
+    merge: never
+    deploy: never
+    destructive: explicit_only
+  neighbours:
+  - investigation
+  - architecture-evolution
+  - test-suite-improvement
+- id: data-change
+  families:
+  - plan
+  - build
+  - ship
+  select_when: A migration, backfill, or rollout must preserve populated data, compatibility, or recoverability.
+  outcomes:
+  - migration design
+  - existing-data proof
+  - verified data change
+  - rollout readiness
+  stopping_points:
+  - audit
+  - plan
+  - implementation
+  - verification
+  - rollout
+  playbook: playbooks/data-change.md
+  owners:
+  - command: amose
+    required: true
+  - command: architect-design
+    required: true
+  - command: architect-review
+    required: true
+  - command: seda-spec
+    required: true
+  - command: atona
+    required: true
+  - command: alaga-deliver
+    required: true
+  support:
+  - atunwo
+  implicit: true
+  authority:
+    edit: when_requested
+    publish: explicit_only
+    merge: never
+    deploy: explicit_only
+    destructive: explicit_only
+  neighbours:
+  - feature-delivery
+  - architecture-evolution
+  - release-rollout
+- id: project-verification
+  families:
+  - build
+  select_when: Repeated work needs a reusable way to exercise the assembled application, or that capability needs
+    maintenance.
+  outcomes:
+  - verified project journey
+  - reusable verification capability
+  - maintained verification instructions
+  stopping_points:
+  - recipe
+  - implementation
+  - execution
+  - maintenance
+  playbook: playbooks/project-verification.md
+  owners:
+  - command: alaga-verify-project
+    required: true
+  - command: alaga-deliver
+    required: true
+  - command: oro-sigidi
+    required: true
+  support:
+  - atunwo
+  implicit: true
+  authority:
+    edit: when_requested
+    publish: never
+    merge: never
+    deploy: never
+    destructive: explicit_only
+  neighbours:
+  - test-suite-improvement
+  - feature-delivery
+- id: test-suite-improvement
+  families:
+  - review
+  - build
+  select_when: Existing tests need better defect detection, lower cost, or less maintenance while preserving required
+    proof.
+  outcomes:
+  - test-suite assessment
+  - verified suite improvement
+  stopping_points:
+  - audit
+  - recommendation
+  - implementation
+  - verification
+  playbook: playbooks/test-suite-improvement.md
+  owners:
+  - command: atunwo
+    required: true
+  - command: alaga-deliver
+    required: true
+  - command: alaga-compare
+    required: true
+  support:
+  - architect-design
+  implicit: true
+  authority:
+    edit: when_requested
+    publish: never
+    merge: never
+    deploy: never
+    destructive: explicit_only
+  neighbours:
+  - project-verification
+  - bug-fix
+  - performance-improvement
+- id: skill-evaluation
+  families:
+  - review
+  - build
+  select_when: A skill, prompt, or routing change needs comparative behavioral evidence before retention.
+  outcomes:
+  - retain-change-reject decision
+  - verified instruction improvement
+  stopping_points:
+  - evaluation-design
+  - comparison
+  - decision
+  - adoption
+  playbook: playbooks/skill-evaluation.md
+  owners:
+  - command: oro-sigidi
+    required: true
+  - command: alaga-deliver
+    required: true
+  support:
+  - atunwo
+  - iwadi
+  implicit: true
+  authority:
+    edit: when_requested
+    publish: never
+    merge: never
+    deploy: never
+    destructive: never
+  neighbours:
+  - independent-review
+  - project-verification
+- id: architecture-evolution
+  families:
+  - plan
+  - build
+  - review
+  select_when: Structural friction, dependency upgrades, or framework migrations need assessment, design, or verified
+    delivery.
+  outcomes:
+  - architecture assessment
+  - fitted design
+  - verified structural improvement
+  stopping_points:
+  - survey
+  - design
+  - review
+  - plan
+  - implementation
+  - verification
+  playbook: playbooks/architecture-evolution.md
+  owners:
+  - command: architect-survey
+    required: true
+  - command: architect-design
+    required: true
+  - command: architect-review
+    required: true
+  - command: atona
+    required: true
+  - command: alaga-deliver
+    required: true
+  support:
+  - atunwo
+  - iwadi
+  - alaga-compare
+  implicit: true
+  authority:
+    edit: when_requested
+    publish: explicit_only
+    merge: never
+    deploy: never
+    destructive: explicit_only
+  neighbours:
+  - feature-delivery
+  - data-change
+  - independent-review
+- id: incident-recovery
+  families:
+  - investigate
+  - build
+  select_when: An active disruption needs mitigation and verified recovery rather than explanation alone.
+  outcomes:
+  - bounded mitigation
+  - verified recovery state
+  - residual-impact handoff
+  stopping_points:
+  - mitigation
+  - recovery
+  - repair
+  - retrospective
+  playbook: playbooks/incident-recovery.md
+  owners:
+  - command: alaga-recover
+    required: true
+  - command: alaga-deliver
+    required: true
+  support:
+  - atona
+  - ayewo-igba-ise
+  implicit: true
+  authority:
+    edit: when_requested
+    publish: never
+    merge: never
+    deploy: explicit_only
+    destructive: explicit_only
+  neighbours:
+  - investigation
+  - bug-fix
+  - postmortem
+- id: release-rollout
+  families:
+  - plan
+  - ship
+  select_when: An accepted candidate needs release planning, publication, deployment, or live acceptance.
+  outcomes:
+  - release readiness
+  - published artifact
+  - deployed candidate
+  - live acceptance evidence
+  stopping_points:
+  - plan
+  - readiness
+  - publication
+  - deployment
+  - acceptance
+  playbook: playbooks/release-rollout.md
+  owners:
+  - command: atona
+    required: true
+  - command: alaga-deliver
+    required: true
+  - command: akowe-audit
+    required: true
+  - command: akowe-sync
+    required: true
+  support:
+  - architect-design
+  - seda-pr
+  implicit: true
+  authority:
+    edit: when_requested
+    publish: explicit_only
+    merge: never
+    deploy: explicit_only
+    destructive: explicit_only
+  neighbours:
+  - pr-readiness
+  - data-change
+  - feature-delivery
+- id: documentation-maintenance
+  families:
+  - document
+  select_when: A documentation set needs drift detection, reconciliation, or verified updates against current truth.
+  outcomes:
+  - documentation audit
+  - reconciled documentation
+  stopping_points:
+  - audit
+  - sync
+  - verification
+  playbook: playbooks/docs-maintenance.md
+  owners:
+  - command: akowe-audit
+    required: true
+  - command: akowe-sync
+    required: true
+  support:
+  - architect-design
+  - amose
+  - oro-eniyan
+  - fihanmi
+  - html-artifact
+  implicit: true
+  authority:
+    edit: when_requested
+    publish: never
+    merge: never
+    deploy: never
+    destructive: never
+  neighbours:
+  - technical-explanation
+  - architecture-evolution
+- id: technical-explanation
+  families:
+  - document
+  select_when: Supplied technical material needs a bounded explanation that a reader can understand and act on.
+  outcomes:
+  - usable technical explanation
+  - inspectable presentation
+  stopping_points:
+  - explanation
+  - artifact
+  playbook: playbooks/technical-explanation.md
+  owners:
+  - command: oro-eniyan
+    required: true
+  support:
+  - iwadi
+  - fihanmi
+  - html-artifact
+  implicit: true
+  authority:
+    edit: never
+    publish: never
+    merge: never
+    deploy: never
+    destructive: never
+  neighbours:
+  - documentation-maintenance
+  - investigation
+- id: independent-review
+  families:
+  - review
+  select_when: Code changes, an existing system, or a technical candidate needs independent judgment.
+  outcomes:
+  - evidence-backed review findings
+  - readiness recommendation
+  stopping_points:
+  - light-review
+  - deep-review
+  - decision
+  playbook: playbooks/independent-review.md
+  owners:
+  - command: atunwo
+    required: true
+  support:
+  - architect-design
+  - alaga-deliver
+  implicit: true
+  authority:
+    edit: never
+    publish: never
+    merge: never
+    deploy: never
+    destructive: never
+  neighbours:
+  - architecture-evolution
+  - pr-readiness
+  - skill-evaluation
+- id: pr-readiness
+  families:
+  - review
+  - ship
+  select_when: An existing PR or MR needs status, evidence, feedback handling, or work toward mergeability.
+  outcomes:
+  - current PR status
+  - provider-ready candidate
+  - evidence-backed blocker handoff
+  stopping_points:
+  - status
+  - description
+  - readiness
+  - stewardship
+  - publication
+  playbook: playbooks/pr-readiness.md
+  owners:
+  - command: seda-pr-description
+    required: true
+  - command: seda-pr
+    required: true
+  - command: wo-pr
+    required: true
+  support:
+  - alaga-deliver
+  - atunwo
+  - fihanmi
+  implicit: true
+  authority:
+    edit: when_requested
+    publish: explicit_only
+    merge: never
+    deploy: never
+    destructive: explicit_only
+  neighbours:
+  - independent-review
+  - release-rollout
+  - bug-fix
+- id: postmortem
+  families:
+  - investigate
+  select_when: A finished or materially paused event needs evidence-backed reconstruction and earned improvements.
+  outcomes:
+  - event reconstruction
+  - ranked friction
+  - justified remediation handoff
+  stopping_points:
+  - postmortem
+  - recommendation
+  - remediation
+  playbook: playbooks/postmortem.md
+  owners:
+  - command: ayewo-igba-ise
+    required: true
+  support:
+  - alaga-deliver
+  - oro-sigidi
+  - amose
+  - oro-eniyan
+  implicit: true
+  authority:
+    edit: when_requested
+    publish: never
+    merge: never
+    deploy: never
+    destructive: never
+  neighbours:
+  - incident-recovery
+  - investigation
+  - skill-evaluation

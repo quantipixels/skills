@@ -20,13 +20,6 @@ PACKAGE_NAME = "qp-skills"
 MARKETPLACE_NAME = "qp-skills"
 PACKAGE_SELECTOR = f"{PACKAGE_NAME}@{MARKETPLACE_NAME}"
 DEFAULT_TIMEOUT = 30.0
-PACKAGE_INPUTS = (
-    ".codex-plugin/plugin.json",
-    ".claude-plugin/plugin.json",
-    ".claude-plugin/marketplace.json",
-    "skills",
-    "agents",
-)
 
 
 class NativeVerificationError(RuntimeError):
@@ -222,7 +215,7 @@ def _sha256(path):
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
-def _source_identity():
+def _source_identity(source_root):
     try:
         revision = subprocess.run(
             ["git", "rev-parse", "HEAD"], cwd=ROOT, text=True, capture_output=True, check=False, timeout=5
@@ -239,24 +232,25 @@ def _source_identity():
         "root": str(ROOT),
         "revision": revision.stdout.strip() if revision and revision.returncode == 0 else None,
         "working_tree_clean": status is not None and status.returncode == 0 and not status.stdout.strip(),
-        "package_inputs": list(PACKAGE_INPUTS),
-        "package_tree_sha256": _tree_digest(ROOT),
+        "artifact_root": str(source_root),
+        "package_tree_sha256": _tree_digest(source_root),
     }
 
 
-def _tree_digest(root):
-    entries = []
-    paths = []
-    for relative in PACKAGE_INPUTS:
-        path = root / relative
+def _files(root):
+    if not root.is_dir():
+        raise NativeVerificationError(f"plugin root is missing: {root}")
+    files = {}
+    for path in root.rglob("*"):
+        if path.is_symlink():
+            raise NativeVerificationError(f"plugin contains a symlink: {path}")
         if path.is_file():
-            paths.append(path)
-        elif path.is_dir():
-            paths.extend(candidate for candidate in path.rglob("*") if candidate.is_file())
-    for path in sorted(paths):
-        if path.is_symlink() or "__pycache__" in path.parts or ".pytest_cache" in path.parts:
-            continue
-        entries.append((path.relative_to(root).as_posix(), _sha256(path)))
+            files[path.relative_to(root).as_posix()] = _sha256(path)
+    return files
+
+
+def _tree_digest(root):
+    entries = sorted(_files(root).items())
     return hashlib.sha256(json.dumps(entries, separators=(",", ":")).encode()).hexdigest()
 
 
@@ -268,44 +262,76 @@ def _inventory_scope(root):
     return {"skills": len(skill_names), "agents": len(agent_names), "skill_names": skill_names, "agent_names": agent_names}
 
 
-def validate_installed_inventory(installed_root, host):
-    source = _inventory_scope(ROOT)
-    if not source["skill_names"]:
-        raise NativeVerificationError("source inventory is empty or unavailable")
+def _source_root(host):
+    return ROOT / "plugins" / host / PACKAGE_NAME
+
+
+def _manifest_path(host):
+    return f".{host}-plugin/plugin.json"
+
+
+def _identity(root, host, label):
+    path = root / _manifest_path(host)
+    if not path.is_file():
+        raise NativeVerificationError(f"{label} is missing plugin identity: {path}")
+    manifest = require_mapping(load_json(path.read_text(), label), label)
+    if manifest.get("name") != PACKAGE_NAME:
+        raise NativeVerificationError(f"{label} has a different plugin identity")
+    version = manifest.get("version")
+    if not isinstance(version, str) or not version:
+        raise NativeVerificationError(f"{label} has no plugin version")
+    return version
+
+
+def _validate_bundle(root, host, label):
+    path = root / "bundle-manifest.json"
+    if not path.is_file():
+        raise NativeVerificationError(f"{label} is missing bundle-manifest.json")
+    bundle = require_mapping(load_json(path.read_text(), label), label)
+    version = _identity(root, host, label)
+    if bundle.get("provider") != host or bundle.get("plugin_version") != version:
+        raise NativeVerificationError(f"{label} bundle identity or version differs from plugin manifest")
+    entries = require_list(bundle.get("files"), f"{label} bundle files")
+    observed = _files(root)
+    expected = {}
+    for entry in entries:
+        entry = require_mapping(entry, f"{label} bundle file")
+        relative, digest = entry.get("path"), entry.get("sha256")
+        if not isinstance(relative, str) or not relative or relative.startswith("/") or ".." in Path(relative).parts or relative in expected:
+            raise NativeVerificationError(f"{label} bundle has an invalid or duplicate file path")
+        if not isinstance(digest, str) or len(digest) != 64:
+            raise NativeVerificationError(f"{label} bundle has an invalid hash for {relative}")
+        expected[relative] = digest
+    observed.pop("bundle-manifest.json")
+    if observed != expected:
+        raise NativeVerificationError(f"{label} bundle file hashes differ from artifact")
+    return bundle
+
+
+def validate_installed_inventory(installed_root, host, source_root=None):
+    source_root = source_root or _source_root(host)
+    source = _inventory_scope(source_root)
+    if source["skill_names"] != ["alarina"]:
+        raise NativeVerificationError("source skill inventory must contain exactly alarina")
+    expected_agents = ["alarina.md"] if host == "claude" else []
+    if source["agent_names"] != expected_agents:
+        raise NativeVerificationError(f"{host} source agent inventory differs from expected")
     installed = _inventory_scope(installed_root)
     if installed["skill_names"] != source["skill_names"]:
         raise NativeVerificationError(f"{host} installed skill inventory differs from source")
-    if host == "claude" and installed["agent_names"] != source["agent_names"]:
+    if installed["agent_names"] != source["agent_names"]:
         raise NativeVerificationError(f"{host} installed agent inventory differs from source")
     return source, installed
 
 
-def sample_files(installed_root, manifest_path):
-    """Compare a small explicit source sample and return its observed hashes."""
-    relative_paths = [manifest_path, "skills/alarina/SKILL.md"]
-    # A fresh SKILL.md with stale/missing references is still a stale updater.
-    updater = Path("skills/qp-update")
-    if not (ROOT / updater / "SKILL.md").is_file():
-        raise NativeVerificationError("source inventory is missing qp-update/SKILL.md")
-    source_files = sorted(path.relative_to(ROOT).as_posix() for path in (ROOT / updater).rglob("*") if path.is_file())
-    installed_files = sorted(path.relative_to(installed_root).as_posix() for path in (installed_root / updater).rglob("*") if path.is_file())
+def compare_installed_files(installed_root, source_root):
+    source_files, installed_files = _files(source_root), _files(installed_root)
     if source_files != installed_files:
-        raise NativeVerificationError("installed updater file inventory differs from source")
-    relative_paths.extend(source_files)
-    if (ROOT / "agents/alarina.md").is_file() and (installed_root / "agents/alarina.md").is_file():
-        relative_paths.append("agents/alarina.md")
-    samples = []
-    for relative in relative_paths:
-        source = ROOT / relative
-        installed = installed_root / relative
-        if not source.is_file() or not installed.is_file():
-            raise NativeVerificationError(f"installed plugin is missing sampled file: {relative}")
-        source_hash = _sha256(source)
-        installed_hash = _sha256(installed)
-        if source_hash != installed_hash:
-            raise NativeVerificationError(f"installed sampled file differs from source: {relative}")
-        samples.append({"path": relative, "source_sha256": source_hash, "installed_sha256": installed_hash})
-    return samples
+        changed = sorted(path for path in source_files.keys() & installed_files.keys() if source_files[path] != installed_files[path])
+        added = sorted(installed_files.keys() - source_files.keys())
+        removed = sorted(source_files.keys() - installed_files.keys())
+        raise NativeVerificationError(f"installed package content differs from source: changed={changed}, added={added}, removed={removed}")
+    return len(source_files)
 
 
 def validate_claude_validation(value):
@@ -318,17 +344,23 @@ def validate_claude_validation(value):
     return value
 
 
-def _result(host, version, installed_root, manifest_path, extra=None):
-    source_scope, installed_scope = validate_installed_inventory(installed_root, host)
+def _result(host, manager_version, installed_root, extra=None):
+    source_root = _source_root(host)
+    _validate_bundle(source_root, host, "source")
+    source_scope, installed_scope = validate_installed_inventory(installed_root, host, source_root)
+    file_count = compare_installed_files(installed_root, source_root)
+    _validate_bundle(installed_root, host, "installed")
     result = {
         "host": host,
-        "version": version.strip(),
+        "manager_version": manager_version.strip() if manager_version else None,
+        "plugin_version": _identity(source_root, host, "source"),
         "package": PACKAGE_NAME,
         "selector": PACKAGE_SELECTOR,
-        "source": _source_identity(),
+        "source": _source_identity(source_root),
         "source_scope": source_scope,
         "installed_scope": installed_scope,
-        "sampled_files": sample_files(installed_root, manifest_path),
+        "verified_file_count": file_count,
+        "installed_tree_sha256": _tree_digest(installed_root),
     }
     if extra:
         result.update(extra)
@@ -345,32 +377,27 @@ def verify_upgrade_snapshot(before_root, installed_root, host):
         raise NativeVerificationError("snapshot comparison requires one native host")
     before_root = _path_value(str(before_root), "before snapshot")
     installed_root = _path_value(str(installed_root), "installed snapshot")
-    if before_root in {installed_root, ROOT.resolve()}:
+    source_root = _source_root(host).resolve()
+    if before_root in {installed_root, source_root}:
         raise NativeVerificationError("before snapshot must be separate from source and installed roots")
-    manifest_path = f".{host}-plugin/plugin.json"
-    for root, label in ((ROOT, "source"), (before_root, "before snapshot"), (installed_root, "installed snapshot")):
-        manifest = require_mapping(load_json((root / manifest_path).read_text(), label), label)
-        if manifest.get("name") != PACKAGE_NAME:
-            raise NativeVerificationError(f"{label} has a different plugin identity")
+    versions = {label: _identity(root, host, label) for label, root in (
+        ("source", source_root), ("before", before_root), ("installed", installed_root)
+    )}
     before = _inventory_scope(before_root)
     if not before["skill_names"]:
-        raise NativeVerificationError("before snapshot inventory is empty or unavailable")
-    result = _result(host, "", installed_root, manifest_path)
-    installed_digest = _tree_digest(installed_root)
-    if installed_digest != result["source"]["package_tree_sha256"]:
-        raise NativeVerificationError("installed package content differs from source")
-    current_names = set(result["installed_scope"]["skill_names"])
-    previous_names = set(before["skill_names"])
+        raise NativeVerificationError("before snapshot skill inventory is empty")
+    result = _result(host, None, installed_root)
+    before_files, source_files = _files(before_root), _files(source_root)
     result.update({
-        "version": None,
         "evidence": "snapshot-comparison",
         "before_root": str(before_root),
         "before_scope": before,
         "before_tree_sha256": _tree_digest(before_root),
         "installed_path": str(installed_root),
-        "installed_tree_sha256": installed_digest,
-        "added_skills": sorted(current_names - previous_names),
-        "retired_skills": sorted(previous_names - current_names),
+        "versions": versions,
+        "changed_paths": sorted(path for path in before_files.keys() & source_files.keys() if before_files[path] != source_files[path]),
+        "added_paths": sorted(source_files.keys() - before_files.keys()),
+        "removed_paths": sorted(before_files.keys() - source_files.keys()),
         "manager_transition": "not_observed",
         "session_activation": "not_observed",
     })
@@ -400,7 +427,7 @@ def verify_codex():
         )
         installed = require_list(listing.get("installed"), "Codex plugin list")
         require_enabled_plugin(installed, "Codex plugin list")
-        return _result("codex", run(["codex", "--version"], env), installed_root, ".codex-plugin/plugin.json", {"installed_path": str(installed_root)})
+        return _result("codex", run(["codex", "--version"], env), installed_root, {"installed_path": str(installed_root), "evidence": "native-manager-install", "session_activation": "not_observed"})
 
 
 def verify_claude():
@@ -409,8 +436,8 @@ def verify_claude():
     with tempfile.TemporaryDirectory(prefix="qp-claude-home-") as home:
         env = os.environ.copy()
         env["CLAUDE_CONFIG_DIR"] = home
-        validation = validate_claude_validation(
-            load_json(run(["claude", "plugin", "validate", str(ROOT), "--json"], env), "claude plugin validate"),
+        validate_claude_validation(
+            load_json(run(["claude", "plugin", "validate", str(_source_root("claude")), "--json"], env), "claude plugin validate"),
         )
         run(["claude", "plugin", "marketplace", "add", str(ROOT), "--scope", "user"], env)
         run(["claude", "plugin", "install", PACKAGE_SELECTOR, "--scope", "user", "--yes"], env)
@@ -421,7 +448,7 @@ def verify_claude():
         installed = require_enabled_plugin(listing, "Claude plugin list")
         installed_root = _path_value(installed.get("installPath") or installed.get("installedPath"), "Claude install result")
         inventory = run(["claude", "plugin", "details", PACKAGE_SELECTOR], env)
-        scope = _inventory_scope(ROOT)
+        scope = _inventory_scope(_source_root("claude"))
         for expected in (f"Skills ({scope['skills']})", f"Agents ({scope['agents']})", "alarina"):
             if expected not in inventory:
                 raise NativeVerificationError(f"Claude inventory is missing {expected!r}")
@@ -429,8 +456,7 @@ def verify_claude():
             "claude",
             run(["claude", "--version"], env),
             installed_root,
-            ".claude-plugin/plugin.json",
-            {"installed_path": str(installed_root), "inventory": inventory},
+            {"installed_path": str(installed_root), "inventory": inventory, "evidence": "native-manager-install", "session_activation": "not_observed"},
         )
 
 

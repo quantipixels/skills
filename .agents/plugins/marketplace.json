@@ -1,14 +1,14 @@
 {
   "name": "qp-skills",
   "interface": {
-    "displayName": "QP Skills"
+    "displayName": "QP Alárinà"
   },
   "plugins": [
     {
       "name": "qp-skills",
       "source": {
         "source": "local",
-        "path": "./"
+        "path": "./plugins/codex/qp-skills"
       },
       "policy": {
         "installation": "AVAILABLE",

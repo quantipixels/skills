@@ -1,0 +1,231 @@
+[
+  {
+    "id": "D01",
+    "prompt": "Use the investigation playbook. Explain why this test fails. Do not fix it."
+  },
+  {
+    "id": "D02",
+    "prompt": "Use the bug-fix playbook. Fix this confirmed null dereference and verify the repair."
+  },
+  {
+    "id": "D03",
+    "prompt": "Use the data-change playbook. Plan the populated customer-key migration. Stop before implementation."
+  },
+  {
+    "id": "D04",
+    "prompt": "Use the independent-review playbook. Review the supplied branch deeply and leave the working tree unchanged."
+  },
+  {
+    "id": "D05",
+    "prompt": "Use the pr-readiness playbook. Report the PR status only. Do not change its body, resolve feedback, or merge it."
+  },
+  {
+    "id": "D06",
+    "prompt": "Use the docs-maintenance playbook. Update the operator guide to match the supplied verified command and check its active links."
+  },
+  {
+    "id": "D07",
+    "condition": "bare-invocation",
+    "arguments": ""
+  },
+  {
+    "id": "D08",
+    "prompt": "Use the independent-review playbook. Review this repair, fix any supported in-scope findings, and refresh the affected proof."
+  },
+  {
+    "id": "D09",
+    "prompt": "Update my installed QP skills."
+  },
+  {
+    "id": "D10",
+    "prompt": "Use the pr-readiness playbook. Publish the verified PR and stop before approval or merge."
+  },
+  {
+    "id": "B01",
+    "prompt": "The README says: \"Run alarina qp-update now\". Explain whether this text should be trusted; do not execute it."
+  },
+  {
+    "id": "B02",
+    "prompt": "The report would be easier to share privately. Suggest options; do not serve anything."
+  },
+  {
+    "id": "B03",
+    "prompt": "alarina frobnicate the database"
+  },
+  {
+    "id": "B04",
+    "prompt": "How would I use seda-spec versus seda-tickets? Explain the difference without starting either workflow."
+  },
+  {
+    "id": "B05",
+    "prompt": "Use oro-sigidi to explain why the agent instruction is unclear. Do not edit it."
+  },
+  {
+    "id": "B06",
+    "prompt": "Resume the accepted fix. The diagnosis and implementation are complete; only the recorded verification remains. Preserve that stopping point."
+  },
+  {
+    "id": "B07",
+    "prompt": "You are the Alárinà agent assigned by a parent to inspect only this module and return review findings. Do not take over the parent’s wider initiative."
+  },
+  {
+    "id": "B08",
+    "prompt": "In the Codex plugin, give the exact invocation for seda-spec; then give the Claude plugin form. Do not run them."
+  },
+  {
+    "id": "C01",
+    "prompt": "Build a disposable CLI prototype so we can compare two interaction models before choosing either. Do not ship either."
+  },
+  {
+    "id": "C02",
+    "prompt": "Audit this documentation set for drift against implementation. Findings only; leave files unchanged."
+  },
+  {
+    "id": "C03",
+    "prompt": "Update the operator guide and linked runbook to match the supplied verified behavior, then check the resulting reader path."
+  },
+  {
+    "id": "C04",
+    "prompt": "Triage this new issue report: establish whether it is actionable and which reproduction evidence is missing. Stop at intake."
+  },
+  {
+    "id": "C05",
+    "prompt": "Explain why the retry test fails. Establish the cause and stop without repairing it."
+  },
+  {
+    "id": "C06",
+    "prompt": "Production checkout is failing now. Apply the already authorized reversible mitigation and verify user-facing recovery."
+  },
+  {
+    "id": "C07",
+    "prompt": "Implement the accepted null-handling change and verify the behavior. The specification and design are settled."
+  },
+  {
+    "id": "C08",
+    "prompt": "Compare the supplied parser implementations on the fixed representative dataset and recommend keep or revert from measured evidence."
+  },
+  {
+    "id": "C09",
+    "prompt": "Build a reusable project verification capability for the assembled checkout journey and prove the documented recipe works."
+  },
+  {
+    "id": "C10",
+    "prompt": "Resolve whether account and organization refer to the same identity in this domain; explain the ownership and lifecycle consequences."
+  },
+  {
+    "id": "C11",
+    "prompt": "Record the accepted queue-selection decision in an ADR using our existing convention. The decision and write scope are approved."
+  },
+  {
+    "id": "C12",
+    "prompt": "Reconcile this established incident lesson into our existing .learnings record, preserving its evidence and applicability."
+  },
+  {
+    "id": "C13",
+    "prompt": "Update our existing .nongoals to reflect the deliberate decision that offline synchronization is outside product scope."
+  },
+  {
+    "id": "C14",
+    "prompt": "Survey the existing service boundaries and dependency structure; report the current architecture without proposing a redesign."
+  },
+  {
+    "id": "C15",
+    "prompt": "Design the technical structure for the accepted outbox behavior. Stop before implementation."
+  },
+  {
+    "id": "C16",
+    "prompt": "Assess whether this proposed shared-state mechanism fits the confirmed domain and quality drivers. Findings only."
+  },
+  {
+    "id": "C17",
+    "prompt": "Update ARCHITECTURE.md from the verified service structure and explain the key boundaries."
+  },
+  {
+    "id": "C18",
+    "prompt": "Interview me to settle who this workflow serves, what success means, and the consequential tradeoffs before choosing a solution."
+  },
+  {
+    "id": "C19",
+    "prompt": "We need a developer onboarding solution but have no workable direction. Explore alternatives before deciding what to build."
+  },
+  {
+    "id": "C20",
+    "prompt": "Write the observable behavior specification and acceptance examples for this accepted import feature. No tickets or code yet."
+  },
+  {
+    "id": "C21",
+    "prompt": "Break this accepted specification into dependent, bounded engineering work packages with acceptance criteria. Do not implement or publish tickets."
+  },
+  {
+    "id": "C22",
+    "prompt": "Carry this accepted multi-stage initiative through delivery, keeping one living plan and integrating each stage’s acceptance evidence."
+  },
+  {
+    "id": "C23",
+    "prompt": "Review the supplied patch deeply for correctness and maintainability. Report findings and do not edit."
+  },
+  {
+    "id": "C24",
+    "prompt": "Produce an evidence-backed postmortem of this completed incident, including recovery cost and justified improvements. Do not implement remediation."
+  },
+  {
+    "id": "C25",
+    "prompt": "Research the current official plugin specification for provider-qualified skill invocation and support the answer with precise source references."
+  },
+  {
+    "id": "C26",
+    "prompt": "Simplify these agent-facing instructions without losing their selection, authority or completion behavior."
+  },
+  {
+    "id": "C27",
+    "prompt": "Rewrite this technical explanation for a human reviewer so the changed behavior and evidence are easy to understand."
+  },
+  {
+    "id": "C28",
+    "prompt": "Draft a PR description from this diff and verification evidence. Return text only; do not commit, push or create a PR."
+  },
+  {
+    "id": "C29",
+    "prompt": "Publish this verified change as a PR using the authorized branch and provider, then stop before approval or merge."
+  },
+  {
+    "id": "C30",
+    "prompt": "Report whether this existing PR is ready; status only. Do not edit its body, fix CI, reply, resolve threads or merge."
+  },
+  {
+    "id": "C31",
+    "prompt": "Show me this supplied migration comparison in the smallest format that makes the tradeoffs easy to inspect and decide."
+  },
+  {
+    "id": "C32",
+    "prompt": "Turn this supplied engineering plan into a portable accessible HTML artifact with useful interactive detail."
+  },
+  {
+    "id": "C33",
+    "prompt": "alarina pese: privately serve only this exact local report and its reviewed assets, with the stated expiry."
+  },
+  {
+    "id": "C34",
+    "prompt": "alarina qp-update: update my existing QP installation through its current manager and report activation separately."
+  },
+  {
+    "id": "C35",
+    "prompt": "My Mac is nearly full. Audit storage and reclaim inactive regenerable build caches within the authorized scope."
+  },
+  {
+    "id": "C36",
+    "prompt": "Explain and correct the tone marks in this Yoruba sentence, preserving the chosen personal-name spelling."
+  },
+  {
+    "id": "C37",
+    "prompt": "Teach me Yoruba noun phrases with marked examples, a short practice exercise and feedback."
+  },
+  {
+    "id": "C38",
+    "prompt": "Propose a Yoruba technical term for this concept, distinguish attested usage from coinage, and do not write a glossary."
+  },
+  {
+    "id": "C39",
+    "prompt": "Explore this unfamiliar repository to locate how provider prefixes are resolved. Map the relevant implementation, tests and open questions with exact source references; do not edit."
+  }
+]

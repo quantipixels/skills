@@ -1,3 +1,5 @@
 interface:
   display_name: "Alárinà"
-  short_description: "Select playbooks and coordinate skilled work"
+  short_description: "Carry engineering work through the right playbook"
+policy:
+  allow_implicit_invocation: true

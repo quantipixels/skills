@@ -1,0 +1,104 @@
+# Pèsè
+
+Apply least privilege to temporary private access: serve only the eligible resource and return its exact usable target. Setup or transport advice alone is not completion.
+
+The local resource remains authoritative.
+
+Direct invocation authorizes task-scoped staging, an ephemeral local listener if needed, and one narrow temporary private route using ready tooling. Installation, persistent startup/configuration, saved credentials/keys, DNS publication, public exposure, broad served roots and unrelated mutation require separate authority.
+
+## Resolve tooling from current official evidence
+
+Resolve volatile syntax from the installed transport and current official documentation for Tailscale Serve or Tailcat. For installed Tailcat, prefer its embedded documentation. If installation or configuration must change, use the installed transport's supported interface; this skill does not own setup guidance.
+
+## Bound the resource
+
+Pin:
+
+- exact file, directory, or already-running local web resource;
+- required companion assets;
+- intended reader/access mode; and
+- expiry condition.
+
+Reject:
+
+- repository/home/credential directories;
+- traversal targets;
+- unresolved symlinks; or
+- boundaries containing unrelated secrets.
+
+When companions are required, expose only a reviewed allowlist; stage them narrowly when the chosen transport cannot preserve that boundary directly.
+
+## Protect private access
+
+Before enabling either transport, read [private access and crawler controls](../references/pese/private-access.md). Establish the effective audience and deny clients outside the accepted boundary regardless of their user agent. Robots directives are advisory, not access control; an authorized reader can still automate downloads.
+
+Apply the HTTP controls through the task-owned serving layer without changing the authoritative resource or unrelated routes. If ready tooling cannot meet the required audience, containment or HTTP protections, return `CAPABILITY_GAP` without enabling the route; do not silently weaken privacy.
+
+## Serve it
+
+### Tailscale Serve — preferred
+
+Use when Tailscale is already usable on the host and the intended reader can access its tailnet. Follow the installed-version/current official Serve documentation to choose the smallest supported target form.
+
+Serve a file/directory directly when supported by that installed client/platform, the accepted boundary and required HTTP controls. For an existing local web resource, or when direct file serving is unavailable, expose only the required task-owned loopback service. Never use Funnel for this outcome.
+
+Preserve unrelated Serve/Services state. Capture only enough applicable pre-state to prove scoped rollback, add one non-conflicting route/endpoint, and determine its exact scoped removal before mutation. Verify the effective tailnet policy and any application gate against the intended reader scope; Serve alone does not establish named-reader-only access.
+
+Do not finish until the exact HTTPS URL for the requested resource is known and verified. Return that URL, not merely the Serve mount root, status output, or setup instructions.
+
+### Tailcat — fallback
+
+Read [Tailcat fallback](../references/pese/tailcat.md). Use only when Tailscale Serve is unavailable/unsuitable, the reader can run a compatible Tailcat client, and the user accepts Tailcat's bearer-capability, relay-metadata, CLI-receiver, and upstream-stability limits.
+
+For an HTTP resource, forward only the task-owned loopback service with the same HTTP protections; encryption does not replace its access boundary.
+
+The access target for Tailcat is the complete receiver invocation that retrieves/opens the requested resource, together with a separately secured connection token where the current CLI requires one. Do not return only a token, sender command, port number, or setup steps.
+
+If Tailcat must be installed or its setup changed, use its supported installation/configuration path; never silently substitute a public tunnel.
+
+## Prove the access target
+
+Before reporting success, prove:
+
+- the exact requested resource is reachable through the returned URL or receiver invocation;
+- content outside the accepted boundary is not reachable;
+- the effective access control excludes unintended clients and applicable HTTP privacy controls cover the resource and required assets;
+- no public or unintended listener/route was enabled; and
+- pre-existing transport configuration remains unchanged except for the task-owned route.
+
+Receiver-side execution by the human is not required to call the route ready when it cannot be performed from the current environment. Pèsè succeeds when the serving route itself is live, containment is proved, and the exact usable access target has been produced. State any remaining reader prerequisite explicitly. Distinguish inspected access policy from executed denial tests; unavailable negative-test clients do not justify claiming they were tested. An unproved required access boundary remains `CAPABILITY_GAP`.
+
+## Revoke cleanly
+
+On failure or expiry:
+
+1. Revoke remote access first.
+2. Stop/delete only task-owned local listeners, staging, and ephemeral secret material.
+3. Verify unrelated transport state matches the captured pre-state.
+
+If cleanup is incomplete, report the exact residual route/process/secret and recovery action; never claim cleanup succeeded.
+
+## Return
+
+Return one:
+
+- `AVAILABLE` — the private serving route is live, bounded, verified, and the exact access target is returned; or
+- `CAPABILITY_GAP` — a named transport, reader, authority, privacy, or access-mode requirement prevents serving the resource.
+
+Lead with the exact access target:
+
+- **Tailscale Serve:** direct HTTPS URL for the supplied resource.
+- **Tailcat:** complete receiver invocation plus the separately secured token-delivery requirement.
+
+Then include:
+
+- transport;
+- effective audience and access boundary;
+- enforced access restrictions versus advisory crawler controls;
+- reader prerequisite if any;
+- expiry;
+- verification;
+- limitations; and
+- cleanup/revocation.
+
+Never place a live Tailcat token in durable records, logs, screenshots, Git, or broad chat/issue channels.

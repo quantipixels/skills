@@ -1,0 +1,56 @@
+version: 1
+providers:
+  codex:
+    display_name: Codex
+    support_state: verified
+    skill_path: skills/alarina
+    plugin_manifest: .codex-plugin/plugin.json
+    direct_invocation: $alarina
+    qualified_invocation: $qp-skills:alarina
+    frontmatter: [name, description]
+    description_limit: 1024
+    implicit_metadata: agents/openai.yaml
+    native_agent_path: null
+    command_bridge: false
+    scopes: {project: .agents/skills, user: ~/.agents/skills}
+    verifier: {command: 'codex plugin marketplace add + codex plugin add/list', version: '0.156.1', last_verified: '2026-09-24'}
+    release_inclusion: true
+  claude:
+    display_name: Claude Code
+    support_state: verified
+    skill_path: skills/alarina
+    plugin_manifest: .claude-plugin/plugin.json
+    direct_invocation: /alarina
+    qualified_invocation: /qp-skills:alarina
+    frontmatter: [name, description, when_to_use, argument-hint, user-invocable, disable-model-invocation]
+    description_limit: 1536
+    when_to_use: Select Alárinà for engineering investigation, planning, specifications, work packages, implementation, tests, architecture, review, incidents, documentation, agent instructions, PRs and releases; also requested writing, prototypes, HTML explanations, macOS disk cleanup or Yorùbá guidance. Internal pese and qp-update commands require explicit user invocation. Do not infer those commands or turn routing advice into execution.
+    implicit_metadata: frontmatter
+    native_agent_path: agents/alarina.md
+    command_bridge: false
+    scopes: {project: .claude/skills, user: ~/.claude/skills}
+    verifier: {command: 'claude plugin validate --strict + marketplace add/install/list/details', version: '2.1.263', last_verified: '2026-09-24'}
+    release_inclusion: true
+
+# These layouts came from the disposable prototype. They are retained as promotion
+# candidates, not release contracts; each needs current native discovery, namespace,
+# implicit-selection, install/update, and activation evidence before compilation.
+candidate_providers:
+  - {id: agents, display_name: Agent Skills / Codex project, skill_path: .agents/skills/alarina, invocation: '$alarina', support_state: experimental, release_inclusion: false}
+  - {id: claude-code, display_name: Claude Code project skill, skill_path: .claude/skills/alarina, invocation: '/alarina', support_state: experimental, release_inclusion: false}
+  - {id: cursor, display_name: Cursor, skill_path: .cursor/skills/alarina, invocation: '/alarina', support_state: experimental, release_inclusion: false}
+  - {id: gemini, display_name: Gemini CLI, skill_path: .gemini/skills/alarina, invocation: '/alarina', support_state: experimental, release_inclusion: false}
+  - {id: github, display_name: GitHub Copilot, skill_path: .github/skills/alarina, invocation: '/alarina', support_state: experimental, release_inclusion: false}
+  - {id: grok, display_name: Grok Build, skill_path: .grok/skills/alarina, invocation: '/alarina', support_state: experimental, release_inclusion: false}
+  - {id: opencode, display_name: OpenCode, skill_path: .opencode/skills/alarina, invocation: '/alarina', support_state: experimental, release_inclusion: false}
+  - {id: dsh, display_name: DeepSeek Harness, skill_path: .dsh/skills/alarina, invocation: '/alarina', support_state: experimental, release_inclusion: false}
+  - {id: kiro, display_name: Kiro, skill_path: .kiro/skills/alarina, invocation: '/alarina', support_state: experimental, release_inclusion: false}
+  - {id: pi, display_name: Pi, skill_path: .pi/skills/alarina, invocation: '/alarina', support_state: experimental, release_inclusion: false}
+  - {id: qoder, display_name: Qoder, skill_path: .qoder/skills/alarina, invocation: '/alarina', support_state: experimental, release_inclusion: false}
+  - {id: trae, display_name: Trae, skill_path: .trae/skills/alarina, invocation: '/alarina', support_state: experimental, release_inclusion: false}
+  - {id: trae-cn, display_name: Trae China, skill_path: .trae-cn/skills/alarina, invocation: '/alarina', support_state: experimental, release_inclusion: false}
+  - {id: rovo-dev, display_name: Rovo Dev, skill_path: .rovodev/skills/alarina, invocation: '/alarina', support_state: experimental, release_inclusion: false}
+  - {id: vibe, display_name: Mistral Vibe, skill_path: .vibe/skills/alarina, invocation: '/alarina', support_state: experimental, release_inclusion: false}
+  - {id: veto, display_name: Veto, skill_path: .veto/skills/alarina, invocation: '/alarina', support_state: experimental, release_inclusion: false}
+  - {id: antigravity, display_name: Google Antigravity, skill_path: .agent/skills/alarina, invocation: '/alarina', support_state: experimental, release_inclusion: false}
+  - {id: hermes, display_name: Hermes Agent, skill_path: .hermes/skills/alarina, invocation: '/alarina', support_state: experimental, release_inclusion: false}
