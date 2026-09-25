@@ -75,7 +75,7 @@
     {
       "path": "LICENSE",
       "sha256": "8b82524a4478b956cc6540b55eba99e3ae9ea4f783f327a8c92f53a802951a22",
-      "mode": "0o664",
+      "mode": "0o644",
       "source": "LICENSE",
       "source_sha256": "8b82524a4478b956cc6540b55eba99e3ae9ea4f783f327a8c92f53a802951a22"
     },

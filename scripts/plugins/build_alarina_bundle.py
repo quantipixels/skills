@@ -267,6 +267,7 @@ def copy_file(source: Path, target: Path, provenance: dict, repository: Path) ->
         raise BuildError(f"unsafe source file: {source}")
     target.parent.mkdir(parents=True, exist_ok=True)
     shutil.copy2(source, target)
+    target.chmod(0o755 if source.stat().st_mode & 0o111 else 0o644)
     provenance[target] = {"source": source.relative_to(repository).as_posix(), "source_sha256": digest(source.read_bytes())}
 
 
@@ -401,6 +402,7 @@ def build(
         check_tokens(staged)
         files = []
         for path in sorted(p for p in staged.rglob("*") if p.is_file()):
+            path.chmod(0o755 if path.stat().st_mode & 0o111 else 0o644)
             record = {"path": path.relative_to(staged).as_posix(), "sha256": digest(path.read_bytes()), "mode": oct(path.stat().st_mode & 0o777)}
             record.update(provenance.get(path, {"source": None, "source_sha256": None}))
             files.append(record)

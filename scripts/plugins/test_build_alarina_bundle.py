@@ -60,14 +60,14 @@ class BundleTests(unittest.TestCase):
                 source = self.repository / "skills/alarina" / command["reference"]
                 target = skill / command["reference"]
                 self.assertEqual(source.read_bytes(), target.read_bytes())
-                self.assertEqual(source.stat().st_mode & 0o777, target.stat().st_mode & 0o777)
+                self.assertEqual(0o755 if source.stat().st_mode & 0o111 else 0o644, target.stat().st_mode & 0o777)
             for path in (self.repository / "skills/alarina/references").rglob("*"):
                 if not path.is_file() or "__pycache__" in path.parts or ".pytest_cache" in path.parts or path.suffix == ".pyc" or path.name == ".DS_Store":
                     continue
                 relative = path.relative_to(self.repository / "skills/alarina")
                 copied = skill / relative
                 self.assertEqual(path.read_bytes(), copied.read_bytes())
-                self.assertEqual(path.stat().st_mode & 0o777, copied.stat().st_mode & 0o777)
+                self.assertEqual(0o755 if path.stat().st_mode & 0o111 else 0o644, copied.stat().st_mode & 0o777)
             self.assertFalse(any("__pycache__" in path.parts or path.suffix == ".pyc" for path in output.rglob("*")))
             self.assertEqual((self.repository / "LICENSE").read_bytes(), (output / "LICENSE").read_bytes())
             self.assertTrue(all(row["sha256"] == COMPILER.digest((output / row["path"]).read_bytes()) for row in manifest["files"]))
@@ -93,6 +93,15 @@ class BundleTests(unittest.TestCase):
         files1 = {p.relative_to(first): p.read_bytes() for p in first.rglob("*") if p.is_file()}
         files2 = {p.relative_to(second): p.read_bytes() for p in second.rglob("*") if p.is_file()}
         self.assertEqual(files1, files2)
+
+    def test_source_group_write_bit_does_not_change_bundle(self) -> None:
+        first, manifest1 = self.build("first")
+        license_path = self.repository / "LICENSE"
+        license_path.chmod(0o664)
+        second, manifest2 = self.build("second")
+        self.assertEqual(manifest1, manifest2)
+        self.assertEqual(0o644, (first / "LICENSE").stat().st_mode & 0o777)
+        self.assertEqual(0o644, (second / "LICENSE").stat().st_mode & 0o777)
 
     def test_existing_output_and_failed_build_preserve_previous_artifact(self) -> None:
         output, _ = self.build("candidate")
