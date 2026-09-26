@@ -5,7 +5,7 @@
   "support_state": "verified",
   "source": {
     "inputs": 142,
-    "sha256": "1857b95f3281eea4d4ca238f240df032a508826d529f2da59b543fc9e5ac84c5"
+    "sha256": "2b7c88555da4d15f48a90e98454c17f4852231f411b2f64b3ca4f0098827a559"
   },
   "route_digest": "a480344606c9c95bd4baad090b4f10bf37462663a3af72a3c3522a12e5e6212a",
   "qualified_invocation": "$qp-skills:alarina",
@@ -90,10 +90,10 @@
     },
     {
       "path": "skills/alarina/SKILL.md",
-      "sha256": "76d31dc6d82b1f981d867f0e4e757df83ee7fcdeb344535dfae7875d87b0e9b0",
+      "sha256": "a796395178b6a10634c40ebb1fb5e22f27e5246023dfb72ce3d94a7ec352fa9f",
       "mode": "0o644",
       "source": "skills/alarina/SKILL.md",
-      "source_sha256": "fee8d1bd7afd1737314c0decbf6d4b5275e6b44124f0e50235e7f37eb59afdfb"
+      "source_sha256": "67aa5769bc77a1e83a3e4394270ed5e9754f23985243c29d1a5a48e6b189010e"
     },
     {
       "path": "skills/alarina/agents/openai.yaml",
@@ -174,10 +174,10 @@
     },
     {
       "path": "skills/alarina/commands/amose-context.md",
-      "sha256": "916d42291798de32fea77913ec8b68869e80a5b298a915173ff1136b935bfcbd",
+      "sha256": "0381807dd9aa6448358297eecd5d60e8ac2f6ed88c5ded6f50b17764141546f1",
       "mode": "0o644",
       "source": "skills/alarina/commands/amose-context.md",
-      "source_sha256": "916d42291798de32fea77913ec8b68869e80a5b298a915173ff1136b935bfcbd"
+      "source_sha256": "0381807dd9aa6448358297eecd5d60e8ac2f6ed88c5ded6f50b17764141546f1"
     },
     {
       "path": "skills/alarina/commands/amose-nongoals.md",
@@ -727,10 +727,10 @@
     },
     {
       "path": "skills/alarina/references/atunwo/standards-and-spec.md",
-      "sha256": "fc21f22f0a3cc00c8d84e903cde340aae859c44cc5e19a06db04fb4812d6a805",
+      "sha256": "6662bf297a82bab63ea95737486be387e78d42ba7d64edb192dbb20c15090ba7",
       "mode": "0o644",
       "source": "skills/alarina/references/atunwo/standards-and-spec.md",
-      "source_sha256": "fc21f22f0a3cc00c8d84e903cde340aae859c44cc5e19a06db04fb4812d6a805"
+      "source_sha256": "6662bf297a82bab63ea95737486be387e78d42ba7d64edb192dbb20c15090ba7"
     },
     {
       "path": "skills/alarina/references/ayewo-igba-ise/agent-session.md",
