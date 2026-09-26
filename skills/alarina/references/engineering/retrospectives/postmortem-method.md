@@ -44,7 +44,9 @@ For each proposed durable improvement, state:
 
 For a recurring mechanical failure, prefer an enforceable type, constraint, API or check over another reminder; verify that it rejects the failure. Judgment-dependent lessons remain prose. Retire redundant guidance only when enforcement covers its full scope. Recommend the smallest owned correction; no automatic CI gate or tool is required. Reject instruction changes that merely restate an existing rule, treat model variance as a new requirement, or substitute prose for a product/system fix.
 
-Stop at recommendations and an evidence-backed handoff to the natural owner unless remediation is also authorized. A new skill identity, routing change, promotion, fold or removal may be proposed; apply it only within the requested remediation scope.
+When actual execution established a useful custom sequence, read [learned workflows](../../productivity/learned-workflows.md) to decide whether to retain or refine it in `~/.qp/alarina/ona/`. This permits bounded private knowledge capture after judgment, while explicit read-only or recommendation-only requests remain read-only. Do not create a workflow merely to produce a retrospective artifact.
+
+Beyond that bounded retention, stop at recommendations and an evidence-backed handoff to the natural owner unless remediation is also authorized. A new skill identity, routing change, promotion, fold or removal may be proposed; apply it only within the requested remediation scope.
 
 For authorized remediation, finish the postmortem before changing the judged surface. Then invoke the owning skill as a separate follow-on—such as [oro-sigidi](../../../commands/oro-sigidi.md) for instructions or [alaga-deliver](../../../commands/alaga-deliver.md) for delivery—using the pinned findings and evidence. Keep the retrospective and implementation results distinct.
 

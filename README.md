@@ -112,6 +112,8 @@ Alárinà looks for the project's existing verification commands and skills befo
 
 Routine work needs no extra record or HTML report. Under the [record policy](skills/alarina/references/productivity/records.md), requested deliverables use a visible destination, shared knowledge stays with its project owner, and disposable scratch uses temporary storage. Private resumable state reuses its existing record or defaults to `~/.qp/alarina/` in your home directory, isolated by project, worktree and task. Existing project-local `.qp` records remain usable; the policy does not automatically move or delete them.
 
+Retrospectives can keep useful custom workflows proven through actual work in `~/.qp/alarina/ona/`. Alárinà finds relevant recipes there when composing a path, checks their assumptions against the current task, and retains their evidence and limits. The [learned-workflow policy](skills/alarina/references/productivity/learned-workflows.md) keeps this optional and private; explicit read-only requests remain read-only, and untested ideas stay recommendations.
+
 ## Update
 
 Update a native plugin with its manager. Plugin updates replace Alárinà and its internal methods and resources as one versioned package. They do not change separately installed skills.

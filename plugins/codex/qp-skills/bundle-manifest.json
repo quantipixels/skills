@@ -4,8 +4,8 @@
   "provider": "codex",
   "support_state": "verified",
   "source": {
-    "inputs": 149,
-    "sha256": "58246efedd6424720a03735affd32e6d47726b2ab16a7fe8001901ba3e21cd53"
+    "inputs": 150,
+    "sha256": "2bdcc3d4ac5d71569d1703a64692edbb835ab0031cd133e0f337ad3ff793f039"
   },
   "route_digest": "82a3e739d6655d347a422596b00980eaa4f171a104728d2895ac1dfaeba3927a",
   "qualified_invocation": "$qp-skills:alarina",
@@ -91,10 +91,10 @@
     },
     {
       "path": "skills/alarina/SKILL.md",
-      "sha256": "2768d52bba201c9f7935ca7ef229931e0a28e6632212b5c468331a6074769029",
+      "sha256": "afd2f7e075ac339f81af162ec4bdad1258e322dc9f9bd047614e776c6b937c8c",
       "mode": "0o644",
       "source": "skills/alarina/SKILL.md",
-      "source_sha256": "c219ec32c56cf4ef932459bbe7f1fe3d66acec7ffeddc700e9b92e0788e3220d"
+      "source_sha256": "b56c0d6b49a23512accc7d071024271717cd981e9e86b990e12772243d00660f"
     },
     {
       "path": "skills/alarina/agents/openai.yaml",
@@ -259,24 +259,24 @@
     },
     {
       "path": "skills/alarina/commands/ayewo-corpus.md",
-      "sha256": "f6a32ff253f98d7fb56e31f635491c7f8032bfa2ab4baf4bb6d11875a3548922",
+      "sha256": "55636bb3ed4f1a34d030e38e148c4cfa4563fa97fc80bddd283503579d161873",
       "mode": "0o644",
       "source": "skills/alarina/commands/ayewo-corpus.md",
-      "source_sha256": "f6a32ff253f98d7fb56e31f635491c7f8032bfa2ab4baf4bb6d11875a3548922"
+      "source_sha256": "55636bb3ed4f1a34d030e38e148c4cfa4563fa97fc80bddd283503579d161873"
     },
     {
       "path": "skills/alarina/commands/ayewo-igba-ise.md",
-      "sha256": "32e5ec7b67b4fc7c2ee820e9f31a74cdcee6fd1cfbbafe6cd876f6d54c1454b0",
+      "sha256": "49887bf6fdba6c2b82dd543cfa4d1e322c215ce877b982e49e4068b99283cc40",
       "mode": "0o644",
       "source": "skills/alarina/commands/ayewo-igba-ise.md",
-      "source_sha256": "32e5ec7b67b4fc7c2ee820e9f31a74cdcee6fd1cfbbafe6cd876f6d54c1454b0"
+      "source_sha256": "49887bf6fdba6c2b82dd543cfa4d1e322c215ce877b982e49e4068b99283cc40"
     },
     {
       "path": "skills/alarina/commands/ayewo-retro.md",
-      "sha256": "fa56c7baaaa2c1d9cdc79e21ec715cc6506586be5a536b57628dc995edb594c4",
+      "sha256": "4d60c227c93e8b6fe313c3e38225de255f4da0d9a9e89e6d5ad18169ef610f83",
       "mode": "0o644",
       "source": "skills/alarina/commands/ayewo-retro.md",
-      "source_sha256": "fa56c7baaaa2c1d9cdc79e21ec715cc6506586be5a536b57628dc995edb594c4"
+      "source_sha256": "4d60c227c93e8b6fe313c3e38225de255f4da0d9a9e89e6d5ad18169ef610f83"
     },
     {
       "path": "skills/alarina/commands/fihanmi.md",
@@ -462,10 +462,10 @@
     },
     {
       "path": "skills/alarina/playbooks/postmortem.md",
-      "sha256": "01098239b286b0fb25834c3349d0b7e8c0b926fc62924ca0bdd5fc78295182fb",
+      "sha256": "e0399b5fce36400c4f54714ce1dbd61b60362202ed047ec0f056d8ab2ca33f43",
       "mode": "0o644",
       "source": "skills/alarina/playbooks/postmortem.md",
-      "source_sha256": "01098239b286b0fb25834c3349d0b7e8c0b926fc62924ca0bdd5fc78295182fb"
+      "source_sha256": "e0399b5fce36400c4f54714ce1dbd61b60362202ed047ec0f056d8ab2ca33f43"
     },
     {
       "path": "skills/alarina/playbooks/pr-readiness.md",
@@ -511,10 +511,10 @@
     },
     {
       "path": "skills/alarina/references/README.md",
-      "sha256": "ed432ff94fba71b675260d86124aa32278f09b39f4527128788c74eb24d2bb4b",
+      "sha256": "1d72a4302f20b986edfdfc0031cbe151f43653a138cae5fc9238b026297b7edd",
       "mode": "0o644",
       "source": "skills/alarina/references/README.md",
-      "source_sha256": "ed432ff94fba71b675260d86124aa32278f09b39f4527128788c74eb24d2bb4b"
+      "source_sha256": "1d72a4302f20b986edfdfc0031cbe151f43653a138cae5fc9238b026297b7edd"
     },
     {
       "path": "skills/alarina/references/communication/editing-human-prose.md",
@@ -868,10 +868,10 @@
     },
     {
       "path": "skills/alarina/references/engineering/retrospectives/postmortem-method.md",
-      "sha256": "f242923b93b57ad94498ea78fd458924f1353f32da74858ee5b06bba40ae82cb",
+      "sha256": "8047fce2a8e1e8d0b0f7e6d1be1f383914a1a88133fef24276b3a2e8e1a876eb",
       "mode": "0o644",
       "source": "skills/alarina/references/engineering/retrospectives/postmortem-method.md",
-      "source_sha256": "f242923b93b57ad94498ea78fd458924f1353f32da74858ee5b06bba40ae82cb"
+      "source_sha256": "8047fce2a8e1e8d0b0f7e6d1be1f383914a1a88133fef24276b3a2e8e1a876eb"
     },
     {
       "path": "skills/alarina/references/engineering/review/boundary-failures.md",
@@ -1035,6 +1035,13 @@
       "source_sha256": "32cf35e17d1673a3cb10573c25158711de60eea787516914b96bc659f4d0489d"
     },
     {
+      "path": "skills/alarina/references/productivity/learned-workflows.md",
+      "sha256": "538fb965774b383af639ccb532d89159616811d6fafaf0f899f0a40050d957c6",
+      "mode": "0o644",
+      "source": "skills/alarina/references/productivity/learned-workflows.md",
+      "source_sha256": "538fb965774b383af639ccb532d89159616811d6fafaf0f899f0a40050d957c6"
+    },
+    {
       "path": "skills/alarina/references/productivity/planning/managed-initiative.md",
       "sha256": "b03e06872181ea968ac6a7fabd325bf4c48980e284ef2aa31915ddcf2a2fd562",
       "mode": "0o644",
@@ -1078,10 +1085,10 @@
     },
     {
       "path": "skills/alarina/references/productivity/records.md",
-      "sha256": "c3a5314042893755e22d1e54664e7c75f203bd638c6a4c75bac250b2526dd368",
+      "sha256": "d86017d9671e2cea8ca781c5c779048eff4e0df207e8cbf005b672f3f18040f1",
       "mode": "0o644",
       "source": "skills/alarina/references/productivity/records.md",
-      "source_sha256": "c3a5314042893755e22d1e54664e7c75f203bd638c6a4c75bac250b2526dd368"
+      "source_sha256": "d86017d9671e2cea8ca781c5c779048eff4e0df207e8cbf005b672f3f18040f1"
     },
     {
       "path": "skills/alarina/routes.yaml",

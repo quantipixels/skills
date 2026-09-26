@@ -27,6 +27,8 @@ Project verification is a capability consumed by delivery, diagnosis, comparison
 
 `references/productivity/records.md` owns persistence defaults across commands: routine results stay in context, disposable output uses temporary storage, private resumable state uses an existing record or user-level Alárinà state, shared knowledge stays with its project owner, and requested deliverables stay visible. State is isolated by project/worktree/task, without a registry or new runtime service. Existing `.qp` records remain compatible inputs. Atọ́nà maintains one plan in the appropriate format; HTML is conditional rather than required for every plan.
 
+`references/productivity/learned-workflows.md` owns admission, discovery and maintenance of custom workflows under `~/.qp/alarina/ona/`. Retrospectives may retain a useful path supported by actual execution after completing judgment; explicit read-only scope still controls. The entrypoint and reference guide reach the same policy when a saved path could fill a current gap. Recipes retain applicability and evidence, reuse owned methods and confer no new authority. This optional Markdown library is separate from transient task state and shared project policy; no indexer or automatic execution is required.
+
 ## Build and distribution flow
 
 ```text

@@ -11,3 +11,5 @@ Require current local review and relevant checks before publishing substantive c
 Project setup and broad documentation-improvement requests establish useful baseline coverage, creating missing architecture, standards, confirmed non-goals and working instructions through their existing owners while preserving scoped audits and edits.
 
 Group references by use case with a conditional discovery guide. Compose commands, references and available capabilities around uncovered outcomes when no predefined method is sufficient. Share the agent-respondent perspective, premise checks and knowledge-discoverability guidance across commands, preserving each method's authority and completion boundaries. Keep inspiration acknowledgements in the README rather than command and reference instructions.
+
+Retain useful custom workflows supported by real execution in the optional user-level `~/.qp/alarina/ona/` library through retrospectives. Discover and adapt relevant saved paths when composing a task, preserving evidence, applicability, explicit read-only scope and current authority.
