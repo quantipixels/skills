@@ -70,10 +70,17 @@ def frontmatter(source: Path) -> tuple[dict, str]:
 
 
 def render_command_table(commands: list[dict]) -> str:
-    rows = ["| Command | Family | Purpose |", "| --- | --- | --- |"]
-    for command in commands:
-        purpose = command["description"] + (" (explicit invocation only)" if not command["implicit"] else "")
-        rows.append(f"| [`{command['id']}`]({command['reference']}) | {command['family']} | {purpose} |")
+    rows = []
+    for family in FAMILIES:
+        members = [command for command in commands if command["family"] == family]
+        if not members:
+            continue
+        if rows:
+            rows.append("")
+        rows.extend([f"### {family.capitalize()}", "", "| Command | Purpose |", "| --- | --- |"])
+        for command in members:
+            purpose = command["description"] + (" (explicit invocation only)" if not command["implicit"] else "")
+            rows.append(f"| [`{command['id']}`]({command['reference']}) | {purpose} |")
     return "\n".join(rows)
 
 

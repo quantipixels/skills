@@ -1,8 +1,31 @@
-# Skill mechanics
+# Skill and command mechanics
 
-Read after agent-writing when the artifact is a skill. Its common authority, composition and conditional-loading rules still apply. A public identity, compatibility break or retirement must be within the requested scope.
+Read after agent-writing when creating or restructuring skills or commands. Its common authority, composition and conditional-loading rules still apply. A public identity, compatibility break or retirement must be within the requested scope.
 
 A skill is a packaging and invocation choice around a useful behavioural contract. Do not start from taxonomy. Start from the result a user or another skill needs.
+
+## Choose a cohesive capability boundary
+
+A command is a selectable method inside a skill. Define its user/use case, useful result, required expertise, scope, authority, accepting evidence and next consumer before choosing its size. Keep multiple responsibilities together when they serve the same outcome and need the same context and feedback. Depth is justified by difficult decisions and recurring failure modes, not a word budget.
+
+For example, `alaga-deliver` owns implementation, testing and affected documentation because together they complete an accepted change. `akowe-audit` and `akowe-sync` remain separate because a read-only judgment and authorized reconciliation have different effects and accepting evidence. Do not split a checklist into commands or create commands for each technical layer.
+
+Split when callers need an independently useful result, materially different authority, distinct expertise/load conditions or a separately reusable contract. Combine when repeated context transfer, copied procedure or artificial handoffs exceed the value of independent selection. Preserve useful conditional depth in references; consolidation must not erase expertise.
+
+Choose the appropriate home:
+
+| Need | Home |
+| --- | --- |
+| Discover a distinct package with its own users or runtime dependencies | Skill, only when an existing entry cannot coherently own it. |
+| Select a cohesive capability with a meaningful stopping point | Command within the existing entry. |
+| Apply conditional expertise, examples or a shared invariant | Reference/contract with explicit load conditions. |
+| Progress through dependent results | Playbook; reuse command methods and skip resolved stages. |
+| Repeat a bounded mechanical operation reliably | Shared script, only when existing tools do not suffice. |
+| Supply persistent host-specific configuration | Provider adapter; keep portable semantics with the method. |
+
+For Alárinà, add commands to `commands/` and `routes.yaml`, then regenerate the menu and provider packages. Keep one discovery entry. Shared runtime operations live in `scripts/`; supporting domain material stays in `references/`. Do not add a new standalone skill, wrapper or worker type merely because an old skill used to have one.
+
+Keep shared meaning with one authoritative owner. A caller states the required result and consumes its evidence instead of copying the callee's procedure. Retain consequential authority and stop conditions at the local branch where the agent chooses an action. When moving or retiring an owner, reconcile routes, consumers, resource paths and published package content together.
 
 ## Decide whether a separate skill earns a public identity
 

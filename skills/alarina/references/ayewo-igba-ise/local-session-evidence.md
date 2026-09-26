@@ -33,16 +33,16 @@ Historical reconstruction and evidence-backed improvement judgments stay with [a
 
 Read known transcripts directly when they suffice. When inventory or relationship normalization is needed, run this adapter through the active host's local shell/filesystem capability; reuse a suitable existing inventory. Ask the user to run or export evidence only when local access and equivalent capabilities are unavailable.
 
-From a repository checkout:
+Resolve `<alarina-directory>` from the loaded Alárinà `SKILL.md`, including when installed in a plugin:
 
 ```bash
-python3 skills/alarina/references/ayewo-igba-ise/scripts/session-evidence.py
+python3 <alarina-directory>/scripts/session-evidence.py
 ```
 
 No time boundary is assumed. Narrow the corpus only when the analysis question calls for it:
 
 ```bash
-python3 skills/alarina/references/ayewo-igba-ise/scripts/session-evidence.py \
+python3 <alarina-directory>/scripts/session-evidence.py \
   --host codex \
   --project /path/to/repository \
   --skill alarina

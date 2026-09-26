@@ -42,7 +42,7 @@ Read [code-change review](../references/html-artifact/code-change-review.md) for
 
 ## Verify and deliver
 
-Run `python3 <alarina-directory>/references/html-artifact/scripts/verify_artifact.py <artifact.html>`, resolving `<alarina-directory>` from the loaded Alárinà `SKILL.md`. Fix definite defects and inspect warnings; this checks structure, not source truth, visual quality, security or accessibility certification.
+Run `python3 <alarina-directory>/scripts/verify_artifact.py <artifact.html>`, resolving `<alarina-directory>` from the loaded Alárinà `SKILL.md`. Fix definite defects and inspect warnings; this checks structure, not source truth, visual quality, security or accessibility certification.
 
 Check source identity, critical coverage, provenance, navigation and fallback. Render a static page when readability is uncertain. Exercise introduced interactions, keyboard/focus, reset, no-match, known model results and relevant print/reload behavior. Check a layout breakpoint when its behavior matters. A renderer stub does not prove real-library rendering. Reuse valid proof and report unavailable browser checks honestly.
 

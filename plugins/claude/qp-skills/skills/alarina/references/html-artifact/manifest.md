@@ -24,7 +24,7 @@ Use HTML escaping for ordinary HTML text/attributes, not for this JSON block. `J
 
 ## Mechanical verification
 
-Run `python3 <alarina-directory>/references/html-artifact/scripts/verify_artifact.py path/to/report.html`, resolving the Alárinà directory from its loaded `SKILL.md`. Exit 0 means its bounded structural checks passed; exit 1 reports definite violations, and exit 2 reports unreadable input. Review warnings are not acceptance or security certification. The script never executes document JavaScript or contacts remote hosts.
+Run `python3 <alarina-directory>/scripts/verify_artifact.py path/to/report.html`, resolving the Alárinà directory from its loaded `SKILL.md`. Exit 0 means its bounded structural checks passed; exit 1 reports definite violations, and exit 2 reports unreadable input. Review warnings are not acceptance or security certification. The script never executes document JavaScript or contacts remote hosts.
 
 Checks cover metadata, duplicate IDs, fragment and explicit control targets, manifest shape, explicit active external resources and common inline state/network calls. Dynamic expressions, imported code, CSS behaviour, all possible exfiltration and semantic source truth are outside static coverage. Browser evidence must establish the default no-save behaviour of shipped controls. A quoted API name is a review lead, not proof it executes.
 

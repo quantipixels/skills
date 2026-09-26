@@ -81,7 +81,7 @@ $qp-skills:alarina seda-spec define the observable API behavior
 /qp-skills:alarina oro-eniyan rewrite this explanation for the reviewer
 ```
 
-The [command table](skills/alarina/SKILL.md#commands) is the full menu. Commands live under `skills/alarina/commands/` and are arguments to Alárinà, not separate slash/dollar skills. Supporting depth stays under `references/` and loads only when relevant. Ordinary engineering requests need no command name. Bare invocation shows the menu without starting work. [Terms and names](skills/alarina/references/terms.md) explains names where their Yorùbá meaning helps choose a command.
+The [command menu](skills/alarina/SKILL.md#commands) groups capabilities by outcome family. Commands live under `skills/alarina/commands/` and are arguments to Alárinà, not separate slash/dollar skills. Supporting depth stays under `references/` and loads only when relevant; reusable utilities ship in [`scripts/`](skills/alarina/scripts/README.md). Ordinary engineering requests need no command name. Bare invocation shows the menu without starting work. [Terms and names](skills/alarina/references/terms.md) explains the command names and engineering concepts including DX, AX, deep modules and HITL/AFK.
 
 For domain language, `amose-context` maintains a project's existing glossary or creates `CONTEXT.md` when the first project-specific term is resolved. In multi-context projects, `CONTEXT-MAP.md` points to the scoped glossaries. The glossary contains definitions, while ADRs, architecture, non-goals and existing knowledge sources keep their distinct purposes. A requested `.learning` or `.learnings` migration sorts entries by meaning instead of renaming the file wholesale.
 

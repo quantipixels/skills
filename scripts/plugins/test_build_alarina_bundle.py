@@ -61,9 +61,11 @@ class BundleTests(unittest.TestCase):
                 target = skill / command["reference"]
                 self.assertEqual(source.read_bytes(), target.read_bytes())
                 self.assertEqual(0o755 if source.stat().st_mode & 0o111 else 0o644, target.stat().st_mode & 0o777)
-            for path in (self.repository / "skills/alarina/references").rglob("*"):
+            for path in (self.repository / "skills/alarina").rglob("*"):
                 if not path.is_file() or "__pycache__" in path.parts or ".pytest_cache" in path.parts or path.suffix == ".pyc" or path.name == ".DS_Store":
                     continue
+                if path.name == "SKILL.md" or "agents" in path.relative_to(self.repository / "skills/alarina").parts:
+                    continue  # Provider invocation metadata is added to the entrypoint.
                 relative = path.relative_to(self.repository / "skills/alarina")
                 copied = skill / relative
                 self.assertEqual(path.read_bytes(), copied.read_bytes())

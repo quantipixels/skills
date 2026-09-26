@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Read-only structural diagnostics for one HTML artifact; not a security audit."""
+"""Shared read-only HTML artifact diagnostics; not a security audit."""
 from __future__ import annotations
 
 import argparse

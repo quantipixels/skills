@@ -47,6 +47,8 @@ Avoid guessed file/artifact paths, long snippets, generic implementation checkli
 
 ## Startability and terminal disposition
 
+When work will run unattended (AFK), establish that scope, authority, prerequisites and observable acceptance are sufficient without inventing a human choice. Keep unresolved product judgment or required review visible as a human-in-the-loop (HITL) dependency. These describe execution readiness, not new ticket states or permission grants; continue independent ready work when a dependent decision is unavailable.
+
 Ticket state is deliberately not an execution-progress state machine:
 
 | State | Meaning | Required evidence |

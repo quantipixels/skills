@@ -1,4 +1,24 @@
-# Names that explain the work
+# Terms and names
+
+Use this as a lookup when a concept changes a decision; it is not a mandatory reading stage. These working definitions support human and agent collaboration. Project-specific domain language belongs in the project's own glossary or `CONTEXT.md`.
+
+| Concept | Meaning and practical consequence |
+| --- | --- |
+| DX — developer experience | How readily a developer can understand, change, run and debug the system. Improve actual setup, feedback and recovery friction; measure the affected workflow. |
+| AX — agent experience | How readily an agent can discover the right owner, obtain relevant context, act within authority and verify completion. Clear interfaces, runnable checks and useful failures matter more than extra instruction files. |
+| Deep module | A small, useful interface hiding substantial complexity. Depth is the capability offered relative to what callers must understand, not file size. See [module design](architect/module-design.md). |
+| Cohesion / coupling | Cohesion is how closely responsibilities serve one purpose; coupling is what must change or be understood together across boundaries. Group by shared knowledge and change reasons, not one function per file. |
+| Seam | A stable boundary through which behavior can be replaced or observed. Test meaningful public behavior there without exposing internals solely to tests. |
+| SDLC — software development lifecycle | The connected work of discovery, design, delivery, operation and learning. Enter at the unresolved result; it is not a compulsory sequence of ceremonies. |
+| Vertical slice | A narrow observable outcome across the necessary layers. Implementation, proof and affected documentation can belong to the same slice. |
+| Tracer bullet | The smallest working path through important boundaries that tests an architectural assumption and can grow into delivery. A disposable prototype instead answers uncertainty without promising production readiness. |
+| Feedback loop | Act, observe a relevant result, adjust. Prefer the shortest faithful loop that could expose the failure; passing unrelated checks adds little confidence. |
+| HITL — human in the loop | A person participates in consequential choices or review. Use their input where judgment is needed; do not ask them to rediscover facts the agent can inspect. |
+| AFK — away from keyboard | Work progresses while the person is unavailable. It needs settled scope, sufficient authority, observable acceptance and recoverable execution. It never grants extra permissions or resolves missing decisions. |
+| Accepting evidence | Current evidence tied to the actual candidate that establishes the requested result. A plan, tool submission or worker's completion claim is not enough. |
+| ADR — architecture decision record | A durable explanation of a consequential architectural choice and its tradeoffs. Admission rules belong to [amose-adrs](../commands/amose-adrs.md), not every routine change. |
+
+## Project names
 
 These are project names. The slugs are stable ASCII identifiers; the marked Yorùbá forms explain the intended sense. They do not claim a language-wide standard for software terms. Keep this table aligned with `routes.yaml`, the command menu, and the agent profile when a name changes.
 

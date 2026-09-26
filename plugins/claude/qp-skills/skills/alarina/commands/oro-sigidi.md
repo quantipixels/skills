@@ -45,9 +45,9 @@ Keep the **hot path**—what every invocation genuinely needs—in the entrypoin
 
 Do not optimize file length in isolation. A tiny root that always opens several references may cost more and focus worse than one cohesive file.
 
-## Skills are one packaging branch
+## Skill and command creation
 
-For skill creation or changes to identity, invocation, packaging, or ownership, read [skill mechanics](../references/oro/skill-mechanics.md). First consider whether the behaviour belongs in an existing skill or instruction surface.
+For creating, splitting or combining skills and commands, or changing identity, invocation, packaging or ownership, read [skill and command mechanics](../references/oro/skill-mechanics.md). Choose a cohesive useful result and the expertise needed to deliver it; one verb, phase or technical responsibility does not automatically deserve a command. First consider whether the behaviour belongs in an existing owner.
 
 When adding, removing, or changing the responsibility of references, scripts, templates, bundled data, or host adapters, read [resource boundaries](../references/oro/resource-boundaries.md).
 

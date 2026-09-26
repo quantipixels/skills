@@ -6,7 +6,8 @@ This repository packages QP's engineering methods through one canonical Al√°rin√
 
 - [`skills/alarina/SKILL.md`](skills/alarina/SKILL.md) is the single discoverable entrypoint. It selects a focused command or playbook and does not make those methods separate installed skills.
 - [`skills/alarina/routes.yaml`](skills/alarina/routes.yaml) owns command and playbook metadata. The command table in `SKILL.md` is generated from it.
-- `skills/alarina/commands/` contains the focused methods. `skills/alarina/playbooks/` composes them for multi-stage outcomes. `skills/alarina/references/<domain>/` holds supporting depth, scripts, templates and assets that commands load when relevant.
+- `skills/alarina/commands/` contains cohesive methods chosen by useful outcome and authority, not one command per technical responsibility. `skills/alarina/playbooks/` composes them for multi-stage outcomes. `skills/alarina/references/<domain>/` holds supporting depth, templates and assets that commands load when relevant.
+- `skills/alarina/scripts/` holds shared installed utilities: HTML structural diagnostics and local session evidence indexing. Commands own interpretation and acceptance; scripts own their bounded mechanical result. Repository build and verification tooling remains outside the installed skill.
 - The HTML Artifact base and control assets under `references/html-artifact/assets/` use Basecoat's standalone precompiled CSS for components and scoped CSS for document layout and fallback. Their existing jQuery scripts own control behavior. Connected documents load pinned assets; portable documents embed or bundle the selected files. This path has no direct Tailwind build step.
 - [`agents/alarina.md`](agents/alarina.md) is the portable agent profile. The Claude package includes it as a native agent; the Codex package does not claim a native plugin agent.
 

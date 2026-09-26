@@ -12,7 +12,7 @@ import tempfile
 import unittest
 
 
-ADAPTER = Path(__file__).resolve().parents[2] / "skills/alarina/references/ayewo-igba-ise/scripts/session-evidence.py"
+ADAPTER = Path(__file__).resolve().parents[2] / "skills/alarina/scripts/session-evidence.py"
 
 
 class SkillDiscoveryTests(unittest.TestCase):
@@ -20,7 +20,7 @@ class SkillDiscoveryTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
             skill = root / "repo/skills/alarina"
-            script = skill / "references/ayewo-igba-ise/scripts/session-evidence.py"
+            script = skill / "scripts/session-evidence.py"
             script.parent.mkdir(parents=True)
             shutil.copyfile(ADAPTER, script)
             (skill / "SKILL.md").write_text("---\nname: alarina\n---\n", encoding="utf-8")

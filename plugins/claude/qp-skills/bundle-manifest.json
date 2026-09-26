@@ -4,8 +4,8 @@
   "provider": "claude",
   "support_state": "verified",
   "source": {
-    "inputs": 136,
-    "sha256": "b4e17357337184f8a78252753211c31956254265da397564d4ee8f8c02de8170"
+    "inputs": 137,
+    "sha256": "591473a869605f77d4eeea41a95acd34c79a59d4b8f8f0bd4879828d9102437d"
   },
   "route_digest": "e398c60cba3e4866466c7d678173a942046a8c68dcdd70a484797b7e75fcdf4e",
   "qualified_invocation": "/qp-skills:alarina",
@@ -88,10 +88,10 @@
     },
     {
       "path": "skills/alarina/SKILL.md",
-      "sha256": "9af87260f83aca9e2aef8f4561ed1debdc9cededc41b4c8a91cad4eeff21d354",
+      "sha256": "6dba99510b1b2981d5fb81f42a885bb9607f32af44803bc37c5914d8e52355a0",
       "mode": "0o644",
       "source": "skills/alarina/SKILL.md",
-      "source_sha256": "3f54b599e37e61493d3abddb5bdb5fb33fbbdf83d3ad7390f39d2c1c3ad03550"
+      "source_sha256": "b1d1548f206b9405d7074cebdb4489e04df1efd1860f1521ea629e64c2fb1b9d"
     },
     {
       "path": "skills/alarina/commands/adanwo.md",
@@ -256,10 +256,10 @@
     },
     {
       "path": "skills/alarina/commands/html-artifact.md",
-      "sha256": "54ba86118b285c83e3571f00891cad474d2f03a42a8f8bb83e86943ef10ced5b",
+      "sha256": "0674159ea90de3d58092d083f137a59dcf63e6b3922ddfb59e73e7ca35c02a4a",
       "mode": "0o644",
       "source": "skills/alarina/commands/html-artifact.md",
-      "source_sha256": "54ba86118b285c83e3571f00891cad474d2f03a42a8f8bb83e86943ef10ced5b"
+      "source_sha256": "0674159ea90de3d58092d083f137a59dcf63e6b3922ddfb59e73e7ca35c02a4a"
     },
     {
       "path": "skills/alarina/commands/iwadi.md",
@@ -277,10 +277,10 @@
     },
     {
       "path": "skills/alarina/commands/oro-sigidi.md",
-      "sha256": "da9c32838dba9cf4e321743723ebed83d67d2149db9227fdfed842e8c0365dc6",
+      "sha256": "854a22bbfb3046e33ab1dc9dc3ed4faeb9379f508234fa7174f639eed86836f5",
       "mode": "0o644",
       "source": "skills/alarina/commands/oro-sigidi.md",
-      "source_sha256": "da9c32838dba9cf4e321743723ebed83d67d2149db9227fdfed842e8c0365dc6"
+      "source_sha256": "854a22bbfb3046e33ab1dc9dc3ed4faeb9379f508234fa7174f639eed86836f5"
     },
     {
       "path": "skills/alarina/commands/pese.md",
@@ -326,10 +326,10 @@
     },
     {
       "path": "skills/alarina/commands/seda-tickets.md",
-      "sha256": "e4db59aebffa5265de2976e931c0526b22afbb6962ddfed542d797bd66081425",
+      "sha256": "c016014893d432c919272b45461ae166c93429452b7ded9b65ceb9d8eedcc861",
       "mode": "0o644",
       "source": "skills/alarina/commands/seda-tickets.md",
-      "source_sha256": "e4db59aebffa5265de2976e931c0526b22afbb6962ddfed542d797bd66081425"
+      "source_sha256": "c016014893d432c919272b45461ae166c93429452b7ded9b65ceb9d8eedcc861"
     },
     {
       "path": "skills/alarina/commands/system-cleanup.md",
@@ -501,10 +501,10 @@
     },
     {
       "path": "skills/alarina/references/alaga/engineering-contract.md",
-      "sha256": "b36eed70c6a4276d5f8ca1dab79c23f8a40992c330660910c2e3dc922db36012",
+      "sha256": "c9c787fc926a3aa34e4bb3a1fa67d3867475e46271e1ba17862b0a4518ea7b69",
       "mode": "0o644",
       "source": "skills/alarina/references/alaga/engineering-contract.md",
-      "source_sha256": "b36eed70c6a4276d5f8ca1dab79c23f8a40992c330660910c2e3dc922db36012"
+      "source_sha256": "c9c787fc926a3aa34e4bb3a1fa67d3867475e46271e1ba17862b0a4518ea7b69"
     },
     {
       "path": "skills/alarina/references/alaga/integration-obligations.md",
@@ -725,17 +725,10 @@
     },
     {
       "path": "skills/alarina/references/ayewo-igba-ise/local-session-evidence.md",
-      "sha256": "e4e2c4ea8feeac6ae26762429fe14eda897494ce3a02114a6ef0e8f84199f1e3",
+      "sha256": "759933ab3adeb599b3e0caeeba2444de09b20715c366293006787ceeb5ddc0c6",
       "mode": "0o644",
       "source": "skills/alarina/references/ayewo-igba-ise/local-session-evidence.md",
-      "source_sha256": "e4e2c4ea8feeac6ae26762429fe14eda897494ce3a02114a6ef0e8f84199f1e3"
-    },
-    {
-      "path": "skills/alarina/references/ayewo-igba-ise/scripts/session-evidence.py",
-      "sha256": "c96f3ebdd4b2aac6701be82db0cbb896e09048944a13cf40d48f25e8d8456993",
-      "mode": "0o755",
-      "source": "skills/alarina/references/ayewo-igba-ise/scripts/session-evidence.py",
-      "source_sha256": "c96f3ebdd4b2aac6701be82db0cbb896e09048944a13cf40d48f25e8d8456993"
+      "source_sha256": "759933ab3adeb599b3e0caeeba2444de09b20715c366293006787ceeb5ddc0c6"
     },
     {
       "path": "skills/alarina/references/coordination.md",
@@ -844,17 +837,10 @@
     },
     {
       "path": "skills/alarina/references/html-artifact/manifest.md",
-      "sha256": "d263d69d16ed79737dd0560f3e1f3fccde718ab0abe8a6624d36db697cb95224",
+      "sha256": "fc0835176ed876d55cde600520229770414e62e88eaa985d1845462e0de344d0",
       "mode": "0o644",
       "source": "skills/alarina/references/html-artifact/manifest.md",
-      "source_sha256": "d263d69d16ed79737dd0560f3e1f3fccde718ab0abe8a6624d36db697cb95224"
-    },
-    {
-      "path": "skills/alarina/references/html-artifact/scripts/verify_artifact.py",
-      "sha256": "1d23e0ffca03e990e017d8ca310e292167aae19cd9bd5b41811f68c9400dfac4",
-      "mode": "0o644",
-      "source": "skills/alarina/references/html-artifact/scripts/verify_artifact.py",
-      "source_sha256": "1d23e0ffca03e990e017d8ca310e292167aae19cd9bd5b41811f68c9400dfac4"
+      "source_sha256": "fc0835176ed876d55cde600520229770414e62e88eaa985d1845462e0de344d0"
     },
     {
       "path": "skills/alarina/references/oro/editing-agent-text.md",
@@ -893,10 +879,10 @@
     },
     {
       "path": "skills/alarina/references/oro/skill-mechanics.md",
-      "sha256": "d01ba6d4ae295b376ce807ca6aa562f36fc7835b01d2383543cc520d6f17a07d",
+      "sha256": "2c56670b4ebc2147676aa3e5e9b55b0443a6eaf814621b12d920c777ddacbbf2",
       "mode": "0o644",
       "source": "skills/alarina/references/oro/skill-mechanics.md",
-      "source_sha256": "d01ba6d4ae295b376ce807ca6aa562f36fc7835b01d2383543cc520d6f17a07d"
+      "source_sha256": "2c56670b4ebc2147676aa3e5e9b55b0443a6eaf814621b12d920c777ddacbbf2"
     },
     {
       "path": "skills/alarina/references/oro/visual-explanation.md",
@@ -970,10 +956,10 @@
     },
     {
       "path": "skills/alarina/references/terms.md",
-      "sha256": "1065cc601004ed42bc39c3f36bd3f7ed0d392588ee420f78d2e3cafc37147cdb",
+      "sha256": "c482fa622106839fad0484d60f65bd601ad165910548a29c5eb6d83a488ec5ff",
       "mode": "0o644",
       "source": "skills/alarina/references/terms.md",
-      "source_sha256": "1065cc601004ed42bc39c3f36bd3f7ed0d392588ee420f78d2e3cafc37147cdb"
+      "source_sha256": "c482fa622106839fad0484d60f65bd601ad165910548a29c5eb6d83a488ec5ff"
     },
     {
       "path": "skills/alarina/references/yoruba-glossary/glossary.md",
@@ -1016,6 +1002,27 @@
       "mode": "0o644",
       "source": "skills/alarina/routes.yaml",
       "source_sha256": "e398c60cba3e4866466c7d678173a942046a8c68dcdd70a484797b7e75fcdf4e"
+    },
+    {
+      "path": "skills/alarina/scripts/README.md",
+      "sha256": "4c6665a8fdcf3d24928171d78f4bb0fdf94d40db83a6227a24123d5146908520",
+      "mode": "0o644",
+      "source": "skills/alarina/scripts/README.md",
+      "source_sha256": "4c6665a8fdcf3d24928171d78f4bb0fdf94d40db83a6227a24123d5146908520"
+    },
+    {
+      "path": "skills/alarina/scripts/session-evidence.py",
+      "sha256": "c96f3ebdd4b2aac6701be82db0cbb896e09048944a13cf40d48f25e8d8456993",
+      "mode": "0o644",
+      "source": "skills/alarina/scripts/session-evidence.py",
+      "source_sha256": "c96f3ebdd4b2aac6701be82db0cbb896e09048944a13cf40d48f25e8d8456993"
+    },
+    {
+      "path": "skills/alarina/scripts/verify_artifact.py",
+      "sha256": "089f068d39bab7133de9ad7a1f358b072ddca0dc9c6d8763e4924f1fb68356e8",
+      "mode": "0o644",
+      "source": "skills/alarina/scripts/verify_artifact.py",
+      "source_sha256": "089f068d39bab7133de9ad7a1f358b072ddca0dc9c6d8763e4924f1fb68356e8"
     }
   ]
 }
