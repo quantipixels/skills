@@ -180,11 +180,16 @@ commands:
   former_mode: interview
 - id: atona-direction
   family: plan
-  description: Explore alternatives and shape an unclear idea into a workable direction.
+  description: Explore and challenge alternatives to find credible directions.
   reference: commands/atona-direction.md
   implicit: true
   former_skill: atona
   former_mode: direction
+- id: atona-plan
+  family: plan
+  description: Plan the approach, sequence and verification for an outcome without starting delivery.
+  reference: commands/atona-plan.md
+  implicit: true
 - id: seda-spec
   family: plan
   description: Define an observable behavior contract and acceptance examples without starting delivery.
@@ -201,7 +206,7 @@ commands:
   former_mode: decomposition
 - id: atona
   family: plan
-  description: Carry an initiative through its requested outcome using one living plan.
+  description: Carry an initiative end to end through verification and the authorized handoff.
   reference: commands/atona.md
   implicit: true
   former_skill: atona
@@ -365,6 +370,8 @@ routes:
   owners:
   - command: atona-direction
     required: true
+  - command: atona-plan
+    required: true
   - command: atona
     required: true
   - command: seda-spec
@@ -458,6 +465,7 @@ routes:
     required: true
   support:
   - architect-design
+  - atona-plan
   - atona
   - arojinle
   - atunwo
@@ -537,6 +545,8 @@ routes:
   - command: architect-review
     required: true
   - command: seda-spec
+    required: true
+  - command: atona-plan
     required: true
   - command: atona
     required: true
@@ -682,6 +692,8 @@ routes:
     required: true
   - command: architect-review
     required: true
+  - command: atona-plan
+    required: true
   - command: atona
     required: true
   - command: alaga-deliver
@@ -753,6 +765,8 @@ routes:
   - acceptance
   playbook: playbooks/release-rollout.md
   owners:
+  - command: atona-plan
+    required: true
   - command: atona
     required: true
   - command: alaga-deliver

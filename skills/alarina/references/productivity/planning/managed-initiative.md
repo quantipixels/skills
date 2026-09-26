@@ -1,6 +1,6 @@
 # Managed initiative lifecycle
 
-Use only when the governing workflow requires named readiness states, coordinated multi-candidate delivery or a maintained lifecycle record. Apply [initiative progression](../../../commands/atona.md) for the shared plan, HTML handoff, delivery and workspace rules. These formal gates supplement that method.
+Use only when the governing workflow requires named readiness states, coordinated multi-candidate delivery or a maintained lifecycle record. Use [outcome planning](../../../commands/atona-plan.md) for plan construction and readiness, and [initiative progression](../../../commands/atona.md) for ongoing plan maintenance, delivery and workspace rules. These formal gates supplement that method.
 
 ## Maintain lifecycle state
 
@@ -14,7 +14,7 @@ Track one status:
 | `Backlog` | intentionally inactive with an owner/re-entry trigger |
 | `Closed` | accepted outcome/proof are complete and required local candidate state has been reconciled |
 
-Atọ́nà alone sets plan status. Supporting results, tickets, provider state, and projections are evidence only.
+For standalone planning, `atona-plan` may set `Draft` or `Planned` after applying the readiness gate below; neither starts delivery. During an active initiative, `atona` owns the lifecycle status and consumes planning readiness as evidence, preserving execution state while replanning. Only the initiative owner sets `In Progress`, `Backlog` or `Closed` within the user's authority. Tickets, provider state and projections are evidence, not status decisions.
 
 Derive a compact delivery summary from current owner results: `Not required | Not started | Active | Blocked | Complete | Stale`.
 

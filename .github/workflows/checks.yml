@@ -27,6 +27,8 @@ jobs:
         run: python tests/smoke_package.py
       - name: Exercise the session script on a disposable transcript
         run: python scripts/skills/test_session_evidence.py
+      - name: Reject missing or conflicting artifact delivery profiles
+        run: python scripts/skills/test_html_artifact.py
       - name: Native install snapshot and clean-staging safeguards
         run: python scripts/plugins/test_verify_native_install.py
       - name: Canonical skill and native declaration generation

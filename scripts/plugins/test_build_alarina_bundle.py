@@ -40,8 +40,14 @@ class NativeDeclarationsTest(unittest.TestCase):
         self.assertEqual("./skills/", codex["skills"])
         self.assertEqual("./skills/", claude["skills"])
         self.assertEqual(["./agents/alarina.claude.md"], claude["agents"])
-        self.assertIn("$qp-skills:alarina", (self.root / "agents/alarina.codex.toml").read_text())
-        self.assertIn("qp-skills:alarina", (self.root / "agents/alarina.claude.md").read_text())
+        codex_agent = (self.root / "agents/alarina.codex.toml").read_text()
+        claude_agent = (self.root / "agents/alarina.claude.md").read_text()
+        self.assertIn("Use the `alarina` skill", codex_agent)
+        self.assertNotIn("$qp-skills:alarina", codex_agent)
+        self.assertIn("Use the `alarina` skill", claude_agent)
+        self.assertNotIn("/qp-skills:alarina", claude_agent)
+        self.assertEqual(["qp-skills:alarina"], builder.frontmatter(self.root / "agents/alarina.claude.md")[0]["skills"])
+        self.assertIn("${CLAUDE_PLUGIN_ROOT}/skills/alarina/SKILL.md", claude_agent)
         self.assertEqual((self.root / "agents/alarina.md").read_bytes(), (self.root / ".opencode/agents/alarina.md").read_bytes())
 
     def test_check_rejects_stale_declaration(self) -> None:

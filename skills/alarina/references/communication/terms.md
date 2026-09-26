@@ -25,6 +25,7 @@ These are project names. The slugs are stable ASCII identifiers; the marked Yor�
 | Identifier | Marked form and plain meaning | Why the name fits |
 | --- | --- | --- |
 | `alarina` skill and agent | **Alárinà**, intermediary or go-between | Routes a request to the command that owns the next result and carries evidence back; the agent profile uses the same method within its assignment. |
+| `atona`, `atona-direction`, `atona-plan` | **Atọ́nà**, the project's established name for guidance; English suffixes distinguish the result | Direction explores alternatives; plan establishes approach, sequence and proof; the unsuffixed command carries the initiative to its requested finish. |
 | `alarina-setup` | **Alárinà** with the English `setup` suffix | Connects project philosophy, lifecycle practices and working capabilities, or prepares the requested personal environment. |
 | `ayewo-igba-ise`, `ayewo-retro`, `ayewo-corpus` | **Àyẹ̀wò**, examination or review; the existing **Àyẹ̀wò Ìgbà Iṣẹ́** names the event postmortem | The command suffix distinguishes the result: event reconstruction, agent-environment improvement, or cross-session evidence. These share evidence rules without requiring every analysis branch. |
 | `amose-context` | **Amọ̀ṣẹ́**, the project's name for its domain modeller; `context` names the bounded language source | Captures resolved domain terms in the project's canonical glossary and places legacy knowledge with its proper owner. |

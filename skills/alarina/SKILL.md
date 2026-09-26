@@ -15,7 +15,7 @@ The user-chosen main agent is the conductor. Within a worker assignment, apply t
 
 ## Enter and load
 
-Natural language is the primary interface. The host may select Alárinà from its description, or the user may invoke its displayed skill name and supply a complete request. The host supplies the displayed namespace. Commands below are arguments after that one entrypoint, not independent native skills or preconfigured subagents. Use the exact displayed invocation; do not invent a prefix for each command.
+Natural language is the primary interface: say `alarina` with the request. Resolve that skill against the host's available catalog and load its actual entry; when explicit native activation is needed, use the host's displayed invocation. Keep host syntax at that boundary. Once Alárinà is loaded, refer to commands by plain names such as `atona-plan` and read their linked methods. Commands and playbooks are internal methods, not separate native skills, slash commands or preconfigured subagents; they need no repeated Alárinà or provider prefix.
 
 1. Read the complete request with accepted decisions, existing plan/candidate, evidence and stopping point. An alias or command name never overrides a narrower request such as diagnosis only, read-only review, description only, or no publication.
 2. For an explicit or clearly implied command, **successfully read its exact linked reference before applying its method**. Resolve root links from the directory containing this installed `SKILL.md`, not the project working directory. Resolve deeper links from their containing file. A remembered method, path mention or failed/truncated read is not a successful load; recover the missing content before relying on it.
@@ -57,10 +57,11 @@ The table is generated from [routes.yaml](routes.yaml). That file owns command a
 | [`amose`](commands/amose.md) | Resolve domain terms, identity, lifecycles, policy, ownership and invariant applicability. |
 | [`architect-design`](commands/architect-design.md) | Design technical structure fitted to confirmed purpose, domain and quality drivers. |
 | [`arojinle`](commands/arojinle.md) | Resolve purpose, success and consequential dependent choices through an interview. |
-| [`atona-direction`](commands/atona-direction.md) | Explore alternatives and shape an unclear idea into a workable direction. |
+| [`atona-direction`](commands/atona-direction.md) | Explore and challenge alternatives to find credible directions. |
+| [`atona-plan`](commands/atona-plan.md) | Plan the approach, sequence and verification for an outcome without starting delivery. |
 | [`seda-spec`](commands/seda-spec.md) | Define an observable behavior contract and acceptance examples without starting delivery. |
 | [`seda-tickets`](commands/seda-tickets.md) | Decompose an accepted direction or specification into bounded work packages. |
-| [`atona`](commands/atona.md) | Carry an initiative through its requested outcome using one living plan. |
+| [`atona`](commands/atona.md) | Carry an initiative end to end through verification and the authorized handoff. |
 
 ### Build
 
@@ -115,7 +116,7 @@ The table is generated from [routes.yaml](routes.yaml). That file owns command a
 
 ## Compose engineering work
 
-Choose the first unresolved result, not the first step of a template. Reuse sufficient current decisions, candidates and proof. Opening a playbook does not require every possible command it mentions: load and apply the commands whose result is required in the current state.
+Choose the first unresolved result, not the first step of a template. Reuse sufficient current decisions, candidates and proof. Opening a playbook does not require every possible command it mentions: load and apply the commands whose result is required in the current state. For an initiative to carry through completion, including hands-off or AFK work, use `atona`; for a plan as the requested result, use `atona-plan`. Autonomous continuation uses the same owners and authority, not a second execution system.
 
 | Playbook | Select when | Reference |
 | --- | --- | --- |
@@ -144,7 +145,7 @@ Commands can use another command's method within the current assignment. Read it
 
 Distinguish adjacent outcomes:
 
-- Ambitious or unclear direction → `atona-direction`; unsettled purpose, success or dependent choices → `arojinle`, with the caller identifying the respondent; uncertainty requiring experience → `adanwo`.
+- Alternative ideas or directions → `atona-direction`. Brainstorming one chosen idea composes `arojinle` for unsettled purpose/choices and `seda-spec` for behavior; reuse settled answers. Approach, sequencing and verification planning → `atona-plan`; ongoing initiative progression → `atona`. Wayfinding through uncertainty uses the shared progressive-shaping reference, not another command. Uncertainty requiring experience → `adanwo`.
 - Domain identity, lifecycle, policy or invariant applicability → `amose`, even when the words are familiar. Current implementation does not automatically establish domain intent.
 - Observable behavior → `seda-spec`; structure or consequential technical fitness → `architect-design`; accepted work decomposition → `seda-tickets`. Use both specification and architecture when both remain unresolved.
 - Code judgment → `atunwo`; mechanism/architecture fitness → `architect-review`; measured engineering comparison → `alaga-compare`; instruction/model comparison → the skill-evaluation playbook.

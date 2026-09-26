@@ -24,6 +24,8 @@ DECLARATIONS = (
     ".opencode/agents/alarina.md", "opencode.json", "package.json",
     "LICENSE",
 )
+NATIVE_AGENT_DIRECTORIES = ("agents", ".opencode/agents")
+NATIVE_AGENT_SUFFIXES = {".md", ".toml"}
 
 
 class NativeVerificationError(ValueError):
@@ -171,6 +173,17 @@ def compare_installed_files(installed_root: Path, source_root: Path) -> int:
         added = sorted(observed.keys() - expected.keys())
         missing = sorted(expected.keys() - observed.keys())
         raise NativeVerificationError(f"installed package content differs: changed={changed}, added={added}, missing={missing}")
+    unexpected_agents = []
+    for directory in NATIVE_AGENT_DIRECTORIES:
+        for path in (installed_root / directory).rglob("*"):
+            relative = path.relative_to(installed_root).as_posix()
+            if (path.suffix in NATIVE_AGENT_SUFFIXES and (path.is_file() or path.is_symlink())
+                    and relative not in DECLARATIONS):
+                unexpected_agents.append(relative)
+    if unexpected_agents:
+        raise NativeVerificationError(
+            f"installed package contains unexpected native agent declarations: {sorted(unexpected_agents)}"
+        )
     if _inventory(installed_root) != ["skills/alarina/SKILL.md"]:
         raise NativeVerificationError("installed skill inventory differs from one Alárinà entry")
     return len(expected)

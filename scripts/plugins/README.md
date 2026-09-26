@@ -10,6 +10,8 @@ Codex and Claude marketplaces both source `./`. Codex registers its native TOML 
 
 Run `python3 scripts/plugins/verify_native_install.py --host codex` or `--host claude` to install into disposable manager state and compare the installed canonical skill and declarations with a clean staged package. The stage exports only the runtime skill, native declarations, manifests, marketplaces, package metadata and licence. This excludes ignored `.qp/`, `node_modules/` and development files; Codex's local marketplace copier can otherwise include ignored working files from a live checkout. The check does not change the user's installation.
 
+The comparison also rejects unexpected Markdown or TOML agent declarations under the installed `agents/` and `.opencode/agents/` directories. It does not compare unrelated development files or prove that a package manager removes stale files during an upgrade.
+
 For a local Codex refresh, run `python3 scripts/plugins/verify_native_install.py --export /new/stable/package/path` after `npm run check:plugins`. Point only the install command at that clean source:
 
 ```bash

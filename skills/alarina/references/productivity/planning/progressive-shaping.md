@@ -2,7 +2,7 @@
 
 Use when the desired outcome is recognizable but the route is unclear, or a material initiative cannot yet be planned responsibly as a whole. Session size alone does not decide whether shaping is needed.
 
-The purpose is to expose the route progressively without inventing future requirements. This is a shaping method inside Atọ́nà, not another lifecycle, owner, or ticket system. When the managed initiative lifecycle applies, it does not replace the Decision Frontier Gate.
+The purpose is to expose the route progressively without inventing future requirements. This wayfinding method is reusable by [atona-direction](../../../commands/atona-direction.md), [atona-plan](../../../commands/atona-plan.md) and other callers within their authority; it is not another lifecycle, owner or ticket system. A planning-only caller identifies experiments for execution elsewhere unless separately authorized. When the managed initiative lifecycle applies, it does not replace the Decision Frontier Gate.
 
 ## Name the destination first
 
@@ -103,7 +103,7 @@ Do not retain historical copies of every prior map. The plan remains exact-curre
 
 ## Know when this branch is no longer needed
 
-Stop progressive shaping when the initiative can satisfy Atọ́nà's normal readiness work without inventing material requirements. When the managed initiative lifecycle applies, do not set `Planned` while material not-yet-specifiable territory remains that implementation could encounter inside the accepted scope. Outside that lifecycle, this is the bound for completing whole-initiative shaping, not a prerequisite for building an independently ready slice.
+Stop progressive shaping when the initiative can satisfy the planning method's readiness work without inventing material requirements. When the managed initiative lifecycle applies, do not set `Planned` while material not-yet-specifiable territory remains that implementation could encounter inside the accepted scope. Outside that lifecycle, this is the bound for completing whole-initiative shaping, not a prerequisite for building an independently ready slice.
 
 A deferred item may remain only when it is genuinely non-blocking and already has Atọ́nà's normal re-entry contract.
 

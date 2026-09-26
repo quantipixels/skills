@@ -6,6 +6,8 @@ Consolidate every QP skill and utility into one canonical Alárinà skill. Retir
 
 Serve the canonical skill directly from the repository root through native Codex, Claude Code, OpenCode and Pi entry points. Generate only the small plugin manifests and agent declarations, with a Claude agent profile using the same operating method. Check declarations, source links, route policy, native installation and migration snapshots while keeping discovery, command loading and model behavior as separate evidence. Existing selective installations must migrate to Alárinà; unrelated local skills are not edited automatically.
 
+Reject unexpected native Markdown or TOML agent declarations in installed-package comparisons so stale profiles cannot hide behind matching expected files. Keep unrelated development files outside that comparison.
+
 Require current local review and relevant checks before publishing substantive candidates, reusing delivery evidence and batching corrections. Add optional project/environment setup and bounded command composition, including applying Àròjinlẹ̀ with the agent as its respondent. Reduce routine artifacts, make HTML plans conditional, and keep resumable private state in user-level storage while preserving existing records and shared project knowledge.
 
 Project setup and broad documentation-improvement requests establish useful baseline coverage, creating missing architecture, standards, confirmed non-goals and working instructions through their existing owners while preserving scoped audits and edits.

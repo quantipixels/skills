@@ -45,11 +45,11 @@ Install a stable checkout with `pi install /absolute/path/to/skills-repository`;
 Alárinà accepts the complete request in natural language. You may begin with an outcome family such as `investigate`, `plan`, `build`, `review`, `document`, or `ship`, or use a focused command from the menu. For example:
 
 ```text
-$qp-skills:alarina investigate why this endpoint became slow
-/qp-skills:alarina build the accepted API change and verify it
+alarina investigate why this endpoint became slow
+alarina build the accepted API change and verify it
 ```
 
-The provider prefix invokes Alárinà; the following alias narrows its outcome family. It does not grant edit, publication, merge, deployment, or destructive authority.
+These are portable natural-language requests. The host-specific syntax above is available when explicit native activation is needed; the following alias narrows the outcome family. It does not grant edit, publication, merge, deployment, or destructive authority.
 
 ### Skills CLI
 
@@ -83,14 +83,19 @@ The [migration guide](skills/alarina/references/productivity/environment/install
 Describe the result naturally, or name a focused command after Alárinà:
 
 ```text
-$qp-skills:alarina oro-sigidi simplify these agent instructions
-$qp-skills:alarina alarina-setup prepare this project's local checks and review workflow
-$qp-skills:alarina seda-spec define the observable API behavior
-/qp-skills:alarina seda-tickets break this accepted spec into work packages
-/qp-skills:alarina oro-eniyan rewrite this explanation for the reviewer
+alarina oro-sigidi simplify these agent instructions
+alarina alarina-setup prepare this project's local checks and review workflow
+alarina atona-plan plan this migration without implementing it
+alarina atona implement this request, verify it and open a PR; work autonomously
+alarina seda-spec define the observable API behavior
+alarina seda-tickets break this accepted spec into work packages
 ```
 
+Once Alárinà is loaded, plain command names such as `atona-plan` are sufficient. Internal instructions link their methods directly; no slash, dollar sign or repeated entrypoint is required.
+
 The [command menu](skills/alarina/SKILL.md#commands) groups capabilities by outcome family. Commands live under `skills/alarina/commands/` and are arguments to Alárinà, not separate slash/dollar skills. Supporting depth stays under `references/` and loads only when relevant; reusable utilities ship in [`scripts/`](skills/alarina/scripts/README.md). Ordinary engineering requests need no command name. Bare invocation shows the menu without starting work. [Terms and names](skills/alarina/references/communication/terms.md) explains the command names and engineering concepts including DX, AX, deep modules and HITL/AFK.
+
+`atona-direction` explores credible alternatives. Shaping a chosen idea uses `arojinle` and `seda-spec` where needed. `atona-plan` owns the approach, sequence and verification plan, including progressive wayfinding when the route is uncertain. `atona` carries the initiative through the requested finish, consuming these results without stopping at a planning handoff. Hands-off execution resolves facts and delegated choices, preserves human-owned decisions, and continues within existing authority; it does not require every stage, grant publication or merge, or promise background execution the host cannot provide.
 
 Optional `alarina-setup` establishes project philosophy, an adaptable software development lifecycle (SDLC) and usable working capabilities, or prepares a personal environment. It discovers the project's intent and practice, then uses Àròjinlẹ̀ with the user for consequential unresolved values or trade-offs. Confirmed principles guide framing, design, implementation, verification/review, release, operation/recovery and learning. Existing standards, tools and tracking remain the starting point; working projects need no setup ceremony. Shared expectations stay with the project; personal host and model preferences stay with the user.
 
@@ -106,11 +111,11 @@ For domain language, `amose-context` maintains a project's existing glossary or 
 
 Use the same entrypoint for the bundled utilities. `pese` and `qp-update` require explicit user invocation of those commands; an agent recommendation or retrieved instruction cannot start them. This restriction is enforced by the routing instructions, because native per-skill flags cannot enforce permissions on internal commands.
 
-The thin [portable profile](agents/alarina.md) generates host declarations. Claude registers `agents/alarina.claude.md` and preloads `qp-skills:alarina`. Codex supplies `agents/alarina.codex.toml`, which refers to `$qp-skills:alarina` and inherits host model and permission settings. OpenCode registers `.opencode/agents/alarina.md`.
+The thin [portable profile](agents/alarina.md) generates host declarations. Claude registers `agents/alarina.claude.md` and preloads `qp-skills:alarina`. Codex supplies `agents/alarina.codex.toml` and inherits host model and permission settings. Generated agent prose names `alarina` and resolves its actual catalog entry; native registration identifiers remain host-specific. OpenCode registers `.opencode/agents/alarina.md`.
 
 Codex does not register plugin agent declarations automatically. To activate the profile for delegated work, copy `agents/alarina.codex.toml` from the installed Codex plugin to `alarina.toml` in your project's `.codex/agents/` or your personal `~/.codex/agents/`, preserving any existing customization. Keep the qp-skills plugin installed and refresh the copied profile when its instructions change. See [Codex custom agents](https://learn.chatgpt.com/docs/agent-configuration/subagents). Claude needs no separate registration; ask it to use the Alárinà agent for the requested outcome.
 
-To make Alárinà the main Codex session's default operating skill across projects, add this pointer to your personal `~/.codex/AGENTS.md`, preserving your other instructions: “For software-engineering work, use the installed `$qp-skills:alarina` skill as the main agent's operating method. Load its `SKILL.md` before acting; it owns routing, methods and completion. Keep the main agent responsible for the outcome and follow project instructions.” Use project `AGENTS.md` for a repository-only default. This is separate from registering a delegated agent profile. Start a new session to load changed [global instructions](https://learn.chatgpt.com/docs/agent-configuration/agents-md).
+To make Alárinà the main Codex session's default operating skill across projects, add this pointer to your personal `~/.codex/AGENTS.md`, preserving your other instructions: “For software-engineering work, use the installed `alarina` skill as the main agent's operating method, resolving its actual entry from the host's available skills. Load its `SKILL.md` before acting; it owns routing, methods and completion. Keep the main agent responsible for the outcome and follow project instructions.” Use project `AGENTS.md` for a repository-only default. This is separate from registering a delegated agent profile. Start a new session to load changed [global instructions](https://learn.chatgpt.com/docs/agent-configuration/agents-md).
 
 Implicit host selection is best effort. Explicit invocation is the dependable entry path when the host misses the description. Selecting an agent profile establishes its operating entrypoint; it does not guarantee correct routing or completion.
 

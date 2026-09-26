@@ -38,7 +38,7 @@ For build/test improvements, locate the delayed feedback before choosing a tool 
 
 ## Make the decision checkable
 
-Return the evidence-backed opportunity or selected change, its user/developer/agent consequences, strongest alternative, compatibility/migration cost and smallest experiment that could overturn the choice. A bounded result may be keep, change, investigate or defer with a concrete re-entry condition. Retain consequential rationale through [amose](../../../commands/amose.md); use [atona](../../../commands/atona.md) only when accepted work needs initiative planning. Report wider opportunities without silently enlarging a delivery assignment.
+Return the evidence-backed opportunity or selected change, its user/developer/agent consequences, strongest alternative, compatibility/migration cost and smallest experiment that could overturn the choice. A bounded result may be keep, change, investigate or defer with a concrete re-entry condition. Retain consequential rationale through [amose](../../../commands/amose.md); use [atona-plan](../../../commands/atona-plan.md) when accepted work needs an approach and delivery sequence. Report wider opportunities without silently enlarging a delivery assignment.
 
 A stable, consequential architectural invariant may earn an executable fitness check: reuse compiler, build or test enforcement and verify it rejects a representative violation. A one-off preference does not justify a permanent gate.
 

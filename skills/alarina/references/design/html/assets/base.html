@@ -4,13 +4,19 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Artifact title</title>
-  <!-- Replace title/content. This is an optional foundation, not a page design.
-       This specimen uses Basecoat's standalone CSS and jQuery for its controls.
-       Its connected mode loads both from CDN. For a portable adaptation, replace
-       those tags with local/embedded assets as needed; a static document can
-       use native HTML/CSS with no runtime. A trusted host can supply styling.
-       Reuse available project branding/favicon; the QP mark is the fallback. -->
+  <!-- Default standalone foundation; freely adapt layout, title and content.
+       Read the command's substitution contract before replacing shared mechanics.
+       This connected specimen uses Basecoat's standalone CSS and jQuery for its
+       controls. For portable delivery, embed/bundle required assets and update
+       data-artifact-delivery. Retain jQuery only when keeping dependent behavior;
+       a static variant can follow the system theme with CSS without a toggle.
+       A containing application's established design system takes precedence.
+       Retain the inline QP mark and author footer unless the user overrides them.
+       Choose a Google Fonts family for the actual use case; Source Sans 3 is
+       this specimen's reading/UI choice. Update its link, CSS and disclosure
+       together. Portable output embeds/bundles fonts with their licence. -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/basecoat-css@1.0.2/dist/basecoat.cdn.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700&amp;display=swap">
   <style>
     @layer base {
       *, *::before, *::after { box-sizing: border-box; }
@@ -18,7 +24,7 @@
       html[data-theme="light"] { color-scheme: light; }
       html.dark { color-scheme: dark; }
       /* Reading fallback remains useful when the connected stylesheet fails. */
-      body { margin: 0; background: Canvas; color: CanvasText; font: 1rem/1.55 system-ui, sans-serif;
+      body { margin: 0; background: Canvas; color: CanvasText; font: 1rem/1.55 'Source Sans 3', system-ui, sans-serif;
         overflow-wrap: anywhere; }
       img, svg, video, canvas { max-inline-size: 100%; block-size: auto; }
       button, input, select, textarea { font: inherit; }
@@ -108,7 +114,7 @@
 <a class="skip-link" href="#artifact-content">Skip to content</a>
 <div class="artifact-shell">
   <header class="artifact-header" id="artifact-top" tabindex="-1">
-    <div class="artifact-brand" role="img" aria-label="Quanti Pixels">
+    <div class="artifact-brand" role="img" aria-label="Quanti Pixels (QP)">
       <!-- Inline copy of brand.svg keeps the default artifact self-contained. -->
       <svg viewBox="0 0 160 132" width="48" height="40" aria-hidden="true" focusable="false">
         <g fill="none" stroke-width="9" stroke-linecap="round" stroke-linejoin="round">
@@ -130,8 +136,11 @@
     <!-- Compose supplied content here; copy only useful control assets. -->
   </main>
   <p class="artifact-runtime" data-runtime-status role="status"></p>
-  <footer class="artifact-footer"><small>Single HTML; source data is static. Reader choices are not saved.
-    <span data-delivery-disclosure>Confirm the selected delivery and dependency boundary.</span></small></footer>
+  <footer class="artifact-footer">
+    <p><small>By Oluwaseyi Sobande · Quanti Pixels</small></p>
+    <small>Single HTML; source data is static. Reader choices are not saved.
+      <span data-delivery-disclosure>Confirm the selected delivery and dependency boundary.</span></small>
+  </footer>
 </div>
 <a class="btn" data-variant="outline" data-back-to-top href="#artifact-top"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 14 6-6 6 6M12 8v12"/></svg><span>Back to top</span></a>
 <script>
@@ -153,7 +162,7 @@
     button.on('click', () => { followsSystem = false; apply(root.attr('data-theme') !== 'dark'); });
     media.addEventListener('change', event => { if (followsSystem) apply(event.matches); });
     $('[data-delivery-disclosure]').text(root.attr('data-artifact-delivery') === 'connected'
-      ? 'Stylesheet: Basecoat 1.0.2; runtime: jQuery 4.0.0 (CDN). List other selected dependencies here.'
+      ? 'Stylesheet: Basecoat 1.0.2; font: Source Sans 3 (Google Fonts); runtime: jQuery 4.0.0 (CDN). List other selected dependencies here.'
       : root.attr('data-artifact-delivery') === 'host'
         ? 'Styling: supplied by the containing application.'
         : 'Styling: embedded CSS; no remote runtime selected.');

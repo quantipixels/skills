@@ -102,8 +102,8 @@ def inspect_html(text: str, require_manifest: bool = False) -> dict:
             if target not in ids:
                 emit('ERROR', 'missing-target', f'Target {target!r} is not present.', line)
 
-    profile = roots[0].get('data-artifact-delivery', 'connected') if roots else 'connected'
-    if profile not in {'portable', 'connected', 'host'}:
+    profile = roots[0].get('data-artifact-delivery') if roots else None
+    if profile is not None and profile not in {'portable', 'connected', 'host'}:
         emit('ERROR', 'delivery', f'Unknown delivery profile: {profile!r}.')
     manifests = [(attrs, body, line) for attrs, body, line in doc.scripts if attrs.get('id') == 'qp-artifact-manifest']
     manifest = None
@@ -139,6 +139,11 @@ def inspect_html(text: str, require_manifest: bool = False) -> dict:
                 emit('REVIEW', 'state-authority', 'Confirm the explicit persistence request, lifetime and reset contract.', line)
         except (ValueError, TypeError) as error:
             emit('ERROR', 'manifest-invalid', str(error), line)
+
+    if profile is None:
+        emit('ERROR', 'delivery-missing',
+             'Declare html[data-artifact-delivery] as portable, connected or host; '
+             'an existing valid manifest may also declare delivery.')
 
     remote = []
     for tag, attrs, line in doc.tags:
@@ -181,6 +186,7 @@ def inspect_html(text: str, require_manifest: bool = False) -> dict:
         if re.search(r'\b(?:fetch|WebSocket|EventSource)\s*\(|sendBeacon\s*\(', body):
             emit('REVIEW', 'network-api', 'Inspect the inline runtime data/connection boundary.', line)
     return dict(ok=not any(item['level'] == 'ERROR' for item in diagnostics), diagnostics=diagnostics,
+                deliveryProfile=profile,
                 explicitRemoteResources=sorted(set(remote)),
                 coverage='Structural checks only. Dynamic code/imports, CSS, factual truth, visual quality, accessibility and no-save behaviour require separate inspection/proof.')
 
@@ -200,6 +206,7 @@ def main() -> int:
         print(json.dumps(result, ensure_ascii=False, indent=2))
     else:
         print('Structural checks passed.' if result['ok'] else 'Structural checks failed.')
+        print(f'Delivery profile: {result["deliveryProfile"] if result["deliveryProfile"] is not None else "undeclared"}.')
         for item in result['diagnostics']:
             print(f'{item["level"]} {item["code"]} (line {item["line"] or "?"}): {item["message"]}')
         print(result['coverage'])

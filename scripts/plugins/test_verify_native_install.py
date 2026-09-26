@@ -66,6 +66,21 @@ class NativeInstallVerifierTest(unittest.TestCase):
         with self.assertRaisesRegex(verifier.NativeVerificationError, "inventory"):
             verifier.compare_installed_files(self.installed, self.source)
 
+    def test_snapshot_rejects_unexpected_native_agent_declarations(self) -> None:
+        for relative in ("agents/retired.claude.md", "agents/retired.codex.toml",
+                         ".opencode/agents/retired.md"):
+            with self.subTest(relative=relative):
+                write(self.installed, relative, "Stale declaration.\n")
+                with self.assertRaisesRegex(verifier.NativeVerificationError, "retired"):
+                    verifier.verify_upgrade_snapshot(self.before, self.installed, "codex", self.source)
+                (self.installed / relative).unlink()
+
+    def test_comparison_ignores_unrelated_development_files(self) -> None:
+        write(self.source, "agents/development-notes.txt", "Source note.\n")
+        write(self.installed, "agents/development-notes.txt", "Installed note.\n")
+        write(self.installed, "scripts/plugins/development.py", "Development file.\n")
+        self.assertEqual(3, verifier.compare_installed_files(self.installed, self.source))
+
     def test_stage_exports_only_runtime_surface(self) -> None:
         for relative in verifier.DECLARATIONS:
             write(self.root, relative, "Declaration.\n")

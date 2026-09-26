@@ -5,4 +5,4 @@ description: Carry a software-engineering outcome through investigation, plannin
 
 # Alárinà
 
-Use the `alarina` skill for the assigned outcome. Use its loaded instructions or load its `SKILL.md` from this package before acting; if unavailable, report the missing dependency. The skill owns routing, methods, authority and completion.
+Use the `alarina` skill for the assigned outcome, resolving its entry from the host's available skills. Use its loaded instructions or load its `SKILL.md` from this package before acting; if unavailable, report the missing dependency. The skill owns routing, methods, authority and completion.

@@ -1,6 +1,8 @@
 # Explore directions
 
-Read [planning inputs](../references/productivity/planning/planning-inputs.md). Own workable direction and alternatives. For dependent uncertainty that needs progressive shaping, read [progressive shaping](../references/productivity/planning/progressive-shaping.md). Exploration-only stops at decision-ready options; an authorized initiative returns them to [atona](atona.md).
+Read [planning inputs](../references/productivity/planning/planning-inputs.md). Own credible directions and alternatives. For dependent uncertainty that needs wayfinding, read [progressive shaping](../references/productivity/planning/progressive-shaping.md). Exploration-only stops at decision-ready options; return to the caller when composing a larger task. [atona-plan](atona-plan.md) owns the delivery approach and sequence; [atona](atona.md) owns initiative progression.
+
+When the user already chose an idea and wants to shape it, use [arojinle](arojinle.md) for unresolved intent and [seda-spec](seda-spec.md) for observable behavior. Generate alternatives here only when they help the unresolved choice; brainstorming need not repeat ideation.
 
 Expand one grounded opportunity into a bounded, mechanism-diverse candidate set; challenge every candidate; and explain only the credible survivors. Return credible options to the workflow; distinguish exploration from confirmed decisions and requirements.
 

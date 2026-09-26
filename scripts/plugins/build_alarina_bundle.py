@@ -143,10 +143,10 @@ def render(root: Path) -> dict[str, str]:
     common = {"name": "qp-skills", "version": version, "description": description, "author": {"name": "Oluwaseyi Sobande"}, "license": "MIT"}
     codex = {**common, "skills": "./skills/"}
     claude = {**common, "skills": "./skills/", "agents": ["./agents/alarina.claude.md"]}
-    codex_body = agent_body.replace("`alarina`", "`$qp-skills:alarina`", 1).replace("from this package", "from the installed qp-skills plugin")
+    codex_body = agent_body.replace("from this package", "from the installed qp-skills plugin")
     codex_agent = {**agent_meta, "developer_instructions": codex_body.strip()}
     codex_text = "\n".join(f"{key} = {json.dumps(value, ensure_ascii=False)}" for key, value in codex_agent.items()) + "\n"
-    claude_body = agent_body.replace("`alarina`", "`/qp-skills:alarina`", 1).replace("its `SKILL.md` from this package", "`${CLAUDE_PLUGIN_ROOT}/skills/alarina/SKILL.md`")
+    claude_body = agent_body.replace("its `SKILL.md` from this package", "`${CLAUDE_PLUGIN_ROOT}/skills/alarina/SKILL.md`")
     claude_agent = {**agent_meta, "skills": ["qp-skills:alarina"]}
     claude_text = "---\n" + yaml.safe_dump(claude_agent, allow_unicode=True, sort_keys=False) + "---\n\n" + claude_body
     return {

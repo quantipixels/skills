@@ -32,7 +32,7 @@ Use [iwadi](iwadi.md) for substantive prerequisite research and the applicable p
 
 When a frontier choice has several credible alternatives and at least two independent criteria can materially change the recommendation, use a compact decision-specific rubric. Apply hard gates first; derive only the criteria that matter to this decision; show the decisive factor, strongest credible alternative, and material counterevidence. Do not manufacture scores for a trivial/already-determined choice or let an average hide a gate. The rubric supports the recommendation; the decision remains the user's.
 
-Use [atona](atona.md) in exploration mode when initiative exploration or direction shaping is the needed result. Use [adanwo](adanwo.md) when a disposable prototype can clarify a concrete choice.
+Use [atona-direction](atona-direction.md) when credible alternative directions are needed, or [atona-plan](atona-plan.md) for an approach and delivery sequence. Return their evidence to the current interview; do not restart an interview over the same unresolved choice. Use [adanwo](adanwo.md) when a disposable prototype can clarify a concrete choice.
 
 The decisions remain the user's. Do not silently convert a recommendation, generated option, comparative grade, or prototype observation into confirmation.
 

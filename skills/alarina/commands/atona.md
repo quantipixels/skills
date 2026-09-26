@@ -1,79 +1,52 @@
-# Initiative progression
+# Carry an initiative to completion
 
-Read [planning inputs](../references/productivity/planning/planning-inputs.md). Own progression through the requested initiative outcome using one living plan. A plan, ticket set or handoff is intermediate when the user requested a build.
+Own progression through the requested outcome, from the first unresolved result to accepting evidence and the authorized handoff. Use one living plan. A supporting command's return is intermediate when the user requested completed delivery. A settled bounded coding task can go directly to [alaga-deliver](alaga-deliver.md).
 
-## Establish the destination and authority
+## Establish the finish and current state
 
-Start at the earliest unresolved step using supplied decisions, existing work, and current evidence. Establish the problem, affected people, intended outcome, observable acceptance, scope/non-goals, and requested stopping point. An exploration-only or planning-only request ends at that result; an end-to-end build request carries through delivery without another permission request at each stage. Publication, merge, deployment, and destructive cleanup require applicable authority from the session or governing policy.
+Recover the request, accepted decisions, active plan/candidate, current proof and stopping point. State what must be observably true at completion and which actions the session authorizes. Reuse sufficient existing work; a discovered plan or backlog item is not authority to execute it. Exploration-only, planning-only and review-only requests keep their narrower stops. For planning-only work, use [atona-plan](atona-plan.md) and return its result without starting delivery.
 
-When selecting or changing the initiative's development approach, use [SDLC adaptation](../references/engineering/development-practice.md) to fit stage depth, capabilities, feedback and recovery to confirmed project philosophy and the requested outcome. Reuse sufficient existing practice; the plan does not require every lifecycle phase or determine every implementation detail.
+Distinguish verified implementation, an open PR, provider readiness, merge, deployment and live acceptance. Continue through the requested finish without asking permission again for each authorized stage. Autonomous execution does not itself authorize publication, merge, deployment, installation or destructive cleanup. Explicit-only commands retain their invocation rules.
 
-Resolve discoverable facts from relevant project knowledge before asking the user. Check source authority and current applicability; carry forward only evidence that changes the work. Use [arojinle](arojinle.md) when purpose, beneficiary, success, consequential trade-offs or latent choices remain unsettled, including a proposed mechanism whose underlying need is unclear. Ask a single already-understood bounded choice directly; reuse complete briefs and accepted decisions. Continue independent authorized work while a dependent choice is unresolved.
+## Compose the next useful result
 
-## Keep the human in the plan
+Use the matched playbook for progression and load only methods needed by the current state. If no playbook covers the outcome, follow Alárinà's scoped command/reference discovery and compose a sufficient path. A custom path needs no new command or script to run.
 
-Keep one current plan in the requested or established format. Use [records](../references/productivity/records.md) when it needs persistence. Present the first proposed direction before delivery so the user can judge alignment. Maintain the plan through decisions, implementation, review, and completion; share its locator and revision with contributors when it is saved.
+- Alternative directions → [atona-direction](atona-direction.md).
+- Shape one idea → [arojinle](arojinle.md) for consequential unresolved intent, [seda-spec](seda-spec.md) for observable behavior, and direction exploration only when alternatives remain useful.
+- Establish or revise the approach, sequence and proof → [atona-plan](atona-plan.md). It owns planning depth, progressive wayfinding, premortem and rollout-planning methods; consume its result in the existing plan.
+- Implement a sufficiently settled outcome → [alaga-deliver](alaga-deliver.md), including its verification, local review, corrections and affected documentation.
 
-Supply the reader's current decision or concern, relevant candidate/evidence identities, and plan obligations whose omission would change a decision or progression judgment. Atọ́nà owns that meaning and its completeness. Use [html-artifact](html-artifact.md) when the user requests a browser document or that presentation materially helps the decision; it owns construction and presentation verification. Accept the plan only when those obligations and their material limits are visible and current.
+Pass the bounded question, current evidence, authority and stopping point. Inspect the returned result before advancing. A blocker or incomplete proof is not overridden by an artifact's existence. Resolve the controlling gap, continue independent authorized work where useful, and then resume the dependent path. Do not cycle between owners over the same unanswered prerequisite.
 
-Update the plan after material changes, before dependent decisions or delivery handoffs. Chat updates supplement a saved plan. Honor existing authority and requested review boundaries without adding approval rounds. If a requested presentation cannot be produced, report the deliverable gap and continue independent discovery and planning. Independent domain, architecture, research and evidence records keep their own useful formats; they are not duplicate plans.
+## Continue autonomously when requested
 
-## Explore and settle direction
+An end-to-end request authorizes continued work through its stated scope; an explicit hands-off or AFK request changes interaction, not the finish or permissions. Resolve observable facts from the project or a suitable experiment. Make routine and explicitly delegated choices, recording consequential assumptions in the current plan. Ask the human only for a missing decision they still own; their absence does not confirm a preference. Block dependent work when that decision is necessary and continue independent work within scope.
 
-When no direction is apparent, existing options are unsatisfying or alternative mechanisms need exploring, read [ideation](atona-direction.md). Use [iwadi](iwadi.md) for material evidence gaps, use the [premise check](../references/productivity/inquiry/premise-check.md) when a consequential proposal needs challenge, and use [adanwo](adanwo.md) when a disposable prototype can clarify the uncertainty. Preserve the distinction between a promising idea, a confirmed choice, and an accepted requirement.
+Present the initial direction and material changes for visibility, without adding an approval gate unless the user requested one. After a command or worker returns, consume its evidence and continue to the next ready obligation in the active run. Do not end with an offer to perform already-authorized work.
 
-For a build request, carry the selected direction into shaping and delivery. If no credible direction survives, report why and the evidence or decision needed to proceed. Reuse a settled direction without repeating exploration.
+Use the host's supported execution, waiting and resumption capabilities. Do not promise progress after the session ends unless durable background execution is actually available. For external waits, use native event delivery where supported; preserve a resumable handoff if the host cannot continue. No custom loop service is required.
 
-## Shape enough to build
+When an attempt fails, use the evidence to correct the cause or change approach. Repeating an unchanged failed attempt is not progress. Respect user/host budgets and pause requests; report a genuine capability, authority or evidence blocker instead of spinning or weakening acceptance. Revert only owned unsuccessful changes when safe; a source revert does not undo external effects.
 
-Keep the outcome and acceptance, confirmed decisions and material assumptions, delivery sequence, dependencies, risks, current blocker, and next action in one plan. Match detail to what a fresh contributor would otherwise have to invent; omit empty bookkeeping.
+## Integrate delivery and proof
 
-Include material documentation consequences in delivery scope and acceptance. Alága reconciles documentation affected by its implementation; Atọ́nà tracks owners and confirms that required updates across slices are complete. Reuse Alága’s documentation evidence; use [akowe-audit](akowe-audit.md) for unresolved cross-slice assessment or [akowe-sync](akowe-sync.md) for authorized documentation reconciliation. Keep obligations and remaining gaps in this plan, not a second audit. Planning-only work identifies obligations without applying documentation updates.
+Keep the current plan aligned with material decisions, discoveries, candidate changes and evidence. [atona-plan](atona-plan.md) owns substantive replanning; routine progress updates need no new planning pass. Preserve requested work and mandatory obligations, retire invalid assumptions and reopen only dependent choices or proof. Optional recommendations do not become completion conditions.
 
-Before implementation, identify the checks required to establish acceptance and any explicitly deferred verification. Preserve governing project checks and the user's division of work. New findings become required work only when they affect acceptance, invalidate existing evidence, or reveal an applicable mandatory obligation; keep other recommendations as follow-up rather than silently expanding delivery.
+Delegate useful independent work through native controls, with clear scope, workspace, acceptance and authority. Bound assignments and completed candidates awaiting integration by the capacity to integrate and verify them. Inspect decisive evidence, not worker completion claims. Follow Alárinà's coordination guidance for ownership and lifecycle controls.
 
-Retain decision-changing alternatives, rationale, uncertainty and counterevidence, and distinguish proposed, confirmed, deferred and superseded choices. When traceability matters, connect acceptance through decisions/contracts and architecture/owners to delivery candidates and proof. Expose missing implementation/proof, mechanisms without an accepted basis, stale evidence, and material cumulative drift. Keep planned, implemented, reviewed, tested and live-verified results distinct; include recovery obligations where material.
+Give each dependency-ready coding slice to [alaga-deliver](alaga-deliver.md). Consume its candidate, proof, documentation result and remaining gaps. Reuse its independent review; use [atunwo](atunwo.md) for additional integrated judgment only when warranted or requested, returning accepted corrections to delivery. When multiple work units, candidates or sessions need coordination, read [delivery tracking](../references/engineering/delivery/delivery-tracking.md). When a governing workflow requires formal initiative states, read [managed initiatives](../references/productivity/planning/managed-initiative.md); size alone does not require it.
 
-Use [amose](amose.md) when material domain identity, lifecycle, policy, ownership or invariants lack established meaning or applicability, [behavior contract](seda-spec.md) when behavior needs a normative contract, [architect-design](architect-design.md) when structure or a consequential mechanism's fitness for confirmed purpose/domain/quality drivers needs establishing, and [delivery decomposition](seda-tickets.md) when delivery needs decomposition. Reuse settled domain and sound design evidence. Consume each result and controlling gap in this same plan without requiring every branch or a new worker on every initiative.
+Assess the combined result against initiative acceptance, including interactions between slices and the actual user journey when relevant. Give delivery the bounded integration gap to verify and correct. Task counts, isolated checks and provider status do not establish whole-system success. Use the smallest sufficient check; broaden only for changed behavior, invalid evidence, a concrete failure or a governing requirement.
 
-When the route to the outcome is unclear or later work cannot yet be stated responsibly, read [progressive shaping](../references/productivity/planning/progressive-shaping.md). Choose the next evidence-producing question before guessing a backlog. Resolve prerequisites and build only slices whose acceptance, dependencies, and authority are sufficiently settled. Keep uncertain remaining scope visible; slice readiness does not prove whole-initiative readiness.
+Confirm required documentation across slices is reconciled. Reuse delivery's documentation evidence; [akowe-audit](akowe-audit.md) or [akowe-sync](akowe-sync.md) handles a remaining set-wide assessment or authorized reconciliation. Keep gaps in this same plan.
 
-For consequential, uncertain, difficult-to-reverse, or materially coordinated work, run a [premortem](../references/productivity/planning/premortem.md) and reconcile material findings before treating the affected plan as execution-ready.
+Use [seda-pr](seda-pr.md) for authorized publication and [wo-pr](wo-pr.md) when the requested finish includes PR readiness or stewardship. Complete applicable local readiness before pushing. A publication-only request ends at verified publication; it does not silently become merge or release work.
 
-When a consequential rollout needs operational acceptance or data recovery, read [rollout readiness](../references/engineering/delivery/rollout-readiness.md). Keep its checks and stop conditions in the current plan or runbook; delivery and live execution retain their existing owners and authority.
+## Preserve continuity and finish
 
-Use [managed initiatives](../references/productivity/planning/managed-initiative.md) only when the governing workflow requires named readiness states, coordinated multi-candidate delivery, or a durable lifecycle record. Its formal gates supplement this workflow; size alone does not require them.
+For useful persistence, follow [records](../references/productivity/records.md) and update the existing plan. Preserve scope, decisions, current candidate/workspace, decisive proof, unresolved obligations and next action. Record the main-worktree path for a linked worktree when needed for resumption; omit machine-specific paths from portable/public artifacts unless requested. Keep ordinary rationale in the plan; use [durable reconciliation](../references/engineering/documentation/durable-reconciliation.md) when governing knowledge needs updating.
 
-## Coordinate delivery and establish completion
+Before closing a linked-worktree initiative, reconcile required state with the accepting workspace and record its disposition. Preserve unresolved state; remove a worktree only with applicable user approval. Retaining it does not block completion.
 
-For useful independent work, delegate through native host controls with the current plan/candidate, scope, authority, required evidence and stop condition. Keep one writer per mutable workspace or shared tool, and inspect decisive returned evidence before integrating it. Bound running assignments and completed candidates awaiting integration or verification by the capacity to integrate and verify them.
-
-Use [alaga-deliver](alaga-deliver.md) as the builder for each sufficiently settled coding outcome. Supply its acceptance, relevant dependencies, workspace/candidate, and existing authority. Alága owns implementation, verification, and corrections; Atọ́nà owns sequencing and whether the combined results complete the initiative. Consume the returned candidate, evidence, blockers, and scope changes, update the plan, and continue to the next dependency-ready slice.
-
-Let Alága handle review and corrections for its coding change. Use [atunwo](atunwo.md) for a separate judgment across the integrated candidate when warranted or requested; reuse applicable review evidence and return accepted coding corrections to [alaga-deliver](alaga-deliver.md).
-
-When delivery has multiple work units or candidates, dependencies, owners, or a multi-session handoff, read [delivery tracking](../references/engineering/delivery/delivery-tracking.md). Keep execution and proof details with their owners; Atọ́nà owns whether the combined results satisfy the initiative.
-
-After a material decision, discovery, or delivery result, update the affected plan and reopen only dependent choices and proof. Resolve scope drift before continuing affected work. Preserve user-requested or accepted work, required checks and obligations from existing contracts or consumers. Remove agent-proposed additions from required scope when they do not serve acceptance or an applicable obligation. Keep useful ideas as optional follow-up, not conditions for completion; remove unjustified additions from the plan. Continue within existing authority; changing the plan does not authorize deleting code, tests or user artifacts. A partly superseded result is not wholly current.
-
-Keep progress updates concrete: distinguish implementation complete from verification complete, name the running check and the question it settles, and state the actual blocker or remaining required work. Report a material scope change promptly. Avoid repeated reassurance, invented completion estimates, or waiting for a polished report before communicating a result.
-
-Assess whether current delivery evidence covers initiative acceptance, including interactions between delivered slices and the real user journey when relevant. Reuse applicable proof. When integration behavior lacks proof or fails, give [alaga-deliver](alaga-deliver.md) the bounded integration outcome to verify and correct; consume that result before closing the initiative. Task counts, worker completion, isolated passing checks, and provider status do not establish that the build works as a whole. Keep missing proof and blockers visible and resolve them within scope.
-
-Choose the smallest sufficient check for each remaining acceptance gap. After a correction, rerun affected checks; broaden only when a concrete failure, changed assumption, invalidated evidence or governing requirement warrants it. Explain that reason and the smallest added check before expanding verification. Hypothetical adjacent risks do not by themselves require another test campaign.
-
-Use [seda-pr](seda-pr.md) for authorized publication and [wo-pr](wo-pr.md) for requested PR/MR readiness work. Keep implementation, integration, and release state distinct; report an outstanding required stage as incomplete.
-
-## Preserve continuity and close
-
-Keep the plan in context for a short session. When continuity or downstream use needs persistence, follow [records](../references/productivity/records.md) and update the existing plan first. Record the execution workspace and branch, plus the main-worktree path for a linked worktree, when that identity matters for resumption. Update it when execution moves. Omit machine-specific absolute paths from portable/public artifacts unless explicitly requested.
-
-Keep ordinary rationale in the current plan; read [durable reconciliation](../references/engineering/documentation/durable-reconciliation.md) only when required governing knowledge needs updating.
-
-Before closing a linked-worktree initiative, reconcile required task state with the accepting workspace, clean only reconciled or disposable owned state, and record the workspace disposition. Preserve unresolved state. Worktree removal requires user approval; retaining it does not block completion.
-
-Close only when the requested outcome has current accepting proof, required documentation and integration are complete, the current plan explains the delivered outcome and remaining limits, and no blocking in-scope obligation remains. For exploration-only or planning-only work, apply that bound to the requested artifacts and state that delivery has not been performed.
-
-Once these conditions hold, update the existing plan and hand over promptly. Make delta updates and recheck only artifact claims or presentation affected by them. Optional cleanup, broader review and visual polish belong in follow-up; they must not keep accepted delivery open. Link decisive evidence instead of copying raw logs or rebuilding the report.
-
-Return the plan's locator when saved, outcome, decisive verification, and material limits. If blocked, identify the exact remaining work, prerequisite or human decision, and next action; a recommendation is not completion. Continue authorized executable work instead of ending at a suggested next step.
+Close when the requested outcome has current accepting proof, required integration and documentation are complete, and no blocking in-scope obligation remains. Keep the plan current without rebuilding unaffected reports or repeating valid checks. Return the outcome, actual delivery state, plan locator when saved, decisive evidence and material limits. If blocked, return the exact unmet requirement and next input/action. Optional cleanup, broader review and polish remain follow-up.

@@ -47,7 +47,7 @@ Choose whether the model must be able to reach the skill autonomously.
 - **Model-reachable** spends always-loaded routing context but lets agents/other skills discover it.
 - **Human-invoked** spends less model context but makes the human remember the skill.
 
-Use the host/package's current invocation controls rather than copying volatile provider syntax here. Keep model-reachable descriptions discriminative enough to fire on real branches and reject adjacent ones.
+Use plain skill names in portable prose and resolve external skills against the host's available catalog. Once Alárinà is loaded, refer to its commands by plain names with exact method links; no repeated entrypoint or provider prefix is needed. Keep native invocation syntax and registration identifiers in host integration surfaces. Use the host/package's current invocation controls rather than copying volatile provider syntax here. Keep model-reachable descriptions discriminative enough to fire on real branches and reject adjacent ones.
 
 A compatibility alias should not compete with its replacement. Narrow its description to explicit legacy-name use and keep the method at one owner.
 

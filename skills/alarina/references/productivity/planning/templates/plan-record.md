@@ -59,7 +59,7 @@ This template suggests content for the one living plan in the requested or usefu
 
 ## Premortem
 
-<include when the premortem condition in atona.md applies: current plan/revision examined; credible material failure scenarios, evidence or counterevidence, dispositions and resulting plan changes; residual risk authority and any necessary owner, warning/re-entry trigger, and recovery condition; readiness conclusion or a missing/stale analysis blocker. Keep this with existing risks when that is their natural home; do not duplicate a register.>
+<include when the premortem condition in atona-plan.md applies: current plan/revision examined; credible material failure scenarios, evidence or counterevidence, dispositions and resulting plan changes; residual risk authority and any necessary owner, warning/re-entry trigger, and recovery condition; readiness conclusion or a missing/stale analysis blocker. Keep this with existing risks when that is their natural home; do not duplicate a register.>
 
 ## Delivery and proof
 
