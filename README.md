@@ -135,3 +135,15 @@ claude plugin marketplace remove qp-skills
 Run `npx skills remove` and select only the QP skills you want to uninstall. Use the same project or global scope and host as the original installation.
 
 Remove any QP-specific instructions you added to `AGENTS.md` or `CLAUDE.md` if you no longer want them. Restart the host to begin a session without the removed skills.
+
+## Acknowledgements
+
+Alárinà is authored and maintained by Oluwaseyi Sobande. Its development draws on ideas and examples shared by these projects:
+
+- [Matt Pocock's skills](https://github.com/mattpocock/skills) — domain language in `CONTEXT.md`, selective ADRs, deep modules, feedback loops and human/agent collaboration. His [AI Coding Dictionary](https://github.com/mattpocock/dictionary-of-ai-coding) also informed the context-continuity guidance.
+- [PStack](https://github.com/backnotprop/pstack) and its [Cursor plugin](https://github.com/cursor/plugins/tree/main/pstack) — engineering principles, reflective improvement, technical writing and separating portable methods from host controls.
+- [Compound Engineering](https://github.com/EveryInc/compound-engineering-plugin) — connected engineering workflows, explicit handoffs and making useful knowledge available to later work.
+- [Impeccable](https://github.com/pbakaus/impeccable) — a single skill entrypoint, commands with conditional supporting depth, and provider packages built from canonical source.
+- [HumanLayer's skills](https://github.com/humanlayer/skills) — explanations shaped around the actual change and reviewer-oriented PR descriptions.
+
+These are acknowledgements of influence, not claims of endorsement or wholesale adoption. Source-specific attribution and applicable licences remain with adapted material.
