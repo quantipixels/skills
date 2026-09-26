@@ -27,6 +27,8 @@ Do not split one outcome merely by organizational function, technical layer, art
 
 For a software/system-wide migration or mechanical refactor that cannot remain green as vertical slices, an expand–migrate–contract sequence may be appropriate: add a compatible form, migrate bounded groups, then remove the old form after the migration set. This is a software-specific branch, not a universal ticket pattern.
 
+A preparatory refactor can be a prerequisite when existing structure demonstrably prevents a safe slice. State the concrete obstacle, behavior to preserve and proof that makes the dependent work startable. Do not invent an upfront cleanup phase; ordinary improvement ideas belong in the working candidate's standards/refactoring review.
+
 Each ticket contains:
 
 - **Title** — a short outcome in current project/domain vocabulary.

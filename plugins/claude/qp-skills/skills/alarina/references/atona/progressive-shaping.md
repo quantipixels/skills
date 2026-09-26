@@ -70,6 +70,8 @@ Bad: invent several billing decisions now merely so the plan appears complete.
 
 Do not use not-yet-specifiable territory for vague work that can already be made precise. If the question can be stated responsibly now, classify it through Atọ́nà's normal uncertainty owners even when it remains blocked.
 
+Keep this in-scope unknown territory separate from explicit non-goals. Learning can make an unknown question actionable; it cannot silently restore excluded work. Record a changed scope decision before reopening an exclusion. A decision question is resolved by an answer and its evidence, while a delivery slice is complete only with its accepted outcome and proof; closing one does not close the other.
+
 ## Keep user-decision authority separate
 
 When the managed initiative lifecycle applies, the Decision Frontier Gate remains only the state of consequential user decisions:

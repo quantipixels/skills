@@ -128,6 +128,8 @@ When several materially different interface/seam designs remain credible and the
 
 Use parallel agents or several candidate sketches only when the active host and decision justify that cost. Do not impose a fixed number of alternatives or turn every module question into a design tournament.
 
+Give alternatives different design pressures, such as the simplest common caller, the smallest interface or a demonstrated variation requirement; identical briefs can produce cosmetic variants. Compare them against the same concrete caller task and failure case. Show what each caller must know and what moves behind the interface, then recommend a design from the evidence. A hybrid must resolve conflicting assumptions rather than concatenate attractive features.
+
 ## Return for a bounded module-design question
 
 State only what is material:

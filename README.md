@@ -91,6 +91,8 @@ The Claude plugin also offers an Alárinà agent profile: ask Claude to use that
 
 Implicit host selection is best effort. Explicit invocation is the dependable entry path when the host misses the description. Selecting an agent profile establishes its operating entrypoint; it does not guarantee correct routing or completion.
 
+During TDD delivery, Alága works in Red → Green slices, then Àtúnwò reviews Standards and Specification separately and identifies warranted refactoring, unless the user explicitly skips review. Alága applies accepted corrections and reruns affected checks. Review remains read-only; passing behavior tests does not replace design judgment, and design preferences do not invent requirements.
+
 ## Update
 
 Update a native plugin with its manager. Plugin updates replace Alárinà and its internal methods and resources as one versioned package. They do not change separately installed skills.

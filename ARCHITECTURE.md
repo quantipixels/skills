@@ -13,6 +13,8 @@ This repository packages QP's engineering methods through one canonical Alárin�
 
 Method ownership follows the result: Alága owns implementation and verification, including documentation affected by its change; Architect owns technical structure and `ARCHITECTURE.md`; Amọ̀ṣẹ́ owns domain meaning and its glossary, with separate qualification for ADRs and durable non-goals; Akọ̀wé reconciles a documentation set; Atọ́nà coordinates initiative scope and combined acceptance. [`amose-context`](skills/alarina/commands/amose-context.md) captures resolved terms in an established glossary or a lazily created `CONTEXT.md`; a `CONTEXT-MAP.md` locates scoped glossaries when multiple bounded contexts need them. Existing non-domain knowledge stays with its owning source rather than entering the glossary. See the [feature delivery](skills/alarina/playbooks/feature-delivery.md) and [documentation maintenance](skills/alarina/playbooks/docs-maintenance.md) playbooks for their handoffs.
 
+TDD delivery separates Red → Green construction from deliberate refactoring assessment, respecting an explicit request to skip review. Alága implements one observable slice at a time; Atúnwò independently judges Standards and Specification against the working candidate, including warranted refactoring. Alága applies accepted corrections and refreshes affected proof. Standards remain shared project knowledge; Atúnwò owns review expertise and stays read-only. Playbooks reuse this review instead of creating a duplicate gate. Shared test-quality principles live in `references/alaga/test-suite-improvement.md` and inform both construction and review without transferring edit authority.
+
 ## Build and distribution flow
 
 ```text

@@ -24,7 +24,7 @@ Use the smallest feedback loop that can distinguish the reported symptom from th
 
 Maintain a small set of competing hypotheses. Capture the trigger/mechanism, enabling conditions, propagation, evidence explained, distinguishing observation, and smallest safe probe where each is material. Use a table when several live hypotheses benefit from side-by-side comparison; a short comparison is enough for a simple decisive probe.
 
-Read [probe discipline](../references/alaga/diagnosis-probes.md) for bounded history/repair comparisons, cross-component failures or order-dependent tests. Prefer existing observations, tests, logs, traces, configuration, history, measurements, and reversible diagnostics that fit the domain.
+Read [probe discipline](../references/alaga/diagnosis-probes.md) for bounded history/repair comparisons, cross-component failures, order-dependent tests or temporary instrumentation. Prefer existing observations, tests, logs, traces, configuration, history, measurements, and reversible diagnostics that fit the domain.
 
 For runtime artifacts, pin capture conditions, useful work, cache state and symbol availability. CPU attribution needs the relevant caller path and inclusive versus self cost; retained memory needs a retaining path rather than allocation volume; a stall needs the wait chain and awaited owner. Correlate event identifiers and intervals. Missing symbols limit attribution, and a hotspot or paired trace alone does not prove cause.
 
@@ -58,5 +58,7 @@ Return one:
 - `NOT_REPRODUCED` — pinned failure not observed and no equivalent direct evidence.
 
 Include the failure identity, minimal mechanism/set, decisive evidence, causal roles, and falsified alternatives. Add interactions or alternative sufficient paths, contributing/contextual/unresolved factors, propagation/containment, affected boundary, confidence limits, and the smallest useful next action when material. A simple diagnosis resolved by one decisive probe may be correspondingly concise, but must still make the causal inference and ruled-out alternative explicit.
+
+If temporary instrumentation remains for an authorized next step, include its exact marker/locations and cleanup owner in the same handoff. It is outstanding work, not part of the accepted repair by default.
 
 Preserve a needed durable diagnosis in the existing project destination. Use [html-artifact](html-artifact.md) as needed.

@@ -8,6 +8,10 @@ For a recurring, reopened or otherwise nontrivial bug, a targeted tracker and fo
 
 When the failure is safely and reliably executable and repository history plausibly contains a good→bad transition, Git's native bisect can be useful in an isolated environment permitted by the workspace contract. Pin the reproduction behavior and environmental assumptions, avoid real external effects/credentials, and clean up isolated state afterwards. Do not bisect nondeterministic failures, irreproducible historical environments, or probes with consequential external effects.
 
+## Temporary instrumentation
+
+For temporary diagnostic logs, use a task-specific searchable marker and retain their locations with the probe evidence. After removing owned instrumentation, search the affected scope for that marker and inspect the diff for untagged probe changes. Preserve pre-existing logging and useful regression proof. If the next owner still needs a probe, explicitly transfer its cleanup obligation; do not add a reusable cleanup script for this check.
+
 ## Cross-component boundary probe
 
 Use when a failure crosses processes, services, queues, build stages or another boundary without one useful stack trace. Map only the boundaries on the path from trigger to symptom. In one reproduction, correlate safe entry and exit values, identifiers and relevant environmental metadata at each boundary, redacting secrets and sensitive payloads. Locate the first boundary whose output or downstream input diverges from the prediction, then investigate within that component. The first divergence narrows the failing layer; it is not automatically the complete cause.

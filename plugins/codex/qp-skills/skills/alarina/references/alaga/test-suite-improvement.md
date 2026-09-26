@@ -1,6 +1,20 @@
-# Test-suite improvement
+# Test quality and suite improvement
 
-Use when an accepted coding outcome is to make an existing test suite more effective, stable or economical. Alága owns the test changes and their verification. Use [atunwo](../../commands/atunwo.md) when independent judgment about proof retention or adequacy is materially useful. Neither measurements nor review transfer implementation authority.
+Use the behavioral-test principles when designing or judging tests. Apply the suite-improvement procedure below only when an accepted outcome changes an existing suite's effectiveness, stability or cost. Alága owns edits and executed proof; [atunwo](../../commands/atunwo.md) owns independent judgment. Neither measurements nor review transfer implementation authority.
+
+## Behavioral-test principles
+
+Test observable contracts through the smallest faithful stable interface. Prefer an existing seam shared with real callers; do not expose internals merely to make an assertion easy. An internal invariant can merit focused proof, but assertions about private call order or implementation shape need a contractual reason. A refactor preserving behavior should normally preserve these tests.
+
+Choose expected results independently of the implementation: a confirmed acceptance example, worked calculation, authoritative fixture or independent oracle. Repeating the same algorithm on both sides of an assertion can preserve the same defect. Name the realistic wrong result the assertion would reject; test count, snapshots and green status alone do not establish signal.
+
+Use real owned collaborators when practical. Substitute external effects, nondeterminism or costly dependencies at a justified seam, and preserve the relevant adapter contract. Mock choreography proves the expectation configured in the mock, not necessarily the assembled behavior. Prefer a real local substitute when it faithfully exercises the disputed contract; supplement with integration evidence where it cannot.
+
+During Red → Green delivery, let one completed slice inform the next test. After the working change, review whether tests still describe the accepted behavior and whether a proposed refactor preserves their evidence. A review finding should identify the weak oracle or coupled assertion and consequence, not demand blanket rewrites or a universal test style.
+
+These principles adapt Matt Pocock's [TDD test and mocking guidance](https://github.com/mattpocock/skills/tree/c55ee46073ed923f86ce59a5eb3b6d895095d1b7/skills/engineering/tdd) while retaining Alárinà's contextual proof and authority boundaries.
+
+## Improve an existing suite
 
 ## Establish the proof baseline
 
