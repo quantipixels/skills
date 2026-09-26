@@ -24,6 +24,8 @@ Do not propose a skill edit merely because an agent erred. A skill-body change r
 
 Locate friction in navigation, deterministic enforcement, review standards, always-loaded steering, tool economy or information access. Inspect the relevant task context before interpreting structural session counts.
 
+When the friction crosses lifecycle stages or reflects a mismatch with project philosophy, use [SDLC adaptation](../development-practice.md) to locate the failed transition and improve its actual capability, evidence or agreement. Respect this retrospective's remediation scope; a suggested process change does not authorize applying it.
+
 For a missed mechanical error, inspect the project's actual lint/typecheck/test commands and their CI or hook wiring before proposing another check. Distinguish absent enforcement from an existing check that was skipped, misconfigured or silently ineffective. Recommend repairing the existing owner when it covers the failure. A new rule should reject the observed violation through the cheapest appropriate project mechanism; a judgment-dependent concern belongs in review guidance.
 
 Separate construction constraints from review expertise when context pressure contributed. Keep requirements, invariants, authority and compatibility constraints available to the implementer. Put detailed judgment-based standards with the review method and load them at review; do not repeat its whole checklist in every implementation prompt or global `AGENTS.md`. The reviewer may still need to trace consumers and context beyond a diff. Use the actual evidence, not a blanket assumption that reviews are cheap.

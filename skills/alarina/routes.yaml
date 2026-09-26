@@ -299,7 +299,7 @@ commands:
   former_mode: artifact
 - id: alarina-setup
   family: utility
-  description: Establish project or personal environment readiness for Alarina using existing conventions.
+  description: Establish project philosophy, an adaptable SDLC and working capabilities, or personal environment readiness.
   reference: commands/alarina-setup.md
   implicit: true
 - id: pese

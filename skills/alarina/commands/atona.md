@@ -6,6 +6,8 @@ Read [planning inputs](../references/productivity/planning/planning-inputs.md). 
 
 Start at the earliest unresolved step using supplied decisions, existing work, and current evidence. Establish the problem, affected people, intended outcome, observable acceptance, scope/non-goals, and requested stopping point. An exploration-only or planning-only request ends at that result; an end-to-end build request carries through delivery without another permission request at each stage. Publication, merge, deployment, and destructive cleanup require applicable authority from the session or governing policy.
 
+When selecting or changing the initiative's development approach, use [SDLC adaptation](../references/engineering/development-practice.md) to fit stage depth, capabilities, feedback and recovery to confirmed project philosophy and the requested outcome. Reuse sufficient existing practice; the plan does not require every lifecycle phase or determine every implementation detail.
+
 Resolve discoverable facts from relevant project knowledge before asking the user. Check source authority and current applicability; carry forward only evidence that changes the work. Use [arojinle](arojinle.md) when purpose, beneficiary, success, consequential trade-offs or latent choices remain unsettled, including a proposed mechanism whose underlying need is unclear. Ask a single already-understood bounded choice directly; reuse complete briefs and accepted decisions. Continue independent authorized work while a dependent choice is unresolved.
 
 ## Keep the human in the plan

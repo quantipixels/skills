@@ -6,6 +6,7 @@ References are grouped by use case, not the command that first used them. Any ca
 
 | Use case | Start here when needed |
 | --- | --- |
+| Engineering: project philosophy and SDLC | [Lifecycle adaptation](engineering/development-practice.md) for discovering governing values, choosing suitable depth from framing through operation and learning, and codifying useful feedback while preserving agency. |
 | Engineering: architecture | [Orientation](engineering/architecture/orientation.md), [module design](engineering/architecture/module-design.md) or [evolution](engineering/architecture/architecture-evolution.md) for structure, boundaries and consequential change. |
 | Engineering: domain meaning | [Domain context](engineering/domain/context.md) and [durable records](engineering/domain/record-contract.md) for terms, invariants and qualified project decisions. |
 | Engineering: documentation | [Evidence](engineering/documentation/evidence.md), [project baseline](engineering/documentation/project-baseline.md) and [reconciliation](engineering/documentation/reconciliation.md) for accuracy, useful coverage and conflicting claims. |

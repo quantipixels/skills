@@ -113,7 +113,7 @@ The table is generated from [routes.yaml](routes.yaml). That file owns command a
 
 | Command | Purpose |
 | --- | --- |
-| [`alarina-setup`](commands/alarina-setup.md) | Establish project or personal environment readiness for Alarina using existing conventions. |
+| [`alarina-setup`](commands/alarina-setup.md) | Establish project philosophy, an adaptable SDLC and working capabilities, or personal environment readiness. |
 | [`pese`](commands/pese.md) | On explicit command invocation, serve a bounded local resource through private transport. (explicit invocation only) |
 | [`qp-update`](commands/qp-update.md) | On explicit command invocation, update the existing QP installation through its current manager. (explicit invocation only) |
 | [`system-cleanup`](commands/system-cleanup.md) | Audit macOS storage and reclaim authorized regenerable data or verify chosen offloads. |
@@ -161,7 +161,7 @@ Distinguish adjacent outcomes:
 - After an accepted coding change, `alaga-deliver` owns checking and reconciling its affected documentation before delivery closes. A separately requested read-only documentation assessment → `akowe-audit`; broad project documentation improvement or authorized set-wide reconciliation → `akowe-sync`, including useful missing baseline documents. Architect owns structural claims and `ARCHITECTURE.md`; Amọ̀ṣẹ́ owns domain meaning and qualified durable records. Agent-facing behavioral text → `oro-sigidi`; human-facing prose → `oro-eniyan`. Presentation helpers consume supplied truth rather than inventing it.
 - An active incident → `alaga-recover`; causal diagnosis → `alaga-diagnose`; event reconstruction → `ayewo-igba-ise`; coding-session environment improvement → `ayewo-retro`; cross-session patterns, skill-use evidence or reusable artifact lessons → `ayewo-corpus`. Choose by result, not log count. Remediation follows only when requested.
 - PR description, publication and stewardship remain distinct. Status-only watching stays read-only; readiness is neither approval nor merge.
-- Project or personal environment readiness → `alarina-setup`; a reusable product verification capability → `alaga-verify-project`. Setup is optional; ordinary tasks reuse existing conventions without an onboarding ceremony.
+- Project philosophy, development lifecycle and working capabilities, or personal environment readiness → `alarina-setup`; a reusable product verification capability → `alaga-verify-project`. Setup is optional; ordinary tasks reuse existing conventions without an onboarding ceremony.
 
 When a consequential premise needs testing, read the [premise check](references/productivity/inquiry/premise-check.md). Retain non-obvious reasoning when losing it would cause recurrence or substantial rediscovery; ordinary completion does not require a new lesson or postmortem.
 

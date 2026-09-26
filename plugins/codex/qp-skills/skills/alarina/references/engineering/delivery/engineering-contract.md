@@ -8,5 +8,6 @@ When runtime evidence is needed, discover the project's verification path from g
 
 Treat developer experience (DX) and agent experience (AX) as properties of the real workflow: discoverable owners, reproducible setup, a short faithful feedback loop, useful errors and a clear recovery path. Improve a demonstrated obstacle within scope. Prefer making the existing interface or tool usable to adding instructions that explain around its defects; no new wrapper or harness is required by default.
 
+When lifecycle depth, reversibility or process friction materially affects the outcome, read [SDLC adaptation](../development-practice.md). Apply confirmed project philosophy, preserve required proof and choose or revise implementation methods within existing authority. Reuse an adequate working path without a setup pass.
 
 Apply only the selected command and requested stopping point. Intake, diagnosis, comparison and recovery do not themselves authorize delivery or adoption. Publication remains separately authorized.

@@ -1,6 +1,6 @@
 # Set up Alárinà for a project or environment
 
-Establish how Alárinà can work, verify and review effectively in the requested project or personal environment. Setup is optional: ordinary tasks discover what they need without first running this command. A working setup can return a no-change result. A readiness assessment remains read-only; a setup request permits the relevant configuration and instruction edits, preserving unrelated preferences and existing authority boundaries.
+Establish the project's philosophy, an adaptable development lifecycle and the capabilities Alárinà needs to work effectively, or configure the requested personal environment. Setup is optional: ordinary tasks discover what they need without first running this command. A working setup can return a no-change result. A readiness assessment remains read-only; a setup request permits the relevant configuration and instruction edits, preserving unrelated preferences and existing authority boundaries.
 
 ## Discover the missing agreement
 
@@ -8,7 +8,11 @@ Start with the requested scope. Project setup concerns shared project expectatio
 
 Reuse current instructions and evidence. Follow existing pointers to standards, architecture, `CONTEXT.md` or scoped glossaries, ADRs, non-goals, contribution guidance and the project's tracker. Locate the actual build, checks and CI requirements, any verification recipe, and the active host's supported review/delegation capability. Identify existing artifact destinations using [records and artifacts](../references/productivity/records.md).
 
-For unresolved project-readiness questions, use [sawari](sawari.md) to map the relevant repository behavior, owners, documentation and working/verification paths. Then use the [agent-respondent perspective](../references/productivity/inquiry/agent-respondent.md) to apply Àròjinlẹ̀ to what setup needs, supplying that map and accepted project decisions. Use the resulting understanding to select the needed documentation, configuration and proof capability. Reuse sufficient current understanding instead of requiring a full survey or interview on every setup.
+For unresolved project-readiness questions, use [sawari](sawari.md) to map the relevant repository behavior, owners, documentation and working/verification paths. Use the [agent-respondent perspective](../references/productivity/inquiry/agent-respondent.md) to interrogate that map with accepted project decisions. Reuse sufficient current understanding instead of requiring a full survey or interview on every setup.
+
+For project setup, read [project philosophy and SDLC adaptation](../references/engineering/development-practice.md). Discover the project's purpose, governing principles and consequential trade-offs from its evidence, then use [arojinle](arojinle.md) with the actual user for unconfirmed intent or priorities that control the setup. Keep observed habits distinct from confirmed philosophy; the agent cannot answer those human choices on their behalf.
+
+Use that agreement to assess the project's path from framing and design through implementation, verification/review, release, operation/recovery and learning. Identify the missing capability or agreement and its smallest useful correction, including how the agent can make and undo changes within authority. Configure the needed depth and feedback for this project rather than imposing every stage on every task. Personal-environment setup alone does not establish project philosophy or release policy.
 
 For project setup, establish the [useful documentation baseline](../references/engineering/documentation/project-baseline.md) from that understanding, including missing architecture, standards, confirmed non-goals and working instructions where they earn a home. Use [akowe-sync](akowe-sync.md) to reconcile the set through its existing owners; consume its result here. Personal-environment setup alone does not create project documents.
 
@@ -28,4 +32,4 @@ Establish the local path to [delivery and publication readiness](../references/e
 
 Exercise a changed verification capability through its owning method. For instruction-only changes, check the affected reader path and the accuracy of its commands and pointers. For host changes, distinguish files written from settings actually loaded. Reuse current proof and refresh only what setup changed; no full project audit is required.
 
-Finish with what is usable, the owners changed or reused, decisive verification and any remaining prerequisite. Setup is complete when the scoped working path is established and relevant configuration works; unexecuted recipes or unavailable review remain explicit gaps. Return a concise result, not a setup report by default.
+Finish with the confirmed project philosophy and applicable lifecycle choices, what is usable, the owners changed or reused, decisive verification and remaining prerequisites. Include only the requested project or environment scope. Setup is complete when the scoped working path is established and relevant configuration works; unresolved governing choices, unexecuted recipes or unavailable review remain explicit gaps. Return a concise result, not a setup report by default.

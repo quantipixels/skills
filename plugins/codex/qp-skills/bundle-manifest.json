@@ -4,10 +4,10 @@
   "provider": "codex",
   "support_state": "verified",
   "source": {
-    "inputs": 150,
-    "sha256": "2bdcc3d4ac5d71569d1703a64692edbb835ab0031cd133e0f337ad3ff793f039"
+    "inputs": 151,
+    "sha256": "caac5ea589adee6274dddbc336fb48ca22fe18ff88382f87e1cc4916049c1dcd"
   },
-  "route_digest": "82a3e739d6655d347a422596b00980eaa4f171a104728d2895ac1dfaeba3927a",
+  "route_digest": "b7f868404fe21e1cc25f327edb91271c1babdf2f553b3bfa54e8b9d5c14db80e",
   "qualified_invocation": "$qp-skills:alarina",
   "aliases": [
     "route",
@@ -91,10 +91,10 @@
     },
     {
       "path": "skills/alarina/SKILL.md",
-      "sha256": "afd2f7e075ac339f81af162ec4bdad1258e322dc9f9bd047614e776c6b937c8c",
+      "sha256": "7eceeb519e845ad0698e01529ee0b81157728a255550f25d776fd80173e67f51",
       "mode": "0o644",
       "source": "skills/alarina/SKILL.md",
-      "source_sha256": "b56c0d6b49a23512accc7d071024271717cd981e9e86b990e12772243d00660f"
+      "source_sha256": "891c0740ef3b3232a828f41c1393edca1c31a68a07c642fe985d4cff4206fde8"
     },
     {
       "path": "skills/alarina/agents/openai.yaml",
@@ -168,10 +168,10 @@
     },
     {
       "path": "skills/alarina/commands/alarina-setup.md",
-      "sha256": "368656d88a56ad6eb539d0025120f98252fe8f9304cf2e0b3234185c602de73f",
+      "sha256": "94a9d0b23abf2dd2d7248214019eeabf44a2b83cf93a95fcd4d88fb5504e6ef7",
       "mode": "0o644",
       "source": "skills/alarina/commands/alarina-setup.md",
-      "source_sha256": "368656d88a56ad6eb539d0025120f98252fe8f9304cf2e0b3234185c602de73f"
+      "source_sha256": "94a9d0b23abf2dd2d7248214019eeabf44a2b83cf93a95fcd4d88fb5504e6ef7"
     },
     {
       "path": "skills/alarina/commands/amose-adrs.md",
@@ -245,10 +245,10 @@
     },
     {
       "path": "skills/alarina/commands/atona.md",
-      "sha256": "f5c79947ad2fef39fa504222871fd679dfe41b8d676b74f5ba4909f25daefb3c",
+      "sha256": "40d2db2829757108a09778be1d31db63e54e957cad55eb4d593f4458443407f2",
       "mode": "0o644",
       "source": "skills/alarina/commands/atona.md",
-      "source_sha256": "f5c79947ad2fef39fa504222871fd679dfe41b8d676b74f5ba4909f25daefb3c"
+      "source_sha256": "40d2db2829757108a09778be1d31db63e54e957cad55eb4d593f4458443407f2"
     },
     {
       "path": "skills/alarina/commands/atunwo.md",
@@ -511,10 +511,10 @@
     },
     {
       "path": "skills/alarina/references/README.md",
-      "sha256": "1d72a4302f20b986edfdfc0031cbe151f43653a138cae5fc9238b026297b7edd",
+      "sha256": "c19e4bfbed7db267cf00c0e923cf662ee3822fa316eb7a04b39028b245320a82",
       "mode": "0o644",
       "source": "skills/alarina/references/README.md",
-      "source_sha256": "1d72a4302f20b986edfdfc0031cbe151f43653a138cae5fc9238b026297b7edd"
+      "source_sha256": "c19e4bfbed7db267cf00c0e923cf662ee3822fa316eb7a04b39028b245320a82"
     },
     {
       "path": "skills/alarina/references/communication/editing-human-prose.md",
@@ -560,10 +560,10 @@
     },
     {
       "path": "skills/alarina/references/communication/terms.md",
-      "sha256": "33935e1bb60e8b28a4f6c698418701f6bd03aafc2f35a1d423a1c7dc2767f423",
+      "sha256": "2b61dc78c9eee3fc520a762809bab2f833ef66725426879e95a0b288270f9155",
       "mode": "0o644",
       "source": "skills/alarina/references/communication/terms.md",
-      "source_sha256": "33935e1bb60e8b28a4f6c698418701f6bd03aafc2f35a1d423a1c7dc2767f423"
+      "source_sha256": "2b61dc78c9eee3fc520a762809bab2f833ef66725426879e95a0b288270f9155"
     },
     {
       "path": "skills/alarina/references/communication/writing-contract.md",
@@ -728,10 +728,10 @@
     },
     {
       "path": "skills/alarina/references/engineering/delivery/engineering-contract.md",
-      "sha256": "a808f410d6c3b4ab5692f12d225f66c586383d489c1a371696fc4af170786888",
+      "sha256": "dbe82a544f29998bbb96f285eafff27ace68a2408cdd9282e2227c9b50fe2323",
       "mode": "0o644",
       "source": "skills/alarina/references/engineering/delivery/engineering-contract.md",
-      "source_sha256": "a808f410d6c3b4ab5692f12d225f66c586383d489c1a371696fc4af170786888"
+      "source_sha256": "dbe82a544f29998bbb96f285eafff27ace68a2408cdd9282e2227c9b50fe2323"
     },
     {
       "path": "skills/alarina/references/engineering/delivery/integration-obligations.md",
@@ -783,6 +783,13 @@
       "source_sha256": "27b98a6d53662fc71cea56d8031e953fe17764eed4ba631c2263257cf5cf71f3"
     },
     {
+      "path": "skills/alarina/references/engineering/development-practice.md",
+      "sha256": "6f1cfb4b446690067d3159ed2356cce3e7b049d4434df2e2816b41202ce334ca",
+      "mode": "0o644",
+      "source": "skills/alarina/references/engineering/development-practice.md",
+      "source_sha256": "6f1cfb4b446690067d3159ed2356cce3e7b049d4434df2e2816b41202ce334ca"
+    },
+    {
       "path": "skills/alarina/references/engineering/diagnosis/diagnosis-probes.md",
       "sha256": "b1ef5566d64dbc4411a1b549eb0071d42c6d21586dfa03404c84f461a2de18df",
       "mode": "0o644",
@@ -812,10 +819,10 @@
     },
     {
       "path": "skills/alarina/references/engineering/documentation/project-baseline.md",
-      "sha256": "a2d01ea00e1a7ed3f979150dafcc6af0a0f31dc64785cabbdb91f52a5caa17e5",
+      "sha256": "4a5c9da7f8df89eed61e8314abdbb28319a6ab0040b61b7d5923f5946578884c",
       "mode": "0o644",
       "source": "skills/alarina/references/engineering/documentation/project-baseline.md",
-      "source_sha256": "a2d01ea00e1a7ed3f979150dafcc6af0a0f31dc64785cabbdb91f52a5caa17e5"
+      "source_sha256": "4a5c9da7f8df89eed61e8314abdbb28319a6ab0040b61b7d5923f5946578884c"
     },
     {
       "path": "skills/alarina/references/engineering/documentation/reconciliation.md",
@@ -840,10 +847,10 @@
     },
     {
       "path": "skills/alarina/references/engineering/retrospectives/agent-session.md",
-      "sha256": "bcec5de966f2c4fbc98898ee94d59e3a6628194d91e79029c0307e072955f3b1",
+      "sha256": "d5a9f860f25b2119918430601e9340b2ec89e38a20fff0a4347620ee196d8e3b",
       "mode": "0o644",
       "source": "skills/alarina/references/engineering/retrospectives/agent-session.md",
-      "source_sha256": "bcec5de966f2c4fbc98898ee94d59e3a6628194d91e79029c0307e072955f3b1"
+      "source_sha256": "d5a9f860f25b2119918430601e9340b2ec89e38a20fff0a4347620ee196d8e3b"
     },
     {
       "path": "skills/alarina/references/engineering/retrospectives/artifact-pattern-mining.md",
@@ -1092,10 +1099,10 @@
     },
     {
       "path": "skills/alarina/routes.yaml",
-      "sha256": "82a3e739d6655d347a422596b00980eaa4f171a104728d2895ac1dfaeba3927a",
+      "sha256": "b7f868404fe21e1cc25f327edb91271c1babdf2f553b3bfa54e8b9d5c14db80e",
       "mode": "0o644",
       "source": "skills/alarina/routes.yaml",
-      "source_sha256": "82a3e739d6655d347a422596b00980eaa4f171a104728d2895ac1dfaeba3927a"
+      "source_sha256": "b7f868404fe21e1cc25f327edb91271c1babdf2f553b3bfa54e8b9d5c14db80e"
     },
     {
       "path": "skills/alarina/scripts/README.md",

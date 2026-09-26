@@ -9,7 +9,7 @@ Use this as a lookup when a concept changes a decision; it is not a mandatory re
 | Deep module | A small, useful interface hiding substantial complexity. Depth is the capability offered relative to what callers must understand, not file size. See [module design](../engineering/architecture/module-design.md). |
 | Cohesion / coupling | Cohesion is how closely responsibilities serve one purpose; coupling is what must change or be understood together across boundaries. Group by shared knowledge and change reasons, not one function per file. |
 | Seam | A stable boundary through which behavior can be replaced or observed. Test meaningful public behavior there without exposing internals solely to tests. |
-| SDLC — software development lifecycle | The connected work of discovery, design, delivery, operation and learning. Enter at the unresolved result; it is not a compulsory sequence of ceremonies. |
+| SDLC — software development lifecycle | The connected work of discovery, design, delivery, operation and learning. [Adapt it](../engineering/development-practice.md) to project philosophy, outcome and risk; enter at the unresolved result rather than a compulsory sequence of ceremonies. |
 | Vertical slice | A narrow observable outcome across the necessary layers. Implementation, proof and affected documentation can belong to the same slice. |
 | Tracer bullet | The smallest working path through important boundaries that tests an architectural assumption and can grow into delivery. A disposable prototype instead answers uncertainty without promising production readiness. |
 | Feedback loop | Act, observe a relevant result, adjust. Prefer the shortest faithful loop that could expose the failure; passing unrelated checks adds little confidence. |
@@ -25,7 +25,7 @@ These are project names. The slugs are stable ASCII identifiers; the marked Yor�
 | Identifier | Marked form and plain meaning | Why the name fits |
 | --- | --- | --- |
 | `alarina` skill and agent | **Alárinà**, intermediary or go-between | Routes a request to the command that owns the next result and carries evidence back; the agent profile uses the same method within its assignment. |
-| `alarina-setup` | **Alárinà** with the English `setup` suffix | Establishes project or personal environment readiness by connecting existing conventions and capabilities; it does not create another operating lifecycle. |
+| `alarina-setup` | **Alárinà** with the English `setup` suffix | Connects project philosophy, lifecycle practices and working capabilities, or prepares the requested personal environment. |
 | `ayewo-igba-ise`, `ayewo-retro`, `ayewo-corpus` | **Àyẹ̀wò**, examination or review; the existing **Àyẹ̀wò Ìgbà Iṣẹ́** names the event postmortem | The command suffix distinguishes the result: event reconstruction, agent-environment improvement, or cross-session evidence. These share evidence rules without requiring every analysis branch. |
 | `amose-context` | **Amọ̀ṣẹ́**, the project's name for its domain modeller; `context` names the bounded language source | Captures resolved domain terms in the project's canonical glossary and places legacy knowledge with its proper owner. |
 | `iwadi` | **Ìwádìí**, research or investigation | Answers a defined question with evaluated evidence and references. |
