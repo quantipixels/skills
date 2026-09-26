@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en" data-artifact-delivery="connected">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Artifact title</title>
+  <!-- Replace title/content. This is an optional foundation, not a page design.
+       This specimen uses Basecoat's standalone CSS and jQuery for its controls.
+       Its connected mode loads both from CDN. For a portable adaptation, replace
+       those tags with local/embedded assets as needed; a static document can
+       use native HTML/CSS with no runtime. A trusted host can supply styling.
+       Reuse available project branding/favicon; the QP mark is the fallback. -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/basecoat-css@1.0.2/dist/basecoat.cdn.min.css">
+  <style>
+    @layer base {
+      *, *::before, *::after { box-sizing: border-box; }
+      :root { color-scheme: light dark; }
+      html[data-theme="light"] { color-scheme: light; }
+      html.dark { color-scheme: dark; }
+      /* Reading fallback remains useful when the connected stylesheet fails. */
+      body { margin: 0; background: Canvas; color: CanvasText; font: 1rem/1.55 system-ui, sans-serif;
+        overflow-wrap: anywhere; }
+      img, svg, video, canvas { max-inline-size: 100%; block-size: auto; }
+      button, input, select, textarea { font: inherit; }
+      .btn { display: inline-flex; align-items: center; justify-content: center; gap: .5rem;
+        border: 1px solid currentColor; border-radius: .4rem; padding: .5rem .75rem;
+        background: Canvas; color: CanvasText; cursor: pointer; text-decoration: none; }
+      .btn:disabled { cursor: default; opacity: .5; }
+      .input { border: 1px solid currentColor; border-radius: .4rem; padding: .5rem .75rem;
+        background: Canvas; color: CanvasText; }
+      [id] { scroll-margin-block-start: 1.5rem; }
+      table { border-collapse: collapse; inline-size: 100%; }
+      th, td { text-align: start; vertical-align: top; padding: .6rem; overflow-wrap: anywhere; }
+    }
+    [hidden] { display: none !important; }
+    .artifact-shell { max-inline-size: 72rem; margin-inline: auto; }
+    body { padding: 1rem 1rem 5rem; }
+    .artifact-header { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem; }
+    .artifact-brand { display: block; border-radius: .4rem; background: #171717; padding: .5rem .75rem; }
+    .artifact-header .btn, [data-back-to-top] { min-block-size: 2.75rem; }
+    .artifact-main { margin-block-start: 2rem; }
+    .artifact-main h1 { font-size: clamp(1.875rem, 4vw, 2.25rem); font-weight: 600; letter-spacing: -.025em; }
+    .artifact-runtime { margin-block-start: 1rem; font-size: .875rem; }
+    .artifact-footer { margin-block-start: 2rem; border-block-start: 1px solid var(--border, #aaa); padding-block-start: 1rem; }
+    [data-back-to-top] { position: fixed; inset: auto 1rem 1rem auto; border: 1px solid var(--border, #aaa); border-radius: 100rem; background: var(--background, Canvas); color: var(--foreground, CanvasText); padding: .7rem 1rem; text-decoration: none; }
+    [data-artifact-view], [data-collection-filter], [data-carousel] { display: block; margin-block: 1rem; }
+    :where([data-view-controls], [data-filter-controls], [data-carousel-controls]) { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem; margin-block: .75rem; }
+    :where([data-view-controls], [data-filter-controls], [data-carousel-controls]) .btn { min-block-size: 2.75rem; }
+    :where([data-view-controls], [data-filter-controls]) svg { inline-size: 1.125rem; block-size: 1.125rem; }
+    :where([data-view-status], [data-filter-status], [data-filter-zero]) { font-size: .875rem; font-variant-numeric: tabular-nums; }
+    [data-filter-controls] label { display: inline-flex; flex-wrap: wrap; align-items: center; gap: .5rem; min-inline-size: 0; }
+    [data-filter-search] { min-block-size: 2.75rem; min-inline-size: 0; max-inline-size: 100%; }
+    [data-filter-control][aria-pressed="true"], [data-view-target][aria-pressed="true"] { font-weight: 600; text-decoration: underline; text-underline-offset: .25em; }
+    [data-carousel] { position: relative; }
+    [data-carousel-controls][data-carousel-composition="overlay"] { position: absolute; inset: 0; justify-content: space-between; pointer-events: none; }
+    [data-carousel-controls][data-carousel-composition="overlay"] .btn { pointer-events: auto; }
+    [data-carousel-direction-glyph] { display: inline-block; }
+    [dir="rtl"] [data-carousel-direction-glyph] { transform: scaleX(-1); }
+    [data-carousel-position] { font-variant-numeric: tabular-nums; }
+    :where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+      outline: 3px solid var(--artifact-focus-color, currentColor); outline-offset: 3px;
+    }
+    .visually-hidden, [data-visually-hidden] { position: absolute; inline-size: 1px; block-size: 1px;
+      overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+    .skip-link { position: fixed; inset: .5rem auto auto .5rem; transform: translateY(-180%);
+      z-index: 10000; padding: .7rem; background: Canvas; color: CanvasText; }
+    .skip-link:focus { transform: none; }
+    [data-table-wrap], [data-overflow-safe], .visual-frame { max-inline-size: 100%; min-inline-size: 0; overflow: auto; }
+    [data-table-wrap] { container-type: inline-size; }
+    [data-long-text] { white-space: pre-wrap; overflow-wrap: anywhere; }
+    [data-log] { max-block-size: 32rem; overflow: auto; white-space: pre-wrap; }
+    .print-only { display: none; }
+    @container (max-width: 40rem) { [data-table-wrap] > table { min-inline-size: var(--artifact-table-min-inline-size, 36rem); } }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important; scroll-behavior: auto !important; }
+    }
+    @media print {
+      :root, html[data-theme], html.dark { color-scheme: light; }
+      .screen-only, [data-print="hide"], [data-theme-toggle], [data-back-to-top] { display: none !important; }
+      .print-only { display: revert !important; }
+      details[data-print-expand]:not([open]) > :not(summary) { display: block !important; }
+      [data-table-wrap] { container-type: normal; overflow: visible !important; }
+      [data-table-wrap] > table { min-inline-size: 0 !important; }
+    }
+    /* Override the hidden fallback so printed controls reveal complete content. */
+    @layer base {
+      @media print {
+        [data-view-controls], [data-view-status],
+        [data-filter-controls], [data-filter-status], [data-filter-zero],
+        [data-carousel-controls], [data-carousel-live] { display: none !important; }
+        [data-view-panel][hidden], [data-filter-item][hidden],
+        [data-carousel-item][hidden] { display: revert !important; }
+      }
+    }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@4.0.0/dist/jquery.min.js"></script>
+  <script>
+    (() => {
+      const root = document.documentElement;
+      const dark = matchMedia('(prefers-color-scheme: dark)').matches;
+      root.dataset.theme = dark ? 'dark' : 'light';
+      root.classList.toggle('dark', dark);
+    })();
+  </script>
+</head>
+<body>
+<a class="skip-link" href="#artifact-content">Skip to content</a>
+<div class="artifact-shell">
+  <header class="artifact-header" id="artifact-top" tabindex="-1">
+    <div class="artifact-brand" role="img" aria-label="Quanti Pixels">
+      <!-- Inline copy of brand.svg keeps the default artifact self-contained. -->
+      <svg viewBox="0 0 160 132" width="48" height="40" aria-hidden="true" focusable="false">
+        <g fill="none" stroke-width="9" stroke-linecap="round" stroke-linejoin="round">
+          <g stroke="#fff"><circle cx="45" cy="42" r="27"/><circle cx="115" cy="42" r="27"/>
+            <path d="M8 42h10M142 42h10M72 42v53M88 42v53"/></g>
+          <circle cx="45" cy="65" r="6.5" fill="#fff"/><circle cx="115" cy="65" r="6.5" fill="#fff"/>
+          <path stroke="#d52e1e" d="M41 108Q80 134 119 108"/>
+        </g>
+      </svg>
+    </div>
+    <button type="button" class="btn" data-variant="outline" data-theme-toggle hidden>
+      <svg data-theme-icon="sun" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"/></svg>
+      <svg data-theme-icon="moon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" hidden><path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5 8.5 8.5 0 1 0 20.5 14.2Z"/></svg>
+      <span data-theme-label>Change theme</span>
+    </button>
+  </header>
+  <main id="artifact-content" class="artifact-main" tabindex="-1">
+    <h1>Artifact title</h1>
+    <!-- Compose supplied content here; copy only useful control assets. -->
+  </main>
+  <p class="artifact-runtime" data-runtime-status role="status"></p>
+  <footer class="artifact-footer"><small>Single HTML; source data is static. Reader choices are not saved.
+    <span data-delivery-disclosure>Confirm the selected delivery and dependency boundary.</span></small></footer>
+</div>
+<a class="btn" data-variant="outline" data-back-to-top href="#artifact-top"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 14 6-6 6 6M12 8v12"/></svg><span>Back to top</span></a>
+<script>
+  (($) => {
+    if (!$) return;
+    const root = $('html');
+    const button = $('[data-theme-toggle]');
+    const media = matchMedia('(prefers-color-scheme: dark)');
+    let followsSystem = true;
+    const apply = dark => {
+      root.attr('data-theme', dark ? 'dark' : 'light');
+      root.toggleClass('dark', dark);
+      button.find('[data-theme-label]').text(dark ? 'Use light theme' : 'Use dark theme');
+      button.find('[data-theme-icon="sun"]').attr('hidden', dark ? null : '');
+      button.find('[data-theme-icon="moon"]').attr('hidden', dark ? '' : null);
+    };
+    apply(media.matches);
+    button.prop('hidden', false);
+    button.on('click', () => { followsSystem = false; apply(root.attr('data-theme') !== 'dark'); });
+    media.addEventListener('change', event => { if (followsSystem) apply(event.matches); });
+    $('[data-delivery-disclosure]').text(root.attr('data-artifact-delivery') === 'connected'
+      ? 'Stylesheet: Basecoat 1.0.2; runtime: jQuery 4.0.0 (CDN). List other selected dependencies here.'
+      : root.attr('data-artifact-delivery') === 'host'
+        ? 'Styling: supplied by the containing application.'
+        : 'Styling: embedded CSS; no remote runtime selected.');
+    $('[data-back-to-top]').on('click', () => {
+      requestAnimationFrame(() => $('#artifact-top').trigger('focus'));
+    });
+  })(window.jQuery);
+</script>
+</body>
+</html>

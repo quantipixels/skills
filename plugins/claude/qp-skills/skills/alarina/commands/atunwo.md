@@ -9,7 +9,7 @@ Judge the requested code boundary independently. Keep source and Git state read-
 
 Depth changes coverage, not the standard of evidence or authority. Respect an explicit light/time-bounded request; surface the specific need for deeper work rather than silently widening it. Otherwise deepen only affected paths and explain why.
 
-A change, existing codebase, or refactor is the subject, not a separate mode. Respect focuses such as defects only, tests only, simplification only, or a named subsystem. Read [codebase assessment](../references/atunwo/codebase-assessment.md) for existing-system quality and [simplification](../references/atunwo/simplification.md) for unnecessary complexity. Simplification-only requests remain inspection-only: do not run tests/builds, mutate providers, or issue acceptance verdicts. An explicit parity-only request likewise keeps provider state read-only.
+A change, existing codebase, or refactor is the subject, not a separate mode. Respect focuses such as defects only, tests only, simplification only, or a named subsystem. Read [codebase assessment](../references/engineering/review/codebase-assessment.md) for existing-system quality and [simplification](../references/engineering/review/simplification.md) for unnecessary complexity. Simplification-only requests remain inspection-only: do not run tests/builds, mutate providers, or issue acceptance verdicts. An explicit parity-only request likewise keeps provider state read-only.
 
 ## Ground the judgment
 
@@ -27,9 +27,9 @@ When a material review claim depends on symbol/caller resolution, structural or 
 
 ## Assess and substantiate
 
-Consider contract compliance, engineering quality, proof, and credible failure paths separately. Passing tests does not establish maintainability; a style preference does not establish a defect. Read [boundary failures](../references/atunwo/boundary-failures.md) when framework enforcement, authorization, state, concurrency, retries, migration, recovery, verification gates, or provider boundaries are material.
+Consider contract compliance, engineering quality, proof, and credible failure paths separately. Passing tests does not establish maintainability; a style preference does not establish a defect. Read [boundary failures](../references/engineering/review/boundary-failures.md) when framework enforcement, authorization, state, concurrency, retries, migration, recovery, verification gates, or provider boundaries are material.
 
-For delivery review, read [standards and specification](../references/atunwo/standards-and-spec.md). Keep the two judgments distinct: a conforming implementation can deliver the wrong behavior, and correct behavior can still violate a consequential project standard. This review stage owns deliberate refactoring assessment after Red → Green implementation; return justified corrections to Alága rather than editing reviewed code. Shared standards apply to both owners; review expertise is not exclusive access to the rules.
+For delivery review, read [standards and specification](../references/engineering/review/standards-and-spec.md). Keep the two judgments distinct: a conforming implementation can deliver the wrong behavior, and correct behavior can still violate a consequential project standard. This review stage owns deliberate refactoring assessment after Red → Green implementation; return justified corrections to Alága rather than editing reviewed code. Shared standards apply to both owners; review expertise is not exclusive access to the rules.
 
 For changed behavior, compare baseline, current, and required outcomes as part of normal review. Historical implementation is evidence, not automatic intent; preserve required behavior without restoring historical defects. Account for accepted differences and trace consequences to real consumers rather than inferring preservation from matching names or code shape.
 
@@ -45,7 +45,7 @@ When a project verification capability exists, use its affected journey recipes 
 
 For test consolidation, preserve each obligation unless it is obsolete or retained proof covers it at least as strongly; [alaga-deliver](alaga-deliver.md) owns the test-suite improvement method and any authorized changes. A property generator that omits the edge, a type that leaves the calculation unchecked, or an integration test that never reaches the failure path does not subsume its regression test. Complementary fast and realistic boundary checks can both remain. Judge claimed TDD order from executed evidence without imposing a separate retention workflow or requiring TDD for every change.
 
-When test design or adequacy is material, use the shared [behavioral-test principles](../references/alaga/test-suite-improvement.md#behavioral-test-principles) within this review's read-only boundary. The same standards inform construction and judgment; the reviewer need not load Alága's execution procedure to assess them.
+When test design or adequacy is material, use the shared [behavioral-test principles](../references/engineering/verification/test-suite-improvement.md#behavioral-test-principles) within this review's read-only boundary. The same standards inform construction and judgment; the reviewer need not load Alága's execution procedure to assess them.
 
 For a weak-assertion claim, trace the input through the exact matcher and name a realistic defective value or effect it would still accept. Use distinguishable fixture values where swapped or dropped fields are the risk. Check the actual framework semantics; assertion counts, variety and coverage percentages are not quality verdicts. For generated tests, assess domain validity, vacuity and oracle independence; consult [alaga-deliver](alaga-deliver.md) for deeper property or units-and-scaling methods within this review's read-only authority. Execute only the authorized checks that can distinguish the claim; do not alter reviewed source merely to create a score. Otherwise return the unexecuted proof gap to the change owner.
 
@@ -53,7 +53,7 @@ For each finding, identify location, mechanism, consequence, assumptions, and th
 
 For a change, establish how the candidate causes or exposes the issue. Existing-system assessments may report pre-existing weaknesses. Rank severity by demonstrated consequence and realistic conditions, independently of correction effort. A maintenance concern needs concrete comprehension/change cost, even when it has no failing runtime scenario.
 
-For unsafe/native code or FFI, read [native boundaries](../references/atunwo/native-boundaries.md). For security-sensitive caller mistakes, challenge defaults, invalid configuration and error handling at the protected effect; consult [architect-design](architect-design.md) for its misuse-resistance method under this review's read-only authority. Use [architect-design](architect-design.md) only when a consequential structural design question remains unresolved. Simplification is an internal review lens; consume existing current evidence instead of starting a second review.
+For unsafe/native code or FFI, read [native boundaries](../references/engineering/review/native-boundaries.md). For security-sensitive caller mistakes, challenge defaults, invalid configuration and error handling at the protected effect; consult [architect-design](architect-design.md) for its misuse-resistance method under this review's read-only authority. Use [architect-design](architect-design.md) only when a consequential structural design question remains unresolved. Simplification is an internal review lens; consume existing current evidence instead of starting a second review.
 
 ## Return
 

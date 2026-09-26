@@ -68,7 +68,7 @@ Verify the replacement before removing retired QP skills I own. Then update my a
 configuration and preferred-provider launcher.
 ```
 
-The [migration guide](skills/alarina/references/qp-update/migration.md) has the provider commands, cleanup steps and configuration examples. Install and verify Alárinà before removing old entries.
+The [migration guide](skills/alarina/references/productivity/environment/installation-migration.md) has the provider commands, cleanup steps and configuration examples. Install and verify Alárinà before removing old entries.
 
 ## Use the skills
 
@@ -82,13 +82,15 @@ $qp-skills:alarina seda-spec define the observable API behavior
 /qp-skills:alarina oro-eniyan rewrite this explanation for the reviewer
 ```
 
-The [command menu](skills/alarina/SKILL.md#commands) groups capabilities by outcome family. Commands live under `skills/alarina/commands/` and are arguments to Alárinà, not separate slash/dollar skills. Supporting depth stays under `references/` and loads only when relevant; reusable utilities ship in [`scripts/`](skills/alarina/scripts/README.md). Ordinary engineering requests need no command name. Bare invocation shows the menu without starting work. [Terms and names](skills/alarina/references/terms.md) explains the command names and engineering concepts including DX, AX, deep modules and HITL/AFK.
+The [command menu](skills/alarina/SKILL.md#commands) groups capabilities by outcome family. Commands live under `skills/alarina/commands/` and are arguments to Alárinà, not separate slash/dollar skills. Supporting depth stays under `references/` and loads only when relevant; reusable utilities ship in [`scripts/`](skills/alarina/scripts/README.md). Ordinary engineering requests need no command name. Bare invocation shows the menu without starting work. [Terms and names](skills/alarina/references/communication/terms.md) explains the command names and engineering concepts including DX, AX, deep modules and HITL/AFK.
 
 Optional `alarina-setup` establishes how to work and verify in a project or personal environment. It reuses existing standards, tools, tracking and instructions, adding only missing configuration or pointers. Working projects need no setup ceremony. Shared expectations stay with the project; personal host and model preferences stay with the user.
 
-Project setup and broad requests such as “improve this project's documentation” establish a [useful documentation baseline](skills/alarina/references/akowe/project-baseline.md): purpose and first-run guidance, architecture, engineering standards, confirmed non-goals, working/verification instructions and a short agent entrypoint. Alárinà reuses existing destinations and creates useful missing documents from supported facts and accepted decisions. Domain context, ADRs, API and operational docs follow the project's actual needs. Narrow edits stay narrow; audits report gaps without writing, and missing policy is not invented to fill a template.
+Project setup and broad requests such as “improve this project's documentation” establish a [useful documentation baseline](skills/alarina/references/engineering/documentation/project-baseline.md): purpose and first-run guidance, architecture, engineering standards, confirmed non-goals, working/verification instructions and a short agent entrypoint. Alárinà reuses existing destinations and creates useful missing documents from supported facts and accepted decisions. Domain context, ADRs, API and operational docs follow the project's actual needs. Narrow edits stay narrow; audits report gaps without writing, and missing policy is not invented to fill a template.
 
-Commands can reuse one another's methods for a bounded question without copying instructions or starting another workflow. For example, project verification can use `sawari` to locate a behavior, then apply `arojinle` with the agent serving as its user/respondent to establish what the proof must show. The caller supplies the purpose, participants and evidence; Àròjinlẹ̀'s method stays the same. Agent answers do not invent human preferences or approval.
+Commands can reuse one another's methods for a bounded question without copying instructions or starting another workflow. Setup, verification and exploration share the [agent-respondent perspective](skills/alarina/references/productivity/inquiry/agent-respondent.md) for applying Àròjinlẹ̀ to their evidence. The caller supplies the purpose and consumes the result; the interview method stays the same. Agent answers do not invent human preferences or approval.
+
+The [reference guide](skills/alarina/references/README.md) groups reusable expertise by engineering, productivity, communication, design and language use cases. Commands link directly to known dependencies. When those leave part of the goal uncovered, Alárinà identifies the gap, searches relevant topics and composes commands, references and available capabilities around the required outcome and proof. A task can use a new combination without needing a permanent workflow. Shared premise checks and knowledge-discoverability checks have their own references rather than requiring an unrelated workflow.
 
 For domain language, `amose-context` maintains a project's existing glossary or creates `CONTEXT.md` when the first project-specific term is resolved. In multi-context projects, `CONTEXT-MAP.md` points to the scoped glossaries. A requested `.learning` or `.learnings` migration sorts entries by meaning: definitions go to the glossary, codebase rules to established standards (or `CODEBASE_STANDARD.md` when needed), procedures to their runbooks or methods, and decisions and exclusions to ADRs and non-goals. Workaround retirement conditions move with their guidance. Every live entry and reader pointer must be accounted for before retiring a legacy file.
 
@@ -102,13 +104,13 @@ To make Alárinà the main Codex session's default operating skill across projec
 
 Implicit host selection is best effort. Explicit invocation is the dependable entry path when the host misses the description. Selecting an agent profile establishes its operating entrypoint; it does not guarantee correct routing or completion.
 
-Substantive changes receive independent local review before completion or publication. Delivery and PR follow-up use the same [readiness contract](skills/alarina/references/atunwo/local-readiness.md): check the actual candidate, review it, batch warranted corrections locally, and refresh affected evidence before pushing. Mechanical changes can use proportionate checks, and explicit review skips remain visible. CI supplies remote-only proof and a backstop; required checks still apply. During TDD, Alága owns Red → Green and corrections; Àtúnwò independently reviews Standards and Specification, including warranted refactoring. Both use the project's standards.
+Substantive changes receive independent local review before completion or publication. Delivery and PR follow-up use the same [readiness contract](skills/alarina/references/engineering/delivery/local-readiness.md): check the actual candidate, review it, batch warranted corrections locally, and refresh affected evidence before pushing. Mechanical changes can use proportionate checks, and explicit review skips remain visible. CI supplies remote-only proof and a backstop; required checks still apply. During TDD, Alága owns Red → Green and corrections; Àtúnwò independently reviews Standards and Specification, including warranted refactoring. Both use the project's standards.
 
 Retrospective work has three commands: `ayewo-igba-ise` reconstructs an event; `ayewo-retro` improves the coding agent's working environment; `ayewo-corpus` assesses patterns across sessions, skill use and reusable artifact lessons. They share evidence rules and the existing session indexer. None starts remediation unless it is authorized.
 
 Alárinà looks for the project's existing verification commands and skills before substantial implementation. When a reusable capability is missing, `alaga-verify-project` establishes the real launch, readiness, drive, evidence and cleanup path, then exercises it from the documented starting state. Delivery keeps affected recipes current; broader verification audits are separately scoped. Missing access or runtime proof remains an explicit completion gap.
 
-Routine work needs no extra record or HTML report. Under the [record policy](skills/alarina/references/records.md), requested deliverables use a visible destination, shared knowledge stays with its project owner, and disposable scratch uses temporary storage. Private resumable state reuses its existing record or defaults to `~/.qp/alarina/` in your home directory, isolated by project, worktree and task. Existing project-local `.qp` records remain usable; the policy does not automatically move or delete them.
+Routine work needs no extra record or HTML report. Under the [record policy](skills/alarina/references/productivity/records.md), requested deliverables use a visible destination, shared knowledge stays with its project owner, and disposable scratch uses temporary storage. Private resumable state reuses its existing record or defaults to `~/.qp/alarina/` in your home directory, isolated by project, worktree and task. Existing project-local `.qp` records remain usable; the policy does not automatically move or delete them.
 
 ## Update
 
@@ -125,11 +127,11 @@ Restart the host if the update is not active, or use its supported reload in the
 
 For guided updates, explicitly invoke `alarina qp-update` using your host's displayed prefix. It identifies the existing manager and scope, reads the current source procedure, and distinguishes installed files from active-session instructions. Avoid an unqualified `npx skills update` if you only intend to update QP, because it may include unrelated skills.
 
-Earlier releases exposed the methods and utilities as standalone skills. Those entrypoints are retired. Use the [migration guide](skills/alarina/references/qp-update/migration.md) to replace their invocations and remove only confirmed QP copies after verifying Alárinà. Restart the host after migration.
+Earlier releases exposed the methods and utilities as standalone skills. Those entrypoints are retired. Use the [migration guide](skills/alarina/references/productivity/environment/installation-migration.md) to replace their invocations and remove only confirmed QP copies after verifying Alárinà. Restart the host after migration.
 
 An old `qp-update` installation may stop because its procedure path moved. Use the manager commands above or load the documented replacement at `skills/alarina/commands/qp-update.md` from the trusted target revision; do not treat a missing file as permission to overwrite the installation.
 
-See [update lifecycle and activation](skills/alarina/references/qp-update/lifecycle.md) for details about selective installs, local modifications, and verification.
+See [update lifecycle and activation](skills/alarina/references/productivity/environment/installation-lifecycle.md) for details about selective installs, local modifications, and verification.
 
 ## Uninstall
 
@@ -166,4 +168,4 @@ Alárinà is authored and maintained by Oluwaseyi Sobande. Its development draws
 - [HumanLayer's skills](https://github.com/humanlayer/skills) — explanations shaped around the actual change and reviewer-oriented PR descriptions.
 - [pnpm's agent skills](https://github.com/pnpm/pnpm/tree/0c4cac3773b94711e7ad9ff2b6ac1c0237b07a2f/.agents/skills) — project policy kept with its maintained owner, workflow links to shared methods, and concrete verification pitfalls beside the affected recipe.
 
-These are acknowledgements of influence, not claims of endorsement or wholesale adoption. Source-specific attribution and applicable licences remain with adapted material.
+These acknowledgements of influence live here rather than in command instructions. They are not claims of endorsement or wholesale adoption. Applicable licence notices remain with adapted material.

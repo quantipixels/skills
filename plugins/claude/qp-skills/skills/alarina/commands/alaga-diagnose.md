@@ -1,6 +1,6 @@
 # Diagnosis
 
-Read the [shared engineering contract](../references/alaga/engineering-contract.md) before applying this method.
+Read the [shared engineering contract](../references/engineering/delivery/engineering-contract.md) before applying this method.
 
 Find the smallest causal mechanism or sufficient causal set that explains the observed failure and downstream symptoms. Diagnosis stays separate from triage/review/correction delivery.
 
@@ -26,7 +26,7 @@ Use the smallest feedback loop that can distinguish the reported symptom from th
 
 Maintain a small set of competing hypotheses. Capture the trigger/mechanism, enabling conditions, propagation, evidence explained, distinguishing observation, and smallest safe probe where each is material. Use a table when several live hypotheses benefit from side-by-side comparison; a short comparison is enough for a simple decisive probe.
 
-Read [probe discipline](../references/alaga/diagnosis-probes.md) for bounded history/repair comparisons, cross-component failures, order-dependent tests or temporary instrumentation. Prefer existing observations, tests, logs, traces, configuration, history, measurements, and reversible diagnostics that fit the domain.
+Read [probe discipline](../references/engineering/diagnosis/diagnosis-probes.md) for bounded history/repair comparisons, cross-component failures, order-dependent tests or temporary instrumentation. Prefer existing observations, tests, logs, traces, configuration, history, measurements, and reversible diagnostics that fit the domain.
 
 For runtime artifacts, pin capture conditions, useful work, cache state and symbol availability. CPU attribution needs the relevant caller path and inclusive versus self cost; retained memory needs a retaining path rather than allocation volume; a stall needs the wait chain and awaited owner. Correlate event identifiers and intervals. Missing symbols limit attribution, and a hotspot or paired trace alone does not prove cause.
 
@@ -44,7 +44,7 @@ A factor lacking discriminating support is contextual/contributing/unresolved, n
 
 ## Stop on evidence
 
-After confirming a root cause, use [variant analysis](../references/alaga/variant-analysis.md) when the request or evidence warrants finding related instances. Keep the search bounded to that mechanism; confirmation alone does not require a repository-wide sweep.
+After confirming a root cause, use [variant analysis](../references/engineering/diagnosis/variant-analysis.md) when the request or evidence warrants finding related instances. Keep the search bounded to that mechanism; confirmation alone does not require a repository-wide sweep.
 
 Continue only while another safe observation can materially update the causal model. Stop when remaining hypotheses cannot be distinguished, no safe probe can change the diagnosis, required environment/observability/authority is unavailable, or the failure cannot be reproduced and no equivalent direct evidence exists.
 

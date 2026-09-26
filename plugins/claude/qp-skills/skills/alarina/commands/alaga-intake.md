@@ -1,6 +1,6 @@
 # Issue intake
 
-Read the [shared engineering contract](../references/alaga/engineering-contract.md) before applying this method.
+Read the [shared engineering contract](../references/engineering/delivery/engineering-contract.md) before applying this method.
 
 Determine whether the report holds up and select the smallest evidence-backed next action. Do not implement fixes, review a code candidate, or manage a backlog.
 
@@ -22,7 +22,7 @@ Choose one classification:
 
 Select `VERIFY` for the smallest distinguishing investigation, `REQUEST_INFORMATION` for decisive missing facts, `NO_BUG_ON_CURRENT_EVIDENCE` only with positive disproof and a reopen condition, or `HANDOFF_CONFIRMED` with observed/desired behavior, contracts, acceptance, exclusions, unknowns, and provenance.
 
-Use [diagnosis](alaga-diagnose.md) for follow-on causal work. Persist only for resumption or reuse, following [records](../references/records.md) and an existing destination when present. Existing `.qp/se-triage/` records remain valid inputs.
+Use [diagnosis](alaga-diagnose.md) for follow-on causal work. Persist only for resumption or reuse, following [records](../references/productivity/records.md) and an existing destination when present. Existing `.qp/se-triage/` records remain valid inputs.
 
 ## Optional publication
 

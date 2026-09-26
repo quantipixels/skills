@@ -1,6 +1,6 @@
 # Agent-facing writing
 
-Own agent-facing behavior and instructions. Read the [shared writing contract](../references/oro/writing-contract.md); the method below owns this audience. Return to the calling workflow after the requested text or review result.
+Own agent-facing behavior and instructions. Read the [shared writing contract](../references/communication/writing-contract.md); the method below owns this audience. Return to the calling workflow after the requested text or review result.
 
 Write for an agent reader. Optimize reliable selection, judgment, execution, and completion with the least justified context—not explanation for its own sake.
 
@@ -37,7 +37,7 @@ Use established engineering principles as semantic compression: DRY for duplicat
 
 Prefer the positive target behaviour over negation. Keep an explicit prohibition when it protects a hard boundary or evidence shows the positive form alone is insufficient.
 
-For pointer design, information hierarchy, leading words, bounds, context load, or material pruning, read [instruction economics](../references/oro/instruction-economics.md).
+For pointer design, information hierarchy, leading words, bounds, context load, or material pruning, read [instruction economics](../references/communication/instructions/instruction-economics.md).
 
 ## Structure attention
 
@@ -47,13 +47,13 @@ Do not optimize file length in isolation. A tiny root that always opens several 
 
 ## Skill and command creation
 
-For creating, splitting or combining skills and commands, or changing identity, invocation, packaging or ownership, read [skill and command mechanics](../references/oro/skill-mechanics.md). Choose a cohesive useful result and the expertise needed to deliver it; one verb, phase or technical responsibility does not automatically deserve a command. First consider whether the behaviour belongs in an existing owner.
+For creating, splitting or combining skills and commands, or changing identity, invocation, packaging or ownership, read [skill and command mechanics](../references/communication/instructions/skill-mechanics.md). Choose a cohesive useful result and the expertise needed to deliver it; one verb, phase or technical responsibility does not automatically deserve a command. First consider whether the behaviour belongs in an existing owner.
 
-When adding, removing, or changing the responsibility of references, scripts, templates, bundled data, or host adapters, read [resource boundaries](../references/oro/resource-boundaries.md).
+When adding, removing, or changing the responsibility of references, scripts, templates, bundled data, or host adapters, read [resource boundaries](../references/communication/instructions/resource-boundaries.md).
 
 ## Evolve existing agent text
 
-For material behavioural revision, refactoring, or pruning, read [editing agent text](../references/oro/editing-agent-text.md). Handle local wording and pointer corrections directly.
+For material behavioural revision, refactoring, or pruning, read [editing agent text](../references/communication/instructions/editing-agent-text.md). Handle local wording and pointer corrections directly.
 
 For material changes, trace the governed path from entrypoint and command through applicable references, contracts, templates or tools to its workflow consumer and handoff. Identify affected branches and classify their semantics as **retain**, **strengthen**, **relocate**, **replace**, or **retire**. The old text is evidence, not authority. Delete no-ops, caches, duplication, sediment, and superseded behaviour when they no longer earn their load.
 

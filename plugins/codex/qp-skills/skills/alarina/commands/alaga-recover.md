@@ -1,6 +1,6 @@
 # Incident recovery
 
-Read the [shared engineering contract](../references/alaga/engineering-contract.md) before applying this method.
+Read the [shared engineering contract](../references/engineering/delivery/engineering-contract.md) before applying this method.
 
 Use when the request authorizes mitigation or recovery of an active incident, within existing live-access and mutation authority. A diagnosis-only request does not authorize intervention; recovery does not itself grant deployment, rollback, retrospective or permanent-fix authority.
 

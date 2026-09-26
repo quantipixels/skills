@@ -31,7 +31,7 @@ Ask a single already-understood bounded consequential choice directly. Use [aroj
 
 ## Reconcile canonical language
 
-Read [domain language](../references/amose/context.md) when meaning changes. Update the established source when one exists. Otherwise create a root `CONTEXT.md` lazily when the first project-specific term is resolved and write authority exists. Use [context maintenance](amose-context.md) for placement, multi-context mapping, or migration. Do not create a generic project-memory store.
+Read [domain language](../references/engineering/domain/context.md) when meaning changes. Update the established source when one exists. Otherwise create a root `CONTEXT.md` lazily when the first project-specific term is resolved and write authority exists. Use [context maintenance](amose-context.md) for placement, multi-context mapping, or migration. Do not create a generic project-memory store.
 
 If writing is outside the request's authority, return the resolved model delta and its intended destination. A discussion that has not resolved a project-specific term creates no glossary.
 

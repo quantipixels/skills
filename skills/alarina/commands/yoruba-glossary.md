@@ -2,7 +2,7 @@
 
 Own Yorùbá language guidance and learning, including technical-term decisions. Default to Standard Yorùbá unless the user specifies a variety; distinguish dialect, register and attested usage from error. Preserve exact identifiers and the user's chosen personal-name spelling.
 
-Choose or propose a technical term using [word formation](../references/yoruba-glossary/word-formation.md). Use [glossary maintenance](../references/yoruba-glossary/glossary.md) for term status and authorized durable writes. For language correction or explanation use [language](yoruba-language.md); for a focused lesson use [teaching](yoruba-teach.md).
+Choose or propose a technical term using [word formation](../references/language/yoruba/word-formation.md). Use [glossary maintenance](../references/language/yoruba/glossary.md) for term status and authorized durable writes. For language correction or explanation use [language](yoruba-language.md); for a focused lesson use [teaching](yoruba-teach.md).
 
 Use fully marked teaching examples. Resolve uncertain tones, senses and forms from context and reliable sources; unmarked input may have several readings. Offer alternatives or ask for the intended meaning instead of confidently inventing marks. Distinguish a sourced rule, a usage preference and a proposed coinage. User acceptance can establish a project term, not language-wide standard status.
 

@@ -1,6 +1,6 @@
 # Explore directions
 
-Read [planning inputs](../references/atona/planning-inputs.md). Own workable direction and alternatives. For dependent uncertainty that needs progressive shaping, read [progressive shaping](../references/atona/progressive-shaping.md). Exploration-only stops at decision-ready options; an authorized initiative returns them to [atona](atona.md).
+Read [planning inputs](../references/productivity/planning/planning-inputs.md). Own workable direction and alternatives. For dependent uncertainty that needs progressive shaping, read [progressive shaping](../references/productivity/planning/progressive-shaping.md). Exploration-only stops at decision-ready options; an authorized initiative returns them to [atona](atona.md).
 
 Expand one grounded opportunity into a bounded, mechanism-diverse candidate set; challenge every candidate; and explain only the credible survivors. Return credible options to the workflow; distinguish exploration from confirmed decisions and requirements.
 
@@ -36,7 +36,7 @@ Reject duplicates, contradictions of hard constraints and candidates whose plaus
 
 Rank survivors only when the criteria make them genuinely comparable. Otherwise group them by trade-off or decision type. Explain why each survived, what evidence it still needs, and the material decision it would create. Novelty is not a benefit by itself.
 
-Use the [premise check](../references/coordination.md#premise-check) when a consequential candidate rests on a claim or assumption that needs challenge before selection.
+Use the [premise check](../references/productivity/inquiry/premise-check.md) when a consequential candidate rests on a claim or assumption that needs challenge before selection.
 
 ## Return decision-ready possibilities
 
@@ -53,5 +53,3 @@ Recommended next decision/action boundary
 ```
 
 For an exploration-only request, stop at these possibilities. For an end-to-end initiative, return them to Atọ́nà to resolve the direction under existing authority and continue shaping and delivery.
-
-The demand probe is informed by Compound Engineering's [product pressure test](https://github.com/EveryInc/compound-engineering-plugin/blob/a763b392c3c05faa1a383c0d228b7e95200ecc90/skills/ce-brainstorm/references/product-pressure-test.md).

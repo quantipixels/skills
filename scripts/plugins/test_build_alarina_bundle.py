@@ -166,7 +166,7 @@ class BundleTests(unittest.TestCase):
             self.build("retired")
         shutil.rmtree(retired.parent)
         nested = self.repository / "skills" / "alarina" / "references" / "alaga" / "agents" / "openai.yaml"
-        nested.parent.mkdir()
+        nested.parent.mkdir(parents=True)
         nested.write_text("interface: {}\n", encoding="utf-8")
         with self.assertRaisesRegex(COMPILER.BuildError, "nested discovery"):
             self.build("nested")

@@ -18,6 +18,4 @@ Lead with the answer, then supporting evidence and limits. Cite precise sources 
 
 Separate sourced facts, observed results and interpretation. Explain consequential uncertainty and what could resolve it; avoid unsupported confidence scores or claims of proof. Keep the report proportionate and omit the search transcript.
 
-Save a report when requested or useful for reuse, following [records](../references/records.md) and the existing research destination when present. A concise answer with references is sufficient for an ordinary question. Research does not authorize implementation, installation or publication.
-
-Coverage accounting is informed by Compound Engineering's [issue intelligence](https://github.com/EveryInc/compound-engineering-plugin/blob/a763b392c3c05faa1a383c0d228b7e95200ecc90/skills/ce-ideate/references/issue-intelligence.md).
+Save a report when requested or useful for reuse, following [records](../references/productivity/records.md) and the existing research destination when present. A concise answer with references is sufficient for an ordinary question. Research does not authorize implementation, installation or publication.

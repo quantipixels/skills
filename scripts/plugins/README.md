@@ -5,7 +5,7 @@ The repository owns one canonical Alárinà skill. Native plugins compile its co
 ```text
 skills/alarina/SKILL.md               canonical operating entrypoint
 skills/alarina/commands/   focused command methods
-skills/alarina/references/<domain>/   shared depth, tools and assets
+skills/alarina/references/<use-case>/ shared depth, templates and assets
 skills/alarina/routes.yaml            command and playbook topology
 plugins/codex/qp-skills/              generated Codex plugin
 plugins/claude/qp-skills/             generated Claude plugin

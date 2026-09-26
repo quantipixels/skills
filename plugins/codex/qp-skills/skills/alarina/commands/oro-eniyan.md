@@ -1,6 +1,6 @@
 # Human-facing writing
 
-Own human-facing prose and reader comprehension. Read the [shared writing contract](../references/oro/writing-contract.md); the method below owns this audience. Return to the calling workflow after the requested text or review result.
+Own human-facing prose and reader comprehension. Read the [shared writing contract](../references/communication/writing-contract.md); the method below owns this audience. Return to the calling workflow after the requested text or review result.
 
 Write technical prose a tired reader can understand on the first read. Optimize comprehension, usefulness, technical precision, voice, and trust without changing facts or decisions for style.
 
@@ -74,9 +74,9 @@ Do not rewrite exact identifiers or facts for style. Make paths, symbols, comman
 
 ## Edit and remove slop when requested
 
-For supplied prose or a cleanup/final-pass request, read [editing human prose](../references/oro/editing-human-prose.md). This owns Yọ Slop-style cleanup: remove machine-shaped filler and vague abstraction by effect while preserving the artifact's contract.
+For supplied prose or a cleanup/final-pass request, read [editing human prose](../references/communication/editing-human-prose.md). This owns Yọ Slop-style cleanup: remove machine-shaped filler and vague abstraction by effect while preserving the artifact's contract.
 
-When the user explicitly asks to shorten, reduce repetition, reduce verbosity, or lower reading load, also read [pruning human prose](../references/oro/pruning-human-prose.md). Ordinary editing does not imply pruning.
+When the user explicitly asks to shorten, reduce repetition, reduce verbosity, or lower reading load, also read [pruning human prose](../references/communication/pruning-human-prose.md). Ordinary editing does not imply pruning.
 
 Human-facing cleanup is not an automatic extra pass on unrelated work.
 

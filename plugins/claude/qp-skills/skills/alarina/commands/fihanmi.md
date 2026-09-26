@@ -10,7 +10,7 @@ Explicit user direction, an established design system and the selected specialis
 
 Reuse the current topic and evidence; do not restart research or create a new artifact merely because the user says “show me.” Use supplied canonical domain terms and exact identifiers; [amose](amose.md) owns unresolved domain meaning and [oro-eniyan](oro-eniyan.md) owns prose.
 
-For logic, structure, ordering, state or a change, read [visual explanation](../references/fihanmi/visual-explanation.md). A short paragraph can be enough. Otherwise select the code specimen, conceptual diff, tree, diagram or comparison that answers the actual question; do not fill a gallery of every form.
+For logic, structure, ordering, state or a change, read [visual explanation](../references/design/explanation/visual-explanation.md). A short paragraph can be enough. Otherwise select the code specimen, conceptual diff, tree, diagram or comparison that answers the actual question; do not fill a gallery of every form.
 
 Keep PR/MR briefs useful in the provider's native Markdown. Place the consequential change, evidence and qualification together; keep blockers visible rather than hiding them in disclosure or an external HTML report. [seda-pr-description](seda-pr-description.md) owns the brief and [seda-pr](seda-pr.md) handles separately authorized publication; [atunwo](atunwo.md) owns independent review. Use [html-artifact](html-artifact.md) only when a browser artifact is requested or materially needed, not as the default for a PR body.
 
@@ -20,7 +20,7 @@ Make the first useful view answer what this is, why it matters now, what is esta
 
 Match depth to the reader's task. Put a consequential qualification beside the claim it limits. Keep values or alternatives that must be compared visible together; disclosure is for supporting depth, not for making the reader remember one side while opening the other.
 
-When running in Codex on a new or materially recomposed browser or UI surface, read [Codex defaults](../references/fihanmi/codex-defaults.md) before settling the first layout.
+When running in Codex on a new or materially recomposed browser or UI surface, read [Codex defaults](../references/design/explanation/codex-defaults.md) before settling the first layout.
 
 ## Give the subject a form
 

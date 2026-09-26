@@ -1,6 +1,6 @@
 # Teach Yorùbá
 
-Build understanding through a focused lesson, practice and feedback. Read [teaching](../references/yoruba-glossary/teaching.md), then the applicable [orthography](../references/yoruba-glossary/orthography.md), [sentence](../references/yoruba-glossary/sentences.md), or [word-formation](../references/yoruba-glossary/word-formation.md) reference.
+Build understanding through a focused lesson, practice and feedback. Read [teaching](../references/language/yoruba/teaching.md), then the applicable [orthography](../references/language/yoruba/orthography.md), [sentence](../references/language/yoruba/sentences.md), or [word-formation](../references/language/yoruba/word-formation.md) reference.
 
 Default to Standard Yorùbá unless a variety is specified. Preserve the user's chosen personal-name spelling and exact identifiers. Use fully marked examples and establish uncertain tones or senses from context and reliable sources. Distinguish dialect or register from error and proposed coinages from attested terms.
 

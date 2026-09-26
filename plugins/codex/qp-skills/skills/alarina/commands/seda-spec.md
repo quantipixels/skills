@@ -1,6 +1,6 @@
 # Behavior contract
 
-Read [planning inputs](../references/atona/planning-inputs.md). Return the standalone behavior contract. Do not start an initiative, ticket decomposition or require a living HTML plan.
+Read [planning inputs](../references/productivity/planning/planning-inputs.md). Return the standalone behavior contract. Do not start an initiative, ticket decomposition or require a living HTML plan.
 
 Turn supplied intent into one compact behavior specification that a fresh human or agent can use as an independent delivery and review oracle. Own normative behavior, scope, examples, acceptance, proof traceability, and specification readiness.
 
@@ -24,7 +24,7 @@ Current implementation or operating practice is evidence of existing behavior, n
 
 ## Place and retire the specification
 
-Use the existing or selected specification destination; otherwise follow [records](../references/records.md) when the contract must be saved for downstream work. Existing `.qp/seda-spec/` records remain valid inputs.
+Use the existing or selected specification destination; otherwise follow [records](../references/productivity/records.md) when the contract must be saved for downstream work. Existing `.qp/seda-spec/` records remain valid inputs.
 
 A working or transient record is not automatically durable authority. While planning, delivery, or review depends on the specification, retain its exact identity and current content. When the specification itself must remain normative after delivery, preserve it in its established durable destination; for change-specific specifications, preserve required history and mark supersession rather than silently deleting the contract.
 

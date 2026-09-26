@@ -1,6 +1,6 @@
 # Project verification capabilities
 
-Read the [shared engineering contract](../references/alaga/engineering-contract.md) before applying this method.
+Read the [shared engineering contract](../references/engineering/delivery/engineering-contract.md) before applying this method.
 
 Use when recurring work needs a reliable way to exercise one project's actual product, or an existing verification skill has drifted. Reuse the project's working commands, tests and harness before proposing another capability. A one-off probe does not require a skill.
 
@@ -8,7 +8,7 @@ Own harness implementation and runtime proof. Reuse an existing project verifica
 
 ## Ground the capability
 
-If the relevant build, entry point or behavior is hidden in an unfamiliar codebase, use [sawari](sawari.md) to map that bounded source question. When dependent questions about the intended journey or proof need interrogation, apply [arojinle](arojinle.md) with the agent serving as its user/respondent, using the current source map and accepted requirements. Consume the resulting understanding and gaps here before writing a recipe. Escalate only a consequential human choice the agent cannot settle within that evidence and authority; sufficient current understanding needs neither call.
+If the relevant build, entry point or behavior is hidden in an unfamiliar codebase, use [sawari](sawari.md) to map that bounded source question. When dependent questions about the intended journey or proof need interrogation, use the [agent-respondent perspective](../references/productivity/inquiry/agent-respondent.md) with the current source map and accepted requirements. Consume the resulting understanding and gaps here before writing a recipe; sufficient current understanding needs neither call.
 
 Establish from current project evidence:
 
@@ -36,7 +36,7 @@ Write for an agent arriving without this conversation: identify the working dire
 
 Record a small useful set of journeys: entry point, prerequisite, drive command and observable outcome. Reuse existing test or journey identities; add an index only when it makes several maintained recipes easier to find. Do not generate placeholders or an exhaustive feature catalogue.
 
-When acceptance depends on user navigation or later effects, follow the action through its destination and aftermath. For example, a notification must reach the intended recipient and open the correct item, with the expected data and focus where relevant; successful sending alone is insufficient. Record observed friction for the affected user separately from functional failure. Select only affected journeys; this does not require an exhaustive browser matrix or browser testing of static reports. This example is informed by Compound Engineering's [journey taxonomy](https://github.com/EveryInc/compound-engineering-plugin/blob/a763b392c3c05faa1a383c0d228b7e95200ecc90/skills/ce-dogfood/references/test-matrix-taxonomy.md).
+When acceptance depends on user navigation or later effects, follow the action through its destination and aftermath. For example, a notification must reach the intended recipient and open the correct item, with the expected data and focus where relevant; successful sending alone is insufficient. Record observed friction for the affected user separately from functional failure. Select only affected journeys; this does not require an exhaustive browser matrix or browser testing of static reports.
 
 For each journey, record material alternate entry points, reset state and known limitations. Label source-derived recipes separately from executed proof, with candidate/environment identity and an evidence locator. Verifying one mapped path does not verify its unexercised alternatives. A feature map guides later selection; seeding it does not claim full-product coverage.
 
@@ -66,5 +66,3 @@ Classify discrepancies before correcting them:
 Reuse compatible app states and keep one owner for shared driving. After a surprising failure, establish readiness or reset only the invalidated state before continuing. Re-exercise corrected instructions or harness code; preserve evidence through teardown. Report scope and uncovered paths. Maintenance alone does not require a new report, scheduled sweep or PR.
 
 For a requested full-map audit, reconcile the index with its recipes and check source changes for omitted user paths, then exercise every in-scope feature. Source inspection alone cannot produce a clean runtime verdict. Mark unreachable paths with the attempted route and concrete missing prerequisite, retaining successful evidence from other paths. Independent source readers may help; shared live driving keeps one owner.
-
-Informed by PStack's [create-verification-skill](https://github.com/cursor/plugins/blob/ecc249f1e306fc64ddf83c7bed16cacf7c2239db/pstack/skills/create-verification-skill/SKILL.md) and [maintain-verification-skill](https://github.com/cursor/plugins/blob/ecc249f1e306fc64ddf83c7bed16cacf7c2239db/pstack/skills/maintain-verification-skill/SKILL.md). Alárinà preserves project/host conventions, scoped maintenance and existing effect authority.

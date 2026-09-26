@@ -1,10 +1,10 @@
 # Publish a PR or MR
 
-Read [target and provider boundaries](../references/seda-pr/provider-contract.md). Commit scoped work, push and create or update the authorized item. Stop after verified publication unless stewardship was also requested; publication does not authorize approval or merge.
+Read [target and provider boundaries](../references/engineering/delivery/pr-provider-contract.md). Commit scoped work, push and create or update the authorized item. Stop after verified publication unless stewardship was also requested; publication does not authorize approval or merge.
 
-Read [reviewer brief](../references/seda-pr/reviewer-brief.md) before composing or materially refreshing a body. Reuse the task, actual diff, applicable domain meaning and current proof; gather surrounding context only where needed to explain behavior or ownership.
+Read [reviewer brief](../references/engineering/delivery/reviewer-brief.md) before composing or materially refreshing a body. Reuse the task, actual diff, applicable domain meaning and current proof; gather surrounding context only where needed to explain behavior or ownership.
 
-Before publishing a new candidate, read [local readiness](../references/atunwo/local-readiness.md) and consume its completed review and check evidence. Resolve a missing local result before pushing; reuse current delivery evidence rather than starting another review. Description-only or body-only work does not require a fresh code review.
+Before publishing a new candidate, read [local readiness](../references/engineering/delivery/local-readiness.md) and consume its completed review and check evidence. Resolve a missing local result before pushing; reuse current delivery evidence rather than starting another review. Description-only or body-only work does not require a fresh code review.
 
 For authorized publication, verify the target, commit the locally accepted changes and push normally. Confirm the resulting content still matches the reviewed candidate, including any hook edits. Create or update the existing item, ready by default for creation unless draft was requested; preserve the state of an existing item. Never publish an empty diff. A body update does not create another PR.
 

@@ -1,6 +1,6 @@
 # Maintain `.nongoals`
 
-Read the [durable record contract](../references/amose/record-contract.md). Apply this record’s lifecycle within the identified destination and existing write authority; return the verified result to the caller.
+Read the [durable record contract](../references/engineering/domain/record-contract.md). Apply this record’s lifecycle within the identified destination and existing write authority; return the verified result to the caller.
 
 Reserve the optional root `.nongoals` file for durable project-level exclusions: directions, features, responsibilities, ideas, or concerns that the project excludes from all current and future work. Do not store session-, conversation-, task-, plan-, feature-, phase-, or iteration-local non-goals there; keep them with their owning artifact. It is not a backlog. Leave storage and version-control policy to the project. Ignore similarly named files unless the user explicitly supplies one as input.
 

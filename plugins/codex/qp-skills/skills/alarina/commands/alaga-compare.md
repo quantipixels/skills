@@ -1,6 +1,6 @@
 # Measured comparison
 
-Read the [shared engineering contract](../references/alaga/engineering-contract.md) before applying this method. For verification of an already supplied repair, use the [existing-repair comparison](../references/alaga/diagnosis-probes.md#existing-repair-comparison) and stop at that evidence; correction still needs authority. The measured-improvement method below applies when the request asks for measured improvement or a keep/revert experiment.
+Read the [shared engineering contract](../references/engineering/delivery/engineering-contract.md) before applying this method. For verification of an already supplied repair, use the [existing-repair comparison](../references/engineering/diagnosis/diagnosis-probes.md#existing-repair-comparison) and stop at that evidence; correction still needs authority. The measured-improvement method below applies when the request asks for measured improvement or a keep/revert experiment.
 
 Use when a consequential engineering claim needs baseline/candidate trials. A comparison-only request stops at the evidence; adoption requires delivery authority.
 

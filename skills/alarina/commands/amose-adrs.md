@@ -1,6 +1,6 @@
 # Maintain ADRs
 
-Read the [durable record contract](../references/amose/record-contract.md). Apply this record’s lifecycle within the identified destination and existing write authority; return the verified result to the caller.
+Read the [durable record contract](../references/engineering/domain/record-contract.md). Apply this record’s lifecycle within the identified destination and existing write authority; return the verified result to the caller.
 
 Create or offer an ADR only when an unrecorded confirmed decision is all three:
 

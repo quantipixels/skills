@@ -1,6 +1,6 @@
 # Architecture survey
 
-Read [architecture orientation](../references/architect/orientation.md) for evidence and persistence boundaries; preserve this command’s requested stop.
+Read [architecture orientation](../references/engineering/architecture/orientation.md) for evidence and persistence boundaries; preserve this command’s requested stop.
 
 Use `survey` when the question is where architecture work is warranted rather than what the replacement design should be. If the caller already supplied one exact architecture question or candidate, skip the survey and work at that scale.
 
@@ -8,7 +8,7 @@ Bound the search before scanning. Prefer the named subsystem, user pain point, f
 
 When an unfamiliar implementation hides the relevant owners or caller paths, use [sawari](sawari.md) for that bounded source map. Consume its locators and coverage limits, then assess architectural friction here; a source map alone is not a survey finding.
 
-When module/interface/seam shape is material, read [module design](../references/architect/module-design.md) and look for friction such as:
+When module/interface/seam shape is material, read [module design](../references/engineering/architecture/module-design.md) and look for friction such as:
 
 - callers repeating sequencing, branching, validation, recovery, mapping, or foreign-system knowledge that one owner could hide;
 - one conceptual operation requiring repeated navigation across several shallow modules or files;

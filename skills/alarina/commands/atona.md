@@ -1,6 +1,6 @@
 # Initiative progression
 
-Read [planning inputs](../references/atona/planning-inputs.md). Own progression through the requested initiative outcome using one living plan. A plan, ticket set or handoff is intermediate when the user requested a build.
+Read [planning inputs](../references/productivity/planning/planning-inputs.md). Own progression through the requested initiative outcome using one living plan. A plan, ticket set or handoff is intermediate when the user requested a build.
 
 ## Establish the destination and authority
 
@@ -10,7 +10,7 @@ Resolve discoverable facts from relevant project knowledge before asking the use
 
 ## Keep the human in the plan
 
-Keep one current plan in the requested or established format. Use [records](../references/records.md) when it needs persistence. Present the first proposed direction before delivery so the user can judge alignment. Maintain the plan through decisions, implementation, review, and completion; share its locator and revision with contributors when it is saved.
+Keep one current plan in the requested or established format. Use [records](../references/productivity/records.md) when it needs persistence. Present the first proposed direction before delivery so the user can judge alignment. Maintain the plan through decisions, implementation, review, and completion; share its locator and revision with contributors when it is saved.
 
 Supply the reader's current decision or concern, relevant candidate/evidence identities, and plan obligations whose omission would change a decision or progression judgment. Atọ́nà owns that meaning and its completeness. Use [html-artifact](html-artifact.md) when the user requests a browser document or that presentation materially helps the decision; it owns construction and presentation verification. Accept the plan only when those obligations and their material limits are visible and current.
 
@@ -18,7 +18,7 @@ Update the plan after material changes, before dependent decisions or delivery h
 
 ## Explore and settle direction
 
-When no direction is apparent, existing options are unsatisfying or alternative mechanisms need exploring, read [ideation](atona-direction.md). Use [iwadi](iwadi.md) for material evidence gaps, use the [premise check](../references/coordination.md#premise-check) when a consequential proposal needs challenge, and use [adanwo](adanwo.md) when a disposable prototype can clarify the uncertainty. Preserve the distinction between a promising idea, a confirmed choice, and an accepted requirement.
+When no direction is apparent, existing options are unsatisfying or alternative mechanisms need exploring, read [ideation](atona-direction.md). Use [iwadi](iwadi.md) for material evidence gaps, use the [premise check](../references/productivity/inquiry/premise-check.md) when a consequential proposal needs challenge, and use [adanwo](adanwo.md) when a disposable prototype can clarify the uncertainty. Preserve the distinction between a promising idea, a confirmed choice, and an accepted requirement.
 
 For a build request, carry the selected direction into shaping and delivery. If no credible direction survives, report why and the evidence or decision needed to proceed. Reuse a settled direction without repeating exploration.
 
@@ -34,13 +34,13 @@ Retain decision-changing alternatives, rationale, uncertainty and counterevidenc
 
 Use [amose](amose.md) when material domain identity, lifecycle, policy, ownership or invariants lack established meaning or applicability, [behavior contract](seda-spec.md) when behavior needs a normative contract, [architect-design](architect-design.md) when structure or a consequential mechanism's fitness for confirmed purpose/domain/quality drivers needs establishing, and [delivery decomposition](seda-tickets.md) when delivery needs decomposition. Reuse settled domain and sound design evidence. Consume each result and controlling gap in this same plan without requiring every branch or a new worker on every initiative.
 
-When the route to the outcome is unclear or later work cannot yet be stated responsibly, read [progressive shaping](../references/atona/progressive-shaping.md). Choose the next evidence-producing question before guessing a backlog. Resolve prerequisites and build only slices whose acceptance, dependencies, and authority are sufficiently settled. Keep uncertain remaining scope visible; slice readiness does not prove whole-initiative readiness.
+When the route to the outcome is unclear or later work cannot yet be stated responsibly, read [progressive shaping](../references/productivity/planning/progressive-shaping.md). Choose the next evidence-producing question before guessing a backlog. Resolve prerequisites and build only slices whose acceptance, dependencies, and authority are sufficiently settled. Keep uncertain remaining scope visible; slice readiness does not prove whole-initiative readiness.
 
-For consequential, uncertain, difficult-to-reverse, or materially coordinated work, run a [premortem](../references/atona/premortem.md) and reconcile material findings before treating the affected plan as execution-ready.
+For consequential, uncertain, difficult-to-reverse, or materially coordinated work, run a [premortem](../references/productivity/planning/premortem.md) and reconcile material findings before treating the affected plan as execution-ready.
 
-When a consequential rollout needs operational acceptance or data recovery, read [rollout readiness](../references/atona/rollout-readiness.md). Keep its checks and stop conditions in the current plan or runbook; delivery and live execution retain their existing owners and authority.
+When a consequential rollout needs operational acceptance or data recovery, read [rollout readiness](../references/engineering/delivery/rollout-readiness.md). Keep its checks and stop conditions in the current plan or runbook; delivery and live execution retain their existing owners and authority.
 
-Use [managed initiatives](../references/atona/managed-initiative.md) only when the governing workflow requires named readiness states, coordinated multi-candidate delivery, or a durable lifecycle record. Its formal gates supplement this workflow; size alone does not require them.
+Use [managed initiatives](../references/productivity/planning/managed-initiative.md) only when the governing workflow requires named readiness states, coordinated multi-candidate delivery, or a durable lifecycle record. Its formal gates supplement this workflow; size alone does not require them.
 
 ## Coordinate delivery and establish completion
 
@@ -50,7 +50,7 @@ Use [alaga-deliver](alaga-deliver.md) as the builder for each sufficiently settl
 
 Let Alága handle review and corrections for its coding change. Use [atunwo](atunwo.md) for a separate judgment across the integrated candidate when warranted or requested; reuse applicable review evidence and return accepted coding corrections to [alaga-deliver](alaga-deliver.md).
 
-When delivery has multiple work units or candidates, dependencies, owners, or a multi-session handoff, read [delivery tracking](../references/atona/delivery-tracking.md). Keep execution and proof details with their owners; Atọ́nà owns whether the combined results satisfy the initiative.
+When delivery has multiple work units or candidates, dependencies, owners, or a multi-session handoff, read [delivery tracking](../references/engineering/delivery/delivery-tracking.md). Keep execution and proof details with their owners; Atọ́nà owns whether the combined results satisfy the initiative.
 
 After a material decision, discovery, or delivery result, update the affected plan and reopen only dependent choices and proof. Resolve scope drift before continuing affected work. Preserve user-requested or accepted work, required checks and obligations from existing contracts or consumers. Remove agent-proposed additions from required scope when they do not serve acceptance or an applicable obligation. Keep useful ideas as optional follow-up, not conditions for completion; remove unjustified additions from the plan. Continue within existing authority; changing the plan does not authorize deleting code, tests or user artifacts. A partly superseded result is not wholly current.
 
@@ -64,9 +64,9 @@ Use [seda-pr](seda-pr.md) for authorized publication and [wo-pr](wo-pr.md) for r
 
 ## Preserve continuity and close
 
-Keep the plan in context for a short session. When continuity or downstream use needs persistence, follow [records](../references/records.md) and update the existing plan first. Record the execution workspace and branch, plus the main-worktree path for a linked worktree, when that identity matters for resumption. Update it when execution moves. Omit machine-specific absolute paths from portable/public artifacts unless explicitly requested.
+Keep the plan in context for a short session. When continuity or downstream use needs persistence, follow [records](../references/productivity/records.md) and update the existing plan first. Record the execution workspace and branch, plus the main-worktree path for a linked worktree, when that identity matters for resumption. Update it when execution moves. Omit machine-specific absolute paths from portable/public artifacts unless explicitly requested.
 
-Keep ordinary rationale in the current plan; read [durable reconciliation](../references/atona/durable-reconciliation.md) only when required governing knowledge needs updating.
+Keep ordinary rationale in the current plan; read [durable reconciliation](../references/engineering/documentation/durable-reconciliation.md) only when required governing knowledge needs updating.
 
 Before closing a linked-worktree initiative, reconcile required task state with the accepting workspace, clean only reconciled or disposable owned state, and record the workspace disposition. Preserve unresolved state. Worktree removal requires user approval; retaining it does not block completion.
 

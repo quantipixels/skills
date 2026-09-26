@@ -6,11 +6,11 @@ Neither command grants product-code changes, policy decisions, destructive pruni
 
 A focused architecture overview belongs directly to [architect-document](architect-document.md); domain meaning, ADR lifecycle and durable domain records to [amose](amose.md); wording-only work to [oro-eniyan](oro-eniyan.md). Within a documentation set, use those skills for their owned judgments or edits and [oro-eniyan](oro-eniyan.md) for human-facing writing or [oro-sigidi](oro-sigidi.md) for agent-facing instructions. Akọ̀wé retains set-level reconciliation, not their methods. A missing required companion is a named gap, not permission to invent its judgment.
 
-Read [documentation evidence](../references/akowe/evidence.md) before judging claims. Agreement between documents is not proof of correctness.
+Read [documentation evidence](../references/engineering/documentation/evidence.md) before judging claims. Agreement between documents is not proof of correctness.
 
 ## Reconcile and verify
 
-For a broad project-documentation improvement request, apply the [project baseline](../references/akowe/project-baseline.md). That request includes creating useful missing documents from established facts and accepted decisions; it is not limited to editing existing files. A narrow correction stays within its named scope.
+For a broad project-documentation improvement request, apply the [project baseline](../references/engineering/documentation/project-baseline.md). That request includes creating useful missing documents from established facts and accepted decisions; it is not limited to editing existing files. A narrow correction stays within its named scope.
 
 Within the authorized scope, make the smallest supported edits, preserving unrelated work, unique knowledge and established formats. Use the existing destination and natural owner; do not create a competing store. Continue independent corrections while a consequential conflict remains unresolved.
 

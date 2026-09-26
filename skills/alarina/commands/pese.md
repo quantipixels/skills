@@ -30,7 +30,7 @@ When companions are required, expose only a reviewed allowlist; stage them narro
 
 ## Protect private access
 
-Before enabling either transport, read [private access and crawler controls](../references/pese/private-access.md). Establish the effective audience and deny clients outside the accepted boundary regardless of their user agent. Robots directives are advisory, not access control; an authorized reader can still automate downloads.
+Before enabling either transport, read [private access and crawler controls](../references/productivity/environment/private-access.md). Establish the effective audience and deny clients outside the accepted boundary regardless of their user agent. Robots directives are advisory, not access control; an authorized reader can still automate downloads.
 
 Apply the HTTP controls through the task-owned serving layer without changing the authoritative resource or unrelated routes. If ready tooling cannot meet the required audience, containment or HTTP protections, return `CAPABILITY_GAP` without enabling the route; do not silently weaken privacy.
 
@@ -48,7 +48,7 @@ Do not finish until the exact HTTPS URL for the requested resource is known and 
 
 ### Tailcat — fallback
 
-Read [Tailcat fallback](../references/pese/tailcat.md). Use only when Tailscale Serve is unavailable/unsuitable, the reader can run a compatible Tailcat client, and the user accepts Tailcat's bearer-capability, relay-metadata, CLI-receiver, and upstream-stability limits.
+Read [Tailcat fallback](../references/productivity/environment/tailcat.md). Use only when Tailscale Serve is unavailable/unsuitable, the reader can run a compatible Tailcat client, and the user accepts Tailcat's bearer-capability, relay-metadata, CLI-receiver, and upstream-stability limits.
 
 For an HTTP resource, forward only the task-owned loopback service with the same HTTP protections; encryption does not replace its access boundary.
 

@@ -1,6 +1,6 @@
 # Delivery decomposition
 
-Read [planning inputs](../references/atona/planning-inputs.md). Return bounded work packages and their dependencies and acceptance. Do not start implementation or require an initiative plan; external ticket creation needs the user’s requested destination and publication authority.
+Read [planning inputs](../references/productivity/planning/planning-inputs.md). Return bounded work packages and their dependencies and acceptance. Do not start implementation or require an initiative plan; external ticket creation needs the user’s requested destination and publication authority.
 
 Turn supplied work into a validated set of tickets that a fresh delivery owner can understand and complete without reconstructing parent narrative. Own decomposition, dependency/startability semantics, and terminal ticket disposition only; the caller owns grouping, storage, publication, execution, review progress, and reconciliation from owner results.
 

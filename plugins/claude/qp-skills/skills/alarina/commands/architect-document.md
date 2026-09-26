@@ -1,6 +1,6 @@
 # Maintain ARCHITECTURE.md
 
-Read [architecture orientation](../references/architect/orientation.md) for evidence and persistence boundaries; preserve this command’s requested stop.
+Read [architecture orientation](../references/engineering/architecture/orientation.md) for evidence and persistence boundaries; preserve this command’s requested stop.
 
 With write authority, use `document` to create or refresh the project's canonical architecture overview from established evidence, without redesigning the system. Reuse its existing location and format, including scoped module documents. When creation is requested or authorized architecture work needs a durable overview and none exists, use repository-root `ARCHITECTURE.md`; do not create a competing copy just to enforce that name.
 
