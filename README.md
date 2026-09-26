@@ -106,7 +106,7 @@ Retrospective work has three commands: `ayewo-igba-ise` reconstructs an event; `
 
 Alárinà looks for the project's existing verification commands and skills before substantial implementation. When a reusable capability is missing, `alaga-verify-project` establishes the real launch, readiness, drive, evidence and cleanup path, then exercises it from the documented starting state. Delivery keeps affected recipes current; broader verification audits are separately scoped. Missing access or runtime proof remains an explicit completion gap.
 
-Routine work needs no extra record or HTML report. Under the [record policy](skills/alarina/references/records.md), requested deliverables use a visible destination, shared knowledge stays with its project owner, and disposable scratch uses temporary storage. Private resumable state reuses its existing record or defaults to `${XDG_STATE_HOME:-$HOME/.local/state}/alarina/`, isolated by project, worktree and task. Existing `.qp` records remain usable; the policy does not automatically move or delete them.
+Routine work needs no extra record or HTML report. Under the [record policy](skills/alarina/references/records.md), requested deliverables use a visible destination, shared knowledge stays with its project owner, and disposable scratch uses temporary storage. Private resumable state reuses its existing record or defaults to `~/.qp/alarina/` in your home directory, isolated by project, worktree and task. Existing project-local `.qp` records remain usable; the policy does not automatically move or delete them.
 
 ## Update
 
