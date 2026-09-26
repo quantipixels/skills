@@ -9,12 +9,18 @@
   },
   "license": "MIT",
   "scripts": {
+    "build:plugins": "python3 scripts/plugins/build_alarina_bundle.py",
+    "check:plugins": "python3 scripts/plugins/build_alarina_bundle.py --check",
+    "test:plugins": "python3 -m unittest scripts.plugins.test_build_alarina_bundle scripts.plugins.test_verify_native_install",
     "changeset": "changeset",
-    "version": "changeset version && npm install --package-lock-only --ignore-scripts"
+    "version": "changeset version && npm install --package-lock-only --ignore-scripts && npm run build:plugins"
   },
   "devDependencies": {
     "@changesets/changelog-github": "^0.7.0",
     "@changesets/cli": "^2.30.0"
   },
-  "packageManager": "npm@10.9.4"
+  "packageManager": "npm@10.9.4",
+  "pi": {
+    "skills": ["./skills"]
+  }
 }

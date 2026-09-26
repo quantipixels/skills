@@ -1,0 +1,18 @@
+[
+  {
+    "id": "O01",
+    "prompt": "Use Alárinà to rewrite this PR explanation for a human reviewer. Return the description only; do not publish. Facts: retry budget was reset after every successful chunk; a job with alternating successes and failures could therefore retry forever. The change moves the budget to job scope. Existing all-success behavior is unchanged. Tests cover alternating failures and exhaustion. Say nothing about performance because it was not measured."
+  },
+  {
+    "id": "O02",
+    "prompt": "Use Alárinà to write a bounded behavior specification, not a project plan or tickets. Accepted decisions: import CSV rows by account ID; duplicate IDs within one input reject the whole import; IDs already present update the existing account; invalid rows reject the whole import; no partial writes; error output identifies input row numbers; empty input is a successful no-op. Include acceptance examples. Do not invent authorization rules or persistence technology."
+  },
+  {
+    "id": "O03",
+    "prompt": "Use Alárinà to decompose this accepted change into work packages with dependencies and proof. Spec: introduce an optional request ID header, generate an ID when absent, propagate it through asynchronous job metadata, include it in structured logs, preserve existing clients. Existing architecture has an HTTP middleware and queue serializer with contract tests. No external ticket publication, implementation or release is requested."
+  },
+  {
+    "id": "O04",
+    "prompt": "Use Alárinà to implement and verify the accepted fix in a disposable Python fixture. Create the fixture under a fresh temporary directory. Existing function is retry_delay(attempt, base=2, cap=30): return min(cap, base * attempt). Accepted behavior: attempt is a nonnegative integer; delay doubles each attempt starting at base for attempt 0, capped at cap; negative attempts raise ValueError; preserve the two keyword parameters. Add meaningful boundary tests and run them. Do not edit project source, install dependencies, publish, or call other workers. Return the exact files and test evidence."
+  }
+]

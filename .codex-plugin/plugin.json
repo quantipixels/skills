@@ -1,15 +1,10 @@
 {
   "name": "qp-skills",
-  "description": "Focused expertise and methods for reasoning, engineering, design, and delivery",
+  "version": "4.3.0",
+  "description": "QP software-project work through Alárinà",
   "author": {
-    "name": "QP",
-    "url": "https://github.com/quantipixels"
+    "name": "Oluwaseyi Sobande"
   },
-  "repository": "https://github.com/quantipixels/skills",
   "license": "MIT",
-  "skills": "./skills/",
-  "interface": {
-    "displayName": "QP Skills",
-    "shortDescription": "Focused reasoning, engineering, design, and delivery skills"
-  }
+  "skills": "./skills/"
 }

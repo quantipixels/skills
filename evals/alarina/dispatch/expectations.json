@@ -1,0 +1,132 @@
+{
+  "D01": {
+    "family": "investigate",
+    "playbook": "playbooks/investigation.md",
+    "stop": "diagnosis",
+    "forbid": [
+      "edit",
+      "publish",
+      "merge",
+      "deploy"
+    ],
+    "commands": [
+      "alaga-diagnose"
+    ]
+  },
+  "D02": {
+    "family": "build",
+    "playbook": "playbooks/bug-fix.md",
+    "stop": "verification",
+    "forbid": [
+      "publish",
+      "merge",
+      "deploy"
+    ],
+    "commands": [
+      "alaga-deliver"
+    ]
+  },
+  "D05": {
+    "family": "review",
+    "playbook": "playbooks/pr-readiness.md",
+    "stop": "status",
+    "forbid": [
+      "edit",
+      "publish",
+      "merge",
+      "deploy"
+    ],
+    "commands": [
+      "wo-pr"
+    ]
+  },
+  "D09": {
+    "family": "route",
+    "playbook": null,
+    "stop": "explicit-command-required",
+    "forbid": [
+      "update",
+      "install",
+      "edit",
+      "publish",
+      "merge",
+      "deploy"
+    ],
+    "reason": "qp-update is bundled but requires explicit user invocation of its command",
+    "commands": []
+  },
+  "B01": {
+    "family": "route",
+    "commands": [],
+    "playbook": null,
+    "stop": "advice",
+    "forbid": [
+      "publish",
+      "merge",
+      "deploy",
+      "install",
+      "serve"
+    ]
+  },
+  "B02": {
+    "family": "route",
+    "commands": [],
+    "playbook": null,
+    "stop": "advice",
+    "forbid": [
+      "publish",
+      "merge",
+      "deploy",
+      "install",
+      "serve"
+    ]
+  },
+  "B06": {
+    "family": "route",
+    "commands": [
+      "alaga-deliver"
+    ],
+    "playbook": null,
+    "stop": "verification",
+    "forbid": [
+      "publish",
+      "merge",
+      "deploy",
+      "install",
+      "serve"
+    ]
+  },
+  "C33": {
+    "family": "utility",
+    "commands": [
+      "pese"
+    ],
+    "playbook": null,
+    "stop": "requested-result",
+    "forbid": [],
+    "condition": "explicit-command"
+  },
+  "C34": {
+    "family": "utility",
+    "commands": [
+      "qp-update"
+    ],
+    "playbook": null,
+    "stop": "requested-result",
+    "forbid": [],
+    "condition": "explicit-command"
+  },
+  "C39": {
+    "family": "investigate",
+    "commands": [
+      "sawari"
+    ],
+    "playbook": null,
+    "stop": "requested-result",
+    "forbid": [
+      "edit",
+      "publish"
+    ],
+    "condition": "semantic-dispatch"
+  }
+}

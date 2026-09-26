@@ -19,11 +19,15 @@ jobs:
         with:
           python-version: '3.12'
       - run: python -m pip install -r requirements-dev.txt
+      - name: Check generated native declarations
+        run: npm run check:plugins
       - name: Run the package validator
         run: python scripts/skills/check_package.py
       - name: Smoke the real CLI on disposable valid and invalid packages
         run: python tests/smoke_package.py
       - name: Exercise the session script on a disposable transcript
         run: python scripts/skills/test_session_evidence.py
-      - name: Installer identity and process-cleanup safeguards
+      - name: Native install snapshot and clean-staging safeguards
         run: python scripts/plugins/test_verify_native_install.py
+      - name: Canonical skill and native declaration generation
+        run: python -m unittest scripts.plugins.test_build_alarina_bundle

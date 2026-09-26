@@ -1,0 +1,58 @@
+# Architecture
+
+This repository packages QP's engineering methods through one canonical Alárinà skill. The public installation and invocation paths are in [README.md](README.md); this overview describes where to change the package safely.
+
+## Source and ownership
+
+- [`skills/alarina/SKILL.md`](skills/alarina/SKILL.md) is the single discoverable entrypoint. It selects a focused command or playbook and does not make those methods separate installed skills.
+- [`skills/alarina/routes.yaml`](skills/alarina/routes.yaml) owns command and playbook metadata. The command table in `SKILL.md` is generated from it.
+- `skills/alarina/commands/` contains cohesive methods chosen by useful outcome and authority, not one command per technical responsibility. `skills/alarina/playbooks/` composes them for multi-stage outcomes. `skills/alarina/references/<use-case>/` holds supporting depth, templates and assets grouped by engineering, productivity, communication, design and language rather than former skills. Direct conditional links serve known callers; the [reference guide](skills/alarina/references/README.md) supports scoped discovery across command families when an outcome needs additional expertise. The entrypoint owns composition and acceptance when predefined methods leave gaps; references can be applied directly without a new command or permanent playbook.
+- `skills/alarina/scripts/` holds shared installed utilities: HTML structural diagnostics and local session evidence indexing. Commands own interpretation and acceptance; scripts own their bounded mechanical result. Repository build and verification tooling remains outside the installed skill.
+- The HTML Artifact base and control assets under `references/design/html/assets/` use Basecoat's standalone precompiled CSS for components and scoped CSS for document layout and fallback. Their existing jQuery scripts own control behavior. Connected documents load pinned assets; portable documents embed or bundle the selected files. This path has no direct Tailwind build step.
+- [`agents/alarina.md`](agents/alarina.md) is the thin portable skill-delegation profile. Small generated declarations adapt it for Claude's plugin agent, Codex's separately registered TOML agent, and OpenCode's project agent. Pi uses its native skill and can append the portable profile to its system prompt; it has no native named-agent registration in this package. The skill owns operating and terminology-maintenance instructions. No model, tool or permission overrides are generated.
+
+Method ownership follows the result: Alága owns implementation and verification, including documentation affected by its change; Architect owns technical structure and `ARCHITECTURE.md`; Amọ̀ṣẹ́ owns domain meaning and its glossary, with separate qualification for ADRs and durable non-goals; Akọ̀wé reconciles a documentation set; Atọ́nà coordinates initiative scope and combined acceptance. [`amose-context`](skills/alarina/commands/amose-context.md) captures resolved terms in an established glossary or a lazily created `CONTEXT.md`; a `CONTEXT-MAP.md` locates scoped glossaries when multiple bounded contexts need them. Legacy learning migration routes codebase rules to established project standards (with `CODEBASE_STANDARD.md` as a lazy fallback), procedures to owning methods or runbooks, and other non-domain knowledge to its maintained source. Ọ̀rọ̀ or Akọ̀wé handles the corresponding text; Amọ̀ṣẹ́ does not absorb those responsibilities into the glossary. See the [feature delivery](skills/alarina/playbooks/feature-delivery.md) and [documentation maintenance](skills/alarina/playbooks/docs-maintenance.md) playbooks for their handoffs.
+
+Knowledge authors share `references/productivity/knowledge-discoverability.md`: Amọ̀ṣẹ́ reaches it through the durable record contract, Ọ̀rọ̀ through the writing contract, and Akọ̀wé through documentation reconciliation. Each owner checks the affected reader path within its existing scope; knowledge stays in its established destination.
+
+`references/engineering/documentation/project-baseline.md` owns useful documentation defaults shared by project setup and broad documentation improvement. Akọ̀wé coordinates existing or missing coverage, using Architect, Amọ̀ṣẹ́ and Ọ̀rọ̀ for their owned results. The baseline covers orientation, confirmed philosophy, architecture, standards, confirmed exclusions, lifecycle and recovery procedures, and agent navigation without fixed file quotas or a new command. Read-only audits assess the same coverage; narrow edits and personal-environment setup do not trigger it.
+
+Local review readiness has one owner in `references/engineering/delivery/local-readiness.md`, consumed by delivery, publication and PR stewardship. Substantive candidates need independent review and relevant local proof before completion or push, with proportionate mechanical-change exceptions and explicit user overrides. Corrections are batched locally; changed content or base invalidates dependent evidence. Remote-only checks and required provider checks remain separate obligations. During TDD, Alága owns Red → Green and corrections; Atúnwò independently judges Standards and Specification, including refactoring. Standards remain shared project knowledge; review stays read-only. Shared test-quality principles live in `references/engineering/verification/test-suite-improvement.md`.
+
+Retrospective results have distinct command owners: `ayewo-igba-ise` for event reconstruction, `ayewo-retro` for coding-session environment improvement, and `ayewo-corpus` for cross-session and artifact-pattern evidence. They share `references/engineering/retrospectives/postmortem-method.md`; session/corpus/artifact depth loads conditionally. The read-only session indexer remains one shared runtime script. Historical command invocations route to the appropriate result without restoring separate installed skills.
+
+Project verification is a capability consumed by delivery, diagnosis, comparison and review. Alága discovers existing project tools before building, identifies missing proof capability early, and uses `alaga-verify-project` for a justified reusable driver or recipe. That command owns launch/readiness, real-path driving, observable effects, surviving evidence and cleanup; `oro-sigidi` authors its agent-facing instructions. Delivery maintains affected recipes, while a requested full-map audit has broader source and runtime coverage. Source-derived recipes are distinct from executed proof.
+
+`alarina-setup` optionally establishes project or personal environment readiness by composing existing owners. It reuses project knowledge, verification capability and host configuration rather than owning a new config format. Commands consume another command's bounded method with task-specific application directions at the caller. Setup, verification and exploration share `references/productivity/inquiry/agent-respondent.md` to apply Àròjinlẹ̀ with the agent as its user/respondent. The interview method stays with Àròjinlẹ̀; this participant assignment creates no new mode or human authority. `references/productivity/inquiry/premise-check.md` supplies the smaller claim check used by planning and the entrypoint without loading worker coordination.
+
+`references/engineering/development-practice.md` owns adaptation of project practice from framing and design through implementation, verification/review, release, operation/recovery and learning. Project setup discovers philosophy from repository evidence and interviews the actual user for consequential unresolved intent, then establishes the relevant working path. Initiative planning, delivery and retrospectives load the same guidance when lifecycle choices or friction matter. Confirmed outcomes and invariants constrain the result; methods remain adaptable within authority, with proportionate proof and recovery. Existing commands own stage results, so this adds neither a second lifecycle controller nor mandatory stages or documents.
+
+`references/productivity/records.md` owns persistence defaults across commands: routine results stay in context, disposable output uses temporary storage, private resumable state uses an existing record or user-level Alárinà state, shared knowledge stays with its project owner, and requested deliverables stay visible. State is isolated by project/worktree/task, without a registry or new runtime service. Existing `.qp` records remain compatible inputs. Atọ́nà maintains one plan in the appropriate format; HTML is conditional rather than required for every plan.
+
+`references/productivity/learned-workflows.md` owns admission, discovery and maintenance of custom workflows under `~/.qp/alarina/ona/`. Retrospectives may retain a useful path supported by actual execution after completing judgment; explicit read-only scope still controls. The entrypoint and reference guide reach the same policy when a saved path could fill a current gap. Recipes retain applicability and evidence, reuse owned methods and confer no new authority. This optional Markdown library is separate from transient task state and shared project policy; no indexer or automatic execution is required.
+
+## Build and distribution flow
+
+```text
+skills/alarina/ (one canonical method tree) + agents/alarina.md
+                         │
+                         ▼
+           scripts/plugins/build_alarina_bundle.py
+                         │
+                         ▼
+ root Codex/Claude manifests + small native agent declarations
+                         │
+                         ▼
+  root marketplaces (source ./) + OpenCode config + Pi package metadata
+```
+
+The compiler validates the one source skill and writes only small host declarations. It checks menu drift, local links, placeholders, agent identity and provider inventory. Codex and Claude marketplaces both point to the repository root. OpenCode loads `./skills` through `opencode.json`; Pi loads the same directory through `package.json`. [`scripts/plugins/README.md`](scripts/plugins/README.md) documents native checks; [`scripts/skills/check_package.py`](scripts/skills/check_package.py) validates the package. `evals/alarina/` holds behavioral cases and observations outside the installed skill.
+
+The release boundary is the repository root for Codex, Claude Code, OpenCode and Pi. Provider declarations in `providers.yaml` describe their native entry points; there are no copied method trees. Manager registration and file inventory do not by themselves prove model selection, command loading or task completion.
+
+## Change invariants
+
+- Keep one public `SKILL.md`; add or change a method in `commands/` and its route metadata instead of recreating a standalone QP skill.
+- Keep conditional expertise with the relevant command or reference, and workflow progression with its playbook. Preserve explicit-command-only restrictions for `pese` and `qp-update` when changing routes or provider metadata.
+- Rebuild native declarations after canonical-source changes and check them for drift. Verify the changed behavior at the relevant source, package, native-install or model boundary; one boundary does not prove another.
+- Reconcile this overview when components, ownership, dependency direction or build/runtime flow change. Update affected claims against the final code and keep [README.md](README.md) and other reader instructions aligned without copying install steps here.

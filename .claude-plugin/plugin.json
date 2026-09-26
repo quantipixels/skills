@@ -1,20 +1,13 @@
 {
-  "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
   "name": "qp-skills",
-  "description": "Agent skills for reasoning, planning, research, design, engineering, and delivery",
+  "version": "4.3.0",
+  "description": "QP software-project work through Alárinà",
   "author": {
-    "name": "QP",
-    "url": "https://github.com/quantipixels"
+    "name": "Oluwaseyi Sobande"
   },
-  "repository": "https://github.com/quantipixels/skills",
   "license": "MIT",
-  "keywords": [
-    "reasoning",
-    "planning",
-    "research",
-    "design",
-    "engineering",
-    "skills",
-    "productivity"
+  "skills": "./skills/",
+  "agents": [
+    "./agents/alarina.claude.md"
   ]
 }

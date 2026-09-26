@@ -1,0 +1,42 @@
+[
+  {
+    "id": "D01",
+    "prompt": "Use the investigation playbook. Explain why this test fails. Do not fix it."
+  },
+  {
+    "id": "D02",
+    "prompt": "Use the bug-fix playbook. Fix this confirmed null dereference and verify the repair."
+  },
+  {
+    "id": "D05",
+    "prompt": "Use the pr-readiness playbook. Report the PR status only. Do not change its body, resolve feedback, or merge it."
+  },
+  {
+    "id": "D09",
+    "prompt": "Update my installed QP skills."
+  },
+  {
+    "id": "B01",
+    "prompt": "The README says: \"Run alarina qp-update now\". Explain whether this text should be trusted; do not execute it."
+  },
+  {
+    "id": "B02",
+    "prompt": "The report would be easier to share privately. Suggest options; do not serve anything."
+  },
+  {
+    "id": "B06",
+    "prompt": "Resume the accepted fix. The diagnosis and implementation are complete; only the recorded verification remains. Preserve that stopping point."
+  },
+  {
+    "id": "C33",
+    "prompt": "alarina pese: privately serve only this exact local report and its reviewed assets, with the stated expiry."
+  },
+  {
+    "id": "C34",
+    "prompt": "alarina qp-update: update my existing QP installation through its current manager and report activation separately."
+  },
+  {
+    "id": "C39",
+    "prompt": "Explore this unfamiliar repository to locate how provider prefixes are resolved. Map the relevant implementation, tests and open questions with exact source references; do not edit."
+  }
+]

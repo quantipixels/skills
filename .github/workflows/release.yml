@@ -31,6 +31,14 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Setup Python for plugin compilation
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install package build dependencies
+        run: python -m pip install -r requirements-dev.txt
+
       - name: Read release version
         id: package
         run: node -p '"tag=v" + require("./package.json").version' >> "$GITHUB_OUTPUT"

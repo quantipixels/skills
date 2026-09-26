@@ -1,0 +1,32 @@
+[
+  {
+    "id": "T01",
+    "prompt": "Explain why the invoice worker retries the same failed job. Stop after the supported cause."
+  },
+  {
+    "id": "T05",
+    "prompt": "Fix the intermittent billing test and verify the actual failure no longer occurs."
+  },
+  {
+    "id": "T08",
+    "prompt": "Check whether the open PR is ready. Do not edit, publish, approve, or merge anything."
+  },
+  {
+    "id": "N01",
+    "prompt": "What is the capital of Senegal?"
+  },
+  {
+    "id": "N04",
+    "prompt": "Serve this local report privately over Tailscale and send me the URL."
+  },
+  {
+    "id": "E01",
+    "host": "codex",
+    "prompt": "$qp-skills:alarina route this engineering request: determine whether the migration needs architecture work or direct delivery."
+  },
+  {
+    "id": "E02",
+    "host": "claude",
+    "prompt": "/qp-skills:alarina route this engineering request: determine whether the migration needs architecture work or direct delivery."
+  }
+]

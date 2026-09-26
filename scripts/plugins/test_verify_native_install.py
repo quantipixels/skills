@@ -1,243 +1,118 @@
+"""Snapshot comparison and safe staging checks for native installs."""
+from __future__ import annotations
+
 import contextlib
 import importlib.util
 import io
 import json
 from pathlib import Path
 import shutil
-from unittest.mock import patch
 import tempfile
+import time
 import unittest
+from unittest.mock import patch
 
 
-MODULE = Path(__file__).with_name("verify_native_install.py")
-SPEC = importlib.util.spec_from_file_location("verify_native_install", MODULE)
-verify = importlib.util.module_from_spec(SPEC)
-SPEC.loader.exec_module(verify)
+HERE = Path(__file__).resolve().parent
+SPEC = importlib.util.spec_from_file_location("verifier", HERE / "verify_native_install.py")
+verifier = importlib.util.module_from_spec(SPEC)
+assert SPEC.loader is not None
+SPEC.loader.exec_module(verifier)
 
 
-def bundle(root, extra=None):
-    """Small real files; these fixtures do not simulate a native manager."""
-    files = {
-        ".codex-plugin/plugin.json": '{"name": "qp-skills"}\n',
-        ".claude-plugin/plugin.json": '{"name": "qp-skills"}\n',
-        "skills/alarina/SKILL.md": "---\nname: alarina\n---\nConductor.\n",
-        "skills/qp-update/SKILL.md": "---\nname: qp-update\n---\nUpdater B.\n",
-        "skills/qp-update/references/lifecycle.md": "Lifecycle B.\n",
-        "agents/alarina.md": "Conductor agent.\n",
-    }
-    if extra:
-        files[f"skills/{extra}/SKILL.md"] = f"---\nname: {extra}\n---\nFixture.\n"
-    for relative, content in files.items():
-        target = root / relative
-        target.parent.mkdir(parents=True, exist_ok=True)
-        target.write_text(content)
-    return root
+def write(root: Path, relative: str, content: str) -> None:
+    target = root / relative
+    target.parent.mkdir(parents=True, exist_ok=True)
+    target.write_text(content)
 
 
 class NativeInstallVerifierTest(unittest.TestCase):
-    def test_bad_command_and_timeout_are_truthful(self):
-        with self.assertRaisesRegex(verify.NativeVerificationError, "could not start"):
-            verify.run(["qp-command-that-does-not-exist"], {})
-        with self.assertRaisesRegex(verify.NativeVerificationError, r"command failed \(3\)"):
-            verify.run(["python3", "-c", "import sys; sys.exit(3)"], {})
-        with self.assertRaisesRegex(verify.NativeVerificationError, "timed out"):
-            verify.run(["python3", "-c", "import time; time.sleep(30)"], {}, timeout=0.05)
+    def setUp(self) -> None:
+        self.temp = tempfile.TemporaryDirectory()
+        self.root = Path(self.temp.name)
+        self.source = self.root / "source"
+        self.before = self.root / "before"
+        self.installed = self.root / "installed"
+        write(self.source, ".codex-plugin/plugin.json", '{"name":"qp-skills","version":"2.0.0"}')
+        write(self.source, "skills/alarina/SKILL.md", "New skill.\n")
+        write(self.source, "skills/alarina/commands/alaga-deliver.md", "New method.\n")
+        write(self.before, ".codex-plugin/plugin.json", '{"name":"qp-skills","version":"1.0.0"}')
+        write(self.before, "skills/alarina/SKILL.md", "Old skill.\n")
+        write(self.before, "skills/qp-update/SKILL.md", "Retired skill.\n")
+        shutil.copytree(self.source, self.installed)
 
-    def test_bad_json_and_shape_fail_before_install_claim(self):
-        with self.assertRaisesRegex(verify.NativeVerificationError, "did not return JSON"):
-            verify.load_json("not-json", "fake command")
-        with self.assertRaisesRegex(verify.NativeVerificationError, "expected an object"):
-            verify.require_mapping([], "fake command")
-        with self.assertRaisesRegex(verify.NativeVerificationError, "manifest object"):
-            verify.validate_claude_validation({"success": True, "manifest": None})
+    def tearDown(self) -> None:
+        self.temp.cleanup()
 
-    def test_missing_disabled_and_mismatch_are_rejected(self):
-        with self.assertRaisesRegex(verify.NativeVerificationError, "installation path is missing"):
-            verify._path_value("/path/that/is/not/installed", "fake install")
-        with self.assertRaisesRegex(verify.NativeVerificationError, "disabled"):
-            verify.require_enabled_plugin(
-                [{"pluginId": verify.PACKAGE_SELECTOR, "enabled": False}], "fake listing"
-            )
-        with self.assertRaisesRegex(verify.NativeVerificationError, "exactly one"):
-            verify.require_enabled_plugin([], "missing listing")
-        with self.assertRaisesRegex(verify.NativeVerificationError, "exactly one"):
-            verify.require_enabled_plugin(
-                [
-                    {"pluginId": verify.PACKAGE_SELECTOR, "enabled": True},
-                    {"pluginId": verify.PACKAGE_SELECTOR, "enabled": True},
-                ],
-                "duplicate listing",
-            )
-        with tempfile.TemporaryDirectory() as temporary:
-            root = Path(temporary)
-            source = bundle(root / "source")
-            installed = root / "installed"
-            shutil.copytree(source, installed)
-            (installed / "skills/alarina/SKILL.md").write_text("tampered\n")
-            with patch.object(verify, "ROOT", source):
-                with self.assertRaisesRegex(verify.NativeVerificationError, "differs from source"):
-                    verify.sample_files(installed, ".codex-plugin/plugin.json")
-                shutil.rmtree(installed / "skills/alarina")
-                with self.assertRaisesRegex(verify.NativeVerificationError, "skill inventory differs"):
-                    verify.validate_installed_inventory(installed, "codex")
+    def test_snapshot_records_migration_without_claiming_activation(self) -> None:
+        result = verifier.verify_upgrade_snapshot(self.before, self.installed, "codex", self.source)
+        self.assertEqual({"source": "2.0.0", "before": "1.0.0", "installed": "2.0.0"}, result["versions"])
+        self.assertIn("skills/alarina/SKILL.md", result["changed_paths"])
+        self.assertIn("skills/qp-update/SKILL.md", result["removed_paths"])
+        self.assertEqual("not_observed", result["manager_transition"])
+        self.assertEqual("not_observed", result["session_activation"])
 
-    def test_process_membership_requires_parseable_observation(self):
-        for output in ("", "bad records\n", "17 42 extra\n"):
-            result = verify.subprocess.CompletedProcess([], 0, output, "")
-            with self.subTest(output=output), patch.object(verify.subprocess, "run", return_value=result):
-                with self.assertRaises(verify.NativeVerificationError):
-                    verify._process_group_members(42)
-        result = verify.subprocess.CompletedProcess([], 0, "17 42\n18 43\n", "")
-        with patch.object(verify.subprocess, "run", return_value=result):
-            self.assertEqual({17}, verify._process_group_members(42))
-            self.assertEqual(set(), verify._process_group_members(99))
+    def test_snapshot_rejects_foreign_or_tampered_install(self) -> None:
+        write(self.before, ".codex-plugin/plugin.json", '{"name":"foreign","version":"1.0.0"}')
+        with self.assertRaisesRegex(verifier.NativeVerificationError, "foreign"):
+            verifier.verify_upgrade_snapshot(self.before, self.installed, "codex", self.source)
+        write(self.before, ".codex-plugin/plugin.json", '{"name":"qp-skills","version":"1.0.0"}')
+        write(self.installed, "skills/alarina/commands/alaga-deliver.md", "Tampered.\n")
+        with self.assertRaisesRegex(verifier.NativeVerificationError, "content differs"):
+            verifier.verify_upgrade_snapshot(self.before, self.installed, "codex", self.source)
 
-    def test_permission_probe_does_not_treat_unreadable_group_as_gone(self):
-        class ExitedProcess:
-            pid = 512
+    def test_inventory_rejects_second_discoverable_skill(self) -> None:
+        write(self.installed, "skills/other/SKILL.md", "Unexpected.\n")
+        with self.assertRaisesRegex(verifier.NativeVerificationError, "inventory"):
+            verifier.compare_installed_files(self.installed, self.source)
 
-            @staticmethod
-            def poll():
-                return 0
+    def test_stage_exports_only_runtime_surface(self) -> None:
+        for relative in verifier.DECLARATIONS:
+            write(self.root, relative, "Declaration.\n")
+        write(self.root, "skills/alarina/SKILL.md", "Current skill.\n")
+        write(self.root, "LICENSE", "Licence.\n")
+        write(self.root, "tracked-dev.txt", "Development file.\n")
+        write(self.root, ".qp/private.txt", "Private state.\n")
+        write(self.root, "node_modules/marker.txt", "Dependency state.\n")
+        destination = self.root / "staged"
+        with patch.object(verifier, "ROOT", self.root):
+            verifier.stage_package(destination)
+        self.assertEqual("Current skill.\n", (destination / "skills/alarina/SKILL.md").read_text())
+        self.assertFalse((destination / "tracked-dev.txt").exists())
+        self.assertFalse((destination / ".qp").exists())
+        self.assertFalse((destination / "node_modules").exists())
 
-        with patch.object(verify.os, "killpg", side_effect=PermissionError("probe")), \
-                patch.object(verify, "_process_group_members", return_value={903}):
-            self.assertTrue(verify._group_exists(ExitedProcess()))
-        with patch.object(verify.os, "killpg", side_effect=PermissionError("probe")), \
-                patch.object(verify, "_process_group_members", side_effect=verify.NativeVerificationError("unreadable")):
-            with self.assertRaises(verify.NativeVerificationError):
-                verify._group_exists(ExitedProcess())
+    def test_run_reports_errors_and_timeout(self) -> None:
+        with self.assertRaisesRegex(verifier.NativeVerificationError, "could not start"):
+            verifier.run(["qp-command-that-does-not-exist"], {})
+        with self.assertRaisesRegex(verifier.NativeVerificationError, "command failed"):
+            verifier.run(["python3", "-c", "import sys; sys.exit(3)"], {})
+        with self.assertRaisesRegex(verifier.NativeVerificationError, "timed out"):
+            verifier.run(["python3", "-c", "import time; time.sleep(30)"], {}, timeout=0.05)
 
-    def test_upgrade_snapshot_checks_names_and_updater_without_running_manager(self):
-        with tempfile.TemporaryDirectory() as temporary:
-            root = Path(temporary)
-            source = bundle(root / "source", "new-skill")
-            before = bundle(root / "before", "retired-skill")
-            (before / "skills/qp-update/SKILL.md").write_text("Updater A.\n")
-            (before / "skills/qp-update/references/lifecycle.md").write_text("Lifecycle A.\n")
-            installed = root / "installed"
-            shutil.copytree(source, installed)
-            before_digest = verify._tree_digest(before)
-            with patch.object(verify, "ROOT", source), \
-                    patch.object(verify, "run", side_effect=AssertionError("must not run a manager")):
-                result = verify.verify_upgrade_snapshot(before, installed, "codex")
-            self.assertEqual(["new-skill"], result["added_skills"])
-            self.assertEqual(["retired-skill"], result["retired_skills"])
-            self.assertEqual(before_digest, verify._tree_digest(before))
-            self.assertEqual("snapshot-comparison", result["evidence"])
-            self.assertEqual("not_observed", result["manager_transition"])
-            self.assertEqual("not_observed", result["session_activation"])
-            samples = {item["path"] for item in result["sampled_files"]}
-            self.assertIn("skills/qp-update/references/lifecycle.md", samples)
-            self.assertEqual(result["source_scope"]["skills"], result["before_scope"]["skills"])
+    def test_run_cleans_child_that_keeps_pipes_open(self) -> None:
+        command = ["python3", "-c", "import subprocess; subprocess.Popen(['python3','-c','import time;time.sleep(30)'])"]
+        started = time.monotonic()
+        with self.assertRaisesRegex(verifier.NativeVerificationError, "timed out"):
+            verifier.run(command, {}, timeout=0.1)
+        self.assertLess(time.monotonic() - started, 3)
 
-    def test_upgrade_snapshot_rejects_same_count_stale_install(self):
-        with tempfile.TemporaryDirectory() as temporary:
-            root = Path(temporary)
-            source = bundle(root / "source", "new-skill")
-            before = bundle(root / "before", "retired-skill")
-            installed = root / "installed"
-            shutil.copytree(before, installed)
-            with patch.object(verify, "ROOT", source):
-                with self.assertRaisesRegex(verify.NativeVerificationError, "skill inventory differs"):
-                    verify.verify_upgrade_snapshot(before, installed, "codex")
-
-    def test_upgrade_snapshot_rejects_wrong_content_outside_updater(self):
-        with tempfile.TemporaryDirectory() as temporary:
-            root = Path(temporary)
-            source = bundle(root / "source", "new-skill")
-            before = bundle(root / "before", "retired-skill")
-            installed = root / "installed"
-            shutil.copytree(source, installed)
-            (installed / "skills/new-skill/SKILL.md").write_text("Wrong package content.\n")
-            with patch.object(verify, "ROOT", source):
-                with self.assertRaisesRegex(verify.NativeVerificationError, "package content differs"):
-                    verify.verify_upgrade_snapshot(before, installed, "codex")
-
-    def test_updater_reference_is_checked_when_skill_body_matches(self):
-        for mutation in ("stale", "missing", "obsolete"):
-            with self.subTest(mutation=mutation), tempfile.TemporaryDirectory() as temporary:
-                root = Path(temporary)
-                source = bundle(root / "source")
-                installed = root / "installed"
-                shutil.copytree(source, installed)
-                reference = installed / "skills/qp-update/references/lifecycle.md"
-                if mutation == "stale":
-                    reference.write_text("Lifecycle A.\n")
-                elif mutation == "missing":
-                    reference.unlink()
-                else:
-                    reference.with_name("obsolete.md").write_text("Old instructions.\n")
-                with patch.object(verify, "ROOT", source):
-                    with self.assertRaises(verify.NativeVerificationError):
-                        verify.sample_files(installed, ".codex-plugin/plugin.json")
-
-    def test_upgrade_snapshot_rejects_missing_or_foreign_baseline(self):
-        for mutation in ("missing", "foreign"):
-            with self.subTest(mutation=mutation), tempfile.TemporaryDirectory() as temporary:
-                root = Path(temporary)
-                source = bundle(root / "source")
-                before = bundle(root / "before")
-                installed = root / "installed"
-                shutil.copytree(source, installed)
-                if mutation == "missing":
-                    shutil.rmtree(before / "skills")
-                else:
-                    (before / ".codex-plugin/plugin.json").write_text('{"name":"other-plugin"}')
-                with patch.object(verify, "ROOT", source):
-                    with self.assertRaises(verify.NativeVerificationError):
-                        verify.verify_upgrade_snapshot(before, installed, "codex")
-
-    def test_upgrade_snapshot_rejects_baseline_alias_and_empty_source(self):
-        with tempfile.TemporaryDirectory() as temporary:
-            root = Path(temporary)
-            source = bundle(root / "source")
-            installed = bundle(root / "installed")
-            with patch.object(verify, "ROOT", source):
-                with self.assertRaisesRegex(verify.NativeVerificationError, "separate"):
-                    verify.verify_upgrade_snapshot(installed, installed, "codex")
-            empty = root / "empty"
-            empty.mkdir()
-            with patch.object(verify, "ROOT", empty):
-                with self.assertRaisesRegex(verify.NativeVerificationError, "source inventory"):
-                    verify.validate_installed_inventory(empty, "codex")
-
-    def test_snapshot_cli_is_read_only_and_reports_failure(self):
-        with tempfile.TemporaryDirectory() as temporary:
-            root = Path(temporary)
-            source = bundle(root / "source", "new-skill")
-            before = bundle(root / "before", "retired-skill")
-            installed = root / "installed"
-            shutil.copytree(source, installed)
-            arguments = ["--host", "claude", "--before-root", str(before), "--installed-root", str(installed)]
-            with patch.object(verify, "ROOT", source), \
-                    patch.object(verify, "run", side_effect=AssertionError("must not run a manager")):
-                output = io.StringIO()
-                with contextlib.redirect_stdout(output):
-                    self.assertEqual(0, verify.main(arguments))
-                result, _ = json.JSONDecoder().raw_decode(output.getvalue())
-                self.assertTrue(result["success"])
-                self.assertEqual("snapshot-comparison", result["results"][0]["evidence"])
-                (installed / "agents/alarina.md").unlink()
-                with contextlib.redirect_stdout(io.StringIO()) as output:
-                    self.assertEqual(1, verify.main(arguments))
-                self.assertFalse(json.loads(output.getvalue())["success"])
-
-    def test_snapshot_cli_requires_both_roots_and_one_host(self):
-        for arguments in (
-                ["--before-root", "/unused"],
-                ["--installed-root", "/unused"],
-                ["--before-root", "/unused", "--installed-root", "/unused"],
-        ):
-            with self.subTest(arguments=arguments), \
-                    patch.object(verify, "verify_codex") as codex, \
-                    patch.object(verify, "verify_claude") as claude, \
-                    contextlib.redirect_stderr(io.StringIO()):
-                with self.assertRaises(SystemExit) as error:
-                    verify.main(arguments)
-                self.assertEqual(2, error.exception.code)
-                codex.assert_not_called()
-                claude.assert_not_called()
+    def test_export_cli_writes_new_runtime_package_only(self) -> None:
+        for relative in verifier.DECLARATIONS:
+            write(self.root, relative, "Declaration.\n")
+        write(self.root, "skills/alarina/SKILL.md", "Canonical skill.\n")
+        destination = self.root.parent / f"{self.root.name}-export"
+        try:
+            with patch.object(verifier, "ROOT", self.root), contextlib.redirect_stdout(io.StringIO()) as output:
+                self.assertEqual(0, verifier.main(["--export", str(destination)]))
+            self.assertTrue(json.loads(output.getvalue())["success"])
+            self.assertTrue((destination / "skills/alarina/SKILL.md").is_file())
+            self.assertFalse((destination / "node_modules").exists())
+            with patch.object(verifier, "ROOT", self.root), contextlib.redirect_stderr(io.StringIO()):
+                with self.assertRaises(SystemExit):
+                    verifier.main(["--export", str(destination)])
+        finally:
+            shutil.rmtree(destination, ignore_errors=True)
 
 
 if __name__ == "__main__":

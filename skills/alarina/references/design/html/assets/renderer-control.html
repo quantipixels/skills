@@ -1,0 +1,54 @@
+<!-- Optional Mermaid renderer. Copy after figure/pre.mermaid content.
+     Each figure owns one source, data-diagram-output, data-diagram-status and a
+     readable explanation. Zero diagrams or portable mode means zero imports.
+     Render while layout is visible; do not first hide diagrams in inactive panels.
+     Mermaid 12 needs modern ES2024 browsers (Safari 17.4+); static SVG avoids that
+     viewer requirement. Strict output is not a sanitizer for arbitrary input HTML. -->
+<!-- Renderer output uses ordinary CSS so connected and embedded styles agree. -->
+<style>
+  [data-diagram-output]:not(:empty) { overflow: auto; background: #fff; color: #0f172a; padding: 1rem; }
+  [data-diagram-output] svg { max-inline-size: 100%; block-size: auto; }
+</style>
+<script type="module">
+const $ = window.jQuery;
+if ($) {
+const diagrams = $('figure pre.mermaid').toArray();
+if (diagrams.length && !$('html').attr('data-mermaid-started')) {
+  $('html').attr('data-mermaid-started', 'true');
+  const entries = diagrams.map(source => ({
+    source,
+    output: $(source).closest('figure').find('[data-diagram-output]')[0],
+    status: $(source).closest('figure').find('[data-diagram-status]')[0]
+  })).filter(entry => entry.output && entry.status);
+  const notify = message => entries.forEach(entry => { $(entry.status).text(message); });
+  if ($('html').attr('data-artifact-delivery') !== 'connected') {
+    notify('Portable view: source and explanation retained. Embed rendered SVG for a finished diagram.');
+  } else {
+    notify('Rendering diagram; source and explanation remain available.');
+    try {
+      const {default: mermaid} = await import('https://cdn.jsdelivr.net/npm/mermaid@12.0.0/dist/mermaid.esm.min.mjs');
+      mermaid.initialize({startOnLoad: false, securityLevel: 'strict', theme: 'neutral',
+        suppressErrorRendering: true, flowchart: {htmlLabels: false}});
+      await document.fonts.ready;
+      for (const [index, entry] of entries.entries()) {
+        try {
+          const text = $(entry.source).text();
+          if (/%%\s*\{|^\s*---/.test(text)) throw new Error('Embedded configuration is not accepted');
+          let id = `qp-diagram-${index}`;
+          while ($('#' + $.escapeSelector(id)).length) id += '-next';
+          const {svg} = await mermaid.render(id, text);
+          // This is strict-mode renderer output, not untrusted source markup.
+          $(entry.output).html(svg);
+          $(entry.source).prop('hidden', true);
+          $(entry.status).text('Diagram rendered.');
+        } catch {
+          $(entry.status).text('Diagram unavailable; use the retained source and explanation.');
+        }
+      }
+    } catch {
+      notify('Diagram runtime unavailable; source and explanation remain readable.');
+    }
+  }
+}
+}
+</script>

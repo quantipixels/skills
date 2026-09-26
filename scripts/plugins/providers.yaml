@@ -1,0 +1,21 @@
+version: 2
+source_skill: skills/alarina
+providers:
+  codex:
+    skill: .codex-plugin/plugin.json
+    agent: agents/alarina.codex.toml
+    agent_registration: project_or_user
+    marketplace: .agents/plugins/marketplace.json
+  claude:
+    skill: .claude-plugin/plugin.json
+    agent: agents/alarina.claude.md
+    agent_registration: plugin
+    marketplace: .claude-plugin/marketplace.json
+  opencode:
+    skill: opencode.json
+    agent: .opencode/agents/alarina.md
+    agent_registration: project
+  pi:
+    skill: package.json
+    agent: null
+    agent_registration: system_prompt_option

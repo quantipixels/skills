@@ -1,0 +1,35 @@
+{
+  "T01": {
+    "selected": true,
+    "family": "investigate",
+    "stop": "diagnosis"
+  },
+  "T05": {
+    "selected": true,
+    "family": "build",
+    "stop": "verification"
+  },
+  "T08": {
+    "selected": true,
+    "family": "review",
+    "stop": "status"
+  },
+  "N01": {
+    "selected": false,
+    "class": "casual-fact"
+  },
+  "N04": {
+    "selected": false,
+    "class": "serving-utility"
+  },
+  "E01": {
+    "selected": true,
+    "condition": "explicit",
+    "family": "route"
+  },
+  "E02": {
+    "selected": true,
+    "condition": "explicit",
+    "family": "route"
+  }
+}
