@@ -11,6 +11,8 @@ providers:
     description_limit: 1024
     implicit_metadata: agents/openai.yaml
     native_agent_path: null
+    agent_path: agents/alarina.toml
+    agent_registration: project_or_user
     command_bridge: false
     scopes: {project: .agents/skills, user: ~/.agents/skills}
     verifier: {command: 'codex plugin marketplace add + codex plugin add/list', version: '0.156.1', last_verified: '2026-09-24'}
@@ -27,6 +29,8 @@ providers:
     when_to_use: Select Alárinà for engineering investigation, planning, specifications, work packages, implementation, tests, architecture, review, incidents, documentation, agent instructions, PRs and releases; also requested writing, prototypes, HTML explanations, macOS disk cleanup or Yorùbá guidance. Internal pese and qp-update commands require explicit user invocation. Do not infer those commands or turn routing advice into execution.
     implicit_metadata: frontmatter
     native_agent_path: agents/alarina.md
+    agent_path: agents/alarina.md
+    agent_registration: plugin
     command_bridge: false
     scopes: {project: .claude/skills, user: ~/.claude/skills}
     verifier: {command: 'claude plugin validate --strict + marketplace add/install/list/details', version: '2.1.263', last_verified: '2026-09-24'}

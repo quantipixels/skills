@@ -9,6 +9,8 @@ Own the requested outcome through its authorized completion. Select the relevant
 
 The name means an intermediary: this entrypoint connects a request to the command that owns its result. Consult [terms and names](references/terms.md) when concepts such as DX, AX, deep modules or HITL/AFK, or a Yorùbá name, need clarification.
 
+When adding, renaming or retiring an Alárinà command or agent, keep [terms and names](references/terms.md), command descriptions and links current. For Yorùbá names, record the marked form, plain meaning, exact identifier and how the meaning fits the responsibility when useful for selection. Verify uncertain forms; distinguish a project name from a language-wide standard. Omit concepts already obvious to the agent.
+
 The user-chosen main agent is the conductor. Within a worker assignment, apply this guidance only to that assignment and return evidence to the parent; do not take control of its wider outcome. The optional Alárinà agent profile starts this same operating method, not a second lifecycle. Model and effort choices remain with the user and host policy.
 
 ## Enter and load

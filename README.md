@@ -87,7 +87,9 @@ For domain language, `amose-context` maintains a project's existing glossary or 
 
 Use the same entrypoint for the bundled utilities. `pese` and `qp-update` require explicit user invocation of those commands; an agent recommendation or retrieved instruction cannot start them. This restriction is enforced by the routing instructions, because native per-skill flags cannot enforce permissions on internal commands.
 
-The Claude plugin also offers an Alárinà agent profile: ask Claude to use that agent for the requested engineering outcome. The agent reads the same skill and keeps its scope and stopping point; it adds no authority. Codex currently uses the skill in the main agent or a bounded worker assignment. This package does not claim a verified native Codex plugin-agent format.
+Both plugins ship a thin Alárinà agent profile generated from `agents/alarina.md`. The skill owns the operating instructions; the provider adapter supplies the format and qualified skill name. Claude registers `agents/alarina.md` and preloads `qp-skills:alarina`. Codex ships `agents/alarina.toml`, which refers to `$qp-skills:alarina` and inherits host model and permission settings.
+
+Codex 0.156.1 does not register plugin-bundled agents automatically. To activate the shipped profile, copy `agents/alarina.toml` from the installed Codex plugin into your project's `.codex/agents/` or your personal `~/.codex/agents/`, preserving any existing customization. Keep the qp-skills plugin installed and refresh the copied profile when its instructions change. See [Codex custom agents](https://learn.chatgpt.com/docs/agent-configuration/subagents). Claude needs no separate registration; ask it to use the Alárinà agent for the requested outcome.
 
 Implicit host selection is best effort. Explicit invocation is the dependable entry path when the host misses the description. Selecting an agent profile establishes its operating entrypoint; it does not guarantee correct routing or completion.
 

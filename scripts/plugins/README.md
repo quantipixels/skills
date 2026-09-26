@@ -64,4 +64,10 @@ Use `--host claude` for Claude. Snapshot mode reports versions and added, remove
 
 ## Behavioral evaluation boundary
 
-The deterministic cases under `evals/alarina/` check trigger and dispatch corpus consistency. Native manager checks establish packaging and discovery. A model run is still required to claim implicit selection quality, route choice quality, command loading, completion behavior, or false-positive rates. Keep those claims separate in reports.
+The focused prompts under `evals/alarina/` are optional behavioral probes with private expectations, not a CI gate or a model runner. Native manager checks establish packaging and discovery. A model run is required to claim selection, routing, command loading or completion quality; package checks do not establish those outcomes.
+
+## Agent adapters
+
+`agents/alarina.md` supplies only the portable identity, description and delegation to the skill. The compiler renders `agents/alarina.md` for Claude with `skills: [qp-skills:alarina]` and a plugin-root fallback, and `agents/alarina.toml` for Codex with `developer_instructions` naming `$qp-skills:alarina`. Model and permission settings inherit from the host.
+
+Codex 0.156.1 loads custom agents from project/user configuration directories, not plugin contents. Its bundle therefore ships a standalone-format profile for separate placement in `.codex/agents/` or `~/.codex/agents/`; no unsupported manifest key or automatic config mutation is added. The native installer check still expects zero auto-registered Codex agents. Claude registers its one agent through the plugin. See [Codex agent configuration](https://learn.chatgpt.com/docs/agent-configuration/subagents) and [Claude subagents](https://code.claude.com/docs/en/sub-agents).

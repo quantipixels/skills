@@ -7,6 +7,7 @@ import json
 from pathlib import Path
 import shutil
 import tempfile
+import tomllib
 import unittest
 
 import yaml
@@ -83,10 +84,15 @@ class BundleTests(unittest.TestCase):
             self.assertNotIn(other, text)
             self.assertEqual(manifest, json.loads((output / "bundle-manifest.json").read_text(encoding="utf-8")))
         self.assertTrue((self.root / "codex/skills/alarina/agents/openai.yaml").is_file())
-        claude_agent = (self.root / "claude/agents/alarina.md").read_text(encoding="utf-8")
-        self.assertIn("skills:\n  - qp-skills:alarina", claude_agent)
-        self.assertIn("${CLAUDE_PLUGIN_ROOT}/skills/alarina/SKILL.md", claude_agent)
-        self.assertNotIn("skills:\n  - alarina", claude_agent)
+        claude_metadata, claude_body = COMPILER.frontmatter(self.root / "claude/agents/alarina.md")
+        self.assertEqual(["qp-skills:alarina"], claude_metadata["skills"])
+        self.assertIn("${CLAUDE_PLUGIN_ROOT}/skills/alarina/SKILL.md", claude_body)
+        self.assertIn("/qp-skills:alarina", claude_body)
+        codex_agent = tomllib.loads((self.root / "codex/agents/alarina.toml").read_text(encoding="utf-8"))
+        self.assertEqual({"name", "description", "developer_instructions"}, set(codex_agent))
+        self.assertEqual("alarina", codex_agent["name"])
+        self.assertIn("$qp-skills:alarina", codex_agent["developer_instructions"])
+        self.assertNotIn("CLAUDE_PLUGIN_ROOT", codex_agent["developer_instructions"])
 
     def test_fixed_input_is_deterministic(self) -> None:
         first, manifest1 = self.build("first")

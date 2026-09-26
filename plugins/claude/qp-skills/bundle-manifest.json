@@ -5,7 +5,7 @@
   "support_state": "verified",
   "source": {
     "inputs": 141,
-    "sha256": "28e94ad06cf033891f47819a11432ee5ad2d46aca6316a1431089e1d71745d0b"
+    "sha256": "2212e961c4ef7b3ff0974a1d4db5ba353a667d3db8be20df6a18d2e03764c0e8"
   },
   "route_digest": "a480344606c9c95bd4baad090b4f10bf37462663a3af72a3c3522a12e5e6212a",
   "qualified_invocation": "/qp-skills:alarina",
@@ -83,17 +83,17 @@
     },
     {
       "path": "agents/alarina.md",
-      "sha256": "51ccc492f8b8ca06958dfb65430d83e67bbeb5103d8a8293887c75edc95d3251",
+      "sha256": "b34ddb653a14d68b8c7a7c8829d00b09fdb305ed649af9ddaba0f7721267db1b",
       "mode": "0o644",
       "source": "agents/alarina.md",
-      "source_sha256": "ae80d0c38ea730266fd790c606387d0d6e021f681eaaf0d2580e2adecd93daa0"
+      "source_sha256": "b4c2baef9d618493f8a9c5f5996693ab027703f5ede3f716d43c2707321ee0d3"
     },
     {
       "path": "skills/alarina/SKILL.md",
-      "sha256": "300fa076d85289ba592a45e6b648b45ae2b023903993ad7495862830d5efadcb",
+      "sha256": "60e118f9066ae49db5bfb3e10a80435ebfea2aa02f8fec4e065a4759e1f4d28d",
       "mode": "0o644",
       "source": "skills/alarina/SKILL.md",
-      "source_sha256": "b746a8651ce58821d1e99fd8874dc1c3b5271686570bc49d8bc82033eff18b26"
+      "source_sha256": "fee8d1bd7afd1737314c0decbf6d4b5275e6b44124f0e50235e7f37eb59afdfb"
     },
     {
       "path": "skills/alarina/commands/adanwo.md",
@@ -951,10 +951,10 @@
     },
     {
       "path": "skills/alarina/references/qp-update/migration.md",
-      "sha256": "2d645b5367d606bed6ee0a63f59eca6984f9b90d01fc8b9a9024eb6c62571595",
+      "sha256": "b8dc063fb05c99b41287518f0a78e498eb275bbec9599f563c0dc2237df61e70",
       "mode": "0o644",
       "source": "skills/alarina/references/qp-update/migration.md",
-      "source_sha256": "2d645b5367d606bed6ee0a63f59eca6984f9b90d01fc8b9a9024eb6c62571595"
+      "source_sha256": "b8dc063fb05c99b41287518f0a78e498eb275bbec9599f563c0dc2237df61e70"
     },
     {
       "path": "skills/alarina/references/seda-pr/failure-heuristics.md",

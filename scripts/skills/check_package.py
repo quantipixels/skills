@@ -35,8 +35,8 @@ def unique_mapping(loader: UniqueLoader, node: yaml.MappingNode, deep: bool = Fa
 UniqueLoader.add_constructor(yaml.resolver.BaseResolver.DEFAULT_MAPPING_TAG, unique_mapping)
 MARKDOWN = MarkdownIt("commonmark")
 HISTORICAL_DIRECTORIES = (
-    Path("evals/coordination/observations"),
-    Path("evals/engineering/observations"),
+    Path("evals/alarina/results"),
+    Path("evals/alarina/migration"),
 )
 ALARINA_FAMILIES = {"route", "investigate", "plan", "build", "review", "document", "ship", "utility"}
 AUTHORITY_KEYS = {"edit", "publish", "merge", "deploy", "destructive"}

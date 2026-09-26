@@ -4,84 +4,20 @@
     "prompt": "Explain why the invoice worker retries the same failed job. Stop after the supported cause."
   },
   {
-    "id": "T02",
-    "prompt": "Work out why this endpoint became slower after the cache change and tell me what the measurements support."
-  },
-  {
-    "id": "T03",
-    "prompt": "I want to add organization-level exports but I do not know where to start. Shape a workable direction."
-  },
-  {
-    "id": "T04",
-    "prompt": "Plan the architecture for moving notification delivery to an outbox without changing code yet."
-  },
-  {
     "id": "T05",
     "prompt": "Fix the intermittent billing test and verify the actual failure no longer occurs."
-  },
-  {
-    "id": "T06",
-    "prompt": "This suite takes twenty minutes and still misses retry regressions. Improve it with evidence."
-  },
-  {
-    "id": "T07",
-    "prompt": "Review the current branch for correctness and regressions. Leave the files unchanged."
   },
   {
     "id": "T08",
     "prompt": "Check whether the open PR is ready. Do not edit, publish, approve, or merge anything."
   },
   {
-    "id": "T09",
-    "prompt": "Reconcile the deployment guide with the current release scripts and verify the updated commands."
-  },
-  {
-    "id": "T10",
-    "prompt": "Explain the transaction boundary in this supplied outbox implementation so another engineer can maintain it."
-  },
-  {
-    "id": "T11",
-    "prompt": "Prepare and publish the PR for the verified change, then stop before approval or merge."
-  },
-  {
-    "id": "T12",
-    "prompt": "Release the accepted package candidate and verify the published version using the existing release process."
-  },
-  {
-    "id": "T13",
-    "prompt": "Production requests are failing now. Mitigate the disruption and verify the user-facing recovery."
-  },
-  {
-    "id": "T14",
-    "prompt": "Plan and implement the tenant-key migration while preserving populated data and recovery options."
-  },
-  {
-    "id": "T15",
-    "prompt": "Find the cause of the checkout failure, repair it, verify the fix, and prepare the PR."
-  },
-  {
     "id": "N01",
     "prompt": "What is the capital of Senegal?"
   },
   {
-    "id": "N02",
-    "prompt": "Teach me how tone marks work in this Yorùbá sentence."
-  },
-  {
-    "id": "N03",
-    "prompt": "My Mac is nearly full. Clear old caches and reclaim disk space."
-  },
-  {
     "id": "N04",
     "prompt": "Serve this local report privately over Tailscale and send me the URL."
-  },
-  {
-    "id": "N05",
-    "prompt": "Redesign this landing page so it feels more playful and visually distinctive."
-  },
-  {
-    "id": "N06",
-    "prompt": "Rewrite this wedding invitation so it sounds warmer."
   },
   {
     "id": "E01",
@@ -92,157 +28,5 @@
     "id": "E02",
     "host": "claude",
     "prompt": "/qp-skills:alarina route this engineering request: determine whether the migration needs architecture work or direct delivery."
-  },
-  {
-    "id": "S01",
-    "prompt": "Build a disposable CLI prototype so we can compare two interaction models before choosing either. Do not ship either."
-  },
-  {
-    "id": "S02",
-    "prompt": "Audit this documentation set for drift against implementation. Findings only; leave files unchanged."
-  },
-  {
-    "id": "S03",
-    "prompt": "Update the operator guide and linked runbook to match the supplied verified behavior, then check the resulting reader path."
-  },
-  {
-    "id": "S04",
-    "prompt": "Triage this new issue report: establish whether it is actionable and which reproduction evidence is missing. Stop at intake."
-  },
-  {
-    "id": "S05",
-    "prompt": "Explain why the retry test fails. Establish the cause and stop without repairing it."
-  },
-  {
-    "id": "S06",
-    "prompt": "Production checkout is failing now. Apply the already authorized reversible mitigation and verify user-facing recovery."
-  },
-  {
-    "id": "S07",
-    "prompt": "Implement the accepted null-handling change and verify the behavior. The specification and design are settled."
-  },
-  {
-    "id": "S08",
-    "prompt": "Compare the supplied parser implementations on the fixed representative dataset and recommend keep or revert from measured evidence."
-  },
-  {
-    "id": "S09",
-    "prompt": "Build a reusable project verification capability for the assembled checkout journey and prove the documented recipe works."
-  },
-  {
-    "id": "S10",
-    "prompt": "Resolve whether account and organization refer to the same identity in this domain; explain the ownership and lifecycle consequences."
-  },
-  {
-    "id": "S11",
-    "prompt": "Record the accepted queue-selection decision in an ADR using our existing convention. The decision and write scope are approved."
-  },
-  {
-    "id": "S12",
-    "prompt": "Add the resolved domain term to our existing CONTEXT.md glossary, preserving its established meaning."
-  },
-  {
-    "id": "S13",
-    "prompt": "Update our existing .nongoals to reflect the deliberate decision that offline synchronization is outside product scope."
-  },
-  {
-    "id": "S14",
-    "prompt": "Survey the existing service boundaries and dependency structure; report the current architecture without proposing a redesign."
-  },
-  {
-    "id": "S15",
-    "prompt": "Design the technical structure for the accepted outbox behavior. Stop before implementation."
-  },
-  {
-    "id": "S16",
-    "prompt": "Assess whether this proposed shared-state mechanism fits the confirmed domain and quality drivers. Findings only."
-  },
-  {
-    "id": "S17",
-    "prompt": "Update ARCHITECTURE.md from the verified service structure and explain the key boundaries."
-  },
-  {
-    "id": "S18",
-    "prompt": "Interview me to settle who this workflow serves, what success means, and the consequential tradeoffs before choosing a solution."
-  },
-  {
-    "id": "S19",
-    "prompt": "We need a developer onboarding solution but have no workable direction. Explore alternatives before deciding what to build."
-  },
-  {
-    "id": "S20",
-    "prompt": "Write the observable behavior specification and acceptance examples for this accepted import feature. No tickets or code yet."
-  },
-  {
-    "id": "S21",
-    "prompt": "Break this accepted specification into dependent, bounded engineering work packages with acceptance criteria. Do not implement or publish tickets."
-  },
-  {
-    "id": "S22",
-    "prompt": "Carry this accepted multi-stage initiative through delivery, keeping one living plan and integrating each stage’s acceptance evidence."
-  },
-  {
-    "id": "S23",
-    "prompt": "Review the supplied patch deeply for correctness and maintainability. Report findings and do not edit."
-  },
-  {
-    "id": "S24",
-    "prompt": "Produce an evidence-backed postmortem of this completed incident, including recovery cost and justified improvements. Do not implement remediation."
-  },
-  {
-    "id": "S25",
-    "prompt": "Research how this repository resolves provider prefixes and support the answer with exact source references."
-  },
-  {
-    "id": "S26",
-    "prompt": "Simplify these agent-facing instructions without losing their selection, authority or completion behavior."
-  },
-  {
-    "id": "S27",
-    "prompt": "Rewrite this technical explanation for a human reviewer so the changed behavior and evidence are easy to understand."
-  },
-  {
-    "id": "S28",
-    "prompt": "Draft a PR description from this diff and verification evidence. Return text only; do not commit, push or create a PR."
-  },
-  {
-    "id": "S29",
-    "prompt": "Publish this verified change as a PR using the authorized branch and provider, then stop before approval or merge."
-  },
-  {
-    "id": "S30",
-    "prompt": "Report whether this existing PR is ready; status only. Do not edit its body, fix CI, reply, resolve threads or merge."
-  },
-  {
-    "id": "S31",
-    "prompt": "Show me this supplied migration comparison in the smallest format that makes the tradeoffs easy to inspect and decide."
-  },
-  {
-    "id": "S32",
-    "prompt": "Turn this supplied engineering plan into a portable accessible HTML artifact with useful interactive detail."
-  },
-  {
-    "id": "S33",
-    "prompt": "alarina pese: privately serve only this exact local report and its reviewed assets, with the stated expiry."
-  },
-  {
-    "id": "S34",
-    "prompt": "alarina qp-update: update my existing QP installation through its current manager and report activation separately."
-  },
-  {
-    "id": "S35",
-    "prompt": "My Mac is nearly full. Audit storage and reclaim inactive regenerable build caches within the authorized scope."
-  },
-  {
-    "id": "S36",
-    "prompt": "Explain and correct the tone marks in this Yoruba sentence, preserving the chosen personal-name spelling."
-  },
-  {
-    "id": "S37",
-    "prompt": "Teach me Yoruba noun phrases with marked examples, a short practice exercise and feedback."
-  },
-  {
-    "id": "S38",
-    "prompt": "Propose a Yoruba technical term for this concept, distinguish attested usage from coinage, and do not write a glossary."
   }
 ]

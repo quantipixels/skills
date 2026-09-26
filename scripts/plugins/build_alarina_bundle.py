@@ -262,6 +262,10 @@ def validate_provider(registry: dict, provider_id: str) -> dict:
         raise BuildError("Codex native plugin agents are not established")
     if provider_id == "claude" and safe_relative(native_agent, "native_agent_path") != Path("agents/alarina.md"):
         raise BuildError("invalid Claude agent path")
+    expected_agent = "agents/alarina.toml" if provider_id == "codex" else "agents/alarina.md"
+    expected_registration = "project_or_user" if provider_id == "codex" else "plugin"
+    if provider.get("agent_path") != expected_agent or provider.get("agent_registration") != expected_registration:
+        raise BuildError("invalid provider agent layout or registration")
     if not isinstance(provider.get("description_limit"), int) or provider["description_limit"] < 100:
         raise BuildError("invalid provider description limit")
     if provider_id == "claude" and (not isinstance(provider.get("when_to_use"), str) or not provider["when_to_use"].strip()):
@@ -385,17 +389,24 @@ def build(
             target.parent.mkdir(parents=True, exist_ok=True)
             target.write_text(yaml.safe_dump(native, allow_unicode=True, sort_keys=False), encoding="utf-8")
             provenance[target] = {"source": original_metadata.relative_to(repository).as_posix(), "source_sha256": digest(original_metadata.read_bytes())}
+        agent_source = repository / "agents" / "alarina.md"
+        agent_metadata, agent_body = frontmatter(agent_source)
+        if set(agent_metadata) != {"name", "description"} or agent_metadata["name"] != "alarina" or agent_body.count("`alarina`") != 1:
+            raise BuildError("canonical agent must declare Alárinà and its single skill dependency")
+        agent_body = agent_body.replace("`alarina`", f"`{provider['qualified_invocation']}`", 1)
+        if provider_id == "codex":
+            agent_body = agent_body.replace("from this plugin", "from the installed qp-skills plugin")
+            # JSON string encoding is also valid TOML basic-string encoding here.
+            values = {**agent_metadata, "developer_instructions": agent_body.strip()}
+            agent_text = "\n".join(f"{key} = {json.dumps(value, ensure_ascii=False)}" for key, value in values.items()) + "\n"
         else:
-            agent_source = repository / "agents" / "alarina.md"
-            agent_target = staged / "agents" / "alarina.md"
-            agent_text = agent_source.read_text(encoding="utf-8")
-            if agent_text.count("skills:\n  - alarina") != 1 or agent_text.count("`skills/alarina/SKILL.md`") != 1:
-                raise BuildError("canonical agent preload or skill path differs from expected")
-            agent_text = agent_text.replace("skills:\n  - alarina", "skills:\n  - qp-skills:alarina", 1)
-            agent_text = agent_text.replace("`skills/alarina/SKILL.md`", "`${CLAUDE_PLUGIN_ROOT}/skills/alarina/SKILL.md`", 1)
-            agent_target.parent.mkdir(parents=True, exist_ok=True)
-            agent_target.write_text(agent_text, encoding="utf-8")
-            provenance[agent_target] = {"source": agent_source.relative_to(repository).as_posix(), "source_sha256": digest(agent_source.read_bytes())}
+            agent_metadata["skills"] = [provider["qualified_invocation"].lstrip("/")]
+            agent_body = agent_body.replace("its `SKILL.md` from this plugin", "`${CLAUDE_PLUGIN_ROOT}/skills/alarina/SKILL.md`")
+            agent_text = "---\n" + yaml.safe_dump(agent_metadata, allow_unicode=True, sort_keys=False) + "---\n\n" + agent_body
+        agent_target = staged / provider["agent_path"]
+        agent_target.parent.mkdir(parents=True, exist_ok=True)
+        agent_target.write_text(agent_text, encoding="utf-8")
+        provenance[agent_target] = {"source": agent_source.relative_to(repository).as_posix(), "source_sha256": digest(agent_source.read_bytes())}
         manifest_path = staged / provider["plugin_manifest"]
         manifest_path.parent.mkdir(parents=True, exist_ok=True)
         plugin = {"name": "qp-skills", "version": version, "description": "QP software-project work through Alárinà", "author": {"name": "Oluwaseyi Sobande"}, "license": "MIT"}

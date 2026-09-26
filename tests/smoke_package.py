@@ -31,7 +31,7 @@ def main() -> None:
         skill = write(root, "skills/example/SKILL.md", entry)
         write(root, ".codex-plugin/plugin.json", '{"name":"qp-skills","skills":"./skills/"}')
         write(root, ".claude-plugin/plugin.json", '{"name":"qp-skills"}')
-        write(root, "evals/engineering/observations/past.md", "[Historical source](retired.md)\n")
+        write(root, "evals/alarina/migration/past.md", "[Historical source](retired.md)\n")
         run(root, 0)
 
         # An active directory must not gain the historical archive exemption by name.

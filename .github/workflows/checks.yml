@@ -29,5 +29,3 @@ jobs:
         run: python scripts/plugins/test_verify_native_install.py
       - name: Command compilation and provider isolation
         run: python -m unittest scripts.plugins.test_build_alarina_bundle
-      - name: Evaluation corpus paths and coverage
-        run: python -m unittest evals.alarina.test_cases
