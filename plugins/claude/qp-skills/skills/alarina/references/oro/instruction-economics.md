@@ -55,6 +55,8 @@ Place material according to how immediately it is needed:
 
 Progressive disclosure moves material down this hierarchy only when the load condition remains obvious. Do not hide universal authority, safety, evidence, or completion rules behind an optional reference merely to shorten the root.
 
+Allocate context by responsibility: construction needs the governing behavior and constraints; review loads detailed judgment-based standards and refactoring lenses. Put mechanical rules in the existing enforcement mechanism when it can reliably reject the violation. Always-loaded instructions should point to these owners, not reproduce their full procedures. Moving a rule to review must not conceal a constraint needed to build the correct result.
+
 Co-locate a concept's definition, rules, caveats, and examples when they normally need to be considered together. Scattering one concept across several files forces reconstruction even when no text is duplicated.
 
 ## Use leading words for semantic compression

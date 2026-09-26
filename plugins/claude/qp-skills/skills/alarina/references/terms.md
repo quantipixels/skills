@@ -25,6 +25,7 @@ These are project names. The slugs are stable ASCII identifiers; the marked Yor�
 | Identifier | Marked form and plain meaning | Why the name fits |
 | --- | --- | --- |
 | `alarina` skill and agent | **Alárinà**, intermediary or go-between | Routes a request to the command that owns the next result and carries evidence back; the agent profile uses the same method within its assignment. |
+| `ayewo-igba-ise`, `ayewo-retro`, `ayewo-corpus` | **Àyẹ̀wò**, examination or review; the existing **Àyẹ̀wò Ìgbà Iṣẹ́** names the event postmortem | The command suffix distinguishes the result: event reconstruction, agent-environment improvement, or cross-session evidence. These share evidence rules without requiring every analysis branch. |
 | `amose-context` | **Amọ̀ṣẹ́**, the project's name for its domain modeller; `context` names the bounded language source | Captures resolved domain terms in the project's canonical glossary and places legacy knowledge with its proper owner. |
 | `iwadi` | **Ìwádìí**, research or investigation | Answers a defined question with evaluated evidence and references. |
 | `sawari` | **Ṣàwárí**, discover or explore | Maps an unfamiliar technical area, including a repository dive, before a direction or implementation is chosen. |

@@ -8,6 +8,8 @@ Read for a delivery candidate, including the review stage after Red → Green im
 
 **Standards:** Does this candidate meet applicable project conventions and justify its design? Read relevant repository instructions, contributor guidance, architecture and ADRs. Cite the actual rule for a violation. Project decisions override generic preferences. Use current formatter, compiler and lint evidence for what those tools establish; spend judgment on what they do not settle rather than duplicating their diagnostics.
 
+Load detailed judgment-based standards here, including the project's `CODING_STANDARDS.md` when present. Their shared authority does not require the implementer to carry the entire review checklist during construction. Mechanical violations should be covered by a suitable existing check; if the check is absent or ineffective, distinguish that enforcement gap from the candidate's violation and return any authorized repair to Alága.
+
 Separate the questions even when one reviewer handles a bounded change. Use independently briefed reviewers when the breadth or competing concerns justify separate context, following [coordination](../coordination.md). Give both the same pinned candidate and comparison base; supply the specification to its reviewer and standards sources to theirs. No fixed two-worker roster is required. Findings never authorize changes by themselves.
 
 ## Refactoring judgment

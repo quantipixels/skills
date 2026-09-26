@@ -66,7 +66,7 @@ Use the old request's intended result to select its replacement. One old skill c
 | `arojinle` | `arojinle` |
 | `atona` | `atona-direction`, `seda-spec`, `seda-tickets` or `atona` |
 | `atunwo` | `atunwo` |
-| `ayewo-igba-ise` | `ayewo-igba-ise` |
+| `ayewo-igba-ise` | `ayewo-igba-ise` for event reconstruction; `ayewo-retro` for session environment improvement; `ayewo-corpus` for cross-session or artifact-pattern evidence. The old command also routes these explicit requests. |
 | `codex-orchestra` | Alárinà's coordination method; describe the delegation result and host constraints in the request |
 | `fihanmi` | `fihanmi` |
 | `html-artifact` | `html-artifact` |

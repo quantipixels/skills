@@ -1,6 +1,6 @@
 # Corpus analysis
 
-Load this reference only when the evidence unit is a bounded multi-session corpus. Keep the common causal method, recommendation standard, and final judgment in `SKILL.md`.
+Load this reference only when the evidence unit is a bounded multi-session corpus. Use the [shared retrospective method](postmortem-method.md) for causal and recommendation standards; [ayewo-corpus](../../commands/ayewo-corpus.md) owns the cross-session result.
 
 ## Pin the corpus
 

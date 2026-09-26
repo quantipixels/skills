@@ -1,6 +1,6 @@
 # Learn from generated artifacts
 
-Use when an optimisation investigation concerns reusable patterns, successful mechanisms or lessons in generated outputs. This is a branch of the existing postmortem, not a new skill, telemetry collector or automatic promotion pipeline.
+Use when an optimisation investigation concerns reusable patterns, successful mechanisms or lessons in generated outputs. This is conditional depth for [ayewo-corpus](../../commands/ayewo-corpus.md), not a separate skill, telemetry collector or automatic promotion pipeline.
 
 ## Evidence and safety
 
@@ -38,6 +38,6 @@ Include **Keep Variable** alongside recommendations. Classify the owning change 
 
 ## Local invocation
 
-Use alarina and ayewo-igba-ise to inspect this project's generated HTML and producing local sessions. Apply artifact-pattern-mining, inventory before sampling, include successful/corrected contrasts and compare current html-artifact/oro resources. Return useful templates, renderer/interaction recipes, checks and earned lessons with independent roots, fixed contract, free canvas and Keep Variable. Keep interaction transient. Do not edit skills, execute archived scripts unsafely, publish private evidence or add telemetry.
+Use alarina ayewo-corpus to inspect this project's generated HTML and producing local sessions. Apply artifact-pattern-mining, inventory before sampling, include successful/corrected contrasts and compare current html-artifact/oro resources. Return useful templates, renderer/interaction recipes, checks and earned lessons with independent roots, fixed contract, free canvas and Keep Variable. Keep interaction transient. Do not edit skills, execute archived scripts unsafely, publish private evidence or add telemetry.
 
 Add roots/dates only when the intended corpus needs them. This prompt changes neither the existing indexer's semantics nor filesystem authority.

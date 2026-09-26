@@ -215,11 +215,25 @@ commands:
   former_mode: review
 - id: ayewo-igba-ise
   family: investigate
-  description: Reconstruct events or sessions and justify improvements from postmortem evidence.
+  description: Reconstruct a completed incident or work event and justify follow-up changes.
   reference: commands/ayewo-igba-ise.md
   implicit: true
   former_skill: ayewo-igba-ise
   former_mode: postmortem
+- id: ayewo-retro
+  family: investigate
+  description: Improve the coding agent's working environment from session evidence.
+  reference: commands/ayewo-retro.md
+  implicit: true
+  former_skill: ayewo-igba-ise
+  former_mode: agent-session
+- id: ayewo-corpus
+  family: investigate
+  description: Assess cross-session patterns, skill use and reusable artifact lessons.
+  reference: commands/ayewo-corpus.md
+  implicit: true
+  former_skill: ayewo-igba-ise
+  former_mode: corpus-analysis
 - id: iwadi
   family: investigate
   description: Answer defined research questions with reliable evidence and source references.
@@ -887,7 +901,7 @@ routes:
 - id: postmortem
   families:
   - investigate
-  select_when: A finished or materially paused event needs evidence-backed reconstruction and earned improvements.
+  select_when: A completed event, coding session or bounded corpus needs retrospective judgment and earned improvements.
   outcomes:
   - event reconstruction
   - ranked friction
@@ -899,7 +913,11 @@ routes:
   playbook: playbooks/postmortem.md
   owners:
   - command: ayewo-igba-ise
-    required: true
+    required: false
+  - command: ayewo-retro
+    required: false
+  - command: ayewo-corpus
+    required: false
   support:
   - alaga-deliver
   - oro-sigidi

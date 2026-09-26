@@ -227,5 +227,13 @@
   {
     "id": "C39",
     "prompt": "Explore this unfamiliar repository to locate how provider prefixes are resolved. Map the relevant implementation, tests and open questions with exact source references; do not edit."
+  },
+  {
+    "id": "C40",
+    "prompt": "Review this coding session and recommend improvements to agent navigation, tool use, check wiring and review instructions. Do not edit."
+  },
+  {
+    "id": "C41",
+    "prompt": "Assess these independent coding sessions for repeated skill misrouting and reusable artifact patterns, with counterexamples and coverage limits. Do not edit or add telemetry."
   }
 ]

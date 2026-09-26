@@ -15,6 +15,8 @@ Method ownership follows the result: Alága owns implementation and verification
 
 TDD delivery separates Red → Green construction from deliberate refactoring assessment, respecting an explicit request to skip review. Alága implements one observable slice at a time; Atúnwò independently judges Standards and Specification against the working candidate, including warranted refactoring. Alága applies accepted corrections and refreshes affected proof. Standards remain shared project knowledge; Atúnwò owns review expertise and stays read-only. Playbooks reuse this review instead of creating a duplicate gate. Shared test-quality principles live in `references/alaga/test-suite-improvement.md` and inform both construction and review without transferring edit authority.
 
+Retrospective results have distinct command owners: `ayewo-igba-ise` for event reconstruction, `ayewo-retro` for coding-session environment improvement, and `ayewo-corpus` for cross-session and artifact-pattern evidence. They share `references/ayewo-igba-ise/postmortem-method.md`; session/corpus/artifact depth loads conditionally. The read-only session indexer remains one shared runtime script. Historical command invocations route to the appropriate result without restoring separate installed skills.
+
 ## Build and distribution flow
 
 ```text

@@ -41,7 +41,9 @@ The table is generated from [routes.yaml](routes.yaml). That file owns command a
 | [`alaga-diagnose`](commands/alaga-diagnose.md) | Establish a supported failure cause without silently implementing a fix. |
 | [`alaga-compare`](commands/alaga-compare.md) | Measure candidate versus baseline and return a justified keep-or-revert decision. |
 | [`architect-survey`](commands/architect-survey.md) | Map the current technical structure with evidence and material uncertainty. |
-| [`ayewo-igba-ise`](commands/ayewo-igba-ise.md) | Reconstruct events or sessions and justify improvements from postmortem evidence. |
+| [`ayewo-igba-ise`](commands/ayewo-igba-ise.md) | Reconstruct a completed incident or work event and justify follow-up changes. |
+| [`ayewo-retro`](commands/ayewo-retro.md) | Improve the coding agent's working environment from session evidence. |
+| [`ayewo-corpus`](commands/ayewo-corpus.md) | Assess cross-session patterns, skill use and reusable artifact lessons. |
 | [`iwadi`](commands/iwadi.md) | Answer defined research questions with reliable evidence and source references. |
 | [`sawari`](commands/sawari.md) | Explore unfamiliar technical areas and repositories to map behavior, possibilities and unknowns. |
 
@@ -143,7 +145,7 @@ Distinguish adjacent outcomes:
 - Code judgment → `atunwo`; mechanism/architecture fitness → `architect-review`; measured engineering comparison → `alaga-compare`; instruction/model comparison → the skill-evaluation playbook.
 - A defined evidence question → `iwadi`; exploration of unfamiliar technical source or a repository dive → `sawari`. The latter maps what exists and returns unresolved questions without starting implementation.
 - After an accepted coding change, `alaga-deliver` owns checking and reconciling its affected documentation before delivery closes. A separately requested read-only documentation assessment → `akowe-audit`; authorized set-wide reconciliation → `akowe-sync`. Architect owns structural claims and `ARCHITECTURE.md`; Amọ̀ṣẹ́ owns domain meaning and qualified durable records. Agent-facing behavioral text → `oro-sigidi`; human-facing prose → `oro-eniyan`. Presentation helpers consume supplied truth rather than inventing it.
-- An active incident → `alaga-recover`; causal diagnosis → `alaga-diagnose`; retrospective judgment → `ayewo-igba-ise`. Remediation follows only when requested.
+- An active incident → `alaga-recover`; causal diagnosis → `alaga-diagnose`; event reconstruction → `ayewo-igba-ise`; coding-session environment improvement → `ayewo-retro`; cross-session patterns, skill-use evidence or reusable artifact lessons → `ayewo-corpus`. Choose by result, not log count. Remediation follows only when requested.
 - PR description, publication and stewardship remain distinct. Status-only watching stays read-only; readiness is neither approval nor merge.
 
 When a consequential premise needs testing, read the [premise check](references/coordination.md#premise-check). Retain non-obvious reasoning when losing it would cause recurrence or substantial rediscovery; ordinary completion does not require a new lesson or postmortem.

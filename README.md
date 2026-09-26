@@ -93,6 +93,8 @@ Implicit host selection is best effort. Explicit invocation is the dependable en
 
 During TDD delivery, Alága works in Red → Green slices, then Àtúnwò reviews Standards and Specification separately and identifies warranted refactoring, unless the user explicitly skips review. Alága applies accepted corrections and reruns affected checks. Review remains read-only; passing behavior tests does not replace design judgment, and design preferences do not invent requirements.
 
+Retrospective work has three commands: `ayewo-igba-ise` reconstructs an event; `ayewo-retro` improves the coding agent's working environment; `ayewo-corpus` assesses patterns across sessions, skill use and reusable artifact lessons. They share evidence rules and the existing session indexer. None starts remediation unless it is authorized.
+
 ## Update
 
 Update a native plugin with its manager. Plugin updates replace Alárinà and its internal methods and resources as one versioned package. They do not change separately installed skills.

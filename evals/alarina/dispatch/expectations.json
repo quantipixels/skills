@@ -638,7 +638,38 @@
     ],
     "playbook": null,
     "stop": "requested-result",
-    "forbid": ["edit", "publish"],
+    "forbid": [
+      "edit",
+      "publish"
+    ],
+    "condition": "semantic-dispatch"
+  },
+  "C40": {
+    "family": "investigate",
+    "commands": [
+      "ayewo-retro"
+    ],
+    "playbook": null,
+    "stop": "recommendations",
+    "forbid": [
+      "edit",
+      "publish",
+      "telemetry"
+    ],
+    "condition": "semantic-dispatch"
+  },
+  "C41": {
+    "family": "investigate",
+    "commands": [
+      "ayewo-corpus"
+    ],
+    "playbook": null,
+    "stop": "recommendations",
+    "forbid": [
+      "edit",
+      "publish",
+      "telemetry"
+    ],
     "condition": "semantic-dispatch"
   }
 }
