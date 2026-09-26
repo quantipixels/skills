@@ -18,7 +18,7 @@ Use concrete examples when they clarify a plausible mistake. For example, replac
 
 ## Apply the selected branch
 
-For a project-local verification skill, write from the project's verified commands, prerequisites, observable results and cleanup contract. [alaga-deliver](../../commands/alaga-deliver.md) owns harness implementation and executed proof. Mark unexecuted recipes as unverified.
+For a project-local verification skill, write from the project's verified commands, prerequisites, observable results and cleanup contract. [alaga-verify-project](../../commands/alaga-verify-project.md) owns the reusable capability and its executed proof; [alaga-deliver](../../commands/alaga-deliver.md) integrates that evidence into the accepted change. Mark unexecuted recipes as unverified.
 
 For explanations, establish the reader's question and use supplied evidence. Reopen investigation only for a material source gap. Use [fihanmi](../../commands/fihanmi.md) when visual presentation would materially clarify the content; use [html-artifact](../../commands/html-artifact.md) to construct a requested portable HTML artifact. Ọ̀rọ̀ supplies the writing.
 

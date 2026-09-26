@@ -5,7 +5,7 @@
   "support_state": "verified",
   "source": {
     "inputs": 141,
-    "sha256": "48d9bcbd912e372e886f1458d9d4b8dd60fd847ea75ea7cfa6fd82d620169db8"
+    "sha256": "72e9e3b950662c86383d09ec57940f7274f2aa7b22a2e049c2d97c3c18f5a00c"
   },
   "route_digest": "a480344606c9c95bd4baad090b4f10bf37462663a3af72a3c3522a12e5e6212a",
   "qualified_invocation": "/qp-skills:alarina",
@@ -125,10 +125,10 @@
     },
     {
       "path": "skills/alarina/commands/alaga-deliver.md",
-      "sha256": "3c1720913e2f8a4cdbc61aa949425a0559e4258530d0fe433cbdcd9760174d14",
+      "sha256": "bd7e82960112f7949e50809a5c2d6fbae011216abeb78bacc97b5286822c8f13",
       "mode": "0o644",
       "source": "skills/alarina/commands/alaga-deliver.md",
-      "source_sha256": "3c1720913e2f8a4cdbc61aa949425a0559e4258530d0fe433cbdcd9760174d14"
+      "source_sha256": "bd7e82960112f7949e50809a5c2d6fbae011216abeb78bacc97b5286822c8f13"
     },
     {
       "path": "skills/alarina/commands/alaga-diagnose.md",
@@ -153,10 +153,10 @@
     },
     {
       "path": "skills/alarina/commands/alaga-verify-project.md",
-      "sha256": "e682bfb95c066d99fc50baab31cb176c700228b5f8999c5362a852df935af3ea",
+      "sha256": "60e21d4833a49c82d8aa56e004d79c817f8d511633d2ae6ef1369fb1ac6e94f0",
       "mode": "0o644",
       "source": "skills/alarina/commands/alaga-verify-project.md",
-      "source_sha256": "e682bfb95c066d99fc50baab31cb176c700228b5f8999c5362a852df935af3ea"
+      "source_sha256": "60e21d4833a49c82d8aa56e004d79c817f8d511633d2ae6ef1369fb1ac6e94f0"
     },
     {
       "path": "skills/alarina/commands/amose-adrs.md",
@@ -237,10 +237,10 @@
     },
     {
       "path": "skills/alarina/commands/atunwo.md",
-      "sha256": "0ffe4ceb7acc6fb1fc08c4c4873f9d670be4d3bedd973bb8401ce8d4f3d6721b",
+      "sha256": "25a66b2f57d84ffd1a53c5b7dbb99a93ffa5b5be08b06bc5cb73ed7065e7a7a6",
       "mode": "0o644",
       "source": "skills/alarina/commands/atunwo.md",
-      "source_sha256": "0ffe4ceb7acc6fb1fc08c4c4873f9d670be4d3bedd973bb8401ce8d4f3d6721b"
+      "source_sha256": "25a66b2f57d84ffd1a53c5b7dbb99a93ffa5b5be08b06bc5cb73ed7065e7a7a6"
     },
     {
       "path": "skills/alarina/commands/ayewo-corpus.md",
@@ -461,10 +461,10 @@
     },
     {
       "path": "skills/alarina/playbooks/project-verification.md",
-      "sha256": "f700f03ae08865d9232b9cdcb855720c6928e83f7aa8d56d6f69e860b9a0f0ea",
+      "sha256": "46120f67f2f54676f7935533d1623822472dba4fb801a3dde4f7dddaffc95a15",
       "mode": "0o644",
       "source": "skills/alarina/playbooks/project-verification.md",
-      "source_sha256": "f700f03ae08865d9232b9cdcb855720c6928e83f7aa8d56d6f69e860b9a0f0ea"
+      "source_sha256": "46120f67f2f54676f7935533d1623822472dba4fb801a3dde4f7dddaffc95a15"
     },
     {
       "path": "skills/alarina/playbooks/release-rollout.md",
@@ -517,10 +517,10 @@
     },
     {
       "path": "skills/alarina/references/alaga/engineering-contract.md",
-      "sha256": "c9c787fc926a3aa34e4bb3a1fa67d3867475e46271e1ba17862b0a4518ea7b69",
+      "sha256": "eaa6ce05d7da154c5b1bee9af95c6c6aea7ee61e1748bd42cb9418c7828c0c5b",
       "mode": "0o644",
       "source": "skills/alarina/references/alaga/engineering-contract.md",
-      "source_sha256": "c9c787fc926a3aa34e4bb3a1fa67d3867475e46271e1ba17862b0a4518ea7b69"
+      "source_sha256": "eaa6ce05d7da154c5b1bee9af95c6c6aea7ee61e1748bd42cb9418c7828c0c5b"
     },
     {
       "path": "skills/alarina/references/alaga/integration-obligations.md",
@@ -923,10 +923,10 @@
     },
     {
       "path": "skills/alarina/references/oro/writing-contract.md",
-      "sha256": "fe37276f4eb1e6a76ef6b69bb95ae162c87fc302219fc73eb758a0acf1003193",
+      "sha256": "23853ae4a59835dfbdf69097d1fd92678e45e0aa47f53561d36aa021a7f9e8c2",
       "mode": "0o644",
       "source": "skills/alarina/references/oro/writing-contract.md",
-      "source_sha256": "fe37276f4eb1e6a76ef6b69bb95ae162c87fc302219fc73eb758a0acf1003193"
+      "source_sha256": "23853ae4a59835dfbdf69097d1fd92678e45e0aa47f53561d36aa021a7f9e8c2"
     },
     {
       "path": "skills/alarina/references/pese/private-access.md",

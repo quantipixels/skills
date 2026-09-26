@@ -17,6 +17,8 @@ TDD delivery separates Red → Green construction from deliberate refactoring as
 
 Retrospective results have distinct command owners: `ayewo-igba-ise` for event reconstruction, `ayewo-retro` for coding-session environment improvement, and `ayewo-corpus` for cross-session and artifact-pattern evidence. They share `references/ayewo-igba-ise/postmortem-method.md`; session/corpus/artifact depth loads conditionally. The read-only session indexer remains one shared runtime script. Historical command invocations route to the appropriate result without restoring separate installed skills.
 
+Project verification is a capability consumed by delivery, diagnosis, comparison and review. Alága discovers existing project tools before building, identifies missing proof capability early, and uses `alaga-verify-project` for a justified reusable driver or recipe. That command owns launch/readiness, real-path driving, observable effects, surviving evidence and cleanup; `oro-sigidi` authors its agent-facing instructions. Delivery maintains affected recipes, while a requested full-map audit has broader source and runtime coverage. Source-derived recipes are distinct from executed proof.
+
 ## Build and distribution flow
 
 ```text
