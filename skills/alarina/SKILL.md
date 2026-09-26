@@ -74,7 +74,7 @@ The table is generated from [routes.yaml](routes.yaml). That file owns command a
 
 | Command | Purpose |
 | --- | --- |
-| [`akowe-audit`](commands/akowe-audit.md) | Audit documentation drift against implementation and accepted decisions without edits. |
+| [`akowe-audit`](commands/akowe-audit.md) | Audit documentation accuracy and useful coverage without edits. |
 | [`architect-review`](commands/architect-review.md) | Judge architecture and consequential mechanism fitness without implementation. |
 | [`atunwo`](commands/atunwo.md) | Review code changes or an existing system at suitable light or deep depth. |
 
@@ -82,7 +82,7 @@ The table is generated from [routes.yaml](routes.yaml). That file owns command a
 
 | Command | Purpose |
 | --- | --- |
-| [`akowe-sync`](commands/akowe-sync.md) | Reconcile and verify an authorized documentation set. |
+| [`akowe-sync`](commands/akowe-sync.md) | Create or reconcile useful project documentation and verify reader paths. |
 | [`amose-adrs`](commands/amose-adrs.md) | Qualify, create or reconcile architecture decision records with existing authority. |
 | [`amose-context`](commands/amose-context.md) | Maintain canonical domain context and reconcile legacy knowledge by meaning. |
 | [`amose-nongoals`](commands/amose-nongoals.md) | Maintain deliberate project non-goals and their lifecycle. |
@@ -130,7 +130,7 @@ Choose the first unresolved result, not the first step of a template. Reuse suff
 | Architecture evolution | Structural friction or dependency/framework migrations need assessment or verified delivery. | [Architecture evolution](playbooks/architecture-evolution.md) |
 | Incident recovery | An active disruption needs mitigation and verified recovery. | [Incident recovery](playbooks/incident-recovery.md) |
 | Release and rollout | An accepted candidate needs release planning, publication, deployment or live acceptance. | [Release and rollout](playbooks/release-rollout.md) |
-| Documentation maintenance | A documentation set needs audit or reconciliation against current truth. | [Documentation maintenance](playbooks/docs-maintenance.md) |
+| Documentation maintenance | Project documentation needs useful coverage, improvement or audit against current truth. | [Documentation maintenance](playbooks/docs-maintenance.md) |
 | Technical explanation | Supplied material needs a bounded explanation or inspectable presentation. | [Technical explanation](playbooks/technical-explanation.md) |
 | Independent review | Code or an existing system needs independent judgment. | [Independent review](playbooks/independent-review.md) |
 | PR readiness | A PR/MR needs status, description, publication or CI/feedback handling. | [PR readiness](playbooks/pr-readiness.md) |
@@ -149,7 +149,7 @@ Distinguish adjacent outcomes:
 - Observable behavior → `seda-spec`; structure or consequential technical fitness → `architect-design`; accepted work decomposition → `seda-tickets`. Use both specification and architecture when both remain unresolved.
 - Code judgment → `atunwo`; mechanism/architecture fitness → `architect-review`; measured engineering comparison → `alaga-compare`; instruction/model comparison → the skill-evaluation playbook.
 - A defined evidence question → `iwadi`; exploration of unfamiliar technical source or a repository dive → `sawari`. The latter maps what exists and returns unresolved questions without starting implementation.
-- After an accepted coding change, `alaga-deliver` owns checking and reconciling its affected documentation before delivery closes. A separately requested read-only documentation assessment → `akowe-audit`; authorized set-wide reconciliation → `akowe-sync`. Architect owns structural claims and `ARCHITECTURE.md`; Amọ̀ṣẹ́ owns domain meaning and qualified durable records. Agent-facing behavioral text → `oro-sigidi`; human-facing prose → `oro-eniyan`. Presentation helpers consume supplied truth rather than inventing it.
+- After an accepted coding change, `alaga-deliver` owns checking and reconciling its affected documentation before delivery closes. A separately requested read-only documentation assessment → `akowe-audit`; broad project documentation improvement or authorized set-wide reconciliation → `akowe-sync`, including useful missing baseline documents. Architect owns structural claims and `ARCHITECTURE.md`; Amọ̀ṣẹ́ owns domain meaning and qualified durable records. Agent-facing behavioral text → `oro-sigidi`; human-facing prose → `oro-eniyan`. Presentation helpers consume supplied truth rather than inventing it.
 - An active incident → `alaga-recover`; causal diagnosis → `alaga-diagnose`; event reconstruction → `ayewo-igba-ise`; coding-session environment improvement → `ayewo-retro`; cross-session patterns, skill-use evidence or reusable artifact lessons → `ayewo-corpus`. Choose by result, not log count. Remediation follows only when requested.
 - PR description, publication and stewardship remain distinct. Status-only watching stays read-only; readiness is neither approval nor merge.
 - Project or personal environment readiness → `alarina-setup`; a reusable product verification capability → `alaga-verify-project`. Setup is optional; ordinary tasks reuse existing conventions without an onboarding ceremony.

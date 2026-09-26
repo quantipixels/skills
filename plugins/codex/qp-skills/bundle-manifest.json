@@ -4,10 +4,10 @@
   "provider": "codex",
   "support_state": "verified",
   "source": {
-    "inputs": 145,
-    "sha256": "0bd7dedaa3316c82b4213b81943d735ca2c19e9b274bd1603f442c8ee696342b"
+    "inputs": 146,
+    "sha256": "5473cdc5ee5230edf00d829602809e0c721d0087311f4c5c6591d41064cfcc66"
   },
-  "route_digest": "bd539132d627231574adba79b772869d783228807a85d5bf33cd2f3bfe40e1c7",
+  "route_digest": "82a3e739d6655d347a422596b00980eaa4f171a104728d2895ac1dfaeba3927a",
   "qualified_invocation": "$qp-skills:alarina",
   "aliases": [
     "route",
@@ -91,10 +91,10 @@
     },
     {
       "path": "skills/alarina/SKILL.md",
-      "sha256": "6ca234883a633b275fcad63ddbf9828250fe9b27df0fbd5d839bb5853cb98706",
+      "sha256": "1ee990bb00b3a63bd9a9c338f5cd2d751d589cc5bce2ebdb32925aba63ad6f6e",
       "mode": "0o644",
       "source": "skills/alarina/SKILL.md",
-      "source_sha256": "26981f0be0580358a96465230a6ee0be806388d3dddafe16401092ee4997bfba"
+      "source_sha256": "cf87c548bca2801cb4b3d774559b6bb7c3b8bd589fcb3d290f3fe59eff421a8a"
     },
     {
       "path": "skills/alarina/agents/openai.yaml",
@@ -119,10 +119,10 @@
     },
     {
       "path": "skills/alarina/commands/akowe-sync.md",
-      "sha256": "37967186dc76e6185e597704736266cb133b638ace727dd77f75f95a5b131557",
+      "sha256": "500c608b91d88841fa74a040db20f9fa25c9902848f98e8d7b963ce1dd3709df",
       "mode": "0o644",
       "source": "skills/alarina/commands/akowe-sync.md",
-      "source_sha256": "37967186dc76e6185e597704736266cb133b638ace727dd77f75f95a5b131557"
+      "source_sha256": "500c608b91d88841fa74a040db20f9fa25c9902848f98e8d7b963ce1dd3709df"
     },
     {
       "path": "skills/alarina/commands/alaga-compare.md",
@@ -168,10 +168,10 @@
     },
     {
       "path": "skills/alarina/commands/alarina-setup.md",
-      "sha256": "4c0c09078d4e7a50524701bb09d308c56d7bcf04492ac3698f8f5e095bba9136",
+      "sha256": "ef0248d276b90189669dceb0a210cabdb47b3a887ba819eb4f7f792faf70aeb0",
       "mode": "0o644",
       "source": "skills/alarina/commands/alarina-setup.md",
-      "source_sha256": "4c0c09078d4e7a50524701bb09d308c56d7bcf04492ac3698f8f5e095bba9136"
+      "source_sha256": "ef0248d276b90189669dceb0a210cabdb47b3a887ba819eb4f7f792faf70aeb0"
     },
     {
       "path": "skills/alarina/commands/amose-adrs.md",
@@ -420,10 +420,10 @@
     },
     {
       "path": "skills/alarina/playbooks/docs-maintenance.md",
-      "sha256": "32400d15a74f77f563259f16000778c5ae776d753cba425ec64d64c6b941fc04",
+      "sha256": "f8b824a50ec59e919ed2a36be9daf487b37939d2273e5838fca520d7fed5ae5d",
       "mode": "0o644",
       "source": "skills/alarina/playbooks/docs-maintenance.md",
-      "source_sha256": "32400d15a74f77f563259f16000778c5ae776d753cba425ec64d64c6b941fc04"
+      "source_sha256": "f8b824a50ec59e919ed2a36be9daf487b37939d2273e5838fca520d7fed5ae5d"
     },
     {
       "path": "skills/alarina/playbooks/feature-delivery.md",
@@ -511,10 +511,17 @@
     },
     {
       "path": "skills/alarina/references/akowe/evidence.md",
-      "sha256": "b61f012c5b77ce8f94de4060b52ee1b7f0b66e6b739742e1cafe667f8a3208c8",
+      "sha256": "cb990a779f6d7261dbfc652682eb953211ad3e94ef9c91a02bea677af2897a1b",
       "mode": "0o644",
       "source": "skills/alarina/references/akowe/evidence.md",
-      "source_sha256": "b61f012c5b77ce8f94de4060b52ee1b7f0b66e6b739742e1cafe667f8a3208c8"
+      "source_sha256": "cb990a779f6d7261dbfc652682eb953211ad3e94ef9c91a02bea677af2897a1b"
+    },
+    {
+      "path": "skills/alarina/references/akowe/project-baseline.md",
+      "sha256": "d304d2b4e7c282d6e5724750a8239ce1a327e5880d9504fde4b572c316d9134f",
+      "mode": "0o644",
+      "source": "skills/alarina/references/akowe/project-baseline.md",
+      "source_sha256": "d304d2b4e7c282d6e5724750a8239ce1a327e5880d9504fde4b572c316d9134f"
     },
     {
       "path": "skills/alarina/references/akowe/reconciliation.md",
@@ -1057,10 +1064,10 @@
     },
     {
       "path": "skills/alarina/routes.yaml",
-      "sha256": "bd539132d627231574adba79b772869d783228807a85d5bf33cd2f3bfe40e1c7",
+      "sha256": "82a3e739d6655d347a422596b00980eaa4f171a104728d2895ac1dfaeba3927a",
       "mode": "0o644",
       "source": "skills/alarina/routes.yaml",
-      "source_sha256": "bd539132d627231574adba79b772869d783228807a85d5bf33cd2f3bfe40e1c7"
+      "source_sha256": "82a3e739d6655d347a422596b00980eaa4f171a104728d2895ac1dfaeba3927a"
     },
     {
       "path": "skills/alarina/scripts/README.md",

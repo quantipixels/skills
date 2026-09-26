@@ -6,6 +6,8 @@ Pin the requested change, revision or release, audience and reader task, documen
 
 Follow the project's navigation, documentation/build configuration, source references and relevant reader entry points. Include nested and non-Markdown sources, generated inputs, examples, runbooks and agent guidance when they bear on the changed claim. Follow material references and same-procedure guidance a reader or agent actually uses, including unlinked guidance in the affected area. Do not scan an entire repository or impose a new documentation index by default.
 
+For broad project documentation assessment or improvement, read the [project baseline](project-baseline.md) and check useful missing coverage as well as drift. An audit reports those gaps; authorized improvement establishes the relevant missing documents. Narrow edits do not imply the full baseline.
+
 Resolve the source of generated documentation before editing. Note excluded destinations, external or unavailable sources, unsupported formats and truncated searches. A scope hint matching nothing is a scope gap, not authority to widen. A missing document is not a current one.
 
 ## Establish what should change

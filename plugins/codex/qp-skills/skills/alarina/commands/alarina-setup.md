@@ -8,14 +8,11 @@ Start with the requested scope. Project setup concerns shared project expectatio
 
 Reuse current instructions and evidence. Follow existing pointers to standards, architecture, `CONTEXT.md` or scoped glossaries, ADRs, non-goals, contribution guidance and the project's tracker. Locate the actual build, checks and CI requirements, any verification recipe, and the active host's supported review/delegation capability. Identify existing artifact destinations using [records and artifacts](../references/records.md).
 
-When a specific gap controls readiness, load the owning command for that bounded result:
+Interrogate unresolved project-readiness questions using the same composition as [alaga-verify-project](alaga-verify-project.md): use [sawari](sawari.md) to map the relevant repository behavior, owners, documentation and working/verification paths, then apply [arojinle](arojinle.md) with the agent serving as its user/respondent. Supply that source map and accepted project decisions; use the resulting understanding to identify which documentation, configuration and proof capability setup actually needs. Answer from evidence within existing authority, leaving consequential unresolved human choices for the actual user. Reuse sufficient current understanding instead of requiring a full repository survey or interview on every setup.
 
-| Unresolved result | Method to consume |
-| --- | --- |
-| How an unfamiliar repository's relevant behavior and tooling fit together | [sawari](sawari.md), scoped to the working and verification path. |
-| Dependent questions about expectations or required proof | [arojinle](arojinle.md), with the agent as user/respondent where evidence and accepted decisions suffice; use the actual human for a choice requiring their judgment. |
-| A reusable way to exercise and observe the real project | [alaga-verify-project](alaga-verify-project.md); reuse adequate commands and harnesses first. |
-| Missing or unclear agent-facing instructions | [oro-sigidi](oro-sigidi.md), using discovered or verified facts and the existing instruction owner. |
+For project setup, establish the [useful documentation baseline](../references/akowe/project-baseline.md) from that understanding, including missing architecture, standards, confirmed non-goals and working instructions where they earn a home. Use [akowe-sync](akowe-sync.md) to reconcile the set through its existing owners; consume its result here. Personal-environment setup alone does not create project documents.
+
+For a missing reusable way to exercise and observe the project, use [alaga-verify-project](alaga-verify-project.md), reusing adequate commands and harnesses first. For missing or unclear agent-facing instructions, use [oro-sigidi](oro-sigidi.md) with discovered or verified facts and the existing instruction owner.
 
 Consume sufficient existing results without reopening those methods. The supporting command returns its evidence or gap here; it does not start a second setup, initiative or publication workflow.
 

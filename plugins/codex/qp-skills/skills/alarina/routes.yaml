@@ -61,14 +61,14 @@ commands:
   former_mode: prototype
 - id: akowe-audit
   family: review
-  description: Audit documentation drift against implementation and accepted decisions without edits.
+  description: Audit documentation accuracy and useful coverage without edits.
   reference: commands/akowe-audit.md
   implicit: true
   former_skill: akowe
   former_mode: audit
 - id: akowe-sync
   family: document
-  description: Reconcile and verify an authorized documentation set.
+  description: Create or reconcile useful project documentation and verify reader paths.
   reference: commands/akowe-sync.md
   implicit: true
   former_skill: akowe
@@ -778,9 +778,10 @@ routes:
 - id: documentation-maintenance
   families:
   - document
-  select_when: A documentation set needs drift detection, reconciliation, or verified updates against current truth.
+  select_when: Project documentation needs useful coverage, improvement, drift detection or reconciliation against current truth.
   outcomes:
   - documentation audit
+  - useful project documentation baseline
   - reconciled documentation
   stopping_points:
   - audit
