@@ -20,3 +20,9 @@ Read affected claims in context and match evidence to their meaning:
 Check the document set for contradictory instructions as well as stale paths, examples and factual statements. Trace consequential disagreements to the governing evidence; majority agreement, newer timestamps and absent search matches do not settle them. Missing runtime or operational corroboration is a verification gap, not proof of falsity.
 
 For contradictions, generated sources, historical records, consolidation, removal or requested pruning, read [reconciliation boundaries](reconciliation.md). Use [iwadi](../../commands/iwadi.md) when a substantial external fact controls the correction; reuse sufficient current evidence. Return product defects to [alaga-deliver](../../commands/alaga-deliver.md) or the calling workflow without silently fixing code or normalizing the defect in documentation.
+
+## Knowledge discoverability
+
+After an authorized knowledge change, check whether a fresh reader can discover its established destination, understand what it contains and recognize when it applies. Follow the existing scoped instructions or navigation; a valid file or link alone does not establish a useful reader path. Within edit scope, repair the smallest missing pointer; otherwise report it to the owning caller. Keep glossary definitions, ADRs, non-goals, runbooks and lessons at their existing owners. No new index, memory store or mandatory per-task reading sweep is implied.
+
+Informed by Compound Engineering's [discoverability method](https://github.com/EveryInc/compound-engineering-plugin/blob/a763b392c3c05faa1a383c0d228b7e95200ecc90/skills/ce-compound/references/refresh-and-discoverability.md).

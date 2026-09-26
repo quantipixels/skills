@@ -10,6 +10,8 @@ Use comparable implementations and governing decisions to recover the contract r
 
 ## Verify the mechanism being relied on
 
+Identify the decisive facts on which the change's safety depends and the evidence capable of disproving them. Concentrate investigation there rather than expanding a speculative risk list. For example, removing an API may depend on every supported consumer having migrated; compiling the producer alone cannot establish that. Reuse sufficient current proof and carry each unresolved controlling claim into the handoff.
+
 For framework-managed transactions, validation, authorization, retries, serialization or callbacks, confirm the actual version, configuration, registration and invocation path. An annotation or API name does not establish that interception or enforcement runs. Inspect the effective boundary and use a focused integration probe when source/configuration cannot settle a consequential uncertainty. Preserve existing authorization and tenant checks across new entry points.
 
 Apply design by contract and complete mediation: locate enforcement of relied-on preconditions across every relevant entry point. A validating name is not proof.
@@ -31,3 +33,5 @@ For changes to workload, buffering, concurrency or resource lifetime, use backpr
 ## Close the change
 
 Reconcile implementation and executed proof with the discovered obligations. Check negative and preservation cases that could expose the changed failure mechanism, not every imaginable edge case. Report unresolved consumer, deployment or runtime claims plainly. Passing a narrow test is evidence for that boundary, not permission to claim the whole journey works.
+
+The focus on decisive safety claims is informed by PStack's [blast-radius method](https://github.com/cursor/plugins/blob/ecc249f1e306fc64ddf83c7bed16cacf7c2239db/pstack/skills/blast-radius/SKILL.md).

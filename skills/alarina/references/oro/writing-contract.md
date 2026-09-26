@@ -24,4 +24,6 @@ For explanations, establish the reader's question and use supplied evidence. Reo
 
 Cross-document drift assessment belongs to [akowe-audit](../../commands/akowe-audit.md), and authorized reconciliation to [akowe-sync](../../commands/akowe-sync.md); author the requested text here and return it to that caller. Wording-only work stays here.
 
+When authoring reusable project knowledge or instructions, check [knowledge discoverability](../akowe/evidence.md#knowledge-discoverability) at the affected reader entry point; return any out-of-scope pointer correction to the caller.
+
 Return complete usable text first for authoring or editing, and findings first for review. Surface only material gaps in meaning, evidence, authority, audience, or scope.

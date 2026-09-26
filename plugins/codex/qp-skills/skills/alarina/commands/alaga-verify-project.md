@@ -34,6 +34,8 @@ Write for an agent arriving without this conversation: identify the working dire
 
 Record a small useful set of journeys: entry point, prerequisite, drive command and observable outcome. Reuse existing test or journey identities; add an index only when it makes several maintained recipes easier to find. Do not generate placeholders or an exhaustive feature catalogue.
 
+When acceptance depends on user navigation or later effects, follow the action through its destination and aftermath. For example, a notification must reach the intended recipient and open the correct item, with the expected data and focus where relevant; successful sending alone is insufficient. Record observed friction for the affected user separately from functional failure. Select only affected journeys; this does not require an exhaustive browser matrix or browser testing of static reports. This example is informed by Compound Engineering's [journey taxonomy](https://github.com/EveryInc/compound-engineering-plugin/blob/a763b392c3c05faa1a383c0d228b7e95200ecc90/skills/ce-dogfood/references/test-matrix-taxonomy.md).
+
 For each journey, record material alternate entry points, reset state and known limitations. Label source-derived recipes separately from executed proof, with candidate/environment identity and an evidence locator. Verifying one mapped path does not verify its unexercised alternatives. A feature map guides later selection; seeding it does not claim full-product coverage.
 
 Prefer the real public path over internal setters or verification-only endpoints. An isolated external substitute may be appropriate; state the boundary it leaves unproved. Confirm what a dry-run actually omits before relying on it to prevent effects.

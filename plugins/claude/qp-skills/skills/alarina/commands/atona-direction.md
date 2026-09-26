@@ -8,6 +8,8 @@ Expand one grounded opportunity into a bounded, mechanism-diverse candidate set;
 
 Pin the problem or opportunity, intended beneficiaries, current relevant reality, constraints, known non-goals, evidence boundary, time horizon, and what would make a direction useful. A provisional opportunity is enough to explore; mark what remains assumed. Ground factual claims in evidence, using [iwadi](iwadi.md) as needed.
 
+When a consequential direction rests on asserted demand, look for observed effort, spending, workarounds or costs of leaving the problem unsolved. Use available evidence first; ask only for a missing fact or judgment that changes the direction. Compare a smaller form that could deliver the same value. Absent evidence leaves a hypothesis, not an automatic veto on an explicitly chosen build. Preserve research coverage limits when turning sampled issue themes into priorities.
+
 Distinguish hard constraints from current habits or untested assumptions. When the obvious solution is unsatisfying, examine another problem framing, an overlooked beneficiary, a newly available capability or a constraint that could change within the user's authority. State the resulting benefit and dependency; ambition alone does not establish value.
 
 ## Generate materially different mechanisms
@@ -51,3 +53,5 @@ Recommended next decision/action boundary
 ```
 
 For an exploration-only request, stop at these possibilities. For an end-to-end initiative, return them to Atọ́nà to resolve the direction under existing authority and continue shaping and delivery.
+
+The demand probe is informed by Compound Engineering's [product pressure test](https://github.com/EveryInc/compound-engineering-plugin/blob/a763b392c3c05faa1a383c0d228b7e95200ecc90/skills/ce-brainstorm/references/product-pressure-test.md).

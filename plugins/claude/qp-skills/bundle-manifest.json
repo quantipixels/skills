@@ -5,7 +5,7 @@
   "support_state": "verified",
   "source": {
     "inputs": 141,
-    "sha256": "72e9e3b950662c86383d09ec57940f7274f2aa7b22a2e049c2d97c3c18f5a00c"
+    "sha256": "28e94ad06cf033891f47819a11432ee5ad2d46aca6316a1431089e1d71745d0b"
   },
   "route_digest": "a480344606c9c95bd4baad090b4f10bf37462663a3af72a3c3522a12e5e6212a",
   "qualified_invocation": "/qp-skills:alarina",
@@ -153,10 +153,10 @@
     },
     {
       "path": "skills/alarina/commands/alaga-verify-project.md",
-      "sha256": "60e21d4833a49c82d8aa56e004d79c817f8d511633d2ae6ef1369fb1ac6e94f0",
+      "sha256": "3cea1ac8b429523d9632dd4c1cdaba042cdf85d4df5fd4ff7d6a59d59444b0d5",
       "mode": "0o644",
       "source": "skills/alarina/commands/alaga-verify-project.md",
-      "source_sha256": "60e21d4833a49c82d8aa56e004d79c817f8d511633d2ae6ef1369fb1ac6e94f0"
+      "source_sha256": "3cea1ac8b429523d9632dd4c1cdaba042cdf85d4df5fd4ff7d6a59d59444b0d5"
     },
     {
       "path": "skills/alarina/commands/amose-adrs.md",
@@ -223,10 +223,10 @@
     },
     {
       "path": "skills/alarina/commands/atona-direction.md",
-      "sha256": "83c0d06dc4bc469b2cfae98212b70c6803dc7e53c2132751ffb4ca948ea0a41b",
+      "sha256": "c63f45c45bdc8eedcf718bfa60aff8be82e07ad3d8f9ee5deedd211af02a79e3",
       "mode": "0o644",
       "source": "skills/alarina/commands/atona-direction.md",
-      "source_sha256": "83c0d06dc4bc469b2cfae98212b70c6803dc7e53c2132751ffb4ca948ea0a41b"
+      "source_sha256": "c63f45c45bdc8eedcf718bfa60aff8be82e07ad3d8f9ee5deedd211af02a79e3"
     },
     {
       "path": "skills/alarina/commands/atona.md",
@@ -237,10 +237,10 @@
     },
     {
       "path": "skills/alarina/commands/atunwo.md",
-      "sha256": "25a66b2f57d84ffd1a53c5b7dbb99a93ffa5b5be08b06bc5cb73ed7065e7a7a6",
+      "sha256": "df778a1f1ab128c10283a62a69dcfabda4edbb8c6d7c30a575cc3dd67d7439bb",
       "mode": "0o644",
       "source": "skills/alarina/commands/atunwo.md",
-      "source_sha256": "25a66b2f57d84ffd1a53c5b7dbb99a93ffa5b5be08b06bc5cb73ed7065e7a7a6"
+      "source_sha256": "df778a1f1ab128c10283a62a69dcfabda4edbb8c6d7c30a575cc3dd67d7439bb"
     },
     {
       "path": "skills/alarina/commands/ayewo-corpus.md",
@@ -279,10 +279,10 @@
     },
     {
       "path": "skills/alarina/commands/iwadi.md",
-      "sha256": "c0b5a474807002c6bf0a625bf17af85a925949f7968c0523355cc81a0b1fa5d4",
+      "sha256": "79ab4910e53779cb9ae8b939f475fbd5d1b8ec926743d43abae772ed78c0d503",
       "mode": "0o644",
       "source": "skills/alarina/commands/iwadi.md",
-      "source_sha256": "c0b5a474807002c6bf0a625bf17af85a925949f7968c0523355cc81a0b1fa5d4"
+      "source_sha256": "79ab4910e53779cb9ae8b939f475fbd5d1b8ec926743d43abae772ed78c0d503"
     },
     {
       "path": "skills/alarina/commands/oro-eniyan.md",
@@ -475,10 +475,10 @@
     },
     {
       "path": "skills/alarina/playbooks/skill-evaluation.md",
-      "sha256": "fbc4b9d6517cd89b9c56ed436b9bcdd82dd6fcd5a7ff168fe72051b8cd98e0ce",
+      "sha256": "f6f0b6f61379ac3ee2208631398941baa1c9930ec5083acc626ebec1fd97e4f9",
       "mode": "0o644",
       "source": "skills/alarina/playbooks/skill-evaluation.md",
-      "source_sha256": "fbc4b9d6517cd89b9c56ed436b9bcdd82dd6fcd5a7ff168fe72051b8cd98e0ce"
+      "source_sha256": "f6f0b6f61379ac3ee2208631398941baa1c9930ec5083acc626ebec1fd97e4f9"
     },
     {
       "path": "skills/alarina/playbooks/technical-explanation.md",
@@ -496,10 +496,10 @@
     },
     {
       "path": "skills/alarina/references/akowe/evidence.md",
-      "sha256": "14d2e93b04547f70fcb9ef73945ba5457d6a33b08bbd642ed5e22cc187d13e6a",
+      "sha256": "b61f012c5b77ce8f94de4060b52ee1b7f0b66e6b739742e1cafe667f8a3208c8",
       "mode": "0o644",
       "source": "skills/alarina/references/akowe/evidence.md",
-      "source_sha256": "14d2e93b04547f70fcb9ef73945ba5457d6a33b08bbd642ed5e22cc187d13e6a"
+      "source_sha256": "b61f012c5b77ce8f94de4060b52ee1b7f0b66e6b739742e1cafe667f8a3208c8"
     },
     {
       "path": "skills/alarina/references/akowe/reconciliation.md",
@@ -524,10 +524,10 @@
     },
     {
       "path": "skills/alarina/references/alaga/integration-obligations.md",
-      "sha256": "8a042c2bd4061c5570ccadd384c8269b80243d3ad04062adb8c3f531793d9e4a",
+      "sha256": "020d113e54457d6f86b6b142816ce08654388109fcae6caad0c9e802272daa39",
       "mode": "0o644",
       "source": "skills/alarina/references/alaga/integration-obligations.md",
-      "source_sha256": "8a042c2bd4061c5570ccadd384c8269b80243d3ad04062adb8c3f531793d9e4a"
+      "source_sha256": "020d113e54457d6f86b6b142816ce08654388109fcae6caad0c9e802272daa39"
     },
     {
       "path": "skills/alarina/references/alaga/property-based-testing.md",
@@ -573,10 +573,10 @@
     },
     {
       "path": "skills/alarina/references/amose/record-contract.md",
-      "sha256": "f4240dc8fbf36d6ba738ac233a601e196b60a5599427d5474287b9c5e5024e66",
+      "sha256": "c2bbe2cb657f0cd293b8eff0fe8fbd58eecc1460ffc765ad82a4f6f17ebc777a",
       "mode": "0o644",
       "source": "skills/alarina/references/amose/record-contract.md",
-      "source_sha256": "f4240dc8fbf36d6ba738ac233a601e196b60a5599427d5474287b9c5e5024e66"
+      "source_sha256": "c2bbe2cb657f0cd293b8eff0fe8fbd58eecc1460ffc765ad82a4f6f17ebc777a"
     },
     {
       "path": "skills/alarina/references/architect/agent-native-systems.md",
@@ -923,10 +923,10 @@
     },
     {
       "path": "skills/alarina/references/oro/writing-contract.md",
-      "sha256": "23853ae4a59835dfbdf69097d1fd92678e45e0aa47f53561d36aa021a7f9e8c2",
+      "sha256": "844f1aa3f5b383a14db558033bc970090a3a735372fe42f81da0cb8879c83746",
       "mode": "0o644",
       "source": "skills/alarina/references/oro/writing-contract.md",
-      "source_sha256": "23853ae4a59835dfbdf69097d1fd92678e45e0aa47f53561d36aa021a7f9e8c2"
+      "source_sha256": "844f1aa3f5b383a14db558033bc970090a3a735372fe42f81da0cb8879c83746"
     },
     {
       "path": "skills/alarina/references/pese/private-access.md",

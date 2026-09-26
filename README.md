@@ -147,8 +147,8 @@ Remove any QP-specific instructions you added to `AGENTS.md` or `CLAUDE.md` if y
 Alárinà is authored and maintained by Oluwaseyi Sobande. Its development draws on ideas and examples shared by these projects:
 
 - [Matt Pocock's skills](https://github.com/mattpocock/skills) — domain language in `CONTEXT.md`, selective ADRs, deep modules, feedback loops and human/agent collaboration. His [AI Coding Dictionary](https://github.com/mattpocock/dictionary-of-ai-coding) also informed the context-continuity guidance.
-- [PStack](https://github.com/backnotprop/pstack) and its [Cursor plugin](https://github.com/cursor/plugins/tree/main/pstack) — engineering principles, reflective improvement, technical writing and separating portable methods from host controls.
-- [Compound Engineering](https://github.com/EveryInc/compound-engineering-plugin) — connected engineering workflows, explicit handoffs and making useful knowledge available to later work.
+- [PStack](https://github.com/backnotprop/pstack) and its [Cursor plugin](https://github.com/cursor/plugins/tree/main/pstack) — engineering principles, reusable project verification, decisive safety claims, reflective improvement, technical writing and separating portable methods from host controls.
+- [Compound Engineering](https://github.com/EveryInc/compound-engineering-plugin) — connected engineering workflows, explicit handoffs, knowledge discoverability, evidence-backed product direction, complete user journeys and calibration of skill evaluations.
 - [Impeccable](https://github.com/pbakaus/impeccable) — a single skill entrypoint, commands with conditional supporting depth, and provider packages built from canonical source.
 - [HumanLayer's skills](https://github.com/humanlayer/skills) — explanations shaped around the actual change and reviewer-oriented PR descriptions.
 
