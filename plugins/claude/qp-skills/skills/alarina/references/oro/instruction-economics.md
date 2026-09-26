@@ -4,6 +4,8 @@ Read when the shape or wording of agent-facing text may change selection, attent
 
 The goal is not minimum words. It is maximum behavioural leverage per unit of context.
 
+Diagnose context problems from missed constraints, irrelevant retrieval or lost evidence before prescribing a reset or larger window. There is no project-wide token percentage that proves reliable attention. When summarizing or handing off, preserve the active outcome, authority, candidate, unresolved obligations and exact evidence locators; reopen primary material when a decision depends on detail the summary omitted. Compaction is not permission to restart settled work or discard obligations.
+
 ## Use a small working vocabulary
 
 Use compact terms when they let one word carry a recurring distinction:

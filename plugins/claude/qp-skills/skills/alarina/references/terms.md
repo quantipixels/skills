@@ -18,6 +18,24 @@ Use this as a lookup when a concept changes a decision; it is not a mandatory re
 | Accepting evidence | Current evidence tied to the actual candidate that establishes the requested result. A plan, tool submission or worker's completion claim is not enough. |
 | ADR — architecture decision record | A durable explanation of a consequential architectural choice and its tradeoffs. Admission rules belong to [amose-adrs](../commands/amose-adrs.md), not every routine change. |
 
+## Agent operation and context
+
+| Concept | Meaning |
+| --- | --- |
+| Model / harness | The model generates responses; the harness supplies tools, context management, permissions and execution. Diagnose the layer responsible. |
+| Context / context window | Context is the supplied information; the window is its capacity limit. Available capacity does not establish relevance or reliable attention. |
+| Progressive disclosure / context pointer | Load conditional depth when needed. A useful pointer names both the source and the condition for reading it. |
+| Parametric / contextual knowledge | Learned model knowledge versus information supplied for this task. Neither substitutes for checking a consequential current claim. |
+| Handoff / compaction | A handoff transfers work; compaction condenses history. Summaries can omit decisive details, so retain source locators. |
+| Primary / secondary source | Direct evidence versus an account of it. A summary helps navigation; inspect the underlying evidence for acceptance. |
+| Non-determinism | Comparable model runs can differ. One successful run does not establish repeatable behavior. |
+| Automated check / automated review | A check evaluates encoded conditions; a review applies judgment. Neither alone proves every requirement. |
+| Permission mode / sandbox | Approval policy versus enforced execution restrictions. Technical access does not establish task authorization. |
+
+Selected vocabulary informed by [Matt Pocock's AI Coding Dictionary](https://github.com/mattpocock/dictionary-of-ai-coding/tree/ed1ebed3975cba04ed5e74c6ca73659274beb754), expressed here for Alárinà's operating context. This is a selective glossary, not an adoption of every upstream claim or prescription.
+
+Apply these distinctions through existing owners: [instruction economics](oro/instruction-economics.md) governs loading, [coordination](coordination.md) governs evidence transfer, and [host policy](host-policy.md) governs runtime choices. Keep provider-specific prices, limits and configuration out of this glossary; inspect their current source when needed.
+
 ## Project names
 
 These are project names. The slugs are stable ASCII identifiers; the marked Yorùbá forms explain the intended sense. They do not claim a language-wide standard for software terms. Keep this table aligned with `routes.yaml`, the command menu, and the agent profile when a name changes.
