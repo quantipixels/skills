@@ -5,7 +5,7 @@
   "support_state": "verified",
   "source": {
     "inputs": 137,
-    "sha256": "f82a75473617729ef60b167b70465bae099c7e6b32954b22e4fdc036adb5db97"
+    "sha256": "fec79a2012fedf6df54e95fc243fc536ea5b9df5fe25cdce257b2d8cd5e90fd7"
   },
   "route_digest": "e398c60cba3e4866466c7d678173a942046a8c68dcdd70a484797b7e75fcdf4e",
   "qualified_invocation": "/qp-skills:alarina",
@@ -956,10 +956,10 @@
     },
     {
       "path": "skills/alarina/references/terms.md",
-      "sha256": "581c6605f96b6e673598d0d0a45e85cfccc3ce299cb5a1421a303734a60a38ec",
+      "sha256": "c482fa622106839fad0484d60f65bd601ad165910548a29c5eb6d83a488ec5ff",
       "mode": "0o644",
       "source": "skills/alarina/references/terms.md",
-      "source_sha256": "581c6605f96b6e673598d0d0a45e85cfccc3ce299cb5a1421a303734a60a38ec"
+      "source_sha256": "c482fa622106839fad0484d60f65bd601ad165910548a29c5eb6d83a488ec5ff"
     },
     {
       "path": "skills/alarina/references/yoruba-glossary/glossary.md",
