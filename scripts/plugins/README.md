@@ -8,6 +8,20 @@ Codex and Claude marketplaces both source `./`. Codex registers its native TOML 
 
 ## Native install check
 
+To install or refresh this checkout in your local Codex installation, run:
+
+```bash
+npm run install:codex
+```
+
+Requires `codex` on PATH and the Python dependencies in `requirements-dev.txt`.
+The script builds and validates the package, exports only runtime files into a
+new `~/.qp/alarina/packages/local-*` directory, installs through Codex, and compares
+the installed files with that export. It respects `CODEX_HOME` and leaves persisted
+marketplace settings and separately registered agent profiles unchanged. It installs
+the current working tree, including uncommitted changes; it does not pull or publish.
+Restart Codex afterward. Retained exports can be removed when no longer needed.
+
 Run `python3 scripts/plugins/verify_native_install.py --host codex` or `--host claude` to install into disposable manager state and compare the installed canonical skill and declarations with a clean staged package. The stage exports only the runtime skill, native declarations, manifests, marketplaces, package metadata and licence. This excludes ignored `.qp/`, `node_modules/` and development files; Codex's local marketplace copier can otherwise include ignored working files from a live checkout. The check does not change the user's installation.
 
 The comparison also rejects unexpected Markdown or TOML agent declarations under the installed `agents/` and `.opencode/agents/` directories. It does not compare unrelated development files or prove that a package manager removes stale files during an upgrade.

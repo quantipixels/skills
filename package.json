@@ -9,6 +9,7 @@
   },
   "license": "MIT",
   "scripts": {
+    "install:codex": "python3 scripts/plugins/install_local_codex.py",
     "build:plugins": "python3 scripts/plugins/build_alarina_bundle.py",
     "check:plugins": "python3 scripts/plugins/build_alarina_bundle.py --check",
     "test:plugins": "python3 -m unittest scripts.plugins.test_build_alarina_bundle scripts.plugins.test_verify_native_install",
