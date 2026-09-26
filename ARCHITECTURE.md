@@ -9,7 +9,7 @@ This repository packages QP's engineering methods through one canonical Alárin�
 - `skills/alarina/commands/` contains cohesive methods chosen by useful outcome and authority, not one command per technical responsibility. `skills/alarina/playbooks/` composes them for multi-stage outcomes. `skills/alarina/references/<use-case>/` holds supporting depth, templates and assets grouped by engineering, productivity, communication, design and language rather than former skills. Direct conditional links serve known callers; the [reference guide](skills/alarina/references/README.md) supports scoped discovery across command families when an outcome needs additional expertise. The entrypoint owns composition and acceptance when predefined methods leave gaps; references can be applied directly without a new command or permanent playbook.
 - `skills/alarina/scripts/` holds shared installed utilities: HTML structural diagnostics and local session evidence indexing. Commands own interpretation and acceptance; scripts own their bounded mechanical result. Repository build and verification tooling remains outside the installed skill.
 - The HTML Artifact base and control assets under `references/design/html/assets/` use Basecoat's standalone precompiled CSS for components and scoped CSS for document layout and fallback. Their existing jQuery scripts own control behavior. Connected documents load pinned assets; portable documents embed or bundle the selected files. This path has no direct Tailwind build step.
-- [`agents/alarina.md`](agents/alarina.md) is the thin portable skill-delegation profile. Provider adapters render Claude Markdown with qualified skill preload and Codex standalone TOML with a qualified skill invocation. Both packages ship the profile; Claude registers it through the plugin, while Codex 0.156.1 requires separate project/user agent placement. The skill owns operating and terminology-maintenance instructions. No model, tool or permission overrides are generated.
+- [`agents/alarina.md`](agents/alarina.md) is the thin portable skill-delegation profile. Small generated declarations adapt it for Claude's plugin agent, Codex's separately registered TOML agent, and OpenCode's project agent. Pi uses its native skill and can append the portable profile to its system prompt; it has no native named-agent registration in this package. The skill owns operating and terminology-maintenance instructions. No model, tool or permission overrides are generated.
 
 Method ownership follows the result: Alága owns implementation and verification, including documentation affected by its change; Architect owns technical structure and `ARCHITECTURE.md`; Amọ̀ṣẹ́ owns domain meaning and its glossary, with separate qualification for ADRs and durable non-goals; Akọ̀wé reconciles a documentation set; Atọ́nà coordinates initiative scope and combined acceptance. [`amose-context`](skills/alarina/commands/amose-context.md) captures resolved terms in an established glossary or a lazily created `CONTEXT.md`; a `CONTEXT-MAP.md` locates scoped glossaries when multiple bounded contexts need them. Legacy learning migration routes codebase rules to established project standards (with `CODEBASE_STANDARD.md` as a lazy fallback), procedures to owning methods or runbooks, and other non-domain knowledge to its maintained source. Ọ̀rọ̀ or Akọ̀wé handles the corresponding text; Amọ̀ṣẹ́ does not absorb those responsibilities into the glossary. See the [feature delivery](skills/alarina/playbooks/feature-delivery.md) and [documentation maintenance](skills/alarina/playbooks/docs-maintenance.md) playbooks for their handoffs.
 
@@ -34,26 +34,25 @@ Project verification is a capability consumed by delivery, diagnosis, comparison
 ## Build and distribution flow
 
 ```text
-skills/alarina/ + agents/alarina.md + scripts/plugins/providers.yaml
+skills/alarina/ (one canonical method tree) + agents/alarina.md
                          │
                          ▼
            scripts/plugins/build_alarina_bundle.py
-                    │                │
-                    ▼                ▼
-       plugins/codex/qp-skills/  plugins/claude/qp-skills/
-                    │                │
-                    ▼                ▼
-       .agents/plugins/       .claude-plugin/
-       marketplace.json       marketplace.json
+                         │
+                         ▼
+ root Codex/Claude manifests + small native agent declarations
+                         │
+                         ▼
+  root marketplaces (source ./) + OpenCode config + Pi package metadata
 ```
 
-The compiler builds self-contained native packages, validates links, menus, provider metadata and source provenance, then writes `bundle-manifest.json`. It adds provider-specific invocation metadata while retaining one canonical method tree. The marketplaces point to those generated packages. [`scripts/plugins/README.md`](scripts/plugins/README.md) documents build and native-install checks; [`scripts/skills/check_package.py`](scripts/skills/check_package.py) validates the source package. `evals/alarina/` holds behavioral cases and observations outside the installed skill.
+The compiler validates the one source skill and writes only small host declarations. It checks menu drift, local links, placeholders, agent identity and provider inventory. Codex and Claude marketplaces both point to the repository root. OpenCode loads `./skills` through `opencode.json`; Pi loads the same directory through `package.json`. [`scripts/plugins/README.md`](scripts/plugins/README.md) documents native checks; [`scripts/skills/check_package.py`](scripts/skills/check_package.py) validates the package. `evals/alarina/` holds behavioral cases and observations outside the installed skill.
 
-The release boundary is the generated Codex and Claude packages. Other layouts in `providers.yaml` are candidates, not verified distribution targets. An installed package can prove file inventory and manager acceptance; model selection, command loading and task completion need separate runtime evidence.
+The release boundary is the repository root for Codex, Claude Code, OpenCode and Pi. Provider declarations in `providers.yaml` describe their native entry points; there are no copied method trees. Manager registration and file inventory do not by themselves prove model selection, command loading or task completion.
 
 ## Change invariants
 
 - Keep one public `SKILL.md`; add or change a method in `commands/` and its route metadata instead of recreating a standalone QP skill.
 - Keep conditional expertise with the relevant command or reference, and workflow progression with its playbook. Preserve explicit-command-only restrictions for `pese` and `qp-update` when changing routes or provider metadata.
-- Rebuild both provider packages after canonical-source changes and check generated output for drift. Verify the changed behavior at the relevant source, package, native-install or model boundary; one boundary does not prove another.
+- Rebuild native declarations after canonical-source changes and check them for drift. Verify the changed behavior at the relevant source, package, native-install or model boundary; one boundary does not prove another.
 - Reconcile this overview when components, ownership, dependency direction or build/runtime flow change. Update affected claims against the final code and keep [README.md](README.md) and other reader instructions aligned without copying install steps here.

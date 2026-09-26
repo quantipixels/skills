@@ -8,7 +8,7 @@
       "name": "qp-skills",
       "source": {
         "source": "local",
-        "path": "./plugins/codex/qp-skills"
+        "path": "./"
       },
       "policy": {
         "installation": "AVAILABLE",

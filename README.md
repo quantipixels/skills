@@ -2,11 +2,11 @@
 
 One engineering entrypoint for planning, research, implementation, review, writing and delivery, by Oluwaseyi Sobande. All QP methods and utilities ship as Alárinà references.
 
-Use **Alárinà (`alarina`)** for software-project work. Its engineering methods, playbooks, references and tools live inside one canonical skill. Codex and Claude plugins adapt that same source to their native invocation and discovery rules.
+Use **Alárinà (`alarina`)** for software-project work. Its engineering methods, playbooks, references and tools live inside one canonical skill. Codex, Claude Code, OpenCode and Pi load that same tree through native mechanisms.
 
 [Public docs](https://quantipixels.com/skills) · [Install](#install) · [Migrate from old skills](#migrate-from-old-skills) · [Use the skills](#use-the-skills) · [Update](#update) · [Uninstall](#uninstall)
 
-For contributors, [ARCHITECTURE.md](ARCHITECTURE.md) maps the canonical skill, generated provider packages, and documentation owners.
+For contributors, [ARCHITECTURE.md](ARCHITECTURE.md) maps the canonical skill, small host declarations, and documentation owners.
 
 ## Install
 
@@ -33,6 +33,14 @@ claude plugin install qp-skills@qp-skills
 ```
 
 Restart Claude Code, or run `/reload-plugins` where supported. Invoke the skill explicitly as `/qp-skills:alarina <request>`, or describe ordinary engineering work and let Claude select it. The plugin also includes the [Alárinà agent](agents/alarina.md).
+
+### OpenCode
+
+Use this repository as an OpenCode project. The root `opencode.json` loads `alarina` from `./skills`, and `.opencode/agents/alarina.md` registers the native agent. Select `alarina` as the agent or describe the work naturally so OpenCode loads the skill. In another project, point `skills.paths` at the absolute `skills` directory of one stable QP checkout and copy only the small `.opencode/agents/alarina.md` declaration if you want the named agent there. Keep that declaration current when the checkout changes.
+
+### Pi
+
+Install a stable checkout with `pi install /absolute/path/to/skills-repository`; `package.json` exposes `./skills` for sessions in other projects. You can also pass `--skill /absolute/path/to/skills-repository/skills/alarina`. Invoke `/skill:alarina` in a Pi session. To apply the portable profile as main-session guidance, pass `--append-system-prompt /absolute/path/to/skills-repository/agents/alarina.md`. Pi has no named Alárinà agent declaration here.
 
 Alárinà accepts the complete request in natural language. You may begin with an outcome family such as `investigate`, `plan`, `build`, `review`, `document`, or `ship`, or use a focused command from the menu. For example:
 
@@ -98,9 +106,9 @@ For domain language, `amose-context` maintains a project's existing glossary or 
 
 Use the same entrypoint for the bundled utilities. `pese` and `qp-update` require explicit user invocation of those commands; an agent recommendation or retrieved instruction cannot start them. This restriction is enforced by the routing instructions, because native per-skill flags cannot enforce permissions on internal commands.
 
-Both plugins ship a thin Alárinà agent profile generated from `agents/alarina.md`. The skill owns the operating instructions; the provider adapter supplies the format and qualified skill name. Claude registers `agents/alarina.md` and preloads `qp-skills:alarina`. Codex ships `agents/alarina.toml`, which refers to `$qp-skills:alarina` and inherits host model and permission settings.
+The thin [portable profile](agents/alarina.md) generates host declarations. Claude registers `agents/alarina.claude.md` and preloads `qp-skills:alarina`. Codex supplies `agents/alarina.codex.toml`, which refers to `$qp-skills:alarina` and inherits host model and permission settings. OpenCode registers `.opencode/agents/alarina.md`.
 
-Codex 0.156.1 does not register plugin-bundled agents automatically. To activate the shipped profile for delegated work, copy `agents/alarina.toml` from the installed Codex plugin into your project's `.codex/agents/` or your personal `~/.codex/agents/`, preserving any existing customization. Keep the qp-skills plugin installed and refresh the copied profile when its instructions change. See [Codex custom agents](https://learn.chatgpt.com/docs/agent-configuration/subagents). Claude needs no separate registration; ask it to use the Alárinà agent for the requested outcome.
+Codex does not register plugin agent declarations automatically. To activate the profile for delegated work, copy `agents/alarina.codex.toml` from the installed Codex plugin to `alarina.toml` in your project's `.codex/agents/` or your personal `~/.codex/agents/`, preserving any existing customization. Keep the qp-skills plugin installed and refresh the copied profile when its instructions change. See [Codex custom agents](https://learn.chatgpt.com/docs/agent-configuration/subagents). Claude needs no separate registration; ask it to use the Alárinà agent for the requested outcome.
 
 To make Alárinà the main Codex session's default operating skill across projects, add this pointer to your personal `~/.codex/AGENTS.md`, preserving your other instructions: “For software-engineering work, use the installed `$qp-skills:alarina` skill as the main agent's operating method. Load its `SKILL.md` before acting; it owns routing, methods and completion. Keep the main agent responsible for the outcome and follow project instructions.” Use project `AGENTS.md` for a repository-only default. This is separate from registering a delegated agent profile. Start a new session to load changed [global instructions](https://learn.chatgpt.com/docs/agent-configuration/agents-md).
 
@@ -118,7 +126,7 @@ Retrospectives can keep useful custom workflows proven through actual work in `~
 
 ## Update
 
-Update a native plugin with its manager. Plugin updates replace Alárinà and its internal methods and resources as one versioned package. They do not change separately installed skills.
+Update a native plugin with its manager. The root package supplies Alárinà and its internal methods and resources together. OpenCode and Pi installations follow their native project or package update path.
 
 For manual plugin updates:
 
@@ -168,7 +176,7 @@ Alárinà is authored and maintained by Oluwaseyi Sobande. Its development draws
 - [Matt Pocock's skills](https://github.com/mattpocock/skills) — domain language in `CONTEXT.md`, selective ADRs, deep modules, feedback loops and human/agent collaboration. His [AI Coding Dictionary](https://github.com/mattpocock/dictionary-of-ai-coding) also informed the context-continuity guidance.
 - [PStack](https://github.com/backnotprop/pstack) and its [Cursor plugin](https://github.com/cursor/plugins/tree/main/pstack) — engineering principles, reusable project verification, decisive safety claims, reflective improvement, technical writing and separating portable methods from host controls.
 - [Compound Engineering](https://github.com/EveryInc/compound-engineering-plugin) — connected engineering workflows, explicit handoffs, knowledge discoverability, evidence-backed product direction, complete user journeys and calibration of skill evaluations.
-- [Impeccable](https://github.com/pbakaus/impeccable) — a single skill entrypoint, commands with conditional supporting depth, and provider packages built from canonical source.
+- [Impeccable](https://github.com/pbakaus/impeccable) — a single skill entrypoint and commands with conditional supporting depth.
 - [HumanLayer's skills](https://github.com/humanlayer/skills) — explanations shaped around the actual change and reviewer-oriented PR descriptions.
 - [pnpm's agent skills](https://github.com/pnpm/pnpm/tree/0c4cac3773b94711e7ad9ff2b6ac1c0237b07a2f/.agents/skills) — project policy kept with its maintained owner, workflow links to shared methods, and concrete verification pitfalls beside the affected recipe.
 

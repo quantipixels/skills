@@ -6,14 +6,14 @@ For repository work, use this checkout's [Alárinà skill](skills/alarina/SKILL.
 
 - `skills/alarina/` is canonical: `commands/` own results, `references/` share expertise by use case, and `playbooks/` compose workflows. Keep one discoverable `SKILL.md`; preserve command invocation permissions, including explicit-only `pese` and `qp-update`.
 - [routes.yaml](skills/alarina/routes.yaml) owns inventory and the `SKILL.md` menu. Update both together: the compiler rejects menu drift but does not rewrite it.
-- [agents/alarina.md](agents/alarina.md) delegates to the skill; [providers.yaml](scripts/plugins/providers.yaml) owns host formats, namespaces and release eligibility. Keep operating methods out of agent profiles.
-- `plugins/codex/qp-skills/` and `plugins/claude/qp-skills/` are committed build outputs. Rebuild their complete trees from source; do not hand-edit them or replace them with symlinks.
+- [agents/alarina.md](agents/alarina.md) delegates to the skill; [providers.yaml](scripts/plugins/providers.yaml) records the four native host entry points. Keep operating methods out of agent profiles.
+- The repository root is the shared native package for Codex, Claude Code, OpenCode and Pi. Build outputs are only the root plugin manifests and small native agent declarations; do not copy or rewrite the skill tree per host.
 
 ## Build and verify
 
 The npm build wrappers use `python3` and [requirements-dev.txt](requirements-dev.txt), even for Markdown-only skill changes. Install dependencies in a virtual environment when needed.
 
-After changing shipped sources, run from the repository root and include regenerated bundles in the change:
+After changing shipped sources, run from the repository root and include regenerated declarations in the change:
 
 ```sh
 npm run build:plugins

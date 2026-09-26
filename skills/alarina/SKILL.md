@@ -15,7 +15,7 @@ The user-chosen main agent is the conductor. Within a worker assignment, apply t
 
 ## Enter and load
 
-Natural language is the primary interface. The host may select Alárinà from its description, or the user may invoke its displayed skill name and supply a complete request. Plugin prefixes are attached by the provider build. Commands below are arguments after that one entrypoint, not independent native skills or preconfigured subagents. Use the exact displayed invocation; do not invent a prefix for each command.
+Natural language is the primary interface. The host may select Alárinà from its description, or the user may invoke its displayed skill name and supply a complete request. The host supplies the displayed namespace. Commands below are arguments after that one entrypoint, not independent native skills or preconfigured subagents. Use the exact displayed invocation; do not invent a prefix for each command.
 
 1. Read the complete request with accepted decisions, existing plan/candidate, evidence and stopping point. An alias or command name never overrides a narrower request such as diagnosis only, read-only review, description only, or no publication.
 2. For an explicit or clearly implied command, **successfully read its exact linked reference before applying its method**. Resolve root links from the directory containing this installed `SKILL.md`, not the project working directory. Resolve deeper links from their containing file. A remembered method, path mention or failed/truncated read is not a successful load; recover the missing content before relying on it.

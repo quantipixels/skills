@@ -318,73 +318,36 @@ def check(root: Path) -> list[str]:
         except (OSError, ValueError) as error:
             complain(path, str(error))
 
-    compiler = root / "scripts/plugins/build_alarina_bundle.py"
-    if compiler.is_file():
-        expected_sources = {
-            "codex": (root / ".agents/plugins/marketplace.json", "./plugins/codex/qp-skills"),
-            "claude": (root / ".claude-plugin/marketplace.json", "./plugins/claude/qp-skills"),
-        }
+    real_package = root == Path(__file__).resolve().parents[2]
+    for provider, marketplace_path in (
+        ("codex", root / ".agents/plugins/marketplace.json"),
+        ("claude", root / ".claude-plugin/marketplace.json"),
+    ):
         try:
-            route_data = mapping((root / "skills/alarina/routes.yaml").read_text(encoding="utf-8"))
-            expected_commands = {command["id"] for command in route_data["commands"]}
-        except (OSError, KeyError, TypeError, ValueError, yaml.YAMLError) as error:
-            complain(root / "skills/alarina/routes.yaml", str(error))
-            expected_commands = set()
-        for obsolete in (root / ".codex-plugin/plugin.json", root / ".claude-plugin/plugin.json"):
-            if obsolete.exists():
-                complain(obsolete, "repository root is a marketplace; the provider plugin manifest belongs in its generated package")
-        for provider, (marketplace_path, expected_source) in expected_sources.items():
-            artifact = root / expected_source.removeprefix("./")
-            try:
+            if real_package:
                 marketplace = json.loads(marketplace_path.read_text(encoding="utf-8"))
-                plugins = marketplace.get("plugins") if isinstance(marketplace, dict) else None
-                matches = [item for item in plugins or [] if isinstance(item, dict) and item.get("name") == "qp-skills"]
+                matches = [item for item in marketplace["plugins"] if item.get("name") == "qp-skills"]
                 if len(matches) != 1:
                     raise ValueError("marketplace must contain exactly one qp-skills entry")
-                source = matches[0].get("source")
-                if provider == "codex":
-                    if source != {"source": "local", "path": expected_source}:
-                        raise ValueError(f"Codex source must be {expected_source}")
-                elif source != expected_source:
-                    raise ValueError(f"Claude source must be {expected_source}")
-                manifest_path = artifact / f".{provider}-plugin/plugin.json"
-                manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
-                package_version = json.loads((root / "package.json").read_text(encoding="utf-8"))["version"]
-                if manifest.get("name") != "qp-skills" or manifest.get("version") != package_version:
-                    raise ValueError("generated plugin identity/version differs from package.json")
-                entries = sorted(artifact.rglob("SKILL.md"))
-                if entries != [artifact / "skills/alarina/SKILL.md"]:
-                    raise ValueError("generated plugin must expose exactly skills/alarina/SKILL.md")
-                actual_commands = {
-                    path.stem for path in artifact.glob("skills/alarina/commands/*.md")
-                }
-                if actual_commands != expected_commands:
-                    raise ValueError("generated command inventory differs from routes.yaml")
-                result = subprocess.run(
-                    [sys.executable, str(compiler), "--provider", provider, "--output", str(artifact), "--check"],
-                    cwd=root,
-                    text=True,
-                    capture_output=True,
-                    timeout=30,
-                    check=False,
-                )
-                if result.returncode:
-                    raise ValueError(result.stderr.strip() or result.stdout.strip() or "generated bundle check failed")
-            except (OSError, ValueError, subprocess.TimeoutExpired) as error:
-                complain(marketplace_path, str(error))
-    else:
-        for relative in (".codex-plugin/plugin.json", ".claude-plugin/plugin.json"):
-            path = root / relative
-            try:
-                plugin = json.loads(path.read_text(encoding="utf-8"))
-                if not isinstance(plugin, dict) or plugin.get("name") != "qp-skills":
-                    raise ValueError("expected qp-skills plugin identity")
-                if relative.startswith(".codex"):
-                    location = plugin.get("skills")
-                    if not isinstance(location, str) or (root / location).resolve() != skills:
-                        raise ValueError("Codex skills path must resolve to packaged skills/")
-            except (OSError, ValueError) as error:
-                complain(path, str(error))
+                expected = {"source": "local", "path": "./"} if provider == "codex" else "./"
+                if matches[0].get("source") != expected:
+                    raise ValueError("marketplace must source the repository root")
+            manifest = json.loads((root / f".{provider}-plugin/plugin.json").read_text(encoding="utf-8"))
+            version = json.loads((root / "package.json").read_text(encoding="utf-8"))["version"] if real_package else manifest.get("version")
+            if manifest.get("name") != "qp-skills" or manifest.get("version") != version:
+                raise ValueError("native plugin identity/version differs from package.json")
+            if manifest.get("skills") != "./skills/":
+                raise ValueError("native skills path must resolve to canonical skills/")
+        except (OSError, KeyError, TypeError, ValueError) as error:
+            complain(marketplace_path, str(error))
+    for obsolete in (root / "plugins/codex/qp-skills", root / "plugins/claude/qp-skills"):
+        if obsolete.exists():
+            complain(obsolete, "obsolete copied skill tree remains")
+    if real_package:
+        compiler = root / "scripts/plugins/build_alarina_bundle.py"
+        result = subprocess.run([sys.executable, str(compiler), "--check"], cwd=root, text=True, capture_output=True, check=False)
+        if result.returncode:
+            complain(compiler, result.stderr.strip() or result.stdout.strip())
     return errors
 
 

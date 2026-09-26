@@ -1,0 +1,14 @@
+# Shared-root native package — 2026-09-26
+
+Candidate: uncommitted repository source based on `2da2fbf3`, version `4.3.0`. The root package contains one `skills/alarina/SKILL.md`; Codex and Claude marketplace sources are `./`. Clean runtime exports exclude checkout state. Disposable native installs of the candidate matched 159 declared runtime files for both Codex and Claude Code. These are package checks; the model observations below are separate.
+
+Runtime inventory digest: `155a24e6b33c41fccd22104c899428ea7e62127286d7d785dafc8126275bc527`, computed as SHA-256 of the sorted JSON file-hash mapping returned by `verify_native_install._files`. The refreshed Codex installation matched this inventory after the final validation-only changes.
+
+| Host | Native observation | Limit |
+| --- | --- | --- |
+| Codex 0.157.1 | A clean root install matched 159 runtime files. The user installation was refreshed from a clean export and its enabled `4.3.0` plugin matched those files. A real `spawn_agent` using `agent_type: alarina` and no context fork reached a child whose role was `alarina`; it read the installed skill and diagnosis method and returned `task_complete`. | The child used host default `5.6-luna`; this does not prove any model propagation or override. |
+| Claude Code 2.1.263 | `--plugin-dir` with the clean root and `--agent qp-skills:alarina` initialized the named agent. The model called `Skill` for `qp-skills:alarina`, read `alaga-diagnose.md` and its engineering contract, and respected a diagnosis-only stopping point. | `claude plugin details` reported Agents (0) despite the successful explicit agent run, so that inventory field was not used as proof. |
+| OpenCode 1.18.32 | Root `opencode.json` discovered the canonical skill and `.opencode/agents/alarina.md` registered the named agent. With `opencode/big-pickle`, `run --agent alarina` called the native skill loader, read diagnosis and engineering contract, returned `EVIDENCE_BLOCKED`, and made no edits. | An earlier test-only deny permission caused a 403; the exact package config has no such deny and passed. |
+| Pi 0.82.1 | `pi install` recognized the repository package. Both `/skill:alarina` and a natural request with `--append-system-prompt agents/alarina.md` read the canonical skill, diagnosis method and contract and respected the diagnosis-only request. | Pi uses its main agent with an appended profile; this is not a named-agent selector. |
+
+Codex and Claude model traces are held in the local evidence directory `/tmp/alarina-root-native.OWx6Gj`; OpenCode and Pi observations are summarized in `/tmp/qp-native-host-smoke.aBTl63/evidence.md`. The Codex installed-agent rollout used parent session `01a0de14-96e6-7522-b8e0-26e898a1f6a0` and child `01a0de14-b4a1-7411-9ea5-72145d0910bc`. These temporary paths are local evidence pointers, not shipped package dependencies. The dated 2026-09-25 results remain historical evidence for the former generated-bundle candidate.

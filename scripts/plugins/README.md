@@ -1,73 +1,28 @@
-# Alárinà native plugin build and evidence
+# Native package build and evidence
 
-The repository owns one canonical Alárinà skill. Native plugins compile its complete reference tree:
+The repository root is the package for Codex, Claude Code, OpenCode and Pi. [`skills/alarina/`](../../skills/alarina/) is the one canonical method tree. [`agents/alarina.md`](../../agents/alarina.md) is the portable, thin agent profile. No host gets a copied skill tree or rewritten `SKILL.md`.
 
-```text
-skills/alarina/SKILL.md               canonical operating entrypoint
-skills/alarina/commands/   focused command methods
-skills/alarina/references/<use-case>/ shared depth, templates and assets
-skills/alarina/routes.yaml            command and playbook topology
-plugins/codex/qp-skills/              generated Codex plugin
-plugins/claude/qp-skills/             generated Claude plugin
-.agents/plugins/marketplace.json      Codex marketplace → generated Codex plugin
-.claude-plugin/marketplace.json       Claude marketplace → generated Claude plugin
-```
+`npm run build:plugins` validates the source skill and generates the root Codex and Claude plugin manifests plus small Codex, Claude and OpenCode agent declarations. `npm run check:plugins` checks them for drift. [`providers.yaml`](providers.yaml) records the four supported native entry points. [`scripts/skills/check_package.py`](../skills/check_package.py) also checks routes, active links, marketplaces and the single discovery entry.
 
-Each generated plugin contains exactly one discoverable `skills/alarina/SKILL.md`. Commands contain their actual methods rather than snapshots of separately installed skills. The source command table is generated from `routes.yaml`; the compiler rejects menu drift, missing resources and invalid policies. Provider-qualified invocation text and implicit-selection metadata are added at build time. Paths inside references remain relative to the installed skill tree, independent of the user's project directory.
+Codex and Claude marketplaces both source `./`. Codex registers its native TOML agent separately in a project or user agent directory. Claude registers the generated Markdown agent through the plugin, with `qp-skills:alarina` preload and a plugin-root skill fallback. OpenCode loads `./skills` from [`opencode.json`](../../opencode.json) and its project agent from `.opencode/agents/alarina.md`. Pi loads `./skills` from `package.json`; the portable agent profile can be applied through `--append-system-prompt`, and Pi has no package named-agent declaration.
 
-## Build and check
+## Native install check
 
-Builds stage and validate a complete candidate before publishing it. Existing output is preserved unless `--replace` is given. Replacement keeps the old bundle until the candidate is ready and restores it if publication fails.
+Run `python3 scripts/plugins/verify_native_install.py --host codex` or `--host claude` to install into disposable manager state and compare the installed canonical skill and declarations with a clean staged package. The stage exports only the runtime skill, native declarations, manifests, marketplaces, package metadata and licence. This excludes ignored `.qp/`, `node_modules/` and development files; Codex's local marketplace copier can otherwise include ignored working files from a live checkout. The check does not change the user's installation.
+
+For a local Codex refresh, run `python3 scripts/plugins/verify_native_install.py --export /new/stable/package/path` after `npm run check:plugins`. Point only the install command at that clean source:
 
 ```bash
-python3 scripts/plugins/build_alarina_bundle.py \
-  --provider codex --output plugins/codex/qp-skills --replace
-python3 scripts/plugins/build_alarina_bundle.py \
-  --provider claude --output plugins/claude/qp-skills --replace
-
-python3 scripts/plugins/build_alarina_bundle.py \
-  --provider codex --output plugins/codex/qp-skills --check
-python3 scripts/plugins/build_alarina_bundle.py \
-  --provider claude --output plugins/claude/qp-skills --check
+codex -c 'marketplaces.qp-skills.source="/new/stable/package/path"' plugin add qp-skills@qp-skills --json
 ```
 
-`--check` rebuilds in isolation and compares every file and mode. `bundle-manifest.json` records the provider, route digest, stable source-input digest, qualified invocation, commands, and per-file provenance. It deliberately does not claim model selection or successful runtime command loading.
+The source override leaves the persisted marketplace registration unchanged. The export path must be new and outside this checkout. Native installation was checked with Codex 0.157.1; resolve the installed path and compare its runtime files before claiming the update complete.
 
-The provider registry is [providers.yaml](providers.yaml). Codex and Claude are the only release providers. Add another provider only after its discovery rules, namespaces, implicit invocation controls, manifest, native validation, install/update behavior, and activation boundary are established with the current manager.
-
-## Native installation evidence
-
-The verifier installs from this repository's marketplace into disposable manager state and compares the installed plugin with the matching generated source artifact:
-
-```bash
-python3 scripts/plugins/verify_native_install.py --host codex
-python3 scripts/plugins/verify_native_install.py --host claude
-python3 scripts/plugins/test_verify_native_install.py
-```
-
-Fresh installation establishes manager registration, enabled state, the one-skill inventory, provider-specific agent inventory, and installed bytes. It does not invoke a model or prove implicit selection in an existing session.
-
-## Check a real A → B update
-
-Keep manager execution, installed content, and session activation as separate evidence. Use disposable user/project state, the installed manager's supported update commands, and no personal installation or credentials.
-
-1. Prepare two complete generated plugin versions. Save a byte copy of the installed A plugin root.
-2. Advance the same marketplace source to B and run the provider's supported update through the same registration. Do not replace this step with uninstall plus fresh install.
-3. Resolve the installed B root from manager state and compare it with the current generated source:
+For a saved update comparison, supply one host and the before and installed package roots:
 
 ```bash
 python3 scripts/plugins/verify_native_install.py --host codex \
   --before-root "$before_snapshot" --installed-root "$installed_plugin_root"
 ```
 
-Use `--host claude` for Claude. Snapshot mode reports versions and added, removed, and changed paths while explicitly leaving `manager_transition` and `session_activation` as `not_observed`; pair it with the recorded manager command and a fresh or reloaded consumer session.
-
-## Behavioral evaluation boundary
-
-The focused prompts under `evals/alarina/` are optional behavioral probes with private expectations, not a CI gate or a model runner. Native manager checks establish packaging and discovery. A model run is required to claim selection, routing, command loading or completion quality; package checks do not establish those outcomes.
-
-## Agent adapters
-
-`agents/alarina.md` supplies only the portable identity, description and delegation to the skill. The compiler renders `agents/alarina.md` for Claude with `skills: [qp-skills:alarina]` and a plugin-root fallback, and `agents/alarina.toml` for Codex with `developer_instructions` naming `$qp-skills:alarina`. Model and permission settings inherit from the host.
-
-Codex 0.156.1 loads custom agents from project/user configuration directories, not plugin contents. Its bundle therefore ships a standalone-format profile for separate placement in `.codex/agents/` or `~/.codex/agents/`; no unsupported manifest key or automatic config mutation is added. The native installer check still expects zero auto-registered Codex agents. Claude registers its one agent through the plugin. See [Codex agent configuration](https://learn.chatgpt.com/docs/agent-configuration/subagents) and [Claude subagents](https://code.claude.com/docs/en/sub-agents).
+Snapshot mode verifies installed package content and reports added, changed and removed files. It does not prove that a manager performed the transition or that a session reloaded. Native manager checks prove registration and bytes; model selection, command loading and task completion need separate runtime evidence. The focused prompts under `evals/alarina/` are optional behavioral probes, not a CI gate.

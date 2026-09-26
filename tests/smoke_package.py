@@ -30,7 +30,7 @@ def main() -> None:
         entry = "---\nname: example\ndescription: A usable skill\n---\nUse `seda-pr` when publication is authorized.\n"
         skill = write(root, "skills/example/SKILL.md", entry)
         write(root, ".codex-plugin/plugin.json", '{"name":"qp-skills","skills":"./skills/"}')
-        write(root, ".claude-plugin/plugin.json", '{"name":"qp-skills"}')
+        write(root, ".claude-plugin/plugin.json", '{"name":"qp-skills","skills":"./skills/"}')
         write(root, "evals/alarina/migration/past.md", "[Historical source](retired.md)\n")
         run(root, 0)
 
@@ -71,7 +71,7 @@ def main() -> None:
             write(root, f"skills/alarina/commands/{former}.md", f"# {former}\n")
         write(root, "skills/alarina/playbooks/example.md", "# Example\n")
         write(root, ".codex-plugin/plugin.json", '{"name":"qp-skills","skills":"./skills/"}')
-        write(root, ".claude-plugin/plugin.json", '{"name":"qp-skills"}')
+        write(root, ".claude-plugin/plugin.json", '{"name":"qp-skills","skills":"./skills/"}')
         family_names = ("route", "investigate", "plan", "build", "review", "document", "ship", "utility")
         routes = {
             "version": 2,

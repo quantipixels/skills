@@ -8,7 +8,7 @@
   "plugins": [
     {
       "name": "qp-skills",
-      "source": "./plugins/claude/qp-skills"
+      "source": "./"
     }
   ]
 }
