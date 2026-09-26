@@ -16,6 +16,8 @@ trigger + enabling conditions + propagation + missing containment/detection → 
 
 Record exact symptom, expected behavior, first known trigger, candidate/revision or event identity, environment/context, reproducibility, evidence, scope, and read/probe authority. A report, stack trace, correlation, changed artifact, or temporal order is evidence, not a cause.
 
+If the failing path is hidden in an unfamiliar codebase, use [sawari](sawari.md) to locate the relevant implementation and consumers. Bring its source map and limits back to the competing mechanisms below; exploration does not establish a cause or authorize a repair.
+
 Reproduce safely when possible; otherwise pin one equivalent direct observation. Separate primary failure from secondary errors, retries, compensating behavior, and recovery noise.
 
 Use the smallest feedback loop that can distinguish the reported symptom from the intended behavior. A failing test, focused runtime probe, trace replay, browser check, benchmark, or direct observation can serve. Minimize the reproduction when it materially sharpens the diagnosis; do not delay a useful hypothesis merely because a runnable loop is unavailable.

@@ -209,7 +209,7 @@ def validate_routes(data: dict, repository: Path, entry_name: str) -> tuple[list
             raise BuildError(f"unknown neighbour: {route['id']}")
     if dependencies - command_ids:
         raise BuildError(f"route depends on unknown commands: {sorted(dependencies - command_ids)}")
-    explicit_ids = {command["id"] for command in commands if command["former_skill"] in EXPLICIT_ONLY}
+    explicit_ids = {command["id"] for command in commands if command.get("former_skill") in EXPLICIT_ONLY}
     if dependencies & explicit_ids:
         raise BuildError(f"route depends on explicit-only commands: {sorted(dependencies & explicit_ids)}")
     if sorted((repository / "skills").rglob("SKILL.md")) != [repository / "skills" / entry_name / "SKILL.md"]:

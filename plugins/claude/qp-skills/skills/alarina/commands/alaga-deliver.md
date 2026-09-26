@@ -59,7 +59,7 @@ If entry points, prerequisites, expected effects or driving handles changed, rec
 
 Keep a local factual correction with the change when its owner and evidence are clear. Use [akowe-sync](akowe-sync.md) when claims, links, examples or instructions need reconciliation across a documentation set; it coordinates the set without taking ownership of architecture or domain truth. Verify affected reader paths and generated documentation through their source and build path where applicable. Include the documents checked, corrections made, verification and unresolved conflicts in delivery evidence; a code check alone does not prove the docs current.
 
-Reuse the TDD review above when applicable. For other changes, use [atunwo](atunwo.md) when requested or independent judgment is materially useful; respect a request to skip review. Supply the candidate, acceptance, proof and risks. Resolve warranted findings and refresh only affected evidence. Return consequential corrections for focused re-review when needed; do not restart the whole review or require another worker for each test cycle.
+Before closing a substantive change, apply [local readiness](../references/atunwo/local-readiness.md). Reuse the TDD review above when it covers the final candidate; that contract also governs non-TDD review, mechanical-change exceptions, corrections and evidence reuse. Keep implementation and verification here, with independent judgment at [atunwo](atunwo.md).
 
 Finish when the behavior and necessary documentation are delivered and verified, or a specific gap prevents further progress. Report the change, decisive verification, and limitations. Use [seda-pr](seda-pr.md) for authorized commit/push/publication; delivery alone does not authorize it.
 

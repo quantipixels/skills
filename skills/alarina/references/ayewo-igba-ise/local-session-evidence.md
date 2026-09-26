@@ -59,7 +59,7 @@ The default roots are current host conventions, not package-owned state:
 - Codex: `$CODEX_HOME` when set, otherwise `~/.codex`; full persisted rollouts are discovered below its session store. `history.jsonl` is deliberately not treated as a full session transcript.
 - Claude Code: `$CLAUDE_CONFIG_DIR` when set, otherwise `~/.claude`; transcripts are discovered below `projects/`.
 
-Leave output on stdout for one-session use. When a durable local index is useful, use `.qp/ayewo-igba-ise/<stable-subject>/session-evidence.json`.
+Leave output on stdout for one-session use. When an index is useful for resumption or repeated analysis, save the JSON through [records](../records.md) and keep its corpus boundary and source locators with it. This is working evidence, not project knowledge by itself.
 
 ## Structural activity evidence
 

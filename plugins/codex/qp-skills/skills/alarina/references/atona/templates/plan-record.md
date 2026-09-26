@@ -10,7 +10,7 @@ status: Draft # managed initiative only; omit otherwise
 
 # <Initiative>
 
-This template suggests content for the one living HTML plan. It is not a required Markdown output or companion. Keep the plan's identity, locator and revision in that HTML and update it through completion. Include the formal status, gate, Decision Frontier and delivery summary only when [managed initiatives](../managed-initiative.md) applies; outside that lifecycle, describe actual progress and open decisions in ordinary terms. Omit fields and sections that do not apply.
+This template suggests content for the one living plan in the requested or useful format. It does not require a file, HTML output or a companion copy. Keep the plan's identity and, when persisted, its locator and revision current through completion. Include the formal status, gate, Decision Frontier and delivery summary only when [managed initiatives](../managed-initiative.md) applies; outside that lifecycle, describe actual progress and open decisions in ordinary terms. Omit fields and sections that do not apply.
 
 ## Resume
 
@@ -38,7 +38,7 @@ This template suggests content for the one living HTML plan. It is not a require
 
 **Completion condition:** <checkable boundary>
 
-**Plan:** <stable HTML locator and current revision; update this same plan through completion>
+**Plan:** <locator and current revision when persisted; update this same plan through completion>
 
 ## Outcome and acceptance
 

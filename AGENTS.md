@@ -1,13 +1,34 @@
 # Repository guidance
 
-This repository packages one canonical skill at `skills/alarina/SKILL.md`. All QP capabilities are focused commands under `skills/alarina/commands/`; supporting methods and resources remain under `skills/alarina/references/<domain>/`. Playbooks compose commands. Do not restore standalone QP skill entrypoints or nested discovery metadata. Preserve invocation permissions when moving or splitting commands.
+For repository work, use this checkout's [Alárinà skill](skills/alarina/SKILL.md); the installed plugin can lag. Use `oro-sigidi` for agent instructions and `oro-eniyan` for human prose.
 
-Use Alárinà's `oro-sigidi` command for agent-facing instructions and `oro-eniyan` for human-facing prose. Keep expertise with its reference, workflow progression with its workflow, and host configuration with the host. `routes.yaml` owns the command inventory and generated menu; provider adapters own namespaces and supported metadata. Installing Alárinà must include its complete reference tree.
+## Edit the owner
 
-When implementation changes this repository's components, ownership, dependency direction or flows, check the canonical `ARCHITECTURE.md` or scoped architecture overview against the final code and update affected sections through Alárinà's `architect-document` command. Keep README and other affected reader instructions current through the delivery/documentation workflows. Record why no architecture update is needed when the impact is not obvious; do not create an overview for a routine change with no architectural effect.
+- `skills/alarina/` is canonical: `commands/` own results, `references/` hold expertise, and `playbooks/` compose workflows. Keep one discoverable `SKILL.md`; preserve command invocation permissions, including explicit-only `pese` and `qp-update`.
+- [routes.yaml](skills/alarina/routes.yaml) owns inventory and the `SKILL.md` menu. Update both together: the compiler rejects menu drift but does not rewrite it.
+- [agents/alarina.md](agents/alarina.md) delegates to the skill; [providers.yaml](scripts/plugins/providers.yaml) owns host formats, namespaces and release eligibility. Keep operating methods out of agent profiles.
+- `plugins/codex/qp-skills/` and `plugins/claude/qp-skills/` are committed build outputs. Rebuild their complete trees from source; do not hand-edit them or replace them with symlinks.
 
-Simplify repeated or obsolete guidance while preserving behavior, authority boundaries, and useful expertise. Choose cohesive command boundaries through `oro-sigidi`; do not split by technical layer or checklist step. Keep scripts only when they provide a bounded result that prose cannot reliably provide. Shared installed utilities belong under `skills/alarina/scripts/`, with interpretation at the owning method. Repository-wide package validators belong under `scripts/skills/`; optional model comparisons belong under `evals/`, outside installable skills.
+## Build and verify
 
-Match verification to the change. Keep checks that catch realistic failures of shipped mechanics; remove redundant or incidental checks. Do not recreate a check the user deliberately removed. When removing a script or workflow, remove references to its commands and claims of its results. Report what was actually verified.
+The npm build wrappers use `python3` and [requirements-dev.txt](requirements-dev.txt), even for Markdown-only skill changes. Install dependencies in a virtual environment when needed.
 
-Keep attribution and licences when moving or retiring material.
+After changing shipped sources, run from the repository root and include regenerated bundles in the change:
+
+```sh
+npm run build:plugins
+npm run check:plugins
+python3 scripts/skills/check_package.py
+```
+
+For compiler or installer changes, add `npm run test:plugins`. [Package CI](.github/workflows/checks.yml) lists other mechanical checks; [build guidance](scripts/plugins/README.md) covers native installation. Verify activation and model behavior separately when claimed. Keep model evals optional; do not recreate deliberately retired checks.
+
+Before pushing substantive changes, apply Alárinà's [local readiness contract](skills/alarina/references/atunwo/local-readiness.md) to the complete source and generated candidate. CI is the backstop for locally available review and checks.
+
+## Keep changes cohesive
+
+Consult [ARCHITECTURE.md](ARCHITECTURE.md) for ownership and build flows, and [.nongoals](.nongoals) before expanding responsibilities. Reconcile structural changes through `architect-document` and update affected reader instructions; routine wording changes need no architecture churn.
+
+Add scripts for valuable deterministic results. Shared runtime scripts belong in `skills/alarina/scripts/`, package validators in `scripts/skills/`, and optional comparisons in `evals/`. Existing `.qp/` is ignored working state; new records follow the skill's [persistence policy](skills/alarina/references/records.md). Remove stale callers and evidence claims when retiring scripts or workflows. Preserve attribution and licences.
+
+Use Changesets for release versioning; generated plugin versions come from `package.json`.

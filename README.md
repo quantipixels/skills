@@ -76,12 +76,17 @@ Describe the result naturally, or name a focused command after Alárinà:
 
 ```text
 $qp-skills:alarina oro-sigidi simplify these agent instructions
+$qp-skills:alarina alarina-setup prepare this project's local checks and review workflow
 $qp-skills:alarina seda-spec define the observable API behavior
 /qp-skills:alarina seda-tickets break this accepted spec into work packages
 /qp-skills:alarina oro-eniyan rewrite this explanation for the reviewer
 ```
 
 The [command menu](skills/alarina/SKILL.md#commands) groups capabilities by outcome family. Commands live under `skills/alarina/commands/` and are arguments to Alárinà, not separate slash/dollar skills. Supporting depth stays under `references/` and loads only when relevant; reusable utilities ship in [`scripts/`](skills/alarina/scripts/README.md). Ordinary engineering requests need no command name. Bare invocation shows the menu without starting work. [Terms and names](skills/alarina/references/terms.md) explains the command names and engineering concepts including DX, AX, deep modules and HITL/AFK.
+
+Optional `alarina-setup` establishes how to work and verify in a project or personal environment. It reuses existing standards, tools, tracking and instructions, adding only missing configuration or pointers. Working projects need no setup ceremony. Shared expectations stay with the project; personal host and model preferences stay with the user.
+
+Commands can reuse one another's methods for a bounded question without copying instructions or starting another workflow. For example, project verification can use `sawari` to locate a behavior, then apply `arojinle` with the agent serving as its user/respondent to establish what the proof must show. The caller supplies the purpose, participants and evidence; Àròjinlẹ̀'s method stays the same. Agent answers do not invent human preferences or approval.
 
 For domain language, `amose-context` maintains a project's existing glossary or creates `CONTEXT.md` when the first project-specific term is resolved. In multi-context projects, `CONTEXT-MAP.md` points to the scoped glossaries. A requested `.learning` or `.learnings` migration sorts entries by meaning: definitions go to the glossary, codebase rules to established standards (or `CODEBASE_STANDARD.md` when needed), procedures to their runbooks or methods, and decisions and exclusions to ADRs and non-goals. Workaround retirement conditions move with their guidance. Every live entry and reader pointer must be accounted for before retiring a legacy file.
 
@@ -95,11 +100,13 @@ To make Alárinà the main Codex session's default operating skill across projec
 
 Implicit host selection is best effort. Explicit invocation is the dependable entry path when the host misses the description. Selecting an agent profile establishes its operating entrypoint; it does not guarantee correct routing or completion.
 
-During TDD delivery, Alága works in Red → Green slices, then Àtúnwò reviews Standards and Specification separately and identifies warranted refactoring, unless the user explicitly skips review. Alága applies accepted corrections and reruns affected checks. Review remains read-only; passing behavior tests does not replace design judgment, and design preferences do not invent requirements.
+Substantive changes receive independent local review before completion or publication. Delivery and PR follow-up use the same [readiness contract](skills/alarina/references/atunwo/local-readiness.md): check the actual candidate, review it, batch warranted corrections locally, and refresh affected evidence before pushing. Mechanical changes can use proportionate checks, and explicit review skips remain visible. CI supplies remote-only proof and a backstop; required checks still apply. During TDD, Alága owns Red → Green and corrections; Àtúnwò independently reviews Standards and Specification, including warranted refactoring. Both use the project's standards.
 
 Retrospective work has three commands: `ayewo-igba-ise` reconstructs an event; `ayewo-retro` improves the coding agent's working environment; `ayewo-corpus` assesses patterns across sessions, skill use and reusable artifact lessons. They share evidence rules and the existing session indexer. None starts remediation unless it is authorized.
 
 Alárinà looks for the project's existing verification commands and skills before substantial implementation. When a reusable capability is missing, `alaga-verify-project` establishes the real launch, readiness, drive, evidence and cleanup path, then exercises it from the documented starting state. Delivery keeps affected recipes current; broader verification audits are separately scoped. Missing access or runtime proof remains an explicit completion gap.
+
+Routine work needs no extra record or HTML report. Under the [record policy](skills/alarina/references/records.md), requested deliverables use a visible destination, shared knowledge stays with its project owner, and disposable scratch uses temporary storage. Private resumable state reuses its existing record or defaults to `${XDG_STATE_HOME:-$HOME/.local/state}/alarina/`, isolated by project, worktree and task. Existing `.qp` records remain usable; the policy does not automatically move or delete them.
 
 ## Update
 

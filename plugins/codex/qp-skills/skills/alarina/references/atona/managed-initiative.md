@@ -91,4 +91,4 @@ If the premortem or another required result is absent, stale, blocked, or not re
 
 Before `Closed`, require an empty Decision Frontier, no blocking plan gap, current accepting proof for every in-scope obligation, explicit residual deferrals and no required durable-knowledge gap. Apply the shared initiative's workspace reconciliation and removal authority. Record `reconciled`, `reconciled-retained` or `reconciled-and-removed` when a linked workspace was involved.
 
-Align status, current gate, Decision Frontier, delivery summary, evidence freshness, workspace disposition, remaining limits and next action in the same HTML plan. A missing or stale view does not satisfy its handoff contract.
+Align status, current gate, Decision Frontier, delivery summary, evidence freshness, workspace disposition, remaining limits and next action in the same current plan. Use its requested or established format; a missing or stale required plan does not satisfy its handoff contract.

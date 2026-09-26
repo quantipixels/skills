@@ -8,7 +8,7 @@ Reuse the known audience, intended outcome, constraints and user preferences. Id
 
 Choose the smallest medium that makes the relevant experience truthful: a sketch for visual direction, an interactive flow for behavior, or a runnable API/CLI for ergonomics. Label simulations and never fake the dimension being explored. Reuse existing components and preview capabilities when useful.
 
-Keep prototypes in temporary storage by default, or `.qp/adanwo/` when persistence helps iteration. Stay within existing authority for edits and external effects; a prototype request does not authorize production changes, publication or adoption.
+Keep disposable prototypes in temporary storage. When a prototype must survive for feedback or iteration, place it through [records](../references/records.md) and return a usable locator. Stay within existing authority for edits and external effects; a prototype request does not authorize production changes, publication or adoption.
 
 ## Explore distinct directions
 

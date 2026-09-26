@@ -25,4 +25,4 @@ When reassessing established technology, dependencies, layout or build/test stru
 
 ## Persistence
 
-Keep the canonical overview at its existing location, otherwise repository-root `ARCHITECTURE.md`. Persist question-specific architecture work to the existing project destination; otherwise `.qp/architect/`, using the compact [architecture record](templates/architecture-record.md) when needed. Link the overview rather than maintaining competing system descriptions.
+Keep the canonical overview at its existing location, otherwise repository-root `ARCHITECTURE.md`. Persist question-specific architecture work only when needed, following [records](../records.md) and an existing project destination when present; use the compact [architecture record](templates/architecture-record.md) when helpful. Link the overview rather than maintaining competing system descriptions.

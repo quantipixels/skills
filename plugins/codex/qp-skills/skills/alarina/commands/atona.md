@@ -10,11 +10,11 @@ Resolve discoverable facts from relevant project knowledge before asking the use
 
 ## Keep the human in the plan
 
-Use [html-artifact](html-artifact.md) for every plan, including exploration-only and planning-only work. The HTML is the one current plan: do not create or maintain an equivalent Markdown companion. Present the first proposed direction before delivery so the user can judge alignment. Maintain the same HTML through decisions, implementation, review, and completion; share its locator and revision with contributors.
+Keep one current plan in the requested or established format. Use [records](../references/records.md) when it needs persistence. Present the first proposed direction before delivery so the user can judge alignment. Maintain the plan through decisions, implementation, review, and completion; share its locator and revision with contributors when it is saved.
 
-Supply the reader's current decision or concern, plan identity/revision, relevant candidate/evidence identities, and plan obligations whose omission would change a decision or progression judgment. Atọ́nà owns that meaning and its completeness; [html-artifact](html-artifact.md) owns construction and presentation verification, using its existing presentation guidance. Accept the artifact only when those obligations and their material limits are visible and current.
+Supply the reader's current decision or concern, relevant candidate/evidence identities, and plan obligations whose omission would change a decision or progression judgment. Atọ́nà owns that meaning and its completeness. Use [html-artifact](html-artifact.md) when the user requests a browser document or that presentation materially helps the decision; it owns construction and presentation verification. Accept the plan only when those obligations and their material limits are visible and current.
 
-Update meaning and presentation in that plan after material changes, before dependent decisions or delivery handoffs. Chat updates supplement this record. Honor existing authority and requested review boundaries without adding approval rounds. If the HTML is unavailable, report the deliverable gap and continue independent discovery and planning. Independent domain, architecture, research and evidence records keep their own useful formats; they are not duplicate plans.
+Update the plan after material changes, before dependent decisions or delivery handoffs. Chat updates supplement a saved plan. Honor existing authority and requested review boundaries without adding approval rounds. If a requested presentation cannot be produced, report the deliverable gap and continue independent discovery and planning. Independent domain, architecture, research and evidence records keep their own useful formats; they are not duplicate plans.
 
 ## Explore and settle direction
 
@@ -64,14 +64,14 @@ Use [seda-pr](seda-pr.md) for authorized publication and [wo-pr](wo-pr.md) for r
 
 ## Preserve continuity and close
 
-Keep the plan in context for a short session. When continuity or downstream use needs persistence, update the existing project plan; otherwise use `.qp/atona/`. Record the absolute execution workspace and `branch: <branch-name> [main|worktree]`, plus the main-worktree path for a linked worktree. Update them when execution moves. Include this workspace context and any closure disposition in local operational plans; omit machine-specific absolute paths from portable/public artifacts unless explicitly requested.
+Keep the plan in context for a short session. When continuity or downstream use needs persistence, follow [records](../references/records.md) and update the existing plan first. Record the execution workspace and branch, plus the main-worktree path for a linked worktree, when that identity matters for resumption. Update it when execution moves. Omit machine-specific absolute paths from portable/public artifacts unless explicitly requested.
 
-Keep ordinary rationale in the HTML plan; read [durable reconciliation](../references/atona/durable-reconciliation.md) only when required governing knowledge needs updating.
+Keep ordinary rationale in the current plan; read [durable reconciliation](../references/atona/durable-reconciliation.md) only when required governing knowledge needs updating.
 
-Before closing a linked-worktree initiative, reconcile required `.qp` state into the accepting workspace, clean only reconciled/disposable state, and record the workspace disposition. Preserve unresolved state. Worktree removal requires user approval; retaining it does not block completion.
+Before closing a linked-worktree initiative, reconcile required task state with the accepting workspace, clean only reconciled or disposable owned state, and record the workspace disposition. Preserve unresolved state. Worktree removal requires user approval; retaining it does not block completion.
 
-Close only when the requested outcome has current accepting proof, required documentation and integration are complete, the living view explains the delivered outcome and remaining limits, and no blocking in-scope obligation remains. For exploration-only or planning-only work, apply that bound to the requested artifacts and state that delivery has not been performed.
+Close only when the requested outcome has current accepting proof, required documentation and integration are complete, the current plan explains the delivered outcome and remaining limits, and no blocking in-scope obligation remains. For exploration-only or planning-only work, apply that bound to the requested artifacts and state that delivery has not been performed.
 
 Once these conditions hold, update the existing plan and hand over promptly. Make delta updates and recheck only artifact claims or presentation affected by them. Optional cleanup, broader review and visual polish belong in follow-up; they must not keep accepted delivery open. Link decisive evidence instead of copying raw logs or rebuilding the report.
 
-Return the living view's locator, outcome, decisive verification, and material limits. If blocked, identify the exact remaining work, prerequisite or human decision, and next action; a recommendation is not completion. Continue authorized executable work instead of ending at a suggested next step.
+Return the plan's locator when saved, outcome, decisive verification, and material limits. If blocked, identify the exact remaining work, prerequisite or human decision, and next action; a recommendation is not completion. Continue authorized executable work instead of ending at a suggested next step.

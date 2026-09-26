@@ -6,6 +6,8 @@ Use `survey` when the question is where architecture work is warranted rather th
 
 Bound the search before scanning. Prefer the named subsystem, user pain point, failure area, or change envelope. When no area is supplied and repository history is available, inspect a bounded useful stretch of change history to identify repeatedly changing or tightly co-changing paths, then let those hot areas focus inspection. Widen only when the evidence is scattered or the requested scope requires it; do not equal-weight an entire repository by default.
 
+When an unfamiliar implementation hides the relevant owners or caller paths, use [sawari](sawari.md) for that bounded source map. Consume its locators and coverage limits, then assess architectural friction here; a source map alone is not a survey finding.
+
 When module/interface/seam shape is material, read [module design](../references/architect/module-design.md) and look for friction such as:
 
 - callers repeating sequencing, branching, validation, recovery, mapping, or foreign-system knowledge that one owner could hide;

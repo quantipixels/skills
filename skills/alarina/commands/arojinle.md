@@ -38,10 +38,10 @@ The decisions remain the user's. Do not silently convert a recommendation, gener
 
 ## Make shared understanding visible
 
-For a plan or proposed direction, use [html-artifact](html-artifact.md) from the first meaningful proposal. Reuse the initiative’s living view through its owner; otherwise maintain one for handoff. Keep questions in the conversation. Other bounded decisions use visual support as needed.
+For a plan or proposed direction, reuse the initiative's living view and format through its owner. Use [html-artifact](html-artifact.md) when requested or when a visual materially helps the user compare and confirm the choices. Keep questions in the conversation. Other bounded decisions use visual support as needed.
 
-After material changes, update the decisions and their presentation in the same HTML plan before dependent questions; do not create an equivalent Markdown companion. Preserve alternatives, hard gates, uncertainty, and counterevidence. Present the consolidated view before final confirmation. If it is unavailable, report the gap and continue independent fact-finding.
+After material changes, update any chosen view before dependent questions. Preserve alternatives, hard gates, uncertainty, and counterevidence that still affect the decision. Present the consolidated view before final confirmation when one is in use.
 
 Before declaring the material frontier empty, challenge the current tree for consequential assumptions, missing branches, contradictory decisions, and dependencies that were never made explicit.
 
-Finish only when that challenge leaves no unresolved material branch, any required view is current, and the user confirms shared understanding. Return confirmed decisions, material assumptions/evidence, decision-changing alternatives/criteria when they constrained the choice, explicit deferrals/re-entry conditions, and the next outcome boundary to the same caller. Pass the plan’s HTML locator and revision. Return newly exposed domain, factual or technical gaps without starting a competing workflow. Do not execute delivery inside [arojinle](arojinle.md).
+Finish only when that challenge leaves no unresolved material branch, any required view is current, and the user confirms shared understanding. Return confirmed decisions, material assumptions/evidence, decision-changing alternatives/criteria when they constrained the choice, explicit deferrals/re-entry conditions, and the next outcome boundary to the same caller. Pass the view locator and revision when one exists. Return newly exposed domain, factual or technical gaps without starting a competing workflow. Do not execute delivery inside [arojinle](arojinle.md).

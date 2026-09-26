@@ -27,6 +27,8 @@ For Alárinà, add commands to `commands/` and `routes.yaml`, then regenerate th
 
 Keep shared meaning with one authoritative owner. A caller states the required result and consumes its evidence instead of copying the callee's procedure. Retain consequential authority and stop conditions at the local branch where the agent chooses an action. When moving or retiring an owner, reconcile routes, consumers, resource paths and published package content together.
 
+For a useful command-to-command dependency, link the exact method with the question, participants and result the caller needs. Reuse adequate evidence and preserve the caller's authority. Adapt the assignment before changing the reusable method: verification can apply Àròjinlẹ̀ with the agent as its user/respondent to establish what a journey must prove. Agent answers remain bounded by evidence and accepted decisions, not invented human preference or approval. Keep this application direction with the caller; it does not require a new callee mode, worker or standalone lifecycle. Avoid mutual handoffs for the same prerequisite and speculative links between every command.
+
 ## Decide whether a separate skill earns a public identity
 
 A separate skill should have:

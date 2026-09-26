@@ -50,4 +50,4 @@ For a reviewable candidate, identify it exactly and give a compact walkthrough o
 
 For a material opinion, proposal, assumption, or decision-shaping hypothetical, distinguish intent from the factual claim, assumptions, and consequences. Seek the strongest support and counterevidence, a credible alternative, relevant failure paths, and the smallest evidence that could change the conclusion.
 
-Return `SUPPORTED`, `PARTIAL`, `UNSUPPORTED`, or `UNPROVED` with the decisive reason. Separate fact from inference and do not reopen settled decisions without conflicting evidence. Use `arojinle` when dependent choices need a complete user interview; a bounded premise check remains here.
+Return `SUPPORTED`, `PARTIAL`, `UNSUPPORTED`, or `UNPROVED` with the decisive reason. Separate fact from inference and do not reopen settled decisions without conflicting evidence. Use [arojinle](../commands/arojinle.md) when dependent questions need an interview, naming the agent as respondent for evidence-grounded self-examination or the human for their choices; a bounded premise check remains here.

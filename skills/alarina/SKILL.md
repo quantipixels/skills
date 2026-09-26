@@ -1,6 +1,6 @@
 ---
 name: alarina
-description: Carry software-engineering work through investigation, diagnosis, planning, specifications, work decomposition, architecture, implementation, testing, review, incident recovery, performance improvement, migration, documentation, PRs and releases. Use for unclear engineering ownership, multi-stage work or resuming an accepted task; also for prototypes, agent instructions, human-facing writing, technical explanations, HTML artifacts, domain records, macOS disk cleanup and Yoruba language or terminology guidance. Accept named Alarina commands and natural requests. Private serving (pese) and installation updates (qp-update) require explicit user invocation of those commands. Exclude casual unrelated facts and standalone visual design.
+description: Carry software-engineering work through project setup, investigation, diagnosis, planning, specifications, work decomposition, architecture, implementation, testing, review, incident recovery, performance improvement, migration, documentation, PRs and releases. Use for unclear engineering ownership, multi-stage work or resuming an accepted task; also for prototypes, agent instructions, human-facing writing, technical explanations, HTML artifacts, domain records, macOS disk cleanup and Yoruba language or terminology guidance. Accept named Alarina commands and natural requests. Private serving (pese) and installation updates (qp-update) require explicit user invocation of those commands. Exclude casual unrelated facts and standalone visual design.
 ---
 
 # Alárinà
@@ -104,6 +104,7 @@ The table is generated from [routes.yaml](routes.yaml). That file owns command a
 
 | Command | Purpose |
 | --- | --- |
+| [`alarina-setup`](commands/alarina-setup.md) | Establish project or personal environment readiness for Alarina using existing conventions. |
 | [`pese`](commands/pese.md) | On explicit command invocation, serve a bounded local resource through private transport. (explicit invocation only) |
 | [`qp-update`](commands/qp-update.md) | On explicit command invocation, update the existing QP installation through its current manager. (explicit invocation only) |
 | [`system-cleanup`](commands/system-cleanup.md) | Audit macOS storage and reclaim authorized regenerable data or verify chosen offloads. |
@@ -139,9 +140,11 @@ State the chosen path and requested finish briefly when it changes how work proc
 
 At each boundary, identify what unresolved result controls the next decision. Consume the preceding result's actual evidence before advancing. A proposed test, worker completion message or handoff is not acceptance. Reroute when findings change the next required result and reopen only affected decisions or proof. Add commands, workers, plans or checks only for a real obligation or gap.
 
+Commands can use another command's method within the current assignment. Read its exact reference, supply the bounded question, participants, current evidence and authority, and consume its result at the caller's stopping point. For an internal interview, the caller can assign the agent as the user/respondent: answer from inspected evidence and accepted decisions, and confirm only what those support. This participant assignment grants no human preferences, approval or extra authority; return an unresolved human choice to the actual user. Reuse sufficient evidence. A method call needs neither another agent nor a standalone workflow. If it returns the same unresolved prerequisite, resolve or report the gap rather than cycling through commands. Keep the procedure at its owner and the application directions with its caller.
+
 Distinguish adjacent outcomes:
 
-- Ambitious or unclear direction → `atona-direction`; unsettled purpose, success or dependent human choices → `arojinle`; uncertainty requiring experience → `adanwo`.
+- Ambitious or unclear direction → `atona-direction`; unsettled purpose, success or dependent choices → `arojinle`, with the caller identifying the respondent; uncertainty requiring experience → `adanwo`.
 - Domain identity, lifecycle, policy or invariant applicability → `amose`, even when the words are familiar. Current implementation does not automatically establish domain intent.
 - Observable behavior → `seda-spec`; structure or consequential technical fitness → `architect-design`; accepted work decomposition → `seda-tickets`. Use both specification and architecture when both remain unresolved.
 - Code judgment → `atunwo`; mechanism/architecture fitness → `architect-review`; measured engineering comparison → `alaga-compare`; instruction/model comparison → the skill-evaluation playbook.
@@ -149,6 +152,7 @@ Distinguish adjacent outcomes:
 - After an accepted coding change, `alaga-deliver` owns checking and reconciling its affected documentation before delivery closes. A separately requested read-only documentation assessment → `akowe-audit`; authorized set-wide reconciliation → `akowe-sync`. Architect owns structural claims and `ARCHITECTURE.md`; Amọ̀ṣẹ́ owns domain meaning and qualified durable records. Agent-facing behavioral text → `oro-sigidi`; human-facing prose → `oro-eniyan`. Presentation helpers consume supplied truth rather than inventing it.
 - An active incident → `alaga-recover`; causal diagnosis → `alaga-diagnose`; event reconstruction → `ayewo-igba-ise`; coding-session environment improvement → `ayewo-retro`; cross-session patterns, skill-use evidence or reusable artifact lessons → `ayewo-corpus`. Choose by result, not log count. Remediation follows only when requested.
 - PR description, publication and stewardship remain distinct. Status-only watching stays read-only; readiness is neither approval nor merge.
+- Project or personal environment readiness → `alarina-setup`; a reusable product verification capability → `alaga-verify-project`. Setup is optional; ordinary tasks reuse existing conventions without an onboarding ceremony.
 
 When a consequential premise needs testing, read the [premise check](references/coordination.md#premise-check). Retain non-obvious reasoning when losing it would cause recurrence or substantial rediscovery; ordinary completion does not require a new lesson or postmortem.
 
@@ -158,7 +162,7 @@ When no playbook fits, compose the smallest adequate path from the command table
 
 Locate the current owner's artifact and actual workspace/candidate, including the recorded playbook. Reconcile completed and pending results against decisive current evidence. Preserve accepted decisions, scope, proof and stopping point. Resume at the first unresolved result; reopen only what changed evidence invalidates.
 
-A side question does not replace an active outcome or authorize implementing the answer. Incorporate steering while retaining the original objective unless the user changes or cancels it. When persistence is useful, record the actual candidate/workspace, decisive evidence locators, unresolved work and next action in the existing owner record rather than creating a second store.
+A side question does not replace an active outcome or authorize implementing the answer. Incorporate steering while retaining the original objective unless the user changes or cancels it. Before creating, relocating or cleaning persistent working records, read [records and artifacts](references/records.md). Routine results need no file; reuse the existing owner record, keep shared knowledge at its project owner, and requested deliverables where the user can find them.
 
 ## Coordinate and hand off
 

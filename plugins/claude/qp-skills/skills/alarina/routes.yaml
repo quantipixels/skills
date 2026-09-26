@@ -297,6 +297,11 @@ commands:
   implicit: true
   former_skill: html-artifact
   former_mode: artifact
+- id: alarina-setup
+  family: utility
+  description: Establish project or personal environment readiness for Alarina using existing conventions.
+  reference: commands/alarina-setup.md
+  implicit: true
 - id: pese
   family: utility
   description: On explicit command invocation, serve a bounded local resource through private transport.

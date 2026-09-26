@@ -4,10 +4,10 @@
   "provider": "claude",
   "support_state": "verified",
   "source": {
-    "inputs": 141,
-    "sha256": "12cb5d74a3822bacd58be4e88bafa569713196e4f9436782bf090547758aabdf"
+    "inputs": 144,
+    "sha256": "8a98c8903e517053dbd8869bbff81717fdb4cde656e8c612d990cd30d8b83bc1"
   },
-  "route_digest": "a480344606c9c95bd4baad090b4f10bf37462663a3af72a3c3522a12e5e6212a",
+  "route_digest": "bd539132d627231574adba79b772869d783228807a85d5bf33cd2f3bfe40e1c7",
   "qualified_invocation": "/qp-skills:alarina",
   "aliases": [
     "route",
@@ -55,6 +55,7 @@
     "wo-pr",
     "fihanmi",
     "html-artifact",
+    "alarina-setup",
     "pese",
     "qp-update",
     "system-cleanup",
@@ -90,17 +91,17 @@
     },
     {
       "path": "skills/alarina/SKILL.md",
-      "sha256": "918920ac2351ae253dcc095ef212c036ac96b7051af3e5681afb0b6b3b301a63",
+      "sha256": "a239bf9dc47fe73e9b5679ca2702b18630224ffb9e2491cc1e948c425d10ee0f",
       "mode": "0o644",
       "source": "skills/alarina/SKILL.md",
-      "source_sha256": "67aa5769bc77a1e83a3e4394270ed5e9754f23985243c29d1a5a48e6b189010e"
+      "source_sha256": "26981f0be0580358a96465230a6ee0be806388d3dddafe16401092ee4997bfba"
     },
     {
       "path": "skills/alarina/commands/adanwo.md",
-      "sha256": "533909372466cbe288f1b8bb75dc6de7605090ba7462faf226913bcef5be3fb8",
+      "sha256": "90d1b5dc923c6b070e5a8861a597ec461003868e42d852640a542710660e4dca",
       "mode": "0o644",
       "source": "skills/alarina/commands/adanwo.md",
-      "source_sha256": "533909372466cbe288f1b8bb75dc6de7605090ba7462faf226913bcef5be3fb8"
+      "source_sha256": "90d1b5dc923c6b070e5a8861a597ec461003868e42d852640a542710660e4dca"
     },
     {
       "path": "skills/alarina/commands/akowe-audit.md",
@@ -125,24 +126,24 @@
     },
     {
       "path": "skills/alarina/commands/alaga-deliver.md",
-      "sha256": "bd7e82960112f7949e50809a5c2d6fbae011216abeb78bacc97b5286822c8f13",
+      "sha256": "6be5c7bff175ee4ef37849754e0a32f8d44e41691ca2a7b9656768517c08545c",
       "mode": "0o644",
       "source": "skills/alarina/commands/alaga-deliver.md",
-      "source_sha256": "bd7e82960112f7949e50809a5c2d6fbae011216abeb78bacc97b5286822c8f13"
+      "source_sha256": "6be5c7bff175ee4ef37849754e0a32f8d44e41691ca2a7b9656768517c08545c"
     },
     {
       "path": "skills/alarina/commands/alaga-diagnose.md",
-      "sha256": "d05ccf053b06c6b11b1494c0da9f01d40583fa66abc0b4ab7398b3b967cf469d",
+      "sha256": "97ab6e29490c9c465764282ec8d032b66825d8c3ffbb194a3440fd46423faa96",
       "mode": "0o644",
       "source": "skills/alarina/commands/alaga-diagnose.md",
-      "source_sha256": "d05ccf053b06c6b11b1494c0da9f01d40583fa66abc0b4ab7398b3b967cf469d"
+      "source_sha256": "97ab6e29490c9c465764282ec8d032b66825d8c3ffbb194a3440fd46423faa96"
     },
     {
       "path": "skills/alarina/commands/alaga-intake.md",
-      "sha256": "07b723d760b6091c75b1fbe4e8204b2ed9346807668190662c3a5b7a2a1d8433",
+      "sha256": "a880b51d623c92d2341623bfebf6a013645cdb17fd7d0ca5584a8eb6d26b2600",
       "mode": "0o644",
       "source": "skills/alarina/commands/alaga-intake.md",
-      "source_sha256": "07b723d760b6091c75b1fbe4e8204b2ed9346807668190662c3a5b7a2a1d8433"
+      "source_sha256": "a880b51d623c92d2341623bfebf6a013645cdb17fd7d0ca5584a8eb6d26b2600"
     },
     {
       "path": "skills/alarina/commands/alaga-recover.md",
@@ -153,10 +154,17 @@
     },
     {
       "path": "skills/alarina/commands/alaga-verify-project.md",
-      "sha256": "3cea1ac8b429523d9632dd4c1cdaba042cdf85d4df5fd4ff7d6a59d59444b0d5",
+      "sha256": "c085af3217bf1ccdf59b0282ae497aa4870bdd115214b2a59ac6f802fe24f304",
       "mode": "0o644",
       "source": "skills/alarina/commands/alaga-verify-project.md",
-      "source_sha256": "3cea1ac8b429523d9632dd4c1cdaba042cdf85d4df5fd4ff7d6a59d59444b0d5"
+      "source_sha256": "c085af3217bf1ccdf59b0282ae497aa4870bdd115214b2a59ac6f802fe24f304"
+    },
+    {
+      "path": "skills/alarina/commands/alarina-setup.md",
+      "sha256": "4c0c09078d4e7a50524701bb09d308c56d7bcf04492ac3698f8f5e095bba9136",
+      "mode": "0o644",
+      "source": "skills/alarina/commands/alarina-setup.md",
+      "source_sha256": "4c0c09078d4e7a50524701bb09d308c56d7bcf04492ac3698f8f5e095bba9136"
     },
     {
       "path": "skills/alarina/commands/amose-adrs.md",
@@ -209,17 +217,17 @@
     },
     {
       "path": "skills/alarina/commands/architect-survey.md",
-      "sha256": "60c92541eba2603da04d44aaade3e1fed4fd4d33b666e024174d44ad10a2ee12",
+      "sha256": "7c4aa6d570347e833c6e528045743d8d3b0837c65d58240657d26b59a91249dc",
       "mode": "0o644",
       "source": "skills/alarina/commands/architect-survey.md",
-      "source_sha256": "60c92541eba2603da04d44aaade3e1fed4fd4d33b666e024174d44ad10a2ee12"
+      "source_sha256": "7c4aa6d570347e833c6e528045743d8d3b0837c65d58240657d26b59a91249dc"
     },
     {
       "path": "skills/alarina/commands/arojinle.md",
-      "sha256": "e9c571bcbe94d8f0072018e58b6ecf8fdba2f89113052a67fec6d0d03ae95adf",
+      "sha256": "a4463ccc743daaebc65e63aafb28c5edc7269f4787dd866cd886b8e91b537ad6",
       "mode": "0o644",
       "source": "skills/alarina/commands/arojinle.md",
-      "source_sha256": "e9c571bcbe94d8f0072018e58b6ecf8fdba2f89113052a67fec6d0d03ae95adf"
+      "source_sha256": "a4463ccc743daaebc65e63aafb28c5edc7269f4787dd866cd886b8e91b537ad6"
     },
     {
       "path": "skills/alarina/commands/atona-direction.md",
@@ -230,10 +238,10 @@
     },
     {
       "path": "skills/alarina/commands/atona.md",
-      "sha256": "132b65973606bcee0edc14322d6ad137d6df315490a3b527d921cefc21c41963",
+      "sha256": "5cd04dff676f7d001004a046b341fe075d602435a596a37f9b5d772c934b812e",
       "mode": "0o644",
       "source": "skills/alarina/commands/atona.md",
-      "source_sha256": "132b65973606bcee0edc14322d6ad137d6df315490a3b527d921cefc21c41963"
+      "source_sha256": "5cd04dff676f7d001004a046b341fe075d602435a596a37f9b5d772c934b812e"
     },
     {
       "path": "skills/alarina/commands/atunwo.md",
@@ -272,17 +280,17 @@
     },
     {
       "path": "skills/alarina/commands/html-artifact.md",
-      "sha256": "0674159ea90de3d58092d083f137a59dcf63e6b3922ddfb59e73e7ca35c02a4a",
+      "sha256": "5d4ae368a7d174d971ad304acb06a0f87c5e42c7bf72e79d26c7bdff7196c369",
       "mode": "0o644",
       "source": "skills/alarina/commands/html-artifact.md",
-      "source_sha256": "0674159ea90de3d58092d083f137a59dcf63e6b3922ddfb59e73e7ca35c02a4a"
+      "source_sha256": "5d4ae368a7d174d971ad304acb06a0f87c5e42c7bf72e79d26c7bdff7196c369"
     },
     {
       "path": "skills/alarina/commands/iwadi.md",
-      "sha256": "79ab4910e53779cb9ae8b939f475fbd5d1b8ec926743d43abae772ed78c0d503",
+      "sha256": "0d112b3488aa37602a0400ae0ffe42466bbe8a9cc5f9fa22861c2067f3f1d483",
       "mode": "0o644",
       "source": "skills/alarina/commands/iwadi.md",
-      "source_sha256": "79ab4910e53779cb9ae8b939f475fbd5d1b8ec926743d43abae772ed78c0d503"
+      "source_sha256": "0d112b3488aa37602a0400ae0ffe42466bbe8a9cc5f9fa22861c2067f3f1d483"
     },
     {
       "path": "skills/alarina/commands/oro-eniyan.md",
@@ -314,10 +322,10 @@
     },
     {
       "path": "skills/alarina/commands/sawari.md",
-      "sha256": "d69a0b7c3ea66b6e955a551e0507dd6f2f0849bc58ebce5f4c3b96e4d6df4160",
+      "sha256": "2ceb68390a0aaf33e720500a400ed08dbb5d6773163db2ab79db83318f07d383",
       "mode": "0o644",
       "source": "skills/alarina/commands/sawari.md",
-      "source_sha256": "d69a0b7c3ea66b6e955a551e0507dd6f2f0849bc58ebce5f4c3b96e4d6df4160"
+      "source_sha256": "2ceb68390a0aaf33e720500a400ed08dbb5d6773163db2ab79db83318f07d383"
     },
     {
       "path": "skills/alarina/commands/seda-pr-description.md",
@@ -328,17 +336,17 @@
     },
     {
       "path": "skills/alarina/commands/seda-pr.md",
-      "sha256": "2f031498193de9f9e82fb9d8f0e212d348ed75fee99d837d829042f63ab500df",
+      "sha256": "035cacce825a283dde86775d6938ce6d27a97019bd810c04d6831e74521ac32f",
       "mode": "0o644",
       "source": "skills/alarina/commands/seda-pr.md",
-      "source_sha256": "2f031498193de9f9e82fb9d8f0e212d348ed75fee99d837d829042f63ab500df"
+      "source_sha256": "035cacce825a283dde86775d6938ce6d27a97019bd810c04d6831e74521ac32f"
     },
     {
       "path": "skills/alarina/commands/seda-spec.md",
-      "sha256": "5924629098b934148f3c017b4ca53c7712c30ba5f23b563f56431e64b8e10f15",
+      "sha256": "b293ad6dd5b12de92a46b0fd68f193cea6e25b2b4668ee8c2c714175db31b147",
       "mode": "0o644",
       "source": "skills/alarina/commands/seda-spec.md",
-      "source_sha256": "5924629098b934148f3c017b4ca53c7712c30ba5f23b563f56431e64b8e10f15"
+      "source_sha256": "b293ad6dd5b12de92a46b0fd68f193cea6e25b2b4668ee8c2c714175db31b147"
     },
     {
       "path": "skills/alarina/commands/seda-tickets.md",
@@ -356,10 +364,10 @@
     },
     {
       "path": "skills/alarina/commands/wo-pr.md",
-      "sha256": "040792adaa56c9cade070021804c3fdf56fc98f5c636c27e1443af98f2b66d15",
+      "sha256": "2b1650d0c8ae5ca1c7ab9c2bb2972d2779a67d8d6e4d2ce84fa1dc0bb55d1934",
       "mode": "0o644",
       "source": "skills/alarina/commands/wo-pr.md",
-      "source_sha256": "040792adaa56c9cade070021804c3fdf56fc98f5c636c27e1443af98f2b66d15"
+      "source_sha256": "2b1650d0c8ae5ca1c7ab9c2bb2972d2779a67d8d6e4d2ce84fa1dc0bb55d1934"
     },
     {
       "path": "skills/alarina/commands/yoruba-glossary.md",
@@ -454,10 +462,10 @@
     },
     {
       "path": "skills/alarina/playbooks/pr-readiness.md",
-      "sha256": "59978201f2232506cde329acfb1ab8cd28b8d3ccf11459cf9ca5d7841e9b6cc7",
+      "sha256": "0f3121180a5cf947ac81ac5b09b4f14bf64728baefcf057f577e5de69deb5d59",
       "mode": "0o644",
       "source": "skills/alarina/playbooks/pr-readiness.md",
-      "source_sha256": "59978201f2232506cde329acfb1ab8cd28b8d3ccf11459cf9ca5d7841e9b6cc7"
+      "source_sha256": "0f3121180a5cf947ac81ac5b09b4f14bf64728baefcf057f577e5de69deb5d59"
     },
     {
       "path": "skills/alarina/playbooks/project-verification.md",
@@ -608,10 +616,10 @@
     },
     {
       "path": "skills/alarina/references/architect/orientation.md",
-      "sha256": "3a8dc02c67f25ede90535ac73083cfd330c94ac9e5f48d92c66ed3704d267369",
+      "sha256": "b30e6868c8182c024e0109e2e53d8e10251be855603dbb07670bbc30102b1503",
       "mode": "0o644",
       "source": "skills/alarina/references/architect/orientation.md",
-      "source_sha256": "3a8dc02c67f25ede90535ac73083cfd330c94ac9e5f48d92c66ed3704d267369"
+      "source_sha256": "b30e6868c8182c024e0109e2e53d8e10251be855603dbb07670bbc30102b1503"
     },
     {
       "path": "skills/alarina/references/architect/shared-state.md",
@@ -643,10 +651,10 @@
     },
     {
       "path": "skills/alarina/references/atona/managed-initiative.md",
-      "sha256": "12808cca7acfbc4dfe94fbc61422f901a3837050fcaa46823adeab8958570355",
+      "sha256": "825b0fadce4299be7bec902caafe5fa505eab26ebb48d21dd48c87c44fb08727",
       "mode": "0o644",
       "source": "skills/alarina/references/atona/managed-initiative.md",
-      "source_sha256": "12808cca7acfbc4dfe94fbc61422f901a3837050fcaa46823adeab8958570355"
+      "source_sha256": "825b0fadce4299be7bec902caafe5fa505eab26ebb48d21dd48c87c44fb08727"
     },
     {
       "path": "skills/alarina/references/atona/planning-inputs.md",
@@ -685,10 +693,10 @@
     },
     {
       "path": "skills/alarina/references/atona/templates/plan-record.md",
-      "sha256": "7929418b53cd299413affc4be87318be4d1a8da9a58726a68cc868ca1e7fa002",
+      "sha256": "294d9295af09da8d2a87c3856df510a24fad05b99401391e91b5b4c0b1719779",
       "mode": "0o644",
       "source": "skills/alarina/references/atona/templates/plan-record.md",
-      "source_sha256": "7929418b53cd299413affc4be87318be4d1a8da9a58726a68cc868ca1e7fa002"
+      "source_sha256": "294d9295af09da8d2a87c3856df510a24fad05b99401391e91b5b4c0b1719779"
     },
     {
       "path": "skills/alarina/references/atunwo/boundary-failures.md",
@@ -703,6 +711,13 @@
       "mode": "0o644",
       "source": "skills/alarina/references/atunwo/codebase-assessment.md",
       "source_sha256": "54a79f1bdaecd9ed9771840a894d2d2c5f6c6576d36242e6e0188b41365bee4e"
+    },
+    {
+      "path": "skills/alarina/references/atunwo/local-readiness.md",
+      "sha256": "cbd901d194c28c168983f538389f486c2def58452a5d6525a9c930a82e1bf618",
+      "mode": "0o644",
+      "source": "skills/alarina/references/atunwo/local-readiness.md",
+      "source_sha256": "cbd901d194c28c168983f538389f486c2def58452a5d6525a9c930a82e1bf618"
     },
     {
       "path": "skills/alarina/references/atunwo/native-boundaries.md",
@@ -748,10 +763,10 @@
     },
     {
       "path": "skills/alarina/references/ayewo-igba-ise/local-session-evidence.md",
-      "sha256": "759933ab3adeb599b3e0caeeba2444de09b20715c366293006787ceeb5ddc0c6",
+      "sha256": "5457cc77f2e7979e231e69315b2fa91fa8c5cd2b9b3e47eef3faae09f18929c5",
       "mode": "0o644",
       "source": "skills/alarina/references/ayewo-igba-ise/local-session-evidence.md",
-      "source_sha256": "759933ab3adeb599b3e0caeeba2444de09b20715c366293006787ceeb5ddc0c6"
+      "source_sha256": "5457cc77f2e7979e231e69315b2fa91fa8c5cd2b9b3e47eef3faae09f18929c5"
     },
     {
       "path": "skills/alarina/references/ayewo-igba-ise/postmortem-method.md",
@@ -762,10 +777,10 @@
     },
     {
       "path": "skills/alarina/references/coordination.md",
-      "sha256": "653810ed636dccaa664beaf1c4db049ec1c46ee971974ac299e91ca458be0fe3",
+      "sha256": "11ee9cdd80ff1c05f3383b6f89836a27e3bd1dcec737d0fab1752e5dc96cc184",
       "mode": "0o644",
       "source": "skills/alarina/references/coordination.md",
-      "source_sha256": "653810ed636dccaa664beaf1c4db049ec1c46ee971974ac299e91ca458be0fe3"
+      "source_sha256": "11ee9cdd80ff1c05f3383b6f89836a27e3bd1dcec737d0fab1752e5dc96cc184"
     },
     {
       "path": "skills/alarina/references/fihanmi/codex-defaults.md",
@@ -909,10 +924,10 @@
     },
     {
       "path": "skills/alarina/references/oro/skill-mechanics.md",
-      "sha256": "2c56670b4ebc2147676aa3e5e9b55b0443a6eaf814621b12d920c777ddacbbf2",
+      "sha256": "4a8ab74c8f48b57b7b1c7b905e7b278a2ad44b44a17015dd643a61f938a9521e",
       "mode": "0o644",
       "source": "skills/alarina/references/oro/skill-mechanics.md",
-      "source_sha256": "2c56670b4ebc2147676aa3e5e9b55b0443a6eaf814621b12d920c777ddacbbf2"
+      "source_sha256": "4a8ab74c8f48b57b7b1c7b905e7b278a2ad44b44a17015dd643a61f938a9521e"
     },
     {
       "path": "skills/alarina/references/oro/visual-explanation.md",
@@ -957,6 +972,13 @@
       "source_sha256": "b8dc063fb05c99b41287518f0a78e498eb275bbec9599f563c0dc2237df61e70"
     },
     {
+      "path": "skills/alarina/references/records.md",
+      "sha256": "0a087f97bc9ac8b58e1044d7831dea54e814db829b7fa1d6399f0e524336cd8b",
+      "mode": "0o644",
+      "source": "skills/alarina/references/records.md",
+      "source_sha256": "0a087f97bc9ac8b58e1044d7831dea54e814db829b7fa1d6399f0e524336cd8b"
+    },
+    {
       "path": "skills/alarina/references/seda-pr/failure-heuristics.md",
       "sha256": "a44d6a233fcf420b7219d40b0962273ca0d8198b9df4b61b338b1c31450115a6",
       "mode": "0o644",
@@ -986,10 +1008,10 @@
     },
     {
       "path": "skills/alarina/references/terms.md",
-      "sha256": "a2df00e5a9bfc9bac72549ea5806cd495e53ccfa0c37c36d8c730832f56a7845",
+      "sha256": "1ebf960ac776450f05c98af8480478353b5e880d9f1e7abea596481420a081f3",
       "mode": "0o644",
       "source": "skills/alarina/references/terms.md",
-      "source_sha256": "a2df00e5a9bfc9bac72549ea5806cd495e53ccfa0c37c36d8c730832f56a7845"
+      "source_sha256": "1ebf960ac776450f05c98af8480478353b5e880d9f1e7abea596481420a081f3"
     },
     {
       "path": "skills/alarina/references/yoruba-glossary/glossary.md",
@@ -1028,10 +1050,10 @@
     },
     {
       "path": "skills/alarina/routes.yaml",
-      "sha256": "a480344606c9c95bd4baad090b4f10bf37462663a3af72a3c3522a12e5e6212a",
+      "sha256": "bd539132d627231574adba79b772869d783228807a85d5bf33cd2f3bfe40e1c7",
       "mode": "0o644",
       "source": "skills/alarina/routes.yaml",
-      "source_sha256": "a480344606c9c95bd4baad090b4f10bf37462663a3af72a3c3522a12e5e6212a"
+      "source_sha256": "bd539132d627231574adba79b772869d783228807a85d5bf33cd2f3bfe40e1c7"
     },
     {
       "path": "skills/alarina/scripts/README.md",

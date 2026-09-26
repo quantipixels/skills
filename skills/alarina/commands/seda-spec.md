@@ -24,7 +24,7 @@ Current implementation or operating practice is evidence of existing behavior, n
 
 ## Place and retire the specification
 
-Persistence: existing/selected specification destination; otherwise `.qp/atona/contracts/` for local state. Existing `.qp/seda-spec/` records remain valid migration inputs.
+Use the existing or selected specification destination; otherwise follow [records](../references/records.md) when the contract must be saved for downstream work. Existing `.qp/seda-spec/` records remain valid inputs.
 
 A working or transient record is not automatically durable authority. While planning, delivery, or review depends on the specification, retain its exact identity and current content. When the specification itself must remain normative after delivery, preserve it in its established durable destination; for change-specific specifications, preserve required history and mark supersession rather than silently deleting the contract.
 

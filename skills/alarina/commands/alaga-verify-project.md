@@ -8,6 +8,8 @@ Own harness implementation and runtime proof. Reuse an existing project verifica
 
 ## Ground the capability
 
+If the relevant build, entry point or behavior is hidden in an unfamiliar codebase, use [sawari](sawari.md) to map that bounded source question. When dependent questions about the intended journey or proof need interrogation, apply [arojinle](arojinle.md) with the agent serving as its user/respondent, using the current source map and accepted requirements. Consume the resulting understanding and gaps here before writing a recipe. Escalate only a consequential human choice the agent cannot settle within that evidence and authority; sufficient current understanding needs neither call.
+
 Establish from current project evidence:
 
 - the public surface: API, CLI, library, browser, desktop or mobile;
