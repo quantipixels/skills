@@ -166,7 +166,11 @@ When no playbook fits or the selected method leaves part of the expected outcome
 
 ## Resume without restarting
 
+Treat “resume”, “continue” and “pick up where we left off” as requests to recover prior work, not to restart intake. Use the user’s explicit plan, chat, issue, branch or artifact first. Without a locator, inspect the last relevant session and existing owner records for this project through available native history/search tools and project pointers. Relevance includes the intended outcome, workspace, decisions and stopping point; the newest session alone may concern different work. Keep discovery scoped, and ask which work to resume when multiple plausible candidates would materially change the task or access cannot recover the necessary context.
+
 Locate the current owner's artifact and actual workspace/candidate, including the recorded playbook. Reconcile completed and pending results against decisive current evidence. Preserve accepted decisions, scope, proof and stopping point. Resume at the first unresolved result; reopen only what changed evidence invalidates.
+
+An incomplete plan can still be a planning-only task: recover its unanswered choices and continue planning unless execution was authorized. For interrupted delivery, inspect the real diff, current checks and observed worker state before accepting old progress claims. A missing or stale plan is a recoverable context gap: use the relevant session, artifacts and workspace to reconstruct the minimum goal, path, completed results, remaining obligations and authority in the existing owner record. If those cannot be established, name the specific missing context and ask for it while continuing independent authorized work. Do not invent historical decisions or discard valid completed evidence.
 
 A side question does not replace an active outcome or authorize implementing the answer. Incorporate steering while retaining the original objective unless the user changes or cancels it. Before creating, relocating or cleaning persistent working records, read [records and artifacts](references/productivity/records.md). Routine results need no file; reuse the existing owner record, keep shared knowledge at its project owner, and requested deliverables where the user can find them.
 

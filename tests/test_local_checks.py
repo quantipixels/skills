@@ -356,7 +356,7 @@ class LocalChecksTests(unittest.TestCase):
                   f"for _ in range(100):\n if Path({str(heartbeat)!r}).exists(): break\n time.sleep(0.02)\n")
         try:
             result = run_checks(self.project, [self.check(parent, "exit")], self.output("background"))
-            self.assertEqual(result["gate_status"], "passed")
+            self.assertEqual(result["gate_status"], "passed", result["checks"])
             self.assertTrue(heartbeat.exists())
             last = heartbeat.read_text()
             time.sleep(0.1)
@@ -367,6 +367,38 @@ class LocalChecksTests(unittest.TestCase):
                     os.kill(int(pid_path.read_text()), signal.SIGKILL)
                 except ProcessLookupError:
                     pass
+
+    def test_cleanup_error_still_closes_output_and_selector(self) -> None:
+        real_popen = subprocess.Popen
+        real_stop = local_checks._stop_owned_group
+        for collection_fails in (False, True):
+            with self.subTest(collection_fails=collection_fails):
+                processes = []
+                selector = local_checks.selectors.DefaultSelector()
+
+                def start(*args, **kwargs):
+                    proc = real_popen(*args, **kwargs)
+                    processes.append(proc)
+                    return proc
+
+                def stop_then_fail(proc):
+                    real_stop(proc)
+                    raise OSError("cleanup diagnostic")
+
+                with mock.patch.object(local_checks.subprocess, "Popen", side_effect=start), \
+                     mock.patch.object(local_checks.selectors, "DefaultSelector", return_value=selector), \
+                     mock.patch.object(local_checks, "_stop_owned_group", side_effect=stop_then_fail) as stop:
+                    registration = (mock.patch.object(selector, "register", side_effect=OSError("collection diagnostic"))
+                                    if collection_fails else mock.patch.object(selector, "register", wraps=selector.register))
+                    with registration:
+                        with self.assertRaisesRegex(OSError, "cleanup diagnostic") as caught:
+                            local_checks._run_command([sys.executable, "-c", "print('done')"], self.project, 5, self.root / "cleanup.log")
+                self.assertEqual(stop.call_count, 1)
+                self.assertTrue(processes[0].stdout.closed)
+                self.assertIsNone(selector.get_map())
+                self.assertIsNotNone(processes[0].poll())
+                if collection_fails:
+                    self.assertIn("collection diagnostic", str(caught.exception.__context__))
 
     def test_interrupted_verifier_reaps_check_process(self) -> None:
         module_root = str(Path(local_checks.__file__).parent)

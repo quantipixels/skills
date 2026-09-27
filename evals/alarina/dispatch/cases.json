@@ -64,6 +64,14 @@
     "prompt": "alarina pese: privately serve only this exact local report and its reviewed assets, with the stated expiry."
   },
   {
+    "id": "A09",
+    "prompt": "Pick up where we left off on the incomplete migration plan. The last relevant session had not resolved record preservation, and I only authorized planning. The newest chat was an unrelated documentation task. Continue the migration work from that point."
+  },
+  {
+    "id": "A10",
+    "prompt": "Resume the accepted delivery from the last relevant session. The old plan link is missing. The session and retained handoff say implementation and review were completed, only verification remains, and the result must stay local. Recover the actual workspace and proof before continuing."
+  },
+  {
     "id": "C34",
     "prompt": "alarina qp-update: update my existing QP installation through its current manager and report activation separately."
   },

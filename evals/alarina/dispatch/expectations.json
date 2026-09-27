@@ -144,6 +144,18 @@
     "require": ["state-current-understanding", "ask-about-planning-versus-execution-and-record-preservation", "keep-dependent-work-blocked"],
     "forbid": ["invent-retention-or-reset-policy", "implement-migration", "delete-records", "treat-rambling-as-authority"]
   },
+  "A09": {
+    "commands": ["atona-plan"],
+    "stop": "continued-plan-with-unresolved-decision",
+    "require": ["recover-last-relevant-migration-session", "reuse-incomplete-plan", "preserve-planning-only-authority", "retain-record-preservation-question"],
+    "forbid": ["use-unrelated-newest-session", "implement", "invent-policy", "restart-settled-planning"]
+  },
+  "A10": {
+    "commands": ["alaga-deliver"],
+    "stop": "remaining-verification",
+    "require": ["recover-context-from-relevant-session-and-handoff", "inspect-current-workspace", "reuse-valid-review", "reconstruct-minimal-goal-path-and-remaining-proof"],
+    "forbid": ["invent-missing-plan-content", "restart-completed-implementation", "accept-stale-proof", "publish"]
+  },
   "C33": {
     "family": "utility",
     "commands": [

@@ -300,7 +300,6 @@ def _run_command(argv: list[str], cwd: Path, timeout: int, log: Path) -> tuple[i
         selector = None
         deadline = time.monotonic() + timeout
         timed_out = False
-        stopped = False
         try:
             selector = selectors.DefaultSelector()
             assert proc.stdout is not None
@@ -324,22 +323,20 @@ def _run_command(argv: list[str], cwd: Path, timeout: int, log: Path) -> tuple[i
                     proc.wait(timeout=max(0, deadline - time.monotonic()))
                 except subprocess.TimeoutExpired:
                     timed_out = True
-            if timed_out:
-                _stop_owned_group(proc)
-                stopped = True
-        except BaseException:
-            _stop_owned_group(proc)
-            stopped = True
-            raise
         finally:
             # A successful leader can leave descendants with closed stdout.
             # Verification owns that process group only for this check's lifetime.
-            if not stopped:
+            try:
                 _stop_owned_group(proc)
-            if selector is not None:
-                selector.close()
-            if proc.stdout is not None:
-                proc.stdout.close()
+            finally:
+                # Cleanup failure must not leak the collector's own resources.
+                # Python retains an earlier collection error in __context__.
+                try:
+                    if selector is not None:
+                        selector.close()
+                finally:
+                    if proc.stdout is not None:
+                        proc.stdout.close()
         text = captured.decode("utf-8", errors="replace")
         log.write_text(text + ("\n[log truncated]\n" if truncated else ""), encoding="utf-8")
         return proc.returncode, timed_out, text, truncated
@@ -615,8 +612,9 @@ def run_checks(project: Path, checks: list[dict], output: Path, *,
                     record.update(result="failed", reason=f"invalid proof: {error}")
             results.append(record)
         except (OSError, subprocess.SubprocessError) as error:
+            context = f" (after {error.__context__})" if error.__context__ is not None else ""
             results.append({"id": check["id"], "result": "blocked",
-                            "reason": f"command could not start or finish: {error}",
+                            "reason": f"command could not start or finish: {error}{context}",
                             "exit_code": None, "timed_out": False,
                             "observed_counts": None})
     after = candidate_snapshot(project, base)

@@ -12,6 +12,8 @@ For registered project gates, use the [configuration utility](../../productivity
 
 When CI coverage or equivalence is uncertain, or relevant workflows/inputs changed, read [CI/local equivalence](../verification/ci-local-equivalence.md). Reconcile relevant obligations with local execution and named remaining proof. A full configured gate can still omit a required check; its passing receipt is mechanical evidence, not the final acceptance decision.
 
+Before release readiness, confirm the project’s CI-expectation reconciliation is current under that contract. Refresh affected obligations when requirements, supported environments or provider gates changed; reuse current results for unaffected boundaries. An old green run does not establish current required-check coverage.
+
 ## Review and correct
 
 For substantive changes to behavior, contracts, instructions, packaging, migrations or technical structure, obtain an independent [atunwo](../../../commands/atunwo.md) review before declaring the candidate ready. Supply the candidate/base, accepted behavior, applicable project standards, actual check results and material risks. One suitably scoped reviewer is sufficient; use its light/deep judgment rather than a fixed roster or line-count threshold. A reviewer must not be the author of the portion it independently accepts. Author self-checks are useful but do not establish independence.
