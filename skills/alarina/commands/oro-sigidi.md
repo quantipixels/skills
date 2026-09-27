@@ -33,7 +33,7 @@ Do not copy another skill's method merely to compose with it. Put cross-stage pr
 
 Assume a capable model already knows routine mechanics. Keep text that changes a recurring non-obvious decision, supplies useful expertise, protects an authority/safety/evidence/routing boundary, sharpens a bound, or makes conditional depth reliably reachable.
 
-Use established engineering principles as semantic compression: DRY for duplicated knowledge, YAGNI for speculative capability, separation of concerns for ownership, or design by contract for preconditions and guarantees. Name the applicable principle instead of re-teaching it; retain the task-specific exception, authority and proof boundary. Prefer a precise term over a blanket “follow SOLID” or an acronym list. Expand unfamiliar abbreviations on first use; human-facing text must remain understandable without the catalogue.
+Express the applicable engineering principle through the behavior it should change, such as keeping one owner for shared knowledge or requiring an observed need before adding capability. Use a familiar principle's name when it makes an agent instruction more precise or compact, preserving task-specific exceptions, authority and proof. A blanket “follow SOLID” or an acronym list supplies no actionable contract. Expand unfamiliar abbreviations when they are needed.
 
 Prefer the positive target behaviour over negation. Keep an explicit prohibition when it protects a hard boundary or evidence shows the positive form alone is insufficient.
 

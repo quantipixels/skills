@@ -118,7 +118,7 @@ The table is generated from [routes.yaml](routes.yaml). That file owns command a
 
 | Command | Purpose |
 | --- | --- |
-| [`alarina-setup`](commands/alarina-setup.md) | Establish project philosophy, an adaptable SDLC and working capabilities, or personal environment readiness. |
+| [`alarina-setup`](commands/alarina-setup.md) | Establish project principles, a useful development workflow and working capabilities, or personal environment readiness. |
 | [`pese`](commands/pese.md) | On explicit command invocation, serve a bounded local resource through private transport. (explicit invocation only) |
 | [`qp-update`](commands/qp-update.md) | On explicit command invocation, update the existing QP installation through its current manager. (explicit invocation only) |
 | [`system-cleanup`](commands/system-cleanup.md) | Audit macOS storage and reclaim authorized regenerable data or verify chosen offloads. |

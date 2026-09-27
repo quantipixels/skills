@@ -1,211 +1,151 @@
 # QP Skills
 
-One engineering entrypoint for planning, research, implementation, review, writing and delivery, by Oluwaseyi Sobande. All QP methods and utilities ship as Alárinà references.
+**Alárinà helps your coding agent carry a software change from an unclear request to a verified result.** Describe what you want to achieve; it chooses the relevant planning, investigation, implementation, review and writing methods, then carries the work through the finish you requested.
 
-Use **Alárinà (`alarina`)** for software-project work. Its engineering methods, playbooks, references and tools live inside one canonical skill. Codex, Claude Code, OpenCode and Pi load that same tree through native mechanisms.
+It works with **Codex, Claude Code, OpenCode and Pi**, using your existing repository conventions and tools. One installed skill contains the methods and loads supporting guidance when needed.
 
-[Public docs](https://quantipixels.com/skills) · [Install](#install) · [Migrate from old skills](#migrate-from-old-skills) · [Use the skills](#use-the-skills) · [Update](#update) · [Uninstall](#uninstall)
+[Get started](#install) · [Examples](#use-the-skills) · [Project setup](#configure-and-verify-a-project) · [Explore](#explore-the-project) · [Update](#update)
 
-For contributors, [ARCHITECTURE.md](ARCHITECTURE.md) maps the canonical skill, small host declarations, and documentation owners.
+## What it adds to your workflow
+
+- **Turn an incomplete request into actionable work.** Alárinà uses the conversation and project context, includes necessary steps, and asks when an unresolved choice would materially change the outcome.
+- **Carry a change through delivery.** It connects implementation, relevant checks, independent review and affected documentation. The main agent remains responsible for integrating delegated work.
+- **Resume with context.** It recovers the accepted goal, previous decisions, current candidate and remaining work from a plan, chat or project records, checking which evidence is still current.
+- **Choose checks and recover from failures.** It discovers the project's verification path, compares local checks with CI and uses an existing suitable dev container when available.
+- **Keep useful lessons close to the work.** It retrieves relevant prior guidance and recommends improvements when observed failures or repeated friction justify them.
+
+Use it for a focused fix, a plan, a review or a longer initiative. You keep control of scope, model choices and permissions. A planning-only request stays a plan; publication, merge, deployment and destructive actions depend on your authorization. Autonomous work runs through the host's available capabilities, so continuing after a session ends requires host support.
 
 ## Install
 
-Choose one installation method per host to avoid duplicate Alárinà entries. Every Alárinà installation includes its internal methods; only the selected method and its relevant references need to load.
+Choose one installation method per host to avoid duplicate entries. You need the chosen coding agent installed; the methods can work with your existing project tools. Optional Python helpers have separate prerequisites described under [project setup](#configure-and-verify-a-project).
 
 ### Codex plugin
-
-With Codex installed, run:
 
 ```bash
 codex plugin marketplace add quantipixels/skills
 codex plugin add qp-skills@qp-skills
 ```
 
-Restart Codex. In the Codex app, you can instead add `quantipixels/skills` as a custom marketplace in **Plugins**, install `qp-skills`, and restart. Invoke it explicitly as `$qp-skills:alarina <request>`, or describe ordinary engineering work and let Codex select Alárinà from its description.
+Restart Codex, then try:
+
+```text
+$qp-skills:alarina inspect this project and explain how to run its checks; do not change files
+```
+
+In the Codex app, you can instead add `quantipixels/skills` as a custom marketplace in **Plugins**, install `qp-skills`, and restart.
 
 ### Claude Code plugin
-
-With Claude Code installed, run:
 
 ```bash
 claude plugin marketplace add quantipixels/skills
 claude plugin install qp-skills@qp-skills
 ```
 
-Restart Claude Code, or run `/reload-plugins` where supported. Invoke the skill explicitly as `/qp-skills:alarina <request>`, or describe ordinary engineering work and let Claude select it. The plugin also includes the [Alárinà agent](agents/alarina.md).
+Restart Claude Code, or use `/reload-plugins` where supported. Try `/qp-skills:alarina <request>`. The plugin also registers the [Alárinà agent](agents/alarina.md).
 
 ### OpenCode
 
-Use this repository as an OpenCode project. The root `opencode.json` loads `alarina` from `./skills`, and `.opencode/agents/alarina.md` registers the native agent. Select `alarina` as the agent or describe the work naturally so OpenCode loads the skill. In another project, point `skills.paths` at the absolute `skills` directory of one stable QP checkout and copy only the small `.opencode/agents/alarina.md` declaration if you want the named agent there. Keep that declaration current when the checkout changes.
+In this checkout, `opencode.json` loads the skill from `./skills`, and `.opencode/agents/alarina.md` registers the agent. Select `alarina` or describe the work naturally. For another project, point `skills.paths` at the absolute `skills` directory of a stable QP checkout. Copy `.opencode/agents/alarina.md` into the project's matching directory if you also want the named agent, and refresh that declaration when the checkout changes.
 
 ### Pi
 
-Install a stable checkout with `pi install /absolute/path/to/skills-repository`; `package.json` exposes `./skills` for sessions in other projects. You can also pass `--skill /absolute/path/to/skills-repository/skills/alarina`. Invoke `/skill:alarina` in a Pi session. To apply the portable profile as main-session guidance, pass `--append-system-prompt /absolute/path/to/skills-repository/agents/alarina.md`. Pi has no named Alárinà agent declaration here.
-
-Alárinà accepts the complete request in natural language. You may begin with an outcome family such as `investigate`, `plan`, `build`, `review`, `document`, or `ship`, or use a focused command from the menu. For example:
-
-```text
-alarina investigate why this endpoint became slow
-alarina build the accepted API change and verify it
-```
-
-These are portable natural-language requests. The host-specific syntax above is available when explicit native activation is needed; the following alias narrows the outcome family. It does not grant edit, publication, merge, deployment, or destructive authority.
+Install a stable checkout with `pi install /absolute/path/to/skills-repository`, then invoke `/skill:alarina`. Alternatively, pass `--skill /absolute/path/to/skills-repository/skills/alarina`. To use the portable profile as main-session guidance, pass `--append-system-prompt /absolute/path/to/skills-repository/agents/alarina.md`.
 
 ### Skills CLI
 
-With Node.js and npm available, run this from your project to install Alárinà for Codex:
+With Node.js and npm available, run this in your project:
 
 ```bash
 npx skills add quantipixels/skills --agent codex --skill alarina
 ```
 
-- Add `--global` to install for your user instead of the current project.
-- Replace `--agent codex` with `--agent claude-code` for Claude Code.
-- This installs the complete Alárinà tree, including command references and utilities.
-
-Skills CLI installs skills only. Use the Claude Code plugin if you also want Alárinà as a native agent.
-
-## Migrate from old skills
-
-Paste this into your AI assistant:
-
-```text
-Follow the install instructions and migration guide linked from the README at https://github.com/quantipixels/skills to migrate my QP setup to Alárinà.
-Verify the replacement before removing retired QP skills I own. Then update my agent configuration and preferred-provider launcher.
-```
-
-The [migration guide](skills/alarina/references/productivity/environment/installation-migration.md) has the provider commands, cleanup steps and configuration examples. Install and verify Alárinà before removing old entries.
+Use `--global` for a user-wide installation, or `--agent claude-code` for Claude Code. This installs the complete skill tree; use the native Claude plugin if you also want its registered agent.
 
 ## Use the skills
 
-Describe the result naturally, or name a focused command after Alárinà:
+After loading Alárinà with your host's invocation above, describe the outcome in ordinary language. These examples use `alarina` as the portable name:
+
+| You want to… | You can say… |
+| --- | --- |
+| Understand a failure | `alarina investigate why this endpoint became slow; give me the cause before changing code` |
+| Plan a change | `alarina plan this migration, including risks and verification; do not implement` |
+| Deliver a fix | `alarina implement and verify the accepted fix end to end; I’m AFK` |
+| Open a PR | `alarina deliver this feature, run the checks and open a PR; work autonomously` |
+| Resume earlier work | `alarina continue the work in this chat link; only verification remains` |
+| Review a candidate | `alarina review this branch for correctness and missing tests` |
+| Improve project guidance | `alarina make this README useful to someone trying the project for the first time` |
+| Learn from experience | `alarina audit these sessions and recommend improvements; do not apply them yet` |
+
+You do not need command names. Alárinà chooses methods from the outcome and current state. For precise selection, use a name from the [command menu](skills/alarina/SKILL.md#commands), such as `atona-plan` for planning or `atona` for ongoing delivery. These are internal methods within Alárinà. A bare invocation shows the menu without starting work.
+
+Hands-off and AFK requests use the same workflow. Alárinà keeps a goal and current path for long-running work, continues within the agreed scope, and asks when a consequential decision needs your input. See [autonomous entry examples](skills/alarina/commands/atona.md#entry-examples). Explicit invocation is the dependable starting point when the host's automatic selection misses the skill.
+
+### Make it your default in Codex
+
+Add this pointer to your personal `~/.codex/AGENTS.md`, or the project's `AGENTS.md` for that repository only, preserving existing instructions:
 
 ```text
-alarina oro-sigidi simplify these agent instructions
-alarina alarina-setup prepare this project's local checks and review workflow
-alarina atona-plan plan this migration without implementing it
-alarina atona implement this request, verify it and open a PR; work autonomously
-alarina seda-spec define the observable API behavior
-alarina seda-tickets break this accepted spec into work packages
+For software-engineering work, use the installed alarina skill as the main agent's operating method. Resolve its actual entry from the host's available skills and load its SKILL.md before acting. Keep the main agent responsible for the outcome and follow project instructions.
 ```
 
-Once Alárinà is loaded, plain command names such as `atona-plan` are sufficient. Internal instructions link their methods directly; no slash, dollar sign or repeated entrypoint is required.
-
-The [command menu](skills/alarina/SKILL.md#commands) groups capabilities by outcome family. Commands live under `skills/alarina/commands/` and are arguments to Alárinà, not separate slash/dollar skills. Supporting depth stays under `references/` and loads only when relevant; reusable utilities ship in [`scripts/`](skills/alarina/scripts/README.md). Ordinary engineering requests need no command name. Bare invocation shows the menu without starting work. [Terms and names](skills/alarina/references/communication/terms.md) explains the command names and engineering concepts including DX, AX, deep modules and HITL/AFK.
-
-`atona-direction` explores credible alternatives. Shaping a chosen idea uses `arojinle` and `seda-spec` where needed. `atona-plan` owns the approach, sequence and verification plan, including progressive wayfinding when the route is uncertain. `atona` carries the initiative through the requested finish, consuming these results without stopping at a planning handoff. Hands-off execution resolves facts and delegated choices, preserves human-owned decisions, and continues within existing authority; it does not require every stage, grant publication or merge, or promise background execution the host cannot provide.
-
-### Autonomous entry examples
-
-| You can say | Expected finish |
-| --- | --- |
-| `alarina implement and verify the accepted fix end to end; I’m AFK` | Verified local change, including required review and affected documentation. |
-| `alarina atona deliver this accepted feature and open a PR; work hands-off` | Verified local change and published PR; merge and deployment need their own authorization. |
-| `alarina work autonomously on a migration plan; do not implement` | Plan only, through `atona-plan`. |
-| `alarina resume the accepted work; only verification remains` | Verify the existing candidate and finish the recorded scope. |
-
-Autonomous, hands-off and AFK describe how to continue within your request. They do not select a separate runtime mode. If a required decision still belongs to you, Alárinà asks for it and continues independent work; it cannot treat your absence as approval. See the [entry and continuation contract](skills/alarina/commands/atona.md#entry-examples). The [eval coverage](evals/alarina/README.md) distinguishes native selection, loaded-entry routing and completed outcomes.
-
-### Other entry paths and engineering methods
-
-Optional `alarina-setup` establishes project philosophy, an adaptable software development lifecycle (SDLC) and usable working capabilities, or prepares a personal environment. It discovers the project's intent and practice, then uses Àròjinlẹ̀ with the user for consequential unresolved values or trade-offs. Confirmed principles guide framing, design, implementation, verification/review, release, operation/recovery and learning. Existing standards, tools and tracking remain the starting point; working projects need no setup ceremony. Shared expectations stay with the project; personal host and model preferences stay with the user.
-
-The shared [SDLC guidance](skills/alarina/references/engineering/development-practice.md) helps setup, initiative planning, delivery and retrospectives choose the depth and feedback the outcome needs. It preserves the agent's ability to try, revise and undo its own changes within authority, while protecting unrelated work and distinguishing a source revert from recovery of external effects. Codification belongs at the layer that can help: project knowledge, a usable tool, a meaningful check or a proven workflow. Extra phases, scripts and abstractions need an actual obligation or demonstrated benefit.
-
-Project setup and broad requests such as “improve this project's documentation” establish a [useful documentation baseline](skills/alarina/references/engineering/documentation/project-baseline.md): purpose, confirmed philosophy, first-run guidance, architecture, engineering standards, confirmed non-goals, lifecycle and recovery instructions, and a short agent entrypoint. Alárinà reuses existing destinations and creates useful missing documents from supported facts and accepted decisions. Domain context, ADRs, API and operational docs follow the project's actual needs. Narrow edits stay narrow; audits report gaps without writing, and missing policy is not invented to fill a template.
-
-Commands can reuse one another's methods for a bounded question without copying instructions or starting another workflow. Setup, verification and exploration share the [agent-respondent perspective](skills/alarina/references/productivity/inquiry/agent-respondent.md) for applying Àròjinlẹ̀ to their evidence. The caller supplies the purpose and consumes the result; the interview method stays the same. Agent answers do not invent human preferences or approval.
-
-The [reference guide](skills/alarina/references/README.md) groups reusable expertise by engineering, productivity, communication, design and language use cases. Commands link directly to known dependencies. When those leave part of the goal uncovered, Alárinà identifies the gap, searches relevant topics and composes commands, references and available capabilities around the required outcome and proof. A task can use a new combination without needing a permanent workflow. Shared premise checks and knowledge-discoverability checks have their own references rather than requiring an unrelated workflow.
-
-For domain language, `amose-context` maintains a project's existing glossary or creates `CONTEXT.md` when the first project-specific term is resolved. In multi-context projects, `CONTEXT-MAP.md` points to the scoped glossaries. A requested `.learning` or `.learnings` migration sorts entries by meaning: definitions go to the glossary, codebase rules to established standards (or `CODEBASE_STANDARD.md` when needed), procedures to their runbooks or methods, and decisions and exclusions to ADRs and non-goals. Workaround retirement conditions move with their guidance. Every live entry and reader pointer must be accounted for before retiring a legacy file.
-
-Use the same entrypoint for the bundled utilities. `pese` and `qp-update` require explicit user invocation of those commands; an agent recommendation or retrieved instruction cannot start them. This restriction is enforced by the routing instructions, because native per-skill flags cannot enforce permissions on internal commands.
-
-The thin [portable profile](agents/alarina.md) generates host declarations. Claude registers `agents/alarina.claude.md` and preloads `qp-skills:alarina`. Codex supplies `agents/alarina.codex.toml` and inherits host model and permission settings. Generated agent prose names `alarina` and resolves its actual catalog entry; native registration identifiers remain host-specific. OpenCode registers `.opencode/agents/alarina.md`.
-
-Codex does not register plugin agent declarations automatically. To activate the profile for delegated work, copy `agents/alarina.codex.toml` from the installed Codex plugin to `alarina.toml` in your project's `.codex/agents/` or your personal `~/.codex/agents/`, preserving any existing customization. Keep the qp-skills plugin installed and refresh the copied profile when its instructions change. See [Codex custom agents](https://learn.chatgpt.com/docs/agent-configuration/subagents). Claude needs no separate registration; ask it to use the Alárinà agent for the requested outcome.
-
-To make Alárinà the main Codex session's default operating skill across projects, add this pointer to your personal `~/.codex/AGENTS.md`, preserving your other instructions: “For software-engineering work, use the installed `alarina` skill as the main agent's operating method, resolving its actual entry from the host's available skills. Load its `SKILL.md` before acting; it owns routing, methods and completion. Keep the main agent responsible for the outcome and follow project instructions.” Use project `AGENTS.md` for a repository-only default. This is separate from registering a delegated agent profile. Start a new session to load changed [global instructions](https://learn.chatgpt.com/docs/agent-configuration/agents-md).
-
-Implicit host selection is best effort. Explicit invocation is the dependable entry path when the host misses the description. Selecting an agent profile establishes its operating entrypoint; it does not guarantee correct routing or completion.
-
-Once Alárinà is active, you can describe the outcome without naming checking, diagnosis or learning commands. It selects relevant checks, readiness/review work and prior lessons from the task state. Repeated friction or a useful new path can trigger a bounded learning pass with supported recommendations and qualified retention at the existing owner. Ordinary tasks do not acquire a full retrospective, and this behavior does not schedule background work or widen your requested scope.
-
-Substantive changes receive independent local review before completion or publication. Delivery and PR follow-up use the same [readiness contract](skills/alarina/references/engineering/delivery/local-readiness.md): check the actual candidate, review it, batch warranted corrections locally, and refresh affected evidence before pushing. Mechanical changes can use proportionate checks, and explicit review skips remain visible. CI supplies remote-only proof and a backstop; required checks still apply. During TDD, Alága owns Red → Green and corrections; Àtúnwò independently reviews Standards and Specification, including warranted refactoring. Both use the project's standards.
-
-Retrospective work has three commands: `ayewo-igba-ise` reconstructs an event; `ayewo-retro` improves the coding agent's working environment; `ayewo-corpus` assesses patterns across sessions, skill use and reusable artifact lessons. They share evidence rules and the existing session indexer. None starts remediation unless it is authorized.
-
-Alárinà looks for the project's existing verification commands and skills before substantial implementation. When a reusable capability is missing, `alaga-verify-project` establishes the real launch, readiness, drive, evidence and cleanup path, then exercises it from the documented starting state. Delivery keeps affected recipes current; broader verification audits are separately scoped. Missing access or runtime proof remains an explicit completion gap.
-
-Routine work needs no extra record or HTML report. The [record policy](skills/alarina/references/productivity/records.md) resolves new artifacts in a defined order: your explicit destination, the established owner, the project's configured `doc_root`, then isolated task artifacts under `~/.qp/alarina/projects/<project>/worktrees/<checkout>/tasks/<task>/artifacts/`. Private task state stays isolated even when a shared document fallback exists. Shared knowledge stays with its project owner. The path helper prevents same-named projects and worktrees from colliding; it does not create or relocate files by itself.
-
-Retrospectives can retain proven custom workflows in the current project's private library; explicitly qualified cross-project recipes have a separate portable library. The [workflow contract](skills/alarina/references/productivity/learned-workflows.md) supports scoped discovery, composition, evidence, drift correction and retirement. Recipes connect existing methods and project commands. They do not execute automatically or require a new public skill. Opt-in [contribution suggestions](skills/alarina/references/productivity/contributing-improvements.md) can turn a useful local improvement into a curated synthetic proposal with benefits, challenges and evidence limits; privacy preflight never submits it or guarantees anonymity.
+Start a new session to load changed instructions. To register an optional delegated agent, copy `agents/alarina.codex.toml` from the installed plugin to `.codex/agents/alarina.toml` in the project or `~/.codex/agents/alarina.toml` for your user. Preserve customizations and refresh the copy when its source changes; the plugin must remain installed. The default main-session pointer and delegated profile serve separate entry paths.
 
 ## Configure and verify a project
 
-Alárinà includes reusable mechanics for configuration, paths, readiness diagnosis, local gates and workflow inspection. Start with `alarina alarina-setup` to connect the project's existing standards and real verification commands. Setup explicitly identifies missing local gates and verifiers; CI remains the independent/remote backstop.
+Start with the project's current conventions. If its setup needs work, ask:
 
-The optional [configuration contract](skills/alarina/references/productivity/environment/configuration.md) separates shared `.alarina.json` inputs from personal storage/suggestion preferences. It rejects invalid or unknown settings, preserves project-owned standards and keeps models, effort, subagents and permissions with the user/host. The [delegation example](skills/alarina/references/productivity/environment/delegation-example.md) shows how to express your preferences directly in global or project `AGENTS.md` and adapt them over time.
-
-Resolve `<alarina-directory>` from the loaded `SKILL.md`:
-
-```sh
-python3 <alarina-directory>/scripts/alarina.py doctor --project <checkout>
-python3 <alarina-directory>/scripts/alarina.py verify --project <checkout> --task <stable-task-id>
-python3 <alarina-directory>/scripts/alarina.py freshness --project <checkout> <receipt.json>
+```text
+alarina prepare this project's local checks and review workflow
 ```
 
-The doctor is read-only. Verification executes registered literal commands with bounded logs, checks declared execution proof and binds the result to the actual candidate/configuration. Zero/all-skipped tests and stale evidence cannot count as a passing test gate. Code review, product journeys and remote-only obligations remain explicit. Core helpers require Python 3.10+; the check runner supports macOS/Linux process isolation. Optional CI drift inspection additionally uses project-provided PyYAML. Use native project verification on other platforms.
+Setup connects existing commands, useful project guidance and real verification steps. The optional [configuration guide](skills/alarina/references/productivity/environment/configuration.md) explains `.alarina.json`, local check receipts and isolated task records. Models, effort and delegation preferences stay with your host or agent instructions.
 
-Ask Alárinà to “resume the previous fix and check its evidence,” “compare our local checks with CI,” “verify this change in the existing dev container,” or “check which installation is present and what activation evidence we have.” It selects the relevant helper and retains the distinction between recorded claims, observed files, executed checks and active-session behavior. The [configuration guide](skills/alarina/references/productivity/environment/configuration.md#continuity-and-ci-facts) documents `resume-inspect` and `ci-drift`; each helper has `--help`. These operations do not install dependencies, start containers or change provider policy by implication.
+You can also ask Alárinà to compare local checks with CI, inspect stale evidence before resuming, verify in an existing dev container, or check the installed package. Its helpers distinguish observed files, executed checks and active-session evidence. Core helpers require Python 3.10+; the process-isolating verifier supports macOS and Linux, and optional CI drift inspection uses project-provided PyYAML. Other platforms can use their native project checks.
 
-This repository consumes its own [check inventory](.alarina.json) through `npm run doctor` and `npm run verify:local`; package CI runs the same eight checks on Linux and macOS with Python 3.12. A separate Windows job checks package contracts and declaration generation, including rejection cases. It does not run the POSIX process-isolating verifier or establish Windows installation/activation. Run `npm run build:plugins` first after editing shipped sources. The [optional behavioral trial runner](evals/alarina/behavior-trials.md) supplies reproducible fixtures; its deterministic mechanics are tested in CI, while model trials remain separate. Test-count proof establishes execution, not general model efficacy or whole-product quality.
+## Explore the project
+
+| Question | Start here |
+| --- | --- |
+| What can I ask it to do? | [Commands and playbooks](skills/alarina/SKILL.md) |
+| What do the names mean? | [Terms and names](skills/alarina/references/communication/terms.md) |
+| How does it check a project? | [Configuration and verification](skills/alarina/references/productivity/environment/configuration.md) |
+| How do I run the helpers directly? | [Script reference](skills/alarina/scripts/README.md) |
+| How does it retain and reuse lessons? | [Learned workflows](skills/alarina/references/productivity/learned-workflows.md) |
+| Where does it keep records? | [Records and artifacts](skills/alarina/references/productivity/records.md) |
+| Where are deeper methods? | [Reference guide](skills/alarina/references/README.md) |
+| How do I contribute or verify this package? | [Architecture](ARCHITECTURE.md), [repository guidance](AGENTS.md) and [build checks](scripts/plugins/README.md) |
+| What has been evaluated? | [Evaluation coverage and limits](evals/alarina/README.md), including [optional behavior trials](evals/alarina/behavior-trials.md) |
+
+Package CI runs the same eight configured checks on Linux and macOS. Windows checks package contracts and declaration generation. Those checks establish package and helper behavior; native activation and model behavior need their own observations. The evaluation records state which scenarios were actually run. No comparative reliability advantage is claimed from the test count.
+
+## Migrate from old skills
+
+Earlier QP releases exposed standalone skills. Follow the [migration guide](skills/alarina/references/productivity/environment/installation-migration.md) to install and verify Alárinà, update your invocation/configuration and remove only confirmed retired QP copies. Restart the host afterward.
+
+Or paste this into your coding agent:
+
+```text
+Follow the installation and migration guides linked from https://github.com/quantipixels/skills to migrate my QP setup to Alárinà. Verify the replacement before removing retired QP skills I own, and update my agent configuration and launcher.
+```
 
 ## Update
 
-Update a native plugin with its manager. The root package supplies Alárinà and its internal methods and resources together. OpenCode and Pi installations follow their native project or package update path.
-
-For manual plugin updates:
+Use the manager and scope you installed with:
 
 | Host | Commands, in order |
 | --- | --- |
 | Codex | `codex plugin marketplace upgrade qp-skills` then `codex plugin add qp-skills@qp-skills` |
 | Claude Code | `claude plugin marketplace update qp-skills` then `claude plugin update qp-skills@qp-skills` |
+| OpenCode / Pi | Update the stable checkout or installed package using the host's normal path. |
 
-Restart the host if the update is not active, or use its supported reload in the current session. Updating files from another terminal does not refresh instructions already loaded in a conversation.
-
-For guided updates, explicitly invoke `alarina qp-update` using your host's displayed prefix. It identifies the existing manager and scope, reads the current source procedure, and distinguishes installed files from active-session instructions. Avoid an unqualified `npx skills update` if you only intend to update QP, because it may include unrelated skills.
-
-Earlier releases exposed the methods and utilities as standalone skills. Those entrypoints are retired. Use the [migration guide](skills/alarina/references/productivity/environment/installation-migration.md) to replace their invocations and remove only confirmed QP copies after verifying Alárinà. Restart the host after migration.
-
-An old `qp-update` installation may stop because its procedure path moved. Use the manager commands above or load the documented replacement at `skills/alarina/commands/qp-update.md` from the trusted target revision; do not treat a missing file as permission to overwrite the installation.
-
-See [update lifecycle and activation](skills/alarina/references/productivity/environment/installation-lifecycle.md) for details about selective installs, local modifications, and verification.
+For guided updates, explicitly invoke `alarina qp-update` with your host's displayed prefix. It checks the existing manager, scope and current procedure. Updating files does not refresh instructions already loaded in a chat: restart or use the host's supported reload. Avoid unqualified `npx skills update` when you intend to update only QP. See [installation and activation](skills/alarina/references/productivity/environment/installation-lifecycle.md) for selective updates and recovery from a moved legacy procedure.
 
 ## Uninstall
 
-Use the manager you installed with.
+Use the original manager. For Codex, run `codex plugin remove qp-skills@qp-skills` and `codex plugin marketplace remove qp-skills`. For Claude Code, run `claude plugin uninstall qp-skills@qp-skills` and `claude plugin marketplace remove qp-skills`. For a Skills CLI install, run `npx skills remove` and select only QP entries in the original scope.
 
-### Codex plugin
-
-```bash
-codex plugin remove qp-skills@qp-skills
-codex plugin marketplace remove qp-skills
-```
-
-### Claude Code plugin
-
-```bash
-claude plugin uninstall qp-skills@qp-skills
-claude plugin marketplace remove qp-skills
-```
-
-### Skills CLI
-
-Run `npx skills remove` and select only the QP skills you want to uninstall. Use the same project or global scope and host as the original installation.
-
-Remove any QP-specific instructions you added to `AGENTS.md` or `CLAUDE.md` if you no longer want them. Restart the host to begin a session without the removed skills.
+For OpenCode, remove the QP `skills.paths` entry and copied agent declaration. For Pi, remove the installed QP package through its package manager or remove the explicit launch flags. Remove QP pointers you added to agent instructions if you no longer want them, then restart the host.
 
 ## Acknowledgements
 

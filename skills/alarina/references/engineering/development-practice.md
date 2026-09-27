@@ -10,7 +10,7 @@ Use [arojinle](../../commands/arojinle.md) with the actual user for consequentia
 
 Record confirmed principles, rationale and applicability in existing README, design or contributor guidance. Standards, architecture decisions, domain terms and exclusions keep their owners. A short philosophy section can suffice; no default `PHILOSOPHY.md` is required. Distinguish binding outcomes and invariants from preferences and experiments, including when defaults may change.
 
-## Fit the whole SDLC to the outcome
+## Fit the development workflow to the outcome
 
 Locate the first unresolved result and the feedback that will establish it. Consider the whole lifecycle when adapting project practice, while entering only the parts needed for the task and its requested finish:
 

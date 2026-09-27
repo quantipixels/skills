@@ -2,6 +2,8 @@
 
 Own agent and human communication, including skill authoring and maintenance. Preserve facts, decisions, authority, exact identifiers, and the artifact's native contract. Evaluation design, harness implementation and operational verification belong to the project or workflow requesting the text.
 
+Weave useful engineering principles and standards into the actual guidance: describe the decision, action or evidence the reader needs. Name a framework or standard when its identity helps the reader act, find authoritative detail or satisfy an explicit requirement; avoid ceremonial callouts and acronym lists. Preserve exact adopted requirements and citations where they matter.
+
 Use both writing commands only when the artifact has distinct agent and human surfaces. Each retains its audience’s optimization.
 
 ## Skills and reusable instructions
