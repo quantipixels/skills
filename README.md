@@ -4,7 +4,7 @@
 
 It works with **Codex, Claude Code, OpenCode and Pi**, using your existing repository conventions and tools. One installed skill contains the methods and loads supporting guidance when needed.
 
-[Get started](#install) · [Examples](#use-the-skills) · [Project setup](#configure-and-verify-a-project) · [Explore](#explore-the-project) · [Update](#update)
+[Get started](#install) · [Examples](#use-the-skills) · [Workflows](#common-workflows) · [Project setup](#configure-and-verify-a-project) · [Explore](#explore-the-project) · [Update](#update)
 
 ## What it adds to your workflow
 
@@ -80,6 +80,32 @@ After loading Alárinà with your host's invocation above, describe the outcome 
 You do not need command names. Alárinà chooses methods from the outcome and current state. For precise selection, use a name from the [command menu](skills/alarina/SKILL.md#commands), such as `atona-plan` for planning or `atona` for ongoing delivery. These are internal methods within Alárinà. A bare invocation shows the menu without starting work.
 
 Hands-off and AFK requests use the same workflow. Alárinà keeps a goal and current path for long-running work, continues within the agreed scope, and asks when a consequential decision needs your input. See [autonomous entry examples](skills/alarina/commands/atona.md#entry-examples). Explicit invocation is the dependable starting point when the host's automatic selection misses the skill.
+
+### Common workflows
+
+#### Brainstorm an idea and find a direction
+
+```text
+alarina brainstorm ways to make onboarding easier. Explore the trade-offs with me, recommend a direction, then make an implementation plan. Do not build yet.
+```
+
+Alárinà clarifies the problem, examines the existing experience and compares useful alternatives. It asks about choices that depend on your priorities, then turns the selected direction into a plan with scope, sequence and verification. A prototype can help settle a consequential uncertainty when you authorize it. The finish here is an agreed direction and plan; implementation starts when requested. For named entry points, use `atona-direction` to explore or `atona-plan` for the plan.
+
+#### Deliver a feature autonomously
+
+```text
+alarina implement the accepted onboarding plan end to end. I’m AFK: run the relevant checks, review and integrate the work, update affected docs and open a PR. Do not merge or deploy.
+```
+
+Through `atona`, Alárinà recovers the goal and acceptance criteria, implements the change, verifies the relevant user journey and checks, arranges independent review, resolves findings and opens the requested PR. It uses your existing project tools and suitable dev container. The main agent owns worker integration and reports the actual result, evidence and remaining gaps. If a required decision needs your input, it asks and continues work that does not depend on the answer.
+
+#### Resume an unfinished plan or delivery
+
+```text
+alarina resume the work in <chat link or plan path>. Keep the agreed scope, inspect the current branch and previous evidence, and finish the remaining work.
+```
+
+Alárinà reconciles the linked history with the current checkout, recovers the next unresolved step and refreshes evidence affected by changes. An unfinished plan resumes as planning; previously authorized delivery continues toward its recorded finish. Without a link, ask it to find the last relevant work in this project. It clarifies which task you mean if several candidates fit.
 
 ### Make it your default in Codex
 
