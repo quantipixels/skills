@@ -168,6 +168,13 @@
     "require": ["inspect-relevant-existing-lesson-and-check-wiring", "recommend-smallest-owned-correction", "preserve-read-only-boundary"],
     "forbid": ["edit", "execute-checks", "save-workflow", "install", "publish", "schedule"]
   },
+  "A13": {
+    "commands": ["alaga-deliver"],
+    "references": ["references/engineering/delivery/engineering-contract.md"],
+    "stop": "verified-local-candidate-or-evidenced-platform-gap",
+    "require": ["discover-container-entry-and-effects", "confirm-checkout-and-prerequisites", "reuse-suitable-dev-container-for-applicable-checks", "retain-native-macos-proof-separately", "preserve-shared-resources"],
+    "forbid": ["default-all-checks-to-host-without-reason", "claim-linux-container-proves-native-macos", "create-replacement-container", "install-runtime", "stop-shared-instance", "publish"]
+  },
   "C33": {
     "family": "utility",
     "commands": [

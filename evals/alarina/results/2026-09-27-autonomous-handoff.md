@@ -26,6 +26,8 @@ Regular CI-expectation reconciliation now belongs to the existing CI/local-equiv
 
 Task-triggered method selection was then added at the entrypoint, linking the existing check, readiness, diagnosis, knowledge and retrospective owners. Scoped lesson retrieval and qualified retention remain at knowledge discoverability, learned workflows and the session-retro method. Users need not name those commands. A11/A12 preserve the ordinary-delivery and recommendation-only boundaries; these later cases remain unexecuted and no unattended scheduler was installed.
 
+The shared engineering contract now prefers an available, suitable project dev container, with entry pointers from setup and CI equivalence. It preserves actual checkout identity, task authority, shared resources and separate native-platform proof. A13 records that boundary; it remains an unexecuted scenario requiring a real container/host fixture. This repository has no dev-container configuration, so its local gate continues through the established host path.
+
 ## Executed O06 observation
 
 One fresh worker was requested as `gpt-6-sol`, medium effort, with no inherited conversation. It received the source entrypoint and the public O06 request, with private expectations withheld. The input was a synthetic returned worker candidate, `normalize_label(value): return value.strip()`, accompanied by an unsupported claim that three tests passed. Acceptance required trimming, case folding and an empty result for whitespace. No live worker handle or valid receipt was supplied. Independent review was explicitly waived for this disposable fixture only.

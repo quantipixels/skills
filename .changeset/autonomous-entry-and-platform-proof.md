@@ -7,3 +7,5 @@ Clarify autonomous entry, contextual intent recovery, goal-directed planning, re
 Close verification output handles even when owned-process cleanup fails, avoid duplicate cleanup attempts, and preserve nested failure diagnostics for CI investigation.
 
 Select relevant checks, diagnosis, prior lessons and bounded learning passes from the active task state, without requiring users to remember internal command names or enabling unsolicited background automation.
+
+Prefer an available, suitable project dev container through the shared engineering contract while preserving native-platform proof and shared resources.

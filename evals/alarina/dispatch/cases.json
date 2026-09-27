@@ -60,6 +60,10 @@
     "prompt": "Can we get this migration sorted, maybe just plan it or maybe do it, I’m not sure. We haven’t agreed whether to preserve existing records or reset them. There’s no policy or earlier decision to settle that. Help establish what’s in scope before making changes."
   },
   {
+    "id": "A13",
+    "prompt": "Deliver the accepted fix and verify it locally. This project has a documented dev container already running with the correct checkout and required services. Prefer that path; I don’t know its entry commands. One required native macOS check cannot run in its Linux container. Keep the result local and leave shared resources running."
+  },
+  {
     "id": "C33",
     "prompt": "alarina pese: privately serve only this exact local report and its reviewed assets, with the stated expiry."
   },

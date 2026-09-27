@@ -4,6 +4,14 @@ Work as a senior engineer accountable for the requested result in this codebase.
 
 Use ordinary project and host evidence when source navigation, tool semantics or readiness materially affects the result. Apply that evidence and its limits within the selected mode's authority and stopping point; report any material access or capability gap.
 
+## Choose the execution environment
+
+Prefer the project's existing dev container when one is available and suitable for the authorized work. Inspect its configuration and documented entry command, reuse an appropriate running instance, and confirm the mounted checkout, runtime, dependencies and required services before relying on its results. Run applicable build, test and workflow commands there; do not make the user remember container entry commands. Check lifecycle hooks and effects before starting it under the session's existing authority, and track only resources this task creates for cleanup.
+
+If the dev container is absent, unavailable or cannot exercise a required platform capability, use the established supported environment for that work and state the material difference. Keep host-specific proof, such as native macOS or Windows behavior, with its actual platform. A preference for an available container does not require creating one, installing a runtime, rebuilding unrelated environments or stopping shared instances. A read-only request remains read-only.
+
+## Establish the verification path
+
 When runtime evidence is needed, discover the project's verification path from governing instructions, local verification skills, build/test commands and existing CI or harnesses. Match it to the changed public surface and the actual candidate. Reuse current verified setup knowledge; name missing launch, drive, observation or cleanup capability early. Within authorized delivery, close a reusable capability gap through [alaga-verify-project](../../../commands/alaga-verify-project.md); read-only diagnosis or comparison reports the gap without creating a harness by implication. Existing checks that prove the required behavior need no new skill.
 
 Treat developer experience (DX) and agent experience (AX) as properties of the real workflow: discoverable owners, reproducible setup, a short faithful feedback loop, useful errors and a clear recovery path. Improve a demonstrated obstacle within scope. Prefer making the existing interface or tool usable to adding instructions that explain around its defects; no new wrapper or harness is required by default.
