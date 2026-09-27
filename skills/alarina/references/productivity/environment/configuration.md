@@ -1,6 +1,6 @@
 # Configuration and deterministic mechanics
 
-Use during setup, when resolving a record destination, or when repeatable local verification/workflow tooling is needed. Resolve the installed script from the loaded `SKILL.md`; it needs Python 3.10+ and no third-party Python package. Local check process isolation currently requires macOS or Linux; use the project's native runner on other platforms. Commands, policies and workflows own judgment. The utility owns bounded mechanical results.
+Use during setup, when resolving a record destination, or when repeatable local verification/workflow tooling is needed. Resolve the installed script from the loaded `SKILL.md`; core operations need Python 3.10+ and no third-party Python package. The optional `ci-drift` operation uses project-provided PyYAML to parse actual workflows and reports a missing dependency without installing it. Local check process isolation currently requires macOS or Linux; use the project's native runner on other platforms. Commands, policies and workflows own judgment. The utility owns bounded mechanical results.
 
 ## One configuration contract
 
@@ -77,6 +77,37 @@ python3 <alarina-directory>/scripts/alarina.py freshness --project <checkout> <r
 Receipts bind executed checks to the configuration digest and Git candidate (HEAD, selected base, index, tracked/untracked contents and modes). Candidate changes during execution invalidate the combined result. `freshness` compares current state; it does not turn a failed run into a pass or replace independent review. Ignored/generated artifacts, submodule interiors, external environments and changed requirements need their applicable proof. Non-Git checks can run, with missing candidate guarantees explicit.
 
 Commands return JSON. Exit 0 means the requested mechanical operation succeeded; 1 means reported gaps, failed/incomplete checks, stale evidence or inspection findings; 2 means invalid input or a blocked operation. Inspect the result and its limits. A successful command never authorizes publication or establishes standards compliance.
+
+## Continuity and CI facts
+
+When resuming prior work, use the native host's scoped history/search to select the relevant existing task and record. The read-only inspector then checks those explicit sources and receipts against the current checkout:
+
+```sh
+python3 <alarina-directory>/scripts/alarina.py resume-inspect --project <checkout> --record /absolute/existing/plan.md --receipt /absolute/checks/receipt.json
+```
+
+Repeat `--record` or `--receipt` for relevant sources, or supply the existing `--task` identity to locate its private `plan.md`. Missing records remain gaps; explicit alternatives can still be inspected. Goal/scope/next-action excerpts remain attributed historical claims, and linked chat IDs are leads. The inspector does not search unrelated history, select a task by recency, infer authority or convert a stored worker ID into observed live state. A current failed/partial receipt remains failed/partial. Files and state are never written.
+
+For CI reconciliation, inspect real workflow bodies with the optional YAML parser and optionally fetch current GitHub branch rules through `gh`:
+
+```sh
+python3 <alarina-directory>/scripts/alarina.py ci-drift --project <checkout> --repo OWNER/REPO --branch BRANCH
+python3 <alarina-directory>/scripts/alarina.py ci-drift --project <checkout> --baseline /absolute/prior-ci-inspection.json
+```
+
+The JSON output can be retained at the existing verification record. Comparison reports changed inventories, workflow content and provider facts, with conditions, matrices and unresolved reusable workflows visible. Literal command matches are navigation leads, not executed coverage. Missing provider access remains unknown; observed empty requirements are distinct. The owner traces wrappers, conditional paths and product obligations before accepting equivalence or changing checks. Without `--repo` and `--branch`, no network is used. Exit 1 means attention or drift; exit 2 means invalid or unavailable inspection. Neither is a reason to weaken a check.
+
+## Existing-container verification
+
+Use the existing running container's actual hex ID, mounted checkout and container-side verifier path:
+
+```sh
+python3 <alarina-directory>/scripts/alarina.py verify-container --container HEX_ID --project <checkout> --workspace /work/project --runner /work/project/skills/alarina/scripts/alarina.py
+```
+
+The adapter requires exactly one existing `.devcontainer/devcontainer.json` or `.devcontainer.json`, a complete Git candidate, Python 3.10+ and a writable bind mount of this checkout. It records config, runtime, mounts and runner identity, invokes the existing full verifier, compares host/container source inventories and executable bits, and checks receipt freshness. Read/write permission differences are tolerated. A runner outside the workspace needs `--expected-runner-sha SHA256` from a trusted installation. The runner's dependent modules and configured checks remain trusted project inputs; a matching entry-file digest is not a sandbox or code review.
+
+The configured gate must already work inside the container. Its fresh run output goes below the checkout's ignored `.qp/container-verification/`; the existing runner rejects tracked/unignored evidence. Preserve the returned receipt and environment JSON through the usual evidence owner. The adapter never creates, starts, rebuilds or stops containers. On client timeout, container-side check state is unknown; inspect the named container and run directory before retrying. Native macOS/Windows and hosted identity/signing remain separate proof. This adapter requires a POSIX host and container; use the native project verifier on unsupported platforms.
 
 ## Personal preferences
 

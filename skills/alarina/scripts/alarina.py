@@ -1,17 +1,25 @@
 #!/usr/bin/env python3
-"""Bounded Alárinà mechanics. Only `verify` executes explicitly configured commands."""
+"""Bounded Alárinà mechanics. Only verification operations execute configured checks."""
 from __future__ import annotations
 
 import argparse
 from datetime import datetime, timezone
 import json
 from pathlib import Path
+import importlib
 import sys
 import uuid
 
 from project_context import (
     ContextError, contained_path, doctor, load_context, read_json, resolve_destination,
 )
+
+INSPECTION_COMMANDS = {
+    "resume-inspect": ("resume_inspection", "Inspect selected continuity records and current receipt freshness"),
+    "ci-drift": ("ci_drift", "Inspect workflow/local-check drift and optional provider requirements"),
+    "installation-inspect": ("installation_diagnostics", "Compare source, installed files and supplied discovery evidence"),
+    "verify-container": ("container_verification", "Run the existing full verifier in a suitable running dev container"),
+}
 
 
 def parser() -> argparse.ArgumentParser:
@@ -38,6 +46,8 @@ def parser() -> argparse.ArgumentParser:
             command.add_argument("--root", action="append", type=Path, help="Explicit roots instead of the current project's library")
     contribution = sub.add_parser("contribution-check", help="Inspect one curated proposal locally; never submit it")
     contribution.add_argument("path", type=Path)
+    for name, (_, description) in INSPECTION_COMMANDS.items():
+        sub.add_parser(name, help=description, description=f"Use {name} --help for this operation's arguments.")
     return root
 
 
@@ -117,7 +127,11 @@ def execute(args) -> tuple[dict, int]:
 
 
 def main(argv=None) -> int:
-    args = parser().parse_args(argv)
+    supplied = list(sys.argv[1:] if argv is None else argv)
+    if supplied and supplied[0] in INSPECTION_COMMANDS:
+        module, _ = INSPECTION_COMMANDS[supplied[0]]
+        return importlib.import_module(module).main(supplied[1:])
+    args = parser().parse_args(supplied)
     try:
         result, code = execute(args)
     except (ContextError, ValueError, OSError, RuntimeError) as error:

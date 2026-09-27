@@ -33,6 +33,10 @@ After interruption or an ambiguous result, inspect actual effects before retryin
 
 Verify installed content and intended membership, including updater references and replacements. Confirm preserved pins, scope, placement, enabled state and local work. Detect stale copies in other discovery roots without deleting unrelated installations.
 
+For a read-only bounded comparison, run `python3 <alarina-directory>/scripts/alarina.py installation-inspect --source-root /absolute/source-package --installed-root /absolute/installed-package`. It compares the runtime inventory while excluding the same cache noise as package export. Exit 1 reports file drift or conflicting supplied discovery evidence; no update or reload follows automatically.
+
+Optional `--manager-json` accepts an explicitly captured native inventory normalized as `{"host":"codex","plugins":[...]}`; optional `--session-json` accepts `{"reads":[{"path":"/absolute/installed/file","sha256":"...","version":"...","success":true}]}`. Preserve `origin` and `captured_at` on these records. They remain supplied evidence, not an independently observed active session. Missing evidence stays unknown; mismatched version/hash evidence is stale. Use actual native tools to establish selection and successful reads, and keep those locators with the diagnostic. The helper does not search private sessions, infer activation from file equality or restart the host.
+
 Prefer activation the host already performs. If discovery remains stale, use only a documented facility exposed by the installed client. A command requiring direct user input is a remaining action, not an executed reload.
 
 | Surface | Activation boundary |

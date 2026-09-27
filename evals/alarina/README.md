@@ -2,6 +2,8 @@
 
 Use one relevant case and a nearby control when selection, routing, authority or completion may change. These cases are optional model probes, outside package CI. Actor prompts and private expectations are paired by stable ID.
 
+The [executable trial runner](behavior-trials.md) prepares disposable supplied-entry fixtures for A02/A06/A07/A09/A10/O06, captures bounded actor execution and independently checks the resulting artifacts. Its deterministic mechanics run in package CI; actual model trials and semantic judgments remain optional and separately evidenced. A13's container-selection scenario requires an actual suitable project container and remains distinct from fake-transport adapter tests.
+
 | Lane | Cases | What it can establish |
 | --- | --- | --- |
 | [Native selection](triggers/cases.json) | T01, T05, T08; N01, N04; E01, E02 | Whether a clean host selects Alárinà for an engineering task, leaves an unrelated fact or uninvoked private-serving utility alone, and accepts exact qualified entry. |

@@ -37,6 +37,11 @@
       "id": "html-artifact",
       "argv": ["python3", "scripts/skills/test_html_artifact.py"],
       "proof": {"type": "unittest"}
+    },
+    {
+      "id": "behavior-trial-mechanics",
+      "argv": ["python3", "scripts/skills/test_behavior_trial.py"],
+      "proof": {"type": "unittest"}
     }
   ],
   "remote_checks": ["Run the same local gate on CI Linux and macOS with Python 3.12. Run declaration generation tests and package checks on Windows; this subset does not establish Windows process isolation or native-host activation. Publishing and native-host activation retain their separately requested proof."],

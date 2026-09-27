@@ -10,6 +10,8 @@ Prefer the project's existing dev container when one is available and suitable f
 
 If the dev container is absent, unavailable or cannot exercise a required platform capability, use the established supported environment for that work and state the material difference. Keep host-specific proof, such as native macOS or Windows behavior, with its actual platform. A preference for an available container does not require creating one, installing a runtime, rebuilding unrelated environments or stopping shared instances. A read-only request remains read-only.
 
+When the existing container exposes a suitable mounted checkout and installed verifier, use [container verification](../../productivity/environment/configuration.md#existing-container-verification) for an environment-bound receipt. Discover the project's actual entry path first; the adapter does not provision missing capabilities or replace its lifecycle owner.
+
 ## Establish the verification path
 
 When runtime evidence is needed, discover the project's verification path from governing instructions, local verification skills, build/test commands and existing CI or harnesses. Match it to the changed public surface and the actual candidate. Reuse current verified setup knowledge; name missing launch, drive, observation or cleanup capability early. Within authorized delivery, close a reusable capability gap through [alaga-verify-project](../../../commands/alaga-verify-project.md); read-only diagnosis or comparison reports the gap without creating a harness by implication. Existing checks that prove the required behavior need no new skill.

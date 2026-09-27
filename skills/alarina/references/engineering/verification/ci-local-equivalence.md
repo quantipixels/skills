@@ -6,6 +6,8 @@ Read during project setup, when CI or its inputs change, or when readiness depen
 
 Inspect the actual workflow bodies, referenced scripts and reusable workflows, job conditions, matrices and prerequisite setup. Trace each relevant obligation to its maintained implementation before copying a CI command. Record the mapping at the existing verification/build owner; a small table or existing runner documentation is enough:
 
+Use the optional [CI drift inspection](../../productivity/environment/configuration.md#continuity-and-ci-facts) when a repeatable source/provider comparison helps. Its literal invocation hints, prior-record differences and effective required-check facts support this mapping; they do not evaluate conditional expressions, prove complete product coverage or authorize provider changes.
+
 | Obligation | Local proof and prerequisites | CI differences | Disposition |
 | --- | --- | --- | --- |
 | Named behavior or check and its CI job/step | Exact command/check ID, working directory, runtime/tool versions, dependency lock, services/fixtures and expected evidence | OS/architecture, matrix variants, credentials, generated inputs, caching or provider-only controls that affect the claim | Executed with evidence; available but unexecuted; blocked with missing capability; or genuinely remote-only with named proof owner |
