@@ -125,9 +125,27 @@ Retrospective work has three commands: `ayewo-igba-ise` reconstructs an event; `
 
 Alárinà looks for the project's existing verification commands and skills before substantial implementation. When a reusable capability is missing, `alaga-verify-project` establishes the real launch, readiness, drive, evidence and cleanup path, then exercises it from the documented starting state. Delivery keeps affected recipes current; broader verification audits are separately scoped. Missing access or runtime proof remains an explicit completion gap.
 
-Routine work needs no extra record or HTML report. Under the [record policy](skills/alarina/references/productivity/records.md), requested deliverables use a visible destination, shared knowledge stays with its project owner, and disposable scratch uses temporary storage. Private resumable state reuses its existing record or defaults to `~/.qp/alarina/` in your home directory, isolated by project, worktree and task. Existing project-local `.qp` records remain usable; the policy does not automatically move or delete them.
+Routine work needs no extra record or HTML report. The [record policy](skills/alarina/references/productivity/records.md) resolves new artifacts in a defined order: your explicit destination, the established owner, the project's configured `doc_root`, then isolated task artifacts under `~/.qp/alarina/projects/<project>/worktrees/<checkout>/tasks/<task>/artifacts/`. Private task state stays isolated even when a shared document fallback exists. Shared knowledge stays with its project owner. The path helper prevents same-named projects and worktrees from colliding; it does not create or relocate files by itself.
 
-Retrospectives can keep useful custom workflows proven through actual work in `~/.qp/alarina/ona/`. Alárinà finds relevant recipes there when composing a path, checks their assumptions against the current task, and retains their evidence and limits. The [learned-workflow policy](skills/alarina/references/productivity/learned-workflows.md) keeps this optional and private; explicit read-only requests remain read-only, and untested ideas stay recommendations.
+Retrospectives can retain proven custom workflows in the current project's private library; explicitly qualified cross-project recipes have a separate portable library. The [workflow contract](skills/alarina/references/productivity/learned-workflows.md) supports scoped discovery, composition, evidence, drift correction and retirement. Recipes connect existing methods and project commands. They do not execute automatically or require a new public skill. Opt-in [contribution suggestions](skills/alarina/references/productivity/contributing-improvements.md) can turn a useful local improvement into a curated synthetic proposal with benefits, challenges and evidence limits; privacy preflight never submits it or guarantees anonymity.
+
+## Configure and verify a project
+
+Alárinà includes reusable mechanics for configuration, paths, readiness diagnosis, local gates and workflow inspection. Start with `alarina alarina-setup` to connect the project's existing standards and real verification commands. Setup explicitly identifies missing local gates and verifiers; CI remains the independent/remote backstop.
+
+The optional [configuration contract](skills/alarina/references/productivity/environment/configuration.md) separates shared `.alarina.json` inputs from personal storage/suggestion preferences. It rejects invalid or unknown settings, preserves project-owned standards and keeps models, effort, subagents and permissions with the user/host. The [delegation example](skills/alarina/references/productivity/environment/delegation-example.md) shows how to express your preferences directly in global or project `AGENTS.md` and adapt them over time.
+
+Resolve `<alarina-directory>` from the loaded `SKILL.md`:
+
+```sh
+python3 <alarina-directory>/scripts/alarina.py doctor --project <checkout>
+python3 <alarina-directory>/scripts/alarina.py verify --project <checkout> --task <stable-task-id>
+python3 <alarina-directory>/scripts/alarina.py freshness --project <checkout> <receipt.json>
+```
+
+The doctor is read-only. Verification executes registered literal commands with bounded logs, checks declared execution proof and binds the result to the actual candidate/configuration. Zero/all-skipped tests and stale evidence cannot count as a passing test gate. Code review, product journeys and remote-only obligations remain explicit. The check runner currently supports macOS/Linux process isolation; the other helpers require Python 3.10+ with no third-party runtime package. Use native project verification on other platforms.
+
+This repository consumes its own [check inventory](.alarina.json) through `npm run doctor` and `npm run verify:local`; package CI runs the same gate. Run `npm run build:plugins` first after editing shipped sources. Test-count proof establishes execution, not general model efficacy or whole-product quality.
 
 ## Update
 

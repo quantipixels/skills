@@ -918,6 +918,44 @@ routes:
   - independent-review
   - release-rollout
   - bug-fix
+- id: engineering-maintenance
+  families:
+  - investigate
+  - build
+  select_when: A project's engineering readiness, agent instructions, verification capability or adopted workflows need evidenced improvement and upkeep.
+  outcomes:
+  - engineering readiness assessment
+  - verified working capability
+  - maintained reusable workflow
+  stopping_points:
+  - assessment
+  - remediation
+  - adoption
+  - maintenance
+  playbook: playbooks/engineering-maintenance.md
+  owners:
+  - command: alarina-setup
+    required: true
+  - command: alaga-deliver
+    required: false
+  support:
+  - alaga-verify-project
+  - oro-sigidi
+  - akowe-sync
+  - atunwo
+  - ayewo-retro
+  - ayewo-corpus
+  implicit: true
+  authority:
+    edit: when_requested
+    publish: never
+    merge: never
+    deploy: never
+    destructive: explicit_only
+  neighbours:
+  - project-verification
+  - postmortem
+  - skill-evaluation
 - id: postmortem
   families:
   - investigate

@@ -36,6 +36,8 @@ Write for an agent arriving without this conversation: identify the working dire
 
 Record a small useful set of journeys: entry point, prerequisite, drive command and observable outcome. Reuse existing test or journey identities; add an index only when it makes several maintained recipes easier to find. Do not generate placeholders or an exhaustive feature catalogue.
 
+Register stable local gate invocations and their proof formats through [configuration](../references/productivity/environment/configuration.md), keeping their implementations with the project. Keep journey coverage distinct from command success. Use [records](../references/productivity/records.md) for evidence destinations so a cold-start replay and teardown do not scatter or erase proof. A changed verification recipe needs a corresponding update to its existing index/pointer and registered gate when applicable.
+
 When acceptance depends on user navigation or later effects, follow the action through its destination and aftermath. For example, a notification must reach the intended recipient and open the correct item, with the expected data and focus where relevant; successful sending alone is insufficient. Record observed friction for the affected user separately from functional failure. Select only affected journeys; this does not require an exhaustive browser matrix or browser testing of static reports.
 
 For each journey, record material alternate entry points, reset state and known limitations. Label source-derived recipes separately from executed proof, with candidate/environment identity and an evidence locator. Verifying one mapped path does not verify its unexercised alternatives. A feature map guides later selection; seeding it does not claim full-product coverage.
@@ -43,6 +45,8 @@ For each journey, record material alternate entry points, reset state and known 
 Prefer the real public path over internal setters or verification-only endpoints. An isolated external substitute may be appropriate; state the boundary it leaves unproved. Confirm what a dry-run actually omits before relying on it to prevent effects.
 
 For recurring integration risks, retain the project-specific commands and observations for the applicable framework invocation, supported old/new consumer or data combination, denied access, or interruption/restart journey. Reuse Alaga’s proof methods; this capability supplies the real build, fixtures and driver rather than copying the general method. Record resource-cost recipes only when a concrete workload and bounded measurement are available.
+
+When this capability supplies local proof for a CI obligation, read [CI/local equivalence](../references/engineering/verification/ci-local-equivalence.md). Reuse the maintained command and document material differences in runtime, dependencies, services and coverage; matching command text alone cannot establish environment parity.
 
 ## Prove the instructions
 

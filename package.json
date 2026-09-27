@@ -9,6 +9,9 @@
   },
   "license": "MIT",
   "scripts": {
+    "doctor": "python3 skills/alarina/scripts/alarina.py doctor --project .",
+    "verify:local": "python3 skills/alarina/scripts/alarina.py verify --project . --task local-verification",
+    "test:runtime": "python3 -m unittest discover -s tests -p 'test_*.py'",
     "install:codex": "python3 scripts/plugins/install_local_codex.py",
     "build:plugins": "python3 scripts/plugins/build_alarina_bundle.py",
     "check:plugins": "python3 scripts/plugins/build_alarina_bundle.py --check",

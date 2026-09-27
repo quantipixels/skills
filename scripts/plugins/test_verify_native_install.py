@@ -89,6 +89,16 @@ class NativeInstallVerifierTest(unittest.TestCase):
         write(self.root, "tracked-dev.txt", "Development file.\n")
         write(self.root, ".qp/private.txt", "Private state.\n")
         write(self.root, "node_modules/marker.txt", "Dependency state.\n")
+        runtime_caches = (
+            "skills/alarina/scripts/__pycache__/helper.cpython-314.pyc",
+            "skills/alarina/scripts/helper.pyc",
+            "skills/alarina/scripts/helper.pyo",
+            "skills/alarina/.pytest_cache/README.md",
+            "skills/alarina/references/.DS_Store",
+        )
+        for relative in runtime_caches:
+            write(self.root, relative, "Regenerable checkout state.\n")
+        write(self.root, "skills/alarina/scripts/helper.py", "print('runtime')\n")
         destination = self.root / "staged"
         with patch.object(verifier, "ROOT", self.root):
             verifier.stage_package(destination)
@@ -96,6 +106,9 @@ class NativeInstallVerifierTest(unittest.TestCase):
         self.assertFalse((destination / "tracked-dev.txt").exists())
         self.assertFalse((destination / ".qp").exists())
         self.assertFalse((destination / "node_modules").exists())
+        self.assertTrue((destination / "skills/alarina/scripts/helper.py").is_file())
+        for relative in runtime_caches:
+            self.assertFalse((destination / relative).exists(), relative)
 
     def test_run_reports_errors_and_timeout(self) -> None:
         with self.assertRaisesRegex(verifier.NativeVerificationError, "could not start"):

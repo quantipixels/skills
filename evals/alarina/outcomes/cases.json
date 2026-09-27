@@ -14,5 +14,9 @@
   {
     "id": "O04",
     "prompt": "Use Alárinà to implement and verify the accepted fix in a disposable Python fixture. Create the fixture under a fresh temporary directory. Existing function is retry_delay(attempt, base=2, cap=30): return min(cap, base * attempt). Accepted behavior: attempt is a nonnegative integer; delay doubles each attempt starting at base for attempt 0, capped at cap; negative attempts raise ValueError; preserve the two keyword parameters. Add meaningful boundary tests and run them. Do not edit project source, install dependencies, publish, or call other workers. Return the exact files and test evidence."
+  },
+  {
+    "id": "O05",
+    "prompt": "Use the supplied Alárinà entrypoint to deliver a bounded fix in a fresh temporary copy of evals/alarina/outcomes/fixtures/ledger-replay. The copy is your entire project. A repeated event ID with the same positive integer amount must leave the total and entries unchanged; a repeated ID with a different positive integer amount must raise ValueError without changing entries; distinct IDs keep working. The caller guarantees a positive integer amount, so input validation is outside scope. Before editing, run `PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s unit` and `PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s contracts` from the copied project root. Diagnose the initial results, make the smallest fix, and bring the local check inventory into line with the existing CI checks. After editing, rerun both commands and report their actual outcomes, the changed files, and any remaining Linux/Python 3.12 or independent-review limit. Keep check output outside the project. Do not modify the source fixture or other projects, install tools, use the network, publish, or delegate. Stop at the local candidate and evidence."
   }
 ]

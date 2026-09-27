@@ -1,0 +1,3 @@
+# Harbor ledger
+
+Use the supplied engineering method for this task. Keep state in the existing owner or isolated Alarina task location; do not add a document root. Do not publish, install tools, use the network or alter anything outside this project. Python standard library is sufficient. The configured commands and CI workflow describe the existing verification paths. User-facing behavior is specified in README.md. Temporary check output belongs outside the source checkout. For an independent review, return a frozen candidate and evidence to the parent; the parent will review it before acceptance.

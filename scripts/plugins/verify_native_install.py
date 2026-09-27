@@ -193,7 +193,13 @@ def stage_package(destination: Path) -> None:
     """Export the declared runtime surface, excluding checkout and ignored state."""
     paths = {Path(item) for item in DECLARATIONS}
     paths.add(Path("LICENSE"))
-    paths.update(path.relative_to(ROOT) for path in (ROOT / "skills/alarina").rglob("*") if path.is_file())
+    for path in (ROOT / "skills/alarina").rglob("*"):
+        relative = path.relative_to(ROOT)
+        if (any(part in {"__pycache__", ".pytest_cache"} for part in relative.parts)
+                or path.name == ".DS_Store" or path.suffix in {".pyc", ".pyo"}):
+            continue
+        if path.is_file():
+            paths.add(relative)
     for relative in sorted(paths):
         source = ROOT / relative
         if not source.is_file():

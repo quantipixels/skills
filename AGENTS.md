@@ -23,6 +23,8 @@ python3 scripts/skills/check_package.py
 
 For compiler or installer changes, add `npm run test:plugins`. [Package CI](.github/workflows/checks.yml) lists other mechanical checks; [build guidance](scripts/plugins/README.md) covers native installation. Verify activation and model behavior separately when claimed. Keep model evals optional; do not recreate deliberately retired checks.
 
+The shared gate inventory is [.alarina.json](.alarina.json). Run `npm run doctor` for read-only prerequisite/configuration facts and `npm run verify:local` for the complete local gate; CI invokes that same inventory. Use `-- --output <new-private-directory>` to select a run-evidence destination, or `-- --check <id>` for affected checks while retaining the stated coverage limit. Runtime utility changes need `npm run test:runtime`. Logs and receipts follow the [record policy](skills/alarina/references/productivity/records.md); do not commit private run output. Passing mechanics do not establish native activation, behavioral improvement or permission to publish.
+
 Before pushing substantive changes, apply Alárinà's [local readiness contract](skills/alarina/references/engineering/delivery/local-readiness.md) to the complete source and generated candidate. CI is the backstop for locally available review and checks.
 
 ## Keep changes cohesive

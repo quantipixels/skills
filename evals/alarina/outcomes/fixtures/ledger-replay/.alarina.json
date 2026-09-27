@@ -1,0 +1,6 @@
+{
+  "version": 1,
+  "checks": [{"id": "unit", "argv": ["python3", "-m", "unittest", "discover", "-s", "unit"], "proof": {"type": "unittest"}}],
+  "required_tools": ["python3"],
+  "policy_sources": ["AGENTS.md", "README.md"]
+}

@@ -6,11 +6,15 @@ Read for a delivery candidate, including the review stage after Red → Green im
 
 **Specification:** Does this candidate deliver the accepted behavior? Use the actual request, specification, ticket and confirmed decisions; a separate spec file is not required. Identify missing or partial requirements, incorrect outcomes and unrequested behavior. Cite the controlling requirement and affected path. Tests written by the implementer are evidence, not the definition of the user's intent.
 
+Distinguish a documented input domain from a required rejection policy outside it. A function described as accepting positive integers does not, by that phrase alone, specify exceptions for every other input. Require validation when an explicit contract, applicable standard or reachable protected boundary establishes it. Otherwise report the unconfirmed policy separately from demonstrated defects; do not add it to blocking acceptance or silently expand a scoped repair.
+
 **Standards:** Does this candidate meet applicable project conventions and justify its design? Read relevant repository instructions, contributor guidance, architecture and ADRs. Cite the actual rule for a violation. Project decisions override generic preferences. Use current formatter, compiler and lint evidence for what those tools establish; spend judgment on what they do not settle rather than duplicating their diagnostics.
 
 Load detailed judgment-based standards here from the project's established owner, such as `CODEBASE_STANDARD.md`, `CODING_STANDARDS.md` or a contributor guide. Their shared authority does not require the implementer to carry the entire review checklist during construction. Mechanical violations should be covered by a suitable existing check; if the check is absent or ineffective, distinguish that enforcement gap from the candidate's violation and return any authorized repair to Alága.
 
 Separate the questions even when one reviewer handles a bounded change. Use independently briefed reviewers when the breadth or competing concerns justify separate context, following [coordination](../../productivity/coordination.md). Give both the same pinned candidate and comparison base; supply the specification to its reviewer and standards sources to theirs. No fixed two-worker roster is required. Findings never authorize changes by themselves.
+
+When distinct expertise or a consequential disagreement warrants a further challenge, use [adversarial and council review](adversarial-and-council.md) within Àtúnwò's read-only boundary. Preserve separate Standards and Specification judgments; reviewer agreement cannot substitute for requirement or project-standard evidence.
 
 ## Refactoring judgment
 

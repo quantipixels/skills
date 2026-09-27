@@ -3,6 +3,7 @@ node_modules
 .qp
 __pycache__
 .pytest_cache/
+.alarina.local.json
 /skills-lock.json
 !/.agents/
 /.agents/*

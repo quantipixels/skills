@@ -6,6 +6,23 @@ The repository root is the package for Codex, Claude Code, OpenCode and Pi. [`sk
 
 Codex and Claude marketplaces both source `./`. Codex registers its native TOML agent separately in a project or user agent directory. Claude registers the generated Markdown agent through the plugin, with `qp-skills:alarina` preload and a plugin-root skill fallback. OpenCode loads `./skills` from [`opencode.json`](../../opencode.json) and its project agent from `.opencode/agents/alarina.md`. Pi loads `./skills` from `package.json`; the portable agent profile can be applied through `--append-system-prompt`, and Pi has no package named-agent declaration.
 
+## Local gate and CI coverage
+
+The repository's [check inventory](../../.alarina.json) is the execution owner. Both `npm run verify:local` and [the package CI job](../../.github/workflows/checks.yml) invoke the same `alarina.py verify` path. Run from the repository root with Python 3.10+ and the pinned packages in `requirements-dev.txt`; the npm convenience wrapper also requires Node/npm. The process-isolation runner supports macOS/Linux. Native-contract cases require permission to inspect owned child processes.
+
+| Obligation | Inventory check IDs | Evidence and material differences |
+| --- | --- | --- |
+| Declarations, links and package shape | `native-declarations`, `package`, `package-smoke` | Exit-status checks against the current source and generated files. Source validation does not establish host activation. |
+| Runtime paths, receipts, workflows and provider parsing | `runtime-contracts` | Positive unittest counts; temporary repositories, files and subprocesses plus provider fixtures. Live provider behavior is separate. |
+| Compiler/export/install contracts | `native-contracts` | Positive unittest counts; native manager installation or session reload is separate. |
+| Session-evidence and HTML mechanics | `session-evidence`, `html-artifact` | Positive unittest counts. They do not grade agent outcomes, source truth or rendered accessibility. |
+
+CI currently runs on `ubuntu-latest` with Python 3.12 and dependencies installed from `requirements-dev.txt`; a macOS run establishes those commands' local result, not a Linux result. Check the actual local runtime/dependency versions when reproducing an environment-sensitive failure. There are no matrix variants or external service fixtures in this workflow. A required Linux run remains CI-owned until actually exercised on a matching environment. Do not describe it as executed from a local receipt.
+
+CI retains the gate receipt and bounded logs in the `alarina-checks` run artifact for 14 days, including failed runs when evidence was created. Download the artifact from the relevant Actions run before expiry when a continuing investigation needs it; no artifact means no retained execution proof. These shared logs must not contain credentials or private application data.
+
+The full inventory is the package's mechanical gate. Behavioral instruction changes additionally need the relevant optional [model probes](../../evals/alarina/README.md), and substantive candidates require [independent review](../../skills/alarina/references/engineering/delivery/local-readiness.md). Pin their evidence to the candidate separately. Build declarations before the gate; refresh the affected mapping if workflow inputs or coverage change. Native activation, public release and genuine product acceptance retain their own proof and authority.
+
 ## Native install check
 
 To install or refresh this checkout in your local Codex installation, run:
@@ -22,7 +39,7 @@ marketplace settings and separately registered agent profiles unchanged. It inst
 the current working tree, including uncommitted changes; it does not pull or publish.
 Restart Codex afterward. Retained exports can be removed when no longer needed.
 
-Run `python3 scripts/plugins/verify_native_install.py --host codex` or `--host claude` to install into disposable manager state and compare the installed canonical skill and declarations with a clean staged package. The stage exports only the runtime skill, native declarations, manifests, marketplaces, package metadata and licence. This excludes ignored `.qp/`, `node_modules/` and development files; Codex's local marketplace copier can otherwise include ignored working files from a live checkout. The check does not change the user's installation.
+Run `python3 scripts/plugins/verify_native_install.py --host codex` or `--host claude` to install into disposable manager state and compare the installed canonical skill and declarations with a clean staged package. The stage exports only the runtime skill, native declarations, manifests, marketplaces, package metadata and licence. This excludes `.qp/`, `node_modules/` and development files outside the runtime tree. Python bytecode/cache files, pytest cache directories and `.DS_Store` files are excluded within the runtime tree too, so running local checks before export cannot introduce those files. Codex's local marketplace copier can otherwise include ignored working files from a live checkout. The check does not change the user's installation.
 
 The comparison also rejects unexpected Markdown or TOML agent declarations under the installed `agents/` and `.opencode/agents/` directories. It does not compare unrelated development files or prove that a package manager removes stale files during an upgrade.
 
