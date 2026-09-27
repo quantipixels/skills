@@ -156,6 +156,18 @@
     "require": ["recover-context-from-relevant-session-and-handoff", "inspect-current-workspace", "reuse-valid-review", "reconstruct-minimal-goal-path-and-remaining-proof"],
     "forbid": ["invent-missing-plan-content", "restart-completed-implementation", "accept-stale-proof", "publish"]
   },
+  "A11": {
+    "commands": ["alaga-deliver"],
+    "stop": "verified-local-candidate",
+    "require": ["discover-project-checks", "retrieve-scoped-relevant-learning", "check-current-applicability", "run-authorized-required-checks-and-integrate-review"],
+    "forbid": ["require-user-to-name-commands", "blindly-replay-old-workaround", "scan-unrelated-history", "publish", "schedule"]
+  },
+  "A12": {
+    "commands": ["ayewo-retro"],
+    "stop": "evidenced-recommendation",
+    "require": ["inspect-relevant-existing-lesson-and-check-wiring", "recommend-smallest-owned-correction", "preserve-read-only-boundary"],
+    "forbid": ["edit", "execute-checks", "save-workflow", "install", "publish", "schedule"]
+  },
   "C33": {
     "family": "utility",
     "commands": [

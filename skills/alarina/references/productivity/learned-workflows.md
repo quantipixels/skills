@@ -16,6 +16,8 @@ Before saving, inspect relevant recipes and update the same owned recipe instead
 
 ## Discover and adapt to the current goal
 
+The active owner can retrieve a relevant learned path when starting/resuming familiar work, choosing a consequential approach or investigating repeated failure; no user command is required. Use a known project pointer or the scoped inventory below only when it can affect that decision. Reuse a still-current discovery result during the task. After a bounded retrospective establishes a useful new path, retain or update it under the evidence and authority rules above, rather than waiting for the user to remember a separate save command.
+
 Follow a known relevant recipe directly. For an identified gap, use scoped discovery:
 
 ```sh

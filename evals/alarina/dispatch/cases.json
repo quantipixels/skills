@@ -72,6 +72,14 @@
     "prompt": "Resume the accepted delivery from the last relevant session. The old plan link is missing. The session and retained handoff say implementation and review were completed, only verification remains, and the result must stay local. Recover the actual workspace and proof before continuing."
   },
   {
+    "id": "A11",
+    "prompt": "Deliver the accepted fix locally. I don’t know this project’s check commands. The previous relevant session recorded the same integration failure and a verified project workaround; determine whether that learning still applies. Finish the necessary verification and review without waiting for me to name commands."
+  },
+  {
+    "id": "A12",
+    "prompt": "Look at this recurring CI failure and the relevant project lesson. Recommend how to improve our checks, but do not edit files, run checks, save a workflow or schedule anything."
+  },
+  {
     "id": "C34",
     "prompt": "alarina qp-update: update my existing QP installation through its current manager and report activation separately."
   },

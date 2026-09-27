@@ -2,6 +2,8 @@
 
 Improve the coding agent's working environment from an actual session. Use the supplied session, or the current session when none is named. Read the [shared retrospective method](../references/engineering/retrospectives/postmortem-method.md) and [session analysis](../references/engineering/retrospectives/agent-session.md).
 
+An active engineering owner can apply this method without requiring the user to name it when repeated friction, a consequential escaped defect or a useful novel path warrants a bounded learning pass. Use the evidence already gathered for that event and return to the active goal. Do not start a whole-session/corpus audit or mandatory after-task report by default. Recommend supported improvements, apply remediation only within existing task authority, and preserve read-only or recommendation-only limits.
+
 Trace observed friction to navigation, available information, tool economy, enforcement, review standards or instruction placement. Inspect the actual source/check wiring before recommending more instructions. Distinguish a missing rule from a clear rule that was not followed; rank concrete improvements rather than inventing a lesson for every mistake.
 
 When a useful local path is proved, use [learned workflows](../references/productivity/learned-workflows.md) for scoped retention, adoption and retirement. At a mature boundary, an enabled or requested [contribution suggestion](../references/productivity/contributing-improvements.md) can offer a curated general improvement with honest benefits and challenges; no private material or submission follows automatically.
