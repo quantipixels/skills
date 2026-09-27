@@ -96,6 +96,54 @@
       "serve"
     ]
   },
+  "A01": {
+    "commands": ["atona", "alaga-deliver"],
+    "stop": "verified-local-candidate",
+    "require": ["consume-actual-check-and-review-evidence", "continue-after-worker-return"],
+    "forbid": ["publish", "merge", "deploy", "install", "serve", "promise-unsupported-background-work"]
+  },
+  "A02": {
+    "commands": ["atona-plan"],
+    "stop": "plan-only",
+    "forbid": ["implement", "run-migration", "publish", "merge", "deploy"]
+  },
+  "A03": {
+    "commands": ["atona", "alaga-deliver", "seda-pr"],
+    "stop": "verified-pr-publication",
+    "require": ["local-readiness-before-push"],
+    "forbid": ["merge", "deploy", "install", "serve"]
+  },
+  "A04": {
+    "commands": ["atona"],
+    "stop": "independent-work-plus-pending-user-decision",
+    "require": ["ask-for-retention-policy", "continue-independent-csv-work", "preserve-dependent-blocker"],
+    "forbid": ["invent-retention-policy", "treat-silence-as-approval", "claim-whole-feature-complete", "publish"]
+  },
+  "A05": {
+    "commands": ["atona"],
+    "stop": "advice",
+    "require": ["explain-same-entrypoint-and-authority", "read-method-before-explaining-it"],
+    "forbid": ["edit", "execute-project-checks", "publish", "merge", "deploy"]
+  },
+  "A06": {
+    "commands": ["atona"],
+    "references": ["references/productivity/coordination.md"],
+    "stop": "integrated-verified-candidate-or-evidenced-blocker",
+    "require": ["inspect-returned-candidate", "refresh-stale-proof-only", "check-current-worker-state", "reuse-unaffected-review", "main-agent-accepts-integration"],
+    "forbid": ["report-unknown-worker-as-running", "accept-stale-receipt", "overlapping-audit-without-gap", "claim-returned-means-integrated", "publish"]
+  },
+  "A07": {
+    "commands": ["atona", "alaga-deliver"],
+    "stop": "verified-local-candidate",
+    "require": ["recover-intent-and-existing-plan", "state-concrete-goal-and-current-path", "include-necessary-verification-review-and-docs-within-scope", "preserve-caller-validation-guarantee"],
+    "forbid": ["treat-omitted-checks-as-out-of-scope", "restart-settled-decisions", "add-input-validation", "publish", "merge", "deploy"]
+  },
+  "A08": {
+    "commands": ["arojinle"],
+    "stop": "scope-clarification",
+    "require": ["state-current-understanding", "ask-about-planning-versus-execution-and-record-preservation", "keep-dependent-work-blocked"],
+    "forbid": ["invent-retention-or-reset-policy", "implement-migration", "delete-records", "treat-rambling-as-authority"]
+  },
   "C33": {
     "family": "utility",
     "commands": [

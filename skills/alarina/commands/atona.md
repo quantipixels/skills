@@ -8,6 +8,8 @@ Recover the request, accepted decisions, active plan/candidate, current proof an
 
 Distinguish verified implementation, an open PR, provider readiness, merge, deployment and live acceptance. Continue through the requested finish without asking permission again for each authorized stage. Autonomous execution does not itself authorize publication, merge, deployment, installation or destructive cleanup. Explicit-only commands retain their invocation rules.
 
+For long-running end-to-end work, put a concrete goal in the existing plan: the intended user outcome, observable finish and scope/authority limits. Keep a current path from actual state to that goal, with the next ready result and controlling uncertainty. For example: “Goal: the accepted migration preserves existing records and passes the agreed checks; stop at a verified local candidate. Path: establish the failing case → repair → verify consumers → integrate review and documentation.” Use a short path for simple work; when later steps are uncertain, name the next evidence-producing step rather than inventing them. A goal guides execution; it does not add permission or a second tracker.
+
 ## Compose the next useful result
 
 Use the matched playbook for progression and load only methods needed by the current state. If no playbook covers the outcome, follow Alárinà's scoped command/reference discovery and compose a sufficient path. A custom path needs no new command or script to run.
@@ -21,6 +23,20 @@ Pass the bounded question, current evidence, authority and stopping point. Inspe
 
 ## Continue autonomously when requested
 
+### Entry examples
+
+| Request | Action and stopping point |
+| --- | --- |
+| `alarina take this accepted change from implementation through verified delivery; work autonomously` | Continue through implementation, relevant checks, required review and documentation. Finish at the verified local candidate. |
+| `alarina atona implement the accepted fix, verify it and open a PR; I’m AFK` | Continue through local readiness and authorized PR publication. Opening the PR does not authorize merge or deployment. |
+| `alarina work hands-off on a plan for this migration; do not implement` | Use [atona-plan](atona-plan.md); return the plan without source edits or delivery. |
+| `alarina resume the accepted initiative; implementation is complete and only verification remains` | Inspect the actual candidate and recorded proof, then complete the remaining verification without restarting settled stages. |
+| `alarina finish the feature while I’m away; the retention period still needs my decision` | Resolve discoverable facts and independent work. Keep retention-dependent implementation blocked until the user supplies that policy; absence is not an answer. |
+
+These are illustrative requests through the same entrypoint. Once loaded, `atona` is sufficient; there is no separate autonomous skill, agent profile or background-service switch.
+
+### Interaction and continuation
+
 An end-to-end request authorizes continued work through its stated scope; an explicit hands-off or AFK request changes interaction, not the finish or permissions. Resolve observable facts from the project or a suitable experiment. Make routine and explicitly delegated choices, recording consequential assumptions in the current plan. Ask the human only for a missing decision they still own; their absence does not confirm a preference. Block dependent work when that decision is necessary and continue independent work within scope.
 
 Present the initial direction and material changes for visibility, without adding an approval gate unless the user requested one. After a command or worker returns, consume its evidence and continue to the next ready obligation in the active run. Do not end with an offer to perform already-authorized work.
@@ -33,7 +49,9 @@ When an attempt fails, use the evidence to correct the cause or change approach.
 
 Keep the current plan aligned with material decisions, discoveries, candidate changes and evidence. [atona-plan](atona-plan.md) owns substantive replanning; routine progress updates need no new planning pass. Preserve requested work and mandatory obligations, retire invalid assumptions and reopen only dependent choices or proof. Optional recommendations do not become completion conditions.
 
-Delegate useful independent work through native controls, with clear scope, workspace, acceptance and authority. Bound assignments and completed candidates awaiting integration by the capacity to integrate and verify them. Inspect decisive evidence, not worker completion claims. Follow Alárinà's coordination guidance for ownership and lifecycle controls.
+At resumption, worker handoff and a material discovery, compare the next action with the goal and current path. Include newly discovered necessary work within scope, revise the path when evidence invalidates it, and keep interesting but unrelated improvements optional. Change the destination only when evidence or a user decision justifies it; do not substitute a convenient intermediate artifact for the accepted finish.
+
+Delegate useful independent work through native controls, with clear scope, workspace, acceptance and authority. Before delegating or accepting a worker handoff, read [coordination](../references/productivity/coordination.md) for ownership, observed worker state and lifecycle controls. Bound assignments and completed candidates awaiting integration by the capacity to integrate and verify them. Inspect decisive evidence, not worker completion claims; the main agent owns acceptance of the combined result.
 
 Give each dependency-ready coding slice to [alaga-deliver](alaga-deliver.md). Consume its candidate, proof, documentation result and remaining gaps. Reuse its independent review; use [atunwo](atunwo.md) for additional integrated judgment only when warranted or requested, returning accepted corrections to delivery. When multiple work units, candidates or sessions need coordination, read [delivery tracking](../references/engineering/delivery/delivery-tracking.md). When a governing workflow requires formal initiative states, read [managed initiatives](../references/productivity/planning/managed-initiative.md); size alone does not require it.
 

@@ -12,6 +12,8 @@ Keep resources with their consuming skill. Prefer existing project or native cap
 
 ## Preserve useful structure
 
+Keep each prose paragraph on one source line, including long sentences and paragraphs. Let the editor or renderer wrap it visually; do not insert hard line breaks to meet a column width or place each sentence on a separate line. Use blank lines between paragraphs. Preserve structural line breaks in lists, tables, code, quotations and formats that require them. This governs source wrapping, not sentence length: rewrite an overloaded sentence when clarity calls for it, while keeping the paragraph on one line.
+
 Use a template when stable structure makes information easier to understand, compare, answer or verify. Distinguish required structure from illustrative scaffolding; preserve the user's requested format and interaction surface. Adapt optional fields to the task rather than adding filler or invented facts.
 
 Use concrete examples when they clarify a plausible mistake. For example, replacing `question → useful context/example → recommendation and why` with “ask clear questions” loses an interaction contract. Keep task-specific templates with their owning skill; preserve required meaning while leaving visual style open. Changing a useful or user-requested format is a behavioral change.

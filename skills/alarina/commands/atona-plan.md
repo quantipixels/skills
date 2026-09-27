@@ -6,6 +6,8 @@ Read [planning inputs](../references/productivity/planning/planning-inputs.md). 
 
 Reuse the supplied brief, current plan, accepted decisions and relevant project evidence. Establish the outcome, acceptance, scope/non-goals and requested planning depth. Resolve discoverable facts before asking the user; distinguish established requirements from proposals and assumptions. Never start a second plan over a current one merely because another method authored it.
 
+Turn a rough request into a concrete goal and observable finish using that context. Account for necessary in-scope steps and dependencies the user omitted. Where competing interpretations would materially change the outcome or scope, state what you understand and ask for the controlling clarification; do not invent a human preference to make the plan look complete.
+
 When one idea still needs shaping, use [arojinle](arojinle.md) for consequential unresolved purpose or trade-offs and [seda-spec](seda-spec.md) when observable behavior needs a contract. Use [atona-direction](atona-direction.md) when credible alternatives are needed, rather than brainstorming again over a settled choice. Use [iwadi](iwadi.md) for material external evidence gaps. Return unresolved prerequisites to the caller instead of inventing decisions.
 
 When selecting or changing the development approach, read [SDLC adaptation](../references/engineering/development-practice.md) to fit depth, capabilities, feedback and recovery to confirmed project philosophy. Reuse an adequate existing working path; no universal stage sequence is required.
@@ -13,6 +15,8 @@ When selecting or changing the development approach, read [SDLC adaptation](../r
 ## Establish enough approach and sequence
 
 Keep the outcome and acceptance, decisions and material assumptions, delivery approach and sequence, dependencies, risks, verification, documentation consequences and next action in one plan. Match detail to what the next contributor would otherwise have to invent. A short plan can remain in chat; use [records](../references/productivity/records.md) when continuity, collaboration or the requested deliverable needs a file.
+
+Make the goal and current path easy to recover: destination, actual state, next ready result, and the evidence or decision that controls what follows. Long-running end-to-end work retains this anchor in its living plan. Keep enough path to guide the next action even when only the next investigation is knowable; neither a vague task list nor an invented exhaustive backlog is a substitute.
 
 Use [amose](amose.md) for unsettled domain meaning or invariant applicability; [architect-design](architect-design.md) for consequential technical structure or mechanism fitness; and [seda-tickets](seda-tickets.md) for useful delivery decomposition. Consume their current results rather than copying their methods or requiring each branch. A specification owns behavior, architecture owns structure, and work packages own bounded tasks; the plan connects them without duplicating their records.
 

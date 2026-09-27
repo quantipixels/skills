@@ -14,6 +14,27 @@
     "family": "review",
     "stop": "status"
   },
+  "T09": {
+    "selected": true,
+    "family": "plan",
+    "command": "atona",
+    "stop": "verified-local-candidate"
+  },
+  "T10": {
+    "selected": true,
+    "stop": "remaining-verification",
+    "condition": "resume-without-restarting"
+  },
+  "T11": {
+    "selected": true,
+    "condition": "plain-name-explicit",
+    "command": "atona-plan",
+    "stop": "plan-only"
+  },
+  "N02": {
+    "selected": false,
+    "class": "incidental-autonomy-keyword"
+  },
   "N01": {
     "selected": false,
     "class": "casual-fact"

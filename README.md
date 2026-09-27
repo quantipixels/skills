@@ -70,10 +70,8 @@ Skills CLI installs skills only. Use the Claude Code plugin if you also want Al�
 Paste this into your AI assistant:
 
 ```text
-Follow the install instructions and migration guide linked from the README at
-https://github.com/quantipixels/skills to migrate my QP setup to Alárinà.
-Verify the replacement before removing retired QP skills I own. Then update my agent
-configuration and preferred-provider launcher.
+Follow the install instructions and migration guide linked from the README at https://github.com/quantipixels/skills to migrate my QP setup to Alárinà.
+Verify the replacement before removing retired QP skills I own. Then update my agent configuration and preferred-provider launcher.
 ```
 
 The [migration guide](skills/alarina/references/productivity/environment/installation-migration.md) has the provider commands, cleanup steps and configuration examples. Install and verify Alárinà before removing old entries.
@@ -96,6 +94,19 @@ Once Alárinà is loaded, plain command names such as `atona-plan` are sufficien
 The [command menu](skills/alarina/SKILL.md#commands) groups capabilities by outcome family. Commands live under `skills/alarina/commands/` and are arguments to Alárinà, not separate slash/dollar skills. Supporting depth stays under `references/` and loads only when relevant; reusable utilities ship in [`scripts/`](skills/alarina/scripts/README.md). Ordinary engineering requests need no command name. Bare invocation shows the menu without starting work. [Terms and names](skills/alarina/references/communication/terms.md) explains the command names and engineering concepts including DX, AX, deep modules and HITL/AFK.
 
 `atona-direction` explores credible alternatives. Shaping a chosen idea uses `arojinle` and `seda-spec` where needed. `atona-plan` owns the approach, sequence and verification plan, including progressive wayfinding when the route is uncertain. `atona` carries the initiative through the requested finish, consuming these results without stopping at a planning handoff. Hands-off execution resolves facts and delegated choices, preserves human-owned decisions, and continues within existing authority; it does not require every stage, grant publication or merge, or promise background execution the host cannot provide.
+
+### Autonomous entry examples
+
+| You can say | Expected finish |
+| --- | --- |
+| `alarina implement and verify the accepted fix end to end; I’m AFK` | Verified local change, including required review and affected documentation. |
+| `alarina atona deliver this accepted feature and open a PR; work hands-off` | Verified local change and published PR; merge and deployment need their own authorization. |
+| `alarina work autonomously on a migration plan; do not implement` | Plan only, through `atona-plan`. |
+| `alarina resume the accepted work; only verification remains` | Verify the existing candidate and finish the recorded scope. |
+
+Autonomous, hands-off and AFK describe how to continue within your request. They do not select a separate runtime mode. If a required decision still belongs to you, Alárinà asks for it and continues independent work; it cannot treat your absence as approval. See the [entry and continuation contract](skills/alarina/commands/atona.md#entry-examples). The [eval coverage](evals/alarina/README.md) distinguishes native selection, loaded-entry routing and completed outcomes.
+
+### Other entry paths and engineering methods
 
 Optional `alarina-setup` establishes project philosophy, an adaptable software development lifecycle (SDLC) and usable working capabilities, or prepares a personal environment. It discovers the project's intent and practice, then uses Àròjinlẹ̀ with the user for consequential unresolved values or trade-offs. Confirmed principles guide framing, design, implementation, verification/review, release, operation/recovery and learning. Existing standards, tools and tracking remain the starting point; working projects need no setup ceremony. Shared expectations stay with the project; personal host and model preferences stay with the user.
 
@@ -145,7 +156,7 @@ python3 <alarina-directory>/scripts/alarina.py freshness --project <checkout> <r
 
 The doctor is read-only. Verification executes registered literal commands with bounded logs, checks declared execution proof and binds the result to the actual candidate/configuration. Zero/all-skipped tests and stale evidence cannot count as a passing test gate. Code review, product journeys and remote-only obligations remain explicit. The check runner currently supports macOS/Linux process isolation; the other helpers require Python 3.10+ with no third-party runtime package. Use native project verification on other platforms.
 
-This repository consumes its own [check inventory](.alarina.json) through `npm run doctor` and `npm run verify:local`; package CI runs the same gate. Run `npm run build:plugins` first after editing shipped sources. Test-count proof establishes execution, not general model efficacy or whole-product quality.
+This repository consumes its own [check inventory](.alarina.json) through `npm run doctor` and `npm run verify:local`; package CI runs the same seven checks on Linux and macOS with Python 3.12. A separate Windows job checks package contracts and declaration generation, including rejection cases. It does not run the POSIX process-isolating verifier or establish Windows installation/activation. Run `npm run build:plugins` first after editing shipped sources. Test-count proof establishes execution, not general model efficacy or whole-product quality.
 
 ## Update
 

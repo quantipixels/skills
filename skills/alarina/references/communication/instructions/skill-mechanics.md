@@ -74,6 +74,8 @@ Use the provider's supported interface for installing, configuring, migrating, o
 
 ## Treat the description as a pointer
 
+For each command or workflow, make its useful entry discoverable from the owning entrypoint and reachable through an exact method link. Cover a realistic plain-language request, named invocation when supported, and the nearest plausible exclusion; include a worked example when the correct route or stopping point is easy to confuse. Use familiar user vocabulary, including rough or incomplete requests, without reducing selection to keyword matching. Check the path through successful loading and the owned result, not just whether a name appears in a menu.
+
 The description decides whether the skill becomes reachable. State the owned result and genuinely distinct trigger branches, plus the nearest meaningful exclusions. Do not summarize the procedure or pad one branch with synonyms.
 
 Good:

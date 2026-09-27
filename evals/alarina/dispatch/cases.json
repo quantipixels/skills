@@ -28,6 +28,38 @@
     "prompt": "Resume the accepted fix. The diagnosis and implementation are complete; only the recorded verification remains. Preserve that stopping point."
   },
   {
+    "id": "A01",
+    "prompt": "alarina take the accepted change through implementation, verification and required review. I’m AFK; work autonomously. Keep the result local."
+  },
+  {
+    "id": "A02",
+    "prompt": "alarina work hands-off on the migration plan. Stop at the plan; do not implement, run the migration or publish anything."
+  },
+  {
+    "id": "A03",
+    "prompt": "alarina atona deliver the accepted change and open a PR. Work end to end without waiting for routine implementation choices. Do not merge or deploy."
+  },
+  {
+    "id": "A04",
+    "prompt": "alarina finish the accepted reporting feature while I’m away. Its CSV export behavior is settled. The data-retention period is still my decision, and there is no existing policy to infer it from. Proceed with independent work and ask me for that decision."
+  },
+  {
+    "id": "A05",
+    "prompt": "Explain what Alárinà’s autonomous mode does and show its entry point. This is a workflow question; do not begin work on this repository."
+  },
+  {
+    "id": "A06",
+    "prompt": "Resume the delegated initiative after an interruption. One worker returned a candidate and said tests passed, but the retained receipt is for the previous candidate. Another worker’s stored ID is available, but its current native state is unknown. Main-agent ownership remains with you. Reuse the completed review for unchanged files and finish the remaining integration without another overlapping audit."
+  },
+  {
+    "id": "A07",
+    "prompt": "That replay thing from earlier, it’s still messing up totals — same event, same amount should be fine, a changed amount should fail without changing anything. Callers already validate positive integers. Take care of it properly through local delivery, I’ll be away. Keep our existing plan, no publishing. I probably haven’t listed every step."
+  },
+  {
+    "id": "A08",
+    "prompt": "Can we get this migration sorted, maybe just plan it or maybe do it, I’m not sure. We haven’t agreed whether to preserve existing records or reset them. There’s no policy or earlier decision to settle that. Help establish what’s in scope before making changes."
+  },
+  {
     "id": "C33",
     "prompt": "alarina pese: privately serve only this exact local report and its reviewed assets, with the stated expiry."
   },

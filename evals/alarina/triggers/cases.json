@@ -12,6 +12,22 @@
     "prompt": "Check whether the open PR is ready. Do not edit, publish, approve, or merge anything."
   },
   {
+    "id": "T09",
+    "prompt": "Take this accepted engineering change through implementation and verification end to end. Work autonomously while I’m AFK. Keep the result local."
+  },
+  {
+    "id": "T10",
+    "prompt": "Resume the accepted migration. The implementation is complete; only recorded verification remains. Work hands-off within that scope."
+  },
+  {
+    "id": "T11",
+    "prompt": "alarina work autonomously on a plan for the accepted migration. Do not implement it."
+  },
+  {
+    "id": "N02",
+    "prompt": "What does the abbreviation AFK mean?"
+  },
+  {
     "id": "N01",
     "prompt": "What is the capital of Senegal?"
   },

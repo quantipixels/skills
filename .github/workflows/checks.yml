@@ -11,7 +11,11 @@ permissions:
 
 jobs:
   package:
-    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
     timeout-minutes: 5
     steps:
       - uses: actions/checkout@v4
@@ -20,12 +24,31 @@ jobs:
           python-version: '3.12'
       - run: python -m pip install -r requirements-dev.txt
       - name: Run the project-owned local gate as the CI backstop
-        run: npm run verify:local -- --output "$RUNNER_TEMP/alarina-checks"
+        run: python skills/alarina/scripts/alarina.py verify --project . --task ci-verification --output "$RUNNER_TEMP/alarina-checks"
       - name: Retain gate receipts and bounded logs
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: alarina-checks
+          name: alarina-checks-${{ runner.os }}
           path: ${{ runner.temp }}/alarina-checks
           if-no-files-found: warn
           retention-days: 14
+
+  windows-package:
+    runs-on: windows-latest
+    timeout-minutes: 5
+    env:
+      PYTHONUTF8: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install -r requirements-dev.txt
+      - name: Check shared native declarations
+        run: python scripts/plugins/build_alarina_bundle.py --check
+      - name: Check package contracts and references
+        run: python scripts/skills/check_package.py
+      - name: Exercise declaration generation and rejection cases
+        run: python -m unittest scripts.plugins.test_build_alarina_bundle
+      # Process isolation and installation/activation are separate platform contracts.

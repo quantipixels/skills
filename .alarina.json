@@ -39,6 +39,6 @@
       "proof": {"type": "unittest"}
     }
   ],
-  "remote_checks": ["Run the same local gate on the CI Linux environment; publishing and native-host activation retain their separately requested proof."],
+  "remote_checks": ["Run the same local gate on CI Linux and macOS with Python 3.12. Run declaration generation tests and package checks on Windows; this subset does not establish Windows process isolation or native-host activation. Publishing and native-host activation retain their separately requested proof."],
   "workflow_roots": []
 }
