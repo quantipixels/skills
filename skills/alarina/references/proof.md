@@ -8,4 +8,5 @@ Each of these can look like proof and still hide the failure it claims to rule o
 - A merged PR for a release: merged is not built, deployed or serving.
 - A quarantined flaky test: the signal is switched off, not fixed.
 - Fewer files or a newer dependency: neither shows behaviour stayed the same or improved.
+- A build or test piped through `grep`, `head` or `tail`: the pipeline reports the filter's exit status, not the command's; capture the command's own status first.
 - A delegate's, an earlier session's or a tool's report: check the decisive claim against current files.

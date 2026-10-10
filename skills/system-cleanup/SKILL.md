@@ -16,6 +16,7 @@ Audit the disk, clear what is safely regenerable, and confirm before touching an
 - Measure physical free space on the macOS Data volume with `df -h /System/Volumes/Data`; plain `df /`, `du`, Finder categories, and cleaner estimates are supporting evidence rather than the result.
 - Prefer a tool's current native cleanup command over deleting its directories. Confirm the installed interface with its own help/current documentation and use a dry run when available; do not preserve a package-manager command catalogue here.
 - For direct deletion, use `trash` when available. Accumulate items in Trash and ask once before emptying it. If `trash` is unavailable, obtain confirmation before permanent deletion.
+- Remove without asking only what is clearly safe: regenerable, or already preserved elsewhere (a merged and pushed branch's clean worktree, a backed-up file). List everything else with its reason and wait for the user's explicit yes. Move to Trash or a backup rather than deleting outright whenever that is possible.
 - A general cleanup request supplies standing authority for exact, inactive, regenerable build artifacts and package/language caches within the requested cleanup boundary; reuse it without asking per item.
 - Do not clear GUI application data automatically. Report application cache/support-directory sizes unless the user names the app and accepts the risk to logins, cookies, history, or local state.
 - Ask before removing personal files, media, applications, projects, backups, model weights, Docker volumes, virtual machines, emulator snapshots, SDKs, runtimes, or toolchains.
@@ -51,7 +52,7 @@ Run one category at a time and recheck Data-volume free space after each large b
 
 Run this step only when worktrees or their generated output are selected as cleanup candidates. For every affected worktree, establish whether it is dirty, has unique commits, is ahead of its upstream, or contains untracked files. Keep and report anything dirty, unique, unpushed, or not yet reconciled into its accepting workspace. Existing cleanup authority does not permit removing that content.
 
-Present clean worktrees whose commits are fully merged and pushed as one confirmation batch. After approval, use Git's normal worktree removal and non-forcing branch deletion; never force-delete a branch merely for cleanup.
+Clean worktrees whose commits are fully merged and pushed are safe: use Git's normal worktree removal and non-forcing branch deletion; never force-delete a branch merely for cleanup.
 
 ### 5. Offload keepers
 

@@ -10,11 +10,11 @@ A long read costs the most when an expensive model does it. Before a long task, 
 
 ## The reader
 
-Use the model set's `cheap` row (Luna at medium; its fallbacks are on the models page). The reader extracts; it does not judge or recommend. Every line cites a position (`file:line`, thread position or item id, commit). It writes section by section and saves after each. It ends with a coverage note: what it read fully, skimmed, or could not read, and claims it could not verify.
+Use the model set's `cheap` row (Luna at medium; its fallbacks are on the models page). The reader extracts; it does not judge or recommend. Every line cites a position (`file:line`, thread position or item id, commit). It writes section by section and saves after each. It ends with a coverage note: what it read fully, skimmed, or could not read, and claims it could not verify. For a session, coverage is complete when every user message was read and its decisions and corrections captured; the agent's side may be sampled.
 
 ## Record shapes
 
-- **Session:** timeline of user requests and decisions; user corrections with what the agent had just done; failures and near-misses; host and tool facts found; delegation log (model, task, timing, checkpoints, outcome); reversed decisions; open items; coverage.
+- **Session:** timeline of user requests and decisions; user corrections with what the agent had just done; failures and near-misses; host and tool facts found; delegation log (model, task, timing, checkpoints, outcome); reversed decisions; open items; coverage. A correction is any user message that rejects, undoes, redirects, renames or repeats an earlier instruction or result, however politely or briefly it is put ("not that", "again", "why did you", "I said"). Quote it exactly.
 - **Repository:** inventory of parts and entry points; how to build, run and test; owners and boundaries; config; where the area of the task lives; known traps; coverage. (A full reference document is a dissection, which is deeper.)
 - **Change:** files touched and what changed in each; behaviour before and after; risks and consumers; tests touched or missing; coverage.
 - **Docs or logs:** the questions the task asks, the passages that answer them with positions, contradictions, gaps; coverage.
