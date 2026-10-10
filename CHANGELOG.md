@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.4.0
+
+### Minor Changes
+
+- [#6](https://github.com/quantipixels/skills/pull/6) [`dd2f6a3`](https://github.com/quantipixels/skills/commit/dd2f6a32f11ddc110307ccffa49c8704b8ff7438) Thanks [@mosobande](https://github.com/mosobande)! - Add a Git worktree inventory with safe removal and a session mining ledger with coverage reports and cleanup candidates. Keep 90 days of session history by default, with a settings key to choose another window. Clarify how to keep stacked pull requests open and confirm the reviewed head was merged.
+
 ## 0.3.0
 
 ### Minor Changes
