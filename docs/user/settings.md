@@ -23,6 +23,7 @@ specs: local         # local (~/.qp) or git (docs/internal/specs); same for tick
 tickets: local
 plans: local
 docs: docs           # root for committed docs; internal/ and user/ go under it
+sessions_keep_days: 90 # keep this many days of mined session history; default 90
 ```
 
 ## Model keys

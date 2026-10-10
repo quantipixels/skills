@@ -2,7 +2,7 @@
 
 Use only when a session or bounded multi-session postmortem depends on persisted local Codex or Claude Code history.
 
-The bundled adapter is a **read-only evidence indexer**, not a semantic analytics or verdict engine. Its deterministic seam is: given local session stores plus optional explicit corpus filters and skill-signal focus, emit a privacy-preserving structural inventory that Ìrònú can use to choose and inspect the smallest relevant sample.
+The bundled adapter inventories session stores read-only and can append coverage to a separate mining ledger. Its deterministic seam is: given local session stores plus optional explicit corpus filters and skill-signal focus, emit a privacy-preserving structural inventory that Ìrònú can use to choose and inspect the smallest relevant sample.
 
 ## Boundary
 
@@ -61,6 +61,30 @@ The default roots are current host conventions, not package-owned state:
 - Claude Code: `$CLAUDE_CONFIG_DIR` when set, otherwise `~/.claude`; transcripts are discovered below `projects/`.
 
 Leave output on stdout for one-session use. Save a durable local index only when reuse needs it, at an existing or user-selected destination, otherwise a working report location chosen by the caller.
+
+## Mining ledger
+
+A reader records one JSON object per session in a JSONL file, using the fingerprint of the transcript it read:
+
+```json
+{"path":"/absolute/path/to/rollout.jsonl","host":"codex","session":"session-id","bytes":1234,"mtime":1790000000.0,"covered":"full"}
+```
+
+`host` is `codex` or `claude`; `session` is the inventory's `session_id`; `bytes` and `mtime` are its file size and Unix modification time in seconds. The inventory emits those fields and `snapshot_stable`, which tells whether the file stayed unchanged during the scan. `covered: "full"` or `all_user_messages_read: true` records enough coverage to count as mined; a skim alone leaves the session unmined. Record the fingerprint from the read, so later writes remain visible as changed history.
+
+With `SKILL_DIR` anchored as above, run:
+
+```bash
+python3 "$SKILL_DIR/scripts/session-evidence.py" --record-mined /path/to/reader.jsonl
+python3 "$SKILL_DIR/scripts/session-evidence.py" --coverage
+python3 "$SKILL_DIR/scripts/session-evidence.py" --removal-candidates --older-than-days 90
+```
+
+`--record-mined` appends accepted records with a mining time to `~/.qp/reflection/mined.jsonl`; `--ledger /path/to/mined.jsonl` chooses another ledger outside the session stores. The transcript files stay read-only. Missing or unreadable ledgers mean nothing has been mined; malformed or incomplete entries give no coverage.
+
+`--coverage` reports each host's mining runs with session date bounds, gaps between those bounds, never-mined history before the first range with counts and bytes, and changed sessions. Bounds describe what each run reached; the `unmined` list also shows holes within a range and sessions with unknown dates. A size or modification-time change makes a session unmined until a reader covers it again. Without a dated run, all never-mined history appears before the first pending run.
+
+`--removal-candidates` prints JSON for mined sessions whose fingerprint still matches and whose last modification was more than 90 days ago by default. The agent passes another `--older-than-days` value only when the user asks or `sessions_keep_days` in project `.agents/qp.yaml` or user `~/.agents/qp.yaml` sets it, following the project's settings precedence. The script takes the number directly; the agent reads settings. History indexes and sessions without accepted ledger entries stay outside the list. The command only lists candidates; cleanup authority and removal stay with the caller. Host, root and corpus filters work as for inventory.
 
 ## Structural activity evidence
 

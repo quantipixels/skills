@@ -7,3 +7,5 @@ Work bottom-up through requested layers with stable ancestors. An ancestor may b
 After a layer changes, invalidate only dependent evidence. Reconcile its affected descendants once, in order, before reviewing them; preserve independent proof. Babysitting does not authorize rebase, force-push, retargeting, or stack restructuring. Use existing reconciliation authority or report the required action.
 
 Refresh affected heads, bases and relationships after reconciliation. Finish when every requested layer meets the main skill's readiness conditions; otherwise identify the blocking ancestor or reconciliation. Do not restart completed layers or simulate reconciliation with repeated fix/review cycles.
+
+Before merging a lower layer with its branch set for deletion, retarget the layers above it to the new base, because deleting a base branch closes the pull requests built on it. After a merge, confirm the merge commit contains the head you reviewed, because commits pushed after the merge started can be left out.

@@ -50,6 +50,8 @@ Run one category at a time and recheck Data-volume free space after each large b
 
 ### 4. Audit selected Git worktrees
 
+For inventory, set `SKILL_DIR` to this installed skill and run `python3 "$SKILL_DIR/scripts/worktrees.py"`; `--json` gives JSON and `--remove-safe` rechecks and removes safe worktrees while keeping branches.
+
 Run this step only when worktrees or their generated output are selected as cleanup candidates. For every affected worktree, establish whether it is dirty, has unique commits, is ahead of its upstream, or contains untracked files. Keep and report anything dirty, unique, unpushed, or not yet reconciled into its accepting workspace. Existing cleanup authority does not permit removing that content.
 
 Clean worktrees whose commits are fully merged and pushed are safe: use Git's normal worktree removal and non-forcing branch deletion; never force-delete a branch merely for cleanup.
