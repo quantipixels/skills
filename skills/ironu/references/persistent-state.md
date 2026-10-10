@@ -23,13 +23,13 @@ Name each item's location and the evidence for its finding (the current file or 
 For each recurring pain point or repetition in the evidence, propose the remedy that resolves it best. Choose from the full range, strongest first:
 
 - **A check, script or hook** that enforces it.
-- **A CLI or tool to install**, or a missing dependency.
+- **A tool:** an existing CLI or a missing dependency to install, or custom tooling built for the user (a script, a small CLI, a hook) when nothing existing fits.
 - **A skill:** adopt an installed or known one, improve an existing one, or create one. A personal one is a `tmp-*` skill, and only when no skill owns the topic.
 - **A line** in the user's defaults or the project's instructions.
 - **Automation** for work that repeats on a clock or an event and needs no judgment mid-way: a scheduled run, a one-time follow-up on a date, a run triggered by an outside event (for example a webhook from CI or a tracker), or a PR watch to its merge decision.
 - **A task for the user** that only they can do: a login, a setting, a decision, a clean-up that needs their yes, something to try.
 
-Each proposal names the evidence (sessions where it recurred), the remedy, what it changes, and why it beats the weaker options. For automation, also give its cadence or trigger, where its result goes, and what it must not do (read-only unless the user says otherwise). Prefer what the host already supports. On SIGIDI that is `schedule_task` (interval, fixed time, or a webhook with a `webhookUrl`), `request_secret` for a signing secret the sender needs, and `watch_pull_request`; elsewhere use the host's scheduler or routines, and say when a proposal needs something the host lacks.
+Combine remedies when one alone does not resolve the pain, for example a custom CLI that a skill calls and a schedule runs. Each proposal names the evidence (sessions where it recurred), the remedy, what it changes, and why it beats the weaker options. For automation, also give its cadence or trigger, where its result goes, and what it must not do (read-only unless the user says otherwise). Prefer what the host already supports. On SIGIDI that is `schedule_task` (interval, fixed time, or a webhook with a `webhookUrl`), `request_secret` for a signing secret the sender needs, and `watch_pull_request`; elsewhere use the host's scheduler or routines, and say when a proposal needs something the host lacks.
 
 After the user's yes, set up what was approved, and report each automation's cadence and next run, or its `webhookUrl`. A one-time task deletes itself after it runs. Give the user's tasks as a short checklist.
 
