@@ -24,6 +24,7 @@ def main() -> int:
             ["scripts/skills/check_package.py"],
             ["tests/smoke_package.py"],
             ["scripts/skills/test_session_evidence.py"],
+            ["scripts/skills/test_worktrees.py"],
             ["-m", "unittest", "discover", "-s", "evals/engineering", "-p", "test_*.py"],
             ["-m", "unittest", "discover", "-s", "tests", "-p", "test_*.py"],
         ]

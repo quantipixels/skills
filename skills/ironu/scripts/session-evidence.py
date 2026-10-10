@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
-"""Inventory local Codex/Claude sessions without copying transcript content."""
+"""Inventory local sessions, record mining coverage, and list cleanup candidates."""
 from __future__ import annotations
 
-import argparse, json, os, re, sys
+import argparse, json, math, os, re, sys
 from collections import Counter
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from typing import Any, Iterator
 
@@ -13,6 +13,7 @@ HOSTS = ("codex", "claude")
 SKILL_KEYS = {"skill", "skill_name", "skillname", "selected_skill", "selectedskill"}
 SKILL_PATH = re.compile(r"(?:^|[/\\])skills(?:[/\\][^/\\]+)?[/\\]([a-z0-9-]+)[/\\]SKILL\.md", re.I)
 TOOL_FAILURE_STATES = {"error", "failed", "failure"}
+HISTORY_INDEXES = {"history.jsonl", "index.jsonl", "sessions-index.jsonl"}
 
 
 def args(argv=None):
@@ -23,6 +24,12 @@ def args(argv=None):
     p.add_argument("--since"); p.add_argument("--until")
     p.add_argument("--session", action="append", default=[])
     p.add_argument("--skill", action="append", default=[]); p.add_argument("--skills-root", type=Path)
+    mode = p.add_mutually_exclusive_group()
+    mode.add_argument("--record-mined", type=Path, metavar="READER_JSONL", help="Append fully covered reader records to the mining ledger")
+    mode.add_argument("--coverage", action="store_true", help="Report mining runs and uncovered history per host")
+    mode.add_argument("--removal-candidates", action="store_true", help="List unchanged mined sessions older than --older-than-days (default 90)")
+    p.add_argument("--ledger", type=Path, default=Path("~/.qp/reflection/mined.jsonl"))
+    p.add_argument("--older-than-days", type=int, default=90, metavar="DAYS")
     return p.parse_args(argv)
 
 
@@ -190,7 +197,7 @@ def files(host, root):
     base = root / ("sessions" if host == "codex" else "projects")
     if not base.is_dir(): base = root
     if not base.is_dir(): return []
-    return [p for p in sorted(base.rglob("*.jsonl")) if p.is_file() and not (host == "codex" and p.name == "history.jsonl")]
+    return [p for p in sorted(base.rglob("*.jsonl")) if p.is_file() and p.name not in HISTORY_INDEXES and p.resolve().name not in HISTORY_INDEXES]
 
 
 def shown(p):
@@ -200,6 +207,7 @@ def shown(p):
 
 
 def parse(host, path, names):
+    snapshot = path.stat()
     counts = Counter(); roles = Counter(); sig = {}; times = []; invalid = 0; total = 0
     sid = root_id = parent = cwd = version = None; relation = "root"; root_resolution = "RESOLVED"
     calls = Counter(); results = Counter(); result_sizes = Counter(); call_names = {}; tool_calls = tool_results = tool_failures = repeated = result_bytes = 0
@@ -251,7 +259,10 @@ def parse(host, path, names):
         root_id = sid if parent is None else None
         root_resolution = "RESOLVED" if parent is None else "PENDING_PARENT"
     else: root_id = root_id or sid
+    current = path.stat()
     return {"host": host, "session_id": sid, "root_session_id": root_id, "root_resolution": root_resolution,
+            "bytes": snapshot.st_size, "mtime": snapshot.st_mtime,
+            "snapshot_stable": (snapshot.st_size, snapshot.st_mtime_ns) == (current.st_size, current.st_mtime_ns),
             "ancestor_session_ids": [], "relation": relation, "parent_session_id": parent, "source_path": shown(path),
             "cwd": cwd, "host_version": version, "started_at": iso(min(times)) if times else None,
             "ended_at": iso(max(times)) if times else None, "event_count": total, "invalid_json_lines": invalid,
@@ -341,9 +352,130 @@ def build(a):
             "sessions": sessions}
 
 
+def ledger_record(record):
+    """Accept explicit reader coverage with the fingerprint of the bytes read."""
+    if not isinstance(record, dict): return None
+    if record.get("covered") != "full" and record.get("all_user_messages_read") is not True: return None
+    if record.get("host") not in HOSTS or not isinstance(record.get("session"), str) or not record["session"]: return None
+    if not isinstance(record.get("path"), str) or not record["path"]: return None
+    path = Path(record["path"]).expanduser()
+    if not path.is_absolute() or path.suffix != ".jsonl" or path.name in HISTORY_INDEXES: return None
+    path = path.resolve()
+    if path.name in HISTORY_INDEXES: return None
+    length, modified = record.get("bytes"), record.get("mtime")
+    if type(length) is not int or length < 0: return None
+    if type(modified) not in (int, float) or not math.isfinite(modified) or modified < 0: return None
+    return {**record, "path": str(path.resolve()), "bytes": length, "mtime": modified}
+
+
+def read_ledger(path):
+    try:
+        with path.expanduser().open(encoding="utf-8") as source:
+            records = []
+            for line in source:
+                try: record = ledger_record(json.loads(line))
+                except (ValueError, OSError): continue
+                if record and timestamp(record.get("mined_at")): records.append(record)
+            return records
+    except (OSError, UnicodeError): return []
+
+
+def record_mined(a):
+    accepted, skipped = [], 0
+    mined_at = iso(datetime.now(timezone.utc))
+    with a.record_mined.expanduser().open(encoding="utf-8") as reader:
+        for line in reader:
+            try: record = ledger_record(json.loads(line))
+            except (ValueError, OSError): record = None
+            if record is None:
+                skipped += 1; continue
+            # Dates describe the actual session, not the time its file was copied.
+            # A stale reader fingerprint stays stale; never replace it with today's stat.
+            record = {key: record[key] for key in ("path", "host", "session", "bytes", "mtime", "covered", "all_user_messages_read") if key in record}
+            record["mined_at"] = mined_at
+            try:
+                session = parse(record["host"], Path(record["path"]), set())
+                if session["snapshot_stable"] and (session["bytes"], session["mtime"], session["session_id"]) == (record["bytes"], record["mtime"], record["session"]):
+                    record.update(started_at=session["started_at"], ended_at=session["ended_at"])
+            except OSError: pass
+            accepted.append(record)
+    if accepted:
+        ledger = a.ledger.expanduser().resolve()
+        if ledger == a.record_mined.expanduser().resolve() or ledger.name in HISTORY_INDEXES:
+            raise ValueError("--ledger must be a separate mining ledger")
+        stores = [root.resolve() for root in roots(a).values()]
+        if any(ledger == root or root in ledger.parents for root in stores):
+            raise ValueError("--ledger must be outside the session stores")
+        if any(ledger == Path(record["path"]) for record in accepted):
+            raise ValueError("--ledger must be separate from session transcripts")
+        ledger.parent.mkdir(parents=True, exist_ok=True)
+        with ledger.open("a+", encoding="utf-8") as target:
+            target.seek(0); existing = target.read()
+            if existing and not existing.endswith("\n"): target.write("\n")
+            for record in accepted: target.write(json.dumps(record, ensure_ascii=False) + "\n")
+    return {"ledger": shown(a.ledger), "mined_at": mined_at, "appended": len(accepted), "skipped": skipped}
+
+
+def session_summary(sessions):
+    return {"count": len(sessions), "bytes": sum(s["bytes"] for s in sessions),
+            "sessions": [{key: s[key] for key in ("host", "session_id", "source_path", "bytes", "mtime", "started_at", "ended_at")} for s in sessions]}
+
+
+def mining_report(a):
+    if a.older_than_days < 0: raise ValueError("--older-than-days must be zero or more days")
+    inventory = build(a)
+    entries = read_ledger(a.ledger)
+    latest = {}
+    for entry in entries: latest[(entry["host"], entry["path"])] = entry
+    hosts, candidates = {}, []
+    cutoff = datetime.now(timezone.utc) - timedelta(days=a.older_than_days)
+    for host in roots(a):
+        sessions = [s for s in inventory["sessions"] if s["host"] == host]
+        mined, changed, unmined, never = [], [], [], []
+        for session in sessions:
+            entry = latest.get((host, str(Path(session["source_path"]).expanduser().resolve())))
+            unchanged = entry and session["snapshot_stable"] and (entry["bytes"], entry["mtime"], entry["session"]) == (session["bytes"], session["mtime"], session["session_id"])
+            if unchanged:
+                mined.append(session)
+                if datetime.fromtimestamp(session["mtime"], timezone.utc) < cutoff:
+                    candidates.append(session)
+            else:
+                unmined.append(session)
+                (changed if entry else never).append(session)
+        runs = {}
+        for entry in entries:
+            if entry["host"] != host: continue
+            run = runs.setdefault(entry["mined_at"], {"mined_at": entry["mined_at"], "started_at": None, "ended_at": None, "count": 0, "bytes": 0})
+            run["count"] += 1; run["bytes"] += entry["bytes"]
+            start, end = timestamp(entry.get("started_at")), timestamp(entry.get("ended_at"))
+            if start: run["started_at"] = iso(min(start, timestamp(run["started_at"]) or start))
+            if end: run["ended_at"] = iso(max(end, timestamp(run["ended_at"]) or end))
+        ranges = sorted(runs.values(), key=lambda run: (run["started_at"] is None, run["started_at"] or "", run["mined_at"]))
+        dated = [run for run in ranges if run["started_at"] and run["ended_at"]]
+        first = timestamp(dated[0]["started_at"]) if dated else None
+        before = [s for s in never if first is None or (timestamp(s["started_at"]) and timestamp(s["started_at"]) < first)]
+        gaps = []
+        end = None
+        for run in dated:
+            start = timestamp(run["started_at"])
+            if end and end < start:
+                gap = [s for s in unmined if timestamp(s["started_at"]) and end < timestamp(s["started_at"]) < start]
+                gaps.append({"started_at": iso(end), "ended_at": iso(start), **session_summary(gap)})
+            end = max(end or timestamp(run["ended_at"]), timestamp(run["ended_at"]))
+        hosts[host] = {"mined": session_summary(mined), "unmined": session_summary(unmined),
+                       "changed_since_mining": session_summary(changed), "mined_ranges": ranges,
+                       "gaps_between_runs": gaps, "never_mined_before_first_run": session_summary(before)}
+    if a.removal_candidates:
+        return {"ledger": shown(a.ledger), "older_than_days": a.older_than_days, "candidates": session_summary(candidates), "source_files_modified": False}
+    return {"ledger": shown(a.ledger), "hosts": hosts, "roots": inventory["roots"],
+            "range_note": "Run ranges are session date bounds, not proof that every session within them was mined.", "source_files_modified": False}
+
+
 def main(argv=None):
-    try: report = build(args(argv))
-    except ValueError as e: print(f"session-evidence: {e}", file=sys.stderr); return 2
+    try:
+        a = args(argv)
+        report = record_mined(a) if a.record_mined else mining_report(a) if a.coverage or a.removal_candidates else build(a)
+    except (ValueError, OSError) as e: print(f"session-evidence: {e}", file=sys.stderr); return 2
     json.dump(report, sys.stdout, ensure_ascii=False, indent=2, sort_keys=True); print(); return 0
 
 if __name__ == "__main__": raise SystemExit(main())
