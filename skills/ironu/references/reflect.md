@@ -55,4 +55,4 @@ Stop at recommendations and an evidence-backed handoff unless remediation is aut
 
 ## Report
 
-Lead with the verdict and decisive causal evidence. Include the scope, material timeline and divergence, recovery cost, effective actions, ranked frictions, earned or rejected lessons with their owners, and remaining uncertainty; omit empty categories. A durable postmortem goes to the existing or user-selected destination.
+Lead with the verdict and decisive causal evidence. Include the scope, material timeline and divergence, recovery cost, effective actions, ranked frictions, earned or rejected lessons with their owners, proposed automation and tasks for the user ([persistent state and automation](persistent-state.md)), and remaining uncertainty; omit empty categories. A durable postmortem goes to the existing or user-selected destination.

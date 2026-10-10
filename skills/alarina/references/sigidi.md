@@ -20,6 +20,7 @@ Read once per thread when the `t3-code` tools are present (names may carry an `m
 
 - Call `link_pull_request` with the full URL the moment a PR exists or you start work on one, for every layer of a stack. Before finishing, check `list_thread_pull_requests` and link any you missed.
 - To wait on CI, review or conflicts, handle what is already there, call `watch_pull_request` and end the turn. A wake is news, not a merge decision.
+- No SIGIDI tool watches a workflow run after a push, a release or a deploy: start one blocking watcher for it (for example `gh run watch <id> --exit-status`) as a background command, and its exit wakes you.
 - Call `unwatch_pull_request` when you hand the work back so the thread returns to the user's inbox.
 
 ## Wait and repeat

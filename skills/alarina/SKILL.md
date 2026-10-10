@@ -56,7 +56,7 @@ If you cannot tell whether an action can be undone, treat it as permanent. In gi
 - Delegate when parallel work, a fresh context or an independent view pays for the briefing and the check. Use `asoju` for briefs, slices, the roster, the model set and race mode.
 - For big reads, large diffs, explaining a system, why questions, design races, moving a metric or scripted steps, use the matching model workflow ([the path](references/workflow.md)): cheap models do the long and mechanical part.
 - Keep one writer per worktree and per shared resource (database, browser, server).
-- Never write sleep or poll loops. Use the host's wake-up, PR watch or scheduler.
+- Never sleep or poll (a foreground `--watch` counts). Wait with the host's PR watch, task wake or scheduler, or a background watcher whose exit wakes you.
 - In SIGIDI (`t3-code` tools present), read [SIGIDI](references/sigidi.md) once and use its tools instead of rebuilding them; elsewhere use the host's equivalents.
 
 ## Learn
