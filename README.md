@@ -110,7 +110,8 @@ your-repo/
 ├── docs/
 │   ├── internal/            for maintainers
 │   │   ├── solutions/       lessons from solved work
-│   │   └── decisions/       decisions and why
+│   │   ├── decisions/       decisions and why
+│   │   └── operations/      runbooks: deploy, backup, restore
 │   └── user/                guides for people using the project
 ├── README.md                includes a "Non-goals" section
 └── .qp -> ~/.qp/<owner>/<repo>/    link to your working records (never committed)

@@ -72,6 +72,7 @@ Skills name a record's kind; this table maps kinds to places. A project's existi
 |---|---|---|
 | Lesson (committed, for maintainers) | `docs/internal/solutions/<category>/<name>.md` | Yes |
 | Decision (committed, for maintainers) | `docs/internal/decisions/` | Yes |
+| Runbook (committed: deploy, backup, restore, observability) | `docs/internal/operations/` | Yes |
 | Guide (committed, for users) | `docs/user/` | Yes |
 | Non-goal (committed) | "Non-goals" section of the README | Yes |
 | Spec, ticket, plan (working) | records home: `specs/`, `tickets/`, `plans/` | Only if the user asks or settings say so; then `docs/internal/specs/`, `tickets/`, `plans/` |
