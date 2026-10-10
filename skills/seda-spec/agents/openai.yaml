@@ -1,0 +1,5 @@
+interface:
+  display_name: "Seda Spec"
+  short_description: "Write a spec: problem, outcome, checks, scope"
+policy:
+  allow_implicit_invocation: true

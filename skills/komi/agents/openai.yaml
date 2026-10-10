@@ -1,0 +1,5 @@
+interface:
+  display_name: "Kọ́ mi"
+  short_description: "Teach a concept, system or code until it is understood"
+policy:
+  allow_implicit_invocation: true

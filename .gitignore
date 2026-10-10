@@ -1,0 +1,11 @@
+.DS_Store
+node_modules
+.qp
+__pycache__
+.pytest_cache/
+/skills-lock.json
+!/.agents/
+/.agents/*
+!/.agents/plugins/
+/.agents/plugins/*
+!/.agents/plugins/marketplace.json

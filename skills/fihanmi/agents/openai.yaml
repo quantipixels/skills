@@ -1,0 +1,3 @@
+interface:
+  display_name: "Fíhàn mi"
+  short_description: "Show a point with the smallest view, in chat or Markdown"

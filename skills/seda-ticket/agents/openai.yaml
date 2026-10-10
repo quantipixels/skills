@@ -1,0 +1,5 @@
+interface:
+  display_name: "Seda Ticket"
+  short_description: "Split a spec or plan into vertical-slice tickets"
+policy:
+  allow_implicit_invocation: true

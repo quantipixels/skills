@@ -1,0 +1,69 @@
+<!-- Keyboard tabs: unique button/panel IDs and one panel per button.
+     Copy the script after content; one copy serves all tab sets, including nested
+     ones. All panels are readable without JS and in print. Arrow keys follow
+     orientation/direction; Home/End choose the first/last tab. No saved state. -->
+<div data-tabs>
+  <div class="cluster" data-tab-list aria-label="Example code samples" hidden>
+    <button type="button" id="example-tab-one" data-tab-target="example-panel-one">First</button>
+    <button type="button" id="example-tab-two" data-tab-target="example-panel-two">Second</button>
+  </div>
+  <section id="example-panel-one" data-tab-panel tabindex="0"><h3>First</h3><p>First sample.</p></section>
+  <section id="example-panel-two" data-tab-panel tabindex="0"><h3>Second</h3><p>Second sample.</p></section>
+</div>
+<script>
+(() => {
+  document.querySelectorAll('[data-tabs]').forEach(root => {
+    if (root.dataset.tabsReady) return;
+    const owned = selector => [...root.querySelectorAll(selector)].filter(el => el.closest('[data-tabs]') === root);
+    const buttons = owned('button[data-tab-target]');
+    const panels = owned('[data-tab-panel]');
+    const list = owned('[data-tab-list]')[0];
+    const ids = panels.map(panel => panel.id);
+    if (!list || !buttons.length || buttons.length !== panels.length || ids.some(id => !id) ||
+        new Set(ids).size !== ids.length || buttons.some(button => !button.id || !ids.includes(button.dataset.tabTarget)) ||
+        new Set(buttons.map(button => button.dataset.tabTarget)).size !== ids.length) return;
+    let index = 0;
+    list.setAttribute('role', 'tablist');
+    buttons.forEach(button => {
+      button.setAttribute('role', 'tab'); button.setAttribute('aria-controls', button.dataset.tabTarget);
+      const panel = panels.find(panel => panel.id === button.dataset.tabTarget);
+      panel.setAttribute('role', 'tabpanel'); panel.setAttribute('aria-labelledby', button.id);
+    });
+    const select = value => {
+      index = value;
+      const active = buttons[index];
+      panels.forEach(panel => {
+        const hide = panel.id !== active.dataset.tabTarget;
+        if (hide && panel.contains(document.activeElement)) active.focus({preventScroll: true});
+        panel.hidden = hide;
+      });
+      buttons.forEach((button, i) => { button.setAttribute('aria-selected', String(i === index)); button.tabIndex = i === index ? 0 : -1; });
+    };
+    buttons.forEach((button, i) => {
+      button.addEventListener('click', () => select(i));
+      button.addEventListener('keydown', event => {
+        if (event.altKey || event.ctrlKey || event.metaKey) return;
+        const vertical = list.getAttribute('aria-orientation') === 'vertical';
+        const rtl = getComputedStyle(list).direction === 'rtl';
+        let next;
+        if (event.key === 'Home') next = 0;
+        else if (event.key === 'End') next = buttons.length - 1;
+        else if (event.key === (vertical ? 'ArrowDown' : 'ArrowRight')) next = i + (vertical || !rtl ? 1 : -1);
+        else if (event.key === (vertical ? 'ArrowUp' : 'ArrowLeft')) next = i + (vertical || !rtl ? -1 : 1);
+        else return;
+        event.preventDefault(); select((next + buttons.length) % buttons.length); buttons[index].focus();
+      });
+    });
+    const reveal = () => {
+      let target;
+      try { target = document.getElementById(decodeURIComponent(location.hash.slice(1))); } catch { return; }
+      const panel = target?.closest('[data-tab-panel]');
+      if (!panels.includes(panel)) return;
+      select(buttons.findIndex(button => button.dataset.tabTarget === panel.id));
+      requestAnimationFrame(() => target.scrollIntoView({block: 'start'}));
+    };
+    select(0); list.hidden = false; root.dataset.tabsReady = 'true';
+    window.addEventListener('hashchange', reveal); reveal();
+  });
+})();
+</script>

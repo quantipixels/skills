@@ -1,0 +1,5 @@
+interface:
+  display_name: "Àyẹ̀wò"
+  short_description: "Triage, diagnose, and recover"
+policy:
+  allow_implicit_invocation: true

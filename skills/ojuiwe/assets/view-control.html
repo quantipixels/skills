@@ -1,0 +1,61 @@
+<!-- Selection/step-through: one named button per stable panel ID; optional previous,
+     next and reset. Copy script after content. Nested roots are independent.
+     Buttons work with Enter/Space; the root accepts arrows/Home/End outside inputs.
+     Deep links are read, never written. No-JS and print show every panel. -->
+<section class="stack" data-artifact-view tabindex="0" aria-label="Example walkthrough"
+  data-view-position-template="{current} of {total}: {label}">
+  <div class="cluster" data-view-controls hidden>
+    <button type="button" data-view-target="view-before">Before</button>
+    <button type="button" data-view-target="view-after">After</button>
+    <button type="button" data-view-previous>Previous</button><button type="button" data-view-next>Next</button>
+    <button type="button" data-view-reset>Reset</button>
+  </div>
+  <p class="small numeric" data-view-status role="status" aria-atomic="true"></p>
+  <section id="view-before" data-view-panel tabindex="-1"><h3>Before</h3><p>Supplied baseline.</p></section>
+  <section id="view-after" data-view-panel tabindex="-1"><h3>After</h3><p>Supplied comparison.</p></section>
+</section>
+<script>
+(() => {
+  document.querySelectorAll('[data-artifact-view]').forEach(root => {
+    if (root.dataset.viewReady) return;
+    const owned = selector => [...root.querySelectorAll(selector)].filter(el => el.closest('[data-artifact-view]') === root);
+    const panels = owned('[data-view-panel]'), buttons = owned('button[data-view-target]');
+    const controls = owned('[data-view-controls]')[0], status = owned('[data-view-status]')[0];
+    const template = root.dataset.viewPositionTemplate, ids = panels.map(panel => panel.id);
+    if (!controls || !status || !template || !panels.length || buttons.length !== panels.length ||
+        !['{current}', '{total}', '{label}'].every(token => template.includes(token)) || ids.some(id => !id) ||
+        new Set(ids).size !== ids.length || buttons.some(button => !ids.includes(button.dataset.viewTarget) || !button.textContent.trim()) ||
+        new Set(buttons.map(button => button.dataset.viewTarget)).size !== ids.length) return;
+    const previous = owned('[data-view-previous]')[0], next = owned('[data-view-next]')[0], reset = owned('[data-view-reset]')[0];
+    const initial = Math.max(0, ids.indexOf(root.dataset.viewInitial));
+    let index = initial;
+    const select = value => {
+      index = Math.max(0, Math.min(value, panels.length - 1));
+      const button = buttons.find(button => button.dataset.viewTarget === ids[index]);
+      panels.forEach((panel, i) => { if (i !== index && panel.contains(document.activeElement)) button.focus({preventScroll: true}); panel.hidden = i !== index; });
+      buttons.forEach(candidate => { candidate.setAttribute('aria-controls', candidate.dataset.viewTarget); candidate.setAttribute('aria-pressed', String(candidate === button)); });
+      if (previous) previous.disabled = index === 0;
+      if (next) next.disabled = index === panels.length - 1;
+      const data = {current: index + 1, total: panels.length, label: button.textContent.trim()};
+      status.textContent = template.replace(/\{(current|total|label)\}/g, (_, key) => data[key]);
+    };
+    buttons.forEach(button => button.addEventListener('click', () => select(ids.indexOf(button.dataset.viewTarget))));
+    previous?.addEventListener('click', () => select(index - 1)); next?.addEventListener('click', () => select(index + 1)); reset?.addEventListener('click', () => select(initial));
+    root.addEventListener('keydown', event => {
+      if (event.defaultPrevented || event.altKey || event.ctrlKey || event.metaKey || event.target.closest('[data-artifact-view]') !== root ||
+          event.target.closest('a,button,input,select,textarea,summary,[contenteditable],[role="slider"],[data-tabs]')) return;
+      const rtl = getComputedStyle(root).direction === 'rtl';
+      const keys = {ArrowLeft: index + (rtl ? 1 : -1), ArrowRight: index + (rtl ? -1 : 1), Home: 0, End: panels.length - 1};
+      if (!(event.key in keys)) return;
+      event.preventDefault(); select(keys[event.key]);
+    });
+    const reveal = () => {
+      let target;
+      try { target = document.getElementById(decodeURIComponent(location.hash.slice(1))); } catch { return; }
+      const panel = target?.closest('[data-view-panel]');
+      if (panels.includes(panel)) { select(panels.indexOf(panel)); requestAnimationFrame(() => target.scrollIntoView({block: 'start'})); }
+    };
+    select(initial); controls.hidden = false; root.dataset.viewReady = 'true'; window.addEventListener('hashchange', reveal); reveal();
+  });
+})();
+</script>

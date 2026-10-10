@@ -1,0 +1,82 @@
+<!-- Explicit opt-in only, for a connected, disposable HTML preview of a large
+     auto-laid-out diagram. Copy this renderer only when selected; mark each figure
+     data-mermaid-opt-in="true" and html data-artifact-delivery="connected".
+     Pinned Mermaid 12.1.0 loads once. Default/portable pages retain source and a note.
+     For a kept/committed page render once to SVG, inline it and remove this script.
+     Never load remote executable code into a private review page. -->
+<figure class="stack" data-mermaid-opt-in="true">
+  <pre class="mermaid">sequenceDiagram
+  participant U as User
+  participant A as API
+  U->>A: POST /orders
+  A-->>U: 201 Created</pre>
+  <div data-diagram-output></div>
+  <figcaption>Replace with what the diagram shows. <span class="muted small" data-diagram-status role="status"></span></figcaption>
+</figure>
+<style>
+  [data-diagram-output] svg { display: block; block-size: auto; max-inline-size: 100%; margin-inline: auto; }
+</style>
+<script>
+(() => {
+  const entries = [...document.querySelectorAll('figure[data-mermaid-opt-in="true"] pre.mermaid')].map(source => {
+    const figure = source.closest('figure');
+    return {source, text: source.textContent,
+      output: figure.querySelector('[data-diagram-output]'), status: figure.querySelector('[data-diagram-status]')};
+  }).filter(entry => entry.output && entry.status);
+  const root = document.documentElement;
+  if (!entries.length || root.dataset.mermaidStarted) return;
+  root.dataset.mermaidStarted = 'true';
+  const notify = message => entries.forEach(entry => { entry.status.textContent = message; });
+  if (root.dataset.artifactDelivery !== 'connected') {
+    notify('Portable view: source and explanation retained. Embed rendered SVG for a finished diagram.');
+    return;
+  }
+  notify('Rendering diagram; source and explanation remain available.');
+  let run = 0;
+  const render = async () => {
+    const mermaid = window.mermaid, pass = ++run;
+    const styles = getComputedStyle(root);
+    const dark = root.dataset.qpMode === 'dark' || root.dataset.theme === 'dark' || styles.colorScheme === 'dark';
+    const qp = name => styles.getPropertyValue('--qp-' + name).trim();
+    mermaid.initialize({startOnLoad: false, securityLevel: 'strict', theme: 'base',
+      themeVariables: {darkMode: dark, background: qp('bg'), primaryColor: qp('surface'), primaryTextColor: qp('fg'),
+        primaryBorderColor: qp('accent'), secondaryColor: qp('surface'), secondaryTextColor: qp('fg'), secondaryBorderColor: qp('border'),
+        tertiaryColor: qp('surface'), tertiaryTextColor: qp('fg'), tertiaryBorderColor: qp('border'),
+        noteBkgColor: qp('surface'), noteTextColor: qp('fg'), noteBorderColor: qp('border'), lineColor: qp('accent'), textColor: qp('fg'),
+        edgeLabelBackground: qp('surface'), actorLineColor: qp('accent'), activationBkgColor: qp('surface'), activationBorderColor: qp('accent')},
+      suppressErrorRendering: true, flowchart: {htmlLabels: false},
+      fontFamily: getComputedStyle(document.body).fontFamily});
+    await document.fonts.ready;
+    for (const [index, entry] of entries.entries()) {
+      try {
+        if (/%%\s*\{|^\s*---/.test(entry.text)) throw new Error('Embedded configuration is not accepted');
+        let id = `qp-diagram-${index}-${pass}`;
+        while (document.getElementById(id)) id += '-next';
+        const {svg} = await mermaid.render(id, entry.text);
+        if (pass !== run) return;
+        // This is strict-mode renderer output, not untrusted source markup.
+        entry.output.innerHTML = svg;
+        entry.source.hidden = true;
+        entry.status.textContent = '';
+      } catch {
+        entry.source.hidden = false;
+        entry.output.replaceChildren();
+        entry.status.textContent = 'Diagram unavailable; use the retained source and explanation.';
+      }
+    }
+    console.log('ready: diagrams');
+  };
+  const script = document.createElement('script');
+  script.src = 'https://cdn.jsdelivr.net/npm/mermaid@12.1.0/dist/mermaid.min.js';
+  script.onload = () => {
+    render().catch(() => notify('Diagram unavailable; source and explanation remain readable.'));
+    const observer = new MutationObserver(() => { render().catch(() => notify('Diagram unavailable; source and explanation remain readable.')); });
+    observer.observe(root, {attributes: true, attributeFilter: ['class', 'style', 'data-theme', 'data-qp-mode']});
+    const host = document.getElementById('t3-theme');
+    if (host) observer.observe(host, {childList: true, characterData: true, subtree: true});
+    matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => { render().catch(() => notify('Diagram unavailable; source and explanation remain readable.')); });
+  };
+  script.onerror = () => notify('Diagram runtime unavailable; source and explanation remain readable.');
+  document.head.append(script);
+})();
+</script>

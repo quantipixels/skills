@@ -1,0 +1,5 @@
+interface:
+  display_name: "Àṣà mi"
+  short_description: "Build and keep your personal agent defaults"
+policy:
+  allow_implicit_invocation: true

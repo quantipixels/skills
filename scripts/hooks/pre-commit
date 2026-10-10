@@ -1,0 +1,19 @@
+#!/bin/sh
+# Only staged skill changes opt this commit into package validation.
+set -eu
+root=$(git rev-parse --show-toplevel)
+cd "$root"
+if git diff --cached --quiet -- skills/; then
+    exit 0
+else
+    status=$?
+    if [ "$status" -ne 1 ]; then
+        exit "$status"
+    fi
+fi
+
+snapshot=$(mktemp -d "${TMPDIR:-/tmp}/qp-staged-package.XXXXXX")
+trap 'rm -rf -- "$snapshot"' EXIT
+trap 'exit 1' HUP INT TERM
+git checkout-index --all --prefix="$snapshot/"
+sh "$root/scripts/check.sh" --package-root "$snapshot"

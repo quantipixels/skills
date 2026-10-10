@@ -1,0 +1,5 @@
+interface:
+  display_name: "Ìmọ́tótó"
+  short_description: "Clean up code comments without changing behaviour"
+policy:
+  allow_implicit_invocation: true

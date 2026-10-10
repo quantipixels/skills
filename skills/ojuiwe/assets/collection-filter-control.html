@@ -1,0 +1,54 @@
+<!-- Filter: category tokens are comma-separated data-filter-values, with an optional
+     text search/reset. Invalid markup stays readable with controls hidden.
+     Closest-root ownership isolates nested collections; state is never persisted. -->
+<section class="stack" data-collection-filter data-filter-all-value="all" aria-label="Example findings"
+  data-filter-result-template="Showing {count} of {total} items for {label}." data-filter-zero-template="No items match {label}.">
+  <div class="cluster" data-filter-controls role="group" aria-label="Filter findings" hidden>
+    <button type="button" data-filter-control data-filter-value="all" aria-pressed="true">All</button>
+    <button type="button" data-filter-control data-filter-value="required">Required</button>
+    <button type="button" data-filter-control data-filter-value="optional">Optional</button>
+    <label>Search <input type="search" data-filter-search autocomplete="off"></label>
+    <button type="button" data-filter-reset>Reset</button>
+  </div>
+  <p class="small numeric" data-filter-status role="status" aria-atomic="true"></p><p data-filter-zero hidden></p>
+  <div data-filter-items><article data-filter-item data-filter-values="required"><h3>Required example</h3><p>Replace with a finding.</p></article>
+    <article data-filter-item data-filter-values="optional"><h3>Optional example</h3><p>Replace with a finding.</p></article></div>
+</section>
+<script>
+(() => {
+  const tokens = value => value.split(',').map(token => token.trim()).filter(Boolean);
+  const format = (template, data) => template.replace(/\{(count|total|label)\}/g, (_, key) => data[key]);
+  document.querySelectorAll('[data-collection-filter]').forEach(root => {
+    if (root.dataset.filterReady) return;
+    const owned = selector => [...root.querySelectorAll(selector)].filter(el => el.closest('[data-collection-filter]') === root);
+    const controls = owned('[data-filter-controls]')[0], status = owned('[data-filter-status]')[0], zero = owned('[data-filter-zero]')[0];
+    const items = owned('[data-filter-item]'), buttons = owned('button[data-filter-control][data-filter-value]');
+    const search = owned('[data-filter-search]')[0], reset = owned('[data-filter-reset]')[0];
+    const all = root.dataset.filterAllValue, result = root.dataset.filterResultTemplate, empty = root.dataset.filterZeroTemplate;
+    const values = buttons.map(button => button.dataset.filterValue), pressed = buttons.filter(button => button.getAttribute('aria-pressed') === 'true');
+    if (!controls || !status || !zero || !items.length || !all || !result || !empty || buttons.length < 2 ||
+        new Set(values).size !== values.length || !values.includes(all) || values.some(value => !value || value.includes(',') || value !== value.trim()) ||
+        buttons.some(button => !button.textContent.trim()) || pressed.length > 1 ||
+        !['{count}', '{total}', '{label}'].every(token => result.includes(token)) || !empty.includes('{label}') ||
+        items.some(item => !tokens(item.dataset.filterValues || '').length || tokens(item.dataset.filterValues || '').some(token => token === all || !values.includes(token)))) return;
+    let active = pressed[0]?.dataset.filterValue || all;
+    if (search) search.value = '';
+    const apply = () => {
+      const text = (search?.value || '').trim(), query = text.toLocaleLowerCase();
+      const button = buttons.find(button => button.dataset.filterValue === active);
+      let count = 0;
+      buttons.forEach(candidate => candidate.setAttribute('aria-pressed', String(candidate === button)));
+      items.forEach(item => {
+        const visible = (active === all || tokens(item.dataset.filterValues).includes(active)) && (!query || item.textContent.toLocaleLowerCase().includes(query));
+        if (!visible && item.contains(document.activeElement)) (search || button).focus({preventScroll: true});
+        item.hidden = !visible; if (visible) count++;
+      });
+      const data = {count, total: items.length, label: button.textContent.trim() + (query ? ` / ${text}` : '')};
+      status.textContent = format(result, data); zero.textContent = format(empty, data); zero.hidden = count !== 0;
+    };
+    buttons.forEach(button => button.addEventListener('click', () => { active = button.dataset.filterValue; apply(); }));
+    search?.addEventListener('input', apply); reset?.addEventListener('click', () => { active = all; if (search) search.value = ''; apply(); });
+    apply(); controls.hidden = false; root.dataset.filterReady = 'true';
+  });
+})();
+</script>

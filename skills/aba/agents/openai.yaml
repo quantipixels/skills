@@ -1,0 +1,5 @@
+interface:
+  display_name: "Àbá"
+  short_description: "Ideas and alternative directions to choose from"
+policy:
+  allow_implicit_invocation: true

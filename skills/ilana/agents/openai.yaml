@@ -1,0 +1,5 @@
+interface:
+  display_name: "Ìlànà"
+  short_description: "Write and fix skills, prompts and agent instructions"
+policy:
+  allow_implicit_invocation: true

@@ -1,0 +1,5 @@
+interface:
+  display_name: "Ìrònú"
+  short_description: "Capture lessons and reflect on work"
+policy:
+  allow_implicit_invocation: true

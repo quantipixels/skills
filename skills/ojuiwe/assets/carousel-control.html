@@ -1,0 +1,61 @@
+<!-- Visual carousel: stable item IDs; no autoplay. Arrows/Home/End work on the
+     focused root outside interactive children. Previous/next use native buttons.
+     All slides remain readable without JS and in print; selection is transient. -->
+<section class="stack" data-carousel tabindex="0" aria-label="Example collection"
+  data-carousel-role-description="carousel" data-carousel-item-role-description="slide"
+  data-carousel-previous-label="Previous item" data-carousel-next-label="Next item"
+  data-carousel-position-template="{current} of {total}" data-carousel-item-label-template="Item {current}"
+  data-carousel-announcement-template="{label}. Item {current} of {total}.">
+  <p data-carousel-live data-visually-hidden aria-live="polite" aria-atomic="true"></p>
+  <div data-carousel-track><figure id="carousel-one" data-carousel-item role="group" aria-label="First example"><p>First visual.</p></figure>
+    <figure id="carousel-two" data-carousel-item role="group" aria-label="Second example"><p>Second visual.</p></figure></div>
+  <div class="cluster" data-carousel-controls hidden>
+    <button type="button" data-carousel-previous><span data-carousel-previous-text>Previous</span></button>
+    <output class="numeric" data-carousel-position></output>
+    <button type="button" data-carousel-next><span data-carousel-next-text>Next</span></button>
+  </div>
+</section>
+<script>
+(() => {
+  const format = (template, data) => template.replace(/\{(current|total|label)\}/g, (_, key) => data[key]);
+  document.querySelectorAll('[data-carousel]').forEach(root => {
+    if (root.dataset.carouselReady) return;
+    const owned = selector => [...root.querySelectorAll(selector)].filter(el => el.closest('[data-carousel]') === root);
+    const items = owned('[data-carousel-item]'), controls = owned('[data-carousel-controls]')[0];
+    const previous = owned('[data-carousel-previous]')[0], next = owned('[data-carousel-next]')[0];
+    const position = owned('[data-carousel-position]')[0], live = owned('[data-carousel-live]')[0];
+    const before = previous?.querySelector('[data-carousel-previous-text]'), after = next?.querySelector('[data-carousel-next-text]');
+    const strings = {role: root.dataset.carouselRoleDescription, itemRole: root.dataset.carouselItemRoleDescription,
+      previous: root.dataset.carouselPreviousLabel, next: root.dataset.carouselNextLabel, position: root.dataset.carouselPositionTemplate,
+      item: root.dataset.carouselItemLabelTemplate, announcement: root.dataset.carouselAnnouncementTemplate};
+    if (!items.length || !controls || !previous || !next || !position || !live || !before || !after ||
+        Object.values(strings).some(value => !value) || items.some(item => !item.id) || new Set(items.map(item => item.id)).size !== items.length) return;
+    root.setAttribute('aria-roledescription', strings.role); before.textContent = strings.previous; after.textContent = strings.next;
+    items.forEach(item => item.setAttribute('aria-roledescription', strings.itemRole));
+    let current = 0;
+    const select = value => {
+      current = Math.max(0, Math.min(value, items.length - 1));
+      items.forEach((item, i) => { if (i !== current && item.contains(document.activeElement)) root.focus({preventScroll: true}); item.hidden = i !== current; });
+      previous.disabled = current === 0; next.disabled = current === items.length - 1;
+      const data = {current: current + 1, total: items.length}; position.textContent = format(strings.position, data);
+      live.textContent = format(strings.announcement, {...data, label: items[current].getAttribute('aria-label') || format(strings.item, data)});
+    };
+    previous.addEventListener('click', () => select(current - 1)); next.addEventListener('click', () => select(current + 1));
+    root.addEventListener('keydown', event => {
+      if (event.defaultPrevented || event.altKey || event.ctrlKey || event.metaKey || event.target.closest('[data-carousel]') !== root ||
+          event.target.closest('a,button,input,select,textarea,summary,[contenteditable],[role="slider"],[data-tabs]')) return;
+      const rtl = getComputedStyle(root).direction === 'rtl';
+      const keys = {ArrowLeft: current + (rtl ? 1 : -1), ArrowRight: current + (rtl ? -1 : 1), Home: 0, End: items.length - 1};
+      if (!(event.key in keys)) return;
+      event.preventDefault(); select(keys[event.key]);
+    });
+    const reveal = () => {
+      let target;
+      try { target = document.getElementById(decodeURIComponent(location.hash.slice(1))); } catch { return; }
+      const item = target?.closest('[data-carousel-item]');
+      if (items.includes(item)) { select(items.indexOf(item)); requestAnimationFrame(() => target.scrollIntoView({block: 'start'})); }
+    };
+    select(0); controls.hidden = items.length < 2; root.dataset.carouselReady = 'true'; window.addEventListener('hashchange', reveal); reveal();
+  });
+})();
+</script>

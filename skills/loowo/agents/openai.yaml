@@ -1,0 +1,5 @@
+interface:
+  display_name: "Lò ó wò"
+  short_description: "Use the change like its real users before shipping"
+policy:
+  allow_implicit_invocation: true

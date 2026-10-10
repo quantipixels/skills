@@ -1,0 +1,361 @@
+<!doctype html>
+<html lang="en" data-artifact-delivery="portable">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>QP page starter</title>
+  <!-- Copy only the useful examples. Styles use host variables without changing them.
+       The inline mark is copied from assets/brand.svg; keep that asset as its source.
+       All page resources are embedded. Reader choices are transient. -->
+  <style id="qp-style">
+    :root {
+      --qp-bg: #ffffff; --qp-surface: #f4f5f7; --qp-fg: #0e1116; --qp-muted: #565d68; --qp-border: #d9dce1; --qp-accent: #d52e1e; --qp-accent-strong: #a8221a; --qp-success: #1a7f4b; --qp-warning: #b26b00; --qp-danger: #c0182b;
+      --qp-chart-1: #d52e1e; --qp-chart-2: #2f6fb0; --qp-chart-3: #1f8a7a; --qp-chart-4: #3b4a5c; --qp-chart-5: #6b4fbf; --qp-chart-6: #b26b00;
+      --qp-radius: 6px;
+      --page-bg: var(--background, var(--qp-bg)); --page-fg: var(--foreground, var(--qp-fg));
+      --page-muted: var(--qp-muted); --page-surface: var(--qp-surface); --page-border: var(--qp-border);
+      --page-accent: var(--qp-accent); --page-radius: var(--qp-radius);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+      --qp-bg: #0b0d10; --qp-surface: #15181d; --qp-fg: #f2f4f7; --qp-muted: #9aa1ab; --qp-border: #2a2f36; --qp-accent: #ff5b4d; --qp-accent-strong: #ff8174; --qp-success: #3fbf7f; --qp-warning: #e0a030; --qp-danger: #ff6b7a;
+      --qp-chart-1: #ff5b4d; --qp-chart-2: #75ade8; --qp-chart-3: #57c7b5; --qp-chart-4: #99adc7; --qp-chart-5: #af92ee; --qp-chart-6: #e0a030;
+      }
+    }
+    :root[data-theme="light"], :root[data-qp-mode="light"] {
+      --qp-bg: #ffffff; --qp-surface: #f4f5f7; --qp-fg: #0e1116; --qp-muted: #565d68; --qp-border: #d9dce1; --qp-accent: #d52e1e; --qp-accent-strong: #a8221a; --qp-success: #1a7f4b; --qp-warning: #b26b00; --qp-danger: #c0182b;
+      --qp-chart-1: #d52e1e; --qp-chart-2: #2f6fb0; --qp-chart-3: #1f8a7a; --qp-chart-4: #3b4a5c; --qp-chart-5: #6b4fbf; --qp-chart-6: #b26b00;
+    }
+    :root[data-theme="dark"], :root[data-qp-mode="dark"] {
+      --qp-bg: #0b0d10; --qp-surface: #15181d; --qp-fg: #f2f4f7; --qp-muted: #9aa1ab; --qp-border: #2a2f36; --qp-accent: #ff5b4d; --qp-accent-strong: #ff8174; --qp-success: #3fbf7f; --qp-warning: #e0a030; --qp-danger: #ff6b7a;
+      --qp-chart-1: #ff5b4d; --qp-chart-2: #75ade8; --qp-chart-3: #57c7b5; --qp-chart-4: #99adc7; --qp-chart-5: #af92ee; --qp-chart-6: #e0a030;
+    }
+    :root[data-theme="light"] { color-scheme: light; }
+    :root[data-theme="dark"] { color-scheme: dark; }
+    *, *::before, *::after { box-sizing: border-box; }
+    body { margin: 0; background: var(--page-bg); color: var(--page-fg);
+      font: 1rem/1.6 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; overflow-wrap: anywhere; }
+    .page { max-inline-size: 58rem; margin-inline: auto; padding: 1.5rem clamp(1rem, 4vw, 2.5rem) 3rem; }
+    main :where(p, li, dd, blockquote, figcaption) { max-inline-size: 72ch; }
+    h1, h2, h3, h4 { line-height: 1.25; text-wrap: balance; }
+    h1 { font-size: clamp(1.8rem, 4vw, 2.5rem); letter-spacing: -.025em; margin-block: 1rem; }
+    h2 { font-size: 1.4rem; margin-block: 2rem 1rem; } h3 { font-size: 1.1rem; }
+    a { color: var(--page-accent); text-underline-offset: .2em; }
+    img, svg, video { max-inline-size: 100%; } img, video { block-size: auto; }
+    figure { margin-inline: 0; } figcaption { color: var(--page-muted); font-size: .9rem; }
+    button, input, select, textarea { font: inherit; }
+    button, .btn { display: inline-flex; align-items: center; justify-content: center; gap: .5rem;
+      padding: .5rem 1rem; border: 1px solid var(--page-border); border-radius: var(--page-radius);
+      background: var(--page-bg); color: var(--page-fg); cursor: pointer; text-decoration: none; }
+    button:hover, .btn:hover { background: var(--page-surface); }
+    a:hover { color: var(--qp-accent-strong); }
+    button:disabled { opacity: .5; cursor: default; }
+    button[aria-pressed="true"], [role="tab"][aria-selected="true"] {
+      border-color: var(--page-accent); text-decoration: underline; text-underline-offset: .25em; font-weight: 650; }
+    input, select, textarea { max-inline-size: 100%; padding: .5rem 1rem; border: 1px solid var(--page-border);
+      border-radius: var(--page-radius); background: var(--page-bg); color: var(--page-fg); }
+    code, pre, kbd { font-family: ui-monospace, "SFMono-Regular", Consolas, monospace; font-size: .9em; }
+    code { background: var(--page-surface); color: var(--page-fg); padding: .1rem .25rem; }
+    pre { padding: 1rem; overflow: auto; background: var(--page-surface); border-radius: var(--page-radius); }
+    pre code { padding: 0; background: none; } blockquote { margin-inline: 0; padding-inline-start: 1rem; border-inline-start: 3px solid var(--page-accent); }
+    table { border-collapse: collapse; inline-size: 100%; font-variant-numeric: tabular-nums; }
+    th, td { text-align: start; vertical-align: top; padding: .5rem 1rem; border-block-end: 1px solid var(--page-border); }
+    th { font-weight: 650; } caption { text-align: start; color: var(--page-muted); }
+    details { margin-block: 1rem; border-block: 1px solid var(--page-border); padding: 1rem 0; }
+    summary { cursor: pointer; font-weight: 650; } details > :not(summary) { margin-inline-start: 1rem; }
+    .stack > * + * { margin-block-start: var(--gap, 1rem); }
+    .cluster { display: flex; flex-wrap: wrap; align-items: center; gap: var(--gap, .5rem); }
+    .split { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1rem; }
+    .grid-auto { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(min(18rem, 100%), 1fr)); }
+    .muted { color: var(--page-muted); } .small { font-size: .875rem; } .numeric { font-variant-numeric: tabular-nums; }
+    .metadata { display: flex; flex-wrap: wrap; gap: .5rem 2rem; margin-block: 1rem; color: var(--page-muted); font-size: .875rem; }
+    .metadata div { display: flex; gap: .5rem; } .metadata dt { font-weight: 650; } .metadata dd { margin: 0; }
+    .brand { display: inline-flex; align-items: center; gap: 1rem; }
+    .brand-mark { display: inline-flex; background: #0b0d10; border-radius: var(--page-radius); padding: .5rem 1rem; }
+    .callout { border-inline-start: 3px solid var(--page-accent); background: var(--page-surface); padding: 1rem; }
+    .callout > :first-child { margin-block-start: 0; } .callout > :last-child { margin-block-end: 0; }
+    .task-item { display: flex; align-items: baseline; gap: .5rem; }
+    .timeline { padding-inline-start: 1.5rem; border-inline-start: 2px solid var(--page-border); }
+    .timeline li { padding-block: .5rem; } .timeline time { font-weight: 650; }
+    .chart-box { block-size: var(--chart-height, 240px); } .chart-box svg { inline-size: 100%; block-size: 100%; }
+    .chart-svg { color: var(--page-fg); font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+    [id] { scroll-margin-block-start: 1rem; }
+    [hidden] { display: none !important; }
+    :where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+      outline: 3px solid var(--qp-accent); outline-offset: 3px; }
+    .visually-hidden, [data-visually-hidden] { position: absolute; inline-size: 1px; block-size: 1px;
+      overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+    .skip-link { position: fixed; inset: .5rem auto auto .5rem; transform: translateY(-180%); z-index: 10;
+      padding: .5rem 1rem; background: var(--page-bg); } .skip-link:focus { transform: none; }
+    [data-table-wrap], [data-overflow-safe], .visual-frame { max-inline-size: 100%; min-inline-size: 0; overflow: auto; }
+    [data-long-text], [data-log] { white-space: pre-wrap; overflow-wrap: anywhere; }
+    [data-log] { max-block-size: 32rem; overflow: auto; }
+    .artifact-footer { margin-block-start: 2rem; padding-block-start: 1rem; border-block-start: 1px solid var(--page-border); }
+    .print-only { display: none; }
+    html[data-surface="inline"] .page { padding-inline: 0; max-inline-size: none; }
+    html[data-surface="inline"] :is(.artifact-header, .artifact-footer, [data-theme-toggle]) { display: none; }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important; scroll-behavior: auto !important; }
+    }
+    @media print {
+      :root { color-scheme: light; --page-bg: #ffffff; --page-fg: #0e1116; --page-muted: #565d68;
+        --page-surface: #f4f5f7; --page-border: #d9dce1; --page-accent: #d52e1e; --qp-chart-1: #d52e1e; }
+      .page { max-inline-size: none; padding: 0; } .screen-only, [data-print="hide"], [data-theme-toggle],
+      [data-view-controls], [data-view-status], [data-filter-controls], [data-filter-status], [data-filter-zero],
+      [data-carousel-controls], [data-carousel-live], [data-tab-list], [data-report-print] { display: none !important; }
+      .print-only { display: revert !important; }
+      [data-view-panel][hidden], [data-filter-item][hidden], [data-carousel-item][hidden], [data-tab-panel][hidden] { display: block !important; }
+      details[data-print-expand] > :not(summary) { display: block !important; }
+      [data-table-wrap], [data-overflow-safe], pre { overflow: visible; white-space: pre-wrap; }
+      figure, tr, .callout { break-inside: avoid; } h2, h3 { break-after: avoid; }
+    }
+  </style>
+</head>
+<body>
+<a class="skip-link" href="#artifact-content">Skip to content</a>
+<div class="page">
+  <header class="artifact-header split" id="artifact-top" tabindex="-1">
+    <div class="brand"><span class="brand-mark" role="img" aria-label="Quanti Pixels">
+      <!-- Inline copy of assets/brand.svg. -->
+      <svg class="brand-logo" viewBox="0 0 160 132" width="48" height="40" aria-hidden="true" focusable="false">
+        <g fill="none" stroke-width="9" stroke-linecap="round" stroke-linejoin="round">
+          <g stroke="#ffffff"><circle cx="45" cy="42" r="27"/><circle cx="115" cy="42" r="27"/>
+            <path d="M8 42h10M142 42h10"/><path d="M72 42v53M88 42v53"/></g>
+          <circle class="brand__gaze-dot" cx="45" cy="65" r="6.5" fill="#ffffff" stroke="none"/>
+          <circle class="brand__gaze-dot" cx="115" cy="65" r="6.5" fill="#ffffff" stroke="none"/>
+          <path stroke="#d52e1e" d="M41 108Q80 134 119 108"/>
+        </g>
+      </svg>
+    </span><span class="small muted">Quanti Pixels</span></div>
+    <div class="cluster"><button type="button" data-theme-toggle hidden>Change theme</button>
+      <button type="button" data-report-print class="screen-only">Print / save PDF</button></div>
+  </header>
+  <main id="artifact-content" tabindex="-1">
+    <!-- qp:content:start -->
+    <h1>QP page starter</h1>
+    <p>A readable page with an inline chart, keyboard tabs and optional depth. Replace the examples with supplied content.</p>
+    <dl class="metadata"><div><dt>Source</dt><dd>Illustrative starter</dd></div><div><dt>Revision</dt><dd>1</dd></div><div><dt>Data</dt><dd>Static sample</dd></div></dl>
+    <nav aria-label="On this page"><a href="#chart-example">Chart</a> · <a href="#tabs-example">Tabs</a> · <a href="#details-example">Details</a></nav>
+    <section id="chart-example"><h2>A small chart</h2>
+      <figure data-chart>
+      <script type="application/json" data-chart-config>{"type":"bars","title":"Illustrative builds per week","labels":["W1","W2","W3","W4"],"values":[12,19,8,15]}</script>
+      <div class="chart-box" data-chart-output>
+        <svg class="chart-svg" viewBox="0 0 640 240" role="img" aria-label="Illustrative builds: W1 12, W2 19, W3 8, W4 15">
+          <path d="M48 20V205H624" fill="none" stroke="var(--page-border)"/>
+          <g fill="var(--qp-chart-1)"><rect x="72" y="94" width="96" height="111"/><rect x="216" y="29" width="96" height="176"/><rect x="360" y="131" width="96" height="74"/><rect x="504" y="66" width="96" height="139"/></g>
+          <g fill="currentColor" font-size="14" text-anchor="middle"><text x="120" y="84">12</text><text x="264" y="19">19</text><text x="408" y="121">8</text><text x="552" y="56">15</text><text x="120" y="230">W1</text><text x="264" y="230">W2</text><text x="408" y="230">W3</text><text x="552" y="230">W4</text></g>
+        </svg>
+      </div><figcaption>Illustrative builds per week. <span data-chart-status role="status"></span></figcaption>
+      <div data-table-wrap><table><thead><tr><th>Week</th><th>Builds</th></tr></thead><tbody><tr><td>W1</td><td>12</td></tr><tr><td>W2</td><td>19</td></tr><tr><td>W3</td><td>8</td></tr><tr><td>W4</td><td>15</td></tr></tbody></table></div></figure>
+    </section>
+    <section id="tabs-example"><h2>Two code samples</h2>
+      <div data-tabs>
+        <div class="cluster" data-tab-list aria-label="Code language" hidden>
+          <button type="button" id="tab-python" data-tab-target="panel-python">Python</button>
+          <button type="button" id="tab-js" data-tab-target="panel-js">JavaScript</button>
+        </div>
+        <section id="panel-python" data-tab-panel tabindex="0"><h3>Python</h3><pre><code>print("Hello, reader")</code></pre></section>
+        <section id="panel-js" data-tab-panel tabindex="0"><h3>JavaScript</h3><pre><code>console.log("Hello, reader");</code></pre></section>
+      </div>
+    </section>
+    <section id="details-example"><h2>Optional depth</h2><details data-collapsible data-print-expand><summary>Why this starter has no runtime dependencies</summary><p>The file opens offline. Styles, controls and SVG are part of the document. Expand this with Enter or Space on the summary.</p></details></section>
+    <!-- qp:content:end -->
+  </main>
+  <footer class="artifact-footer muted small">
+    <!-- qp:footer:start -->
+    <p>Source: illustrative starter · Revision: 1 · Generated by <code>ojuiwe</code>. Replace these with the source revision and date.</p>
+    <!-- qp:footer:end -->
+    <p>Built with <a href="https://github.com/quantipixels/skills">QP Skills</a>. Single HTML file; static data; reader choices are not saved.</p>
+    <a href="#artifact-top">Back to top</a>
+  </footer>
+</div>
+<script id="qp-base-script">
+(() => {
+  const root = document.documentElement;
+  const button = document.querySelector('[data-theme-toggle]');
+  const host = document.getElementById('t3-theme');
+  if (host) {
+    root.dataset.surface = 'inline';
+    const sync = () => { root.dataset.qpMode = getComputedStyle(root).colorScheme.includes('dark') ? 'dark' : 'light'; };
+    sync();
+    new MutationObserver(sync).observe(host, {childList: true, characterData: true, subtree: true, attributes: true});
+  }
+  else if (button) {
+    const media = matchMedia('(prefers-color-scheme: dark)');
+    let followsSystem = true;
+    const apply = dark => {
+      root.dataset.theme = dark ? 'dark' : 'light';
+      button.textContent = dark ? 'Use light theme' : 'Use dark theme';
+    };
+    apply(media.matches);
+    button.hidden = false;
+    button.addEventListener('click', () => { followsSystem = false; apply(root.dataset.theme !== 'dark'); });
+    media.addEventListener('change', event => { if (followsSystem) apply(event.matches); });
+  }
+
+})();
+</script>
+<!-- qp:controls:start -->
+<script>
+(() => {
+  document.querySelectorAll('[data-tabs]').forEach(root => {
+    if (root.dataset.tabsReady) return;
+    const owned = selector => [...root.querySelectorAll(selector)].filter(el => el.closest('[data-tabs]') === root);
+    const buttons = owned('button[data-tab-target]');
+    const panels = owned('[data-tab-panel]');
+    const list = owned('[data-tab-list]')[0];
+    const ids = panels.map(panel => panel.id);
+    if (!list || !buttons.length || buttons.length !== panels.length || ids.some(id => !id) ||
+        new Set(ids).size !== ids.length || buttons.some(button => !button.id || !ids.includes(button.dataset.tabTarget)) ||
+        new Set(buttons.map(button => button.dataset.tabTarget)).size !== ids.length) return;
+    let index = 0;
+    list.setAttribute('role', 'tablist');
+    buttons.forEach(button => {
+      button.setAttribute('role', 'tab'); button.setAttribute('aria-controls', button.dataset.tabTarget);
+      const panel = panels.find(panel => panel.id === button.dataset.tabTarget);
+      panel.setAttribute('role', 'tabpanel'); panel.setAttribute('aria-labelledby', button.id);
+    });
+    const select = value => {
+      index = value;
+      const active = buttons[index];
+      panels.forEach(panel => {
+        const hide = panel.id !== active.dataset.tabTarget;
+        if (hide && panel.contains(document.activeElement)) active.focus({preventScroll: true});
+        panel.hidden = hide;
+      });
+      buttons.forEach((button, i) => { button.setAttribute('aria-selected', String(i === index)); button.tabIndex = i === index ? 0 : -1; });
+    };
+    buttons.forEach((button, i) => {
+      button.addEventListener('click', () => select(i));
+      button.addEventListener('keydown', event => {
+        if (event.altKey || event.ctrlKey || event.metaKey) return;
+        const vertical = list.getAttribute('aria-orientation') === 'vertical';
+        const rtl = getComputedStyle(list).direction === 'rtl';
+        let next;
+        if (event.key === 'Home') next = 0;
+        else if (event.key === 'End') next = buttons.length - 1;
+        else if (event.key === (vertical ? 'ArrowDown' : 'ArrowRight')) next = i + (vertical || !rtl ? 1 : -1);
+        else if (event.key === (vertical ? 'ArrowUp' : 'ArrowLeft')) next = i + (vertical || !rtl ? -1 : 1);
+        else return;
+        event.preventDefault(); select((next + buttons.length) % buttons.length); buttons[index].focus();
+      });
+    });
+    const reveal = () => {
+      let target;
+      try { target = document.getElementById(decodeURIComponent(location.hash.slice(1))); } catch { return; }
+      const panel = target?.closest('[data-tab-panel]');
+      if (!panels.includes(panel)) return;
+      select(buttons.findIndex(button => button.dataset.tabTarget === panel.id));
+      requestAnimationFrame(() => target.scrollIntoView({block: 'start'}));
+    };
+    select(0); list.hidden = false; root.dataset.tabsReady = 'true';
+    window.addEventListener('hashchange', reveal); reveal();
+  });
+})();
+</script>
+<script>
+(() => {
+  if (document.documentElement.dataset.collapsibleReady) return;
+  document.documentElement.dataset.collapsibleReady = 'true';
+  const reveal = () => {
+    let target;
+    try { target = document.getElementById(decodeURIComponent(location.hash.slice(1))); } catch { return; }
+    if (!target) return;
+    for (let node = target.parentElement; node; node = node.parentElement) {
+      if (node.matches('details')) node.open = true;
+    }
+    requestAnimationFrame(() => target.scrollIntoView({block: 'start'}));
+  };
+  window.addEventListener('hashchange', reveal); reveal();
+})();
+</script>
+<script>
+(() => {
+  if (document.documentElement.dataset.reportReady) return;
+  document.documentElement.dataset.reportReady = 'true';
+  const opened = new Set();
+  const reveal = () => {
+    let target;
+    try { target = document.getElementById(decodeURIComponent(location.hash.slice(1))); } catch { return; }
+    if (!target) return;
+    for (let node = target.parentElement; node; node = node.parentElement) {
+      if (node.matches('details')) node.open = true;
+    }
+    requestAnimationFrame(() => target.scrollIntoView({block: 'start'}));
+  };
+  window.addEventListener('hashchange', reveal);
+  window.addEventListener('beforeprint', () => {
+    document.querySelectorAll('details[data-print-expand]:not([open])').forEach(detail => { opened.add(detail); detail.open = true; });
+  });
+  window.addEventListener('afterprint', () => { opened.forEach(detail => { if (detail.isConnected) detail.open = false; }); opened.clear(); });
+  document.addEventListener('click', event => { if (event.target.closest('[data-report-print]')) window.print(); });
+  reveal();
+})();
+</script>
+<script>
+(() => {
+  const ns = 'http://www.w3.org/2000/svg';
+  const node = (tag, attrs = {}, text) => {
+    const el = document.createElementNS(ns, tag);
+    Object.entries(attrs).forEach(([key, value]) => el.setAttribute(key, String(value)));
+    if (text !== undefined) el.textContent = String(text);
+    return el;
+  };
+  const finite = value => typeof value === 'number' && Number.isFinite(value);
+  window.qpChart = config => {
+    const type = config.type, title = config.title;
+    if (!['bars', 'lines', 'sparkline', 'timeline'].includes(type) || typeof title !== 'string' || !title.trim()) throw new Error('Chart needs type and title');
+    const svg = node('svg', {class: 'chart-svg', viewBox: '0 0 640 240', role: 'img', 'aria-label': title});
+    svg.append(node('title', {}, title));
+    const ink = 'var(--qp-chart-1, #d52e1e)';
+    const label = (x, y, text, anchor = 'middle') => svg.append(node('text', {x, y, fill: 'currentColor', 'font-size': 13, 'text-anchor': anchor}, text));
+    if (type === 'timeline') {
+      const events = config.events;
+      if (!Array.isArray(events) || !events.length || events.length > 12 || events.some(e => typeof e.label !== 'string' || !finite(e.start) || !finite(e.end) || e.end < e.start)) throw new Error('Invalid timeline');
+      const low = Math.min(...events.map(e => e.start)), high = Math.max(...events.map(e => e.end));
+      if (!finite(high - low)) throw new Error('Timeline numeric range is too large');
+      const x = value => 160 + (value - low) / (high - low || 1) * 455;
+      events.forEach((e, i) => {
+        const y = 24 + i * 180 / events.length;
+        label(150, y + 5, e.label, 'end');
+        svg.append(node('line', {x1:x(e.start), x2:x(e.end), y1:y, y2:y, stroke:ink, 'stroke-width':8, 'stroke-linecap':'round'}));
+        svg.append(node('title', {}, `${e.label}: ${e.start} to ${e.end}`));
+      });
+      label(160, 229, low, 'start'); label(615, 229, high, 'end');
+      return svg;
+    }
+    const values = config.values, labels = config.labels;
+    if (!Array.isArray(values) || !values.length || !Array.isArray(labels) || values.length !== labels.length ||
+        values.some(value => !finite(value)) || labels.some(value => typeof value !== 'string')) throw new Error('Invalid chart values/labels');
+    const low = Math.min(0, ...values), high = Math.max(0, ...values);
+    if (!finite(high - low)) throw new Error('Chart numeric range is too large');
+    const y = value => 195 - (value - low) / (high - low || 1) * 160;
+    const x = i => 48 + (i + .5) / values.length * 576;
+    if (type !== 'sparkline') svg.append(node('path', {d:`M48 20V${y(0)}H624`, fill:'none', stroke:'var(--qp-border, #d9dce1)'}));
+    if (type === 'bars') {
+      const width = 576 / values.length * .65;
+      values.forEach((value, i) => {
+        const bar = node('rect', {x:x(i)-width/2, y:Math.min(y(0),y(value)), width, height:Math.abs(y(value)-y(0)), fill:ink});
+        bar.append(node('title', {}, `${labels[i]}: ${value}`)); svg.append(bar);
+        label(x(i), y(value) + (value < 0 ? 17 : -7), value);
+      });
+    } else {
+      svg.append(node('polyline', {points:values.map((value,i)=>`${x(i)},${y(value)}`).join(' '), fill:'none', stroke:ink, 'stroke-width':3}));
+      values.forEach((value, i) => { const point=node('circle', {cx:x(i), cy:y(value), r:3, fill:ink}); point.append(node('title',{},`${labels[i]}: ${value}`)); svg.append(point); });
+    }
+    if (type !== 'sparkline') labels.forEach((text, i) => label(x(i), 229, text));
+    return svg;
+  };
+  document.querySelectorAll('[data-chart]').forEach(figure => {
+    const config = figure.querySelector('[data-chart-config]'), output = figure.querySelector('[data-chart-output]'), status = figure.querySelector('[data-chart-status]');
+    if (!config || !output || figure.dataset.chartReady) return;
+    try { output.replaceChildren(window.qpChart(JSON.parse(config.textContent))); figure.dataset.chartReady='true'; if(status) status.textContent=''; }
+    catch { if(status) status.textContent='Chart unavailable; read the numbers below.'; }
+  });
+})();
+</script>
+<!-- qp:controls:end -->
+<script>console.log('ready');</script>
+</body>
+</html>

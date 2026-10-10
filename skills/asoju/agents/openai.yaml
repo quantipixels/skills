@@ -1,0 +1,5 @@
+interface:
+  display_name: "Aṣojú"
+  short_description: "Split work, brief subagents, pick models"
+policy:
+  allow_implicit_invocation: true

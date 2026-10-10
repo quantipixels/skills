@@ -1,0 +1,23 @@
+<!-- Native details/summary supplies Enter/Space, focus and no-JS behavior.
+     Use stable IDs for jump links and data-print-expand for essential print content.
+     The script opens closed ancestors of a deep link; no custom keyboard simulation. -->
+<details data-collapsible data-print-expand>
+  <summary>Optional detail</summary>
+  <p id="example-detail">Replace with the supplied explanation.</p>
+</details>
+<script>
+(() => {
+  if (document.documentElement.dataset.collapsibleReady) return;
+  document.documentElement.dataset.collapsibleReady = 'true';
+  const reveal = () => {
+    let target;
+    try { target = document.getElementById(decodeURIComponent(location.hash.slice(1))); } catch { return; }
+    if (!target) return;
+    for (let node = target.parentElement; node; node = node.parentElement) {
+      if (node.matches('details')) node.open = true;
+    }
+    requestAnimationFrame(() => target.scrollIntoView({block: 'start'}));
+  };
+  window.addEventListener('hashchange', reveal); reveal();
+})();
+</script>

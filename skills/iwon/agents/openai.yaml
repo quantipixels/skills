@@ -1,0 +1,5 @@
+interface:
+  display_name: "Ìwọ̀n"
+  short_description: "Measure, benchmark, keep or revert"
+policy:
+  allow_implicit_invocation: true

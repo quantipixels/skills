@@ -1,0 +1,74 @@
+<!-- Inline SVG charts, no library. Copy after figures; each data-chart owns JSON
+     data-chart-config and data-chart-output. Types: bars, lines, sparkline,
+     timeline. Values must be finite numbers; retain numbers/units in a table.
+     Timeline events use numeric start/end, with their units in the caption.
+     CSS variable colours follow the host automatically. Safe text uses textContent.
+     For direct use: window.qpChart(config) returns an SVG element. -->
+<figure data-chart>
+  <div class="chart-box" data-chart-output></div>
+  <script type="application/json" data-chart-config>{"type":"bars","title":"Illustrative builds","labels":["W1","W2","W3","W4"],"values":[12,19,8,15]}</script>
+  <figcaption>Illustrative builds per week. <span data-chart-status role="status"></span></figcaption>
+  <div data-table-wrap><table><thead><tr><th>Week</th><th>Builds</th></tr></thead><tbody><tr><td>W1</td><td>12</td></tr><tr><td>W2</td><td>19</td></tr><tr><td>W3</td><td>8</td></tr><tr><td>W4</td><td>15</td></tr></tbody></table></div>
+</figure>
+<script>
+(() => {
+  const ns = 'http://www.w3.org/2000/svg';
+  const node = (tag, attrs = {}, text) => {
+    const el = document.createElementNS(ns, tag);
+    Object.entries(attrs).forEach(([key, value]) => el.setAttribute(key, String(value)));
+    if (text !== undefined) el.textContent = String(text);
+    return el;
+  };
+  const finite = value => typeof value === 'number' && Number.isFinite(value);
+  window.qpChart = config => {
+    const type = config.type, title = config.title;
+    if (!['bars', 'lines', 'sparkline', 'timeline'].includes(type) || typeof title !== 'string' || !title.trim()) throw new Error('Chart needs type and title');
+    const svg = node('svg', {class: 'chart-svg', viewBox: '0 0 640 240', role: 'img', 'aria-label': title});
+    svg.append(node('title', {}, title));
+    const ink = 'var(--qp-chart-1, #d52e1e)';
+    const label = (x, y, text, anchor = 'middle') => svg.append(node('text', {x, y, fill: 'currentColor', 'font-size': 13, 'text-anchor': anchor}, text));
+    if (type === 'timeline') {
+      const events = config.events;
+      if (!Array.isArray(events) || !events.length || events.length > 12 || events.some(e => typeof e.label !== 'string' || !finite(e.start) || !finite(e.end) || e.end < e.start)) throw new Error('Invalid timeline');
+      const low = Math.min(...events.map(e => e.start)), high = Math.max(...events.map(e => e.end));
+      if (!finite(high - low)) throw new Error('Timeline numeric range is too large');
+      const x = value => 160 + (value - low) / (high - low || 1) * 455;
+      events.forEach((e, i) => {
+        const y = 24 + i * 180 / events.length;
+        label(150, y + 5, e.label, 'end');
+        svg.append(node('line', {x1:x(e.start), x2:x(e.end), y1:y, y2:y, stroke:ink, 'stroke-width':8, 'stroke-linecap':'round'}));
+        svg.append(node('title', {}, `${e.label}: ${e.start} to ${e.end}`));
+      });
+      label(160, 229, low, 'start'); label(615, 229, high, 'end');
+      return svg;
+    }
+    const values = config.values, labels = config.labels;
+    if (!Array.isArray(values) || !values.length || !Array.isArray(labels) || values.length !== labels.length ||
+        values.some(value => !finite(value)) || labels.some(value => typeof value !== 'string')) throw new Error('Invalid chart values/labels');
+    const low = Math.min(0, ...values), high = Math.max(0, ...values);
+    if (!finite(high - low)) throw new Error('Chart numeric range is too large');
+    const y = value => 195 - (value - low) / (high - low || 1) * 160;
+    const x = i => 48 + (i + .5) / values.length * 576;
+    if (type !== 'sparkline') svg.append(node('path', {d:`M48 20V${y(0)}H624`, fill:'none', stroke:'var(--qp-border, #d9dce1)'}));
+    if (type === 'bars') {
+      const width = 576 / values.length * .65;
+      values.forEach((value, i) => {
+        const bar = node('rect', {x:x(i)-width/2, y:Math.min(y(0),y(value)), width, height:Math.abs(y(value)-y(0)), fill:ink});
+        bar.append(node('title', {}, `${labels[i]}: ${value}`)); svg.append(bar);
+        label(x(i), y(value) + (value < 0 ? 17 : -7), value);
+      });
+    } else {
+      svg.append(node('polyline', {points:values.map((value,i)=>`${x(i)},${y(value)}`).join(' '), fill:'none', stroke:ink, 'stroke-width':3}));
+      values.forEach((value, i) => { const point=node('circle', {cx:x(i), cy:y(value), r:3, fill:ink}); point.append(node('title',{},`${labels[i]}: ${value}`)); svg.append(point); });
+    }
+    if (type !== 'sparkline') labels.forEach((text, i) => label(x(i), 229, text));
+    return svg;
+  };
+  document.querySelectorAll('[data-chart]').forEach(figure => {
+    const config = figure.querySelector('[data-chart-config]'), output = figure.querySelector('[data-chart-output]'), status = figure.querySelector('[data-chart-status]');
+    if (!config || !output || figure.dataset.chartReady) return;
+    try { output.replaceChildren(window.qpChart(JSON.parse(config.textContent))); figure.dataset.chartReady='true'; if(status) status.textContent=''; }
+    catch { if(status) status.textContent='Chart unavailable; read the numbers below.'; }
+  });
+})();
+</script>

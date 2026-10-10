@@ -1,0 +1,21 @@
+{
+  "name": "qp-skills",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Agent skills for reasoning, planning, research, design, engineering, and delivery",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/quantipixels/skills"
+  },
+  "license": "MIT",
+  "scripts": {
+    "changeset": "changeset",
+    "version": "changeset version && npm install --package-lock-only --ignore-scripts",
+    "check": "sh scripts/check.sh"
+  },
+  "devDependencies": {
+    "@changesets/changelog-github": "^0.7.0",
+    "@changesets/cli": "^2.30.0"
+  },
+  "packageManager": "npm@10.9.4"
+}

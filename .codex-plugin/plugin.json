@@ -1,0 +1,15 @@
+{
+  "name": "qp-skills",
+  "description": "Focused expertise and methods for reasoning, engineering, design, and delivery",
+  "author": {
+    "name": "QP",
+    "url": "https://github.com/quantipixels"
+  },
+  "repository": "https://github.com/quantipixels/skills",
+  "license": "MIT",
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "QP Skills",
+    "shortDescription": "Focused reasoning, engineering, design, and delivery skills"
+  }
+}

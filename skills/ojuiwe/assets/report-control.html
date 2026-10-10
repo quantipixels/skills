@@ -1,0 +1,27 @@
+<!-- Report/print: copy after content. Print expands only data-print-expand details
+     and restores their prior state afterwards. Stable IDs support jump links.
+     Embed the base print CSS too, so every view/tab/filter item prints completely. -->
+<button type="button" data-report-print class="screen-only">Print / save PDF</button>
+<script>
+(() => {
+  if (document.documentElement.dataset.reportReady) return;
+  document.documentElement.dataset.reportReady = 'true';
+  const opened = new Set();
+  const reveal = () => {
+    let target;
+    try { target = document.getElementById(decodeURIComponent(location.hash.slice(1))); } catch { return; }
+    if (!target) return;
+    for (let node = target.parentElement; node; node = node.parentElement) {
+      if (node.matches('details')) node.open = true;
+    }
+    requestAnimationFrame(() => target.scrollIntoView({block: 'start'}));
+  };
+  window.addEventListener('hashchange', reveal);
+  window.addEventListener('beforeprint', () => {
+    document.querySelectorAll('details[data-print-expand]:not([open])').forEach(detail => { opened.add(detail); detail.open = true; });
+  });
+  window.addEventListener('afterprint', () => { opened.forEach(detail => { if (detail.isConnected) detail.open = false; }); opened.clear(); });
+  document.addEventListener('click', event => { if (event.target.closest('[data-report-print]')) window.print(); });
+  reveal();
+})();
+</script>

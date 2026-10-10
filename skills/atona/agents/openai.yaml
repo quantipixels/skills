@@ -1,0 +1,5 @@
+interface:
+  display_name: "Atọ́nà"
+  short_description: "Plan the build and carry the initiative"
+policy:
+  allow_implicit_invocation: true
