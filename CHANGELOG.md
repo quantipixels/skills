@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.4.1
+
+### Patch Changes
+
+- [#12](https://github.com/quantipixels/skills/pull/12) [`66a4db7`](https://github.com/quantipixels/skills/commit/66a4db74775f4eae9fe1a80903c3a3702e1e4f44) Thanks [@mosobande](https://github.com/mosobande)! - Make SIGIDI optional throughout the public skills: use available host or project capabilities, collect secrets securely without SIGIDI, detect existing worktree scan folders with explicit root overrides, and retain standalone theme tokens.
+
 ## 0.4.0
 
 ### Minor Changes
