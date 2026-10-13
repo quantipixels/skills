@@ -5,7 +5,7 @@ Sessions end; some things they created keep acting. A retrospective reviews them
 ## What to read
 
 - **Memory notes.** Claude Code keeps them per project folder in `~/.claude/projects/<folder>/memory/` (one file per note, plus a `MEMORY.md` index). Read every folder, not only the current project's: notes saved from scratch folders, deleted worktrees or other repos are never loaded again by sessions elsewhere. Codex keeps its own in `~/.codex/memories/` (summary and raw notes). Other hosts: look for their equivalent and say when none was found.
-- **Standing automation.** Scheduled tasks in every SIGIDI project (`list_scheduled_tasks` per project), host loops or routines, and cron entries the user's agents created. Read the prompt, schedule, next run and last status.
+- **Standing automation.** Scheduled tasks in every accessible SIGIDI project when available (`list_scheduled_tasks` per project), otherwise the host's task inventory; host loops or routines, and cron entries the user's agents created. Read the prompt, schedule, next run and last status; report inaccessible inventories as coverage gaps.
 
 ## How to judge each item
 

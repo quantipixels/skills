@@ -18,7 +18,7 @@ Update the plan after material changes and before dependent decisions or handoff
 
 When no direction is apparent, the options are unsatisfying, or other mechanisms need exploring, ask the caller for directions for the user to pick. Treat any evidence gap the same way: name it and ask the caller to fill it. Keep a promising idea, a confirmed choice and an accepted requirement distinct.
 
-Use a known path when it helps, or compose a better one from host and SIGIDI tools, project procedures and the QP skills. A custom path needs no new skill, saved recipe or script. When later steps are uncertain, name the next step that produces evidence.
+Use a known path when it helps, or compose a better one from host tools, SIGIDI tools when available, project procedures and the QP skills. A custom path needs no new skill, saved recipe or script. When later steps are uncertain, name the next step that produces evidence.
 
 For a build request, carry the selected direction into shaping and delivery. If no credible direction survives, say why and what evidence or decision would unblock it. Do not repeat exploration for a settled direction.
 

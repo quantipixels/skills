@@ -18,7 +18,7 @@ Repository tooling stays outside skills: package validators in `scripts/skills/`
 - **One router.** `alarina` holds the rules every task shares (outcome, asking, building, proof, do-no-harm, SIGIDI tool use, reporting) and is the only place routing lives: its skills table and `skills/alarina/references/workflow.md`.
 - **Single-job workers, one owner per kind of output.** A worker's description says what it produces and when it applies, and names no other skill. Its body states its output, what it needs (returning at once, saying what is missing, when that is absent or the request is not its job), its done check, and what it returns to the caller. It never names a next step. It may name a skill it calls, never one it excludes, and it names record kinds, not paths.
 - **Overlaps move, they are not patched.** When two skills claim the same output, move the job to one owner; do not add exclusions. Specialists keep only their own method and never repeat or contradict `alarina`.
-- **SIGIDI first.** Where SIGIDI (T3 Code) provides a capability (delegation, worktrees, PR watching, inline HTML, previews, scheduling, secrets), point to it and say what to use when it is absent.
+- **SIGIDI when present.** Where available SIGIDI (T3 Code) tools provide a capability (delegation, worktrees, PR watching, inline HTML, previews, scheduling, secrets), point to it and say what to use when it is absent.
 - **When to split.** A capability gets its own skill when people ask for it on its own, its method is used without the rest of its host, two or more skills use it, or keeping it would give the host two jobs or crowd its file. Keep it inside a skill when it is one step of that skill's method and nothing else uses it.
 
 ## Writing skills

@@ -23,6 +23,6 @@ QP's mark supplies white ink, round eyes and the red smile `#d52e1e`. Use crisp 
 
 Chart order is red, blue, teal, slate, purple, amber; dark variants keep those hues. Use the system UI sans stack and `ui-monospace`, no webfonts. Radius is 6px, borders 1px, spacing follows an 8px rhythm. The stylesheet in [base.html](../assets/base.html) is the executable token source; the generator reuses it.
 
-SIGIDI owns `--background`/`--foreground`. Use those for page background/text and retain QP's accent, status and chart colours. The host's light/dark mode selects the matching QP tokens without moving its stylesheet. Standalone pages follow system mode and offer a transient toggle.
+When SIGIDI supplies `--background`/`--foreground`, use those for page background/text and retain QP's accent, status and chart colours. The host's light/dark mode selects the matching QP tokens without moving its stylesheet. Without those host tokens, use `--qp-bg`/`--qp-fg`. Standalone pages follow system mode and offer a transient toggle.
 
 Body text requires 4.5:1; large text, focus and meaningful graphical UI require 3:1. Check text on both background and surface in each mode. Warning/chart colours can mark symbols or large UI when they do not reach body contrast; status labels stay in the foreground colour and also say pass/caution/fail. Decorative borders do not carry status. Recheck actual colours in a host or adapted palette.

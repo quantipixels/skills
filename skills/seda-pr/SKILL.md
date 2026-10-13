@@ -42,7 +42,7 @@ Establish current head/base, mergeability, required checks and all unresolved fe
 
 Provider-ready means open/not draft, positively mergeable, required checks passed or explicitly absent, feedback disposed with evidence and no unresolved published threads, no blocking review, complete current evidence and no changing ancestor. Keep `PROVIDER_READY` or `STACK_PROVIDER_READY` for callers; neither means low risk, independent approval or integrated delivery acceptance.
 
-Before finishing SIGIDI PR work, check `list_thread_pull_requests` and link any PR you worked on that is missing. Report linking or watching failures.
+Before finishing SIGIDI PR work, use `list_thread_pull_requests` and linking tools when available to link any PR you worked on that is missing; otherwise return the provider PR URLs to the caller. Report linking or watching failures.
 
 
 ## Return
