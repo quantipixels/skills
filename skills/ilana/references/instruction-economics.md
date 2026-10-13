@@ -36,6 +36,6 @@ Next, move branch-specific expertise behind a clear pointer, compress repeated e
 
 Compare realistic work with and without guidance before making frontier-capability claims. A capable baseline can justify deleting generic scaffolding; it does not establish that specialist expertise, routing topology or a hard boundary is unnecessary. Use the [placement classes](skill-mechanics.md#classify-before-adding-guidance) for an addition, and [editing agent text](editing-agent-text.md) for material pruning and its semantic checks.
 
-Leave provider mechanics (spawn syntax, parallel scheduling, joins, status transport, retries, PR watching, scheduling) to the host and SIGIDI. Do not add "discover relevant skills", "parallelize independent work", "wait for all workers" or similar generic rules unless evidence shows the target model fails without them. Do not create an agent definition merely to name a worker; shape workers through the assignment.
+Leave provider mechanics (spawn syntax, parallel scheduling, joins, status transport, retries, PR watching, scheduling) to the host and, when available, SIGIDI. Do not add "discover relevant skills", "parallelize independent work", "wait for all workers" or similar generic rules unless evidence shows the target model fails without them. Do not create an agent definition merely to name a worker; shape workers through the assignment.
 
 Stop when the next cut would require consequential guessing about behaviour, authority, evidence, coverage or recovery. Word count describes compression, not improvement.

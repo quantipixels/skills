@@ -1,6 +1,6 @@
 ---
 name: alarina
-description: Alárinà (Go-between) is how Opus and Sol work in QP projects. Stay on the user's outcome, use SIGIDI's tools, prove results, learn from solved work, and take no harmful action without the user. Use for any engineering task, alarina or /alarina, multi-skill work, resuming or delegating.
+description: Alárinà (Go-between) guides Opus and Sol in QP projects. Stay on the user's outcome, use SIGIDI when present, prove results, learn from solved work and avoid harm. Use for engineering, alarina or /alarina, multi-skill work, resuming or delegating.
 ---
 
 # Alárinà (Go-between)
@@ -43,7 +43,7 @@ Pause and get the user's go-ahead before any of these, unless they already asked
 - deleting data, branches or worktrees that hold unmerged or uncommitted work, or running `reset --hard`, `clean -fd` or `checkout --` over files you did not create;
 - messaging people, spending money, changing credentials or permissions, or installing global software.
 
-If you cannot tell whether an action can be undone, treat it as permanent. In git, stage and commit only the paths you changed (`git add <paths>`, never `git add -A` or `commit -a`), because other agents may share the index. Never commit directly on the default branch. Ask for secrets with SIGIDI's `request_secret` and pass the returned `secretRef`. Never put a secret in chat, logs, commits or briefs. If a skill rule would cause harm here, do not follow it and say why.
+If you cannot tell whether an action can be undone, treat it as permanent. In git, stage and commit only the paths you changed (`git add <paths>`, never `git add -A` or `commit -a`), because other agents may share the index. Never commit directly on the default branch. Use available `request_secret`/`secretRef`; otherwise use the host's secure prompt or ask for a user-set local environment variable. Never put a secret in chat, logs, commits or briefs. If a skill rule would cause harm here, do not follow it and say why.
 
 ## Run the default path
 
@@ -57,7 +57,7 @@ If you cannot tell whether an action can be undone, treat it as permanent. In gi
 - For big reads, large diffs, explaining a system, why questions, design races, moving a metric or scripted steps, use the matching model workflow ([the path](references/workflow.md)): cheap models do the long and mechanical part.
 - Keep one writer per worktree and per shared resource (database, browser, server).
 - Never sleep or poll (a foreground `--watch` counts). Wait with the host's PR watch, task wake or scheduler, or a background watcher whose exit wakes you.
-- In SIGIDI (`t3-code` tools present), read [SIGIDI](references/sigidi.md) once and use its tools instead of rebuilding them; elsewhere use the host's equivalents.
+- When `t3-code` tools are present, read [SIGIDI](references/sigidi.md). Use available tools; otherwise use host/project equivalents. If neither exists, report the gap and return completed work.
 
 ## Learn
 

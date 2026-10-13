@@ -70,6 +70,30 @@ sys.exit(1)
         self.assertEqual(0, result.returncode, result.stdout + result.stderr)
         return json.loads(result.stdout) if "--json" in options else result.stdout
 
+    def test_default_roots_without_sigidi_and_with_detected_folders(self):
+        home = Path(self.env["HOME"])
+        home.mkdir()
+
+        def defaults():
+            result = subprocess.run([sys.executable, str(TOOL), "--json"],
+                                    cwd=self.base, env=self.env, capture_output=True, text=True, timeout=30)
+            self.assertEqual(0, result.returncode, result.stdout + result.stderr)
+            return json.loads(result.stdout)
+
+        self.assertEqual([], defaults()["checkouts"])
+        projects = home / "Projects" / "public checkout"
+        projects.mkdir(parents=True)
+        self.git("init", "-q", checkout=projects)
+        report = defaults()
+        self.assertEqual([str(projects)], [row["path"] for row in report["checkouts"]])
+        self.assertEqual([], report["scan_errors"])
+        self.assertFalse((home / ".sigidi").exists())
+        optional = home / ".sigidi" / "worktrees" / "optional checkout"
+        optional.mkdir(parents=True)
+        self.git("init", "-q", checkout=optional)
+        self.assertEqual({str(projects), str(optional)},
+                         {row["path"] for row in defaults()["checkouts"]})
+
     def test_head_only_counts_and_shared_stashes_with_nested_repositories(self):
         safe = self.worktree("safe tree")
         unique = self.worktree("unique tree")

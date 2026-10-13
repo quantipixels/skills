@@ -27,7 +27,7 @@ Name the result, the observed gap and what a capable agent already does without 
 | 3. Conditional reference expertise | Load specialist knowledge only at the decision that needs it. | Identity/addressability failures or stateful recovery proof. |
 | 4. Deterministic helper | Write a bounded script only when existing tools do not meet the contract. | Reject an empty test receipt; clean up an owned process group. |
 | 5. Evaluation or evidence | Keep the failure, comparison or acceptance case with evaluation until it supports a remedy. | Test whether a routing instruction improves finished work. |
-| 6. Host, SIGIDI or project policy | Use the user/project surface, supported host configuration or SIGIDI tool for runtime choices. | Model selection, tool access, SIGIDI orchestration (`delegate_task`, `watch_pull_request`, `schedule_task`), team-required checks. |
+| 6. Host, SIGIDI or project policy | Use the user/project surface, supported host configuration or, when available, SIGIDI tool for runtime choices; otherwise use the host's or project's equivalents. | Model selection, tool access, SIGIDI orchestration (`delegate_task`, `watch_pull_request`, `schedule_task`), team-required checks. |
 | 7. Nowhere | Omit or retire redundant, obsolete or unsupported material after checking who reads it. | A copied spawn, polling or PR-watch recipe the host or SIGIDI already supplies. |
 
 Class 0 hands execution to an existing capability; it does not drop the user's task or assume every model has that capability. Class 7 removes an unneeded obligation or resource. When capability is unknown, inspect or try it briefly instead of assuming guidance helps or is redundant. Capability does not supply access, domain facts, user intent or permission.

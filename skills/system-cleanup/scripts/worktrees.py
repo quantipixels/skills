@@ -10,7 +10,11 @@ import shutil
 import subprocess
 import sys
 
-DEFAULT_ROOTS = ("~/Projects", "~/.sigidi/worktrees", "~/.sigidi/scratch")
+
+def default_roots():
+    home = Path.home()
+    candidates = (home / "Projects", home / ".sigidi/worktrees", home / ".sigidi/scratch")
+    return [path for path in candidates if path.is_dir()]
 
 
 def command(argv, timeout=30):
@@ -203,11 +207,11 @@ def markdown(report):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("roots", nargs="*", type=Path, help="Folders to search recursively")
+    parser.add_argument("roots", nargs="*", type=Path, help="Folders to search recursively; defaults to existing ~/Projects and SIGIDI worktree/scratch folders")
     parser.add_argument("--json", action="store_true")
     parser.add_argument("--remove-safe", action="store_true", help="Recheck and remove only safe linked worktrees")
     args = parser.parse_args()
-    report = inventory(args.roots or [Path(root) for root in DEFAULT_ROOTS])
+    report = inventory(args.roots or default_roots())
     if args.remove_safe:
         report["removal"] = remove_safe(report["checkouts"])
     if args.json:

@@ -4,7 +4,7 @@ Agent skills for planning, research, engineering, design, and writing, by Oluwas
 
 Everything starts with **Alárinà (`alarina`)**, the working rules that keep Claude and Codex on your outcome:
 
-- It uses SIGIDI's tools (delegation, worktrees, PR watching, inline pages, previews) instead of rebuilding them.
+- It uses SIGIDI when present (delegation, worktrees, PR watching, inline pages, previews), otherwise the host's or project's equivalents.
 - It proves results on the real product.
 - It never pushes, merges, deploys or deletes without you.
 
@@ -66,7 +66,7 @@ Alárinà runs the default path by itself: each step hands to the next, and it s
 
 | Step | What you want | Skill |
 | --- | --- | --- |
-| Start | Work on your outcome with SIGIDI, real proof and no harmful actions; follow the default path and route to the skills below. | [Alárinà · `alarina`](skills/alarina/SKILL.md) |
+| Start | Work on your outcome with SIGIDI when present, real proof and no harmful actions; follow the default path and route to the skills below. | [Alárinà · `alarina`](skills/alarina/SKILL.md) |
 | 1 | Work out what you want and settle the important choices through an interview. | [Ìbéèrè · `ibeere`](skills/ibeere/SKILL.md) |
 | 1b | Get ideas and alternative directions when there is no clear way forward. | [Àbá · `aba`](skills/aba/SKILL.md) |
 | 2 | Write the spec: the problem, who it is for, and checks that prove it is done. | [Ṣẹ̀dá spec · `seda-spec`](skills/seda-spec/SKILL.md) |

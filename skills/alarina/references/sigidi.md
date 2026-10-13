@@ -1,6 +1,6 @@
 # SIGIDI tools
 
-Read once per thread when the `t3-code` tools are present (names may carry an `mcp__t3-code__` prefix). SIGIDI and T3 Code are the same host. Use these instead of scripts, loops or prose that rebuild them.
+Read once per thread when the `t3-code` tools are present (names may carry an `mcp__t3-code__` prefix). SIGIDI and T3 Code are the same host. Use available tools instead of scripts, loops or prose that rebuild them. For each unavailable capability, use the host's or project's equivalent: native subagents, Git worktrees, provider PR tools, a supported scheduler, local HTML/browser/device tools, or the host transcript. If no equivalent exists, report the gap and return the work that can be completed; do not require SIGIDI installation.
 
 ## Delegate
 
@@ -35,4 +35,4 @@ Read once per thread when the `t3-code` tools are present (names may carry an `m
 ## Other threads and secrets
 
 - Read past or sibling work with `t3_thread_read` and `t3_thread_search`, scoped to the current project.
-- Ask for a secret with `request_secret` and pass the returned one-use `secretRef`. Never ask for a secret in chat.
+- When available, ask for a secret with `request_secret` and pass the returned one-use `secretRef`; otherwise use the host's secure secret prompt, or ask the user to set an environment variable locally without sharing its value. Never ask for a secret in chat.
